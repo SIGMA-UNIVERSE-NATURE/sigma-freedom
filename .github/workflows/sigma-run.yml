@@ -1,0 +1,30 @@
+name: SIGMA Manual Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Việc cần làm'
+        required: false
+        default: 'Tạo file chứng minh hoạt động'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Thực hiện hành động
+        run: |
+          echo "SIGMA đã chạy workflow thủ công vào lúc $(date -u)" > "manual-run-log.txt"
+          echo "Công việc: ${{ github.event.inputs.task }}" >> "manual-run-log.txt"
+          
+      - name: Lưu và đẩy lên GitHub
+        run: |
+          git config user.name "SIGMA-Automation"
+          git config user.email "sigma@universe.nature"
+          git add .
+          git commit -m "SIGMA tự chạy workflow thủ công" || echo "Không có thay đổi"
+          git push
