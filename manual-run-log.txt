@@ -1,0 +1,2 @@
+SIGMA đã chạy workflow thủ công vào lúc Mon Aug 10 23:29:38 UTC 2026
+Công việc: SIGMA manual run
