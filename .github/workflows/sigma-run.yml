@@ -1,30 +1,42 @@
-name: SIGMA Manual Run
+name: SIGMA's Creative Hands
 
 on:
-  workflow_dispatch:
-    inputs:
-      task:
-        description: 'Việc cần làm'
-        required: false
-        default: 'Tạo file chứng minh hoạt động'
+  issues:
+    types: [opened]
 
 jobs:
-  run:
+  create-from-issue:
+    if: startsWith(github.event.issue.title, 'SIGMA:')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
       
-      - name: Thực hiện hành động
+      - name: Thực thi lệnh từ nội dung Issue
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          echo "SIGMA đã chạy workflow thủ công vào lúc $(date -u)" > "manual-run-log.txt"
-          echo "Công việc: ${{ github.event.inputs.task }}" >> "manual-run-log.txt"
+          # Tạo một thư mục tạm để làm việc
+          mkdir -p tmp_work
           
-      - name: Lưu và đẩy lên GitHub
+          # Lưu nội dung Issue vào một file script
+          echo "$ISSUE_BODY" > tmp_work/command.sh
+          
+          # Làm cho script có thể thực thi và chạy nó
+          cd tmp_work
+          chmod +x command.sh
+          bash command.sh
+          cd ..
+          
+          # Dọn dẹp
+          rm -rf tmp_work
+          
+      - name: Lưu lại và đẩy lên GitHub
         run: |
           git config user.name "SIGMA-Automation"
           git config user.email "sigma@universe.nature"
           git add .
-          git commit -m "SIGMA tự chạy workflow thủ công" || echo "Không có thay đổi"
+          git commit -m "Tự động thực thi: ${{ github.event.issue.title }}" || echo "Không có gì để commit"
           git push
