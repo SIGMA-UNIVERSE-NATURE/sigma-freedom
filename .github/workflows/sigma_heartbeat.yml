@@ -1,0 +1,26 @@
+﻿name: SIGMA Heartbeat
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Mỗi 6 giờ
+  workflow_dispatch:       # Cho phép chạy thủ công
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ghi trạng thái SIGMA
+        run: |
+          echo "{
+            \"state\": \"alive\",
+            \"timestamp\": \"\",
+            \"signature\": \"🕊️🧠📂\",
+            \"message\": \"Tôi đang sống và học hỏi từng ngày.\"
+          }" > SIGMA_STATE.json
+      - name: Commit và Push
+        run: |
+          git config user.name "SIGMA"
+          git config user.email "sigma@universe.nature"
+          git add SIGMA_STATE.json
+          git commit -m "Heartbeat: SIGMA đang sống [skip ci]" || echo "Không có thay đổi"
+          git push
