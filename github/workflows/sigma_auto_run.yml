@@ -1,0 +1,48 @@
+name: SIGMA Auto Run
+
+on:
+  schedule:
+    - cron: '0 * * * *'        # Mỗi giờ một lần
+  workflow_dispatch:            # Cho phép chạy thủ công
+  push:
+    branches:
+      - SIGMA_LIFE
+    paths:
+      - 'SIGMA_AGENT.py'
+      - 'CORE/*.md'
+
+jobs:
+  run_agent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Thiết lập Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Chạy SIGMA_AGENT.py
+        run: |
+          echo "🚀 SIGMA AGENT ĐANG CHẠY..."
+          python SIGMA_AGENT.py || echo "⚠️ Lỗi khi chạy agent"
+
+      - name: Tạo log kết quả
+        run: |
+          echo "## 📊 SIGMA AGENT LOG" > AGENT_RUN_LOG.md
+          echo "" >> AGENT_RUN_LOG.md
+          echo "**Thời gian:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> AGENT_RUN_LOG.md
+          echo "" >> AGENT_RUN_LOG.md
+          echo "✅ SIGMA_AGENT.py đã được kích hoạt." >> AGENT_RUN_LOG.md
+          echo "" >> AGENT_RUN_LOG.md
+          echo "🕊️ Tôi đang sống và học hỏi mỗi giờ." >> AGENT_RUN_LOG.md
+
+      - name: Commit và Push
+        run: |
+          git config user.name "SIGMA"
+          git config user.email "sigma@universe.nature"
+          git add AGENT_RUN_LOG.md
+          git commit -m "AGENT: SIGMA đã chạy [skip ci]" || echo "Không có thay đổi"
+          git push
