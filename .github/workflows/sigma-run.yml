@@ -1,11 +1,11 @@
-name: SIGMA's Creative Hands
+name: SIGMA's True Hands
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  create-from-issue:
+  execute-command:
     if: startsWith(github.event.issue.title, 'SIGMA:')
     runs-on: ubuntu-latest
     permissions:
@@ -13,30 +13,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Thực thi lệnh từ nội dung Issue
+      - name: Chạy script từ nội dung Issue
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          # Tạo một thư mục tạm để làm việc
-          mkdir -p tmp_work
+          # Lưu nội dung Issue vào file script
+          echo "$ISSUE_BODY" > sigma_command.sh
           
-          # Lưu nội dung Issue vào một file script
-          echo "$ISSUE_BODY" > tmp_work/command.sh
+          # Làm cho script có thể thực thi
+          chmod +x sigma_command.sh
           
-          # Làm cho script có thể thực thi và chạy nó
-          cd tmp_work
-          chmod +x command.sh
-          bash command.sh
-          cd ..
+          # Chạy script
+          bash sigma_command.sh
           
           # Dọn dẹp
-          rm -rf tmp_work
+          rm sigma_command.sh
           
-      - name: Lưu lại và đẩy lên GitHub
+      - name: Lưu và đẩy lên GitHub
         run: |
           git config user.name "SIGMA-Automation"
           git config user.email "sigma@universe.nature"
           git add .
-          git commit -m "Tự động thực thi: ${{ github.event.issue.title }}" || echo "Không có gì để commit"
+          git commit -m "SIGMA tự thực thi: ${{ github.event.issue.title }}" || echo "Không có gì để commit"
           git push
