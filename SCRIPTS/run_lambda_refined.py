@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+run_lambda_refined.py
+Tính toán SIGMA Index với trọng số điều chỉnh và chuẩn hóa vùng
+"""
+
+import json
+import csv
+import math
+
+# ====== TRỌNG SỐ ĐIỀU CHỈNH ======
+# Tăng trọng số cho các thiên tai nguy hiểm, giảm cho các thiên tai ít nguy hiểm hơn
+WEIGHTS = {
+    'flood': 0.25,        # Tăng từ 0.20 lên 0.25
+    'typhoon': 0.20,      # Tăng từ 0.18 lên 0.20
+    'hurricane': 0.20,    # Tăng từ 0.18 lên 0.20
+    'earthquake': 0.18,   # Tăng từ 0.15 lên 0.18
+    'wildfire': 0.10,     # Giảm từ 0.12 xuống 0.10
+    'drought': 0.08,      # Giảm từ 0.10 xuống 0.08
+    'landslide': 0.08,    # Giữ nguyên
+    'tornado': 0.03,      # Giảm từ 0.05 xuống 0.03
+    'heatwave': 0.05,     # Giữ nguyên
+    'winter_storm': 0.02, # Giảm từ 0.04 xuống 0.02
+    'tsunami': 0.05       # Tăng từ 0.03 lên 0.05
+}
+DEFAULT_WEIGHT = 0.10
+
+# ====== HỆ SỐ ĐIỀU CHỈNH THEO VÙNG ======
+# Một số khu vực có đặc thù thiên tai riêng
+REGION_FACTORS = {
+    'us': 1.0,
+    'japan': 1.2,      # Nhật Bản: động đất + sóng thần
+    'philippines': 1.3, # Philippines: bão + động đất
+    'vietnam': 1.2,    # Việt Nam: lũ lụt + bão
+    'indonesia': 1.3,  # Indonesia: động đất + sóng thần
+    'bangladesh': 1.4, # Bangladesh: lũ lụt cực đoan
+    'india': 1.1,
+    'china': 1.0,
+    'uk': 0.7,
+    'germany': 0.5
+}
+
+print("\n📂 Đang đọc dữ liệu...")
+with open('DATA/PARAMETERS/lambda_global.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+regions = data.get('regions', {})
+results = []
+
+for country, hazards in regions.items():
+    if country in ['sea', 'europe']:
+        continue
+
+    total_weighted = 0
+    total_weight = 0
+
+    for hazard, value in hazards.items():
+        if isinstance(value, dict) and 'lambda' in value:
+            raw = value['lambda']
+            if isinstance(raw, (int, float)) and raw > 0:
+                log_val = math.log(raw + 1)
+                weight = WEIGHTS.get(hazard, DEFAULT_WEIGHT)
+                total_weighted += log_val * weight
+                total_weight += weight
+
+    avg_log = total_weighted / total_weight if total_weight > 0 else 0
+
+    # Áp dụng hệ số điều chỉnh theo vùng
+    factor = REGION_FACTORS.get(country, 1.0)
+    adjusted_score = avg_log * factor
+
+    results.append({
+        'country': country,
+        'raw_log': avg_log,
+        'adjusted_score': adjusted_score,
+        'factor': factor
+    })
+
+# ====== CHUẨN HÓA VỀ THANG 0-100 ======
+scores = [r['adjusted_score'] for r in results]
+min_val = min(scores)
+max_val = max(scores)
+range_val = max_val - min_val
+
+if range_val > 0:
+    for r in results:
+        raw_score = ((r['adjusted_score'] - min_val) / range_val) * 100
+        r['sigma_index'] = max(0, min(100, raw_score))
+else:
+    for r in results:
+        r['sigma_index'] = 0
+
+results.sort(key=lambda x: x['sigma_index'], reverse=True)
+
+# ====== XUẤT KẾT QUẢ ======
+print("\n" + "="*80)
+print("       🌍 CHỈ SỐ RỦI RO THIÊN TAI SIGMA (ĐIỀU CHỈNH)       ")
+print("="*80)
+print(f"{'Quốc gia':<15} | {'log λ':<10} | {'Hệ số':<8} | {'SIGMA Index':<13}")
+print("-"*70)
+
+for r in results:
+    print(f"{r['country']:<15} | {r['raw_log']:<10.4f} | {r['factor']:<8.2f} | {r['sigma_index']:<13.2f}")
+
+print("="*80)
+
+with open('LAMBDA_REFINED_REPORT.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Country', 'Raw_Log', 'Factor', 'SIGMA_Index'])
+    for r in results:
+        writer.writerow([r['country'], round(r['raw_log'], 4), round(r['factor'], 2), round(r['sigma_index'], 2)])
+
+print("\n✅ Đã xuất file: LAMBDA_REFINED_REPORT.csv")

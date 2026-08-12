@@ -137,7 +137,7 @@
     },
     "vietnam": {
       "flood": {
-        "lambda": 4.5,
+        "lambda": 2.5,
         "unit": "sự kiện/năm",
         "description": "Lũ lụt và bão"
       },
@@ -147,7 +147,7 @@
         "description": "Động đất nội mảng"
       },
       "wildfire": {
-        "lambda": 25,
+        "lambda": 100,
         "unit": "ha/năm",
         "description": "Cháy rừng mùa khô"
       },
@@ -157,7 +157,7 @@
         "description": "Bão đổ bộ vào Việt Nam"
       },
       "landslide": {
-        "lambda": 6.0,
+        "lambda": 8.5,
         "unit": "vụ/năm",
         "description": "Sạt lở đất do mưa lớn"
       },

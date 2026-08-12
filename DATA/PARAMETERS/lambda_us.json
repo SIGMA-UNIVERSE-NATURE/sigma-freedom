@@ -1,0 +1,26 @@
+{
+    "region": "US",
+    "last_updated": "2026-08-12T12:37:40.078873",
+    "earthquake": {
+        "M3.5": 27.02,
+        "M4.0": 9.75,
+        "M4.5": 3.05,
+        "M5.0": 0.9,
+        "M5.5": 0.22
+    },
+    "wildfire": {
+        "lambda": 61500,
+        "seasonal_peak": [
+            7,
+            8,
+            9
+        ]
+    },
+    "flood": {
+        "storm_high": 3.8,
+        "storm_low": 2.4,
+        "el_nino": 3.33,
+        "normal": 3.0,
+        "combined_high": 4.0
+    }
+}
