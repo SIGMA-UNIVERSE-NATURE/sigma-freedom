@@ -1,0 +1,607 @@
+{
+  "last_updated": "2026-08-12",
+  "regions": {
+    "us": {
+      "earthquake": {
+        "M3.5": 27.02,
+        "M4.0": 9.75,
+        "M4.5": 3.05,
+        "M5.0": 0.90,
+        "M5.5": 0.22
+      },
+      "wildfire": {
+        "lambda": 61500,
+        "seasonal_peak": [7, 8, 9]
+      },
+      "flood": {
+        "storm_high": 3.80,
+        "storm_low": 2.40,
+        "el_nino": 3.33,
+        "normal": 3.00,
+        "combined_high": 4.00
+      },
+      "tornado": {
+        "lambda": 1520,
+        "ef3_plus": 150
+      },
+      "winter_storm": {
+        "lambda": 4
+      }
+    },
+    "sea": {
+      "earthquake": {
+        "M4.5": 28.0,
+        "M5.0": 8.0,
+        "M5.5": 2.5,
+        "M6.0": 0.8
+      },
+      "typhoon": {
+        "lambda": 25,
+        "seasonal_peak": [9, 10, 11]
+      },
+      "flood": {
+        "mekong": {
+          "low": 0.5,
+          "medium": 1.2,
+          "high": 2.5
+        }
+      }
+    },
+    "japan": {
+      "typhoon": {
+        "lambda": 2.0,
+        "unit": "cơn/tháng",
+        "avg_count": 24.0,
+        "super_ratio": 0.45,
+        "avg_pressure": 910
+      },
+      "tsunami": {
+        "lambda": 0.05
+      },
+      "earthquake": {
+        "lambda": 15.0
+      },
+      "volcanic_eruption": {
+        "lambda": 0.12
+      }
+    },
+    "europe": {
+      "flood": {
+        "lambda": 0.7083,
+        "unit": "tỷ EUR/tháng",
+        "avg_cost": 8.5,
+        "peak_year": 2021,
+        "peak_cost": 46.0
+      },
+      "landslide": {
+        "italy": 0.6,
+        "switzerland": 0.3,
+        "austria": 0.4
+      }
+    },
+    "india": {
+      "earthquake": {
+        "lambda": 1.25,
+        "unit": "vụ/tháng (M≥5.0)",
+        "avg_count": 15.0,
+        "peak_year": 2023,
+        "peak_count": 21
+      },
+      "flood": {
+        "lambda": 2.8
+      },
+      "drought": {
+        "lambda": 1.2
+      },
+      "heatwave": {
+        "lambda": 1.5
+      }
+    },
+    "australia": {
+      "wildfire": {
+        "lambda": 0.6167,
+        "unit": "triệu ha/tháng",
+        "avg_area": 7.4,
+        "peak_year": 2020,
+        "peak_area": 24.3
+      },
+      "drought": {
+        "lambda": 0.4
+      },
+      "flood": {
+        "lambda": 1.2
+      }
+    },
+    "china": {
+      "flood": {
+        "lambda": 6.0,
+        "unit": "x10⁴ m³/s",
+        "avg_flow": 60000,
+        "peak_year": 2020,
+        "peak_flow": 75000
+      },
+      "earthquake": {
+        "lambda": 2.5
+      },
+      "typhoon": {
+        "lambda": 3.5
+      }
+    },
+    "vietnam": {
+      "flood": {
+        "lambda": 2.5,
+        "unit": "sự kiện/năm",
+        "description": "Lũ lụt và bão"
+      },
+      "earthquake": {
+        "lambda": 0.3,
+        "unit": "vụ/năm (M≥5.0)",
+        "description": "Động đất nội mảng"
+      },
+      "wildfire": {
+        "lambda": 100,
+        "unit": "ha/năm",
+        "description": "Cháy rừng mùa khô"
+      },
+      "typhoon": {
+        "lambda": 3.5,
+        "unit": "cơn/năm",
+        "description": "Bão đổ bộ vào Việt Nam"
+      },
+      "landslide": {
+        "lambda": 8.5,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất do mưa lớn"
+      },
+      "saltwater_intrusion": {
+        "lambda": 0.8,
+        "unit": "sự kiện/năm",
+        "description": "Xâm nhập mặn tại ĐBSCL"
+      }
+    },
+    "philippines": {
+      "typhoon": {
+        "lambda": 1.5,
+        "unit": "cơn/tháng",
+        "description": "Siêu bão và bão nhiệt đới"
+      },
+      "earthquake": {
+        "lambda": 5.3,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất và núi lửa"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.05,
+        "unit": "vụ/năm",
+        "description": "Núi lửa phun trào"
+      },
+      "tsunami": {
+        "lambda": 0.02,
+        "unit": "vụ/năm",
+        "description": "Sóng thần do động đất"
+      }
+    },
+    "indonesia": {
+      "earthquake": {
+        "lambda": 21.0,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất nông và sâu"
+      },
+      "tsunami": {
+        "lambda": 0.03,
+        "unit": "vụ/tháng",
+        "description": "Sóng thần"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.08,
+        "unit": "vụ/tháng",
+        "description": "Núi lửa phun trào"
+      },
+      "flood": {
+        "lambda": 2.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt và lũ quét"
+      },
+      "landslide": {
+        "lambda": 5.8,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      }
+    },
+    "mexico": {
+      "earthquake": {
+        "lambda": 0.45,
+        "unit": "vụ/tháng (M≥6.0)",
+        "description": "Động đất và bão"
+      },
+      "typhoon": {
+        "lambda": 0.32,
+        "unit": "cơn/tháng",
+        "description": "Bão đổ bộ"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.04,
+        "unit": "vụ/tháng",
+        "description": "Núi lửa phun trào"
+      }
+    },
+    "brazil": {
+      "flood": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt (thiệt hại >1 tỷ USD)"
+      },
+      "drought": {
+        "lambda": 0.5,
+        "unit": "vụ/năm",
+        "description": "Hạn hán (ảnh hưởng >1 triệu người)"
+      },
+      "wildfire": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng Amazon"
+      },
+      "landslide": {
+        "lambda": 2.2,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất đô thị"
+      }
+    },
+    "colombia": {
+      "flood": {
+        "lambda": 18.8,
+        "unit": "vụ/tháng",
+        "description": "Lũ quét và sạt lở"
+      },
+      "earthquake": {
+        "lambda": 0.92,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "landslide": {
+        "lambda": 4.2,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      }
+    },
+    "argentina": {
+      "wildfire": {
+        "lambda": 0.8,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng (>100.000 ha)"
+      },
+      "drought": {
+        "lambda": 0.5,
+        "unit": "vụ/năm",
+        "description": "Hạn hán (thiệt hại >1 tỷ USD)"
+      },
+      "flood": {
+        "lambda": 0.6,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      },
+      "heatwave": {
+        "lambda": 0.7,
+        "unit": "vụ/năm",
+        "description": "Sóng nhiệt"
+      }
+    },
+    "chile": {
+      "earthquake": {
+        "lambda": 0.67,
+        "unit": "vụ/tháng (M≥6.0)",
+        "description": "Động đất"
+      },
+      "tsunami": {
+        "lambda": 0.017,
+        "unit": "vụ/tháng",
+        "description": "Sóng thần/cảnh báo"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.03,
+        "unit": "vụ/tháng",
+        "description": "Núi lửa phun trào"
+      },
+      "wildfire": {
+        "lambda": 0.5,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng"
+      }
+    },
+    "peru": {
+      "flood": {
+        "lambda": 15.8,
+        "unit": "vụ/tháng",
+        "description": "Lũ quét và Huaicos"
+      },
+      "earthquake": {
+        "lambda": 2.4,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "landslide": {
+        "lambda": 3.5,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      }
+    },
+    "turkey": {
+      "earthquake": {
+        "lambda": 1.7,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất nội địa"
+      },
+      "flood": {
+        "lambda": 0.8,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      },
+      "landslide": {
+        "lambda": 1.2,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      }
+    },
+    "iran": {
+      "earthquake": {
+        "lambda": 1.9,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "drought": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Hạn hán nghiêm trọng"
+      },
+      "flood": {
+        "lambda": 0.6,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      },
+      "heatwave": {
+        "lambda": 0.8,
+        "unit": "vụ/năm",
+        "description": "Sóng nhiệt"
+      }
+    },
+    "south_africa": {
+      "drought": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Hạn hán nghiêm trọng"
+      },
+      "flood": {
+        "lambda": 1.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt lớn"
+      },
+      "wildfire": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng"
+      }
+    },
+    "kenya": {
+      "drought": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Hạn hán nghiêm trọng"
+      },
+      "flood": {
+        "lambda": 1.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt lớn"
+      }
+    },
+    "ethiopia": {
+      "drought": {
+        "lambda": 0.6,
+        "unit": "vụ/năm",
+        "description": "Hạn hán nghiêm trọng (SPI < -1.5)"
+      },
+      "flood": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      }
+    },
+    "nigeria": {
+      "flood": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt (>500 triệu USD)"
+      }
+    },
+    "spain": {
+      "wildfire": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng (>100.000 ha)"
+      },
+      "flood": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt DANA"
+      },
+      "drought": {
+        "lambda": 0.5,
+        "unit": "vụ/năm",
+        "description": "Hạn hán"
+      }
+    },
+    "italy": {
+      "earthquake": {
+        "lambda": 0.58,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "flood": {
+        "lambda": 0.6,
+        "unit": "vụ/năm",
+        "description": "Lũ quét và sạt lở"
+      },
+      "landslide": {
+        "lambda": 0.6,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.05,
+        "unit": "vụ/năm",
+        "description": "Núi lửa Etna/Vesuvius"
+      }
+    },
+    "germany": {
+      "flood": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt (>1 tỷ EUR)"
+      }
+    },
+    "france": {
+      "wildfire": {
+        "lambda": 0.2,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng (>50.000 ha)"
+      },
+      "flood": {
+        "lambda": 1.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt lớn"
+      },
+      "heatwave": {
+        "lambda": 1.2,
+        "unit": "vụ/năm",
+        "description": "Sóng nhiệt"
+      }
+    },
+    "uk": {
+      "storm": {
+        "lambda": 6,
+        "unit": "cơn/năm",
+        "description": "Bão Đại Tây Dương"
+      },
+      "flood": {
+        "lambda": 2,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt lớn"
+      }
+    },
+    "canada": {
+      "wildfire": {
+        "lambda": 0.8,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng (>1 triệu ha)"
+      },
+      "winter_storm": {
+        "lambda": 8,
+        "unit": "đợt/năm",
+        "description": "Bão tuyết và bão mùa đông"
+      },
+      "flood": {
+        "lambda": 0.4,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      }
+    },
+    "new_zealand": {
+      "earthquake": {
+        "lambda": 3.8,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "volcanic_eruption": {
+        "lambda": 0.04,
+        "unit": "vụ/năm",
+        "description": "Núi lửa phun trào"
+      },
+      "flood": {
+        "lambda": 0.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt"
+      },
+      "landslide": {
+        "lambda": 1.2,
+        "unit": "vụ/năm",
+        "description": "Sạt lở đất"
+      }
+    },
+    "thailand": {
+      "flood": {
+        "lambda": 1.8,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt mùa mưa"
+      },
+      "typhoon": {
+        "lambda": 2.5,
+        "unit": "cơn/năm",
+        "description": "Bão đổ bộ"
+      }
+    },
+    "pakistan": {
+      "flood": {
+        "lambda": 2.2,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt sông Indus"
+      },
+      "earthquake": {
+        "lambda": 0.8,
+        "unit": "vụ/năm (M≥5.0)",
+        "description": "Động đất"
+      },
+      "heatwave": {
+        "lambda": 1.5,
+        "unit": "vụ/năm",
+        "description": "Sóng nhiệt"
+      }
+    },
+    "bangladesh": {
+      "flood": {
+        "lambda": 3.5,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt sông Brahmaputra"
+      },
+      "cyclone": {
+        "lambda": 1.2,
+        "unit": "cơn/năm",
+        "description": "Xoáy thuận nhiệt đới"
+      }
+    },
+    "greece": {
+      "wildfire": {
+        "lambda": 0.3,
+        "unit": "vụ/năm",
+        "description": "Cháy rừng"
+      },
+      "earthquake": {
+        "lambda": 0.5,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      }
+    },
+    "south_korea": {
+      "typhoon": {
+        "lambda": 2.0,
+        "unit": "cơn/năm",
+        "description": "Bão đổ bộ"
+      },
+      "flood": {
+        "lambda": 0.8,
+        "unit": "vụ/năm",
+        "description": "Lũ lụt mùa mưa"
+      }
+    },
+    "taiwan": {
+      "earthquake": {
+        "lambda": 2.5,
+        "unit": "vụ/tháng (M≥5.0)",
+        "description": "Động đất"
+      },
+      "typhoon": {
+        "lambda": 3.0,
+        "unit": "cơn/năm",
+        "description": "Bão đổ bộ"
+      }
+    }
+  }
+}
