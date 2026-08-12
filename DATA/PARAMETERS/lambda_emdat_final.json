@@ -1,0 +1,134 @@
+{
+  "VNM": {
+    "name": "Viet Nam",
+    "lambda": 4.5578
+  },
+  "PHL": {
+    "name": "Philippines",
+    "lambda": 4.6315
+  },
+  "IDN": {
+    "name": "Indonesia",
+    "lambda": 3.4568
+  },
+  "IND": {
+    "name": "India",
+    "lambda": 4.0673
+  },
+  "BGD": {
+    "name": "Bangladesh",
+    "lambda": 3.6429
+  },
+  "CHN": {
+    "name": "China",
+    "lambda": 4.8177
+  },
+  "USA": {
+    "name": "United States of America",
+    "lambda": 4.8158
+  },
+  "JPN": {
+    "name": "Japan",
+    "lambda": 3.7709
+  },
+  "GBR": {
+    "name": "United Kingdom",
+    "lambda": 2.8819
+  },
+  "DEU": {
+    "name": "Germany",
+    "lambda": 2.8646
+  },
+  "FRA": {
+    "name": "France",
+    "lambda": 2.9832
+  },
+  "ITA": {
+    "name": "Italy",
+    "lambda": 3.07
+  },
+  "ESP": {
+    "name": "Spain",
+    "lambda": 2.608
+  },
+  "GRC": {
+    "name": "Greece",
+    "lambda": 2.3953
+  },
+  "TUR": {
+    "name": "Turkey",
+    "lambda": 2.9036
+  },
+  "IRN": {
+    "name": "Iran",
+    "lambda": 3.3924
+  },
+  "PAK": {
+    "name": "Pakistan",
+    "lambda": 3.1094
+  },
+  "ZAF": {
+    "name": "South Africa",
+    "lambda": 2.8168
+  },
+  "KEN": {
+    "name": "Kenya",
+    "lambda": 2.8324
+  },
+  "ETH": {
+    "name": "Ethiopia",
+    "lambda": 1.7962
+  },
+  "NGA": {
+    "name": "Nigeria",
+    "lambda": 2.7298
+  },
+  "BRA": {
+    "name": "Brazil",
+    "lambda": 3.0614
+  },
+  "ARG": {
+    "name": "Argentina",
+    "lambda": 2.8289
+  },
+  "CHL": {
+    "name": "Chile",
+    "lambda": 2.6269
+  },
+  "PER": {
+    "name": "Peru",
+    "lambda": 2.5292
+  },
+  "COL": {
+    "name": "Colombia",
+    "lambda": 2.7102
+  },
+  "MEX": {
+    "name": "Mexico",
+    "lambda": 3.641
+  },
+  "CAN": {
+    "name": "Canada",
+    "lambda": 3.0956
+  },
+  "AUS": {
+    "name": "Australia",
+    "lambda": 3.464
+  },
+  "NZL": {
+    "name": "New Zealand",
+    "lambda": 2.1757
+  },
+  "THA": {
+    "name": "Thailand",
+    "lambda": 3.2051
+  },
+  "KOR": {
+    "name": "South Korea",
+    "lambda": 2.8492
+  },
+  "TWN": {
+    "name": "Taiwan",
+    "lambda": 3.103
+  }
+}
