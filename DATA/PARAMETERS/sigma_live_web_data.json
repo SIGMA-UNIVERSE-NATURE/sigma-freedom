@@ -1,0 +1,63 @@
+{
+    "system": "SIGMA CLIMATE CENTRAL CORE",
+    "last_global_update": "2026-08-12 16:52:12 UTC",
+    "countries": {
+        "CHN": {
+            "country_name": "China",
+            "sri_score": 21.45,
+            "status": "MODERATE",
+            "metrics": {
+                "idx_area": 24.56,
+                "idx_pop": 9.76
+            },
+            "raw_monitored": {
+                "earthquake": 51.0,
+                "flood": 35.0,
+                "typhoon": 8.0,
+                "wildfire": 142.0,
+                "drought": 1.5,
+                "landslide": 6.0,
+                "heatwave": 3.0,
+                "winter": 2.0
+            }
+        },
+        "VNM": {
+            "country_name": "Vietnam",
+            "sri_score": 56.07,
+            "status": "HIGH",
+            "metrics": {
+                "idx_area": 87.88,
+                "idx_pop": 24.27
+            },
+            "raw_monitored": {
+                "earthquake": 1.0,
+                "flood": 15.0,
+                "typhoon": 6.0,
+                "wildfire": 20.0,
+                "drought": 1.5,
+                "landslide": 6.0,
+                "heatwave": 3.0,
+                "winter": 0.0
+            }
+        },
+        "PHL": {
+            "country_name": "Philippines",
+            "sri_score": 71.91,
+            "status": "CRITICAL",
+            "metrics": {
+                "idx_area": 115.7,
+                "idx_pop": 28.12
+            },
+            "raw_monitored": {
+                "earthquake": 60.0,
+                "flood": 15.0,
+                "typhoon": 6.0,
+                "wildfire": 20.0,
+                "drought": 1.5,
+                "landslide": 6.0,
+                "heatwave": 3.0,
+                "winter": 0.0
+            }
+        }
+    }
+}
