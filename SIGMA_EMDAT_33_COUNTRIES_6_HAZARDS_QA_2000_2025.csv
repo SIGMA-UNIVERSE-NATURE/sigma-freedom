@@ -1,0 +1,200 @@
+
+ISO3,Country,Hazard,Death-reported records,Damage-reported records
+VNM,Viet Nam,Flood,82,45
+VNM,Viet Nam,Storm,91,64
+VNM,Viet Nam,Earthquake,0,0
+VNM,Viet Nam,Wildfire,0,0
+VNM,Viet Nam,Drought,0,4
+VNM,Viet Nam,Extreme temperature,0,0
+PHL,Philippines,Flood,78,48
+PHL,Philippines,Storm,180,152
+PHL,Philippines,Earthquake,19,16
+PHL,Philippines,Wildfire,0,0
+PHL,Philippines,Drought,0,3
+PHL,Philippines,Extreme temperature,0,0
+IDN,Indonesia,Flood,164,38
+IDN,Indonesia,Storm,7,3
+IDN,Indonesia,Earthquake,60,29
+IDN,Indonesia,Wildfire,1,2
+IDN,Indonesia,Drought,1,1
+IDN,Indonesia,Extreme temperature,0,0
+IND,India,Flood,192,70
+IND,India,Storm,102,33
+IND,India,Earthquake,10,5
+IND,India,Wildfire,2,0
+IND,India,Drought,1,4
+IND,India,Extreme temperature,35,1
+BGD,Bangladesh,Flood,38,14
+BGD,Bangladesh,Storm,67,12
+BGD,Bangladesh,Earthquake,5,1
+BGD,Bangladesh,Wildfire,0,0
+BGD,Bangladesh,Drought,0,0
+BGD,Bangladesh,Extreme temperature,14,0
+CHN,China,Flood,210,161
+CHN,China,Storm,166,171
+CHN,China,Earthquake,62,70
+CHN,China,Wildfire,4,0
+CHN,China,Drought,1,15
+CHN,China,Extreme temperature,7,4
+USA,United States of America,Flood,92,78
+USA,United States of America,Storm,334,332
+USA,United States of America,Earthquake,4,10
+USA,United States of America,Wildfire,44,58
+USA,United States of America,Drought,4,15
+USA,United States of America,Extreme temperature,16,4
+JPN,Japan,Flood,26,14
+JPN,Japan,Storm,77,57
+JPN,Japan,Earthquake,21,22
+JPN,Japan,Wildfire,1,1
+JPN,Japan,Drought,0,0
+JPN,Japan,Extreme temperature,18,0
+GBR,United Kingdom,Flood,14,14
+GBR,United Kingdom,Storm,23,12
+GBR,United Kingdom,Earthquake,0,1
+GBR,United Kingdom,Wildfire,0,0
+GBR,United Kingdom,Drought,0,0
+GBR,United Kingdom,Extreme temperature,11,0
+DEU,Germany,Flood,11,7
+DEU,Germany,Storm,30,18
+DEU,Germany,Earthquake,0,1
+DEU,Germany,Wildfire,0,0
+DEU,Germany,Drought,0,0
+DEU,Germany,Extreme temperature,13,2
+FRA,France,Flood,27,14
+FRA,France,Storm,32,13
+FRA,France,Earthquake,0,1
+FRA,France,Wildfire,2,2
+FRA,France,Drought,0,0
+FRA,France,Extreme temperature,17,2
+ITA,Italy,Flood,28,22
+ITA,Italy,Storm,21,8
+ITA,Italy,Earthquake,9,9
+ITA,Italy,Wildfire,2,2
+ITA,Italy,Drought,0,2
+ITA,Italy,Extreme temperature,10,2
+ESP,Spain,Flood,19,13
+ESP,Spain,Storm,13,6
+ESP,Spain,Earthquake,1,1
+ESP,Spain,Wildfire,7,3
+ESP,Spain,Drought,0,2
+ESP,Spain,Extreme temperature,9,1
+GRC,Greece,Flood,12,4
+GRC,Greece,Storm,4,2
+GRC,Greece,Earthquake,6,4
+GRC,Greece,Wildfire,8,4
+GRC,Greece,Drought,0,0
+GRC,Greece,Extreme temperature,7,1
+TUR,Turkey,Flood,29,9
+TUR,Turkey,Storm,9,1
+TUR,Turkey,Earthquake,21,10
+TUR,Turkey,Wildfire,4,1
+TUR,Turkey,Drought,0,0
+TUR,Turkey,Extreme temperature,6,2
+IRN,Iran,Flood,40,21
+IRN,Iran,Storm,9,1
+IRN,Iran,Earthquake,29,20
+IRN,Iran,Wildfire,0,0
+IRN,Iran,Drought,0,0
+IRN,Iran,Extreme temperature,0,0
+PAK,Pakistan,Flood,86,17
+PAK,Pakistan,Storm,20,2
+PAK,Pakistan,Earthquake,18,5
+PAK,Pakistan,Wildfire,1,0
+PAK,Pakistan,Drought,1,0
+PAK,Pakistan,Extreme temperature,10,1
+ZAF,South Africa,Flood,36,16
+ZAF,South Africa,Storm,21,6
+ZAF,South Africa,Earthquake,2,1
+ZAF,South Africa,Wildfire,6,3
+ZAF,South Africa,Drought,0,3
+ZAF,South Africa,Extreme temperature,2,0
+KEN,Kenya,Flood,50,5
+KEN,Kenya,Storm,0,0
+KEN,Kenya,Earthquake,1,1
+KEN,Kenya,Wildfire,0,0
+KEN,Kenya,Drought,3,1
+KEN,Kenya,Extreme temperature,0,0
+ETH,Ethiopia,Flood,26,4
+ETH,Ethiopia,Storm,1,0
+ETH,Ethiopia,Earthquake,2,0
+ETH,Ethiopia,Wildfire,0,0
+ETH,Ethiopia,Drought,0,2
+ETH,Ethiopia,Extreme temperature,0,0
+NGA,Nigeria,Flood,39,14
+NGA,Nigeria,Storm,5,1
+NGA,Nigeria,Earthquake,0,0
+NGA,Nigeria,Wildfire,0,0
+NGA,Nigeria,Drought,0,0
+NGA,Nigeria,Extreme temperature,1,0
+BRA,Brazil,Flood,99,51
+BRA,Brazil,Storm,13,7
+BRA,Brazil,Earthquake,1,0
+BRA,Brazil,Wildfire,0,0
+BRA,Brazil,Drought,0,9
+BRA,Brazil,Extreme temperature,1,0
+ARG,Argentina,Flood,23,11
+ARG,Argentina,Storm,15,7
+ARG,Argentina,Earthquake,0,0
+ARG,Argentina,Wildfire,3,1
+ARG,Argentina,Drought,1,2
+ARG,Argentina,Extreme temperature,5,0
+CHL,Chile,Flood,19,11
+CHL,Chile,Storm,4,2
+CHL,Chile,Earthquake,8,6
+CHL,Chile,Wildfire,11,8
+CHL,Chile,Drought,0,0
+CHL,Chile,Extreme temperature,1,2
+PER,Peru,Flood,37,6
+PER,Peru,Storm,3,1
+PER,Peru,Earthquake,13,3
+PER,Peru,Wildfire,1,1
+PER,Peru,Drought,0,0
+PER,Peru,Extreme temperature,10,1
+COL,Colombia,Flood,55,12
+COL,Colombia,Storm,5,3
+COL,Colombia,Earthquake,3,2
+COL,Colombia,Wildfire,2,0
+COL,Colombia,Drought,0,0
+COL,Colombia,Extreme temperature,0,0
+MEX,Mexico,Flood,44,6
+MEX,Mexico,Storm,71,49
+MEX,Mexico,Earthquake,11,8
+MEX,Mexico,Wildfire,0,0
+MEX,Mexico,Drought,0,1
+MEX,Mexico,Extreme temperature,7,1
+CAN,Canada,Flood,12,14
+CAN,Canada,Storm,14,14
+CAN,Canada,Earthquake,0,0
+CAN,Canada,Wildfire,5,6
+CAN,Canada,Drought,0,0
+CAN,Canada,Extreme temperature,4,2
+AUS,Australia,Flood,26,34
+AUS,Australia,Storm,22,31
+AUS,Australia,Earthquake,0,0
+AUS,Australia,Wildfire,13,19
+AUS,Australia,Drought,0,2
+AUS,Australia,Extreme temperature,2,0
+NZL,New Zealand,Flood,4,17
+NZL,New Zealand,Storm,4,7
+NZL,New Zealand,Earthquake,3,5
+NZL,New Zealand,Wildfire,0,1
+NZL,New Zealand,Drought,0,1
+NZL,New Zealand,Extreme temperature,0,1
+THA,Thailand,Flood,55,33
+THA,Thailand,Storm,23,6
+THA,Thailand,Earthquake,4,2
+THA,Thailand,Wildfire,0,0
+THA,Thailand,Drought,0,4
+THA,Thailand,Extreme temperature,3,0
+KOR,South Korea,Flood,20,13
+KOR,South Korea,Storm,28,20
+KOR,South Korea,Earthquake,0,1
+KOR,South Korea,Wildfire,4,1
+KOR,South Korea,Drought,0,0
+KOR,South Korea,Extreme temperature,3,1
+TWN,Taiwan,Flood,5,4
+TWN,Taiwan,Storm,48,39
+TWN,Taiwan,Earthquake,8,9
+TWN,Taiwan,Wildfire,0,0
+TWN,Taiwan,Drought,0,0
+TWN,Taiwan,Extreme temperature,1,1

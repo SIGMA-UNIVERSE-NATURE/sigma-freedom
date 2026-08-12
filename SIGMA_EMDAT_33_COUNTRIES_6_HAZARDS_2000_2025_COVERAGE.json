@@ -1,0 +1,405 @@
+{
+  "source": "EM-DAT Public Data",
+  "period": {
+    "start_year": 2000,
+    "end_year": 2025
+  },
+  "countries": [
+    {
+      "iso": "VNM",
+      "name": "Viet Nam",
+      "coverage": {
+        "Flood": { "death_reported_records": 82, "damage_reported_records": 45 },
+        "Storm": { "death_reported_records": 91, "damage_reported_records": 64 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 4 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "PHL",
+      "name": "Philippines",
+      "coverage": {
+        "Flood": { "death_reported_records": 78, "damage_reported_records": 48 },
+        "Storm": { "death_reported_records": 180, "damage_reported_records": 152 },
+        "Earthquake": { "death_reported_records": 19, "damage_reported_records": 16 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 3 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "IDN",
+      "name": "Indonesia",
+      "coverage": {
+        "Flood": { "death_reported_records": 164, "damage_reported_records": 38 },
+        "Storm": { "death_reported_records": 7, "damage_reported_records": 3 },
+        "Earthquake": { "death_reported_records": 60, "damage_reported_records": 29 },
+        "Wildfire": { "death_reported_records": 1, "damage_reported_records": 2 },
+        "Drought": { "death_reported_records": 1, "damage_reported_records": 1 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "IND",
+      "name": "India",
+      "coverage": {
+        "Flood": { "death_reported_records": 192, "damage_reported_records": 70 },
+        "Storm": { "death_reported_records": 102, "damage_reported_records": 33 },
+        "Earthquake": { "death_reported_records": 10, "damage_reported_records": 5 },
+        "Wildfire": { "death_reported_records": 2, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 1, "damage_reported_records": 4 },
+        "Extreme temperature": { "death_reported_records": 35, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "BGD",
+      "name": "Bangladesh",
+      "coverage": {
+        "Flood": { "death_reported_records": 38, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 67, "damage_reported_records": 12 },
+        "Earthquake": { "death_reported_records": 5, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 14, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "CHN",
+      "name": "China",
+      "coverage": {
+        "Flood": { "death_reported_records": 210, "damage_reported_records": 161 },
+        "Storm": { "death_reported_records": 166, "damage_reported_records": 171 },
+        "Earthquake": { "death_reported_records": 62, "damage_reported_records": 70 },
+        "Wildfire": { "death_reported_records": 4, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 1, "damage_reported_records": 15 },
+        "Extreme temperature": { "death_reported_records": 7, "damage_reported_records": 4 }
+      }
+    },
+    {
+      "iso": "USA",
+      "name": "United States of America",
+      "coverage": {
+        "Flood": { "death_reported_records": 92, "damage_reported_records": 78 },
+        "Storm": { "death_reported_records": 334, "damage_reported_records": 332 },
+        "Earthquake": { "death_reported_records": 4, "damage_reported_records": 10 },
+        "Wildfire": { "death_reported_records": 44, "damage_reported_records": 58 },
+        "Drought": { "death_reported_records": 4, "damage_reported_records": 15 },
+        "Extreme temperature": { "death_reported_records": 16, "damage_reported_records": 4 }
+      }
+    },
+    {
+      "iso": "JPN",
+      "name": "Japan",
+      "coverage": {
+        "Flood": { "death_reported_records": 26, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 77, "damage_reported_records": 57 },
+        "Earthquake": { "death_reported_records": 21, "damage_reported_records": 22 },
+        "Wildfire": { "death_reported_records": 1, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 18, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "GBR",
+      "name": "United Kingdom",
+      "coverage": {
+        "Flood": { "death_reported_records": 14, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 23, "damage_reported_records": 12 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 11, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "DEU",
+      "name": "Germany",
+      "coverage": {
+        "Flood": { "death_reported_records": 11, "damage_reported_records": 7 },
+        "Storm": { "death_reported_records": 30, "damage_reported_records": 18 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 13, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "FRA",
+      "name": "France",
+      "coverage": {
+        "Flood": { "death_reported_records": 27, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 32, "damage_reported_records": 13 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 2, "damage_reported_records": 2 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 17, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "ITA",
+      "name": "Italy",
+      "coverage": {
+        "Flood": { "death_reported_records": 28, "damage_reported_records": 22 },
+        "Storm": { "death_reported_records": 21, "damage_reported_records": 8 },
+        "Earthquake": { "death_reported_records": 9, "damage_reported_records": 9 },
+        "Wildfire": { "death_reported_records": 2, "damage_reported_records": 2 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 2 },
+        "Extreme temperature": { "death_reported_records": 10, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "ESP",
+      "name": "Spain",
+      "coverage": {
+        "Flood": { "death_reported_records": 19, "damage_reported_records": 13 },
+        "Storm": { "death_reported_records": 13, "damage_reported_records": 6 },
+        "Earthquake": { "death_reported_records": 1, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 7, "damage_reported_records": 3 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 2 },
+        "Extreme temperature": { "death_reported_records": 9, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "GRC",
+      "name": "Greece",
+      "coverage": {
+        "Flood": { "death_reported_records": 12, "damage_reported_records": 4 },
+        "Storm": { "death_reported_records": 4, "damage_reported_records": 2 },
+        "Earthquake": { "death_reported_records": 6, "damage_reported_records": 4 },
+        "Wildfire": { "death_reported_records": 8, "damage_reported_records": 4 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 7, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "TUR",
+      "name": "Turkey",
+      "coverage": {
+        "Flood": { "death_reported_records": 29, "damage_reported_records": 9 },
+        "Storm": { "death_reported_records": 9, "damage_reported_records": 1 },
+        "Earthquake": { "death_reported_records": 21, "damage_reported_records": 10 },
+        "Wildfire": { "death_reported_records": 4, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 6, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "IRN",
+      "name": "Iran",
+      "coverage": {
+        "Flood": { "death_reported_records": 40, "damage_reported_records": 21 },
+        "Storm": { "death_reported_records": 9, "damage_reported_records": 1 },
+        "Earthquake": { "death_reported_records": 29, "damage_reported_records": 20 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "PAK",
+      "name": "Pakistan",
+      "coverage": {
+        "Flood": { "death_reported_records": 86, "damage_reported_records": 17 },
+        "Storm": { "death_reported_records": 20, "damage_reported_records": 2 },
+        "Earthquake": { "death_reported_records": 18, "damage_reported_records": 5 },
+        "Wildfire": { "death_reported_records": 1, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 1, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 10, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "ZAF",
+      "name": "South Africa",
+      "coverage": {
+        "Flood": { "death_reported_records": 36, "damage_reported_records": 16 },
+        "Storm": { "death_reported_records": 21, "damage_reported_records": 6 },
+        "Earthquake": { "death_reported_records": 2, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 6, "damage_reported_records": 3 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 3 },
+        "Extreme temperature": { "death_reported_records": 2, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "KEN",
+      "name": "Kenya",
+      "coverage": {
+        "Flood": { "death_reported_records": 50, "damage_reported_records": 5 },
+        "Storm": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Earthquake": { "death_reported_records": 1, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 3, "damage_reported_records": 1 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "ETH",
+      "name": "Ethiopia",
+      "coverage": {
+        "Flood": { "death_reported_records": 26, "damage_reported_records": 4 },
+        "Storm": { "death_reported_records": 1, "damage_reported_records": 0 },
+        "Earthquake": { "death_reported_records": 2, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 2 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "NGA",
+      "name": "Nigeria",
+      "coverage": {
+        "Flood": { "death_reported_records": 39, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 5, "damage_reported_records": 1 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 1, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "BRA",
+      "name": "Brazil",
+      "coverage": {
+        "Flood": { "death_reported_records": 99, "damage_reported_records": 51 },
+        "Storm": { "death_reported_records": 13, "damage_reported_records": 7 },
+        "Earthquake": { "death_reported_records": 1, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 9 },
+        "Extreme temperature": { "death_reported_records": 1, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "ARG",
+      "name": "Argentina",
+      "coverage": {
+        "Flood": { "death_reported_records": 23, "damage_reported_records": 11 },
+        "Storm": { "death_reported_records": 15, "damage_reported_records": 7 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 3, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 1, "damage_reported_records": 2 },
+        "Extreme temperature": { "death_reported_records": 5, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "CHL",
+      "name": "Chile",
+      "coverage": {
+        "Flood": { "death_reported_records": 19, "damage_reported_records": 11 },
+        "Storm": { "death_reported_records": 4, "damage_reported_records": 2 },
+        "Earthquake": { "death_reported_records": 8, "damage_reported_records": 6 },
+        "Wildfire": { "death_reported_records": 11, "damage_reported_records": 8 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 1, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "PER",
+      "name": "Peru",
+      "coverage": {
+        "Flood": { "death_reported_records": 37, "damage_reported_records": 6 },
+        "Storm": { "death_reported_records": 3, "damage_reported_records": 1 },
+        "Earthquake": { "death_reported_records": 13, "damage_reported_records": 3 },
+        "Wildfire": { "death_reported_records": 1, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 10, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "COL",
+      "name": "Colombia",
+      "coverage": {
+        "Flood": { "death_reported_records": 55, "damage_reported_records": 12 },
+        "Storm": { "death_reported_records": 5, "damage_reported_records": 3 },
+        "Earthquake": { "death_reported_records": 3, "damage_reported_records": 2 },
+        "Wildfire": { "death_reported_records": 2, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "MEX",
+      "name": "Mexico",
+      "coverage": {
+        "Flood": { "death_reported_records": 44, "damage_reported_records": 6 },
+        "Storm": { "death_reported_records": 71, "damage_reported_records": 49 },
+        "Earthquake": { "death_reported_records": 11, "damage_reported_records": 8 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Extreme temperature": { "death_reported_records": 7, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "CAN",
+      "name": "Canada",
+      "coverage": {
+        "Flood": { "death_reported_records": 12, "damage_reported_records": 14 },
+        "Storm": { "death_reported_records": 14, "damage_reported_records": 14 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 5, "damage_reported_records": 6 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 4, "damage_reported_records": 2 }
+      }
+    },
+    {
+      "iso": "AUS",
+      "name": "Australia",
+      "coverage": {
+        "Flood": { "death_reported_records": 26, "damage_reported_records": 34 },
+        "Storm": { "death_reported_records": 22, "damage_reported_records": 31 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Wildfire": { "death_reported_records": 13, "damage_reported_records": 19 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 2 },
+        "Extreme temperature": { "death_reported_records": 2, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "NZL",
+      "name": "New Zealand",
+      "coverage": {
+        "Flood": { "death_reported_records": 4, "damage_reported_records": 17 },
+        "Storm": { "death_reported_records": 4, "damage_reported_records": 7 },
+        "Earthquake": { "death_reported_records": 3, "damage_reported_records": 5 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Extreme temperature": { "death_reported_records": 0, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "THA",
+      "name": "Thailand",
+      "coverage": {
+        "Flood": { "death_reported_records": 55, "damage_reported_records": 33 },
+        "Storm": { "death_reported_records": 23, "damage_reported_records": 6 },
+        "Earthquake": { "death_reported_records": 4, "damage_reported_records": 2 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 4 },
+        "Extreme temperature": { "death_reported_records": 3, "damage_reported_records": 0 }
+      }
+    },
+    {
+      "iso": "KOR",
+      "name": "South Korea",
+      "coverage": {
+        "Flood": { "death_reported_records": 20, "damage_reported_records": 13 },
+        "Storm": { "death_reported_records": 28, "damage_reported_records": 20 },
+        "Earthquake": { "death_reported_records": 0, "damage_reported_records": 1 },
+        "Wildfire": { "death_reported_records": 4, "damage_reported_records": 1 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 3, "damage_reported_records": 1 }
+      }
+    },
+    {
+      "iso": "TWN",
+      "name": "Taiwan",
+      "coverage": {
+        "Flood": { "death_reported_records": 5, "damage_reported_records": 4 },
+        "Storm": { "death_reported_records": 48, "damage_reported_records": 39 },
+        "Earthquake": { "death_reported_records": 8, "damage_reported_records": 9 },
+        "Wildfire": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Drought": { "death_reported_records": 0, "damage_reported_records": 0 },
+        "Extreme temperature": { "death_reported_records": 1, "damage_reported_records": 1 }
+      }
+    }
+  ]
+}
