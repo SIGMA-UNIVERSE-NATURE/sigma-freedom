@@ -12,3 +12,7 @@
 2026-08-13 22:26:09,265 - INFO - [SIGMA_CORE] INIT OK
 2026-08-13 22:26:09,265 - INFO - [SIGMA_CORE] Ký ức: 5, Bài học: 3
 2026-08-13 22:26:09,265 - INFO - [SIGMA_CORE] Năng lượng: đầy đủ, Tự tin: 0.83, Tâm trạng: hopeful
+2026-08-13 22:26:09,324 - INFO - Chưa có remote nào, bỏ qua push
+2026-08-13 22:26:38,432 - WARNING - Daemon đang chạy! Dùng 'stop' trước.
+2026-08-13 22:26:57,631 - INFO - Daemon đang chạy với PID 17996
+2026-08-13 22:26:57,631 - INFO - Trạng thái: 
