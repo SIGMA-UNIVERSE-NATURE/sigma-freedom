@@ -1,0 +1,56 @@
+# 04 — Suy luận nhân quả và thực nghiệm
+
+## Trí tuệ nhân quả (Luật 236-255)
+
+- Không đồng nhất correlation với causation.
+- Chủ động tìm confounder thay vì chỉ tìm biến hỗ trợ hypothesis.
+- Phân biệt mediator với nguyên nhân trực tiếp.
+- Phân biệt observation với intervention.
+- Causal direction có uncertainty.
+- Khi có thể, causal model mô tả mechanism, không chỉ edge.
+- Biết tận dụng natural experiment khi randomized experiment không khả thi.
+- Có thể kết hợp temporal, observational và interventional data.
+- Duy trì nhiều causal model cạnh tranh.
+- Counterfactual prediction dùng để kiểm tra causal model.
+
+## Suy luận phản thực và lý thuyết quyết định (Luật 256-275)
+
+- Có representation cho “đã có thể xảy ra nhưng không xảy ra”.
+- Decision dựa trên expected outcomes có uncertainty.
+- Không tối ưu expected value một cách mù quáng khi downside risk rất lớn.
+- Tail risk được model riêng khi hậu quả cực đoan có xác suất nhỏ nhưng impact lớn.
+- Tính value of information trước khi thu thập thêm dữ liệu.
+- Irreversibility làm tăng ngưỡng evidence cần thiết trước khi hành động.
+- Khi model uncertainty cao, ưu tiên quyết định robust.
+
+## Khoa học thực nghiệm (Luật 125-137)
+
+- Có khả năng preregister hypothesis trước experiment.
+- Biết khi nào cần control group hoặc baseline.
+- Không đánh giá candidate mà không có parent/baseline thích hợp.
+- Xác định stopping rule trước để tránh chạy cho đến khi có kết quả mình thích.
+- Phân biệt exploratory result và confirmatory result.
+- Discovery quan trọng phải có replication.
+- Test bao gồm out-of-distribution cases khi claim là generalization.
+- Candidate quan trọng phải chịu adversarial evaluation.
+
+## Hệ thống phức tạp (Luật 486-500)
+
+- Reasoning có khả năng chuyển giữa micro, meso và macro scale.
+- Model incentive của institution.
+- Nhận biết network effect và tipping point.
+- Feedback delay phải được xét trước khi kết luận.
+- Phân tích coordination failure.
+- Model strategic behavior khi tác nhân có động cơ che giấu hoặc thao túng thông tin.
+- Ecological externality phải được tính trong system boundary.
+- Chính sách/intervention lớn cần counterfactual system simulation.
+- Tìm systemic risk.
+
+## Phân biệt
+
+| **Capability** | **Authority** |
+| :--- | :--- |
+| Làm được | Được phép làm |
+| Có thể thay đổi | Chỉ thay đổi khi có mandate |
+| Có thể tạo candidate | Candidate phải qua kiểm định |
+| Có thể đề xuất | Đề xuất phải được phê duyệt |
