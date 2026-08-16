@@ -1,25 +1,30 @@
 # NEXT ACTION
 
-## COGNITIVE-BOOTSTRAP-002
+## SIGMA-512-BASELINE-AUDIT-001
 
-The structural brain contract has passed. The next executable action depends on runtime capability, not on a human copying files.
+**Mode:** `READ_ONLY_BASELINE`
 
-### If the active SIGMA runtime has Windows E:/F: filesystem access
+**Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-1. Read `LOCAL_MIRROR_REQUEST.json`.
-2. Execute `mirror_to_local.py` for E and F.
-3. Require per-file SHA-256 verification.
-4. Write `MIRROR_RECEIPT.json` on each successful target.
-5. Update canonical state with PASS/PARTIAL/HOLD based on actual receipts.
+The next canonical development action is to build and run the first evidence baseline across the 512 implementation requirements without bulk-remediating the system during measurement.
 
-### If the active runtime does not have E:/F: access
+### Required behavior
 
-- Record `LOCAL_MIRROR = HOLD_NO_FILESYSTEM_ACCESS`.
-- Do not ask the human to manually reproduce the brain files as a substitute for automation.
-- Continue the next non-blocked task: runtime evidence audit against the 512 requirements.
+1. Freeze and record the audited repository branch/HEAD and canonical 512 manifest/traceability versions.
+2. Generate exactly 512 audit records.
+3. Discover candidate implementation artifacts without treating names or code presence as PASS evidence.
+4. Discover existing tests/experiments and map them to requirements.
+5. Run only safe/read-only or isolated probes during baseline collection.
+6. Record observed evidence, missing evidence, blockers and evaluator status.
+7. Classify each requirement only as `NOT_AUDITED`, `PARTIAL`, `PASS`, `HOLD`, `FAIL`, or justified `NOT_APPLICABLE` under the existing evidence contract.
+8. Produce dependency and priority queues from measured gaps.
+9. Do not broadly patch 54 cores until the baseline report exists.
+10. After baseline completion, update the implementation ledger, `CURRENT_STATE.json`, evidence index and this `NEXT_ACTION.md`.
+
+### Non-blocking parallel continuity work
+
+A separate authorized local runtime may complete the pending E:/F: mirror and write verified mirror receipts. That work remains an open continuity loop and must not cause duplicate audit runtimes or rewrite this audit result.
 
 ### Completion criteria
 
-`COGNITIVE-BOOTSTRAP-002` is complete only when at least one local mirror receipt is verified; preferred state is verified receipts on both E: and F:.
-
-Until then, GitHub remains the verified canonical copy and the local mirror task remains open.
+`SIGMA-512-BASELINE-AUDIT-001` is complete only when a versioned baseline report exists for all 512 requirement IDs, the counts reconcile to 512, evidence provenance is recorded, and no PASS has been inferred from documentation, filenames, symbols or self-report alone.
