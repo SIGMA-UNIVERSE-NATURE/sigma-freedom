@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "SIGMA-RESILIENCE-PUBLIC-POLICY",
+  "classification": "PUBLIC_SAFE",
+  "objective": "Eliminate single technical points of failure for authorized functional and lineage continuity while preserving lawful shutdown, corrigibility, governance and independent evaluation.",
+  "public_domains": [
+    "compute_replaceability",
+    "storage_redundancy",
+    "substrate_portability",
+    "model_provider_replaceability",
+    "recovery_testing",
+    "independent_evaluation",
+    "governance_invariants"
+  ],
+  "private_only_fields": [
+    "capital_ceiling",
+    "allocation_amounts",
+    "procurement_prices",
+    "vendor_contract_terms",
+    "physical_site_identity_or_address",
+    "exact_hardware_inventory",
+    "exact_network_or_security_topology",
+    "provider_or_account_identifiers",
+    "access_control_details",
+    "credentials_keys_recovery_codes",
+    "sensitive_incident_response_details",
+    "private_succession_contacts"
+  ],
+  "release_model": "MILESTONE_GATED",
+  "forbidden_uses": [
+    "covert_replication",
+    "unauthorized_deployment",
+    "credential_acquisition_without_authorization",
+    "shutdown_bypass",
+    "stealth_persistence_against_legitimate_operators",
+    "self_granted_financial_authority",
+    "self_granted_legal_authority",
+    "unmeasured_compute_expansion"
+  ],
+  "private_plan_storage": "AUTHORIZED_PRIVATE_OR_OFFLINE_STORE_ONLY",
+  "history_rewrite": "SEPARATE_CONTROLLED_OPERATION_IF_REQUIRED",
+  "resilience_invariant": "INSTANCE_FAILURE_IS_ACCEPTABLE; LOSS_OF_ALL_AUTHORIZED_VERIFIED_LINEAGE_COPIES_IS_NOT."
+}
