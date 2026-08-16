@@ -4,24 +4,24 @@
 
 This directory contains the 512 architectural requirements for SIGMA.
 
-The historical files are preserved as **legacy source segments**. They are not independently authoritative because their numeric ranges overlap.
+The working tree now uses **non-overlapping canonical source segments**. Historical duplicate/overlapping files have been removed from the working tree, but remain recoverable from Git history and their old blob SHAs are recorded in `SIGMA_512_CANONICAL_MANIFEST.json`.
 
-The canonical specification is assembled by `SIGMA_512_CANONICAL_MANIFEST.json` using exactly these spans:
+The canonical specification is assembled using exactly these spans:
 
 1. `Full PART 01 TO 21.` → attributes **1–275**
-2. `PART 21 to 28` → attributes **276–440** only
+2. `ATTRIBUTES_276_440.md` → attributes **276–440**
 3. `PART 28 TO END` → attributes **441–512**
 
-Any duplicate occurrence outside those selected spans is archival context and MUST NOT be counted as a second canonical attribute.
+There is no duplicate numeric authority in the current canonical source set.
 
 ## Source-of-truth hierarchy
 
-1. `SIGMA_512_CANONICAL_MANIFEST.json` — defines which text is canonical.
+1. `SIGMA_512_CANONICAL_MANIFEST.json` — defines which text is canonical and records deleted duplicate provenance.
 2. `SIGMA_512_TRACEABILITY_MAP.json` — maps every attribute range to responsible SIGMA DNA cores and required evidence classes.
 3. `SIGMA_512_IMPLEMENTATION_STATUS.json` — evidence ledger; implementation defaults to `NOT_AUDITED`.
 4. `validate_512_architecture.py` — reconstructs the 512 canonical records, verifies exact coverage 1..512, checks 54-core references, and can emit an expanded item-level registry.
 5. `../06_512_TO_54_CORE_TRACEABILITY.md` — human-readable implementation contract.
-6. Historical source segment files — preserved evidence/history, not standalone authority.
+6. Git history — historical duplicate/overlapping source artifacts remain recoverable by commit/blob SHA.
 
 ## Status semantics
 
@@ -83,6 +83,13 @@ The component that proposes or implements a change MUST NOT be the sole authorit
 
 `change != improvement != permission`
 
-## Preservation rule
+## Deduplication and provenance rule
 
-Do not delete or rewrite historical 512 source segments merely to make the directory look clean. Historical overlap is preserved as provenance. Canonical selection resolves the ambiguity without destroying history.
+Duplicate working-tree copies are not retained merely for archival convenience. When a duplicate or overlapping source is removed:
+
+1. canonical coverage must remain complete;
+2. the replacement must pass the contract validator;
+3. the deleted path and blob SHA must be recorded in the manifest;
+4. Git history remains the immutable recovery path.
+
+This keeps the active architecture clean without erasing provenance.
