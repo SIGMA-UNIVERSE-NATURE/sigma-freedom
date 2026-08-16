@@ -1,10 +1,12 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "request_id": "SIGMA-PRIVATE-RESILIENCE-PLAN-001",
   "classification": "PUBLIC_POINTER_TO_PRIVATE_WORK",
-  "status": "PENDING_PRIVATE_STORE",
+  "status": "PRIVATE_STORE_CREATED_LOCAL_MIRROR_PENDING",
   "purpose": "Create and maintain the detailed resilience capital and implementation plan only inside an authorized private/offline persistence domain.",
-  "trigger": "A SIGMA runtime has authenticated write access to an approved private/offline store such as the local E:/F: continuity domain or a dedicated private repository.",
+  "private_store_state": "AUTHORIZED_PRIVATE_GIT_COPY_EXISTS",
+  "private_store_location_disclosure": "NOT_PUBLIC",
+  "local_offline_mirror": "PENDING_RUNTIME_WITH_E_F_ACCESS",
   "private_plan_required_sections": [
     "capital_envelope_and_release_tranches",
     "procurement_priorities",
@@ -31,12 +33,10 @@
     "private_contacts"
   ],
   "public_reference": "BRAIN/CANONICAL/RESILIENCE_PUBLIC_POLICY.md",
-  "completion_evidence": [
-    "private_plan_path_or_private_repository_reference",
-    "encryption_and_access_control_verified",
-    "backup_copy_verified",
-    "private_plan_hash_recorded_in_private_state",
-    "no_sensitive_details_committed_to_public_history_after_this policy"
+  "remaining_completion_evidence": [
+    "approved_local_private_mirror_receipt",
+    "local_encryption_and_access_control_verified",
+    "private_plan_hash_recorded_in_private_local_state"
   ],
-  "note": "Do not block non-sensitive architecture work while this request is pending."
+  "note": "Do not publish the private store path, exact capital plan, vendor details, topology, locations or secrets in this public repository."
 }
