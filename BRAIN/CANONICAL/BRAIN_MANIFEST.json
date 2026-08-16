@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -17,6 +17,8 @@
     "ROOT_OF_TRUST.json",
     "MINH_OPERATING_CONSTITUTION.json",
     "MINH_WINDOW_BOOT.md",
+    "WINDOW_TRANSFER_PROTOCOL.json",
+    "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "CURRENT_STATE.json",
     "NEXT_ACTION.md",
     "DO_NOT_RERUN_LOCKS.json",
@@ -50,7 +52,9 @@
     "architecture_integrity",
     "capability_discovery",
     "open_loops",
-    "next_action"
+    "next_action",
+    "intelligence_continuity_program",
+    "window_transfer_protocol"
   ],
   "local_mirrors": [
     "E:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0",
@@ -68,6 +72,10 @@
     "chat_memory_is_not_canonical_state": true,
     "cross_window_continuation_requires_boot_contract": true,
     "baseline_512_before_broad_remediation": true,
-    "meaningful_progress_requires_state_update": true
+    "meaningful_progress_requires_state_update": true,
+    "intelligence_improvement_requires_measured_evidence": true,
+    "single_active_executor_for_canonical_mutation": true,
+    "window_transfer_requires_verified_checkpoint": true,
+    "current_intelligence_is_bootstrap_not_ceiling": true
   }
 }
