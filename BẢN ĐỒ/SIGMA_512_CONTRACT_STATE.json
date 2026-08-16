@@ -1,13 +1,13 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "state_id": "SIGMA-512-CONTRACT-STATE",
-  "recorded_at": "2026-08-17T04:36:15+07:00",
+  "recorded_at": "2026-08-17T04:54:28+07:00",
   "branch": "SIGMA_LIFE",
-  "validated_contract_commit": "9ba61373cb4a4c3ae964fb08803294ba3e80021d",
+  "validated_contract_commit": "76a7a091737efef2c0e7a1025afcc00c65d0ad42",
   "github_actions": {
     "workflow": "SIGMA 512 Contract",
-    "run_id": 31973974134,
-    "job_id": 95230565050,
+    "run_id": 31974845682,
+    "job_id": 95232652299,
     "conclusion": "success"
   },
   "contract_result": {
@@ -16,6 +16,27 @@
     "dna_cores": 54,
     "traceability": "COMPLETE",
     "implementation_pass_inference": "FORBIDDEN"
+  },
+  "source_deduplication": {
+    "status": "PASS",
+    "active_non_overlapping_segments": [
+      {"from": 1, "to": 275, "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/Full PART 01 TO 21."},
+      {"from": 276, "to": 440, "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/ATTRIBUTES_276_440.md"},
+      {"from": 441, "to": 512, "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 28 TO END"}
+    ],
+    "deleted_duplicates": [
+      {
+        "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 21 to 28",
+        "blob_sha": "d1621c810df877cc6b71eb95340a5bc1d2179fc5",
+        "reason": "Overlapping source replaced by clean 276-440 segment."
+      },
+      {
+        "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/Part1.",
+        "blob_sha": "82af7929d7c48a696a8085af96736246e0bfba7f",
+        "reason": "Duplicate fragment of attributes 1-12."
+      }
+    ],
+    "provenance_recovery": "Git history plus deleted source blob SHAs recorded in SIGMA_512_CANONICAL_MANIFEST.json."
   },
   "implementation_audit": {
     "PASS": 0,
@@ -26,8 +47,8 @@
     "NOT_AUDITED": 512
   },
   "meaning": {
-    "PASS": "The 512 specification is canonicalized, all 512 requirements are covered by the traceability contract, exactly 54 DNA core IDs are discovered, and governance rules reject unsupported PASS claims.",
-    "NOT_AUDITED": "No claim is made yet that the runtime implementation satisfies each requirement. Implementation evidence must be audited into SIGMA_512_IMPLEMENTATION_STATUS.json."
+    "PASS": "The 512 specification remains canonical and contiguous after duplicate-source cleanup; all 512 requirements are covered by traceability; exactly 54 DNA core IDs are discovered; unsupported PASS claims remain forbidden.",
+    "NOT_AUDITED": "No claim is made yet that runtime implementation satisfies each requirement. Implementation evidence must be audited into SIGMA_512_IMPLEMENTATION_STATUS.json."
   },
   "next_phase": "Evidence audit: 512 requirement -> core -> runtime artifact -> test/experiment -> evidence -> independent evaluator -> status."
 }
