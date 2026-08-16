@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "spec_id": "SIGMA-512",
   "spec_version": "2026-08-17",
   "branch_lineage": "SIGMA_LIFE",
@@ -10,7 +10,7 @@
     "must_be_contiguous": true,
     "must_be_unique_after_span_selection": true
   },
-  "source_policy": "Canonical text is selected by numeric span from preserved legacy source files. Text outside a selected span remains provenance/archive only.",
+  "source_policy": "Canonical source files are non-overlapping. Deleted duplicate/overlapping historical files remain recoverable from Git history and are recorded by path and blob SHA below.",
   "segments": [
     {
       "order": 1,
@@ -21,8 +21,8 @@
     },
     {
       "order": 2,
-      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 21 to 28",
-      "source_blob_sha": "d1621c810df877cc6b71eb95340a5bc1d2179fc5",
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/ATTRIBUTES_276_440.md",
+      "source_blob_sha": "6de260bdeb9ea6188ef244893d919ebac207a14b",
       "canonical_from": 276,
       "canonical_to": 440
     },
@@ -34,11 +34,16 @@
       "canonical_to": 512
     }
   ],
-  "legacy_noncanonical_sources": [
+  "deleted_duplicate_sources": [
+    {
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 21 to 28",
+      "source_blob_sha": "d1621c810df877cc6b71eb95340a5bc1d2179fc5",
+      "reason": "Overlapped attributes 204-275 and 441+ with adjacent canonical segments. Replaced by non-overlapping ATTRIBUTES_276_440.md. Recoverable from Git history."
+    },
     {
       "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/Part1.",
       "source_blob_sha": "82af7929d7c48a696a8085af96736246e0bfba7f",
-      "reason": "Preserved historical fragment; excluded from canonical assembly to prevent duplicate authority."
+      "reason": "Exact duplicate fragment of attributes 1-12. Removed from working tree; recoverable from Git history."
     }
   ],
   "sections": [
