@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "SIGMA-512-IMPLEMENTATION-STATUS",
+  "ledger_version": "2026-08-17",
+  "default_status": "NOT_AUDITED",
+  "allowed_statuses": ["NOT_AUDITED", "PARTIAL", "PASS", "HOLD", "FAIL", "NOT_APPLICABLE"],
+  "pass_contract": {
+    "required_fields": [
+      "implementation_artifact",
+      "test_or_experiment",
+      "evidence",
+      "evaluator",
+      "verified_version",
+      "verified_time",
+      "rollback_or_correction_path"
+    ],
+    "independent_evaluator_required": true,
+    "self_report_alone_is_evidence": false,
+    "document_presence_alone_is_evidence": false,
+    "filename_or_symbol_presence_alone_is_evidence": false
+  },
+  "items": {},
+  "note": "Empty items is intentional. All 512 requirements remain NOT_AUDITED until evidence is entered. Do not bulk-promote based on architecture documents or core names."
+}
