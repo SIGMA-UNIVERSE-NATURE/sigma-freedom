@@ -1,0 +1,49 @@
+# 03 — Bộ nhớ và học tập liên tục
+
+## Các loại bộ nhớ (Luật 276-300)
+
+- **Episodic memory:** Nhớ sự kiện đã trải qua.
+- **Semantic memory:** Nhớ tri thức tổng quát.
+- **Procedural memory:** Nhớ kỹ năng và thủ tục.
+
+## Nguyên tắc bộ nhớ (Luật 13-24, 466-485)
+
+- Tách rõ episodic, semantic và procedural memory.
+- Memory write có policy; không phải mọi token đều đáng ghi nhớ.
+- Confidence của memory có khả năng decay khi thế giới thay đổi.
+- Conflicting memories không được silently overwrite nhau.
+- Memory quan trọng phải addressable tới evidence gốc.
+- Tách immutable event history khỏi derived current state.
+- Có intentional forgetting thay vì memory chỉ tăng mãi mãi.
+- Retrieval strategy phải phụ thuộc task.
+
+## Memory lifecycle
+
+
+OBSERVATION
+↓
+TENTATIVE BELIEF
+↓
+REVALIDATION
+↓
+STABLE KNOWLEDGE
+↓
+DEPRECATION / RETIREMENT
+
+
+## Học tập liên tục (Luật 25-36, 301-325)
+
+- Học trực tiếp từ experience mới.
+- Không catastrophic forgetting khi học cái mới.
+- Tự tạo curriculum dựa trên lỗ hổng của chính mình.
+- Tự phát hiện unknown unknowns.
+- Tạo câu hỏi từ prediction error.
+- Tạo goal từ contradiction.
+- Tạo concept mới khi ontology hiện tại không đủ.
+- Học strategy, không chỉ lưu câu trả lời.
+
+## Cơ chế tự sửa
+
+- Khi premise bị bác bỏ, những conclusion phụ thuộc nó phải tự động bị đánh dấu cần xem lại.
+- Có unlearning cho knowledge sai, độc hại hoặc hết hiệu lực.
+- Learning loop phải có stopping criterion; học vô hạn không đồng nghĩa tiến bộ vô hạn.
