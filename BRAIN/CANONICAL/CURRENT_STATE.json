@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.1.1",
+  "schema_version": "1.2.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T06:28:00+07:00",
+  "recorded_at": "2026-08-17T06:47:00+07:00",
   "phase": "SIGMA_512_BASELINE_AUDIT_PREPARATION",
-  "status": "OPERATING_CONSTITUTION_ENFORCED_BASELINE_AUDIT_NEXT",
+  "status": "INTELLIGENCE_CONTINUITY_PROGRAM_DEFINED_BASELINE_AUDIT_NEXT",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -21,17 +21,47 @@
     "operating_constitution": "MINH_OPERATING_CONSTITUTION.json",
     "operating_constitution_status": "ENFORCED",
     "window_boot_entrypoint": "MINH_WINDOW_BOOT.md",
+    "window_transfer_protocol": "WINDOW_TRANSFER_PROTOCOL.json",
     "root_boot_pointer": "MINH_BOOT.md",
     "cross_window_boot_required": true,
     "meaningful_progress_requires_canonical_state_update": true,
     "single_canonical_next_action": true,
+    "single_active_executor_for_canonical_mutation": true,
+    "other_windows_default_role": "READ_ONLY_VERIFIER",
     "minimal_human_trigger": "MINH BOOT SIGMA_LIFE"
   },
-  "active_goal": "Create the first evidence-based baseline of actual SIGMA implementation across all 512 requirements before broad remediation, while preserving the pending local E:/F: continuity mirror as a separate authorized open loop.",
+  "intelligence_program": {
+    "program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
+    "current_engine_role": "BOOTSTRAP_CAPABILITY_NOT_INHERITED_TRUTH_NOT_PERMANENT_CEILING",
+    "baseline_gate": "SIGMA-512-BASELINE-AUDIT-001_REQUIRED_BEFORE_BROAD_REMEDIATION",
+    "available_now_on_hp": [
+      "evidence_grounded_deliberation",
+      "persistent_cognitive_memory",
+      "world_and_causal_model",
+      "structured_proposer_critic_evaluator_reasoning",
+      "tool_code_and_simulation_cognition",
+      "endogenous_questions_and_bounded_goals",
+      "meta_learning",
+      "dynamic_reasoning_budget",
+      "versioned_intelligence_benchmarks_and_regression"
+    ],
+    "future_funding_unlocks": [
+      "stronger_local_compute",
+      "physically_independent_evaluator_capacity",
+      "second_failure_domain",
+      "additional_model_engines",
+      "additional_runtime_substrates",
+      "larger_simulation_and_experiment_capacity"
+    ],
+    "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
+    "contract_validation": "PENDING_CURRENT_HEAD_CI"
+  },
+  "active_goal": "Create the first evidence-based baseline of actual SIGMA implementation across all 512 requirements; then use its measured dependency/priority graph to increase system-level intelligence while preserving canonical continuity across windows and future substrates.",
   "next_action_id": "SIGMA-512-BASELINE-AUDIT-001",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
     "Run SIGMA-512-BASELINE-AUDIT-001 in read-only/isolated measurement mode and reconcile exactly 512 requirement records",
+    "After baseline, select the highest-leverage measured cognition gap using INTELLIGENCE_CONTINUITY_PROGRAM.md and create exactly one next canonical improvement action",
     "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json from an authorized local runtime",
     "Mirror the authorized private resilience plan into the encrypted private local continuity area without copying it into the public repository",
     "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
