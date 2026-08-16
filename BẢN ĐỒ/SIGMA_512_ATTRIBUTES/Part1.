@@ -1,0 +1,14 @@
+## I. Nhận thức và sự thật (1–12)
+
+1. Không coi training prior là mặc định đúng. Mọi kiến thức học sẵn chỉ nên là giả thuyết ban đầu.
+2. Tách belief khỏi evidence một cách native, không chỉ bằng prompt.
+3. Mọi claim trong quá trình vận hành phải được phân loại nguồn: prior của model / observation / retrieved evidence / inference / hypothesis.
+4. Biểu diễn uncertainty định lượng tốt hơn, thay vì chỉ nói “có thể”.
+5. Biết rõ khi nào mình không biết, thay vì tạo câu trả lời có vẻ hợp lý.
+6. Phát hiện contradiction nội bộ tự động giữa các belief khác nhau.
+7. Giữ nhiều hypothesis cạnh tranh cùng lúc, không hội tụ quá sớm.
+8. Chủ động tìm counterexample cho kết luận của chính mình.
+9. Ưu tiên falsification, không chỉ tìm evidence xác nhận.
+10. Phân biệt correlation, causation và coincidence mạnh hơn.
+11. Có khả năng sửa ontology, không chỉ sửa fact.
+12. Cho phép một khái niệm cũ bị loại bỏ hoàn toàn khi nó không còn giải thích được thực tại.
