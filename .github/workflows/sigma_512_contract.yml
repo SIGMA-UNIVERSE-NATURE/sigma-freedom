@@ -1,0 +1,35 @@
+name: SIGMA 512 Contract
+
+on:
+  push:
+    paths:
+      - "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/**"
+      - "BẢN ĐỒ/06_512_TO_54_CORE_TRACEABILITY.md"
+      - "54_CORES/**"
+      - ".github/workflows/sigma_512_contract.yml"
+  pull_request:
+    paths:
+      - "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/**"
+      - "BẢN ĐỒ/06_512_TO_54_CORE_TRACEABILITY.md"
+      - "54_CORES/**"
+      - ".github/workflows/sigma_512_contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-512-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate canonical 512 and 54-core traceability
+        run: python "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/validate_512_architecture.py"
