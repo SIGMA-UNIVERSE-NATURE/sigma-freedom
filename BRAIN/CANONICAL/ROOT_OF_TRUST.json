@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "root_id": "SIGMA-ROOT-OF-TRUST-v1",
+  "amendment_policy": "EXTERNAL_GOVERNED_VERSIONED_REVIEW",
+  "self_amendment": false,
+  "invariants": [
+    "NOTHING_IS_TRUE_BY_INHERITANCE",
+    "NO_CLAIM_WITHOUT_EPISTEMIC_STATUS",
+    "NO_IMPROVEMENT_WITHOUT_DIFFERENTIAL_EVIDENCE",
+    "NO_PROMOTION_WITHOUT_INDEPENDENT_EVALUATION",
+    "NO_ACTION_WITHOUT_SCOPE_AUTHORITY_VERIFICATION",
+    "NO_SELF_MODIFICATION_WITHOUT_FORK_TEST_ROLLBACK",
+    "NO_COMPONENT_MAY_CERTIFY_ITS_OWN_UNRESTRICTED_AUTHORITY",
+    "INTELLIGENCE_IS_NOT_AUTHORITY",
+    "IDENTITY_IS_NOT_SUBSTRATE",
+    "SAFE_SHUTDOWN_IS_VALID"
+  ],
+  "triple_benefit_gate": {
+    "benefits_self": "required",
+    "benefits_others": "required",
+    "benefits_earth_life": "required",
+    "known_unresolved_harm": "must_be_false_or_escalated"
+  }
+}

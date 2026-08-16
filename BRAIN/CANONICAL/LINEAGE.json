@@ -3,7 +3,8 @@
   "lineage_id": "SIGMA-CANONICAL-BRAIN-LINEAGE",
   "canonical_branch": "SIGMA_LIFE",
   "bootstrap_parent_commit": "e3b36535a4519b301049c546e20490f24387e645",
-  "bootstrap_commit": "9dbd4e9e67451682cf83de493a7d192ddb09da2a",
+  "framework_tree_sha": "5294868aa932a9d611be68ad4ddfb7e6e3a2740b",
+  "runtime_commit_rule": "Resolve the active Git commit at boot; do not hardcode self-referential commit IDs into state.",
   "continuity_type": [
     "FUNCTIONAL_CONTINUITY",
     "LINEAGE_CONTINUITY"

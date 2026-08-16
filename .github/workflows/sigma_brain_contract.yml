@@ -1,0 +1,30 @@
+name: SIGMA Brain Contract
+
+on:
+  push:
+    branches: [SIGMA_LIFE, agent/cognitive-bootstrap-kernel]
+    paths:
+      - 'BRAIN/**'
+      - '54_CORES/**'
+      - 'BẢN ĐỒ/**'
+      - '.github/workflows/sigma_brain_contract.yml'
+  pull_request:
+    paths:
+      - 'BRAIN/**'
+      - '54_CORES/**'
+      - 'BẢN ĐỒ/**'
+      - '.github/workflows/sigma_brain_contract.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-brain-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate SIGMA canonical brain
+        run: python "BRAIN/CANONICAL/validate_brain_contract.py"

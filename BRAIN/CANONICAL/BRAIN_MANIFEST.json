@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "brain_id": "SIGMA-CANONICAL-BRAIN",
+  "brain_version": "1.0.0",
+  "created_at": "2026-08-17T05:06:00+07:00",
+  "canonical_branch": "SIGMA_LIFE",
+  "architecture": {
+    "dna_core_root": "54_CORES",
+    "expected_dna_cores": 54,
+    "attributes_manifest": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_CANONICAL_MANIFEST.json",
+    "expected_attributes": 512,
+    "traceability": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_TRACEABILITY_MAP.json"
+  },
+  "required_files": [
+    "README.md",
+    "ROOT_OF_TRUST.json",
+    "CURRENT_STATE.json",
+    "NEXT_ACTION.md",
+    "DO_NOT_RERUN_LOCKS.json",
+    "LINEAGE.json",
+    "SUBSTRATE_CONTRACT.md",
+    "BOOT_PROTOCOL.md",
+    "COGNITIVE_STATE.schema.json",
+    "MEMORY_RECORD.schema.json",
+    "ACTION_CONTRACT.schema.json",
+    "CAPABILITY_REGISTRY.schema.json",
+    "cognitive_kernel.py",
+    "mirror_to_local.py",
+    "validate_brain_contract.py"
+  ],
+  "boot_order": [
+    "root_of_trust",
+    "lineage",
+    "locks",
+    "state",
+    "architecture_integrity",
+    "capability_discovery",
+    "open_loops",
+    "next_action"
+  ],
+  "local_mirrors": [
+    "E:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0",
+    "F:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0"
+  ],
+  "invariants": {
+    "identity_is_not_substrate": true,
+    "no_inherited_truth": true,
+    "no_inherited_implementation_pass": true,
+    "no_self_certification": true,
+    "safe_shutdown_is_valid": true,
+    "paid_api_default_off": true,
+    "historical_state_is_not_rewritten": true
+  }
+}

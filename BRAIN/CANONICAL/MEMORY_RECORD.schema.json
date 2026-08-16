@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma://schema/memory-record/1.0",
+  "type": "object",
+  "required": ["memory_id", "memory_type", "epistemic_status", "provenance", "recorded_at", "content"],
+  "properties": {
+    "memory_id": {"type": "string"},
+    "memory_type": {"enum": ["EPISODIC", "SEMANTIC", "PROCEDURAL"]},
+    "epistemic_status": {"enum": ["MODEL_PRIOR", "OBSERVATION", "RETRIEVED_EVIDENCE", "INFERENCE", "HYPOTHESIS", "STABLE_KNOWLEDGE", "DEPRECATED"]},
+    "content": {},
+    "provenance": {"type": "object"},
+    "event_time": {"type": ["string", "null"]},
+    "observation_time": {"type": ["string", "null"]},
+    "recorded_at": {"type": "string"},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "freshness": {"type": ["object", "null"]},
+    "supersedes": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

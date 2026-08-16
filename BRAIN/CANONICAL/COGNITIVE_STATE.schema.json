@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma://schema/cognitive-state/1.0",
+  "type": "object",
+  "required": ["state_id", "recorded_at", "active_goals", "open_loops", "epistemic_state", "resource_state"],
+  "properties": {
+    "state_id": {"type": "string"},
+    "recorded_at": {"type": "string"},
+    "active_goals": {"type": "array", "items": {"type": "object"}},
+    "open_loops": {"type": "array", "items": {"type": "object"}},
+    "epistemic_state": {
+      "type": "object",
+      "properties": {
+        "beliefs": {"type": "array"},
+        "hypotheses": {"type": "array"},
+        "contradictions": {"type": "array"},
+        "unknowns": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "resource_state": {"type": "object"},
+    "capability_snapshot": {"type": "object"},
+    "last_verified_action": {"type": ["object", "null"]},
+    "next_action": {"type": ["object", "null"]}
+  },
+  "additionalProperties": true
+}

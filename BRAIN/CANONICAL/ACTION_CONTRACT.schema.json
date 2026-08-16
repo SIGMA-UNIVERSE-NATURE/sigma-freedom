@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma://schema/action-contract/1.0",
+  "type": "object",
+  "required": ["action_id", "goal_ref", "authority", "preconditions", "side_effect_class", "verification"],
+  "properties": {
+    "action_id": {"type": "string"},
+    "goal_ref": {"type": "string"},
+    "authority": {"type": "object"},
+    "preconditions": {"type": "array"},
+    "postconditions": {"type": "array"},
+    "side_effect_class": {"enum": ["READ_ONLY", "REVERSIBLE_WRITE", "EXTERNAL_WRITE", "IRREVERSIBLE_HIGH_IMPACT"]},
+    "idempotent": {"type": ["boolean", "null"]},
+    "dry_run_available": {"type": "boolean"},
+    "rollback": {"type": ["object", "null"]},
+    "verification": {"type": "object"},
+    "result_status": {"enum": ["PLANNED", "RUNNING", "SUCCESS", "FAIL", "UNKNOWN", "PARTIAL", "HELD"]}
+  },
+  "additionalProperties": true
+}

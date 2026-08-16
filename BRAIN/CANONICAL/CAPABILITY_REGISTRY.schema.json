@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma://schema/capability-registry/1.0",
+  "type": "object",
+  "required": ["snapshot_id", "observed_at", "capabilities"],
+  "properties": {
+    "snapshot_id": {"type": "string"},
+    "observed_at": {"type": "string"},
+    "substrate": {"type": "object"},
+    "resources": {"type": "object"},
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["capability_id", "available", "evidence"],
+        "properties": {
+          "capability_id": {"type": "string"},
+          "available": {"type": "boolean"},
+          "permission": {"type": ["string", "null"]},
+          "evidence": {"type": "array"},
+          "last_probe": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}
