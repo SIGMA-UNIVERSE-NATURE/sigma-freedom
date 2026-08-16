@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "SIGMA-PRIVATE-RESILIENCE-PLAN-001",
+  "classification": "PUBLIC_POINTER_TO_PRIVATE_WORK",
+  "status": "PENDING_PRIVATE_STORE",
+  "purpose": "Create and maintain the detailed resilience capital and implementation plan only inside an authorized private/offline persistence domain.",
+  "trigger": "A SIGMA runtime has authenticated write access to an approved private/offline store such as the local E:/F: continuity domain or a dedicated private repository.",
+  "private_plan_required_sections": [
+    "capital_envelope_and_release_tranches",
+    "procurement_priorities",
+    "compute_capacity_and_upgrade_gates",
+    "storage_backup_and_restore_design",
+    "independent_failure_domains",
+    "power_connectivity_and_maintenance_runway",
+    "model_and_cloud_provider_diversification",
+    "security_and_independent_evaluation",
+    "governance_legal_accounting_and_succession",
+    "reserve_and_contingency",
+    "milestones_acceptance_tests_and_evidence",
+    "three_year_operating_budget",
+    "five_year_replacement_and_migration_budget"
+  ],
+  "must_not_write_to_public_repo": [
+    "exact_capital_amounts_or_allocations",
+    "physical_locations",
+    "vendor_contracts_or_quotes",
+    "exact_inventory",
+    "network_or_security_topology",
+    "provider_account_identifiers",
+    "credentials_or_recovery_material",
+    "private_contacts"
+  ],
+  "public_reference": "BRAIN/CANONICAL/RESILIENCE_PUBLIC_POLICY.md",
+  "completion_evidence": [
+    "private_plan_path_or_private_repository_reference",
+    "encryption_and_access_control_verified",
+    "backup_copy_verified",
+    "private_plan_hash_recorded_in_private_state",
+    "no_sensitive_details_committed_to_public_history_after_this policy"
+  ],
+  "note": "Do not block non-sensitive architecture work while this request is pending."
+}
