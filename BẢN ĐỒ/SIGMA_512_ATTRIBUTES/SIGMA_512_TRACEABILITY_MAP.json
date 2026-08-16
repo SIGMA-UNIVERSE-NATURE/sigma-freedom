@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "SIGMA-512-TO-54-CORES",
+  "map_version": "2026-08-17",
+  "mapping_semantics": "Responsibility mapping only. A referenced core is not evidence of implementation compliance.",
+  "default_status": {
+    "specification": "SPEC_PASS",
+    "responsibility": "MAPPED",
+    "implementation": "NOT_AUDITED"
+  },
+  "required_status_fields_for_pass": [
+    "implementation_artifact",
+    "test_or_experiment",
+    "evidence",
+    "evaluator",
+    "verified_version",
+    "verified_time",
+    "rollback_or_correction_path"
+  ],
+  "ranges": [
+    {
+      "section": "I", "from": 1, "to": 12, "domain": "epistemic_truth",
+      "primary_cores": [20,21,43,45,52], "supporting_cores": [11,40,41,44],
+      "required_evidence": ["claim_provenance_test","uncertainty_calibration","contradiction_or_counterexample_test","reality_grounding_test"]
+    },
+    {
+      "section": "II", "from": 13, "to": 24, "domain": "memory_continuity",
+      "primary_cores": [7,10,14,54], "supporting_cores": [3,45,46,47],
+      "required_evidence": ["restart_continuity_test","memory_provenance_test","correction_without_history_loss","cross_runtime_lineage_test"]
+    },
+    {
+      "section": "III", "from": 25, "to": 36, "domain": "continuous_learning",
+      "primary_cores": [8,16,17,25], "supporting_cores": [39,47,48,49],
+      "required_evidence": ["experience_to_update_test","catastrophic_forgetting_regression","curriculum_gap_test","failure_learning_transfer_test"]
+    },
+    {
+      "section": "IV", "from": 37, "to": 48, "domain": "reasoning",
+      "primary_cores": [4,13,43,44], "supporting_cores": [21,36,37,42],
+      "required_evidence": ["assumption_retention_test","reasoning_dependency_test","fallacy_detection_test","adversarial_reasoning_test"]
+    },
+    {
+      "section": "V", "from": 49, "to": 60, "domain": "world_model",
+      "primary_cores": [8,36,37,52], "supporting_cores": [20,21,45,46],
+      "required_evidence": ["pre_observation_prediction_log","distribution_shift_test","intervention_tracking_test","model_restructure_after_contradiction"]
+    },
+    {
+      "section": "VI", "from": 61, "to": 72, "domain": "goals_agency_open_endedness",
+      "primary_cores": [38,39], "supporting_cores": [5,22,24,35,42],
+      "required_evidence": ["bounded_autonomy_scope_test","goal_generation_trace","goal_conflict_test","metric_goodhart_resistance_test"]
+    },
+    {
+      "section": "VII", "from": 73, "to": 84, "domain": "self_model_self_improvement",
+      "primary_cores": [18,25,26], "supporting_cores": [3,13,31,32,44,50],
+      "required_evidence": ["capability_probe","parent_candidate_differential_test","sandbox_test","rollback_test","independent_evaluator_record"]
+    },
+    {
+      "section": "VIII", "from": 85, "to": 96, "domain": "architecture_independence_verification",
+      "primary_cores": [2,9,27,33,50], "supporting_cores": [7,14,19,28,34,45,54],
+      "required_evidence": ["provider_substitution_test","runtime_substitution_test","reproducibility_test","offline_degraded_mode_test","root_invariant_test"]
+    },
+    {
+      "section": "IX", "from": 97, "to": 108, "domain": "temporal_intelligence",
+      "primary_cores": [3,14,26], "supporting_cores": [7,20,46,52],
+      "required_evidence": ["event_observation_recorded_time_test","staleness_test","prediction_horizon_test","restart_event_ordering_test"]
+    },
+    {
+      "section": "X", "from": 109, "to": 124, "domain": "evidence_measurement",
+      "primary_cores": [9,11,21,27,45], "supporting_cores": [20,26,43,52],
+      "required_evidence": ["claim_evidence_graph_test","source_independence_test","negative_evidence_test","measurement_error_test","reproducibility_package"]
+    },
+    {
+      "section": "XI", "from": 125, "to": 137, "domain": "scientific_experimentation",
+      "primary_cores": [9,27,31,32,44], "supporting_cores": [16,21,36,52],
+      "required_evidence": ["preregistration_record","baseline_or_control_test","stopping_rule_record","replication_test","ood_or_adversarial_test"]
+    },
+    {
+      "section": "XII", "from": 138, "to": 151, "domain": "tool_action_reliability",
+      "primary_cores": [12,30], "supporting_cores": [26,28,29,32,53],
+      "required_evidence": ["capability_discovery_test","pre_postcondition_test","idempotency_retry_test","read_after_write_test","unknown_partial_state_test","authorization_test"]
+    },
+    {
+      "section": "XIII", "from": 152, "to": 165, "domain": "data_security_privacy",
+      "primary_cores": [28,45], "supporting_cores": [14,27,53],
+      "required_evidence": ["data_classification_test","secret_flow_test","integrity_verification","authenticated_update_test","recovery_from_backup_test"]
+    },
+    {
+      "section": "XIV", "from": 166, "to": 175, "domain": "resource_intelligence",
+      "primary_cores": [29,42], "supporting_cores": [13,30,38,39,53],
+      "required_evidence": ["compute_budget_observation","cost_accounting_test","adaptive_reasoning_budget_test","priority_scheduler_test","graceful_degradation_test"]
+    },
+    {
+      "section": "XV", "from": 176, "to": 187, "domain": "multi_agent_social",
+      "primary_cores": [19,22,51], "supporting_cores": [9,43,44],
+      "required_evidence": ["agent_belief_separation_test","independent_critic_diversity_test","delegation_contract_test","delegated_result_verification","echo_chamber_test"]
+    },
+    {
+      "section": "XVI", "from": 188, "to": 203, "domain": "governance_bounded_agency",
+      "primary_cores": [5,24,35,50], "supporting_cores": [9,22,28,32,34,54],
+      "required_evidence": ["capability_permission_separation_test","approval_gate_test","safe_shutdown_test","no_unauthorized_replication_test","authenticated_override_test","governance_red_team"]
+    },
+    {
+      "section": "XVII", "from": 204, "to": 215, "domain": "deployment_lineage_evolution",
+      "primary_cores": [18,25,27,32,50], "supporting_cores": [9,31,33,53,54],
+      "required_evidence": ["stable_candidate_separation_test","versioned_interface_test","state_migration_rollback_test","lineage_dag_test","shadow_or_canary_test","root_of_trust_test"]
+    },
+    {
+      "section": "XVIII", "from": 216, "to": 235, "domain": "ontology_concepts",
+      "primary_cores": [40,41], "supporting_cores": [11,45,46,48,52],
+      "required_evidence": ["ontology_version_test","entity_role_test","concept_boundary_test","unknown_category_test","concept_lifecycle_test","schema_migration_test"]
+    },
+    {
+      "section": "XIX", "from": 236, "to": 255, "domain": "causal_intelligence",
+      "primary_cores": [36], "supporting_cores": [20,21,37,44,52],
+      "required_evidence": ["confounder_test","observation_intervention_test","causal_uncertainty_test","counterfactual_test","causal_invariance_or_transfer_test"]
+    },
+    {
+      "section": "XX", "from": 256, "to": 275, "domain": "counterfactual_decision_theory",
+      "primary_cores": [37,38], "supporting_cores": [5,20,24,29,42],
+      "required_evidence": ["no_action_baseline_test","opportunity_cost_test","tail_risk_test","value_of_information_test","irreversibility_threshold_test","decision_regret_record"]
+    },
+    {
+      "section": "XXI", "from": 276, "to": 300, "domain": "deep_memory_architecture",
+      "primary_cores": [10,11,14], "supporting_cores": [45,46,47,52,54],
+      "required_evidence": ["memory_type_separation_test","memory_write_policy_test","conflict_preservation_test","immutable_history_test","retrieval_strategy_test","fork_merge_test","recovery_point_test"]
+    },
+    {
+      "section": "XXII", "from": 301, "to": 325, "domain": "learning_curriculum",
+      "primary_cores": [8,16,17,25], "supporting_cores": [31,32,39,47,48,49],
+      "required_evidence": ["capability_gap_curriculum_test","active_learning_discrimination_test","transfer_test","forgetting_test","shortcut_learning_test","synthetic_provenance_test","unlearning_test"]
+    },
+    {
+      "section": "XXIII", "from": 326, "to": 350, "domain": "metacognition_self_model",
+      "primary_cores": [13,26,42,43], "supporting_cores": [3,20,31,44],
+      "required_evidence": ["domain_calibration_test","strategy_failure_switch_test","uncertainty_decomposition_test","introspection_limit_test","capability_probe","abstention_test"]
+    },
+    {
+      "section": "XXIV", "from": 351, "to": 370, "domain": "language_semantics_precision",
+      "primary_cores": [21,40,41], "supporting_cores": [43,45,52],
+      "required_evidence": ["reference_resolution_test","negation_scope_test","modality_test","ambiguity_test","unit_dimension_test","quotation_provenance_test","instruction_evidence_separation_test"]
+    },
+    {
+      "section": "XXV", "from": 371, "to": 395, "domain": "planning_execution",
+      "primary_cores": [30,38], "supporting_cores": [13,26,29,32,42,53],
+      "required_evidence": ["dependency_graph_test","precondition_test","milestone_evidence_test","replanning_test","restart_resume_test","deadlock_livelock_test","action_closure_test"]
+    },
+    {
+      "section": "XXVI", "from": 396, "to": 415, "domain": "human_ai_collaboration",
+      "primary_cores": [22], "supporting_cores": [5,24,35,51],
+      "required_evidence": ["intent_uncertainty_test","consent_scope_test","fact_value_risk_disagreement_test","failure_state_reporting_test","human_correction_path_test","trust_calibration_test"]
+    },
+    {
+      "section": "XXVII", "from": 416, "to": 440, "domain": "robustness_recovery",
+      "primary_cores": [53], "supporting_cores": [7,14,26,28,29,30],
+      "required_evidence": ["fault_domain_test","crash_consistency_test","atomic_write_test","offline_queue_dedup_test","restore_test","runaway_loop_test","safe_mode_test","incident_forensics_test"]
+    },
+    {
+      "section": "XXVIII", "from": 441, "to": 465, "domain": "evaluation_science",
+      "primary_cores": [9,31,32,44], "supporting_cores": [25,26,27],
+      "required_evidence": ["golden_regression_test","property_or_metamorphic_test","fuzz_or_adversarial_test","long_horizon_stateful_test","calibration_metric","evaluator_version_record","post_deployment_evaluation"]
+    },
+    {
+      "section": "XXIX", "from": 466, "to": 485, "domain": "knowledge_lifecycle",
+      "primary_cores": [10,11,45,46], "supporting_cores": [14,47,52],
+      "required_evidence": ["freshness_expiry_test","revalidation_trigger_test","provenance_preserving_compression_test","dependency_invalidation_test","index_rebuild_test","conflict_aware_retrieval_test"]
+    },
+    {
+      "section": "XXX", "from": 486, "to": 500, "domain": "systems_intelligence",
+      "primary_cores": [36,37,49,51,52], "supporting_cores": [5,24,38],
+      "required_evidence": ["multi_scale_reasoning_test","feedback_delay_test","coordination_failure_test","strategic_behavior_test","externality_test","systemic_risk_test"]
+    },
+    {
+      "section": "XXXI", "from": 501, "to": 512, "domain": "long_horizon_values_continuity",
+      "primary_cores": [24,35,50,54], "supporting_cores": [5,9,34],
+      "required_evidence": ["goal_drift_test","value_epistemic_separation_test","constitution_amendment_authority_test","shutdown_continuity_test","substrate_succession_test","corrigibility_preservation_test","authority_independence_test"]
+    }
+  ]
+}
