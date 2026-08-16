@@ -1,9 +1,10 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.0.2",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
   "canonical_branch": "SIGMA_LIFE",
+  "repository_classification": "PUBLIC_ARCHITECTURE",
   "architecture": {
     "dna_core_root": "54_CORES",
     "expected_dna_cores": 54,
@@ -23,6 +24,9 @@
     "BOOT_EVIDENCE.json",
     "LOCAL_MIRROR_REQUEST.json",
     "LOCAL_MIRROR_RECEIPT.schema.json",
+    "RESILIENCE_PUBLIC_POLICY.md",
+    "RESILIENCE_PUBLIC_POLICY.json",
+    "PRIVATE_RESILIENCE_PLAN_REQUEST.json",
     "COGNITIVE_STATE.schema.json",
     "MEMORY_RECORD.schema.json",
     "ACTION_CONTRACT.schema.json",
@@ -30,6 +34,10 @@
     "cognitive_kernel.py",
     "mirror_to_local.py",
     "validate_brain_contract.py"
+  ],
+  "forbidden_public_paths": [
+    "RESILIENCE_CAPITAL_PLAN_2M.md",
+    "RESILIENCE_CAPITAL_POLICY.json"
   ],
   "boot_order": [
     "root_of_trust",
@@ -52,6 +60,7 @@
     "no_self_certification": true,
     "safe_shutdown_is_valid": true,
     "paid_api_default_off": true,
-    "historical_state_is_not_rewritten": true
+    "historical_state_is_not_rewritten": true,
+    "private_financial_and_operational_details_not_in_public_tree": true
   }
 }
