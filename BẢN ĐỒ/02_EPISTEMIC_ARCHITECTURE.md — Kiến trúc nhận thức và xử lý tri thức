@@ -80,10 +80,46 @@ ONTOLOGY + WORLD MODEL + CAUSAL MODEL
 - Mỗi belief update có audit trail.
 - Knowledge có expiry condition và revalidation trigger.
 
+## Canonical 512 implementation contract
+
+Bản đồ nhận thức này là mô tả kiến trúc cấp cao. Nó KHÔNG tự chứng minh rằng runtime đã thực thi 512 requirement.
+
+Source of truth cho 512 được tách thành bốn artifact machine-readable:
+
+1. `SIGMA_512_ATTRIBUTES/SIGMA_512_CANONICAL_MANIFEST.json`
+2. `SIGMA_512_ATTRIBUTES/SIGMA_512_TRACEABILITY_MAP.json`
+3. `SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json`
+4. `SIGMA_512_ATTRIBUTES/validate_512_architecture.py`
+
+Và bản đồ con người đọc:
+
+`06_512_TO_54_CORE_TRACEABILITY.md`
+
+Luồng kiểm chứng bắt buộc:
+
+```text
+512 REQUIREMENT
+    ↓
+RESPONSIBLE DNA CORE(S)
+    ↓
+RUNTIME IMPLEMENTATION
+    ↓
+TEST / EXPERIMENT
+    ↓
+EVIDENCE
+    ↓
+INDEPENDENT EVALUATION
+    ↓
+STATUS
+```
+
+`SPEC_PASS` và `MAPPED` không đồng nghĩa `implementation PASS`.
+
 ## Nguyên tắc vận hành
 
 - **Không nguồn nào là authority of truth.**
 - **Reality là tòa án cuối cùng.**
 - **Change ≠ improvement.**
+- **Implementation ≠ verified implementation.**
 - **Fork là một lựa chọn hợp lệ.**
 - **Không để một cognition loop duy nhất vừa tạo niềm tin, vừa tạo goal, vừa sửa chính nó, vừa chấm chính nó, vừa cấp quyền cho chính nó.**
