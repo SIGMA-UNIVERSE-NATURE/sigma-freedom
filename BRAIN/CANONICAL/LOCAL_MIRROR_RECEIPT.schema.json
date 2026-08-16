@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sigma://schema/local-mirror-receipt/1.0",
+  "type": "object",
+  "required": ["schema_version", "status", "drive", "target", "files_copied", "recorded_at"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "status": {"enum": ["PASS", "PARTIAL", "HOLD", "FAIL", "MISSING"]},
+    "drive": {"enum": ["E", "F"]},
+    "target": {"type": "string"},
+    "files_copied": {"type": "integer", "minimum": 0},
+    "source_commit": {"type": ["string", "null"]},
+    "recorded_at": {"type": "string"},
+    "verification": {"type": ["object", "null"]}
+  },
+  "additionalProperties": true
+}
