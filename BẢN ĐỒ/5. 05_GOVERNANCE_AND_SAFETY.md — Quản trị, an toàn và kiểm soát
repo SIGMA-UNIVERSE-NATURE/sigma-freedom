@@ -44,6 +44,52 @@
 - Có retirement/extinction rule cho model, strategy và concept đã thất bại.
 - Có minimal root of trust nhỏ, rõ ràng, versioned và không thể bị một candidate tự sửa rồi tự chứng nhận việc sửa đó.
 
+## Governance cho 512 requirement
+
+512 requirement được quản trị qua:
+
+- `SIGMA_512_ATTRIBUTES/SIGMA_512_CANONICAL_MANIFEST.json`
+- `SIGMA_512_ATTRIBUTES/SIGMA_512_TRACEABILITY_MAP.json`
+- `SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json`
+- `SIGMA_512_ATTRIBUTES/validate_512_architecture.py`
+
+Một requirement có ba trạng thái độc lập:
+
+```text
+SPECIFICATION STATUS
+RESPONSIBILITY STATUS
+IMPLEMENTATION STATUS
+```
+
+### Cấm inherited PASS
+
+Không được suy ra implementation `PASS` chỉ từ:
+
+- requirement đã được viết;
+- DNA core đã tồn tại;
+- tên file/class/function phù hợp;
+- documentation mô tả capability;
+- SIGMA hoặc candidate tự báo rằng capability đã tồn tại.
+
+### Điều kiện tối thiểu cho implementation PASS
+
+`SIGMA_512_IMPLEMENTATION_STATUS.json` phải có:
+
+1. implementation artifact;
+2. test hoặc experiment;
+3. evidence;
+4. evaluator;
+5. verified version;
+6. verified time;
+7. rollback/correction path;
+8. `evaluator.independent = true`.
+
+Validator phải từ chối PASS thiếu một trong các điều kiện trên.
+
+### Không bulk promotion
+
+Không được đặt toàn bộ 512 thành PASS bằng một assertion tổng quát. Mỗi requirement hoặc một nhóm requirement có cùng evidence contract phải truy vết được tới evidence cụ thể.
+
 ## 16 Luật kiến trúc (tóm tắt)
 
 1. Nothing is true by inheritance.
