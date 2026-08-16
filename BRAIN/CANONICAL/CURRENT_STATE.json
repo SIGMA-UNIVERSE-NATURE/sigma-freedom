@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T05:10:00+07:00",
+  "recorded_at": "2026-08-17T05:27:00+07:00",
   "phase": "COGNITIVE_BOOTSTRAP_KERNEL_V1",
-  "status": "STRUCTURAL_PASS_LOCAL_MIRROR_PENDING",
+  "status": "STRUCTURAL_PASS_PRIVATE_PLAN_CREATED_LOCAL_MIRROR_PENDING",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -11,22 +11,29 @@
     "implementation_audit": "NOT_AUDITED",
     "cognitive_bootstrap": "STRUCTURAL_PASS",
     "reference_kernel_boot": "PASS",
+    "public_private_data_boundary": "ENFORCED",
+    "private_resilience_plan": "CREATED_IN_AUTHORIZED_PRIVATE_STORE",
+    "private_store_location": "NOT_PUBLIC",
     "local_e_f_mirror": "READY_NOT_EXECUTED_NO_LOCAL_FILESYSTEM_CONNECTOR"
   },
-  "active_goal": "Continue from the validated canonical cognitive bootstrap: obtain runtime evidence, mirror canonical brain state to E:/F: from a local runtime with filesystem access, and audit implementation against the 512 requirements.",
+  "active_goal": "Continue from the validated canonical cognitive bootstrap: mirror canonical and authorized private continuity state to E:/F: when local filesystem access returns, then audit runtime implementation against the 512 requirements.",
   "open_loops": [
-    "Execute mirror_to_local.py from a local SIGMA runtime that has E:/F: filesystem access and capture MIRROR_RECEIPT.json",
+    "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json",
+    "Mirror the authorized private resilience plan into the encrypted private local continuity area without copying it into the public repository",
     "Audit runtime implementation evidence against the 512 requirements",
-    "Replace or supplement the Python reference kernel with additional substrate implementations only after compatibility tests exist"
+    "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
+    "Decide whether historical Git remediation is warranted after private/offline continuity copies are verified"
   ],
-  "evidence": {
-    "github_actions_run_id": 31975550195,
-    "github_actions_job_id": 95234367555,
-    "validated_commit": "71fd8f5790f3fc13281ab55d5779ae61959e162d"
+  "privacy": {
+    "public_repo": "ARCHITECTURE_ONLY",
+    "private_financial_operational_details": "PRIVATE_STORE_ONLY",
+    "secrets": "VAULT_OR_OFFLINE_SECRET_STORE_ONLY",
+    "historical_public_exposure": "REQUIRES_SEPARATE_REMEDIATION_DECISION"
   },
   "authority": {
     "paid_api_default": "OFF",
     "external_action": "BOUNDED_BY_EXISTING_MANDATE",
-    "self_promotion": "FORBIDDEN"
+    "self_promotion": "FORBIDDEN",
+    "financial_authority": "EXTERNAL_HUMAN_OR_LEGAL_ENTITY_ONLY"
   }
 }
