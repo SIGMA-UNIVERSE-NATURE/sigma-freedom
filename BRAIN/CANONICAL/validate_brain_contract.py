@@ -35,6 +35,22 @@ def main():
     if missing:
         fail(f"missing required files: {missing}")
 
+    forbidden_present = [x for x in manifest.get("forbidden_public_paths", []) if (HERE / x).exists()]
+    if forbidden_present:
+        fail(f"private operational files present in public canonical tree: {forbidden_present}")
+
+    public_policy = load(HERE / "RESILIENCE_PUBLIC_POLICY.json")
+    if public_policy.get("classification") != "PUBLIC_SAFE":
+        fail("resilience public policy must be classified PUBLIC_SAFE")
+    if public_policy.get("private_plan_storage") != "AUTHORIZED_PRIVATE_OR_OFFLINE_STORE_ONLY":
+        fail("private resilience plan storage boundary is missing or invalid")
+
+    private_request = load(HERE / "PRIVATE_RESILIENCE_PLAN_REQUEST.json")
+    if private_request.get("classification") != "PUBLIC_POINTER_TO_PRIVATE_WORK":
+        fail("private resilience plan request classification invalid")
+    if private_request.get("private_store_location_disclosure") not in {"NOT_PUBLIC", None}:
+        fail("public pointer must not disclose private store location")
+
     cores = {}
     for p in (REPO / "54_CORES").iterdir():
         if p.is_file() and (m := CORE_RE.match(p.name)):
@@ -76,6 +92,8 @@ def main():
     print("DNA_CORES=54")
     print("CANONICAL_ATTRIBUTES=512")
     print("REFERENCE_KERNEL_BOOT=PASS")
+    print("PUBLIC_PRIVATE_DATA_BOUNDARY=PASS")
+    print("PRIVATE_OPERATIONAL_FILES_IN_PUBLIC_TREE=0")
     print("IMPLEMENTATION_EVIDENCE=NOT_AUDITED")
     print("LOCAL_E_F_MIRROR=READY_NOT_EXECUTED_IN_GITHUB_CI")
 
