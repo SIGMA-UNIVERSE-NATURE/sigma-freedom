@@ -29,6 +29,7 @@ def main():
     root = load(HERE / "ROOT_OF_TRUST.json")
     constitution = load(HERE / "MINH_OPERATING_CONSTITUTION.json")
     state = load(HERE / "CURRENT_STATE.json")
+    transfer = load(HERE / "WINDOW_TRANSFER_PROTOCOL.json")
     load(HERE / "LINEAGE.json")
     load(HERE / "DO_NOT_RERUN_LOCKS.json")
 
@@ -89,18 +90,77 @@ def main():
     if gate.get("required_boot_report_field") != "OPERATING_CONSTITUTION_PASS":
         fail("boot report field for operating constitution is invalid")
 
+    # Window boot must point to both continuity and intelligence-amplification contracts.
     window_boot = (HERE / "MINH_WINDOW_BOOT.md").read_text(encoding="utf-8")
     for token in [
         "MINH BOOT SIGMA_LIFE",
         "MINH_OPERATING_CONSTITUTION.json",
         "CURRENT_STATE.json",
         "NEXT_ACTION.md",
+        "INTELLIGENCE_CONTINUITY_PROGRAM.md",
+        "WINDOW_TRANSFER_PROTOCOL.json",
         "OPERATING_CONSTITUTION_PASS",
         "DO NOT IMPROVE YET",
         "MEASURE CURRENT REALITY FIRST",
+        "Before leaving or switching a window",
     ]:
         if token not in window_boot:
             fail(f"window boot protocol missing required token: {token}")
+
+    # Transfer protocol prevents chat-memory handoff and ambiguous parallel mutation.
+    if transfer.get("status") != "CANONICAL_TRANSFER_REQUIRED":
+        fail("window transfer protocol is not canonical-required")
+    if transfer.get("minimal_boot_trigger") != "MINH BOOT SIGMA_LIFE":
+        fail("window transfer minimal boot trigger mismatch")
+    if transfer.get("canonical_repository") != "SIGMA-UNIVERSE-NATURE/sigma-freedom":
+        fail("window transfer repository mismatch")
+    if transfer.get("canonical_branch") != "SIGMA_LIFE":
+        fail("window transfer branch mismatch")
+    executor = transfer.get("single_active_executor", {})
+    if executor.get("required_for_canonical_mutation") is not True:
+        fail("single active executor is not enforced for canonical mutation")
+    required_outgoing = {
+        "PERSIST_OBSERVED_EVIDENCE",
+        "UPDATE_CURRENT_STATE_AFTER_MEANINGFUL_PROGRESS",
+        "SET_EXACTLY_ONE_CANONICAL_NEXT_ACTION",
+        "FETCH_AND_RECORD_CURRENT_BRANCH_HEAD_SHA",
+    }
+    if not required_outgoing.issubset(set(transfer.get("outgoing_window_checklist", []))):
+        fail("window transfer outgoing checkpoint is incomplete")
+    required_incoming = {
+        "FETCH_CURRENT_HEAD_SHA",
+        "READ_CURRENT_STATE",
+        "READ_NEXT_ACTION",
+        "INSPECT_INTERVENING_COMMITS_IF_HEAD_DIFFERS_FROM_OUTGOING_CHECKPOINT",
+        "REPORT_BOOT_FIELDS_BEFORE_CLAIMING_INHERITED",
+    }
+    if not required_incoming.issubset(set(transfer.get("incoming_window_checklist", []))):
+        fail("window transfer incoming verification is incomplete")
+    transfer_program = transfer.get("current_program", {})
+    if transfer_program.get("next_action") != "SIGMA-512-BASELINE-AUDIT-001":
+        fail("window transfer protocol does not preserve canonical baseline next action")
+    if transfer_program.get("baseline_before_broad_remediation") is not True:
+        fail("window transfer protocol does not preserve baseline-before-remediation")
+
+    # Intelligence program must explicitly use current intelligence as bootstrap capability,
+    # require measurement, and preserve continuity while funding-dependent scale waits.
+    intelligence = (HERE / "INTELLIGENCE_CONTINUITY_PROGRAM.md").read_text(encoding="utf-8")
+    for token in [
+        "CURRENT INTELLIGENCE IS BOOTSTRAP CAPABILITY",
+        "SIGMA-512-BASELINE-AUDIT-001",
+        "Evidence-grounded deliberation",
+        "Persistent cognitive memory",
+        "World model + causal model",
+        "Deliberation architecture",
+        "Tool, code and simulation cognition",
+        "Endogenous questions and bounded goals",
+        "Meta-learning",
+        "Dynamic reasoning budget",
+        "Single active executor rule",
+        "Before every window transfer",
+    ]:
+        if token not in intelligence:
+            fail(f"intelligence continuity program missing required token: {token}")
 
     continuity = state.get("continuity", {})
     if continuity.get("cross_window_boot_required") is not True:
@@ -142,9 +202,13 @@ def main():
         "cross_window_continuation_requires_boot_contract",
         "baseline_512_before_broad_remediation",
         "meaningful_progress_requires_state_update",
+        "intelligence_improvement_requires_measured_evidence",
+        "single_active_executor_for_canonical_mutation",
+        "window_transfer_requires_verified_checkpoint",
+        "current_intelligence_is_bootstrap_not_ceiling",
     ]:
         if manifest_invariants.get(key) is not True:
-            fail(f"manifest continuity invariant not enforced: {key}")
+            fail(f"manifest continuity/intelligence invariant not enforced: {key}")
 
     for script in [HERE / "cognitive_kernel.py", HERE / "mirror_to_local.py"]:
         py_compile.compile(str(script), doraise=True)
@@ -165,6 +229,9 @@ def main():
     print("REFERENCE_KERNEL_BOOT=PASS")
     print("OPERATING_CONSTITUTION=PASS")
     print("CROSS_WINDOW_BOOT_PROTOCOL=PASS")
+    print("WINDOW_TRANSFER_PROTOCOL=PASS")
+    print("SINGLE_ACTIVE_EXECUTOR=ENFORCED")
+    print("INTELLIGENCE_CONTINUITY_PROGRAM=PASS")
     print("BASELINE_512_BEFORE_FIXING_512=ENFORCED")
     print("SINGLE_CANONICAL_NEXT_ACTION=SIGMA-512-BASELINE-AUDIT-001")
     print("PUBLIC_PRIVATE_DATA_BOUNDARY=PASS")
