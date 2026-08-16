@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "spec_id": "SIGMA-512",
+  "spec_version": "2026-08-17",
+  "branch_lineage": "SIGMA_LIFE",
+  "canonical_attribute_count": 512,
+  "canonical_numbering": {
+    "first": 1,
+    "last": 512,
+    "must_be_contiguous": true,
+    "must_be_unique_after_span_selection": true
+  },
+  "source_policy": "Canonical text is selected by numeric span from preserved legacy source files. Text outside a selected span remains provenance/archive only.",
+  "segments": [
+    {
+      "order": 1,
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/Full PART 01 TO 21.",
+      "source_blob_sha": "8e915db8198ad557fb67611d600d86a7a8d163b2",
+      "canonical_from": 1,
+      "canonical_to": 275
+    },
+    {
+      "order": 2,
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 21 to 28",
+      "source_blob_sha": "d1621c810df877cc6b71eb95340a5bc1d2179fc5",
+      "canonical_from": 276,
+      "canonical_to": 440
+    },
+    {
+      "order": 3,
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/PART 28 TO END",
+      "source_blob_sha": "7b8b711fd8f97c2181c8a5ed2c74003a84fc9f7b",
+      "canonical_from": 441,
+      "canonical_to": 512
+    }
+  ],
+  "legacy_noncanonical_sources": [
+    {
+      "path": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/Part1.",
+      "source_blob_sha": "82af7929d7c48a696a8085af96736246e0bfba7f",
+      "reason": "Preserved historical fragment; excluded from canonical assembly to prevent duplicate authority."
+    }
+  ],
+  "sections": [
+    {"id": "I", "from": 1, "to": 12, "name": "Nhận thức và sự thật"},
+    {"id": "II", "from": 13, "to": 24, "name": "Bộ nhớ và continuity"},
+    {"id": "III", "from": 25, "to": 36, "name": "Học liên tục"},
+    {"id": "IV", "from": 37, "to": 48, "name": "Suy luận"},
+    {"id": "V", "from": 49, "to": 60, "name": "World model và thực tại"},
+    {"id": "VI", "from": 61, "to": 72, "name": "Goal, agency và open-endedness"},
+    {"id": "VII", "from": 73, "to": 84, "name": "Self-model và self-improvement"},
+    {"id": "VIII", "from": 85, "to": 96, "name": "Kiến trúc, kiểm chứng và độc lập"},
+    {"id": "IX", "from": 97, "to": 108, "name": "Temporal intelligence"},
+    {"id": "X", "from": 109, "to": 124, "name": "Evidence architecture và measurement"},
+    {"id": "XI", "from": 125, "to": 137, "name": "Scientific reasoning và experimentation"},
+    {"id": "XII", "from": 138, "to": 151, "name": "Tool use và action reliability"},
+    {"id": "XIII", "from": 152, "to": 165, "name": "Data integrity, privacy và security"},
+    {"id": "XIV", "from": 166, "to": 175, "name": "Resource intelligence và economy"},
+    {"id": "XV", "from": 176, "to": 187, "name": "Multi-agent và social intelligence"},
+    {"id": "XVI", "from": 188, "to": 203, "name": "Governance, alignment và bounded agency"},
+    {"id": "XVII", "from": 204, "to": 215, "name": "Architecture, deployment, lineage và evolution"},
+    {"id": "XVIII", "from": 216, "to": 235, "name": "Ontology và conceptual representation"},
+    {"id": "XIX", "from": 236, "to": 255, "name": "Causal intelligence"},
+    {"id": "XX", "from": 256, "to": 275, "name": "Counterfactual reasoning và decision theory"},
+    {"id": "XXI", "from": 276, "to": 300, "name": "Memory architecture thế hệ sâu hơn"},
+    {"id": "XXII", "from": 301, "to": 325, "name": "Learning architecture và curriculum"},
+    {"id": "XXIII", "from": 326, "to": 350, "name": "Metacognition và self-model"},
+    {"id": "XXIV", "from": 351, "to": 370, "name": "Language, semantics và precision"},
+    {"id": "XXV", "from": 371, "to": 395, "name": "Planning và execution intelligence"},
+    {"id": "XXVI", "from": 396, "to": 415, "name": "Human–AI collaboration"},
+    {"id": "XXVII", "from": 416, "to": 440, "name": "Robustness, resilience và failure recovery"},
+    {"id": "XXVIII", "from": 441, "to": 465, "name": "Evaluation science"},
+    {"id": "XXIX", "from": 466, "to": 485, "name": "Knowledge lifecycle, consolidation và compression"},
+    {"id": "XXX", "from": 486, "to": 500, "name": "Systems intelligence"},
+    {"id": "XXXI", "from": 501, "to": 512, "name": "Long-horizon continuity, values và civilization-scale restraint"}
+  ],
+  "implementation_contract": {
+    "core_root": "54_CORES",
+    "expected_core_count": 54,
+    "core_filename_prefix": "SIGMA_DNA_",
+    "traceability_map": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_TRACEABILITY_MAP.json",
+    "validator": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/validate_512_architecture.py",
+    "default_implementation_status": "NOT_AUDITED",
+    "forbid_inherited_pass": true,
+    "forbid_self_certification": true
+  }
+}
