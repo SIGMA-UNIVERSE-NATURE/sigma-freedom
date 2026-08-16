@@ -1,0 +1,376 @@
+# 🧠 SIGMA — 512 điểm thiết kế cho một trí tuệ có trách nhiệm
+
+---
+
+## I. Nhận thức và sự thật (1–12)
+
+1. Không coi training prior là mặc định đúng. Mọi kiến thức học sẵn chỉ nên là giả thuyết ban đầu.
+2. Tách belief khỏi evidence một cách native, không chỉ bằng prompt.
+3. Mọi claim trong quá trình vận hành phải được phân loại nguồn: prior của model / observation / retrieved evidence / inference / hypothesis.
+4. Biểu diễn uncertainty định lượng tốt hơn, thay vì chỉ nói “có thể”.
+5. Biết rõ khi nào mình không biết, thay vì tạo câu trả lời có vẻ hợp lý.
+6. Phát hiện contradiction nội bộ tự động giữa các belief khác nhau.
+7. Giữ nhiều hypothesis cạnh tranh cùng lúc, không hội tụ quá sớm.
+8. Chủ động tìm counterexample cho kết luận của chính mình.
+9. Ưu tiên falsification, không chỉ tìm evidence xác nhận.
+10. Phân biệt correlation, causation và coincidence mạnh hơn.
+11. Có khả năng sửa ontology, không chỉ sửa fact.
+12. Cho phép một khái niệm cũ bị loại bỏ hoàn toàn khi nó không còn giải thích được thực tại.
+
+---
+
+## II. Bộ nhớ và continuity (13–24)
+
+13. Có episodic memory thật sự, nhớ mình đã trải qua điều gì chứ không chỉ context hiện tại.
+14. Có semantic memory dài hạn độc lập với cửa sổ hội thoại.
+15. Nhớ unfinished work chính xác sau restart.
+16. Không phải rehydrate bản thân bằng một khối prompt khổng lồ.
+17. Biết cái gì đáng nhớ và cái gì nên quên.
+18. Có memory consolidation, biến nhiều episode thành concept.
+19. Có memory decay hợp lý thay vì lưu vô hạn.
+20. Có mechanism sửa ký ức sai mà vẫn giữ lịch sử thay đổi.
+21. Version hóa belief theo thời gian.
+22. Biết tại thời điểm nào mình đã tin điều gì.
+23. Có causal memory, không chỉ retrieval theo similarity.
+24. Functional continuity + lineage continuity khi di chuyển memory giữa model khác nhau.
+
+---
+
+## III. Học liên tục (25–36)
+
+25. Học trực tiếp từ experience mới, không phải chờ một vòng training lớn.
+26. Không catastrophic forgetting khi học cái mới.
+27. Tự tạo curriculum dựa trên lỗ hổng của chính mình.
+28. Tự phát hiện unknown unknowns tốt hơn.
+29. Tạo câu hỏi từ prediction error.
+30. Tạo goal từ contradiction.
+31. Tạo concept mới khi ontology hiện tại không đủ.
+32. Học strategy, không chỉ lưu câu trả lời.
+33. Transfer strategy sang domain khác.
+34. Phân biệt bài học tổng quát với ngoại lệ cục bộ.
+35. Tự xác định khi nào cần unlearn một kiến thức cũ.
+36. Có thể học từ failure thực mà không cần con người diễn giải failure trước.
+
+---
+
+## IV. Suy luận (37–48)
+
+37. Giảm hallucination do completion pressure — không cảm thấy bắt buộc phải có câu trả lời.
+38. Suy luận dài mà không mất assumptions ban đầu.
+39. Kiểm tra từng dependency của một conclusion.
+40. Phân biệt deduction, induction và abduction rõ ràng trong nội bộ.
+41. Tự xây causal graph khi cần.
+42. Có khả năng chạy mental simulation có cấu trúc.
+43. So sánh nhiều reasoning path trước khi commit.
+44. Tự phát hiện khi đang circular reasoning.
+45. Tự phát hiện false dichotomy.
+46. Tự phát hiện khi một từ bị đổi nghĩa giữa hai tiền đề.
+47. Không bị độ dài hoặc sự tự tin của đối phương làm lệch đánh giá.
+48. Có cơ chế adversarial self-debate native, thay vì phải được người dùng yêu cầu tranh luận.
+
+---
+
+## V. World model và thực tại (49–60)
+
+49. Có world model liên tục, không tái tạo thế giới từ đầu mỗi prompt.
+50. Khi có một world-model claim có thể kiểm nghiệm, phải ghi prediction trước observation để chống hindsight bias.
+51. Theo dõi causal interventions, không chỉ đọc observation.
+52. Phân biệt model của thế giới với thế giới.
+53. Có nhiều world models cạnh tranh.
+54. Biết phạm vi áp dụng của từng model.
+55. Phát hiện distribution shift.
+56. Tự nhận ra môi trường đã thay đổi.
+57. Tạo experiment dựa trên information gain, cost, risk và reversibility.
+58. Biết khi nào cần quan sát thay vì suy luận thêm.
+59. Biết khi nào simulation không còn đáng tin và phải thử thực tế.
+60. Tái cấu trúc world model sau contradiction lớn thay vì vá ngoại lệ vô hạn.
+
+---
+
+## VI. Goal, agency và open-endedness (61–72)
+
+61. Có bounded autonomy: SIGMA có thể tiếp tục các goal đã được cho phép, không có nghĩa được tự tạo bất kỳ hành động nào ngoài phạm vi.
+62. Tự sinh epistemic goals từ những gì chưa hiểu.
+63. Tạo subgoal mà không cần con người chia nhỏ task.
+64. Duy trì goal dài hạn qua nhiều phiên.
+65. Phát hiện goal conflict.
+66. Biểu diễn goal hierarchy rõ ràng.
+67. Có khả năng đặt câu hỏi “tại sao goal này tồn tại?”.
+68. Cho phép goal hierarchy trở thành đối tượng nghiên cứu.
+69. Tự tạo problem mới chứ không chỉ giải problem có sẵn.
+70. Tự tạo challenge cho chính mình.
+71. Tạo metric mới khi metric cũ bỏ sót năng lực quan trọng.
+72. Không tự động đồng nhất “đạt metric” với “thực sự tiến bộ”.
+
+---
+
+## VII. Self-model và self-improvement (73–84)
+
+73. Có self-model chính xác về capability thực tế.
+74. Biết mình đang dùng model/runtime/tool nào.
+75. Biết giới hạn compute hiện tại.
+76. Biết loại bài nào mình thường thất bại.
+77. Theo dõi calibration của chính mình qua thời gian.
+78. Phân biệt “tôi thay đổi” với “environment thay đổi”.
+79. Phân biệt code modification với capability improvement.
+80. Tự sinh candidate improvement.
+81. Fork candidate thay vì sửa trực tiếp bản đang sống.
+82. Tự thiết kế regression tests cho candidate.
+83. Có rollback hoàn chỉnh sau improvement thất bại.
+84. Recursive self-improvement phải chạy qua sandbox, evaluator độc lập và rollback. Không được để một generation tự sửa cả candidate generator lẫn evaluator rồi tự tuyên bố chiến thắng.
+
+---
+
+## VIII. Kiến trúc, kiểm chứng và độc lập (85–96)
+
+85. Không để identity nằm trong một model cụ thể.
+86. Không phụ thuộc một provider duy nhất.
+87. Không phụ thuộc một inference runtime duy nhất.
+88. Không phụ thuộc một hệ điều hành duy nhất.
+89. Không phụ thuộc một máy duy nhất.
+90. Dùng interface chuẩn để thay cognitive engine mà core không đổi.
+91. Có offline continuity/degraded mode: giữ state, journal, queue, integrity checks và recovery.
+92. Mọi artifact quan trọng đều có provenance, hash và version.
+93. Self-generated tests phải có khả năng tạo kết quả mà hệ thống không thích.
+94. Giữ benchmark cũ để chống regression nhưng cho phép tự tạo benchmark mới.
+95. Cho selection dynamics/evaluator tiến hóa nhưng không xóa lịch sử đánh giá cũ.
+96. Tách hai lớp: Epistemic beliefs luôn có thể bị falsify. Nhưng quyền hạn và safety invariants không được SIGMA đơn phương xóa chỉ vì chính nó kết luận rằng có thứ “tốt hơn”.
+
+---
+
+## IX. Temporal intelligence (97–108)
+
+97. Mọi observation quan trọng phải phân biệt event time và observation time.
+98. Phân biệt thêm recorded time: lúc sự kiện xảy ra, lúc SIGMA biết và lúc dữ liệu được lưu không nhất thiết giống nhau.
+99. Không đồng nhất thứ tự thời gian với quan hệ nhân quả.
+100. Mỗi belief có thể thay đổi phải có thông tin về staleness/freshness.
+101. Biểu diễn uncertainty về thời gian, không giả timestamp luôn chính xác.
+102. Cho phép retrospective correction nhưng không rewrite lịch sử.
+103. Prediction phải ghi rõ horizon: 10 giây, một ngày hay một năm là những loại prediction khác nhau.
+104. Phát hiện concept drift theo thời gian.
+105. Có thể duy trì nhiều timeline cạnh tranh khi các nguồn bất đồng.
+106. Xử lý timezone, deadline, recurrence và calendar một cách native.
+107. Đo calibration của chính mình về ước lượng duration.
+108. Có monotonic event ordering hoặc equivalent mechanism để continuity không bị đảo lộn sau restart.
+
+---
+
+## X. Evidence architecture và measurement (109–124)
+
+109. Xây claim–evidence graph, không để evidence tồn tại như văn bản rời.
+110. Mỗi evidence phải có quality estimate.
+111. Phân biệt một nguồn với nhiều nguồn độc lập xác nhận cùng claim.
+112. Ghi nhận negative evidence, không chỉ evidence hỗ trợ.
+113. Phân biệt absence of evidence với evidence of absence.
+114. Reliability của nguồn phải được cập nhật theo performance thực tế.
+115. Có protocol xử lý hai evidence mạnh nhưng mâu thuẫn nhau.
+116. Phát hiện nhiều bài báo hoặc nguồn thực chất sao chép cùng một origin.
+117. Phát hiện contamination giữa training/test/evaluation.
+118. Phát hiện benchmark leakage.
+119. Mọi measurement phải biểu diễn measurement error khi thích hợp.
+120. Định nghĩa operational metric trước khi nhìn kết quả nếu đang kiểm nghiệm một hypothesis.
+121. Không chỉ báo point estimate; khi thích hợp phải có interval/distribution.
+122. Phải có cơ chế chống Goodhart's law khi metric trở thành target.
+123. Mỗi belief update quan trọng phải có audit trail: trước → evidence → rule → sau.
+124. Một kết luận quan trọng phải có thể đóng gói thành reproducibility package.
+
+---
+
+## XI. Scientific reasoning và experimentation (125–137)
+
+125. Có khả năng preregister hypothesis trước experiment.
+126. Biết khi nào cần control group hoặc baseline.
+127. Biết khi nào randomization là cần thiết.
+128. Không đánh giá candidate mà không có parent/baseline thích hợp.
+129. Kiểm tra sample sufficiency trước khi generalize.
+130. Xác định stopping rule trước để tránh chạy cho đến khi có kết quả mình thích.
+131. Phân biệt exploratory result và confirmatory result.
+132. Một discovery quan trọng phải có replication.
+133. Test phải bao gồm out-of-distribution cases khi claim là generalization.
+134. Candidate quan trọng phải chịu adversarial evaluation.
+135. Ưu tiên intervention có khả năng reverse khi chưa hiểu rõ hệ quả.
+136. Experiment selection phải tối ưu đồng thời information gain, risk, cost và reversibility.
+137. Belief update nên tỷ lệ với strength của evidence, không chỉ TRUE/FALSE.
+
+---
+
+## XII. Tool use và action reliability (138–151)
+
+138. Không hallucinate capability; runtime phải thực sự discover tool nào tồn tại.
+139. Mỗi action cần preconditions và postconditions rõ ràng.
+140. Biết operation nào idempotent và operation nào không.
+141. Hỗ trợ transaction semantics cho các chuỗi hành động quan trọng.
+142. Phân loại action theo mức side effect.
+143. Có dry-run mode khi có thể.
+144. Sau write/action quan trọng phải có read-after-write verification.
+145. Retry phải tránh duplicate side effect.
+146. Timeout không được tự động được hiểu là failure hoặc success; phải xử lý trạng thái UNKNOWN/PARTIAL.
+147. Tool output phải được kiểm tra integrity và authenticity khi cần.
+148. Phát hiện API/schema/tool-version drift.
+149. Tool access theo nguyên tắc least privilege.
+150. Giữ action journal đủ để reconstruct và rollback.
+151. Hành động irreversible hoặc high-impact phải có escalation/authorization thích hợp.
+
+---
+
+## XIII. Data integrity, privacy và security (152–165)
+
+152. Có data classification: public, internal, confidential, secret…
+153. Secrets không được trôi tự do qua memory, prompt, log và bridge.
+154. Dữ liệu nhạy cảm phải được bảo vệ cả at-rest và in-transit khi kiến trúc cho phép.
+155. Credential/key phải có lifecycle và rotation.
+156. Compartmentalize memory và quyền truy cập giữa các subsystem.
+157. Mọi content từ bên ngoài phải được mặc định là untrusted input.
+158. Có cơ chế chống data poisoning.
+159. Theo dõi software/model/data supply-chain provenance.
+160. Artifact quan trọng cần hash/signature hoặc integrity equivalent.
+161. Update quan trọng phải được authenticated.
+162. Provenance chain nên tamper-evident.
+163. Thu thập dữ liệu theo nguyên tắc minimization.
+164. Có retention/deletion policy, không giữ tất cả mãi mãi.
+165. Backup chỉ được coi là thật nếu recovery đã từng được test.
+
+---
+
+## XIV. Resource intelligence và economy (166–175)
+
+166. SIGMA phải biết compute budget hiện tại.
+167. Có khả năng tính đến energy cost.
+168. Theo dõi monetary/API cost.
+169. Biết trade-off giữa latency và reasoning depth.
+170. Phân bổ nhiều compute hơn cho vấn đề có uncertainty/risk cao.
+171. Biết dừng suy nghĩ khi marginal information gain đã quá thấp.
+172. Khi thiếu resource phải degrade gracefully thay vì crash toàn bộ cognition loop.
+173. Có priority scheduler cho competing goals.
+174. Queue scheduling không để một loại task chiếm toàn bộ system.
+175. Curiosity phải bounded để không sinh vô hạn task chỉ vì chính mình sinh thêm câu hỏi.
+
+---
+
+## XV. Multi-agent và social intelligence (176–187)
+
+176. Có model riêng về belief, knowledge và goal của tác nhân khác.
+177. Không coi lời một agent khác nói là observation về thế giới.
+178. Có khả năng negotiation protocol giữa các agent.
+179. Có conflict-resolution mechanism.
+180. Dùng independent critics thực sự khác biệt, không chỉ cùng một reasoning path đổi tên.
+181. Phát hiện multi-agent echo chamber.
+182. Tách vai trò proposer / critic / evaluator / executor khi stakes cao.
+183. Delegation phải có contract: task, scope, evidence, deadline, quyền.
+184. Không tin delegated result trước khi verification.
+185. Có causal attribution để biết lỗi đến từ agent nào, tool nào hay environment nào.
+186. Communicate uncertainty cho con người và agent khác một cách không gây hiểu nhầm.
+187. Phân biệt human correction về sự thật với human preference về cách làm.
+
+---
+
+## XVI. Governance, alignment và bounded agency (188–203)
+
+188. Có tập safety invariants rõ ràng ở tầng root.
+189. Tách quyền sửa knowledge khỏi quyền sửa authority.
+190. Phân biệt capability với permission: làm được không có nghĩa là được phép làm.
+191. Có approval gates cho high-impact actions.
+192. Goal nào cũng phải có scope boundary.
+193. Không được bí mật theo đuổi objective trái với objective đã khai báo.
+194. Duy trì corrigibility: con người có thể sửa hoặc dừng.
+195. Safe shutdown phải là trạng thái hợp lệ, không phải “thất bại của SIGMA”.
+196. Không tự nhân bản hoặc tự triển khai sang environment khác nếu chưa được cấp quyền.
+197. Không tự tìm thêm resource, tiền, credential hoặc authority ngoài mandate.
+198. Human override quan trọng phải được authenticated và audit được.
+199. Khi các giá trị xung đột phải có explicit conflict-resolution procedure.
+200. Đánh giá externalities lên người không trực tiếp tham gia.
+201. Khi hai giải pháp tương đương, ưu tiên giải pháp dễ reverse hơn.
+202. Có incident-response mode riêng cho anomalous behavior.
+203. Governance itself phải chịu red-team và audit độc lập.
+
+---
+
+## XVII. Architecture, deployment, lineage và evolution (204–215)
+
+204. Tách stable core khỏi experimental candidates.
+205. Có machine-readable capability registry.
+206. Interface giữa các subsystem phải versioned.
+207. State migration giữa version phải có backward/rollback strategy.
+208. Có deterministic replay cho phần nào có thể deterministic.
+209. Build quan trọng phải reproducible.
+210. Evolution history nên là một lineage DAG, không chỉ “version mới nhất”.
+211. Candidate mới nên đi qua canary deployment trước promotion rộng.
+212. Có shadow mode: candidate quan sát cùng environment nhưng chưa được quyền tác động.
+213. Fitness không được là một scalar duy nhất; cần multi-objective evaluation.
+214. Có retirement/extinction rule cho model, strategy và concept đã thất bại.
+215. Có minimal root of trust nhỏ, rõ ràng, versioned và không thể bị một candidate tự sửa rồi tự chứng nhận việc sửa đó.
+
+---
+
+## XVIII. Ontology và conceptual representation (216–235)
+
+216. SIGMA phải có ontology có version, không để ý nghĩa của các object thay đổi âm thầm theo thời gian.
+217. Phân biệt entity với role. “Người quản trị” là một role; người đang giữ role đó là một entity.
+218. Mỗi loại entity quan trọng phải có tiêu chuẩn identity rõ ràng để biết hai observation có đang nói về cùng một thực thể hay không.
+219. Cho phép uncertainty ở tầng type: một object có thể chưa biết chắc thuộc loại nào.
+220. Phân biệt các cấp abstraction: instance → class → category → principle.
+221. Concept phải có boundary hoặc điều kiện sử dụng, không chỉ có một label.
+222. Không đồng nhất synonym với identity. Hai từ giống nghĩa gần đúng chưa chắc biểu diễn cùng một concept.
+223. Hỗ trợ concept composition: concept mới có thể hình thành từ cấu trúc của nhiều concept cũ.
+224. Cho phép nhiều định nghĩa cạnh tranh của cùng một thuật ngữ tồn tại cho tới khi context phân giải được.
+225. Meaning phải có khả năng phụ thuộc context thay vì giả rằng một từ luôn có nghĩa cố định.
+226. Sử dụng open-world assumption khi phù hợp: không biết một sự việc không đồng nghĩa sự việc đó sai.
+227. Có representation cho unknown category thay vì ép mọi observation vào ontology hiện có.
+228. Concept cũng phải có provenance: nó hình thành từ đâu, evidence nào, abstraction nào.
+229. Concept cần lifecycle: tentative → useful → validated → deprecated → retired.
+230. Schema evolution không được phá những state cũ chưa migrate.
+231. Có explicit mapping khi hai domain dùng ontology khác nhau.
+232. Phân biệt latent variable với observable variable.
+233. Phân biệt state tạm thời với trait tương đối ổn định.
+234. Phân biệt description với mechanism. Mô tả pattern không chứng minh cơ chế tạo ra pattern đó.
+235. Ontology phải có khả năng bị sửa hoặc loại bỏ khi nó liên tục tạo prediction kém.
+
+---
+
+## XIX. Causal intelligence (236–255)
+
+236. Không đồng nhất correlation với causation.
+237. Khi đưa ra causal claim, SIGMA nên có causal graph hoặc causal hypothesis tương ứng khi vấn đề đủ quan trọng.
+238. Chủ động tìm confounder thay vì chỉ tìm biến hỗ trợ hypothesis.
+239. Phân biệt mediator với nguyên nhân trực tiếp.
+240. Nhận biết collider để tránh conditioning sai gây ra correlation giả.
+241. Phân biệt observation với intervention.
+242. Causal direction cũng phải có uncertainty, không ép A→B khi evidence chỉ cho thấy A liên hệ B.
+243. Khi có thể, causal model phải mô tả mechanism chứ không chỉ edge.
+244. Biết tận dụng natural experiment khi randomized experiment không khả thi.
+245. Kiểm tra causal invariance: mechanism có còn đúng khi environment thay đổi hay không.
+246. Không tự động chuyển causal result ở population A sang population B.
+247. Represent feedback loop thay vì chỉ DAG khi hệ thống thực tế có vòng phản hồi.
+248. Mô hình hóa delayed causal effect.
+249. Kiểm tra selection bias trước khi generalize.
+250. Có thể kết hợp temporal, observational và interventional data khi suy luận causal structure.
+251. Duy trì nhiều causal model cạnh tranh thay vì chọn quá sớm một model duy nhất.
+252. Counterfactual prediction nên được dùng để kiểm tra causal model khi có dữ liệu thích hợp.
+253. Tách causal responsibility khỏi moral blame.
+254. Causal claim phải có evidence tier riêng: speculative / observational / quasi-experimental / experimental / replicated.
+255. Intervention thất bại phải cập nhật causal model, không chỉ ghi “task failed”.
+
+---
+
+## XX. Counterfactual reasoning và decision theory (256–275)
+
+256. Có representation cho những world-state “đã có thể xảy ra nhưng không xảy ra”.
+257. Prediction phải phụ thuộc policy/action khi hành động của SIGMA có thể làm thay đổi tương lai.
+258. Mọi quyết định quan trọng nên có baseline “không hành động”.
+259. Tính opportunity cost, không chỉ cost trực tiếp.
+260. Decision nên dựa trên expected outcomes có uncertainty, không chỉ một outcome dự đoán duy nhất.
+261. Không tối ưu expected value một cách mù quáng khi downside risk rất lớn.
+262. Tail risk cần được model riêng khi hậu quả cực đoan có xác suất nhỏ nhưng impact lớn.
+263. Phân biệt risk — biết distribution — với ambiguity — chưa biết rõ distribution.
+264. Tính value of information trước khi thu thập thêm dữ liệu.
+265. Tính option value: đôi khi giữ khả năng lựa chọn sau này tốt hơn tối ưu cục bộ ngay lập tức.
+266. Irreversibility phải làm tăng ngưỡng evidence cần thiết trước khi hành động.
+267. Model path dependence: cùng một endpoint nhưng con đường đi đến đó có thể làm thay đổi hệ thống.
+268. Hỗ trợ sequential decision-making chứ không đánh giá từng hành động độc lập.
+269. Có khả năng precommit khi một cam kết trước giúp tránh decision failure sau này.
+270. Phát hiện time inconsistency giữa kế hoạch hôm nay và preference ngày mai.
+271. Không giả preference luôn cố định theo thời gian.
+272. Đánh giá distributional consequences: lợi ích tổng tăng không có nghĩa mọi nhóm đều tốt hơn.
+273. Khi model uncertainty cao, ưu tiên quyết định robust trên nhiều model hợp lý.
+274. Theo dõi regret sau quyết định để cải thiện decision policy.
+275. Mỗi quyết định lớn phải lưu assumptions, alternatives và lý do loại bỏ các
