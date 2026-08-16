@@ -16,6 +16,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -41,15 +42,39 @@ def load_json(path: Path) -> dict[str, Any]:
         raise ContractError(f"Cannot read JSON {path}: {exc}") from exc
 
 
-def git_blob_sha(path: Path) -> str:
+def working_tree_blob_sha(path: Path) -> str:
+    """Fallback Git blob SHA from local bytes."""
     data = path.read_bytes()
     header = f"blob {len(data)}\0".encode("utf-8")
     return hashlib.sha1(header + data).hexdigest()
 
 
+def repository_blob_sha(path: Path) -> str:
+    """Read the committed blob SHA when possible.
+
+    Using HEAD:path avoids false integrity failures caused by CRLF checkout
+    conversion on Windows. If the file is not in a Git checkout, fall back to
+    hashing the working-tree bytes using Git's blob format.
+    """
+    try:
+        rel = path.relative_to(REPO).as_posix()
+        proc = subprocess.run(
+            ["git", "-C", str(REPO), "rev-parse", f"HEAD:{rel}"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        value = proc.stdout.strip()
+        if re.fullmatch(r"[0-9a-fA-F]{40,64}", value):
+            return value.lower()
+    except Exception:
+        pass
+    return working_tree_blob_sha(path)
+
+
 def parse_numbered_attributes(path: Path) -> dict[int, list[str]]:
     found: dict[int, list[str]] = {}
-    for raw in path.read_text(encoding="utf-8").splitlines():
+    for raw in path.read_text(encoding="utf-8-sig").splitlines():
         match = ATTRIBUTE_RE.match(raw)
         if not match:
             continue
@@ -74,7 +99,7 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[int, dict[str, Any]]:
             errors.append(f"missing canonical source segment: {segment['path']}")
             continue
 
-        actual_sha = git_blob_sha(path)
+        actual_sha = repository_blob_sha(path)
         expected_sha = segment.get("source_blob_sha")
         if expected_sha and actual_sha != expected_sha:
             errors.append(
