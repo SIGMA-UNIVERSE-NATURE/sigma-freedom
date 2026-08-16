@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -20,6 +20,9 @@
     "LINEAGE.json",
     "SUBSTRATE_CONTRACT.md",
     "BOOT_PROTOCOL.md",
+    "BOOT_EVIDENCE.json",
+    "LOCAL_MIRROR_REQUEST.json",
+    "LOCAL_MIRROR_RECEIPT.schema.json",
     "COGNITIVE_STATE.schema.json",
     "MEMORY_RECORD.schema.json",
     "ACTION_CONTRACT.schema.json",
