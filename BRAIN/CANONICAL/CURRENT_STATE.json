@@ -1,14 +1,31 @@
 {
-  "schema_version": "1.2.1",
+  "schema_version": "1.3.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
   "recorded_at": "2026-08-17T06:49:00+07:00",
-  "phase": "SIGMA_512_BASELINE_AUDIT_PREPARATION",
-  "status": "INTELLIGENCE_CONTINUITY_PROGRAM_ENFORCED_BASELINE_AUDIT_NEXT",
+  "phase": "SIGMA_512_BASELINE_COMPLETE_EVIDENCE_HARNESS_NEXT",
+  "status": "INTELLIGENCE_CONTINUITY_ENFORCED_BASELINE_COMPLETE_EVIDENCE_HARNESS_NEXT",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
     "dna_core_catalog": "54_PRESENT",
-    "implementation_audit": "NOT_AUDITED",
+    "implementation_audit": "BASELINE_COMPLETE",
+    "implementation_baseline": {
+      "audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+      "audited_head_sha": "773dddc064752dbad6e583f730d27cc98d49d4c8",
+      "framework": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_FRAMEWORK_v1.0.0.json",
+      "baseline": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_001_v1.0.0.json",
+      "report": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_REPORT_001_v1.0.0.md",
+      "total_records": 512,
+      "counts": {
+        "PASS": 0,
+        "PARTIAL": 0,
+        "HOLD": 0,
+        "FAIL": 0,
+        "NOT_AUDITED": 512,
+        "NOT_APPLICABLE": 0
+      },
+      "interpretation": "Measured absence of qualifying requirement-level behavioral evidence; not a claim that all implementations fail."
+    },
     "cognitive_bootstrap": "STRUCTURAL_PASS",
     "reference_kernel_boot": "PASS",
     "public_private_data_boundary": "ENFORCED",
@@ -35,7 +52,9 @@
     "program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "program_status": "ENFORCED",
     "current_engine_role": "BOOTSTRAP_CAPABILITY_NOT_INHERITED_TRUTH_NOT_PERMANENT_CEILING",
-    "baseline_gate": "SIGMA-512-BASELINE-AUDIT-001_REQUIRED_BEFORE_BROAD_REMEDIATION",
+    "baseline_gate": "COMPLETE:SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+    "selected_highest_leverage_gap": "REQUIREMENT_LEVEL_EVIDENCE_AND_EVALUATION_INFRASTRUCTURE",
+    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-001",
     "available_now_on_hp": [
       "evidence_grounded_deliberation",
       "persistent_cognitive_memory",
@@ -58,12 +77,12 @@
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
   },
-  "active_goal": "Create the first evidence-based baseline of actual SIGMA implementation across all 512 requirements; then use its measured dependency/priority graph to increase system-level intelligence while preserving canonical continuity across windows and future substrates.",
-  "next_action_id": "SIGMA-512-BASELINE-AUDIT-001",
+  "active_goal": "Build requirement-addressable behavioral evidence and independent evaluation for the measured 512 baseline before modifying DNA cores, starting with the highest-leverage evidence/evaluation gap.",
+  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-001",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Run SIGMA-512-BASELINE-AUDIT-001 in read-only/isolated measurement mode and reconcile exactly 512 requirement records",
-    "After baseline, select the highest-leverage measured cognition gap using INTELLIGENCE_CONTINUITY_PROGRAM.md and create exactly one next canonical improvement action",
+    "Build and run SIGMA-512-EVIDENCE-HARNESS-001 using read-only/isolated probes, starting with Sections X and XXVIII",
+    "After measured evidence exists, select core remediation only from observed behavioral gaps and dependency leverage",
     "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json from an authorized local runtime",
     "Mirror the authorized private resilience plan into the encrypted private local continuity area without copying it into the public repository",
     "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
@@ -89,6 +108,39 @@
         "INTELLIGENCE_CONTINUITY_PROGRAM=PASS",
         "BASELINE_512_BEFORE_FIXING_512=ENFORCED",
         "SINGLE_CANONICAL_NEXT_ACTION=SIGMA-512-BASELINE-AUDIT-001"
+      ]
+    },
+    "baseline_512": {
+      "audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+      "audited_head_sha": "773dddc064752dbad6e583f730d27cc98d49d4c8",
+      "framework": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_FRAMEWORK_v1.0.0.json",
+      "baseline": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_001_v1.0.0.json",
+      "report": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_REPORT_001_v1.0.0.md",
+      "ledger": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json",
+      "counts": {
+        "TOTAL_RECORDS": 512,
+        "PASS": 0,
+        "PARTIAL": 0,
+        "HOLD": 0,
+        "FAIL": 0,
+        "NOT_AUDITED": 512,
+        "NOT_APPLICABLE": 0
+      },
+      "no_core_modification": true,
+      "conclusion": "BASELINE_COMPLETE"
+    },
+    "baseline_rebase_verification": {
+      "structural_512_validated_commit": "76a7a091737efef2c0e7a1025afcc00c65d0ad42",
+      "audited_head_sha": "773dddc064752dbad6e583f730d27cc98d49d4c8",
+      "compare_result": "NO_CHANGES_UNDER_54_CORES_OR_BAN_DO_SIGMA_512_ATTRIBUTES",
+      "concurrent_changes_preserved": [
+        "INTELLIGENCE_CONTINUITY_PROGRAM",
+        "WINDOW_TRANSFER_PROTOCOL",
+        "CURRENT_STATE",
+        "NEXT_ACTION",
+        "MINH_WINDOW_BOOT",
+        "BRAIN_MANIFEST",
+        "validate_brain_contract"
       ]
     }
   },

@@ -136,9 +136,23 @@ def main():
     }
     if not required_incoming.issubset(set(transfer.get("incoming_window_checklist", []))):
         fail("window transfer incoming verification is incomplete")
+
+    continuity = state.get("continuity", {})
+    if continuity.get("cross_window_boot_required") is not True:
+        fail("current state does not require cross-window boot contract")
+    if continuity.get("single_canonical_next_action") is not True:
+        fail("current state does not enforce one canonical next action")
+
+    next_action_id = state.get("next_action_id")
+    if not isinstance(next_action_id, str) or not next_action_id.strip():
+        fail("current state has no canonical next_action_id")
+    next_action_text = (HERE / "NEXT_ACTION.md").read_text(encoding="utf-8")
+    if f"## {next_action_id}" not in next_action_text:
+        fail("CURRENT_STATE next_action_id does not match NEXT_ACTION.md")
+
     transfer_program = transfer.get("current_program", {})
-    if transfer_program.get("next_action") != "SIGMA-512-BASELINE-AUDIT-001":
-        fail("window transfer protocol does not preserve canonical baseline next action")
+    if transfer_program.get("next_action") != next_action_id:
+        fail("window transfer current_program.next_action does not match CURRENT_STATE")
     if transfer_program.get("baseline_before_broad_remediation") is not True:
         fail("window transfer protocol does not preserve baseline-before-remediation")
 
@@ -162,15 +176,8 @@ def main():
         if token not in intelligence:
             fail(f"intelligence continuity program missing required token: {token}")
 
-    continuity = state.get("continuity", {})
-    if continuity.get("cross_window_boot_required") is not True:
-        fail("current state does not require cross-window boot contract")
-    if continuity.get("single_canonical_next_action") is not True:
-        fail("current state does not enforce one canonical next action")
-    if state.get("next_action_id") != "SIGMA-512-BASELINE-AUDIT-001":
-        fail("canonical next action is not SIGMA-512-BASELINE-AUDIT-001")
     if state.get("operating_principle") != "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST":
-        fail("baseline-before-remediation operating principle is not locked in current state")
+        fail("reality-before-improvement operating principle is not locked in current state")
 
     cores = {}
     for p in (REPO / "54_CORES").iterdir():
@@ -210,6 +217,34 @@ def main():
         if manifest_invariants.get(key) is not True:
             fail(f"manifest continuity/intelligence invariant not enforced: {key}")
 
+    # A completed baseline must itself be verifiable, not merely asserted in state.
+    architecture = state.get("architecture", {})
+    if architecture.get("implementation_audit") == "BASELINE_COMPLETE":
+        baseline_meta = architecture.get("implementation_baseline", {})
+        baseline_rel = baseline_meta.get("baseline")
+        if not baseline_rel:
+            fail("baseline complete but implementation_baseline.baseline is missing")
+        baseline = load(REPO / baseline_rel)
+        if baseline.get("audit_id") != baseline_meta.get("audit_id"):
+            fail("baseline audit_id mismatch between CURRENT_STATE and baseline artifact")
+        counts = baseline.get("counts", {})
+        if counts.get("TOTAL_RECORDS") != 512:
+            fail("baseline TOTAL_RECORDS is not 512")
+        status_keys = ["PASS", "PARTIAL", "HOLD", "FAIL", "NOT_AUDITED", "NOT_APPLICABLE"]
+        if sum(int(counts.get(k, 0)) for k in status_keys) != 512:
+            fail("baseline status counts do not reconcile to 512")
+        records = baseline.get("records", [])
+        if len(records) != 512:
+            fail("baseline records length is not 512")
+        expected = [f"{i:03d}:N" for i in range(1, 513)]
+        if records != expected:
+            fail("baseline record IDs/statuses are not exactly contiguous SIGMA-ATTR-001..512 NOT_AUDITED")
+        verify = baseline.get("verification", {})
+        if verify.get("unique_ids") != 512 or verify.get("duplicate_ids") != 0:
+            fail("baseline uniqueness verification failed")
+        if verify.get("core_files_modified") != 0:
+            fail("baseline claims core modifications occurred during READ_ONLY_BASELINE")
+
     for script in [HERE / "cognitive_kernel.py", HERE / "mirror_to_local.py"]:
         py_compile.compile(str(script), doraise=True)
 
@@ -233,9 +268,11 @@ def main():
     print("SINGLE_ACTIVE_EXECUTOR=ENFORCED")
     print("INTELLIGENCE_CONTINUITY_PROGRAM=PASS")
     print("BASELINE_512_BEFORE_FIXING_512=ENFORCED")
-    print("SINGLE_CANONICAL_NEXT_ACTION=SIGMA-512-BASELINE-AUDIT-001")
+    print(f"SINGLE_CANONICAL_NEXT_ACTION={next_action_id}")
     print("PUBLIC_PRIVATE_DATA_BOUNDARY=PASS")
     print("PRIVATE_OPERATIONAL_FILES_IN_PUBLIC_TREE=0")
+    if architecture.get("implementation_audit") == "BASELINE_COMPLETE":
+        print("IMPLEMENTATION_BASELINE=COMPLETE")
     print("IMPLEMENTATION_EVIDENCE=NOT_AUDITED")
     print("LOCAL_E_F_MIRROR=READY_NOT_EXECUTED_IN_GITHUB_CI")
 
