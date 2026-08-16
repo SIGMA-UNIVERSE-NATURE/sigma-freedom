@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.1.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T05:27:00+07:00",
-  "phase": "COGNITIVE_BOOTSTRAP_KERNEL_V1",
-  "status": "STRUCTURAL_PASS_PRIVATE_PLAN_CREATED_LOCAL_MIRROR_PENDING",
+  "recorded_at": "2026-08-17T06:24:00+07:00",
+  "phase": "SIGMA_512_BASELINE_AUDIT_PREPARATION",
+  "status": "OPERATING_CONSTITUTION_INTEGRATED_PENDING_CI",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -16,11 +16,21 @@
     "private_store_location": "NOT_PUBLIC",
     "local_e_f_mirror": "READY_NOT_EXECUTED_NO_LOCAL_FILESYSTEM_CONNECTOR"
   },
-  "active_goal": "Continue from the validated canonical cognitive bootstrap: mirror canonical and authorized private continuity state to E:/F: when local filesystem access returns, then audit runtime implementation against the 512 requirements.",
+  "continuity": {
+    "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY",
+    "operating_constitution": "MINH_OPERATING_CONSTITUTION.json",
+    "window_boot_entrypoint": "MINH_WINDOW_BOOT.md",
+    "cross_window_boot_required": true,
+    "meaningful_progress_requires_canonical_state_update": true,
+    "single_canonical_next_action": true
+  },
+  "active_goal": "Create the first evidence-based baseline of actual SIGMA implementation across all 512 requirements before broad remediation, while preserving the pending local E:/F: continuity mirror as a separate authorized open loop.",
+  "next_action_id": "SIGMA-512-BASELINE-AUDIT-001",
+  "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json",
+    "Run SIGMA-512-BASELINE-AUDIT-001 in read-only/isolated measurement mode and reconcile exactly 512 requirement records",
+    "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json from an authorized local runtime",
     "Mirror the authorized private resilience plan into the encrypted private local continuity area without copying it into the public repository",
-    "Audit runtime implementation evidence against the 512 requirements",
     "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
     "Decide whether historical Git remediation is warranted after private/offline continuity copies are verified"
   ],
