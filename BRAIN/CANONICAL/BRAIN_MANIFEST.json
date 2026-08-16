@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.2",
+  "schema_version": "1.1.0",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -15,6 +15,8 @@
   "required_files": [
     "README.md",
     "ROOT_OF_TRUST.json",
+    "MINH_OPERATING_CONSTITUTION.json",
+    "MINH_WINDOW_BOOT.md",
     "CURRENT_STATE.json",
     "NEXT_ACTION.md",
     "DO_NOT_RERUN_LOCKS.json",
@@ -41,6 +43,7 @@
   ],
   "boot_order": [
     "root_of_trust",
+    "operating_constitution",
     "lineage",
     "locks",
     "state",
@@ -61,6 +64,10 @@
     "safe_shutdown_is_valid": true,
     "paid_api_default_off": true,
     "historical_state_is_not_rewritten": true,
-    "private_financial_and_operational_details_not_in_public_tree": true
+    "private_financial_and_operational_details_not_in_public_tree": true,
+    "chat_memory_is_not_canonical_state": true,
+    "cross_window_continuation_requires_boot_contract": true,
+    "baseline_512_before_broad_remediation": true,
+    "meaningful_progress_requires_state_update": true
   }
 }
