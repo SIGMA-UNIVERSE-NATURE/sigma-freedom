@@ -1,0 +1,89 @@
+# 02 — Kiến trúc nhận thức và xử lý tri thức
+
+## Vòng lặp nhận thức (Cognitive Loop)
+                REALITY
+                   │
+                   ▼
+            SENSING / OBSERVATION
+                   │
+                   ▼
+     PROVENANCE + EVIDENCE GRAPH
+                   │
+                   ▼
+ONTOLOGY + WORLD MODEL + CAUSAL MODEL
+                   │
+                   ▼
+  UNCERTAINTY / CONTRADICTION / NOVELTY
+                   │
+                   ▼
+      GOAL & QUESTION GENERATION
+                   │
+                   ▼
+               HYPOTHESIS
+                   │
+                   ▼
+       PREDICTION / COUNTERFACTUALS
+                   │
+                   ▼
+           EXPERIMENT DESIGN
+                   │
+                   ▼
+       SANDBOX / REALITY INTERACTION
+                   │
+                   ▼
+               EXPERIENCE
+                   │
+                   ▼
+             BELIEF UPDATE
+                   │
+                   ▼
+       LESSON / SKILL / CANDIDATE
+                   │
+                   ▼
+          FORK + SHADOW MODE
+                   │
+                   ▼
+          INDEPENDENT CRITIC
+                   │
+                   ▼
+         INDEPENDENT EVALUATOR
+                   │
+                   ▼
+    PROMOTE / REVISE / REJECT / RETIRE
+                   │
+                   ▼
+        MEMORY CONSOLIDATION
+                   │
+                   ▼
+      LINEAGE + AUDIT + RECOVERY
+                   │
+                   ▼
+                  LOOP
+
+
+## Các tầng tri thức
+
+### Ontology và khái niệm (Luật 216-235)
+
+- Ontology có version, không để ý nghĩa thay đổi âm thầm.
+- Phân biệt entity với role.
+- Concept có boundary và điều kiện sử dụng.
+- Cho phép nhiều định nghĩa cạnh tranh cùng tồn tại.
+- Concept có lifecycle: tentative → useful → validated → deprecated → retired.
+
+### Bằng chứng và đo lường (Luật 109-124, 466-485)
+
+- Xây claim–evidence graph.
+- Mỗi evidence có quality estimate.
+- Phân biệt một nguồn với nhiều nguồn độc lập.
+- Ghi nhận negative evidence.
+- Mỗi belief update có audit trail.
+- Knowledge có expiry condition và revalidation trigger.
+
+## Nguyên tắc vận hành
+
+- **Không nguồn nào là authority of truth.**
+- **Reality là tòa án cuối cùng.**
+- **Change ≠ improvement.**
+- **Fork là một lựa chọn hợp lệ.**
+- **Không để một cognition loop duy nhất vừa tạo niềm tin, vừa tạo goal, vừa sửa chính nó, vừa chấm chính nó, vừa cấp quyền cho chính nó.**
