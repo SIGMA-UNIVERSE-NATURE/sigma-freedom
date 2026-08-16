@@ -18,9 +18,10 @@ Any duplicate occurrence outside those selected spans is archival context and MU
 
 1. `SIGMA_512_CANONICAL_MANIFEST.json` — defines which text is canonical.
 2. `SIGMA_512_TRACEABILITY_MAP.json` — maps every attribute range to responsible SIGMA DNA cores and required evidence classes.
-3. `validate_512_architecture.py` — reconstructs the 512 canonical records, verifies exact coverage 1..512, checks 54-core references, and can emit an expanded item-level registry.
-4. `../06_512_TO_54_CORE_TRACEABILITY.md` — human-readable implementation contract.
-5. Historical source segment files — preserved evidence/history, not standalone authority.
+3. `SIGMA_512_IMPLEMENTATION_STATUS.json` — evidence ledger; implementation defaults to `NOT_AUDITED`.
+4. `validate_512_architecture.py` — reconstructs the 512 canonical records, verifies exact coverage 1..512, checks 54-core references, and can emit an expanded item-level registry.
+5. `../06_512_TO_54_CORE_TRACEABILITY.md` — human-readable implementation contract.
+6. Historical source segment files — preserved evidence/history, not standalone authority.
 
 ## Status semantics
 
@@ -55,6 +56,26 @@ ATTRIBUTE
 ```
 
 Until those links exist, the requirement may be `SPEC_PASS` and `MAPPED`, but its implementation remains `NOT_AUDITED`.
+
+## Validation
+
+Local validation:
+
+```bash
+python "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/validate_512_architecture.py"
+```
+
+Generate the expanded 512-item machine-readable registry:
+
+```bash
+python "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/validate_512_architecture.py" --write
+```
+
+Repository enforcement is defined in:
+
+`.github/workflows/sigma_512_contract.yml`
+
+The workflow must fail if canonical coverage, 54-core discovery, traceability coverage, or evidence-status governance is invalid.
 
 ## Anti-self-certification rule
 
