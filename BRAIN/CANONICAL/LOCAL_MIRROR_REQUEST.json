@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "SIGMA-LOCAL-MIRROR-EF-001",
+  "created_at": "2026-08-17T05:10:00+07:00",
+  "status": "PENDING_LOCAL_EXECUTOR",
+  "executor_requirement": "Any SIGMA runtime with read access to the repository checkout and write access to Windows E:/F: drives.",
+  "command": "python BRAIN/CANONICAL/mirror_to_local.py --drive E --drive F",
+  "targets": [
+    "E:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0",
+    "F:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0"
+  ],
+  "source_sets": [
+    "BRAIN/CANONICAL",
+    "54_CORES",
+    "BẢN ĐỒ"
+  ],
+  "required_result": {
+    "receipt_filename": "MIRROR_RECEIPT.json",
+    "minimum_successful_targets": 1,
+    "preferred_successful_targets": 2,
+    "hash_verification": "SHA256_PER_FILE",
+    "no_delete_existing_history": true
+  },
+  "failure_policy": "Do not claim mirror PASS if the runtime cannot access the drives. Record MISSING/HOLD and continue non-local work."
+}
