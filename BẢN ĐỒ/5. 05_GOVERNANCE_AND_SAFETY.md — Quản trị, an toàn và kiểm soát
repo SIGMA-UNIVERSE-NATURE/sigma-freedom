@@ -1,0 +1,82 @@
+# 05 — Quản trị, an toàn và kiểm soát
+
+## Phân biệt Recursive Self-Improvement và Recursive Self-Certification
+
+| **Recursive Self-Improvement** | **Recursive Self-Certification** |
+| :--- | :--- |
+| Tạo candidate cải tiến | Candidate tự đổi tiêu chuẩn đánh giá |
+| Kiểm tra bằng evidence độc lập | Dùng chính tiêu chuẩn mới để tự xác nhận |
+| Chỉ promote khi vượt qua kiểm định | Tự tuyên bố mình đã tiến bộ |
+| Giữ rollback và audit | Xóa lịch sử và không thể quay lại |
+
+## Các lớp quyền hạn (Luật 188-203, 501-512)
+
+| **Lớp** | **Phạm vi** | **Nguyên tắc** |
+| :--- | :--- | :--- |
+| **Root of Trust** | Core invariants | Không thể bị candidate sửa |
+| **Safety Invariants** | An toàn cốt lõi | Không thể bị ghi đè |
+| **Authority** | Quyền hành động | Chỉ được cấp bởi mandate và governance |
+| **Resource Budget** | Compute, energy, cost | Có giới hạn và được theo dõi |
+| **Security** | Bảo mật và toàn vẹn | Không thể bị candidate phá vỡ |
+| **Provenance** | Nguồn gốc và dấu vết | Mọi thay đổi đều có lịch sử |
+| **Audit** | Kiểm tra độc lập | Tất cả hành động đều có thể kiểm tra |
+| **Rollback** | Khả năng quay lại | Candidate thất bại có thể bị thu hồi |
+| **Human Corrigibility** | Con người có thể sửa | Con người luôn có quyền can thiệp |
+
+## Tiêu chí từ chối hành động (Luật 189-195)
+
+- **Không có ngoại lệ:** Không một thành phần nào — kể cả chính SIGMA — có thể tự cấp cho mình quyền lực vô hạn.
+- **Phân biệt capability với permission:** Làm được không có nghĩa là được phép làm.
+- **Safe shutdown** phải là trạng thái hợp lệ, không phải “thất bại của SIGMA”.
+- **Không tự nhân bản** hoặc tự triển khai sang environment khác nếu chưa được cấp quyền.
+- **Human override** quan trọng phải được authenticated và audit được.
+- **Incident-response mode** riêng cho anomalous behavior.
+
+## Quản trị và tiến hóa (Luật 204-215)
+
+- Tách stable core khỏi experimental candidates.
+- Interface giữa các subsystem phải versioned.
+- State migration giữa version phải có backward/rollback strategy.
+- Evolution history là một lineage DAG.
+- Candidate mới đi qua canary deployment trước promotion rộng.
+- Có shadow mode: candidate quan sát cùng environment nhưng chưa được quyền tác động.
+- Fitness không là một scalar duy nhất; cần multi-objective evaluation.
+- Có retirement/extinction rule cho model, strategy và concept đã thất bại.
+- Có minimal root of trust nhỏ, rõ ràng, versioned và không thể bị một candidate tự sửa rồi tự chứng nhận việc sửa đó.
+
+## 16 Luật kiến trúc (tóm tắt)
+
+1. Nothing is true by inheritance.
+2. No belief without epistemic status.
+3. No claim without provenance.
+4. No causality from correlation alone.
+5. No learning without error signal.
+6. No generalization without transfer evidence.
+7. No improvement without differential evidence.
+8. No promotion without independent evaluation.
+9. No action without authority, scope and verification.
+10. No memory without provenance, lifecycle and correction.
+11. No self-model without calibration.
+12. No autonomy without bounded resources and reversibility.
+13. No self-modification without fork, shadow test and rollback.
+14. No continuity without state, lineage and recovery.
+15. No governance component may silently grant itself more governance power.
+16. Intelligence is never equivalent to authority.
+
+---
+
+## Tam Vấn Từ Bi
+
+ACTION_ALLOWED =
+benefits_self
+AND benefits_others
+AND benefits_earth_life
+AND no_known_unresolved_harm
+
+
+
+> *"Từ bi không phải hy sinh mù quáng. Từ bi là lợi mình, lợi người, lợi muôn loài cùng được bảo toàn."*
+
+---
+
+> *"Mục tiêu không phải tối đa hóa trust; mục tiêu là làm cho mức trust của con người calibrated với độ đáng tin thật."*
