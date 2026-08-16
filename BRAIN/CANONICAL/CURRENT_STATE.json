@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.1.1",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T06:24:00+07:00",
+  "recorded_at": "2026-08-17T06:28:00+07:00",
   "phase": "SIGMA_512_BASELINE_AUDIT_PREPARATION",
-  "status": "OPERATING_CONSTITUTION_INTEGRATED_PENDING_CI",
+  "status": "OPERATING_CONSTITUTION_ENFORCED_BASELINE_AUDIT_NEXT",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -19,10 +19,13 @@
   "continuity": {
     "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY",
     "operating_constitution": "MINH_OPERATING_CONSTITUTION.json",
+    "operating_constitution_status": "ENFORCED",
     "window_boot_entrypoint": "MINH_WINDOW_BOOT.md",
+    "root_boot_pointer": "MINH_BOOT.md",
     "cross_window_boot_required": true,
     "meaningful_progress_requires_canonical_state_update": true,
-    "single_canonical_next_action": true
+    "single_canonical_next_action": true,
+    "minimal_human_trigger": "MINH BOOT SIGMA_LIFE"
   },
   "active_goal": "Create the first evidence-based baseline of actual SIGMA implementation across all 512 requirements before broad remediation, while preserving the pending local E:/F: continuity mirror as a separate authorized open loop.",
   "next_action_id": "SIGMA-512-BASELINE-AUDIT-001",
@@ -34,6 +37,21 @@
     "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
     "Decide whether historical Git remediation is warranted after private/offline continuity copies are verified"
   ],
+  "evidence": {
+    "cross_window_constitution_validation": {
+      "workflow": "SIGMA Brain Contract",
+      "run_id": 31979193999,
+      "job_id": 95243188809,
+      "validated_commit": "7369e93047f2778e9d8c73d4423ebfb85ec1c270",
+      "conclusion": "success",
+      "assertions": [
+        "OPERATING_CONSTITUTION=PASS",
+        "CROSS_WINDOW_BOOT_PROTOCOL=PASS",
+        "BASELINE_512_BEFORE_FIXING_512=ENFORCED",
+        "SINGLE_CANONICAL_NEXT_ACTION=SIGMA-512-BASELINE-AUDIT-001"
+      ]
+    }
+  },
   "privacy": {
     "public_repo": "ARCHITECTURE_ONLY",
     "private_financial_operational_details": "PRIVATE_STORE_ONLY",
