@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "pointer_id": "SIGMA-ACTIVE-WINDOW-IDENTITY",
+  "window_id": "HAND-TO-HAND-CUA-2-20260818-0152-VN",
+  "window_name": "HAND TO HAND_ CỬA 2",
+  "window_sequence": 2,
+  "created_at": "2026-08-18T01:52:00+07:00",
+  "purpose_short": "SIGMA 512 ACTIVE EXECUTOR CONTINUITY",
+  "birth_certificate": "BRAIN/HANDOFFS/WINDOW_IDENTITIES/HAND_TO_HAND_CUA_2_BIRTH_20260818_0152.json",
+  "identity_protocol": "BRAIN/CANONICAL/WINDOW_IDENTITY_PROTOCOL.json",
+  "predecessor_checkpoint": "274d890dfa25e0342747f05d2ab0a196756c79ec",
+  "latest_continuity_sync_at_identity_registration": "6f00811e7cd126ac99acdee1de4cb66600c52725",
+  "authority_role": "ACTIVE_EXECUTOR_FOR_SIGMA_512_BRAIN_OPERATIONS",
+  "handoff_state": "NOT_YET_TRANSFERRED",
+  "live_state_source": "FRESH_FETCH_SIGMA_LIFE_AND_READ_CURRENT_STATE_NEXT_ACTION_LOCAL_COGNITION_REQUEST",
+  "live_state_warning": "Do not treat this identity pointer as the current work state. Automation may advance SIGMA_LIFE after this file is written.",
+  "successor_rule": "Successor must create HAND TO HAND_ CỬA <N+1> birth certificate only after verified predecessor lineage and latest-state match; authority transfer remains explicit when required.",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK"
+}
