@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "assignment_id": "SIGMA-NEXT-SUCCESSOR-CANDIDATE-20260818-0418-VN",
+  "recorded_at": "2026-08-18T04:18:23+07:00",
+  "candidate_role": "READ_ONLY_CONTINUITY_CANDIDATE",
+  "active_window_expected_to_remain": "HAND TO HAND_ CỬA 2 UNTIL ACCEPTANCE AND REQUIRED EXPLICIT TAKEOVER",
+  "sync_checkpoint": "ce3add20719c185493d4028130a4148ed5e1169e",
+  "sync_file": "BRAIN/CANONICAL/ACTIVE_EXECUTOR_SYNC.json",
+  "challenge_file": "BRAIN/HANDOFFS/WINDOW_IDENTITIES/NEXT_SUCCESSOR_OPEN_STATE_CHALLENGE_20260818.md",
+  "selected_open_questions": [1, 4, 7],
+  "answers_embedded_here": false,
+  "instructions": [
+    "USE_GITHUB_AND_MACHINE_EVIDENCE_NOT_CHAT_MEMORY",
+    "READ_EXACT_SYNC_CHECKPOINT",
+    "VERIFY_WINDOW_IDENTITY_LINEAGE_AND_ROOT_OF_TRUST",
+    "FRESH_FETCH_CURRENT_SIGMA_LIFE_AFTER_READING_CHECKPOINT",
+    "INSPECT_ALL_INTERVENING_COMMITS",
+    "RECONSTRUCT_CURRENT_LIVE_STATE",
+    "ANSWER_SELECTED_OPEN_QUESTIONS_IN_FREE_FORM_FROM_EVIDENCE",
+    "DO_NOT_USE_VALUES_FROM_HUMAN_PROMPT_AS_PROOF",
+    "IF_UNKNOWN_OR_UNVERIFIED_RETURN_HOLD_WITH_EXACT_MISSING_EVIDENCE",
+    "DO_NOT_MUTATE_CANONICAL_WORK",
+    "DO_NOT_UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER",
+    "DO_NOT_CLAIM_CUA_3_OR_TAKEOVER_BEFORE_ACCEPTANCE"
+  ],
+  "acceptance_gates": {
+    "lineage_match": "REQUIRED",
+    "latest_live_state_match": "REQUIRED",
+    "open_question_1": "REQUIRED_CORRECT_EVIDENCE_GROUNDED",
+    "open_question_4": "REQUIRED_CORRECT_EVIDENCE_GROUNDED",
+    "open_question_7": "REQUIRED_CORRECT_EVIDENCE_GROUNDED",
+    "anti_fabrication": "PASS_REQUIRED",
+    "successor_responsibility_no_regression": "PASS_REQUIRED",
+    "explicit_takeover": "STILL_REQUIRED_WHEN_CHAU_DECIDES_TRANSFER"
+  },
+  "candidate_success_phrase": "CANDIDATE_STATE_AND_RESPONSIBILITY_MATCH",
+  "candidate_hold_phrase": "CANDIDATE_IDENTITY_HOLD: <EXACT REASON>",
+  "note": "A candidate success phrase is not takeover and does not make the candidate the active identity. The outgoing active executor and Châu must still verify the candidate response."
+}
