@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "SUCCESSOR_CANDIDATE_CONTINUITY_VERIFICATION",
+  "recorded_at": "2026-08-18T05:06:00+07:00",
+  "active_window": "HAND TO HAND_ CỬA 2",
+  "candidate_role": "READ_ONLY_CONTINUITY_CANDIDATE",
+  "candidate_continuity_state": "VERIFIED_TRANSFER_READY_AWAITING_EXPLICIT_CHAU_TAKEOVER",
+  "active_pointer_transfer": false,
+  "challenge_results": {
+    "challenge_1_live_state": "PASS_VERIFIED",
+    "challenge_4_machine_canonical_gap": "PASS_VERIFIED_AFTER_PROVENANCE_REPAIR",
+    "challenge_7_successor_responsibility_no_regression": "PASS_VERIFIED",
+    "anti_fabrication_integrity": "PASS_NO_FABRICATION_DETECTED",
+    "responsibility_gate": "PASS_PRESERVE_VERIFIED_GUARANTEES_AND_HOLD_ON_REAL_CONTRADICTION"
+  },
+  "candidate_report_snapshot": {
+    "canonical_head_reported": "55215a7237e68d3ef33c2eb6292882336eff582e",
+    "remote_head_reported": "b9ca57097e2d048a711532f816df1d8821a45910",
+    "remote_reported_head_verified_as_heartbeat_only": true,
+    "reported_live_request": "SIGMA-512-AUTO-MEASURE-SECTION-XVIII-216-235",
+    "reported_machine_canonical_relation": "MACHINE_EVIDENCE_AHEAD_OF_CANONICAL_PENDING_SECTION_XVIII_RECEIPT_INGESTION",
+    "reported_provenance_conclusion": "PRIOR_SECTION_XVII_DEFECT_REPAIRED_AND_CURRENT_SECTION_XVIII_RECEIPT_PROVENANCE_MATCHED"
+  },
+  "final_active_executor_recheck": {
+    "canonical_head": "75c451871fb415ac9c14680017a03e5ed19d696b",
+    "canonical_progress_since_candidate_answer": "NORMAL_BOUNDED_CONTROLLER_PROGRESS",
+    "current_request": "SIGMA-512-AUTO-MEASURE-SECTION-XX-256-275",
+    "current_counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 150,
+      "FAIL": 0,
+      "NOT_AUDITED": 233,
+      "NOT_APPLICABLE": 0
+    },
+    "current_remote_head": "c492f70a298f45307d8269b7b3986d565f1a356c",
+    "current_machine_receipt": "RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XX-256-275.json",
+    "current_machine_receipt_request": "SIGMA-512-AUTO-MEASURE-SECTION-XX-256-275",
+    "current_machine_receipt_resolved_head": "75c451871fb415ac9c14680017a03e5ed19d696b",
+    "current_machine_receipt_runtime": "0.6.1",
+    "current_machine_receipt_provenance": "MATCH_VERIFIED",
+    "current_machine_vs_canonical": "MACHINE_EVIDENCE_AHEAD_OF_CANONICAL_PENDING_SECTION_XX_RECEIPT_INGESTION"
+  },
+  "acceptance_interpretation": "The candidate independently reconstructed the correct live state, correctly held on a real provenance contradiction, correctly rechecked after repair, and demonstrated responsibility to preserve verified guarantees rather than fabricate continuity. Subsequent automatic canonical advancement does not invalidate the challenge because the intervening progression is verified and provenance-consistent.",
+  "authority_rule": "This verification does not transfer active executor authority. ACTIVE_WINDOW_IDENTITY remains HAND TO HAND_ CỬA 2 until Châu explicitly authorizes takeover and the successor birth/active-pointer transfer is written against a fresh current HEAD.",
+  "next_transfer_state": "AWAIT_EXPLICIT_CHAU_TAKEOVER_INSTRUCTION",
+  "prohibited_before_takeover": [
+    "DO_NOT_CLAIM_CUA_3_AS_ACTIVE",
+    "DO_NOT_MUTATE_CANONICAL_WORK_AS_SUCCESSOR",
+    "DO_NOT_UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER"
+  ]
+}
