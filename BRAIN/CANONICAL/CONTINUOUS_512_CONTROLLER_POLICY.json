@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "SIGMA-512-BOUNDED-CONTINUOUS-CONTROLLER-v0.1",
+  "status": "AUTHORIZED_BOUNDED_CONTINUOUS_MEASUREMENT",
+  "cadence_seconds": 600,
+  "selection_policy": "LOWEST_NUMBERED_SECTION_WITH_NOT_AUDITED_ONLY",
+  "max_attributes_per_request": 25,
+  "one_pending_request_at_a_time": true,
+  "machine_receipt_required_before_advance": true,
+  "harness_path": "EVIDENCE/SIGMA_512_AUTOMEASURE/v1.0.0/run_harness.py",
+  "harness_sha256": "5675104e48f7a48013b81819edd83a20955b01245d119be93661e2b1d98f4028",
+  "evidence_ceiling": "HOLD_ONLY",
+  "pass_allowed": false,
+  "implementation_allowed": false,
+  "dna_core_mutation_allowed": false,
+  "paid_api_allowed": false,
+  "website_actions_allowed": false,
+  "arbitrary_shell_allowed": false,
+  "external_side_effects_allowed": false,
+  "canonical_write_scope": [
+    "BRAIN/CANONICAL/CURRENT_STATE.json",
+    "BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json",
+    "BRAIN/CANONICAL/LOCAL_EXECUTION_BRIDGE_STATUS.json",
+    "BRAIN/CANONICAL/WINDOW_TRANSFER_PROTOCOL.json",
+    "BRAIN/CANONICAL/NEXT_ACTION.md",
+    "BRAIN/CANONICAL/LOCAL_COGNITION_RECEIPT_AUTO_LAST.json",
+    "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json"
+  ],
+  "failure_policy": "HOLD_FAIL_CLOSED_NO_FORCE_PUSH_NO_SELF_REPAIR",
+  "race_policy": "ABORT_IF_CANONICAL_HEAD_ADVANCES_BEFORE_PUSH",
+  "completion_policy": "STOP_AUTOMEASURE_WHEN_NOT_AUDITED_REACHES_ZERO_AND_REQUIRE_BLOCKER_REVIEW",
+  "reporting_note": "The 10-minute cadence is an observation/controller cadence, not evidence of cognition or evolution."
+}
