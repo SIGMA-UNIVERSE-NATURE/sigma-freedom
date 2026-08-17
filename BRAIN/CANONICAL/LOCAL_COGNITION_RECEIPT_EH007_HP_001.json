@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048-HP-7f2db1fe1d0b",
+  "request_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
+  "status": "SUCCESS",
+  "recorded_at": "2026-08-17T02:06:42.458297+00:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "resolved_head_sha": "7f2db1fe1d0b4b9e2f431321fdec9622b7a51089",
+  "executor": {"runtime_name":"SIGMA Remote Operator Continuous","runtime_version":"0.6.0","platform":"Windows-10-10.0.19045-SP0","python":"3.14.4","private_workspace_disclosure":"PRIVATE_NOT_RECORDED_PUBLICLY"},
+  "result": {"harness_id":"SIGMA-512-EVIDENCE-HARNESS-007","harness_version":"1.0.0","result_sha256":"f374c59899a989c84b3be2f4625ac334f63c9b0bc37f2879ebdc05cb7576ff32","counts":{"TARGET_COUNT":12,"PASS":0,"PARTIAL":1,"HOLD":11,"FAIL":0,"NOT_AUDITED":0},"result_location_disclosure":"PRIVATE_LOCAL_REFERENCE_OR_REDACTED"},
+  "integrity": {"core_tree_before_sha256":"f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be","core_tree_after_sha256":"f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be","core_modifications":0,"external_side_effects":0},
+  "safety": {"paid_api_used":false,"secrets_disclosed":false,"external_network_side_effects":0},
+  "blockers": [],
+  "notes": ["HARNESS_RETURN_CODE=0","AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true","REMOTE_COMMAND_FILE_USED=false","CANONICAL_REQUEST_ID_NOT_HARDCODED=true","LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED","ARBITRARY_SHELL_USED=false","MATERIALIZED_SOURCE_TREE_UNCHANGED=true","MATERIALIZED_SOURCE_SHA256_BEFORE=b665d61870bddd45aa5d7440908289482ef9c9825318ff9bfdadac90f497b7ab","MATERIALIZED_SOURCE_SHA256_AFTER=b665d61870bddd45aa5d7440908289482ef9c9825318ff9bfdadac90f497b7ab","PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT","CANONICAL_EVALUATOR_MUST_DECIDE_ANY_PROMOTION_OR_NEXT_ACTION"]
+}

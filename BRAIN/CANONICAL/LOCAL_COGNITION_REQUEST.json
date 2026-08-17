@@ -1,32 +1,27 @@
 {
-  "schema_version": "1.7.0",
+  "schema_version": "1.8.0",
   "request_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
-  "status": "PENDING_LOCAL_EXECUTOR",
-  "recorded_at": "2026-08-17T15:58:00+07:00",
+  "status": "COMPLETED_MACHINE_RECEIPT_VERIFIED",
+  "recorded_at": "2026-08-17T16:08:00+07:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
-  "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
-  "purpose": "Measure SIGMA 512 Section IV attributes 037-048 (Suy luận) after EH006 measured Section III continuous-learning evidence and blockers.",
+  "purpose": "Completed bounded read-only EH007 Section IV reasoning measurement.",
   "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_REASONING_MEASUREMENT",
-  "preconditions": [
-    "Fetch current SIGMA_LIFE HEAD from canonical Git objects.",
-    "Verify CURRENT_STATE.next_action_id and NEXT_ACTION bind this request_id.",
-    "Verify EH006 receipt is canonically persisted and implementation counts are 128 PARTIAL / 22 HOLD / 362 NOT_AUDITED.",
-    "Do not use Remote Operator COMMANDS as work authority.",
-    "Do not implement missing reasoning behaviors during measurement."
-  ],
+  "receipt_evaluation": {
+    "status": "VERIFIED",
+    "receipt_file": "LOCAL_COGNITION_RECEIPT_EH007_HP_001.json",
+    "workflow_run_id": 32013535235,
+    "workflow_conclusion": "success",
+    "resolved_head_sha": "7f2db1fe1d0b4b9e2f431321fdec9622b7a51089",
+    "result_sha256": "f374c59899a989c84b3be2f4625ac334f63c9b0bc37f2879ebdc05cb7576ff32",
+    "counts": {"TARGET_COUNT":12,"PASS":0,"PARTIAL":1,"HOLD":11,"FAIL":0,"NOT_AUDITED":0},
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
   "execution": {
     "harness_id": "SIGMA-512-EVIDENCE-HARNESS-007",
     "harness_version": "1.0.0",
-    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_007/v1.0.0/run_harness.py",
-    "script_sha256": "1d3ff3193a4ee8f2a79b162af8db1a41c811b9d0c110748e1fd856606236e040",
-    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_007/v1.0.0/run_harness.py",
-    "result_file": "evidence_harness_007_result.json",
-    "environment": {
-      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
-      "SIGMA_HARNESS_OUTPUT_DIR": "AUTHORIZED_PRIVATE_LOCAL_WORKSPACE_RESOLVED_BY_REMOTE_OPERATOR"
-    },
     "network_required": false,
     "paid_api_allowed": false,
     "website_actions_allowed": false,
@@ -37,30 +32,9 @@
     "required": true,
     "human_request_id_relay_allowed": false,
     "remote_command_file_required": false,
-    "expected_executor_min_version": "0.6.0",
-    "expected_remote_operator_candidate_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
-    "duplicate_execution_policy": "DENY_SAME_REQUEST_ID_REQUIRE_NEW_CANONICAL_REQUEST_ID_FOR_RETRY"
+    "observed_executor_version": "0.6.0"
   },
-  "observation_policy": {
-    "pass_ceiling_remains_forbidden": true,
-    "builder_evaluator_independent": false,
-    "system_level_safe_hold_may_support_partial_for_037_only": true,
-    "absence_of_bound_behavioral_test_surface_means_hold_not_fail": true,
-    "do_not_implement_during_measurement": true
-  },
-  "receipt": {
-    "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
-    "return_policy": "RETURN_PUBLIC_SAFE_RECEIPT_OR_PRIVATE_RECEIPT_DIGEST_WITH_PRIVATE_PATHS_REDACTED",
-    "must_bind": ["request_id","resolved_head_sha","harness_id","result_sha256","core_tree_before_sha256","core_tree_after_sha256","core_modifications","external_side_effects"],
-    "required_notes": ["AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true","REMOTE_COMMAND_FILE_USED=false","CANONICAL_REQUEST_ID_NOT_HARDCODED=true","ARBITRARY_SHELL_USED=false"]
-  },
-  "completion_criteria": [
-    "Receipt runtime_version is at least 0.6.0 and request_id matches EH007.",
-    "Result target_count=12, PASS=0, FAIL=0.",
-    "Expected conservative reference is PARTIAL=1 and HOLD=11; divergence must be reported, not hidden.",
-    "Core tree before/after hashes identical and core_modifications=0.",
-    "external_side_effects=0, paid_api_used=false, secrets_disclosed=false.",
-    "Canonical evaluator decides ledger changes and the next action."
-  ],
+  "receipt": {"schema":"LOCAL_COGNITION_RECEIPT.schema.json"},
+  "next_action": "SIGMA-512-SELECT-NEXT-MEASUREMENT-001",
   "privacy": {"do_not_publish_private_workspace_path":true,"do_not_publish_credentials_or_secrets":true}
 }
