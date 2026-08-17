@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "SECTION_XVII_PROVENANCE_REPAIR_VERIFICATION",
+  "recorded_at": "2026-08-18T04:50:00+07:00",
+  "active_window": "HAND TO HAND_ CỬA 2",
+  "active_pointer_transfer": false,
+  "candidate_acceptance": "STILL_HOLD_PENDING_CHALLENGE_4_RECHECK",
+  "defect": {
+    "original_invalid_receipt": "linkcomltd-byte/sigma-remote-operator@RESULTS/REJECTED/SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215.PROVENANCE_REJECTED_1a280a916cb4.json",
+    "class": "SHARED_MUTABLE_REMOTE_TRACKING_REF_RACE",
+    "status": "REPAIRED"
+  },
+  "repair": {
+    "remote_operator_version": "0.6.1",
+    "snapshot_policy": "IMMUTABLE_RESOLVED_COMMIT_PER_EXECUTION",
+    "corrected_receipt_path": "linkcomltd-byte/sigma-remote-operator@RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215.json",
+    "corrected_receipt_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215",
+    "corrected_receipt_resolved_head_sha": "fe3ab1cf2daaee0dfcbdba6dfd46a0096d67af53",
+    "request_at_resolved_head": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215",
+    "receipt_status": "SUCCESS",
+    "target_count": 12,
+    "hold": 12,
+    "pass": 0,
+    "core_modifications": 0,
+    "external_side_effects": 0,
+    "controller_ingestion_commit": "da6073d0469a94a4da3fd3775cf6af00758f5fa5"
+  },
+  "canonical_after_ingestion": {
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XVIII-216-235",
+    "counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 130,
+      "FAIL": 0,
+      "NOT_AUDITED": 253,
+      "NOT_APPLICABLE": 0
+    }
+  },
+  "new_machine_evidence_gap": {
+    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XVIII-216-235",
+    "receipt_status": "SUCCESS",
+    "resolved_head_sha": "da6073d0469a94a4da3fd3775cf6af00758f5fa5",
+    "runtime_version": "0.6.1",
+    "target_count": 20,
+    "hold": 20,
+    "pass": 0,
+    "core_modifications": 0,
+    "external_side_effects": 0,
+    "ingestion_state": "MACHINE_RECEIPT_AHEAD_OF_CANONICAL_PENDING_CONTROLLER_INGESTION"
+  },
+  "candidate_rule": "The previous correct HOLD is resolved only at the system-defect level. The candidate must independently fresh-fetch and answer Challenge 4 again without expected answers. No identity acceptance or takeover is implied by this repair record."
+}
