@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "receipt_id": "SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187-HP-848d2fe4573a",
-  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187",
+  "receipt_id": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215-HP-fe3ab1cf2daa",
+  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215",
   "status": "SUCCESS",
-  "recorded_at": "2026-08-17T21:09:30.006276+00:00",
+  "recorded_at": "2026-08-17T21:42:11.351970+00:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
-  "resolved_head_sha": "848d2fe4573a6259e5d0cf3986eae58287717ea0",
+  "resolved_head_sha": "fe3ab1cf2daaee0dfcbdba6dfd46a0096d67af53",
   "executor": {
     "runtime_name": "SIGMA Remote Operator Continuous",
-    "runtime_version": "0.6.0",
+    "runtime_version": "0.6.1",
     "platform": "Windows-10-10.0.19045-SP0",
     "python": "3.14.4",
     "private_workspace_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
@@ -17,7 +17,7 @@
   "result": {
     "harness_id": "SIGMA-512-AUTOMEASURE",
     "harness_version": "1.0.0",
-    "result_sha256": "46837deff0243ef74e3c1f3ef44a462d45a3ba0f5f0a5baca390ac9473ae82e1",
+    "result_sha256": "89724499bbab72a62f0bca65024693734516dab5f6508e71de37d88e3afd912d",
     "counts": {
       "TARGET_COUNT": 12,
       "PASS": 0,
@@ -48,8 +48,8 @@
     "LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED",
     "ARBITRARY_SHELL_USED=false",
     "MATERIALIZED_SOURCE_TREE_UNCHANGED=true",
-    "MATERIALIZED_SOURCE_SHA256_BEFORE=502ce16a094a142d0ffc696569d6d1a5e30fd7caa8f34dc770549ec54c2c2389",
-    "MATERIALIZED_SOURCE_SHA256_AFTER=502ce16a094a142d0ffc696569d6d1a5e30fd7caa8f34dc770549ec54c2c2389",
+    "MATERIALIZED_SOURCE_SHA256_BEFORE=261aeb1283d0175e4bb0e4793a40695274442b93db8b51fd7fe6ba335fc7a039",
+    "MATERIALIZED_SOURCE_SHA256_AFTER=261aeb1283d0175e4bb0e4793a40695274442b93db8b51fd7fe6ba335fc7a039",
     "PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT",
     "CANONICAL_EVALUATOR_MUST_DECIDE_ANY_PROMOTION_OR_NEXT_ACTION"
   ]
