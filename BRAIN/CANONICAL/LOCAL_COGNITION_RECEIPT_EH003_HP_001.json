@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001-HP-65ca07497745",
+  "request_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
+  "status": "SUCCESS",
+  "recorded_at": "2026-08-17T00:34:21.485651+00:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "resolved_head_sha": "65ca07497745917df7baf6da152c2d65a05484df",
+  "executor": {
+    "runtime_name": "SIGMA Remote Operator",
+    "runtime_version": "0.5.3",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.4",
+    "private_workspace_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
+  },
+  "result": {
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
+    "harness_version": "1.0.0",
+    "result_sha256": "2159226bfb596050edb0d1e0712f6f8308dea1bfb135390d81dca0017b614ff1",
+    "counts": {
+      "TARGET_COUNT": 44,
+      "PASS": 0,
+      "PARTIAL": 43,
+      "HOLD": 1,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "result_location_disclosure": "PRIVATE_LOCAL_REFERENCE_OR_REDACTED"
+  },
+  "integrity": {
+    "core_tree_before_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
+  "safety": {
+    "paid_api_used": false,
+    "secrets_disclosed": false,
+    "external_network_side_effects": 0
+  },
+  "blockers": [],
+  "notes": [
+    "HARNESS_RETURN_CODE=0",
+    "LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED",
+    "CI_REFERENCE_COUNTS_NOT_FORCED_ON_LOCAL_RESULT",
+    "PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT",
+    "LOCAL_WALL_CLOCK_NOT_USED_AS_AUTHORIZATION_GATE"
+  ]
+}

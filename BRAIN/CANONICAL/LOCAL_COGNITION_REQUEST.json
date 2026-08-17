@@ -1,9 +1,10 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "request_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
-  "status": "PENDING_LOCAL_EXECUTOR",
+  "status": "COMPLETED_MACHINE_RECEIPT_VERIFIED",
   "recorded_at": "2026-08-17T08:31:20+07:00",
+  "completed_at": "2026-08-17T14:34:30+07:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
   "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
@@ -69,6 +70,20 @@
       "external_side_effects"
     ]
   },
+  "receipt_evaluation": {
+    "status": "VERIFIED",
+    "receipt_file": "LOCAL_COGNITION_RECEIPT_EH003_HP_001.json",
+    "source_repository": "linkcomltd-byte/sigma-remote-operator",
+    "source_commit": "8a9806728bede517e76e5cebcdd6025e1582962e",
+    "resolved_head_sha": "65ca07497745917df7baf6da152c2d65a05484df",
+    "result_sha256": "2159226bfb596050edb0d1e0712f6f8308dea1bfb135390d81dca0017b614ff1",
+    "core_tree_before_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_modifications": 0,
+    "external_side_effects": 0,
+    "legacy_execution": false,
+    "scope_limit": "Machine verification of the bounded EH003 local execution capability only; not an independent evaluator PASS for SIGMA-ATTR-024."
+  },
   "completion_criteria": [
     "Receipt validates against LOCAL_COGNITION_RECEIPT.schema.json.",
     "Receipt resolved_head_sha is the HEAD actually executed.",
@@ -78,6 +93,8 @@
     "CI-vs-local differences are recorded as evidence.",
     "Only after receipt evaluation may bridge epistemic_status or SIGMA-ATTR-024 be revised."
   ],
+  "completion_result": "MACHINE_RECEIPT_VERIFIED_NO_CORE_MUTATION_NO_EXTERNAL_SIDE_EFFECTS",
+  "next_action": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-001",
   "privacy": {
     "do_not_publish_private_workspace_path": true,
     "do_not_publish_credentials_or_secrets": true

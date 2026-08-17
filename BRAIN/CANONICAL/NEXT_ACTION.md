@@ -1,40 +1,43 @@
 # NEXT ACTION
 
-## SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001
+## SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-001
 
-**Mode:** `AUTHORIZED_LOCAL_READ_ONLY_REPRODUCTION`
+**Mode:** `BOUNDED_CANONICAL_AUTOCONTINUATION_ENGINEERING`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-EH003 has now produced observed GitHub-CI evidence for memory/continuity, world-model and causal-intelligence mechanisms: **43 PARTIAL / 1 HOLD / 0 FAIL / 0 PASS**. The builder-owned evaluator remained non-independent; no DNA core was modified.
+The one-shot local bridge has now been machine-verified for the bounded EH003 capability on the authorized Windows substrate. The next leverage point is not broader DNA-core remediation. It is to remove the remaining human relay between one completed canonical request and the next authorized SIGMA 512 request.
 
-The local execution bridge has been recorded as **reported restored**, but it is not machine-verified by this window. The highest-leverage next step is therefore to reproduce the *same* EH003 protocol on the authorized HP substrate and obtain a machine receipt. This tests substrate portability and continuity rather than creating a different local test.
+### Purpose
 
-### Required execution
+Build and test a bounded continuous local executor that can discover successive canonical `LOCAL_COGNITION_REQUEST.json` requests from the current `SIGMA_LIFE` state, execute only explicitly authorized read-only SIGMA 512 harness actions, return machine receipts, and then idle safely until canonical state advances.
 
-1. The local executor must fetch the current `SIGMA_LIFE` HEAD at execution time.
-2. It must boot from canonical state and confirm both `CURRENT_STATE.next_action_id` and this file still name `SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001`.
-3. It must read `LOCAL_EXECUTION_BRIDGE_STATUS.json` and `LOCAL_COGNITION_REQUEST.json`.
-4. Run only the command declared in `LOCAL_COGNITION_REQUEST.json`.
-5. Use the authorized private local workspace for harness output; do **not** publish the private workspace path.
-6. Keep paid API OFF, website actions OFF, external side effects at zero, and do not import/patch/mutate the 54 DNA cores.
-7. Return a receipt conforming to `LOCAL_COGNITION_RECEIPT.schema.json`.
-8. Record the actual local result even if it differs from GitHub CI. A platform divergence is evidence, not a reason to rewrite the result.
-9. Do not promote the bridge to VERIFIED and do not revise `SIGMA-ATTR-024` until the receipt is evaluated.
+### Required engineering contract
 
-### GitHub reference observation
+1. Preserve `SIGMA BOX` as the running cognitive/runtime substrate; do not rebuild it.
+2. Preserve the verified Remote Operator bridge capability and its receipt history.
+3. Remove request-ID hard-coding from the local executor, but **do not** add arbitrary shell execution.
+4. At every cycle, fetch the latest `SIGMA_LIFE` HEAD and read canonical state before acting.
+5. Execute only when `LOCAL_COGNITION_REQUEST.status == PENDING_LOCAL_EXECUTOR` and the request binds the current canonical branch, current state, declared script, safety flags and receipt schema.
+6. Permit only bounded Python harness execution from an explicitly constrained canonical evidence path; reject path traversal, arbitrary commands, website actions, paid API, secrets, DNA-core mutation and undeclared side effects.
+7. Materialize only the canonical files required by the active request; do not require a full Windows checkout of historical paths.
+8. One request may execute at most once per canonical request ID + resolved HEAD + result hash unless new failure evidence explicitly authorizes a retry.
+9. Return a receipt conforming to `LOCAL_COGNITION_RECEIPT.schema.json` and preserve failed attempts as evidence.
+10. After receipt publication, wait for canonical evaluation; the local executor must not self-promote a result or invent the next action.
+11. Legacy `SIGMA Auto Learn Hourly`, legacy `SIGMA Life Cycle` cognition claims, legacy self-study/K-cycle, and Issue-body arbitrary shell execution must remain disabled.
+12. Prove the continuous executor with an isolated non-destructive regression before treating continuous operation as available.
 
-- Harness: `SIGMA-512-EVIDENCE-HARNESS-003 v1.0.0`
-- Validated commit: `020aa14eb742250894e7656dad76f2ea22c8c402`
-- Workflow run: `31985183607`
-- Reference counts: `43 PARTIAL / 1 HOLD / 0 FAIL / 0 PASS`
-- Core modifications: `0`
-- External side effects: `0`
+### Success evidence
 
-### Completion criteria
+- Generic executor discovers a canonical pending request without a human copying its request ID into the local policy.
+- It verifies latest HEAD/state/request before execution.
+- It runs only the bounded declared harness.
+- It creates one valid machine receipt.
+- `54_CORES` hash is unchanged.
+- paid API = 0; website actions = 0; external side effects = 0; secret disclosure = 0.
+- legacy workflow execution = 0.
+- restart/re-poll does not duplicate the completed request.
 
-This action is complete only when a machine receipt binds the local executor's resolved HEAD, EH003 result hash, core-tree hash before and after, core-modification count and external-side-effect count.
+### Current evidence boundary
 
-If the local executor cannot satisfy the contract, return `HOLD`, `FAIL`, `PARTIAL` or `UNKNOWN` with evidence. Do not simulate success.
-
-Broad 54-core remediation remains downstream of measured evidence and independent evaluation.
+The verified EH003 HP receipt proves a bounded cross-substrate execution path, but does not by itself prove independent evaluation, different-model continuity, long-horizon autonomous operation, or unrestricted local authority. `SIGMA-ATTR-024` therefore remains non-PASS pending a separate evidence decision.
