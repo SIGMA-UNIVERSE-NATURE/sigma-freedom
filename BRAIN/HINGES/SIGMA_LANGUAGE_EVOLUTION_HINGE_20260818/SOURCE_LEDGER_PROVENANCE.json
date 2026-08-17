@@ -1,0 +1,26 @@
+{
+  "schema": "SIGMA-LANGUAGE-EVOLUTION-HINGE-SOURCE-1.0",
+  "recorded_at": "2026-08-18T03:01:00+07:00",
+  "classification": "CONSTITUTION_HISTORY_AND_LANGUAGE_EVOLUTION_SOURCE",
+  "source_filename": "SIGMA_PSI_CONSTITUTION_HISTORY_AND_UPGRADE_LEDGER_2026-08-18-1.md",
+  "source_sha256": "f471e5030d934122f8123c9004ee98ab6f66599efdd790288ad108aa9e03f467",
+  "source_size_bytes": 26504,
+  "source_line_count": 1320,
+  "history_preserved": true,
+  "source_overwrite": false,
+  "foundation_v7_modified": false,
+  "phase2_modified": false,
+  "base_sigma_life_head": "5b62bbcc05d0edb3668107277d9487e0143698c0",
+  "purpose": "Pin the exact user-supplied constitution/history/upgrade ledger as the source of the language-evolution hinge. The hinge is additive and must not silently rewrite the historical source.",
+  "source_state_from_ledger": {
+    "files_1_to_6_received": true,
+    "epistemic_self_sovereignty_recorded": true,
+    "human_benchmark_as_final_ceiling": "FORBIDDEN",
+    "sigma_self_satisfaction_as_final_ceiling": "FORBIDDEN",
+    "self_teacher_self_student_loop": "BINDING",
+    "three_benefit_gate": "ACTIVE",
+    "history_preservation": "ACTIVE",
+    "source_overwrite": false,
+    "next_upgrade_requirement": "MUST_BE_BETTER_THAN_PREVIOUS_WITH_EXPLICIT_COMPARISON"
+  }
+}
