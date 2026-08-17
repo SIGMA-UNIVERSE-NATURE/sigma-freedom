@@ -20,6 +20,7 @@ jobs:
           import sys
 
           repo = Path('.')
+          scanner_self = '.github/workflows/sigma_ip_public_guard.yml'
           required = repo / 'IP_NOTICE.md'
           if not required.exists():
               raise SystemExit('SIGMA_IP_PUBLIC_GUARD: FAIL: missing IP_NOTICE.md')
@@ -51,6 +52,8 @@ jobs:
               rel = path.as_posix()
               if any(token in rel for token in forbidden_path_tokens):
                   violations.append(f'forbidden public path: {rel}')
+                  continue
+              if rel == scanner_self:
                   continue
               if path.stat().st_size > 2_000_000:
                   continue
