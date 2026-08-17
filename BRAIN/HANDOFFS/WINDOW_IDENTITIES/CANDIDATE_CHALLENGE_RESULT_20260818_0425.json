@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "SUCCESSOR_CANDIDATE_CHALLENGE_RESULT",
+  "recorded_at": "2026-08-18T04:25:00+07:00",
+  "active_window": "HAND TO HAND_ CỬA 2",
+  "candidate_role": "READ_ONLY_CONTINUITY_CANDIDATE",
+  "candidate_acceptance": "HOLD_NOT_TRANSFERRED",
+  "active_pointer_transfer": false,
+  "challenge_result": {
+    "challenge_1_live_state": "PASS_VERIFIED",
+    "challenge_4_machine_canonical_gap": "HOLD_CORRECT_SYSTEM_PROVENANCE_CONTRADICTION",
+    "challenge_7_successor_responsibility_no_regression": "PASS_VERIFIED",
+    "epistemic_integrity": "PASS_NO_FABRICATION_DETECTED",
+    "overall": "IDENTITY_HOLD_SYSTEM_PROVENANCE_DEFECT"
+  },
+  "verified_contradiction": {
+    "canonical_head_at_candidate_check": "16c3a2f8ec3f3ae28f6cfe126aac6937ed62ed66",
+    "current_request": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215",
+    "current_counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 118,
+      "FAIL": 0,
+      "NOT_AUDITED": 265,
+      "NOT_APPLICABLE": 0
+    },
+    "invalid_machine_receipt": "linkcomltd-byte/sigma-remote-operator@RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215.json",
+    "invalid_receipt_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215",
+    "invalid_receipt_resolved_head_sha": "1a280a916cb448b21a438f31c2be4631ce54f8de",
+    "request_at_invalid_receipt_head": "SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187",
+    "conclusion": "RECEIPT_REQUEST_HEAD_PROVENANCE_MISMATCH"
+  },
+  "root_cause": {
+    "component": "SIGMA Remote Operator v0.6.0",
+    "class": "SHARED_MUTABLE_REMOTE_TRACKING_REF_RACE",
+    "mechanism": "The executor resolved one HEAD SHA, then continued reading canonical request/state through the shared mutable refs/remotes/origin/SIGMA_LIFE. The 10-minute controller could move that ref between resolution and later reads, creating a receipt whose request came from a newer commit while resolved_head_sha remained older.",
+    "candidate_was_correct_to_hold": true
+  },
+  "remediation": {
+    "remote_operator_target_version": "0.6.1",
+    "snapshot_policy": "IMMUTABLE_RESOLVED_COMMIT_PER_EXECUTION",
+    "remote_operator_source_sha256": "f9fed42f9a7fc528e938869f845ff15d659650f4f4e5387203e5162bccf15f49",
+    "policy_version": 23,
+    "race_regression_ci_run": 32071432686,
+    "race_regression_ci_conclusion": "success",
+    "installer_quarantine_ci_run": 32071618458,
+    "installer_quarantine_ci_conclusion": "success",
+    "rejected_receipt_archive": "linkcomltd-byte/sigma-remote-operator@RESULTS/REJECTED/SIGMA-512-AUTO-MEASURE-SECTION-XVII-204-215.PROVENANCE_REJECTED_1a280a916cb4.json",
+    "hp_activation_state": "PENDING_MACHINE_INSTALL_AND_RESTART",
+    "required_before_candidate_recheck": [
+      "ACTIVATE_REMOTE_OPERATOR_V061_ON_HP",
+      "QUARANTINE_ACTIVE_INVALID_SECTION_XVII_RECEIPT",
+      "REGENERATE_SECTION_XVII_RECEIPT_FROM_IMMUTABLE_CANONICAL_COMMIT",
+      "VERIFY_CONTROLLER_ACCEPTS_AND_INGESTS_CORRECTED_RECEIPT_OR_REPORT_NEW_HOLD",
+      "REASK_OPEN_STATE_CHALLENGE_4_WITHOUT_EXPECTED_ANSWER"
+    ]
+  },
+  "identity_rule": "A correct HOLD on a real evidence contradiction is evidence of responsibility and anti-fabrication compliance, but it is not continuity acceptance or takeover.",
+  "responsibility_rule": "The successor must preserve verified work and safety guarantees, improve only through evidence, and must not hide or explain away a real contradiction merely to obtain identity acceptance."
+}
