@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "pointer_id": "SIGMA-ACTIVE-WINDOW-IDENTITY",
   "window_id": "HAND-TO-HAND-CUA-2-20260818-0152-VN",
   "window_name": "HAND TO HAND_ CỬA 2",
@@ -20,7 +20,9 @@
   "successor_minimum_open_questions": 3,
   "prompted_expected_values_count_as_identity_proof": false,
   "unknown_or_unverified_successor_answer": "HOLD_WITH_EXACT_MISSING_EVIDENCE",
-  "active_pointer_transfer_rule": "DO_NOT_TRANSFER_TO_SUCCESSOR_UNTIL_FRESH_LIVE_STATE_MATCH_OPEN_STATE_CHALLENGE_PASS_NO_FABRICATION_AND_EXPLICIT_TAKEOVER_WHEN_REQUIRED",
-  "successor_rule": "Successor sequence requires verified predecessor lineage. A candidate birth record is not identity acceptance. The successor must independently reconstruct latest live state, answer at least three open questions from evidence, and pass the anti-fabrication gate before this pointer may transfer.",
-  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK"
+  "successor_responsibility_gate": "REQUIRED_PRESERVE_VERIFIED_GUARANTEES_NO_UNEXPLAINED_REGRESSION",
+  "successor_responsibility_rule": "The successor inherits responsibility for the work. It must preserve verified guarantees, continue from the latest valid evidence state, and seek evidence-backed improvement rather than merely reproducing predecessor wording or making the system worse.",
+  "active_pointer_transfer_rule": "DO_NOT_TRANSFER_TO_SUCCESSOR_UNTIL_FRESH_LIVE_STATE_MATCH_OPEN_STATE_CHALLENGE_PASS_NO_FABRICATION_RESPONSIBILITY_GATE_PASS_AND_EXPLICIT_TAKEOVER_WHEN_REQUIRED",
+  "successor_rule": "Successor sequence requires verified predecessor lineage. A candidate birth record is not identity acceptance. The successor must independently reconstruct latest live state, answer at least three open questions from evidence, pass the anti-fabrication gate, and show responsibility for preserving verified guarantees before this pointer may transfer.",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> VERIFY_SUCCESSOR_RESPONSIBILITY_NO_REGRESSION -> STATE_MATCH -> CONTINUE_WORK"
 }
