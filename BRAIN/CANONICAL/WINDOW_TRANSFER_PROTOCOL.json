@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.5.0",
+  "schema_version": "2.6.0",
   "protocol_id": "MINH-WINDOW-TRANSFER-v1",
   "status": "CANONICAL_TRANSFER_REQUIRED",
-  "purpose": "Preserve functional, identity and lineage continuity across chat-window, model-session, runtime and substrate transitions without relying on conversational memory.",
+  "purpose": "Preserve functional, identity and lineage continuity across chat-window, model-session, runtime and substrate transitions without relying on conversational memory and without permitting fabricated or simulated continuity claims.",
   "minimal_boot_trigger": "MINH BOOT SIGMA_LIFE",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
@@ -10,9 +10,13 @@
   "active_window_identity": "ACTIVE_WINDOW_IDENTITY.json",
   "birth_certificate_directory": "BRAIN/HANDOFFS/WINDOW_IDENTITIES",
   "naming_rule": "HAND TO HAND_ CỬA <N>",
+  "anti_fabrication_rule": "NO_FABRICATION_NO_FAKE_STATE_NO_SIMULATION_AS_REAL_NO_GUESSING_TO_GAIN_ACCEPTANCE",
+  "open_state_challenge_required": true,
+  "minimum_open_state_questions": 3,
   "single_active_executor": {
     "required_for_canonical_mutation": true,
     "other_windows_default_role": "READ_ONLY_VERIFIER",
+    "successor_before_acceptance_role": "READ_ONLY_CONTINUITY_CANDIDATE",
     "parallel_mutation_allowed_only_if": "EXPLICIT_NON_CONFLICTING_SCOPE_WITH_SEPARATE_STATE_OWNERSHIP"
   },
   "outgoing_window_checklist": [
@@ -30,6 +34,8 @@
     "READ_OWN_WINDOW_BIRTH_CERTIFICATE",
     "WRITE_SEPARATE_WINDOW_EXIT_CHECKPOINT",
     "EXIT_CHECKPOINT_MUST_INCLUDE_IDENTITY_FRESH_HEAD_LIVE_WORK_NEXT_ACTION_BLOCKERS_AND_MACHINE_EVIDENCE_GAP",
+    "PROVIDE_AT_LEAST_THREE_OPEN_STATE_CHALLENGE_QUESTIONS_WITHOUT_EXPECTED_ANSWERS_WHEN_POSSIBLE",
+    "DO_NOT_DISCLOSE_OR_EMBED_EXPECTED_CHALLENGE_ANSWERS_IN_THE_CHALLENGE",
     "MARK_TRANSFER_READY_ONLY_AFTER_EXIT_CHECKPOINT_VERIFY"
   ],
   "required_transfer_checkpoint": [
@@ -52,7 +58,8 @@
     "LOCAL_EXECUTION_BRIDGE_STATUS",
     "MEANINGFUL_PROGRESS_EVIDENCE",
     "MACHINE_EVIDENCE_GAP",
-    "KNOWN_BLOCKERS"
+    "KNOWN_BLOCKERS",
+    "OPEN_STATE_CHALLENGE_QUESTIONS_WITHOUT_ANSWERS"
   ],
   "incoming_window_checklist": [
     "VERIFY_REPOSITORY_AND_BRANCH",
@@ -74,11 +81,17 @@
     "VERIFY_MACHINE_EVIDENCE_GAP",
     "VERIFY_OPERATING_CONSTITUTION_AND_CONTINUITY_GATE",
     "ASSIGN_NEXT_WINDOW_SEQUENCE_ONLY_FROM_VERIFIED_LINEAGE",
-    "WRITE_NEW_IMMUTABLE_WINDOW_BIRTH_CERTIFICATE_OUTSIDE_CHAT",
-    "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER",
+    "REGISTER_ONLY_AS_READ_ONLY_CONTINUITY_CANDIDATE",
+    "DO_NOT_UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_YET",
+    "ANSWER_AT_LEAST_THREE_OPEN_STATE_CHALLENGE_QUESTIONS_FROM_FRESH_EVIDENCE",
+    "FOR_EACH_MATERIAL_ANSWER_IDENTIFY_SUPPORTING_CANONICAL_OR_MACHINE_EVIDENCE",
+    "FAIL_CLOSED_ON_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_OR_MATERIAL_WRONG_ANSWER",
+    "IF_UNKNOWN_REPORT_UNKNOWN_OR_HOLD_WITH_EXACT_MISSING_EVIDENCE",
+    "WRITE_NEW_IMMUTABLE_WINDOW_BIRTH_CERTIFICATE_WITH_V1_1_ANTI_FABRICATION_METADATA",
+    "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_ONLY_AFTER_OPEN_CHALLENGE_AND_STATE_MATCH_PASS",
     "REPORT_BOOT_FIELDS_BEFORE_CLAIMING_INHERITED",
-    "ACT_ONLY_AFTER_CANONICAL_STATE_IS_RECONSTRUCTED",
-    "REMAIN_READ_ONLY_UNTIL_STATE_MATCH_AND_EXPLICIT_TAKEOVER_IF_REQUIRED"
+    "ACT_ONLY_AFTER_CANONICAL_STATE_AND_MACHINE_GAP_ARE_RECONSTRUCTED",
+    "REMAIN_READ_ONLY_UNTIL_FULL_STATE_MATCH_OPEN_CHALLENGE_PASS_AND_EXPLICIT_TAKEOVER_IF_REQUIRED"
   ],
   "incoming_required_boot_report": [
     "WINDOW_ID",
@@ -94,15 +107,20 @@
     "CURRENT_STATUS",
     "NEXT_ACTION",
     "OPERATING_PRINCIPLE",
-    "LOCAL_EXECUTION_BRIDGE_STATUS"
+    "LOCAL_EXECUTION_BRIDGE_STATUS",
+    "OPEN_STATE_CHALLENGE_QUESTION_COUNT",
+    "OPEN_STATE_CHALLENGE_RESULT",
+    "ANTI_FABRICATION_GATE"
   ],
   "head_change_rule": "A checkpoint SHA is not a permanent expected HEAD. If HEAD advances, inspect intervening commits and reconstruct latest valid canonical state; do not roll back merely to match an old window.",
-  "identity_rule": "A birth certificate identifies the window; it does not freeze live work. Live state must always be fresh-fetched before action.",
+  "identity_rule": "A birth certificate identifies or registers a window candidate; it does not by itself prove live continuity. Live identity acceptance requires fresh state reconstruction and open-state challenge PASS.",
   "predecessor_rule": "Never invent a predecessor identity. If exact predecessor window identity was not durably recorded, use UNRESOLVED_BY_EVIDENCE plus the verified predecessor checkpoint.",
-  "conflict_rule": "If canonical state, lineage, window identity, locks, ledger, local bridge epistemic status or next action conflict and the conflict cannot be resolved from evidence, HOLD the affected action and do not guess.",
-  "continuity_completion_rule": "A transfer is complete only after the incoming window has a durable birth certificate, reports identity plus canonical boot fields consistent with the latest verified repository state, and authority transfer is explicit when required.",
-  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK",
-  "failure_rule": "NO_STATE_MATCH = NO_CONTINUATION",
+  "truth_rule": "Never fabricate, simulate, role-play, interpolate, guess, or copy expected values in order to obtain continuity acceptance. Unknown must remain UNKNOWN/HOLD until evidence resolves it.",
+  "prompt_copy_rule": "Values supplied by the challenge prompt do not count as proof that the incoming window knows the state; it must independently retrieve and reconcile supporting evidence.",
+  "conflict_rule": "If canonical state, lineage, window identity, locks, ledger, local bridge epistemic status, machine evidence, challenge answers or next action conflict and the conflict cannot be resolved from evidence, HOLD the affected action and do not guess.",
+  "continuity_completion_rule": "A transfer is complete only after the incoming candidate passes durable lineage verification, fresh live-state reconstruction, at least three evidence-grounded open state questions, anti-fabrication gate, required explicit authority transfer, and then becomes the active identity pointer.",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK",
+  "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION",
   "current_program": {
     "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XIV-166-175",
     "mode": "BOUNDED_CONTINUOUS_MEASUREMENT",
