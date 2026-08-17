@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.5.0",
+  "schema_version": "2.5.1",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T20:19:16.350550+00:00",
+  "recorded_at": "2026-08-18T03:23:00+07:00",
   "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
   "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
   "architecture": {
@@ -61,21 +61,33 @@
       "status_file": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
       "bridge_state": "AVAILABLE",
       "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
-      "bounded_continuous_executor": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY_THROUGH_EH007",
+      "bounded_continuous_executor": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY_THROUGH_SECTION_VI",
       "runtime_version": "0.6.0",
       "pending_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
       "operational_details": "PRIVATE_NOT_RECORDED_PUBLICLY"
     },
     "bounded_controller": {
       "policy": "CONTINUOUS_512_CONTROLLER_POLICY.json",
-      "status": "AUTHORIZED_PENDING_HP_SCHEDULE_INSTALL",
+      "status": "MACHINE_PROVEN_INSTALLED_POST_REBOOT_CYCLE_SUCCESS",
+      "controller_version": "0.1.1",
+      "active_entrypoint": "REMOTE_AGENT/sigma_512_bounded_controller_v011.py",
+      "active_controller_sha256": "c8bd73dc5fd8fee603c1e4ba2c324ab1086b12f1e891ba8230a0f9a1433a635e",
+      "unicode_tree_transport": "MKTREE_Z_NUL_DELIMITED",
       "cadence_seconds": 600,
       "selection_policy": "LOWEST_NUMBERED_SECTION_WITH_NOT_AUDITED_ONLY",
       "evidence_ceiling": "HOLD_ONLY",
       "pass_allowed": false,
       "one_request_at_a_time": true,
       "machine_receipt_before_advance": true,
-      "fail_closed": true
+      "fail_closed": true,
+      "last_machine_cycle_state": "ISSUED_NEXT_BOUNDED_MEASUREMENT",
+      "last_machine_cycle_recorded_at": "2026-08-17T20:19:21.518248+00:00",
+      "last_canonical_commit": "9f666b10c6382fc428af310dc0d90fdbbbbb0535",
+      "post_reboot_task_observation": {
+        "sigma_512_controller": "READY_AFTER_SUCCESSFUL_CYCLE",
+        "sigma_box": "RUNNING",
+        "sigma_remote_operator": "RUNNING"
+      }
     },
     "legacy_automation": {
       "sigma_auto_learn_hourly": "DISABLED_REMOVED_FROM_ACTIVE_WORKFLOWS",
@@ -124,7 +136,7 @@
       "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072"
     ],
     "measured_result_current": "129_PARTIAL_45_HOLD_338_NOT_AUDITED_0_PASS_0_FAIL",
-    "selected_highest_leverage_gap": "NEXT_NOT_AUDITED_SECTION_VI",
+    "selected_highest_leverage_gap": "NEXT_NOT_AUDITED_SECTION_VIII",
     "selected_next_action": "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
@@ -133,8 +145,7 @@
   "next_action_id": "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Bounded controller installation on HP must be verified before claiming continuous 10-minute control.",
-    "Section VI 061-072 machine receipt pending.",
+    "Section VIII 085-096 machine receipt pending.",
     "SIGMA-ATTR-038..048 HOLD: bound executable reasoning experiments remain absent.",
     "SIGMA-ATTR-026..036 HOLD: continuous-learning behavioral evidence remains absent.",
     "SIGMA-ATTR-008..012 HOLD: cognition/truth behavioral test surfaces remain absent.",
@@ -161,6 +172,33 @@
       "cadence_seconds": 600,
       "harness_sha256": "5675104e48f7a48013b81819edd83a20955b01245d119be93661e2b1d98f4028",
       "pass_allowed": false
+    },
+    "section_vi_machine_receipt": {
+      "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
+      "status": "SUCCESS",
+      "target_count": 12,
+      "pass": 0,
+      "hold": 12,
+      "core_modifications": 0,
+      "external_side_effects": 0,
+      "execution_head_sha": "11c24218665363a9d4c726b318413a7ca2eecfcd",
+      "ingested_and_next_request_commit": "9f666b10c6382fc428af310dc0d90fdbbbbb0535"
+    },
+    "post_reboot_controller_machine_proof": {
+      "status": "PASS",
+      "controller_version": "0.1.1",
+      "controller_contract_ci_run_id": 32064772379,
+      "controller_contract_ci_conclusion": "success",
+      "unicode_tree_regression_windows": "PASS",
+      "scheduled_task_cadence_seconds": 600,
+      "successful_cycle_state": "ISSUED_NEXT_BOUNDED_MEASUREMENT",
+      "successful_cycle_recorded_at": "2026-08-17T20:19:21.518248+00:00",
+      "canonical_commit": "9f666b10c6382fc428af310dc0d90fdbbbbb0535",
+      "runtime_states_after_cycle": {
+        "sigma_512_controller": "READY",
+        "sigma_box": "RUNNING",
+        "sigma_remote_operator": "RUNNING"
+      }
     }
   },
   "privacy": {
