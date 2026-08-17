@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
+  "classification": "PUBLIC_SAFE_REQUEST_POINTER",
+  "status": "PENDING_LOCAL_EXECUTOR",
+  "recorded_at": "2026-08-17T08:31:20+07:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
+  "source_evidence": {
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
+    "github_validated_commit": "020aa14eb742250894e7656dad76f2ea22c8c402",
+    "github_workflow_run_id": 31985183607,
+    "github_workflow_job_id": 95258841623,
+    "github_conclusion": "success",
+    "raw_result_sha256": "e18fe4381b3bcd9c741335f796c82293fa60091c55625d0701996802dc578d1a",
+    "reference_counts": {
+      "TARGET_COUNT": 44,
+      "PASS": 0,
+      "PARTIAL": 43,
+      "HOLD": 1,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "reference_core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be"
+  },
+  "purpose": "Reproduce the same EH003 measurement on the authorized local HP substrate through the restored execution bridge and return a machine receipt. Divergence from CI is evidence and must be reported, not hidden.",
+  "mode": "AUTHORIZED_LOCAL_READ_ONLY_REPRODUCTION",
+  "preconditions": [
+    "Fetch current SIGMA_LIFE HEAD.",
+    "Boot from canonical state; do not use chat memory as state.",
+    "Verify CURRENT_STATE.next_action_id and NEXT_ACTION.md both equal SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001.",
+    "Verify LOCAL_EXECUTION_BRIDGE_STATUS.json still requires a machine receipt before VERIFIED.",
+    "Do not run if another canonical mutation executor is active for the same state ownership."
+  ],
+  "execution": {
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
+    "harness_version": "1.0.0",
+    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_003/v1.0.0/run_harness.py",
+    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_003/v1.0.0/run_harness.py",
+    "environment": {
+      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
+      "SIGMA_HARNESS_OUTPUT_DIR": "AUTHORIZED_PRIVATE_LOCAL_WORKSPACE_RESOLVED_BY_REMOTE_OPERATOR"
+    },
+    "network_required": false,
+    "paid_api_allowed": false,
+    "external_side_effects_allowed": false,
+    "dna_core_mutation_allowed": false,
+    "website_actions_allowed": false
+  },
+  "observation_policy": {
+    "do_not_require_reference_counts_to_match": true,
+    "record_platform_divergence": true,
+    "record_each_failed_or_held_probe": true,
+    "pass_ceiling_remains_forbidden": true,
+    "builder_evaluator_independent": false
+  },
+  "receipt": {
+    "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
+    "return_policy": "RETURN_PUBLIC_SAFE_RECEIPT_OR_PRIVATE_RECEIPT_DIGEST_WITH_PRIVATE_PATHS_REDACTED",
+    "must_bind": [
+      "request_id",
+      "resolved_head_sha",
+      "harness_id",
+      "result_sha256",
+      "core_tree_before_sha256",
+      "core_tree_after_sha256",
+      "core_modifications",
+      "external_side_effects"
+    ]
+  },
+  "completion_criteria": [
+    "Receipt validates against LOCAL_COGNITION_RECEIPT.schema.json.",
+    "Receipt resolved_head_sha is the HEAD actually executed.",
+    "Result hash binds the local EH003 output.",
+    "Core tree before/after hashes are recorded.",
+    "No core mutation or external side effect is hidden; any nonzero value forces HOLD/FAIL investigation.",
+    "CI-vs-local differences are recorded as evidence.",
+    "Only after receipt evaluation may bridge epistemic_status or SIGMA-ATTR-024 be revised."
+  ],
+  "privacy": {
+    "do_not_publish_private_workspace_path": true,
+    "do_not_publish_credentials_or_secrets": true
+  }
+}

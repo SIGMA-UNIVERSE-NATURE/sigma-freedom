@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def fail(message: str) -> None:
@@ -27,6 +29,7 @@ def main() -> None:
     status = load("LOCAL_EXECUTION_BRIDGE_STATUS.json")
     schema = load("LOCAL_COGNITION_RECEIPT.schema.json")
     transfer = load("WINDOW_TRANSFER_PROTOCOL.json")
+    request = load("LOCAL_COGNITION_REQUEST.json")
     window_boot = (HERE / "MINH_WINDOW_BOOT.md").read_text(encoding="utf-8")
 
     required = set(manifest.get("required_files", []))
@@ -34,6 +37,7 @@ def main() -> None:
         "LOCAL_EXECUTION_BRIDGE_STATUS.json",
         "LOCAL_COGNITION_RECEIPT.schema.json",
         "validate_local_execution_bridge.py",
+        "LOCAL_COGNITION_REQUEST.json",
     ]:
         if name not in required:
             fail(f"manifest does not require {name}")
@@ -72,9 +76,9 @@ def main() -> None:
 
     schema_required = set(schema.get("required", []))
     expected_required = {
-        "schema_version", "receipt_id", "request_id", "status", "recorded_at",
-        "canonical_repository", "canonical_branch", "resolved_head_sha",
-        "executor", "result", "integrity", "safety",
+        "schema_version","receipt_id","request_id","status","recorded_at",
+        "canonical_repository","canonical_branch","resolved_head_sha",
+        "executor","result","integrity","safety",
     }
     if not expected_required.issubset(schema_required):
         fail("local cognition receipt schema missing required top-level fields")
@@ -82,7 +86,7 @@ def main() -> None:
     props = schema.get("properties", {})
     integrity_required = set(props.get("integrity", {}).get("required", []))
     if not {
-        "core_tree_before_sha256", "core_tree_after_sha256", "core_modifications", "external_side_effects"
+        "core_tree_before_sha256","core_tree_after_sha256","core_modifications","external_side_effects"
     }.issubset(integrity_required):
         fail("receipt schema missing integrity binding fields")
 
@@ -104,6 +108,25 @@ def main() -> None:
         fail("window transfer does not point to bridge status file")
     if "READ_LOCAL_EXECUTION_BRIDGE_STATUS" not in transfer.get("incoming_window_checklist", []):
         fail("incoming transfer checklist does not read bridge status")
+    if "READ_LOCAL_COGNITION_REQUEST_IF_ACTIVE" not in transfer.get("incoming_window_checklist", []):
+        fail("incoming transfer checklist does not read active local cognition request")
+
+    if request.get("classification") != "PUBLIC_SAFE_REQUEST_POINTER":
+        fail("local cognition request classification invalid")
+    if request.get("status") != "PENDING_LOCAL_EXECUTOR":
+        fail("active local cognition request must be PENDING_LOCAL_EXECUTOR")
+    if request.get("canonical_repository") != "SIGMA-UNIVERSE-NATURE/sigma-freedom" or request.get("canonical_branch") != "SIGMA_LIFE":
+        fail("local cognition request canonical source mismatch")
+    if request.get("request_id") != current_program.get("next_action"):
+        fail("local cognition request_id does not match transfer next_action")
+    execution = request.get("execution", {})
+    if execution.get("paid_api_allowed") is not False or execution.get("dna_core_mutation_allowed") is not False or execution.get("external_side_effects_allowed") is not False:
+        fail("local cognition request violates read-only safety gates")
+    if request.get("receipt", {}).get("schema") != "LOCAL_COGNITION_RECEIPT.schema.json":
+        fail("local cognition request does not bind the canonical receipt schema")
+    request_text = json.dumps(request, ensure_ascii=False)
+    if any(token in request_text for token in forbidden):
+        fail("private local operational detail leaked into public local cognition request")
 
     print("SIGMA_LOCAL_EXECUTION_BRIDGE_CONTRACT: PASS")
     print(f"BRIDGE_STATE={status['bridge_state']}")

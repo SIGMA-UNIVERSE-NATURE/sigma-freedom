@@ -26,11 +26,12 @@ Canonical brain root: `BRAIN/CANONICAL`
 6. Read `CURRENT_STATE.json`.
 7. Read `BRAIN_MANIFEST.json` and verify required files/invariants.
 8. Read `LOCAL_EXECUTION_BRIDGE_STATUS.json`.
-9. Read `NEXT_ACTION.md`.
-10. Read `INTELLIGENCE_CONTINUITY_PROGRAM.md`.
-11. Read `WINDOW_TRANSFER_PROTOCOL.json`.
-12. Read only the additional evidence/specification files required by the current action.
-13. Run or inspect the canonical validator before any high-impact continuation work where runtime execution is available.
+9. If `CURRENT_STATE.next_action_id` is a local execution action, read `LOCAL_COGNITION_REQUEST.json` and verify its `request_id` matches; otherwise treat that request file as inactive historical state.
+10. Read `NEXT_ACTION.md`.
+11. Read `INTELLIGENCE_CONTINUITY_PROGRAM.md`.
+12. Read `WINDOW_TRANSFER_PROTOCOL.json`.
+13. Read only the additional evidence/specification files required by the current action.
+14. Run or inspect the canonical validator before any high-impact continuation work where runtime execution is available.
 
 ## Continuation rules
 

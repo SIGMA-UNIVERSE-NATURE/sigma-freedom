@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
-  "recorded_at": "2026-08-17T08:19:00+07:00",
+  "recorded_at": "2026-08-17T08:31:20+07:00",
   "classification": "PUBLIC_SAFE",
   "bridge_state": "REPORTED_RESTORED",
   "epistemic_status": "AUTHORIZED_HUMAN_REPORTED_OBSERVATION_PENDING_MACHINE_RECEIPT",
@@ -26,5 +26,6 @@
       "external_side_effects"
     ]
   },
-  "next_verification": "Execute a canonical read-only cognition request on an authorized local substrate and return a machine receipt. Until then the bridge must not be represented as VERIFIED."
+  "next_verification": "Execute canonical request SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001 on an authorized local substrate and return a machine receipt. Until receipt evaluation, the bridge must not be represented as VERIFIED.",
+  "pending_request_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001"
 }
