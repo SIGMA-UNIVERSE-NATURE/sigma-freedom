@@ -1,9 +1,9 @@
 {
   "schema_version": "2.5.1",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T23:09:01.453643+00:00",
+  "recorded_at": "2026-08-17T23:19:01.402918+00:00",
   "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
-  "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440",
+  "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XXVIII-449-449",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -29,9 +29,9 @@
       "TOTAL_RECORDS": 512,
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 310,
+      "HOLD": 335,
       "FAIL": 0,
-      "NOT_AUDITED": 73,
+      "NOT_AUDITED": 48,
       "NOT_APPLICABLE": 0,
       "ledger": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json"
     },
@@ -63,7 +63,7 @@
       "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
       "bounded_continuous_executor": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY_THROUGH_SECTION_VI",
       "runtime_version": "0.6.0",
-      "pending_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440",
+      "pending_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVIII-449-449",
       "operational_details": "PRIVATE_NOT_RECORDED_PUBLICLY"
     },
     "bounded_controller": {
@@ -148,16 +148,17 @@
       "SIGMA-512-AUTO-MEASURE-SECTION-XXIII-326-350",
       "SIGMA-512-AUTO-MEASURE-SECTION-XXIV-351-370",
       "SIGMA-512-AUTO-MEASURE-SECTION-XXV-371-395",
-      "SIGMA-512-AUTO-MEASURE-SECTION-XXVI-396-415"
+      "SIGMA-512-AUTO-MEASURE-SECTION-XXVI-396-415",
+      "SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440"
     ],
-    "measured_result_current": "129_PARTIAL_310_HOLD_73_NOT_AUDITED_0_PASS_0_FAIL",
+    "measured_result_current": "129_PARTIAL_335_HOLD_48_NOT_AUDITED_0_PASS_0_FAIL",
     "selected_highest_leverage_gap": "NEXT_NOT_AUDITED_SECTION_VIII",
-    "selected_next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440",
+    "selected_next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXVIII-449-449",
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
   },
-  "active_goal": "Measure remaining NOT_AUDITED attributes in Section XXVII (Robustness, resilience và failure recovery) only.",
-  "next_action_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440",
+  "active_goal": "Measure remaining NOT_AUDITED attributes in Section XXVIII (Evaluation science) only.",
+  "next_action_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVIII-449-449",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
     "Section VIII 085-096 machine receipt pending.",
