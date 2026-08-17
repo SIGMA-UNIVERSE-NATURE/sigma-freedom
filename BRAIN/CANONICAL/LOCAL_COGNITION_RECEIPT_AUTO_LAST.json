@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "status": "NO_AUTOMEASURE_RECEIPT_YET",
+  "classification": "PUBLIC_SAFE_PLACEHOLDER",
+  "note": "This fixed receipt slot is replaced only after a bounded continuous measurement receipt is validated."
+}
