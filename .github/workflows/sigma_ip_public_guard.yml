@@ -1,0 +1,82 @@
+name: SIGMA IP Public Guard
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ip-public-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce public IP boundary
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+
+          repo = Path('.')
+          required = repo / 'IP_NOTICE.md'
+          if not required.exists():
+              raise SystemExit('SIGMA_IP_PUBLIC_GUARD: FAIL: missing IP_NOTICE.md')
+
+          forbidden_path_tokens = (
+              'SURVIVABILITY/IP_PROTECTION',
+              'TRADE_SECRET/',
+              'PRIVATE_OPERATIONAL/',
+              'SECRET_MATERIAL/',
+              'F174_EXECUTION_BRIDGE_PRIVATE',
+              'HP_HANDSHAKE_PRIVATE',
+          )
+          forbidden_classification_markers = (
+              'CLASSIFICATION: PRIVATE OPERATIONAL',
+              'CLASSIFICATION: TRADE SECRET',
+              'CLASSIFICATION: SECRET MATERIAL',
+              '"classification": "PRIVATE_OPERATIONAL_NO_SECRETS"',
+              '"default_decision": "DENY_PUBLIC_DISCLOSURE"',
+          )
+          secret_markers = (
+              '-----BEGIN PRIVATE KEY-----',
+              '-----BEGIN OPENSSH PRIVATE KEY-----',
+          )
+
+          violations = []
+          for path in repo.rglob('*'):
+              if not path.is_file() or '.git' in path.parts:
+                  continue
+              rel = path.as_posix()
+              if any(token in rel for token in forbidden_path_tokens):
+                  violations.append(f'forbidden public path: {rel}')
+                  continue
+              if path.stat().st_size > 2_000_000:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8', errors='ignore')
+              except Exception:
+                  continue
+              head = text[:8192]
+              for marker in forbidden_classification_markers:
+                  if marker in head:
+                      violations.append(f'private classification marker in public file: {rel}')
+                      break
+              for marker in secret_markers:
+                  if marker in text:
+                      violations.append(f'private-key marker in public file: {rel}')
+                      break
+
+          if violations:
+              print('SIGMA_IP_PUBLIC_GUARD: FAIL')
+              for v in violations:
+                  print(v)
+              sys.exit(1)
+
+          print('SIGMA_IP_PUBLIC_GUARD: PASS')
+          print('PUBLIC_NOTICE=PRESENT')
+          print('PRIVATE_IP_POLICY_TREE=ABSENT')
+          print('PRIVATE_CLASSIFICATION_MARKERS=ABSENT')
+          print('PRIVATE_KEY_MARKERS=ABSENT')
+          PY
