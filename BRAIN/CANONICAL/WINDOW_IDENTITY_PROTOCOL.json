@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_id": "SIGMA-WINDOW-IDENTITY-LINEAGE-v1",
+  "status": "CANONICAL_REQUIRED",
+  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory.",
+  "naming_rule": {
+    "canonical_pattern": "HAND TO HAND_ CỬA <N>",
+    "sequence_rule": "N = VERIFIED_PREDECESSOR_WINDOW_SEQUENCE + 1",
+    "subtitle_allowed": true,
+    "subtitle_pattern": "<PURPOSE_SHORT>",
+    "never_guess_sequence_or_predecessor": true,
+    "if_predecessor_identity_unresolved": "RECORD_UNRESOLVED_BY_EVIDENCE_AND_USE_VERIFIED_PREDECESSOR_CHECKPOINT"
+  },
+  "birth_certificate_required_fields": [
+    "window_id",
+    "window_name",
+    "window_sequence",
+    "created_at",
+    "registered_at",
+    "purpose",
+    "work_scope",
+    "predecessor_window_name",
+    "predecessor_window_sequence",
+    "predecessor_checkpoint",
+    "canonical_head_at_registration",
+    "authority_role",
+    "handoff_state",
+    "state_match_rule"
+  ],
+  "active_identity_pointer": "BRAIN/CANONICAL/ACTIVE_WINDOW_IDENTITY.json",
+  "birth_certificate_directory": "BRAIN/HANDOFFS/WINDOW_IDENTITIES",
+  "on_window_boot": [
+    "FRESH_FETCH_SIGMA_LIFE_HEAD",
+    "READ_WINDOW_IDENTITY_PROTOCOL",
+    "READ_ACTIVE_WINDOW_IDENTITY",
+    "FIND_AND_VERIFY_PREDECESSOR_WINDOW_BIRTH_CERTIFICATE_OR_VERIFIED_CHECKPOINT",
+    "INSPECT_ALL_INTERVENING_COMMITS",
+    "RECONSTRUCT_LATEST_CANONICAL_AND_MACHINE_EVIDENCE_STATE",
+    "ASSIGN_NEXT_WINDOW_SEQUENCE_ONLY_FROM_VERIFIED_LINEAGE",
+    "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT",
+    "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER",
+    "REMAIN_READ_ONLY_UNTIL_STATE_MATCH_AND_EXPLICIT_TAKEOVER_IF_REQUIRED"
+  ],
+  "on_meaningful_progress": [
+    "DO_NOT_REWRITE_BIRTH_FACTS",
+    "FRESH_FETCH_LATEST_CANONICAL_STATE",
+    "UPDATE_LIVE_WORK_POINTER_ONLY_WHEN_NEEDED",
+    "PRESERVE_CHECKPOINT_LINEAGE"
+  ],
+  "on_window_exit_or_transfer": [
+    "STOP_STARTING_NEW_MUTATIONS",
+    "FINISH_OR_HOLD_CURRENT_ATOMIC_ACTION",
+    "FRESH_FETCH_CURRENT_HEAD",
+    "WRITE_EXIT_CHECKPOINT_WITH_LAST_VERIFIED_HEAD_CURRENT_WORK_NEXT_ACTION_BLOCKERS_AND_MACHINE_EVIDENCE_GAP",
+    "SET_HANDOFF_STATE_TRANSFER_READY_ONLY_AFTER_CHECKPOINT_VERIFY",
+    "DO_NOT_MARK_SUCCESSOR_ACTIVE_UNTIL_SUCCESSOR_STATE_MATCH_AND_CHAU_EXPLICITLY_TRANSFERS_AUTHORITY_WHEN_REQUIRED"
+  ],
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK",
+  "failure_rule": "NO_STATE_MATCH = NO_CONTINUATION",
+  "stale_match_rule": "MATCHING_AN_OLD_CHECKPOINT_WITHOUT_FRESH_FETCHING_CURRENT_HEAD_IS_NOT_A_LIVE_STATE_MATCH",
+  "identity_vs_work_rule": "WINDOW_IDENTITY_IS_STABLE; LIVE_WORK_STATE_MUST_ALWAYS_BE_FRESH_FETCHED_BECAUSE_AUTOMATION_MAY_ADVANCE_CANONICAL_STATE",
+  "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY"
+}
