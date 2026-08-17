@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+  "version": "1.0.0",
+  "scope": "SECOND_SUCCESSOR_READ_ONLY_AUTODISCOVERY_PROBE",
+  "target_count": 9,
+  "pass_allowed": false,
+  "promotion_allowed": false,
+  "core_mutation_allowed": false,
+  "external_side_effects_allowed": false,
+  "purpose": "Measure whether the already-running v0.6 executor discovers a second canonical successor request while preserving the first machine receipt."
+}

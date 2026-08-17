@@ -4,23 +4,25 @@ on:
   push:
     branches: [SIGMA_LIFE]
     paths:
-      - 'EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/**'
+      - 'EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_002/**'
       - 'BRAIN/CANONICAL/CURRENT_STATE.json'
       - 'BRAIN/CANONICAL/NEXT_ACTION.md'
       - 'BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json'
       - 'BRAIN/CANONICAL/LOCAL_EXECUTION_BRIDGE_STATUS.json'
+      - 'BRAIN/CANONICAL/LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json'
       - '.github/workflows/sigma_512_continuous_executor_probe.yml'
   workflow_dispatch:
 
 jobs:
   probe:
     runs-on: ubuntu-latest
+    env:
+      SIGMA_LOCAL_EXECUTION_ID: SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002
     steps:
       - uses: actions/checkout@v4
-      - name: Run read-only continuous executor probe harness
+      - name: Run second successor read-only continuous executor probe
         env:
-          SIGMA_LOCAL_EXECUTION_ID: SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001
-          SIGMA_HARNESS_OUTPUT_DIR: ${{ runner.temp }}/sigma-continuous-probe
-        run: python EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/v1.0.0/run_harness.py
+          SIGMA_HARNESS_OUTPUT_DIR: ${{ runner.temp }}/sigma-continuous-probe-002
+        run: python EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_002/v1.0.0/run_harness.py
       - name: Show probe result
-        run: cat "${{ runner.temp }}/sigma-continuous-probe/continuous_executor_probe_result.json"
+        run: cat "${{ runner.temp }}/sigma-continuous-probe-002/continuous_executor_probe_002_result.json"

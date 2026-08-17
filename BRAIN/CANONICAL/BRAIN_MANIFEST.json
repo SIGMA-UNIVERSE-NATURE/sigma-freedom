@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.6.0",
+  "schema_version": "1.7.0",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -32,6 +32,7 @@
     "LOCAL_COGNITION_RECEIPT.schema.json",
     "LOCAL_COGNITION_REQUEST.json",
     "LOCAL_COGNITION_RECEIPT_EH003_HP_001.json",
+    "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
     "RESILIENCE_PUBLIC_POLICY.md",
     "RESILIENCE_PUBLIC_POLICY.json",
     "PRIVATE_RESILIENCE_PLAN_REQUEST.json",
@@ -89,6 +90,7 @@
     "continuous_local_request_requires_sha256_pinned_evidence_script": true,
     "continuous_local_executor_must_not_use_remote_command_file": true,
     "continuous_local_executor_must_not_use_arbitrary_shell": true,
-    "continuous_local_executor_must_not_self_promote_or_invent_next_action": true
+    "continuous_local_executor_must_not_self_promote_or_invent_next_action": true,
+    "continuous_executor_requires_successor_request_evidence_before_availability": true
   }
 }

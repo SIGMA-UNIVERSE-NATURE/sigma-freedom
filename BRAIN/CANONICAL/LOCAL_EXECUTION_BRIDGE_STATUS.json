@@ -1,17 +1,17 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
-  "recorded_at": "2026-08-17T14:55:00+07:00",
+  "recorded_at": "2026-08-17T15:14:25+07:00",
   "classification": "PUBLIC_SAFE",
   "bridge_state": "AVAILABLE",
   "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
   "verified_by_this_window": true,
-  "public_summary": "A machine receipt verifies the bounded EH003 read-only Windows execution capability. A separate continuous canonical auto-discovery capability is now pending isolated verification.",
+  "public_summary": "EH003 bounded Windows execution is machine-verified. Continuous executor probe 001 is also machine-observed for one auto-discovered request; a second successor request is pending before continuous availability is promoted.",
   "source": {
-    "kind": "MACHINE_RECEIPT_RETRIEVED_FROM_AUTHORIZED_REMOTE_OPERATOR_GIT",
+    "kind": "MACHINE_RECEIPTS_RETRIEVED_FROM_AUTHORIZED_REMOTE_OPERATOR_GIT",
     "repository": "linkcomltd-byte/sigma-remote-operator",
-    "commit": "8a9806728bede517e76e5cebcdd6025e1582962e",
-    "result_path": "RESULTS/SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001.json",
+    "commit": "c9a46d85e3cd3c7d7e697255167c2e261057a8ae",
+    "result_path": "RESULTS/SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001.json",
     "operational_details_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
   },
   "machine_receipt_required_before_verified": true,
@@ -53,10 +53,34 @@
     "paid_api_used": false,
     "secrets_disclosed": false
   },
-  "scope_limit": "The verified capability remains limited to the tested EH003 bounded execution. Continuous canonical request discovery is a new capability and is not yet verified.",
-  "executor_clock_note": "The HP executor wall clock was observed skewed; authorization is bound to live canonical HEAD/state/request rather than local wall-clock freshness.",
-  "pending_request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
-  "pending_verification_scope": "CONTINUOUS_CANONICAL_REQUEST_AUTODISCOVERY_ON_AUTHORIZED_WINDOWS_SUBSTRATE",
+  "continuous_executor_evidence": {
+    "probe_001_request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
+    "probe_001_status": "MACHINE_RECEIPT_VERIFIED_SINGLE_REQUEST",
+    "probe_001_receipt_file": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
+    "probe_001_source_commit": "c9a46d85e3cd3c7d7e697255167c2e261057a8ae",
+    "probe_001_resolved_head_sha": "cb0569c182a7dc35183d5a6341c76bfe6fabf7ae",
+    "probe_001_runtime_version": "0.6.0",
+    "probe_001_counts": {
+      "TARGET_COUNT": 8,
+      "PASS": 0,
+      "PARTIAL": 8,
+      "HOLD": 0,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "probe_001_result_sha256": "2fe5fcc6f54e2dc915dbcb2ff81df476a794b5d7a6831fdfa6cb189488f22042",
+    "auto_discovered": true,
+    "remote_command_file_used": false,
+    "request_id_hardcoded": false,
+    "arbitrary_shell_used": false,
+    "core_modifications": 0,
+    "external_side_effects": 0,
+    "availability_decision": "PARTIAL_EVIDENCE_SECOND_SUCCESSOR_PROBE_REQUIRED"
+  },
+  "scope_limit": "Continuous execution is not yet declared fully available from one successful auto-discovered request. Probe 002 must demonstrate successor discovery while prior receipt remains preserved.",
+  "executor_clock_note": "HP wall clock remains non-authoritative; execution authorization is bound to live canonical Git state.",
+  "pending_request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+  "pending_verification_scope": "SECOND_SUCCESSOR_CANONICAL_REQUEST_AUTODISCOVERY_ON_ALREADY_RUNNING_V060",
   "pending_executor_candidate": {
     "repository": "linkcomltd-byte/sigma-remote-operator",
     "commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
@@ -67,5 +91,5 @@
     "remote_command_file_required": false,
     "arbitrary_shell_allowed": false
   },
-  "next_verification": "Install the already contract-validated v0.6.0 Remote Operator once. It must discover the pending canonical probe without a copied request ID or Remote Operator command file, return one machine receipt, and remain idempotent on subsequent polls."
+  "next_verification": "Observe probe 002 machine receipt without reinstall, human-relayed request ID, or Remote Operator command file."
 }
