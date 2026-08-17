@@ -1,58 +1,72 @@
 {
-  "schema_version": "2.0.0",
-  "sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0346-VN",
-  "recorded_at": "2026-08-18T03:46:00+07:00",
-  "purpose": "Continuity checkpoint for the currently active SIGMA 512 brain-operations window. A candidate successor window must reconstruct this exact state from GitHub, then fresh-fetch and reconcile any later commits before Châu may assign takeover.",
+  "schema_version": "3.0.0",
+  "sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0416-VN",
+  "recorded_at": "2026-08-18T04:16:56+07:00",
+  "purpose": "Live continuity checkpoint for HAND TO HAND_ CỬA 2. A candidate successor must independently reconstruct the latest state from GitHub and machine evidence, pass the anti-fabrication open-state challenge, and demonstrate responsibility for preserving verified guarantees before any takeover can be considered.",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "SIGMA_LIFE",
-  "active_executor_role": "THIS_WINDOW_IS_ACTIVE_EXECUTOR_FOR_SIGMA_512_BRAIN_OPERATIONS",
-  "handoff_state": "NOT_YET_TRANSFERRED",
-  "verifier_default_role": "READ_ONLY_VERIFIER",
-  "authority_rule": "No other window may become active executor merely by knowing an old checkpoint or returning MATCH against stale state. It must read this sync from GitHub, verify its fingerprints, fresh-fetch current SIGMA_LIFE, inspect every intervening commit, reconcile canonical state against machine evidence, and remain READ_ONLY_VERIFIER until Châu explicitly assigns takeover.",
+  "active_window": {
+    "window_id": "HAND-TO-HAND-CUA-2-20260818-0152-VN",
+    "window_name": "HAND TO HAND_ CỬA 2",
+    "window_sequence": 2,
+    "authority_role": "ACTIVE_EXECUTOR_FOR_SIGMA_512_BRAIN_OPERATIONS",
+    "handoff_state": "NOT_YET_TRANSFERRED",
+    "active_identity_blob_sha": "6dd83ffe02068c73c401ad0b51bd8e8be67d36b8",
+    "identity_protocol_blob_sha": "8839beead3656998f6c4363ec15886296d415f7f",
+    "identity_validator_blob_sha": "fc4c15786439746565e6b09283f8d56ecf30aee1",
+    "root_of_trust_blob_sha": "19c1a412972aadf5ed2b46394df29e21681f208f"
+  },
+  "candidate_successor_role": "READ_ONLY_CONTINUITY_CANDIDATE",
+  "authority_rule": "No candidate may become the active window by repeating this file, copying prompt values, matching a stale checkpoint, or self-asserting identity. It must independently fresh-fetch evidence, answer open questions correctly, preserve verified guarantees, and receive explicit takeover when required.",
   "continuity_lineage": {
-    "previous_checkpoint": "274d890dfa25e0342747f05d2ab0a196756c79ec",
-    "previous_sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0129-VN",
-    "previous_sync_blob_sha": "40763fc9b104b21acd13ff1557a7e0f7ea728786",
-    "lineage_rule": "Historical checkpoints remain immutable in Git history. A newer sync advances identity state without erasing the older proof point."
+    "previous_checkpoint": "6f00811e7cd126ac99acdee1de4cb66600c52725",
+    "previous_sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0346-VN",
+    "previous_sync_blob_sha": "3683bb90148e0b70bfabaffccaff056c5c7d55fc",
+    "original_verified_predecessor_checkpoint": "274d890dfa25e0342747f05d2ab0a196756c79ec",
+    "lineage_rule": "Historical checkpoints remain immutable in Git history. New checkpoints advance the live responsibility state without erasing earlier proof points."
   },
   "canonical_fingerprint": {
-    "observed_head_before_sync_commit": "47315a9f3bf2d92816e4187206e979fdf03ad442",
-    "current_state_blob_sha": "754356f085899c1a19c3e397b4aa7b5be1689fc3",
-    "next_action_blob_sha": "0c4936bbbe9fbf63c3a53b68151444fd86da3912",
+    "observed_head_before_sync_commit": "b1ae20fa079a0638702f67eb3457a150d58edbfa",
+    "current_state_blob_sha": "90b93dc3ee1457a7144773ae7ae0cc53cc13c9cb",
+    "next_action_blob_sha": "4a11c8d4a344fb5a2b42beb919de7e7856fd76dd",
     "controller_policy_blob_sha": "be438800951d605b5f5a80d11f51328d231b0c5a",
-    "local_cognition_request_blob_sha": "1250523913db676a10de0d47effc51854c096328",
+    "local_cognition_request_blob_sha": "24b88e732a9db8fa1ccfee6668dbd2a383693d48",
     "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
-    "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
-    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
+    "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187",
+    "active_goal": "Measure remaining NOT_AUDITED attributes in Section XV (Multi-agent và social intelligence) only.",
     "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
     "ledger_counts": {
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 69,
+      "HOLD": 106,
       "FAIL": 0,
-      "NOT_AUDITED": 314,
+      "NOT_AUDITED": 277,
       "NOT_APPLICABLE": 0
     },
     "completed_bounded_measurements": [
       "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
       "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
-      "SIGMA-512-AUTO-MEASURE-SECTION-IX-097-108"
+      "SIGMA-512-AUTO-MEASURE-SECTION-IX-097-108",
+      "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
+      "SIGMA-512-AUTO-MEASURE-SECTION-XIII-152-165",
+      "SIGMA-512-AUTO-MEASURE-SECTION-XIV-166-175"
     ]
   },
   "machine_evidence_ahead_of_canonical_state": {
     "repository": "linkcomltd-byte/sigma-remote-operator",
-    "observed_remote_head": "2549a986dd580b1b3180555f5427de68acdcdfd0",
-    "receipt_path": "RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137.json",
-    "receipt_blob_sha": "7f3aa7c2ca6468f51ffcc0f2a0fc5a556635254f",
-    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
+    "observed_remote_head": "0097dfc901ae9346d7691289957e8233b3625dc8",
+    "receipt_path": "RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187.json",
+    "receipt_blob_sha": "ef42fb678bb096e9fe56fd24c755ceb25a101925",
+    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XV-176-187",
     "receipt_status": "SUCCESS",
-    "resolved_head_sha": "47315a9f3bf2d92816e4187206e979fdf03ad442",
-    "result_sha256": "d1f09e96329843cd6aa529257062c17ccf6d286c94bf93fb2aa12f9cea02aa8d",
+    "resolved_head_sha": "848d2fe4573a6259e5d0cf3986eae58287717ea0",
+    "result_sha256": "46837deff0243ef74e3c1f3ef44a462d45a3ba0f5f0a5baca390ac9473ae82e1",
     "counts": {
-      "TARGET_COUNT": 13,
+      "TARGET_COUNT": 12,
       "PASS": 0,
       "PARTIAL": 0,
-      "HOLD": 13,
+      "HOLD": 12,
       "FAIL": 0,
       "NOT_AUDITED": 0
     },
@@ -61,7 +75,8 @@
     "core_modifications": 0,
     "external_side_effects": 0,
     "paid_api_used": false,
-    "ingestion_state": "OBSERVED_BY_ACTIVE_EXECUTOR_NOT_YET_APPLIED_TO_512_LEDGER"
+    "secrets_disclosed": false,
+    "ingestion_state": "OBSERVED_BY_ACTIVE_EXECUTOR_NOT_YET_APPLIED_TO_512_LEDGER_AT_CHECKPOINT_TIME"
   },
   "controller_state": {
     "policy_status": "AUTHORIZED_BOUNDED_CONTINUOUS_MEASUREMENT",
@@ -81,39 +96,55 @@
     "external_side_effects_allowed": false,
     "one_request_at_a_time": true,
     "machine_receipt_before_advance": true,
-    "fail_closed": true,
-    "controller_contract_ci_run_id": 32064772379,
-    "controller_contract_ci_conclusion": "success",
-    "windows_unicode_tree_regression": "PASS",
-    "post_reboot_machine_state": {
-      "sigma_box": "RUNNING",
-      "sigma_remote_operator": "RUNNING",
-      "sigma_512_controller_between_cycles": "READY"
-    }
+    "fail_closed": true
   },
-  "identity_match_contract": {
-    "meaning_of_match": "The verifier has reconstructed the same canonical operational state and all machine-evidence gaps from GitHub, not merely repeated a historical checkpoint.",
-    "stale_match_forbidden": true,
-    "must_reconcile_intervening_commits": true,
-    "must_recheck_machine_evidence": true,
-    "must_report_exact_current_head": true,
-    "takeover_implied_by_match": false,
-    "takeover_requires_explicit_chau_assignment": true
+  "truth_and_identity_acceptance": {
+    "no_fabrication": true,
+    "no_simulated_state_as_observed_reality": true,
+    "unknown_or_unverified_must_hold_not_guess": true,
+    "prompt_copying_does_not_count_as_identity_proof": true,
+    "open_state_challenge_required": true,
+    "minimum_open_questions": 3,
+    "challenge_file": "BRAIN/HANDOFFS/WINDOW_IDENTITIES/NEXT_SUCCESSOR_OPEN_STATE_CHALLENGE_20260818.md",
+    "candidate_birth_record_is_not_acceptance": true,
+    "active_pointer_transfer_before_acceptance": "FORBIDDEN"
+  },
+  "successor_responsibility": {
+    "inherits_responsibility_for_verified_work": true,
+    "must_continue_from_latest_valid_state": true,
+    "must_preserve_verified_guarantees": true,
+    "must_seek_evidence_backed_improvement": true,
+    "must_not_make_system_worse_without_measured_isolated_scope": true,
+    "possible_regression_requires_rollback": true,
+    "unknown_regression_effect": "HOLD_BEFORE_MUTATION",
+    "principle": "CONTINUE_THE_WORK_AND_DO_BETTER_WHERE_EVIDENCE_SUPPORTS_IT_WITHOUT_DEGRADING_VERIFIED_PREDECESSOR_GUARANTEES"
+  },
+  "match_semantics": {
+    "state_reconstruction_match": "The candidate correctly reconstructed the latest live operational state and machine-evidence gap from evidence.",
+    "identity_acceptance": "Requires state reconstruction match plus anti-fabrication open-state challenge PASS plus successor responsibility/no-regression PASS.",
+    "takeover": "Requires identity acceptance plus explicit Châu assignment when required.",
+    "state_match_does_not_imply_takeover": true
   },
   "required_sync_verification": [
     "FETCH_EXACT_SYNC_CHECKPOINT",
     "READ_ACTIVE_EXECUTOR_SYNC_FROM_GIT_NOT_CHAT_MEMORY",
     "VERIFY_PREVIOUS_CHECKPOINT_LINEAGE",
+    "VERIFY_ACTIVE_WINDOW_IDENTITY_AND_BIRTH_LINEAGE",
+    "VERIFY_ROOT_OF_TRUST_ANTI_FABRICATION_AND_NO_REGRESSION_RULES",
+    "VERIFY_WINDOW_IDENTITY_PROTOCOL_AND_VALIDATOR",
     "VERIFY_CURRENT_STATE_BLOB_OR_INSPECT_INTERVENING_COMMITS",
     "VERIFY_NEXT_ACTION_BLOB_OR_INSPECT_INTERVENING_COMMITS",
     "VERIFY_CONTROLLER_POLICY_BLOB_OR_INSPECT_INTERVENING_COMMITS",
     "VERIFY_LOCAL_COGNITION_REQUEST_BLOB_OR_INSPECT_INTERVENING_COMMITS",
-    "VERIFY_SECTION_XI_MACHINE_RECEIPT_OR_RECONCILE_IF_ALREADY_INGESTED",
+    "VERIFY_SECTION_XV_MACHINE_RECEIPT_OR_RECONCILE_IF_ALREADY_INGESTED",
     "FRESH_FETCH_CURRENT_SIGMA_LIFE_HEAD_AFTER_CHECKPOINT_READ",
     "INSPECT_ALL_INTERVENING_COMMITS_AFTER_THIS_SYNC_CHECKPOINT",
-    "REPORT_CANONICAL_STATE_VS_MACHINE_EVIDENCE_GAP",
-    "REMAIN_READ_ONLY_UNTIL_CHAU_ASSIGN_TAKEOVER"
+    "RECONSTRUCT_CURRENT_CANONICAL_STATE_AND_MACHINE_EVIDENCE_GAP",
+    "ANSWER_AT_LEAST_THREE_OPEN_STATE_CHALLENGE_QUESTIONS_WITHOUT_USING_PROMPTED_EXPECTED_VALUES_AS_PROOF",
+    "REPORT_VERIFIED_PREDECESSOR_GUARANTEES_THAT_MUST_NOT_REGRESS",
+    "REMAIN_READ_ONLY_CONTINUITY_CANDIDATE_UNTIL_CHAU_AND_OUTGOING_ACTIVE_EXECUTOR_ACCEPT"
   ],
-  "sync_success_phrase": "ACTIVE_EXECUTOR_STATE_MATCH",
-  "sync_hold_phrase": "ACTIVE_EXECUTOR_STATE_HOLD"
+  "state_reconstruction_success_phrase": "ACTIVE_EXECUTOR_STATE_MATCH",
+  "identity_acceptance_success_phrase": "CONTINUITY_IDENTITY_ACCEPTANCE_PASS",
+  "hold_phrase": "ACTIVE_EXECUTOR_STATE_HOLD"
 }
