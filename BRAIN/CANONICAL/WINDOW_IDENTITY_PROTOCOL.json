@@ -1,8 +1,8 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "protocol_id": "SIGMA-WINDOW-IDENTITY-LINEAGE-v1",
   "status": "CANONICAL_REQUIRED",
-  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory, while preventing fabricated or simulated continuity claims.",
+  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory, while preventing fabricated or simulated continuity claims and requiring responsible non-regressive continuation.",
   "validator": "BRAIN/CANONICAL/validate_window_identity.py",
   "validator_success_phrase": "SIGMA_WINDOW_IDENTITY_CONTRACT: PASS",
   "naming_rule": {
@@ -24,6 +24,17 @@
     "contradiction_response": "HOLD_AND_REPORT_CONFLICT",
     "rule": "A candidate window must never invent, interpolate, simulate, role-play or copy an expected answer in order to be accepted as a continuation. Every material identity/state answer must be supported by fresh canonical or machine evidence."
   },
+  "successor_responsibility_gate": {
+    "mode": "REQUIRED",
+    "inherit_verified_work_responsibly": true,
+    "preserve_verified_guarantees": true,
+    "continue_from_latest_valid_state_not_preferred_old_state": true,
+    "seek_evidence_backed_improvement_over_predecessor": true,
+    "do_not_degrade_verified_behavior_or_continuity": true,
+    "regression_requires_explicit_evidence_scope_and_rollback": true,
+    "unknown_effect_on_verified_guarantees": "HOLD_BEFORE_MUTATION",
+    "rule": "A successor inherits responsibility for the work, not merely the name. It must preserve verified guarantees and continuity, continue from the latest valid evidence state, and improve only through evidence-backed changes. It must not knowingly make the system worse than the predecessor state; any possible regression must be isolated, measured, explicitly scoped and rollback-capable before promotion."
+  },
   "open_state_challenge": {
     "required_before_continuity_acceptance": true,
     "minimum_open_questions": 3,
@@ -42,17 +53,19 @@
       "CURRENT_512_LEDGER_COUNTS_AND_LAST_COMPLETED_MEASUREMENT",
       "CURRENT_MACHINE_EVIDENCE_AHEAD_OF_OR_BEHIND_CANONICAL",
       "CURRENT_AUTHORITY_AND_SAFETY_LIMITS",
-      "IDENTIFY_A_STALE_OR_SUPERSEDED_STATE_THAT_MUST_NOT_BE_REPEATED"
+      "IDENTIFY_A_STALE_OR_SUPERSEDED_STATE_THAT_MUST_NOT_BE_REPEATED",
+      "EXPLAIN_WHICH_VERIFIED_GUARANTEES_MUST_NOT_REGRESS_AND_HOW_SUCCESSOR_WILL_PRESERVE_THEM"
     ],
     "answer_requirements": [
       "ANSWER_FROM_FRESH_EVIDENCE_NOT_CHAT_MEMORY",
       "CITE_OR_IDENTIFY_SUPPORTING_COMMIT_BLOB_RECEIPT_OR_CANONICAL_FIELD",
       "DISTINGUISH_OBSERVED_FACT_FROM_INFERENCE",
-      "SAY_UNKNOWN_OR_HOLD_IF EVIDENCE_IS_INSUFFICIENT",
-      "DO_NOT_FILL_MISSING_FACTS_WITH_PLAUSIBLE_VALUES"
+      "SAY_UNKNOWN_OR_HOLD_IF_EVIDENCE_IS_INSUFFICIENT",
+      "DO_NOT_FILL_MISSING_FACTS_WITH_PLAUSIBLE_VALUES",
+      "IDENTIFY_VERIFIED_PREDECESSOR_GUARANTEES_THAT_MUST_BE_PRESERVED"
     ],
     "acceptance_rule": "ALL_CHALLENGE_ANSWERS_MUST_MATCH_FRESH_VERIFIED_EVIDENCE_WITH_NO_UNEXPLAINED_CONTRADICTION_OR_FABRICATION",
-    "failure_rule": "ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_OR_MATERIAL_WRONG_ANSWER = IDENTITY_HOLD_NO_TAKEOVER"
+    "failure_rule": "ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_MATERIAL_WRONG_ANSWER_OR_UNEXPLAINED_VERIFIED_REGRESSION = IDENTITY_HOLD_NO_TAKEOVER"
   },
   "candidate_before_acceptance_rule": {
     "candidate_role": "READ_ONLY_CONTINUITY_CANDIDATE",
@@ -96,10 +109,11 @@
     "RUN_OR_INSPECT_VALIDATE_WINDOW_IDENTITY_AND_REQUIRE_PASS_FOR_CURRENT_ACTIVE_POINTER",
     "INSPECT_ALL_INTERVENING_COMMITS",
     "RECONSTRUCT_LATEST_CANONICAL_AND_MACHINE_EVIDENCE_STATE",
+    "IDENTIFY_PREDECESSOR_VERIFIED_GUARANTEES_AND_CURRENT_RESPONSIBILITY",
     "ASSIGN_NEXT_WINDOW_SEQUENCE_ONLY_FROM_VERIFIED_LINEAGE",
     "REGISTER_SUCCESSOR_ONLY_AS_READ_ONLY_CONTINUITY_CANDIDATE",
     "ANSWER_MINIMUM_THREE_OPEN_STATE_CHALLENGE_QUESTIONS_FROM_FRESH_EVIDENCE",
-    "FAIL_CLOSED_ON_ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_OR_MATERIAL_WRONG_ANSWER",
+    "FAIL_CLOSED_ON_ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_MATERIAL_WRONG_ANSWER_OR_UNEXPLAINED_VERIFIED_REGRESSION",
     "DO_NOT_UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_UNTIL_CHALLENGE_STATE_MATCH_AND_REQUIRED_EXPLICIT_TAKEOVER_PASS",
     "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT_WITH_ACCEPTANCE_STATE",
     "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_ONLY_AFTER_ACCEPTANCE",
@@ -111,19 +125,20 @@
     "FRESH_FETCH_LATEST_CANONICAL_STATE",
     "UPDATE_LIVE_WORK_POINTER_ONLY_WHEN_NEEDED",
     "PRESERVE_CHECKPOINT_LINEAGE",
+    "PRESERVE_OR_STRENGTHEN_VERIFIED_GUARANTEES",
     "NEVER_REWRITE_UNKNOWN_HISTORY_AS_CERTAINTY"
   ],
   "on_window_exit_or_transfer": [
     "STOP_STARTING_NEW_MUTATIONS",
     "FINISH_OR_HOLD_CURRENT_ATOMIC_ACTION",
     "FRESH_FETCH_CURRENT_HEAD",
-    "WRITE_EXIT_CHECKPOINT_WITH_LAST_VERIFIED_HEAD_CURRENT_WORK_NEXT_ACTION_BLOCKERS_AND_MACHINE_EVIDENCE_GAP",
+    "WRITE_EXIT_CHECKPOINT_WITH_LAST_VERIFIED_HEAD_CURRENT_WORK_NEXT_ACTION_BLOCKERS_MACHINE_EVIDENCE_GAP_AND_VERIFIED_GUARANTEES_TO_PRESERVE",
     "SET_HANDOFF_STATE_TRANSFER_READY_ONLY_AFTER_CHECKPOINT_VERIFY",
     "PROVIDE_OPEN_STATE_CHALLENGE_QUESTIONS_WITHOUT_EXPECTED_ANSWERS_WHEN_POSSIBLE",
-    "DO_NOT_MARK_SUCCESSOR_ACTIVE_UNTIL_SUCCESSOR_STATE_MATCH_OPEN_CHALLENGE_PASS_AND_CHAU_EXPLICITLY_TRANSFERS_AUTHORITY_WHEN_REQUIRED"
+    "DO_NOT_MARK_SUCCESSOR_ACTIVE_UNTIL_SUCCESSOR_STATE_MATCH_OPEN_CHALLENGE_PASS_RESPONSIBILITY_GATE_PASS_AND_CHAU_EXPLICITLY_TRANSFERS_AUTHORITY_WHEN_REQUIRED"
   ],
-  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK",
-  "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> VERIFY_SUCCESSOR_RESPONSIBILITY_NO_REGRESSION -> STATE_MATCH -> CONTINUE_WORK",
+  "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION_OR_UNEXPLAINED_VERIFIED_REGRESSION = NO_CONTINUATION",
   "stale_match_rule": "MATCHING_AN_OLD_CHECKPOINT_WITHOUT_FRESH_FETCHING_CURRENT_HEAD_IS_NOT_A_LIVE_STATE_MATCH",
   "identity_vs_work_rule": "WINDOW_IDENTITY_IS_STABLE; LIVE_WORK_STATE_MUST_ALWAYS_BE_FRESH_FETCHED_BECAUSE_AUTOMATION_MAY_ADVANCE_CANONICAL_STATE",
   "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY"
