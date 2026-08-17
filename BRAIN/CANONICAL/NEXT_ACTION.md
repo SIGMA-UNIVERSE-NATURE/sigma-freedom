@@ -1,11 +1,11 @@
 # SIGMA CANONICAL NEXT ACTION
 
-## SIGMA-512-AUTO-MEASURE-SECTION-XXV-371-395
+## SIGMA-512-AUTO-MEASURE-SECTION-XXVI-396-415
 
 **Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-Section XXV — Planning và execution intelligence; remaining NOT_AUDITED: 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395.
+Section XXVI — Human–AI collaboration; remaining NOT_AUDITED: 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415.
 
 Hard limits: measurement only; PASS forbidden; no DNA mutation; no paid API; no website action; no arbitrary shell; no external side effects; exactly one pending request; machine receipt required before advance.
