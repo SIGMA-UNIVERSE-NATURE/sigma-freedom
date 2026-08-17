@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-EVIDENCE-HARNESS-007",
+  "version": "1.0.0",
+  "section": "IV",
+  "section_name": "Suy luận",
+  "attribute_from": 37,
+  "attribute_to": 48,
+  "target_count": 12,
+  "mode": "READ_ONLY_REASONING_EVIDENCE_AND_BLOCKER_MEASUREMENT",
+  "pass_allowed": false,
+  "evaluator_independent": false,
+  "core_mutation_allowed": false,
+  "external_side_effects_allowed": false,
+  "expected_ceiling": {"PARTIAL":1,"HOLD":11,"PASS":0,"FAIL":0},
+  "interpretation": "Observed evidence of system-level safe HOLD behavior may support PARTIAL for attribute 037 only. Missing bound reasoning experiments remain HOLD."
+}

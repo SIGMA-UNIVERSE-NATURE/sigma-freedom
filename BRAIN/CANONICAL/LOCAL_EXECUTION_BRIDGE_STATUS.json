@@ -1,16 +1,16 @@
 {
-  "schema_version": "1.7.0",
+  "schema_version": "1.8.0",
   "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
-  "recorded_at": "2026-08-17T15:47:00+07:00",
+  "recorded_at": "2026-08-17T15:58:00+07:00",
   "classification": "PUBLIC_SAFE",
   "bridge_state": "AVAILABLE",
   "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
   "verified_by_this_window": true,
-  "public_summary": "A bounded continuous canonical executor is machine-observed on the authorized Windows substrate. Two successor autodiscovery probes, EH004, and EH005 executed without human request-ID relay, Remote Operator command files, arbitrary shell, DNA-core mutation, paid API, website action, or declared external side effects. EH006 is pending.",
+  "public_summary": "The bounded continuous canonical executor is machine-observed across successive SHA-256-pinned requests through EH006 on the authorized Windows substrate. EH007 reasoning measurement is pending; capability scope remains bounded.",
   "source": {
     "kind": "MACHINE_RECEIPTS_RETRIEVED_FROM_AUTHORIZED_REMOTE_OPERATOR_GIT",
     "repository": "linkcomltd-byte/sigma-remote-operator",
-    "commit": "1293edbd54162fc0883d8ca0fc556423cd108f12",
+    "result_path": "RESULTS/SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036.json",
     "operational_details_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
   },
   "machine_receipt_required_before_verified": true,
@@ -36,13 +36,12 @@
     "secrets_disclosed": false
   },
   "continuous_executor_capability": {
-    "status": "MACHINE_OBSERVED_BOUNDED_AUTODISCOVERY",
+    "status": "MACHINE_OBSERVED_BOUNDED_AUTODISCOVERY_THROUGH_EH006",
     "scope": "SHA256_PINNED_CANONICAL_EVIDENCE_RUN_HARNESS_AUTODISCOVERY_ONLY",
     "runtime_version": "0.6.0",
-    "probe_001_receipt_file": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
-    "probe_002_receipt_file": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json",
-    "eh004_receipt_file": "LOCAL_COGNITION_RECEIPT_EH004_HP_001.json",
-    "eh005_receipt_file": "LOCAL_COGNITION_RECEIPT_EH005_HP_001.json",
+    "latest_verified_receipt_file": "LOCAL_COGNITION_RECEIPT_EH006_HP_001.json",
+    "latest_verified_request_id": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
+    "latest_verified_result_sha256": "6a1bc4caae7a2fb3d9ec0859cab0cc4a85cf72b66675a74ee25a8e782e28f77f",
     "auto_discovery": true,
     "human_request_id_relay_required": false,
     "remote_command_file_required": false,
@@ -53,11 +52,11 @@
     "dna_core_mutation_allowed": false,
     "external_side_effects_allowed": false,
     "core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
-    "scope_limit": "This capability does not authorize arbitrary shell, arbitrary scripts, website actions, core mutation, self-promotion, or invention of NEXT_ACTION."
+    "scope_limit": "No arbitrary shell, arbitrary scripts, website actions, core mutation, self-promotion, or invention of NEXT_ACTION is authorized."
   },
-  "executor_clock_note": "HP wall clock is non-authoritative; execution authorization is bound to live canonical Git state.",
-  "pending_request_id": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
-  "pending_verification_scope": "SIGMA_512_SECTION_III_CONTINUOUS_LEARNING_MEASUREMENT_025_036",
+  "executor_clock_note": "HP wall clock is non-authoritative; authorization is bound to live canonical Git state.",
+  "pending_request_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
+  "pending_verification_scope": "SIGMA_512_SECTION_IV_REASONING_MEASUREMENT_037_048",
   "pending_executor_candidate": {
     "repository": "linkcomltd-byte/sigma-remote-operator",
     "commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
@@ -68,5 +67,5 @@
     "remote_command_file_required": false,
     "arbitrary_shell_allowed": false
   },
-  "next_verification": "Run EH006 Section III through the already-running bounded continuous executor and evaluate its machine receipt before changing the implementation ledger."
+  "next_verification": "Run EH007 Section IV through the already-running bounded continuous executor and evaluate its machine receipt before changing the implementation ledger."
 }

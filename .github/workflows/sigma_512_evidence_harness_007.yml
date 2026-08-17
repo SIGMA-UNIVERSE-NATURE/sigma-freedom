@@ -1,0 +1,25 @@
+name: SIGMA 512 Evidence Harness 007
+
+on:
+  push:
+    branches: [SIGMA_LIFE]
+    paths:
+      - 'EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_007/**'
+      - 'BRAIN/CANONICAL/CURRENT_STATE.json'
+      - 'BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json'
+      - '.github/workflows/sigma_512_evidence_harness_007.yml'
+  workflow_dispatch:
+
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    env:
+      SIGMA_LOCAL_EXECUTION_ID: SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run EH007 Section IV reasoning measurement
+        env:
+          SIGMA_HARNESS_OUTPUT_DIR: ${{ runner.temp }}/sigma-eh007
+        run: python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_007/v1.0.0/run_harness.py
+      - name: Show EH007 result
+        run: cat "${{ runner.temp }}/sigma-eh007/evidence_harness_007_result.json"

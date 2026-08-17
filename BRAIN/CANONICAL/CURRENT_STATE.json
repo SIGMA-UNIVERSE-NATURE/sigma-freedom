@@ -1,9 +1,9 @@
 {
-  "schema_version": "2.2.0",
+  "schema_version": "2.3.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T15:47:00+07:00",
-  "phase": "SIGMA_512_EH005_COMPLETE_EH006_SECTION_III_PENDING",
-  "status": "EH005_5_HOLD_LEDGER_UPDATED_EH006_PENDING",
+  "recorded_at": "2026-08-17T15:58:00+07:00",
+  "phase": "SIGMA_512_EH006_COMPLETE_EH007_SECTION_IV_PENDING",
+  "status": "EH006_1_PARTIAL_11_HOLD_LEDGER_UPDATED_EH007_PENDING",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -21,23 +21,23 @@
     "implementation_status_current": {
       "TOTAL_RECORDS": 512,
       "PASS": 0,
-      "PARTIAL": 127,
-      "HOLD": 11,
+      "PARTIAL": 128,
+      "HOLD": 22,
       "FAIL": 0,
-      "NOT_AUDITED": 374,
+      "NOT_AUDITED": 362,
       "NOT_APPLICABLE": 0,
       "ledger": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json"
     },
-    "evidence_harness_005": {
+    "evidence_harness_006": {
       "status": "COMPLETE_OBSERVED_AND_LOCALLY_REPRODUCED",
-      "harness_id": "SIGMA-512-EVIDENCE-HARNESS-005",
-      "section": "I",
-      "target_range": "008-012",
-      "workflow_run_id": 32011417503,
-      "observed_head_sha": "e6f2af70c9f41810f79d6b7745350680ebf825fd",
-      "counts": {"PASS":0,"PARTIAL":0,"HOLD":5,"FAIL":0,"NOT_AUDITED":0},
-      "local_receipt": "LOCAL_COGNITION_RECEIPT_EH005_HP_001.json",
-      "local_result_sha256": "3a7a3322c73efddb91e81ed62e62bc295b72e00047a810f2ad5038b37360dc43",
+      "harness_id": "SIGMA-512-EVIDENCE-HARNESS-006",
+      "section": "III",
+      "target_range": "025-036",
+      "workflow_run_id": 32012539468,
+      "observed_head_sha": "1b01aa25042f0fa6bb973854123dd24322bcef5d",
+      "counts": {"PASS":0,"PARTIAL":1,"HOLD":11,"FAIL":0,"NOT_AUDITED":0},
+      "local_receipt": "LOCAL_COGNITION_RECEIPT_EH006_HP_001.json",
+      "local_result_sha256": "6a1bc4caae7a2fb3d9ec0859cab0cc4a85cf72b66675a74ee25a8e782e28f77f",
       "core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
       "core_modifications": 0,
       "external_side_effects": 0,
@@ -48,9 +48,9 @@
       "status_file": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
       "bridge_state": "AVAILABLE",
       "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
-      "bounded_continuous_executor": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY",
+      "bounded_continuous_executor": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY_THROUGH_EH006",
       "runtime_version": "0.6.0",
-      "pending_request_id": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
+      "pending_request_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
       "operational_details": "PRIVATE_NOT_RECORDED_PUBLICLY"
     },
     "legacy_automation": {
@@ -58,8 +58,7 @@
       "sigma_life_cycle_heartbeat_cognition_claim": "DISABLED_REMOVED_FROM_ACTIVE_WORKFLOWS",
       "issue_body_arbitrary_shell": "DISABLED_REMOVED_FROM_ACTIVE_WORKFLOWS",
       "legacy_self_study_k_cycle": "DISABLED_AND_INERT",
-      "completed_request_bound_eh004_workflow": "RETIRED_FROM_ACTIVE_WORKFLOWS",
-      "completed_request_bound_eh005_workflow": "RETIRED_FROM_ACTIVE_WORKFLOWS"
+      "completed_request_bound_eh006_workflow": "RETIRED_FROM_ACTIVE_WORKFLOWS"
     },
     "cognitive_bootstrap": "STRUCTURAL_PASS_RUNTIME_EVIDENCE_NOT_AUDITED",
     "reference_kernel_boot": "PASS",
@@ -74,7 +73,7 @@
     "window_transfer_protocol_status": "ENFORCED",
     "local_execution_bridge_status": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
     "local_cognition_request": "LOCAL_COGNITION_REQUEST.json",
-    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_EH005_HP_001.json",
+    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_EH006_HP_001.json",
     "cross_window_boot_required": true,
     "meaningful_progress_requires_canonical_state_update": true,
     "single_canonical_next_action": true,
@@ -87,19 +86,20 @@
     "program_status": "ENFORCED",
     "current_engine_role": "BOOTSTRAP_CAPABILITY_NOT_INHERITED_TRUTH_NOT_PERMANENT_CEILING",
     "baseline_gate": "COMPLETE:SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
-    "completed_measurement_steps": ["SIGMA-512-EVIDENCE-HARNESS-001","SIGMA-512-EVIDENCE-HARNESS-002","SIGMA-512-EVIDENCE-HARNESS-003","SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001","SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001","SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002","SIGMA-512-EVIDENCE-HARNESS-004","SIGMA-512-EVIDENCE-HARNESS-005"],
-    "measured_result_current": "127_PARTIAL_11_HOLD_374_NOT_AUDITED_0_PASS_0_FAIL",
-    "selected_highest_leverage_gap": "SECTION_III_CONTINUOUS_LEARNING_025_036",
-    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
+    "completed_measurement_steps": ["SIGMA-512-EVIDENCE-HARNESS-001","SIGMA-512-EVIDENCE-HARNESS-002","SIGMA-512-EVIDENCE-HARNESS-003","SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001","SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001","SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002","SIGMA-512-EVIDENCE-HARNESS-004","SIGMA-512-EVIDENCE-HARNESS-005","SIGMA-512-EVIDENCE-HARNESS-006"],
+    "measured_result_current": "128_PARTIAL_22_HOLD_362_NOT_AUDITED_0_PASS_0_FAIL",
+    "selected_highest_leverage_gap": "SECTION_IV_REASONING_037_048",
+    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
   },
-  "active_goal": "Measure SIGMA 512 Section III attributes 025-036 on current reality without implementing missing learning behaviors during measurement.",
-  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
+  "active_goal": "Measure SIGMA 512 Section IV attributes 037-048 on current reality without implementing missing reasoning behaviors during measurement.",
+  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-007-SECTION-IV-REASONING-037-048",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Execute and evaluate EH006 Section III receipt; update ledger only from observed evidence.",
+    "Execute and evaluate EH007 Section IV receipt; update ledger only from observed evidence.",
     "SIGMA-ATTR-008..012 HOLD: bound executable behavioral test surfaces remain absent.",
+    "SIGMA-ATTR-026..036 HOLD: continuous-learning behavioral evidence remains absent.",
     "SIGMA-ATTR-024 remains non-PASS: different-model continuity and independent evaluation remain unproven.",
     "SIGMA-ATTR-084 HOLD: independent evaluator required for recursive self-improvement.",
     "SIGMA-ATTR-203 HOLD: independent governance red-team required.",
@@ -109,12 +109,13 @@
     "SIGMA-ATTR-465 HOLD: post-deployment field evidence required."
   ],
   "evidence": {
-    "eh005": {
-      "workflow_run_id": 32011417503,
+    "eh006": {
+      "workflow_run_id": 32012539468,
       "workflow_conclusion": "success",
       "machine_receipt_status": "SUCCESS",
-      "machine_receipt_file": "LOCAL_COGNITION_RECEIPT_EH005_HP_001.json",
-      "attributes_008_012": "HOLD",
+      "machine_receipt_file": "LOCAL_COGNITION_RECEIPT_EH006_HP_001.json",
+      "attribute_025": "PARTIAL",
+      "attributes_026_036": "HOLD",
       "core_modifications": 0,
       "external_side_effects": 0
     }
