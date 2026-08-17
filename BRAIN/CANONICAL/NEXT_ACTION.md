@@ -1,11 +1,11 @@
 # SIGMA CANONICAL NEXT ACTION
 
-## SIGMA-512-AUTO-MEASURE-SECTION-XXI-276-300
+## SIGMA-512-AUTO-MEASURE-SECTION-XXII-301-325
 
 **Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-Section XXI — Memory architecture thế hệ sâu hơn; remaining NOT_AUDITED: 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300.
+Section XXII — Learning architecture và curriculum; remaining NOT_AUDITED: 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325.
 
 Hard limits: measurement only; PASS forbidden; no DNA mutation; no paid API; no website action; no arbitrary shell; no external side effects; exactly one pending request; machine receipt required before advance.
