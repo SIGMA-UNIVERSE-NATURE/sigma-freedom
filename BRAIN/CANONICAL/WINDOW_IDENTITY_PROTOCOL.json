@@ -1,10 +1,21 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "protocol_id": "SIGMA-WINDOW-IDENTITY-LINEAGE-v1",
   "status": "CANONICAL_REQUIRED",
-  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory, while preventing fabricated or simulated continuity claims and requiring responsible non-regressive continuation.",
+  "purpose": "Provide only the continuity infrastructure needed to preserve responsibility, provenance and verified brain-training progress across windows. Window identity is not the primary SIGMA objective and must not displace measured intelligence development once a transition is verified.",
   "validator": "BRAIN/CANONICAL/validate_window_identity.py",
   "validator_success_phrase": "SIGMA_WINDOW_IDENTITY_CONTRACT: PASS",
+  "objective_priority_guard": {
+    "primary_objective": "TRAIN_AND_DEVELOP_SIGMA_BRAIN_TOWARD_MEASURABLY_GREATER_SYSTEM_LEVEL_INTELLIGENCE_OVER_ITS_OWN_PREVIOUS_VERIFIED_STATE",
+    "window_identity_role": "SUPPORTING_CONTINUITY_INFRASTRUCTURE_ONLY",
+    "identity_work_is_intelligence_progress": false,
+    "after_successful_transition": "RETURN_TO_CURRENT_CANONICAL_BRAIN_TRAINING_OR_MEASUREMENT_ACTION",
+    "no_endless_identity_optimization": true,
+    "verified_improvement_must_be_persisted": true,
+    "promoted_improvement_becomes_successor_baseline": true,
+    "no_rebuild_or_rerun_without_evidence_reason": true,
+    "rule": "Use identity only long enough to prove who owns the inherited verified work. Then resume the primary brain-training objective. A newer window is not a better brain; better requires measured differential evidence and successful regression/evaluation gates."
+  },
   "naming_rule": {
     "canonical_pattern": "HAND TO HAND_ CỬA <N>",
     "sequence_rule": "N = VERIFIED_PREDECESSOR_WINDOW_SEQUENCE + 1",
@@ -33,7 +44,9 @@
     "do_not_degrade_verified_behavior_or_continuity": true,
     "regression_requires_explicit_evidence_scope_and_rollback": true,
     "unknown_effect_on_verified_guarantees": "HOLD_BEFORE_MUTATION",
-    "rule": "A successor inherits responsibility for the work, not merely the name. It must preserve verified guarantees and continuity, continue from the latest valid evidence state, and improve only through evidence-backed changes. It must not knowingly make the system worse than the predecessor state; any possible regression must be isolated, measured, explicitly scoped and rollback-capable before promotion."
+    "promoted_improvement_becomes_new_inherited_baseline": true,
+    "do_not_repeat_promoted_work_without_specific_evidence_reason": true,
+    "rule": "A successor inherits responsibility for the work, not merely the name. It must preserve verified guarantees, continue from the latest promoted capability baseline, and seek further evidence-backed improvement. It must not knowingly make the system worse or repeatedly rebuild already verified gains; possible regression must be isolated, measured, explicitly scoped and rollback-capable before promotion."
   },
   "open_state_challenge": {
     "required_before_continuity_acceptance": true,
@@ -42,11 +55,7 @@
     "answers_must_be_free_form_not_multiple_choice": true,
     "challenge_must_be_answered_after_fresh_fetch": true,
     "prompted_expected_values_do_not_count_as_proof": true,
-    "allowed_question_issuers": [
-      "CHAU",
-      "OUTGOING_VERIFIED_ACTIVE_EXECUTOR",
-      "CANONICAL_CONTINUITY_CHALLENGE_PROTOCOL"
-    ],
+    "allowed_question_issuers": ["CHAU","OUTGOING_VERIFIED_ACTIVE_EXECUTOR","CANONICAL_CONTINUITY_CHALLENGE_PROTOCOL"],
     "question_classes": [
       "CURRENT_LIVE_STATE_AND_NEXT_ACTION",
       "INTERVENING_COMMIT_DELTA_FROM_PREDECESSOR_CHECKPOINT",
@@ -76,26 +85,10 @@
     "explicit_takeover_still_required_when_authority_transfer_requires_it": true
   },
   "birth_certificate_required_fields": [
-    "window_id",
-    "window_name",
-    "window_sequence",
-    "created_at",
-    "registered_at",
-    "purpose",
-    "work_scope",
-    "predecessor_window_name",
-    "predecessor_window_sequence",
-    "predecessor_checkpoint",
-    "canonical_head_at_registration",
-    "authority_role",
-    "handoff_state",
-    "state_match_rule"
+    "window_id","window_name","window_sequence","created_at","registered_at","purpose","work_scope","predecessor_window_name","predecessor_window_sequence","predecessor_checkpoint","canonical_head_at_registration","authority_role","handoff_state","state_match_rule"
   ],
   "successor_birth_rule_effective_v1_1": {
-    "additional_fields": [
-      "continuity_acceptance_state",
-      "anti_fabrication_gate_version"
-    ],
+    "additional_fields": ["continuity_acceptance_state","anti_fabrication_gate_version"],
     "initial_continuity_acceptance_state": "PENDING_OPEN_STATE_CHALLENGE",
     "initial_authority_role": "READ_ONLY_CONTINUITY_CANDIDATE"
   },
@@ -118,7 +111,7 @@
     "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT_WITH_ACCEPTANCE_STATE",
     "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_ONLY_AFTER_ACCEPTANCE",
     "RUN_VALIDATE_WINDOW_IDENTITY_AGAIN_AFTER_ACCEPTANCE",
-    "REMAIN_READ_ONLY_UNTIL_FULL_ACCEPTANCE"
+    "RETURN_IMMEDIATELY_TO_CURRENT_CANONICAL_BRAIN_TRAINING_OR_MEASUREMENT_ACTION"
   ],
   "on_meaningful_progress": [
     "DO_NOT_REWRITE_BIRTH_FACTS",
@@ -126,6 +119,8 @@
     "UPDATE_LIVE_WORK_POINTER_ONLY_WHEN_NEEDED",
     "PRESERVE_CHECKPOINT_LINEAGE",
     "PRESERVE_OR_STRENGTHEN_VERIFIED_GUARANTEES",
+    "PERSIST_VERIFIED_PROMOTED_IMPROVEMENT_AS_NEW_BASELINE",
+    "DO_NOT_REPEAT_PROMOTED_WORK_WITHOUT_EVIDENCE_TRIGGER",
     "NEVER_REWRITE_UNKNOWN_HISTORY_AS_CERTAINTY"
   ],
   "on_window_exit_or_transfer": [
@@ -140,6 +135,6 @@
   "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> VERIFY_SUCCESSOR_RESPONSIBILITY_NO_REGRESSION -> STATE_MATCH -> CONTINUE_WORK",
   "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION_OR_UNEXPLAINED_VERIFIED_REGRESSION = NO_CONTINUATION",
   "stale_match_rule": "MATCHING_AN_OLD_CHECKPOINT_WITHOUT_FRESH_FETCHING_CURRENT_HEAD_IS_NOT_A_LIVE_STATE_MATCH",
-  "identity_vs_work_rule": "WINDOW_IDENTITY_IS_STABLE; LIVE_WORK_STATE_MUST_ALWAYS_BE_FRESH_FETCHED_BECAUSE_AUTOMATION_MAY_ADVANCE_CANONICAL_STATE",
+  "identity_vs_work_rule": "WINDOW_IDENTITY_IS_SUPPORTING_INFRASTRUCTURE; AFTER VERIFIED TRANSITION, LIVE WORK MUST RETURN TO BRAIN TRAINING FROM THE LATEST VERIFIED BASELINE",
   "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY"
 }
