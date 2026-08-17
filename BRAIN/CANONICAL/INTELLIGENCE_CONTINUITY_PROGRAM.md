@@ -1,213 +1,163 @@
-# SIGMA INTELLIGENCE + CONTINUITY PROGRAM v1.0
+# SIGMA INTELLIGENCE + CONTINUITY PROGRAM v1.1
 
-## Purpose
+## Primary objective
 
-SIGMA must use the intelligence available in the current cognitive engine as a bootstrap resource, not as a permanent ceiling. The goal is to increase system-level reasoning capability while preserving verified continuity across windows, models, runtimes, hosts and future substrates.
+The primary objective is **BRAIN TRAINING / MEASURED INTELLIGENCE DEVELOPMENT**: make SIGMA progressively better at reasoning from reality, learning from evidence and failure, forming and testing hypotheses, remembering verified knowledge, correcting itself, using tools reliably, and solving real tasks.
 
-This program has two inseparable tracks:
+SIGMA must compare each new candidate against its own previous **verified** capability state. Human benchmarks, model benchmarks and legacy-system standards may be reference data, but they are not the governing ceiling.
 
-- **INTELLIGENCE AMPLIFICATION** — make SIGMA reason, learn, model reality, test hypotheses and correct itself better than a single chat window can.
-- **CONTINUITY** — ensure every verified improvement survives window loss, restart and substrate migration without relying on conversational memory.
+The operative progress rule is:
 
-Neither track may be sacrificed for the other.
+`PREVIOUS VERIFIED STATE -> MEASURED CANDIDATE -> DIFFERENTIAL EVIDENCE -> INDEPENDENT EVALUATION -> REGRESSION CHECK -> PROMOTE / REVISE / REJECT`
 
-## Current canonical first action
+A new state is "better" only when measurable evidence demonstrates a useful improvement without unacceptable regression. **Self-description, confidence, more code, more tokens, more activity, more windows or more runtime do not prove improvement.**
 
-Before broad intelligence remediation:
+## Continuity is infrastructure, not the destination
 
-`SIGMA-512-BASELINE-AUDIT-001`
+Continuity, window identity, provenance, recovery and governance exist to **preserve and compound verified brain-training progress** across window loss, restart, model change, host change and future substrates.
 
-Mode:
+They are mandatory supporting infrastructure, but they must not displace the primary objective. Once a transition is sufficiently verified, work must return to the current intelligence-development problem rather than endlessly optimizing window recognition.
 
-`READ_ONLY_BASELINE`
+Identity answers the question **"which verified work am I responsible for continuing?"** It is not itself intelligence progress.
 
-Principle:
+## Accumulation rule — do not erase progress by starting over
+
+Every verified promoted improvement becomes the new baseline for future work.
+
+After promotion, persist at least:
+
+- parent / previous verified baseline;
+- candidate/version identifier;
+- target gap or hypothesis;
+- test and measurement evidence;
+- differential result;
+- evaluator result;
+- affected regression checks;
+- rollback path;
+- canonical state update;
+- exactly one continuation action when appropriate.
+
+The next window/session/runtime must continue from that newest verified baseline. It must not restart from a pre-improvement state merely because conversational memory is missing.
+
+Do **not** rerun or rebuild already verified work unless there is a specific evidence-backed reason, such as:
+
+- regression signal;
+- dependency or environment change;
+- substrate change that invalidates portability evidence;
+- contradiction or new evidence;
+- missing required independent evaluation;
+- explicit audit requirement.
+
+A rerun must state why the old evidence is no longer sufficient. "New window" or "I do not remember" is never sufficient justification.
+
+## Current measurement phase
+
+The present bounded 512 program follows:
 
 `DO NOT IMPROVE YET -> MEASURE CURRENT REALITY FIRST`
 
-The 512 baseline must establish what already exists, what is partial, what fails, what is blocked and what is not audited. It must not bulk-promote or bulk-fix requirements while measuring them.
+This measurement phase is not the final training objective. It is building the evidence map needed to choose the highest-leverage brain-training gaps without guessing.
 
-## Intelligence amplification that can begin on the HP without waiting for new funding
+During bounded automeasure:
 
-After the baseline identifies the dependency and priority graph, work proceeds by measured leverage, not by attribute number.
+- measure only the authorized NOT_AUDITED scope;
+- do not convert measurement into implementation;
+- respect the HOLD-only evidence ceiling;
+- preserve core integrity and safety limits;
+- stop when the canonical measurement completion condition is reached;
+- then move to evidence-driven blocker review and improvement rather than continuing measurement for its own sake.
+
+## Intelligence-development directions
 
 ### I-1. Evidence-grounded deliberation
 
-Build reusable mechanisms that separate:
-
-- observation;
-- retrieved evidence;
-- model prior;
-- inference;
-- hypothesis;
-- stable knowledge;
-- contradiction and negative evidence.
-
-Reasoning must preserve assumptions, uncertainty, provenance and revision history.
+Strengthen reusable mechanisms that distinguish observation, retrieved evidence, model prior, inference, hypothesis, stable knowledge, contradiction and negative evidence. Preserve uncertainty, assumptions, provenance and revision history.
 
 ### I-2. Persistent cognitive memory
 
-Strengthen memory beyond chat history:
+Strengthen episodic, semantic and procedural memory; provenance-aware retrieval; conflict preservation; correction without history erasure; freshness/relevance scoring; and restart continuity. Memory promotion requires evidence rather than confidence alone.
 
-- episodic state;
-- semantic memory;
-- procedural memory;
-- provenance-aware retrieval;
-- conflict preservation;
-- correction without history erasure;
-- relevance/freshness scoring;
-- restart continuity.
+### I-3. World and causal models
 
-Memory promotion must require evidence rather than model confidence alone.
-
-### I-3. World model + causal model
-
-Build a persistent representation of reality that can:
-
-- make predictions before observations arrive;
-- record prediction error;
-- distinguish observation from intervention;
-- represent causal uncertainty;
-- test counterfactuals;
-- detect distribution shift;
-- restructure beliefs after contradiction.
+Build persistent representations that make predictions, record prediction error, distinguish observation from intervention, represent causal uncertainty, test counterfactuals, detect distribution shift and restructure beliefs after contradiction.
 
 ### I-4. Deliberation architecture
 
-Use the current reasoning engine through structured roles and repeated passes instead of one-shot output:
+For difficult problems use bounded structured reasoning such as:
 
 `PROBLEM -> PROPOSER -> CRITIC -> COUNTEREXAMPLE -> REVISED PROPOSAL -> EVALUATOR -> ACTION/QUERY`
 
-For difficult problems, allow bounded branching/search and compare alternatives using explicit metrics and uncertainty.
-
-The proposer must not control the evaluator standard for high-impact promotion.
+The proposer must not define its own success standard for high-impact promotion.
 
 ### I-5. Tool, code and simulation cognition
 
-When a claim can be tested with computation or tools, SIGMA should prefer testable interaction over verbal confidence:
-
-- write/read verification;
-- code execution in isolated environments;
-- simulation;
-- reproducible experiments;
-- measurement;
-- real tool observations when authority permits.
+When a claim can be tested, prefer reproducible computation, tools, isolated execution, simulation and real observations over verbal confidence, within authority boundaries.
 
 ### I-6. Endogenous questions and bounded goals
 
-From uncertainty, contradiction, novelty and prediction error, SIGMA should be able to generate:
-
-- a new question;
-- a new hypothesis;
-- a proposed measurement;
-- an experiment;
-- a bounded learning goal.
-
-Generated goals do not grant new authority. Capability is not permission.
+Use uncertainty, contradiction, novelty and prediction error to generate questions, hypotheses, measurements, experiments and bounded learning goals. Generated goals never create new authority.
 
 ### I-7. Meta-learning
 
-Failure and evaluation results should update not only answers but also reusable cognition:
-
-- strategies;
-- ontology/concepts;
-- retrieval policies;
-- reasoning budgets;
-- experiment design;
-- hypothesis-selection heuristics.
-
-A strategy change is a candidate until differential evidence shows improvement without unacceptable regressions.
+Use failure/evaluation evidence to improve reusable strategies, ontology, retrieval policies, reasoning budgets, experiment design and hypothesis-selection heuristics. Strategy changes remain candidates until differential evidence supports promotion.
 
 ### I-8. Dynamic reasoning budget
 
-Allocate more reasoning, retrieval, simulation and evaluator effort when uncertainty, impact, contradiction or value-of-information justifies it. Easy tasks should not consume the same budget as difficult or high-impact tasks.
+Allocate greater reasoning/retrieval/simulation/evaluator effort when uncertainty, impact, contradiction or value of information warrants it.
 
 ### I-9. Intelligence benchmark and regression suite
 
-System intelligence improvement must be demonstrated against versioned baselines. Metrics may include:
+Measure improvement with versioned baselines. Metrics may include correctness under independent/hidden evaluation, calibration, contradiction detection, multi-step success, causal transfer, restart-memory recovery, tool verification, failure recovery, resource efficiency and regression rate across previously verified capabilities.
 
-- correctness under hidden/independent evaluation;
-- calibration;
-- contradiction detection;
-- multi-step task success;
-- causal transfer;
-- memory recovery after restart;
-- tool verification success;
-- failure recovery;
-- cost/latency per solved task;
-- regression rate across previously passed requirements.
+## Successor responsibility
 
-`MORE TOKENS`, `MORE CODE`, `MORE QUESTIONS` or `MORE TIME RUNNING` are not intelligence evidence by themselves.
+Every successor inherits **the work and the verified capability baseline**, not merely a name or a task list.
 
-## Work that is primarily unlocked by future funding
+A successor must:
 
-Funding expands capacity; it does not replace the architecture above.
+1. reconstruct the newest verified state;
+2. preserve promoted capabilities and safety guarantees;
+3. identify the next evidence-grounded gap;
+4. seek a measurable improvement over the inherited baseline;
+5. HOLD rather than guess when evidence is insufficient;
+6. prevent unexplained regression;
+7. persist every verified improvement so later successors do not have to rediscover or rebuild it.
 
-Later stages may add:
+A successor is not "better" because it is newer. It is better only when its work produces evidence-backed improvement that survives evaluation and regression testing.
 
-- high-memory local model nodes;
-- physically independent proposer/critic/evaluator capacity;
-- multiple replaceable model engines;
-- second physical failure domain;
-- larger simulation/experiment capacity;
-- additional runtime implementations;
-- stronger storage and disaster recovery;
-- multi-provider frontier-model access under explicit budgets.
+## Continuity durability chain
 
-No hardware purchase automatically proves intelligence improvement.
+Every meaningful verified improvement must complete:
 
-## Continuity track — always active
-
-Every meaningful verified improvement must complete this chain before it is treated as durable:
-
-`ACTION -> OBSERVED EVIDENCE -> EVALUATION -> STATE UPDATE -> ONE NEXT_ACTION -> WRITE VERIFICATION -> CONTINUITY CHECKPOINT`
+`ACTION -> OBSERVED EVIDENCE -> EVALUATION -> DIFFERENTIAL RESULT -> REGRESSION CHECK -> STATE UPDATE -> CONTINUITY PERSISTENCE`
 
 Conversation memory is never the canonical store.
 
-### Single active executor rule
-
-For canonical brain mutation, maintain one active execution window/runtime unless work has been explicitly partitioned into non-conflicting scopes.
-
-Other windows may act as read-only verifiers. They must not independently mutate the same canonical state, ledger or NEXT_ACTION.
-
-### Before every window transfer
-
-The outgoing window must:
-
-1. stop starting new mutations;
-2. finish or explicitly HOLD the current atomic action;
-3. persist evidence/results;
-4. update `CURRENT_STATE.json` after meaningful progress;
-5. set exactly one canonical `NEXT_ACTION.md`;
-6. verify repository/branch/HEAD;
-7. verify required canonical files;
-8. run/inspect the brain contract validator when available;
-9. record blockers and any unverified assumptions;
-10. hand off using `WINDOW_TRANSFER_PROTOCOL.json`.
-
-### At every new window
-
-The incoming window must start from:
-
-`MINH BOOT SIGMA_LIFE`
-
-Then verify current HEAD and reconstruct state from canonical sources before claiming continuation. A remembered old SHA is only a checkpoint; if branch HEAD has advanced legitimately, the incoming window must inspect the intervening changes and use the latest verified canonical state.
+For canonical mutation, maintain one active executor unless work is explicitly partitioned into non-conflicting ownership. Recovery anchors and other windows remain read-only while a successor is active.
 
 ## Program order
 
-1. Baseline all 512 implementation requirements.
-2. Build dependency/priority graph from measured gaps.
-3. Fix highest-leverage foundational cognition mechanisms first.
-4. Add evidence-grounded memory and action reliability.
-5. Strengthen world/causal model and uncertainty handling.
-6. Strengthen deliberation, critic/evaluator and tool/simulation loops.
-7. Add endogenous question/goal generation under bounded authority.
-8. Add meta-learning and strategy restructuring.
-9. Run regression across affected 512 requirements after every promoted change.
-10. Scale compute only when measured evidence shows the current substrate is the limiting factor.
+1. Complete the evidence map of current capability without pretending measurement is improvement.
+2. Build the dependency/priority graph from measured gaps.
+3. Choose the highest-leverage cognition gap.
+4. Define the previous verified baseline and a falsifiable improvement hypothesis.
+5. Build an isolated candidate.
+6. Measure candidate versus baseline.
+7. Use independent evaluation where required.
+8. Run regression over affected verified capabilities.
+9. PROMOTE / REVISE / REJECT.
+10. Persist promoted improvement as the new baseline.
+11. Continue to the next highest-leverage gap; do not redo the promoted step without an evidence-backed reason.
+12. Scale compute only when evidence shows substrate capacity is the limiting factor.
 
 ## Core invariant
 
 `CURRENT INTELLIGENCE IS BOOTSTRAP CAPABILITY, NOT INHERITED TRUTH AND NOT A PERMANENT CEILING.`
 
-SIGMA becomes more capable only when a candidate produces measurable improvement under reality-grounded and independent evaluation while continuity, governance and rollback remain intact.
+And the governing objective hierarchy is:
+
+`TRAIN THE BRAIN -> PROVE IMPROVEMENT -> PRESERVE THE IMPROVEMENT -> CONTINUE FROM IT`
+
+not:
+
+`IDENTIFY WINDOWS -> IDENTIFY WINDOWS -> IDENTIFY WINDOWS`.
