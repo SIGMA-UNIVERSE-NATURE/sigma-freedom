@@ -1,0 +1,40 @@
+{
+  "schema": "sigma.psi.hardening.phase2.persistence_verification.v1",
+  "verified_at": "2026-08-18T04:24:00+07:00",
+  "mode": "READ_ONLY_ARCHIVE_VERIFICATION_NO_RERUN",
+  "archive": {
+    "name": "SIGMA_PSI_HARDENING_PHASE2_20260817.zip",
+    "size_bytes": 76852,
+    "sha256": "0ab383c893660fd163efb51db1543011aaa6f6ecd9c60484fee486a987968f61",
+    "expected_sha256": "0ab383c893660fd163efb51db1543011aaa6f6ecd9c60484fee486a987968f61",
+    "match": true
+  },
+  "sha256sums": {
+    "listed_file_count": 35,
+    "all_listed_files_match": true,
+    "file_sha256": "78a3ddc0f3e20e8999fa96d131c5ef6e5907fe4a21cff80b6caa25c9f0bd34f0",
+    "expected_manifest_sha256": "78a3ddc0f3e20e8999fa96d131c5ef6e5907fe4a21cff80b6caa25c9f0bd34f0",
+    "match": true
+  },
+  "implementation_source": {
+    "file_count": 8,
+    "source_tree_sha256": "60e632d7019b72c87bcae64bd44179fc2e641114d252c591701d3def21dc092d",
+    "expected_source_tree_sha256": "60e632d7019b72c87bcae64bd44179fc2e641114d252c591701d3def21dc092d",
+    "match": true
+  },
+  "evidence_report": {
+    "status": "PASS",
+    "scope": "REFERENCE_AND_SANDBOX_HARDENING; NOT_NATIVE_GENESIS_PRODUCTION_PROMOTION",
+    "test_count": 19,
+    "pass_count": 19,
+    "all_result_exit_zero": true,
+    "timeout_count": 0
+  },
+  "base_foundation_sha256": "fe513c20f4df9077e1d12acaa441dc90dceae566e70640b1b383ff185cf3ada1",
+  "promotion": {
+    "foundation_v7_modified": false,
+    "canonical_genesis_merged": false,
+    "requirements_512_promoted": false
+  },
+  "verdict": "PASS"
+}
