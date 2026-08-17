@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012-HP-e6f2af70c9f4",
+  "request_id": "SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012",
+  "status": "SUCCESS",
+  "recorded_at": "2026-08-17T01:39:47.224077+00:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "resolved_head_sha": "e6f2af70c9f41810f79d6b7745350680ebf825fd",
+  "executor": {
+    "runtime_name": "SIGMA Remote Operator Continuous",
+    "runtime_version": "0.6.0",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.4",
+    "private_workspace_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
+  },
+  "result": {
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-005",
+    "harness_version": "1.0.0",
+    "result_sha256": "3a7a3322c73efddb91e81ed62e62bc295b72e00047a810f2ad5038b37360dc43",
+    "counts": {"TARGET_COUNT":5,"PASS":0,"PARTIAL":0,"HOLD":5,"FAIL":0,"NOT_AUDITED":0},
+    "result_location_disclosure": "PRIVATE_LOCAL_REFERENCE_OR_REDACTED"
+  },
+  "integrity": {
+    "core_tree_before_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
+  "safety": {"paid_api_used":false,"secrets_disclosed":false,"external_network_side_effects":0},
+  "blockers": [],
+  "notes": [
+    "HARNESS_RETURN_CODE=0",
+    "AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true",
+    "REMOTE_COMMAND_FILE_USED=false",
+    "CANONICAL_REQUEST_ID_NOT_HARDCODED=true",
+    "LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED",
+    "ARBITRARY_SHELL_USED=false",
+    "MATERIALIZED_SOURCE_TREE_UNCHANGED=true",
+    "MATERIALIZED_SOURCE_SHA256_BEFORE=0ad40f43726c095c3927351abf592dcdf954444b9102e0f9613955e5192f251a",
+    "MATERIALIZED_SOURCE_SHA256_AFTER=0ad40f43726c095c3927351abf592dcdf954444b9102e0f9613955e5192f251a",
+    "PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT",
+    "CANONICAL_EVALUATOR_MUST_DECIDE_ANY_PROMOTION_OR_NEXT_ACTION"
+  ]
+}

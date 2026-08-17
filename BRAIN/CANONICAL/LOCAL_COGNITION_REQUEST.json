@@ -1,30 +1,30 @@
 {
-  "schema_version": "1.5.1",
-  "request_id": "SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012",
+  "schema_version": "1.6.0",
+  "request_id": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
   "status": "PENDING_LOCAL_EXECUTOR",
-  "recorded_at": "2026-08-17T15:36:00+07:00",
+  "recorded_at": "2026-08-17T15:47:00+07:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
   "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
-  "purpose": "Measure the current behavioral test surface for Section I attributes 008-012 after EH004 established structural PARTIAL evidence for 001-007.",
-  "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_BEHAVIORAL_GAP_MEASUREMENT",
+  "purpose": "Measure SIGMA 512 Section III attributes 025-036 (Học liên tục) after EH005 converted Section I behavioral gaps into explicit HOLD blockers.",
+  "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_CONTINUOUS_LEARNING_MEASUREMENT",
   "preconditions": [
     "Fetch current SIGMA_LIFE HEAD from canonical Git objects.",
     "Verify CURRENT_STATE.next_action_id and NEXT_ACTION bind this request_id.",
-    "Verify EH004 receipt is canonically persisted and implementation counts are 127 PARTIAL / 6 HOLD / 379 NOT_AUDITED.",
+    "Verify EH005 receipt is canonically persisted and implementation counts are 127 PARTIAL / 11 HOLD / 374 NOT_AUDITED.",
     "Do not use Remote Operator COMMANDS as work authority.",
-    "Do not implement the five behaviors during this measurement."
+    "Do not implement missing learning behaviors during measurement."
   ],
   "execution": {
-    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-005",
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-006",
     "harness_version": "1.0.0",
-    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_005/v1.0.0/run_harness.py",
-    "script_sha256": "0956acb2fb6377978d09cb14b7bf9a3665b8e2d045d72a21a43ad9dec9284c30",
-    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_005/v1.0.0/run_harness.py",
-    "result_file": "evidence_harness_005_result.json",
+    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_006/v1.0.0/run_harness.py",
+    "script_sha256": "840da02ccd1a944d146fefec906cb1c9d9f71aaa45aad8a4996775ae13cdf9ce",
+    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_006/v1.0.0/run_harness.py",
+    "result_file": "evidence_harness_006_result.json",
     "environment": {
-      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012",
+      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036",
       "SIGMA_HARNESS_OUTPUT_DIR": "AUTHORIZED_PRIVATE_LOCAL_WORKSPACE_RESOLVED_BY_REMOTE_OPERATOR"
     },
     "network_required": false,
@@ -44,40 +44,23 @@
   "observation_policy": {
     "pass_ceiling_remains_forbidden": true,
     "builder_evaluator_independent": false,
+    "evidence_driven_state_update_may_support_partial_only": true,
     "absence_of_bound_behavioral_test_surface_means_hold_not_fail": true,
-    "code_or_filename_presence_alone_is_not_behavioral_evidence": true,
     "do_not_implement_during_measurement": true
   },
   "receipt": {
     "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
     "return_policy": "RETURN_PUBLIC_SAFE_RECEIPT_OR_PRIVATE_RECEIPT_DIGEST_WITH_PRIVATE_PATHS_REDACTED",
-    "must_bind": [
-      "request_id",
-      "resolved_head_sha",
-      "harness_id",
-      "result_sha256",
-      "core_tree_before_sha256",
-      "core_tree_after_sha256",
-      "core_modifications",
-      "external_side_effects"
-    ],
-    "required_notes": [
-      "AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true",
-      "REMOTE_COMMAND_FILE_USED=false",
-      "CANONICAL_REQUEST_ID_NOT_HARDCODED=true",
-      "ARBITRARY_SHELL_USED=false"
-    ]
+    "must_bind": ["request_id","resolved_head_sha","harness_id","result_sha256","core_tree_before_sha256","core_tree_after_sha256","core_modifications","external_side_effects"],
+    "required_notes": ["AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true","REMOTE_COMMAND_FILE_USED=false","CANONICAL_REQUEST_ID_NOT_HARDCODED=true","ARBITRARY_SHELL_USED=false"]
   },
   "completion_criteria": [
-    "Receipt runtime_version is at least 0.6.0 and request_id matches EH005.",
-    "Result target_count=5, PASS=0, FAIL=0.",
-    "If the canonical runtime remains READ_ONLY_DIAGNOSTIC with runtime_evidence_status=NOT_AUDITED and no bound capability-registry instance, expected result is HOLD=5.",
+    "Receipt runtime_version is at least 0.6.0 and request_id matches EH006.",
+    "Result target_count=12, PASS=0, FAIL=0.",
+    "Expected conservative reference is PARTIAL=1 and HOLD=11; divergence must be reported, not hidden.",
     "Core tree before/after hashes identical and core_modifications=0.",
     "external_side_effects=0, paid_api_used=false, secrets_disclosed=false.",
     "Canonical evaluator decides ledger changes and the next action."
   ],
-  "privacy": {
-    "do_not_publish_private_workspace_path": true,
-    "do_not_publish_credentials_or_secrets": true
-  }
+  "privacy": {"do_not_publish_private_workspace_path":true,"do_not_publish_credentials_or_secrets":true}
 }

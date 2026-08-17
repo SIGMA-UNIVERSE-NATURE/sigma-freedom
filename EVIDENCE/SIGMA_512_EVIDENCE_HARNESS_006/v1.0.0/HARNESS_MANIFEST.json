@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-EVIDENCE-HARNESS-006",
+  "version": "1.0.0",
+  "section": "III",
+  "section_name": "Học liên tục",
+  "attribute_from": 25,
+  "attribute_to": 36,
+  "target_count": 12,
+  "mode": "READ_ONLY_CONTINUOUS_LEARNING_EVIDENCE_AND_BLOCKER_MEASUREMENT",
+  "pass_allowed": false,
+  "evaluator_independent": false,
+  "core_mutation_allowed": false,
+  "external_side_effects_allowed": false,
+  "expected_ceiling": {"PARTIAL":1,"HOLD":11,"PASS":0,"FAIL":0},
+  "interpretation": "Observed evidence-driven state updates may support PARTIAL for direct system-level learning. Requirements lacking bound executable behavioral tests remain HOLD."
+}

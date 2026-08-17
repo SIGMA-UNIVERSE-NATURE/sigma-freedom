@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.9.0",
+  "schema_version": "2.0.0",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -13,62 +13,11 @@
     "traceability": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_TRACEABILITY_MAP.json"
   },
   "required_files": [
-    "README.md",
-    "ROOT_OF_TRUST.json",
-    "MINH_OPERATING_CONSTITUTION.json",
-    "MINH_WINDOW_BOOT.md",
-    "WINDOW_TRANSFER_PROTOCOL.json",
-    "INTELLIGENCE_CONTINUITY_PROGRAM.md",
-    "CURRENT_STATE.json",
-    "NEXT_ACTION.md",
-    "DO_NOT_RERUN_LOCKS.json",
-    "LINEAGE.json",
-    "SUBSTRATE_CONTRACT.md",
-    "BOOT_PROTOCOL.md",
-    "BOOT_EVIDENCE.json",
-    "LOCAL_MIRROR_REQUEST.json",
-    "LOCAL_MIRROR_RECEIPT.schema.json",
-    "LOCAL_EXECUTION_BRIDGE_STATUS.json",
-    "LOCAL_COGNITION_RECEIPT.schema.json",
-    "LOCAL_COGNITION_REQUEST.json",
-    "LOCAL_COGNITION_RECEIPT_EH003_HP_001.json",
-    "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
-    "LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json",
-    "LOCAL_COGNITION_RECEIPT_EH004_HP_001.json",
-    "RESILIENCE_PUBLIC_POLICY.md",
-    "RESILIENCE_PUBLIC_POLICY.json",
-    "PRIVATE_RESILIENCE_PLAN_REQUEST.json",
-    "COGNITIVE_STATE.schema.json",
-    "MEMORY_RECORD.schema.json",
-    "ACTION_CONTRACT.schema.json",
-    "CAPABILITY_REGISTRY.schema.json",
-    "cognitive_kernel.py",
-    "mirror_to_local.py",
-    "validate_brain_contract.py",
-    "validate_local_execution_bridge.py"
+    "README.md","ROOT_OF_TRUST.json","MINH_OPERATING_CONSTITUTION.json","MINH_WINDOW_BOOT.md","WINDOW_TRANSFER_PROTOCOL.json","INTELLIGENCE_CONTINUITY_PROGRAM.md","CURRENT_STATE.json","NEXT_ACTION.md","DO_NOT_RERUN_LOCKS.json","LINEAGE.json","SUBSTRATE_CONTRACT.md","BOOT_PROTOCOL.md","BOOT_EVIDENCE.json","LOCAL_MIRROR_REQUEST.json","LOCAL_MIRROR_RECEIPT.schema.json","LOCAL_EXECUTION_BRIDGE_STATUS.json","LOCAL_COGNITION_RECEIPT.schema.json","LOCAL_COGNITION_REQUEST.json","LOCAL_COGNITION_RECEIPT_EH003_HP_001.json","LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json","LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json","LOCAL_COGNITION_RECEIPT_EH004_HP_001.json","LOCAL_COGNITION_RECEIPT_EH005_HP_001.json","RESILIENCE_PUBLIC_POLICY.md","RESILIENCE_PUBLIC_POLICY.json","PRIVATE_RESILIENCE_PLAN_REQUEST.json","COGNITIVE_STATE.schema.json","MEMORY_RECORD.schema.json","ACTION_CONTRACT.schema.json","CAPABILITY_REGISTRY.schema.json","cognitive_kernel.py","mirror_to_local.py","validate_brain_contract.py","validate_local_execution_bridge.py"
   ],
-  "forbidden_public_paths": [
-    "RESILIENCE_CAPITAL_PLAN_2M.md",
-    "RESILIENCE_CAPITAL_POLICY.json"
-  ],
-  "boot_order": [
-    "root_of_trust",
-    "operating_constitution",
-    "lineage",
-    "locks",
-    "state",
-    "architecture_integrity",
-    "capability_discovery",
-    "local_execution_bridge_status",
-    "open_loops",
-    "next_action",
-    "intelligence_continuity_program",
-    "window_transfer_protocol"
-  ],
-  "local_mirrors": [
-    "E:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0",
-    "F:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0"
-  ],
+  "forbidden_public_paths": ["RESILIENCE_CAPITAL_PLAN_2M.md","RESILIENCE_CAPITAL_POLICY.json"],
+  "boot_order": ["root_of_trust","operating_constitution","lineage","locks","state","architecture_integrity","capability_discovery","local_execution_bridge_status","open_loops","next_action","intelligence_continuity_program","window_transfer_protocol"],
+  "local_mirrors": ["E:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0","F:\\SIGMA\\BRAIN\\SIGMA_CANONICAL_BRAIN_v1.0"],
   "invariants": {
     "identity_is_not_substrate": true,
     "no_inherited_truth": true,
@@ -95,6 +44,6 @@
     "continuous_local_executor_must_not_self_promote_or_invent_next_action": true,
     "bounded_continuous_executor_requires_two_successive_machine_receipts": true,
     "measurement_must_not_implement_target_behavior": true,
-    "completed_probe_workflow_must_not_run_as_current_measurement": true
+    "completed_request_bound_measurement_workflows_must_be_retired": true
   }
 }

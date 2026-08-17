@@ -1,27 +1,24 @@
 # SIGMA CANONICAL NEXT ACTION
 
-## SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012
+## SIGMA-512-EVIDENCE-HARNESS-006-SECTION-III-LEARNING-025-036
 
-**Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_BEHAVIORAL_GAP_MEASUREMENT`
+**Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_CONTINUOUS_LEARNING_MEASUREMENT`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-EH004 measured Section I attributes 001–007 as PARTIAL and left 008–012 NOT_AUDITED. The next action is to measure why the remaining five behavioral requirements lack evidence.
+EH005 converted Section I attributes 008–012 from NOT_AUDITED to explicit HOLD blockers. Do not remediate them yet.
 
 Use the already-running bounded Remote Operator v0.6.0. Do not reinstall, restart, copy a request ID, or create a Remote Operator command file.
 
-Run only the SHA-256-pinned canonical EH005 harness for attributes **008–012**.
+Run only the SHA-256-pinned EH006 harness for **Section III — Học liên tục, attributes 025–036**.
 
-Safety/evidence gates:
-- paid API OFF;
-- website actions OFF;
-- arbitrary shell OFF;
-- 54 DNA core mutation forbidden;
-- external side effects forbidden;
+Evidence ceiling and safety:
 - PASS forbidden;
-- do not implement the missing behaviors during measurement;
-- absence of a bound executable behavioral test surface becomes HOLD, not FAIL;
-- code/filename presence alone is not behavioral evidence;
+- evidence-driven canonical state change may support PARTIAL only;
+- absent behavioral test surfaces become HOLD, not FAIL;
+- do not implement missing learning behaviors during this measurement;
+- paid API OFF; website actions OFF; arbitrary shell OFF;
+- DNA-core mutation forbidden; external side effects forbidden;
 - return exactly one machine receipt, then idle on this request ID.
 
-After receipt, canonical evaluation decides ledger changes and the next action.
+Canonical evaluation, not the local executor, decides ledger changes and the next action.
