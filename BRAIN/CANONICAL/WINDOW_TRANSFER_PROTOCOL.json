@@ -122,7 +122,7 @@
   "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK",
   "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION",
   "current_program": {
-    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXX-486-500",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXXI-501-512",
     "mode": "BOUNDED_CONTINUOUS_MEASUREMENT",
     "intelligence_program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "baseline_before_broad_remediation": true,
@@ -148,9 +148,9 @@
     "current_counts": {
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 356,
+      "HOLD": 371,
       "FAIL": 0,
-      "NOT_AUDITED": 27,
+      "NOT_AUDITED": 12,
       "NOT_APPLICABLE": 0
     },
     "bounded_controller_policy": "CONTINUOUS_512_CONTROLLER_POLICY.json",
