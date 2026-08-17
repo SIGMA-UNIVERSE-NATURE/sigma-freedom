@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
-  "recorded_at": "2026-08-17T22:59:01.449886+00:00",
+  "recorded_at": "2026-08-17T23:09:01.453648+00:00",
   "classification": "PUBLIC_SAFE",
   "bridge_state": "AVAILABLE",
   "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
@@ -57,8 +57,8 @@
     "scope": "SHA256_PINNED_CANONICAL_EVIDENCE_RUN_HARNESS_AUTODISCOVERY_ONLY",
     "runtime_version": "0.6.0",
     "latest_verified_receipt_file": "LOCAL_COGNITION_RECEIPT_AUTO_LAST.json",
-    "latest_verified_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXV-371-395",
-    "latest_verified_result_sha256": "68093440ba5b80350bf598e7b00ae7a92836c23e1bf3effd6b7886635e85ffb2",
+    "latest_verified_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVI-396-415",
+    "latest_verified_result_sha256": "8017c98e942875b502126452d7fe3103f5fc09186b5f100621dfc82e97064710",
     "auto_discovery": true,
     "human_request_id_relay_required": false,
     "remote_command_file_required": false,
@@ -83,6 +83,6 @@
     "fail_closed": true
   },
   "executor_clock_note": "HP wall clock is non-authoritative; authorization is bound to live canonical Git state.",
-  "pending_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVI-396-415",
+  "pending_request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXVII-416-440",
   "next_verification": "Bounded controller waits for one machine receipt before advancing."
 }
