@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "IMMUTABLE_WINDOW_BIRTH_CERTIFICATE",
+  "window_id": "HAND-TO-HAND-CUA-2-20260818-0152-VN",
+  "window_name": "HAND TO HAND_ CỬA 2",
+  "window_sequence": 2,
+  "created_at": "2026-08-18T01:52:00+07:00",
+  "registered_at": "2026-08-18T03:51:00+07:00",
+  "purpose": "Preserve exact SIGMA continuity across chat windows and continue SIGMA 512 brain operations only from verified canonical and machine evidence, never from conversational memory or guesswork.",
+  "work_scope": "Active-executor continuity, bounded SIGMA 512 measurement supervision/verification, checkpoint persistence, machine-evidence reconciliation, and safe hand-to-hand transfer to a verified successor window.",
+  "predecessor_window_name": "UNRESOLVED_BY_EVIDENCE",
+  "predecessor_window_sequence": 1,
+  "predecessor_sequence_basis": "CURRENT_OFFICIAL_WINDOW_SEQUENCE_IS_2; EXACT_PREDECESSOR_WINDOW_NAME_WAS_NOT_PERSISTED_AS_A VERIFIED BIRTH CERTIFICATE",
+  "predecessor_checkpoint": "274d890dfa25e0342747f05d2ab0a196756c79ec",
+  "precedent_commit": "5b62bbcc05d0edb3668107277d9487e0143698c0",
+  "precedent_file": "BRAIN/HANDOFFS/HAND_TO_HAND_CUA_2_CONTINUITY_PRECEDENT_20260818.md",
+  "canonical_head_at_registration": "819f779c0fae861387156ecb1f08c3333172f90c",
+  "registration_state_snapshot": {
+    "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XIII-152-165",
+    "counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 82,
+      "FAIL": 0,
+      "NOT_AUDITED": 301,
+      "NOT_APPLICABLE": 0
+    },
+    "warning": "This is a birth/registration snapshot, not a permanent live-state assertion. Fresh-fetch current SIGMA_LIFE before acting."
+  },
+  "authority_role": "ACTIVE_EXECUTOR_FOR_SIGMA_512_BRAIN_OPERATIONS_AT_REGISTRATION",
+  "handoff_state": "NOT_YET_TRANSFERRED",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK",
+  "failure_rule": "NO_STATE_MATCH = NO_CONTINUATION",
+  "identity_rule": "This birth certificate records who this window is. It must not be rewritten merely because the live 512 task advances.",
+  "exit_requirement": "Before leaving, write a separate exit checkpoint containing the fresh current HEAD, live work, next action, blockers, machine-evidence gap and intended successor lineage."
+}
