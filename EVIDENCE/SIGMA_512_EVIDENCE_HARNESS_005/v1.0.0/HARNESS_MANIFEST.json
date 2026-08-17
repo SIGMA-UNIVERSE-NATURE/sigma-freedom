@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-EVIDENCE-HARNESS-005",
+  "version": "1.0.0",
+  "section": "I",
+  "section_name": "Nhận thức và sự thật",
+  "attribute_from": 8,
+  "attribute_to": 12,
+  "target_count": 5,
+  "mode": "READ_ONLY_BEHAVIORAL_TEST_SURFACE_DISCOVERY",
+  "pass_allowed": false,
+  "evaluator_independent": false,
+  "core_mutation_allowed": false,
+  "external_side_effects_allowed": false,
+  "expected_ceiling": {
+    "HOLD": 5,
+    "PASS": 0,
+    "FAIL": 0
+  },
+  "interpretation": "The harness does not implement counterexample search, falsification, causal discrimination, ontology revision, or concept retirement. It measures whether the current canonical runtime exposes an executable behavioral test surface; absence becomes explicit HOLD, not FAIL or PASS."
+}

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.9.0",
+  "schema_version": "2.0.0",
   "protocol_id": "MINH-WINDOW-TRANSFER-v1",
   "status": "CANONICAL_TRANSFER_REQUIRED",
   "purpose": "Preserve functional and lineage continuity across chat-window, model-session, runtime and substrate transitions without relying on conversational memory.",
@@ -67,8 +67,8 @@
   "conflict_rule": "If canonical state, lineage, locks, ledger, local bridge epistemic status or next action conflict and the conflict cannot be resolved from evidence, HOLD the affected action and do not guess.",
   "continuity_completion_rule": "A transfer is complete only after the incoming window reports canonical boot fields consistent with the latest verified repository state.",
   "current_program": {
-    "next_action": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
-    "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_MEASUREMENT",
+    "next_action": "SIGMA-512-EVIDENCE-HARNESS-005-SECTION-I-BEHAVIOR-008-012",
+    "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_BEHAVIORAL_GAP_MEASUREMENT",
     "intelligence_program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "baseline_before_broad_remediation": true,
     "baseline_status": "COMPLETE",
@@ -76,24 +76,25 @@
     "evidence_harness_001_status": "COMPLETE_OBSERVED",
     "evidence_harness_002_status": "COMPLETE_OBSERVED",
     "evidence_harness_003_status": "COMPLETE_OBSERVED_AND_LOCALLY_REPRODUCED",
-    "local_execution_bridge_status": "BOUNDED_CONTINUOUS_EXECUTOR_MACHINE_VERIFIED_TWO_SUCCESSIVE_REQUESTS_EH004_PENDING",
+    "evidence_harness_004_status": "COMPLETE_OBSERVED_AND_LOCALLY_REPRODUCED",
+    "local_execution_bridge_status": "BOUNDED_CONTINUOUS_EXECUTOR_MACHINE_VERIFIED_EH005_PENDING",
     "local_execution_bridge_status_file": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
     "local_cognition_request": "LOCAL_COGNITION_REQUEST.json",
     "local_cognition_request_status": "PENDING_LOCAL_EXECUTOR",
-    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json",
+    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_EH004_HP_001.json",
     "bridge_machine_receipt_required_before_verified": true,
     "pending_continuous_executor_candidate_version": "0.6.0",
     "pending_continuous_executor_candidate_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
-    "bounded_continuous_executor_status": "MACHINE_RECEIPT_VERIFIED_TWO_SUCCESSIVE_REQUESTS",
+    "bounded_continuous_executor_status": "MACHINE_RECEIPT_VERIFIED_TWO_SUCCESSIVE_REQUESTS_PLUS_EH004",
     "human_request_id_relay_allowed": false,
     "remote_command_file_required": false,
     "legacy_learning_automation": "DISABLED_AND_LOCKED",
     "current_counts": {
       "PASS": 0,
-      "PARTIAL": 120,
+      "PARTIAL": 127,
       "HOLD": 6,
       "FAIL": 0,
-      "NOT_AUDITED": 386,
+      "NOT_AUDITED": 379,
       "NOT_APPLICABLE": 0
     }
   }
