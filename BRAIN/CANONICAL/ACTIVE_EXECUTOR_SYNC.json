@@ -1,43 +1,58 @@
 {
-  "schema_version": "1.0.0",
-  "sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0129-VN",
-  "recorded_at": "2026-08-18T01:29:00+07:00",
-  "purpose": "Allow another chat window to find and verify the exact operational state of the active SIGMA 512 brain-operations window before any handoff or takeover.",
+  "schema_version": "2.0.0",
+  "sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0346-VN",
+  "recorded_at": "2026-08-18T03:46:00+07:00",
+  "purpose": "Continuity checkpoint for the currently active SIGMA 512 brain-operations window. A candidate successor window must reconstruct this exact state from GitHub, then fresh-fetch and reconcile any later commits before Châu may assign takeover.",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "SIGMA_LIFE",
   "active_executor_role": "THIS_WINDOW_IS_ACTIVE_EXECUTOR_FOR_SIGMA_512_BRAIN_OPERATIONS",
   "handoff_state": "NOT_YET_TRANSFERRED",
-  "authority_rule": "A different window must remain READ_ONLY_VERIFIER until it fresh-fetches SIGMA_LIFE, reads this exact sync file, verifies every required fingerprint field, and Châu explicitly assigns takeover.",
+  "verifier_default_role": "READ_ONLY_VERIFIER",
+  "authority_rule": "No other window may become active executor merely by knowing an old checkpoint or returning MATCH against stale state. It must read this sync from GitHub, verify its fingerprints, fresh-fetch current SIGMA_LIFE, inspect every intervening commit, reconcile canonical state against machine evidence, and remain READ_ONLY_VERIFIER until Châu explicitly assigns takeover.",
+  "continuity_lineage": {
+    "previous_checkpoint": "274d890dfa25e0342747f05d2ab0a196756c79ec",
+    "previous_sync_id": "SIGMA-ACTIVE-EXECUTOR-SYNC-20260818-0129-VN",
+    "previous_sync_blob_sha": "40763fc9b104b21acd13ff1557a7e0f7ea728786",
+    "lineage_rule": "Historical checkpoints remain immutable in Git history. A newer sync advances identity state without erasing the older proof point."
+  },
   "canonical_fingerprint": {
-    "observed_head_before_sync_commit": "532a7d582bd8db77786fa4ab38d2d8e9bd49681a",
-    "current_state_blob_sha": "7f5efd24c50c4641e9938a384a64047948889773",
-    "next_action_blob_sha": "b78b25dd90fc8efbf89fe7441c71e9500d2ec5a0",
+    "observed_head_before_sync_commit": "47315a9f3bf2d92816e4187206e979fdf03ad442",
+    "current_state_blob_sha": "754356f085899c1a19c3e397b4aa7b5be1689fc3",
+    "next_action_blob_sha": "0c4936bbbe9fbf63c3a53b68151444fd86da3912",
     "controller_policy_blob_sha": "be438800951d605b5f5a80d11f51328d231b0c5a",
+    "local_cognition_request_blob_sha": "1250523913db676a10de0d47effc51854c096328",
     "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
-    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
+    "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
     "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
-    "ledger_counts_before_section_vi_ingestion": {
+    "ledger_counts": {
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 33,
+      "HOLD": 69,
       "FAIL": 0,
-      "NOT_AUDITED": 350,
+      "NOT_AUDITED": 314,
       "NOT_APPLICABLE": 0
-    }
+    },
+    "completed_bounded_measurements": [
+      "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
+      "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
+      "SIGMA-512-AUTO-MEASURE-SECTION-IX-097-108"
+    ]
   },
   "machine_evidence_ahead_of_canonical_state": {
     "repository": "linkcomltd-byte/sigma-remote-operator",
-    "observed_remote_head": "3cca6ca203d8b134dc23b5b86d2cdf48b4f19a30",
-    "receipt_path": "RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072.json",
-    "receipt_blob_sha": "d9c46cc35e94314e074b2fb5adc70cec528978cc",
-    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
+    "observed_remote_head": "2549a986dd580b1b3180555f5427de68acdcdfd0",
+    "receipt_path": "RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137.json",
+    "receipt_blob_sha": "7f3aa7c2ca6468f51ffcc0f2a0fc5a556635254f",
+    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
     "receipt_status": "SUCCESS",
-    "result_sha256": "f09f2342b6cd7a995c41063175ab707f80019a2daed2261d384f336766d97225",
+    "resolved_head_sha": "47315a9f3bf2d92816e4187206e979fdf03ad442",
+    "result_sha256": "d1f09e96329843cd6aa529257062c17ccf6d286c94bf93fb2aa12f9cea02aa8d",
     "counts": {
-      "TARGET_COUNT": 12,
+      "TARGET_COUNT": 13,
       "PASS": 0,
       "PARTIAL": 0,
-      "HOLD": 12,
+      "HOLD": 13,
       "FAIL": 0,
       "NOT_AUDITED": 0
     },
@@ -45,10 +60,15 @@
     "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
     "core_modifications": 0,
     "external_side_effects": 0,
+    "paid_api_used": false,
     "ingestion_state": "OBSERVED_BY_ACTIVE_EXECUTOR_NOT_YET_APPLIED_TO_512_LEDGER"
   },
   "controller_state": {
-    "policy_status": "AUTHORIZED",
+    "policy_status": "AUTHORIZED_BOUNDED_CONTINUOUS_MEASUREMENT",
+    "controller_version": "0.1.1",
+    "active_entrypoint": "REMOTE_AGENT/sigma_512_bounded_controller_v011.py",
+    "active_controller_sha256": "c8bd73dc5fd8fee603c1e4ba2c324ab1086b12f1e891ba8230a0f9a1433a635e",
+    "unicode_tree_transport": "MKTREE_Z_NUL_DELIMITED",
     "cadence_seconds": 600,
     "selection_policy": "LOWEST_NUMBERED_SECTION_WITH_NOT_AUDITED_ONLY",
     "evidence_ceiling": "HOLD_ONLY",
@@ -58,33 +78,39 @@
     "paid_api_allowed": false,
     "website_actions_allowed": false,
     "arbitrary_shell_allowed": false,
+    "external_side_effects_allowed": false,
     "one_request_at_a_time": true,
     "machine_receipt_before_advance": true,
     "fail_closed": true,
-    "remote_operator_controller_contract_commit": "903114355c35edb43ff08283723e40bcff13bddb",
-    "controller_ci_run_id": 32052828376,
-    "controller_ci_conclusion": "success",
-    "hp_scheduled_task_installation": "UNVERIFIED_NOT_CLAIMED"
+    "controller_contract_ci_run_id": 32064772379,
+    "controller_contract_ci_conclusion": "success",
+    "windows_unicode_tree_regression": "PASS",
+    "post_reboot_machine_state": {
+      "sigma_box": "RUNNING",
+      "sigma_remote_operator": "RUNNING",
+      "sigma_512_controller_between_cycles": "READY"
+    }
   },
-  "reboot_boundary": {
-    "reason": "Separate SIGMA language-program experiment requested an HP restart.",
-    "brain_persistence": "CANONICAL_GIT_STATE_AND_LOCAL_DURABLE_FILES_PERSIST",
-    "processes_during_reboot": "STOPPED_BY_WINDOWS_REBOOT",
-    "post_reboot_required_observation": "VERIFY_SIGMA_BOX_REMOTE_OPERATOR_AND_SIGMA_512_CONTROLLER_TASK_STATES_BEFORE_RESUMING_CONTINUOUS_512_CONTROL"
-  },
-  "foundation_parallel_context": {
-    "latest_additive_handoff_commit": "532a7d582bd8db77786fa4ab38d2d8e9bd49681a",
-    "foundation_v7": "TRI_SUBSTRATE_PASS_IMMUTABLE_BASELINE",
-    "phase2": "CANDIDATE_19_OF_19_PASS_NOT_CANONICALLY_INTEGRATED",
-    "rule": "This parallel handoff is additive only and does not replace the active 512 state above."
+  "identity_match_contract": {
+    "meaning_of_match": "The verifier has reconstructed the same canonical operational state and all machine-evidence gaps from GitHub, not merely repeated a historical checkpoint.",
+    "stale_match_forbidden": true,
+    "must_reconcile_intervening_commits": true,
+    "must_recheck_machine_evidence": true,
+    "must_report_exact_current_head": true,
+    "takeover_implied_by_match": false,
+    "takeover_requires_explicit_chau_assignment": true
   },
   "required_sync_verification": [
-    "FETCH_CURRENT_SIGMA_LIFE_HEAD",
+    "FETCH_EXACT_SYNC_CHECKPOINT",
     "READ_ACTIVE_EXECUTOR_SYNC_FROM_GIT_NOT_CHAT_MEMORY",
+    "VERIFY_PREVIOUS_CHECKPOINT_LINEAGE",
     "VERIFY_CURRENT_STATE_BLOB_OR_INSPECT_INTERVENING_COMMITS",
     "VERIFY_NEXT_ACTION_BLOB_OR_INSPECT_INTERVENING_COMMITS",
     "VERIFY_CONTROLLER_POLICY_BLOB_OR_INSPECT_INTERVENING_COMMITS",
-    "VERIFY_SECTION_VI_MACHINE_RECEIPT",
+    "VERIFY_LOCAL_COGNITION_REQUEST_BLOB_OR_INSPECT_INTERVENING_COMMITS",
+    "VERIFY_SECTION_XI_MACHINE_RECEIPT_OR_RECONCILE_IF_ALREADY_INGESTED",
+    "FRESH_FETCH_CURRENT_SIGMA_LIFE_HEAD_AFTER_CHECKPOINT_READ",
+    "INSPECT_ALL_INTERVENING_COMMITS_AFTER_THIS_SYNC_CHECKPOINT",
     "REPORT_CANONICAL_STATE_VS_MACHINE_EVIDENCE_GAP",
     "REMAIN_READ_ONLY_UNTIL_CHAU_ASSIGN_TAKEOVER"
   ],
