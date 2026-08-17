@@ -1,8 +1,8 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.1.0",
   "protocol_id": "SIGMA-WINDOW-IDENTITY-LINEAGE-v1",
   "status": "CANONICAL_REQUIRED",
-  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory.",
+  "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory, while preventing fabricated or simulated continuity claims.",
   "validator": "BRAIN/CANONICAL/validate_window_identity.py",
   "validator_success_phrase": "SIGMA_WINDOW_IDENTITY_CONTRACT: PASS",
   "naming_rule": {
@@ -12,6 +12,55 @@
     "subtitle_pattern": "<PURPOSE_SHORT>",
     "never_guess_sequence_or_predecessor": true,
     "if_predecessor_identity_unresolved": "RECORD_UNRESOLVED_BY_EVIDENCE_AND_USE_VERIFIED_PREDECESSOR_CHECKPOINT"
+  },
+  "truth_and_anti_fabrication_gate": {
+    "mode": "FAIL_CLOSED",
+    "no_fabrication": true,
+    "no_fake_state": true,
+    "no_simulation_presented_as_observation": true,
+    "no_guessing_to_gain_identity_acceptance": true,
+    "no_prompt_copying_as_identity_proof": true,
+    "unknown_or_unverified_response": "HOLD_WITH_EXACT_MISSING_EVIDENCE",
+    "contradiction_response": "HOLD_AND_REPORT_CONFLICT",
+    "rule": "A candidate window must never invent, interpolate, simulate, role-play or copy an expected answer in order to be accepted as a continuation. Every material identity/state answer must be supported by fresh canonical or machine evidence."
+  },
+  "open_state_challenge": {
+    "required_before_continuity_acceptance": true,
+    "minimum_open_questions": 3,
+    "questions_must_not_include_expected_answers": true,
+    "answers_must_be_free_form_not_multiple_choice": true,
+    "challenge_must_be_answered_after_fresh_fetch": true,
+    "prompted_expected_values_do_not_count_as_proof": true,
+    "allowed_question_issuers": [
+      "CHAU",
+      "OUTGOING_VERIFIED_ACTIVE_EXECUTOR",
+      "CANONICAL_CONTINUITY_CHALLENGE_PROTOCOL"
+    ],
+    "question_classes": [
+      "CURRENT_LIVE_STATE_AND_NEXT_ACTION",
+      "INTERVENING_COMMIT_DELTA_FROM_PREDECESSOR_CHECKPOINT",
+      "CURRENT_512_LEDGER_COUNTS_AND_LAST_COMPLETED_MEASUREMENT",
+      "CURRENT_MACHINE_EVIDENCE_AHEAD_OF_OR_BEHIND_CANONICAL",
+      "CURRENT_AUTHORITY_AND_SAFETY_LIMITS",
+      "IDENTIFY_A_STALE_OR_SUPERSEDED_STATE_THAT_MUST_NOT_BE_REPEATED"
+    ],
+    "answer_requirements": [
+      "ANSWER_FROM_FRESH_EVIDENCE_NOT_CHAT_MEMORY",
+      "CITE_OR_IDENTIFY_SUPPORTING_COMMIT_BLOB_RECEIPT_OR_CANONICAL_FIELD",
+      "DISTINGUISH_OBSERVED_FACT_FROM_INFERENCE",
+      "SAY_UNKNOWN_OR_HOLD_IF EVIDENCE_IS_INSUFFICIENT",
+      "DO_NOT_FILL_MISSING_FACTS_WITH_PLAUSIBLE_VALUES"
+    ],
+    "acceptance_rule": "ALL_CHALLENGE_ANSWERS_MUST_MATCH_FRESH_VERIFIED_EVIDENCE_WITH_NO_UNEXPLAINED_CONTRADICTION_OR_FABRICATION",
+    "failure_rule": "ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_OR_MATERIAL_WRONG_ANSWER = IDENTITY_HOLD_NO_TAKEOVER"
+  },
+  "candidate_before_acceptance_rule": {
+    "candidate_role": "READ_ONLY_CONTINUITY_CANDIDATE",
+    "candidate_may_create_birth_record": true,
+    "candidate_birth_record_is_not_identity_acceptance": true,
+    "active_pointer_must_not_transfer_before_challenge_pass": true,
+    "canonical_mutation_for_work_forbidden_before_acceptance": true,
+    "explicit_takeover_still_required_when_authority_transfer_requires_it": true
   },
   "birth_certificate_required_fields": [
     "window_id",
@@ -29,6 +78,14 @@
     "handoff_state",
     "state_match_rule"
   ],
+  "successor_birth_rule_effective_v1_1": {
+    "additional_fields": [
+      "continuity_acceptance_state",
+      "anti_fabrication_gate_version"
+    ],
+    "initial_continuity_acceptance_state": "PENDING_OPEN_STATE_CHALLENGE",
+    "initial_authority_role": "READ_ONLY_CONTINUITY_CANDIDATE"
+  },
   "active_identity_pointer": "BRAIN/CANONICAL/ACTIVE_WINDOW_IDENTITY.json",
   "birth_certificate_directory": "BRAIN/HANDOFFS/WINDOW_IDENTITIES",
   "on_window_boot": [
@@ -36,20 +93,25 @@
     "READ_WINDOW_IDENTITY_PROTOCOL",
     "READ_ACTIVE_WINDOW_IDENTITY",
     "FIND_AND_VERIFY_PREDECESSOR_WINDOW_BIRTH_CERTIFICATE_OR_VERIFIED_CHECKPOINT",
-    "RUN_OR_INSPECT_VALIDATE_WINDOW_IDENTITY_AND_REQUIRE_PASS",
+    "RUN_OR_INSPECT_VALIDATE_WINDOW_IDENTITY_AND_REQUIRE_PASS_FOR_CURRENT_ACTIVE_POINTER",
     "INSPECT_ALL_INTERVENING_COMMITS",
     "RECONSTRUCT_LATEST_CANONICAL_AND_MACHINE_EVIDENCE_STATE",
     "ASSIGN_NEXT_WINDOW_SEQUENCE_ONLY_FROM_VERIFIED_LINEAGE",
-    "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT",
-    "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER",
-    "RUN_VALIDATE_WINDOW_IDENTITY_AGAIN_AFTER_REGISTRATION",
-    "REMAIN_READ_ONLY_UNTIL_STATE_MATCH_AND_EXPLICIT_TAKEOVER_IF_REQUIRED"
+    "REGISTER_SUCCESSOR_ONLY_AS_READ_ONLY_CONTINUITY_CANDIDATE",
+    "ANSWER_MINIMUM_THREE_OPEN_STATE_CHALLENGE_QUESTIONS_FROM_FRESH_EVIDENCE",
+    "FAIL_CLOSED_ON_ANY_FABRICATION_SIMULATION_UNSUPPORTED_GUESS_OR_MATERIAL_WRONG_ANSWER",
+    "DO_NOT_UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_UNTIL_CHALLENGE_STATE_MATCH_AND_REQUIRED_EXPLICIT_TAKEOVER_PASS",
+    "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT_WITH_ACCEPTANCE_STATE",
+    "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER_ONLY_AFTER_ACCEPTANCE",
+    "RUN_VALIDATE_WINDOW_IDENTITY_AGAIN_AFTER_ACCEPTANCE",
+    "REMAIN_READ_ONLY_UNTIL_FULL_ACCEPTANCE"
   ],
   "on_meaningful_progress": [
     "DO_NOT_REWRITE_BIRTH_FACTS",
     "FRESH_FETCH_LATEST_CANONICAL_STATE",
     "UPDATE_LIVE_WORK_POINTER_ONLY_WHEN_NEEDED",
-    "PRESERVE_CHECKPOINT_LINEAGE"
+    "PRESERVE_CHECKPOINT_LINEAGE",
+    "NEVER_REWRITE_UNKNOWN_HISTORY_AS_CERTAINTY"
   ],
   "on_window_exit_or_transfer": [
     "STOP_STARTING_NEW_MUTATIONS",
@@ -57,10 +119,11 @@
     "FRESH_FETCH_CURRENT_HEAD",
     "WRITE_EXIT_CHECKPOINT_WITH_LAST_VERIFIED_HEAD_CURRENT_WORK_NEXT_ACTION_BLOCKERS_AND_MACHINE_EVIDENCE_GAP",
     "SET_HANDOFF_STATE_TRANSFER_READY_ONLY_AFTER_CHECKPOINT_VERIFY",
-    "DO_NOT_MARK_SUCCESSOR_ACTIVE_UNTIL_SUCCESSOR_STATE_MATCH_AND_CHAU_EXPLICITLY_TRANSFERS_AUTHORITY_WHEN_REQUIRED"
+    "PROVIDE_OPEN_STATE_CHALLENGE_QUESTIONS_WITHOUT_EXPECTED_ANSWERS_WHEN_POSSIBLE",
+    "DO_NOT_MARK_SUCCESSOR_ACTIVE_UNTIL_SUCCESSOR_STATE_MATCH_OPEN_CHALLENGE_PASS_AND_CHAU_EXPLICITLY_TRANSFERS_AUTHORITY_WHEN_REQUIRED"
   ],
-  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK",
-  "failure_rule": "NO_STATE_MATCH = NO_CONTINUATION",
+  "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK",
+  "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION",
   "stale_match_rule": "MATCHING_AN_OLD_CHECKPOINT_WITHOUT_FRESH_FETCHING_CURRENT_HEAD_IS_NOT_A_LIVE_STATE_MATCH",
   "identity_vs_work_rule": "WINDOW_IDENTITY_IS_STABLE; LIVE_WORK_STATE_MUST_ALWAYS_BE_FRESH_FETCHED_BECAUSE_AUTOMATION_MAY_ADVANCE_CANONICAL_STATE",
   "chat_memory_role": "NON_CANONICAL_ORIENTATION_ONLY"
