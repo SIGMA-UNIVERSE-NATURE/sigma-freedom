@@ -1,6 +1,56 @@
 {
   "schema_version": "1.0.0",
-  "status": "NO_AUTOMEASURE_RECEIPT_YET",
-  "classification": "PUBLIC_SAFE_PLACEHOLDER",
-  "note": "This fixed receipt slot is replaced only after a bounded continuous measurement receipt is validated."
+  "receipt_id": "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072-HP-11c242186653",
+  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
+  "status": "SUCCESS",
+  "recorded_at": "2026-08-17T17:50:10.788489+00:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "resolved_head_sha": "11c24218665363a9d4c726b318413a7ca2eecfcd",
+  "executor": {
+    "runtime_name": "SIGMA Remote Operator Continuous",
+    "runtime_version": "0.6.0",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.4",
+    "private_workspace_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
+  },
+  "result": {
+    "harness_id": "SIGMA-512-AUTOMEASURE",
+    "harness_version": "1.0.0",
+    "result_sha256": "f09f2342b6cd7a995c41063175ab707f80019a2daed2261d384f336766d97225",
+    "counts": {
+      "TARGET_COUNT": 12,
+      "PASS": 0,
+      "PARTIAL": 0,
+      "HOLD": 12,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "result_location_disclosure": "PRIVATE_LOCAL_REFERENCE_OR_REDACTED"
+  },
+  "integrity": {
+    "core_tree_before_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
+  "safety": {
+    "paid_api_used": false,
+    "secrets_disclosed": false,
+    "external_network_side_effects": 0
+  },
+  "blockers": [],
+  "notes": [
+    "HARNESS_RETURN_CODE=0",
+    "AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true",
+    "REMOTE_COMMAND_FILE_USED=false",
+    "CANONICAL_REQUEST_ID_NOT_HARDCODED=true",
+    "LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED",
+    "ARBITRARY_SHELL_USED=false",
+    "MATERIALIZED_SOURCE_TREE_UNCHANGED=true",
+    "MATERIALIZED_SOURCE_SHA256_BEFORE=9b45ff54759923ca52234332b1d95c76b20959cbb03e49f6e28ae3ff0a3495a0",
+    "MATERIALIZED_SOURCE_SHA256_AFTER=9b45ff54759923ca52234332b1d95c76b20959cbb03e49f6e28ae3ff0a3495a0",
+    "PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT",
+    "CANONICAL_EVALUATOR_MUST_DECIDE_ANY_PROMOTION_OR_NEXT_ACTION"
+  ]
 }

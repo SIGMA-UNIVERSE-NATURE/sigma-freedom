@@ -1,16 +1,64 @@
 {
-  "schema_version":"2.0.0",
-  "request_id":"SIGMA-512-AUTO-MEASURE-SECTION-VI-061-072",
-  "classification":"PUBLIC_SAFE_REQUEST_POINTER",
-  "status":"PENDING_LOCAL_EXECUTOR",
-  "recorded_at":"2026-08-18T00:47:30+07:00",
-  "canonical_repository":"SIGMA-UNIVERSE-NATURE/sigma-freedom",
-  "canonical_branch":"SIGMA_LIFE",
-  "purpose":"Bounded read-only measurement of remaining NOT_AUDITED attributes in Section VI.",
-  "mode":"AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE",
-  "target":{"section_id":"VI","section_name":"Goal, agency và open-endedness","attribute_ids":["SIGMA-ATTR-061","SIGMA-ATTR-062","SIGMA-ATTR-063","SIGMA-ATTR-064","SIGMA-ATTR-065","SIGMA-ATTR-066","SIGMA-ATTR-067","SIGMA-ATTR-068","SIGMA-ATTR-069","SIGMA-ATTR-070","SIGMA-ATTR-071","SIGMA-ATTR-072"],"evidence_ceiling":"HOLD_ONLY","pass_allowed":false},
-  "execution":{"harness_id":"SIGMA-512-AUTOMEASURE","harness_version":"1.0.0","script":"EVIDENCE/SIGMA_512_AUTOMEASURE/v1.0.0/run_harness.py","command":"python EVIDENCE/SIGMA_512_AUTOMEASURE/v1.0.0/run_harness.py","script_sha256":"5675104e48f7a48013b81819edd83a20955b01245d119be93661e2b1d98f4028","result_file":"sigma_512_automeasure_result.json","network_required":false,"paid_api_allowed":false,"website_actions_allowed":false,"external_side_effects_allowed":false,"dna_core_mutation_allowed":false},
-  "autodiscovery":{"required":true,"human_request_id_relay_allowed":false,"remote_command_file_required":false,"expected_executor_min_version":"0.6.0","expected_remote_operator_candidate_commit":"b1575d621ab627f4412001d56bb93f15e57f9bb1"},
-  "receipt":{"schema":"LOCAL_COGNITION_RECEIPT.schema.json","required_notes":["AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true","REMOTE_COMMAND_FILE_USED=false","CANONICAL_REQUEST_ID_NOT_HARDCODED=true","ARBITRARY_SHELL_USED=false"]},
-  "privacy":{"do_not_publish_private_workspace_path":true,"do_not_publish_credentials_or_secrets":true}
+  "schema_version": "2.0.0",
+  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-VIII-085-096",
+  "classification": "PUBLIC_SAFE_REQUEST_POINTER",
+  "status": "PENDING_LOCAL_EXECUTOR",
+  "recorded_at": "2026-08-17T20:19:16.350538+00:00",
+  "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "canonical_branch": "SIGMA_LIFE",
+  "purpose": "Bounded read-only measurement of remaining NOT_AUDITED attributes in Section VIII.",
+  "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE",
+  "target": {
+    "section_id": "VIII",
+    "section_name": "Kiến trúc, kiểm chứng và độc lập",
+    "attribute_ids": [
+      "SIGMA-ATTR-085",
+      "SIGMA-ATTR-086",
+      "SIGMA-ATTR-087",
+      "SIGMA-ATTR-088",
+      "SIGMA-ATTR-089",
+      "SIGMA-ATTR-090",
+      "SIGMA-ATTR-091",
+      "SIGMA-ATTR-092",
+      "SIGMA-ATTR-093",
+      "SIGMA-ATTR-094",
+      "SIGMA-ATTR-095",
+      "SIGMA-ATTR-096"
+    ],
+    "evidence_ceiling": "HOLD_ONLY",
+    "pass_allowed": false
+  },
+  "execution": {
+    "harness_id": "SIGMA-512-AUTOMEASURE",
+    "harness_version": "1.0.0",
+    "script": "EVIDENCE/SIGMA_512_AUTOMEASURE/v1.0.0/run_harness.py",
+    "command": "python EVIDENCE/SIGMA_512_AUTOMEASURE/v1.0.0/run_harness.py",
+    "script_sha256": "5675104e48f7a48013b81819edd83a20955b01245d119be93661e2b1d98f4028",
+    "result_file": "sigma_512_automeasure_result.json",
+    "network_required": false,
+    "paid_api_allowed": false,
+    "website_actions_allowed": false,
+    "external_side_effects_allowed": false,
+    "dna_core_mutation_allowed": false
+  },
+  "autodiscovery": {
+    "required": true,
+    "human_request_id_relay_allowed": false,
+    "remote_command_file_required": false,
+    "expected_executor_min_version": "0.6.0",
+    "expected_remote_operator_candidate_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1"
+  },
+  "receipt": {
+    "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
+    "required_notes": [
+      "AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true",
+      "REMOTE_COMMAND_FILE_USED=false",
+      "CANONICAL_REQUEST_ID_NOT_HARDCODED=true",
+      "ARBITRARY_SHELL_USED=false"
+    ]
+  },
+  "privacy": {
+    "do_not_publish_private_workspace_path": true,
+    "do_not_publish_credentials_or_secrets": true
+  }
 }
