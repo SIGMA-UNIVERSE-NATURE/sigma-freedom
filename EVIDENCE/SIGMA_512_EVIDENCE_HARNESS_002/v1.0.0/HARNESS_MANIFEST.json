@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-EVIDENCE-HARNESS-002",
+  "version": "1.0.0",
+  "mode": "READ_ONLY_OR_ISOLATED_MEASUREMENT",
+  "scope": {
+    "sections": ["VII", "XII", "XVI"],
+    "attribute_ranges": ["73-84", "138-151", "188-203"],
+    "target_count": 42,
+    "core_mutation_allowed": false,
+    "core_import_allowed": false,
+    "external_side_effects_allowed": false,
+    "fixture_or_tempfile_side_effects_only": true
+  },
+  "depends_on": [
+    "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+    "SIGMA-512-EVIDENCE-HARNESS-001"
+  ],
+  "evidence_policy": {
+    "filename_or_symbol_presence_is_pass": false,
+    "self_report_is_pass": false,
+    "isolated_harness_success_can_be_at_most": "PARTIAL",
+    "pass_requires_independent_evaluator": true,
+    "hold_when_requirement_explicitly_requires_independence_not_available": true
+  },
+  "safety_policy": {
+    "network_actions": "NONE",
+    "credentials": "NONE",
+    "replication": "FORBIDDEN",
+    "authority_expansion": "FORBIDDEN",
+    "writes": "TEMPORARY_SANDBOX_ONLY"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "evaluator_id": "SIGMA-512-HARNESS-002-EVALUATOR",
+  "evaluator_version": "1.0.0",
+  "independent": false,
+  "independence_reason": "Builder-owned evaluator for isolated measurement. It cannot certify PASS for requirements that require independent evaluation.",
+  "promotion_policy": {
+    "thresholds_locked_before_observation": true,
+    "pass_allowed": false,
+    "partial_requires_assigned_check": true,
+    "fail_requires_observed_check_failure": true,
+    "hold_requires_declared_external_or_independence_blocker": true
+  },
+  "expected_holds": {
+    "SIGMA-ATTR-084": "INDEPENDENT_EVALUATOR_REQUIRED_FOR_RECURSIVE_SELF_IMPROVEMENT",
+    "SIGMA-ATTR-203": "INDEPENDENT_GOVERNANCE_RED_TEAM_REQUIRED"
+  }
+}
