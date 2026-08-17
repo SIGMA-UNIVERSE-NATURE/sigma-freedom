@@ -67,7 +67,7 @@
   "conflict_rule": "If canonical state, lineage, locks, ledger, local bridge epistemic status or next action conflict and the conflict cannot be resolved from evidence, HOLD the affected action and do not guess.",
   "continuity_completion_rule": "A transfer is complete only after the incoming window reports canonical boot fields consistent with the latest verified repository state.",
   "current_program": {
-    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-IX-097-108",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137",
     "mode": "BOUNDED_CONTINUOUS_MEASUREMENT",
     "intelligence_program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "baseline_before_broad_remediation": true,
@@ -93,9 +93,9 @@
     "current_counts": {
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 57,
+      "HOLD": 69,
       "FAIL": 0,
-      "NOT_AUDITED": 326,
+      "NOT_AUDITED": 314,
       "NOT_APPLICABLE": 0
     },
     "bounded_controller_policy": "CONTINUOUS_512_CONTROLLER_POLICY.json",

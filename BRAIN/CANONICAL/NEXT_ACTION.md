@@ -1,11 +1,11 @@
 # SIGMA CANONICAL NEXT ACTION
 
-## SIGMA-512-AUTO-MEASURE-SECTION-IX-097-108
+## SIGMA-512-AUTO-MEASURE-SECTION-XI-125-137
 
 **Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-Section IX — Temporal intelligence; remaining NOT_AUDITED: 097, 098, 099, 100, 101, 102, 103, 104, 105, 106, 107, 108.
+Section XI — Scientific reasoning và experimentation; remaining NOT_AUDITED: 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137.
 
 Hard limits: measurement only; PASS forbidden; no DNA mutation; no paid API; no website action; no arbitrary shell; no external side effects; exactly one pending request; machine receipt required before advance.
