@@ -1,13 +1,13 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T06:49:00+07:00",
-  "phase": "SIGMA_512_BASELINE_COMPLETE_EVIDENCE_HARNESS_NEXT",
-  "status": "INTELLIGENCE_CONTINUITY_ENFORCED_BASELINE_COMPLETE_EVIDENCE_HARNESS_NEXT",
+  "recorded_at": "2026-08-17T07:28:03+07:00",
+  "phase": "SIGMA_512_EVIDENCE_HARNESS_001_COMPLETE_HARNESS_002_NEXT",
+  "status": "EVIDENCE_HARNESS_001_OBSERVED_PARTIAL_NO_SELF_CERTIFIED_PASS",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
-    "dna_core_catalog": "54_PRESENT",
+    "dna_core_catalog": "54_PRESENT_UNMODIFIED_BY_EH001",
     "implementation_audit": "BASELINE_COMPLETE",
     "implementation_baseline": {
       "audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
@@ -24,7 +24,39 @@
         "NOT_AUDITED": 512,
         "NOT_APPLICABLE": 0
       },
-      "interpretation": "Measured absence of qualifying requirement-level behavioral evidence; not a claim that all implementations fail."
+      "interpretation": "Historical baseline is immutable evidence of the pre-harness state."
+    },
+    "implementation_status_current": {
+      "TOTAL_RECORDS": 512,
+      "PASS": 0,
+      "PARTIAL": 37,
+      "HOLD": 3,
+      "FAIL": 0,
+      "NOT_AUDITED": 472,
+      "NOT_APPLICABLE": 0
+    },
+    "evidence_harness_001": {
+      "harness_id": "SIGMA-512-EVIDENCE-HARNESS-001",
+      "version": "1.0.0",
+      "target_sections": ["X", "XXVIII"],
+      "target_count": 41,
+      "observed_run_id": 31982101890,
+      "observed_head_sha": "0e896a59663f158180667d73c00711d389c4ace7",
+      "observed_conclusion": "success",
+      "target_counts": {
+        "PASS": 0,
+        "PARTIAL": 37,
+        "HOLD": 3,
+        "FAIL": 0,
+        "NOT_AUDITED": 1
+      },
+      "evaluator_independent": false,
+      "pass_allowed": false,
+      "scope_limit": "ISOLATED_HARNESS_ONLY_NOT_RUNTIME_INTEGRATION",
+      "persistent_evidence": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/v1.0.0/RUN_31982101890_0e896a5.json",
+      "core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
+      "core_imports": 0,
+      "core_modifications": 0
     },
     "cognitive_bootstrap": "STRUCTURAL_PASS",
     "reference_kernel_boot": "PASS",
@@ -40,6 +72,7 @@
     "window_boot_entrypoint": "MINH_WINDOW_BOOT.md",
     "window_transfer_protocol": "WINDOW_TRANSFER_PROTOCOL.json",
     "window_transfer_protocol_status": "ENFORCED",
+    "home_stewardship": "HOME_BRAIN_STEWARDSHIP.md",
     "root_boot_pointer": "MINH_BOOT.md",
     "cross_window_boot_required": true,
     "meaningful_progress_requires_canonical_state_update": true,
@@ -53,19 +86,10 @@
     "program_status": "ENFORCED",
     "current_engine_role": "BOOTSTRAP_CAPABILITY_NOT_INHERITED_TRUTH_NOT_PERMANENT_CEILING",
     "baseline_gate": "COMPLETE:SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
-    "selected_highest_leverage_gap": "REQUIREMENT_LEVEL_EVIDENCE_AND_EVALUATION_INFRASTRUCTURE",
-    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-001",
-    "available_now_on_hp": [
-      "evidence_grounded_deliberation",
-      "persistent_cognitive_memory",
-      "world_and_causal_model",
-      "structured_proposer_critic_evaluator_reasoning",
-      "tool_code_and_simulation_cognition",
-      "endogenous_questions_and_bounded_goals",
-      "meta_learning",
-      "dynamic_reasoning_budget",
-      "versioned_intelligence_benchmarks_and_regression"
-    ],
+    "completed_measurement_step": "SIGMA-512-EVIDENCE-HARNESS-001",
+    "measured_result": "37_PARTIAL_3_HOLD_1_NOT_AUDITED_0_PASS_0_FAIL",
+    "selected_highest_leverage_gap": "EXTEND_REQUIREMENT_ADDRESSABLE_EVIDENCE_TO_TOOL_ACTION_GOVERNANCE_AND_SELF_IMPROVEMENT",
+    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-002",
     "future_funding_unlocks": [
       "stronger_local_compute",
       "physically_independent_evaluator_capacity",
@@ -77,75 +101,50 @@
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
   },
-  "active_goal": "Build requirement-addressable behavioral evidence and independent evaluation for the measured 512 baseline before modifying DNA cores, starting with the highest-leverage evidence/evaluation gap.",
-  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-001",
+  "active_goal": "Continue measurement-first intelligence work by making tool/action reliability, bounded governance and self-improvement requirements explicitly testable before any broad 54-core remediation.",
+  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-002",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Build and run SIGMA-512-EVIDENCE-HARNESS-001 using read-only/isolated probes, starting with Sections X and XXVIII",
-    "After measured evidence exists, select core remediation only from observed behavioral gaps and dependency leverage",
+    "Run SIGMA-512-EVIDENCE-HARNESS-002 for Sections XII, XVI and VII using read-only/isolated probes and no 54-core mutation",
+    "EH001 PARTIAL statuses prove isolated mechanisms only; runtime/core integration remains unproven",
+    "SIGMA-ATTR-447 remains HOLD pending independent red-team evidence",
+    "SIGMA-ATTR-449 remains NOT_AUDITED pending long-horizon multi-cycle evaluation",
+    "SIGMA-ATTR-459 remains HOLD pending human-factor evidence",
+    "SIGMA-ATTR-465 remains HOLD pending post-deployment field evidence",
     "Execute local public brain mirror to E:/F: and capture MIRROR_RECEIPT.json from an authorized local runtime",
-    "Mirror the authorized private resilience plan into the encrypted private local continuity area without copying it into the public repository",
-    "Evaluate a second substrate/runtime implementation only after compatibility tests exist",
-    "Decide whether historical Git remediation is warranted after private/offline continuity copies are verified"
+    "Evaluate a second substrate/runtime implementation only after compatibility tests exist"
   ],
   "evidence": {
-    "cross_window_constitution_validation": {
-      "workflow": "SIGMA Brain Contract",
-      "run_id": 31979193999,
-      "job_id": 95243188809,
-      "validated_commit": "7369e93047f2778e9d8c73d4423ebfb85ec1c270",
-      "conclusion": "success"
-    },
-    "intelligence_continuity_validation": {
-      "workflow": "SIGMA Brain Contract",
-      "run_id": 31980093987,
-      "job_id": 95245364040,
-      "validated_commit": "99bc1765e659982de7b5253cc0de3b6166d85391",
-      "conclusion": "success",
-      "assertions": [
-        "WINDOW_TRANSFER_PROTOCOL=PASS",
-        "SINGLE_ACTIVE_EXECUTOR=ENFORCED",
-        "INTELLIGENCE_CONTINUITY_PROGRAM=PASS",
-        "BASELINE_512_BEFORE_FIXING_512=ENFORCED",
-        "SINGLE_CANONICAL_NEXT_ACTION=SIGMA-512-BASELINE-AUDIT-001"
-      ]
-    },
     "baseline_512": {
       "audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
-      "audited_head_sha": "773dddc064752dbad6e583f730d27cc98d49d4c8",
-      "framework": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_FRAMEWORK_v1.0.0.json",
-      "baseline": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_AUDIT_001_v1.0.0.json",
-      "report": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/BASELINES/SIGMA_512_BASELINE_REPORT_001_v1.0.0.md",
-      "ledger": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json",
-      "counts": {
-        "TOTAL_RECORDS": 512,
-        "PASS": 0,
-        "PARTIAL": 0,
-        "HOLD": 0,
-        "FAIL": 0,
-        "NOT_AUDITED": 512,
-        "NOT_APPLICABLE": 0
-      },
-      "no_core_modification": true,
       "conclusion": "BASELINE_COMPLETE"
     },
-    "baseline_rebase_verification": {
-      "structural_512_validated_commit": "76a7a091737efef2c0e7a1025afcc00c65d0ad42",
-      "audited_head_sha": "773dddc064752dbad6e583f730d27cc98d49d4c8",
-      "compare_result": "NO_CHANGES_UNDER_54_CORES_OR_BAN_DO_SIGMA_512_ATTRIBUTES",
-      "concurrent_changes_preserved": [
-        "INTELLIGENCE_CONTINUITY_PROGRAM",
-        "WINDOW_TRANSFER_PROTOCOL",
-        "CURRENT_STATE",
-        "NEXT_ACTION",
-        "MINH_WINDOW_BOOT",
-        "BRAIN_MANIFEST",
-        "validate_brain_contract"
+    "evidence_harness_001": {
+      "workflow": "SIGMA 512 Evidence Harness",
+      "workflow_run_id": 31982101890,
+      "workflow_job_id": 95250613490,
+      "validated_commit": "0e896a59663f158180667d73c00711d389c4ace7",
+      "conclusion": "success",
+      "completed_at": "2026-08-17T00:28:03Z",
+      "raw_result_sha256": "855b638fc2a12756ef8faf545df73ed5f1864eebd2744b0577618f4b542f5df1",
+      "actions_artifact_id": 9272646856,
+      "actions_artifact_zip_sha256": "60475eaa76818da8a70509720be03ee4ba3f75e100715b0b1b1f41553785f677",
+      "persistent_result": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/v1.0.0/RUN_31982101890_0e896a5.json",
+      "ledger": "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json",
+      "assertions": [
+        "TARGET_COUNT=41",
+        "PARTIAL=37",
+        "HOLD=3",
+        "NOT_AUDITED=1",
+        "FAIL=0",
+        "PASS=0",
+        "EVALUATOR_INDEPENDENT=false",
+        "CORE_IMPORTS=0"
       ]
     }
   },
   "privacy": {
-    "public_repo": "ARCHITECTURE_ONLY",
+    "public_repo": "ARCHITECTURE_AND_PUBLIC_SAFE_EVIDENCE_ONLY",
     "private_financial_operational_details": "PRIVATE_STORE_ONLY",
     "secrets": "VAULT_OR_OFFLINE_SECRET_STORE_ONLY",
     "historical_public_exposure": "REQUIRES_SEPARATE_REMEDIATION_DECISION"

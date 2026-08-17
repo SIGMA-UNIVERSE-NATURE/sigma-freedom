@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "protocol_id": "MINH-WINDOW-TRANSFER-v1",
   "status": "CANONICAL_TRANSFER_REQUIRED",
   "purpose": "Preserve functional and lineage continuity across chat-window, model-session, runtime and substrate transitions without relying on conversational memory.",
@@ -62,11 +62,20 @@
   "conflict_rule": "If canonical state, lineage, locks, ledger or next action conflict and the conflict cannot be resolved from evidence, HOLD the affected action and do not guess.",
   "continuity_completion_rule": "A transfer is complete only after the incoming window reports canonical boot fields consistent with the latest verified repository state.",
   "current_program": {
-    "next_action": "SIGMA-512-EVIDENCE-HARNESS-001",
+    "next_action": "SIGMA-512-EVIDENCE-HARNESS-002",
     "mode": "READ_ONLY_OR_ISOLATED_MEASUREMENT",
     "intelligence_program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "baseline_before_broad_remediation": true,
     "baseline_status": "COMPLETE",
-    "baseline_audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0"
+    "baseline_audit_id": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+    "evidence_harness_001_status": "COMPLETE_OBSERVED",
+    "evidence_harness_001_run_id": 31982101890,
+    "evidence_harness_001_counts": {
+      "PASS": 0,
+      "PARTIAL": 37,
+      "HOLD": 3,
+      "FAIL": 0,
+      "NOT_AUDITED": 1
+    }
   }
 }
