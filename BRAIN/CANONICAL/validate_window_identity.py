@@ -31,10 +31,56 @@ def main() -> None:
 
     if protocol.get("status") != "CANONICAL_REQUIRED":
         fail("identity protocol is not canonical-required")
-    if protocol.get("state_match_rule") != "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> STATE_MATCH -> CONTINUE_WORK":
+
+    expected_state_rule = (
+        "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> "
+        "ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK"
+    )
+    if protocol.get("state_match_rule") != expected_state_rule:
         fail("state-match rule mismatch")
-    if protocol.get("failure_rule") != "NO_STATE_MATCH = NO_CONTINUATION":
+    if protocol.get("failure_rule") != "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION":
         fail("failure rule mismatch")
+
+    truth = protocol.get("truth_and_anti_fabrication_gate") or {}
+    for key in (
+        "no_fabrication",
+        "no_fake_state",
+        "no_simulation_presented_as_observation",
+        "no_guessing_to_gain_identity_acceptance",
+        "no_prompt_copying_as_identity_proof",
+    ):
+        if truth.get(key) is not True:
+            fail(f"anti-fabrication gate not enforced: {key}")
+    if truth.get("mode") != "FAIL_CLOSED":
+        fail("anti-fabrication gate is not fail-closed")
+    if truth.get("unknown_or_unverified_response") != "HOLD_WITH_EXACT_MISSING_EVIDENCE":
+        fail("unknown/unverified response must HOLD")
+
+    challenge = protocol.get("open_state_challenge") or {}
+    if challenge.get("required_before_continuity_acceptance") is not True:
+        fail("open state challenge is not required")
+    if int(challenge.get("minimum_open_questions", 0)) < 3:
+        fail("open state challenge requires fewer than three questions")
+    for key in (
+        "questions_must_not_include_expected_answers",
+        "answers_must_be_free_form_not_multiple_choice",
+        "challenge_must_be_answered_after_fresh_fetch",
+        "prompted_expected_values_do_not_count_as_proof",
+    ):
+        if challenge.get(key) is not True:
+            fail(f"open challenge invariant missing: {key}")
+    if len(challenge.get("question_classes") or []) < 3:
+        fail("insufficient open challenge question classes")
+
+    candidate = protocol.get("candidate_before_acceptance_rule") or {}
+    if candidate.get("candidate_role") != "READ_ONLY_CONTINUITY_CANDIDATE":
+        fail("candidate role must be read-only")
+    if candidate.get("candidate_birth_record_is_not_identity_acceptance") is not True:
+        fail("candidate birth record incorrectly counts as identity acceptance")
+    if candidate.get("active_pointer_must_not_transfer_before_challenge_pass") is not True:
+        fail("active pointer could transfer before challenge pass")
+    if candidate.get("canonical_mutation_for_work_forbidden_before_acceptance") is not True:
+        fail("candidate could mutate canonical work before acceptance")
 
     required_active = [
         "window_id", "window_name", "window_sequence", "created_at", "purpose_short",
@@ -47,7 +93,8 @@ def main() -> None:
     match = NAME.fullmatch(str(active["window_name"]))
     if not match:
         fail("active window name does not match canonical naming pattern")
-    if int(match.group(1)) != int(active["window_sequence"]):
+    sequence = int(active["window_sequence"])
+    if int(match.group(1)) != sequence:
         fail("active window name/sequence mismatch")
     if not SHA40.fullmatch(str(active["predecessor_checkpoint"])):
         fail("active predecessor checkpoint is not SHA40")
@@ -62,8 +109,7 @@ def main() -> None:
         if birth.get(key) in (None, ""):
             fail(f"birth certificate missing required field {key}")
 
-    # Only immutable birth facts must equal the live pointer. Authority and handoff
-    # are lifecycle fields and may legitimately change after registration.
+    # Immutable birth facts must equal the live pointer. Authority/handoff are lifecycle fields.
     for key in ("window_id", "window_name", "window_sequence", "created_at", "predecessor_checkpoint"):
         if birth.get(key) != active.get(key):
             fail(f"active pointer/birth immutable mismatch: {key}")
@@ -79,10 +125,22 @@ def main() -> None:
         fail("birth lifecycle-at-registration fields missing")
     if active.get("authority_role") in (None, "") or active.get("handoff_state") in (None, ""):
         fail("active lifecycle fields missing")
-    if birth.get("state_match_rule") != protocol.get("state_match_rule"):
-        fail("birth state-match rule mismatch")
-    if birth.get("failure_rule") != protocol.get("failure_rule"):
-        fail("birth failure rule mismatch")
+
+    # Cửa 1/2 predate v1.1 and their immutable birth records must not be rewritten.
+    # Every successor accepted as Cửa 3+ must carry the new anti-fabrication acceptance metadata.
+    if sequence >= 3:
+        successor = protocol.get("successor_birth_rule_effective_v1_1") or {}
+        for key in successor.get("additional_fields") or []:
+            if birth.get(key) in (None, ""):
+                fail(f"v1.1+ successor birth missing {key}")
+        if birth.get("anti_fabrication_gate_version") not in {"1.1", "1.1.0", "v1.1"}:
+            fail("successor birth anti-fabrication gate version mismatch")
+        if active.get("continuity_acceptance_state") != "ACCEPTED_OPEN_STATE_CHALLENGE_PASS":
+            fail("successor active pointer lacks accepted open-state challenge")
+        if active.get("open_state_challenge_result") != "PASS":
+            fail("successor active pointer challenge result is not PASS")
+        if int(active.get("open_state_challenge_question_count", 0)) < 3:
+            fail("successor active pointer challenge count below three")
 
     print("SIGMA_WINDOW_IDENTITY_CONTRACT: PASS")
     print(f"WINDOW_ID={active['window_id']}")
@@ -92,6 +150,9 @@ def main() -> None:
     print(f"PREDECESSOR_CHECKPOINT={active['predecessor_checkpoint']}")
     print(f"AUTHORITY_ROLE={active['authority_role']}")
     print(f"HANDOFF_STATE={active['handoff_state']}")
+    print("ANTI_FABRICATION_GATE=ENFORCED_FAIL_CLOSED")
+    print("OPEN_STATE_CHALLENGE_REQUIRED=true")
+    print("MINIMUM_OPEN_QUESTIONS=3")
 
 
 if __name__ == "__main__":
