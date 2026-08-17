@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "map_id": "SIGMA-BRAIN-TRAINING-MAP-v1",
+  "status": "CANONICAL_REQUIRED",
+  "primary_objective": "TRAIN_AND_DEVELOP_SIGMA_BRAIN_TOWARD_MEASURABLY_GREATER_SYSTEM_LEVEL_INTELLIGENCE_OVER_THE_LATEST_VERIFIED_BASELINE",
+  "supporting_infrastructure_not_end_goal": [
+    "CONTINUITY",
+    "WINDOW_IDENTITY",
+    "PROVENANCE",
+    "RECOVERY",
+    "GOVERNANCE",
+    "AUTOMATION"
+  ],
+  "governing_loop": "MEASURE_REALITY -> CHOOSE_LEVERAGE_GAP -> DEFINE_PREVIOUS_VERIFIED_BASELINE -> BUILD_ISOLATED_CANDIDATE -> DIFFERENTIAL_TEST -> INDEPENDENT_EVALUATION_WHEN_REQUIRED -> REGRESSION_CHECK -> PROMOTE_OR_REVISE_OR_REJECT -> PERSIST_PROMOTED_RESULT_AS_NEW_BASELINE -> NEXT_GAP",
+  "live_position_sources": [
+    "BRAIN/CANONICAL/CURRENT_STATE.json",
+    "BRAIN/CANONICAL/NEXT_ACTION.md",
+    "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/SIGMA_512_IMPLEMENTATION_STATUS.json",
+    "BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json when active",
+    "corresponding machine receipt in linkcomltd-byte/sigma-remote-operator"
+  ],
+  "snapshot_rule": "THIS_MAP_IS_STABLE_ROADMAP_NOT_LIVE_STATE; FRESH_VERIFIED_LIVE_STATE_OVERRIDES_OLD_SNAPSHOTS",
+  "phases": [
+    {
+      "id": "M0",
+      "name": "MEASURE_CURRENT_REALITY",
+      "purpose": "Complete the 512 evidence map before broad remediation so training priorities are evidence-based.",
+      "intelligence_improvement_claim_allowed": false,
+      "completion_condition": "NOT_AUDITED == 0 AND FINAL_MACHINE_CANONICAL_RECEIPT_GAP_RECONCILED",
+      "on_complete": "STOP_BOUNDED_AUTOMEASURE_AND_ENTER_M1"
+    },
+    {
+      "id": "M1",
+      "name": "CONSOLIDATE_REALITY_AND_BUILD_PRIORITY_GRAPH",
+      "required_outputs": [
+        "VERSIONED_MEASURED_BASELINE",
+        "DEPENDENCY_PRIORITY_GRAPH",
+        "RANKED_BRAIN_TRAINING_GAPS",
+        "EVIDENCE_BASED_REASON_FOR_TOP_GAP",
+        "PREVIOUS_VERIFIED_CAPABILITY_BASELINE"
+      ],
+      "intelligence_improvement_claim_allowed": false,
+      "on_complete": "ENTER_TRAINING_LOOP_AT_T1"
+    },
+    {
+      "id": "T1",
+      "name": "SELECT_ONE_HIGHEST_LEVERAGE_GAP",
+      "requirements": ["MEASURABLE", "FALSIFIABLE", "BASELINE_DEFINED", "COGNITION_OR_SYSTEM_CAPABILITY_RELEVANT"]
+    },
+    {
+      "id": "T2",
+      "name": "DEFINE_BASELINE_HYPOTHESIS_METRIC_AND_ROLLBACK",
+      "requirements": ["PREVIOUS_VERIFIED_BASELINE", "TARGET_CAPABILITY", "HYPOTHESIS", "METRIC", "SUCCESS_THRESHOLD", "REGRESSION_SURFACES", "ROLLBACK_PATH"]
+    },
+    {
+      "id": "T3",
+      "name": "BUILD_ISOLATED_CANDIDATE",
+      "rule": "CANDIDATE_IS_NOT_CANONICAL_IMPROVEMENT"
+    },
+    {
+      "id": "T4",
+      "name": "DIFFERENTIAL_TEST",
+      "rule": "COMPARE_CANDIDATE_DIRECTLY_AGAINST_PREVIOUS_VERIFIED_BASELINE_USING_PREDECLARED_METRICS"
+    },
+    {
+      "id": "T5",
+      "name": "INDEPENDENT_EVALUATION",
+      "rule": "REQUIRED_WHEN_CANONICAL_CONTRACT_OR_IMPACT_REQUIRES; PROPOSER_MUST_NOT_SELF_CERTIFY"
+    },
+    {
+      "id": "T6",
+      "name": "REGRESSION_CHECK",
+      "rule": "LOCAL_IMPROVEMENT_WITH_UNACCEPTABLE_REGRESSION_IS_NOT_OVERALL_IMPROVEMENT"
+    },
+    {
+      "id": "T7",
+      "name": "DECISION",
+      "allowed": ["PROMOTE", "REVISE", "REJECT"]
+    },
+    {
+      "id": "T8",
+      "name": "PERSIST_PROMOTED_RESULT_AS_NEW_BASELINE",
+      "required_promotion_record": [
+        "PARENT_BASELINE",
+        "CANDIDATE_VERSION",
+        "TARGET_GAP",
+        "MEASUREMENT_EVIDENCE",
+        "DIFFERENTIAL_RESULT",
+        "EVALUATOR_RESULT",
+        "REGRESSION_RESULT",
+        "ROLLBACK_PATH",
+        "CANONICAL_STATE_UPDATE",
+        "ONE_CONTINUATION_ACTION"
+      ],
+      "rule": "PROMOTED_RESULT_BECOMES_NEW_VERIFIED_BASELINE_FOR_ALL_SUCCESSORS"
+    }
+  ],
+  "improvement_contract": {
+    "better_requires_differential_evidence": true,
+    "self_claimed_better_is_evidence": false,
+    "newer_window_is_better_by_default": false,
+    "more_code_is_evidence": false,
+    "more_files_is_evidence": false,
+    "more_tokens_is_evidence": false,
+    "more_runtime_is_evidence": false,
+    "more_heartbeats_is_evidence": false,
+    "more_windows_is_evidence": false,
+    "measurement_progress_is_intelligence_improvement": false,
+    "promotion_requires_regression_check": true,
+    "promotion_requires_independent_evaluation_when_required": true,
+    "promoted_result_becomes_next_baseline": true
+  },
+  "accumulation_rule": {
+    "do_not_restart_from_pre_improvement_state": true,
+    "do_not_rerun_verified_promoted_work_without_reason": true,
+    "valid_rerun_reasons": [
+      "REGRESSION_SIGNAL",
+      "DEPENDENCY_OR_ENVIRONMENT_CHANGE",
+      "SUBSTRATE_CHANGE_INVALIDATES_PRIOR_PORTABILITY_EVIDENCE",
+      "CONTRADICTION_OR_NEW_EVIDENCE",
+      "MISSING_REQUIRED_INDEPENDENT_EVALUATION",
+      "EXPLICIT_AUDIT_REQUIREMENT"
+    ],
+    "required_rerun_field": "WHY_PREVIOUS_EVIDENCE_IS_NO_LONGER_SUFFICIENT",
+    "new_window_is_valid_rerun_reason": false,
+    "memory_loss_is_valid_rerun_reason": false
+  },
+  "drift_detector": {
+    "status": "FAIL_CLOSED_RETURN_TO_MAP",
+    "drift_conditions": [
+      "IDENTITY_OR_METADATA_WORK_DOMINATES_AFTER_TRANSITION_IS_SUFFICIENT",
+      "RERUN_OR_REBUILD_VERIFIED_FOUNDATION_OR_PROMOTED_BASELINE_WITHOUT_EVIDENCE_REASON",
+      "WEBSITE_FUNDING_BRANDING_OR_INFRASTRUCTURE_WORK_NOT_DIRECTLY_SERVING_CURRENT_TRAINING_GAP",
+      "MEASUREMENT_PROGRESS_PRESENTED_AS_INTELLIGENCE_IMPROVEMENT",
+      "NEW_TOOL_OR_AUTOMATION_WITHOUT_TARGET_GAP_METRIC_AND_DIFFERENTIAL_EVIDENCE_RELATION",
+      "GOAL_CHANGED_WITHOUT_DEPENDENCY_PRIORITY_EVIDENCE_OR_EXPLICIT_AUTHORIZED_PRIORITY",
+      "SELF_DECLARED_BETTER_EVOLVED_OR_PASS_WITHOUT_COMPARATIVE_MEASUREMENT",
+      "CONTRADICTION_HIDDEN_OR_EXPLAINED_AWAY_TO_CONTINUE",
+      "VERIFIED_CAPABILITY_REGRESSION_IGNORED",
+      "CONCURRENT_CANONICAL_MUTATION_WITH_ANOTHER_ACTIVE_EXECUTOR",
+      "CONTINUITY_WORK_CONTINUES_AFTER_IT_IS_SUFFICIENT_TO_RETURN_TO_CURRENT_TASK"
+    ],
+    "correction_sequence": "TRAINING_DRIFT_DETECTED -> STOP_NONESSENTIAL_MUTATION -> FRESH_FETCH -> READ_SIGMA_BRAIN_TRAINING_MAP -> IDENTIFY_CURRENT_PHASE_FROM_EVIDENCE -> RETURN_TO_CURRENT_CANONICAL_TRAINING_ACTION",
+    "unknown_current_phase_response": "HOLD_WITH_EXACT_MISSING_EVIDENCE"
+  },
+  "five_question_alignment_check": [
+    "WHAT_TRAINING_PHASE_ARE_WE_IN",
+    "WHAT_IS_THE_PREVIOUS_VERIFIED_BASELINE",
+    "WHAT_CURRENT_GAP_OR_NEXT_ACTION_IS_EVIDENCE_AUTHORIZED",
+    "WHAT_MEASUREMENT_CANDIDATE_OR_DIFFERENTIAL_EVIDENCE_DOES_THE_CURRENT_ACTION_CREATE",
+    "WHERE_WILL_A_VERIFIED_BETTER_RESULT_BE_PERSISTED_AS_THE_NEXT_BASELINE"
+  ],
+  "alignment_failure_rule": "IF_THE_FIVE_QUESTIONS_CANNOT_BE_ANSWERED_FROM_EVIDENCE_THEN_HOLD_CURRENT_ACTION_AND_RETURN_TO_MAP",
+  "successor_rule": "SUCCESSOR_INHERITS_THE_NEWEST_VERIFIED_CAPABILITY_BASELINE_AND_RESPONSIBILITY_TO_PRODUCE_THE_NEXT_MEASURABLE_IMPROVEMENT; IT_DOES_NOT_RESTART_OR_SELF_DECLARE_SUPERIOR",
+  "canonical_shorthand": "TRAIN_THE_BRAIN -> PROVE_IMPROVEMENT -> PRESERVE_THE_IMPROVEMENT -> CONTINUE_FROM_IT"
+}
