@@ -1,0 +1,231 @@
+{
+  "schema": "sigma.psi.hardening.phase2.evidence.v1",
+  "date": "2026-08-17",
+  "status": "PASS",
+  "scope": "REFERENCE_AND_SANDBOX_HARDENING; NOT_NATIVE_GENESIS_PRODUCTION_PROMOTION",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "runner": "HEAVY_SEQUENTIAL_LIGHT_BOUNDED_PARALLEL",
+  "test_count": 19,
+  "pass_count": 19,
+  "source_sha256": {
+    "__init__.py": "f8dadd0632aae50996c12f94cf54cb9394ef861a83ce52b09c5de9375424f131",
+    "ai.py": "56b52504cfe7e999a4fbebc0fec120063f0de8222a9d8864702403a2f885998a",
+    "ai_scale.py": "a581af4850cd0826d40ba33846ab28b6d6e8b20df377f5d7ad06d88d74483c86",
+    "ecosystem.py": "bcffc4ad4ecd51df2b55b578436ce7439d5f94cd591cc1092f8c6290cf0d7fcb",
+    "genesis_json_jit.py": "2cd605fa1df5c0cf9170227f22a013ce116d7ec8c0137f83ded3640fdbfcbaf4",
+    "jit.py": "a71bc536e4bc0377b33d9862119ecbd8406b6fd303ac47454f067500248164d7",
+    "quantum.py": "ab184747e85df37ed48d9d40f0ff186b09bc53446424c3747105662fb5f562c5",
+    "shell.py": "d3a5ebcebe94a43fc0bc99be85e2a3bbb56699201bfec5625bad92f13e2bcc4f"
+  },
+  "results": [
+    {
+      "test": "test_ai.py",
+      "sha256": "501fe6eff024d34f158f017e6b827e849682f29f7a975011ce496bcb16c7e59d",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 2.186,
+      "stdout": [
+        "AI_TENSOR_AUTODIFF_NN_BATCH_PASS {'first_loss': 0.7074087568829232, 'final_loss': 0.0009876971569102518, 'predictions': [0.0005535699881590193, 0.9990828772759865, 0.9987940187969485, 0.0012720031584057179], 'labels': [0, 1, 1, 0], 'target': [0, 1, 1, 0], 'pass': True, 'parameter_count': 33, 'batch_size': 4}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_ai_scale.py",
+      "sha256": "79dd215ebaca05e3f8a67914e315ffb28e9ea1a001ed9558adc797b89b431ee1",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 2.096,
+      "stdout": [
+        "{'digits': {'dataset': 'sklearn_digits_8x8', 'train_samples': 1437, 'test_samples': 360, 'input_features': 64, 'classes': 10, 'hidden_features': 96, 'epochs': 35, 'batch_size': 64, 'initial_loss': 2.438325881958008, 'final_loss': 0.12739251554012299, 'test_accuracy': 0.9555555555555556, 'parameter_count': 7210, 'seconds': 0.0684991190000801, 'backend': 'numpy-vectorized-reference', 'pass': True, 'scope': 'REAL_DATASET_SCALE_STEP_NOT_MNIST'}, 'scale_100m': {'parameter_count': 100000000, 'parameter_bytes': 400000000, 'logical_gib': 0.3725290298461914, 'chunk_rows': 25, 'chunk_parameter_count': 2500000, 'forward_seconds': 0.016048406999743747, 'restore_forward_seconds': 0.015260610000041197, 'differential_ok': True, 'checkpoint_restore_ok': True, 'file_size_ok': True, 'peak_rss_kib_process': 585388, 'scope': '100M_PARAMETER_INFERENCE_ONLY_CPU_MEMMAP', 'training_claim': False, 'gpu_claim': False, 'pass': True, 'checkpoint': '/tmp/sigma100m-98i68n8l/checkpoint_100m.json', 'weights': '/tmp/sigma100m-98i68n8l/weights_100m_f32.bin'}}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_ai_100m_training.py",
+      "sha256": "8d92f7fbc874b95538086b2395e54bddbec60df7956f82cb758c1615417cfc57",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 4.522,
+      "stdout": [
+        "AI_100M_DENSE_TRAINING_SCALE_PROBE_PASS",
+        "{\"all_features_nonzero\": true, \"all_targets_nonzero\": true, \"checkpoint_restore_ok\": true, \"cpu_process_seconds\": 1.2809036489999999, \"file_size_ok\": true, \"final_loss\": 0.02083331916751763, \"initial_loss\": 0.333333000065111, \"loss_decreased\": true, \"parameter_bytes\": 400000000, \"parameter_count\": 100000000, \"pass\": true, \"peak_rss_kib_process\": 516588, \"sampled_weights_nonzero_after_training\": true, \"scope\": \"100M_DENSE_FULL_WEIGHT_SGD_SYNTHETIC_CPU_SCALE_PROBE; REAL_DATASET_100M_MODEL_AND_GPU_HOLD\", \"shape\": [1000, 100000], \"step_losses\": [0.0833332486315683, 0.02083331916751763], \"steps\": 2}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_mnist_idx_reader.py",
+      "sha256": "8e9f82b3e1362042043ad4492c0d0fee23eaf239eb0ec548056228ffd3f13ffb",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.079,
+      "stdout": [
+        "MNIST_IDX_READER_PASS",
+        "{\"bad_magic_rejected\": true, \"idx_images_shape\": [2, 4], \"labels\": [3, 7], \"pass\": true, \"scope\": \"MNIST_IDX_FORMAT_READER_PASS; CANONICAL_60K_10K_MNIST_TRAINING_HOLD\"}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_quantum.py",
+      "sha256": "3b668d9fa9d0d75c4efc1aa9ba65ea55c59e9f307323d11550cfb1f1280e2ff4",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.034,
+      "stdout": [
+        "QUANTUM_STATEVECTOR_GATES_MEASUREMENT_BACKEND_PASS local-00000001 {'00': 480, '11': 520}",
+        "QUANTUM_QEC_3Q_BIT_FLIP_SIMULATION_PASS"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_quantum_hardening2.py",
+      "sha256": "27da2524c149c447de10008243c119145759ddb562e7ccb223c3024b8f5da449",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.123,
+      "stdout": [
+        "{'openqasm3_export': True, 'qec_noise_sweep': [{'physical_p': 0.01, 'trials': 30000, 'unencoded_error_rate': 0.010733333333333333, 'logical_error_rate': 0.0003333333333333333, 'analytic_logical_error_rate': 0.000298, 'logical_better_than_unencoded': True}, {'physical_p': 0.05, 'trials': 30000, 'unencoded_error_rate': 0.0511, 'logical_error_rate': 0.007066666666666666, 'analytic_logical_error_rate': 0.007250000000000001, 'logical_better_than_unencoded': True}, {'physical_p': 0.1, 'trials': 30000, 'unencoded_error_rate': 0.09673333333333334, 'logical_error_rate': 0.028466666666666668, 'analytic_logical_error_rate': 0.028000000000000008, 'logical_better_than_unencoded': True}, {'physical_p': 0.2, 'trials': 30000, 'unencoded_error_rate': 0.19886666666666666, 'logical_error_rate': 0.10433333333333333, 'analytic_logical_error_rate': 0.10400000000000004, 'logical_better_than_unencoded': True}], 'ibm_runtime_2026_04_15_request_shape': True, 'credentials_embedded': False, 'hardware_job_submitted': False, 'scope': 'IBM_REST_REQUEST_SHAPE_PROTOTYPE; ISA_TRANSPILATION_AUTH_PROVIDER_JOB_ID_RESULT_HOLD', 'pass': True}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_quantum_ibm_transport.py",
+      "sha256": "d67ad064697fd8f0ee27ba4c8ea2afbb800c16c7c81e0b71a777f4ab2e7f89b1",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.756,
+      "stdout": [
+        "IBM_RUNTIME_REST_TRANSPORT_CONTRACT_PASS",
+        "{\"api_version\": \"2026-04-15\", \"credentials_embedded_in_source\": false, \"pass\": true, \"real_ibm_hardware_contacted\": false, \"scope\": \"IBM_RUNTIME_REST_TRANSPORT_CONTRACT_PASS_AGAINST_LOCAL_PROTOCOL_STUB; REAL_PROVIDER_JOB_RESULT_HOLD\", \"transport_flow\": [\"POST /jobs\", \"GET /jobs/{id}\", \"GET /jobs/{id}/results\"]}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_quantum_sparse100.py",
+      "sha256": "458458f67a965d876d2514ef6cd854f917a13bf6d0075b33fa7f44633b37c05f",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.112,
+      "stdout": [
+        "QUANTUM_SPARSE_100_PASS",
+        "{\"counts\": {\"0^100\": 2053, \"1^100\": 2043}, \"nonzero_amplitudes\": 2, \"pass\": true, \"probabilities\": {\"0^100\": 0.4999999999999999, \"1^100\": 0.4999999999999999}, \"qubits\": 100, \"scope\": \"100_QUBIT_SPARSE_GHZ_EXACT_SIMULATION; ARBITRARY_DENSE_100_QUBIT_STATE_HOLD; REAL_HARDWARE_HOLD\", \"shots\": 4096}"
+      ],
+      "stderr": []
+    },
+    {
+      "test": "test_shell.py",
+      "sha256": "8097c024aee011f6039fa026d22bd66254d7782eeb919ef8aa9596b64c50256c",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 8.509,
+      "stdout": ["SHELL_COMMAND_PIPE_REDIRECT_HISTORY_SCRIPT_JOB_PASS"],
+      "stderr": []
+    },
+    {
+      "test": "test_shell_process_groups.py",
+      "sha256": "6f0bf46bf89efd8750b0c41ad92bcbecaa1c34c0a2425060fc3a46ded6c1fe0d",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.49,
+      "stdout": ["{'platform': 'posix', 'pipeline_processes': 2, 'pgid': 5248, 'process_groups': [5248, 5248], 'same_process_group': True, 'sigstop': True, 'sigcont': True, 'sigterm': True, 'tty_handoff_tested': False, 'pass': True, 'scope': 'POSIX_PROCESS_GROUP_AND_GROUP_SIGNALS; TTY_OWNERSHIP_HOLD'}"],
+      "stderr": []
+    },
+    {
+      "test": "test_shell_tty.py",
+      "sha256": "cc833902651517a0b0ea9e49c5912a87ea1bfbb3b1e2db118c06881526f04be1",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 2.295,
+      "stdout": ["SHELL_TTY_FOREGROUND_HANDOFF_PASS", "{\"child_foreground_pgid_matches_process_group\": true, \"pass\": true, \"pipeline\": true, \"scope\": \"POSIX_CONTROLLING_TTY_FOREGROUND_HANDOFF_PASS; BACKGROUND_TTY_STOP_RESUME_INTERACTIVE_STATE_MACHINE_HOLD\", \"terminal_restored_to_shell\": true}"],
+      "stderr": []
+    },
+    {
+      "test": "test_jit.py",
+      "sha256": "74c5122258eef3dd3c95056eb061063756475b2e5cf6388a4be6f8c5664abf93",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.228,
+      "stdout": ["JIT_HOTSPOT_NATIVE_CODE_DEOPT_CACHE_PASS {'hotness': {'c53d3a9d14fbb26df93a4a3a': 6, '6543377fc440431d381b2335': 3}, 'compiled_specializations': 2, 'compile_count': 2, 'native_call_count': 4, 'interpreter_call_count': 5, 'deopt_count': 1, 'artifacts': {'c53d3a9d14fbb26df93a4a3a': '/tmp/tmprqgkiugw/sigma_jit_c53d3a9d14fbb26df93a4a3a.so', '6543377fc440431d381b2335': '/tmp/tmprqgkiugw/sigma_jit_6543377fc440431d381b2335.so'}}"],
+      "stderr": []
+    },
+    {
+      "test": "test_llvm_jit.py",
+      "sha256": "e1b8d8124beb613f0df725476d5d29bca75b96066f8d7a72bbe3c96a085ea268",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.037,
+      "stdout": ["JIT_DIRECT_LLVM_HOTSPOT_DEOPT_PASS {'llvm_version': '20.1.8', 'target': 'x86_64-unknown-linux-gnu', 'compile_count': 1}"],
+      "stderr": []
+    },
+    {
+      "test": "test_jit_osr.py",
+      "sha256": "757a56c13f2e73d39e3ac720bb6c1869254951380e1188fb37e1e7af97677405",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.196,
+      "stdout": ["{'million_loop': {'i': 1000000, 'acc': 749999.4999999999, 'mode': 'OSR_NATIVE', 'interpreted_iterations': 100, 'native_entry_i': 100, 'deoptimized': False}, 'guard_deopt': {'i': 100000, 'acc': 29999.95, 'mode': 'OSR_DEOPT_INTERPRETER', 'interpreted_iterations': 100, 'native_entry_i': 100, 'deoptimized': True, 'deopt_i': 20001, 'deopt_acc': 5200.260000000001}, 'stats': {'osr_threshold': 100, 'compiled_loops': 1, 'osr_transitions': 2, 'native_successes': 1, 'deopt_count': 1, 'llvm_version': '20.1.8', 'target': 'x86_64-unknown-linux-gnu', 'scope': 'REFERENCE_LOOP_IR_NOT_CANONICAL_SIGMA_BYTECODE'}, 'llvm_ir_present': True, 'pass': True, 'gate_status': 'OSR_REFERENCE_PASS; CANONICAL_SIGMA_BYTECODE_INTEGRATION_HOLD'}"],
+      "stderr": []
+    },
+    {
+      "test": "test_genesis_json_bytecode_jit.py",
+      "sha256": "50370ccbeadcd04d339b7d930f19f0fba41aed607dfef50cd9c7c5ca07b98cf6",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 6.094,
+      "stdout": ["{'format': 'SIGMA-GENESIS1-BYTECODE', 'iterations': 1000000, 'reference_result': 499999500000.0, 'llvm_result': 499999500000.0, 'differential_equal': True, 'instruction_count': 18, 'llvm_version': '20.1.8', 'target': 'x86_64-unknown-linux-gnu', 'pass': True, 'scope': 'GENESIS1_REFERENCE_JSON_BYTECODE_TO_LLVM_NUMERIC_SUBSET; FROZEN_SIGMAB_ABI_HOLD'}"],
+      "stderr": []
+    },
+    {
+      "test": "test_ecosystem.py",
+      "sha256": "dbe83836bac63025a3129445cf8f8158c4914c061aaa1b7a6c1a198a59f67bbd",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.046,
+      "stdout": ["ECOSYSTEM_SEMVER_RESOLUTION_ED25519_INTEGRITY_INSTALL_PASS {'app': '1.0.0', 'math': '1.2.0', 'nn': '1.0.0'}"],
+      "stderr": []
+    },
+    {
+      "test": "test_registry_http.py",
+      "sha256": "2768c2213c65a7124b8f81be6e34ad1f2c537c42d21d5d43dc8f7b9c7a266f00",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.433,
+      "stdout": ["ECOSYSTEM_HTTP_REGISTRY_SIGNED_FETCH_PASS http://127.0.0.1:43495 hello-1.0.0.zip"],
+      "stderr": ["127.0.0.1 - - [17/Aug/2026 12:50:35] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:35] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:35] \"GET /packages/hello/1.0.0/hello-1.0.0.zip HTTP/1.1\" 200 -"]
+    },
+    {
+      "test": "test_registry_resilience.py",
+      "sha256": "0bd9ae22edf3e93994d31e5e586332960d5e8cc29de958e99a7c41fd17a83c5f",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 1.913,
+      "stdout": ["{'mirror_failover': True, 'verified_cache_offline': True, 'rollback_rejected_by_default': True, 'explicit_rollback': True, 'audit_records': 27, 'cdn_deployed': False, 'scope': 'MULTI_ENDPOINT_MIRROR_CACHE_ROLLBACK_AUDIT; GLOBAL_CDN_HOLD', 'pass': True}"],
+      "stderr": ["127.0.0.1 - - [17/Aug/2026 12:50:35] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:35] \"GET /packages/demo/2.0.0/demo-2.0.0.zip HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /packages/demo/2.0.0/demo-2.0.0.zip HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /index.json HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /packages/demo/1.0.0/demo-1.0.0.zip HTTP/1.1\" 200 -", "127.0.0.1 - - [17/Aug/2026 12:50:36] \"GET /index.json HTTP/1.1\" 200 -"]
+    },
+    {
+      "test": "test_registry_trust_backup.py",
+      "sha256": "c3c6f18ef93b4c2dc157fd4b5733a718087b8474fe44cd5fea047bb1a855f2e2",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 0.822,
+      "stdout": ["REGISTRY_TRUST_ROTATION_BACKUP_RESTORE_PASS", "{\"pass\": true, \"scope\": \"TRUST_ROOT_KEY_ROTATION_AND_SIGNED_BACKUP_RESTORE_REFERENCE_PASS; AUTHORITATIVE_SERVICE_AND_GLOBAL_CDN_HOLD\", \"signed_backup_restore\": true, \"tampered_backup_rejected\": true, \"trusted_key_rotation\": true, \"unauthorized_rotation_rejected\": true, \"untrusted_new_key_rejected_before_rotation\": true}"],
+      "stderr": []
+    }
+  ],
+  "pass": true,
+  "holds": [
+    "CANONICAL_MNIST_60000_10000_DATASET_EXECUTION",
+    "100M_GENERIC_AUTODIFF_NN_TRAINING_ON_REAL_DATASET",
+    "GPU_ACCELERATOR_EXECUTION",
+    "REAL_QUANTUM_HARDWARE_PROVIDER_JOB_AND_RESULT",
+    "ARBITRARY_DENSE_100_QUBIT_STATEVECTOR",
+    "QEC_ON_REAL_HARDWARE",
+    "BACKGROUND_TTY_STOP_RESUME_INTERACTIVE_STATE_MACHINE",
+    "FROZEN_BINARY_SIGMAB_ABI_TO_LLVM_FULL_LOWERING",
+    "FULL_GENESIS_CALL_RETURN_AND_DYNAMIC_TYPE_JIT",
+    "PRODUCTION_PGO_AND_DEOPT_METADATA",
+    "AUTHORITATIVE_REGISTRY_SERVICE_AND_GLOBAL_CDN",
+    "SIGMA_WRITTEN_VM_RUNTIME_STDLIB_FULL_STACK",
+    "NATIVE_SIGMA_GENESIS_INTEGRATION_ON_CANONICAL_TREE"
+  ]
+}
