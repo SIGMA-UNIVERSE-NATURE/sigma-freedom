@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "WINDOW_RECOVERY_ANCHOR_CHECKPOINT",
+  "recorded_at": "2026-08-18T05:10:00+07:00",
+  "window_id": "HAND-TO-HAND-CUA-2-20260818-0152-VN",
+  "window_name": "HAND TO HAND_ CỬA 2",
+  "window_sequence": 2,
+  "anchor_state": "PRESERVE_AS_READ_ONLY_RECOVERY_ANCHOR_AFTER_SUCCESSOR_ACTIVATION",
+  "anchor_purpose": "Remain available as an evidence-grounded continuity/recovery point if the successor window encounters ambiguity, conflict or operational difficulty. The anchor must not perform concurrent canonical mutations after successor activation.",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "SIGMA_LIFE",
+  "observed_head_before_anchor_commit": "3d4240940c38536877de1ccf3fa3dfc42b321243",
+  "live_state_at_checkpoint": {
+    "phase": "SIGMA_512_BOUNDED_CONTINUOUS_AUTOMEASURE",
+    "status": "PENDING_SIGMA-512-AUTO-MEASURE-SECTION-XXI-276-300",
+    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXI-276-300",
+    "ledger_counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 170,
+      "FAIL": 0,
+      "NOT_AUDITED": 213,
+      "NOT_APPLICABLE": 0
+    },
+    "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST"
+  },
+  "machine_evidence_gap_at_checkpoint": {
+    "state": "MACHINE_AHEAD_BY_ONE_RECEIPT",
+    "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXI-276-300",
+    "receipt_path": "linkcomltd-byte/sigma-remote-operator@RESULTS/SIGMA-512-AUTO-MEASURE-SECTION-XXI-276-300.json",
+    "receipt_status": "SUCCESS",
+    "resolved_head_sha": "3d4240940c38536877de1ccf3fa3dfc42b321243",
+    "runtime_version": "0.6.1",
+    "counts": {
+      "TARGET_COUNT": 25,
+      "PASS": 0,
+      "PARTIAL": 0,
+      "HOLD": 25,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
+  "successor_candidate_state": "VERIFIED_TRANSFER_READY_AWAITING_ACTIVATION",
+  "successor_responsibility": "Preserve verified guarantees, continue from the newest valid evidence state, improve only through evidence, do not regress verified behavior or continuity, and HOLD rather than guess when evidence conflicts or is incomplete.",
+  "anchor_non_interference_rule": "After successor activation, Cửa 2 remains read-only for canonical work unless Châu explicitly reactivates it because the successor is unavailable or HOLDs on an unresolved problem.",
+  "freshness_rule": "This checkpoint is an anchor, not a permanent live-state assertion. Every continuation must fresh-fetch SIGMA_LIFE and inspect intervening commits before acting."
+}
