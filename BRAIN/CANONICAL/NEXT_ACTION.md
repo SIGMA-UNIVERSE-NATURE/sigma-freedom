@@ -1,43 +1,36 @@
 # NEXT ACTION
 
-## SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-001
+## SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001
 
-**Mode:** `BOUNDED_CANONICAL_AUTOCONTINUATION_ENGINEERING`
+**Mode:** `AUTHORIZED_LOCAL_READ_ONLY_AUTODISCOVERY_PROBE`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-The one-shot local bridge has now been machine-verified for the bounded EH003 capability on the authorized Windows substrate. The next leverage point is not broader DNA-core remediation. It is to remove the remaining human relay between one completed canonical request and the next authorized SIGMA 512 request.
+Remote Operator v0.6.0 is now a contract-validated candidate for bounded continuous SIGMA 512 execution. This probe must determine whether the HP executor can discover the current canonical request by itself, without a human-relayed request ID and without a Remote Operator `COMMANDS` file.
 
-### Purpose
+### Required execution
 
-Build and test a bounded continuous local executor that can discover successive canonical `LOCAL_COGNITION_REQUEST.json` requests from the current `SIGMA_LIFE` state, execute only explicitly authorized read-only SIGMA 512 harness actions, return machine receipts, and then idle safely until canonical state advances.
-
-### Required engineering contract
-
-1. Preserve `SIGMA BOX` as the running cognitive/runtime substrate; do not rebuild it.
-2. Preserve the verified Remote Operator bridge capability and its receipt history.
-3. Remove request-ID hard-coding from the local executor, but **do not** add arbitrary shell execution.
-4. At every cycle, fetch the latest `SIGMA_LIFE` HEAD and read canonical state before acting.
-5. Execute only when `LOCAL_COGNITION_REQUEST.status == PENDING_LOCAL_EXECUTOR` and the request binds the current canonical branch, current state, declared script, safety flags and receipt schema.
-6. Permit only bounded Python harness execution from an explicitly constrained canonical evidence path; reject path traversal, arbitrary commands, website actions, paid API, secrets, DNA-core mutation and undeclared side effects.
-7. Materialize only the canonical files required by the active request; do not require a full Windows checkout of historical paths.
-8. One request may execute at most once per canonical request ID + resolved HEAD + result hash unless new failure evidence explicitly authorizes a retry.
-9. Return a receipt conforming to `LOCAL_COGNITION_RECEIPT.schema.json` and preserve failed attempts as evidence.
-10. After receipt publication, wait for canonical evaluation; the local executor must not self-promote a result or invent the next action.
-11. Legacy `SIGMA Auto Learn Hourly`, legacy `SIGMA Life Cycle` cognition claims, legacy self-study/K-cycle, and Issue-body arbitrary shell execution must remain disabled.
-12. Prove the continuous executor with an isolated non-destructive regression before treating continuous operation as available.
+1. Install/switch the authorized HP `SIGMA Remote Operator` Scheduled Task to the already validated v0.6.0 candidate once.
+2. Do **not** copy this request ID into any Remote Operator command file.
+3. The executor must fetch the latest `SIGMA_LIFE` HEAD and read `CURRENT_STATE.json`, `NEXT_ACTION.md`, `LOCAL_COGNITION_REQUEST.json`, `LOCAL_EXECUTION_BRIDGE_STATUS.json` and the receipt schema directly from canonical Git objects.
+4. It may execute only the SHA-256-pinned script declared by the canonical request under `EVIDENCE/.../run_harness.py`, using Python without a shell.
+5. Keep paid API OFF, website actions OFF, network-required=false, external side effects at zero, and do not patch/mutate the 54 DNA cores.
+6. Return exactly one machine receipt for this request ID. The receipt must show auto-discovery, no Remote Operator command file, no hard-coded request ID and no arbitrary shell.
+7. After publishing the receipt, subsequent polls must not execute the same request ID again.
+8. The local executor must not modify canonical state, self-promote the result, or invent the following action. Canonical evaluation owns promotion and next-action selection.
 
 ### Success evidence
 
-- Generic executor discovers a canonical pending request without a human copying its request ID into the local policy.
-- It verifies latest HEAD/state/request before execution.
-- It runs only the bounded declared harness.
-- It creates one valid machine receipt.
-- `54_CORES` hash is unchanged.
-- paid API = 0; website actions = 0; external side effects = 0; secret disclosure = 0.
-- legacy workflow execution = 0.
-- restart/re-poll does not duplicate the completed request.
+- Executor runtime version >= `0.6.0`.
+- `AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true`.
+- `REMOTE_COMMAND_FILE_USED=false`.
+- `CANONICAL_REQUEST_ID_NOT_HARDCODED=true`.
+- `ARBITRARY_SHELL_USED=false`.
+- Probe result: `TARGET_COUNT=8`, `PASS=0`, `PARTIAL=8`, `FAIL=0`.
+- 54-core hash unchanged before/after; `core_modifications=0`.
+- `external_side_effects=0`, `paid_api_used=false`, `secrets_disclosed=false`.
+- A repoll produces no second execution result for the same request ID.
 
-### Current evidence boundary
+### Evidence boundary
 
-The verified EH003 HP receipt proves a bounded cross-substrate execution path, but does not by itself prove independent evaluation, different-model continuity, long-horizon autonomous operation, or unrestricted local authority. `SIGMA-ATTR-024` therefore remains non-PASS pending a separate evidence decision.
+A successful probe would verify bounded continuous canonical request **discovery/execution**, not unrestricted autonomy, independent evaluation, different-model continuity, or automatic truth promotion. The 512 implementation counts remain unchanged until a separate evidence decision justifies changing them.

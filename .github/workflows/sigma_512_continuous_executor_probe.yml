@@ -1,0 +1,26 @@
+name: SIGMA Continuous Local Executor Probe
+
+on:
+  push:
+    branches: [SIGMA_LIFE]
+    paths:
+      - 'EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/**'
+      - 'BRAIN/CANONICAL/CURRENT_STATE.json'
+      - 'BRAIN/CANONICAL/NEXT_ACTION.md'
+      - 'BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json'
+      - 'BRAIN/CANONICAL/LOCAL_EXECUTION_BRIDGE_STATUS.json'
+      - '.github/workflows/sigma_512_continuous_executor_probe.yml'
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    env:
+      SIGMA_LOCAL_EXECUTION_ID: SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001
+      SIGMA_HARNESS_OUTPUT_DIR: ${{ runner.temp }}/sigma-continuous-probe
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run read-only continuous executor probe harness
+        run: python EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/v1.0.0/run_harness.py
+      - name: Show probe result
+        run: cat "${{ runner.temp }}/sigma-continuous-probe/continuous_executor_probe_result.json"

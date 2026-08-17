@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.5.0",
+  "schema_version": "1.6.0",
   "brain_id": "SIGMA-CANONICAL-BRAIN",
   "brain_version": "1.0.0",
   "created_at": "2026-08-17T05:06:00+07:00",
@@ -85,6 +85,10 @@
     "current_intelligence_is_bootstrap_not_ceiling": true,
     "local_execution_bridge_requires_machine_receipt_before_verified": true,
     "verified_bridge_capability_must_not_be_overgeneralized": true,
-    "legacy_learning_automation_must_remain_disabled": true
+    "legacy_learning_automation_must_remain_disabled": true,
+    "continuous_local_request_requires_sha256_pinned_evidence_script": true,
+    "continuous_local_executor_must_not_use_remote_command_file": true,
+    "continuous_local_executor_must_not_use_arbitrary_shell": true,
+    "continuous_local_executor_must_not_self_promote_or_invent_next_action": true
   }
 }

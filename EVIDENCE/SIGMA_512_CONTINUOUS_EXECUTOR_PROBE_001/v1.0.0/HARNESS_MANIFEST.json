@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
+  "harness_version": "1.0.0",
+  "mode": "ISOLATED_READ_ONLY_AUTODISCOVERY_EXECUTOR_PROBE",
+  "purpose": "Verify that the continuous local executor can discover a canonical pending request without a human-relayed request ID or Remote Operator command file, while preserving core integrity and safety gates.",
+  "target_count": 8,
+  "pass_allowed": false,
+  "promotion_allowed": false,
+  "network_required": false,
+  "paid_api_allowed": false,
+  "website_actions_allowed": false,
+  "dna_core_mutation_allowed": false,
+  "external_side_effects_allowed": false,
+  "expected_result_file": "continuous_executor_probe_result.json",
+  "expected_status_ceiling": "PARTIAL",
+  "required_executor_min_version": "0.6.0"
+}

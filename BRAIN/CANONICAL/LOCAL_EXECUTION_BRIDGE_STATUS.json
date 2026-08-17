@@ -1,12 +1,12 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
-  "recorded_at": "2026-08-17T14:34:30+07:00",
+  "recorded_at": "2026-08-17T14:55:00+07:00",
   "classification": "PUBLIC_SAFE",
   "bridge_state": "AVAILABLE",
   "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
   "verified_by_this_window": true,
-  "public_summary": "A machine receipt verifies one bounded canonical SIGMA 512 capability: EH003 read-only execution on the authorized Windows HP substrate with zero DNA-core modification and zero external side effects.",
+  "public_summary": "A machine receipt verifies the bounded EH003 read-only Windows execution capability. A separate continuous canonical auto-discovery capability is now pending isolated verification.",
   "source": {
     "kind": "MACHINE_RECEIPT_RETRIEVED_FROM_AUTHORIZED_REMOTE_OPERATOR_GIT",
     "repository": "linkcomltd-byte/sigma-remote-operator",
@@ -53,8 +53,19 @@
     "paid_api_used": false,
     "secrets_disclosed": false
   },
-  "scope_limit": "This verifies only the tested EH003 bounded execution capability. It does not prove arbitrary local execution, independent evaluation, different-model continuity, or unrestricted autonomy.",
-  "executor_clock_note": "The HP executor wall clock was observed skewed; authorization used live canonical HEAD/state/request bindings rather than local wall-clock freshness.",
-  "next_verification": "Build and test a bounded continuous canonical 512 executor that can discover successive authorized NEXT_ACTION requests without re-enabling legacy learning automations or arbitrary shell execution.",
-  "pending_request_id": null
+  "scope_limit": "The verified capability remains limited to the tested EH003 bounded execution. Continuous canonical request discovery is a new capability and is not yet verified.",
+  "executor_clock_note": "The HP executor wall clock was observed skewed; authorization is bound to live canonical HEAD/state/request rather than local wall-clock freshness.",
+  "pending_request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
+  "pending_verification_scope": "CONTINUOUS_CANONICAL_REQUEST_AUTODISCOVERY_ON_AUTHORIZED_WINDOWS_SUBSTRATE",
+  "pending_executor_candidate": {
+    "repository": "linkcomltd-byte/sigma-remote-operator",
+    "commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
+    "version": "0.6.0",
+    "contract_workflow_run_id": 32007640418,
+    "contract_conclusion": "success",
+    "human_request_id_relay_required": false,
+    "remote_command_file_required": false,
+    "arbitrary_shell_allowed": false
+  },
+  "next_verification": "Install the already contract-validated v0.6.0 Remote Operator once. It must discover the pending canonical probe without a copied request ID or Remote Operator command file, return one machine receipt, and remain idempotent on subsequent polls."
 }

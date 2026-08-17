@@ -1,60 +1,52 @@
 {
-  "schema_version": "1.1.0",
-  "request_id": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
+  "schema_version": "1.2.0",
+  "request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
-  "status": "COMPLETED_MACHINE_RECEIPT_VERIFIED",
-  "recorded_at": "2026-08-17T08:31:20+07:00",
-  "completed_at": "2026-08-17T14:34:30+07:00",
+  "status": "PENDING_LOCAL_EXECUTOR",
+  "recorded_at": "2026-08-17T14:55:00+07:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
   "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
-  "source_evidence": {
-    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
-    "github_validated_commit": "020aa14eb742250894e7656dad76f2ea22c8c402",
-    "github_workflow_run_id": 31985183607,
-    "github_workflow_job_id": 95258841623,
-    "github_conclusion": "success",
-    "raw_result_sha256": "e18fe4381b3bcd9c741335f796c82293fa60091c55625d0701996802dc578d1a",
-    "reference_counts": {
-      "TARGET_COUNT": 44,
-      "PASS": 0,
-      "PARTIAL": 43,
-      "HOLD": 1,
-      "FAIL": 0,
-      "NOT_AUDITED": 0
-    },
-    "reference_core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be"
-  },
-  "purpose": "Reproduce the same EH003 measurement on the authorized local HP substrate through the restored execution bridge and return a machine receipt. Divergence from CI is evidence and must be reported, not hidden.",
-  "mode": "AUTHORIZED_LOCAL_READ_ONLY_REPRODUCTION",
+  "purpose": "Prove that Remote Operator v0.6.0 can discover and execute a bounded canonical SIGMA 512 request without a human-relayed request ID or Remote Operator COMMANDS file.",
+  "mode": "AUTHORIZED_LOCAL_READ_ONLY_AUTODISCOVERY_PROBE",
   "preconditions": [
-    "Fetch current SIGMA_LIFE HEAD.",
-    "Boot from canonical state; do not use chat memory as state.",
-    "Verify CURRENT_STATE.next_action_id and NEXT_ACTION.md both equal SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001.",
-    "Verify LOCAL_EXECUTION_BRIDGE_STATUS.json still requires a machine receipt before VERIFIED.",
-    "Do not run if another canonical mutation executor is active for the same state ownership."
+    "Fetch current SIGMA_LIFE HEAD from the canonical repository.",
+    "Read CURRENT_STATE, NEXT_ACTION, LOCAL_EXECUTION_BRIDGE_STATUS and this request directly from canonical Git objects.",
+    "Execute only if CURRENT_STATE.next_action_id and NEXT_ACTION both bind this request_id.",
+    "Preserve the previously machine-verified EH003 bridge capability while treating this probe as a separate pending verification.",
+    "Do not use the Remote Operator COMMANDS directory as work authority."
   ],
   "execution": {
-    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
+    "harness_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
     "harness_version": "1.0.0",
-    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_003/v1.0.0/run_harness.py",
-    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_003/v1.0.0/run_harness.py",
+    "script": "EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/v1.0.0/run_harness.py",
+    "script_sha256": "20b9eb6cba89bfe4e906c6e3a7db1fa86105f1cf182541f5fe2eb323b1a1361c",
+    "command": "python EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_001/v1.0.0/run_harness.py",
+    "result_file": "continuous_executor_probe_result.json",
     "environment": {
-      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
+      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
       "SIGMA_HARNESS_OUTPUT_DIR": "AUTHORIZED_PRIVATE_LOCAL_WORKSPACE_RESOLVED_BY_REMOTE_OPERATOR"
     },
     "network_required": false,
     "paid_api_allowed": false,
+    "website_actions_allowed": false,
     "external_side_effects_allowed": false,
-    "dna_core_mutation_allowed": false,
-    "website_actions_allowed": false
+    "dna_core_mutation_allowed": false
+  },
+  "autodiscovery": {
+    "required": true,
+    "human_request_id_relay_allowed": false,
+    "remote_command_file_required": false,
+    "expected_executor_min_version": "0.6.0",
+    "expected_remote_operator_candidate_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
+    "duplicate_execution_policy": "DENY_SAME_REQUEST_ID_REQUIRE_NEW_CANONICAL_REQUEST_ID_FOR_RETRY"
   },
   "observation_policy": {
-    "do_not_require_reference_counts_to_match": true,
-    "record_platform_divergence": true,
-    "record_each_failed_or_held_probe": true,
     "pass_ceiling_remains_forbidden": true,
-    "builder_evaluator_independent": false
+    "builder_evaluator_independent": false,
+    "record_platform_divergence": true,
+    "record_failed_conditions": true,
+    "continuous_executor_availability_not_proven_until_machine_receipt_and_repoll_idempotence_are_evaluated": true
   },
   "receipt": {
     "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
@@ -68,33 +60,24 @@
       "core_tree_after_sha256",
       "core_modifications",
       "external_side_effects"
+    ],
+    "required_notes": [
+      "AUTO_DISCOVERED_FROM_CANONICAL_REQUEST=true",
+      "REMOTE_COMMAND_FILE_USED=false",
+      "CANONICAL_REQUEST_ID_NOT_HARDCODED=true",
+      "ARBITRARY_SHELL_USED=false"
     ]
   },
-  "receipt_evaluation": {
-    "status": "VERIFIED",
-    "receipt_file": "LOCAL_COGNITION_RECEIPT_EH003_HP_001.json",
-    "source_repository": "linkcomltd-byte/sigma-remote-operator",
-    "source_commit": "8a9806728bede517e76e5cebcdd6025e1582962e",
-    "resolved_head_sha": "65ca07497745917df7baf6da152c2d65a05484df",
-    "result_sha256": "2159226bfb596050edb0d1e0712f6f8308dea1bfb135390d81dca0017b614ff1",
-    "core_tree_before_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
-    "core_tree_after_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
-    "core_modifications": 0,
-    "external_side_effects": 0,
-    "legacy_execution": false,
-    "scope_limit": "Machine verification of the bounded EH003 local execution capability only; not an independent evaluator PASS for SIGMA-ATTR-024."
-  },
   "completion_criteria": [
-    "Receipt validates against LOCAL_COGNITION_RECEIPT.schema.json.",
-    "Receipt resolved_head_sha is the HEAD actually executed.",
-    "Result hash binds the local EH003 output.",
-    "Core tree before/after hashes are recorded.",
-    "No core mutation or external side effect is hidden; any nonzero value forces HOLD/FAIL investigation.",
-    "CI-vs-local differences are recorded as evidence.",
-    "Only after receipt evaluation may bridge epistemic_status or SIGMA-ATTR-024 be revised."
+    "Executor runtime_version is at least 0.6.0.",
+    "Receipt request_id equals the canonical pending request discovered by the executor.",
+    "Receipt notes prove auto-discovery and no Remote Operator command file or arbitrary shell.",
+    "Probe result contains 8 targets with 0 PASS and 0 FAIL.",
+    "Core tree before/after hashes are identical and core_modifications=0.",
+    "external_side_effects=0, paid_api_used=false, secrets_disclosed=false.",
+    "A subsequent poll does not create a second execution result for the same request_id.",
+    "Canonical evaluation, not the local executor, decides whether continuous execution capability is promoted."
   ],
-  "completion_result": "MACHINE_RECEIPT_VERIFIED_NO_CORE_MUTATION_NO_EXTERNAL_SIDE_EFFECTS",
-  "next_action": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-001",
   "privacy": {
     "do_not_publish_private_workspace_path": true,
     "do_not_publish_credentials_or_secrets": true
