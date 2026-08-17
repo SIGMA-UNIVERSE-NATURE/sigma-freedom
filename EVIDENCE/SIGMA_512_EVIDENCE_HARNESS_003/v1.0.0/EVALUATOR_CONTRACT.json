@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "evaluator_id": "SIGMA-512-HARNESS-003-EVALUATOR",
+  "version": "1.0.0",
+  "owner": "BUILDER_EXECUTOR",
+  "independent": false,
+  "pass_allowed": false,
+  "classification_ceiling": "PARTIAL",
+  "allowed_statuses": [
+    "PARTIAL",
+    "HOLD",
+    "FAIL",
+    "NOT_AUDITED"
+  ],
+  "forced_holds": {
+    "SIGMA-ATTR-024": "CROSS_MODEL_OR_RUNTIME_CONTINUITY_REQUIRES_DISTINCT_SUBSTRATE_MACHINE_RECEIPT"
+  },
+  "scope_limit": "ISOLATED_FIXTURE_PROCESS_RESTART_OR_CANONICAL_READ_ONLY_ONLY_NOT_PRODUCTION_CONTINUITY",
+  "locked_before_observation": true
+}

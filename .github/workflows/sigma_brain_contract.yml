@@ -28,3 +28,5 @@ jobs:
           python-version: '3.12'
       - name: Validate SIGMA canonical brain
         run: python "BRAIN/CANONICAL/validate_brain_contract.py"
+      - name: Validate local execution bridge contract
+        run: python "BRAIN/CANONICAL/validate_local_execution_bridge.py"

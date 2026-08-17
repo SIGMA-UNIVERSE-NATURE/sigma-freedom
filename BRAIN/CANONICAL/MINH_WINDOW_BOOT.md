@@ -25,11 +25,12 @@ Canonical brain root: `BRAIN/CANONICAL`
 5. Read `DO_NOT_RERUN_LOCKS.json`.
 6. Read `CURRENT_STATE.json`.
 7. Read `BRAIN_MANIFEST.json` and verify required files/invariants.
-8. Read `NEXT_ACTION.md`.
-9. Read `INTELLIGENCE_CONTINUITY_PROGRAM.md`.
-10. Read `WINDOW_TRANSFER_PROTOCOL.json`.
-11. Read only the additional evidence/specification files required by the current action.
-12. Run or inspect the canonical validator before any high-impact continuation work where runtime execution is available.
+8. Read `LOCAL_EXECUTION_BRIDGE_STATUS.json`.
+9. Read `NEXT_ACTION.md`.
+10. Read `INTELLIGENCE_CONTINUITY_PROGRAM.md`.
+11. Read `WINDOW_TRANSFER_PROTOCOL.json`.
+12. Read only the additional evidence/specification files required by the current action.
+13. Run or inspect the canonical validator before any high-impact continuation work where runtime execution is available.
 
 ## Continuation rules
 
@@ -41,6 +42,8 @@ Canonical brain root: `BRAIN/CANONICAL`
 - The current cognitive engine is bootstrap capability, not inherited truth and not a permanent ceiling.
 - Intelligence amplification must be measured against a baseline and must preserve continuity, governance, evidence and rollback.
 - For canonical mutation, only one active executor is allowed unless work is explicitly partitioned into non-conflicting state ownership.
+- A reported local execution bridge is capability evidence only at its stated epistemic level. It is not `VERIFIED` until a machine receipt binds the current canonical request, resolved HEAD, result hash and integrity fields.
+- Private local workspace paths, credentials and operational details must remain outside the public canonical tree.
 - If the human gives a new authorized priority, record it into canonical state before treating it as durable across future windows.
 - If canonical sources conflict, report the conflict and HOLD the affected action rather than choosing the most convenient version.
 
@@ -60,6 +63,7 @@ Before claiming inherited continuation, report:
 - `ACTIVE_GOAL`
 - `NEXT_ACTION`
 - `OPERATING_PRINCIPLE`
+- `LOCAL_EXECUTION_BRIDGE_STATUS / EPISTEMIC_STATUS`
 - `KNOWN_BLOCKERS`
 - `RUNTIME_CAPABILITIES_VERIFIED / UNKNOWN`
 
@@ -94,8 +98,9 @@ The outgoing window must at minimum:
 5. set exactly one canonical `NEXT_ACTION.md`;
 6. fetch and record the current `HEAD_SHA`;
 7. verify canonical required files and brain contract when available;
-8. record blockers/unverified assumptions;
-9. then hand control to the incoming window.
+8. record bridge epistemic status plus any machine receipt or missing receipt;
+9. record blockers/unverified assumptions;
+10. then hand control to the incoming window.
 
 The incoming window must fetch the current HEAD again. If HEAD has advanced since the outgoing checkpoint, inspect the intervening commits and reconstruct from the latest valid canonical state rather than rolling back to the old SHA.
 

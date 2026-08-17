@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "status_id": "SIGMA-LOCAL-EXECUTION-BRIDGE",
+  "recorded_at": "2026-08-17T08:19:00+07:00",
+  "classification": "PUBLIC_SAFE",
+  "bridge_state": "REPORTED_RESTORED",
+  "epistemic_status": "AUTHORIZED_HUMAN_REPORTED_OBSERVATION_PENDING_MACHINE_RECEIPT",
+  "verified_by_this_window": false,
+  "public_summary": "An authorized human reports that the local execution relay can receive canonical work and read its authorized local workspace.",
+  "source": {
+    "kind": "AUTHORIZED_HUMAN_REPORTED_RUNTIME_OBSERVATION",
+    "operational_details_disclosure": "PRIVATE_NOT_RECORDED_PUBLICLY"
+  },
+  "machine_receipt_required_before_verified": true,
+  "verification_contract": {
+    "receipt_schema": "LOCAL_COGNITION_RECEIPT.schema.json",
+    "must_bind": [
+      "canonical_branch",
+      "resolved_head_sha",
+      "request_id",
+      "harness_id",
+      "result_sha256",
+      "core_tree_before_sha256",
+      "core_tree_after_sha256",
+      "core_modifications",
+      "external_side_effects"
+    ]
+  },
+  "next_verification": "Execute a canonical read-only cognition request on an authorized local substrate and return a machine receipt. Until then the bridge must not be represented as VERIFIED."
+}

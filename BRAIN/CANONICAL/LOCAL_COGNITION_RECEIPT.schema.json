@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "SIGMA-LOCAL-COGNITION-RECEIPT-v1",
+  "title": "SIGMA Local Cognition Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "request_id",
+    "status",
+    "recorded_at",
+    "canonical_repository",
+    "canonical_branch",
+    "resolved_head_sha",
+    "executor",
+    "result",
+    "integrity",
+    "safety"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["SUCCESS", "HOLD", "FAIL", "PARTIAL", "UNKNOWN"]},
+    "recorded_at": {"type": "string", "minLength": 1},
+    "canonical_repository": {"const": "SIGMA-UNIVERSE-NATURE/sigma-freedom"},
+    "canonical_branch": {"const": "SIGMA_LIFE"},
+    "resolved_head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "executor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_name", "platform"],
+      "properties": {
+        "runtime_name": {"type": "string", "minLength": 1},
+        "runtime_version": {"type": "string"},
+        "platform": {"type": "string", "minLength": 1},
+        "python": {"type": "string"},
+        "private_workspace_disclosure": {"enum": ["PRIVATE_NOT_RECORDED_PUBLICLY", "NOT_APPLICABLE"]}
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["harness_id", "harness_version", "result_sha256", "counts", "result_location_disclosure"],
+      "properties": {
+        "harness_id": {"type": "string", "minLength": 1},
+        "harness_version": {"type": "string", "minLength": 1},
+        "result_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "result_location_disclosure": {"enum": ["PRIVATE_LOCAL_REFERENCE_OR_REDACTED", "PUBLIC_SAFE_REFERENCE"]},
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["TARGET_COUNT", "PASS", "PARTIAL", "HOLD", "FAIL", "NOT_AUDITED"],
+          "properties": {
+            "TARGET_COUNT": {"type": "integer", "minimum": 0},
+            "PASS": {"type": "integer", "minimum": 0},
+            "PARTIAL": {"type": "integer", "minimum": 0},
+            "HOLD": {"type": "integer", "minimum": 0},
+            "FAIL": {"type": "integer", "minimum": 0},
+            "NOT_AUDITED": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core_tree_before_sha256", "core_tree_after_sha256", "core_modifications", "external_side_effects"],
+      "properties": {
+        "core_tree_before_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "core_tree_after_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "core_modifications": {"type": "integer", "minimum": 0},
+        "external_side_effects": {"type": "integer", "minimum": 0}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["paid_api_used", "secrets_disclosed", "external_network_side_effects"],
+      "properties": {
+        "paid_api_used": {"const": false},
+        "secrets_disclosed": {"const": false},
+        "external_network_side_effects": {"type": "integer", "minimum": 0, "maximum": 0}
+      }
+    },
+    "blockers": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}
