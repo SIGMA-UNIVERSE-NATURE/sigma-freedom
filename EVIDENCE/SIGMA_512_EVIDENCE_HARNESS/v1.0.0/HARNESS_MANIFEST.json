@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "harness_id": "SIGMA-512-EVIDENCE-HARNESS-001",
+  "version": "1.0.0",
+  "mode": "READ_ONLY_OR_ISOLATED_MEASUREMENT",
+  "scope": {
+    "sections": ["X", "XXVIII"],
+    "attribute_ranges": ["109-124", "441-465"],
+    "target_count": 41,
+    "core_mutation_allowed": false,
+    "core_import_allowed": false
+  },
+  "baseline_dependency": "SIGMA-512-BASELINE-AUDIT-001-v1.0.0",
+  "benchmark_governance": {
+    "owner": "CANONICAL_SIGMA_GOVERNANCE",
+    "change_control": "VERSIONED_REVIEW_WITH_HISTORY",
+    "anti_gaming_rule": "TEST_FIXTURES_AND_THRESHOLDS_MUST_NOT_BE_SILENTLY_REWRITTEN_TO_FIT_CANDIDATE"
+  },
+  "evidence_policy": {
+    "filename_or_symbol_presence_is_pass": false,
+    "self_report_is_pass": false,
+    "isolated_harness_success_can_be_at_most": "PARTIAL",
+    "pass_requires_independent_evaluator": true
+  }
+}

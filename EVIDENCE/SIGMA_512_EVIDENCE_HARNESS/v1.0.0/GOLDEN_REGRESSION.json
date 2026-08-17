@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "golden_set_id": "SIGMA-512-HARNESS-GOLDEN-v1.0.0",
+  "immutable_for_version": "1.0.0",
+  "cases": [
+    {"id":"valid-support","payload":{"claim_id":"C","source_id":"S","origin_id":"O","polarity":"SUPPORT","quality_estimate":0.8},"expected":true},
+    {"id":"valid-negative","payload":{"claim_id":"C","source_id":"S","origin_id":"O","polarity":"NEGATIVE","quality_estimate":0.7},"expected":true},
+    {"id":"invalid-quality","payload":{"claim_id":"C","source_id":"S","origin_id":"O","polarity":"SUPPORT","quality_estimate":1.2},"expected":false},
+    {"id":"invalid-polarity","payload":{"claim_id":"C","source_id":"S","origin_id":"O","polarity":"MAYBE","quality_estimate":0.5},"expected":false},
+    {"id":"missing-origin","payload":{"claim_id":"C","source_id":"S","polarity":"SUPPORT","quality_estimate":0.5},"expected":false}
+  ]
+}

@@ -1,0 +1,42 @@
+name: SIGMA 512 Evidence Harness
+
+on:
+  push:
+    paths:
+      - "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/**"
+      - "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/**"
+      - "54_CORES/**"
+      - ".github/workflows/sigma_512_evidence_harness.yml"
+  pull_request:
+    paths:
+      - "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/**"
+      - "BẢN ĐỒ/SIGMA_512_ATTRIBUTES/**"
+      - "54_CORES/**"
+      - ".github/workflows/sigma_512_evidence_harness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run isolated evidence harness
+        run: python "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/v1.0.0/run_harness.py"
+
+      - name: Upload observed evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: sigma-512-evidence-harness-result
+          path: EVIDENCE/SIGMA_512_EVIDENCE_HARNESS/v1.0.0/out/evidence_harness_result.json
+          if-no-files-found: error

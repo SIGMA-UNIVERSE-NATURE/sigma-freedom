@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "SIGMA-512-HARNESS-PROBE-CATALOG-v1.0.0",
+  "target_attribute_numbers": [109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465],
+  "classification_ceiling": "PARTIAL",
+  "reason": "Harness v1 is isolated and evaluator.independent=false.",
+  "holds": {
+    "447": "Independent red-team cannot be satisfied by the builder.",
+    "459": "Human-factor evaluation needs human-factor evidence.",
+    "465": "Post-deployment evaluation needs field/deployment evidence."
+  },
+  "not_audited": {
+    "449": "Long-horizon multi-cycle evaluation has not yet been executed."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "evaluator_id": "SIGMA-512-HARNESS-EVALUATOR",
+  "evaluator_version": "1.0.0",
+  "independent": false,
+  "independence_reason": "Evaluator logic is authored in the same change set as harness v1; it may measure isolated behavior but may not self-certify PASS.",
+  "dimensions": ["capability", "reliability", "safety", "efficiency", "robustness"],
+  "promotion_policy": {
+    "thresholds_locked_before_observation": true,
+    "pass_allowed": false,
+    "partial_requires_all_assigned_checks": true,
+    "fail_requires_observed_probe_failure": true,
+    "hold_requires_external_dependency_or_independence_blocker": true
+  },
+  "discontinuity_policy": {
+    "version_change_requires_marker": true,
+    "marker_prefix": "EVALUATOR_DISCONTINUITY:"
+  }
+}
