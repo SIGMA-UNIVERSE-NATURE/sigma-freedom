@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.9.0",
+  "schema_version": "2.0.0",
   "state_id": "SIGMA-CANONICAL-CURRENT-STATE",
-  "recorded_at": "2026-08-17T15:14:25+07:00",
-  "phase": "SIGMA_512_CONTINUOUS_LOCAL_EXECUTOR_PROBE_001_VERIFIED_SUCCESSOR_PROBE_002_PENDING",
-  "status": "V060_PROBE_001_MACHINE_RECEIPT_VERIFIED_PROBE_002_PENDING",
+  "recorded_at": "2026-08-17T15:21:00+07:00",
+  "phase": "SIGMA_512_CONTINUOUS_EXECUTOR_BOUNDED_VERIFIED_EH004_SECTION_I_PENDING",
+  "status": "V060_TWO_SUCCESSIVE_AUTODISCOVERY_RECEIPTS_VERIFIED_EH004_PENDING",
   "architecture": {
     "canonical_512": "PASS",
     "traceability_512_to_54": "COMPLETE",
@@ -33,37 +33,15 @@
       "FAIL": 0,
       "NOT_AUDITED": 386,
       "NOT_APPLICABLE": 0,
-      "note": "Counts remain unchanged; bridge capability evidence does not self-promote SIGMA-512 attribute status."
-    },
-    "evidence_harness_003": {
-      "status": "COMPLETE_OBSERVED_AND_LOCALLY_REPRODUCED",
-      "harness_id": "SIGMA-512-EVIDENCE-HARNESS-003",
-      "target_count": 44,
-      "target_counts": {
-        "PASS": 0,
-        "PARTIAL": 43,
-        "HOLD": 1,
-        "FAIL": 0,
-        "NOT_AUDITED": 0
-      },
-      "evaluator_independent": false,
-      "pass_allowed": false,
-      "core_tree_sha256": "f51df6895c975b157d8fc02c1ddfe2ff11847203b3da332a25e6e234eddb95be",
-      "core_modifications": 0,
-      "external_side_effects": 0,
-      "local_reproduction_receipt": "LOCAL_COGNITION_RECEIPT_EH003_HP_001.json"
+      "note": "Counts unchanged until EH004 receipt is evaluated and ledger updated."
     },
     "local_execution_bridge": {
       "status_file": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
       "bridge_state": "AVAILABLE",
       "epistemic_status": "MACHINE_RECEIPT_VERIFIED",
-      "verified_capability": "EH003_READ_ONLY_CANONICAL_EXECUTION_ON_AUTHORIZED_WINDOWS_SUBSTRATE",
-      "continuous_probe_001": "MACHINE_RECEIPT_VERIFIED_SINGLE_REQUEST",
-      "continuous_probe_001_receipt": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
-      "pending_request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
-      "pending_verification_scope": "SECOND_SUCCESSOR_CANONICAL_REQUEST_AUTODISCOVERY_ON_ALREADY_RUNNING_V060",
-      "candidate_executor_version": "0.6.0",
-      "candidate_executor_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
+      "bounded_continuous_executor": "MACHINE_RECEIPT_VERIFIED_TWO_SUCCESSIVE_REQUESTS",
+      "runtime_version": "0.6.0",
+      "pending_request_id": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
       "operational_details": "PRIVATE_NOT_RECORDED_PUBLICLY"
     },
     "legacy_automation": {
@@ -85,7 +63,7 @@
     "window_transfer_protocol_status": "ENFORCED",
     "local_execution_bridge_status": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
     "local_cognition_request": "LOCAL_COGNITION_REQUEST.json",
-    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
+    "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json",
     "cross_window_boot_required": true,
     "meaningful_progress_requires_canonical_state_update": true,
     "single_canonical_next_action": true,
@@ -103,20 +81,19 @@
       "SIGMA-512-EVIDENCE-HARNESS-002",
       "SIGMA-512-EVIDENCE-HARNESS-003",
       "SIGMA-LOCAL-COGNITION-EH003-REPRODUCTION-001",
-      "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001"
+      "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001",
+      "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002"
     ],
-    "candidate_engineering_step": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-001",
-    "selected_highest_leverage_gap": "SUCCESSIVE_CANONICAL_NEXT_ACTION_EXECUTION_WITHOUT_HUMAN_REQUEST_RELAY",
-    "selected_next_action": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+    "selected_highest_leverage_gap": "MEASURE_UNAUDITED_SECTION_I_COGNITION_AND_TRUTH_REQUIREMENTS",
+    "selected_next_action": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
     "improvement_contract": "GAP_TO_HYPOTHESIS_TO_CANDIDATE_TO_ISOLATED_TEST_TO_DIFFERENTIAL_EVIDENCE_TO_INDEPENDENT_EVALUATION_TO_PROMOTE_REVISE_REJECT_TO_REGRESSION_TO_STATE_UPDATE",
     "contract_validation": "PASS"
   },
-  "active_goal": "Verify the already-running v0.6.0 executor discovers a second successor canonical request without reinstall, copied request ID, Remote Operator command file, arbitrary shell, paid API, website action, DNA-core mutation or undeclared side effect.",
-  "next_action_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+  "active_goal": "Measure SIGMA 512 Section I attributes 001-012 on the current canonical system through bounded read-only EH004 before any remediation.",
+  "next_action_id": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
   "operating_principle": "DO_NOT_IMPROVE_YET_MEASURE_CURRENT_REALITY_FIRST",
   "open_loops": [
-    "Observe probe-002 machine receipt from the already-running v0.6.0 executor.",
-    "Do not declare continuous executor fully available until probe-002 receipt is evaluated.",
+    "Execute and evaluate EH004 Section I receipt; update implementation ledger only from observed evidence.",
     "SIGMA-ATTR-024 remains non-PASS: different-model continuity and independent evaluation remain unproven.",
     "SIGMA-ATTR-084 HOLD: independent evaluator required for recursive self-improvement.",
     "SIGMA-ATTR-203 HOLD: independent governance red-team required.",
@@ -127,26 +104,24 @@
   ],
   "evidence": {
     "continuous_executor_probe_001": {
-      "source_repository": "linkcomltd-byte/sigma-remote-operator",
-      "source_commit": "c9a46d85e3cd3c7d7e697255167c2e261057a8ae",
       "receipt_file": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_001.json",
+      "status": "SUCCESS"
+    },
+    "continuous_executor_probe_002": {
+      "receipt_file": "LOCAL_COGNITION_RECEIPT_CONTINUOUS_002.json",
       "status": "SUCCESS",
-      "resolved_head_sha": "cb0569c182a7dc35183d5a6341c76bfe6fabf7ae",
-      "result_sha256": "2fe5fcc6f54e2dc915dbcb2ff81df476a794b5d7a6831fdfa6cb189488f22042",
+      "source_repository": "linkcomltd-byte/sigma-remote-operator",
+      "resolved_head_sha": "4a11c111bb81f6ab5a56fe39159361e553e54344",
       "counts": {
-        "TARGET_COUNT": 8,
+        "TARGET_COUNT": 9,
         "PASS": 0,
-        "PARTIAL": 8,
+        "PARTIAL": 9,
         "HOLD": 0,
         "FAIL": 0,
         "NOT_AUDITED": 0
       },
       "core_modifications": 0,
-      "external_side_effects": 0,
-      "auto_discovered": true,
-      "remote_command_file_used": false,
-      "request_id_hardcoded": false,
-      "arbitrary_shell_used": false
+      "external_side_effects": 0
     },
     "legacy_automation_shutdown": {
       "active_legacy_workflows": 0,

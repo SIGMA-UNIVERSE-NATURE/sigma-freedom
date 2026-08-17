@@ -1,0 +1,25 @@
+name: SIGMA 512 Evidence Harness 004
+
+on:
+  push:
+    branches: [SIGMA_LIFE]
+    paths:
+      - 'EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_004/**'
+      - 'BRAIN/CANONICAL/CURRENT_STATE.json'
+      - 'BRAIN/CANONICAL/LOCAL_COGNITION_REQUEST.json'
+      - '.github/workflows/sigma_512_evidence_harness_004.yml'
+  workflow_dispatch:
+
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    env:
+      SIGMA_LOCAL_EXECUTION_ID: SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run EH004 Section I read-only measurement
+        env:
+          SIGMA_HARNESS_OUTPUT_DIR: ${{ runner.temp }}/sigma-eh004
+        run: python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_004/v1.0.0/run_harness.py
+      - name: Show EH004 result
+        run: cat "${{ runner.temp }}/sigma-eh004/evidence_harness_004_result.json"

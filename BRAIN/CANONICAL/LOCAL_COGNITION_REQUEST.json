@@ -1,30 +1,30 @@
 {
-  "schema_version": "1.3.0",
-  "request_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+  "schema_version": "1.4.0",
+  "request_id": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
   "status": "PENDING_LOCAL_EXECUTOR",
-  "recorded_at": "2026-08-17T15:14:25+07:00",
+  "recorded_at": "2026-08-17T15:21:00+07:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
   "head_resolution_policy": "FETCH_SIGMA_LIFE_AT_EXECUTION_TIME_AND_VERIFY_CURRENT_STATE_NEXT_ACTION_MATCHES_REQUEST_ID",
-  "purpose": "Verify a second successive canonical request is auto-discovered by the already-running Remote Operator v0.6.0 without reinstall, human-relayed request ID, or Remote Operator command file.",
-  "mode": "AUTHORIZED_LOCAL_READ_ONLY_SUCCESSOR_AUTODISCOVERY_PROBE",
+  "purpose": "Run read-only SIGMA 512 Evidence Harness 004 for Section I attributes 001-012 (Nhận thức và sự thật) through the verified bounded continuous executor.",
+  "mode": "AUTHORIZED_LOCAL_READ_ONLY_512_MEASUREMENT",
   "preconditions": [
     "Fetch current SIGMA_LIFE HEAD from canonical Git objects.",
-    "Read CURRENT_STATE, NEXT_ACTION, LOCAL_EXECUTION_BRIDGE_STATUS and this request directly from canonical state.",
-    "Verify prior receipt SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-001 is canonically persisted before executing this successor request.",
-    "Execute only if CURRENT_STATE.next_action_id and NEXT_ACTION both bind this request_id.",
-    "Do not use Remote Operator COMMANDS as work authority."
+    "Verify CURRENT_STATE.next_action_id and NEXT_ACTION bind this request_id.",
+    "Verify bounded continuous executor capability has two successive machine receipts.",
+    "Do not use Remote Operator COMMANDS as work authority.",
+    "Do not mutate 54_CORES or promote any attribute to PASS."
   ],
   "execution": {
-    "harness_id": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+    "harness_id": "SIGMA-512-EVIDENCE-HARNESS-004",
     "harness_version": "1.0.0",
-    "script": "EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_002/v1.0.0/run_harness.py",
-    "script_sha256": "983d25d21a3b1fd7de32a6c90f333ea7f819527f1302f3062df8399c3397b32b",
-    "command": "python EVIDENCE/SIGMA_512_CONTINUOUS_EXECUTOR_PROBE_002/v1.0.0/run_harness.py",
-    "result_file": "continuous_executor_probe_002_result.json",
+    "script": "EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_004/v1.0.0/run_harness.py",
+    "script_sha256": "ca8bfbe43588488c896f06f6bf49f53470d59b795e3e4bec1a0b32af4055774b",
+    "command": "python EVIDENCE/SIGMA_512_EVIDENCE_HARNESS_004/v1.0.0/run_harness.py",
+    "result_file": "evidence_harness_004_result.json",
     "environment": {
-      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-CONTINUOUS-LOCAL-EXECUTOR-PROBE-002",
+      "SIGMA_LOCAL_EXECUTION_ID": "SIGMA-512-EVIDENCE-HARNESS-004-SECTION-I-001-012",
       "SIGMA_HARNESS_OUTPUT_DIR": "AUTHORIZED_PRIVATE_LOCAL_WORKSPACE_RESOLVED_BY_REMOTE_OPERATOR"
     },
     "network_required": false,
@@ -39,15 +39,14 @@
     "remote_command_file_required": false,
     "expected_executor_min_version": "0.6.0",
     "expected_remote_operator_candidate_commit": "b1575d621ab627f4412001d56bb93f15e57f9bb1",
-    "duplicate_execution_policy": "DENY_SAME_REQUEST_ID_REQUIRE_NEW_CANONICAL_REQUEST_ID_FOR_RETRY",
-    "reinstall_or_restart_required": false
+    "duplicate_execution_policy": "DENY_SAME_REQUEST_ID_REQUIRE_NEW_CANONICAL_REQUEST_ID_FOR_RETRY"
   },
   "observation_policy": {
     "pass_ceiling_remains_forbidden": true,
     "builder_evaluator_independent": false,
-    "successor_request_is_new_evidence": true,
-    "record_platform_divergence": true,
-    "continuous_executor_availability_not_proven_until_second_machine_receipt_is_evaluated": true
+    "structural_evidence_may_only_support_partial": true,
+    "unsupported_behavioral_requirements_remain_not_audited": true,
+    "record_platform_divergence": true
   },
   "receipt": {
     "schema": "LOCAL_COGNITION_RECEIPT.schema.json",
@@ -70,14 +69,12 @@
     ]
   },
   "completion_criteria": [
-    "Executor runtime_version is at least 0.6.0.",
-    "Receipt request_id equals the successor canonical request.",
-    "No reinstall, copied request ID, Remote Operator command file, or arbitrary shell is required.",
-    "Probe result contains 9 targets with 0 PASS and 0 FAIL.",
-    "Prior probe-001 receipt is present and verified by the successor harness.",
-    "Core tree before/after hashes are identical and core_modifications=0.",
+    "Receipt runtime_version is at least 0.6.0 and request_id matches EH004.",
+    "Result target_count=12, PASS=0, FAIL=0.",
+    "Expected conservative reference is PARTIAL=7 and NOT_AUDITED=5; divergence must be reported, not hidden.",
+    "Core tree before/after hashes identical and core_modifications=0.",
     "external_side_effects=0, paid_api_used=false, secrets_disclosed=false.",
-    "Canonical evaluation, not the local executor, decides capability promotion and the next action."
+    "Canonical evaluator updates the 512 implementation ledger only after receipt evaluation."
   ],
   "privacy": {
     "do_not_publish_private_workspace_path": true,
