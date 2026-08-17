@@ -1,11 +1,11 @@
 # SIGMA CANONICAL NEXT ACTION
 
-## SIGMA-512-AUTO-MEASURE-SECTION-XXIX-466-485
+## SIGMA-512-AUTO-MEASURE-SECTION-XXX-486-500
 
 **Mode:** `AUTHORIZED_LOCAL_READ_ONLY_512_AUTOMEASURE`
 
 **Principle:** `DO NOT IMPROVE YET. MEASURE CURRENT REALITY FIRST.`
 
-Section XXIX — Knowledge lifecycle, consolidation và compression; remaining NOT_AUDITED: 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485.
+Section XXX — Systems intelligence; remaining NOT_AUDITED: 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500.
 
 Hard limits: measurement only; PASS forbidden; no DNA mutation; no paid API; no website action; no arbitrary shell; no external side effects; exactly one pending request; machine receipt required before advance.
