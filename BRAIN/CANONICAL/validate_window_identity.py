@@ -62,9 +62,11 @@ def main() -> None:
         if birth.get(key) in (None, ""):
             fail(f"birth certificate missing required field {key}")
 
-    for key in ("window_id", "window_name", "window_sequence", "created_at", "authority_role", "handoff_state", "predecessor_checkpoint"):
+    # Only immutable birth facts must equal the live pointer. Authority and handoff
+    # are lifecycle fields and may legitimately change after registration.
+    for key in ("window_id", "window_name", "window_sequence", "created_at", "predecessor_checkpoint"):
         if birth.get(key) != active.get(key):
-            fail(f"active pointer/birth mismatch: {key}")
+            fail(f"active pointer/birth immutable mismatch: {key}")
 
     birth_match = NAME.fullmatch(str(birth["window_name"]))
     if not birth_match or int(birth_match.group(1)) != int(birth["window_sequence"]):
@@ -73,6 +75,10 @@ def main() -> None:
         fail("birth record type mismatch")
     if birth.get("purpose") in (None, "") or birth.get("work_scope") in (None, ""):
         fail("birth purpose/work scope missing")
+    if birth.get("authority_role") in (None, "") or birth.get("handoff_state") in (None, ""):
+        fail("birth lifecycle-at-registration fields missing")
+    if active.get("authority_role") in (None, "") or active.get("handoff_state") in (None, ""):
+        fail("active lifecycle fields missing")
     if birth.get("state_match_rule") != protocol.get("state_match_rule"):
         fail("birth state-match rule mismatch")
     if birth.get("failure_rule") != protocol.get("failure_rule"):
