@@ -1,8 +1,10 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "protocol_id": "SIGMA-WINDOW-IDENTITY-LINEAGE-v1",
   "status": "CANONICAL_REQUIRED",
   "purpose": "Give every SIGMA chat/model/session window a durable identity, birth record, purpose, predecessor lineage, authority role and exit checkpoint outside conversational memory.",
+  "validator": "BRAIN/CANONICAL/validate_window_identity.py",
+  "validator_success_phrase": "SIGMA_WINDOW_IDENTITY_CONTRACT: PASS",
   "naming_rule": {
     "canonical_pattern": "HAND TO HAND_ CỬA <N>",
     "sequence_rule": "N = VERIFIED_PREDECESSOR_WINDOW_SEQUENCE + 1",
@@ -34,11 +36,13 @@
     "READ_WINDOW_IDENTITY_PROTOCOL",
     "READ_ACTIVE_WINDOW_IDENTITY",
     "FIND_AND_VERIFY_PREDECESSOR_WINDOW_BIRTH_CERTIFICATE_OR_VERIFIED_CHECKPOINT",
+    "RUN_OR_INSPECT_VALIDATE_WINDOW_IDENTITY_AND_REQUIRE_PASS",
     "INSPECT_ALL_INTERVENING_COMMITS",
     "RECONSTRUCT_LATEST_CANONICAL_AND_MACHINE_EVIDENCE_STATE",
     "ASSIGN_NEXT_WINDOW_SEQUENCE_ONLY_FROM_VERIFIED_LINEAGE",
     "WRITE_NEW_IMMUTABLE_BIRTH_CERTIFICATE_OUTSIDE_CHAT",
     "UPDATE_ACTIVE_WINDOW_IDENTITY_POINTER",
+    "RUN_VALIDATE_WINDOW_IDENTITY_AGAIN_AFTER_REGISTRATION",
     "REMAIN_READ_ONLY_UNTIL_STATE_MATCH_AND_EXPLICIT_TAKEOVER_IF_REQUIRED"
   ],
   "on_meaningful_progress": [
