@@ -1,0 +1,8 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PROBE][VERSION=0.1]
+
+⟡(Σ.SIGMA_CREATES_SIGMA_0003_IO_PROBE) {
+    ⚡ w: write_text("roundtrip_utf8.txt", "SIGMA_IO_0003_UTF8=BÀI 001 — ĐỘ CHÍNH XÁC");
+    ⚡ r: read_text("roundtrip_utf8.txt");
+    ⚡ print(w);
+    ⚡ print(r);
+}
