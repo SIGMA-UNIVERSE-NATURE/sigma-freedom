@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1",
+  "status": "ISOLATED_CANDIDATE_NOT_COMPILED_NOT_PROMOTED",
+  "created_at": "2026-08-18T00:00:00+07:00",
+  "authority": "CHAU",
+  "builder": "MINH_CUA_3",
+  "base": {
+    "canonical_branch": "SIGMA_LIFE",
+    "canonical_head": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+    "current_512_counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 383,
+      "FAIL": 0,
+      "NOT_AUDITED": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "root_of_trust_blob_sha": "108d9e506d8f822ba6178016fc76a9e22b3d6d2a",
+    "training_map_blob_sha": "dab6ec03a80a2c1495e0a0a29e8300c535bc8eb9",
+    "manifest_512_blob_sha": "b14c9d5e054de5acdbc0fceb0a59eb4d1a935eef",
+    "traceability_512_to_54_blob_sha": "147d26a7e826f94f9ad95620baf39b7d6a364d47"
+  },
+  "target_gap": "NO_EXECUTABLE_NATIVE_SIGMA_BRAIN_VERTICAL_SLICE_CURRENTLY_BINDS_54_CORE_REGISTRY_512_SKILL_ROUTING_AND_ACCURACY_FIRST_TRUTH_DECISIONS",
+  "falsifiable_hypothesis": "A SIGMA-written kernel can deterministically preserve UTF-8, register all 54 cores, route every skill id 1..512 to its canonical section, and execute accuracy/truth/provenance decisions with exact expected outputs without modifying canonical or the frozen VM ABI.",
+  "vertical_slice": {
+    "native_sigma_candidate_cores": [9,20,21,26,27,31,32,43,44,45,46,52,53],
+    "reason": "These cores are shared by epistemic truth, evidence measurement, scientific evaluation, metacognition, language precision, evaluation science, and failure recovery.",
+    "all_54_status": "REGISTERED",
+    "all_512_status": "ROUTED_BY_CANONICAL_SECTION_RANGE",
+    "full_rewrite_claimed": false
+  },
+  "hard_gates": [
+    "SOURCE_UTF8_VALID",
+    "VIETNAMESE_GOLDEN_TEXT_EXACT_NO_MOJIBAKE",
+    "SIGMAC_COMPILE_RC_0",
+    "SIGMA_VM_RUN_RC_0",
+    "STDERR_EMPTY",
+    "STDOUT_EXACT_BYTE_MATCH_EXPECTED_STDOUT_UTF8",
+    "CORE_NAME_1_THROUGH_54_EXACT_REGISTRY_MATCH",
+    "SKILL_ID_1_THROUGH_512_CONTIGUOUS_ROUTING_NO_GAP_NO_OVERLAP",
+    "ACCURACY_CORPUS_ALL_CASES_PASS",
+    "DETERMINISTIC_COMPILE_HASH_TWO_RUNS",
+    "FOUNDATION_V7_REGRESSION_PASS",
+    "ACTUAL_VM_ABI_UNCHANGED",
+    "NO_CANONICAL_MUTATION",
+    "NO_SELF_PROMOTION",
+    "INDEPENDENT_EVALUATION_BEFORE_PROMOTION"
+  ],
+  "known_holds": [
+    "Foundation compiler and latest SIGMA-written VM source/binaries are not persisted in this candidate branch.",
+    "The candidate has not yet been compiled or executed on HP or OPPO.",
+    "Individual semantics of all 512 skills are referenced from canonical, not implemented in v0.1.",
+    "Only a high-leverage vertical slice of 13 cores has candidate execution logic."
+  ],
+  "rollback": "Delete candidate branch; canonical SIGMA_LIFE is untouched.",
+  "decision": "HOLD_PENDING_MACHINE_EXECUTION"
+}

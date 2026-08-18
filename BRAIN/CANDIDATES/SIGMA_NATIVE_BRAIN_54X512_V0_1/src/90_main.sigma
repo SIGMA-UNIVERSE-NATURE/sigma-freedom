@@ -1,0 +1,27 @@
+⟡(Σ.SIGMA_NATIVE_BRAIN_54X512_V0_1) {
+    ⚡ case1: ACCURACY_CASE_001();
+    ⚡ print("SIGMA_NATIVE_BRAIN_54X512_V0_1");
+    ⚡ print("BÀI 001 — ĐỘ CHÍNH XÁC — SỰ THẬT > LỜI NÓI HAY");
+    ⚡ print("CORE_COUNT=54");
+    ⚡ print("SKILL_COUNT=512");
+    ⚡ print(CORE_NAME(20));
+    ⚡ print(CORE_NAME(21));
+    ⚡ print(CORE_NAME(43));
+    ⚡ print(CORE_NAME(45));
+    ⚡ print(CORE_NAME(52));
+    ⚡ print(SKILL_SECTION(1));
+    ⚡ print(SKILL_SECTION(512));
+    ⚡ print(MGET(case1, "E1"));
+    ⚡ print(MGET(case1, "E2"));
+    ⚡ print(MGET(case1, "E3"));
+    ⚡ print(MGET(case1, "E4"));
+    ⚡ print(MGET(case1, "decision"));
+    ⚡ print(MGET(case1, "uncertainty"));
+    ⚡ print(MGET(case1, "next_test"));
+    ⚡ print(MGET(case1, "self_challenge"));
+    ⚡ print(PROVENANCE_STATUS(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(PROVENANCE_STATUS(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(PROGRESS_CLAIM_STATUS(TRUE, FALSE, TRUE));
+    ⚡ print(PROGRESS_CLAIM_STATUS(TRUE, TRUE, TRUE));
+    ⚡ print(REALITY_CHECK(10, 12));
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-EVIDENCE-CONTRACT",
+  "candidate_source": "src/sigma_native_brain_54x512_v0_1.sigma",
+  "expected_stdout": "tests/EXPECTED_STDOUT_UTF8.txt",
+  "accuracy_corpus": "tests/ACCURACY_CORPUS_V0_1.json",
+  "verified_cli": {
+    "compile": "./native/sigmac src/sigma_native_brain_54x512_v0_1.sigma sigma_native_brain_54x512_v0_1.sigmab",
+    "run": "./native/sigma-vm sigma_native_brain_54x512_v0_1.sigmab"
+  },
+  "required_machine_receipt": {
+    "platform": ["HP_WINDOWS_X86_64", "OPPO_ANDROID_AARCH64"],
+    "source_sha256": "PENDING",
+    "bytecode_sha256": "PENDING",
+    "stdout_sha256": "PENDING",
+    "compile_rc": "MUST_EQUAL_0",
+    "run_rc": "MUST_EQUAL_0",
+    "stderr": "MUST_BE_EMPTY",
+    "utf8_roundtrip": "MUST_EQUAL_EXACT_GOLDEN_BYTES",
+    "deterministic_recompile": "MUST_MATCH_BYTECODE_SHA256",
+    "core_modifications": 0,
+    "canonical_modifications": 0
+  },
+  "promotion_status": "FORBIDDEN_UNTIL_INDEPENDENT_EVALUATION_AND_REGRESSION"
+}
