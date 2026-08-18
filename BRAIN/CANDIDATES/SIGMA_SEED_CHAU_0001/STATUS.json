@@ -2,8 +2,8 @@
   "seed_id": "SIGMA_SEED_CHAU_0001",
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_SEED_CANDIDATE",
-  "status": "PASS_WITH_DEFINED_SCOPE",
-  "state": "CROSS_SUBSTRATE_SEMANTIC_REPLAY_RECONFIRMED_BY_DIRECT_MSYS2_EXACT_BYTE_HOLD_PLATFORM_NEWLINE",
+  "status": "HOLD",
+  "state": "INDEPENDENT_EVALUATION_HOLD_MISSING_DIRECT_OPPO_RC_RECEIPT",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "candidate/sigma-seed-chau-0001-20260818",
   "base_sigma_life_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
@@ -14,6 +14,7 @@
   "hp_replay_attempt_001_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/HP_X86_64_REPLAY_ATTEMPT_001_HOLD_TEXT_CAPTURE_20260818.json",
   "hp_replay_attempt_002_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/HP_X86_64_REPLAY_ATTEMPT_002_RAW_CAPTURE_20260818.json",
   "hp_replay_attempt_003_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/HP_X86_64_REPLAY_ATTEMPT_003_MSYS2_DIRECT_20260818.json",
+  "independent_evaluation_001": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/INDEPENDENT_EVALUATION_001_USER_RELAYED_20260818.json",
   "oppo_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
   "oppo_recompile1_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
   "oppo_recompile2_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
@@ -31,7 +32,7 @@
     "source_written_in_sigma_psi": "PASS",
     "expected_output_frozen": "PASS",
     "provenance_recorded": "PASS",
-    "oppo_execution": "PASS",
+    "oppo_execution": "HOLD_MISSING_DIRECT_COMPILE_RC_RUN_RC_STDERR_OBSERVATIONS",
     "deterministic_recompile": "PASS",
     "hp_x86_64_bytecode_match": "PASS",
     "hp_x86_64_vm_run_rc0": "PASS",
@@ -42,10 +43,11 @@
     "hp_msys2_direct_semantic_replay": "PASS",
     "hp_msys2_direct_raw_exact_stdout": "HOLD_PLATFORM_NEWLINE_TRANSLATION",
     "powershell_as_newline_cause": "REJECTED_BY_DIRECT_MSYS2_REPRODUCTION",
-    "cross_substrate_semantic_replay": "PASS_RECONFIRMED",
+    "cross_substrate_semantic_replay": "HOLD_DEPENDS_ON_DIRECT_OPPO_EXECUTION_EVIDENCE",
     "cross_substrate_exact_byte_replay": "HOLD_PLATFORM_NEWLINE_TRANSLATION",
+    "status_overclaim_check": "FAIL_RECORDED_AND_STATUS_CORRECTED",
     "independent_evaluation": "HOLD"
   },
-  "promotion_rule": "SEMANTIC CROSS-SUBSTRATE REPLAY IS RECONFIRMED BY DIRECT MSYS2 EXECUTION; RAW EXACT-BYTE PARITY REMAINS HOLD BECAUSE THE WINDOWS NATIVE EXECUTION PATH EMITS CRLF; NO SOURCE OR EXPECTED OUTPUT MUTATION; NO CANONICAL PROMOTION",
-  "next_gate": "INDEPENDENT_EVALUATION_OF_SEED_EVIDENCE_WITHOUT_SOURCE_OR_EXPECTED_OUTPUT_MUTATION"
+  "promotion_rule": "INDEPENDENT EVALUATOR HOLD IS BINDING FOR THIS CANDIDATE STATUS; DO NOT INFER DIRECT MACHINE FIELDS FROM CONTROL FLOW; NO SOURCE OR EXPECTED OUTPUT MUTATION; NO CANONICAL PROMOTION",
+  "next_gate": "CAPTURE_DIRECT_OPPO_MACHINE_RECEIPT_WITH_COMPILE_RC_RUN_RC_STDERR_BYTES_AND_HASHES_THEN_REEVALUATE"
 }
