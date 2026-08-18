@@ -1,0 +1,28 @@
+{
+  "evidence_id": "SIGMA_SEED_CHAU_0001_HP_X86_64_REPLAY_ATTEMPT_002",
+  "recorded_date": "2026-08-18",
+  "classification": "USER_OBSERVED_MACHINE_EVIDENCE",
+  "substrate": "HP_WINDOWS_X86_64",
+  "toolchain": "SIGMA_FOUNDATION_HP_MSYS2_V7",
+  "source_mutated": false,
+  "expected_output_mutated": false,
+  "bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+  "oppo_reference_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+  "vm_run_rc": 0,
+  "raw_stdout_sha256": "59b5ca40f56243da9af19a608e08503b3e20e14d9c5fb905abd848b9984b4421",
+  "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+  "lf_normalized_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+  "raw_stdout_exact": "FAIL",
+  "normalization_transform": "BYTE_LEVEL_CRLF_TO_LF_ONLY",
+  "lf_normalized_stdout_exact": "PASS",
+  "stderr_empty": "PASS",
+  "machine_verdict": "SIGMA_SEED_HP_SEMANTIC_REPLAY=PASS_EXACT_BYTE_HOLD_PLATFORM_NEWLINE",
+  "interpretation": {
+    "hp_bytecode_matches_oppo": true,
+    "hp_vm_execution_success": true,
+    "hp_semantic_output_matches_frozen_contract_after_newline_normalization": true,
+    "hp_raw_exact_byte_output_matches_frozen_contract": false,
+    "observed_raw_difference_is_fully_removed_by_crlf_to_lf_normalization": true
+  },
+  "scope": "This receipt proves HP x86_64 semantic replay under a precisely defined CRLF-to-LF normalization. It does not claim raw exact-byte stdout parity and does not authorize canonical promotion."
+}
