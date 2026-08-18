@@ -12,7 +12,7 @@ Nó được tách khỏi `SIGMA_LIFE`; canonical không bị sửa.
 
 ## Những gì đã được viết bằng SIGMA
 
-`src/sigma_native_brain_54x512_v0_1.sigma` chứa:
+Source được tạo tại `src/sigma_native_brain_54x512_v0_1.sigma` từ các module SIGMA đã lưu trong `src/`:
 
 - registry thực thi cho đủ 54 core IDs và tên canonical;
 - router liên tục cho đủ skill IDs `1..512` theo 31 section canonical;
@@ -51,6 +51,25 @@ Mojibake ở Lesson 001 được đưa thành hard regression gate: chuỗi ti�
 
 ## Chuỗi kiểm chứng bắt buộc
 
-`SOURCE → SIGMAC → SIGMAB → SIGMA-VM → EXACT UTF-8 STDOUT → CORPUS → DETERMINISM → FOUNDATION/ABI REGRESSION → INDEPENDENT EVALUATION`
+`SOURCE → SIGMAC → SIGMAB → SIGMA-HOSTVM → EXACT UTF-8 STDOUT → CORPUS → DETERMINISM → FOUNDATION/ABI REGRESSION → INDEPENDENT EVALUATION`
 
 Không hoàn thành chuỗi này thì decision vẫn là `HOLD`.
+
+## Cách tạo source compile target
+
+```bash
+python3 tools/assemble_candidate.py
+python3 tools/validate_candidate.py
+```
+
+Header bắt buộc hiện là:
+
+```sigma
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1]
+```
+
+Static validation hiện đạt `14/14`, nhưng chỉ chứng minh cấu trúc, UTF-8 và sự nhất quán hợp đồng; chưa phải bằng chứng biên dịch hoặc thực thi.
+
+## Runtime đúng cho v0.1
+
+Candidate dùng `LNEW/LPUSH/LGET` và `MNEW/MSET/MGET`, nên gate thực thi dùng `sigma-hostvm`. Không tuyên bố `sigma-vm` thuần có đủ host primitives cho vertical slice này.
