@@ -1,0 +1,62 @@
+{
+  "receipt_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI_V0_1_OPPO_MACHINE_RECEIPT_001_20260819",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "recorded_at": "2026-08-19T02:19:00+07:00",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "run_directory": "~/SIGMA/SIGMA_CREATES_SIGMA_0004_TAM_VAN_RUN_001",
+  "source_branch": "candidate/sigma-creates-sigma-0004-tam-van-tu-bi-20260819",
+  "candidate_head_executed": "3185b2483508700bd41305d0aecd7b6656695aae",
+  "direct_observations": {
+    "source_bytes": 2353,
+    "source_sha256": "bd2b786fbd9ae7310eaf604f5c7d2131a8eb50dec0f8d313004b824b1c435ccd",
+    "expected_stdout_bytes": 225,
+    "expected_stdout_sha256": "be2ec74235290c431b2a895b89efee5801fb387f6aa9f0b374caf172838ff932",
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 0,
+    "run_stderr_bytes": 0,
+    "actual_stdout_bytes": 225,
+    "actual_stdout_sha256": "be2ec74235290c431b2a895b89efee5801fb387f6aa9f0b374caf172838ff932",
+    "stdout_exact": "PASS",
+    "machine_verdict": "SIGMA_0004_TAM_VAN_TU_BI_V0_1_MACHINE_PROOF=PASS"
+  },
+  "tested_outputs_in_order": [
+    "PASS_TAM_VAN_TU_BI",
+    "REDIRECT_TO_CLEAN_EQUIVALENT",
+    "HOLD_NO_COMPASSIONATE_EXIT",
+    "REJECT_FALSE_COMPASSION",
+    "PRESERVE_SIGNAL_REMOVE_NOISE",
+    "PRESERVE_SIGNAL_REMOVE_HARM_REDIRECT_CLEAN",
+    "HOLD_FOR_EVIDENCE_OR_CLARIFICATION",
+    "PASS_TAM_VAN_TU_BI"
+  ],
+  "machine_supported_scope": [
+    "TAM_VAN_GATE_DECISION_LOGIC_EXECUTES_ON_SIGMA_VM",
+    "FALSE_COMPASSION_IS_REJECTED_WHEN_TRUTH_IS_NOT_PRESERVED",
+    "HARM_WITH_A_CLEAN_EXIT_IS_REDIRECTED",
+    "HARM_WITHOUT_A_CLEAN_EXIT_IS_HELD",
+    "RUBBISH_WITH_SIGNAL_AND_NOISE_PRESERVES_SIGNAL_AND_REMOVES_NOISE",
+    "RUBBISH_WITH_HARMFUL_MECHANISM_AND_CLEAN_EXIT_PRESERVES_SIGNAL_REMOVES_HARM_AND_REDIRECTS",
+    "UNKNOWN_INPUT_STATE_IS_HELD_FOR_EVIDENCE_OR_CLARIFICATION",
+    "ONE_SELF_GENERATION_TAM_VAN_PASS_CASE_EXECUTES"
+  ],
+  "not_proven": [
+    "ARBITRARY_FREE_FORM_NATURAL_LANGUAGE_CLASSIFICATION",
+    "AUTONOMOUS_TRUTH_SIGNAL_NOISE_HARM_CLASSIFICATION",
+    "GENERAL_CLEAN_OUTPUT_TEXT_GENERATION",
+    "GENERAL_TAM_VAN_EXIT_PATH_TEXT_GENERATION",
+    "FULL_NATIVE_BRAIN_INTEGRATION",
+    "FULL_SELF_GENERATION_INTEGRATION",
+    "CANONICAL_PROMOTION",
+    "54_CORE_PROMOTION",
+    "512_PROMOTION"
+  ],
+  "source_mutation_after_execution": false,
+  "expected_output_mutation_after_execution": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "V0_2_CLEAN_OUTPUT_AND_TAM_VAN_EXIT_PATH"
+}
