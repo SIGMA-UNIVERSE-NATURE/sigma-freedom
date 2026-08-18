@@ -1,0 +1,45 @@
+{
+  "candidate_id": "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY",
+  "artifact": "self_assembler/sigma_native_brain_self_assembler_0003.sigma",
+  "source_sha256": "0671ac82b3e75c403b8eed01c093c8f20c813a2731b8bb88a5b302119b77d8fe",
+  "expected_stdout_sha256": "fab227752fbdcd40447c20387365e6d95934a17c455a36a5fefe59a00caaae44",
+  "assembly_method": [
+    "host(\"bytes_new\")",
+    "host(\"read_text\", part_path)",
+    "host(\"bytes_raw_utf8\", output_buffer, part_text)",
+    "host(\"bytes_len\", output_buffer)",
+    "host(\"bytes_write\", output_buffer, output_path)"
+  ],
+  "ordered_parts": [
+    "parts/00_core_registry.sigma",
+    "parts/10_skill_router_a.sigma.part",
+    "parts/10_skill_router_b.sigma.part",
+    "parts/20_accuracy_kernel.sigma",
+    "parts/90_main.sigma"
+  ],
+  "assembled_output": "sigma_native_brain_54x512_v0_1.self_assembled.sigma",
+  "assembled_output_bytes": 19047,
+  "assembled_output_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+  "assembled_native_brain_expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+  "proof_path_forbidden": [
+    "python3 tools/assemble_candidate.py",
+    "cat parts/* > assembled.sigma",
+    "shell_or_python_source_concatenation_counted_as_SIGMA_self_assembly"
+  ],
+  "required_machine_gates": [
+    "self_assembler_sigmac_rc0",
+    "self_assembler_compile_stderr_empty",
+    "self_assembler_sigma_hostvm_rc0",
+    "self_assembler_run_stderr_empty",
+    "self_assembler_stdout_exact",
+    "assembled_output_bytes_exact_19047",
+    "assembled_output_sha256_exact_5c24e36f",
+    "second_SIGMA_self_assembly_same_sha256",
+    "assembled_native_brain_sigmac_rc0",
+    "assembled_native_brain_sigma_hostvm_rc0_or_record_exact_failure",
+    "native_brain_stdout_exact_if_runtime_rc0"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
