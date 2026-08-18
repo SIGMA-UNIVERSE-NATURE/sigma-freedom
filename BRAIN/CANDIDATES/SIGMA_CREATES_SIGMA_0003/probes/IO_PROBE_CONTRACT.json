@@ -1,0 +1,26 @@
+{
+  "probe_id": "SIGMA_CREATES_SIGMA_0003_IO_ROUNDTRIP_PROBE_001",
+  "purpose": "Verify direct SIGMA-PSI source call syntax and exact UTF-8 roundtrip for write_text(path,text) and read_text(path) before writing the native-brain self-assembler.",
+  "source": "io_roundtrip_probe.sigma",
+  "source_sha256": "a7419acfabdf7f39cd9e7fa505564970e71ea3b4bd971d62c56641549896e872",
+  "expected_roundtrip_file": "EXPECTED_ROUNDTRIP_UTF8.txt",
+  "expected_roundtrip_file_sha256": "be8faed545f76e1e7f25143d11a13fd8f3e0411628053830966bd620a44b6999",
+  "expected_stdout": "EXPECTED_IO_PROBE_STDOUT_UTF8.txt",
+  "expected_stdout_sha256": "b4165e5e5b8a2bad5b0980b91ad6bd6c506ed137c9ad2fce19de028ebf7e21ac",
+  "required_runtime": "sigma-hostvm",
+  "required_observations": [
+    "sigmac_compile_rc_0",
+    "compile_stderr_empty",
+    "sigma_hostvm_run_rc_0",
+    "run_stderr_empty",
+    "roundtrip_file_exact_byte_match",
+    "stdout_exact_byte_match"
+  ],
+  "interpretation": {
+    "pass": "Direct call syntax and UTF-8 text roundtrip are verified for the observed OPPO toolchain.",
+    "hold": "Do not write or accept the native-brain self-assembler yet."
+  },
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
