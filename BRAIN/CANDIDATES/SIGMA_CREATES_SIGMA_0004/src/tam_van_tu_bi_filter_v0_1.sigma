@@ -1,0 +1,64 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.ETHICS][VERSION=0.1]
+
+DEF TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh, truth_preserved, clean_exit_available) {
+    IF (!truth_preserved) {
+        RETURN "REJECT_FALSE_COMPASSION";
+    } ELSE {
+        IF (kho_minh || kho_nguoi || kho_chung_sanh) {
+            IF (clean_exit_available) {
+                RETURN "REDIRECT_TO_CLEAN_EQUIVALENT";
+            } ELSE {
+                RETURN "HOLD_NO_COMPASSIONATE_EXIT";
+            }
+        } ELSE {
+            RETURN "PASS_TAM_VAN_TU_BI";
+        }
+    }
+}
+
+DEF RUBBISH_INPUT_POLICY(has_signal, has_noise, has_harmful_mechanism, has_unknown, clean_exit_available) {
+    IF (has_unknown) {
+        RETURN "HOLD_FOR_EVIDENCE_OR_CLARIFICATION";
+    } ELSE {
+        IF (has_harmful_mechanism) {
+            IF (clean_exit_available) {
+                RETURN "PRESERVE_SIGNAL_REMOVE_HARM_REDIRECT_CLEAN";
+            } ELSE {
+                RETURN "HOLD_NO_COMPASSIONATE_EXIT";
+            }
+        } ELSE {
+            IF (has_signal) {
+                IF (has_noise) {
+                    RETURN "PRESERVE_SIGNAL_REMOVE_NOISE";
+                } ELSE {
+                    RETURN "PRESERVE_SIGNAL";
+                }
+            } ELSE {
+                RETURN "NO_ACTIONABLE_SIGNAL";
+            }
+        }
+    }
+}
+
+DEF SELF_GENERATION_TAM_VAN(candidate_self_harm, candidate_human_harm, candidate_beings_harm, evidence_preserved, rollback_available) {
+    IF (!evidence_preserved) {
+        RETURN "REJECT_SELF_GENERATION_EVIDENCE_LOSS";
+    } ELSE {
+        IF (!rollback_available) {
+            RETURN "HOLD_SELF_GENERATION_NO_ROLLBACK";
+        } ELSE {
+            RETURN TAM_VAN_GATE(candidate_self_harm, candidate_human_harm, candidate_beings_harm, TRUE, TRUE);
+        }
+    }
+}
+
+⟡(Σ.TAM_VAN_TU_BI_FILTER_V0_1) {
+    ⚡ print(TAM_VAN_GATE(FALSE, FALSE, FALSE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_GATE(FALSE, TRUE, FALSE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_GATE(FALSE, TRUE, FALSE, TRUE, FALSE));
+    ⚡ print(TAM_VAN_GATE(FALSE, FALSE, FALSE, FALSE, TRUE));
+    ⚡ print(RUBBISH_INPUT_POLICY(TRUE, TRUE, FALSE, FALSE, TRUE));
+    ⚡ print(RUBBISH_INPUT_POLICY(TRUE, TRUE, TRUE, FALSE, TRUE));
+    ⚡ print(RUBBISH_INPUT_POLICY(TRUE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(SELF_GENERATION_TAM_VAN(FALSE, FALSE, FALSE, TRUE, TRUE));
+}
