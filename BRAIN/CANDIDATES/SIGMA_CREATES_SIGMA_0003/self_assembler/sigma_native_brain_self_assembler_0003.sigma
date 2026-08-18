@@ -1,0 +1,26 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.BUILD][VERSION=0.1]
+
+⟡(Σ.SIGMA_NATIVE_BRAIN_SELF_ASSEMBLER_0003) {
+    ⚡ out: host("bytes_new");
+
+    ⚡ p1: host("read_text", "parts/00_core_registry.sigma");
+    ⚡ a1: host("bytes_raw_utf8", out, p1);
+
+    ⚡ p2: host("read_text", "parts/10_skill_router_a.sigma.part");
+    ⚡ a2: host("bytes_raw_utf8", out, p2);
+
+    ⚡ p3: host("read_text", "parts/10_skill_router_b.sigma.part");
+    ⚡ a3: host("bytes_raw_utf8", out, p3);
+
+    ⚡ p4: host("read_text", "parts/20_accuracy_kernel.sigma");
+    ⚡ a4: host("bytes_raw_utf8", out, p4);
+
+    ⚡ p5: host("read_text", "parts/90_main.sigma");
+    ⚡ a5: host("bytes_raw_utf8", out, p5);
+
+    ⚡ n: host("bytes_len", out);
+    ⚡ w: host("bytes_write", out, "sigma_native_brain_54x512_v0_1.self_assembled.sigma");
+
+    ⚡ print(n);
+    ⚡ print(w);
+}
