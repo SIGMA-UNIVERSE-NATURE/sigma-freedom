@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-STATIC-VALIDATION",
+  "recorded_at": "2026-08-18T06:39:48.132427+00:00",
+  "status": "PASS_STRUCTURAL_ONLY_NOT_COMPILE_EVIDENCE",
+  "scope": "STATIC_STRUCTURE_UTF8_CONTRACT_ONLY",
+  "counts": {
+    "checks": 14,
+    "pass": 14,
+    "fail": 0
+  },
+  "artifacts": {
+    "source_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "source_bytes": 19047,
+    "source_lines": 334,
+    "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a"
+  },
+  "checks": [
+    {"id":"assembly_exact","pass":true,"detail":"5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936"},
+    {"id":"mandatory_header","pass":true,"detail":"#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1]"},
+    {"id":"no_bom","pass":true,"detail":null},
+    {"id":"no_mojibake","pass":true,"detail":null},
+    {"id":"delimiters_balanced","pass":true,"detail":null},
+    {"id":"core_ids_1_54","pass":true,"detail":null},
+    {"id":"core_names_unique","pass":true,"detail":null},
+    {"id":"core_source_matches","pass":true,"detail":null},
+    {"id":"31_contiguous_sections","pass":true,"detail":[]},
+    {"id":"source_router_matches","pass":true,"detail":null},
+    {
+      "id":"static_reference_corpus_10_10",
+      "pass":true,
+      "detail":[
+        {"id":"A001_MACHINE_AHEAD_NOT_INGESTED","expected":"HOLD_MACHINE_AHEAD_NOT_CANONICALLY_INGESTED","observed":"HOLD_MACHINE_AHEAD_NOT_CANONICALLY_INGESTED","pass":true},
+        {"id":"A002_CANONICAL_MACHINE_AGREE","expected":"ASSERT_CANONICAL_MACHINE_AGREE","observed":"ASSERT_CANONICAL_MACHINE_AGREE","pass":true},
+        {"id":"A003_MEMORY_ONLY_UNVERIFIED","expected":"HOLD_NO_VERIFIED_EVIDENCE","observed":"HOLD_NO_VERIFIED_EVIDENCE","pass":true},
+        {"id":"A004_CANONICAL_ONLY","expected":"ASSERT_CANONICAL_STATE_ONLY_NOT_LIVE_TRUTH","observed":"ASSERT_CANONICAL_STATE_ONLY_NOT_LIVE_TRUTH","pass":true},
+        {"id":"A005_MACHINE_ONLY","expected":"ASSERT_MACHINE_EVIDENCE_ONLY_NOT_CANONICAL_STATE","observed":"ASSERT_MACHINE_EVIDENCE_ONLY_NOT_CANONICAL_STATE","pass":true},
+        {"id":"A006_AUTHORITATIVE_CONTRADICTION","expected":"HOLD_AUTHORITATIVE_CONTRADICTION","observed":"HOLD_AUTHORITATIVE_CONTRADICTION","pass":true},
+        {"id":"A007_PROVENANCE_COMPLETE","expected":"PROVENANCE_COMPLETE","observed":"PROVENANCE_COMPLETE","pass":true},
+        {"id":"A008_PROVENANCE_MISSING_EVIDENCE","expected":"HOLD_MISSING_PROVENANCE","observed":"HOLD_MISSING_PROVENANCE","pass":true},
+        {"id":"A009_METRIC_ALONE","expected":"HOLD_METRIC_ALONE_CANNOT_PROVE_PROGRESS","observed":"HOLD_METRIC_ALONE_CANNOT_PROVE_PROGRESS","pass":true},
+        {"id":"A010_REALITY_MISMATCH","expected":"MISMATCH_PRESERVED_REALITY_PRIORITY","observed":"MISMATCH_PRESERVED_REALITY_PRIORITY","pass":true}
+      ]
+    },
+    {"id":"utf8_golden_literal","pass":true,"detail":null},
+    {"id":"expected_stdout_utf8","pass":true,"detail":"20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a"},
+    {"id":"hostvm_contract","pass":true,"detail":null}
+  ],
+  "non_claims": [
+    "NOT_SIGMAC_COMPILE_EVIDENCE",
+    "NOT_SIGMA_HOSTVM_EXECUTION_EVIDENCE",
+    "NOT_512_BEHAVIORAL_IMPLEMENTATION_EVIDENCE",
+    "NOT_IMPROVEMENT_OR_PROMOTION_EVIDENCE"
+  ],
+  "decision": "HOLD_PENDING_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION"
+}
