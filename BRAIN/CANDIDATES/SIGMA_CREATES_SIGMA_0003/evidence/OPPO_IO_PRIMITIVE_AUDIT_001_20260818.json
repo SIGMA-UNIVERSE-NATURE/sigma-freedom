@@ -1,0 +1,35 @@
+{
+  "evidence_id": "SIGMA_CREATES_SIGMA_0003_OPPO_IO_PRIMITIVE_AUDIT_001",
+  "classification": "USER_RELAYED_READ_ONLY_MACHINE_SOURCE_AND_BINARY_AUDIT",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "observed_source_files": ["./sigmac.c", "./sigma_vm.c"],
+  "source_observations": {
+    "bytes_new": {"sigma_vm_c_line":445,"host_semantics":"return new O_BYTES object handle"},
+    "bytes_len": {"sigma_vm_c_line":446,"host_semantics":"return bytes count"},
+    "bytes_get": {"sigma_vm_c_line":448,"host_semantics":"read indexed byte; -1 if out of range"},
+    "read_bytes": {"sigma_vm_c_line":455,"host_semantics":"open path in rb mode and return bytes object"},
+    "bytes_raw_utf8": {"sigma_vm_c_line":522,"host_semantics":"append strlen(string) raw bytes into bytes object"},
+    "bytes_write": {"sigma_vm_c_line":525,"host_semantics":"write bytes object to path in wb mode; return 0 on full write"},
+    "read_text": {"sigma_vm_c_line":532,"host_semantics":"read file in rb mode and return NUL-terminated string"},
+    "write_text": {"sigma_vm_c_line":608,"host_semantics":"write strlen(text) bytes to path in wb mode; return 0 on full write"}
+  },
+  "compiled_sigma_hostvm_exposed_names_observed": ["bytes_len","bytes_new","bytes_write","read_text","write_text"],
+  "compiled_sigma_vm_exposed_names_observed": ["bytes_len","bytes_new","bytes_write","read_text","write_text"],
+  "actual_sigma_call_sites_found_by_audit": [],
+  "verdict": {
+    "io_primitive_names_verified": "PASS_WITH_DEFINED_SCOPE",
+    "call_syntax_verified": "HOLD_NO_SIGMA_CALL_SITE_OR_EXECUTION_PROBE_YET",
+    "bytes_raw_utf8_binary_exposure": "HOLD_NOT_INCLUDED_IN_BINARY_STRINGS_FILTER",
+    "read_bytes_binary_exposure": "HOLD_NOT_OBSERVED_IN_REPORTED_BINARY_STRINGS_OUTPUT"
+  },
+  "limitations": [
+    "C host dispatch names do not by themselves prove SIGMA-PSI source call syntax.",
+    "No self-assembler source is accepted yet.",
+    "No native-brain assembly claim is made."
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "ISOLATED_SIGMA_PSI_READ_TEXT_WRITE_TEXT_CALL_SYNTAX_AND_UTF8_ROUNDTRIP_PROBE"
+}
