@@ -1,0 +1,30 @@
+{
+  "evidence_id": "SIGMA_CREATES_SIGMA_0003_OPPO_VM_RESOLVER_HOST_BRIDGE_AUDIT_002_20260819",
+  "classification": "USER_RELAYED_READ_ONLY_LOCAL_SOURCE_OBSERVATION",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "observed_files": ["sigma_vm.c", "sigmac.c"],
+  "observations": {
+    "vm_call_fn_host_special_case": "if(strcmp(name,\"host\")==0){ return sigma_host_call(args,argc); }",
+    "vm_normal_function_failure": "if(!fn){ fprintf(stderr,\"SIGMA C VM: undefined function %s\\n\",name); exit(8); }",
+    "host_dispatch_entry_contract": "sigma_host_call requires args[0] to be an operation string",
+    "write_text_host_semantics": "operation write_text consumes a=args[1] as path string and b=args[2] as text string; opens wb; returns 0 on full write",
+    "read_text_host_semantics": "operation read_text consumes a=args[1] as path string; opens rb and returns V_STR",
+    "compiler_call_semantics": "parse_call_after_name emits OP_CALL for arbitrary call name; host(...) therefore reaches the VM host special case"
+  },
+  "derived_bridge_candidate_from_observed_code": {
+    "write_text": "host(\"write_text\", path, text)",
+    "read_text": "host(\"read_text\", path)"
+  },
+  "previous_failure_explained": "Direct write_text(...) compiled as a normal OP_CALL symbol named write_text, then failed normal function resolution before sigma_host_call with exact stderr 'SIGMA C VM: undefined function write_text'.",
+  "not_yet_proven": [
+    "host_write_text_runtime_success_from_SIGMA_source",
+    "host_read_text_runtime_success_from_SIGMA_source",
+    "UTF8_text_roundtrip_through_host_bridge",
+    "native_brain_self_assembly"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "ISOLATED_HOST_BRIDGE_IO_ROUNDTRIP_PROBE_002"
+}
