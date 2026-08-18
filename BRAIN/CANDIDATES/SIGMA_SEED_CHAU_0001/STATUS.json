@@ -1,0 +1,30 @@
+{
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "language": "SIGMA-PSI",
+  "classification": "ISOLATED_SIGMA_PSI_SEED_CANDIDATE",
+  "status": "PARTIAL",
+  "state": "SOURCE_WRITTEN_EXECUTION_HOLD",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "candidate/sigma-seed-chau-0001-20260818",
+  "base_sigma_life_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+  "source": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/seed_chau_0001.sigma",
+  "expected_output": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/EXPECTED_OUTPUT_UTF8.txt",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "external_side_effects": false,
+  "gates": {
+    "source_written_in_sigma_psi": "PASS",
+    "expected_output_frozen": "PASS",
+    "provenance_recorded": "PASS",
+    "sigmac_compile_rc0": "HOLD",
+    "sigma_vm_run_rc0": "HOLD",
+    "stderr_empty": "HOLD",
+    "stdout_exact_utf8": "HOLD",
+    "deterministic_recompile": "HOLD",
+    "cross_substrate_replay": "HOLD",
+    "independent_evaluation": "HOLD"
+  },
+  "promotion_rule": "SOURCE_PRESENCE_IS_NOT_EXECUTION_EVIDENCE",
+  "next_gate": "RUN_ON_VERIFIED_SIGMA_TOOLCHAIN_WITH_EXACT_OUTPUT_COMPARISON"
+}
