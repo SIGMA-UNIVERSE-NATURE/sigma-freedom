@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "SIGMA_VM_ACTUAL_ABI_PARITY_INTEGRATION_20260818_0725",
+  "recorded_at": "2026-08-18T07:25:00+07:00",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "agent/vm-actual-abi-parity-handoff-20260818",
+  "base_branch": "PHASE2_HARDENING_20260818",
+  "source_handoff": {
+    "path": "BRAIN/HANDOFFS/SIGMA_VM_ACTUAL_ABI_PARITY_HANDOFF_2026-08-18.md",
+    "uploaded_file_sha256": "82658081be24ab1d01e023dfb5f2c3dc411c90391efd26cc5d037d18f4cccc82",
+    "byte_count": 7874,
+    "line_count": 533,
+    "github_blob_sha1": "fb94124810ce8215b520961a8eeb9fde333c50ba",
+    "exact_byte_identity_verified": true,
+    "handoff_commit": "845f2dec51c04f9b0b6a78ecc288bde0ff929d46"
+  },
+  "integrated_evidence": {
+    "status": "PASS_WITH_DEFINED_SCOPE",
+    "milestone": "SIGMA_VM_ACTUAL_ABI_PARITY_001",
+    "claim": "VM_EXECUTION_CORE_FOR_TESTED_REAL_ABI=VERIFIED",
+    "device": "OPPO / Android / Termux / aarch64",
+    "actual_abi_opcode_mapping": "PASS",
+    "tested_paths": [
+      "PUSH_CONST",
+      "LOAD",
+      "STORE",
+      "BINARY/B_ADD_0x01",
+      "CALL/print",
+      "POP",
+      "HALT"
+    ],
+    "c_vm_reference_execution": "PASS",
+    "sigma_vm_source_compile": "PASS",
+    "sigma_vm_bytecode_execution": "PASS",
+    "stdout_exact_parity": "PASS",
+    "stdout_sha256": "f4ccd05b3271c386ee55d9876c7450012a3b361e5065c09dc22075e38b3cc35c",
+    "sigma_vm_source_sha256": "85fa2baf2d267af5bdddc53681f9acdab9ceb817c5eaab96b580a8043eb9a21b",
+    "sigma_vm_bytecode_sha256": "d360c725dba454acd2edfd020ca272eee44bddd672dedb38849f38b332789d2a",
+    "reference_source_sha256": "baf1a6ca40942b623d9c5226dcdf52a53f3355bd50fb428c58acc5e67fe47457",
+    "reference_bytecode_sha256": "efcd04d2d31731f75faf5703e17d52a496bbdff5059e9108d71c86b4bdb804b9"
+  },
+  "scope_boundary": {
+    "complete_sigma_vm_pass": false,
+    "generic_external_bytecode_loader_proven_by_this_handoff": false,
+    "hardcoded_test_fixture_present": true,
+    "unproven_in_this_handoff": [
+      "OP_UNARY",
+      "all BINARY subcodes",
+      "OP_RETURN",
+      "OP_JUMP",
+      "OP_JUMP_IF_FALSE",
+      "general user-defined OP_CALL",
+      "function-local execution semantics",
+      "all error paths"
+    ],
+    "invented_IADD_0x10_forbidden": true,
+    "actual_OP_BINARY": "0x21",
+    "actual_B_ADD": "0x01"
+  },
+  "integration_effect": {
+    "inherit_without_rerun_unless_source_or_hash_changes": true,
+    "phase2_reopened": false,
+    "foundation_v7_mutated": false,
+    "frozen_abi_mutated": false,
+    "sigma_life_canonical_mutated": false,
+    "canonical_512_mutated": false,
+    "promotion_512": "NONE",
+    "canonical_genesis_merge": "NONE",
+    "role": "PREREQUISITE_EVIDENCE_MILESTONE"
+  },
+  "continuity": {
+    "handoff_recorded_next": "SIGMA_VM_v0.3_EXTERNAL_BYTECODE_LOADER",
+    "current_window_stronger_gate": "SIGMA_WRITTEN_VM_PROOF_COLD_BOOTSTRAP_HOLD",
+    "current_window_next_experiment": "SIGMA_WRITTEN_VM_EXECUTION_COST_REDUCTION_001",
+    "rule": "DO_NOT_DOWNGRADE_CURRENT_GATE_TO_EARLIER_HANDOFF_NEXT_STEP"
+  }
+}
