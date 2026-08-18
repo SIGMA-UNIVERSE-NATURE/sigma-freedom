@@ -3,11 +3,12 @@
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLY_CANDIDATE",
   "status": "HOLD",
-  "state": "IO_CALL_SYNTAX_COMPILES_RUNTIME_DISPATCH_HOLD_STDERR_CAPTURE_REQUIRED",
+  "state": "DIRECT_IO_CALL_COMPILES_BUT_NORMAL_FUNCTION_RESOLVER_REJECTS_WRITE_TEXT_HOST_BRIDGE_AUDIT_REQUIRED",
   "branch": "candidate/sigma-creates-sigma-0003-native-brain-self-assembly-20260818",
   "contract_commit": "b5c6c263de2e8d44fea0aeb6288b826ef34482ca",
   "io_audit_receipt": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_IO_PRIMITIVE_AUDIT_001_20260818.json",
   "io_probe_attempt_001": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_IO_ROUNDTRIP_PROBE_ATTEMPT_001_HOLD_20260818.json",
+  "io_probe_attempt_001_exact_stderr": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_IO_ROUNDTRIP_PROBE_ATTEMPT_001_STDERR_EXACT_20260819.json",
   "self_construction_predecessor_pass_commit": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
   "native_brain_assembled_source_sha256_contract": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
   "native_brain_assembled_source_bytes_contract": 19047,
@@ -25,7 +26,8 @@
     "legacy_python_assembler_semantics_frozen": "PASS",
     "sigma_psi_io_primitive_names_verified": "PASS_WITH_DEFINED_SCOPE",
     "sigma_psi_io_direct_call_syntax_compiles": "PASS",
-    "sigma_psi_io_runtime_dispatch": "HOLD_RC8_STDERR_42_BYTES_PENDING_CAPTURE",
+    "sigma_psi_io_direct_normal_function_resolution": "FAIL_UNDEFINED_FUNCTION_WRITE_TEXT",
+    "sigma_psi_host_operation_bridge_verified": "HOLD",
     "sigma_psi_text_utf8_roundtrip_verified": "HOLD",
     "sigma_psi_self_assembler_source_written": "HOLD",
     "self_assembler_sigmac_compile": "HOLD",
@@ -40,10 +42,10 @@
     "python_assembler_removed_from_proof_path": "HOLD",
     "independent_evaluation": "HOLD"
   },
-  "proven_claim": "HOST_PRIMITIVE_NAMES_EXIST_AND_DIRECT_CALL_SYNTAX_COMPILES; RUNTIME IO DISPATCH IS NOT YET PROVEN",
+  "proven_claim": "HOST_PRIMITIVE_NAMES_EXIST_AND_DIRECT_CALLS_COMPILE, BUT WRITE_TEXT_IS_NOT_A_NORMAL_SIGMA_FUNCTION AND THE_CORRECT_HOST_OPERATION_BRIDGE_IS_NOT_YET_VERIFIED",
   "canonical_mutation": false,
   "core_54_mutation": false,
   "promotion_512": false,
-  "promotion_rule": "DO_NOT WRITE THE SELF-ASSEMBLER UNTIL THE EXACT RUNTIME FAILURE IS CAPTURED AND THE CORRECT HOST-CALL PATH IS VERIFIED.",
-  "next_gate": "CAPTURE_EXACT_42_BYTE_PROBE_RUNTIME_STDERR"
+  "promotion_rule": "DO_NOT PATCH THE SELF-ASSEMBLER OR INVENT HOST-CALL SYNTAX. FIRST READ THE LOCAL VM RESOLVER AND HOST-DISPATCH CALL PATH THAT PRODUCED THE EXACT UNDEFINED_FUNCTION_WRITE_TEXT FAILURE.",
+  "next_gate": "READ_ONLY_LOCAL_SIGMA_VM_RESOLVER_AND_HOST_OPERATION_BRIDGE_AUDIT"
 }
