@@ -1,0 +1,26 @@
+{
+  "evaluation_id": "SIGMA_SEED_CHAU_0001_INDEPENDENT_EVALUATION_001",
+  "recorded_at": "2026-08-18T20:36+07:00",
+  "classification": "USER_RELAYED_INDEPENDENT_EVALUATOR_OUTPUT",
+  "evaluator_head": "3bf154d8e86e0ef1c7fc7be5ebb8b4fa4f95381d",
+  "mode": "READ_ONLY_INDEPENDENT_EVALUATOR",
+  "results": {
+    "OPPO_EXECUTION": "HOLD",
+    "DETERMINISTIC_RECOMPILE": "PASS",
+    "HP_BYTECODE_PARITY": "PASS",
+    "HP_VM_EXECUTION": "PASS",
+    "HP_RAW_EXACT_BYTE_REPLAY": "HOLD",
+    "HP_LF_NORMALIZED_SEMANTIC_REPLAY": "PASS",
+    "POWERSHELL_NEWLINE_CAUSE_HYPOTHESIS": "REJECTED",
+    "CROSS_SUBSTRATE_SEMANTIC_REPLAY": "HOLD",
+    "CROSS_SUBSTRATE_EXACT_BYTE_REPLAY": "HOLD",
+    "STATUS_OVERCLAIM_CHECK": "FAIL",
+    "CANONICAL_PROMOTION_AUTHORIZED": "NO",
+    "FINAL_VERDICT": "HOLD"
+  },
+  "exact_reason": "OPPO_EXECUTION_RECEIPT_20260818.json does not directly record compile_rc=0, run_rc=0, or stderr_empty; those conditions are only derived from reported gate control flow and terminal verdict, so OPPO execution cannot be independently verified under DO_NOT_INFER and MISSING_EVIDENCE=>HOLD; consequently CROSS_SUBSTRATE_SEMANTIC_REPLAY cannot independently reach PASS and STATUS.json overclaims those PASS states.",
+  "required_remediation": "CAPTURE_DIRECT_OPPO_MACHINE_FIELDS_COMPILE_RC_RUN_RC_STDERR_EMPTY_AND_HASHES_WITHOUT_SOURCE_OR_EXPECTED_OUTPUT_MUTATION",
+  "source_mutation": false,
+  "expected_output_mutation": false,
+  "canonical_promotion": false
+}
