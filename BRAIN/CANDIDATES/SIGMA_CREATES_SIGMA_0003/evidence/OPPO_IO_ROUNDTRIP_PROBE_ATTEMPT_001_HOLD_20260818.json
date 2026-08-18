@@ -1,0 +1,38 @@
+{
+  "probe_id": "SIGMA_CREATES_SIGMA_0003_IO_ROUNDTRIP_PROBE_001",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "run_directory": "~/SIGMA/SIGMA_CREATES_SIGMA_0003_IO_PROBE_RUN",
+  "candidate_head_executed": "6bbdfd64184b66787100e14d94df04aa6f06554a",
+  "direct_observations": {
+    "probe_source_sha256": "a7419acfabdf7f39cd9e7fa505564970e71ea3b4bd971d62c56641549896e872",
+    "expected_roundtrip_file_sha256": "be8faed545f76e1e7f25143d11a13fd8f3e0411628053830966bd620a44b6999",
+    "expected_stdout_sha256": "b4165e5e5b8a2bad5b0980b91ad6bd6c506ed137c9ad2fce19de028ebf7e21ac",
+    "sigmac_compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "sigma_hostvm_run_rc": 8,
+    "run_stderr_bytes": 42,
+    "actual_roundtrip_file_sha256": null,
+    "actual_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "roundtrip_file_exact": "FAIL",
+    "stdout_exact": "FAIL",
+    "machine_verdict": "SIGMA_0003_IO_CALL_SYNTAX_AND_UTF8_ROUNDTRIP=HOLD"
+  },
+  "facts_supported": [
+    "THE_PROBE_SOURCE_COMPILES_SUCCESSFULLY_WITH_SIGMAC",
+    "THE_DIRECT_FUNCTION_CALL_SYNTAX_IS_SYNTACTICALLY_ACCEPTED_BY_THE_COMPILER"
+  ],
+  "facts_not_supported": [
+    "WRITE_TEXT_RUNTIME_DISPATCH_WORKS",
+    "READ_TEXT_RUNTIME_DISPATCH_WORKS",
+    "UTF8_TEXT_ROUNDTRIP_WORKS",
+    "NATIVE_BRAIN_SELF_ASSEMBLY_WORKS"
+  ],
+  "failure_classification": "HOLD_PENDING_EXACT_42_BYTE_RUNTIME_STDERR_CAPTURE",
+  "stderr_content": null,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "CAPTURE_EXACT_RUN_STDERR_BYTES_THEN_CLASSIFY_RUNTIME_FAILURE"
+}
