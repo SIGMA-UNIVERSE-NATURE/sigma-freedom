@@ -1,0 +1,50 @@
+{
+  "candidate_id": "SIGMA_BRAIN_TAM_VAN_TU_BI_V0_1",
+  "language": "SIGMA-PSI",
+  "classification": "ISOLATED_SIGMA_BRAIN_COMPASSION_DECISION_KERNEL_CANDIDATE",
+  "status": "HOLD",
+  "state": "TAM_VAN_TU_BI_KERNEL_SOURCE_AND_ORACLE_FROZEN_MACHINE_EXECUTION_PENDING",
+  "branch": "candidate/sigma-brain-tam-van-tu-bi-kernel-v0-1-20260819",
+  "base_self_assembly_commit": "42c2d444dc0a728a5673d6d7d2c873edffcd390e",
+  "source": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_V0_1/src/tam_van_tu_bi_kernel_v0_1.sigma",
+  "source_sha256_contract": "7cd5e3cfedef2ca6dbf135a9897a92a9213f6bb71a074d3cd65883a936db093b",
+  "source_bytes_contract": 2504,
+  "expected_stdout": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_V0_1/tests/EXPECTED_STDOUT_UTF8.txt",
+  "expected_stdout_sha256_contract": "4e76f377dda16f0aa5f58e396d769202e23242c7dc8a1a7a9b8de8ee48250ec7",
+  "expected_stdout_bytes_contract": 619,
+  "principles": [
+    "RUBBISH_INPUT_NE_RUBBISH_PERSON",
+    "CLEAN_NE_CHE_SU_THAT",
+    "TRUTH_MUST_BE_PRESERVED",
+    "SALVAGEABLE_INTENT_SHOULD_BE_RETAINED",
+    "HARMFUL_NOISE_SHOULD_NOT_BE_ECHOED",
+    "UNCERTAINTY_AND_CONTRADICTION_MUST_NOT_BE_HIDDEN",
+    "FAILED_TAM_VAN_MUST_RETURN_AN_EXIT_PATH"
+  ],
+  "tam_van": {
+    "1": "KHONG_KHO_MINH",
+    "2": "KHONG_KHO_NGUOI",
+    "3": "KHONG_KHO_CHUNG_SANH"
+  },
+  "gates": {
+    "contract_frozen": "PASS",
+    "source_written_in_sigma_psi": "PASS_SOURCE_ONLY",
+    "expected_stdout_frozen": "PASS",
+    "structured_decision_kernel_defined": "PASS_SOURCE_ONLY",
+    "raw_natural_language_rubbish_classifier": "HOLD_NOT_IMPLEMENTED",
+    "sigmac_compile": "HOLD",
+    "sigma_vm_run": "HOLD",
+    "stderr_empty": "HOLD",
+    "stdout_exact": "HOLD",
+    "deterministic_compile": "HOLD",
+    "independent_evaluation": "HOLD",
+    "integration_into_self_assembled_native_brain": "HOLD_NOT_ATTEMPTED"
+  },
+  "proven_claim": "NONE_BEYOND_SOURCE_AND_FROZEN_ORACLE. THIS V0.1 OPERATES_ON_STRUCTURED BOOLEAN CLASSIFICATIONS; IT DOES_NOT_YET_SEMANTICALLY_CLASSIFY_ARBITRARY_RAW_INPUT.",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "history_0003_rewrite": false,
+  "promotion_rule": "DO_NOT CALL THE COMPASSION FILTER IMPLEMENTED UNTIL THE SIGMA-PSI KERNEL COMPILES_AND_RUNS_WITH_EXACT_ORACLE_OUTPUT. DO_NOT CLAIM RAW_LANGUAGE_CLEANING UNTIL A SEPARATE SEMANTIC_CLASSIFIER_HAS_EVIDENCE.",
+  "next_gate": "OPPO_SIGMAC_COMPILE_SIGMA_VM_RUN_EXACT_OUTPUT"
+}
