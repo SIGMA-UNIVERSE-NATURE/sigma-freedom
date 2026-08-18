@@ -1,0 +1,77 @@
+{
+  "schema": "SIGMA-HISTORICAL-EVIDENCE-INGEST-1.1",
+  "ingest_id": "SIGMA-VM-V09-HISTORICAL-INGEST-20260818-001",
+  "classification": "HISTORICAL_EXECUTION_EVIDENCE_NO_CURRENT_STATE_DOWNGRADE",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "agent/sigma-experiment-map-20260818",
+  "parent_checkpoint": "881a125ca0473a4df73c8f10f2e215f7c9abfb1e",
+  "records": [
+    {
+      "source_name": "SIGMA_VM_V09_FLOORDIV_UPGRADE_HANDOFF_2026-08-18_2140_VN.md",
+      "source_bytes": 10985,
+      "source_sha256": "5cdaf2e5191d9d09431df910420b62c762de5a55c6063f97df6c252f6d046fa2",
+      "gzip_bytes": 4243,
+      "gzip_sha256": "f5065f20218ce2181a94c08e435b7923619a290d848c22cbade73be7d77c999d",
+      "representation_name": "SIGMA_VM_V09_FLOORDIV_UPGRADE_HANDOFF_2026-08-18_2140_VN.md.gz.b64",
+      "representation_bytes": 5661,
+      "representation_sha256": "44879f380ba4e3d3c8d61b607d3efd75816077a07be91565f5f1cee68a436172"
+    },
+    {
+      "source_name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md",
+      "source_bytes": 78958,
+      "source_sha256": "4b4101ac53039c28e897ace135aeac8f3dec7cd798e58ae3a1d5cf1be0dc457c",
+      "gzip_bytes": 19283,
+      "gzip_sha256": "e919cce30a8c7fd8de9fd31cd648877d01fd4daffa849c08ad0e5f9fa647e19c",
+      "representation_parts": [
+        {
+          "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md.gz.b64.00.part",
+          "bytes": 6000,
+          "sha256": "00a6211e8904e5e182f33d7cc83c589c21266dc9743f5b9b20a38226f8a267ce"
+        },
+        {
+          "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md.gz.b64.01.part",
+          "bytes": 6000,
+          "sha256": "9cd29d345bf9b10d61d0757985ea832919ae79d2d03e8623febafc1eb8eb7af3"
+        },
+        {
+          "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md.gz.b64.02.part",
+          "bytes": 6000,
+          "sha256": "0d8fc15ba457fbf71aa1082e2903cfebf601c9cb97c15384e0562804f2295c36"
+        },
+        {
+          "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md.gz.b64.03.part",
+          "bytes": 6000,
+          "sha256": "b3f9482c568721da7aa257f4f5507555eda9f847131e4462ed1b481e1bd1f4ed"
+        },
+        {
+          "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md.gz.b64.04.part",
+          "bytes": 1713,
+          "sha256": "165987faf508b6f68df99bdf3a832d3c6fc8fbdf40caf2ae9b1e6d6075fb0e0a"
+        }
+      ],
+      "representation_bytes": 25713,
+      "representation_sha256": "0bd8552ea0a0d35ffcaa7d15a4c8fd7c168815c9005d628ff4d943daddb91a5a"
+    }
+  ],
+  "current_map_effect": {
+    "E04": "HOLD_MISSING_READABLE_CURRENT_V12C_ARTIFACTS",
+    "E04P": "READY",
+    "E05": "UNCHANGED_SEPARATE_BRANCH",
+    "E06": "BLOCKED",
+    "current_frontier": "SIGMA_NATIVE_FLOAT64_BITCAST_CAPABILITY_001",
+    "state_downgrade": false,
+    "capability_promotion": false
+  },
+  "source_supported_historical_status": {
+    "v06_function_frame_milestone": "PASS_WITH_TESTED_SCOPE in current-state narrative",
+    "v07_string_parity": "PASS_WITH_TESTED_SCOPE in current-state narrative",
+    "v08_float_milestone": "PASS_WITH_TESTED_SCOPE",
+    "v09_c_generic_primitives": "SOURCE_VERIFIED",
+    "v09_c_strict_build": "PASS",
+    "v09_c_regression_over_v08_float": "PASS",
+    "v09_sigma_source_compile": "PASS",
+    "floordiv_guest_compile": "FAIL",
+    "floordiv_guest_compile_cause": "NOT_YET_DIAGNOSED",
+    "v09_overall": "HOLD"
+  }
+}
