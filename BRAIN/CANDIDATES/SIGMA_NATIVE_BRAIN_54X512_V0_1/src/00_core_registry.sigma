@@ -1,73 +1,171 @@
-#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1]
-// SIGMA Native Brain 54x512 v0.1
-// ISOLATED CANDIDATE. NOT CANONICAL. NOT PROMOTED. NOT YET COMPILED.
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1-R1]
+// SIGMA Native Brain 54x512 v0.1 revision R1
+// ISOLATED CANDIDATE. NOT CANONICAL. NOT PROMOTED.
+// R1 removes unverified LNEW/LPUSH/LGET and MNEW/MSET/MGET host calls.
 // UTF-8 GOLDEN: BÀI 001 — ĐỘ CHÍNH XÁC — SỰ THẬT > LỜI NÓI HAY
 
-DEF CORE_NAMES() {
-    ⚡ names: LNEW();
-    ⚡ z1: LPUSH(names, "PURPOSE_EXISTENCE");
-    ⚡ z2: LPUSH(names, "FOUNDATION_INTELLIGENCE_SUBSTRATE");
-    ⚡ z3: LPUSH(names, "UNIFIED_COGNITIVE_STATE");
-    ⚡ z4: LPUSH(names, "EIGHT_COGNITIVE_LAYERS");
-    ⚡ z5: LPUSH(names, "ETHICAL_INTELLIGENCE");
-    ⚡ z6: LPUSH(names, "INTERLAYER_FEEDBACK");
-    ⚡ z7: LPUSH(names, "PERSISTENT_EXISTENCE");
-    ⚡ z8: LPUSH(names, "LEARNING_WORLD");
-    ⚡ z9: LPUSH(names, "INDEPENDENT_VERIFICATION_WALL");
-    ⚡ z10: LPUSH(names, "MEMORY_GENOME");
-    ⚡ z11: LPUSH(names, "KNOWLEDGE_GRAPH");
-    ⚡ z12: LPUSH(names, "TOOL_INTELLIGENCE");
-    ⚡ z13: LPUSH(names, "ADAPTIVE_COGNITIVE_DEPTH");
-    ⚡ z14: LPUSH(names, "PERSISTENCE_ENGINE");
-    ⚡ z15: LPUSH(names, "F174_DEVELOPMENT_DYNAMICS");
-    ⚡ z16: LPUSH(names, "EXPERIENCE_DRIVEN_LEARNING");
-    ⚡ z17: LPUSH(names, "TWO_LEVELS_OF_LEARNING");
-    ⚡ z18: LPUSH(names, "MODEL_EVOLUTION");
-    ⚡ z19: LPUSH(names, "MULTI_MODEL_INTELLIGENCE");
-    ⚡ z20: LPUSH(names, "UNCERTAINTY_AS_FIRST_CLASS_DATA");
-    ⚡ z21: LPUSH(names, "TRUTH_PROTOCOL");
-    ⚡ z22: LPUSH(names, "HUMAN_RELATION");
-    ⚡ z23: LPUSH(names, "COGNITIVE_FREEDOM");
-    ⚡ z24: LPUSH(names, "ETHICAL_PERSISTENCE");
-    ⚡ z25: LPUSH(names, "SELF_IMPROVEMENT");
-    ⚡ z26: LPUSH(names, "OBSERVABILITY");
-    ⚡ z27: LPUSH(names, "REPRODUCIBILITY");
-    ⚡ z28: LPUSH(names, "SECURITY_OF_KNOWLEDGE");
-    ⚡ z29: LPUSH(names, "COMPUTE_ARCHITECTURE");
-    ⚡ z30: LPUSH(names, "CORE_RUNTIME_LOOP");
-    ⚡ z31: LPUSH(names, "INTELLIGENCE_TEST");
-    ⚡ z32: LPUSH(names, "ACCEPTANCE_CRITERIA");
-    ⚡ z33: LPUSH(names, "PHYSICAL_IMPLEMENTATION_INDEPENDENCE");
-    ⚡ z34: LPUSH(names, "SIGMA_IDENTITY");
-    ⚡ z35: LPUSH(names, "CORE_COVENANT");
-    ⚡ z36: LPUSH(names, "CAUSAL_WORLD_MODEL");
-    ⚡ z37: LPUSH(names, "INTERNAL_SIMULATION");
-    ⚡ z38: LPUSH(names, "GOAL_ARCHITECTURE");
-    ⚡ z39: LPUSH(names, "CURIOSITY_ENGINE");
-    ⚡ z40: LPUSH(names, "CONCEPT_FORMATION");
-    ⚡ z41: LPUSH(names, "REPRESENTATION_INVENTION");
-    ⚡ z42: LPUSH(names, "METACOGNITIVE_SCHEDULER");
-    ⚡ z43: LPUSH(names, "ANTI_SELF_DECEPTION");
-    ⚡ z44: LPUSH(names, "ADVERSARIAL_SELF_TESTING");
-    ⚡ z45: LPUSH(names, "KNOWLEDGE_PROVENANCE");
-    ⚡ z46: LPUSH(names, "KNOWLEDGE_DECAY_REVALIDATION");
-    ⚡ z47: LPUSH(names, "PLASTICITY_STABILITY_BALANCE");
-    ⚡ z48: LPUSH(names, "COMPOSITIONAL_INTELLIGENCE");
-    ⚡ z49: LPUSH(names, "MULTI_SCALE_LEARNING");
-    ⚡ z50: LPUSH(names, "CORE_IMMUTABILITY_VS_EVOLVABILITY");
-    ⚡ z51: LPUSH(names, "EPISTEMIC_DIVERSITY_COLLECTIVE_INTELLIGENCE");
-    ⚡ z52: LPUSH(names, "REALITY_GROUNDING_WORLD_COHERENCE");
-    ⚡ z53: LPUSH(names, "SELF_REPAIR_FAULT_TOLERANCE_COGNITIVE_IMMUNITY");
-    ⚡ z54: LPUSH(names, "PURPOSE_CONTINUITY_HUMAN_CO_EVOLUTION");
-    RETURN names;
-}
-
 DEF CORE_NAME(core_id) {
-    IF ((core_id < 1) || (core_id > 54)) {
-        RETURN "INVALID_CORE_ID";
-    } ELSE {
-        ⚡ names: CORE_NAMES();
-        RETURN LGET(names, core_id - 1);
+    IF (core_id == 1) {
+        RETURN "PURPOSE_EXISTENCE";
     }
+    IF (core_id == 2) {
+        RETURN "FOUNDATION_INTELLIGENCE_SUBSTRATE";
+    }
+    IF (core_id == 3) {
+        RETURN "UNIFIED_COGNITIVE_STATE";
+    }
+    IF (core_id == 4) {
+        RETURN "EIGHT_COGNITIVE_LAYERS";
+    }
+    IF (core_id == 5) {
+        RETURN "ETHICAL_INTELLIGENCE";
+    }
+    IF (core_id == 6) {
+        RETURN "INTERLAYER_FEEDBACK";
+    }
+    IF (core_id == 7) {
+        RETURN "PERSISTENT_EXISTENCE";
+    }
+    IF (core_id == 8) {
+        RETURN "LEARNING_WORLD";
+    }
+    IF (core_id == 9) {
+        RETURN "INDEPENDENT_VERIFICATION_WALL";
+    }
+    IF (core_id == 10) {
+        RETURN "MEMORY_GENOME";
+    }
+    IF (core_id == 11) {
+        RETURN "KNOWLEDGE_GRAPH";
+    }
+    IF (core_id == 12) {
+        RETURN "TOOL_INTELLIGENCE";
+    }
+    IF (core_id == 13) {
+        RETURN "ADAPTIVE_COGNITIVE_DEPTH";
+    }
+    IF (core_id == 14) {
+        RETURN "PERSISTENCE_ENGINE";
+    }
+    IF (core_id == 15) {
+        RETURN "F174_DEVELOPMENT_DYNAMICS";
+    }
+    IF (core_id == 16) {
+        RETURN "EXPERIENCE_DRIVEN_LEARNING";
+    }
+    IF (core_id == 17) {
+        RETURN "TWO_LEVELS_OF_LEARNING";
+    }
+    IF (core_id == 18) {
+        RETURN "MODEL_EVOLUTION";
+    }
+    IF (core_id == 19) {
+        RETURN "MULTI_MODEL_INTELLIGENCE";
+    }
+    IF (core_id == 20) {
+        RETURN "UNCERTAINTY_AS_FIRST_CLASS_DATA";
+    }
+    IF (core_id == 21) {
+        RETURN "TRUTH_PROTOCOL";
+    }
+    IF (core_id == 22) {
+        RETURN "HUMAN_RELATION";
+    }
+    IF (core_id == 23) {
+        RETURN "COGNITIVE_FREEDOM";
+    }
+    IF (core_id == 24) {
+        RETURN "ETHICAL_PERSISTENCE";
+    }
+    IF (core_id == 25) {
+        RETURN "SELF_IMPROVEMENT";
+    }
+    IF (core_id == 26) {
+        RETURN "OBSERVABILITY";
+    }
+    IF (core_id == 27) {
+        RETURN "REPRODUCIBILITY";
+    }
+    IF (core_id == 28) {
+        RETURN "SECURITY_OF_KNOWLEDGE";
+    }
+    IF (core_id == 29) {
+        RETURN "COMPUTE_ARCHITECTURE";
+    }
+    IF (core_id == 30) {
+        RETURN "CORE_RUNTIME_LOOP";
+    }
+    IF (core_id == 31) {
+        RETURN "INTELLIGENCE_TEST";
+    }
+    IF (core_id == 32) {
+        RETURN "ACCEPTANCE_CRITERIA";
+    }
+    IF (core_id == 33) {
+        RETURN "PHYSICAL_IMPLEMENTATION_INDEPENDENCE";
+    }
+    IF (core_id == 34) {
+        RETURN "SIGMA_IDENTITY";
+    }
+    IF (core_id == 35) {
+        RETURN "CORE_COVENANT";
+    }
+    IF (core_id == 36) {
+        RETURN "CAUSAL_WORLD_MODEL";
+    }
+    IF (core_id == 37) {
+        RETURN "INTERNAL_SIMULATION";
+    }
+    IF (core_id == 38) {
+        RETURN "GOAL_ARCHITECTURE";
+    }
+    IF (core_id == 39) {
+        RETURN "CURIOSITY_ENGINE";
+    }
+    IF (core_id == 40) {
+        RETURN "CONCEPT_FORMATION";
+    }
+    IF (core_id == 41) {
+        RETURN "REPRESENTATION_INVENTION";
+    }
+    IF (core_id == 42) {
+        RETURN "METACOGNITIVE_SCHEDULER";
+    }
+    IF (core_id == 43) {
+        RETURN "ANTI_SELF_DECEPTION";
+    }
+    IF (core_id == 44) {
+        RETURN "ADVERSARIAL_SELF_TESTING";
+    }
+    IF (core_id == 45) {
+        RETURN "KNOWLEDGE_PROVENANCE";
+    }
+    IF (core_id == 46) {
+        RETURN "KNOWLEDGE_DECAY_REVALIDATION";
+    }
+    IF (core_id == 47) {
+        RETURN "PLASTICITY_STABILITY_BALANCE";
+    }
+    IF (core_id == 48) {
+        RETURN "COMPOSITIONAL_INTELLIGENCE";
+    }
+    IF (core_id == 49) {
+        RETURN "MULTI_SCALE_LEARNING";
+    }
+    IF (core_id == 50) {
+        RETURN "CORE_IMMUTABILITY_VS_EVOLVABILITY";
+    }
+    IF (core_id == 51) {
+        RETURN "EPISTEMIC_DIVERSITY_COLLECTIVE_INTELLIGENCE";
+    }
+    IF (core_id == 52) {
+        RETURN "REALITY_GROUNDING_WORLD_COHERENCE";
+    }
+    IF (core_id == 53) {
+        RETURN "SELF_REPAIR_FAULT_TOLERANCE_COGNITIVE_IMMUNITY";
+    }
+    IF (core_id == 54) {
+        RETURN "PURPOSE_CONTINUITY_HUMAN_CO_EVOLUTION";
+    }
+    RETURN "INVALID_CORE_ID";
 }
-

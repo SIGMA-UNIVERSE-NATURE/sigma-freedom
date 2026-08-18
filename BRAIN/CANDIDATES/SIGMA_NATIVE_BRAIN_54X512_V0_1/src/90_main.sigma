@@ -1,5 +1,4 @@
 ⟡(Σ.SIGMA_NATIVE_BRAIN_54X512_V0_1) {
-    ⚡ case1: ACCURACY_CASE_001();
     ⚡ print("SIGMA_NATIVE_BRAIN_54X512_V0_1");
     ⚡ print("BÀI 001 — ĐỘ CHÍNH XÁC — SỰ THẬT > LỜI NÓI HAY");
     ⚡ print("CORE_COUNT=54");
@@ -11,14 +10,14 @@
     ⚡ print(CORE_NAME(52));
     ⚡ print(SKILL_SECTION(1));
     ⚡ print(SKILL_SECTION(512));
-    ⚡ print(MGET(case1, "E1"));
-    ⚡ print(MGET(case1, "E2"));
-    ⚡ print(MGET(case1, "E3"));
-    ⚡ print(MGET(case1, "E4"));
-    ⚡ print(MGET(case1, "decision"));
-    ⚡ print(MGET(case1, "uncertainty"));
-    ⚡ print(MGET(case1, "next_test"));
-    ⚡ print(MGET(case1, "self_challenge"));
+    ⚡ print(ACCURACY_CASE_001_E1());
+    ⚡ print(ACCURACY_CASE_001_E2());
+    ⚡ print(ACCURACY_CASE_001_E3());
+    ⚡ print(ACCURACY_CASE_001_E4());
+    ⚡ print(ACCURACY_CASE_001_DECISION());
+    ⚡ print(ACCURACY_CASE_001_UNCERTAINTY());
+    ⚡ print(ACCURACY_CASE_001_NEXT_TEST());
+    ⚡ print(ACCURACY_CASE_001_SELF_CHALLENGE());
     ⚡ print(PROVENANCE_STATUS(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE));
     ⚡ print(PROVENANCE_STATUS(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE));
     ⚡ print(PROGRESS_CLAIM_STATUS(TRUE, FALSE, TRUE));

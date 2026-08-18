@@ -8,6 +8,7 @@ R=Path(__file__).resolve().parents[1]; S=R/'src'; T=R/'tests'; E=R/'evidence'
 PARTS=[S/'00_core_registry.sigma',S/'10_skill_router_a.sigma.part',S/'10_skill_router_b.sigma.part',S/'20_accuracy_kernel.sigma',S/'90_main.sigma']
 OUT=S/'sigma_native_brain_54x512_v0_1.sigma'; REPORT=E/'STATIC_VALIDATION.json'
 MOJI=('\ufffd','Ã','Â','â€”','Ä‘','Æ°','á»','áº')
+FORBIDDEN_HOST_CALLS=('LNEW','LPUSH','LGET','MNEW','MSET','MGET')
 
 def h(b): return hashlib.sha256(b).hexdigest()
 def j(p): return json.loads(p.read_text(encoding='utf-8'))
@@ -38,7 +39,10 @@ def main():
     add(rows,'no_bom','\ufeff' not in src); add(rows,'no_mojibake',not any(m in src for m in MOJI)); add(rows,'delimiters_balanced',balanced(src))
     cr=j(R/'CORE_REGISTRY_54.json'); cores=cr['cores']; ids=[x['id'] for x in cores]; names=[x['name'] for x in cores]
     add(rows,'core_ids_1_54',ids==list(range(1,55))); add(rows,'core_names_unique',len(set(names))==54)
-    add(rows,'core_source_matches',re.findall(r'LPUSH\(names,\s*"([A-Z0-9_]+)"\)',src)==names)
+    source_pairs=[(int(i),n) for i,n in re.findall(r'IF \(core_id == (\d+)\) \{\s*RETURN "([A-Z0-9_]+)";',src)]
+    add(rows,'core_source_matches',source_pairs==list(zip(ids,names)),source_pairs)
+    host_hits={name:len(re.findall(r'\b'+re.escape(name)+r'\s*\(',src)) for name in FORBIDDEN_HOST_CALLS}
+    add(rows,'no_unverified_container_host_calls',all(v==0 for v in host_hits.values()),host_hits)
     rt=j(R/'SKILL_ROUTER_512.json'); secs=rt['sections']; cur=1; errs=[]; th=[]
     for x in secs:
         if x['from']!=cur or x['to']<x['from']: errs.append(x['id'])
@@ -58,7 +62,7 @@ def main():
     golden=(T/'EXPECTED_STDOUT_UTF8.txt').read_bytes(); add(rows,'utf8_golden_literal',b'B\xc3\x80I 001 \xe2\x80\x94 \xc4\x90\xe1\xbb\x98 CH\xc3\x8dNH X\xc3\x81C' in raw)
     add(rows,'expected_stdout_utf8',golden.decode('utf-8','strict').encode('utf-8')==golden,h(golden))
     add(rows,'hostvm_contract','sigma-hostvm' in (R/'EVIDENCE_CONTRACT.json').read_text(encoding='utf-8'))
-    fail=sum(not x['pass'] for x in rows); status='PASS_STRUCTURAL_ONLY_NOT_COMPILE_EVIDENCE' if not fail else 'FAIL_STRUCTURAL_VALIDATION'
-    rep={'schema_version':'1.0.0','evidence_id':'SIGMA-NATIVE-BRAIN-54X512-v0.1-STATIC-VALIDATION','recorded_at':datetime.now(timezone.utc).isoformat(),'status':status,'scope':'STATIC_STRUCTURE_UTF8_CONTRACT_ONLY','counts':{'checks':len(rows),'pass':len(rows)-fail,'fail':fail},'artifacts':{'source_sha256':h(raw),'source_bytes':len(raw),'source_lines':len(src.splitlines()),'expected_stdout_sha256':h(golden)},'checks':rows,'non_claims':['NOT_SIGMAC_COMPILE_EVIDENCE','NOT_SIGMA_HOSTVM_EXECUTION_EVIDENCE','NOT_512_BEHAVIORAL_IMPLEMENTATION_EVIDENCE','NOT_IMPROVEMENT_OR_PROMOTION_EVIDENCE'],'decision':'HOLD_PENDING_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION'}
+    fail=sum(not x['pass'] for x in rows); status='PASS_STRUCTURAL_R1_ABI_NEUTRAL_NOT_COMPILE_EVIDENCE' if not fail else 'FAIL_STRUCTURAL_VALIDATION'
+    rep={'schema_version':'1.1.0','evidence_id':'SIGMA-NATIVE-BRAIN-54X512-v0.1-R1-STATIC-VALIDATION','recorded_at':datetime.now(timezone.utc).isoformat(),'status':status,'scope':'STATIC_STRUCTURE_UTF8_ABI_NEUTRAL_CONTRACT_ONLY','counts':{'checks':len(rows),'pass':len(rows)-fail,'fail':fail},'artifacts':{'source_sha256':h(raw),'source_bytes':len(raw),'source_lines':len(src.splitlines()),'expected_stdout_sha256':h(golden)},'checks':rows,'parent_failure':{'runtime_rc':8,'stderr':'SIGMA C VM: undefined function MNEW\\r\\n','stderr_sha256':'89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484'},'non_claims':['NOT_R1_SIGMAC_COMPILE_EVIDENCE','NOT_R1_SIGMA_HOSTVM_EXECUTION_EVIDENCE','NOT_512_BEHAVIORAL_IMPLEMENTATION_EVIDENCE','NOT_IMPROVEMENT_OR_PROMOTION_EVIDENCE'],'decision':'HOLD_PENDING_R1_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION'}
     REPORT.write_text(json.dumps(rep,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'); print(json.dumps({'status':status,'counts':rep['counts'],'source_sha256':h(raw)},ensure_ascii=False)); return 1 if fail else 0
 if __name__=='__main__': raise SystemExit(main())

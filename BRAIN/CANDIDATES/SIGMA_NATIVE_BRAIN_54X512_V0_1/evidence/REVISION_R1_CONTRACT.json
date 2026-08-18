@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "revision_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-R1",
+  "parent_head": "3436122b6aebdc0183fab7b16d4b0e045d17d246",
+  "trigger_evidence": "evidence/HP_RUNTIME_FAILURE_MNEW.json",
+  "change_class": "MINIMAL_RUNTIME_ABI_REVISION",
+  "changes": [
+    "Replace list-backed CORE_NAME lookup with scalar core_id dispatch.",
+    "Replace map-backed ACCURACY_CASE_001 result with scalar result functions.",
+    "Keep locked stdout unchanged.",
+    "Add static gate forbidding LNEW/LPUSH/LGET/MNEW/MSET/MGET."
+  ],
+  "non_changes": [
+    "No canonical or 54 DNA core mutation.",
+    "No metric or expected-output change.",
+    "No paid API or external action.",
+    "No promotion claim."
+  ],
+  "expected_source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+  "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+  "next_gate": "HP_DUAL_TOOLCHAIN_R1_COMPILE_AND_HOSTVM_EXECUTION"
+}
