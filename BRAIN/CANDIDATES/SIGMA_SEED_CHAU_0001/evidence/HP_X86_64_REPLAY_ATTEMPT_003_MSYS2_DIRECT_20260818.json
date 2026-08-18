@@ -1,0 +1,36 @@
+{
+  "receipt_id": "SIGMA_SEED_CHAU_0001_HP_X86_64_REPLAY_ATTEMPT_003_MSYS2_DIRECT_20260818",
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "substrate": "HP_WINDOWS_X86_64_MSYS2_DIRECT",
+  "execution_mode": "DIRECT_MSYS2_SHELL_NO_POWERSHELL_PROCESS_WRAPPER",
+  "toolchain": "E:/SIGMA_HP_PORTABILITY_CANDIDATE_V7/sigma_genesis1/native",
+  "source_mutation": false,
+  "expected_output_mutation": false,
+  "canonical_mutation": false,
+  "observed": {
+    "vm_run_rc": 0,
+    "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "raw_stdout_sha256": "59b5ca40f56243da9af19a608e08503b3e20e14d9c5fb905abd848b9984b4421",
+    "lf_normalized_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "bytecode_match_oppo": "PASS",
+    "raw_exact_stdout": "FAIL",
+    "lf_normalized_exact_stdout": "PASS",
+    "stderr_empty": "PASS",
+    "final_verdict": "SIGMA_SEED_MSYS2_DIRECT_SEMANTIC_REPLAY=PASS_EXACT_BYTE_HOLD_PLATFORM_NEWLINE"
+  },
+  "derived_from_frozen_script_control_flow": {
+    "compile_rc_zero": true,
+    "run_rc_zero": true,
+    "bytecode_expected_hash_gate_passed": true,
+    "lf_normalized_output_gate_passed": true,
+    "stderr_empty_gate_passed": true
+  },
+  "comparison_with_hp_attempt_002": {
+    "same_raw_stdout_sha256": true,
+    "same_lf_normalized_stdout_sha256": true,
+    "finding": "DIRECT_MSYS2_REPRODUCED_THE_SAME_CRLF_ONLY_RAW_DIFFERENCE_SEEN_WITH_POWERSHELL_RAW_CAPTURE"
+  },
+  "inference": "POWERSHELL_IS_NOT_THE_CAUSE_OF_THE_RAW_NEWLINE_DIFFERENCE; THE_DIFFERENCE_PERSISTS_IN_DIRECT_MSYS2_EXECUTION_OF_THE_WINDOWS_NATIVE_VM_PATH",
+  "scope_verdict": "CROSS_SUBSTRATE_SEMANTIC_REPLAY_RECONFIRMED; RAW_EXACT_BYTE_REPLAY_REMAINS_HOLD_PLATFORM_NEWLINE_TRANSLATION",
+  "promotion_authorized": false
+}
