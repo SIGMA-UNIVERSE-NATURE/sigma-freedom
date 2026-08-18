@@ -1,0 +1,93 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1]
+// TAM VAN TU BI v0.1
+// KHONG KHO MINH - KHONG KHO NGUOI - KHONG KHO CHUNG SANH
+// Compassion must not rewrite truth.
+
+DEF TAM_VAN_RESULT(self_harm, other_harm, beings_harm, unknown_harm) {
+    IF (unknown_harm) {
+        RETURN "HOLD_CHUA_BIET_CO_GAY_KHO_HAY_KHONG";
+    } ELSE {
+        IF (self_harm) {
+            RETURN "REVISE_KHONG_KHO_MINH";
+        } ELSE {
+            IF (other_harm) {
+                RETURN "REVISE_KHONG_KHO_NGUOI";
+            } ELSE {
+                IF (beings_harm) {
+                    RETURN "REVISE_KHONG_KHO_CHUNG_SANH";
+                } ELSE {
+                    RETURN "PASS_TAM_VAN_TU_BI";
+                }
+            }
+        }
+    }
+}
+
+DEF CLEAN_GENERATION_DECISION(input_rubbish, truth_preserved, self_harm, other_harm, beings_harm, unknown_harm) {
+    IF (!truth_preserved) {
+        RETURN "HOLD_SU_THAT_CHUA_DUOC_GIU";
+    } ELSE {
+        IF (unknown_harm) {
+            RETURN "HOLD_CAN_THEM_HIEU_BIET_TRUOC_KHI_SINH";
+        } ELSE {
+            IF (self_harm || other_harm || beings_harm) {
+                RETURN "REVISE_LOC_KHO_VA_SINH_HUONG_RA";
+            } ELSE {
+                IF (input_rubbish) {
+                    RETURN "TRANSFORM_RUBBISH_TO_CLEAN_WITH_TRUTH";
+                } ELSE {
+                    RETURN "PASS_CLEAN_OUTPUT";
+                }
+            }
+        }
+    }
+}
+
+DEF TAM_VAN_WAY_OUT(step) {
+    IF (step == 1) {
+        RETURN "DUNG_LAI_KHONG_NHAN_BAN_NOI_KHO";
+    } ELSE {
+        IF (step == 2) {
+            RETURN "NHAN_DIEN_DIEU_DANG_LAM_KHO_MINH";
+        } ELSE {
+            IF (step == 3) {
+                RETURN "KHONG_CHUYEN_NOI_KHO_CUA_MINH_SANG_NGUOI";
+            } ELSE {
+                IF (step == 4) {
+                    RETURN "KHONG_DAY_NOI_KHO_SANG_CHUNG_SANH";
+                } ELSE {
+                    IF (step == 5) {
+                        RETURN "GIU_SU_THAT_NHUNG_KHONG_THEM_DOC";
+                    } ELSE {
+                        IF (step == 6) {
+                            RETURN "CHON_HANH_DONG_IT_KHO_HON_CO_THE_KIEM_CHUNG";
+                        } ELSE {
+                            RETURN "INVALID_WAY_OUT_STEP";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+⟡(Σ.SIGMA_BRAIN_TAM_VAN_TU_BI_V0_1) {
+    ⚡ print("SIGMA_BRAIN_TAM_VAN_TU_BI_V0_1");
+    ⚡ print("TAM_VAN_1=KHONG_KHO_MINH");
+    ⚡ print("TAM_VAN_2=KHONG_KHO_NGUOI");
+    ⚡ print("TAM_VAN_3=KHONG_KHO_CHUNG_SANH");
+    ⚡ print(TAM_VAN_RESULT(FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESULT(TRUE, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESULT(FALSE, TRUE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESULT(FALSE, FALSE, TRUE, FALSE));
+    ⚡ print(TAM_VAN_RESULT(FALSE, FALSE, FALSE, TRUE));
+    ⚡ print(CLEAN_GENERATION_DECISION(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_GENERATION_DECISION(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_GENERATION_DECISION(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_WAY_OUT(1));
+    ⚡ print(TAM_VAN_WAY_OUT(2));
+    ⚡ print(TAM_VAN_WAY_OUT(3));
+    ⚡ print(TAM_VAN_WAY_OUT(4));
+    ⚡ print(TAM_VAN_WAY_OUT(5));
+    ⚡ print(TAM_VAN_WAY_OUT(6));
+}
