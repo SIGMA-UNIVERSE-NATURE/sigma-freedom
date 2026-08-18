@@ -3,7 +3,7 @@
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLY_CANDIDATE",
   "status": "HOLD",
-  "state": "HOST_BRIDGE_IO_ROUNDTRIP_PASS_SELF_ASSEMBLER_IMPLEMENTATION_PENDING",
+  "state": "SIGMA_PSI_SELF_ASSEMBLER_SOURCE_WRITTEN_MACHINE_EXECUTION_PENDING",
   "branch": "candidate/sigma-creates-sigma-0003-native-brain-self-assembly-20260818",
   "contract_commit": "b5c6c263de2e8d44fea0aeb6288b826ef34482ca",
   "io_audit_receipt": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_IO_PRIMITIVE_AUDIT_001_20260818.json",
@@ -12,6 +12,10 @@
   "resolver_host_bridge_audit": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_VM_RESOLVER_HOST_BRIDGE_AUDIT_002_20260819.json",
   "host_bridge_probe_002_contract": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/probes/IO_HOST_BRIDGE_PROBE_002_CONTRACT.json",
   "host_bridge_probe_002_pass_receipt": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_HOST_BRIDGE_IO_ROUNDTRIP_PROBE_002_PASS_20260819.json",
+  "self_assembler_source": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/self_assembler/sigma_native_brain_self_assembler_0003.sigma",
+  "self_assembler_contract": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/self_assembler/SELF_ASSEMBLER_CONTRACT.json",
+  "self_assembler_source_sha256": "0671ac82b3e75c403b8eed01c093c8f20c813a2731b8bb88a5b302119b77d8fe",
+  "self_assembler_expected_stdout_sha256": "fab227752fbdcd40447c20387365e6d95934a17c455a36a5fefe59a00caaae44",
   "self_construction_predecessor_pass_commit": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
   "native_brain_assembled_source_sha256_contract": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
   "native_brain_assembled_source_bytes_contract": 19047,
@@ -34,7 +38,7 @@
     "sigma_psi_host_bridge_path_observed_in_vm_source": "PASS",
     "sigma_psi_host_bridge_runtime_dispatch": "PASS",
     "sigma_psi_text_utf8_roundtrip_verified": "PASS",
-    "sigma_psi_self_assembler_source_written": "HOLD",
+    "sigma_psi_self_assembler_source_written": "PASS_SOURCE_ONLY",
     "self_assembler_sigmac_compile": "HOLD",
     "self_assembler_runtime_execution": "HOLD",
     "assembled_source_exact_sha256": "HOLD",
@@ -47,10 +51,10 @@
     "python_assembler_removed_from_proof_path": "HOLD",
     "independent_evaluation": "HOLD"
   },
-  "proven_claim": "THE_OBSERVED_OPPO_TOOLCHAIN_EXECUTES_host_WRITE_TEXT_AND_host_READ_TEXT_WITH_EXACT_UTF8_ROUNDTRIP; NATIVE_BRAIN_SELF_ASSEMBLY_IS_NOT_YET_PROVEN",
+  "proven_claim": "A_SIGMA_PSI_SELF_ASSEMBLER_SOURCE_HAS_BEEN_WRITTEN_USING_THE_VERIFIED_host_BRIDGE; NO_MACHINE_SELF_ASSEMBLY_CLAIM_YET",
   "canonical_mutation": false,
   "core_54_mutation": false,
   "promotion_512": false,
-  "promotion_rule": "IMPLEMENT THE SELF-ASSEMBLER IN SIGMA-PSI USING ONLY VERIFIED_HOST_BRIDGE_CALLS; DO NOT COUNT SHELL_OR_PYTHON_CONCATENATION_AS_SELF_ASSEMBLY.",
-  "next_gate": "WRITE_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLER_THEN_MACHINE_EXECUTE"
+  "promotion_rule": "SOURCE_PRESENCE_IS_NOT_SELF_ASSEMBLY_EVIDENCE. NEXT_RUN_MUST_PRODUCE_19047_BYTES_SHA256_5C24E36F_WITHOUT_PYTHON_OR_SHELL_CONCATENATION.",
+  "next_gate": "OPPO_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLY_MACHINE_RUN"
 }
