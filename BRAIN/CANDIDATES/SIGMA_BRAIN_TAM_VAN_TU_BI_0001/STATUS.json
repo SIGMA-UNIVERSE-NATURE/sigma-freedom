@@ -1,0 +1,26 @@
+{
+  "candidate_id": "SIGMA_BRAIN_TAM_VAN_TU_BI_0001",
+  "language": "SIGMA-PSI",
+  "status": "HOLD",
+  "state": "SOURCE_AND_CONTRACT_WRITTEN_MACHINE_EXECUTION_PENDING",
+  "branch": "candidate/sigma-brain-tam-van-tu-bi-0001-20260819",
+  "source": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_0001/src/tam_van_tu_bi_kernel_0001.sigma",
+  "expected_stdout": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_0001/tests/EXPECTED_STDOUT_UTF8.txt",
+  "contract": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_0001/CONTRACT.json",
+  "gates": {
+    "tam_van_principle_encoded": "PASS_SOURCE_ONLY",
+    "rubbish_to_constructive_direction_policy_encoded": "PASS_SOURCE_ONLY",
+    "truth_not_overridden_by_compassion_contract": "PASS",
+    "rubbish_input_not_rubbish_person_contract": "PASS",
+    "arbitrary_raw_text_semantic_classifier": "HOLD_NOT_IMPLEMENTED",
+    "sigmac_compile": "HOLD",
+    "sigma_vm_run": "HOLD",
+    "stdout_exact": "HOLD",
+    "independent_evaluation": "HOLD"
+  },
+  "proven_claim": "ONLY_SOURCE_AND_POLICY_CONTRACT_EXIST. NO_MACHINE_BEHAVIOR_CLAIM_YET.",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "OPPO_MACHINE_EXECUTION"
+}
