@@ -3,19 +3,28 @@
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLY_CANDIDATE",
   "status": "HOLD",
-  "state": "ASSEMBLY_CONTRACT_FROZEN_IO_PRIMITIVE_DISCOVERY_REQUIRED",
+  "state": "IO_PRIMITIVE_NAMES_VERIFIED_CALL_SYNTAX_PROBE_REQUIRED",
   "branch": "candidate/sigma-creates-sigma-0003-native-brain-self-assembly-20260818",
   "contract_commit": "b5c6c263de2e8d44fea0aeb6288b826ef34482ca",
+  "io_audit_receipt": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/evidence/OPPO_IO_PRIMITIVE_AUDIT_001_20260818.json",
   "self_construction_predecessor_pass_commit": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
   "native_brain_assembled_source_sha256_contract": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
   "native_brain_assembled_source_bytes_contract": 19047,
   "native_brain_expected_stdout_sha256_contract": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+  "verified_host_primitive_names": [
+    "read_text",
+    "write_text",
+    "bytes_new",
+    "bytes_len",
+    "bytes_write"
+  ],
   "gates": {
     "sigma_creates_sigma_0002_independent_pass": "PASS",
     "native_brain_five_part_identity_frozen": "PASS",
     "legacy_python_assembler_semantics_frozen": "PASS",
-    "sigma_psi_io_primitive_names_verified": "HOLD",
+    "sigma_psi_io_primitive_names_verified": "PASS_WITH_DEFINED_SCOPE",
     "sigma_psi_io_primitive_call_syntax_verified": "HOLD",
+    "sigma_psi_text_utf8_roundtrip_verified": "HOLD",
     "sigma_psi_self_assembler_source_written": "HOLD",
     "self_assembler_sigmac_compile": "HOLD",
     "self_assembler_runtime_execution": "HOLD",
@@ -29,10 +38,10 @@
     "python_assembler_removed_from_proof_path": "HOLD",
     "independent_evaluation": "HOLD"
   },
-  "proven_claim": "NO_NATIVE_BRAIN_SELF_ASSEMBLY_CLAIM_YET",
+  "proven_claim": "HOST_PRIMITIVE_NAMES_EXIST_IN_THE_OBSERVED_OPPO_TOOLCHAIN; NO_SIGMA_SOURCE_CALL_SYNTAX_OR_NATIVE_BRAIN_SELF_ASSEMBLY_CLAIM_YET",
   "canonical_mutation": false,
   "core_54_mutation": false,
   "promotion_512": false,
-  "promotion_rule": "DO_NOT_WRITE_OR_ACCEPT_A_SELF_ASSEMBLER_USING_UNVERIFIED_PRIMITIVE_NAMES. FIRST MEASURE THE EXISTING OPPO TOOLCHAIN IO SURFACE; THEN IMPLEMENT ONLY WITH OBSERVED_CALLS.",
-  "next_gate": "READ_ONLY_OPPO_IO_PRIMITIVE_AUDIT"
+  "promotion_rule": "DO_NOT_ACCEPT A SELF-ASSEMBLER UNTIL ISOLATED SIGMA-PSI SOURCE PROVES THE CALL SYNTAX AND UTF8 ROUNDTRIP OF THE IO PRIMITIVES.",
+  "next_gate": "ISOLATED_SIGMA_PSI_READ_TEXT_WRITE_TEXT_CALL_SYNTAX_AND_UTF8_ROUNDTRIP_PROBE"
 }
