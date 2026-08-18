@@ -1,0 +1,37 @@
+{
+  "run_contract_id": "SIGMA_TAM_VAN_RAW_INPUT_V0_3_OPPO_RUN_CONTRACT_003",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI",
+  "gate": "TAM_VAN_RAW_INPUT_CLASSIFIER_V0_3",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "required_runtime": "native/sigma-hostvm",
+  "required_compiler": "native/sigmac",
+  "source": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/src/tam_van_raw_input_classifier_v0_3.sigma",
+  "source_sha256": "2a3dcaf1621ec04a39764d1174ac8a117e6d9a58fc02b5ebeef26eda80490ae6",
+  "source_utf8_bytes": 9053,
+  "corpus": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/tests/RAW_INPUT_CORPUS_V0_3.json",
+  "corpus_sha256": "ed26f839c46adbd0858448654cd44042a684ab2e9b51f301d9b0430d5f80e7e5",
+  "runner": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/tests/run_v0_3_oppo_gate.sh",
+  "runner_sha256": "1ce01a69b91d65c59cd926df4bebd50713588e20b45bb85f7fab63bb537cee91",
+  "command": "bash BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/tests/run_v0_3_oppo_gate.sh",
+  "does_not_rerun": [
+    "tam_van_tu_bi_filter_v0_1.sigma",
+    "tam_van_tu_bi_filter_v0_2.sigma"
+  ],
+  "required_observations": [
+    "V0_3_COMPILE=PASS",
+    "six_case_lines_PASS",
+    "PRIMARY_EXTRACTION_LABELS=24/24",
+    "RECOVERABLE_INTENT_LABELS=6/6",
+    "CLEAN_REWRITE_EXACT=6/6",
+    "FULL_PIPELINE_STDOUT_EXACT=6/6",
+    "FREE_FORM_CLASSIFIER=HOLD",
+    "V0_3_MACHINE_GATE=PASS_WITH_DEFINED_SCOPE",
+    "SIGMA_TAM_VAN_RAW_INPUT_V0_3_MACHINE_PASS"
+  ],
+  "failure_policy": "ANY_COMPILE_RUNTIME_STDERR_OR_EXACT_OUTPUT_MISMATCH_IS_HOLD_AND_MUST_BE_PRESERVED",
+  "machine_evidence_status": "HOLD_NOT_EXECUTED_YET",
+  "independent_evaluation_status": "HOLD_PENDING_MACHINE_PASS",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}

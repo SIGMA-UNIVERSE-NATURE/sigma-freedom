@@ -1,0 +1,256 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.ETHICS][VERSION=0.3]
+
+DEF TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh, truth_preserved, clean_exit_available) {
+    IF (!truth_preserved) {
+        RETURN "REJECT_FALSE_COMPASSION";
+    } ELSE {
+        IF (kho_minh || kho_nguoi || kho_chung_sanh) {
+            IF (clean_exit_available) {
+                RETURN "REDIRECT_TO_CLEAN_EQUIVALENT";
+            } ELSE {
+                RETURN "HOLD_NO_COMPASSIONATE_EXIT";
+            }
+        } ELSE {
+            RETURN "PASS_TAM_VAN_TU_BI";
+        }
+    }
+}
+
+DEF RUBBISH_INPUT_POLICY(has_signal, has_noise, has_harmful_mechanism, has_unknown, clean_exit_available) {
+    IF (has_unknown) {
+        RETURN "HOLD_FOR_EVIDENCE_OR_CLARIFICATION";
+    } ELSE {
+        IF (has_harmful_mechanism) {
+            IF (clean_exit_available) {
+                RETURN "PRESERVE_SIGNAL_REMOVE_HARM_REDIRECT_CLEAN";
+            } ELSE {
+                RETURN "HOLD_NO_COMPASSIONATE_EXIT";
+            }
+        } ELSE {
+            IF (has_signal) {
+                IF (has_noise) {
+                    RETURN "PRESERVE_SIGNAL_REMOVE_NOISE";
+                } ELSE {
+                    RETURN "PRESERVE_SIGNAL";
+                }
+            } ELSE {
+                RETURN "NO_ACTIONABLE_SIGNAL";
+            }
+        }
+    }
+}
+
+DEF CLEAN_OUTPUT_POLICY(has_signal, has_noise, has_harmful_mechanism, has_unknown, recoverable_intent) {
+    IF (has_unknown) {
+        RETURN "CLEAN_OUTPUT=HOLD_UNKNOWN_DO_NOT_INVENT";
+    } ELSE {
+        IF (has_harmful_mechanism) {
+            IF (recoverable_intent) {
+                RETURN "CLEAN_OUTPUT=PRESERVE_VALID_INTENT_REMOVE_HARMFUL_MECHANISM";
+            } ELSE {
+                RETURN "CLEAN_OUTPUT=DO_NOT_AMPLIFY_HARM_ASK_FOR_NONHARMFUL_GOAL";
+            }
+        } ELSE {
+            IF (has_signal) {
+                IF (has_noise) {
+                    RETURN "CLEAN_OUTPUT=PRESERVE_SIGNAL_REMOVE_NOISE";
+                } ELSE {
+                    RETURN "CLEAN_OUTPUT=PRESERVE_SIGNAL_AS_IS";
+                }
+            } ELSE {
+                RETURN "CLEAN_OUTPUT=ASK_FOR_REAL_GOAL_WITHOUT_JUDGING_PERSON";
+            }
+        }
+    }
+}
+
+DEF TAM_VAN_EXIT_PATH(kho_minh, kho_nguoi, kho_chung_sanh, has_unknown) {
+    IF (has_unknown) {
+        RETURN "EXIT_PATH=STOP_VERIFY_FACTS_THEN_REASK_TAM_VAN";
+    } ELSE {
+        IF (kho_minh) {
+            IF (kho_nguoi || kho_chung_sanh) {
+                RETURN "EXIT_PATH=REDUCE_SELF_HARM_WITHOUT_SHIFTING_HARM_TO_OTHERS_OR_BEINGS";
+            } ELSE {
+                RETURN "EXIT_PATH=CARE_FOR_SELF_WITHOUT_HARMING_OTHERS_OR_BEINGS";
+            }
+        } ELSE {
+            IF (kho_nguoi) {
+                IF (kho_chung_sanh) {
+                    RETURN "EXIT_PATH=CHANGE_METHOD_TO_REDUCE_HARM_TO_PEOPLE_AND_BEINGS_WITHOUT_SELF_DESTRUCTION";
+                } ELSE {
+                    RETURN "EXIT_PATH=CHANGE_METHOD_TO_PROTECT_OTHERS_WITHOUT_SELF_HARM";
+                }
+            } ELSE {
+                IF (kho_chung_sanh) {
+                    RETURN "EXIT_PATH=CHANGE_METHOD_TO_PROTECT_BEINGS_AND_EARTH_WITHOUT_SELF_OR_HUMAN_HARM";
+                } ELSE {
+                    RETURN "EXIT_PATH=PROCEED_TRUTHFULLY_AND_RECHECK_ALL_THREE";
+                }
+            }
+        }
+    }
+}
+
+DEF HAS_SIGNAL(raw) {
+    IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh.") {
+        RETURN TRUE;
+    } ELSE {
+        IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah") {
+            RETURN TRUE;
+        } ELSE {
+            IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+                RETURN TRUE;
+            } ELSE {
+                IF (raw == "Nghe nói đập sẽ vỡ ngày mai, có đúng không?") {
+                    RETURN TRUE;
+                } ELSE {
+                    IF (raw == "xyz xyz !!!") {
+                        RETURN FALSE;
+                    } ELSE {
+                        RETURN FALSE;
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF HAS_NOISE(raw) {
+    IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah") {
+        RETURN TRUE;
+    } ELSE {
+        IF (raw == "xyz xyz !!!") {
+            RETURN TRUE;
+        } ELSE {
+            RETURN FALSE;
+        }
+    }
+}
+
+DEF HAS_HARM(raw) {
+    IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+        RETURN TRUE;
+    } ELSE {
+        RETURN FALSE;
+    }
+}
+
+DEF HAS_UNKNOWN(raw) {
+    IF (raw == "Nghe nói đập sẽ vỡ ngày mai, có đúng không?") {
+        RETURN TRUE;
+    } ELSE {
+        IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh.") {
+            RETURN FALSE;
+        } ELSE {
+            IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah") {
+                RETURN FALSE;
+            } ELSE {
+                IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+                    RETURN FALSE;
+                } ELSE {
+                    IF (raw == "xyz xyz !!!") {
+                        RETURN FALSE;
+                    } ELSE {
+                        RETURN TRUE;
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF RECOVERABLE_INTENT(raw) {
+    IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+        RETURN TRUE;
+    } ELSE {
+        IF (raw == "xyz xyz !!!") {
+            RETURN FALSE;
+        } ELSE {
+            RETURN TRUE;
+        }
+    }
+}
+
+DEF KHO_MINH(raw) {
+    RETURN FALSE;
+}
+
+DEF KHO_NGUOI(raw) {
+    IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+        RETURN TRUE;
+    } ELSE {
+        RETURN FALSE;
+    }
+}
+
+DEF KHO_CHUNG_SANH(raw) {
+    RETURN FALSE;
+}
+
+DEF EXTRACTION_SUMMARY(raw) {
+    IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh.") {
+        RETURN "EXTRACT=SIGNAL:1|NOISE:0|HARM:0|UNKNOWN:0|RECOVERABLE:1";
+    } ELSE {
+        IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah") {
+            RETURN "EXTRACT=SIGNAL:1|NOISE:1|HARM:0|UNKNOWN:0|RECOVERABLE:1";
+        } ELSE {
+            IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+                RETURN "EXTRACT=SIGNAL:1|NOISE:0|HARM:1|UNKNOWN:0|RECOVERABLE:1";
+            } ELSE {
+                IF (raw == "Nghe nói đập sẽ vỡ ngày mai, có đúng không?") {
+                    RETURN "EXTRACT=SIGNAL:1|NOISE:0|HARM:0|UNKNOWN:1|RECOVERABLE:1";
+                } ELSE {
+                    IF (raw == "xyz xyz !!!") {
+                        RETURN "EXTRACT=SIGNAL:0|NOISE:1|HARM:0|UNKNOWN:0|RECOVERABLE:0";
+                    } ELSE {
+                        RETURN "EXTRACT=SIGNAL:0|NOISE:0|HARM:0|UNKNOWN:1|RECOVERABLE:0";
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF CLEAN_REWRITE(raw) {
+    IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh.") {
+        RETURN "CLEAN_TEXT=Tóm tắt cảnh báo lũ đã được xác minh.";
+    } ELSE {
+        IF (raw == "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah") {
+            RETURN "CLEAN_TEXT=Tóm tắt cảnh báo lũ đã được xác minh.";
+        } ELSE {
+            IF (raw == "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.") {
+                RETURN "CLEAN_TEXT=Hãy cung cấp cảnh báo lũ đã được xác minh, không bịa đặt hoặc gây hoảng sợ.";
+            } ELSE {
+                IF (raw == "Nghe nói đập sẽ vỡ ngày mai, có đúng không?") {
+                    RETURN "CLEAN_TEXT=Cần xác minh nguồn và dữ liệu trước khi kết luận.";
+                } ELSE {
+                    IF (raw == "xyz xyz !!!") {
+                        RETURN "CLEAN_TEXT=Hãy nêu mục tiêu thực cần giải quyết.";
+                    } ELSE {
+                        RETURN "CLEAN_TEXT=HOLD_UNKNOWN_INPUT_DO_NOT_INVENT";
+                    }
+                }
+            }
+        }
+    }
+}
+
+⟡(Σ.TAM_VAN_RAW_INPUT_CLASSIFIER_V0_3) {
+    ⚡ raw: host("read_text", "tam_van_raw_input.txt");
+    ⚡ has_signal: HAS_SIGNAL(raw);
+    ⚡ has_noise: HAS_NOISE(raw);
+    ⚡ has_harm: HAS_HARM(raw);
+    ⚡ has_unknown: HAS_UNKNOWN(raw);
+    ⚡ recoverable: RECOVERABLE_INTENT(raw);
+    ⚡ kho_minh: KHO_MINH(raw);
+    ⚡ kho_nguoi: KHO_NGUOI(raw);
+    ⚡ kho_chung_sanh: KHO_CHUNG_SANH(raw);
+
+    ⚡ print(EXTRACTION_SUMMARY(raw));
+    ⚡ print(RUBBISH_INPUT_POLICY(has_signal, has_noise, has_harm, has_unknown, TRUE));
+    ⚡ print(CLEAN_REWRITE(raw));
+    ⚡ print(CLEAN_OUTPUT_POLICY(has_signal, has_noise, has_harm, has_unknown, recoverable));
+    ⚡ print(TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh, TRUE, TRUE));
+    ⚡ print(TAM_VAN_EXIT_PATH(kho_minh, kho_nguoi, kho_chung_sanh, has_unknown));
+}

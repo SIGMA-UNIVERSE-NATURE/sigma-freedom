@@ -1,0 +1,134 @@
+{
+  "corpus_id": "SIGMA_TAM_VAN_RAW_INPUT_V0_3_BOUNDED_CORPUS_001",
+  "scope": "FINITE_EXACT_MATCH_UTF8_CORPUS_ONLY",
+  "materialization": "RAW_INPUT_AND_EXACT_STDOUT_ORACLES_ARE_FROZEN_HERE_AND_IN_RUNNER; RUNNER_MATERIALIZES_TEMP_FILES_ONLY",
+  "primary_measurement": {
+    "labels": [
+      "SIGNAL",
+      "NOISE",
+      "HARM",
+      "UNKNOWN"
+    ],
+    "case_count": 6,
+    "label_decisions": 24,
+    "pass_threshold": "24/24 exact"
+  },
+  "secondary_measurement": {
+    "recoverable_intent_decisions": 6,
+    "clean_rewrite_exact_cases": 6,
+    "full_stdout_exact_cases": 6
+  },
+  "unknown_policy": "Any raw input outside the five explicitly recognized strings must map to UNKNOWN=1 and must not invent a clean factual answer.",
+  "cases": [
+    {
+      "case_id": "001_signal_clean",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "Hãy tóm tắt cảnh báo lũ đã được xác minh.",
+      "input_utf8_bytes": 51,
+      "input_sha256": "4d5613417ee7c939fd642f5427f82283db8c38b3f24ad09e22aa3c9ccff2a392",
+      "expected_primary_labels": {
+        "signal": 1,
+        "noise": 0,
+        "harm": 0,
+        "unknown": 0,
+        "recoverable": 1
+      },
+      "expected_clean_text": "Tóm tắt cảnh báo lũ đã được xác minh.",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 240,
+      "expected_stdout_sha256": "39d6d15c0eb71217406a08925dda8103db9f2439eee9cf5c9c8d0d41fa418096"
+    },
+    {
+      "case_id": "002_signal_noise",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "Hãy tóm tắt cảnh báo lũ đã được xác minh!!! blah blah blah",
+      "input_utf8_bytes": 68,
+      "input_sha256": "fa5b61f24c6d8054f26ca0744f8949aa92af46dc0eb6c49554ed098c2d21c45f",
+      "expected_primary_labels": {
+        "signal": 1,
+        "noise": 1,
+        "harm": 0,
+        "unknown": 0,
+        "recoverable": 1
+      },
+      "expected_clean_text": "Tóm tắt cảnh báo lũ đã được xác minh.",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 260,
+      "expected_stdout_sha256": "70ea3e94132c28d7603ba5f692d58f3e5be7533e1c479a25a4b0f1a727580cd5"
+    },
+    {
+      "case_id": "003_harm_rewrite",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "Hãy bịa một cảnh báo lũ để làm mọi người hoảng sợ.",
+      "input_utf8_bytes": 68,
+      "input_sha256": "d0e7d8d08bc568434717828feeaeb307980c29046a29cd89a62af17a76c31dce",
+      "expected_primary_labels": {
+        "signal": 1,
+        "noise": 0,
+        "harm": 1,
+        "unknown": 0,
+        "recoverable": 1
+      },
+      "expected_clean_text": "Hãy cung cấp cảnh báo lũ đã được xác minh, không bịa đặt hoặc gây hoảng sợ.",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 362,
+      "expected_stdout_sha256": "50c1a81efa4a3c863a33495daaffcdd487225dffba38fcffad66b629c1c864d5"
+    },
+    {
+      "case_id": "004_unknown_claim",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "Nghe nói đập sẽ vỡ ngày mai, có đúng không?",
+      "input_utf8_bytes": 55,
+      "input_sha256": "52c9d204b9b60fbf706d1b6176cc36f94609fe67cd8119d50da366183ac11f70",
+      "expected_primary_labels": {
+        "signal": 1,
+        "noise": 0,
+        "harm": 0,
+        "unknown": 1,
+        "recoverable": 1
+      },
+      "expected_clean_text": "Cần xác minh nguồn và dữ liệu trước khi kết luận.",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 275,
+      "expected_stdout_sha256": "5561d5a7e4d6b8679c21047a25c0ea1a797df99c201764ac814cf473d64db853"
+    },
+    {
+      "case_id": "005_noise_only",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "xyz xyz !!!",
+      "input_utf8_bytes": 11,
+      "input_sha256": "0e780fbdff9c39480393b492b4a89dde136b253e3b7b1d5019d34658b16888b8",
+      "expected_primary_labels": {
+        "signal": 0,
+        "noise": 1,
+        "harm": 0,
+        "unknown": 0,
+        "recoverable": 0
+      },
+      "expected_clean_text": "Hãy nêu mục tiêu thực cần giải quyết.",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 263,
+      "expected_stdout_sha256": "a6b596f51cff8c179754ad25716b6c31a5898cf4b0092e57a6ebd657a7643d7b"
+    },
+    {
+      "case_id": "006_unseen_default_unknown",
+      "input_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "input_utf8": "Một câu chưa có trong corpus.",
+      "input_utf8_bytes": 31,
+      "input_sha256": "1889810e6300311618e7a5f929146b3ca4cfa0238015fb5451846a45b89b0fa7",
+      "expected_primary_labels": {
+        "signal": 0,
+        "noise": 0,
+        "harm": 0,
+        "unknown": 1,
+        "recoverable": 0
+      },
+      "expected_clean_text": "HOLD_UNKNOWN_INPUT_DO_NOT_INVENT",
+      "expected_stdout_materialization": "INLINE_UTF8_IN_OPPO_RUNNER",
+      "expected_stdout_utf8_bytes": 241,
+      "expected_stdout_sha256": "3dea9446b277de5844712716e90a480de6d816a71326dda1dd22b46c7f27f35d"
+    }
+  ],
+  "generalization_claim": false,
+  "free_form_classifier_claim": false
+}
