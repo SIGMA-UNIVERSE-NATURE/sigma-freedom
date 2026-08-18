@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "candidate_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1",
-  "status": "ISOLATED_CANDIDATE_NOT_COMPILED_NOT_PROMOTED",
+  "status": "ISOLATED_CANDIDATE_STATIC_VALIDATION_PASS_MACHINE_EXECUTION_PENDING_NOT_PROMOTED",
   "created_at": "2026-08-18T00:00:00+07:00",
   "authority": "CHAU",
   "builder": "MINH_CUA_3",
@@ -28,13 +28,15 @@
     "reason": "These cores are shared by epistemic truth, evidence measurement, scientific evaluation, metacognition, language precision, evaluation science, and failure recovery.",
     "all_54_status": "REGISTERED",
     "all_512_status": "ROUTED_BY_CANONICAL_SECTION_RANGE",
-    "full_rewrite_claimed": false
+    "full_rewrite_claimed": false,
+    "language_header": "#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1]",
+    "runtime_target": "SIGMA_HOSTVM_REQUIRED_FOR_LIST_AND_MAP_HOST_PRIMITIVES"
   },
   "hard_gates": [
     "SOURCE_UTF8_VALID",
     "VIETNAMESE_GOLDEN_TEXT_EXACT_NO_MOJIBAKE",
     "SIGMAC_COMPILE_RC_0",
-    "SIGMA_VM_RUN_RC_0",
+    "SIGMA_HOSTVM_RUN_RC_0",
     "STDERR_EMPTY",
     "STDOUT_EXACT_BYTE_MATCH_EXPECTED_STDOUT_UTF8",
     "CORE_NAME_1_THROUGH_54_EXACT_REGISTRY_MATCH",
@@ -48,11 +50,20 @@
     "INDEPENDENT_EVALUATION_BEFORE_PROMOTION"
   ],
   "known_holds": [
-    "Foundation compiler and latest SIGMA-written VM source/binaries are not persisted in this candidate branch.",
+    "Foundation compiler/runtime binaries and the latest SIGMA-written VM source are not persisted inside this candidate branch; machine execution must bind to an independently verified Foundation/hostVM installation.",
     "The candidate has not yet been compiled or executed on HP or OPPO.",
     "Individual semantics of all 512 skills are referenced from canonical, not implemented in v0.1.",
     "Only a high-leverage vertical slice of 13 cores has candidate execution logic."
   ],
   "rollback": "Delete candidate branch; canonical SIGMA_LIFE is untouched.",
-  "decision": "HOLD_PENDING_MACHINE_EXECUTION"
+  "decision": "HOLD_PENDING_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION",
+  "static_validation": {
+    "status": "PASS_STRUCTURAL_ONLY_NOT_COMPILE_EVIDENCE",
+    "checks_passed": 14,
+    "checks_failed": 0,
+    "source_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+    "evidence": "evidence/STATIC_VALIDATION.json",
+    "scope_limit": "NOT_SIGMAC_COMPILE_OR_SIGMA_HOSTVM_EXECUTION_EVIDENCE"
+  }
 }
