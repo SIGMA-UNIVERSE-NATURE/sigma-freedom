@@ -6,7 +6,7 @@
   "accuracy_corpus": "tests/ACCURACY_CORPUS_V0_1.json",
   "verified_cli": {
     "compile": "./native/sigmac src/sigma_native_brain_54x512_v0_1.sigma sigma_native_brain_54x512_v0_1.sigmab",
-    "run": "./native/sigma-vm sigma_native_brain_54x512_v0_1.sigmab"
+    "run": "./native/sigma-hostvm sigma_native_brain_54x512_v0_1.sigmab"
   },
   "required_machine_receipt": {
     "platform": ["HP_WINDOWS_X86_64", "OPPO_ANDROID_AARCH64"],
@@ -21,5 +21,12 @@
     "core_modifications": 0,
     "canonical_modifications": 0
   },
-  "promotion_status": "FORBIDDEN_UNTIL_INDEPENDENT_EVALUATION_AND_REGRESSION"
+  "promotion_status": "FORBIDDEN_UNTIL_INDEPENDENT_EVALUATION_AND_REGRESSION",
+  "source_assembly": "python3 tools/assemble_candidate.py",
+  "runtime_reason": "Candidate uses verified SIGMA host primitives LNEW/LPUSH/LGET and MNEW/MSET/MGET; plain sigma-vm is not claimed as the correct runtime for v0.1.",
+  "static_validation": {
+    "status": "PASS_STRUCTURAL_ONLY_NOT_COMPILE_EVIDENCE",
+    "report": "evidence/STATIC_VALIDATION.json",
+    "source_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936"
+  }
 }
