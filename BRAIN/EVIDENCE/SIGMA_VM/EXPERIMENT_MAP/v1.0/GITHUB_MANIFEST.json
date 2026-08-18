@@ -11,7 +11,7 @@
   },
   "files": [
     {"name": "SIGMA_VM_EXPERIMENT_MAP_v1.0.md", "bytes": 7311, "sha256": "c01137e6f85ce4c4b0b3786e55996cd5d88f939fbbf7595ed1dfe3a459228a18"},
-    {"name": "SIGMA_VM_WINDOW_ASSIGNMENTS_v1.0.md", "bytes": 6542, "sha256": "3c23c9452ac4129333d3613fbb9b878a4aec1612c68d99297dd2638f6ce70882"},
+    {"name": "SIGMA_VM_WINDOW_ASSIGNMENTS_v1.0.md", "bytes": 7291, "sha256": "84972745b14cbc0bf6e0723c3d8062221a6eeeb034492b925a3d6ee2b2f4c06c"},
     {"name": "MAP_CONTROL.json", "bytes": 3656, "sha256": "4ec2f811a981fc2bfa7b3bfe64649d429a7f58100efac491c39186aaf01d134e"},
     {"name": "NODES_00_05.json", "bytes": 6100, "sha256": "c4256446a7ba917c0e014aa186353704c72adf3ecdc377752d0fd8143f60384b"},
     {"name": "NODES_06_09.json", "bytes": 5388, "sha256": "8dafd4e961165f6427b36a0d2bc675b69dcbce8a66854d941d40c6f7aa0b115e"},

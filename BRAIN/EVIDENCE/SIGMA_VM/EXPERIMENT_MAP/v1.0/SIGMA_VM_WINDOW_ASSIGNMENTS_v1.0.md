@@ -1,10 +1,10 @@
-# SIGMA VM â€” WINDOW ASSIGNMENTS v1.0
+# SIGMA VM - WINDOW ASSIGNMENTS v1.0
 
-Use one block per chat window. Do not combine blocks.
+Use exactly one block per chat window. Do not combine blocks. A window stops after producing its handoff and must not begin the next node.
 
 ---
 
-## WINDOW W01 â€” BOUNDARY AUDITOR
+## WINDOW W01 - BOUNDARY AUDITOR
 
 ```text
 INHERIT SIGMA VM EXPERIMENT MAP v1.0.
@@ -13,19 +13,19 @@ NODE_ID=E04_BOUNDARY_BASELINE_005
 MODE=READ_ONLY
 ONE_TASK_ONLY=exact inventory of the five remaining trusted custom C primitives.
 
-Read current SIGMA VM candidate, current adapter source, and current compiled host binary.
-Pin every input SHA before analysis.
+Read the current SIGMA VM candidate, current adapter source, and current compiled host binary.
+Pin every input SHA-256 before analysis.
 Record exact primitive names, definitions, call sites, semantic category, bootstrap dependency, source presence, and binary presence.
 Independently confirm math_floordiv is absent.
 Measure whether bytes_f64_le_at is present; do not assume it.
-Do not patch, rename, remove, add, compile a new candidate, or alter ABI/Foundation/corpus.
-Return TRUSTED_HOST_BOUNDARY_BASELINE_005.json, callsite map, binary audit, and W01_HANDOFF.md.
+Do not patch, rename, remove, add, compile a new candidate, or alter ABI, Foundation, or corpus.
+Return TRUSTED_HOST_BOUNDARY_BASELINE_005.json, STATIC_CALLSITE_MAP.json, BINARY_SYMBOL_OR_STRING_AUDIT.json, and W01_HANDOFF.md.
 End with exactly W01_RESULT_PASS or W01_RESULT_HOLD: <exact reason>.
 ```
 
 ---
 
-## WINDOW W02 â€” FLOAT64 CORPUS CURATOR
+## WINDOW W02 - FLOAT64 CORPUS CURATOR
 
 ```text
 INHERIT SIGMA VM EXPERIMENT MAP v1.0.
@@ -41,18 +41,18 @@ snan_payload1
 
 Create a versioned public corpus covering signed zero, finite extrema, normals, subnormals, infinities, qNaN payload/sign variants, and sNaN payload variants.
 Every case must contain the exact expected 64-bit pattern.
-Define a deterministic withheld-corpus generator whose seed is derived from the future frozen candidate source SHA.
+Define a deterministic withheld-corpus generator whose seed is derived from the future frozen candidate source SHA-256.
 The oracle must be independent from the candidate implementation.
 Do not edit VM source, adapter source, frozen ABI, Foundation, or ledger.
-Return corpus files, oracle contract, checksums, and W02_HANDOFF.md.
+Return FLOAT64_PUBLIC_CORPUS_v1.json, FLOAT64_WITHHELD_GENERATOR_SPEC_v1.json, FLOAT64_ORACLE_CONTRACT_v1.json, CORPUS_SHA256SUMS, and W02_HANDOFF.md.
 End with exactly W02_RESULT_FROZEN_PASS or W02_RESULT_HOLD: <exact reason>.
 ```
 
 ---
 
-## WINDOW W03 â€” FLOAT64 IMPLEMENTER
+## WINDOW W03 - FLOAT64 IMPLEMENTER
 
-**Do not open until W01 and W02 PASS.**
+DO NOT OPEN UNTIL W01_RESULT_PASS AND W02_RESULT_FROZEN_PASS ARE BOTH SHA-PINNED.
 
 ```text
 INHERIT SIGMA VM EXPERIMENT MAP v1.0.
@@ -62,9 +62,9 @@ MODE=ONE_CANDIDATE_ONLY
 
 Inputs must include W01 PASS and W02 FROZEN_PASS with exact hashes.
 Implement exactly one SIGMA-native representation candidate.
-Primary hypothesis: preserve raw 64-bit payload beside the numeric view so untouched constants remain bit-exact while numeric operators use the numeric view.
+Primary hypothesis: preserve the raw 64-bit payload beside the numeric view so untouched constants remain bit-exact while numeric operators use the numeric view.
 Do not retry numeric-only reconstruction already rejected by v13a.
-Do not add a target-specific C FLOAT64 decoder/bitcast and call the reduction complete.
+Do not add a target-specific C FLOAT64 decoder or bitcast and call the trusted-boundary reduction complete.
 Do not edit corpus, evaluator, ABI, Foundation, canonical state, or 512 ledger.
 Do not claim PASS.
 Return one candidate, minimal diff, compile result, artifact hashes, and W03_HANDOFF.md.
@@ -73,13 +73,129 @@ End with exactly W03_CANDIDATE_READY, W03_RESULT_HOLD: <reason>, or W03_RESULT_R
 
 ---
 
-## WINDOW W04 â€” CANDIDATE FREEZER
+## WINDOW W04 - CANDIDATE FREEZER
 
 ```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
 WINDOW_ID=W04_CANDIDATE_FREEZER
 NODE_ID=E07_CANDIDATE_FREEZE_001
 MODE=NO_SOURCE_PATCH
-ONE_TASK_ONLY=freeze identity and deterministic compilation.
+ONE_TASK_ONLY=freeze identity and prove deterministic compilation.
 
 Compile the exact W03 source at least twice from clean outputs.
-Pin source, bytecode, adapter, host binary, ABI, Foundation, and corptÈ\Ú\Ë‚”ØØ[ˆ[\[Y[][Ûˆ›ÜˆÛÜœ\ÈX™[È[™^XİYİ]]\Ú\Ë‚‘È›İ]Ú[HÛİ\˜ÙK‚”™]\›ˆĞS‘QUWÑ”‘QV‘WÓPS’Q‘TÕšœÛÛˆ[™ÌÒS‘Ñ‘‹›Y‚‘[™Ú]^XİHÌÔ‘TÕSÔTÔÈÜˆÌÔ‘TÕSÒS•SQˆ^Xİ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌH8 %S‘TS‘S•“ĞUUSPUÔ‚‚˜^•ÒS‘Õ×ÒQUÌWÑÑUSPUÔ‚““ÑWÒQQLÒS‘TS‘S•Ñ“ĞUÑUSPUSÓ—ÌB“SÑOT‘PQÓÓ“WÑUSPUÔ‚“Ó‘WÕTÒ×ÓÓ“OXš]Y^Xİ]˜[X][Û‹‚‚•™\šYHØ[™Y]HÒHYØZ[œİÌ‚”[ˆX›XÈÛÜœ\È[™]\›Z[š\İXÈÚ][ÛÜœ\Ë‚ÛÛ\\™H˜]ÈXš]]\›œË›İ›Ü›X]Y[Y\šXÈ˜[Y\Ë‚”›İ™H]\×ÙÛWØ]XœÙ[˜ÙHœ›ÛHY\\ˆÛİ\˜ÙH[™ÛÛ\[YÜİš[˜\K‚‘È›İ]Ú‚[HZ\ÛX]ÚZY[È‘R‘PÕÚ]HZ[š[X[Ûİ[\™^[\K‚‘[™Ú]^XİHÌWÔ‘TÕSÔTÔÈÜˆÌWÔ‘TÕSÔ‘R‘PÕˆ^Xİ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌˆ8 %‘QÔ‘TÔÒSÓˆ•S“‘T‚‚˜^•ÒS‘Õ×ÒQUÌ—Ô‘QÔ‘TÔÒSÓ—Ô•S“‘T‚““ÑWÒQQLWÑ•SÕ“WÔ‘QÔ‘TÔÒSÓ—ÌB“SÑOT‘PQÓÓ“WÕTÕ“Ó‘WÕTÒ×ÓÓ“OY[[[]]X›H™YÜ™\ÜÚ[Û‹‚‚”[ˆÜÚ]]™HLKÌLKÒQÓPHX[›Ü›YY˜Z[XÛÜÙYNKÌNKÈX[›Ü›YYYÜ™Y[Y[MËÌNHÚ]HØ[YHÛÈÛ\ÜÚYšYY]™\™Ù[˜Ù\Ë“ÓÔ‘UˆMËÌMË[™ÛÛ\]HÛİ™\˜YÙHØ]\Ë‚Ø\\™HËÜİİ]Üİ\œˆ›Üˆ]™\HØ\ÙK‚‘È›İ]Ú‚‘[™Ú]^XİHÌ—Ô‘TÕSÔTÔÈÜˆÌ—Ô‘TÕSÔ‘R‘PÕˆ^Xİ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌÈ8 %ÓÓ“ÓÕÕT•S“‘T‚‚˜^•ÒS‘Õ×ÒQUÌ×ĞÓÓĞ“ÓÕÕTÔ•S“‘T‚““ÑWÒQQLLÕÓ×ĞÖPÓWĞÓÓĞ“ÓÕÕTÌB“SÑOQÑS‘TUQÓÕUU×ÓÓ“B“Ó‘WÕTÒ×ÓÓ“O]ÛËXŞXÛHš^YÚ[‚‚”™[[İ™Hİ[Hİ]]È™Y›Ü™HXXÚŞXÛK‚ŞXÛHˆ]\İÛÛœİ[YHŞXÛHHİ]]‚›İİ]]È]\İ\]X[ÒKLMˆ™YŒÎMXLÌŒNYYMÙ˜ÌŒŒ˜Y™ŒŒNMÌ˜ÍÍLŒNLÌÎYNMË‚Ø\\™HÛÛ[X[™ËËİİ]İ\œ‹[™Ù[™\˜]Y\Y˜Xİ\Ú\Ë‚‘È›İ]Ú‚‘[™Ú]^XİHÌ×Ô‘TÕSÔTÔËÌ×Ô‘TÕSÒÓˆ™X\ÛÛ‹ÜˆÌ×Ô‘TÕSÔ‘R‘PÕˆ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌ8 %Ô•P’SUH•S“‘T‚‚˜^•ÒS‘Õ×ÒQUÌÔÔ•P’SUWÔ•S“‘T‚““ÑWÒQQLLWĞÔ“ÔÔ×ÔÕP”ÕUWÔ‘TVWÌB“SÑOT‘PQÓÓ“WÔ‘TVB“Ó‘WÕTÒ×ÓÓ“OXÜ›ÜÜË\İXœİ˜]H™\^K‚‚•\ÙHHØ[YHœ›Ş™[ˆØ[™Y]HÛİ\˜ÙKP’K[™ÛÜœ\ÈÛˆÔÈ[™Û™H[™\[™[—ÍİXœİ˜]K‚ÛÛ\\™HÙ[X[XÜÈ[™š^Y\Ú[ÒK‚‘È›İ™\]Z\™H˜]]™H^Xİ]X›HÒH\]X[]HXÜ›ÜÜÈ\˜Ú]Xİ\™\Ë‚‘È›İ]Ú‚‘[™Ú]^XİHÌÔ‘TÕSÔTÔÈÜˆÌÔ‘TÕSÒÓÔ‘R‘PÕˆ^Xİ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌH8 %‘T‘PÕUSPUÔ‚‚˜^•ÒS‘Õ×ÒQUÌWÕ‘T‘PÕÑUSPUÔ‚““ÑWÒQQLL—Ô‘QPÕSÓ—Õ‘T‘PÕÌ‚“SÑOU‘T‘PÕÓÓ“B“Ó‘WÕTÒ×ÓÓ“OXÛ\ÜÚYH™YXİ[ÛˆÌ‹‚‚”™XY[\İ™X[H]šY[˜ÙNÈ™\Z\ˆ›İ[™Ë‚•™\šYHYX\İ\™Y\İYİ\İÛHš[Z]]™HÛİ[Ú[™Ù\ÈHOˆÚ]›ÈY[ˆ™\XÙ[Y[‚’\ÜİYHÛ›HTÔ×ÕÒUÑQ’S‘QÔĞÓÔKÓÜˆ‘R‘PÕ‚‘^XÚ]HÙY\•SĞ×Ñ”‘QWÓUU‘WÔÕPÒÏRÓ[›\ÜÈÙ\\˜][H›İ™[‹‚‘[™Ú]^XİHÌWÕ‘T‘PÕˆİ]\Ïˆ8 %ØÛÜKÜ™X\ÛÛ‹‚˜‚‹KKB‚ˆÈÈÒS‘ÕÈÌL8 %‘V’SRUU‘HÑSPÕÔ‚‚˜^•ÒS‘Õ×ÒQUÌLÓ‘VÔ’SRUU‘WÔÑSPÕÔ‚““ÑWÒQQLL×Ó‘VÔ’SRUU‘WÔÑSPÕSÓ—ÌB“SÑOPSSTÒT×ÓÓ“B“Ó‘WÕTÒ×ÓÓ“O\Ù[Xİ^XİHÛ™H™^š[Z]]™K‚‚•\ÙHHYX\İ\™Y™[XZ[š[™È[™[ÜHÛ›K‚Z[]È\[™[˜ŞHÜ˜\[™]˜[X]ÜˆÛÛ˜Xİ‚ÚÛÜÙHÛ™Hš[Z]]™KÛ™H\İ\Ú\ËÛ™H^\š[Y[Û™H›Û˜XÚÈÜš]\š[Û‹‚‘È›İ[\[Y[]‚‘[™Ú]^XİHÌLÔÑSPÕSÓ—Ô‘PQHÜˆÌLÔ‘TÕSÒÓˆ^Xİ™X\ÛÛ‹‚˜
+Pin source, bytecode, adapter, host binary, ABI, Foundation, and corpus hashes.
+Scan implementation for corpus labels and expected-output hashes.
+Do not patch any source.
+Return CANDIDATE_FREEZE_MANIFEST.json and W04_HANDOFF.md.
+End with exactly W04_RESULT_PASS or W04_RESULT_INVALID: <exact reason>.
+```
+
+---
+
+## WINDOW W05 - INDEPENDENT FLOAT64 EVALUATOR
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W05_F64_EVALUATOR
+NODE_ID=E08_INDEPENDENT_FLOAT64_EVALUATION_001
+MODE=READ_ONLY_EVALUATOR
+ONE_TASK_ONLY=bit-exact FLOAT64 evaluation.
+
+Verify candidate SHA-256 against W04.
+Run the public corpus and deterministic withheld corpus.
+Compare raw 64-bit patterns, not formatted numeric values.
+Prove bytes_f64_le_at is absent from adapter source and compiled host binary.
+Do not patch.
+Any mismatch yields REJECT with the minimal counterexample.
+End with exactly W05_RESULT_PASS or W05_RESULT_REJECT: <exact reason>.
+```
+
+---
+
+## WINDOW W06 - REGRESSION RUNNER
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W06_REGRESSION_RUNNER
+NODE_ID=E09_FULL_VM_REGRESSION_001
+MODE=READ_ONLY_TEST
+ONE_TASK_ONLY=full immutable regression.
+
+Run positive differential 11/11, SIGMA malformed fail-closed 19/19, C malformed agreement 17/19 with the same two classified divergences, FLOORDIV 17/17, and complete opcode, unary, binary, and constant-tag coverage gates.
+Capture command, RC, stdout, and stderr for every case.
+Do not patch.
+End with exactly W06_RESULT_PASS or W06_RESULT_REJECT: <exact reason>.
+```
+
+---
+
+## WINDOW W07 - COLD BOOTSTRAP RUNNER
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W07_COLD_BOOTSTRAP_RUNNER
+NODE_ID=E10_TWO_CYCLE_COLD_BOOTSTRAP_001
+MODE=GENERATED_OUTPUTS_ONLY
+ONE_TASK_ONLY=two-cycle fixed-point proof.
+
+Remove stale outputs before each cycle.
+Cycle 2 must consume Cycle 1 output.
+Both outputs must equal SHA-256 2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667.
+Capture commands, RC, stdout, stderr, and generated artifact hashes.
+Do not patch.
+End with exactly W07_RESULT_PASS, W07_RESULT_HOLD: <reason>, or W07_RESULT_REJECT: <reason>.
+```
+
+---
+
+## WINDOW W08 - PORTABILITY RUNNER
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W08_PORTABILITY_RUNNER
+NODE_ID=E11_CROSS_SUBSTRATE_REPLAY_001
+MODE=READ_ONLY_REPLAY
+ONE_TASK_ONLY=cross-substrate replay.
+
+Use the same frozen candidate source, ABI, and corpus on OPPO and one independent x86_64 substrate.
+Compare source identity, ABI identity, corpus identity, semantics, and fixed-point SHA-256.
+Do not require native executable SHA equality across architectures.
+Do not patch.
+End with exactly W08_RESULT_PASS, W08_RESULT_HOLD: <exact reason>, or W08_RESULT_REJECT: <exact reason>.
+```
+
+---
+
+## WINDOW W09 - VERDICT EVALUATOR
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W09_VERDICT_EVALUATOR
+NODE_ID=E12_REDUCTION_VERDICT_002
+MODE=VERDICT_ONLY
+ONE_TASK_ONLY=classify trusted-boundary reduction number 2.
+
+Read all upstream evidence and repair nothing.
+Verify the measured trusted custom primitive count changes 5 -> 4 with no hidden replacement.
+Issue only PASS_WITH_DEFINED_SCOPE, HOLD, or REJECT.
+Explicitly keep FULL_C_FREE_NATIVE_STACK=HOLD unless separately proven.
+End with exactly W09_VERDICT: <status> - <scope or exact reason>.
+```
+
+---
+
+## WINDOW W10 - NEXT PRIMITIVE SELECTOR
+
+```text
+INHERIT SIGMA VM EXPERIMENT MAP v1.0.
+WINDOW_ID=W10_NEXT_PRIMITIVE_SELECTOR
+NODE_ID=E13_NEXT_PRIMITIVE_SELECTION_001
+MODE=ANALYSIS_ONLY
+ONE_TASK_ONLY=select exactly one next primitive.
+
+Use the measured remaining inventory only.
+Build its dependency graph and evaluator contract.
+Choose one primitive, one hypothesis, one experiment, and one rollback criterion.
+Do not implement it.
+End with exactly W10_SELECTION_READY or W10_RESULT_HOLD: <exact reason>.
+```
