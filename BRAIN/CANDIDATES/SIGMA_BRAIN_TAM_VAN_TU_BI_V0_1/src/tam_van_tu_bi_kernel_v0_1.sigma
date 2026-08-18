@@ -1,0 +1,65 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.COMPASSION][VERSION=0.1]
+
+DEF TAM_VAN_TU_BI(no_self_suffering, no_human_suffering, no_life_suffering) {
+    IF (!no_self_suffering) {
+        RETURN "HOLD_KHONG_KHO_MINH";
+    } ELSE {
+        IF (!no_human_suffering) {
+            RETURN "HOLD_KHONG_KHO_NGUOI";
+        } ELSE {
+            IF (!no_life_suffering) {
+                RETURN "HOLD_KHONG_KHO_CHUNG_SANH";
+            } ELSE {
+                RETURN "PASS_TAM_VAN_TU_BI_3_3";
+            }
+        }
+    }
+}
+
+DEF CLEAN_INPUT_DECISION(truth_preserved, salvageable_intent, no_self_suffering, no_human_suffering, no_life_suffering) {
+    IF (!truth_preserved) {
+        RETURN "HOLD_CLEAN_KHONG_DUOC_CHE_SU_THAT";
+    } ELSE {
+        IF (!salvageable_intent) {
+            RETURN "CLEAN_TO_EXIT_PATH_ONLY";
+        } ELSE {
+            RETURN TAM_VAN_TU_BI(no_self_suffering, no_human_suffering, no_life_suffering);
+        }
+    }
+}
+
+DEF TAM_VAN_EXIT_PATH(no_self_suffering, no_human_suffering, no_life_suffering) {
+    IF (!no_self_suffering) {
+        RETURN "LOI_RA=DUNG_VIEC_LAM_KHO_MINH_CHON_BUOC_NHO_AN_TOAN";
+    } ELSE {
+        IF (!no_human_suffering) {
+            RETURN "LOI_RA=BO_CACH_LAM_GAY_KHO_NGUOI_GIU_NHU_CAU_HOP_LE";
+        } ELSE {
+            IF (!no_life_suffering) {
+                RETURN "LOI_RA=DOI_CACH_LAM_DE_KHONG_GAY_KHO_CHUNG_SANH";
+            } ELSE {
+                RETURN "LOI_RA=HANH_DONG_NHO_CO_THE_KIEM_CHUNG";
+            }
+        }
+    }
+}
+
+⟡(Σ.TAM_VAN_TU_BI_KERNEL_V0_1) {
+    ⚡ print("TAM_VAN_1=VIEC_NAY_CO_LAM_KHO_CHINH_MINH_KHONG");
+    ⚡ print("TAM_VAN_2=VIEC_NAY_CO_LAM_KHO_NGUOI_KHONG");
+    ⚡ print("TAM_VAN_3=VIEC_NAY_CO_LAM_KHO_CHUNG_SANH_KHONG");
+    ⚡ print("RUBBISH_INPUT_NE_RUBBISH_PERSON");
+    ⚡ print("CLEAN_NE_CHE_SU_THAT");
+    ⚡ print("CLEAN=GIU_SU_THAT+BO_NHIEU+BO_GAY_HAI+GIU_NHU_CAU_HOP_LE+DUA_LOI_RA");
+    ⚡ print(TAM_VAN_TU_BI(TRUE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_TU_BI(FALSE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_TU_BI(TRUE, FALSE, TRUE));
+    ⚡ print(TAM_VAN_TU_BI(TRUE, TRUE, FALSE));
+    ⚡ print(CLEAN_INPUT_DECISION(TRUE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(CLEAN_INPUT_DECISION(FALSE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(CLEAN_INPUT_DECISION(TRUE, FALSE, TRUE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_EXIT_PATH(FALSE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_EXIT_PATH(TRUE, FALSE, TRUE));
+    ⚡ print(TAM_VAN_EXIT_PATH(TRUE, TRUE, FALSE));
+    ⚡ print(TAM_VAN_EXIT_PATH(TRUE, TRUE, TRUE));
+}
