@@ -1,0 +1,8 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PROBE][VERSION=0.2]
+
+⟡(Σ.SIGMA_CREATES_SIGMA_0003_IO_PROBE_HOST) {
+    ⚡ w: host("write_text", "roundtrip_utf8_host.txt", "SIGMA_IO_0003_HOST_UTF8=BÀI 001 — ĐỘ CHÍNH XÁC");
+    ⚡ r: host("read_text", "roundtrip_utf8_host.txt");
+    ⚡ print(w);
+    ⚡ print(r);
+}
