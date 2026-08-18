@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.MOTHER][VERSION=0.1]
+
+⟡(Σ.LESSON_001) {
+    ⚡ state_before: 0;
+    ⚡ expected_after: 1;
+
+    print("ΣΨ:001");
+    print(state_before);
+
+    ⚡ state_after: state_before + 1;
+    print(state_after);
+
+    IF (state_after == expected_after) {
+        print("▣✓");
+    } ELSE {
+        print("▣?");
+    }
+}
