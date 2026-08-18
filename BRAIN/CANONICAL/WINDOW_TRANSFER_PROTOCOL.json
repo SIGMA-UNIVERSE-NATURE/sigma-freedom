@@ -122,8 +122,8 @@
   "state_match_rule": "FIND_EXACT_WINDOW_STATE -> VERIFY_LATEST_CANONICAL_STATE -> ANSWER_OPEN_STATE_CHALLENGE_FROM_EVIDENCE -> STATE_MATCH -> CONTINUE_WORK",
   "failure_rule": "NO_STATE_MATCH_OR_ANY_FABRICATION = NO_CONTINUATION",
   "current_program": {
-    "next_action": "SIGMA-512-AUTO-MEASURE-SECTION-XXXI-501-512",
-    "mode": "BOUNDED_CONTINUOUS_MEASUREMENT",
+    "next_action": "SIGMA-512-REVIEW-MEASURED-BLOCKERS-001",
+    "mode": "MEASUREMENT_BASELINE_COMPLETE_HOLD_FOR_REVIEW",
     "intelligence_program": "INTELLIGENCE_CONTINUITY_PROGRAM.md",
     "baseline_before_broad_remediation": true,
     "baseline_status": "COMPLETE",
@@ -138,7 +138,7 @@
     "local_execution_bridge_status": "BOUNDED_CONTINUOUS_EXECUTOR_WITH_ONE_PENDING_REQUEST",
     "local_execution_bridge_status_file": "LOCAL_EXECUTION_BRIDGE_STATUS.json",
     "local_cognition_request": "LOCAL_COGNITION_REQUEST.json",
-    "local_cognition_request_status": "PENDING_LOCAL_EXECUTOR",
+    "local_cognition_request_status": "COMPLETED_MACHINE_RECEIPT_VERIFIED",
     "last_verified_local_cognition_receipt": "LOCAL_COGNITION_RECEIPT_AUTO_LAST.json",
     "bridge_machine_receipt_required_before_verified": true,
     "bounded_continuous_executor_status": "MACHINE_OBSERVED_SHA256_PINNED_AUTODISCOVERY",
@@ -148,9 +148,9 @@
     "current_counts": {
       "PASS": 0,
       "PARTIAL": 129,
-      "HOLD": 371,
+      "HOLD": 383,
       "FAIL": 0,
-      "NOT_AUDITED": 12,
+      "NOT_AUDITED": 0,
       "NOT_APPLICABLE": 0
     },
     "bounded_controller_policy": "CONTINUOUS_512_CONTROLLER_POLICY.json",

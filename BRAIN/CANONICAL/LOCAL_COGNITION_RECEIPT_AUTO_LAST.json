@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "receipt_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXX-486-500-HP-b79573fc44b8",
-  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXX-486-500",
+  "receipt_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXXI-501-512-HP-069e365be8e8",
+  "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXXI-501-512",
   "status": "SUCCESS",
-  "recorded_at": "2026-08-17T23:39:42.809966+00:00",
+  "recorded_at": "2026-08-17T23:49:42.478400+00:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
-  "resolved_head_sha": "b79573fc44b87a4f57bde246ed96614ee26ea3bf",
+  "resolved_head_sha": "069e365be8e821fdad74b5576b9b1cdad2268989",
   "executor": {
     "runtime_name": "SIGMA Remote Operator Continuous",
     "runtime_version": "0.6.1",
@@ -17,12 +17,12 @@
   "result": {
     "harness_id": "SIGMA-512-AUTOMEASURE",
     "harness_version": "1.0.0",
-    "result_sha256": "7b8868ce2fa6225aa8631591cc6b2a036b00cf8d69044b1beac0f46ad6b2240d",
+    "result_sha256": "5d498fd183f01f84660ff51724eb29d144920745c2be0a362e18597760099c6a",
     "counts": {
-      "TARGET_COUNT": 15,
+      "TARGET_COUNT": 12,
       "PASS": 0,
       "PARTIAL": 0,
-      "HOLD": 15,
+      "HOLD": 12,
       "FAIL": 0,
       "NOT_AUDITED": 0
     },
@@ -48,8 +48,8 @@
     "LEGACY_SELF_STUDY_AND_K_CYCLE_NOT_EXECUTED",
     "ARBITRARY_SHELL_USED=false",
     "MATERIALIZED_SOURCE_TREE_UNCHANGED=true",
-    "MATERIALIZED_SOURCE_SHA256_BEFORE=a977a0e826ef8e4c6a3bcab5435a92f979bf8d8a7799ad02264d7565594452bc",
-    "MATERIALIZED_SOURCE_SHA256_AFTER=a977a0e826ef8e4c6a3bcab5435a92f979bf8d8a7799ad02264d7565594452bc",
+    "MATERIALIZED_SOURCE_SHA256_BEFORE=1fab54d8ef7c3be5ab75dd65282e9e3e2503f6cf4162d91f8d86b674710d8168",
+    "MATERIALIZED_SOURCE_SHA256_AFTER=1fab54d8ef7c3be5ab75dd65282e9e3e2503f6cf4162d91f8d86b674710d8168",
     "PRIVATE_LOCAL_PATHS_REDACTED_FROM_RECEIPT",
     "CANONICAL_EVALUATOR_MUST_DECIDE_ANY_PROMOTION_OR_NEXT_ACTION"
   ]

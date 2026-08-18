@@ -2,8 +2,8 @@
   "schema_version": "2.0.0",
   "request_id": "SIGMA-512-AUTO-MEASURE-SECTION-XXXI-501-512",
   "classification": "PUBLIC_SAFE_REQUEST_POINTER",
-  "status": "PENDING_LOCAL_EXECUTOR",
-  "recorded_at": "2026-08-17T23:49:01.440359+00:00",
+  "status": "COMPLETED_MACHINE_RECEIPT_VERIFIED",
+  "recorded_at": "2026-08-18T00:09:01.476566+00:00",
   "canonical_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "canonical_branch": "SIGMA_LIFE",
   "purpose": "Bounded read-only measurement of remaining NOT_AUDITED attributes in Section XXXI.",
@@ -60,5 +60,21 @@
   "privacy": {
     "do_not_publish_private_workspace_path": true,
     "do_not_publish_credentials_or_secrets": true
-  }
+  },
+  "receipt_evaluation": {
+    "status": "VERIFIED",
+    "resolved_head_sha": "069e365be8e821fdad74b5576b9b1cdad2268989",
+    "ingested_at_head_sha": "76c78dd896a95c0b79b9ad1cf68619ad5da23156",
+    "counts": {
+      "TARGET_COUNT": 12,
+      "PASS": 0,
+      "PARTIAL": 0,
+      "HOLD": 12,
+      "FAIL": 0,
+      "NOT_AUDITED": 0
+    },
+    "core_modifications": 0,
+    "external_side_effects": 0
+  },
+  "next_action": "SIGMA-512-REVIEW-MEASURED-BLOCKERS-001"
 }
