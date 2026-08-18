@@ -1,0 +1,54 @@
+{
+  "receipt_id": "SIGMA_CREATES_SIGMA_0004_OPPO_TAM_VAN_TU_BI_V0_2_MACHINE_RECEIPT_002_20260819",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "recorded_at": "2026-08-19T02:35:00+07:00",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "run_directory": "~/SIGMA/SIGMA_CREATES_SIGMA_0004_TAM_VAN_V0_2_RUN",
+  "source_branch": "candidate/sigma-creates-sigma-0004-tam-van-tu-bi-20260819",
+  "candidate_head_executed": "9809b86ba4d63816b69b327cf3f1a488e084b704",
+  "direct_observations": {
+    "source_bytes": 4661,
+    "source_git_blob": "642b0220484ec534c04556f73ac0d53dc430e42e",
+    "source_sha256": "d32834d462e05bc9b73162f020a6da898c8b4f39e0ea33182a55a3b1610d4faa",
+    "expected_stdout_bytes": 532,
+    "expected_stdout_git_blob": "90112922019d4b4520ff6b47012be5503ed8f55b",
+    "expected_stdout_sha256": "27dfa976a346dd7a4d30c677c07b4f901d2e36d202809958ff93f20496520a01",
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 0,
+    "run_stderr_bytes": 0,
+    "actual_stdout_bytes": 532,
+    "actual_stdout_sha256": "27dfa976a346dd7a4d30c677c07b4f901d2e36d202809958ff93f20496520a01",
+    "stdout_exact": "PASS",
+    "machine_verdict": "SIGMA_0004_TAM_VAN_TU_BI_V0_2_MACHINE_PROOF=PASS"
+  },
+  "machine_scope_supported": [
+    "TAM_VAN_V0_2_SOURCE_COMPILES_WITH_SIGMAC",
+    "TAM_VAN_V0_2_EXECUTES_WITH_SIGMA_VM",
+    "COMPILE_AND_RUN_STDERR_ARE_EMPTY",
+    "V0_2_OUTPUT_MATCHES_THE_FROZEN_532_BYTE_ORACLE_EXACTLY",
+    "CLEAN_OUTPUT_POLICY_TEST_CASES_EXECUTED",
+    "TAM_VAN_EXIT_PATH_TEST_CASES_EXECUTED"
+  ],
+  "not_proven": [
+    "GENERAL_FREE_FORM_NATURAL_LANGUAGE_CLASSIFICATION",
+    "GENERAL_SIGNAL_NOISE_HARM_UNKNOWN_EXTRACTION",
+    "GENERAL_CLEAN_TEXT_GENERATION_FROM_ARBITRARY_INPUT",
+    "FULL_NATIVE_BRAIN_INTEGRATION",
+    "CANONICAL_PROMOTION",
+    "54_CORE_PROMOTION",
+    "512_PROMOTION",
+    "CONSCIOUSNESS_OR_BIOLOGICAL_COMPASSION"
+  ],
+  "limitations": [
+    "This GitHub recorder did not execute the OPPO machine; observations were relayed directly by the user.",
+    "V0.2 consumes explicit classification booleans and returns bounded policy/exit-path strings; it is not yet a free-form semantic classifier.",
+    "Independent evaluation is required before closing the v0.2 scope."
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "INDEPENDENT_EVALUATION_OF_TAM_VAN_V0_2_MACHINE_SCOPE"
+}
