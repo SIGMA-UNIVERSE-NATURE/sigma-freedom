@@ -1,0 +1,28 @@
+{
+  "probe_id": "SIGMA_CREATES_SIGMA_0003_IO_HOST_BRIDGE_ROUNDTRIP_PROBE_002",
+  "purpose": "Verify the observed SIGMA host bridge syntax host(op,...) for write_text/read_text and prove exact UTF-8 roundtrip before implementing the Native Brain self-assembler.",
+  "source": "io_host_bridge_roundtrip_probe_002.sigma",
+  "source_sha256": "a0d913b24b852fddf0f8a14f8913706eb92b3a2a0dd9ec2fb27b6bdf8d462778",
+  "expected_roundtrip_file": "EXPECTED_HOST_BRIDGE_ROUNDTRIP_UTF8.txt",
+  "expected_roundtrip_file_sha256": "58bcfd84c93e3192e4c40a3cf9a79ba6cc9d268540ec08aaec547f3ae1ddf7ef",
+  "expected_stdout": "EXPECTED_HOST_BRIDGE_STDOUT_UTF8.txt",
+  "expected_stdout_sha256": "4f95bc1d18266ed79ca93e0a7f556c221b773a60f78164071794f1687bb744f3",
+  "required_runtime": "sigma-hostvm",
+  "bridge_under_test": {
+    "write_text": "host(\"write_text\", path, text)",
+    "read_text": "host(\"read_text\", path)"
+  },
+  "required_observations": [
+    "sigmac_compile_rc_0",
+    "compile_stderr_empty",
+    "sigma_hostvm_run_rc_0",
+    "run_stderr_empty",
+    "roundtrip_file_exact_byte_match",
+    "stdout_exact_byte_match"
+  ],
+  "pass_interpretation": "The existing OPPO toolchain exposes write_text/read_text to SIGMA-PSI through the normal function name host and exact UTF-8 text roundtrip is verified.",
+  "hold_interpretation": "Do not implement or accept the Native Brain self-assembler yet; preserve exact failure evidence.",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
