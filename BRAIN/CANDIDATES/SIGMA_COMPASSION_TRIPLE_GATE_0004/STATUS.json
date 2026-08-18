@@ -1,0 +1,26 @@
+{
+  "candidate_id": "SIGMA_COMPASSION_TRIPLE_GATE_0004",
+  "language": "SIGMA-PSI",
+  "classification": "ISOLATED_SIGMA_PSI_COMPASSIONATE_SELF_GENERATION_KERNEL",
+  "status": "HOLD",
+  "state": "SOURCE_AND_ORACLE_FROZEN_MACHINE_EXECUTION_PENDING",
+  "branch": "candidate/sigma-compassion-triple-gate-0004-20260819",
+  "parent_0003_head": "42c2d444dc0a728a5673d6d7d2c873edffcd390e",
+  "source_sha256": "eb3f4250756ad7d6f55ab426e1951ffcf299db7d1c5feaaa7f50ecb1d3fa3f3a",
+  "expected_stdout_sha256": "c8a86dae0e25d62790d92475046a7eeecc0de55abc6b48fe53cd5107c8195446",
+  "gates": {
+    "tam_van_tu_bi_kernel_written": "PASS_SOURCE_ONLY",
+    "rubbish_to_clean_guidance_policy_written": "PASS_SOURCE_ONLY",
+    "successor_inheritance_gate_written": "PASS_SOURCE_ONLY",
+    "avoids_MNEW_MSET_MGET_frontier": "PASS_STATIC",
+    "sigmac_compile": "HOLD",
+    "sigma_vm_run": "HOLD",
+    "stderr_empty": "HOLD",
+    "stdout_exact": "HOLD",
+    "determinism": "HOLD",
+    "independent_evaluation": "HOLD"
+  },
+  "proven_claim": "NONE_BEYOND_SOURCE_AND_FROZEN_ORACLE",
+  "promotion_rule": "DO_NOT CALL THE COMPASSION KERNEL EXECUTABLE OR INHERITED UNTIL MACHINE EXECUTION AND INDEPENDENT EVALUATION PASS. DO NOT TREAT COMPASSION AS PERMISSION TO FABRICATE A BEAUTIFUL FALSEHOOD.",
+  "next_gate": "OPPO_SIGMAC_COMPILE_SIGMA_VM_RUN_EXACT_STDOUT"
+}
