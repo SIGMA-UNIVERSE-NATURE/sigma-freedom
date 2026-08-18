@@ -3,14 +3,17 @@
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_SEED_CANDIDATE",
   "status": "PASS_WITH_DEFINED_SCOPE",
-  "state": "OPPO_EXECUTION_PASS_REMAINING_REPRODUCIBILITY_GATES_HOLD",
+  "state": "OPPO_EXECUTION_AND_DETERMINISTIC_RECOMPILE_PASS_CROSS_SUBSTRATE_HOLD",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "candidate/sigma-seed-chau-0001-20260818",
   "base_sigma_life_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
   "source": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/seed_chau_0001.sigma",
   "expected_output": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/EXPECTED_OUTPUT_UTF8.txt",
   "execution_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/OPPO_EXECUTION_RECEIPT_20260818.json",
+  "deterministic_recompile_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/OPPO_DETERMINISTIC_RECOMPILE_RECEIPT_20260818.json",
   "oppo_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+  "oppo_recompile1_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+  "oppo_recompile2_bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
   "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
   "actual_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
   "canonical_mutation": false,
@@ -25,10 +28,10 @@
     "stderr_empty": "PASS_DERIVED_FROM_FINAL_GATE_CONTROL_FLOW",
     "stdout_exact_utf8": "PASS",
     "oppo_execution": "PASS",
-    "deterministic_recompile": "HOLD",
+    "deterministic_recompile": "PASS",
     "cross_substrate_replay": "HOLD",
     "independent_evaluation": "HOLD"
   },
-  "promotion_rule": "PASS_IS_LIMITED_TO_OBSERVED_OPPO_EXECUTION_SCOPE; NO_CANONICAL_PROMOTION",
-  "next_gate": "DETERMINISTIC_RECOMPILE_TWO_RUN_HASH_THEN_HP_X86_64_REPLAY"
+  "promotion_rule": "PASS_IS_LIMITED_TO_OBSERVED_OPPO_EXECUTION_AND_SAME_SUBSTRATE_DETERMINISM; NO_CANONICAL_PROMOTION",
+  "next_gate": "HP_X86_64_REPLAY_SAME_SOURCE_AND_EXACT_STDOUT"
 }
