@@ -1,0 +1,63 @@
+{
+  "candidate_id": "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY",
+  "classification": "ISOLATED_SIGMA_PSI_NATIVE_BRAIN_SELF_ASSEMBLY_CANDIDATE",
+  "base_ref": "agent/sigma-native-brain-54x512-v0-1-20260818",
+  "self_construction_predecessor_ref": "candidate/sigma-creates-sigma-0002-20260818",
+  "self_construction_predecessor_pass_commit": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
+  "goal": "REPLACE_THE_MECHANICAL_PYTHON_SOURCE_CONCATENATION_STEP_WITH_A_SIGMA_PSI_PROGRAM_THAT_ASSEMBLES_THE_NATIVE_BRAIN_SOURCE_FROM_THE_SAME_FIVE_PARTS",
+  "ordered_source_parts": [
+    {
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/src/00_core_registry.sigma",
+      "git_blob_sha1": "d56ecc9b7f4249fec73eb70103d50aeee7c64646"
+    },
+    {
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/src/10_skill_router_a.sigma.part",
+      "git_blob_sha1": "f1c87d8574b0d8294f7b364c9ff34d4617fcef88"
+    },
+    {
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/src/10_skill_router_b.sigma.part",
+      "git_blob_sha1": "04b4f762b6752f40414b71dfbeb77352916ec7f5"
+    },
+    {
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/src/20_accuracy_kernel.sigma",
+      "git_blob_sha1": "081ac985b2fd46103e93c8250bcea0a485838896"
+    },
+    {
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/src/90_main.sigma",
+      "git_blob_sha1": "5865b96a27f2306242efa860312728bdb40f7769"
+    }
+  ],
+  "legacy_python_assembler": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/tools/assemble_candidate.py",
+  "legacy_assembler_semantics": "BYTE_FOR_BYTE_CONCATENATION_IN_ORDER_WITH_STRICT_UTF8_VALIDATION_AND_NO_CONTENT_TRANSFORMATION",
+  "assembled_source_contract": {
+    "sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "bytes": 19047,
+    "lines": 334,
+    "expected_stdout_sha256_after_compile_run": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a"
+  },
+  "required_chain": [
+    "DISCOVER_AND_VERIFY_EXISTING_SIGMA_PSI_IO_PRIMITIVES_FROM_MACHINE_TOOLCHAIN",
+    "WRITE_SIGMA_PSI_SELF_ASSEMBLER_WITHOUT_PYTHON_ASSEMBLY",
+    "SIGMAC_SELF_ASSEMBLER_RC0",
+    "RUN_SELF_ASSEMBLER_ON_SIGMA_RUNTIME",
+    "ASSEMBLED_SOURCE_SHA256_EXACT_5C24E36F",
+    "ASSEMBLED_SOURCE_BYTES_EXACT_19047",
+    "SIGMAC_ASSEMBLED_NATIVE_BRAIN_RC0",
+    "SIGMA_HOSTVM_NATIVE_BRAIN_RC0",
+    "STDERR_EMPTY",
+    "STDOUT_SHA256_EXACT_20EEE2E7",
+    "DETERMINISTIC_SELF_ASSEMBLY",
+    "DIFFERENTIAL_AGAINST_LEGACY_PYTHON_ASSEMBLY",
+    "INDEPENDENT_EVALUATION"
+  ],
+  "forbidden_shortcuts": [
+    "PYTHON_CONCATENATES_SOURCE_DURING_THE_SELF_ASSEMBLY_PROOF",
+    "SHELL_CAT_IS_COUNTED_AS_SIGMA_SELF_ASSEMBLY",
+    "HOST_ADAPTER_CONTAINS_NATIVE_BRAIN_SOURCE_CONTENT",
+    "EXPECTED_OUTPUT_OR_SOURCE_HASH_IS_CHANGED_TO_FIT_OBSERVED_FAILURE",
+    "SOURCE_PRESENCE_IS_TREATED_AS_EXECUTION_EVIDENCE"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
