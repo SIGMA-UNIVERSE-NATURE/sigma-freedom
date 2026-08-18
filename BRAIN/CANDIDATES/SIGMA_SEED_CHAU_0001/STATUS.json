@@ -3,13 +3,14 @@
   "language": "SIGMA-PSI",
   "classification": "ISOLATED_SIGMA_PSI_SEED_CANDIDATE",
   "status": "HOLD",
-  "state": "INDEPENDENT_EVALUATION_HOLD_MISSING_DIRECT_OPPO_RC_RECEIPT",
+  "state": "DIRECT_OPPO_RECEIPT_002_RECORDED_PENDING_INDEPENDENT_REEVALUATION",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "candidate/sigma-seed-chau-0001-20260818",
   "base_sigma_life_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
   "source": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/seed_chau_0001.sigma",
   "expected_output": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/EXPECTED_OUTPUT_UTF8.txt",
   "execution_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/OPPO_EXECUTION_RECEIPT_20260818.json",
+  "oppo_direct_machine_receipt_002": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/OPPO_DIRECT_MACHINE_RECEIPT_002_20260818.json",
   "deterministic_recompile_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/OPPO_DETERMINISTIC_RECOMPILE_RECEIPT_20260818.json",
   "hp_replay_attempt_001_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/HP_X86_64_REPLAY_ATTEMPT_001_HOLD_TEXT_CAPTURE_20260818.json",
   "hp_replay_attempt_002_receipt": "BRAIN/CANDIDATES/SIGMA_SEED_CHAU_0001/evidence/HP_X86_64_REPLAY_ATTEMPT_002_RAW_CAPTURE_20260818.json",
@@ -32,7 +33,8 @@
     "source_written_in_sigma_psi": "PASS",
     "expected_output_frozen": "PASS",
     "provenance_recorded": "PASS",
-    "oppo_execution": "HOLD_MISSING_DIRECT_COMPILE_RC_RUN_RC_STDERR_OBSERVATIONS",
+    "oppo_direct_machine_receipt_002": "RECORDED_DIRECT_FIELDS_PRESENT",
+    "oppo_execution": "HOLD_PENDING_INDEPENDENT_REEVALUATION",
     "deterministic_recompile": "PASS",
     "hp_x86_64_bytecode_match": "PASS",
     "hp_x86_64_vm_run_rc0": "PASS",
@@ -43,11 +45,11 @@
     "hp_msys2_direct_semantic_replay": "PASS",
     "hp_msys2_direct_raw_exact_stdout": "HOLD_PLATFORM_NEWLINE_TRANSLATION",
     "powershell_as_newline_cause": "REJECTED_BY_DIRECT_MSYS2_REPRODUCTION",
-    "cross_substrate_semantic_replay": "HOLD_DEPENDS_ON_DIRECT_OPPO_EXECUTION_EVIDENCE",
+    "cross_substrate_semantic_replay": "HOLD_PENDING_INDEPENDENT_REEVALUATION",
     "cross_substrate_exact_byte_replay": "HOLD_PLATFORM_NEWLINE_TRANSLATION",
-    "status_overclaim_check": "FAIL_RECORDED_AND_STATUS_CORRECTED",
-    "independent_evaluation": "HOLD"
+    "status_overclaim_check": "FAIL_IN_EVALUATION_001_STATUS_CORRECTED_PENDING_REEVALUATION",
+    "independent_evaluation": "HOLD_PRIOR_EVALUATION_001"
   },
-  "promotion_rule": "INDEPENDENT EVALUATOR HOLD IS BINDING FOR THIS CANDIDATE STATUS; DO NOT INFER DIRECT MACHINE FIELDS FROM CONTROL FLOW; NO SOURCE OR EXPECTED OUTPUT MUTATION; NO CANONICAL PROMOTION",
-  "next_gate": "CAPTURE_DIRECT_OPPO_MACHINE_RECEIPT_WITH_COMPILE_RC_RUN_RC_STDERR_BYTES_AND_HASHES_THEN_REEVALUATE"
+  "promotion_rule": "DIRECT OPPO FIELDS ARE NOW RECORDED BUT PRIOR INDEPENDENT HOLD REMAINS BINDING UNTIL REEVALUATION; DO NOT SELF-PROMOTE; NO SOURCE OR EXPECTED OUTPUT MUTATION; NO CANONICAL PROMOTION",
+  "next_gate": "INDEPENDENT_REEVALUATION_002_READ_NEW_OPPO_DIRECT_MACHINE_RECEIPT"
 }
