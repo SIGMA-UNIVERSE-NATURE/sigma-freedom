@@ -1,0 +1,28 @@
+{
+  "schema": "SIGMA-VM-EXPERIMENT-MAP-GITHUB-PACKAGE-1.0",
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "agent/sigma-experiment-map-20260818",
+  "parent_commit": "8c290d2ec579c3b398b331ff96a67f1aa1f94ab9",
+  "monolithic_local_map": {
+    "name": "SIGMA_VM_EXPERIMENT_MAP_v1.0.json",
+    "sha256": "2afc74b8d8d69177edda86d2d8097ee1767ac7ffa2307017a0e4ca969686be32",
+    "note": "The local downloadable package retains the monolithic machine map. GitHub persists an equivalent split machine-readable representation to keep each evidence object independently inspectable."
+  },
+  "files": [
+    {"name": "SIGMA_VM_EXPERIMENT_MAP_v1.0.md", "bytes": 7311, "sha256": "c01137e6f85ce4c4b0b3786e55996cd5d88f939fbbf7595ed1dfe3a459228a18"},
+    {"name": "SIGMA_VM_WINDOW_ASSIGNMENTS_v1.0.md", "bytes": 6542, "sha256": "3c23c9452ac4129333d3613fbb9b878a4aec1612c68d99297dd2638f6ce70882"},
+    {"name": "MAP_CONTROL.json", "bytes": 3656, "sha256": "4ec2f811a981fc2bfa7b3bfe64649d429a7f58100efac491c39186aaf01d134e"},
+    {"name": "NODES_00_05.json", "bytes": 6100, "sha256": "c4256446a7ba917c0e014aa186353704c72adf3ecdc377752d0fd8143f60384b"},
+    {"name": "NODES_06_09.json", "bytes": 5388, "sha256": "8dafd4e961165f6427b36a0d2bc675b69dcbce8a66854d941d40c6f7aa0b115e"},
+    {"name": "NODES_10_13.json", "bytes": 4129, "sha256": "84189ba36bdf6b45ab09b37da6511f76a62a481e8cc21c15df79b9f2ea4d8d74"},
+    {"name": "EDGES.json", "bytes": 1614, "sha256": "7e13a7c759e181c684af7d28aa0bfc2c67c75cc87efd3c6655c7cf1376972be7"},
+    {"name": "WINDOW_REGISTRY.json", "bytes": 2883, "sha256": "347d144edd1cef434041212ce255539be9c3c91b4c80f070afe4f4caf596548e"}
+  ],
+  "promotion": {
+    "canonical_merge": "NONE",
+    "foundation_merge": "NONE",
+    "phase2_reopen": "NONE",
+    "512_promotion": "NONE"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "nodes": [
+    {
+      "id": "E00_FOUNDATION_BASELINE",
+      "title": "Foundation V7 immutable baseline",
+      "status": "CLOSED_INHERITED",
+      "owner_window": "NONE",
+      "dependencies": [],
+      "mutation": "FORBIDDEN",
+      "entry_gate": [],
+      "required_outputs": [],
+      "pass_gate": [
+        "source_tree_sha256 == fe513c20f4df9077e1d12acaa441dc90dceae566e70640b1b383ff185cf3ada1"
+      ],
+      "failure_route": "STOP_NEW_LINEAGE_IF_FOUNDATION_CHANGED"
+    },
+    {
+      "id": "E01_FROZEN_ABI",
+      "title": "Frozen SIGMBC01 ABI",
+      "status": "CLOSED_INHERITED",
+      "owner_window": "NONE",
+      "dependencies": [
+        "E00_FOUNDATION_BASELINE"
+      ],
+      "mutation": "FORBIDDEN",
+      "entry_gate": [],
+      "required_outputs": [],
+      "pass_gate": [
+        "abi_sha256 == c48c9883c6aedaa1ca7bfbc04b2ad05335040375bed942be73ae3ace9a5b8416"
+      ],
+      "failure_route": "STOP_AND_VERSION_NEW_ABI_LINEAGE"
+    },
+    {
+      "id": "E02_SIGMA_WRITTEN_VM_PROOF",
+      "title": "SIGMA-written VM full frozen-corpus proof",
+      "status": "CLOSED_VERIFIED",
+      "owner_window": "NONE",
+      "dependencies": [
+        "E01_FROZEN_ABI"
+      ],
+      "mutation": "FORBIDDEN",
+      "entry_gate": [],
+      "required_outputs": [],
+      "pass_gate": [
+        "positive_differential == 11/11",
+        "negative_fail_closed == 19/19",
+        "opcode_coverage == 11/11",
+        "unary_subop_coverage == 3/3",
+        "binary_subop_coverage == 15/15",
+        "constant_tag_coverage == 5/5",
+        "cold_bootstrap_cycle_1_sha256 == 2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667",
+        "cold_bootstrap_cycle_2_sha256 == 2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667"
+      ],
+      "failure_route": "REOPEN_ONLY_ON_CONTRADICTORY_NEW_EVIDENCE"
+    },
+    {
+      "id": "E03_TRUSTED_BOUNDARY_REDUCTION_001",
+      "title": "Remove math_floordiv from trusted C adapter",
+      "status": "CLOSED_VERIFIED",
+      "owner_window": "NONE",
+      "dependencies": [
+        "E02_SIGMA_WRITTEN_VM_PROOF"
+      ],
+      "mutation": "FORBIDDEN",
+      "entry_gate": [],
+      "required_outputs": [],
+      "pass_gate": [
+        "math_floordiv absent from adapter source",
+        "math_floordiv absent from host binary",
+        "FLOORDIV stress == 17/17",
+        "full regression unchanged",
+        "two-cycle fixed point unchanged",
+        "trusted custom primitive count 6 -> 5"
+      ],
+      "failure_route": "REOPEN_ONLY_ON_CONTRADICTORY_NEW_EVIDENCE"
+    },
+    {
+      "id": "E04_BOUNDARY_BASELINE_005",
+      "title": "Exact inventory of the five remaining trusted custom C primitives",
+      "status": "READY",
+      "owner_window": "W01_BOUNDARY_AUDITOR",
+      "dependencies": [
+        "E03_TRUSTED_BOUNDARY_REDUCTION_001"
+      ],
+      "mutation": "READ_ONLY",
+      "entry_gate": [
+        "current candidate source identified by SHA",
+        "current adapter source identified by SHA",
+        "current host binary identified by SHA"
+      ],
+      "allowed_paths": [
+        "read current SIGMA VM candidate",
+        "read current adapter source",
+        "inspect current host binary/symbols",
+        "write only W01 result package"
+      ],
+      "forbidden": [
+        "patch candidate",
+        "patch adapter",
+        "rename primitives",
+        "infer names from prior reports",
+        "change ABI/Foundation/corpus"
+      ],
+      "required_outputs": [
+        "TRUSTED_HOST_BOUNDARY_BASELINE_005.json",
+        "STATIC_CALLSITE_MAP.json",
+        "BINARY_SYMBOL_OR_STRING_AUDIT.json",
+        "W01_HANDOFF.md"
+      ],
+      "pass_gate": [
+        "exact source primitive list recorded",
+        "exact binary-presence result recorded",
+        "source count and binary audit reconciled",
+        "math_floordiv absence independently reconfirmed",
+        "bytes_f64_le_at presence or absence measured, not assumed",
+        "each primitive classified by semantic leakage and bootstrap dependency"
+      ],
+      "hold_gate": [
+        "source/binary mismatch",
+        "unknown candidate SHA",
+        "stripped binary prevents conclusive absence proof without alternate scan"
+      ],
+      "failure_route": "RETURN_HOLD_TO_W00_WITH_EXACT_MISSING_EVIDENCE"
+    },
+    {
+      "id": "E05_FLOAT64_CORPUS_FREEZE_001",
+      "title": "Freeze independent FLOAT64 bit-pattern corpus and oracle",
+      "status": "READY",
+      "owner_window": "W02_F64_CORPUS_CURATOR",
+      "dependencies": [
+        "E01_FROZEN_ABI"
+      ],
+      "mutation": "CORPUS_ONLY",
+      "entry_gate": [
+        "historical v13a mismatch set preserved",
+        "frozen ABI SHA pinned"
+      ],
+      "allowed_paths": [
+        "new corpus directory only",
+        "new oracle contract only",
+        "new corpus generator only",
+        "W02 result package"
+      ],
+      "forbidden": [
+        "edit VM candidate",
+        "edit host adapter",
+        "run candidate-tuning loop",
+        "place expected cases inside implementation files"
+      ],
+      "required_outputs": [
+        "FLOAT64_PUBLIC_CORPUS_v1.json",
+        "FLOAT64_WITHHELD_GENERATOR_SPEC_v1.json",
+        "FLOAT64_ORACLE_CONTRACT_v1.json",
+        "CORPUS_SHA256SUMS",
+        "W02_HANDOFF.md"
+      ],
+      "pass_gate": [
+        "covers +0/-0",
+        "covers min/max finite",
+        "covers min normal and subnormals",
+        "covers +/-infinity",
+        "covers positive/negative quiet NaN payloads",
+        "covers signaling NaN payloads",
+        "records expected raw 64-bit pattern",
+        "oracle implementation is independent from candidate",
+        "withheld seed derives deterministically from frozen candidate SHA",
+        "corpus frozen before candidate evaluation"
+      ],
+      "hold_gate": [
+        "oracle depends on candidate implementation",
+        "expected raw bits missing",
+        "corpus changes after candidate freeze without version increment"
+      ],
+      "failure_route": "VERSION_CORPUS_V2_AND_INVALIDATE_ALL_EVALUATIONS_ON_V1"
+    }
+  ]
+}

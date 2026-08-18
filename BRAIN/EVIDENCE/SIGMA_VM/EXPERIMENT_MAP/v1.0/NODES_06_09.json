@@ -1,0 +1,152 @@
+{
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "nodes": [
+    {
+      "id": "E06_FLOAT64_REPRESENTATION_CANDIDATE_001",
+      "title": "Implement one SIGMA-native bit-exact FLOAT64 representation candidate",
+      "status": "BLOCKED",
+      "owner_window": "W03_F64_IMPLEMENTER",
+      "dependencies": [
+        "E04_BOUNDARY_BASELINE_005",
+        "E05_FLOAT64_CORPUS_FREEZE_001"
+      ],
+      "mutation": "ONE_CANDIDATE_ONLY",
+      "entry_gate": [
+        "W01 verdict PASS",
+        "W02 corpus status FROZEN_PASS",
+        "parent candidate SHA pinned"
+      ],
+      "hypothesis": {
+        "primary": "Preserve raw 64-bit payload alongside the numeric view in SIGMA data structures; untouched constants retain exact bits while numeric operations use the numeric view.",
+        "closed_rejected": "Reconstructing only the numeric value from bytes is insufficient; v13a produced 11/14 bit-exact and lost three NaN payload/signaling patterns.",
+        "forbidden_shortcut": "Adding a target-specific C FLOAT64 bitcast/decoder and then calling the trusted-boundary reduction PASS."
+      },
+      "allowed_paths": [
+        "one versioned SIGMA VM candidate source",
+        "one isolated adapter-removal candidate if bytes_f64_le_at is actually present",
+        "implementation notes",
+        "W03_HANDOFF.md"
+      ],
+      "forbidden": [
+        "edit frozen ABI",
+        "edit Foundation V7",
+        "edit public/withheld corpus",
+        "hardcode case labels or expected hashes",
+        "modify evaluator",
+        "claim PASS",
+        "continue to a second design in the same window"
+      ],
+      "required_outputs": [
+        "candidate source",
+        "minimal diff",
+        "candidate hypothesis record",
+        "compile command/result",
+        "W03_HANDOFF.md"
+      ],
+      "completion_gate": [
+        "one candidate implemented",
+        "candidate compiles or exact compile failure preserved",
+        "no evaluation verdict issued by implementer"
+      ],
+      "failure_route": "REJECT_OR_HOLD_ONE_CANDIDATE_THEN_RETURN_TO_W00"
+    },
+    {
+      "id": "E07_CANDIDATE_FREEZE_001",
+      "title": "Freeze candidate identity and prove deterministic compilation",
+      "status": "BLOCKED",
+      "owner_window": "W04_CANDIDATE_FREEZER",
+      "dependencies": [
+        "E06_FLOAT64_REPRESENTATION_CANDIDATE_001"
+      ],
+      "mutation": "NO_SOURCE_PATCH",
+      "entry_gate": [
+        "W03 candidate package complete"
+      ],
+      "required_outputs": [
+        "CANDIDATE_FREEZE_MANIFEST.json",
+        "candidate source SHA-256",
+        "candidate bytecode SHA-256",
+        "adapter source SHA-256",
+        "host binary SHA-256",
+        "two independent compile outputs",
+        "W04_HANDOFF.md"
+      ],
+      "pass_gate": [
+        "source immutable after freeze",
+        "compile A SHA == compile B SHA",
+        "Foundation SHA pinned",
+        "ABI SHA pinned",
+        "no corpus labels/expected result hashes embedded in candidate",
+        "adapter delta limited to declared primitive removal"
+      ],
+      "failure_route": "INVALIDATE_CANDIDATE_AND_RETURN_TO_W03_AS_NEW_VERSION"
+    },
+    {
+      "id": "E08_INDEPENDENT_FLOAT64_EVALUATION_001",
+      "title": "Independent bit-exact FLOAT64 evaluation",
+      "status": "BLOCKED",
+      "owner_window": "W05_F64_EVALUATOR",
+      "dependencies": [
+        "E07_CANDIDATE_FREEZE_001"
+      ],
+      "mutation": "READ_ONLY_EVALUATION",
+      "entry_gate": [
+        "candidate freeze manifest PASS",
+        "corpus v1 frozen"
+      ],
+      "required_outputs": [
+        "FLOAT64_PUBLIC_RESULT.json",
+        "FLOAT64_WITHHELD_RESULT.json",
+        "PRIMITIVE_ABSENCE_RESULT.json",
+        "W05_HANDOFF.md"
+      ],
+      "pass_gate": [
+        "public corpus bit-exact all cases",
+        "withheld deterministic corpus bit-exact all cases",
+        "raw bits compared, not formatted numeric strings",
+        "bytes_f64_le_at absent from adapter source",
+        "bytes_f64_le_at absent from compiled host binary",
+        "no candidate mutation during evaluation"
+      ],
+      "reject_gate": [
+        "any bit mismatch",
+        "candidate accesses expected outputs",
+        "primitive still present",
+        "candidate SHA differs from freeze manifest"
+      ],
+      "failure_route": "REJECT_CANDIDATE_WITH_MINIMAL_COUNTEREXAMPLE"
+    },
+    {
+      "id": "E09_FULL_VM_REGRESSION_001",
+      "title": "Run immutable VM regression gates",
+      "status": "BLOCKED",
+      "owner_window": "W06_REGRESSION_RUNNER",
+      "dependencies": [
+        "E08_INDEPENDENT_FLOAT64_EVALUATION_001"
+      ],
+      "mutation": "READ_ONLY_TEST",
+      "entry_gate": [
+        "W05 verdict PASS"
+      ],
+      "required_outputs": [
+        "POSITIVE_DIFFERENTIAL_RESULT.json",
+        "NEGATIVE_CORPUS_RESULT.json",
+        "FLOORDIV_STRESS_RESULT.json",
+        "COVERAGE_RESULT.json",
+        "W06_HANDOFF.md"
+      ],
+      "pass_gate": [
+        "positive differential 11/11",
+        "SIGMA malformed fail-closed 19/19",
+        "known C malformed agreement 17/19 with same two classified divergences",
+        "FLOORDIV stress 17/17",
+        "opcodes 11/11",
+        "unary 3/3",
+        "binary 15/15",
+        "constant tags 5/5",
+        "stderr/RC captured for every case"
+      ],
+      "failure_route": "REJECT_CANDIDATE; DO_NOT_PATCH_IN_RUNNER_WINDOW"
+    }
+  ]
+}

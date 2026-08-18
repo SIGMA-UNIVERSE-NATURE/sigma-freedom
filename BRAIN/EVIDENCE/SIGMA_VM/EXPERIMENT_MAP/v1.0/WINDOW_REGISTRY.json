@@ -1,0 +1,112 @@
+{
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "windows": [
+    {
+      "id": "W00_CUA2_INTEGRATOR",
+      "role": "integration + dependency control",
+      "current_status": "ACTIVE",
+      "owns_nodes": [],
+      "owns_paths": [
+        "experiment map",
+        "experiment ledger",
+        "integration receipts"
+      ],
+      "must_not": [
+        "implement candidate",
+        "run self-evaluation and call PASS",
+        "modify frozen ABI/Foundation",
+        "merge canonical state"
+      ]
+    },
+    {
+      "id": "W01_BOUNDARY_AUDITOR",
+      "role": "exact trusted-host boundary inventory",
+      "current_status": "READY_TO_OPEN",
+      "owns_nodes": [
+        "E04_BOUNDARY_BASELINE_005"
+      ],
+      "parallel_safe_with": [
+        "W02_F64_CORPUS_CURATOR"
+      ]
+    },
+    {
+      "id": "W02_F64_CORPUS_CURATOR",
+      "role": "freeze FLOAT64 corpus and independent oracle",
+      "current_status": "READY_TO_OPEN",
+      "owns_nodes": [
+        "E05_FLOAT64_CORPUS_FREEZE_001"
+      ],
+      "parallel_safe_with": [
+        "W01_BOUNDARY_AUDITOR"
+      ]
+    },
+    {
+      "id": "W03_F64_IMPLEMENTER",
+      "role": "implement exactly one FLOAT64 representation candidate",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E06_FLOAT64_REPRESENTATION_CANDIDATE_001"
+      ],
+      "unblocks_when": [
+        "W01 PASS",
+        "W02 FROZEN_PASS"
+      ]
+    },
+    {
+      "id": "W04_CANDIDATE_FREEZER",
+      "role": "hash/freeze/deterministic compilation",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E07_CANDIDATE_FREEZE_001"
+      ]
+    },
+    {
+      "id": "W05_F64_EVALUATOR",
+      "role": "independent bit-exact evaluator",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E08_INDEPENDENT_FLOAT64_EVALUATION_001"
+      ]
+    },
+    {
+      "id": "W06_REGRESSION_RUNNER",
+      "role": "immutable positive/negative/coverage regression",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E09_FULL_VM_REGRESSION_001"
+      ]
+    },
+    {
+      "id": "W07_COLD_BOOTSTRAP_RUNNER",
+      "role": "two-cycle fixed-point experiment",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E10_TWO_CYCLE_COLD_BOOTSTRAP_001"
+      ]
+    },
+    {
+      "id": "W08_PORTABILITY_RUNNER",
+      "role": "cross-substrate replay only",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E11_CROSS_SUBSTRATE_REPLAY_001"
+      ]
+    },
+    {
+      "id": "W09_VERDICT_EVALUATOR",
+      "role": "independent reduction verdict",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E12_REDUCTION_VERDICT_002"
+      ]
+    },
+    {
+      "id": "W10_NEXT_PRIMITIVE_SELECTOR",
+      "role": "select exactly one next measured primitive",
+      "current_status": "BLOCKED",
+      "owns_nodes": [
+        "E13_NEXT_PRIMITIVE_SELECTION_001"
+      ]
+    }
+  ]
+}
