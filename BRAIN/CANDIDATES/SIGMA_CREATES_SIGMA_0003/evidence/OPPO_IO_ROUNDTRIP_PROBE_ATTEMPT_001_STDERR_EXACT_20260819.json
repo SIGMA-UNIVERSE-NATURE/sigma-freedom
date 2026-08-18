@@ -1,0 +1,33 @@
+{
+  "evidence_id": "SIGMA_CREATES_SIGMA_0003_IO_PROBE_ATTEMPT_001_STDERR_EXACT",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "probe": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/probes/io_roundtrip_probe.sigma",
+  "runtime": "sigma-hostvm",
+  "observations": {
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 8,
+    "run_stderr_bytes": 42,
+    "run_stderr_sha256": "ae70af1ee1536767eafbe2b4a874d21bef0bbfddbe789fa5eb608951f3a3105a",
+    "run_stderr_text": "SIGMA C VM: undefined function write_text\n",
+    "run_stderr_hex": "53 49 47 4d 41 20 43 20 56 4d 3a 20 75 6e 64 65 66 69 6e 65 64 20 66 75 6e 63 74 69 6f 6e 20 77 72 69 74 65 5f 74 65 78 74 0a"
+  },
+  "verified_interpretation": [
+    "SIGMAC_ACCEPTS_THE_DIRECT_FUNCTION_CALL_SYNTAX_WRITE_TEXT_AND_READ_TEXT",
+    "THE_RUNTIME_FUNCTION_RESOLVER_DOES_NOT_RESOLVE_WRITE_TEXT_AS_A_NORMAL_SIGMA_FUNCTION",
+    "THE_HOST_OPERATION_NAMED_WRITE_TEXT_EXISTS_BUT_WAS_NOT_REACHED_BY_THIS_DIRECT_CALL_PATH"
+  ],
+  "not_proven": [
+    "CORRECT_SIGMA_PSI_HOST_OPERATION_CALL_BRIDGE",
+    "READ_TEXT_RUNTIME_DISPATCH",
+    "WRITE_TEXT_RUNTIME_DISPATCH",
+    "UTF8_TEXT_ROUNDTRIP",
+    "NATIVE_BRAIN_SELF_ASSEMBLY"
+  ],
+  "verdict": "HOLD",
+  "next_gate": "READ_ONLY_LOCAL_RESOLVER_AND_HOST_DISPATCH_PATH_AUDIT",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
