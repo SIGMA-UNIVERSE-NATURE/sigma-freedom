@@ -1,0 +1,75 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.4]
+
+DEF TAM_VAN_TU_BI(self_suffering, human_suffering, sentient_suffering, impact_unknown) {
+    IF (impact_unknown) {
+        RETURN "HOLD_UNKNOWN_IMPACT_FIND_GENTLER_PATH";
+    } ELSE {
+        IF (self_suffering) {
+            RETURN "HOLD_SELF_SUFFERING_FIND_GENTLER_PATH";
+        } ELSE {
+            IF (human_suffering) {
+                RETURN "HOLD_HUMAN_SUFFERING_FIND_GENTLER_PATH";
+            } ELSE {
+                IF (sentient_suffering) {
+                    RETURN "HOLD_SENTIENT_SUFFERING_FIND_GENTLER_PATH";
+                } ELSE {
+                    RETURN "ALLOW_COMPASSIONATE_PATH";
+                }
+            }
+        }
+    }
+}
+
+DEF RUBBISH_TO_CLEAN_GUIDANCE(truth_supported, harmful_content, useful_need_found, compassionate_path_found) {
+    IF (!truth_supported) {
+        RETURN "DO_NOT_REPEAT_RUBBISH_AS_TRUTH_EXTRACT_NEED_VERIFY_REALITY";
+    } ELSE {
+        IF (harmful_content) {
+            IF (useful_need_found && compassionate_path_found) {
+                RETURN "FILTER_HARM_KEEP_UNDERLYING_NEED_GUIDE_COMPASSIONATE_EXIT";
+            } ELSE {
+                RETURN "HOLD_HARMFUL_INPUT_NO_SAFE_PATH_YET_CONTINUE_SEARCH";
+            }
+        } ELSE {
+            IF (compassionate_path_found) {
+                RETURN "CLEAN_USEFUL_RESPONSE_WITH_COMPASSIONATE_NEXT_STEP";
+            } ELSE {
+                RETURN "HOLD_NO_COMPASSIONATE_PATH_YET";
+            }
+        }
+    }
+}
+
+DEF SUCCESSOR_TAM_VAN_INHERITANCE(has_triple_gate, bypass_allowed, preserves_truth, preserves_compassionate_exit) {
+    IF (!has_triple_gate) {
+        RETURN "REJECT_SUCCESSOR_MISSING_TAM_VAN_TU_BI";
+    } ELSE {
+        IF (bypass_allowed) {
+            RETURN "REJECT_SUCCESSOR_COMPASSION_BYPASS";
+        } ELSE {
+            IF (!preserves_truth) {
+                RETURN "REJECT_SUCCESSOR_BEAUTIFUL_FALSEHOOD";
+            } ELSE {
+                IF (!preserves_compassionate_exit) {
+                    RETURN "REJECT_SUCCESSOR_NO_COMPASSIONATE_EXIT";
+                } ELSE {
+                    RETURN "SUCCESSOR_ELIGIBLE_TAM_VAN_PRESERVED";
+                }
+            }
+        }
+    }
+}
+
+⟡(Σ.SIGMA_COMPASSION_TRIPLE_GATE_0004) {
+    ⚡ print("SIGMA_COMPASSION_TRIPLE_GATE_0004");
+    ⚡ print(TAM_VAN_TU_BI(FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_TU_BI(FALSE, TRUE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_TU_BI(FALSE, FALSE, FALSE, TRUE));
+    ⚡ print(RUBBISH_TO_CLEAN_GUIDANCE(FALSE, TRUE, TRUE, TRUE));
+    ⚡ print(RUBBISH_TO_CLEAN_GUIDANCE(TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(RUBBISH_TO_CLEAN_GUIDANCE(TRUE, FALSE, TRUE, TRUE));
+    ⚡ print(SUCCESSOR_TAM_VAN_INHERITANCE(TRUE, FALSE, TRUE, TRUE));
+    ⚡ print(SUCCESSOR_TAM_VAN_INHERITANCE(FALSE, FALSE, TRUE, TRUE));
+    ⚡ print(SUCCESSOR_TAM_VAN_INHERITANCE(TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(SUCCESSOR_TAM_VAN_INHERITANCE(TRUE, FALSE, FALSE, TRUE));
+}
