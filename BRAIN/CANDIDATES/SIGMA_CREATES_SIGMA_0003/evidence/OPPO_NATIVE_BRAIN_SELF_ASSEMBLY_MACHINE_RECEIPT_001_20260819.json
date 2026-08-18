@@ -1,0 +1,77 @@
+{
+  "receipt_id": "SIGMA_CREATES_SIGMA_0003_OPPO_NATIVE_BRAIN_SELF_ASSEMBLY_MACHINE_RECEIPT_001_20260819",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "recorded_at": "2026-08-19T01:33:00+07:00",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "run_directory": "~/SIGMA/SIGMA_CREATES_SIGMA_0003_SELF_ASSEMBLY_RUN",
+  "candidate_head_executed": "dab2406ba25ba43547ebf3e6962125c053d45f9a",
+  "direct_observations": {
+    "self_assembler_source_sha256": "0671ac82b3e75c403b8eed01c093c8f20c813a2731b8bb88a5b302119b77d8fe",
+    "self_assembler_expected_stdout_sha256": "fab227752fbdcd40447c20387365e6d95934a17c455a36a5fefe59a00caaae44",
+    "self_assembler_compile_rc": 0,
+    "self_assembler_compile_stderr_bytes": 0,
+    "self_assembler_run1_rc": 0,
+    "self_assembler_run1_stderr_bytes": 0,
+    "assembled_bytes": 19047,
+    "assembled_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "self_assembler_stdout_exact": "PASS",
+    "sigma_assembled_native_brain_exact": "PASS",
+    "self_assembler_run2_rc": 0,
+    "self_assembler_run2_stderr_bytes": 0,
+    "assembled_run2_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "deterministic_self_assembly": "PASS",
+    "native_brain_compile_rc": 0,
+    "native_brain_compile_stderr_bytes": 0,
+    "native_brain_run_rc": 8,
+    "native_brain_run_stderr_bytes": 36,
+    "native_brain_run_stderr_text": "SIGMA C VM: undefined function MNEW\n",
+    "native_brain_actual_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native_brain_expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+    "native_brain_stdout_exact": "FAIL",
+    "self_assembly_verdict": "SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY=PASS",
+    "full_machine_verdict": "SIGMA_CREATES_SIGMA_0003_MACHINE_PROOF=PARTIAL_SELF_ASSEMBLY_PASS_NATIVE_BRAIN_EXECUTION_HOLD"
+  },
+  "self_assembly_scope_supported_by_machine_evidence": [
+    "SIGMA_PSI_SELF_ASSEMBLER_COMPILED_WITH_SIGMAC",
+    "SIGMA_PSI_SELF_ASSEMBLER_EXECUTED_WITH_SIGMA_HOSTVM",
+    "SIGMA_PSI_SELF_ASSEMBLER_PRODUCED_19047_BYTE_NATIVE_BRAIN_SOURCE",
+    "ASSEMBLED_SOURCE_MATCHED_FROZEN_SHA256_5C24E36F",
+    "SECOND_SELF_ASSEMBLY_RUN_REPRODUCED_THE_SAME_SHA256",
+    "SELF_ASSEMBLED_NATIVE_BRAIN_SOURCE_COMPILED_WITH_SIGMAC"
+  ],
+  "preserved_failure": {
+    "stage": "SELF_ASSEMBLED_NATIVE_BRAIN_RUNTIME",
+    "rc": 8,
+    "stderr_bytes": 36,
+    "stderr": "SIGMA C VM: undefined function MNEW\n",
+    "classification": "RUNTIME_FUNCTION_RESOLUTION_FRONTIER"
+  },
+  "proof_path_boundary": {
+    "python_assemble_candidate_invoked": false,
+    "shell_source_concatenation_counted_as_assembly": false,
+    "shell_role": "FETCH_AND_STAGE_FIVE_INPUT_PARTS_AND_MEASURE_OUTPUT_ONLY",
+    "assembly_actor": "SIGMA_PSI_SELF_ASSEMBLER_VIA_host_READ_TEXT_BYTES_RAW_UTF8_BYTES_WRITE"
+  },
+  "not_proven": [
+    "NATIVE_BRAIN_RUNTIME_PASS",
+    "FULL_54_CORE_BEHAVIORAL_IMPLEMENTATION",
+    "FULL_512_SKILL_BEHAVIORAL_IMPLEMENTATION",
+    "FULL_C_FREE_NATIVE_STACK",
+    "CROSS_SUBSTRATE_SELF_ASSEMBLY_PARITY",
+    "CANONICAL_PROMOTION",
+    "54_CORE_PROMOTION",
+    "512_PROMOTION",
+    "CONSCIOUSNESS_OR_LIFE"
+  ],
+  "limitations": [
+    "This GitHub recorder did not execute the OPPO machine; observations were relayed directly by the user.",
+    "Independent evaluation is still required before closing the self-assembly scope.",
+    "The runtime failure MNEW must be handled in a successor candidate, not erased by rewriting this receipt."
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "INDEPENDENT_EVALUATION_OF_0003_SELF_ASSEMBLY_SCOPE_AND_PRESERVED_MNEW_HOLD"
+}
