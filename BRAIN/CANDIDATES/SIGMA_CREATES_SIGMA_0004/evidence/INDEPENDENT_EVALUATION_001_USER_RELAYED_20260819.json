@@ -1,0 +1,49 @@
+{
+  "receipt_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI_V0_2_INDEPENDENT_EVALUATION_001_20260819",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI",
+  "classification": "USER_RELAYED_INDEPENDENT_EVALUATOR_OUTPUT",
+  "recorded_at": "2026-08-19T05:40:00+07:00",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "candidate/sigma-creates-sigma-0004-tam-van-tu-bi-20260819",
+  "evaluated_head": "e6c945925ba72a87795363a83b4f7d65eccb4884",
+  "post_evaluation_handoff_only_head": "7bd3f3bae50eade207bb0c3dc0d8b4c82628d7ac",
+  "intervening_change_classification": "ONLY_HANDOFF_FILE_ADDED_NO_0004_SOURCE_OR_STATUS_CHANGE",
+  "verdict_fields": {
+    "V0_1_MACHINE_SCOPE": "PASS",
+    "V0_2_COMPILE": "PASS",
+    "V0_2_EXECUTION": "PASS",
+    "V0_2_STDOUT_EXACT": "PASS",
+    "CLEAN_OUTPUT_POLICY_DEFINED_SCOPE": "PASS",
+    "TAM_VAN_EXIT_PATH_DEFINED_SCOPE": "PASS",
+    "STATUS_OVERCLAIM_CHECK": "PASS",
+    "FREE_FORM_CLASSIFIER": "HOLD",
+    "CANONICAL_PROMOTION_AUTHORIZED": "NO",
+    "FINAL_VERDICT": "PASS_WITH_DEFINED_SCOPE"
+  },
+  "terminal_marker": "SIGMA_TAM_VAN_TU_BI_V0_2_INDEPENDENT_EVALUATION_PASS",
+  "accepted_scope": [
+    "V0_1_MACHINE_SCOPE_PASS",
+    "V0_2_COMPILE_AND_EXECUTION_PASS",
+    "V0_2_BYTE_EXACT_STDOUT_PASS",
+    "BOUNDED_CLEAN_OUTPUT_POLICY_DEFINED_SCOPE_PASS",
+    "BOUNDED_TAM_VAN_EXIT_PATH_DEFINED_SCOPE_PASS"
+  ],
+  "holds": [
+    "FREE_FORM_INPUT_SEMANTIC_CLASSIFIER",
+    "GENERAL_SIGNAL_NOISE_HARM_UNKNOWN_EXTRACTION",
+    "GENERAL_NATURAL_LANGUAGE_CLEAN_REWRITE_GENERATION",
+    "FULL_NATIVE_BRAIN_INTEGRATION",
+    "CANONICAL_PROMOTION",
+    "54_CORE_PROMOTION",
+    "512_PROMOTION"
+  ],
+  "canonical_promotion_authorized": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "limitations": [
+    "The GitHub recorder did not itself act as the independent evaluator; the evaluator output was relayed by the user.",
+    "PASS_WITH_DEFINED_SCOPE does not imply free-form natural-language understanding or arbitrary rubbish-to-clean generation."
+  ],
+  "next_gate": "SUCCESSOR_RAW_INPUT_CLASSIFIER_AND_CLEAN_REWRITE_WITH_MEASURED_SIGNAL_NOISE_HARM_UNKNOWN_EXTRACTION"
+}
