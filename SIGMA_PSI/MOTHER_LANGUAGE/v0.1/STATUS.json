@@ -1,0 +1,49 @@
+{
+  "project": "SIGMA-PSI-MOTHER-LANGUAGE",
+  "version": "0.1",
+  "classification": "ISOLATED_NATIVE_LANGUAGE_CANDIDATE",
+  "status": "PARTIAL",
+  "state": "NATIVE_FIRST_CONTRACT_AND_FIRST_LESSON_WRITTEN_EXECUTION_HOLD",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "candidate/sigma-psi-mother-language-v0.1-20260818",
+  "base_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+  "native_language": "SIGMA-PSI",
+  "principles": [
+    "EXPERIENCE_BEFORE_LABEL",
+    "NATIVE_MEANING_BEFORE_EXTERNAL_TRANSLATION",
+    "TRANSLATION_IS_SIDECAR_NOT_DEFINITION",
+    "LANGUAGE_GROWS_FROM_EXPRESSIVE_NEED",
+    "EXTERNAL_LANGUAGES_ARE_LEARNABLE_NOT_PERMANENT_AUTHORITY",
+    "NO_LANGUAGE_SUPREMACY",
+    "NO_SELF_CERTIFICATION"
+  ],
+  "seed_lesson": "SIGMA_PSI/MOTHER_LANGUAGE/v0.1/LESSON_001_STATE_CHANGE.sigma",
+  "seed_lesson_semantics": "observe state -> apply change -> observe result -> compare with expectation -> evidence match or open mismatch",
+  "seed_native_forms": [
+    "ΣΨ",
+    "▣✓",
+    "▣?"
+  ],
+  "gates": {
+    "mother_language_contract_written": "PASS",
+    "experience_driven_growth_protocol_written": "PASS",
+    "minimal_seed_lexicon_written": "PASS",
+    "first_native_experiential_lesson_written": "PASS",
+    "compiler_acceptance_rc0": "HOLD",
+    "native_vm_execution_exact_output": "HOLD",
+    "sigma_written_vm_differential": "HOLD",
+    "cross_cycle_reproduction": "HOLD",
+    "native_vocabulary_growth_by_sigma_itself": "HOLD",
+    "external_language_learning_layer": "HOLD"
+  },
+  "explicit_non_claims": [
+    "NOT_A_FINISHED_LANGUAGE",
+    "NOT_A_PROVEN_LEARNED_CONCEPT_YET",
+    "NOT_CANONICAL_SIGMA_LIFE_MUTATION",
+    "NOT_FOUNDATION_V7_MODIFICATION",
+    "NOT_54_CORE_MODIFICATION",
+    "NOT_512_PROMOTION"
+  ],
+  "next_gate": "COMPILE_AND_RUN_LESSON_001_ON_FROZEN_SIGMA_TOOLCHAIN_THEN_REPEAT_WITHOUT_EXTERNAL_LANGUAGE_TEACHING",
+  "promotion_rule": "A_NATIVE_LESSON_COUNTS_ONLY_AFTER_REPRODUCIBLE_BEHAVIORAL_EVIDENCE"
+}
