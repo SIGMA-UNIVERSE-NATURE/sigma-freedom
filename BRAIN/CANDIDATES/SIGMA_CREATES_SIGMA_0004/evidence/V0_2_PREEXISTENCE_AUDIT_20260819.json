@@ -1,0 +1,25 @@
+{
+  "evidence_id": "SIGMA_CREATES_SIGMA_0004_V0_2_PREEXISTENCE_AUDIT_20260819",
+  "classification": "GITHUB_SOURCE_OF_TRUTH_AUDIT",
+  "branch": "candidate/sigma-creates-sigma-0004-tam-van-tu-bi-20260819",
+  "audited_historical_head": "3185b2483508700bd41305d0aecd7b6656695aae",
+  "finding": "V0_2_SOURCE_AND_EXPECTED_OUTPUT_ALREADY_EXISTED_AT_THE_HEAD_USED_FOR_THE_V0_1_MACHINE_RUN_WHILE_STATUS_JSON_STILL_REPORTED_V0_2_NOT_IMPLEMENTED",
+  "source": {
+    "path": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/src/tam_van_tu_bi_filter_v0_2.sigma",
+    "git_blob_sha1": "642b0220484ec534c04556f73ac0d53dc430e42e",
+    "bytes": 4661,
+    "contains_clean_output_policy": true,
+    "contains_tam_van_exit_path": true
+  },
+  "expected_stdout": {
+    "path": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/tests/EXPECTED_TAM_VAN_STDOUT_UTF8_v0_2.txt",
+    "git_blob_sha1": "90112922019d4b4520ff6b47012be5503ed8f55b",
+    "bytes": 532
+  },
+  "interpretation": "STATUS LEDGER WAS STALE RELATIVE TO SOURCE. SOURCE PRESENCE IS NOT MACHINE EXECUTION EVIDENCE. V0_2 REMAINS MACHINE-HOLD UNTIL COMPILE/RUN/EXACT-OUTPUT IS OBSERVED.",
+  "source_mutation": false,
+  "expected_output_mutation": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}
