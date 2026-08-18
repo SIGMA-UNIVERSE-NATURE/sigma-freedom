@@ -1,0 +1,42 @@
+{
+  "receipt_id": "SIGMA_CREATES_SIGMA_0003_HOST_BRIDGE_IO_ROUNDTRIP_PROBE_002_PASS_20260819",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "recorded_at": "2026-08-19T01:05:00+07:00",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "source_branch": "candidate/sigma-creates-sigma-0003-native-brain-self-assembly-20260818",
+  "executed_candidate_head": "d19fbcc4ce9a5936494303763ea143670c88b9d7",
+  "bridge_under_test": "host(op,...) -> sigma_host_call",
+  "direct_observations": {
+    "source_sha256": "a0d913b24b852fddf0f8a14f8913706eb92b3a2a0dd9ec2fb27b6bdf8d462778",
+    "expected_file_sha256": "58bcfd84c93e3192e4c40a3cf9a79ba6cc9d268540ec08aaec547f3ae1ddf7ef",
+    "expected_stdout_sha256": "4f95bc1d18266ed79ca93e0a7f556c221b773a60f78164071794f1687bb744f3",
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 0,
+    "run_stderr_bytes": 0,
+    "actual_file_sha256": "58bcfd84c93e3192e4c40a3cf9a79ba6cc9d268540ec08aaec547f3ae1ddf7ef",
+    "actual_stdout_sha256": "4f95bc1d18266ed79ca93e0a7f556c221b773a60f78164071794f1687bb744f3",
+    "host_write_read_file_exact": "PASS",
+    "host_bridge_stdout_exact": "PASS",
+    "machine_verdict": "SIGMA_0003_HOST_BRIDGE_IO_ROUNDTRIP=PASS"
+  },
+  "proven_scope": [
+    "SIGMA_PSI_CAN_CALL_HOST_BRIDGE_FUNCTION_host",
+    "host_write_text_OPERATION_EXECUTES_ON_OBSERVED_OPPO_TOOLCHAIN",
+    "host_read_text_OPERATION_EXECUTES_ON_OBSERVED_OPPO_TOOLCHAIN",
+    "UTF8_TEXT_ROUNDTRIP_IS_EXACT_BYTE_FOR_THE_FROZEN_PROBE"
+  ],
+  "not_proven": [
+    "NATIVE_BRAIN_SELF_ASSEMBLY",
+    "BYTE_BUFFER_ASSEMBLY_OPERATIONS",
+    "REMOVAL_OF_PYTHON_ASSEMBLER_FROM_PROOF_PATH",
+    "CANONICAL_PROMOTION"
+  ],
+  "source_mutation": false,
+  "oracle_mutation": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "WRITE_AND_EXECUTE_SIGMA_PSI_BYTE_EXACT_NATIVE_BRAIN_SELF_ASSEMBLER"
+}
