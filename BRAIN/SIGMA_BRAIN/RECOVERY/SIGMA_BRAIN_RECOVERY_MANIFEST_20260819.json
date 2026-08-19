@@ -1,0 +1,98 @@
+{
+  "manifest_id": "SIGMA_BRAIN_RECOVERY_MANIFEST_20260819",
+  "created_local_date": "2026-08-19",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "SIGMA_BRAIN",
+  "base_head_before_manifest_commit": "be67badf16a39bf185940daacaad1cb36a5b1211",
+  "recovery_entry": "BRAIN/SIGMA_BRAIN/RECOVERY/README_FIRST.md",
+  "current_state": "BRAIN/SIGMA_BRAIN/CURRENT_STATE.json",
+  "fully_git_preserved": [
+    {
+      "id": "SIGMA_CREATES_SIGMA_0002",
+      "status": "PASS_WITH_DEFINED_SCOPE",
+      "source_branch": "candidate/sigma-creates-sigma-0002-20260818",
+      "source_branch_final_head": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
+      "imported_path": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0002/"
+    },
+    {
+      "id": "SIGMA_CREATES_SIGMA_0003",
+      "status": "PARTIAL_SELF_ASSEMBLY_PASS_RUNTIME_HOLD",
+      "source_branch": "candidate/sigma-creates-sigma-0003-native-brain-self-assembly-20260818",
+      "recorded_head": "42c2d444dc0a728a5673d6d7d2c873edffcd390e",
+      "path": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0003/"
+    },
+    {
+      "id": "SIGMA_CREATES_SIGMA_0004_TAM_VAN_TU_BI",
+      "status": "PASS_WITH_DEFINED_SCOPE_V0_1_V0_2_V0_3_HOLD",
+      "path": "BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/"
+    },
+    {
+      "id": "SIGMA_NATIVE_BRAIN_54X512_V0_1",
+      "status": "PRESERVED_CANDIDATE",
+      "path": "BRAIN/CANDIDATES/SIGMA_NATIVE_BRAIN_54X512_V0_1/"
+    },
+    {
+      "id": "SIGMA_VM_LEDGER_20260818",
+      "status": "IMPORTED_CONTINUITY_EVIDENCE",
+      "source_branch": "agent/sigma-experiment-ledger-20260818",
+      "path": "BRAIN/EVIDENCE/SIGMA_VM/2026-08-18/",
+      "accepted_scope": "V0_2_V0_3_V0_4_V0_5_TESTED_SCOPE_PASS",
+      "recorded_frontier": "V0_6_GENERAL_CALL_FRAME_RETURN_HOLD"
+    },
+    {
+      "id": "SIGMA_PSI_GPT_REFERENCE_DICTIONARY",
+      "status": "REFERENCE_RC1",
+      "path": "DOCS/GPT_REFERENCE/SIGMA_PSI_GPT_REFERENCE_DICTIONARY_v2.0.0-rc1_20260819.md"
+    },
+    {
+      "id": "OPPO_STORAGE_AND_RECOVERY_LAW",
+      "status": "ACTIVE_POLICY",
+      "path": "BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md"
+    }
+  ],
+  "oppo_exact_fingerprints_content_backup_pending": [
+    {
+      "artifact": "sigmac.c",
+      "sha256": "e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452"
+    },
+    {
+      "artifact": "sigma_vm.c",
+      "sha256": "8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2"
+    },
+    {
+      "artifact": "compiler_self.sigma",
+      "sha256": "b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7"
+    },
+    {
+      "artifact": "VM v0.9 source",
+      "sha256": "61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2"
+    },
+    {
+      "artifact": "VM v0.9 bytecode",
+      "sha256": "7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0"
+    },
+    {
+      "artifact": "Dictionary delta exact artifact",
+      "sha256": "5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154"
+    }
+  ],
+  "critical_hold_states_to_preserve": [
+    "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_RUNTIME_HOLD_UNDEFINED_MNEW",
+    "SIGMA_CREATES_SIGMA_0003_INDEPENDENT_EVALUATION_PENDING",
+    "TAM_VAN_V0_3_MACHINE_NOT_EXECUTED_AT_MANIFEST_CREATION",
+    "FREE_FORM_CLASSIFIER_HOLD",
+    "GENERAL_NATURAL_LANGUAGE_CLEAN_REWRITE_HOLD",
+    "VM_V0_6_GENERAL_CALL_FRAME_RETURN_HOLD_IN_IMPORTED_LEDGER",
+    "VM_V0_9_CONTENT_BACKUP_PENDING"
+  ],
+  "backup_status": {
+    "git_brain_state": "OFF_DEVICE_SAVED",
+    "accepted_candidate_evidence": "OFF_DEVICE_SAVED",
+    "vm_ledger_through_v0_6_frontier": "OFF_DEVICE_SAVED",
+    "oppo_foundation_exact_files": "FINGERPRINT_ONLY_CONTENT_PENDING",
+    "oppo_vm_v0_9": "FINGERPRINT_ONLY_CONTENT_PENDING",
+    "hp_cold_capsule": "NOT_YET_CREATED_FOR_THIS_BASELINE",
+    "restore_test": "NOT_YET_RUN"
+  },
+  "next_backup_gate": "COPY_EXACT_OPPO_FINGERPRINTED_FILES_OFF_DEVICE_VERIFY_HASHES_THEN_UPDATE_THIS_MANIFEST"
+}

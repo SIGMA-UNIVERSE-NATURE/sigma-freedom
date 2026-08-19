@@ -1,0 +1,43 @@
+{
+  "evaluation_id": "SIGMA_CREATES_SIGMA_0002_INDEPENDENT_EVALUATION_001_20260818",
+  "candidate_id": "SIGMA_CREATES_SIGMA_0002",
+  "classification": "USER_RELAYED_INDEPENDENT_EVALUATOR_OUTPUT",
+  "evaluated_head": "da82a901b5c833397637bfbd71939ed4a079345c",
+  "mode": "READ_ONLY_INDEPENDENT_EVALUATOR",
+  "results": {
+    "parent_compile": "PASS",
+    "parent_execution": "PASS",
+    "generated_child_exact_source": "PASS",
+    "child_compile": "PASS",
+    "child_execution": "PASS",
+    "child_stdout_exact": "PASS",
+    "deterministic_generation": "PASS",
+    "status_overclaim_check": "PASS",
+    "sigma_creates_sigma_defined_scope": "PASS",
+    "canonical_promotion_authorized": "NO",
+    "final_verdict": "PASS_WITH_DEFINED_SCOPE"
+  },
+  "terminal_verdict": "SIGMA_CREATES_SIGMA_0002_INDEPENDENT_EVALUATION_PASS",
+  "accepted_scope": [
+    "A_SIGMA_PSI_PROGRAM_EXECUTED_ON_SIGMA_VM_GENERATED_A_BYTE_EXACT_SIGMA_PSI_SUCCESSOR_SOURCE",
+    "THE_GENERATED_SUCCESSOR_SOURCE_COMPILED_WITH_SIGMAC",
+    "THE_GENERATED_SUCCESSOR_BYTECODE_EXECUTED_WITH_SIGMA_VM",
+    "THE_SUCCESSOR_STDOUT_MATCHED_THE_FROZEN_ORACLE_EXACTLY",
+    "SUCCESSOR_SOURCE_GENERATION_WAS_DETERMINISTIC_ACROSS_TWO_PARENT_RUNS"
+  ],
+  "not_authorized_or_not_proven": [
+    "FULL_NATIVE_BRAIN_SELF_ASSEMBLY",
+    "NATIVE_BRAIN_PYTHON_ASSEMBLER_REMOVAL",
+    "FULL_C_FREE_NATIVE_STACK",
+    "CONSCIOUSNESS_OR_LIFE",
+    "CANONICAL_PROMOTION",
+    "54_CORE_PROMOTION",
+    "512_PROMOTION"
+  ],
+  "source_mutation": false,
+  "oracle_mutation": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "SIGMA_CREATES_SIGMA_0003_NATIVE_BRAIN_SELF_ASSEMBLY_CANDIDATE"
+}

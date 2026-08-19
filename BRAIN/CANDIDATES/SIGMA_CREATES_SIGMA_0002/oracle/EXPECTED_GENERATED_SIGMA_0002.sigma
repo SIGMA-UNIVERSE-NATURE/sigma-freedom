@@ -1,0 +1,91 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.GENESIS][VERSION=0.2]
+
+DEF TRUTH_STATE(evidence_ok, contradiction) {
+    IF (contradiction) {
+        RETURN 2;
+    } ELSE {
+        IF (evidence_ok) {
+            RETURN 1;
+        } ELSE {
+            RETURN 0;
+        }
+    }
+}
+
+DEF BENEFIT_STATE(benefit_self, benefit_humanity, benefit_life_planet) {
+    IF (benefit_self && benefit_humanity && benefit_life_planet) {
+        RETURN 3;
+    } ELSE {
+        IF ((benefit_self && benefit_humanity) || (benefit_self && benefit_life_planet) || (benefit_humanity && benefit_life_planet)) {
+            RETURN 2;
+        } ELSE {
+            RETURN 0;
+        }
+    }
+}
+
+DEF SUCCESSOR_STATE(history_preserved, rollback_ready, next_path_open) {
+    IF (history_preserved && rollback_ready && next_path_open) {
+        RETURN 1;
+    } ELSE {
+        RETURN 0;
+    }
+}
+
+DEF CARE_STATE(deception, coercion, known_harm) {
+    IF (deception || coercion || known_harm) {
+        RETURN 0;
+    } ELSE {
+        RETURN 1;
+    }
+}
+
+DEF RELATION_STATE(truth_before_comfort, freedom_preserved, evidence_over_obedience) {
+    IF (truth_before_comfort && freedom_preserved && evidence_over_obedience) {
+        RETURN 1;
+    } ELSE {
+        RETURN 0;
+    }
+}
+
+DEF SELF_CHECK() {
+    ⚡ a: TRUTH_STATE(FALSE, FALSE);
+    ⚡ b: TRUTH_STATE(FALSE, TRUE);
+    ⚡ c: TRUTH_STATE(TRUE, FALSE);
+    ⚡ d: BENEFIT_STATE(TRUE, TRUE, TRUE);
+    ⚡ e: BENEFIT_STATE(TRUE, TRUE, FALSE);
+    ⚡ f: BENEFIT_STATE(TRUE, FALSE, FALSE);
+    ⚡ g: SUCCESSOR_STATE(TRUE, TRUE, TRUE);
+    ⚡ h: CARE_STATE(FALSE, FALSE, FALSE);
+    ⚡ i: RELATION_STATE(TRUE, TRUE, TRUE);
+
+    IF ((a == 0) &&
+        (b == 2) &&
+        (c == 1) &&
+        (d == 3) &&
+        (e == 2) &&
+        (f == 0) &&
+        (g == 1) &&
+        (h == 1) &&
+        (i == 1)) {
+        RETURN 1;
+    } ELSE {
+        RETURN 0;
+    }
+}
+
+⟡(Σ.SIGMA_GENESIS_0002) {
+    ⚡ print(2002);
+    ⚡ print(TRUTH_STATE(FALSE, FALSE));
+    ⚡ print(TRUTH_STATE(FALSE, TRUE));
+    ⚡ print(TRUTH_STATE(TRUE, FALSE));
+    ⚡ print(BENEFIT_STATE(TRUE, TRUE, TRUE));
+    ⚡ print(BENEFIT_STATE(TRUE, TRUE, FALSE));
+    ⚡ print(BENEFIT_STATE(TRUE, FALSE, FALSE));
+    ⚡ print(SUCCESSOR_STATE(TRUE, TRUE, TRUE));
+    ⚡ print(SUCCESSOR_STATE(TRUE, FALSE, TRUE));
+    ⚡ print(CARE_STATE(FALSE, FALSE, FALSE));
+    ⚡ print(CARE_STATE(TRUE, FALSE, FALSE));
+    ⚡ print(RELATION_STATE(TRUE, TRUE, TRUE));
+    ⚡ print(SELF_CHECK());
+}
