@@ -53,21 +53,53 @@
     "vm_v0_9_overall": "HOLD",
     "sigma_os_v0_1": "PARTIAL_SOURCE_ONLY_EXECUTION_HOLD"
   },
-  "oppo_content_pending": [
-    {"role":"sigmac.c","sha256":"e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452"},
-    {"role":"sigma_vm.c","sha256":"8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2"},
-    {"role":"compiler_self.sigma","sha256":"b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7"},
-    {"role":"VM_v0_9_source","sha256":"61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2"},
-    {"role":"VM_v0_9_bytecode","sha256":"7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0"},
-    {"role":"dictionary_delta_exact_artifact","sha256":"5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154"}
-  ],
   "backup_status": {
     "serious_git_history_and_artifacts": "OFF_DEVICE_SAVED_AFTER_MASTER_IMPORT",
-    "exact_oppo_6_artifact_contents": "HOLD_CONTENT_PENDING",
-    "full_executable_oppo_restore": "HOLD_UNTIL_EXACT_CONTENT_BACKUP",
+    "exact_oppo_6_artifact_contents": "OFF_DEVICE_SAVED",
+    "full_executable_oppo_restore": "HOLD_UNTIL_HP_COLD_CAPSULE_AND_RESTORE_TEST",
     "hp_cold_capsule": "NOT_YET_CREATED_FOR_MASTER_BASELINE",
-    "restore_test": "NOT_YET_RUN"
+    "restore_test": "NOT_YET_RUN",
+    "oppo_foundation_exact_files": "OFF_DEVICE_SAVED",
+    "oppo_vm_v0_9": "OFF_DEVICE_SAVED"
   },
   "restore_principle": "RESTORE_EXACT_GIT_STATE_FIRST_THEN_VERIFY_HASHES_THEN_RESTORE_PLATFORM_ARTIFACTS; NEVER_RECONSTRUCT_ACCEPTED_SOURCE_FROM_CHAT_MEMORY",
-  "next_backup_gate": "IMPORT_6_EXACT_OPPO_CONTENTS_BY_SHA256_THEN_VERIFY_REMOTE_THEN_CREATE_HP_COLD_CAPSULE"
+  "next_backup_gate": "CREATE_HP_COLD_CAPSULE_THEN_RUN_RESTORE_TEST",
+  "oppo_content_backed": [
+    {
+      "role": "sigmac.c",
+      "sha256": "e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/FOUNDATION/sigmac.c",
+      "status": "OFF_DEVICE_SAVED"
+    },
+    {
+      "role": "sigma_vm.c",
+      "sha256": "8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/FOUNDATION/sigma_vm.c",
+      "status": "OFF_DEVICE_SAVED"
+    },
+    {
+      "role": "compiler_self.sigma",
+      "sha256": "b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/FOUNDATION/compiler_self.sigma",
+      "status": "OFF_DEVICE_SAVED"
+    },
+    {
+      "role": "VM_v0_9_source",
+      "sha256": "61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/VM_V0_9/sigma_vm_core_v0_9_floordiv_exact.sigma",
+      "status": "OFF_DEVICE_SAVED"
+    },
+    {
+      "role": "VM_v0_9_bytecode",
+      "sha256": "7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/VM_V0_9/sigma_vm_core_v0_9_floordiv_exact.host_candidate.sigmab",
+      "status": "OFF_DEVICE_SAVED"
+    },
+    {
+      "role": "dictionary_delta_exact_artifact",
+      "sha256": "5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154",
+      "path": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/DICTIONARY/SIGMA_PSI_DICTIONARY_A.AAI+1_V09_DELTA.md",
+      "status": "OFF_DEVICE_SAVED"
+    }
+  ]
 }
