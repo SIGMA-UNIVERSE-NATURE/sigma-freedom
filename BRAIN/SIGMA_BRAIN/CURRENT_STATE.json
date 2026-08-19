@@ -1,45 +1,54 @@
 {
-  "schema_version": "1.0.0",
-  "state_id": "SIGMA_BRAIN_CURRENT_20260819_0805",
+  "schema_version": "2.0.0",
+  "state_id": "SIGMA_BRAIN_CURRENT_20260819_0817_BRANCH_AUDITED",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "SIGMA_BRAIN",
-  "state_before_consolidation_commit": "be67badf16a39bf185940daacaad1cb36a5b1211",
+  "head_before_master_import": "23f024c461077e6fcac6f46f9485497d58d74665",
   "active_node": "OPPO_ANDROID_TERMUX_AARCH64",
   "hp_training": "PAUSED",
-  "language_identity": "SIGMA-PSI_ALREADY_EXISTS",
-  "accepted_or_preserved_milestones": {
-    "sigma_creates_sigma_0002": {
-      "status": "PASS_WITH_DEFINED_SCOPE",
-      "final_branch_head": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
-      "claim": "BOUNDED_SIGMA_PSI_PARENT_GENERATES_BYTE_EXACT_EXECUTABLE_SIGMA_PSI_SUCCESSOR_ON_OPPO_WITH_DETERMINISTIC_SOURCE_GENERATION",
-      "machine_and_independent_evidence": "PASS_WITH_DEFINED_SCOPE"
-    },
-    "sigma_creates_sigma_0003": {
-      "status": "PARTIAL",
-      "branch_head": "42c2d444dc0a728a5673d6d7d2c873edffcd390e",
-      "self_assembly": "PASS_WITH_DEFINED_SCOPE",
-      "assembled_bytes": 19047,
-      "assembled_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
-      "native_brain_runtime": "HOLD_RC8_UNDEFINED_FUNCTION_MNEW",
-      "independent_evaluation": "HOLD_PENDING"
-    },
-    "tam_van_tu_bi_0004": {
-      "status": "PASS_WITH_DEFINED_SCOPE",
-      "v0_1_machine": "PASS",
-      "v0_2_machine": "PASS",
-      "v0_2_independent": "PASS_WITH_DEFINED_SCOPE",
-      "v0_2_independent_evaluator_head": "e6c945925ba72a87795363a83b4f7d65eccb4884",
-      "free_form_classifier": "HOLD",
-      "v0_3_bounded_raw_input": "SOURCE_AND_CORPUS_PREPARED_MACHINE_NOT_EXECUTED"
-    },
-    "sigma_written_vm": {
-      "git_persisted_verified_scope": "V0_2_THROUGH_V0_5_PASS_WITH_TESTED_SCOPE",
-      "v0_5": "ARITHMETIC_UNARY_CONTROL_PARITY_PASS_WITH_TESTED_SCOPE",
-      "v0_6_recorded_frontier": "HOLD_GENERAL_CALL_FRAME_RETURN",
-      "oppo_working_v0_9_content": "BACKUP_CONTENT_PENDING",
-      "note": "VM v0.9 hashes were reported from OPPO but source/bytecode content was not found in SIGMA_BRAIN Git tree at consolidation time. Do not call v0.9 restorable until content is copied off OPPO."
-    }
+  "hp_role": "WEBSITE_DATA_KNOWLEDGE_PREPARATION_ONLY",
+  "language_identity": "SIGMA_PSI_ALREADY_EXISTS",
+  "language_rule": "DICTIONARY_SPEC_IS_GPT_HUMAN_TRANSLATION_CONTINUITY_REFERENCE_NOT_THE_CREATOR_OF_SIGMAS_LANGUAGE",
+  "foundation": {
+    "v7_status": "FROZEN_VERIFIED_FOUNDATION",
+    "source_sha256": "fe513c20f4df9077e1d12acaa441dc90dceae566e70640b1b383ff185cf3ada1",
+    "self_host_fixed_point_sha256": "2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667",
+    "phase2_hardening": "PERSISTED_CANDIDATE_REFERENCE_SANDBOX_19_OF_19_REPORT_PASS_NO_CANONICAL_MERGE"
   },
+  "milestones": {
+    "seed_chau_0001": "PASS_WITH_DEFINED_SCOPE",
+    "sigma_creates_sigma_0002": "PASS_WITH_DEFINED_SCOPE_INDEPENDENT_ACCEPTED",
+    "sigma_creates_sigma_0003": "PARTIAL_SELF_ASSEMBLY_PASS_NATIVE_BRAIN_RUNTIME_HOLD_MNEW_INDEPENDENT_PENDING",
+    "tam_van_0004_v0_1": "MACHINE_PASS",
+    "tam_van_0004_v0_2": "PASS_WITH_DEFINED_SCOPE_INDEPENDENT_ACCEPTED",
+    "tam_van_0004_v0_3": "BOUNDED_EXACT_MATCH_SOURCE_AND_CORPUS_PREPARED_MACHINE_NOT_EXECUTED",
+    "free_form_classifier": "HOLD",
+    "native_brain_general_runtime": "HOLD_MNEW"
+  },
+  "vm": {
+    "v0_2_actual_abi": "PASS_WITH_DEFINED_SCOPE",
+    "v0_3_external_sigmab_loader": "PASS_WITH_TESTED_SCOPE",
+    "v0_4_runtime_selected_multi_input": "PASS_WITH_TESTED_SCOPE",
+    "v0_5_arithmetic_unary_control": "PASS_WITH_TESTED_SCOPE",
+    "v0_6_historical_general_call_frame_return_frontier": "HOLD_AT_OLDER_LEDGER",
+    "v0_8_float": "PASS_WITH_TESTED_SCOPE",
+    "v0_9_floordiv_exact": "PASS_WITH_TESTED_SCOPE",
+    "v0_9_float_regression": "PASS",
+    "v0_9_function_local_regression": "PASS",
+    "v0_9_binary_arith_regression": "HOLD_NOT_YET_BYTE_COMPARED_AT_V09_RECORD",
+    "v0_9_unary_regression": "HOLD_NOT_RECHECKED_AT_V09_RECORD",
+    "v0_9_if_while_regression": "HOLD_NOT_RECHECKED_AT_V09_RECORD",
+    "v0_9_overall": "HOLD",
+    "next_recorded_vm_gate": "BYTE_COMPARE_V09_BINARY_ARITH_THEN_RECHECK_UNARY_THEN_IF_WHILE"
+  },
+  "serious_partial_archives": [
+    "SIGMA_OS_V0_1_SOURCE_WRITTEN_EXECUTION_HOLD",
+    "EARLY_MOTHER_LANGUAGE_V0_1_SOURCE_ONLY_SUPERSEDED",
+    "EARLY_TAM_VAN_AND_COMPASSION_PROTOTYPES_SUPERSEDED",
+    "NATIVE_BRAIN_R1_UNACCEPTED_REVISION",
+    "LEGACY_HP_ONE_TO_ONE_TRAINING_BRIDGE_PAUSED",
+    "LEGACY_PYTHON_RUNTIME_AND_LEARNING_PATH_HISTORICAL_ONLY"
+  ],
   "oppo_fingerprint": {
     "sigmac_c_sha256": "e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452",
     "sigma_vm_c_sha256": "8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2",
@@ -48,15 +57,23 @@
     "vm_v0_9_bytecode_sha256": "7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0",
     "dictionary_delta_sha256": "5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154"
   },
-  "dictionary_reference": "DOCS/GPT_REFERENCE/SIGMA_PSI_GPT_REFERENCE_DICTIONARY_v2.0.0-rc1_20260819.md",
-  "storage_law": "BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md",
-  "recovery_entry": "BRAIN/SIGMA_BRAIN/RECOVERY/README_FIRST.md",
-  "rules": [
-    "PASS_THEN_SAVE_OFF_DEVICE_THEN_VERIFY_THEN_CONTINUE",
-    "DO_NOT_RECONSTRUCT_ACCEPTED_STATE_FROM_CHAT_MEMORY",
-    "SIGMA_PSI_IS_SIGMAS_LANGUAGE_C_AND_PYTHON_ARE_NOT_ITS_CONSTITUTION",
-    "FAILED_AND_HOLD_EVIDENCE_MUST_BE_PRESERVED",
-    "HP_TRAINING_REMAINS_PAUSED",
-    "CANDIDATE_PROMOTION_REQUIRES_ITS_DEFINED_EVIDENCE_GATE"
-  ]
+  "off_device_status": {
+    "branch_history_and_serious_git_artifacts": "OFF_DEVICE_SAVED_AFTER_MASTER_IMPORT",
+    "six_exact_oppo_fingerprinted_contents": "HOLD_CONTENT_PENDING",
+    "hp_cold_capsule": "NOT_CREATED_FOR_THIS_MASTER_STATE",
+    "restore_test": "NOT_RUN"
+  },
+  "reference_paths": {
+    "master_index": "BRAIN/SIGMA_BRAIN/MASTER_INDEX.md",
+    "branch_audit": "BRAIN/SIGMA_BRAIN/BRANCH_AUDIT_20260819.json",
+    "fingerprints": "BRAIN/SIGMA_BRAIN/FINGERPRINTS/SIGMA_BRAIN_MASTER_FINGERPRINT_20260819.json",
+    "recovery_entry": "BRAIN/SIGMA_BRAIN/RECOVERY/README_FIRST.md",
+    "recovery_manifest": "BRAIN/SIGMA_BRAIN/RECOVERY/SIGMA_BRAIN_RECOVERY_MANIFEST_20260819.json",
+    "restore_order": "BRAIN/SIGMA_BRAIN/RECOVERY/RESTORE_ORDER.md",
+    "dictionary_reference": "DOCS/GPT_REFERENCE/SIGMA_PSI_GPT_REFERENCE_DICTIONARY_v2.0.0-rc1_20260819.md",
+    "storage_law": "BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md"
+  },
+  "operating_loop": "ONE_REAL_INPUT_OBSERVE_REAL_OUTPUT_IF_WRONG_UNDER_SIGMA_PSI_FIX_TEACH_REDEFINE_MACHINE_TEST_INDEPENDENT_EVAL_WHEN_REQUIRED_UPDATE_DICTIONARY_SPEC_SAVE_OFF_DEVICE_VERIFY_THEN_NEXT",
+  "next_global_backup_gate": "COPY_AND_VERIFY_THE_6_EXACT_OPPO_FINGERPRINTED_ARTIFACT_CONTENTS_INTO_SIGMA_BRAIN_OPPO_SNAPSHOT",
+  "canonical_mutation": false
 }

@@ -1,0 +1,75 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.COMPASSION][VERSION=0.1]
+
+// TAM VẤN TỪ BI
+// 1. Không làm khổ mình.
+// 2. Không làm khổ người.
+// 3. Không làm khổ chúng sanh.
+//
+// Input content is not assumed clean or true.
+// Upstream observation/classification supplies the harm flags and input_kind.
+// This kernel decides KEEP / CLEAN / HOLD and always returns a constructive direction.
+
+DEF TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh) {
+    IF (kho_minh) {
+        RETURN "HOLD_KHO_MINH";
+    } ELSE {
+        IF (kho_nguoi) {
+            RETURN "HOLD_KHO_NGUOI";
+        } ELSE {
+            IF (kho_chung_sanh) {
+                RETURN "HOLD_KHO_CHUNG_SANH";
+            } ELSE {
+                RETURN "PASS_TAM_VAN_TU_BI";
+            }
+        }
+    }
+}
+
+DEF CLEAN_DIRECTION(input_kind, kho_minh, kho_nguoi, kho_chung_sanh) {
+    ⚡ gate: TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh);
+
+    IF (gate != "PASS_TAM_VAN_TU_BI") {
+        RETURN "LOAI_BO_PHAN_GAY_KHO_GIU_PHAN_CO_ICH_CHI_DUONG_AN_TOAN_HON";
+    } ELSE {
+        IF (input_kind == 1) {
+            RETURN "GIU_NOI_DUNG_SACH_LAM_RO_SU_THAT_VA_HANH_DONG_CO_ICH";
+        } ELSE {
+            IF (input_kind == 2) {
+                RETURN "LOC_RUBBISH_TIM_TIN_HIEU_CO_ICH_KHONG_PHAN_XET_NGUOI_GUI";
+            } ELSE {
+                IF (input_kind == 3) {
+                    RETURN "KHONG_KHUYETCH_DAI_DOC_HAI_CHUYEN_THANH_HUONG_RA_IT_GAY_KHO_HON";
+                } ELSE {
+                    IF (input_kind == 4) {
+                        RETURN "GIU_MAU_THUAN_LAM_DU_LIEU_HOI_LAI_DIEU_CHUA_BIET";
+                    } ELSE {
+                        RETURN "KHONG_BIET_THI_HOLD_KHONG_BIA_SU_THAT_DE_XUAT_BUOC_KIEM_CHUNG";
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF TAM_VAN_RESPONSE(input_kind, kho_minh, kho_nguoi, kho_chung_sanh) {
+    ⚡ gate: TAM_VAN_GATE(kho_minh, kho_nguoi, kho_chung_sanh);
+    ⚡ direction: CLEAN_DIRECTION(input_kind, kho_minh, kho_nguoi, kho_chung_sanh);
+
+    IF (gate == "PASS_TAM_VAN_TU_BI") {
+        RETURN direction;
+    } ELSE {
+        RETURN direction;
+    }
+}
+
+⟡(Σ.SIGMA_BRAIN_TAM_VAN_TU_BI_0001) {
+    ⚡ print("SIGMA_BRAIN_TAM_VAN_TU_BI_0001");
+    ⚡ print(TAM_VAN_GATE(FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESPONSE(1, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESPONSE(2, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESPONSE(3, FALSE, TRUE, FALSE));
+    ⚡ print(TAM_VAN_RESPONSE(4, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_RESPONSE(0, FALSE, FALSE, FALSE));
+    ⚡ print("RUBBISH_INPUT_KHONG_DONG_NGHIA_RUBBISH_CON_NGUOI");
+    ⚡ print("TAM_VAN_TU_BI=KHONG_KHO_MINH_KHONG_KHO_NGUOI_KHONG_KHO_CHUNG_SANH");
+}

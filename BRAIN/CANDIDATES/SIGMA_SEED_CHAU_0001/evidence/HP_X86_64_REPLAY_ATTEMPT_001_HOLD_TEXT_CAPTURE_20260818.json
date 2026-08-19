@@ -1,0 +1,28 @@
+{
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "attempt_id": "HP_X86_64_REPLAY_ATTEMPT_001",
+  "recorded_date": "2026-08-18",
+  "classification": "HOLD_CAPTURE_LAYER_CONTAMINATED",
+  "substrate": "HP_WINDOWS_X86_64",
+  "toolchain": "E:\\SIGMA_HP_PORTABILITY_CANDIDATE_V7\\sigma_genesis1",
+  "observations": {
+    "compile_reached_run_stage": true,
+    "compile_rc0": "DERIVED_FROM_GATE_CONTROL_FLOW",
+    "run_rc": 0,
+    "stderr_empty": true,
+    "bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "text_wrapper_actual_stdout_sha256": "44faad8daf5f85aafdb83877caf1e13a5d4b7f24a5c874dab763bce9645b6550",
+    "stdout_exact_under_text_wrapper": false
+  },
+  "diagnostic_inference": {
+    "status": "EXACT_HASH_RECONSTRUCTION_MATCH",
+    "description": "The observed 44faad8d... hash is exactly reproduced by taking the frozen expected text, converting LF to CRLF, decoding the UTF-8 bytes for Ψ through CP437 as ╬¿, then writing UTF-8. This identifies the PowerShell text capture/re-encoding layer as contaminating the comparison artifact. It does not prove the VM raw stdout bytes differ semantically.",
+    "raw_stdout_not_yet_captured": true
+  },
+  "decision": "HOLD_DO_NOT_PROMOTE_CROSS_SUBSTRATE_REPLAY",
+  "next_gate": "CAPTURE_SIGMA_VM_STDOUT_AS_RAW_BYTES_WITH_NO_TEXT_DECODING_OR_REENCODING; THEN_COMPARE_RAW_AND_CRLF_NORMALIZED_BYTES",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}

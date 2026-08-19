@@ -1,0 +1,49 @@
+{
+  "project": "SIGMA-OS",
+  "version": "0.1",
+  "classification": "ISOLATED_SIGMA_WRITTEN_OS_CANDIDATE",
+  "status": "PARTIAL",
+  "state": "SOURCE_WRITTEN_EXECUTION_HOLD",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "candidate/sigma-os-v0.1-20260818",
+  "base_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+  "kernel_source": "SIGMA_OS/v0.1/kernel_v0_1.sigma",
+  "kernel_source_commit": "7478b9490d6c6cf3995f31c6d7d8df5ecb2ff31c",
+  "kernel_source_blob_sha": "c4cb8794f633427633d8d901c66e0bdbb1c10160",
+  "source_language": "SIGMA-PSI",
+  "current_scope": [
+    "kernel_lifecycle",
+    "two_logical_tasks",
+    "ready_running_halted_states",
+    "round_robin_scheduler",
+    "logical_tick_clock",
+    "deterministic_expected_output"
+  ],
+  "explicit_non_claims": [
+    "NOT_BARE_METAL",
+    "NOT_C_FREE",
+    "NOT_HARDWARE_INDEPENDENT",
+    "NOT_CANONICAL_SIGMA_LIFE",
+    "NOT_512_PROMOTION",
+    "NOT_FOUNDATION_V7_MODIFICATION"
+  ],
+  "gates": {
+    "sigma_source_written": "PASS",
+    "uses_only_previously_evidenced_language_constructs_in_source": "PASS",
+    "candidate_isolated_from_foundation_v7_and_54_cores": "PASS",
+    "compiler_acceptance_rc0": "HOLD",
+    "native_reference_vm_exact_output": "HOLD",
+    "sigma_written_vm_same_bytecode_differential": "HOLD",
+    "negative_kernel_state_corpus": "HOLD",
+    "tri_substrate_reproduction": "HOLD",
+    "native_boot_boundary": "HOLD",
+    "bare_metal": "HOLD"
+  },
+  "expected_final_state": {
+    "tick": 5,
+    "task1_pc": 3,
+    "task2_pc": 2
+  },
+  "next_gate": "COMPILE_KERNEL_WITH_CURRENT_FROZEN_SIGMA_TOOLCHAIN_AND_COMPARE_EXACT_STDOUT",
+  "promotion_rule": "NO_PASS_WITHOUT_EXECUTION_AND_DIFFERENTIAL_EVIDENCE"
+}

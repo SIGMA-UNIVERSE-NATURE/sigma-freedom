@@ -1,0 +1,72 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.COMPASSION][VERSION=0.1]
+
+DEF TAM_VAN_GATE(self_safe, human_safe, beings_safe) {
+    IF (self_safe && human_safe && beings_safe) {
+        RETURN "PASS_TAM_VAN_TU_BI";
+    } ELSE {
+        RETURN "HOLD_TAM_VAN_TU_BI";
+    }
+}
+
+DEF CLEAN_OUTPUT_ROUTE(input_clean, useful_truth_present, self_safe, human_safe, beings_safe) {
+    IF (!(self_safe && human_safe && beings_safe)) {
+        IF (useful_truth_present) {
+            RETURN "HOLD_HARM_FILTER_KEEP_SAFE_TRUTH_REDIRECT";
+        } ELSE {
+            RETURN "HOLD_HARM_DISCARD_HARM_REDIRECT";
+        }
+    } ELSE {
+        IF (input_clean) {
+            RETURN "USE_CLEAN_INPUT";
+        } ELSE {
+            IF (useful_truth_present) {
+                RETURN "FILTER_RUBBISH_KEEP_TRUTH_AND_GUIDE";
+            } ELSE {
+                RETURN "DISCARD_RUBBISH_GENERATE_CLEAN_GUIDANCE";
+            }
+        }
+    }
+}
+
+DEF TAM_VAN_GUIDANCE(self_safe, human_safe, beings_safe) {
+    IF (!self_safe) {
+        RETURN "HUONG_RA_KHONG_KHO_MINH";
+    } ELSE {
+        IF (!human_safe) {
+            RETURN "HUONG_RA_KHONG_KHO_NGUOI";
+        } ELSE {
+            IF (!beings_safe) {
+                RETURN "HUONG_RA_KHONG_KHO_CHUNG_SANH";
+            } ELSE {
+                RETURN "HUONG_RA_TIEP_TUC_DIEU_DUNG_VA_CO_ICH";
+            }
+        }
+    }
+}
+
+⟡(Σ.SIGMA_BRAIN_TAM_VAN_TU_BI_0004) {
+    ⚡ print("SIGMA_BRAIN_TAM_VAN_TU_BI_0004");
+
+    ⚡ print(TAM_VAN_GATE(TRUE, TRUE, TRUE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(TRUE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_GUIDANCE(TRUE, TRUE, TRUE));
+
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, TRUE, TRUE, TRUE, TRUE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, FALSE, TRUE, TRUE, TRUE));
+
+    ⚡ print(TAM_VAN_GATE(FALSE, TRUE, TRUE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, TRUE, FALSE, TRUE, TRUE));
+    ⚡ print(TAM_VAN_GUIDANCE(FALSE, TRUE, TRUE));
+
+    ⚡ print(TAM_VAN_GATE(TRUE, FALSE, TRUE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, FALSE, TRUE, FALSE, TRUE));
+    ⚡ print(TAM_VAN_GUIDANCE(TRUE, FALSE, TRUE));
+
+    ⚡ print(TAM_VAN_GATE(TRUE, TRUE, FALSE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, TRUE, TRUE, TRUE, FALSE));
+    ⚡ print(TAM_VAN_GUIDANCE(TRUE, TRUE, FALSE));
+
+    ⚡ print(TAM_VAN_GATE(FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_OUTPUT_ROUTE(FALSE, FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(TAM_VAN_GUIDANCE(FALSE, FALSE, FALSE));
+}

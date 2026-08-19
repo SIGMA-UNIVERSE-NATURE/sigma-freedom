@@ -1,0 +1,96 @@
+{
+  "schema": "SIGMA-VM-EXPERIMENT-MAP-1.0",
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "version": "1.0.0",
+  "recorded_at": "2026-08-18T00:00:00+07:00",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "integration_branch": "agent/sigma-experiment-ledger-20260818",
+  "mode": "ONE_WINDOW_ONE_TASK / DEPENDENCY_GATED / EVIDENCE_ONLY",
+  "current_frontier": "SIGMA_NATIVE_FLOAT64_BITCAST_CAPABILITY_001",
+  "baseline": {
+    "foundation_v7_sha256": "fe513c20f4df9077e1d12acaa441dc90dceae566e70640b1b383ff185cf3ada1",
+    "frozen_abi_sha256": "c48c9883c6aedaa1ca7bfbc04b2ad05335040375bed942be73ae3ace9a5b8416",
+    "self_host_fixed_point_sha256": "2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667",
+    "experiment_ledger_v3_sha256": "349618e0c677b7d8c5e314cc083fc14df9e1209f0eb308d8b4e5439cdf567d5a",
+    "historical_current_state_sha256": "d87b64c0757af40f854cc12eea3cc020a9f96dccc1e5f14fc3db425fef1cc52a",
+    "compact_handoff_sha256": "c71eea6337bed4e3805d86599ab683327ee0b7a42349ec57b189c275a12408a9",
+    "sigma_written_vm_proof": "PASS",
+    "trusted_boundary_reduction_001": "PASS",
+    "trusted_custom_primitive_count": 5,
+    "remove_bytes_f64_le_at": "HOLD",
+    "full_c_free_native_stack": "HOLD"
+  },
+  "global_invariants": [
+    "ONE_WINDOW_ONE_TASK",
+    "ONE_MUTATING_OWNER_PER_CONTRACT",
+    "IMPLEMENTER_CANNOT_SELF_CERTIFY",
+    "CANDIDATE_SHA_PINNED_BEFORE_EVALUATION",
+    "CORPUS_FROZEN_BEFORE_EVALUATION",
+    "NO_FOUNDATION_MUTATION",
+    "NO_FROZEN_ABI_MUTATION",
+    "NO_PHASE2_REOPEN",
+    "NO_CANONICAL_512_PROMOTION",
+    "NO_TEST_SPECIFIC_HARDCODE",
+    "FAILURE_PRESERVED",
+    "PASS_REQUIRES_EXECUTION_EVIDENCE",
+    "HOLD_AND_ROLLBACK_ALLOWED"
+  ],
+  "activation_policy": {
+    "open_now": [
+      "W00_CUA2_INTEGRATOR",
+      "W01_BOUNDARY_AUDITOR",
+      "W02_F64_CORPUS_CURATOR"
+    ],
+    "do_not_open_yet": [
+      "W03_F64_IMPLEMENTER",
+      "W04_CANDIDATE_FREEZER",
+      "W05_F64_EVALUATOR",
+      "W06_REGRESSION_RUNNER",
+      "W07_COLD_BOOTSTRAP_RUNNER",
+      "W08_PORTABILITY_RUNNER",
+      "W09_VERDICT_EVALUATOR",
+      "W10_NEXT_PRIMITIVE_SELECTOR"
+    ],
+    "rule": "A blocked window may be opened only after every dependency has a SHA-pinned PASS/FROZEN_PASS handoff."
+  },
+  "conflict_rules": [
+    "No two windows may edit the same source, corpus, evaluator, ledger, or result path.",
+    "Only W03 may edit the active implementation candidate.",
+    "Only W02 may create/version the FLOAT64 corpus.",
+    "W05/W06/W07/W08 are test-only and may never patch a candidate.",
+    "If candidate source changes after E07 freeze, all E08-E12 evidence is invalid.",
+    "If corpus changes after freeze, increment corpus version and invalidate evaluations using the old version.",
+    "If Foundation or ABI SHA changes, stop this map and create a new lineage.",
+    "If a new trusted primitive is added while removing another, reduction PASS is forbidden.",
+    "A result lacking RC, stdout, stderr, and artifact hashes is HOLD."
+  ],
+  "handoff_required_fields": [
+    "window_id",
+    "node_id",
+    "parent_commit_or_checkpoint",
+    "input_artifact_hashes",
+    "commands",
+    "return_codes",
+    "stdout_hash_or_text",
+    "stderr_hash_or_text",
+    "created_artifact_hashes",
+    "observed_failure",
+    "failure_classification",
+    "verdict",
+    "forbidden_mutations_confirmed",
+    "next_dependency_unlocked"
+  ],
+  "allowed_verdicts": [
+    "PASS",
+    "PASS_WITH_DEFINED_SCOPE",
+    "HOLD",
+    "FAIL",
+    "REJECT"
+  ],
+  "promotion": {
+    "canonical_merge": "NONE",
+    "foundation_merge": "NONE",
+    "phase2_reopen": "NONE",
+    "512_promotion": "NONE"
+  }
+}

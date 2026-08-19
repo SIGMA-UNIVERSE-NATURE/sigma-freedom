@@ -1,0 +1,89 @@
+{
+  "fingerprint_id": "SIGMA_BRAIN_MASTER_FINGERPRINT_20260819_0817",
+  "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "branch": "SIGMA_BRAIN",
+  "head_before_master_import": "23f024c461077e6fcac6f46f9485497d58d74665",
+  "foundation_v7": {
+    "source_tree_sha256": "fe513c20f4df9077e1d12acaa441dc90dceae566e70640b1b383ff185cf3ada1",
+    "self_host_fixed_point_sha256": "2ef3949b93260d64f99d5e407fc20b26aff0b240e972c7521927385d6584a667",
+    "status": "FROZEN_VERIFIED_FOUNDATION_HANDOFF_PRESENT"
+  },
+  "phase2_hardening": {
+    "source_tree_sha256": "60e632d7019b72c87bcae64bd44179fc2e641114d252c591701d3def21dc092d",
+    "packaged_manifest_sha256": "78a3ddc0f3e20e8999fa96d131c5ef6e5907fe4a21cff80b6caa25c9f0bd34f0",
+    "archive_sha256": "0ab383c893660fd163efb51db1543011aaa6f6ecd9c60484fee486a987968f61",
+    "archive_size": 76852,
+    "git_tree_sha": "f2fbd559cb57179d0740f5ad2a5c8f18210c2c38",
+    "status": "PERSISTED_CANDIDATE_19_OF_19_REFERENCE_SANDBOX_REPORT_PASS_NO_CANONICAL_MERGE"
+  },
+  "language_evolution_hinge": {
+    "git_tree_sha": "1543a51d0a2b88af2cf855d16994d83ee17fee19",
+    "source_ledger_sha256": "f471e5030d934122f8123c9004ee98ab6f66599efdd790288ad108aa9e03f467",
+    "status": "PRESERVED_CONSTITUTIONAL_EVOLUTION_RECORD"
+  },
+  "seed_0001": {
+    "git_tree_sha": "31f736e859f8555e6d0cd695ce5ab7634a601301",
+    "bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "status": "PASS_WITH_DEFINED_SCOPE"
+  },
+  "self_construction_0002": {
+    "final_branch_head": "f9954ff4c7121bb9bbdc10c62928333e334c3c56",
+    "parent_source_sha256": "4f58704199a086c65b81be5b62efde55f8414dc94c34fa8cb9536a41064953fe",
+    "generated_child_source_sha256": "a374e127a07caa1fb068f52ba4edd3e51e16fbc04a2e8168ff45b622ddaf2a8f",
+    "child_stdout_sha256": "6c93c35a9c4a4ea0dcc866f57d46ea279e55e86104a797de46125edb33c4f324",
+    "status": "PASS_WITH_DEFINED_SCOPE_INDEPENDENT_ACCEPTED"
+  },
+  "self_assembly_0003": {
+    "recorded_head": "42c2d444dc0a728a5673d6d7d2c873edffcd390e",
+    "self_assembler_sha256": "0671ac82b3e75c403b8eed01c093c8f20c813a2731b8bb88a5b302119b77d8fe",
+    "assembled_native_brain_bytes": 19047,
+    "assembled_native_brain_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+    "runtime_failure": "SIGMA C VM: undefined function MNEW",
+    "status": "PARTIAL_SELF_ASSEMBLY_PASS_RUNTIME_HOLD"
+  },
+  "tam_van_v0_1": {
+    "source_sha256": "bd2b786fbd9ae7310eaf604f5c7d2131a8eb50dec0f8d313004b824b1c435ccd",
+    "expected_stdout_sha256": "be2ec74235290c431b2a895b89efee5801fb387f6aa9f0b374caf172838ff932",
+    "status": "MACHINE_PASS"
+  },
+  "tam_van_v0_2": {
+    "source_sha256": "d32834d462e05bc9b73162f020a6da898c8b4f39e0ea33182a55a3b1610d4faa",
+    "expected_stdout_sha256": "27dfa976a346dd7a4d30c677c07b4f901d2e36d202809958ff93f20496520a01",
+    "independent_evaluator_head": "e6c945925ba72a87795363a83b4f7d65eccb4884",
+    "status": "PASS_WITH_DEFINED_SCOPE"
+  },
+  "vm_actual_abi_v0_2": {
+    "sigma_vm_source_sha256": "85fa2baf2d267af5bdddc53681f9acdab9ceb817c5eaab96b580a8043eb9a21b",
+    "sigma_vm_bytecode_sha256": "d360c725dba454acd2edfd020ca272eee44bddd672dedb38849f38b332789d2a",
+    "reference_bytecode_sha256": "efcd04d2d31731f75faf5703e17d52a496bbdff5059e9108d71c86b4bdb804b9",
+    "stdout_sha256": "f4ccd05b3271c386ee55d9876c7450012a3b361e5065c09dc22075e38b3cc35c",
+    "status": "PASS_WITH_DEFINED_SCOPE"
+  },
+  "vm_v0_5": {
+    "bytecode_sha256": "a41aed0465ae388613c7342f8de89a9e062a540e1ce5ac1a8e9f13e7d949ae85",
+    "status": "ARITHMETIC_UNARY_CONTROL_PASS_WITH_TESTED_SCOPE"
+  },
+  "vm_v0_8": {
+    "source_sha256": "518ee72897652dd64279a61d6e80fc73ef9963a35950f9506c6919c9f67c9d7a",
+    "bytecode_sha256": "f1dc7c419504dd7d0e8474c33c4e6b0b9c314303bbdc6aab05ef5874ac421df4",
+    "status": "FLOAT_PASS_WITH_TESTED_SCOPE"
+  },
+  "vm_v0_9": {
+    "sigmac_c_sha256": "e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452",
+    "sigma_vm_c_sha256": "8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2",
+    "sigma_written_source_sha256": "61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2",
+    "sigma_written_bytecode_sha256": "7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0",
+    "floordiv_exact_parity": "PASS",
+    "float_regression": "PASS",
+    "function_local_regression": "PASS",
+    "binary_arith_regression": "HOLD_NOT_YET_BYTE_COMPARED_AT_RECORD",
+    "unary_regression": "HOLD_NOT_RECHECKED_AT_RECORD",
+    "if_while_regression": "HOLD_NOT_RECHECKED_AT_RECORD",
+    "overall": "HOLD"
+  },
+  "compiler_self_sigma_sha256": "b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7",
+  "dictionary_delta_sha256": "5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154",
+  "oppo_content_backup_status": "CONTENT_PENDING_FOR_6_EXACT_FINGERPRINTED_ARTIFACTS",
+  "warning": "FINGERPRINT_KNOWN_IS_NOT_CONTENT_BACKED_UP"
+}

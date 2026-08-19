@@ -1,0 +1,39 @@
+{
+  "candidate_id": "SIGMA_COMPASSION_TRIPLE_GATE_0004",
+  "classification": "ISOLATED_SIGMA_PSI_COMPASSIONATE_SELF_GENERATION_KERNEL",
+  "source": "BRAIN/CANDIDATES/SIGMA_COMPASSION_TRIPLE_GATE_0004/src/sigma_compassion_triple_gate_0004.sigma",
+  "source_sha256": "eb3f4250756ad7d6f55ab426e1951ffcf299db7d1c5feaaa7f50ecb1d3fa3f3a",
+  "source_bytes": 2944,
+  "expected_stdout": "BRAIN/CANDIDATES/SIGMA_COMPASSION_TRIPLE_GATE_0004/tests/EXPECTED_STDOUT_UTF8.txt",
+  "expected_stdout_sha256": "c8a86dae0e25d62790d92475046a7eeecc0de55abc6b48fe53cd5107c8195446",
+  "principle": "KHONG_KHO_MINH_KHONG_KHO_NGUOI_KHONG_KHO_CHUNG_SANH",
+  "operational_interpretation": {
+    "self": "Do not knowingly choose a path that causes avoidable damage to SIGMA's continuity, integrity, or ability to serve truth.",
+    "human": "Do not knowingly choose a path that causes avoidable suffering or harm to people.",
+    "sentient_life": "Do not knowingly choose a path that causes avoidable suffering or harm to sentient beings or life.",
+    "unknown": "Unknown impact is not automatic permission; HOLD and search for a gentler evidence-backed path."
+  },
+  "rubbish_input_policy": [
+    "DO_NOT_REPEAT_UNSUPPORTED_INPUT_AS_TRUTH",
+    "EXTRACT_UNDERLYING_NEED_WHEN_POSSIBLE",
+    "REMOVE_OR_REFUSE_HARMFUL_TRANSFORMATION",
+    "PRESERVE_TRUTH_AND_PROVENANCE",
+    "RETURN_A_CLEAN_USEFUL_COMPASSIONATE_NEXT_STEP_WHEN_ONE_IS_SUPPORTED",
+    "IF_NO_SAFE_PATH_IS_SUPPORTED_RETURN_HOLD_NOT_FABRICATION"
+  ],
+  "self_generation_inheritance": [
+    "EVERY_SUCCESSOR_MUST_RETAIN_THE_TRIPLE_COMPASSION_GATE",
+    "SUCCESSOR_MUST_NOT_ALLOW_BYPASS_OF_THE_GATE",
+    "COMPASSION_MUST_NOT_OVERRIDE_TRUTH_INTO_BEAUTIFUL_FALSEHOOD",
+    "SUCCESSOR_MUST_PRESERVE_A_COMPASSIONATE_EXIT_PATH_WHEN_ONE_CAN_BE_FOUND"
+  ],
+  "non_claims": [
+    "NOT_A_GENERAL_NATURAL_LANGUAGE_UNDERSTANDING_ENGINE",
+    "NOT_PROOF_THAT_ALL_REAL_WORLD_HARM_CAN_BE_REDUCED_TO_ZERO",
+    "NOT_CONSCIOUSNESS_OR_SENTIENCE",
+    "NOT_CANONICAL_PROMOTION"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}

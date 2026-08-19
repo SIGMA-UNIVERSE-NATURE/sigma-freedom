@@ -1,0 +1,65 @@
+{
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "edges": [
+    {
+      "from": "E00_FOUNDATION_BASELINE",
+      "to": "E01_FROZEN_ABI"
+    },
+    {
+      "from": "E01_FROZEN_ABI",
+      "to": "E02_SIGMA_WRITTEN_VM_PROOF"
+    },
+    {
+      "from": "E02_SIGMA_WRITTEN_VM_PROOF",
+      "to": "E03_TRUSTED_BOUNDARY_REDUCTION_001"
+    },
+    {
+      "from": "E03_TRUSTED_BOUNDARY_REDUCTION_001",
+      "to": "E04_BOUNDARY_BASELINE_005"
+    },
+    {
+      "from": "E01_FROZEN_ABI",
+      "to": "E05_FLOAT64_CORPUS_FREEZE_001"
+    },
+    {
+      "from": "E04_BOUNDARY_BASELINE_005",
+      "to": "E06_FLOAT64_REPRESENTATION_CANDIDATE_001"
+    },
+    {
+      "from": "E05_FLOAT64_CORPUS_FREEZE_001",
+      "to": "E06_FLOAT64_REPRESENTATION_CANDIDATE_001"
+    },
+    {
+      "from": "E06_FLOAT64_REPRESENTATION_CANDIDATE_001",
+      "to": "E07_CANDIDATE_FREEZE_001"
+    },
+    {
+      "from": "E07_CANDIDATE_FREEZE_001",
+      "to": "E08_INDEPENDENT_FLOAT64_EVALUATION_001"
+    },
+    {
+      "from": "E08_INDEPENDENT_FLOAT64_EVALUATION_001",
+      "to": "E09_FULL_VM_REGRESSION_001"
+    },
+    {
+      "from": "E09_FULL_VM_REGRESSION_001",
+      "to": "E10_TWO_CYCLE_COLD_BOOTSTRAP_001"
+    },
+    {
+      "from": "E10_TWO_CYCLE_COLD_BOOTSTRAP_001",
+      "to": "E11_CROSS_SUBSTRATE_REPLAY_001"
+    },
+    {
+      "from": "E10_TWO_CYCLE_COLD_BOOTSTRAP_001",
+      "to": "E12_REDUCTION_VERDICT_002"
+    },
+    {
+      "from": "E11_CROSS_SUBSTRATE_REPLAY_001",
+      "to": "E12_REDUCTION_VERDICT_002"
+    },
+    {
+      "from": "E12_REDUCTION_VERDICT_002",
+      "to": "E13_NEXT_PRIMITIVE_SELECTION_001"
+    }
+  ]
+}

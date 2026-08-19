@@ -1,0 +1,43 @@
+{
+  "receipt_id": "SIGMA_SEED_CHAU_0001_OPPO_EXECUTION_20260818",
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "classification": "USER_EXECUTED_MACHINE_EVIDENCE",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "run_directory": "~/SIGMA/SIGMA_SEED_CHAU_0001_RUN",
+  "source_branch": "candidate/sigma-seed-chau-0001-20260818",
+  "base_sigma_life_commit": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+  "observed_artifact_sha256": {
+    "seed_chau_0001.sigmab": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "EXPECTED_OUTPUT_UTF8.txt": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "actual.stdout": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891"
+  },
+  "exact_stdout_hash_match": true,
+  "observed_terminal_verdict": "SIGMA_SEED_CHAU_0001_EXECUTION=PASS",
+  "gate_semantics_from_frozen_run_script": {
+    "compile_rc_zero_required_to_reach_execution": true,
+    "run_rc_zero_required_for_final_pass": true,
+    "stderr_empty_required_for_final_pass": true,
+    "stdout_exact_cmp_required_for_final_pass": true
+  },
+  "verdict": "PASS_WITH_DEFINED_SCOPE",
+  "proven_scope": [
+    "SIGMA_PSI_SOURCE_COMPILED_TO_SIGMAB_ON_OPPO",
+    "GENERATED_BYTECODE_EXECUTED_ON_EXISTING_SIGMA_VM_ON_OPPO",
+    "ACTUAL_STDOUT_EXACTLY_MATCHED_FROZEN_EXPECTED_UTF8_BY_SHA256_AND_CMP_GATE",
+    "FINAL_EXECUTION_GATE_PASSED"
+  ],
+  "not_proven": [
+    "DETERMINISTIC_RECOMPILE_TWO_RUN_HASH",
+    "HP_X86_64_REPLAY",
+    "INDEPENDENT_EVALUATION",
+    "CANONICAL_PROMOTION",
+    "FULL_SIGMA_NATIVE_BRAIN",
+    "FULL_C_FREE_STACK"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "external_side_effects_beyond_local_test_and_github_evidence_record": false,
+  "next_gate": "DETERMINISTIC_RECOMPILE_THEN_CROSS_SUBSTRATE_REPLAY"
+}

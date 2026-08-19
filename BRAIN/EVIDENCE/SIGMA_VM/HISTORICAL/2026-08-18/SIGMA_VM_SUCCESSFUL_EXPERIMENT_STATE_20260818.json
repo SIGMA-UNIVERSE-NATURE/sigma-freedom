@@ -1,0 +1,160 @@
+{
+  "schema": "SIGMA-VM-SUCCESSFUL-EXPERIMENT-STATE-1.0",
+  "recorded_date": "2026-08-18",
+  "classification": "EVIDENCE_BACKED_SUCCESS_LEDGER_WITH_OPEN_HOLDS_PRESERVED",
+  "environment": {
+    "device": "OPPO",
+    "runtime": "Android / Termux / aarch64",
+    "historical_working_tree": "~/SIGMA/sigma_genesis1"
+  },
+  "source_provenance": [
+    {
+      "name": "SIGMA_VM_CURRENT_STATE_2026-08-18_v2.md",
+      "sha256": "4b4101ac53039c28e897ace135aeac8f3dec7cd798e58ae3a1d5cf1be0dc457c"
+    },
+    {
+      "name": "SIGMA_VM_V09_FLOORDIV_UPGRADE_HANDOFF_2026-08-18_2140_VN.md",
+      "sha256": "5cdaf2e5191d9d09431df910420b62c762de5a55c6063f97df6c252f6d046fa2"
+    }
+  ],
+  "successful_milestones": [
+    {
+      "version": "v0.2",
+      "capability": "actual ABI basic parity",
+      "status": "PASS",
+      "evidence": {
+        "c_rc": 0,
+        "sigma_rc": 0,
+        "stdout": "30",
+        "stderr": "EMPTY",
+        "stdout_sha256": "f4ccd05b3271c386ee55d9876c7450012a3b361e5065c09dc22075e38b3cc35c"
+      }
+    },
+    {
+      "version": "v0.3",
+      "capability": "external SIGMBC01 load/decode/execute",
+      "status": "PASS",
+      "input_sha256": "efcd04d2d31731f75faf5703e17d52a496bbdff5059e9108d71c86b4bdb804b9",
+      "evidence": {
+        "c_rc": 0,
+        "sigma_rc": 0,
+        "stdout": "30",
+        "stderr": "EMPTY"
+      }
+    },
+    {
+      "version": "v0.4",
+      "capability": "runtime-selected multi-input parity",
+      "status": "PASS",
+      "vm_bytecode_sha256": "9d943aa3aeb2616587ce776ff03dd7b8a4c028919668a9293e1b14f096c35ad1",
+      "cases": [
+        "10+20 -> 30",
+        "7+8 -> 15"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "capability": "arithmetic/unary/control parity",
+      "status": "PASS_WITH_TESTED_SCOPE",
+      "vm_bytecode_sha256": "a41aed0465ae388613c7342f8de89a9e062a540e1ce5ac1a8e9f13e7d949ae85",
+      "gates": {
+        "parity_binary_ops": "PASS",
+        "parity_unary": "PASS",
+        "parity_if_while": "PASS"
+      }
+    },
+    {
+      "version": "v0.6",
+      "capability": "generic function frames and return propagation",
+      "status": "PASS_WITH_TESTED_SCOPE",
+      "vm_bytecode_sha256": "4939c08e0f11c5eb087a68b93d3a2e93db4767d4d920479a98bbcb7606a853b8",
+      "cases": [
+        "ADD_TWO(40,2) -> 42",
+        "CALC(6,7,1) with local temp/result -> 43"
+      ],
+      "verified_surface": [
+        "VM_FIND_FUNCTION",
+        "GENERAL_USER_CALL",
+        "ARGUMENT_ORDER",
+        "PARAMETER_BINDING",
+        "FUNCTION_LOCAL_ENV",
+        "CHILD_FUNCTION_FRAME",
+        "OP_RETURN",
+        "RETURN_VALUE_TO_CALLER"
+      ],
+      "regression": {
+        "parity_binary_ops": "PASS",
+        "parity_unary": "PASS",
+        "parity_if_while": "PASS"
+      }
+    },
+    {
+      "version": "v0.7",
+      "capability": "string constant materialization and parity",
+      "status": "PASS_WITH_TESTED_SCOPE",
+      "source_sha256": "7546aae17392254e14d98e52b93c0a1f86a7203ff49c804c898586a0f82e757d",
+      "bytecode_sha256": "e17478f9bc7d3a19935eb2b0f61472b7511bcca99cdaa19451b0997e839d34aa",
+      "runtime_sha256": "35fa66823c456d6c346c882cdb0875d68e0e1afc7c0df2f576b82ea7569045df",
+      "result": {
+        "stdout": "Xin chào SIGMA-Ψ!",
+        "rc": 0,
+        "stderr": "EMPTY",
+        "byte_parity": "PASS"
+      }
+    },
+    {
+      "version": "v0.8",
+      "capability": "exact FLOAT constant materialization and basic FLOAT addition parity",
+      "status": "PASS_WITH_TESTED_SCOPE",
+      "source_sha256": "518ee72897652dd64279a61d6e80fc73ef9963a35950f9506c6919c9f67c9d7a",
+      "bytecode_sha256": "f1dc7c419504dd7d0e8474c33c4e6b0b9c314303bbdc6aab05ef5874ac421df4",
+      "runtime_sha256": "bef48163b4009a43758e63a70c8d683c46136d990f0f68995c19ffe41ccd20bc",
+      "guest_bytecode_sha256": "5b77e209cd91629a1e7587d693d86de12cbe106e33bd322702ae849b02259618",
+      "result": {
+        "stdout": "3.75",
+        "c_rc": 0,
+        "sigma_rc": 0,
+        "stderr": "EMPTY",
+        "byte_parity": "PASS"
+      }
+    }
+  ],
+  "v0_9_partial_success_and_hold": {
+    "successful_gates": {
+      "c_generic_primitives": "SOURCE_VERIFIED",
+      "c_strict_build": "PASS",
+      "c_regression_over_v0_8_float": "PASS",
+      "sigma_floordiv_source": "SOURCE_VERIFIED",
+      "sigma_compile": "PASS",
+      "sigma_bytecode_hash": "LOCKED"
+    },
+    "artifacts": {
+      "c_source_sha256": "df60a8258a6816476f625fe758b47cc7c5e0ad8188a373f00f169077542962d1",
+      "c_runtime_sha256": "f764f1b34e8b46df21a95bc2ceb9dcc0eef3f53a265ea868b77784a5d707cac6",
+      "sigma_source_sha256": "6259201f845821ce8dbb7c59912ee14505dc2e67134864a13f261fd0ed6d7d15",
+      "sigma_bytecode_sha256": "e4f003abb2e1524038891531b6bc65d17ed2f036c49fd467aabbc5296fd874a6"
+    },
+    "open_failure": {
+      "guest_source_sha256": "1d02eff3964abde2e88b78589a1e9c195deb21d70161602054a386331636bfdd",
+      "compile": "FAIL",
+      "compiler_output": "sigmac: line 9 col 5: expected ';' (token=⚡)",
+      "cause": "NOT_YET_DIAGNOSED"
+    },
+    "overall": "HOLD"
+  },
+  "current_map_relationship": {
+    "E04_BOUNDARY_BASELINE_005": "HOLD_MISSING_READABLE_CURRENT_ARTIFACTS",
+    "E04P_ARTIFACT_PROVISIONING_001": "REQUIRED",
+    "E06_FLOAT64_CANDIDATE": "BLOCKED",
+    "CURRENT_FRONTIER": "SIGMA_NATIVE_FLOAT64_BITCAST_CAPABILITY_001",
+    "NO_STATE_DOWNGRADE": true,
+    "NO_CAPABILITY_PROMOTION": true
+  },
+  "mutation_boundary": {
+    "SIGMA_LIFE_DIRECT_MUTATION": false,
+    "CANONICAL_MERGE": "NONE",
+    "FOUNDATION_MERGE": "NONE",
+    "PHASE2_REOPEN": "NONE",
+    "512_PROMOTION": "NONE"
+  }
+}

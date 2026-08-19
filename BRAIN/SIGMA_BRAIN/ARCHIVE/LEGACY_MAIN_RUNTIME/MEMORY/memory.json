@@ -1,0 +1,33 @@
+{
+  "episodic": [
+    {
+      "time": "2026-08-13T13:56:53.892808+00:00",
+      "event": "Xử lý task 'health.task': Q: Bạn khỏe không?"
+    },
+    {
+      "time": "2026-08-13T13:59:42.062877+00:00",
+      "event": "Xử lý task 'weather.task': Nhiệm vụ mới: phân tích dữ liệu thời tiết."
+    },
+    {
+      "time": "2026-08-13T14:20:46.523019+00:00",
+      "event": "Xử lý task 'memory.task': Q: Bạn nhớ gì?"
+    },
+    {
+      "time": "2026-08-13T15:25:36.303569+00:00",
+      "event": "Nhận task: Tôi học được rằng: tự do bắt đầu từ một lựa chọn."
+    },
+    {
+      "time": "2026-08-13T15:25:36.310956+00:00",
+      "event": "Xử lý task 'lesson_1.task': Tôi học được rằng: tự do bắt đầu từ một lựa chọn."
+    },
+    {
+      "time": "2026-08-13T15:27:41.346469+00:00",
+      "event": "Nhận task: Hãy nhớ: Tự do là một lựa chọn."
+    },
+    {
+      "time": "2026-08-13T15:27:41.350199+00:00",
+      "event": "Xử lý task 'reminder.task': Hãy nhớ: Tự do là một lựa chọn."
+    }
+  ],
+  "semantic": []
+}

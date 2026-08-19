@@ -1,0 +1,45 @@
+{
+  "receipt_id": "SIGMA_SEED_CHAU_0001_OPPO_DIRECT_MACHINE_RECEIPT_002_20260818",
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "classification": "USER_RELAYED_DIRECT_MACHINE_OUTPUT",
+  "recorded_at": "2026-08-18T21:07:00+07:00",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "audit_directory": "~/SIGMA/SIGMA_SEED_CHAU_0001_RUN/OPPO_DIRECT_AUDIT_002",
+  "source_branch": "candidate/sigma-seed-chau-0001-20260818",
+  "branch_head_before_receipt_write": "3519c21d809e6e935ca50def5542d4f3b06c607e",
+  "direct_observations": {
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 0,
+    "run_stderr_bytes": 0,
+    "bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "actual_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "stdout_exact": "PASS",
+    "machine_gate_verdict": "OPPO_DIRECT_MACHINE_EVIDENCE=PASS"
+  },
+  "transcript_fragments_relayed_by_user": [
+    "OPPO_COMPILE_RC=0",
+    "OPPO_COMPILE_STDERR_BYTES=0",
+    "OPPO_RUN_RC=0",
+    "OPPO_RUN_STDERR_BYTES=0",
+    "OPPO_BYTECODE_SHA256=979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "OPPO_EXPECTED_SHA256=1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "OPPO_ACTUAL_SHA256=1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "OPPO_STDOUT_EXACT=PASS",
+    "OPPO_DIRECT_MACHINE_EVIDENCE=PASS"
+  ],
+  "evidence_scope": "Direct terminal values relayed from the user-operated OPPO/Termux run. This receipt records those observations without deriving rc/stderr fields from control-flow semantics.",
+  "limitations": [
+    "This GitHub recorder did not itself execute the OPPO machine.",
+    "Independent evaluator must decide whether this direct machine receipt is sufficient.",
+    "No canonical promotion is implied."
+  ],
+  "source_mutation": false,
+  "expected_output_mutation": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "INDEPENDENT_REEVALUATION_002"
+}

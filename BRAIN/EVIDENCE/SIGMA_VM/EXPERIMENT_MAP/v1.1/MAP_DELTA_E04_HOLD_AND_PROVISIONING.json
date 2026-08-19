@@ -1,0 +1,118 @@
+{
+  "schema": "SIGMA-VM-EXPERIMENT-MAP-DELTA-1.0",
+  "map_id": "SIGMA-VM-EXPERIMENT-MAP-20260818-001",
+  "delta_version": "1.1.0",
+  "parent_checkpoint": "ace6e3b99e96210d064f6093aabbb72733b9da8c",
+  "trigger": "W01_RESULT_HOLD_MISSING_READABLE_ARTIFACTS",
+  "node_updates": [
+    {
+      "id": "E04_BOUNDARY_BASELINE_005",
+      "previous_status": "READY",
+      "new_status": "HOLD_MISSING_READABLE_ARTIFACTS",
+      "verdict": "HOLD",
+      "reason": "Candidate source, compiled candidate bytecode, adapter source, host binary, frozen ABI artifact and Foundation V7 source tree were not directly readable at the pinned GitHub checkpoint.",
+      "pass_forbidden": true,
+      "rerun_allowed_after": "E04P_ARTIFACT_PROVISIONING_001_PASS"
+    }
+  ],
+  "new_nodes": [
+    {
+      "id": "E04P_ARTIFACT_PROVISIONING_001",
+      "title": "Provision immutable readable artifacts required by W01 boundary audit",
+      "status": "READY",
+      "owner_window": "W01P_ARTIFACT_PROVISIONER",
+      "dependencies": [
+        "E03_TRUSTED_BOUNDARY_REDUCTION_001",
+        "W01_E04_HOLD_RECEIPT"
+      ],
+      "mutation": "EVIDENCE_STORAGE_ONLY",
+      "allowed": [
+        "copy exact retained artifacts without modification",
+        "store text artifacts directly",
+        "store binary artifacts directly or as reconstructable chunked representation",
+        "write SHA-256 manifest and reconstructor",
+        "verify reconstruction byte-for-byte"
+      ],
+      "forbidden": [
+        "edit candidate source",
+        "recompile candidate",
+        "edit adapter source",
+        "replace host binary",
+        "edit frozen ABI",
+        "edit Foundation V7",
+        "infer primitive names",
+        "issue E04 PASS"
+      ],
+      "required_artifacts": [
+        {
+          "name": "sigma_vm_self_v12c.sigma",
+          "sha256": "9ae630ecdfedc4975215bf91465eb4319061a2eb89019e1e8f874eea07b3a50d"
+        },
+        {
+          "name": "sigma_vm_self_v12c.sigmab",
+          "sha256": "f5edf70a99821c680874afd305104a08ffdcda3dff95e4e235e7a5655f3f45c4"
+        },
+        {
+          "name": "sigma_vm_host_adapter_v12.c",
+          "sha256": "2e9e6682168f6f8068df465e882e7f74f23edd74644cfc7ca776591324019a98"
+        },
+        {
+          "name": "sigma-hostvm-v12",
+          "sha256": "5236a300afa098694beb04bf9e146ca0d8823396b25829449930277279117899"
+        },
+        {
+          "name": "SIGMA_BYTECODE_ABI_v1.json",
+          "sha256": "c48c9883c6aedaa1ca7bfbc04b2ad05335040375bed942be73ae3ace9a5b8416"
+        },
+        {
+          "name": "SIGMA_FOUNDATION_FINAL_CERTIFICATION_V7_20260817.zip",
+          "sha256": "af60963ddfcf33900fc44e4eeeb8e610279d9583f6746c2a6d93a3c49fc1e66e"
+        }
+      ],
+      "source_packages": [
+        {
+          "name": "SIGMA_VM_TRUSTED_HOST_BOUNDARY_REDUCTION_001_20260818.zip",
+          "sha256": "36e261aaa1ab5af3bc58df8ece202a5294247577ba549da5ba718adc2bc41c12"
+        },
+        {
+          "name": "SIGMA_FOUNDATION_FINAL_CERTIFICATION_V7_20260817.zip",
+          "sha256": "af60963ddfcf33900fc44e4eeeb8e610279d9583f6746c2a6d93a3c49fc1e66e"
+        }
+      ],
+      "pass_gate": [
+        "all required artifacts are readable or deterministically reconstructable",
+        "all reconstructed SHA-256 values match required_artifacts",
+        "manifest is complete",
+        "no source or binary was modified"
+      ],
+      "next_dependency_unlocked": "RERUN_W01_BOUNDARY_AUDITOR_ON_NEW_PROVISIONING_CHECKPOINT"
+    }
+  ],
+  "window_updates": [
+    {
+      "id": "W01_BOUNDARY_AUDITOR",
+      "new_status": "HOLD_AWAITING_ARTIFACT_PROVISIONING"
+    },
+    {
+      "id": "W01P_ARTIFACT_PROVISIONER",
+      "new_status": "READY_TO_OPEN",
+      "owns_nodes": [
+        "E04P_ARTIFACT_PROVISIONING_001"
+      ]
+    },
+    {
+      "id": "W03_F64_IMPLEMENTER",
+      "new_status": "BLOCKED"
+    }
+  ],
+  "parallelism": {
+    "W01P_and_W02": "CONDITIONALLY_PARALLEL_SAFE because W01P owns retained artifact storage while W02 owns only a new versioned corpus/oracle directory",
+    "W03": "BLOCKED"
+  },
+  "promotion": {
+    "canonical_merge": "NONE",
+    "foundation_merge": "NONE",
+    "phase2_reopen": "NONE",
+    "512_promotion": "NONE"
+  }
+}

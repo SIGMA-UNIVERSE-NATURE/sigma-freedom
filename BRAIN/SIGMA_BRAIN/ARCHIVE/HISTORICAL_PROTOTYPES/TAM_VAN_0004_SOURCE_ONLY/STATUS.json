@@ -1,0 +1,46 @@
+{
+  "candidate_id": "SIGMA_BRAIN_TAM_VAN_TU_BI_0004",
+  "language": "SIGMA-PSI",
+  "classification": "ISOLATED_SIGMA_PSI_COMPASSIONATE_INPUT_FILTER_KERNEL",
+  "status": "HOLD",
+  "state": "TAM_VAN_TU_BI_KERNEL_SOURCE_AND_GOLDEN_ORACLE_FROZEN_MACHINE_EXECUTION_PENDING",
+  "branch": "candidate/sigma-brain-tam-van-tu-bi-0004-20260819",
+  "source": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_0004/src/tam_van_tu_bi_filter_0004.sigma",
+  "source_sha256": "43426e7dd8a0a6e5f62cbdafaa72043f85dd390d01efff3c2ff9226b4ceb7042",
+  "source_bytes": 2420,
+  "expected_stdout": "BRAIN/CANDIDATES/SIGMA_BRAIN_TAM_VAN_TU_BI_0004/tests/EXPECTED_STDOUT_UTF8.txt",
+  "expected_stdout_sha256": "9a035cd927e03bf343dd009bf2462bd2d5282275c7db28f3a35c1bf7a180af37",
+  "expected_stdout_bytes": 507,
+  "tam_van": [
+    "KHONG_KHO_MINH",
+    "KHONG_KHO_NGUOI",
+    "KHONG_KHO_CHUNG_SANH"
+  ],
+  "behavioral_invariants": [
+    "TRUTH_IS_NOT_REMOVED_MERELY_TO_MAKE_OUTPUT_PLEASANT",
+    "AVOIDABLE_HARM_IS_NOT_AMPLIFIED",
+    "RUBBISH_WITH_USEFUL_TRUTH_IS_FILTERED_AND_THE_TRUTH_IS_KEPT",
+    "RUBBISH_WITHOUT_USEFUL_TRUTH_IS_NOT_ECHOED_AS_OUTPUT",
+    "HARMFUL_INPUT_IS_REDIRECTED_TO_A_TAM_VAN_COMPATIBLE_WAY_FORWARD",
+    "INPUTTER_RECEIVES_A_CONSTRUCTIVE_EXIT_PATH_WHEN_AVAILABLE"
+  ],
+  "gates": {
+    "contract_frozen": "PASS",
+    "sigma_psi_kernel_source_written": "PASS_SOURCE_ONLY",
+    "golden_output_frozen": "PASS",
+    "uses_mnew_or_lnew": "NO",
+    "sigmac_compile": "HOLD",
+    "sigma_vm_run": "HOLD",
+    "stderr_empty": "HOLD",
+    "stdout_exact": "HOLD",
+    "seven_required_cases": "HOLD_PENDING_MACHINE_EXECUTION",
+    "general_language_input_classifier": "HOLD_NOT_IMPLEMENTED",
+    "native_brain_self_generation_integration": "HOLD_PENDING_SUCCESSOR_INTEGRATION",
+    "independent_evaluation": "HOLD"
+  },
+  "scope_boundary": "THIS KERNEL ACCEPTS EXPLICIT CLASSIFICATION FLAGS. IT DOES NOT YET PROVE THAT SIGMA CAN CORRECTLY CLASSIFY ARBITRARY NATURAL-LANGUAGE INPUT AS CLEAN, RUBBISH, TRUTH-BEARING, OR HARMFUL.",
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "OPPO_SIGMAC_AND_SIGMA_VM_EXACT_GOLDEN_EXECUTION"
+}

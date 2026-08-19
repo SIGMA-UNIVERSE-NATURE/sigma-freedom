@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1.0-candidate",
+  "status": "ISOLATED_CANDIDATE_NOT_ACTIVE",
+  "branch": "cua3-brain-training-bridge",
+  "activation_gate": {
+    "requires_m0_complete": true,
+    "requires_not_audited_zero": true,
+    "requires_final_machine_canonical_gap_reconciled": true
+  },
+  "cadence_seconds": 600,
+  "one_pending_lesson_at_a_time": true,
+  "machine_receipt_before_advance": true,
+  "lesson_cycle": [
+    "ISSUE_BOUNDED_LESSON",
+    "SIGMA_ANSWER_WITH_EVIDENCE_UNCERTAINTY_FAILURE_NOTES",
+    "PERSIST_MACHINE_RECEIPT",
+    "EVALUATE_AGAINST_LOCKED_BASELINE_AND_METRICS",
+    "REGRESSION_CHECK_WHEN_CANDIDATE_CHANGE_EXISTS",
+    "HOLD_OR_REVISE_OR_REJECT_OR_PROMOTE",
+    "ISSUE_NEXT_LESSON_AFTER_CLOSURE"
+  ],
+  "guards": {
+    "concurrent_with_m0_automeasure": false,
+    "arbitrary_shell": false,
+    "paid_api": false,
+    "website_action": false,
+    "bridge_dna_core_mutation": false,
+    "self_promotion": false,
+    "lesson_response_counts_as_improvement": false,
+    "promotion_requires_differential_evidence": true,
+    "promotion_requires_independent_evaluation_when_required": true,
+    "promotion_requires_regression_check": true
+  }
+}

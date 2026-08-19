@@ -1,0 +1,46 @@
+{
+  "evaluation_id": "SIGMA_SEED_CHAU_0001_INDEPENDENT_EVALUATION_002",
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "classification": "USER_RELAYED_INDEPENDENT_EVALUATOR_OUTPUT",
+  "recorded_at": "2026-08-18T21:24:00+07:00",
+  "evaluated_branch_head": "0f261cf1478a7b3739d63b49001ac2dd1d3a45ac",
+  "mode": "READ_ONLY_INDEPENDENT_EVALUATOR",
+  "results": {
+    "oppo_execution": "PASS",
+    "deterministic_recompile": "PASS",
+    "hp_bytecode_parity": "PASS",
+    "hp_vm_execution": "PASS",
+    "hp_raw_exact_byte_replay": "HOLD",
+    "hp_lf_normalized_semantic_replay": "PASS",
+    "powershell_newline_cause_hypothesis": "REJECTED",
+    "cross_substrate_semantic_replay": "PASS",
+    "cross_substrate_exact_byte_replay": "HOLD",
+    "status_overclaim_check": "PASS",
+    "canonical_promotion_authorized": "NO",
+    "final_verdict": "PASS_WITH_DEFINED_SCOPE",
+    "previous_hold_resolved": true
+  },
+  "resolution_basis": {
+    "compile_rc": 0,
+    "compile_stderr_bytes": 0,
+    "run_rc": 0,
+    "run_stderr_bytes": 0,
+    "bytecode_sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba",
+    "expected_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "actual_stdout_sha256": "1ea3cfe789e8a5d3cfba2d004908d1ca7b28ab59f42eb7deb9e29eb1e4efa891",
+    "stdout_exact": "PASS"
+  },
+  "exact_byte_limitation": "HP raw exact-byte replay remains HOLD because Windows-native output uses CRLF and is not byte-identical to the frozen LF expected output. CRLF-to-LF normalization alone reproduces the frozen expected SHA256.",
+  "terminal_verdict": "SIGMA_SEED_CHAU_0001_INDEPENDENT_EVALUATION_PASS",
+  "limitations": [
+    "This file records the evaluator verdict relayed by the user; the GitHub recorder did not itself operate the evaluator window.",
+    "PASS is limited to the defined seed execution, determinism, HP bytecode parity, VM execution, and cross-substrate semantic replay scope.",
+    "Raw cross-substrate exact-byte stdout parity remains HOLD.",
+    "No canonical promotion, 54-core mutation, 512 promotion, consciousness claim, life claim, full native brain claim, or full C-free stack claim is authorized."
+  ],
+  "source_mutation": false,
+  "expected_output_mutation": false,
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false
+}

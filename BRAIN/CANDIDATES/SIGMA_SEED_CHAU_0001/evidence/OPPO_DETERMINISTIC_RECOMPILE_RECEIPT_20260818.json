@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "SIGMA-SEED-CHAU-0001-OPPO-DETERMINISTIC-RECOMPILE-20260818",
+  "seed_id": "SIGMA_SEED_CHAU_0001",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "classification": "USER_OBSERVED_MACHINE_EXECUTION_EVIDENCE",
+  "source_mutated_during_gate": false,
+  "compile_outputs": [
+    {
+      "artifact": "seed_chau_0001.sigmab",
+      "sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba"
+    },
+    {
+      "artifact": "seed_chau_0001.recompile1.sigmab",
+      "sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba"
+    },
+    {
+      "artifact": "seed_chau_0001.recompile2.sigmab",
+      "sha256": "979d4d5d11225e4ba884ea221716a2d7f62486c20d2351be578c1748373b69ba"
+    }
+  ],
+  "gate_result": "SIGMA_SEED_DETERMINISTIC_RECOMPILE=PASS",
+  "recompile_1_rc0": "DERIVED_FROM_FINAL_GATE_CONTROL_FLOW",
+  "recompile_2_rc0": "DERIVED_FROM_FINAL_GATE_CONTROL_FLOW",
+  "byte_identity_original_vs_recompile1": "PASS_DERIVED_FROM_FINAL_GATE_CONTROL_FLOW",
+  "byte_identity_original_vs_recompile2": "PASS_DERIVED_FROM_FINAL_GATE_CONTROL_FLOW",
+  "verdict": "PASS_WITH_DEFINED_SCOPE",
+  "scope": "SAME_SOURCE_SAME_OPPO_TOOLCHAIN_THREE_BYTE_IDENTICAL_BYTECODE_OUTPUTS",
+  "non_claims": [
+    "NOT_HP_X86_64_REPLAY_EVIDENCE",
+    "NOT_CROSS_SUBSTRATE_PASS",
+    "NOT_INDEPENDENT_EVALUATION",
+    "NOT_CANONICAL_PROMOTION",
+    "NOT_FULL_NATIVE_BRAIN"
+  ],
+  "canonical_mutation": false,
+  "core_54_mutation": false,
+  "promotion_512": false,
+  "next_gate": "HP_X86_64_REPLAY_SAME_SOURCE_AND_EXACT_STDOUT"
+}

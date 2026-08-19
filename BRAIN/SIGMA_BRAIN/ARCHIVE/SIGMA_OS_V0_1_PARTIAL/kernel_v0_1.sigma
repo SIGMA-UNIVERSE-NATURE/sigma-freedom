@@ -1,0 +1,67 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.OS][VERSION=0.1]
+
+DEF NEXT_TASK(current) {
+    IF (current == 1) {
+        RETURN 2;
+    } ELSE {
+        RETURN 1;
+    }
+}
+
+⟡(Σ.SIGMA_OS) {
+    ⚡ kernel_alive: 1;
+    ⚡ tick: 0;
+    ⚡ current_task: 1;
+
+    ⚡ task1_state: 1;
+    ⚡ task1_pc: 0;
+
+    ⚡ task2_state: 1;
+    ⚡ task2_pc: 0;
+
+    print("SIGMA_OS_V0_1_BOOT");
+
+    WHILE (kernel_alive == 1) {
+        IF (current_task == 1) {
+            IF (task1_state == 1) {
+                ⚡ task1_state: 2;
+                print("TASK_1_RUN");
+                ⚡ task1_pc: task1_pc + 1;
+
+                IF (task1_pc == 3) {
+                    ⚡ task1_state: 3;
+                    print("TASK_1_HALT");
+                } ELSE {
+                    ⚡ task1_state: 1;
+                }
+            }
+        } ELSE {
+            IF (task2_state == 1) {
+                ⚡ task2_state: 2;
+                print("TASK_2_RUN");
+                ⚡ task2_pc: task2_pc + 1;
+
+                IF (task2_pc == 2) {
+                    ⚡ task2_state: 3;
+                    print("TASK_2_HALT");
+                } ELSE {
+                    ⚡ task2_state: 1;
+                }
+            }
+        }
+
+        ⚡ tick: tick + 1;
+        ⚡ current_task: NEXT_TASK(current_task);
+
+        IF (task1_state == 3) {
+            IF (task2_state == 3) {
+                ⚡ kernel_alive: 0;
+            }
+        }
+    }
+
+    print("SIGMA_OS_V0_1_SHUTDOWN");
+    print(tick);
+    print(task1_pc);
+    print(task2_pc);
+}

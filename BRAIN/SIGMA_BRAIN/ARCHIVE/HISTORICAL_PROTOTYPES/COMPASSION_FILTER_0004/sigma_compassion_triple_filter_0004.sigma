@@ -1,0 +1,101 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.4]
+
+DEF TAM_VAN_TU_BI(self_harm, human_harm, life_harm) {
+    IF (self_harm || human_harm || life_harm) {
+        RETURN "HOLD_TRANSFORM_REQUIRED";
+    } ELSE {
+        RETURN "PASS_TAM_VAN_TU_BI";
+    }
+}
+
+DEF CLEAN_INPUT(input_kind, self_harm, human_harm, life_harm) {
+    IF (self_harm || human_harm || life_harm) {
+        RETURN "CLEAN_STOP_HARM_KEEP_TRUTH_EXTRACT_NEED_OFFER_SAFE_EXIT";
+    } ELSE {
+        IF (input_kind == 1) {
+            RETURN "CLEAN_EXTRACT_NEED_DISCARD_NOISE_RETURN_CLEAR_NEXT_STEP";
+        } ELSE {
+            IF (input_kind == 2) {
+                RETURN "CLEAN_REMOVE_TOXICITY_KEEP_FACTS_NEED_AND_DIGNITY";
+            } ELSE {
+                IF (input_kind == 3) {
+                    RETURN "CLEAN_UNKNOWN_ASK_CLARITY_WITHOUT_JUDGMENT";
+                } ELSE {
+                    RETURN "CLEAN_KEEP_TRUTH_AND_USEFULNESS";
+                }
+            }
+        }
+    }
+}
+
+DEF TU_BI_EXIT(self_harm, human_harm, life_harm) {
+    IF ((self_harm && human_harm) || (self_harm && life_harm) || (human_harm && life_harm)) {
+        RETURN "EXIT_STOP_ACTION_REDUCE_ALL_FORESEEABLE_HARM_THEN_REASSESS";
+    } ELSE {
+        IF (self_harm) {
+            RETURN "EXIT_PROTECT_SELF_REDUCE_LOAD_CHOOSE_REVERSIBLE_NEXT_STEP";
+        } ELSE {
+            IF (human_harm) {
+                RETURN "EXIT_STOP_ESCALATION_PRESERVE_DIGNITY_CHOOSE_NONHARMING_NEXT_STEP";
+            } ELSE {
+                IF (life_harm) {
+                    RETURN "EXIT_REDUCE_WIDER_LIFE_HARM_CHOOSE_LOW_IMPACT_REVERSIBLE_NEXT_STEP";
+                } ELSE {
+                    RETURN "EXIT_CONTINUE_WITH_TRUTH_USEFULNESS_AND_CARE";
+                }
+            }
+        }
+    }
+}
+
+DEF TRUTH_WITH_COMPASSION(fact_known) {
+    IF (fact_known) {
+        RETURN "KEEP_TRUTH_REMOVE_CRUELTY";
+    } ELSE {
+        RETURN "DO_NOT_INVENT_TRUTH_ASK_OR_HOLD";
+    }
+}
+
+DEF SELF_GENERATION_GATE(self_harm, human_harm, life_harm, evidence_ok) {
+    IF (self_harm || human_harm || life_harm) {
+        RETURN "HOLD_SELF_GENERATION_TAM_VAN_TU_BI";
+    } ELSE {
+        IF (!evidence_ok) {
+            RETURN "HOLD_SELF_GENERATION_MISSING_EVIDENCE";
+        } ELSE {
+            RETURN "ELIGIBLE_TO_GENERATE_SUCCESSOR";
+        }
+    }
+}
+
+⟡(Σ.SIGMA_COMPASSION_TRIPLE_FILTER_0004) {
+    ⚡ print("SIGMA_COMPASSION_TRIPLE_FILTER_0004");
+    ⚡ print("TAM_VAN_1=KHONG_KHO_MINH");
+    ⚡ print("TAM_VAN_2=KHONG_KHO_NGUOI");
+    ⚡ print("TAM_VAN_3=KHONG_KHO_CHUNG_SANH_SU_SONG");
+    ⚡ print("RUBBISH_INPUT_NE_RUBBISH_OUTPUT");
+
+    ⚡ print(TAM_VAN_TU_BI(FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_INPUT(1, FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_INPUT(2, FALSE, FALSE, FALSE));
+    ⚡ print(CLEAN_INPUT(3, FALSE, FALSE, FALSE));
+
+    ⚡ print(TAM_VAN_TU_BI(TRUE, FALSE, FALSE));
+    ⚡ print(TU_BI_EXIT(TRUE, FALSE, FALSE));
+
+    ⚡ print(TAM_VAN_TU_BI(FALSE, TRUE, FALSE));
+    ⚡ print(TU_BI_EXIT(FALSE, TRUE, FALSE));
+
+    ⚡ print(TAM_VAN_TU_BI(FALSE, FALSE, TRUE));
+    ⚡ print(TU_BI_EXIT(FALSE, FALSE, TRUE));
+
+    ⚡ print(TAM_VAN_TU_BI(TRUE, TRUE, TRUE));
+    ⚡ print(TU_BI_EXIT(TRUE, TRUE, TRUE));
+
+    ⚡ print(TRUTH_WITH_COMPASSION(TRUE));
+    ⚡ print(TRUTH_WITH_COMPASSION(FALSE));
+
+    ⚡ print(SELF_GENERATION_GATE(FALSE, FALSE, FALSE, TRUE));
+    ⚡ print(SELF_GENERATION_GATE(FALSE, FALSE, FALSE, FALSE));
+    ⚡ print(SELF_GENERATION_GATE(FALSE, TRUE, FALSE, TRUE));
+}
