@@ -26,6 +26,7 @@ The OPPO runner must verify:
 
 ```text
 QUESTION_ABSENT_FROM_SIGMA_SOURCE=PASS
+CANDIDATE_VALUE_ABSENT_FROM_SIGMA_SOURCE=PASS
 EVIDENCE_BINDING=PASS
 ```
 
@@ -82,6 +83,7 @@ compile stderr = empty
 runtime rc = 0
 runtime stderr = empty
 question absent from SIGMA source
+candidate response value absent from SIGMA source
 exactly one top candidate
 candidate evidence line exists exactly in the reported source file
 ```
@@ -95,6 +97,7 @@ HOLD_AMBIGUOUS_TOP_CANDIDATES
 HOLD_COMPILE
 HOLD_RUNTIME
 HOLD_EVIDENCE_BINDING_FAILURE
+HOLD_CANDIDATE_VALUE_FOUND_IN_SOURCE
 ```
 
 A HOLD is not failure of integrity. It proves that ambiguity or missing evidence was not hidden.
