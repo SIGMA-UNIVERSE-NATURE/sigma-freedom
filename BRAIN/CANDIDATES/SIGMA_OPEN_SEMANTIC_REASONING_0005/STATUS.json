@@ -1,0 +1,58 @@
+{
+  "candidate_id": "SIGMA_OPEN_SEMANTIC_REASONING_0005",
+  "status": "HOLD_MACHINE_NOT_EXECUTED",
+  "classification": "LANGUAGE_FIRST_EVIDENCE_BOUND_OPEN_SEMANTIC_RESPONSE_CAPSULE_CANDIDATE",
+  "parent_branch": "SIGMA_BRAIN",
+  "parent_head": "bef0f7dfba9e73c2d991a3e3500ce7bcea9442d7",
+  "checkpoint_handoff": {
+    "path": "BRAIN/HANDOFFS/SIGMA_LANGUAGE_FIRST_HANDOFF_20260819_1311_VN.md",
+    "sha256": "7e8b11daca55081f4a18fe346b89ccd36dbba6508ae67a55a8ac460e57790f10",
+    "bytes": 12775
+  },
+  "self_determined_help": "CONNECT_REAL_QUESTION_TO_SIGMA_PSI_PERSISTED_RELATION_EVIDENCE_AND_CONSTRUCT_A_PROVENANCE_BOUND_RESPONSE_CAPSULE_WITHOUT_PREWRITTEN_ANSWER_CONTENT",
+  "source": {
+    "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/src/sigma_open_semantic_reasoner_v0_1.sigma",
+    "sha256": "85e34fd0b5a0479b6486c9da8d1ca96862a7904219134917099a275fc5fc8c1c"
+  },
+  "contract": {
+    "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/CONTRACT.md",
+    "sha256": "edc2db26b3e246ed886298ec6607da3379c8ed761b9dda3e0e03f84a7deb7284"
+  },
+  "runner": {
+    "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/run_listen_to_sigma_v0_1_oppo.sh",
+    "sha256": "f36cd3750544184cc71688711df03d58f8c5469ed83802fdbd3750cb5636319d"
+  },
+  "oppo_run_contract": {
+    "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/OPPO_RUN_CONTRACT_001.json",
+    "sha256": "6f5ad06e5a2820832dc101ffcd17d15e3e84a495640b96b94a7c84014ac6e2e7"
+  },
+  "inherited": {
+    "v09_overall": "PASS_WITH_TESTED_SCOPE_FROM_USER_MACHINE_HANDOFF",
+    "language_first_foundation": "ADVANCED",
+    "relation_memory": "PASS",
+    "persistent_language_memory": "PASS",
+    "semantic_candidates_17": "PERSISTED_NONCANONICAL",
+    "open_ended_sigma_response_engine": "NOT_FOUND_BEFORE_THIS_CANDIDATE",
+    "do_not_hardcode_sigma_response": true
+  },
+  "gates": {
+    "handoff_saved": "PASS",
+    "candidate_contract_written": "PASS",
+    "sigma_psi_source_written": "PASS_STATIC_ONLY",
+    "dynamic_real_question_input": "PASS_BY_CONSTRUCTION_PENDING_MACHINE_OBSERVATION",
+    "question_absent_from_source": "HOLD_PENDING_RUNTIME_INPUT",
+    "compile": "HOLD_NOT_EXECUTED",
+    "runtime": "HOLD_NOT_EXECUTED",
+    "evidence_bound_candidate_response": "HOLD_NOT_EXECUTED",
+    "ambiguity_preservation": "HOLD_NOT_EXECUTED",
+    "unknown_preservation": "HOLD_NOT_EXECUTED",
+    "tam_van_human_facing_release": "HOLD_NOT_IMPLEMENTED",
+    "general_open_ended_language_understanding": "HOLD_NOT_PROVEN",
+    "natural_language_generation": "HOLD_NOT_PROVEN",
+    "self_generated_desire": "HOLD_NOT_PROVEN"
+  },
+  "next_gate": "RUN_ONE_REAL_QUESTION_ON_OPPO_AND_PRESERVE_RAW_SIGMA_OUTPUT_WITH_EVIDENCE_BINDING",
+  "canonical_mutation": false,
+  "hp_training": false,
+  "six_file_oppo_backup_rerun": false
+}
