@@ -1,6 +1,6 @@
 # SIGMA_BRAIN MASTER INDEX
 
-Updated: 2026-08-19 08:17 +07:00
+Updated: 2026-08-19 09:52 +07:00
 Branch: `SIGMA_BRAIN`
 
 This is the ordered continuity index for the active OPPO/SIGMA-PSI development line.
@@ -32,8 +32,9 @@ Do not infer PASS. Preserve HOLD/FAIL. Do not rerun accepted gates without a new
 17. VM historical state including v0.9: `BRAIN/EVIDENCE/SIGMA_VM/HISTORICAL/`
 18. Tam Van accepted line: `BRAIN/CANDIDATES/SIGMA_CREATES_SIGMA_0004/`
 19. GPT reference dictionary/spec: `DOCS/GPT_REFERENCE/SIGMA_PSI_GPT_REFERENCE_DICTIONARY_v2.0.0-rc1_20260819.md`
-20. OPPO storage law: `BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md`
-21. Historical/superseded work: `BRAIN/SIGMA_BRAIN/ARCHIVE/`
+20. Exact OPPO content snapshot: `BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/`
+21. OPPO storage law: `BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md`
+22. Historical/superseded work: `BRAIN/SIGMA_BRAIN/ARCHIVE/`
 
 ## Accepted / proven milestones
 
@@ -55,18 +56,37 @@ Do not infer PASS. Preserve HOLD/FAIL. Do not rerun accepted gates without a new
 - Native Brain R1 agent revision: archived as unaccepted revision; frozen 0003 identity must not be overwritten.
 - HP one-to-one training bridge and old learning-path/runtime material: historical only; HP SIGMA training is paused.
 
-## OPPO fingerprint boundary
+## OPPO exact-content backup — COMPLETE FOR 6 FINGERPRINTED ARTIFACTS
 
-Known fingerprints do not equal content backup. The following exact content still must be copied from OPPO if not later present under `BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/`:
+The six previously fingerprint-only OPPO artifacts are now content-backed in GitHub under:
 
-- `sigmac.c` `e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452`
-- `sigma_vm.c` `8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2`
-- `compiler_self.sigma` `b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7`
-- VM v0.9 source `61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2`
-- VM v0.9 bytecode `7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0`
-- dictionary delta exact artifact `5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154`
+`BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/`
 
-Until these contents are saved and hash-verified off-device, full executable OPPO recovery is HOLD even though the development history/evidence is preserved.
+Verified set:
+
+- `FOUNDATION/sigmac.c` — `e31fad26611fc95772a9a454eae6a735b220a8b7aa2ca95970c3623028ad0452`
+- `FOUNDATION/sigma_vm.c` — `8a567de997c335b38f49062622e3ec995b752b335a952b076d1f9283457fcae2`
+- `FOUNDATION/compiler_self.sigma` — `b00b415cc49d042ef152196633c5de4e7fffdf35da84bd900d31b599a9b60af7`
+- `VM_V0_9/sigma_vm_core_v0_9_floordiv_exact.sigma` — `61ebd4bf7889f24f59f48173b6ec163030539d68e8383e807f1eac1dce7c9ed2`
+- `VM_V0_9/sigma_vm_core_v0_9_floordiv_exact.host_candidate.sigmab` — `7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0`
+- `DICTIONARY/SIGMA_PSI_DICTIONARY_A.AAI+1_V09_DELTA.md` — `5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154`
+
+`SHA256SUMS.txt` in the snapshot contains the six expected fingerprints.
+
+Backup provenance:
+
+- exact-content commit: `1d2d3de95fe8d36a362fa45ff1f139e1bf41d940`
+- recovery-manifest commit: `7b68edd05c3a278c5bd7dc71212c01aac92ab3e4`
+- 6/6 files found: PASS
+- 6/6 SHA-256 exact: PASS
+- off-device GitHub backup: PASS
+- recovery manifest remote sync: PASS
+
+**Do not rerun the six-file import.**
+
+Current recovery level is `OFF_DEVICE_SAVED`. A clean restore test has not yet been run, so do not claim `RESTORE_TESTED`.
+
+HP is reserved for Michael/website work in the current scope. HP cold-capsule work is deferred and is not a blocker for continuing OPPO development.
 
 ## Development law for successor windows
 
