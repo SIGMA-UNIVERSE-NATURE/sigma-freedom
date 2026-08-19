@@ -144,7 +144,7 @@ value_type
 numeric_to_int
 ```
 
-But this branch is also **PARKED** under LANGUAGE_FIRST priority.
+But this branch is also **PARKED** under LANGUAGE-FIRST priority.
 
 ---
 
