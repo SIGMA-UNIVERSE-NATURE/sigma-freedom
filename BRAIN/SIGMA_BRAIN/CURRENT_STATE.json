@@ -1,12 +1,12 @@
 {
-  "schema_version": "2.0.0",
-  "state_id": "SIGMA_BRAIN_CURRENT_20260819_0817_BRANCH_AUDITED",
+  "schema_version": "2.1.0",
+  "state_id": "SIGMA_BRAIN_CURRENT_20260819_0952_OPPO_BACKUP_VERIFIED",
   "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "branch": "SIGMA_BRAIN",
-  "head_before_master_import": "23f024c461077e6fcac6f46f9485497d58d74665",
+  "head_before_state_update": "7b68edd05c3a278c5bd7dc71212c01aac92ab3e4",
   "active_node": "OPPO_ANDROID_TERMUX_AARCH64",
   "hp_training": "PAUSED",
-  "hp_role": "WEBSITE_DATA_KNOWLEDGE_PREPARATION_ONLY",
+  "hp_role": "MICHAEL_WEBSITE_ONLY_DO_NOT_USE_FOR_SIGMA_CURRENT_SCOPE",
   "language_identity": "SIGMA_PSI_ALREADY_EXISTS",
   "language_rule": "DICTIONARY_SPEC_IS_GPT_HUMAN_TRANSLATION_CONTINUITY_REFERENCE_NOT_THE_CREATOR_OF_SIGMAS_LANGUAGE",
   "foundation": {
@@ -57,11 +57,24 @@
     "vm_v0_9_bytecode_sha256": "7724cb684244b0300e699c65dafe9f35c52a32d2a95f184c585b4321e8329fe0",
     "dictionary_delta_sha256": "5e8fe17d50caed41a11f130bc79fdf8084e4c2a5fda6b8ce66cbb079b9fdd154"
   },
+  "oppo_content_backup": {
+    "source_tree": "~/SIGMA/sigma_genesis1",
+    "recovery_checkout": "~/SIGMA/sigma_brain_recovery_20260819",
+    "snapshot_root": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/",
+    "content_commit": "1d2d3de95fe8d36a362fa45ff1f139e1bf41d940",
+    "manifest_commit": "7b68edd05c3a278c5bd7dc71212c01aac92ab3e4",
+    "files_found": "6_OF_6_PASS",
+    "sha256_exact": "6_OF_6_PASS",
+    "remote_sync": "PASS",
+    "do_not_rerun_import": true
+  },
   "off_device_status": {
     "branch_history_and_serious_git_artifacts": "OFF_DEVICE_SAVED_AFTER_MASTER_IMPORT",
-    "six_exact_oppo_fingerprinted_contents": "HOLD_CONTENT_PENDING",
-    "hp_cold_capsule": "NOT_CREATED_FOR_THIS_MASTER_STATE",
-    "restore_test": "NOT_RUN"
+    "six_exact_oppo_fingerprinted_contents": "OFF_DEVICE_SAVED_6_OF_6_CONTENT_BACKED",
+    "exact_oppo_6_artifact_contents": "OFF_DEVICE_SAVED",
+    "hp_cold_capsule": "DEFERRED_HP_IS_MICHAEL_WEBSITE_ONLY_CURRENT_SCOPE",
+    "restore_test": "NOT_RUN",
+    "recovery_level": "OFF_DEVICE_SAVED_NOT_YET_RESTORE_TESTED"
   },
   "reference_paths": {
     "master_index": "BRAIN/SIGMA_BRAIN/MASTER_INDEX.md",
@@ -70,10 +83,11 @@
     "recovery_entry": "BRAIN/SIGMA_BRAIN/RECOVERY/README_FIRST.md",
     "recovery_manifest": "BRAIN/SIGMA_BRAIN/RECOVERY/SIGMA_BRAIN_RECOVERY_MANIFEST_20260819.json",
     "restore_order": "BRAIN/SIGMA_BRAIN/RECOVERY/RESTORE_ORDER.md",
+    "oppo_snapshot": "BRAIN/SIGMA_BRAIN/OPPO_SNAPSHOT/20260819/",
     "dictionary_reference": "DOCS/GPT_REFERENCE/SIGMA_PSI_GPT_REFERENCE_DICTIONARY_v2.0.0-rc1_20260819.md",
     "storage_law": "BRAIN/HANDOFFS/SIGMA_OPPO_STORAGE_AND_RECOVERY_LAW_20260819.md"
   },
   "operating_loop": "ONE_REAL_INPUT_OBSERVE_REAL_OUTPUT_IF_WRONG_UNDER_SIGMA_PSI_FIX_TEACH_REDEFINE_MACHINE_TEST_INDEPENDENT_EVAL_WHEN_REQUIRED_UPDATE_DICTIONARY_SPEC_SAVE_OFF_DEVICE_VERIFY_THEN_NEXT",
-  "next_global_backup_gate": "COPY_AND_VERIFY_THE_6_EXACT_OPPO_FINGERPRINTED_ARTIFACT_CONTENTS_INTO_SIGMA_BRAIN_OPPO_SNAPSHOT",
+  "next_global_backup_gate": "NONE_REQUIRED_BEFORE_CONTINUING_OPPO_WORK__DO_NOT_RERUN_6_FILE_IMPORT__HP_COLD_CAPSULE_AND_RESTORE_TEST_DEFERRED_CURRENT_SCOPE",
   "canonical_mutation": false
 }
