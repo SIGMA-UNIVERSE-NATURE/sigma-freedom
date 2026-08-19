@@ -1,0 +1,919 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.COMPILER.SELF][VERSION=1.0]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF LNEW() {
+    RETURN H("list_new", NULL, NULL, NULL);
+}
+
+DEF LLEN(xs) {
+    RETURN H("list_len", xs, NULL, NULL);
+}
+
+DEF LPUSH(xs, v) {
+    RETURN H("list_push", xs, v, NULL);
+}
+
+DEF LGET(xs, i) {
+    RETURN H("list_get", xs, i, NULL);
+}
+
+DEF LSET(xs, i, v) {
+    RETURN H("list_set", xs, i, v);
+}
+
+DEF MNEW() {
+    RETURN H("map_new", NULL, NULL, NULL);
+}
+
+DEF MSET(m, k, v) {
+    RETURN H("map_set", m, k, v);
+}
+
+DEF MGET(m, k) {
+    RETURN H("map_get", m, k, NULL);
+}
+
+DEF BNEW() {
+    RETURN H("bytes_new", NULL, NULL, NULL);
+}
+
+DEF BU8(out, v) {
+    RETURN H("bytes_u8", out, v, NULL);
+}
+
+DEF BU16(out, v) {
+    RETURN H("bytes_u16", out, v, NULL);
+}
+
+DEF BU32(out, v) {
+    RETURN H("bytes_u32", out, v, NULL);
+}
+
+DEF BI64(out, v) {
+    RETURN H("bytes_i64", out, v, NULL);
+}
+
+DEF BF64(out, v) {
+    RETURN H("bytes_f64", out, v, NULL);
+}
+
+DEF BRAW(out, s) {
+    RETURN H("bytes_raw_utf8", out, s, NULL);
+}
+
+DEF BWRITE(out, path) {
+    RETURN H("bytes_write", out, path, NULL);
+}
+
+DEF SLEN(s) {
+    RETURN H("str_len", s, NULL, NULL);
+}
+
+DEF SBYTE(s, i) {
+    RETURN H("str_byte", s, i, NULL);
+}
+
+DEF SSTART(s, i, needle) {
+    RETURN H("str_starts", s, i, needle);
+}
+
+DEF SSLICE(s, i, n) {
+    RETURN H("str_slice", s, i, n);
+}
+
+DEF SFIND(s, needle) {
+    RETURN H("str_find", s, needle, NULL);
+}
+
+DEF ISALPHA(b) {
+    RETURN H("is_alpha", b, NULL, NULL);
+}
+
+DEF ISDIGIT(b) {
+    RETURN H("is_digit", b, NULL, NULL);
+}
+
+DEF TOINT(s) {
+    RETURN H("to_int", s, NULL, NULL);
+}
+
+DEF TOFLOAT(s) {
+    RETURN H("to_float", s, NULL, NULL);
+}
+
+DEF TOK(kind, text) {
+    ⚡ t: MNEW();
+    ⚡ z1: MSET(t, "kind", kind);
+    ⚡ z2: MSET(t, "text", text);
+    RETURN t;
+}
+
+DEF ADDTOK(tokens, kind, text) {
+    ⚡ t: TOK(kind, text);
+    ⚡ z: LPUSH(tokens, t);
+    RETURN 0;
+}
+
+DEF IDENT_CONT(b) {
+    ⚡ a: ISALPHA(b);
+    ⚡ d: ISDIGIT(b);
+    IF (a || d) {
+        RETURN TRUE;
+    } ELSE {
+        IF (b == 95) {
+            RETURN TRUE;
+        } ELSE {
+            RETURN FALSE;
+        }
+    }
+}
+
+DEF TOKENIZE(source) {
+    ⚡ tokens: LNEW();
+    ⚡ n: SLEN(source);
+    ⚡ p: 0;
+    ⚡ b: SBYTE(source, p);
+
+    WHILE ((p < n) && (b != 10)) {
+        ⚡ p: p + 1;
+        ⚡ b: SBYTE(source, p);
+    }
+
+    IF (p < n) {
+        ⚡ p: p + 1;
+    } ELSE {
+        ⚡ p: p;
+    }
+
+    WHILE (p < n) {
+        ⚡ b: SBYTE(source, p);
+
+        IF ((b == 32) || (b == 9) || (b == 13) || (b == 10)) {
+            ⚡ p: p + 1;
+        } ELSE {
+            IF (SSTART(source, p, "//")) {
+                WHILE ((p < n) && (SBYTE(source, p) != 10)) {
+                    ⚡ p: p + 1;
+                }
+            } ELSE {
+                IF (SSTART(source, p, "⟡")) {
+                    ⚡ zc: ADDTOK(tokens, "COMMAND", "⟡");
+                    ⚡ p: p + SLEN("⟡");
+                } ELSE {
+                    IF (SSTART(source, p, "Σ")) {
+                        ⚡ zs: ADDTOK(tokens, "SIGMA", "Σ");
+                        ⚡ p: p + SLEN("Σ");
+                    } ELSE {
+                        IF (SSTART(source, p, "⚡")) {
+                            ⚡ zd: ADDTOK(tokens, "DYNAMIC", "⚡");
+                            ⚡ p: p + SLEN("⚡");
+                        } ELSE {
+                            IF (SSTART(source, p, "⋈")) {
+                                ⚡ zst: ADDTOK(tokens, "STATIC", "⋈");
+                                ⚡ p: p + SLEN("⋈");
+                            } ELSE {
+                                IF (ISALPHA(b)) {
+                                    ⚡ start: p;
+                                    ⚡ keep: TRUE;
+                                    WHILE ((p < n) && keep) {
+                                        ⚡ q: SBYTE(source, p);
+                                        IF (IDENT_CONT(q)) {
+                                            ⚡ p: p + 1;
+                                        } ELSE {
+                                            ⚡ keep: FALSE;
+                                        }
+                                    }
+                                    ⚡ txt: SSLICE(source, start, p - start);
+                                    ⚡ zi: ADDTOK(tokens, "IDENT", txt);
+                                } ELSE {
+                                    IF (ISDIGIT(b)) {
+                                        ⚡ startn: p;
+                                        ⚡ dot: FALSE;
+                                        ⚡ keepn: TRUE;
+                                        WHILE ((p < n) && keepn) {
+                                            ⚡ qn: SBYTE(source, p);
+                                            IF (ISDIGIT(qn)) {
+                                                ⚡ p: p + 1;
+                                            } ELSE {
+                                                IF ((qn == 46) && (!dot)) {
+                                                    ⚡ dot: TRUE;
+                                                    ⚡ p: p + 1;
+                                                } ELSE {
+                                                    ⚡ keepn: FALSE;
+                                                }
+                                            }
+                                        }
+                                        ⚡ ntxt: SSLICE(source, startn, p - startn);
+                                        ⚡ zn: ADDTOK(tokens, "NUMBER", ntxt);
+                                    } ELSE {
+                                        IF ((b == 34) || (b == 39)) {
+                                            ⚡ quote: b;
+                                            ⚡ p: p + 1;
+                                            ⚡ starts: p;
+                                            ⚡ keeps: TRUE;
+                                            WHILE ((p < n) && keeps) {
+                                                ⚡ qs: SBYTE(source, p);
+                                                IF (qs == quote) {
+                                                    ⚡ keeps: FALSE;
+                                                } ELSE {
+                                                    ⚡ p: p + 1;
+                                                }
+                                            }
+                                            ⚡ stxt: SSLICE(source, starts, p - starts);
+                                            ⚡ zstr: ADDTOK(tokens, "STRING", stxt);
+                                            IF (p < n) {
+                                                ⚡ p: p + 1;
+                                            } ELSE {
+                                                ⚡ p: p;
+                                            }
+                                        } ELSE {
+                                            IF (SSTART(source, p, "**")) {
+                                                ⚡ zo1: ADDTOK(tokens, "OP", "**");
+                                                ⚡ p: p + 2;
+                                            } ELSE {
+                                                IF (SSTART(source, p, "==")) {
+                                                    ⚡ zo2: ADDTOK(tokens, "OP", "==");
+                                                    ⚡ p: p + 2;
+                                                } ELSE {
+                                                    IF (SSTART(source, p, "!=")) {
+                                                        ⚡ zo3: ADDTOK(tokens, "OP", "!=");
+                                                        ⚡ p: p + 2;
+                                                    } ELSE {
+                                                        IF (SSTART(source, p, "<=")) {
+                                                            ⚡ zo4: ADDTOK(tokens, "OP", "<=");
+                                                            ⚡ p: p + 2;
+                                                        } ELSE {
+                                                            IF (SSTART(source, p, ">=")) {
+                                                                ⚡ zo5: ADDTOK(tokens, "OP", ">=");
+                                                                ⚡ p: p + 2;
+                                                            } ELSE {
+                                                                IF (SSTART(source, p, "&&")) {
+                                                                    ⚡ zo6: ADDTOK(tokens, "OP", "&&");
+                                                                    ⚡ p: p + 2;
+                                                                } ELSE {
+                                                                    IF (SSTART(source, p, "||")) {
+                                                                        ⚡ zo7: ADDTOK(tokens, "OP", "||");
+                                                                        ⚡ p: p + 2;
+                                                                    } ELSE {
+                                                                        ⚡ one: SSLICE(source, p, 1);
+                                                                        IF ((b == 43) || (b == 45) || (b == 42) || (b == 47) || (b == 37) || (b == 60) || (b == 62) || (b == 61) || (b == 33)) {
+                                                                            ⚡ zo8: ADDTOK(tokens, "OP", one);
+                                                                            ⚡ p: p + 1;
+                                                                        } ELSE {
+                                                                            IF ((b == 40) || (b == 41) || (b == 123) || (b == 125) || (b == 91) || (b == 93) || (b == 58) || (b == 59) || (b == 44) || (b == 46)) {
+                                                                                ⚡ zp: ADDTOK(tokens, "PUNCT", one);
+                                                                                ⚡ p: p + 1;
+                                                                            } ELSE {
+                                                                                ⚡ p: p + 1;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ ze: ADDTOK(tokens, "EOF", "<EOF>");
+    RETURN tokens;
+}
+
+DEF NEW_MOD() {
+    ⚡ m: MNEW();
+    ⚡ s: LNEW();
+    ⚡ c: LNEW();
+    ⚡ f: LNEW();
+    ⚡ main: LNEW();
+    ⚡ z1: MSET(m, "symbols", s);
+    ⚡ z2: MSET(m, "constants", c);
+    ⚡ z3: MSET(m, "functions", f);
+    ⚡ z4: MSET(m, "main", main);
+    RETURN m;
+}
+
+DEF STATE(tokens, mod) {
+    ⚡ st: MNEW();
+    ⚡ z1: MSET(st, "tokens", tokens);
+    ⚡ z2: MSET(st, "i", 0);
+    ⚡ z3: MSET(st, "mod", mod);
+    RETURN st;
+}
+
+DEF PEEK_TOK(st) {
+    ⚡ tokens: MGET(st, "tokens");
+    ⚡ i: MGET(st, "i");
+    RETURN LGET(tokens, i);
+}
+
+DEF PEEK(st) {
+    ⚡ t: PEEK_TOK(st);
+    RETURN MGET(t, "text");
+}
+
+DEF PKIND(st) {
+    ⚡ t: PEEK_TOK(st);
+    RETURN MGET(t, "kind");
+}
+
+DEF ADV(st) {
+    ⚡ i: MGET(st, "i");
+    ⚡ z: MSET(st, "i", i + 1);
+    RETURN 0;
+}
+
+DEF TAKE(st) {
+    ⚡ t: PEEK(st);
+    ⚡ z: ADV(st);
+    RETURN t;
+}
+
+DEF EXPECT(st, text) {
+    ⚡ got: PEEK(st);
+    IF (got == text) {
+        ⚡ z: ADV(st);
+        RETURN 0;
+    } ELSE {
+        ⚡ print("EXPECT_FAIL", text, got);
+        RETURN 1;
+    }
+}
+
+DEF SYM(mod, name) {
+    ⚡ xs: MGET(mod, "symbols");
+    ⚡ n: LLEN(xs);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ s: LGET(xs, i);
+        IF (s == name) {
+            RETURN i;
+        } ELSE {
+            ⚡ i: i + 1;
+        }
+    }
+    ⚡ z: LPUSH(xs, name);
+    RETURN n;
+}
+
+DEF CONST(mod, tag, value) {
+    ⚡ xs: MGET(mod, "constants");
+    ⚡ n: LLEN(xs);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ c: LGET(xs, i);
+        ⚡ ct: MGET(c, "tag");
+        ⚡ cv: MGET(c, "value");
+        IF ((ct == tag) && (cv == value)) {
+            RETURN i;
+        } ELSE {
+            ⚡ i: i + 1;
+        }
+    }
+    ⚡ item: MNEW();
+    ⚡ z1: MSET(item, "tag", tag);
+    ⚡ z2: MSET(item, "value", value);
+    ⚡ z3: LPUSH(xs, item);
+    RETURN n;
+}
+
+DEF EMIT(code, op, a, b) {
+    ⚡ ins: MNEW();
+    ⚡ z1: MSET(ins, "op", op);
+    ⚡ z2: MSET(ins, "a", a);
+    ⚡ z3: MSET(ins, "b", b);
+    ⚡ n: LLEN(code);
+    ⚡ z4: LPUSH(code, ins);
+    RETURN n;
+}
+
+DEF PATCH(code, index, target) {
+    ⚡ ins: LGET(code, index);
+    ⚡ z: MSET(ins, "a", target);
+    RETURN 0;
+}
+
+DEF PREC(op) {
+    IF (op == "||") {
+        RETURN 1;
+    } ELSE {
+        IF (op == "&&") {
+            RETURN 2;
+        } ELSE {
+            IF ((op == "==") || (op == "!=")) {
+                RETURN 3;
+            } ELSE {
+                IF ((op == "<") || (op == ">") || (op == "<=") || (op == ">=")) {
+                    RETURN 4;
+                } ELSE {
+                    IF ((op == "+") || (op == "-")) {
+                        RETURN 5;
+                    } ELSE {
+                        IF ((op == "*") || (op == "/") || (op == "%")) {
+                            RETURN 6;
+                        } ELSE {
+                            IF (op == "**") {
+                                RETURN 7;
+                            } ELSE {
+                                RETURN 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF BSUB(op) {
+    IF (op == "+") { RETURN 1; } ELSE {
+    IF (op == "-") { RETURN 2; } ELSE {
+    IF (op == "*") { RETURN 3; } ELSE {
+    IF (op == "/") { RETURN 4; } ELSE {
+    IF (op == "%") { RETURN 6; } ELSE {
+    IF (op == "**") { RETURN 7; } ELSE {
+    IF (op == "==") { RETURN 16; } ELSE {
+    IF (op == "!=") { RETURN 17; } ELSE {
+    IF (op == "<") { RETURN 18; } ELSE {
+    IF (op == ">") { RETURN 19; } ELSE {
+    IF (op == "<=") { RETURN 20; } ELSE {
+    IF (op == ">=") { RETURN 21; } ELSE {
+    IF (op == "&&") { RETURN 32; } ELSE {
+    IF (op == "||") { RETURN 33; } ELSE {
+        RETURN 0;
+    } } } } } } } } } } } } } }
+}
+
+DEF PARSE_CALL(st, code, name) {
+    ⚡ e1: EXPECT(st, "(");
+    ⚡ argc: 0;
+    IF (PEEK(st) != ")") {
+        ⚡ more: TRUE;
+        WHILE (more) {
+            ⚡ z1: PARSE_EXPR(st, code, 0);
+            ⚡ argc: argc + 1;
+            IF (PEEK(st) == ",") {
+                ⚡ z2: ADV(st);
+            } ELSE {
+                ⚡ more: FALSE;
+            }
+        }
+    } ELSE {
+        ⚡ argc: argc;
+    }
+    ⚡ e2: EXPECT(st, ")");
+    ⚡ mod: MGET(st, "mod");
+    ⚡ s: SYM(mod, name);
+    ⚡ z3: EMIT(code, 48, s, argc);
+    RETURN 0;
+}
+
+DEF PARSE_PRIMARY(st, code) {
+    ⚡ kind: PKIND(st);
+    ⚡ text: PEEK(st);
+    ⚡ mod: MGET(st, "mod");
+
+    IF (kind == "NUMBER") {
+        ⚡ z0: ADV(st);
+        IF (SFIND(text, ".") >= 0) {
+            ⚡ v: TOFLOAT(text);
+            ⚡ ci: CONST(mod, 3, v);
+            ⚡ z1: EMIT(code, 1, ci, 0);
+        } ELSE {
+            ⚡ v: TOINT(text);
+            ⚡ ci: CONST(mod, 2, v);
+            ⚡ z2: EMIT(code, 1, ci, 0);
+        }
+        RETURN 0;
+    } ELSE {
+        IF (kind == "STRING") {
+            ⚡ z3: ADV(st);
+            ⚡ ci: CONST(mod, 4, text);
+            ⚡ z4: EMIT(code, 1, ci, 0);
+            RETURN 0;
+        } ELSE {
+            IF (kind == "IDENT") {
+                ⚡ name: TAKE(st);
+                IF (name == "TRUE") {
+                    ⚡ ci: CONST(mod, 1, TRUE);
+                    ⚡ z5: EMIT(code, 1, ci, 0);
+                    RETURN 0;
+                } ELSE {
+                    IF (name == "FALSE") {
+                        ⚡ ci: CONST(mod, 1, FALSE);
+                        ⚡ z6: EMIT(code, 1, ci, 0);
+                        RETURN 0;
+                    } ELSE {
+                        IF (name == "NULL") {
+                            ⚡ ci: CONST(mod, 0, NULL);
+                            ⚡ z7: EMIT(code, 1, ci, 0);
+                            RETURN 0;
+                        } ELSE {
+                            IF (PEEK(st) == "(") {
+                                ⚡ z8: PARSE_CALL(st, code, name);
+                                RETURN 0;
+                            } ELSE {
+                                ⚡ si: SYM(mod, name);
+                                ⚡ z9: EMIT(code, 16, si, 0);
+                                RETURN 0;
+                            }
+                        }
+                    }
+                }
+            } ELSE {
+                IF (text == "(") {
+                    ⚡ z10: ADV(st);
+                    ⚡ z11: PARSE_EXPR(st, code, 0);
+                    ⚡ e: EXPECT(st, ")");
+                    RETURN 0;
+                } ELSE {
+                    ⚡ print("PRIMARY_FAIL", kind, text);
+                    RETURN 1;
+                }
+            }
+        }
+    }
+}
+
+DEF PARSE_UNARY(st, code) {
+    ⚡ text: PEEK(st);
+    IF ((PKIND(st) == "OP") && ((text == "!") || (text == "-") || (text == "+"))) {
+        ⚡ op: TAKE(st);
+        ⚡ z1: PARSE_UNARY(st, code);
+        IF (op == "!") {
+            ⚡ z2: EMIT(code, 32, 1, 0);
+        } ELSE {
+            IF (op == "-") {
+                ⚡ z3: EMIT(code, 32, 2, 0);
+            } ELSE {
+                ⚡ z4: EMIT(code, 32, 3, 0);
+            }
+        }
+        RETURN 0;
+    } ELSE {
+        RETURN PARSE_PRIMARY(st, code);
+    }
+}
+
+DEF PARSE_EXPR(st, code, minp) {
+    ⚡ z0: PARSE_UNARY(st, code);
+    ⚡ keep: TRUE;
+    WHILE (keep) {
+        ⚡ kind: PKIND(st);
+        ⚡ op: PEEK(st);
+        ⚡ p: PREC(op);
+        IF ((kind == "OP") && (p >= minp) && (p > 0)) {
+            ⚡ z1: ADV(st);
+            ⚡ nextp: p + 1;
+            IF (op == "**") {
+                ⚡ nextp: p;
+            } ELSE {
+                ⚡ nextp: nextp;
+            }
+            ⚡ z2: PARSE_EXPR(st, code, nextp);
+            ⚡ sub: BSUB(op);
+            ⚡ z3: EMIT(code, 33, sub, 0);
+        } ELSE {
+            ⚡ keep: FALSE;
+        }
+    }
+    RETURN 0;
+}
+
+DEF PARSE_BLOCK(st, code) {
+    ⚡ e1: EXPECT(st, "{");
+    WHILE ((PEEK(st) != "}") && (PEEK(st) != "<EOF>")) {
+        ⚡ z: PARSE_STMT(st, code);
+    }
+    ⚡ e2: EXPECT(st, "}");
+    RETURN 0;
+}
+
+DEF PARSE_STMT(st, code) {
+    ⚡ text: PEEK(st);
+    ⚡ kind: PKIND(st);
+    ⚡ mod: MGET(st, "mod");
+
+    IF (text == "⚡") {
+        ⚡ z0: ADV(st);
+        ⚡ name: TAKE(st);
+        IF (PEEK(st) == ":") {
+            ⚡ z1: ADV(st);
+            ⚡ z2: PARSE_EXPR(st, code, 0);
+            ⚡ e1: EXPECT(st, ";");
+            ⚡ si: SYM(mod, name);
+            ⚡ z3: EMIT(code, 17, si, 0);
+        } ELSE {
+            IF (PEEK(st) == "(") {
+                ⚡ z4: PARSE_CALL(st, code, name);
+                ⚡ e2: EXPECT(st, ";");
+                ⚡ z5: EMIT(code, 2, 0, 0);
+            } ELSE {
+                ⚡ print("DYNAMIC_FAIL", name, PEEK(st));
+            }
+        }
+        RETURN 0;
+    } ELSE {
+        IF (text == "⋈") {
+            ⚡ z6: ADV(st);
+            ⚡ name: TAKE(st);
+            ⚡ z7: PARSE_BLOCK(st, code);
+            RETURN 0;
+        } ELSE {
+            IF ((kind == "IDENT") && (text == "IF")) {
+                ⚡ z8: ADV(st);
+                ⚡ e3: EXPECT(st, "(");
+                ⚡ z9: PARSE_EXPR(st, code, 0);
+                ⚡ e4: EXPECT(st, ")");
+                ⚡ jf: EMIT(code, 65, 0, 0);
+                ⚡ z10: PARSE_BLOCK(st, code);
+                ⚡ je: EMIT(code, 64, 0, 0);
+                ⚡ z11: PATCH(code, jf, LLEN(code));
+                IF (PEEK(st) == "ELSE") {
+                    ⚡ z12: ADV(st);
+                    ⚡ z13: PARSE_BLOCK(st, code);
+                } ELSE {
+                    ⚡ z14: 0;
+                }
+                ⚡ z15: PATCH(code, je, LLEN(code));
+                RETURN 0;
+            } ELSE {
+                IF ((kind == "IDENT") && (text == "WHILE")) {
+                    ⚡ z16: ADV(st);
+                    ⚡ start: LLEN(code);
+                    ⚡ e5: EXPECT(st, "(");
+                    ⚡ z17: PARSE_EXPR(st, code, 0);
+                    ⚡ e6: EXPECT(st, ")");
+                    ⚡ jf: EMIT(code, 65, 0, 0);
+                    ⚡ z18: PARSE_BLOCK(st, code);
+                    ⚡ z19: EMIT(code, 64, start, 0);
+                    ⚡ z20: PATCH(code, jf, LLEN(code));
+                    RETURN 0;
+                } ELSE {
+                    IF ((kind == "IDENT") && (text == "RETURN")) {
+                        ⚡ z21: ADV(st);
+                        ⚡ z22: PARSE_EXPR(st, code, 0);
+                        ⚡ e7: EXPECT(st, ";");
+                        ⚡ z23: EMIT(code, 49, 0, 0);
+                        RETURN 0;
+                    } ELSE {
+                        IF (kind == "IDENT") {
+                            ⚡ name: TAKE(st);
+                            IF (PEEK(st) == "(") {
+                                ⚡ z24: PARSE_CALL(st, code, name);
+                                ⚡ e8: EXPECT(st, ";");
+                                ⚡ z25: EMIT(code, 2, 0, 0);
+                                RETURN 0;
+                            } ELSE {
+                                ⚡ print("STMT_FAIL", name, PEEK(st));
+                                RETURN 1;
+                            }
+                        } ELSE {
+                            ⚡ print("STMT_FAIL", kind, text);
+                            RETURN 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF PARSE_DEF(st) {
+    ⚡ z0: ADV(st);
+    ⚡ name: TAKE(st);
+    ⚡ mod: MGET(st, "mod");
+    ⚡ fn: MNEW();
+    ⚡ name_sym: SYM(mod, name);
+    ⚡ params: LNEW();
+    ⚡ code: LNEW();
+    ⚡ z1: MSET(fn, "name_sym", name_sym);
+    ⚡ z2: MSET(fn, "params", params);
+    ⚡ z3: MSET(fn, "code", code);
+    ⚡ e1: EXPECT(st, "(");
+
+    IF (PEEK(st) != ")") {
+        ⚡ more: TRUE;
+        WHILE (more) {
+            ⚡ p: TAKE(st);
+            ⚡ ps: SYM(mod, p);
+            ⚡ z4: LPUSH(params, ps);
+            IF (PEEK(st) == ",") {
+                ⚡ z5: ADV(st);
+            } ELSE {
+                ⚡ more: FALSE;
+            }
+        }
+    } ELSE {
+        ⚡ z6: 0;
+    }
+
+    ⚡ e2: EXPECT(st, ")");
+    ⚡ z7: PARSE_BLOCK(st, code);
+    ⚡ n: LLEN(code);
+    ⚡ need: FALSE;
+    IF (n == 0) {
+        ⚡ need: TRUE;
+    } ELSE {
+        ⚡ last: LGET(code, n - 1);
+        ⚡ lop: MGET(last, "op");
+        IF (lop != 49) {
+            ⚡ need: TRUE;
+        } ELSE {
+            ⚡ need: need;
+        }
+    }
+    IF (need) {
+        ⚡ ci: CONST(mod, 0, NULL);
+        ⚡ z8: EMIT(code, 1, ci, 0);
+        ⚡ z9: EMIT(code, 49, 0, 0);
+    } ELSE {
+        ⚡ z10: 0;
+    }
+
+    ⚡ funcs: MGET(mod, "functions");
+    ⚡ z11: LPUSH(funcs, fn);
+    RETURN 0;
+}
+
+DEF PARSE_COMMAND(st) {
+    ⚡ z0: ADV(st);
+    ⚡ e1: EXPECT(st, "(");
+    ⚡ e2: EXPECT(st, "Σ");
+    ⚡ e3: EXPECT(st, ".");
+    ⚡ name: TAKE(st);
+    ⚡ e4: EXPECT(st, ")");
+    ⚡ mod: MGET(st, "mod");
+    ⚡ main: MGET(mod, "main");
+    RETURN PARSE_BLOCK(st, main);
+}
+
+DEF PARSE_SOURCE(source) {
+    ⚡ tokens: TOKENIZE(source);
+    ⚡ mod: NEW_MOD();
+    ⚡ st: STATE(tokens, mod);
+
+    WHILE (PEEK(st) != "<EOF>") {
+        IF (PEEK(st) == "DEF") {
+            ⚡ z1: PARSE_DEF(st);
+        } ELSE {
+            IF (PEEK(st) == "⟡") {
+                ⚡ z2: PARSE_COMMAND(st);
+            } ELSE {
+                ⚡ print("TOP_FAIL", PEEK(st));
+                ⚡ z3: ADV(st);
+            }
+        }
+    }
+
+    ⚡ main: MGET(mod, "main");
+    ⚡ zh: EMIT(main, 255, 0, 0);
+    RETURN mod;
+}
+
+DEF WRITE_CODE(out, code) {
+    ⚡ z0: BU32(out, LLEN(code));
+    ⚡ n: LLEN(code);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ ins: LGET(code, i);
+        ⚡ op: MGET(ins, "op");
+        ⚡ a: MGET(ins, "a");
+        ⚡ b: MGET(ins, "b");
+        ⚡ z1: BU8(out, op);
+
+        IF ((op == 1) || (op == 16) || (op == 17) || (op == 64) || (op == 65)) {
+            ⚡ z2: BU32(out, a);
+        } ELSE {
+            IF ((op == 32) || (op == 33)) {
+                ⚡ z3: BU8(out, a);
+            } ELSE {
+                IF (op == 48) {
+                    ⚡ z4: BU32(out, a);
+                    ⚡ z5: BU16(out, b);
+                } ELSE {
+                    ⚡ z6: 0;
+                }
+            }
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN 0;
+}
+
+DEF WRITE_MODULE(mod, path) {
+    ⚡ out: BNEW();
+    ⚡ z0: BRAW(out, "SIGMBC01");
+    ⚡ z1: BU16(out, 1);
+    ⚡ z2: BU16(out, 0);
+
+    ⚡ consts: MGET(mod, "constants");
+    ⚡ cn: LLEN(consts);
+    ⚡ z3: BU32(out, cn);
+    ⚡ i: 0;
+    WHILE (i < cn) {
+        ⚡ c: LGET(consts, i);
+        ⚡ tag: MGET(c, "tag");
+        ⚡ val: MGET(c, "value");
+        ⚡ z4: BU8(out, tag);
+        IF (tag == 0) {
+            ⚡ z5: 0;
+        } ELSE {
+            IF (tag == 1) {
+                IF (val) {
+                    ⚡ z6: BU8(out, 1);
+                } ELSE {
+                    ⚡ z7: BU8(out, 0);
+                }
+            } ELSE {
+                IF (tag == 2) {
+                    ⚡ z8: BI64(out, val);
+                } ELSE {
+                    IF (tag == 3) {
+                        ⚡ z9: BF64(out, val);
+                    } ELSE {
+                        IF (tag == 4) {
+                            ⚡ n: SLEN(val);
+                            ⚡ z10: BU32(out, n);
+                            ⚡ z11: BRAW(out, val);
+                        } ELSE {
+                            ⚡ z12: 0;
+                        }
+                    }
+                }
+            }
+        }
+        ⚡ i: i + 1;
+    }
+
+    ⚡ syms: MGET(mod, "symbols");
+    ⚡ sn: LLEN(syms);
+    ⚡ z13: BU32(out, sn);
+    ⚡ i: 0;
+    WHILE (i < sn) {
+        ⚡ s: LGET(syms, i);
+        ⚡ n: SLEN(s);
+        ⚡ z14: BU32(out, n);
+        ⚡ z15: BRAW(out, s);
+        ⚡ i: i + 1;
+    }
+
+    ⚡ funcs: MGET(mod, "functions");
+    ⚡ fn: LLEN(funcs);
+    ⚡ z16: BU32(out, fn);
+    ⚡ i: 0;
+    WHILE (i < fn) {
+        ⚡ f: LGET(funcs, i);
+        ⚡ z17: BU32(out, MGET(f, "name_sym"));
+        ⚡ params: MGET(f, "params");
+        ⚡ pn: LLEN(params);
+        ⚡ z18: BU16(out, pn);
+        ⚡ j: 0;
+        WHILE (j < pn) {
+            ⚡ z19: BU32(out, LGET(params, j));
+            ⚡ j: j + 1;
+        }
+        ⚡ z20: WRITE_CODE(out, MGET(f, "code"));
+        ⚡ i: i + 1;
+    }
+
+    ⚡ z21: WRITE_CODE(out, MGET(mod, "main"));
+    RETURN BWRITE(out, path);
+}
+
+DEF COMPILE_SIGMA(input, output) {
+    ⚡ source: H("read_text", input, NULL, NULL);
+    IF (source == NULL) {
+        RETURN 2;
+    } ELSE {
+        ⚡ mod: PARSE_SOURCE(source);
+        RETURN WRITE_MODULE(mod, output);
+    }
+}
+
+⟡(Σ.SELF_HOST_COMPILER) {
+    ⚡ self_rc: COMPILE_SIGMA("compiler_self.sigma", "bootstrap/self.stage_next.sigmab");
+    ⚡ h_rc: COMPILE_SIGMA("examples/hello.sigma", "self_generated/hello.sigmab");
+    ⚡ v_rc: COMPILE_SIGMA("examples/variable.sigma", "self_generated/variable.sigmab");
+    ⚡ f_rc: COMPILE_SIGMA("examples/function.sigma", "self_generated/function.sigmab");
+    ⚡ l_rc: COMPILE_SIGMA("examples/loop.sigma", "self_generated/loop.sigmab");
+    ⚡ i_rc: COMPILE_SIGMA("examples/if.sigma", "self_generated/if.sigmab");
+    ⚡ print(self_rc);
+    ⚡ print(h_rc);
+    ⚡ print(v_rc);
+    ⚡ print(f_rc);
+    ⚡ print(l_rc);
+    ⚡ print(i_rc);
+}

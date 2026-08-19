@@ -1,0 +1,1250 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.CORE.EXTERNAL][VERSION=1.0]
+
+// ============================================================
+// SIGMA VM v0.3
+// Reads an actual external SIGMBC01 bytecode file.
+// C substrate exposes raw bytes only.
+// Bytecode understanding lives here in SIGMA.
+// ============================================================
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF LNEW() {
+    RETURN H("list_new", NULL, NULL, NULL);
+}
+
+DEF LLEN(xs) {
+    RETURN H("list_len", xs, NULL, NULL);
+}
+
+DEF LPUSH(xs, v) {
+    RETURN H("list_push", xs, v, NULL);
+}
+
+DEF LGET(xs, i) {
+    RETURN H("list_get", xs, i, NULL);
+}
+
+DEF LSET(xs, i, v) {
+    RETURN H("list_set", xs, i, v);
+}
+
+DEF MNEW() {
+    RETURN H("map_new", NULL, NULL, NULL);
+}
+
+DEF MSET(m, k, v) {
+    RETURN H("map_set", m, k, v);
+}
+
+DEF MGET(m, k) {
+    RETURN H("map_get", m, k, NULL);
+}
+
+DEF SLEN(s) {
+    RETURN H("str_len", s, NULL, NULL);
+}
+
+DEF SBYTE(s, i) {
+    RETURN H("str_byte", s, i, NULL);
+}
+
+DEF READ_BYTES(path) {
+    RETURN H("read_bytes", path, NULL, NULL);
+}
+
+DEF GETENV(name) {
+    RETURN H("getenv", name, NULL, NULL);
+}
+
+DEF BYTES_LEN(bb) {
+    RETURN H("bytes_len", bb, NULL, NULL);
+}
+
+DEF BYTES_GET(bb, i) {
+    RETURN H("bytes_get", bb, i, NULL);
+}
+
+DEF BYTES_SLICE_STRING(bb, pos, len) {
+    RETURN H("bytes_slice_string", bb, pos, len);
+}
+
+DEF BYTES_GET_F64(bb, pos) {
+    RETURN H("bytes_get_f64", bb, pos, NULL);
+}
+
+
+// ============================================================
+// ACTUAL ABI FROM sigma_vm.c
+// ============================================================
+
+DEF ABI_NEW() {
+    ⚡ abi: MNEW();
+
+    ⚡ z01: MSET(abi, "OP_PUSH_CONST", 1);
+    ⚡ z02: MSET(abi, "OP_POP", 2);
+    ⚡ z03: MSET(abi, "OP_LOAD", 16);
+    ⚡ z04: MSET(abi, "OP_STORE", 17);
+    ⚡ z05: MSET(abi, "OP_UNARY", 32);
+    ⚡ z06: MSET(abi, "OP_BINARY", 33);
+    ⚡ z07: MSET(abi, "OP_CALL", 48);
+    ⚡ z08: MSET(abi, "OP_RETURN", 49);
+    ⚡ z09: MSET(abi, "OP_JUMP", 64);
+    ⚡ z10: MSET(abi, "OP_JUMP_IF_FALSE", 65);
+    ⚡ z11: MSET(abi, "OP_HALT", 255);
+
+    ⚡ u01: MSET(abi, "U_NOT", 1);
+    ⚡ u02: MSET(abi, "U_NEG", 2);
+    ⚡ u03: MSET(abi, "U_POS", 3);
+
+    ⚡ b01: MSET(abi, "B_ADD", 1);
+    ⚡ b02: MSET(abi, "B_SUB", 2);
+    ⚡ b03: MSET(abi, "B_MUL", 3);
+    ⚡ b04: MSET(abi, "B_DIV", 4);
+    ⚡ b05: MSET(abi, "B_FLOORDIV", 5);
+    ⚡ b06: MSET(abi, "B_MOD", 6);
+    ⚡ b07: MSET(abi, "B_POW", 7);
+
+    ⚡ b10: MSET(abi, "B_EQ", 16);
+    ⚡ b11: MSET(abi, "B_NE", 17);
+    ⚡ b12: MSET(abi, "B_LT", 18);
+    ⚡ b13: MSET(abi, "B_GT", 19);
+    ⚡ b14: MSET(abi, "B_LE", 20);
+    ⚡ b15: MSET(abi, "B_GE", 21);
+    ⚡ b20: MSET(abi, "B_AND", 32);
+    ⚡ b21: MSET(abi, "B_OR", 33);
+
+    RETURN abi;
+}
+
+
+// ============================================================
+// RAW BYTE READER
+// ============================================================
+
+DEF READER_NEW(bb) {
+    ⚡ r: MNEW();
+
+    ⚡ z1: MSET(r, "bytes", bb);
+    ⚡ z2: MSET(r, "pos", 0);
+    ⚡ z3: MSET(r, "error", FALSE);
+
+    RETURN r;
+}
+
+DEF RPOS(r) {
+    RETURN MGET(r, "pos");
+}
+
+DEF RERROR(r) {
+    RETURN MGET(r, "error");
+}
+
+DEF RFAIL(r) {
+    ⚡ z: MSET(r, "error", TRUE);
+    RETURN 0;
+}
+
+DEF R8(r) {
+    ⚡ bb: MGET(r, "bytes");
+    ⚡ pos: MGET(r, "pos");
+    ⚡ n: BYTES_LEN(bb);
+
+    IF (pos >= n) {
+        ⚡ ze: MSET(r, "error", TRUE);
+        RETURN 0;
+    } ELSE {
+        ⚡ v: BYTES_GET(bb, pos);
+        ⚡ zp: MSET(r, "pos", pos + 1);
+        RETURN v;
+    }
+}
+
+DEF R16(r) {
+    ⚡ b0: R8(r);
+    ⚡ b1: R8(r);
+
+    RETURN b0 + b1 * 256;
+}
+
+DEF R32(r) {
+    ⚡ b0: R8(r);
+    ⚡ b1: R8(r);
+    ⚡ b2: R8(r);
+    ⚡ b3: R8(r);
+
+    RETURN b0
+        + b1 * 256
+        + b2 * 65536
+        + b3 * 16777216;
+}
+
+DEF RI64(r) {
+    ⚡ b0: R8(r);
+    ⚡ b1: R8(r);
+    ⚡ b2: R8(r);
+    ⚡ b3: R8(r);
+    ⚡ b4: R8(r);
+    ⚡ b5: R8(r);
+    ⚡ b6: R8(r);
+    ⚡ b7: R8(r);
+
+    ⚡ low: b0
+        + b1 * 256
+        + b2 * 65536
+        + b3 * 16777216
+        + b4 * 4294967296
+        + b5 * 1099511627776
+        + b6 * 281474976710656;
+
+    IF (b7 < 128) {
+        RETURN low + b7 * 72057594037927936;
+    } ELSE {
+        RETURN low + (b7 - 256) * 72057594037927936;
+    }
+}
+
+DEF RSKIP(r, amount) {
+    ⚡ bb: MGET(r, "bytes");
+    ⚡ pos: MGET(r, "pos");
+    ⚡ n: BYTES_LEN(bb);
+
+    IF ((amount < 0) || ((pos + amount) > n)) {
+        ⚡ ze: MSET(r, "error", TRUE);
+        RETURN 1;
+    } ELSE {
+        ⚡ zp: MSET(r, "pos", pos + amount);
+        RETURN 0;
+    }
+}
+
+
+// ============================================================
+// MAGIC / BYTE RANGE COMPARISON
+// ============================================================
+
+DEF R_EXPECT_TEXT(r, text) {
+    ⚡ n: SLEN(text);
+    ⚡ i: 0;
+    ⚡ ok: TRUE;
+
+    WHILE ((i < n) && ok) {
+        ⚡ got: R8(r);
+        ⚡ want: SBYTE(text, i);
+
+        IF (got == want) {
+            ⚡ i: i + 1;
+        } ELSE {
+            ⚡ ok: FALSE;
+        }
+    }
+
+    IF (!ok) {
+        ⚡ ze: MSET(r, "error", TRUE);
+    } ELSE {
+        ⚡ zn: 0;
+    }
+
+    RETURN ok;
+}
+
+DEF BYTE_RANGE_EQ_TEXT(bb, pos, len, text) {
+    IF (len != SLEN(text)) {
+        RETURN FALSE;
+    } ELSE {
+        ⚡ i: 0;
+        ⚡ ok: TRUE;
+
+        WHILE ((i < len) && ok) {
+            ⚡ a: BYTES_GET(bb, pos + i);
+            ⚡ b: SBYTE(text, i);
+
+            IF (a == b) {
+                ⚡ i: i + 1;
+            } ELSE {
+                ⚡ ok: FALSE;
+            }
+        }
+
+        RETURN ok;
+    }
+}
+
+
+// ============================================================
+// BYTECODE DATA STRUCTURES
+// ============================================================
+
+DEF SLICE_NEW(pos, len) {
+    ⚡ s: MNEW();
+
+    ⚡ z1: MSET(s, "pos", pos);
+    ⚡ z2: MSET(s, "len", len);
+
+    RETURN s;
+}
+
+DEF CONST_NEW(tag) {
+    ⚡ c: MNEW();
+
+    ⚡ z1: MSET(c, "tag", tag);
+    ⚡ z2: MSET(c, "value", NULL);
+    ⚡ z3: MSET(c, "pos", 0);
+    ⚡ z4: MSET(c, "len", 0);
+
+    RETURN c;
+}
+
+DEF INS(op, a, b) {
+    ⚡ ins: MNEW();
+
+    ⚡ z1: MSET(ins, "op", op);
+    ⚡ z2: MSET(ins, "a", a);
+    ⚡ z3: MSET(ins, "b", b);
+
+    RETURN ins;
+}
+
+DEF EMIT_CODE(code, op, a, b) {
+    ⚡ ins: INS(op, a, b);
+    ⚡ z: LPUSH(code, ins);
+
+    RETURN 0;
+}
+
+DEF PROGRAM_NEW(bb) {
+    ⚡ p: MNEW();
+
+    ⚡ constants: LNEW();
+    ⚡ symbols: LNEW();
+    ⚡ functions: LNEW();
+    ⚡ code: LNEW();
+
+    ⚡ z1: MSET(p, "bytes", bb);
+    ⚡ z2: MSET(p, "constants", constants);
+    ⚡ z3: MSET(p, "symbols", symbols);
+    ⚡ z4: MSET(p, "functions", functions);
+    ⚡ z5: MSET(p, "code", code);
+
+    RETURN p;
+}
+
+
+// ============================================================
+// CONSTANT DECODER
+//
+// Current v0.3 execution supports NULL / BOOL / INT.
+// FLOAT and STRING are parsed structurally but not yet executed.
+// ============================================================
+
+DEF READ_CONST(r) {
+    ⚡ tag: R8(r);
+    ⚡ c: CONST_NEW(tag);
+
+    IF (tag == 0) {
+        ⚡ z0: MSET(c, "value", NULL);
+    } ELSE {
+        IF (tag == 1) {
+            ⚡ raw: R8(r);
+
+            IF (raw) {
+                ⚡ z1: MSET(c, "value", TRUE);
+            } ELSE {
+                ⚡ z2: MSET(c, "value", FALSE);
+            }
+        } ELSE {
+            IF (tag == 2) {
+                ⚡ value: RI64(r);
+                ⚡ z3: MSET(c, "value", value);
+            } ELSE {
+                IF (tag == 3) {
+                    ⚡ pos: RPOS(r);
+                    ⚡ bb: MGET(r, "bytes");
+                    ⚡ value: BYTES_GET_F64(bb, pos);
+
+                    ⚡ z4: MSET(c, "pos", pos);
+                    ⚡ z5: MSET(c, "len", 8);
+
+                    IF (value == NULL) {
+                        ⚡ ze: RFAIL(r);
+                    } ELSE {
+                        ⚡ zv: MSET(c, "value", value);
+                        ⚡ z6: RSKIP(r, 8);
+                    }
+                } ELSE {
+                    IF (tag == 4) {
+                        ⚡ n: R32(r);
+                        ⚡ pos: RPOS(r);
+                        ⚡ bb: MGET(r, "bytes");
+                        ⚡ value: BYTES_SLICE_STRING(bb, pos, n);
+
+                        ⚡ z7: MSET(c, "pos", pos);
+                        ⚡ z8: MSET(c, "len", n);
+
+                        IF (value == NULL) {
+                            ⚡ ze: RFAIL(r);
+                        } ELSE {
+                            ⚡ zv: MSET(c, "value", value);
+                            ⚡ z9: RSKIP(r, n);
+                        }
+                    } ELSE {
+                        ⚡ ze: RFAIL(r);
+                    }
+                }
+            }
+        }
+    }
+
+    RETURN c;
+}
+
+
+// ============================================================
+// ACTUAL CODE DECODER
+// Mirrors read_code() in sigma_vm.c.
+// ============================================================
+
+DEF READ_CODE(r, abi) {
+    ⚡ code: LNEW();
+    ⚡ count: R32(r);
+    ⚡ i: 0;
+
+    WHILE ((i < count) && (!RERROR(r))) {
+        ⚡ op: R8(r);
+        ⚡ a: 0;
+        ⚡ b: 0;
+
+        IF (
+            (op == MGET(abi, "OP_PUSH_CONST"))
+            || (op == MGET(abi, "OP_LOAD"))
+            || (op == MGET(abi, "OP_STORE"))
+            || (op == MGET(abi, "OP_JUMP"))
+            || (op == MGET(abi, "OP_JUMP_IF_FALSE"))
+        ) {
+            ⚡ a: R32(r);
+        } ELSE {
+            IF (
+                (op == MGET(abi, "OP_UNARY"))
+                || (op == MGET(abi, "OP_BINARY"))
+            ) {
+                ⚡ a: R8(r);
+            } ELSE {
+                IF (op == MGET(abi, "OP_CALL")) {
+                    ⚡ a: R32(r);
+                    ⚡ b: R16(r);
+                } ELSE {
+                    IF (
+                        (op == MGET(abi, "OP_POP"))
+                        || (op == MGET(abi, "OP_RETURN"))
+                        || (op == MGET(abi, "OP_HALT"))
+                    ) {
+                        ⚡ zn: 0;
+                    } ELSE {
+                        ⚡ ze: RFAIL(r);
+                    }
+                }
+            }
+        }
+
+        IF (!RERROR(r)) {
+            ⚡ z1: EMIT_CODE(code, op, a, b);
+        } ELSE {
+            ⚡ zn2: 0;
+        }
+
+        ⚡ i: i + 1;
+    }
+
+    RETURN code;
+}
+
+DEF READ_FUNCTION(r, abi) {
+    ⚡ fn: MNEW();
+
+    ⚡ name_sym: R32(r);
+    ⚡ param_count: R16(r);
+    ⚡ params: LNEW();
+
+    ⚡ i: 0;
+    WHILE ((i < param_count) && (!RERROR(r))) {
+        ⚡ p: R32(r);
+        ⚡ z1: LPUSH(params, p);
+        ⚡ i: i + 1;
+    }
+
+    ⚡ code: READ_CODE(r, abi);
+
+    ⚡ z2: MSET(fn, "name_sym", name_sym);
+    ⚡ z3: MSET(fn, "params", params);
+    ⚡ z4: MSET(fn, "code", code);
+
+    RETURN fn;
+}
+
+
+// ============================================================
+// EXTERNAL SIGMBC01 LOADER
+// ============================================================
+
+DEF LOAD_PROGRAM(path, abi) {
+    ⚡ bb: READ_BYTES(path);
+
+    IF (bb == NULL) {
+        ⚡ print("SIGMA_VM_ERROR", "READ_BYTES_FAIL");
+        RETURN NULL;
+    } ELSE {
+        ⚡ r: READER_NEW(bb);
+
+        ⚡ magic_ok: R_EXPECT_TEXT(r, "SIGMBC01");
+
+        IF (!magic_ok) {
+            ⚡ print("SIGMA_VM_ERROR", "BAD_MAGIC");
+            RETURN NULL;
+        } ELSE {
+            ⚡ major: R16(r);
+            ⚡ minor: R16(r);
+
+            IF ((major != 1) || (minor != 0)) {
+                ⚡ print("SIGMA_VM_ERROR", "BAD_VERSION", major, minor);
+                RETURN NULL;
+            } ELSE {
+                ⚡ program: PROGRAM_NEW(bb);
+                ⚡ zver1: MSET(program, "major", major);
+                ⚡ zver2: MSET(program, "minor", minor);
+
+                // Constants
+                ⚡ constants: MGET(program, "constants");
+                ⚡ constant_count: R32(r);
+                ⚡ ci: 0;
+
+                WHILE ((ci < constant_count) && (!RERROR(r))) {
+                    ⚡ c: READ_CONST(r);
+                    ⚡ zc: LPUSH(constants, c);
+                    ⚡ ci: ci + 1;
+                }
+
+                // Symbols
+                ⚡ symbols: MGET(program, "symbols");
+                ⚡ symbol_count: R32(r);
+                ⚡ si: 0;
+
+                WHILE ((si < symbol_count) && (!RERROR(r))) {
+                    ⚡ n: R32(r);
+                    ⚡ pos: RPOS(r);
+                    ⚡ slice: SLICE_NEW(pos, n);
+                    ⚡ zs: LPUSH(symbols, slice);
+                    ⚡ zskip: RSKIP(r, n);
+                    ⚡ si: si + 1;
+                }
+
+                // Functions
+                ⚡ functions: MGET(program, "functions");
+                ⚡ function_count: R32(r);
+                ⚡ fi: 0;
+
+                WHILE ((fi < function_count) && (!RERROR(r))) {
+                    ⚡ fn: READ_FUNCTION(r, abi);
+                    ⚡ zf: LPUSH(functions, fn);
+                    ⚡ fi: fi + 1;
+                }
+
+                // Main code
+                ⚡ main: READ_CODE(r, abi);
+                ⚡ zm: MSET(program, "code", main);
+
+                IF (RERROR(r)) {
+                    ⚡ print("SIGMA_VM_ERROR", "TRUNCATED_OR_BAD_BYTECODE");
+                    RETURN NULL;
+                } ELSE {
+                    IF (RPOS(r) != BYTES_LEN(bb)) {
+                        ⚡ print(
+                            "SIGMA_VM_ERROR",
+                            "TRAILING_OR_UNCONSUMED_BYTES",
+                            RPOS(r),
+                            BYTES_LEN(bb)
+                        );
+                        RETURN NULL;
+                    } ELSE {
+                        RETURN program;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// ============================================================
+// SYMBOL COMPARISON WITHOUT C STRING CONVERSION
+// ============================================================
+
+DEF SYMBOL_EQ_TEXT(program, sym, text) {
+    ⚡ symbols: MGET(program, "symbols");
+    ⚡ bb: MGET(program, "bytes");
+
+    IF ((sym < 0) || (sym >= LLEN(symbols))) {
+        RETURN FALSE;
+    } ELSE {
+        ⚡ s: LGET(symbols, sym);
+        ⚡ pos: MGET(s, "pos");
+        ⚡ len: MGET(s, "len");
+
+        RETURN BYTE_RANGE_EQ_TEXT(bb, pos, len, text);
+    }
+}
+
+
+// ============================================================
+// RUNTIME VALUE SUPPORT
+// ============================================================
+
+DEF CONST_SUPPORTED(c) {
+    ⚡ tag: MGET(c, "tag");
+
+    IF ((tag == 0) || (tag == 1) || (tag == 2) || (tag == 3) || (tag == 4)) {
+        RETURN TRUE;
+    } ELSE {
+        RETURN FALSE;
+    }
+}
+
+DEF CONST_VALUE(c) {
+    RETURN MGET(c, "value");
+}
+
+
+// ============================================================
+// ENV
+// ============================================================
+
+DEF ENV_NEW(symbol_count) {
+    ⚡ env: MNEW();
+    ⚡ values: LNEW();
+    ⚡ active: LNEW();
+    ⚡ i: 0;
+
+    WHILE (i < symbol_count) {
+        ⚡ z1: LPUSH(values, NULL);
+        ⚡ z2: LPUSH(active, FALSE);
+        ⚡ i: i + 1;
+    }
+
+    ⚡ z3: MSET(env, "values", values);
+    ⚡ z4: MSET(env, "active", active);
+
+    RETURN env;
+}
+
+DEF ENV_HAS(env, sym) {
+    ⚡ active: MGET(env, "active");
+    RETURN LGET(active, sym);
+}
+
+DEF ENV_GET(env, sym) {
+    ⚡ values: MGET(env, "values");
+    RETURN LGET(values, sym);
+}
+
+DEF ENV_SET(env, sym, value) {
+    ⚡ values: MGET(env, "values");
+    ⚡ active: MGET(env, "active");
+
+    ⚡ z1: LSET(values, sym, value);
+    ⚡ z2: LSET(active, sym, TRUE);
+
+    RETURN 0;
+}
+
+
+// ============================================================
+// STACK
+// ============================================================
+
+DEF STACK_NEW() {
+    ⚡ st: MNEW();
+    ⚡ data: LNEW();
+
+    ⚡ z1: MSET(st, "data", data);
+    ⚡ z2: MSET(st, "n", 0);
+
+    RETURN st;
+}
+
+DEF STACK_PUSH(st, value) {
+    ⚡ data: MGET(st, "data");
+    ⚡ n: MGET(st, "n");
+    ⚡ len: LLEN(data);
+
+    IF (n < len) {
+        ⚡ z1: LSET(data, n, value);
+    } ELSE {
+        ⚡ z2: LPUSH(data, value);
+    }
+
+    ⚡ z3: MSET(st, "n", n + 1);
+
+    RETURN 0;
+}
+
+DEF STACK_POP(st) {
+    ⚡ data: MGET(st, "data");
+    ⚡ n: MGET(st, "n");
+
+    IF (n <= 0) {
+        ⚡ print("SIGMA_VM_ERROR", "STACK_UNDERFLOW");
+        RETURN NULL;
+    } ELSE {
+        ⚡ next: n - 1;
+        ⚡ value: LGET(data, next);
+        ⚡ z1: MSET(st, "n", next);
+
+        RETURN value;
+    }
+}
+
+DEF STACK_DISCARD(st) {
+    ⚡ n: MGET(st, "n");
+
+    IF (n > 0) {
+        ⚡ z1: MSET(st, "n", n - 1);
+    } ELSE {
+        ⚡ zn: 0;
+    }
+
+    RETURN 0;
+}
+
+
+// ============================================================
+// VM
+// ============================================================
+
+DEF VM_NEW(program, abi) {
+    ⚡ vm: MNEW();
+
+    ⚡ symbols: MGET(program, "symbols");
+    ⚡ symbol_count: LLEN(symbols);
+
+    ⚡ globals: ENV_NEW(symbol_count);
+    ⚡ locals: ENV_NEW(symbol_count);
+    ⚡ stack: STACK_NEW();
+    ⚡ code: MGET(program, "code");
+
+    ⚡ z1: MSET(vm, "program", program);
+    ⚡ z2: MSET(vm, "abi", abi);
+    ⚡ z3: MSET(vm, "globals", globals);
+    ⚡ z4: MSET(vm, "locals", locals);
+    ⚡ z5: MSET(vm, "stack", stack);
+    ⚡ z6: MSET(vm, "code", code);
+    ⚡ z7: MSET(vm, "ip", 0);
+    ⚡ z8: MSET(vm, "halted", FALSE);
+    ⚡ z9: MSET(vm, "is_main", TRUE);
+    ⚡ z10: MSET(vm, "return_value", NULL);
+
+    RETURN vm;
+}
+
+DEF VM_NEW_CHILD(parent, code, locals) {
+    ⚡ vm: MNEW();
+    ⚡ stack: STACK_NEW();
+
+    ⚡ z1: MSET(vm, "program", MGET(parent, "program"));
+    ⚡ z2: MSET(vm, "abi", MGET(parent, "abi"));
+    ⚡ z3: MSET(vm, "globals", MGET(parent, "globals"));
+    ⚡ z4: MSET(vm, "locals", locals);
+    ⚡ z5: MSET(vm, "stack", stack);
+    ⚡ z6: MSET(vm, "code", code);
+    ⚡ z7: MSET(vm, "ip", 0);
+    ⚡ z8: MSET(vm, "halted", FALSE);
+    ⚡ z9: MSET(vm, "is_main", FALSE);
+    ⚡ z10: MSET(vm, "return_value", NULL);
+
+    RETURN vm;
+}
+
+DEF VM_FIND_FUNCTION(program, sym) {
+    ⚡ functions: MGET(program, "functions");
+    ⚡ n: LLEN(functions);
+    ⚡ i: 0;
+
+    WHILE (i < n) {
+        ⚡ fn: LGET(functions, i);
+
+        IF (MGET(fn, "name_sym") == sym) {
+            RETURN fn;
+        } ELSE {
+            ⚡ i: i + 1;
+        }
+    }
+
+    RETURN NULL;
+}
+
+DEF VM_LOAD(vm, sym) {
+    ⚡ locals: MGET(vm, "locals");
+    ⚡ globals: MGET(vm, "globals");
+    ⚡ stack: MGET(vm, "stack");
+
+    IF (ENV_HAS(locals, sym)) {
+        ⚡ value: ENV_GET(locals, sym);
+        RETURN STACK_PUSH(stack, value);
+    } ELSE {
+        IF (ENV_HAS(globals, sym)) {
+            ⚡ value: ENV_GET(globals, sym);
+            RETURN STACK_PUSH(stack, value);
+        } ELSE {
+            ⚡ print("SIGMA_VM_ERROR", "UNDEFINED_SYMBOL", sym);
+            RETURN 11;
+        }
+    }
+}
+
+DEF VM_STORE(vm, sym) {
+    ⚡ stack: MGET(vm, "stack");
+    ⚡ globals: MGET(vm, "globals");
+    ⚡ locals: MGET(vm, "locals");
+    ⚡ is_main: MGET(vm, "is_main");
+
+    ⚡ value: STACK_POP(stack);
+
+    IF (is_main) {
+        RETURN ENV_SET(globals, sym, value);
+    } ELSE {
+        RETURN ENV_SET(locals, sym, value);
+    }
+}
+
+DEF VM_UNARY(vm, sub) {
+    ⚡ abi: MGET(vm, "abi");
+    ⚡ stack: MGET(vm, "stack");
+    ⚡ value: STACK_POP(stack);
+
+    IF (sub == MGET(abi, "U_NOT")) {
+        RETURN STACK_PUSH(stack, !value);
+    } ELSE {
+        IF (sub == MGET(abi, "U_NEG")) {
+            RETURN STACK_PUSH(stack, -value);
+        } ELSE {
+            IF (sub == MGET(abi, "U_POS")) {
+                RETURN STACK_PUSH(stack, +value);
+            } ELSE {
+                ⚡ print("SIGMA_VM_ERROR", "UNSUPPORTED_UNARY_SUBCODE", sub);
+                RETURN 12;
+            }
+        }
+    }
+}
+
+DEF VM_BINARY(vm, sub) {
+    ⚡ abi: MGET(vm, "abi");
+    ⚡ stack: MGET(vm, "stack");
+
+    ⚡ b: STACK_POP(stack);
+    ⚡ a: STACK_POP(stack);
+
+    IF (sub == MGET(abi, "B_ADD")) {
+        RETURN STACK_PUSH(stack, a + b);
+    } ELSE {
+        IF (sub == MGET(abi, "B_SUB")) {
+            RETURN STACK_PUSH(stack, a - b);
+        } ELSE {
+            IF (sub == MGET(abi, "B_MUL")) {
+                RETURN STACK_PUSH(stack, a * b);
+            } ELSE {
+                IF (sub == MGET(abi, "B_DIV")) {
+                    RETURN STACK_PUSH(stack, a / b);
+                } ELSE {
+                    IF (sub == MGET(abi, "B_FLOORDIV")) {
+                        ⚡ q: H("math_floor", a / b, NULL, NULL);
+                        ⚡ ta: H("value_type", a, NULL, NULL);
+                        ⚡ tb: H("value_type", b, NULL, NULL);
+
+                        IF (ta == 2) {
+                            IF (tb == 2) {
+                                RETURN STACK_PUSH(
+                                    stack,
+                                    H("numeric_to_int", q, NULL, NULL)
+                                );
+                            }
+                        }
+
+                        RETURN STACK_PUSH(stack, q);
+                    } ELSE {
+                        IF (sub == MGET(abi, "B_MOD")) {
+                            RETURN STACK_PUSH(stack, a % b);
+                        } ELSE {
+                            IF (sub == MGET(abi, "B_POW")) {
+                                RETURN STACK_PUSH(stack, a ** b);
+                            } ELSE {
+                                IF (sub == MGET(abi, "B_EQ")) {
+                                    RETURN STACK_PUSH(stack, a == b);
+                                } ELSE {
+                                    IF (sub == MGET(abi, "B_NE")) {
+                                        RETURN STACK_PUSH(stack, a != b);
+                                    } ELSE {
+                                        IF (sub == MGET(abi, "B_LT")) {
+                                            RETURN STACK_PUSH(stack, a < b);
+                                        } ELSE {
+                                            IF (sub == MGET(abi, "B_GT")) {
+                                                RETURN STACK_PUSH(stack, a > b);
+                                            } ELSE {
+                                                IF (sub == MGET(abi, "B_LE")) {
+                                                    RETURN STACK_PUSH(stack, a <= b);
+                                                } ELSE {
+                                                    IF (sub == MGET(abi, "B_GE")) {
+                                                        RETURN STACK_PUSH(stack, a >= b);
+                                                    } ELSE {
+                                                        IF (sub == MGET(abi, "B_AND")) {
+                                                            RETURN STACK_PUSH(stack, a && b);
+                                                        } ELSE {
+                                                            IF (sub == MGET(abi, "B_OR")) {
+                                                                RETURN STACK_PUSH(stack, a || b);
+                                                            } ELSE {
+                                                                ⚡ print(
+                                                                    "SIGMA_VM_ERROR",
+                                                                    "UNSUPPORTED_BINARY_SUBCODE",
+                                                                    sub
+                                                                );
+                                                                RETURN 7;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF VM_CALL(vm, sym, argc) {
+    ⚡ program: MGET(vm, "program");
+    ⚡ stack: MGET(vm, "stack");
+
+    IF (SYMBOL_EQ_TEXT(program, sym, "host")) {
+        ⚡ args: LNEW();
+        ⚡ i: 0;
+
+        WHILE (i < argc) {
+            ⚡ za: LPUSH(args, NULL);
+            ⚡ i: i + 1;
+        }
+
+        ⚡ i: argc - 1;
+
+        WHILE (i >= 0) {
+            ⚡ value: STACK_POP(stack);
+            ⚡ zs: LSET(args, i, value);
+            ⚡ i: i - 1;
+        }
+
+        ⚡ hop: NULL;
+        ⚡ ha: NULL;
+        ⚡ hb: NULL;
+        ⚡ hc: NULL;
+
+        IF (argc > 0) {
+            ⚡ hop: LGET(args, 0);
+        }
+
+        IF (argc > 1) {
+            ⚡ ha: LGET(args, 1);
+        }
+
+        IF (argc > 2) {
+            ⚡ hb: LGET(args, 2);
+        }
+
+        IF (argc > 3) {
+            ⚡ hc: LGET(args, 3);
+        }
+
+        ⚡ ret: NULL;
+
+        IF (argc == 0) {
+            ⚡ ret: host(NULL);
+        } ELSE {
+            IF (argc == 1) {
+                ⚡ ret: host(hop);
+            } ELSE {
+                IF (argc == 2) {
+                    ⚡ ret: host(hop, ha);
+                } ELSE {
+                    IF (argc == 3) {
+                        ⚡ ret: host(hop, ha, hb);
+                    } ELSE {
+                        ⚡ ret: host(hop, ha, hb, hc);
+                    }
+                }
+            }
+        }
+
+        RETURN STACK_PUSH(stack, ret);
+    }
+
+    IF (SYMBOL_EQ_TEXT(program, sym, "print")) {
+        IF (argc == 1) {
+            ⚡ value: STACK_POP(stack);
+            ⚡ print(value);
+            RETURN STACK_PUSH(stack, NULL);
+        } ELSE {
+            ⚡ print("SIGMA_VM_ERROR", "PRINT_ARGC", argc);
+            RETURN 8;
+        }
+    } ELSE {
+        ⚡ fn: VM_FIND_FUNCTION(program, sym);
+
+        IF (fn == NULL) {
+            ⚡ print("SIGMA_VM_ERROR", "UNDEFINED_FUNCTION_SYMBOL", sym);
+            RETURN 8;
+        } ELSE {
+            ⚡ params: MGET(fn, "params");
+            ⚡ param_count: LLEN(params);
+
+            IF (param_count != argc) {
+                ⚡ print(
+                    "SIGMA_VM_ERROR",
+                    "FUNCTION_ARG_MISMATCH",
+                    sym,
+                    argc
+                );
+                RETURN 8;
+            } ELSE {
+                ⚡ args: LNEW();
+                ⚡ i: 0;
+
+                WHILE (i < argc) {
+                    ⚡ za: LPUSH(args, NULL);
+                    ⚡ i: i + 1;
+                }
+
+                ⚡ i: argc - 1;
+
+                WHILE (i >= 0) {
+                    ⚡ value: STACK_POP(stack);
+                    ⚡ zs: LSET(args, i, value);
+                    ⚡ i: i - 1;
+                }
+
+                ⚡ symbols: MGET(program, "symbols");
+                ⚡ locals: ENV_NEW(LLEN(symbols));
+
+                ⚡ i: 0;
+
+                WHILE (i < argc) {
+                    ⚡ param_sym: LGET(params, i);
+                    ⚡ arg: LGET(args, i);
+                    ⚡ zb: ENV_SET(locals, param_sym, arg);
+                    ⚡ i: i + 1;
+                }
+
+                ⚡ child: VM_NEW_CHILD(
+                    vm,
+                    MGET(fn, "code"),
+                    locals
+                );
+
+                ⚡ rc: VM_RUN(child);
+
+                IF (rc != 0) {
+                    RETURN rc;
+                } ELSE {
+                    ⚡ ret: MGET(child, "return_value");
+                    RETURN STACK_PUSH(stack, ret);
+                }
+            }
+        }
+    }
+}
+
+DEF VM_STEP(vm) {
+    ⚡ abi: MGET(vm, "abi");
+    ⚡ program: MGET(vm, "program");
+    ⚡ code: MGET(vm, "code");
+    ⚡ constants: MGET(program, "constants");
+    ⚡ stack: MGET(vm, "stack");
+
+    ⚡ ip: MGET(vm, "ip");
+    ⚡ count: LLEN(code);
+
+    IF (ip >= count) {
+        ⚡ print("SIGMA_VM_ERROR", "IP_OUT_OF_RANGE", ip);
+        ⚡ zh: MSET(vm, "halted", TRUE);
+        RETURN 14;
+    } ELSE {
+        ⚡ ins: LGET(code, ip);
+        ⚡ op: MGET(ins, "op");
+        ⚡ a: MGET(ins, "a");
+        ⚡ b: MGET(ins, "b");
+
+        // Same default progression as C execute():
+        // ip++ after an ordinary instruction.
+        ⚡ zip: MSET(vm, "ip", ip + 1);
+
+        IF (op == MGET(abi, "OP_PUSH_CONST")) {
+            IF ((a < 0) || (a >= LLEN(constants))) {
+                ⚡ print("SIGMA_VM_ERROR", "BAD_CONST_INDEX", a);
+                RETURN 10;
+            } ELSE {
+                ⚡ c: LGET(constants, a);
+
+                IF (!CONST_SUPPORTED(c)) {
+                    ⚡ print(
+                        "SIGMA_VM_ERROR",
+                        "CONST_TYPE_NOT_EXECUTABLE_IN_V05",
+                        MGET(c, "tag")
+                    );
+                    RETURN 10;
+                } ELSE {
+                    RETURN STACK_PUSH(stack, CONST_VALUE(c));
+                }
+            }
+        } ELSE {
+            IF (op == MGET(abi, "OP_POP")) {
+                RETURN STACK_DISCARD(stack);
+            } ELSE {
+                IF (op == MGET(abi, "OP_LOAD")) {
+                    RETURN VM_LOAD(vm, a);
+                } ELSE {
+                    IF (op == MGET(abi, "OP_STORE")) {
+                        RETURN VM_STORE(vm, a);
+                    } ELSE {
+                        IF (op == MGET(abi, "OP_UNARY")) {
+                            RETURN VM_UNARY(vm, a);
+                        } ELSE {
+                            IF (op == MGET(abi, "OP_BINARY")) {
+                                RETURN VM_BINARY(vm, a);
+                            } ELSE {
+                                IF (op == MGET(abi, "OP_CALL")) {
+                                    RETURN VM_CALL(vm, a, b);
+                                } ELSE {
+                                    IF (op == MGET(abi, "OP_JUMP")) {
+                                        IF (a >= count) {
+                                            ⚡ print("SIGMA_VM_ERROR", "BAD_JUMP", a);
+                                            RETURN 13;
+                                        } ELSE {
+                                            ⚡ zj: MSET(vm, "ip", a);
+                                            RETURN 0;
+                                        }
+                                    } ELSE {
+                                        IF (op == MGET(abi, "OP_JUMP_IF_FALSE")) {
+                                            ⚡ condition: STACK_POP(stack);
+
+                                            IF (!condition) {
+                                                IF (a >= count) {
+                                                    ⚡ print(
+                                                        "SIGMA_VM_ERROR",
+                                                        "BAD_JUMP",
+                                                        a
+                                                    );
+                                                    RETURN 13;
+                                                } ELSE {
+                                                    ⚡ zj2: MSET(vm, "ip", a);
+                                                }
+                                            } ELSE {
+                                                ⚡ zn: 0;
+                                            }
+
+                                            RETURN 0;
+                                        } ELSE {
+                                            IF (op == MGET(abi, "OP_RETURN")) {
+                                                ⚡ nstack: MGET(stack, "n");
+
+                                                IF (nstack > 0) {
+                                                    ⚡ ret: STACK_POP(stack);
+                                                    ⚡ zr: MSET(
+                                                        vm,
+                                                        "return_value",
+                                                        ret
+                                                    );
+                                                } ELSE {
+                                                    ⚡ zr0: MSET(
+                                                        vm,
+                                                        "return_value",
+                                                        NULL
+                                                    );
+                                                }
+
+                                                ⚡ zhr: MSET(vm, "halted", TRUE);
+                                                RETURN 0;
+                                            } ELSE {
+                                                IF (op == MGET(abi, "OP_HALT")) {
+                                                    ⚡ zh2: MSET(vm, "halted", TRUE);
+                                                    RETURN 0;
+                                                } ELSE {
+                                                    ⚡ print(
+                                                        "SIGMA_VM_ERROR",
+                                                        "UNSUPPORTED_EXECUTION_OPCODE",
+                                                        op
+                                                    );
+                                                    RETURN 14;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF VM_RUN(vm) {
+    ⚡ final_rc: 0;
+
+    WHILE (!MGET(vm, "halted")) {
+        ⚡ rc: VM_STEP(vm);
+
+        IF (rc != 0) {
+            ⚡ final_rc: rc;
+            ⚡ zh: MSET(vm, "halted", TRUE);
+        } ELSE {
+            ⚡ zn: 0;
+        }
+    }
+
+    RETURN final_rc;
+}
+
+
+// ============================================================
+// BOOT — EXTERNAL FILE ONLY
+//
+// No BUILD_TEST_PROGRAM.
+// No embedded instruction fixture.
+// ============================================================
+
+⟡(Σ.VM_CORE_EXTERNAL) {
+    ⚡ abi: ABI_NEW();
+    ⚡ input: GETENV("SIGMA_VM_INPUT");
+
+    IF (input == NULL) {
+        ⚡ print("SIGMA_VM_ERROR", "SIGMA_VM_INPUT_NOT_SET");
+    } ELSE {
+        ⚡ program: LOAD_PROGRAM(input, abi);
+
+        IF (program == NULL) {
+            ⚡ print("SIGMA_VM_EXTERNAL_LOAD_FAIL");
+        } ELSE {
+            ⚡ vm: VM_NEW(program, abi);
+            ⚡ rc: VM_RUN(vm);
+
+            IF (rc != 0) {
+                ⚡ print("SIGMA_VM_EXTERNAL_RUN_FAIL", rc);
+            } ELSE {
+                ⚡ zn: 0;
+            }
+        }
+    }
+}
