@@ -1,0 +1,42 @@
+{
+  "contract_id": "SIGMA_OPEN_SEMANTIC_REASONING_0005_V0_1_OPPO_RUN_001",
+  "platform": "OPPO_ANDROID_TERMUX_AARCH64",
+  "working_tree": "~/SIGMA/sigma_genesis1",
+  "input_mode": "ONE_INTERACTIVE_REAL_QUESTION_NO_EXPECTED_ANSWER",
+  "source": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/src/sigma_open_semantic_reasoner_v0_1.sigma",
+  "runner": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/run_listen_to_sigma_v0_1_oppo.sh",
+  "command": "bash BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/run_listen_to_sigma_v0_1_oppo.sh",
+  "required_runtime": "native/sigma-hostvm",
+  "required_compiler": "native/sigmac",
+  "response_content_rule": "QUESTION_DYNAMIC_AND_CANDIDATE_VALUE_MUST_BIND_TO_REPORTED_EXISTING_EVIDENCE_LINE",
+  "pass_observations": [
+    "QUESTION_ABSENT_FROM_SIGMA_SOURCE=PASS",
+    "COMPILE_RC=0",
+    "COMPILE_STDERR_BYTES=0",
+    "RUN_RC=0",
+    "RUN_STDERR_BYTES=0",
+    "TOP_CANDIDATE_COUNT=1",
+    "CANDIDATE_RESPONSE_STATUS=EVIDENCE_BOUND_SINGLE_CANDIDATE",
+    "EVIDENCE_BINDING=PASS",
+    "OPEN_SEMANTIC_V0_1=PASS_WITH_DEFINED_SCOPE_EVIDENCE_BOUND_RESPONSE_CAPSULE",
+    "SIGMA_OPEN_SEMANTIC_RESPONSE_V0_1_MACHINE_PASS"
+  ],
+  "valid_hold_observations": [
+    "HOLD_EMPTY_QUESTION",
+    "HOLD_NO_MATCHED_EVIDENCE",
+    "HOLD_AMBIGUOUS_TOP_CANDIDATES",
+    "HOLD_COMPILE",
+    "HOLD_RUNTIME",
+    "HOLD_EVIDENCE_BINDING_FAILURE"
+  ],
+  "does_not_claim": [
+    "GENERAL_LANGUAGE_UNDERSTANDING",
+    "NATURAL_LANGUAGE_GENERATION",
+    "SELF_GENERATED_DESIRE",
+    "COGNITIVE_EMPATHY",
+    "CANONICAL_PROMOTION"
+  ],
+  "canonical_mutation": false,
+  "hp_training": false,
+  "hardcoded_answer": false
+}
