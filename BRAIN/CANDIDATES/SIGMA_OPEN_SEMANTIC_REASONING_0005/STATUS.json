@@ -16,15 +16,15 @@
   },
   "contract": {
     "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/CONTRACT.md",
-    "sha256": "edc2db26b3e246ed886298ec6607da3379c8ed761b9dda3e0e03f84a7deb7284"
+    "sha256": "931326b737e5323b8a602173d19b616116cd4505193b1bd54f7069eb1f5df1d1"
   },
   "runner": {
     "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/run_listen_to_sigma_v0_1_oppo.sh",
-    "sha256": "f36cd3750544184cc71688711df03d58f8c5469ed83802fdbd3750cb5636319d"
+    "sha256": "2172cf6a7105a252ef11ce7a1149f67dfca2e144a8dcbf49a759bde4740541e0"
   },
   "oppo_run_contract": {
     "path": "BRAIN/CANDIDATES/SIGMA_OPEN_SEMANTIC_REASONING_0005/tests/OPPO_RUN_CONTRACT_001.json",
-    "sha256": "6f5ad06e5a2820832dc101ffcd17d15e3e84a495640b96b94a7c84014ac6e2e7"
+    "sha256": "58e9bc317c2371c5897677e30bc36dc8e9c381d6dd787ff70e5d2c7c61da8fe1"
   },
   "inherited": {
     "v09_overall": "PASS_WITH_TESTED_SCOPE_FROM_USER_MACHINE_HANDOFF",
@@ -49,7 +49,8 @@
     "tam_van_human_facing_release": "HOLD_NOT_IMPLEMENTED",
     "general_open_ended_language_understanding": "HOLD_NOT_PROVEN",
     "natural_language_generation": "HOLD_NOT_PROVEN",
-    "self_generated_desire": "HOLD_NOT_PROVEN"
+    "self_generated_desire": "HOLD_NOT_PROVEN",
+    "candidate_value_absent_from_source": "HOLD_PENDING_RUNTIME_OUTPUT"
   },
   "next_gate": "RUN_ONE_REAL_QUESTION_ON_OPPO_AND_PRESERVE_RAW_SIGMA_OUTPUT_WITH_EVIDENCE_BINDING",
   "canonical_mutation": false,
