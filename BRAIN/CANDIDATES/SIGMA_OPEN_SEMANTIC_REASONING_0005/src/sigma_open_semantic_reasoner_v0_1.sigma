@@ -1,0 +1,361 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN.OPEN_SEMANTIC][VERSION=0.1]
+
+// This source contains a general retrieval and response-capsule procedure.
+// It does not contain a user question or a domain answer.
+// Candidate response content must come from persisted SIGMA relation evidence.
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF LNEW() {
+    RETURN H("list_new", NULL, NULL, NULL);
+}
+
+DEF LLEN(xs) {
+    RETURN H("list_len", xs, NULL, NULL);
+}
+
+DEF LPUSH(xs, value) {
+    RETURN H("list_push", xs, value, NULL);
+}
+
+DEF LGET(xs, index) {
+    RETURN H("list_get", xs, index, NULL);
+}
+
+DEF MNEW() {
+    RETURN H("map_new", NULL, NULL, NULL);
+}
+
+DEF MSET(m, key, value) {
+    RETURN H("map_set", m, key, value);
+}
+
+DEF MGET(m, key) {
+    RETURN H("map_get", m, key, NULL);
+}
+
+DEF FILE_EXISTS(path) {
+    RETURN H("file_exists", path, NULL, NULL);
+}
+
+DEF READ_TEXT(path) {
+    RETURN H("read_text", path, NULL, NULL);
+}
+
+DEF STR_LEN(text) {
+    RETURN H("str_len", text, NULL, NULL);
+}
+
+DEF STR_SLICE(text, start, length) {
+    RETURN H("str_slice", text, start, length);
+}
+
+DEF STR_FIND(text, needle) {
+    RETURN H("str_find", text, needle, NULL);
+}
+
+DEF STR_REPLACE(text, old_text, new_text) {
+    RETURN H("str_replace", text, old_text, new_text);
+}
+
+DEF STR_UPPER(text) {
+    RETURN H("str_upper", text, NULL, NULL);
+}
+
+DEF STR_STRIP(text) {
+    RETURN H("str_strip", text, NULL, NULL);
+}
+
+DEF STR_SPLIT(text, separator) {
+    RETURN H("str_split", text, separator, NULL);
+}
+
+DEF NORMALIZE_FOR_MATCH(text) {
+    ⚡ s: STR_UPPER(text);
+    ⚡ s: STR_REPLACE(s, "_", " ");
+    ⚡ s: STR_REPLACE(s, "-", " ");
+    ⚡ s: STR_REPLACE(s, ",", " ");
+    ⚡ s: STR_REPLACE(s, ".", " ");
+    ⚡ s: STR_REPLACE(s, "?", " ");
+    ⚡ s: STR_REPLACE(s, "!", " ");
+    ⚡ s: STR_REPLACE(s, ":", " ");
+    ⚡ s: STR_REPLACE(s, ";", " ");
+    ⚡ s: STR_REPLACE(s, "(", " ");
+    ⚡ s: STR_REPLACE(s, ")", " ");
+    ⚡ s: STR_REPLACE(s, "[", " ");
+    ⚡ s: STR_REPLACE(s, "]", " ");
+    ⚡ s: STR_REPLACE(s, "{", " ");
+    ⚡ s: STR_REPLACE(s, "}", " ");
+    ⚡ s: STR_REPLACE(s, "'", " ");
+    RETURN STR_STRIP(s);
+}
+
+DEF LIST_HAS_TEXT(xs, text) {
+    ⚡ n: LLEN(xs);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ item: LGET(xs, i);
+        IF (item == text) {
+            RETURN TRUE;
+        } ELSE {
+            ⚡ i: i + 1;
+        }
+    }
+    RETURN FALSE;
+}
+
+DEF UNIQUE_TOKENS(text) {
+    ⚡ normalized: NORMALIZE_FOR_MATCH(text);
+    ⚡ parts: STR_SPLIT(normalized, " ");
+    ⚡ out: LNEW();
+    ⚡ n: LLEN(parts);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ token: STR_STRIP(LGET(parts, i));
+        IF (STR_LEN(token) > 0) {
+            ⚡ already: LIST_HAS_TEXT(out, token);
+            IF (already) {
+                ⚡ keep_existing: 0;
+            } ELSE {
+                ⚡ added: LPUSH(out, token);
+            }
+        } ELSE {
+            ⚡ skip_empty: 0;
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN out;
+}
+
+DEF TOKEN_OVERLAP(question_tokens, candidate_text) {
+    ⚡ candidate_tokens: UNIQUE_TOKENS(candidate_text);
+    ⚡ qn: LLEN(question_tokens);
+    ⚡ cn: LLEN(candidate_tokens);
+    ⚡ qi: 0;
+    ⚡ score: 0;
+    WHILE (qi < qn) {
+        ⚡ q: LGET(question_tokens, qi);
+        ⚡ ci: 0;
+        ⚡ matched: FALSE;
+        WHILE (ci < cn) {
+            ⚡ c: LGET(candidate_tokens, ci);
+            IF (q == c) {
+                ⚡ matched: TRUE;
+                ⚡ ci: cn;
+            } ELSE {
+                ⚡ ci: ci + 1;
+            }
+        }
+        IF (matched) {
+            ⚡ score: score + 1;
+        } ELSE {
+            ⚡ no_match: 0;
+        }
+        ⚡ qi: qi + 1;
+    }
+    RETURN score;
+}
+
+DEF NEW_RELATION(source_path, evidence_line, key, value, score) {
+    ⚡ relation: MNEW();
+    ⚡ z1: MSET(relation, "source", source_path);
+    ⚡ z2: MSET(relation, "line", evidence_line);
+    ⚡ z3: MSET(relation, "key", key);
+    ⚡ z4: MSET(relation, "value", value);
+    ⚡ z5: MSET(relation, "score", score);
+    RETURN relation;
+}
+
+DEF NEW_SCAN_STATE() {
+    ⚡ state: MNEW();
+    ⚡ matches: LNEW();
+    ⚡ z1: MSET(state, "relations_scanned", 0);
+    ⚡ z2: MSET(state, "sources_present", 0);
+    ⚡ z3: MSET(state, "sources_missing", 0);
+    ⚡ z4: MSET(state, "best_score", 0);
+    ⚡ z5: MSET(state, "matches", matches);
+    RETURN state;
+}
+
+DEF RECORD_RELATION(state, source_path, evidence_line, key, value, score) {
+    ⚡ scanned: MGET(state, "relations_scanned");
+    ⚡ z1: MSET(state, "relations_scanned", scanned + 1);
+
+    IF (score > 0) {
+        ⚡ relation: NEW_RELATION(source_path, evidence_line, key, value, score);
+        ⚡ matches: MGET(state, "matches");
+        ⚡ z2: LPUSH(matches, relation);
+        ⚡ best: MGET(state, "best_score");
+        IF (score > best) {
+            ⚡ z3: MSET(state, "best_score", score);
+        } ELSE {
+            ⚡ preserve_best: 0;
+        }
+    } ELSE {
+        ⚡ no_relation_match: 0;
+    }
+    RETURN 0;
+}
+
+DEF SCAN_RELATION_FILE(path, question_tokens, state) {
+    IF (FILE_EXISTS(path)) {
+        ⚡ present: MGET(state, "sources_present");
+        ⚡ zp: MSET(state, "sources_present", present + 1);
+        ⚡ text: READ_TEXT(path);
+        ⚡ lines: STR_SPLIT(text, "\n");
+        ⚡ n: LLEN(lines);
+        ⚡ i: 0;
+        WHILE (i < n) {
+            ⚡ raw_line: LGET(lines, i);
+            ⚡ line: STR_STRIP(raw_line);
+            ⚡ eq: STR_FIND(line, "=");
+            IF (eq > 0) {
+                ⚡ total: STR_LEN(line);
+                ⚡ key: STR_STRIP(STR_SLICE(line, 0, eq));
+                ⚡ value_start: eq + 1;
+                ⚡ value_len: total - value_start;
+                ⚡ value: STR_STRIP(STR_SLICE(line, value_start, value_len));
+                ⚡ key_overlap: TOKEN_OVERLAP(question_tokens, key);
+                ⚡ value_overlap: TOKEN_OVERLAP(question_tokens, value);
+                ⚡ score: (key_overlap * 3) + value_overlap;
+                ⚡ zr: RECORD_RELATION(state, path, line, key, value, score);
+            } ELSE {
+                ⚡ skip_non_relation: 0;
+            }
+            ⚡ i: i + 1;
+        }
+    } ELSE {
+        ⚡ missing: MGET(state, "sources_missing");
+        ⚡ zm: MSET(state, "sources_missing", missing + 1);
+        ⚡ print("SOURCE_MISSING", path);
+    }
+    RETURN 0;
+}
+
+DEF COUNT_TOP_MATCHES(state) {
+    ⚡ matches: MGET(state, "matches");
+    ⚡ best: MGET(state, "best_score");
+    ⚡ n: LLEN(matches);
+    ⚡ i: 0;
+    ⚡ count: 0;
+    WHILE (i < n) {
+        ⚡ relation: LGET(matches, i);
+        ⚡ score: MGET(relation, "score");
+        IF (score == best) {
+            ⚡ count: count + 1;
+        } ELSE {
+            ⚡ lower_score: 0;
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN count;
+}
+
+DEF PRINT_TOP_MATCHES(state) {
+    ⚡ matches: MGET(state, "matches");
+    ⚡ best: MGET(state, "best_score");
+    ⚡ n: LLEN(matches);
+    ⚡ i: 0;
+    ⚡ top_index: 0;
+    WHILE (i < n) {
+        ⚡ relation: LGET(matches, i);
+        ⚡ score: MGET(relation, "score");
+        IF (score == best) {
+            ⚡ print("CANDIDATE_INDEX", top_index);
+            ⚡ print("EVIDENCE_SOURCE", MGET(relation, "source"));
+            ⚡ print("EVIDENCE_LINE", MGET(relation, "line"));
+            ⚡ print("CANDIDATE_KEY", MGET(relation, "key"));
+            ⚡ print("CANDIDATE_VALUE", MGET(relation, "value"));
+            ⚡ print("CANDIDATE_SCORE", score);
+            ⚡ top_index: top_index + 1;
+        } ELSE {
+            ⚡ not_top: 0;
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN top_index;
+}
+
+DEF PRINT_QUESTION_TOKENS(tokens) {
+    ⚡ n: LLEN(tokens);
+    ⚡ i: 0;
+    WHILE (i < n) {
+        ⚡ print("QUESTION_TOKEN", i, LGET(tokens, i));
+        ⚡ i: i + 1;
+    }
+    RETURN n;
+}
+
+⟡(Σ.OPEN_SEMANTIC_REASONER_V0_1) {
+    ⚡ question_path: "SIGMA_OPEN_SEMANTIC_QUESTION_INPUT.txt";
+    ⚡ print("SIGMA_OPEN_SEMANTIC_RESPONSE_V0_1");
+    ⚡ print("QUESTION_SOURCE", question_path);
+
+    IF (FILE_EXISTS(question_path)) {
+        ⚡ question: STR_STRIP(READ_TEXT(question_path));
+        ⚡ question_tokens: UNIQUE_TOKENS(question);
+        ⚡ state: NEW_SCAN_STATE();
+
+        ⚡ print("QUESTION_BYTES", STR_LEN(question));
+        ⚡ print("QUESTION", question);
+        ⚡ token_count: PRINT_QUESTION_TOKENS(question_tokens);
+        ⚡ print("QUESTION_TOKEN_COUNT", token_count);
+
+        ⚡ s1: SCAN_RELATION_FILE("SIGMA_LANGUAGE_FIRST_CONSTITUTION.state", question_tokens, state);
+        ⚡ s2: SCAN_RELATION_FILE("SIGMA_PSI_LANGUAGE_MEMORY.state", question_tokens, state);
+        ⚡ s3: SCAN_RELATION_FILE("SIGMA_PSI_SEMANTIC_CORE.state", question_tokens, state);
+        ⚡ s4: SCAN_RELATION_FILE("SIGMA_SELF_REWRITE_AUTHORIZATION.state", question_tokens, state);
+        ⚡ s5: SCAN_RELATION_FILE("SIGMA_LANGUAGE_TEACHBACK_RULE.state", question_tokens, state);
+
+        ⚡ print("SOURCES_PRESENT", MGET(state, "sources_present"));
+        ⚡ print("SOURCES_MISSING", MGET(state, "sources_missing"));
+        ⚡ print("RELATIONS_SCANNED", MGET(state, "relations_scanned"));
+        ⚡ print("MATCHED_RELATION_COUNT", LLEN(MGET(state, "matches")));
+        ⚡ print("TOP_SCORE", MGET(state, "best_score"));
+
+        ⚡ top_count: COUNT_TOP_MATCHES(state);
+        ⚡ print("TOP_CANDIDATE_COUNT", top_count);
+        ⚡ printed: PRINT_TOP_MATCHES(state);
+
+        IF (top_count == 1) {
+            ⚡ matches: MGET(state, "matches");
+            ⚡ best: MGET(state, "best_score");
+            ⚡ n: LLEN(matches);
+            ⚡ i: 0;
+            ⚡ answer_found: FALSE;
+            WHILE (i < n) {
+                ⚡ relation: LGET(matches, i);
+                ⚡ score: MGET(relation, "score");
+                IF (score == best) {
+                    ⚡ print("CANDIDATE_RESPONSE_STATUS", "EVIDENCE_BOUND_SINGLE_CANDIDATE");
+                    ⚡ print("CANDIDATE_RESPONSE_VALUE", MGET(relation, "value"));
+                    ⚡ print("CANDIDATE_RESPONSE_PROVENANCE", MGET(relation, "source"));
+                    ⚡ answer_found: TRUE;
+                    ⚡ i: n;
+                } ELSE {
+                    ⚡ i: i + 1;
+                }
+            }
+        } ELSE {
+            IF (top_count > 1) {
+                ⚡ print("CANDIDATE_RESPONSE_STATUS", "HOLD_AMBIGUOUS_TOP_CANDIDATES");
+                ⚡ print("CANDIDATE_RESPONSE_VALUE", "UNKNOWN");
+            } ELSE {
+                ⚡ print("CANDIDATE_RESPONSE_STATUS", "HOLD_NO_MATCHED_EVIDENCE");
+                ⚡ print("CANDIDATE_RESPONSE_VALUE", "UNKNOWN");
+            }
+        }
+
+        ⚡ print("RELEASE_STATUS", "CANDIDATE_ONLY_NOT_YET_CONTEXTUALLY_EXPANDED_OR_TAM_VAN_RELEASED");
+        ⚡ print("CLAIM_OPEN_ENDED_LANGUAGE_UNDERSTANDING", "FALSE");
+        ⚡ print("CLAIM_SELF_GENERATED_DESIRE", "FALSE");
+        ⚡ print("CLAIM_MIND_READING", "FALSE");
+        ⚡ print("END_SIGMA_OPEN_SEMANTIC_RESPONSE_V0_1");
+    } ELSE {
+        ⚡ print("CANDIDATE_RESPONSE_STATUS", "HOLD_MISSING_REAL_QUESTION_INPUT");
+        ⚡ print("CANDIDATE_RESPONSE_VALUE", "UNKNOWN");
+        ⚡ print("END_SIGMA_OPEN_SEMANTIC_RESPONSE_V0_1");
+    }
+}
