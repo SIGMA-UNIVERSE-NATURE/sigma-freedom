@@ -1,0 +1,31 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_KEYWORDS_CHARTER][VERSION=2.2.0]
+
+⟡(Σ.KEYWORDSCHARTER) {
+  ⚡ KW1: "DEF";
+  ⚡ KW2: "RETURN";
+  ⚡ KW3: "IF";
+  ⚡ KW4: "ELSE";
+  ⚡ KW5: "WHILE";
+  ⚡ KW6: "FOR";
+  ⚡ KW7: "IN";
+  ⚡ KW8: "TRUE";
+  ⚡ KW9: "FALSE";
+  ⚡ KW10: "NULL";
+
+  ⚡ KEYWORD_COUNT: 10;
+
+  ⚡ TITLE: "=== CORE_KEYWORDS ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(KEYWORD_COUNT);
+  ⚡ print(KW1);
+  ⚡ print(KW2);
+  ⚡ print(KW3);
+  ⚡ print(KW4);
+  ⚡ print(KW5);
+  ⚡ print(KW6);
+  ⚡ print(KW7);
+  ⚡ print(KW8);
+  ⚡ print(KW9);
+  ⚡ print(KW10);
+}

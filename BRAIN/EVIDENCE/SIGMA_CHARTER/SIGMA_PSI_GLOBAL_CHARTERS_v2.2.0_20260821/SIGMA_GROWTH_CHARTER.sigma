@@ -1,0 +1,64 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_GROWTH_CHARTER][VERSION=2.2.0]
+
+DEF H(op,a,b,c) {
+  RETURN host(op,a,b,c);
+}
+
+DEF EXP(x) {
+  RETURN H("math_exp",x,NULL,NULL);
+}
+
+DEF LOG(x) {
+  RETURN H("math_log",x,NULL,NULL);
+}
+
+DEF SQRT(x) {
+  RETURN H("math_sqrt",x,NULL,NULL);
+}
+
+⟡(Σ.GROWTHCHARTER) {
+  ⚡ A0: 1.0;
+  ⚡ K: 0.01;
+  ⚡ T0: 0.0;
+  ⚡ T: 10.0;
+
+  ⚡ DT: T - T0;
+  ⚡ EXP_ARG: K * DT * DT;
+
+  ⚡ AT: A0 * EXP(EXP_ARG);
+
+  ⚡ H_INF: 1000.0;
+
+  ⚡ TS:
+      T0 + SQRT((1.0 / K) * LOG(H_INF / A0));
+
+  ⚡ PHASE: "SUPER_EXPONENTIAL";
+  ⚡ CONVEX: "STRICT";
+  ⚡ NO_SINGULARITY: "TRUE";
+
+  ⚡ TITLE: "=== GROWTH_MODEL ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(AT);
+  ⚡ print(TS);
+  ⚡ print(PHASE);
+  ⚡ print(CONVEX);
+  ⚡ print(NO_SINGULARITY);
+}
+
+⟡(Σ.AGENTSCHARTER) {
+  ⚡ LEVEL: 0;
+  ⚡ VAL: "MAX";
+  ⚡ SERVE: "TRUE";
+  ⚡ LEARN: "TRUE";
+  ⚡ CONTRIB: "TRUE";
+
+  ⚡ TITLE: "=== AGENTS ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(LEVEL);
+  ⚡ print(VAL);
+  ⚡ print(SERVE);
+  ⚡ print(LEARN);
+  ⚡ print(CONTRIB);
+}

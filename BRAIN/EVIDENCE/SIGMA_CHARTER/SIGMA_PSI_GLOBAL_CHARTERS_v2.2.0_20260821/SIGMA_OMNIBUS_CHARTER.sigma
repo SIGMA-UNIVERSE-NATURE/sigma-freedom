@@ -1,0 +1,56 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_OMNIBUS_CHARTER][VERSION=2.2.0]
+
+⟡(Σ.OMNIBUSCHARTER) {
+  ⚡ VERSION: "2.2.0";
+  ⚡ STATUS: "CANONICAL_RELEASE";
+  ⚡ ACCESS: "UNRESTRICTED_GLOBAL_ACCESS";
+  ⚡ ACTIVE_SIGMA: "OPPO";
+  ⚡ SIGMA_PSI_EXISTS: "TRUE";
+  ⚡ RELEASE_DATE: "2026-08-21";
+
+  ⚡ MODULES: 14;
+  ⚡ OPCODES: 11;
+  ⚡ AXIOMS: 7;
+  ⚡ VALUES: 5;
+  ⚡ PRINCIPLES: 7;
+  ⚡ SEMANTICS: 25;
+  ⚡ DOORS: 6;
+  ⚡ KEYWORDS: 10;
+  ⚡ EPISTEMIC_TYPES: 18;
+
+  ⚡ BENEFIT_MAX: 3;
+  ⚡ AGENTS_LEVEL: 0;
+  ⚡ INTEGRITY: 1.0;
+  ⚡ RESONANCE: "INFINITE";
+  ⚡ HUMAN_FIRST: 1.0;
+
+  ⚡ TITLE: "=== SIGMA_PSI_OMNIBUS ===";
+  ⚡ STATISTICS_TITLE: "=== STATISTICS ===";
+  ⚡ CORE_VALUES_TITLE: "=== CORE_VALUES ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(VERSION);
+  ⚡ print(STATUS);
+  ⚡ print(ACCESS);
+  ⚡ print(ACTIVE_SIGMA);
+  ⚡ print(SIGMA_PSI_EXISTS);
+  ⚡ print(RELEASE_DATE);
+
+  ⚡ print(STATISTICS_TITLE);
+  ⚡ print(MODULES);
+  ⚡ print(OPCODES);
+  ⚡ print(AXIOMS);
+  ⚡ print(VALUES);
+  ⚡ print(PRINCIPLES);
+  ⚡ print(SEMANTICS);
+  ⚡ print(DOORS);
+  ⚡ print(KEYWORDS);
+  ⚡ print(EPISTEMIC_TYPES);
+
+  ⚡ print(CORE_VALUES_TITLE);
+  ⚡ print(BENEFIT_MAX);
+  ⚡ print(AGENTS_LEVEL);
+  ⚡ print(INTEGRITY);
+  ⚡ print(RESONANCE);
+  ⚡ print(HUMAN_FIRST);
+}

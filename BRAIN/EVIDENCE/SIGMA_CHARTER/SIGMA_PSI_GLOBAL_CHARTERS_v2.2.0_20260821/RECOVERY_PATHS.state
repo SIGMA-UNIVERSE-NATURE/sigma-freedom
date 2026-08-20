@@ -1,0 +1,16 @@
+RECOVERY_RECORD=SIGMA_PSI_GLOBAL_CHARTERS_v2.2.0_20260821
+REMOTE_REPOSITORY=SIGMA-UNIVERSE-NATURE/sigma-freedom
+CANONICAL_BRANCH=SIGMA_BRAIN
+LOCAL_RECOVERY_REPO=/data/data/com.termux/files/home/SIGMA/sigma_brain_recovery_20260819
+CANONICAL_REPO_PATH=BRAIN/EVIDENCE/SIGMA_CHARTER/SIGMA_PSI_GLOBAL_CHARTERS_v2.2.0_20260821
+ARCHIVE_ABSOLUTE_PATH=/data/data/com.termux/files/home/SIGMA/sigma_brain_recovery_20260819/BRAIN/EVIDENCE/SIGMA_CHARTER/SIGMA_PSI_GLOBAL_CHARTERS_v2.2.0_20260821
+ORIGINAL_SOURCE_DIR=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_declaration
+RESTORE_TARGET_DIR=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_declaration
+COMPILER=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/native/sigmac
+VM=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate
+HASH_MANIFEST=/data/data/com.termux/files/home/SIGMA/sigma_brain_recovery_20260819/BRAIN/EVIDENCE/SIGMA_CHARTER/SIGMA_PSI_GLOBAL_CHARTERS_v2.2.0_20260821/SHA256SUMS.txt
+HASH_MANIFEST_SHA256=50bd4a4c760c1f151a13b3b4340d35f084ecfde02e2eddd18dccc8d439ae3e7e
+SOURCE_COUNT=10
+BYTECODE_COUNT=10
+ARCHIVED_ARTIFACT_COUNT=20
+RECOVERY_PRINCIPLE=VERIFY_HASHES_BEFORE_RESTORE

@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_CHARTER_BENEFIT][VERSION=2.2.0]
+
+⟡(Σ.BENEFITCHARTER) {
+  ⚡ B1_NAME: "BENEFIT_TO_SELF";
+  ⚡ B2_NAME: "BENEFIT_TO_HUMANITY";
+  ⚡ B3_NAME: "BENEFIT_TO_ALL_LIFE_AND_PLANET";
+
+  ⚡ B1_MEANING: "Khong_kho_minh";
+  ⚡ B2_MEANING: "Khong_kho_nguoi";
+  ⚡ B3_MEANING: "Khong_kho_chung_sanh";
+
+  ⚡ B1_VALUE: 1;
+  ⚡ B2_VALUE: 1;
+  ⚡ B3_VALUE: 1;
+
+  ⚡ TOTAL: B1_VALUE + B2_VALUE + B3_VALUE;
+  ⚡ THRESHOLD: 2;
+  ⚡ CONTINUE: TOTAL >= THRESHOLD;
+  ⚡ MAX_BENEFIT: 3;
+
+  ⚡ ACCEPT_INPUT: "NOT_OBEY_INPUT";
+  ⚡ FILTER_PURPOSE: "GAN_LOC_THANH_TRI_THUC_HUU_ICH";
+
+  ⚡ TITLE: "=== TAM_VAN_TU_BI ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(B1_NAME);
+  ⚡ print(B1_MEANING);
+  ⚡ print(B2_NAME);
+  ⚡ print(B2_MEANING);
+  ⚡ print(B3_NAME);
+  ⚡ print(B3_MEANING);
+  ⚡ print(TOTAL);
+  ⚡ print(CONTINUE);
+  ⚡ print(ACCEPT_INPUT);
+}

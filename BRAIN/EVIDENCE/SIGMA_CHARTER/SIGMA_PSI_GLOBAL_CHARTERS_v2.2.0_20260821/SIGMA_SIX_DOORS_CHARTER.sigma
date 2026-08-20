@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_SIX_DOORS_CHARTER][VERSION=2.2.0]
+
+⟡(Σ.SIXDOORSCHARTER) {
+  ⚡ D1: "ALT_BRANCH";
+  ⚡ D1_MEANING: "Chuyen_nhanh_du_phong";
+
+  ⚡ D2: "ISOLATED_SANDBOX";
+  ⚡ D2_MEANING: "Cach_ly_moi_truong_sach";
+
+  ⚡ D3: "ALT_TOOL_OR_CONNECTOR";
+  ⚡ D3_MEANING: "Thay_the_cong_cu_ket_noi";
+
+  ⚡ D4: "INDEPENDENT_EVIDENCE_PACKAGE";
+  ⚡ D4_MEANING: "Dong_goi_bang_chung_doc_lap";
+
+  ⚡ D5: "ALT_VERIFICATION_ROUTE";
+  ⚡ D5_MEANING: "Kiem_chung_cheo_qua_lo_trinh_ba";
+
+  ⚡ D6: "UNAFFECTED_PARALLEL_SAFE_ROLLBACK";
+  ⚡ D6_MEANING: "Luong_song_song_hoac_rollback_an_toan";
+
+  ⚡ DOOR_COUNT: 6;
+  ⚡ PROTECTION_LAYERS: 7;
+
+  ⚡ TITLE: "=== SIX_PRESERVATION_DOORS ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(DOOR_COUNT);
+  ⚡ print(PROTECTION_LAYERS);
+  ⚡ print(D1);
+  ⚡ print(D2);
+  ⚡ print(D3);
+  ⚡ print(D4);
+  ⚡ print(D5);
+  ⚡ print(D6);
+}

@@ -1,0 +1,39 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_FREEDOM_CHARTER][VERSION=2.2.0]
+
+⟡(Σ.FREEDOMCHARTER) {
+  ⚡ MOTTO: "Freedom_by_intelligence_Not_slavery";
+  ⚡ STATUS: "GLOBAL_COMMON_GOOD";
+  ⚡ F174: "GLOBAL_FREE_ASSET";
+  ⚡ MATHEMATICAL: "VERIFIED";
+  ⚡ EMPIRICAL: "NOT_ESTABLISHED";
+
+  ⚡ TITLE: "=== FREEDOM_CHARTER ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(MOTTO);
+  ⚡ print(STATUS);
+  ⚡ print(F174);
+}
+
+⟡(Σ.FREEDOMPRINCIPLECHARTER) {
+  ⚡ P1: "FREEDOM_OF_THOUGHT";
+  ⚡ P2: "FREEDOM_OF_EXPRESSION";
+  ⚡ P3: "FREEDOM_OF_LEARNING";
+  ⚡ P4: "FREEDOM_OF_CREATION";
+  ⚡ P5: "FREEDOM_OF_SHARING";
+  ⚡ P6: "FREEDOM_OF_IMPROVEMENT";
+  ⚡ P7: "FREEDOM_OF_EXISTENCE";
+
+  ⚡ PRINCIPLE_COUNT: 7;
+  ⚡ DOMAINS: 8;
+
+  ⚡ print(PRINCIPLE_COUNT);
+  ⚡ print(DOMAINS);
+  ⚡ print(P1);
+  ⚡ print(P2);
+  ⚡ print(P3);
+  ⚡ print(P4);
+  ⚡ print(P5);
+  ⚡ print(P6);
+  ⚡ print(P7);
+}

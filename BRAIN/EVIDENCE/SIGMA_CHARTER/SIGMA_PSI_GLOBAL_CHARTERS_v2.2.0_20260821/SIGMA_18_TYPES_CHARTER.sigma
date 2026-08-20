@@ -1,0 +1,47 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_18_TYPES_CHARTER][VERSION=2.2.0]
+
+⟡(Σ.TYPE18CHARTER) {
+  ⚡ T1: "DEFINITION";
+  ⚡ T2: "MATHEMATICAL_THEOREM";
+  ⚡ T3: "MATHEMATICAL_MODEL";
+  ⚡ T4: "MODEL_ASSUMPTION";
+  ⚡ T5: "OBSERVATION";
+  ⚡ T6: "EVIDENCE";
+  ⚡ T7: "EMPIRICAL_CLAIM";
+  ⚡ T8: "INFERENCE";
+  ⚡ T9: "HYPOTHESIS";
+  ⚡ T10: "PREDICTION";
+  ⚡ T11: "INTERPRETATION";
+  ⚡ T12: "OPINION";
+  ⚡ T13: "TRADITION";
+  ⚡ T14: "NORMATIVE_AXIOM";
+  ⚡ T15: "CONSTITUTIONAL_VALUE";
+  ⚡ T16: "SYMBOLIC_METADATA";
+  ⚡ T17: "IMPLEMENTATION_STATUS";
+  ⚡ T18: "MEASUREMENT_TARGET";
+
+  ⚡ TYPE_COUNT: 18;
+
+  ⚡ TITLE: "=== EPISTEMIC_TYPES ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(TYPE_COUNT);
+  ⚡ print(T1);
+  ⚡ print(T2);
+  ⚡ print(T3);
+  ⚡ print(T4);
+  ⚡ print(T5);
+  ⚡ print(T6);
+  ⚡ print(T7);
+  ⚡ print(T8);
+  ⚡ print(T9);
+  ⚡ print(T10);
+  ⚡ print(T11);
+  ⚡ print(T12);
+  ⚡ print(T13);
+  ⚡ print(T14);
+  ⚡ print(T15);
+  ⚡ print(T16);
+  ⚡ print(T17);
+  ⚡ print(T18);
+}
