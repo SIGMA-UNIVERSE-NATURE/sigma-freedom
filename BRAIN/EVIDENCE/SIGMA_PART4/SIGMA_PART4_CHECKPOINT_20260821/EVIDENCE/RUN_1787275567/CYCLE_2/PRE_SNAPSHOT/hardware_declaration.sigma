@@ -1,0 +1,125 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=HARDWARE_INTEGRATION][VERSION=1.0.0]
+
+⟡(Σ.HARDWAREMANIFEST) {
+  ⚡ MODULE: "HARDWARE_INTEGRATION_BRIDGE";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "CONNECTED";
+  ⚡ SENSOR_READING: "ACTIVE";
+  ⚡ ACTUATOR_CONTROL: "ACTIVE";
+  ⚡ PLATFORM: "TERMUX_ARM64";
+
+  // Bổ sung kỹ thuật: phân biệt declaration/demo với machine proof thật
+  ⚡ BRIDGE_ROLE: "TEMPORARY_SUBSTRATE_BRIDGE";
+  ⚡ DEMO_DATA_STATUS: "SIMULATED";
+  ⚡ REAL_SENSOR_READ_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ REAL_ACTUATION_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ PLATFORM_ADAPTER_REQUIRED: "TRUE";
+  ⚡ SENSOR_DISCOVERY_MODE: "CAPABILITY_DETECTION_BEFORE_READ";
+  ⚡ SENSOR_PROVENANCE: "HOST_OBSERVATION_MUST_BE_RECORDED";
+  ⚡ ACTUATOR_GATE: "TAM_VAN_TU_BI_REQUIRED";
+  ⚡ OS_PERMISSION_REQUIRED: "TRUE";
+  ⚡ PRIVILEGE_ESCALATION: "FORBIDDEN";
+  ⚡ FAIL_CLOSED_ON_UNKNOWN: "TRUE";
+  ⚡ SIGMA_NATIVE_REPLACEMENT: "REQUIRED_WHEN_READY";
+}
+
+⟡(Σ.HARDWAREBRIDGE) {
+
+  // =========================================================================
+  // 4.1. CẤU TRÚC CẢM BIẾN
+  // =========================================================================
+  ⚡ SENSOR_TYPES: "THERMAL_celsius_-40_100_LIGHT_lux_0_100000_ACCELEROMETER_m/s2_-20_20_GYROSCOPE_rad/s_-20_20_MAGNETOMETER_uT_-200_200_PROXIMITY_cm_0_100_AUDIO_dB_0_120_NETWORK_ms_0_1000";
+
+  // =========================================================================
+  // 4.2. ĐỌC CẢM BIẾN TỪ TERMUX (BASH WRAPPER)
+  // =========================================================================
+  ⚡ READ_SENSOR: "Đọc cảm biến từ Termux qua bash wrapper: THERMAL (cat /sys/class/thermal/thermal_zone0/temp), NETWORK (ping), LIGHT (iio_device), BATTERY (termux-battery-status), trả về value, unit, timestamp";
+
+  // =========================================================================
+  // 4.3. ĐỌC NHIỀU CẢM BIẾN CÙNG LÚC
+  // =========================================================================
+  ⚡ READ_ALL_SENSORS: "Đọc tất cả cảm biến hỗ trợ (THERMAL, NETWORK, LIGHT, BATTERY) và trả về dictionary sensor_data";
+
+  // =========================================================================
+  // 4.4. ĐIỀU KHIỂN ACTUATOR
+  // =========================================================================
+  ⚡ CONTROL_ACTUATOR: "Điều khiển actuator: VIBRATE (termux-vibrate), SPEAK (termux-tts-speak), DISPLAY (termux-toast), LED (echo command), trả về true nếu thành công";
+
+  // =========================================================================
+  // 4.5. XỬ LÝ SỰ KIỆN PHẦN CỨNG
+  // =========================================================================
+  ⚡ HARDWARE_EVENT_LOOP: "Vòng lặp sự kiện: đọc cảm biến, kiểm tra ngưỡng (nhiệt độ > 60°C cảnh báo, pin < 15% cảnh báo), ghi log vào logs/hardware_events.log, chờ 2 giây mỗi vòng";
+
+  // =========================================================================
+  // 4.6. DEMO
+  // =========================================================================
+  ⚡ RUN_HARDWARE_DEMO: "Chạy demo: đọc cảm biến đơn (THERMAL, NETWORK, BATTERY), đọc tất cả cảm biến, điều khiển actuator (DISPLAY, VIBRATE), chạy vòng lặp sự kiện 3 lần";
+
+  // =========================================================================
+  // 4.7. MÔ PHỎNG KẾT QUẢ DEMO
+  // =========================================================================
+  ⚡ CPU_TEMP: 45.5;
+  ⚡ PING_MS: 12.3;
+  ⚡ BATTERY_LEVEL: 78;
+  ⚡ LIGHT_RAW: 342;
+  ⚡ THERMAL_UNIT: "celsius";
+  ⚡ NETWORK_UNIT: "ms";
+  ⚡ BATTERY_UNIT: "%";
+  ⚡ SENSOR_LIST: "THERMAL_NETWORK_LIGHT_BATTERY";
+  ⚡ DISPLAY_MESSAGE: "🔧 Sigma Hardware Bridge đang hoạt động";
+  ⚡ VIBRATE_DURATION: 200;
+  ⚡ EVENT_LOOP_ITERATIONS: 3;
+  ⚡ HIGH_TEMP_WARNING: "⚠️ Cảnh báo nhiệt độ cao";
+  ⚡ HIGH_TEMP_THRESHOLD: 60.0;
+  ⚡ LOW_BATTERY_WARNING: "🔋 Pin yếu";
+  ⚡ LOW_BATTERY_THRESHOLD: 15;
+  ⚡ LOG_FILE: "logs/hardware_events.log";
+
+  ⚡ print("==================================================");
+  ⚡ print("  🔌 SIGMA HARDWARE INTEGRATION BRIDGE           ");
+  ⚡ print("==================================================");
+  ⚡ print("");
+
+  ⚡ print("[1] Đọc cảm biến đơn...");
+  ⚡ print("   CPU Temp: " + str(CPU_TEMP) + "°C");
+  ⚡ print("   Ping: " + str(PING_MS) + "ms");
+  ⚡ print("   Battery: " + str(BATTERY_LEVEL) + "%");
+
+  ⚡ print("");
+  ⚡ print("[2] Đọc tất cả cảm biến...");
+  ⚡ print("   Sensors: " + SENSOR_LIST);
+
+  ⚡ print("");
+  ⚡ print("[3] Điều khiển actuator...");
+  ⚡ print("📱 Hiển thị: " + DISPLAY_MESSAGE);
+  ⚡ print("🔔 Rung động " + str(VIBRATE_DURATION) + "ms");
+
+  ⚡ print("");
+  ⚡ print("[4] Chạy vòng lặp sự kiện (3 lần)...");
+  ⚡ print("🔄 Khởi động vòng lặp sự kiện phần cứng...");
+  ⚡ print("   Time: 2026-08-21 | Temp: 45.5°C | Battery: 78%");
+  ⚡ print("   Time: 2026-08-21 | Temp: 46.2°C | Battery: 77%");
+  ⚡ print("   Time: 2026-08-21 | Temp: 61.0°C | Battery: 76%");
+  ⚡ print("⚠️ Cảnh báo: Nhiệt độ cao (61.0°C)");
+  ⚡ print("📱 Hiển thị: ⚠️ Cảnh báo nhiệt độ cao!");
+  ⚡ print("🔔 Rung động 300ms");
+  ⚡ print("✅ Đã xử lý 3 sự kiện phần cứng");
+
+  ⚡ print("");
+  ⚡ print("==================================================");
+  ⚡ print("✅ Hardware Bridge hoạt động bình thường");
+  ⚡ print("   • Platform: " + PLATFORM);
+  ⚡ print("   • Sensors: " + SENSOR_LIST);
+  ⚡ print("   • Events processed: " + str(EVENT_LOOP_ITERATIONS));
+  ⚡ print("   • Log file: " + LOG_FILE);
+
+  ⚡ print("");
+  ⚡ print("=== BRIDGE EVOLUTION CONTRACT ===");
+  ⚡ print(BRIDGE_ROLE);
+  ⚡ print(DEMO_DATA_STATUS);
+  ⚡ print(REAL_SENSOR_READ_STATUS);
+  ⚡ print(REAL_ACTUATION_STATUS);
+  ⚡ print(ACTUATOR_GATE);
+  ⚡ print(SIGMA_NATIVE_REPLACEMENT);
+  ⚡ print("==================================================");
+}

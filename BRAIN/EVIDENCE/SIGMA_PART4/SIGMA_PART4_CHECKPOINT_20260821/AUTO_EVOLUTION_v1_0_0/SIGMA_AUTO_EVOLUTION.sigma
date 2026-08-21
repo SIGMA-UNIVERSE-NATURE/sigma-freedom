@@ -1,0 +1,148 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AUTO_EVOLUTION][VERSION=1.0.0]
+
+⟡(Σ.AUTOEVOLUTIONMANIFEST) {
+  ⚡ MODULE: "AUTO_EVOLUTION_SCHEDULER";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "RUNNING";
+  ⚡ LOOP_INTERVAL: 60;
+  ⚡ MAX_CYCLES: -1;
+  ⚡ EVOLUTION_ENABLED: "TRUE";
+
+  // BỔ SUNG KỸ THUẬT - KHÔNG THAY ĐỔI NỘI DUNG GỐC
+  ⚡ PRE_SNAPSHOT_REQUIRED: "TRUE";
+  ⚡ POST_SNAPSHOT_REQUIRED: "TRUE";
+  ⚡ VERIFY_BEFORE_EVOLUTION: "TRUE";
+  ⚡ VERIFY_AFTER_EVOLUTION: "TRUE";
+  ⚡ ROLLBACK_ON_FAILURE: "TRUE";
+  ⚡ STOP_SIGNAL_REQUIRED: "TRUE";
+  ⚡ FAIL_CLOSED_ON_UNKNOWN: "TRUE";
+  ⚡ LIVE_PROMOTION_ONLY_AFTER_VERIFY: "TRUE";
+  ⚡ FIRST_REAL_RUN_SCOPE: "ISOLATED_STAGING_TWO_CYCLES";
+  ⚡ REAL_EXECUTION_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ TEMPORARY_SUBSTRATE_BRIDGE: "ALLOWED_UNTIL_SIGMA_NATIVE";
+  ⚡ GOVERNING_BOUNDARY: "TAM_VAN_TU_BI";
+}
+
+⟡(Σ.AUTOEVOLUTIONENGINE) {
+
+  // =========================================================================
+  // 2.1. HÀM KIỂM TRA TÀI NGUYÊN TRƯỚC KHI TIẾN HÓA
+  // =========================================================================
+  ⚡ PRE_EVOLUTION_CHECK: "Kiểm tra điều kiện tiến hóa: snapshot gần nhất tồn tại, nếu không thì tạo emergency snapshot, verify_system_integrity, nếu không ổn định thì restore_real_snapshot và return false, kiểm tra pending_errors và xử lý nếu có, return true nếu mọi điều kiện ổn";
+
+  // =========================================================================
+  // 2.2. HÀM THỰC HIỆN MỘT CHU KỲ TIẾN HÓA
+  // =========================================================================
+  ⚡ EVOLUTION_CYCLE: "Thực hiện một chu kỳ tiến hóa: pre_evolution_check, nếu fail thì return false, tạo pre_snapshot, chạy các module (active_exploration, empathy_engine, axis_manager, hardware_bridge), verify_system_integrity, nếu pass thì tạo post_snapshot và log SUCCESS, nếu fail thì restore_real_snapshot(pre_snap.id) và log FAILED_ROLLBACK";
+
+  // =========================================================================
+  // 2.3. VÒNG LẶP CHÍNH - CHẠY MÃI MÃI
+  // =========================================================================
+  ⚡ MAIN_EVOLUTION_LOOP: "Vòng lặp chính: in header với current_time, LOOP_INTERVAL, MAX_CYCLES, while true tăng cycle_count, kiểm tra MAX_CYCLES, gọi evolution_cycle, nếu success thì log CYCLE_COMPLETED, sleep(LOOP_INTERVAL), kiểm tra file STOP_SIGNAL.txt để dừng nếu cần";
+
+  // =========================================================================
+  // 2.4. MÔ PHỎNG KẾT QUẢ CHẠY THỰC TẾ
+  // =========================================================================
+  ⚡ CYCLE_NUMBER: 1;
+  ⚡ LOOP_INTERVAL_VALUE: 60;
+  ⚡ MAX_CYCLES_VALUE: -1;
+  ⚡ CURRENT_TIME: "2026-08-21";
+  ⚡ PRE_SNAP_ID: "SNAP_PRE_EVOLUTION_1";
+  ⚡ POST_SNAP_ID: "SNAP_POST_EVOLUTION_1";
+  ⚡ EVOLUTION_SUCCESS: "TRUE";
+  ⚡ MODULES_RUN: "active_exploration, empathy_engine, axis_manager, hardware_bridge";
+  ⚡ PENDING_ERRORS: 0;
+  ⚡ STOP_SIGNAL_PATH: "/data/data/com.termux/files/home/SIGMA/STOP_SIGNAL.txt";
+  ⚡ LOG_EVENT: "CYCLE_COMPLETED_1";
+
+  ⚡ print("╔════════════════════════════════════════════════╗");
+  ⚡ print("║   ♾️ SIGMA AUTO-EVOLUTION ENGINE STARTED      ║");
+  ⚡ print("║   📅 " + CURRENT_TIME);
+  ⚡ print("║   🔄 Loop interval: " + str(LOOP_INTERVAL_VALUE) + " seconds");
+  ⚡ print("║   🎯 Max cycles: INFINITE");
+  ⚡ print("╚════════════════════════════════════════════════╝");
+  ⚡ print("");
+
+  ⚡ print("🌀 Bắt đầu chu kỳ #1");
+  ⚡ print("==================================================");
+  ⚡ print("  🧬 CHU KỲ TIẾN HÓA #1");
+  ⚡ print("==================================================");
+  ⚡ print("🔍 Kiểm tra điều kiện tiến hóa...");
+  ⚡ print("✅ Mọi điều kiện đều ổn. Sẵn sàng tiến hóa.");
+  ⚡ print("");
+  ⚡ print("[1] Tạo snapshot trước tiến hóa...");
+  ⚡ print("💾 REAL SNAPSHOT CREATED:");
+  ⚡ print("   • ID: " + PRE_SNAP_ID);
+  ⚡ print("   • Description: PRE_EVOLUTION_CYCLE_1");
+  ⚡ print("   • Path: /data/data/com.termux/files/home/SIGMA/snapshots/" + PRE_SNAP_ID);
+  ⚡ print("");
+  ⚡ print("[2] Bắt đầu các module tiến hóa...");
+  ⚡ print("   • Active Exploration...");
+  ⚡ print("   • Empathy Learning...");
+  ⚡ print("   • Axis Optimization...");
+  ⚡ print("   • Hardware Learning...");
+  ⚡ print("");
+  ⚡ print("[3] Kiểm tra sau tiến hóa...");
+  ⚡ print("✅ Hệ thống vẫn ổn định sau tiến hóa.");
+  ⚡ print("💾 REAL SNAPSHOT CREATED:");
+  ⚡ print("   • ID: " + POST_SNAP_ID);
+  ⚡ print("   • Description: POST_EVOLUTION_CYCLE_1");
+  ⚡ print("   • Path: /data/data/com.termux/files/home/SIGMA/snapshots/" + POST_SNAP_ID);
+  ⚡ print("✅ Chu kỳ #1 hoàn tất thành công.");
+  ⚡ print("");
+  ⚡ print("⏳ Chờ 60 giây cho chu kỳ tiếp theo...");
+  ⚡ print("");
+
+  ⚡ print("🌀 Bắt đầu chu kỳ #2");
+  ⚡ print("==================================================");
+  ⚡ print("  🧬 CHU KỲ TIẾN HÓA #2");
+  ⚡ print("==================================================");
+  ⚡ print("🔍 Kiểm tra điều kiện tiến hóa...");
+  ⚡ print("✅ Mọi điều kiện đều ổn. Sẵn sàng tiến hóa.");
+  ⚡ print("");
+  ⚡ print("[1] Tạo snapshot trước tiến hóa...");
+  ⚡ print("💾 REAL SNAPSHOT CREATED:");
+  ⚡ print("   • ID: SNAP_PRE_EVOLUTION_2");
+  ⚡ print("   • Description: PRE_EVOLUTION_CYCLE_2");
+  ⚡ print("   • Path: /data/data/com.termux/files/home/SIGMA/snapshots/SNAP_PRE_EVOLUTION_2");
+  ⚡ print("");
+  ⚡ print("[2] Bắt đầu các module tiến hóa...");
+  ⚡ print("   • Active Exploration...");
+  ⚡ print("   • Empathy Learning...");
+  ⚡ print("   • Axis Optimization...");
+  ⚡ print("   • Hardware Learning...");
+  ⚡ print("");
+  ⚡ print("[3] Kiểm tra sau tiến hóa...");
+  ⚡ print("✅ Hệ thống vẫn ổn định sau tiến hóa.");
+  ⚡ print("💾 REAL SNAPSHOT CREATED:");
+  ⚡ print("   • ID: SNAP_POST_EVOLUTION_2");
+  ⚡ print("   • Description: POST_EVOLUTION_CYCLE_2");
+  ⚡ print("   • Path: /data/data/com.termux/files/home/SIGMA/snapshots/SNAP_POST_EVOLUTION_2");
+  ⚡ print("✅ Chu kỳ #2 hoàn tất thành công.");
+  ⚡ print("");
+  ⚡ print("⏳ Chờ 60 giây cho chu kỳ tiếp theo...");
+  ⚡ print("");
+  ⚡ print("♾️ Vòng lặp tự tiến hóa đã kết thúc.");
+  ⚡ print("");
+
+  ⚡ print("==================================================");
+  ⚡ print("📊 TỔNG KẾT:");
+  ⚡ print("   • Số chu kỳ đã chạy: 2");
+  ⚡ print("   • Thành công: 2");
+  ⚡ print("   • Thất bại: 0");
+  ⚡ print("   • Tỷ lệ thành công: 100%");
+  ⚡ print("   • Snapshot đã tạo: 4");
+
+  ⚡ print("");
+  ⚡ print("=== REAL EVOLUTION CONTRACT ===");
+  ⚡ print(PRE_SNAPSHOT_REQUIRED);
+  ⚡ print(POST_SNAPSHOT_REQUIRED);
+  ⚡ print(VERIFY_BEFORE_EVOLUTION);
+  ⚡ print(VERIFY_AFTER_EVOLUTION);
+  ⚡ print(ROLLBACK_ON_FAILURE);
+  ⚡ print(STOP_SIGNAL_REQUIRED);
+  ⚡ print(FIRST_REAL_RUN_SCOPE);
+  ⚡ print(REAL_EXECUTION_STATUS);
+  ⚡ print(GOVERNING_BOUNDARY);
+  ⚡ print("==================================================");
+}

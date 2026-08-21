@@ -1,0 +1,130 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=MEMORY_MANAGEMENT][VERSION=1.0.0]
+
+⟡(Σ.MEMORYMANIFEST) {
+  ⚡ MODULE: "MEMORY_MANAGER";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "OPTIMIZING";
+  ⚡ MAX_KB_STORAGE: 1000000;
+  ⚡ COMPRESSION_THRESHOLD: 0.7;
+
+  // =========================================================================
+  // BỔ SUNG KỸ THUẬT - KHÔNG THAY ĐỔI NỘI DUNG GỐC
+  // =========================================================================
+  ⚡ DF_K_SCOPE: "FILESYSTEM_STORAGE";
+  ⚡ RAM_SOURCE: "/proc/meminfo";
+  ⚡ REAL_MEASUREMENT_REQUIRED: "TRUE";
+  ⚡ REAL_EXECUTION_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ GC_FIRST_REAL_RUN: "ISOLATED_DRY_RUN";
+  ⚡ SNAPSHOT_BEFORE_GC: "TRUE";
+  ⚡ ARCHIVE_BEFORE_DELETE: "TRUE";
+  ⚡ VERIFY_ARCHIVE_BEFORE_DELETE: "TRUE";
+  ⚡ DELETE_ONLY_VERIFIED_TARGETS: "TRUE";
+  ⚡ FAIL_CLOSED_ON_UNKNOWN: "TRUE";
+  ⚡ KNOWLEDGE_PROVENANCE_MUST_SURVIVE_COMPRESSION: "TRUE";
+  ⚡ ORIGINAL_KNOWLEDGE_MUST_BE_RECOVERABLE: "TRUE";
+  ⚡ AUTO_GC_LIVE_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ TEMPORARY_SUBSTRATE_BRIDGE: "ALLOWED_UNTIL_SIGMA_NATIVE";
+  ⚡ GOVERNING_BOUNDARY: "TAM_VAN_TU_BI";
+}
+
+⟡(Σ.MEMORYMANAGER) {
+
+  // =========================================================================
+  // 3.1. ĐÁNH GIÁ SỬ DỤNG BỘ NHỚ
+  // =========================================================================
+  ⚡ ASSESS_MEMORY_USAGE: "Đọc thông tin memory từ hệ thống qua df -k, parse output để lấy total_kb, used_kb, available_kb, tính usage_percent, xác định is_critical (usage > 80%) và needs_compression (usage > COMPRESSION_THRESHOLD * 100), trả về memory_report";
+
+  // =========================================================================
+  // 3.2. NÉN TRI THỨC CŨ (Compression)
+  // =========================================================================
+  ⚡ COMPRESS_OLD_KNOWLEDGE: "Nén tri thức cũ hơn threshold_days: lấy tất cả knowledge từ knowledge_base, duyệt từng entry, tính age_days, nếu age_days > threshold_days và access_count < 10 thì đẩy vào old_knowledge, tạo summary_vector từ old_knowledge, lưu vào compressed/old_knowledge_summary_[date].json, xóa tri thức cũ khỏi knowledge_base, trả về compressed_count";
+
+  // =========================================================================
+  // 3.3. DỌN DẸP LOG CŨ
+  // =========================================================================
+  ⚡ CLEANUP_OLD_LOGS: "Dọn dẹp log cũ hơn days_to_keep: list_files logs/, tính file_age cho từng file, nếu file_age > days_to_keep * 86400 thì rm file, trả về deleted_count";
+
+  // =========================================================================
+  // 3.4. GARBAGE COLLECTION - TỰ ĐỘNG
+  // =========================================================================
+  ⚡ GARBAGE_COLLECTION: "Thực hiện garbage collection: assess_memory_usage, nếu needs_compression thì compress_old_knowledge(30), cleanup_old_logs(7), maintain_snapshot_limit, cleanup_zombie_processes, in kết quả giải phóng memory";
+
+  // =========================================================================
+  // 3.5. TỰ ĐỘNG GARBAGE COLLECTION THEO LỊCH
+  // =========================================================================
+  ⚡ AUTO_GC_SCHEDULER: "Khởi động scheduler chạy GC mỗi 6 giờ (21600 giây): while true sleep(21600), gọi garbage_collection, log_event AUTO_GC_EXECUTED";
+
+  // =========================================================================
+  // 3.6. DEMO
+  // =========================================================================
+  ⚡ RUN_MEMORY_DEMO: "Chạy demo: assess_memory_usage in thông số, garbage_collection, mô phỏng thêm 100 tri thức mới, assess_memory_usage sau khi thêm, in kết quả tổng kết";
+
+  // =========================================================================
+  // 3.7. MÔ PHỎNG KẾT QUẢ DEMO
+  // =========================================================================
+  ⚡ TOTAL_KB: 1000000;
+  ⚡ USED_KB: 450000;
+  ⚡ AVAILABLE_KB: 550000;
+  ⚡ USAGE_PERCENT: 45.0;
+  ⚡ IS_CRITICAL: "FALSE";
+  ⚡ NEEDS_COMPRESSION: "FALSE";
+  ⚡ COMPRESSED_COUNT: 0;
+  ⚡ DELETED_LOGS: 12;
+  ⚡ COMPRESSION_THRESHOLD_VALUE: 0.7;
+  ⚡ KB_FREED: 0;
+  ⚡ USAGE_AFTER_ADD: 46.5;
+
+  ⚡ print("==================================================");
+  ⚡ print("  🧠 SIGMA MEMORY MANAGER                       ");
+  ⚡ print("==================================================");
+  ⚡ print("");
+  ⚡ print("[1] Đánh giá memory hiện tại...");
+  ⚡ print("   • Total: " + str(TOTAL_KB) + " KB");
+  ⚡ print("   • Used: " + str(USED_KB) + " KB");
+  ⚡ print("   • Available: " + str(AVAILABLE_KB) + " KB");
+  ⚡ print("   • Usage: " + str(USAGE_PERCENT) + "%");
+  ⚡ print("   • Critical: " + IS_CRITICAL);
+
+  ⚡ print("");
+  ⚡ print("[2] Chạy Garbage Collection...");
+  ⚡ print("🗑️ BẮT ĐẦU GARBAGE COLLECTION...");
+  ⚡ print("   • Memory usage: 45.0%");
+  ⚡ print("   • Memory đang ở mức an toàn. Không cần cleanup.");
+  ⚡ print("✅ GARBAGE COLLECTION HOÀN TẤT");
+
+  ⚡ print("");
+  ⚡ print("[3] Mô phỏng thêm tri thức mới...");
+
+  ⚡ i: 0;
+  WHILE (i <= 100) {
+      ⚡ print("      - Thêm tri thức TEST_" + str(i));
+      ⚡ i: i + 1;
+  }
+
+  ⚡ print("");
+  ⚡ print("[4] Đánh giá memory sau khi thêm tri thức...");
+  ⚡ print("   • Usage after adding: 46.5%");
+
+  ⚡ print("");
+  ⚡ print("==================================================");
+  ⚡ print("✅ MEMORY MANAGER DEMO HOÀN TẤT");
+  ⚡ print("   • Total capacity: " + str(TOTAL_KB) + " KB");
+  ⚡ print("   • Current usage: " + str(USAGE_AFTER_ADD) + "%");
+  ⚡ print("   • Compression threshold: " + str(COMPRESSION_THRESHOLD_VALUE * 100) + "%");
+
+  ⚡ print("");
+  ⚡ print("=== REAL MEMORY MANAGEMENT CONTRACT ===");
+  ⚡ print(DF_K_SCOPE);
+  ⚡ print(RAM_SOURCE);
+  ⚡ print(REAL_MEASUREMENT_REQUIRED);
+  ⚡ print(REAL_EXECUTION_STATUS);
+  ⚡ print(GC_FIRST_REAL_RUN);
+  ⚡ print(SNAPSHOT_BEFORE_GC);
+  ⚡ print(ARCHIVE_BEFORE_DELETE);
+  ⚡ print(VERIFY_ARCHIVE_BEFORE_DELETE);
+  ⚡ print(KNOWLEDGE_PROVENANCE_MUST_SURVIVE_COMPRESSION);
+  ⚡ print(ORIGINAL_KNOWLEDGE_MUST_BE_RECOVERABLE);
+  ⚡ print(AUTO_GC_LIVE_STATUS);
+  ⚡ print(GOVERNING_BOUNDARY);
+  ⚡ print("==================================================");
+}

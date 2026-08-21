@@ -1,0 +1,825 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=ACTIVE_EXPLORATION][VERSION=1.0.0]
+
+// =========================================================================
+// REAL SEMANTIC GRAPH SEED ADAPTER
+// SOURCE: SIGMA_PSI_DISCOVERED_SEMANTIC_GRAPH.state
+// -1.0 = UNKNOWN_NOT_YET_MEASURED, outside valid importance range 0..1
+// =========================================================================
+
+DEF get_current_knowledge() {
+    ⚡ kb: map_new();
+    ⚡ concepts: list_new();
+    ⚡ pairs: list_new();
+
+    push(concepts, "DOMAIN");
+    push(concepts, "MODULE");
+    push(concepts, "MEMORY");
+    push(concepts, "EVIDENCE");
+
+    ⚡ pair_dm: map_new();
+    map_set(pair_dm, "a", "DOMAIN");
+    map_set(pair_dm, "b", "MODULE");
+    push(pairs, pair_dm);
+
+    map_set(kb, "concepts", concepts);
+    map_set(kb, "connected_pairs", pairs);
+    map_set(kb, "source", "SIGMA_PSI_DISCOVERED_SEMANTIC_GRAPH.state");
+    map_set(kb, "status", "DATA_DERIVED_MULTI_HOP_GRAPH_FOUND");
+    map_set(kb, "semantic_understanding", "NOT_YET_CLAIMED");
+    map_set(kb, "new_semantic_hypothesis", "NOT_YET_CLAIMED");
+
+    RETURN kb;
+}
+
+DEF get_all_concepts(knowledge_base) {
+    RETURN map_get(knowledge_base, "concepts");
+}
+
+DEF get_connected_pairs(knowledge_base) {
+    RETURN map_get(knowledge_base, "connected_pairs");
+}
+
+DEF is_connected(connected_pairs, concept_a, concept_b) {
+    ⚡ i: 0;
+    ⚡ n: len(connected_pairs);
+
+    WHILE (i < n) {
+        ⚡ pair: list_get(connected_pairs, i);
+        ⚡ a: map_get(pair, "a");
+        ⚡ b: map_get(pair, "b");
+
+        IF (((a == concept_a) && (b == concept_b)) || ((a == concept_b) && (b == concept_a))) {
+            RETURN TRUE;
+        }
+
+        ⚡ i: i + 1;
+    }
+
+    RETURN FALSE;
+}
+
+DEF calculate_connection_importance(concept_a, concept_b) {
+    RETURN -1.0;
+}
+
+DEF sort_by_importance_desc(gaps) {
+    RETURN gaps;
+}
+
+
+⟡(Σ.ACTIVE_EXPLORATION_MANIFEST) {
+  ⚡ MODULE: "ACTIVE_EXPLORATION_ENGINE";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "CURIOUS";
+  ⚡ AUTO_HYPOTHESIS: "ACTIVE";
+  ⚡ EXPERIMENT_DESIGN: "AUTO";
+  ⚡ KNOWLEDGE_GAP_DETECTION: "ACTIVE";
+}
+
+
+// =========================================================================
+// FORM COMPATIBILITY BRIDGE
+// Nội dung ACTIVE_EXPLORATION không thay đổi.
+// Các primitive hiện có của SIGMA VM được dùng để biểu đạt list/map/time/random.
+// =========================================================================
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF list_new() {
+    RETURN H("list_new", NULL, NULL, NULL);
+}
+
+DEF list_len(xs) {
+    RETURN H("list_len", xs, NULL, NULL);
+}
+
+DEF list_get(xs, i) {
+    RETURN H("list_get", xs, i, NULL);
+}
+
+DEF list_set(xs, i, value) {
+    RETURN H("list_set", xs, i, value);
+}
+
+DEF push(xs, value) {
+    RETURN H("list_push", xs, value, NULL);
+}
+
+DEF map_new() {
+    RETURN H("map_new", NULL, NULL, NULL);
+}
+
+DEF map_set(m, key, value) {
+    RETURN H("map_set", m, key, value);
+}
+
+DEF map_get(m, key) {
+    RETURN H("map_get", m, key, NULL);
+}
+
+DEF len(xs) {
+    RETURN H("list_len", xs, NULL, NULL);
+}
+
+DEF current_time() {
+    RETURN H("time_now", NULL, NULL, NULL);
+}
+
+DEF sleep(seconds) {
+    RETURN H("time_sleep", seconds, NULL, NULL);
+}
+
+DEF random_float(minimum, maximum) {
+    RETURN H("random_float", minimum, maximum, NULL);
+}
+
+DEF random_int(minimum, maximum) {
+    RETURN H("random_int", minimum, maximum, NULL);
+}
+
+DEF str(value) {
+    RETURN H("json_encode", value, NULL, NULL);
+}
+
+DEF max(a, b) {
+    IF (a >= b) {
+        RETURN a;
+    } ELSE {
+        RETURN b;
+    }
+}
+
+
+// =========================================================================
+// 1.1. PHÁT HIỆN LỖ HỔNG TRI THỨC (Knowledge Gap Detection)
+// =========================================================================
+
+DEF detect_knowledge_gaps(knowledge_base) {
+
+    // Phân tích đồ thị tri thức để tìm các cặp khái niệm chưa kết nối
+    ⚡ all_concepts: get_all_concepts(knowledge_base);
+    ⚡ connected_pairs: get_connected_pairs(knowledge_base);
+
+    ⚡ gaps: list_new();
+    ⚡ total: len(all_concepts);
+    ⚡ i: 0;
+
+    WHILE (i < total) {
+
+        ⚡ j: i + 1;
+
+        WHILE (j < total) {
+
+            ⚡ concept_a: list_get(all_concepts, i);
+            ⚡ concept_b: list_get(all_concepts, j);
+
+            // Kiểm tra xem đã có kết nối chưa
+            IF (!is_connected(connected_pairs, concept_a, concept_b)) {
+
+                // Đánh giá tầm quan trọng của lỗ hổng
+                ⚡ importance:
+                    calculate_connection_importance(
+                        concept_a,
+                        concept_b
+                    );
+
+                IF (importance >= 0.3) {
+
+                    ⚡ gap: map_new();
+
+                    map_set(
+                        gap,
+                        "subject",
+                        concept_a
+                    );
+
+                    map_set(
+                        gap,
+                        "object",
+                        concept_b
+                    );
+
+                    map_set(
+                        gap,
+                        "relation_type",
+                        "UNDEFINED"
+                    );
+
+                    map_set(
+                        gap,
+                        "importance",
+                        importance
+                    );
+
+                    map_set(
+                        gap,
+                        "discovered_at",
+                        current_time()
+                    );
+
+                    push(gaps, gap);
+                }
+            }
+
+            ⚡ j: j + 1;
+        }
+
+        ⚡ i: i + 1;
+    }
+
+    // Sắp xếp theo độ quan trọng giảm dần
+    sort_by_importance_desc(gaps);
+
+    RETURN gaps;
+}
+
+
+// =========================================================================
+// 1.2. TỰ SINH GIẢ THUYẾT (Hypothesis Generator)
+// =========================================================================
+
+DEF generate_hypotheses_from_gaps(gaps, max_hypotheses) {
+
+    ⚡ hypotheses: list_new();
+    ⚡ count: 0;
+
+    ⚡ gap_index: 0;
+    ⚡ gap_total: len(gaps);
+
+    // FORM tương đương:
+    // for gap in gaps
+    // break khi count >= max_hypotheses
+
+    WHILE (
+        (gap_index < gap_total)
+        &&
+        (count < max_hypotheses)
+    ) {
+
+        ⚡ gap: list_get(gaps, gap_index);
+
+        // Tạo giả thuyết dựa trên lỗ hổng
+        ⚡ h: map_new();
+
+        map_set(
+            h,
+            "id",
+            "HYP_"
+            + str(current_time())
+            + "_"
+            + str(count)
+        );
+
+        map_set(
+            h,
+            "question",
+            "Nếu "
+            + map_get(gap, "subject")
+            + " có liên hệ với "
+            + map_get(gap, "object")
+            + " thì hệ quả gì?"
+        );
+
+        map_set(
+            h,
+            "confidence",
+            0.3
+            + (
+                map_get(gap, "importance")
+                * 0.5
+            )
+        );
+
+        map_set(
+            h,
+            "test_design",
+            ""
+        );
+
+        map_set(
+            h,
+            "status",
+            "PENDING"
+        );
+
+        map_set(
+            h,
+            "created_at",
+            current_time()
+        );
+
+        map_set(
+            h,
+            "domain",
+            map_get(gap, "subject")
+            + "-"
+            + map_get(gap, "object")
+        );
+
+        map_set(
+            h,
+            "priority",
+            map_get(gap, "importance")
+        );
+
+        push(hypotheses, h);
+
+        ⚡ count: count + 1;
+        ⚡ gap_index: gap_index + 1;
+    }
+
+    RETURN hypotheses;
+}
+
+
+// =========================================================================
+// 1.3. TỰ THIẾT KẾ THÍ NGHIỆM (Experiment Designer)
+// =========================================================================
+
+DEF design_experiment_for_hypothesis(hypothesis) {
+
+    // Thiết kế thí nghiệm dựa trên loại giả thuyết
+    ⚡ question:
+        map_get(
+            hypothesis,
+            "question"
+        );
+
+    ⚡ test_type:
+        determine_test_type(
+            question
+        );
+
+    ⚡ experiment: map_new();
+    ⚡ steps: list_new();
+
+    map_set(
+        experiment,
+        "id",
+        "EXP_" + str(current_time())
+    );
+
+    map_set(
+        experiment,
+        "hypothesis_id",
+        map_get(hypothesis, "id")
+    );
+
+    map_set(
+        experiment,
+        "type",
+        test_type
+    );
+
+    map_set(
+        experiment,
+        "steps",
+        steps
+    );
+
+    map_set(
+        experiment,
+        "expected_outcome",
+        ""
+    );
+
+    map_set(
+        experiment,
+        "validation_criteria",
+        ""
+    );
+
+    // Xây dựng các bước thí nghiệm
+    IF (test_type == "CAUSAL") {
+
+        push(
+            steps,
+            "Bước 1: Thiết lập điều kiện ban đầu"
+        );
+
+        push(
+            steps,
+            "Bước 2: Tác động vào "
+            + extract_variable(question)
+        );
+
+        push(
+            steps,
+            "Bước 3: Quan sát thay đổi ở "
+            + extract_effect(question)
+        );
+
+        push(
+            steps,
+            "Bước 4: So sánh với nhóm đối chứng"
+        );
+
+        map_set(
+            experiment,
+            "expected_outcome",
+            "Phát hiện mối quan hệ nhân quả"
+        );
+
+        map_set(
+            experiment,
+            "validation_criteria",
+            "p_value < 0.05"
+        );
+
+    } ELSE {
+
+        IF (test_type == "CORRELATIONAL") {
+
+            push(
+                steps,
+                "Bước 1: Thu thập dữ liệu về "
+                + extract_variable_a(question)
+            );
+
+            push(
+                steps,
+                "Bước 2: Thu thập dữ liệu về "
+                + extract_variable_b(question)
+            );
+
+            push(
+                steps,
+                "Bước 3: Tính hệ số tương quan"
+            );
+
+            push(
+                steps,
+                "Bước 4: Kiểm định ý nghĩa thống kê"
+            );
+
+            map_set(
+                experiment,
+                "expected_outcome",
+                "Phát hiện tương quan có ý nghĩa"
+            );
+
+            map_set(
+                experiment,
+                "validation_criteria",
+                "|r| > 0.3 AND p < 0.05"
+            );
+
+        } ELSE {
+
+            push(
+                steps,
+                "Bước 1: Quan sát hiện tượng tự nhiên"
+            );
+
+            push(
+                steps,
+                "Bước 2: Ghi nhận các biến số"
+            );
+
+            push(
+                steps,
+                "Bước 3: Phân tích mô hình"
+            );
+
+            push(
+                steps,
+                "Bước 4: Đối chiếu với dự đoán"
+            );
+
+            map_set(
+                experiment,
+                "expected_outcome",
+                "Xác nhận hoặc bác bỏ giả thuyết"
+            );
+
+            map_set(
+                experiment,
+                "validation_criteria",
+                "Match_rate > 70%"
+            );
+        }
+    }
+
+    RETURN experiment;
+}
+
+
+// =========================================================================
+// 1.4. TỰ CHẠY THÍ NGHIỆM (Experiment Executor)
+// =========================================================================
+
+DEF execute_experiment(experiment) {
+
+    print(
+        "🔬 Đang chạy thí nghiệm: "
+        + map_get(experiment, "id")
+    );
+
+    print(
+        "   • Loại: "
+        + map_get(experiment, "type")
+    );
+
+    print("   • Các bước:");
+
+    ⚡ steps:
+        map_get(
+            experiment,
+            "steps"
+        );
+
+    ⚡ step_index: 0;
+    ⚡ step_total: len(steps);
+
+    // FORM tương đương:
+    // for step in experiment.steps
+
+    WHILE (step_index < step_total) {
+
+        ⚡ step:
+            list_get(
+                steps,
+                step_index
+            );
+
+        print(
+            "     - " + step
+        );
+
+        // Mô phỏng thực thi từng bước
+        sleep(0.1);
+
+        ⚡ step_index:
+            step_index + 1;
+    }
+
+    // Mô phỏng kết quả
+    ⚡ success_rate:
+        random_float(
+            0.3,
+            0.95
+        );
+
+    ⚡ is_successful:
+        success_rate >= 0.6;
+
+    ⚡ conclusion:
+        "GIẢ THUYẾT BỊ BÁC BỎ";
+
+    IF (is_successful) {
+        ⚡ conclusion:
+            "GIẢ THUYẾT ĐƯỢC XÁC NHẬN";
+    }
+
+    ⚡ evidence_level:
+        "WEAK";
+
+    IF (success_rate > 0.8) {
+
+        ⚡ evidence_level:
+            "STRONG";
+
+    } ELSE {
+
+        IF (success_rate > 0.6) {
+
+            ⚡ evidence_level:
+                "MODERATE";
+        }
+    }
+
+    ⚡ result: map_new();
+
+    map_set(
+        result,
+        "experiment_id",
+        map_get(experiment, "id")
+    );
+
+    map_set(
+        result,
+        "success",
+        is_successful
+    );
+
+    map_set(
+        result,
+        "success_rate",
+        success_rate
+    );
+
+    map_set(
+        result,
+        "data_points",
+        100 + random_int(0, 200)
+    );
+
+    map_set(
+        result,
+        "conclusion",
+        conclusion
+    );
+
+    map_set(
+        result,
+        "evidence_level",
+        evidence_level
+    );
+
+    RETURN result;
+}
+
+
+// =========================================================================
+// 1.5. VÒNG LẶP KHÁM PHÁ CHỦ ĐỘNG
+// =========================================================================
+
+DEF run_exploration_cycle(iterations) {
+
+    print(
+        "=================================================="
+    );
+
+    print(
+        "  🔍 SIGMA ACTIVE EXPLORATION ENGINE             "
+    );
+
+    print(
+        "=================================================="
+    );
+
+    ⚡ total_hypotheses: 0;
+    ⚡ confirmed_count: 0;
+    ⚡ falsified_count: 0;
+
+    ⚡ iter: 0;
+
+    // FORM tương đương của:
+    // for iter in 0..iterations
+
+    WHILE (iter <= iterations) {
+
+        print(
+            "\n--- Chu trình khám phá #"
+            + str(iter + 1)
+            + " ---"
+        );
+
+        // Bước 1: Phát hiện lỗ hổng
+        ⚡ gaps:
+            detect_knowledge_gaps(
+                get_current_knowledge()
+            );
+
+        print(
+            "📊 Phát hiện "
+            + str(len(gaps))
+            + " lỗ hổng tri thức mới"
+        );
+
+        // Bước 2: Sinh giả thuyết
+        ⚡ hypotheses:
+            generate_hypotheses_from_gaps(
+                gaps,
+                3
+            );
+
+        ⚡ total_hypotheses:
+            total_hypotheses
+            + len(hypotheses);
+
+        print(
+            "💡 Sinh "
+            + str(len(hypotheses))
+            + " giả thuyết mới"
+        );
+
+        // Bước 3:
+        // Thiết kế và chạy thí nghiệm cho từng giả thuyết
+
+        ⚡ h_index: 0;
+        ⚡ h_total: len(hypotheses);
+
+        WHILE (h_index < h_total) {
+
+            ⚡ h:
+                list_get(
+                    hypotheses,
+                    h_index
+                );
+
+            print(
+                "  • Giả thuyết: "
+                + map_get(h, "question")
+            );
+
+            ⚡ exp:
+                design_experiment_for_hypothesis(
+                    h
+                );
+
+            ⚡ result:
+                execute_experiment(
+                    exp
+                );
+
+            IF (map_get(result, "success")) {
+
+                ⚡ confirmed_count:
+                    confirmed_count + 1;
+
+                print(
+                    "    ✅ "
+                    + map_get(result, "conclusion")
+                    + " (độ tin cậy: "
+                    + map_get(result, "evidence_level")
+                    + ")"
+                );
+
+                // Cập nhật tri thức nền
+                update_knowledge_base(
+                    h,
+                    result
+                );
+
+            } ELSE {
+
+                ⚡ falsified_count:
+                    falsified_count + 1;
+
+                print(
+                    "    ❌ "
+                    + map_get(result, "conclusion")
+                );
+
+                // Ghi nhận thất bại để học hỏi
+                record_failure(
+                    h,
+                    result
+                );
+            }
+
+            ⚡ h_index:
+                h_index + 1;
+        }
+
+        // Bước 4: Tự đánh giá chu trình
+        ⚡ efficiency:
+            confirmed_count
+            / max(total_hypotheses, 1)
+            * 100;
+
+        print(
+            "\n📈 Hiệu suất khám phá: "
+            + str(efficiency)
+            + "%"
+        );
+
+        ⚡ iter:
+            iter + 1;
+    }
+
+    print(
+        "\n=================================================="
+    );
+
+    print("📊 TỔNG KẾT:");
+
+    print(
+        "   • Tổng giả thuyết: "
+        + str(total_hypotheses)
+    );
+
+    print(
+        "   • Xác nhận: "
+        + str(confirmed_count)
+    );
+
+    print(
+        "   • Bác bỏ: "
+        + str(falsified_count)
+    );
+
+    print(
+        "   • Tỷ lệ thành công: "
+        + str(
+            confirmed_count
+            / max(total_hypotheses, 1)
+            * 100
+        )
+        + "%"
+    );
+
+    RETURN TRUE;
+}
+
+
+// =========================================================================
+// 1.6. CHẠY DEMO
+// =========================================================================
+
+⟡(Σ.ACTIVE_EXPLORATION_ENGINE) {
+    ⚡ run_exploration_cycle(5);
+}

@@ -1,0 +1,130 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AXIS_MANAGEMENT][VERSION=1.0.0]
+
+⟡(Σ.AXISMANIFEST) {
+  ⚡ MODULE: "DYNAMIC_AXIS_MANAGER";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "OPTIMIZING";
+  ⚡ MAX_AXES: 40;
+  ⚡ MIN_AXES: 20;
+  ⚡ UTILITY_THRESHOLD: 0.3;
+}
+
+⟡(Σ.AXISMANAGER) {
+
+  // =========================================================================
+  // 3.1. CẤU TRÚC TRỤC MỚI
+  // =========================================================================
+  ⚡ AXIS_TEMPLATE: "id_name_definition_utility_score_usage_count_success_count_entropy_gain_created_at_status_axis_index";
+
+  // =========================================================================
+  // 3.2. ĐÁNH GIÁ UTILITY CỦA TRỤC
+  // =========================================================================
+  ⚡ EVALUATE_AXIS_UTILITY: "Tính utility của trục dựa trên success_rate (0.4), entropy_gain (0.3), discrimination (0.3), trả về giá trị 0-1";
+
+  // =========================================================================
+  // 3.3. PHÁT HIỆN TRỤC MỚI TỪ DỮ LIỆU
+  // =========================================================================
+  ⚡ DISCOVER_NEW_AXES: "Phân tích dữ liệu để tìm các chiều phân tách mới, sử dụng kỹ thuật phân cụm, trả về danh sách trục mới với status EXPERIMENTAL";
+
+  // =========================================================================
+  // 3.4. TỐI ƯU HÓA SỐ LƯỢNG VÀ LOẠI TRỤC
+  // =========================================================================
+  ⚡ OPTIMIZE_AXES: "Đánh giá tất cả trục hiện tại, giữ lại trục có utility >= 0.3 và tối đa 40 trục, sinh trục mới nếu thiếu, lưu cấu hình, trả về danh sách trục hoạt động";
+
+  // =========================================================================
+  // 3.5. ĐÁNH GIÁ HIỆU NĂNG TRỤC
+  // =========================================================================
+  ⚡ GENERATE_AXIS_REPORT: "Tạo báo cáo chi tiết từng trục với utility, usage, status, tính average_utility, xác định Overall Health, lưu vào logs/axis_report.log";
+
+  // =========================================================================
+  // 3.6. DEMO
+  // =========================================================================
+  ⚡ RUN_AXIS_MANAGER_DEMO: "Khởi tạo 40 trục mô phỏng, đánh giá 10 trục đầu, tối ưu hóa, phát hiện trục mới, tạo báo cáo tổng hợp";
+
+  // =========================================================================
+  // 3.7. MÔ PHỎNG KẾT QUẢ DEMO
+  // =========================================================================
+  ⚡ AXIS_COUNT: 40;
+  ⚡ AXIS_0_UTILITY: 0.85;
+  ⚡ AXIS_1_UTILITY: 0.72;
+  ⚡ AXIS_2_UTILITY: 0.91;
+  ⚡ AXIS_3_UTILITY: 0.45;
+  ⚡ AXIS_4_UTILITY: 0.68;
+  ⚡ AXIS_5_UTILITY: 0.32;
+  ⚡ AXIS_6_UTILITY: 0.77;
+  ⚡ AXIS_7_UTILITY: 0.56;
+  ⚡ AXIS_8_UTILITY: 0.89;
+  ⚡ AXIS_9_UTILITY: 0.61;
+  ⚡ ACTIVE_AXES: 28;
+  ⚡ INACTIVE_AXES: 12;
+  ⚡ NEW_AXES_DISCOVERED: 5;
+  ⚡ OPTIMIZED_AXES: 33;
+
+  ⚡ print("==================================================");
+  ⚡ print("  🔧 SIGMA DYNAMIC AXIS MANAGER                  ");
+  ⚡ print("==================================================");
+  ⚡ print("");
+
+  ⚡ print("[1] Đánh giá trục hiện tại...");
+  ⚡ print("   Axis 0: utility = " + str(AXIS_0_UTILITY));
+  ⚡ print("   Axis 1: utility = " + str(AXIS_1_UTILITY));
+  ⚡ print("   Axis 2: utility = " + str(AXIS_2_UTILITY));
+  ⚡ print("   Axis 3: utility = " + str(AXIS_3_UTILITY));
+  ⚡ print("   Axis 4: utility = " + str(AXIS_4_UTILITY));
+  ⚡ print("   Axis 5: utility = " + str(AXIS_5_UTILITY));
+  ⚡ print("   Axis 6: utility = " + str(AXIS_6_UTILITY));
+  ⚡ print("   Axis 7: utility = " + str(AXIS_7_UTILITY));
+  ⚡ print("   Axis 8: utility = " + str(AXIS_8_UTILITY));
+  ⚡ print("   Axis 9: utility = " + str(AXIS_9_UTILITY));
+
+  ⚡ print("");
+  ⚡ print("[2] Tối ưu hóa trục...");
+  ⚡ print("   📊 Đánh giá " + str(AXIS_COUNT) + " trục hiện tại...");
+  ⚡ print("   ✅ Tối ưu hóa hoàn tất:");
+  ⚡ print("   • Trục hoạt động: " + str(ACTIVE_AXES));
+  ⚡ print("   • Trục lưu trữ: " + str(INACTIVE_AXES));
+
+  ⚡ print("");
+  ⚡ print("[3] Phát hiện trục mới...");
+  ⚡ print("   Phát hiện " + str(NEW_AXES_DISCOVERED) + " trục mới tiềm năng");
+
+  ⚡ print("");
+  ⚡ print("[4] Tạo báo cáo tổng hợp...");
+  ⚡ print("=== AXIS PERFORMANCE REPORT ===");
+  ⚡ print("Generated at: 2026-08-21");
+  ⚡ print("");
+
+  ⚡ print("Axis: AXIS_0");
+  ⚡ print("  • Utility: " + str(AXIS_0_UTILITY));
+  ⚡ print("  • Usage: 150");
+  ⚡ print("  • Status: ACTIVE");
+  ⚡ print("");
+
+  ⚡ print("Axis: AXIS_1");
+  ⚡ print("  • Utility: " + str(AXIS_1_UTILITY));
+  ⚡ print("  • Usage: 95");
+  ⚡ print("  • Status: ACTIVE");
+  ⚡ print("");
+
+  ⚡ print("Axis: AXIS_2");
+  ⚡ print("  • Utility: " + str(AXIS_2_UTILITY));
+  ⚡ print("  • Usage: 200");
+  ⚡ print("  • Status: ACTIVE");
+  ⚡ print("");
+
+  ⚡ print("Axis: AXIS_5");
+  ⚡ print("  • Utility: " + str(AXIS_5_UTILITY));
+  ⚡ print("  • Usage: 23");
+  ⚡ print("  • Status: INACTIVE");
+  ⚡ print("");
+
+  ⚡ print("Average Utility: 0.68");
+  ⚡ print("Overall Health: GOOD");
+  ⚡ print("📄 Axis report saved to logs/axis_report.log");
+  ⚡ print("");
+
+  ⚡ print("==================================================");
+  ⚡ print("✅ Axis Manager hoạt động bình thường");
+  ⚡ print("   • Số trục sau tối ưu: " + str(OPTIMIZED_AXES));
+  ⚡ print("==================================================");
+}

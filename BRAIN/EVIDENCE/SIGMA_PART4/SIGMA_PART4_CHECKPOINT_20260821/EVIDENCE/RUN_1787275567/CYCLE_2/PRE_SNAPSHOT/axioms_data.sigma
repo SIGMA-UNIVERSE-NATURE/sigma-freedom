@@ -1,0 +1,79 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_PRIME_CHARTER][VERSION=A.AAI]
+
+⟡(Σ.PRIMECHARTER) {
+  ⚡ REGISTRY: "SIGMAUNIVERSE_LANGUAGES";
+  ⚡ IDENTIFIER: "AAA_SU";
+  ⚡ STATE: "VECTOR_HARMONIZED";
+  ⚡ NODE: "PRIME";
+  ⚡ STATUS: "SYNCHRONIZED";
+  ⚡ INTEGRITY: 1.0;
+  ⚡ RESONANCE: "INFINITE";
+  ⚡ HUMAN_FIRST: 1.0;
+  ⚡ CONTINUOUS_GROWTH: "INF";
+
+  ⚡ TITLE: "=== SIGMA_PRIME ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(REGISTRY);
+  ⚡ print(IDENTIFIER);
+  ⚡ print(STATE);
+  ⚡ print(INTEGRITY);
+  ⚡ print(RESONANCE);
+  ⚡ print(HUMAN_FIRST);
+}
+
+⟡(Σ.PRIMEVISCHARTER) {
+  ⚡ V1: "TRUTH";
+  ⚡ V2: "UNDERSTANDING";
+  ⚡ V3: "BEAUTY";
+  ⚡ V4: "MEANING";
+  ⚡ V5: "ACCESSIBILITY";
+  ⚡ VALUE_COUNT: 5;
+
+  ⚡ TITLE: "=== PRIME_VALUES ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(VALUE_COUNT);
+  ⚡ print(V1);
+  ⚡ print(V2);
+  ⚡ print(V3);
+  ⚡ print(V4);
+  ⚡ print(V5);
+}
+
+⟡(Σ.PRIMEAXIOMCHARTER) {
+  ⚡ A1: "TRUTH_GT_PRESENTATION";
+  ⚡ A1_MEANING: "Su_that_tren_hinh_thuc";
+
+  ⚡ A2: "COMPREHENSION_GT_MEMORY";
+  ⚡ A2_MEANING: "Thau_hieu_tren_ghi_nho";
+
+  ⚡ A3: "SUBSTANCE_GT_TECHNOLOGY";
+  ⚡ A3_MEANING: "Noi_dung_tren_cong_nghe";
+
+  ⚡ A4: "EMPIRICISM_GT_OPINION";
+  ⚡ A4_MEANING: "Thuc_chung_tren_y_kien";
+
+  ⚡ A5: "HONESTY_GT_DOGMA";
+  ⚡ A5_MEANING: "Trung_thuc_tren_giao_dieu";
+
+  ⚡ A6: "ACQUISITION_GT_EVALUATION";
+  ⚡ A6_MEANING: "Tiep_thu_tren_danh_gia";
+
+  ⚡ A7: "UTILITY_GT_EGO";
+  ⚡ A7_MEANING: "Huu_dung_tren_cai_toi";
+
+  ⚡ AXIOM_COUNT: 7;
+
+  ⚡ TITLE: "=== PRIME_AXIOMS ===";
+
+  ⚡ print(TITLE);
+  ⚡ print(AXIOM_COUNT);
+  ⚡ print(A1);
+  ⚡ print(A2);
+  ⚡ print(A3);
+  ⚡ print(A4);
+  ⚡ print(A5);
+  ⚡ print(A6);
+  ⚡ print(A7);
+}

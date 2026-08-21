@@ -1,0 +1,41 @@
+==================================================
+  🔌 SIGMA HARDWARE INTEGRATION BRIDGE           
+==================================================
+
+[1] Đọc cảm biến đơn...
+   CPU Temp: 45.5°C
+   Ping: 12.3ms
+   Battery: 78%
+
+[2] Đọc tất cả cảm biến...
+   Sensors: THERMAL_NETWORK_LIGHT_BATTERY
+
+[3] Điều khiển actuator...
+📱 Hiển thị: 🔧 Sigma Hardware Bridge đang hoạt động
+🔔 Rung động 200ms
+
+[4] Chạy vòng lặp sự kiện (3 lần)...
+🔄 Khởi động vòng lặp sự kiện phần cứng...
+   Time: 2026-08-21 | Temp: 45.5°C | Battery: 78%
+   Time: 2026-08-21 | Temp: 46.2°C | Battery: 77%
+   Time: 2026-08-21 | Temp: 61.0°C | Battery: 76%
+⚠️ Cảnh báo: Nhiệt độ cao (61.0°C)
+📱 Hiển thị: ⚠️ Cảnh báo nhiệt độ cao!
+🔔 Rung động 300ms
+✅ Đã xử lý 3 sự kiện phần cứng
+
+==================================================
+✅ Hardware Bridge hoạt động bình thường
+   • Platform: TERMUX_ARM64
+   • Sensors: THERMAL_NETWORK_LIGHT_BATTERY
+   • Events processed: 3
+   • Log file: logs/hardware_events.log
+
+=== BRIDGE EVOLUTION CONTRACT ===
+TEMPORARY_SUBSTRATE_BRIDGE
+SIMULATED
+NOT_YET_MACHINE_PROVED
+NOT_YET_MACHINE_PROVED
+TAM_VAN_TU_BI_REQUIRED
+REQUIRED_WHEN_READY
+==================================================

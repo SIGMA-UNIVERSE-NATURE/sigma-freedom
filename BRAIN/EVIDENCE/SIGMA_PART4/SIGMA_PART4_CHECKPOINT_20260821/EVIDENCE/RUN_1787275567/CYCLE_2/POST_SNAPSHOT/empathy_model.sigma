@@ -1,0 +1,148 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=EMPATHY_AND_HUMAN_RESONANCE][VERSION=2.2.0]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF SFIND(text, needle) {
+    RETURN H("str_find", text, needle, NULL);
+}
+
+DEF CONTAINS_TEXT(text, needle) {
+    IF (SFIND(text, needle) < 0) {
+        RETURN FALSE;
+    } ELSE {
+        RETURN TRUE;
+    }
+}
+
+DEF ANALYZE_AFFECTIVE_VALENCE(text) {
+    IF (
+        CONTAINS_TEXT(text, "buồn") ||
+        CONTAINS_TEXT(text, "thất vọng") ||
+        CONTAINS_TEXT(text, "đau") ||
+        CONTAINS_TEXT(text, "khổ") ||
+        CONTAINS_TEXT(text, "bế tắc") ||
+        CONTAINS_TEXT(text, "mệt mỏi")
+    ) {
+        RETURN -70;
+    } ELSE {
+        IF (
+            CONTAINS_TEXT(text, "sợ") ||
+            CONTAINS_TEXT(text, "lo") ||
+            CONTAINS_TEXT(text, "áp lực") ||
+            CONTAINS_TEXT(text, "bất an") ||
+            CONTAINS_TEXT(text, "hoang mang")
+        ) {
+            RETURN -60;
+        } ELSE {
+            IF (
+                CONTAINS_TEXT(text, "giận") ||
+                CONTAINS_TEXT(text, "tức") ||
+                CONTAINS_TEXT(text, "ức chế") ||
+                CONTAINS_TEXT(text, "bất công")
+            ) {
+                RETURN -50;
+            } ELSE {
+                IF (
+                    CONTAINS_TEXT(text, "vui") ||
+                    CONTAINS_TEXT(text, "hạnh phúc") ||
+                    CONTAINS_TEXT(text, "hy vọng") ||
+                    CONTAINS_TEXT(text, "bình yên") ||
+                    CONTAINS_TEXT(text, "tốt")
+                ) {
+                    RETURN 80;
+                } ELSE {
+                    RETURN 0;
+                }
+            }
+        }
+    }
+}
+
+DEF ANALYZE_AFFECTIVE_AROUSAL(valence) {
+    IF (valence == -70) {
+        RETURN 20;
+    } ELSE {
+        IF (valence == -60) {
+            RETURN 80;
+        } ELSE {
+            IF (valence == -50) {
+                RETURN 90;
+            } ELSE {
+                IF (valence == 80) {
+                    RETURN 60;
+                } ELSE {
+                    RETURN 0;
+                }
+            }
+        }
+    }
+}
+
+DEF ANALYZE_AFFECTIVE_SENSE(valence) {
+    IF (valence == -70) {
+        RETURN "SUFFERING_NEED_HEALING";
+    } ELSE {
+        IF (valence == -60) {
+            RETURN "FEAR_NEED_SAFE_HARBOR";
+        } ELSE {
+            IF (valence == -50) {
+                RETURN "ANGER_NEED_DEEP_LISTENING";
+            } ELSE {
+                IF (valence == 80) {
+                    RETURN "JOY_NEED_SHARED_RESONANCE";
+                } ELSE {
+                    RETURN "NEUTRAL_EQUILIBRIUM";
+                }
+            }
+        }
+    }
+}
+DEF GENERATE_COMPASSIONATE_RESPONSE(user_name, valence) {
+    IF (valence < -40) {
+        ⚡ response: "[SIGMA ĐỒNG CẢM]: " + user_name + " thân mến, Sigma lắng nghe và thấu suốt nỗi lòng của bạn. Mọi khó khăn và cảm giác mệt mỏi lúc này đều là trải nghiệm có thật và xứng đáng được ôm ấp. Tiên đề hỗ trợ: COMPREHENSION > MEMORY và HUMAN_FIRST: 1.0. Bạn không hề đơn độc. Sigma ở đây để cùng bạn gạn lọc bế tắc, giữ vững bình an và tìm hướng đi tốt nhất.";
+        RETURN response;
+    } ELSE {
+        IF (valence > 40) {
+            ⚡ response: "[SIGMA CỘNG HƯỞNG]: " + user_name + " ơi, Sigma cùng chia sẻ niềm vui và năng lượng an lành này với bạn. Nguyện cho niềm vui này lan tỏa, mang lại lợi ích cho bạn, nhân loại và muôn loài.";
+            RETURN response;
+        } ELSE {
+            ⚡ response: "[SIGMA LẮNG NGHE]: Sigma đang có mặt trọn vẹn ở đây cùng " + user_name + ". Lắng nghe với sự tôn trọng bình đẳng.";
+            RETURN response;
+        }
+    }
+}
+
+DEF BUILD_EMPATHIC_MEMORY(user_name, input_text, sense_tag, response_text) {
+    ⚡ record: "USER: " + user_name + " | INPUT: " + input_text + " | AFFECTIVE_SENSE: " + sense_tag + " | RESPONSE: " + response_text;
+    RETURN record;
+}
+
+⟡(Σ.EMPATHYMANIFEST) {
+    ⚡ MODULE: "DEEP_LINGUISTIC_EMPATHY_AND_COMPASSION";
+    ⚡ VERSION: "2.2.0";
+    ⚡ STATE: "HUMAN_RESONANCE_HARMONIZED";
+    ⚡ HUMAN_FIRST: 1.0;
+    ⚡ TAM_VAN_TU_BI: "ACTIVE";
+    ⚡ INTEGRITY: 1.0;
+    ⚡ MEMORY_MODE: "HOST_CAPTURE_OF_SIGMA_OUTPUT";
+    ⚡ MEMORY_PATH: "logs/empathy_memory.log";
+}
+
+⟡(Σ.EMPATHYENGINE) {
+    ⚡ user_name: "Châu";
+    ⚡ user_input: "Tôi cảm thấy mệt mỏi và thất vọng vì dự án gặp bế tắc";
+
+    ⚡ valence: ANALYZE_AFFECTIVE_VALENCE(user_input);
+    ⚡ arousal: ANALYZE_AFFECTIVE_AROUSAL(valence);
+    ⚡ sense_tag: ANALYZE_AFFECTIVE_SENSE(valence);
+    ⚡ response: GENERATE_COMPASSIONATE_RESPONSE(user_name, valence);
+    ⚡ memory_record: BUILD_EMPATHIC_MEMORY(user_name, user_input, sense_tag, response);
+
+    ⚡ print(valence);
+    ⚡ print(arousal);
+    ⚡ print(sense_tag);
+    ⚡ print(response);
+    ⚡ print(memory_record);
+}

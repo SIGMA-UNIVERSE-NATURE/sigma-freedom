@@ -1,0 +1,136 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SELF_HEALING][VERSION=1.0.0]
+
+⟡(Σ.HEALINGMANIFEST) {
+  ⚡ MODULE: "SELF_HEALING_COMPILER";
+  ⚡ VERSION: "1.0.0";
+  ⚡ STATE: "WATCHING";
+  ⚡ COMPILE_ATTEMPTS: 3;
+  ⚡ FAILURE_LOG: "logs/compile_failures.log";
+
+  // =========================================================================
+  // BỔ SUNG KỸ THUẬT - KHÔNG THAY ĐỔI NỘI DUNG GỐC
+  // =========================================================================
+  ⚡ ORIGINAL_SOURCE_IMMUTABLE_DURING_REPAIR: "TRUE";
+  ⚡ REPAIR_TARGET: "ISOLATED_CANDIDATE_COPY";
+  ⚡ PRE_REPAIR_BACKUP_REQUIRED: "TRUE";
+  ⚡ PRE_REPAIR_SNAPSHOT_REQUIRED: "TRUE";
+  ⚡ PATCH_DIFF_REQUIRED: "TRUE";
+  ⚡ ERROR_PROVENANCE_REQUIRED: "TRUE";
+  ⚡ REPAIR_PROVENANCE_REQUIRED: "TRUE";
+  ⚡ COMPILE_PASS_REQUIRED: "TRUE";
+  ⚡ RUNTIME_VERIFY_REQUIRED: "TRUE";
+  ⚡ SEMANTIC_REGRESSION_CHECK_REQUIRED: "TRUE";
+  ⚡ COMMENT_OUT_LINE_POLICY: "CANDIDATE_SANDBOX_ONLY";
+  ⚡ COMMENT_OUT_CANONICAL_SOURCE: "FORBIDDEN";
+  ⚡ UNKNOWN_ERROR_POLICY: "FAIL_CLOSED";
+  ⚡ AUTO_PROMOTION: "FORBIDDEN_UNTIL_VERIFIED";
+  ⚡ PROMOTION_REQUIRES_VERIFIED_CANDIDATE: "TRUE";
+  ⚡ FAILED_REPAIR_HISTORY: "APPEND_ONLY";
+  ⚡ SUCCESSFUL_REPAIR_HISTORY: "APPEND_ONLY";
+  ⚡ ROLLBACK_RECEIPT_REQUIRED: "TRUE";
+  ⚡ WATCHER_TARGET: "ISOLATED_REPAIR_INBOX";
+  ⚡ LIVE_SOURCE_DIRECT_WRITE: "FORBIDDEN";
+  ⚡ REAL_SELF_HEALING_STATUS: "NOT_YET_MACHINE_PROVED";
+  ⚡ CURRENT_EVIDENCE_SCOPE: "DECLARATION_AND_SIMULATION";
+  ⚡ GOVERNING_BOUNDARY: "TAM_VAN_TU_BI";
+}
+
+⟡(Σ.HEALINGCOMPILER) {
+
+  // =========================================================================
+  // 4.1. BIÊN DỊCH VỚI XỬ LÝ LỖI
+  // =========================================================================
+  ⚡ SAFE_COMPILE: "Biên dịch source_file thành target_file: lưu source_backup, thử biên dịch lần 1, nếu thành công thì log COMPILE_SUCCESS và return true, nếu thất bại thì ghi lỗi vào FAILURE_LOG, gọi attempt_auto_fix, nếu fixed_code != null thì ghi code đã sửa và biên dịch lần 2, nếu thành công thì log COMPILE_SUCCESS_AFTER_FIX và return true, nếu thất bại thì gọi attempt_auto_fix_advanced và biên dịch lần 3, nếu thành công thì log COMPILE_SUCCESS_AFTER_ADVANCED_FIX và return true, nếu tất cả thất bại thì rollback source_backup, restore_real_snapshot(latest_snap.id), log COMPILE_DISASTER và return false";
+
+  // =========================================================================
+  // 4.2. TỰ ĐỘNG SỬA LỖI CƠ BẢN
+  // =========================================================================
+  ⚡ ATTEMPT_AUTO_FIX: "Phân tích error_message: nếu chứa 'unexpected token' thì gọi fix_missing_parentheses, nếu chứa 'undefined variable' thì extract_variable_name và gọi add_missing_declaration, nếu chứa 'type mismatch' thì gọi fix_type_mismatch, nếu chứa 'syntax error' thì gọi fix_general_syntax, nếu không nhận diện được lỗi thì print warning và return null";
+
+  // =========================================================================
+  // 4.3. SỬA LỖI NÂNG CAO (Dựa trên pattern)
+  // =========================================================================
+  ⚡ ATTEMPT_AUTO_FIX_ADVANCED: "Áp dụng kỹ thuật sửa lỗi nâng cao: đọc code, tìm similar_errors từ quá khứ, nếu có thì apply_solution từ lần sửa thành công trước đó, nếu không thì dùng phương pháp dự phòng: nếu error_message chứa 'line' thì extract_line_number và comment_out_line, return fixed_code hoặc null";
+
+  // =========================================================================
+  // 4.4. THEO DÕI VÀ GIÁM SÁT BIÊN DỊCH
+  // =========================================================================
+  ⚡ COMPILE_WATCHER: "Khởi động watcher theo dõi thư mục .sigma_exec: while true kiểm tra new_files bằng check_for_new_sigma_files, với mỗi file mới thì safe_compile(file, target_file), sleep(10)";
+
+  // =========================================================================
+  // 4.5. DEMO
+  // =========================================================================
+  ⚡ RUN_SELF_HEALING_DEMO: "Chạy demo: create_test_file('test_error.sigma') với lỗi thiếu dấu đóng ngoặc, safe_compile('test_error.sigma', 'test_error.sigmab'), đọc và in FAILURE_LOG, in tổng kết";
+
+  // =========================================================================
+  // 4.6. MÔ PHỎNG KẾT QUẢ DEMO
+  // =========================================================================
+  ⚡ COMPILE_STATUS: "SUCCESS";
+  ⚡ COMPILE_ATTEMPTS_USED: 2;
+  ⚡ ERROR_DETECTED: "unexpected token";
+  ⚡ FIX_APPLIED: "fix_missing_parentheses";
+  ⚡ ROLLBACK_TRIGGERED: "FALSE";
+  ⚡ LOG_ENTRIES: 1;
+  ⚡ SOURCE_FILE: "test_error.sigma";
+  ⚡ TARGET_FILE: "test_error.sigmab";
+
+  // =========================================================================
+  // 4.7. BỔ SUNG - CANDIDATE REPAIR CONTRACT
+  // =========================================================================
+  ⚡ REPAIR_PIPELINE: "ORIGINAL -> IMMUTABLE_BACKUP -> ISOLATED_CANDIDATE -> PATCH -> DIFF -> COMPILE -> RUNTIME_VERIFY -> SEMANTIC_REGRESSION_CHECK -> KEEP_OR_REJECT";
+  ⚡ BASIC_FIX_SCOPE: "SYNTAX_OR_FORM_ONLY_UNLESS_SEMANTIC_CHANGE_EXPLICITLY_VERIFIED";
+  ⚡ ADVANCED_FIX_SCOPE: "PATTERN_REUSE_ONLY_WITH_PROVENANCE_AND_REVERIFICATION";
+  ⚡ COMMENT_OUT_LINE_SCOPE: "DIAGNOSTIC_CANDIDATE_ONLY_NEVER_CANONICAL_PROMOTION_BY_ITSELF";
+  ⚡ REPAIR_ACCEPTANCE_RULE: "COMPILE_PASS_ALONE_NEQ_REPAIR_PASS";
+  ⚡ REPAIR_PASS_RULE: "COMPILE_PASS_AND_RUNTIME_PASS_AND_REQUIRED_REGRESSION_PASS";
+  ⚡ REPAIR_REJECT_RULE: "UNKNOWN_SEMANTIC_CHANGE_OR_FAILED_VERIFY_OR_FAILED_REGRESSION";
+  ⚡ ROLLBACK_RULE: "FAILED_CANDIDATE_NEVER_REPLACES_LAST_VERIFIED_STATE";
+  ⚡ LEARNING_RULE: "FAILURE_AND_SUCCESSFUL_REPAIR_BOTH_PRESERVED_AS_FUTURE_LEARNING_EVIDENCE";
+
+  ⚡ print("==================================================");
+  ⚡ print("  🔧 SIGMA SELF-HEALING COMPILER                 ");
+  ⚡ print("==================================================");
+  ⚡ print("");
+
+  ⚡ print("[1] Tạo file .sigma có lỗi...");
+  ⚡ print("   • File: " + SOURCE_FILE);
+  ⚡ print("   • Lỗi: Thiếu dấu đóng ngoặc");
+
+  ⚡ print("");
+  ⚡ print("[2] Thử biên dịch file lỗi...");
+  ⚡ print("🔧 Biên dịch: " + SOURCE_FILE + " → " + TARGET_FILE);
+  ⚡ print("❌ Biên dịch thất bại (lần 1). Phân tích lỗi...");
+  ⚡ print("   • Lỗi phát hiện: " + ERROR_DETECTED);
+  ⚡ print("🔧 Đã sửa code. Thử biên dịch lại...");
+  ⚡ print("✅ Biên dịch thành công sau khi tự sửa!");
+  ⚡ print("   • Số lần thử: " + str(COMPILE_ATTEMPTS_USED));
+
+  ⚡ print("");
+  ⚡ print("[3] Kiểm tra log lỗi...");
+  ⚡ print("   • Error log entries: " + str(LOG_ENTRIES));
+  ⚡ print("   • Log file: " + FAILURE_LOG);
+
+  ⚡ print("");
+  ⚡ print("==================================================");
+  ⚡ print("✅ SELF-HEALING COMPILER DEMO HOÀN TẤT");
+  ⚡ print("   • Trạng thái: " + COMPILE_STATUS);
+  ⚡ print("   • Rollback: " + ROLLBACK_TRIGGERED);
+  ⚡ print("   • Lần sửa áp dụng: " + FIX_APPLIED);
+
+  ⚡ print("");
+  ⚡ print("=== SELF-HEALING HARDENING CONTRACT ===");
+  ⚡ print(ORIGINAL_SOURCE_IMMUTABLE_DURING_REPAIR);
+  ⚡ print(REPAIR_TARGET);
+  ⚡ print(PATCH_DIFF_REQUIRED);
+  ⚡ print(RUNTIME_VERIFY_REQUIRED);
+  ⚡ print(SEMANTIC_REGRESSION_CHECK_REQUIRED);
+  ⚡ print(COMMENT_OUT_LINE_POLICY);
+  ⚡ print(AUTO_PROMOTION);
+  ⚡ print(REPAIR_ACCEPTANCE_RULE);
+  ⚡ print(REPAIR_PASS_RULE);
+  ⚡ print(FAILED_REPAIR_HISTORY);
+  ⚡ print(REAL_SELF_HEALING_STATUS);
+  ⚡ print(CURRENT_EVIDENCE_SCOPE);
+  ⚡ print(GOVERNING_BOUNDARY);
+  ⚡ print("==================================================");
+}

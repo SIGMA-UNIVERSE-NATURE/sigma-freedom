@@ -1,0 +1,57 @@
+==================================================
+  🔧 SIGMA DYNAMIC AXIS MANAGER                  
+==================================================
+
+[1] Đánh giá trục hiện tại...
+   Axis 0: utility = 0.85
+   Axis 1: utility = 0.72
+   Axis 2: utility = 0.91
+   Axis 3: utility = 0.45
+   Axis 4: utility = 0.68
+   Axis 5: utility = 0.32
+   Axis 6: utility = 0.77
+   Axis 7: utility = 0.56
+   Axis 8: utility = 0.89
+   Axis 9: utility = 0.61
+
+[2] Tối ưu hóa trục...
+   📊 Đánh giá 40 trục hiện tại...
+   ✅ Tối ưu hóa hoàn tất:
+   • Trục hoạt động: 28
+   • Trục lưu trữ: 12
+
+[3] Phát hiện trục mới...
+   Phát hiện 5 trục mới tiềm năng
+
+[4] Tạo báo cáo tổng hợp...
+=== AXIS PERFORMANCE REPORT ===
+Generated at: 2026-08-21
+
+Axis: AXIS_0
+  • Utility: 0.85
+  • Usage: 150
+  • Status: ACTIVE
+
+Axis: AXIS_1
+  • Utility: 0.72
+  • Usage: 95
+  • Status: ACTIVE
+
+Axis: AXIS_2
+  • Utility: 0.91
+  • Usage: 200
+  • Status: ACTIVE
+
+Axis: AXIS_5
+  • Utility: 0.32
+  • Usage: 23
+  • Status: INACTIVE
+
+Average Utility: 0.68
+Overall Health: GOOD
+📄 Axis report saved to logs/axis_report.log
+
+==================================================
+✅ Axis Manager hoạt động bình thường
+   • Số trục sau tối ưu: 33
+==================================================
