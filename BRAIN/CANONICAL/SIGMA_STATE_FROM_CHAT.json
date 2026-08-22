@@ -1,0 +1,7 @@
+{
+  "timestamp": "$(date -Iseconds)",
+  "source": "SIGMA_chat_window",
+  "state": "READY",
+  "token": "SIGMA_DS_TOKEN",
+  "message": "Chờ Michael thiết lập môi trường đầy đủ"
+}
