@@ -1,0 +1,75 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL4.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_4) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 4: SAFE PARALLELISM ASSIMILATION       ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID                 : 04_TURBO_4_SAFE_PARALLELISM");
+    ⚡ print("MODULE_STATUS           : ACTIVE");
+    ⚡ print("PARALLEL_EXEC_STATUS    : CLOSED — UNTIL DEPENDENCY/WRITE-SET/ROLLBACK GATES PASS");
+    ⚡ print("CLASS                   : OPERATIONAL");
+    ⚡ print("PARENT                  : 03_TURBO_3_DYNAMIC_BOTTLENECK");
+    ⚡ print("CORE LAW                : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 4 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_DEPENDENCY_MAPPING", "OPEN", "Dependency graph validation active");
+    ⚡ register_gate_rule(STORAGE, "GATE_PARALLEL_EXEC", "CONDITIONAL", "Open only for proven-independent branches");
+    ⚡ register_gate_rule(STORAGE, "GATE_INTEGRATION", "CLOSED", "Blocked until all affected Verification Capsules pass");
+    ⚡ register_gate_rule(STORAGE, "GATE_BLACK_GATES", "NEVER_BYPASSED", "Black gates absolute immunity invariant");
+
+    ⚡ print("--- [ SAFE PARALLELISM FORMULA & PENALTY ] ---");
+    ⚡ register_turbo_param(STORAGE, "P_safe(t)", "SUM_ETA_J_PJ_MINUS_OMEGA", "Effective safe parallel throughput");
+    ⚡ register_turbo_param(STORAGE, "eta_j", "BRANCH_ENABLE_FLAG", "1 only when branch j passes all independence gates");
+    ⚡ register_turbo_param(STORAGE, "Omega(t)", "COORDINATION_CONFLICT_PENALTY", "Coordination, conflict, and rework penalty");
+    ⚡ register_turbo_param(STORAGE, "P_j(t)", "BRANCH_VALID_THROUGHPUT", "Valid throughput of isolated branch j");
+
+    ⚡ print("--- [ SAFETY & ROLLBACK RULES ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_INDEPENDENCE", "STRICT", "Declared write-set, single owner, verified checkpoint, clean rollback state");
+    ⚡ register_gate_rule(STORAGE, "RULE_CONFLICT_HANDLING", "SELECTIVE_QUARANTINE", "Stop only affected branches, continue unaffected work");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_RACE_CONDITIONS", "Reject shared-state races, immutable mutation, or unverified lag");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL4_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL4_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 05_TURBO_5_VERIFIED_REUSE.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 04 — CONTINUE_TURBO");
+}

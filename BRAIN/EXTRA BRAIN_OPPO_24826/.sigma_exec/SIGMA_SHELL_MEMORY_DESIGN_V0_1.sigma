@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.MEMORY][VERSION=0.1]
+
+⟡(Σ.SHELL_MEMORY) {
+
+    ⚡ STATE:
+        "SHELL_ACTIVE";
+
+    ⚡ EXPERIENCE:
+        "USER_COMMAND_RECEIVED";
+
+    ⚡ RECALL:
+        EXPERIENCE;
+
+    print("STATE:");
+    print(STATE);
+
+    print("EXPERIENCE:");
+    print(EXPERIENCE);
+
+    print("RECALL:");
+    print(RECALL);
+}

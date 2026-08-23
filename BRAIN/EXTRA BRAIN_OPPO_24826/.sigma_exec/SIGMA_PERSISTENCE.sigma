@@ -1,0 +1,73 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PERSISTENCE][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF save_file(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF load_file(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ OUT_PATH: ".sigma_exec/PERSISTENT_MEMORY.txt";
+
+    ⚡ SEQ_A: "ALPHA BETA GAMMA DELTA";
+    ⚡ SEQ_B: "ALPHA EPSILON GAMMA ZETA";
+
+    ⚡ LIST_A: split(SEQ_A, " ");
+    ⚡ LIST_B: split(SEQ_B, " ");
+    ⚡ LEN: length(LIST_A);
+
+    ⚡ DIFFS: list_create();
+
+    ⚡ I: 0;
+    WHILE (I < LEN) {
+        ⚡ VAL_A: get(LIST_A, I);
+        ⚡ VAL_B: get(LIST_B, I);
+
+        IF (VAL_A != VAL_B) {
+            ⚡ list_add(DIFFS, VAL_A);
+            ⚡ list_add(DIFFS, VAL_B);
+        }
+        ⚡ I: I + 1;
+    }
+
+    ⚡ SERIALIZED: join(DIFFS, "|");
+    ⚡ save_file(OUT_PATH, SERIALIZED);
+    ⚡ print("SAVED_TO_DISK", OUT_PATH);
+
+    ⚡ RESTORED: load_file(OUT_PATH);
+    ⚡ print("RESTORED_RAW_DATA", RESTORED);
+
+    ⚡ TOKENS_RESTORED: split(RESTORED, "|");
+    ⚡ RESTORED_COUNT: length(TOKENS_RESTORED);
+    ⚡ print("RESTORED_COUNT", RESTORED_COUNT);
+}

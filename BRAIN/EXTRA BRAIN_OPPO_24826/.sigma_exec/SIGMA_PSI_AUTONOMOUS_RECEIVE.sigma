@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.AUTONOMOUS_RECEIVE][VERSION=0.1]
+
+⟡(Σ.PSI_AUTONOMOUS_RECEIVE) {
+    ⚡ external_input: 0;
+    ⚡ internal_state: 0;
+    ⚡ understood: 0;
+    ⚡ decision: 0;
+
+    ⚡ external_input: 1;
+    ⚡ internal_state: external_input * 3;
+    ⚡ understood: internal_state / 2;
+    ⚡ decision: understood;
+
+    ⚡ print(external_input);
+    ⚡ print(internal_state);
+    ⚡ print(understood);
+    ⚡ print(decision);
+}

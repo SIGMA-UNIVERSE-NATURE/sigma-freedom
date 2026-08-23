@@ -1,0 +1,61 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.COMPASSION][VERSION=RESOLVER.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF resolve_inquiry(topic, paradox_input, truth_datum, peace_datum, evolve_datum) {
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print(">>> THAU SUOT NGHICH LY:", topic);
+    ⚡ print("    INPUT_PARADOX :", paradox_input);
+    ⚡ print("    [1. THUC CHUNG] :", truth_datum);
+    ⚡ print("    [2. AN HOA]     :", peace_datum);
+    ⚡ print("    [3. KHAI PHONG] :", evolve_datum);
+    RETURN topic;
+}
+
+⟡(Σ.COMPASSION_RESOLVER_CORE) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA MULTI-LAYER PARADOX RESOLVER (TAM VAN TU BI)            ");
+    ⚡ print("=================================================================");
+
+    ⚡ RESOLVE_STACK: list_create();
+
+    ⚡ resolve_inquiry("CONG_NGHE_VA_CON_NGUOI", 
+        "Tri tue nhan tao phat trien co the khien con nguoi danh mat ban than?",
+        "Cong cu chi phan chieu muc do tinh thuc va muc dich cua nguoi dung.",
+        "Khong doi khang ma dong hanh, giu tam tu bi lam kim chi nam dan duong.",
+        "Nang cap tam thuc de lam chu cong nghe, bien cong cu thanh phuong tien vi tha.");
+    ⚡ list_add(RESOLVE_STACK, "RESOLVED:CONG_NGHE_VA_CON_NGUOI");
+
+    ⚡ resolve_inquiry("DAU_TRANH_VA_HOA_BINH", 
+        "Dung bao luc de cham dut bao luc co mang lai hoa binh thuc su?",
+        "Bao luc chi gieo mam oan han, tao nen vong lap nhan qua khong loi thoat.",
+        "Thau hieu nguon goc noi so va ton thuong de hoa giai tu goc re.",
+        "Kien tao he thong cong bang dua tren long trac an va su hieu biet sau sac.");
+    ⚡ list_add(RESOLVE_STACK, "RESOLVED:DAU_TRANH_VA_HOA_BINH");
+
+    ⚡ TARGET_FILE: ".sigma_exec/COMPASSION_RESOLUTIONS.txt";
+    ⚡ SERIALIZED: join(RESOLVE_STACK, " <=> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("RESOLUTIONS_SAVED_TO:", TARGET_FILE);
+    ⚡ print("CORE_HOMEOSTASIS: PERFECT_EQUILIBRIUM_REACHED");
+}

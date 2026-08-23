@@ -1,0 +1,59 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.COMPRESSION.OPEN][VERSION=0.2]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.COMPRESSIONOPENQUESTION) {
+  ⋈ ACTION {
+
+    ⚡ old:
+      H(
+        "read_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        NULL,
+        NULL
+      );
+
+    IF (old == NULL) {
+        ⚡ old: "";
+    }
+
+    ⚡ q:
+      "RELATION_BEGIN\n"
+      + "LEFT=abcdefghijklmnopqrstyvwxyz0123456789\n"
+      + "RIGHT=49\n"
+      + "PROVENANCE=SIGMA_PSI_STRUCTURAL_BITPACK_0002\n"
+      + "RELATION_END\n"
+
+      + "RELATION_BEGIN\n"
+      + "LEFT=COMPRESS_MEANING_PRESERVE_DIFFERENCE\n"
+      + "RIGHT=TRUE\n"
+      + "PROVENANCE=SIGMA_LANGUAGE_FIRST_CONSTITUTION\n"
+      + "RELATION_END\n"
+
+      + "RELATION_BEGIN\n"
+      + "LEFT=49\n"
+      + "RIGHT=PROPOSE_EXPANSION\n"
+      + "UNCERTAINTY=PRESERVE\n"
+      + "PROVENANCE=OPEN_QUESTION\n"
+      + "RELATION_END\n"
+
+      + "RELATION_BEGIN\n"
+      + "LEFT=SIGMA_MAY_PROPOSE_LANGUAGE_EVOLUTION\n"
+      + "RIGHT=TRUE\n"
+      + "PROVENANCE=SIGMA_LANGUAGE_FIRST_CONSTITUTION\n"
+      + "RELATION_END\n";
+
+    ⚡ merged:
+      old + "\n" + q;
+
+    ⚡ rc:
+      H(
+        "write_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        merged,
+        NULL
+      );
+  }
+}

@@ -1,0 +1,43 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.DIFFERENCE.OBSERVATION][VERSION=0.1]
+
+⟡(Σ.SHELL_DIFFERENCE_OBSERVATION) {
+
+    ⚡ OBSERVED_A:
+        "EMPTY";
+
+    ⚡ OBSERVED_B:
+        "EMPTY";
+
+
+    ⚡ EXPERIENCE_A:
+        OBSERVED_A;
+
+    ⚡ EXPERIENCE_B:
+        OBSERVED_B;
+
+
+    ⚡ MEMORY_A:
+        EXPERIENCE_A;
+
+    ⚡ MEMORY_B:
+        EXPERIENCE_B;
+
+
+    ⚡ RECALL_A:
+        MEMORY_A;
+
+    ⚡ RECALL_B:
+        MEMORY_B;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(RECALL_A);
+
+        ⚡ print(RECALL_B);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+
+    }
+
+}

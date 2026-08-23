@@ -1,0 +1,17 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.MATRIX.ACCESS][VERSION=0.1]
+
+⟡(Σ.MATRIX) {
+
+    ⚡ MATRIX:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_PRIMITIVE_MATRIX_256_V01.sigma",
+            NULL,
+            NULL
+        );
+
+    ⚡ ACCESS:
+        MATRIX;
+
+    print(ACCESS);
+}

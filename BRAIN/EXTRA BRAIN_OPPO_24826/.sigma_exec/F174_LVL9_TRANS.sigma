@@ -1,0 +1,73 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL9.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_9) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 9: TRUTH-PRESERVING TRANSLATION       ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID           : 09_TURBO_9_TRUTH_PRESERVING_TRANSLATION");
+    ⚡ print("MODULE_STATUS     : ACTIVE");
+    ⚡ print("CLASS             : OPERATIONAL");
+    ⚡ print("PARENT            : 08_TURBO_8_AUTHORIZED_ROUTING");
+    ⚡ print("CORE LAW          : F174_VERIFIED_CORE = IMMUTABLE");
+    ⚡ print("PUBLICATION STATUS: CLOSED UNTIL SEMANTIC PARITY + BOUNDARY PASS");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 9 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_TRANSFORMATION", "OPEN", "Layered rendering across languages and depth");
+    ⚡ register_gate_rule(STORAGE, "GATE_PUBLICATION", "PARITY_100_PCT", "Closed until critical proposition parity reaches 100%");
+    ⚡ register_gate_rule(STORAGE, "GATE_DRIFT_HANDLING", "QUARANTINE", "Semantic or status drift triggers immediate quarantine");
+    ⚡ register_gate_rule(STORAGE, "GATE_INTERNAL_FRONTIER", "UNBOUNDED", "Internal frontier not limited by learner presentation layer");
+
+    ⚡ print("--- [ FIDELITY FORMULA & PARITY REQUIREMENTS ] ---");
+    ⚡ register_turbo_param(STORAGE, "Phi", "CRITICAL_PRESERVED_DIV_TOTAL", "Proposition preservation ratio (Target = 1.0)");
+    ⚡ register_turbo_param(STORAGE, "TRANSLATION_PASS", "SEMANTIC_AND_BOUNDARY_AND_SAFETY", "Triad conjunction required for translation pass");
+
+    ⚡ print("--- [ KEEP / REJECT & FIDELITY INVARIANTS ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_SIMPLIFICATION", "PRESERVE_TRUTH", "Simplification may remove detail but never alter or falsify truth");
+    ⚡ register_gate_rule(STORAGE, "RULE_STATUS_IMMUNITY", "UNKNOWN_PRESERVED", "Unknown/unverified maintains status in all languages and layers");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_TOLERANCE", "Reject omitted conditions, false certainty, formula alteration, or unsafe softening");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL9_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL9_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 10_TURBO_10_EXTREME_FRONTIER.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 09 — CONTINUE_TURBO");
+}

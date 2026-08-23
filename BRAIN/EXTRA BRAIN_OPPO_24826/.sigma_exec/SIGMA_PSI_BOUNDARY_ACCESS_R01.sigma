@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.BOUNDARY.ACCESS][VERSION=0.1]
+
+⟡(Σ.BOUNDARY) {
+
+    ⚡ STREAM:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_EXPERIENCE_BOUNDARY_V1.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ BOUNDARY:
+        "\n";
+
+    print(STREAM);
+    print(BOUNDARY);
+}

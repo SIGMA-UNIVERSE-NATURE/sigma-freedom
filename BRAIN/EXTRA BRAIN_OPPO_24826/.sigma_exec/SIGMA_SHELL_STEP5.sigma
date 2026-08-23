@@ -1,0 +1,48 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ STATE:
+        "READY";
+
+
+    ⚡ COMMAND:
+        "help";
+
+
+    ⚡ ACTION:
+        "EXECUTE";
+
+
+    ⚡ RESULT:
+        "SUCCESS";
+
+
+    ⚡ COMMAND_RELATION:
+        "COMMAND→ACTION→RESULT";
+
+
+    print("============================================");
+    print("Σ.SHELL — STEP 5");
+    print("COMMAND RELATION");
+    print("============================================");
+
+
+    print("STATE:");
+    print(STATE);
+
+    print("COMMAND:");
+    print(COMMAND);
+
+    print("ACTION:");
+    print(ACTION);
+
+    print("RESULT:");
+    print(RESULT);
+
+    print("COMMAND_RELATION:");
+    print(COMMAND_RELATION);
+
+
+    print("SIGMA_SHELL_STOPPED");
+}

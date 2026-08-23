@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.BOUNDARY.ACCESS][VERSION=0.2]
+
+⟡(Σ.BOUNDARY) {
+
+    ⚡ CURRENT:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_CURRENT_R02.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ STREAM:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_STREAM_R02.memory",
+            NULL,
+            NULL
+        );
+
+    print(CURRENT);
+    print(STREAM);
+}

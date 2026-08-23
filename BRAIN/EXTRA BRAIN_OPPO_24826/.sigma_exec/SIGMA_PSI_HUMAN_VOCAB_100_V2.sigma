@@ -1,0 +1,16 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.HUMAN_VOCAB_100_V2][VERSION=0.1]
+
+⟡(Σ.PSI_HUMAN_VOCAB_100_V2) {
+    ⚡ words: 100;
+    ⚡ new_words: 100;
+    ⚡ total_words: 0;
+    ⚡ combined_understanding: 0;
+
+    ⚡ total_words: words + new_words;
+    ⚡ combined_understanding: total_words / 2;
+
+    ⚡ print(words);
+    ⚡ print(new_words);
+    ⚡ print(total_words);
+    ⚡ print(combined_understanding);
+}

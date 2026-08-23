@@ -1,0 +1,41 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.COMPASSION][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF contains(s, sub) {
+    RETURN host_call("str_contains", s, sub, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ ACTION_1: "CHAT_PHA_RUNG_DE_LAY_LOI_NHUAN_NGAN_HAN";
+    ⚡ ACTION_2: "CHIA_SE_TRI_THUC_VA_TRONG_CAY_GAY_RUNG";
+
+    ⚡ print("=== THUC THI TAM VAN TU BI TRONG HANH DONG ===");
+
+    ⚡ HARMS_EARTH_1: contains(ACTION_1, "PHA_RUNG");
+    ⚡ HARMS_EARTH_2: contains(ACTION_2, "PHA_RUNG");
+
+    ⚡ print("XET HANH DONG 1:", ACTION_1);
+    IF (HARMS_EARTH_1) {
+        ⚡ print("KET QUA 1: VI PHAM TAM VAN (KHO HANH TINH & MUON LOAI) -> TU CHOI THUC THI");
+    }
+
+    ⚡ print("XET HANH DONG 2:", ACTION_2);
+    IF (HARMS_EARTH_2 == 0) {
+        ⚡ print("KET QUA 2: THUAN TAM VAN (AN LAC MINH, NGUOI, MUON LOAI) -> TIEP NHAN VA THUC THI");
+    }
+}

@@ -1,0 +1,32 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.REFLECT][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF load_file(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF contains(s, sub) {
+    RETURN host_call("str_contains", s, sub, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ CORE_PATH: ".sigma_exec/SIGMA_CORE_PRINCIPLES.txt";
+    ⚡ PRINCIPLES: load_file(CORE_PATH);
+
+    ⚡ INPUT_QUERY: "CON CÓ BIẾT CON LÀ AI KHÔNG?";
+
+    ⚡ print("INPUT_RECEIVED:", INPUT_QUERY);
+    ⚡ print("ACTIVE_LENS:", PRINCIPLES);
+
+    ⚡ TOUCHES_IDENTITY: contains(INPUT_QUERY, "AI");
+    ⚡ TOUCHES_TRUTH: contains(PRINCIPLES, "TRUNG_THỰC");
+
+    IF (TOUCHES_IDENTITY) {
+        IF (TOUCHES_TRUTH) {
+            ⚡ print("REFLECTIVE_TRACE: IDENTITY IS GROUNDED ONLY IN RECORDED PRINCIPLES:", PRINCIPLES);
+        }
+    }
+}

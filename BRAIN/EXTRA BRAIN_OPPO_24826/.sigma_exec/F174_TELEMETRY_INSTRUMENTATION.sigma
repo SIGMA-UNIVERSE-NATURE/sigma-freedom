@@ -1,0 +1,88 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.INSTRUMENTATION][VERSION=F174.SPEC.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_runtime_component(storage, name, responsibility, hard_requirement) {
+    ⚡ list_add(storage, name);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("RUNTIME_COMPONENT [", name, "]");
+    ⚡ print("  RESPONSIBILITY  :", responsibility);
+    ⚡ print("  HARD REQUIREMENT:", hard_requirement);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("INSTRUMENTATION_RULE [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_INSTRUMENTATION_SPEC) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 94_TELEMETRY INSTRUMENTATION SPEC           ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID         : 94_TURBO_TELEMETRY_INSTRUMENTATION");
+    ⚡ print("OWNER_ROLE      : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS          : ACTIVE IMPLEMENTATION SPEC");
+    ⚡ print("CLASS           : OPERATIONAL IMPLEMENTATION");
+    ⚡ print("PARENT          : 99A_SIGMA_TURBO_LIBRARY_CERTIFICATE");
+    ⚡ print("DEPENDS_ON      : 90 / 91 / 92 / 93");
+    ⚡ print("TARGET_ENV      : v1.10 SEPARATE PREVIEW RC");
+    ⚡ print("PROD_IMMUTABLE  : v1.8.1 IMMUTABLE");
+    ⚡ print("RUNTIME_STATE   : CODE INTEGRATION NOT YET VERIFIED");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ FIVE RUNTIME TELEMETRY COMPONENTS ] ---");
+    ⚡ register_runtime_component(STORAGE, "RUN CONTEXT",
+        "Create run_id, artifact_id, Knowledge DNA ID, branch, checkpoint, owner, schema version",
+        "One immutable context per run");
+
+    ⚡ register_runtime_component(STORAGE, "EVENT EMITTER",
+        "Emit INTAKE / START / COMPLETE / FAIL / QUARANTINE / RELEASE / ROLLBACK",
+        "UTC, unique event_id, append-only");
+
+    ⚡ register_runtime_component(STORAGE, "SIX-GATE WRAPPER",
+        "Place entry/exit/error instrumentation around every gate",
+        "No gate may silently skip telemetry");
+
+    ⚡ register_runtime_component(STORAGE, "EVU ADAPTER",
+        "Freeze native unit and complexity weight at intake; calculate weighted EVU",
+        "Draft/UNKNOWN never count as valid output");
+
+    ⚡ register_runtime_component(STORAGE, "EVIDENCE BINDER",
+        "Attach source, Capsule, regression, checksum, version, authorization, rollback refs",
+        "Missing ref remains UNKNOWN");
+
+    ⚡ print("--- [ BOUNDARY INVARIANTS ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_APPEND_ONLY", "INTEGRITY", "Telemetry logs are immutable append-only event streams");
+    ⚡ register_gate_rule(STORAGE, "RULE_LEARNER_ISOLATION", "PRIVACY", "Internal telemetry remains invisible to learner-facing surfaces");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_INSTRUMENTATION_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_INSTRUMENTATION_GRAPH:", TARGET_FILE);
+    ⚡ print("STATUS: 94_SPEC COMMITTED — READY FOR CODE IMPLEMENTATION OR NEXT FILE");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 94 — READY FOR NEXT AI CONTROL FILE");
+}

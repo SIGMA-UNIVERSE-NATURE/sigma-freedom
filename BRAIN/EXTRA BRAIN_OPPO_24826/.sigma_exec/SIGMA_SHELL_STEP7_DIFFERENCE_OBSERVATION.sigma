@@ -1,0 +1,52 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.DIFFERENCE.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_DIFFERENCE_OBSERVATION) {
+
+    ⚡ OBSERVATION_A:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_A:
+        H("write_text",
+          "sigma_shell_difference_a.state",
+          OBSERVATION_A,
+          NULL);
+
+    ⚡ READ_A:
+        H("read_text",
+          "sigma_shell_difference_a.state",
+          NULL,NULL);
+
+
+    ⚡ OBSERVATION_B:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_B:
+        H("write_text",
+          "sigma_shell_difference_b.state",
+          OBSERVATION_B,
+          NULL);
+
+    ⚡ READ_B:
+        H("read_text",
+          "sigma_shell_difference_b.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL DIFFERENCE OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_A);
+
+        ⚡ print(READ_B);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

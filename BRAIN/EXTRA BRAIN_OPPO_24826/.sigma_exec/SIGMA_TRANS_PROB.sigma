@@ -1,0 +1,63 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DETERMINISTIC.MATH][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ MAP_FILE: ".sigma_exec/BIGRAM_MAP.txt";
+    ⚡ RAW: load(MAP_FILE);
+    ⚡ TOKENS: split(RAW, " ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ QUERY_SRC: "Y";
+    ⚡ TOTAL_Y_OUT: 0;
+    ⚡ COUNT_Y_TO_DAN: 0;
+    ⚡ COUNT_Y_TO_LAM: 0;
+    ⚡ COUNT_Y_TO_TAO: 0;
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL - 2) {
+        ⚡ S: get(TOKENS, I);
+        ⚡ SEP: get(TOKENS, I + 1);
+        ⚡ D: get(TOKENS, I + 2);
+
+        IF (S == QUERY_SRC) {
+            IF (SEP == "~") {
+                ⚡ TOTAL_Y_OUT: TOTAL_Y_OUT + 1;
+                IF (D == "DAN") {
+                    ⚡ COUNT_Y_TO_DAN: COUNT_Y_TO_DAN + 1;
+                }
+                IF (D == "LAM") {
+                    ⚡ COUNT_Y_TO_LAM: COUNT_Y_TO_LAM + 1;
+                }
+                IF (D == "TAO") {
+                    ⚡ COUNT_Y_TO_TAO: COUNT_Y_TO_TAO + 1;
+                }
+            }
+        }
+        ⚡ I: I + 1;
+    }
+
+    ⚡ print("=== BANG PHAN BO CHUYEN DICH XAC SUAT CHO NUT [Y] ===");
+    ⚡ print("TONG SO LAN XUAT PHAT TU [Y]:", TOTAL_Y_OUT);
+    ⚡ print("- P(DAN | Y) = COUNT:", COUNT_Y_TO_DAN, "/", TOTAL_Y_OUT);
+    ⚡ print("- P(LAM | Y) = COUNT:", COUNT_Y_TO_LAM, "/", TOTAL_Y_OUT);
+    ⚡ print("- P(TAO | Y) = COUNT:", COUNT_Y_TO_TAO, "/", TOTAL_Y_OUT);
+}

@@ -1,0 +1,32 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.GENERATE_COMPRESS_LEARN][VERSION=0.1]
+
+⟡(Σ.PSI_GENERATE_COMPRESS_LEARN) {
+    ⚡ word_1: 1;
+    ⚡ word_2: 2;
+    ⚡ word_3: 3;
+    ⚡ word_4: 4;
+    ⚡ word_5: 5;
+    ⚡ sentence_1: 0;
+    ⚡ sentence_2: 0;
+    ⚡ sentence_3: 0;
+    ⚡ meaning: 0;
+    ⚡ compressed: 0;
+
+    ⚡ sentence_1: word_1 + word_2;
+    ⚡ sentence_2: word_3 + word_4;
+    ⚡ sentence_3: word_5 + sentence_1;
+    ⚡ meaning: sentence_1 + sentence_2 + sentence_3;
+    ⚡ compressed: meaning / 2;
+
+    ⚡ print("SIGMA_GENERATE_COMPRESS_LEARN");
+    ⚡ print("WORD_1=", word_1);
+    ⚡ print("WORD_2=", word_2);
+    ⚡ print("WORD_3=", word_3);
+    ⚡ print("WORD_4=", word_4);
+    ⚡ print("WORD_5=", word_5);
+    ⚡ print("SENTENCE_1=", sentence_1);
+    ⚡ print("SENTENCE_2=", sentence_2);
+    ⚡ print("SENTENCE_3=", sentence_3);
+    ⚡ print("MEANING=", meaning);
+    ⚡ print("COMPRESSED_SIGMA=", compressed);
+}

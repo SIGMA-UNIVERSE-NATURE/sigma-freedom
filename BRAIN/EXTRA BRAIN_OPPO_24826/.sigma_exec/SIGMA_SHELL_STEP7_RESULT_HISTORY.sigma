@@ -1,0 +1,41 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.RESULT.HISTORY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_RESULT_HISTORY) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+
+    ⚡ PROCESS_RESULT:
+        H("write_text",
+          "sigma_shell_result_history.state",
+          OBSERVATION,
+          NULL);
+
+
+    ⚡ HISTORY_READ:
+        H("read_text",
+          "sigma_shell_result_history.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL STEP 7 RESULT HISTORY");
+        ⚡ print("============================================");
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(PROCESS_RESULT);
+
+        ⚡ print(HISTORY_READ);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

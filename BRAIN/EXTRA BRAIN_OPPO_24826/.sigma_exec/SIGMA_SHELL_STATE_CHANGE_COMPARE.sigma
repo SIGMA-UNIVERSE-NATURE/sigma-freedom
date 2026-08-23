@@ -1,0 +1,50 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.STATE.CHANGE.COMPARE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_STATE_CHANGE_COMPARE) {
+
+⚡ FIRST_EVENT:  
+    H("input","",NULL,NULL);  
+
+⚡ WRITE_FIRST:  
+    H("write_text",  
+      "sigma_shell_change_compare.state",  
+      FIRST_EVENT,  
+      NULL);  
+
+
+⚡ SECOND_EVENT:  
+    H("input","",NULL,NULL);  
+
+⚡ WRITE_SECOND:  
+    H("write_text",  
+      "sigma_shell_change_compare.state",  
+      SECOND_EVENT,  
+      NULL);  
+
+
+⚡ READ_RESULT:  
+    H("read_text",  
+      "sigma_shell_change_compare.state",  
+      NULL,NULL);  
+
+
+⋈ ACTION {  
+
+    ⚡ print("============================================");  
+    ⚡ print("Σ.");  
+    ⚡ print("============================================");  
+
+    ⚡ print(FIRST_EVENT);  
+
+    ⚡ print(SECOND_EVENT);  
+
+    ⚡ print(READ_RESULT);  
+
+    ⚡ print("SIGMA_SHELL_STOPPED");  
+}
+
+}

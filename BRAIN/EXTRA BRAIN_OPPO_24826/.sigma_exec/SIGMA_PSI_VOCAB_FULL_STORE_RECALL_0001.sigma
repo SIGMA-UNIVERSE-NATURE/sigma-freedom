@@ -1,0 +1,87 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB.FULL_STORE_RECALL][VERSION=0.1]
+
+DEF H(op,a,b,c) { RETURN host(op,a,b,c); }
+
+DEF READ_TEXT(path) {
+    RETURN H("read_text",path,NULL,NULL);
+}
+
+DEF LISTDIR(path) {
+    RETURN H("listdir",path,NULL,NULL);
+}
+
+DEF LIST_LEN(xs) {
+    RETURN H("list_len",xs,NULL,NULL);
+}
+
+DEF LIST_GET(xs,i) {
+    RETURN H("list_get",xs,i,NULL);
+}
+
+DEF STR_LEN(s) {
+    RETURN H("str_len",s,NULL,NULL);
+}
+
+⟡(Σ.VOCABFULLSTORERECALL) {
+
+    ⚡ root: LISTDIR(".sigma_vocab");
+    ⚡ human: LISTDIR(".sigma_vocab/human");
+
+    ⚡ readable_files: 0;
+    ⚡ unreadable_files: 0;
+    ⚡ total_chars: 0;
+
+    ⚡ r1: READ_TEXT(".sigma_vocab/human_words_100.txt");
+    IF (r1 == NULL) {
+        ⚡ unreadable_files: unreadable_files + 1;
+    } ELSE {
+        ⚡ readable_files: readable_files + 1;
+        ⚡ total_chars: total_chars + STR_LEN(r1);
+    }
+
+    ⚡ r2: READ_TEXT(".sigma_vocab/human_words_100_v2.txt");
+    IF (r2 == NULL) {
+        ⚡ unreadable_files: unreadable_files + 1;
+    } ELSE {
+        ⚡ readable_files: readable_files + 1;
+        ⚡ total_chars: total_chars + STR_LEN(r2);
+    }
+
+    ⚡ human_entries: LIST_LEN(human);
+    ⚡ i: 0;
+
+    WHILE (i < human_entries) {
+        ⚡ name: LIST_GET(human,i);
+        ⚡ path: ".sigma_vocab/human/" + name;
+        ⚡ text: READ_TEXT(path);
+
+        IF (text == NULL) {
+            ⚡ unreadable_files: unreadable_files + 1;
+        } ELSE {
+            ⚡ readable_files: readable_files + 1;
+            ⚡ total_chars: total_chars + STR_LEN(text);
+        }
+
+        ⚡ i: i + 1;
+    }
+
+    ⚡ root_entries: LIST_LEN(root);
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+    ⚡ print("TEST=SIGMA_PSI_VOCAB_FULL_STORE_RECALL_0001");
+    ⚡ print("ROOT_ENTRIES=",root_entries);
+    ⚡ print("HUMAN_ENTRIES=",human_entries);
+    ⚡ print("READABLE_VOCAB_FILES=",readable_files);
+    ⚡ print("UNREADABLE_VOCAB_FILES=",unreadable_files);
+    ⚡ print("TOTAL_RECALLED_TEXT_CHARS=",total_chars);
+
+    IF (readable_files == 152 && unreadable_files == 0) {
+        ⚡ print("FULL_VOCAB_STORE_RECALL=PASS");
+    } ELSE {
+        ⚡ print("FULL_VOCAB_STORE_RECALL=PARTIAL_OR_FAIL");
+    }
+
+    ⚡ print("VOCAB_WRITE=NONE");
+    ⚡ print("NEW_VOCAB_INGESTED=FALSE");
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

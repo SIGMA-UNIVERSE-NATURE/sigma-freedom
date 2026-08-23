@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ MEMORY_VALUE:
+        host("input", "", NULL, NULL);
+
+    ⚡ READ_BACK:
+        MEMORY_VALUE;
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL — STEP 7B MEMORY REAL");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_BACK);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+}

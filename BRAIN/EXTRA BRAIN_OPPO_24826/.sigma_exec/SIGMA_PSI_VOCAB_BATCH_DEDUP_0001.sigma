@@ -1,0 +1,122 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB.BATCH_DEDUP][VERSION=0.1]
+
+DEF H(op,a,b,c) { RETURN host(op,a,b,c); }
+
+DEF READ_BYTES(path) { RETURN H("read_bytes",path,NULL,NULL); }
+DEF BYTES_LEN(bb) { RETURN H("bytes_len",bb,NULL,NULL); }
+DEF BYTES_GET(bb,i) { RETURN H("bytes_get",bb,i,NULL); }
+DEF STR_LEN(s) { RETURN H("str_len",s,NULL,NULL); }
+DEF STR_BYTE(s,i) { RETURN H("str_byte",s,i,NULL); }
+
+DEF LIST_NEW() { RETURN H("list_new",NULL,NULL,NULL); }
+DEF LIST_LEN(xs) { RETURN H("list_len",xs,NULL,NULL); }
+DEF LIST_GET(xs,i) { RETURN H("list_get",xs,i,NULL); }
+DEF LIST_PUSH(xs,x) { RETURN H("list_push",xs,x,NULL); }
+
+DEF HAS_STR(xs,x) {
+    ⚡ i: 0;
+    ⚡ n: LIST_LEN(xs);
+    WHILE (i < n) {
+        IF (LIST_GET(xs,i) == x) {
+            RETURN TRUE;
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN FALSE;
+}
+
+DEF MATCH_AT(bb,pos,s) {
+    ⚡ j: 0;
+    ⚡ m: STR_LEN(s);
+    WHILE (j < m) {
+        IF (BYTES_GET(bb,pos+j) != STR_BYTE(s,j)) {
+            RETURN FALSE;
+        }
+        ⚡ j: j + 1;
+    }
+    RETURN TRUE;
+}
+
+DEF CONTAINS_TEXT(bb,s) {
+    ⚡ i: 0;
+    ⚡ n: BYTES_LEN(bb);
+    ⚡ m: STR_LEN(s);
+
+    IF (m == 0) { RETURN FALSE; }
+
+    WHILE (i + m <= n) {
+        IF (MATCH_AT(bb,i,s)) {
+            RETURN TRUE;
+        }
+        ⚡ i: i + 1;
+    }
+    RETURN FALSE;
+}
+
+⟡(Σ.VOCABBATCHDEDUP) {
+
+    ⚡ bb: READ_BYTES(".sigma_vocab/human_words_100.txt");
+
+    ⚡ batch: LIST_NEW();
+    ⚡ seen: LIST_NEW();
+
+    ⚡ p1: LIST_PUSH(batch,"human");
+    ⚡ p2: LIST_PUSH(batch,"person");
+    ⚡ p3: LIST_PUSH(batch,"human");
+    ⚡ p4: LIST_PUSH(batch,"zz_sigma_novel_A_20260821");
+    ⚡ p5: LIST_PUSH(batch,"zz_sigma_novel_A_20260821");
+    ⚡ p6: LIST_PUSH(batch,"zz_sigma_novel_B_20260821");
+    ⚡ p7: LIST_PUSH(batch,"person");
+    ⚡ p8: LIST_PUSH(batch,"zz_sigma_novel_B_20260821");
+
+    ⚡ input_count: LIST_LEN(batch);
+    ⚡ duplicate_in_batch: 0;
+    ⚡ already_known_unique: 0;
+    ⚡ novel_unique: 0;
+
+    ⚡ i: 0;
+
+    WHILE (i < input_count) {
+        ⚡ w: LIST_GET(batch,i);
+
+        IF (HAS_STR(seen,w)) {
+            ⚡ duplicate_in_batch: duplicate_in_batch + 1;
+        } ELSE {
+            ⚡ sx: LIST_PUSH(seen,w);
+
+            IF (CONTAINS_TEXT(bb,w)) {
+                ⚡ already_known_unique: already_known_unique + 1;
+            } ELSE {
+                ⚡ novel_unique: novel_unique + 1;
+            }
+        }
+
+        ⚡ i: i + 1;
+    }
+
+    ⚡ unique_batch: LIST_LEN(seen);
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+    ⚡ print("TEST=SIGMA_PSI_VOCAB_BATCH_DEDUP_0001");
+    ⚡ print("INPUT_COUNT=",input_count);
+    ⚡ print("UNIQUE_BATCH=",unique_batch);
+    ⚡ print("DUPLICATE_IN_BATCH=",duplicate_in_batch);
+    ⚡ print("ALREADY_KNOWN_UNIQUE=",already_known_unique);
+    ⚡ print("NOVEL_UNIQUE=",novel_unique);
+
+    IF (
+        input_count == 8
+        && unique_batch == 4
+        && duplicate_in_batch == 4
+        && already_known_unique == 2
+        && novel_unique == 2
+    ) {
+        ⚡ print("BATCH_NOVELTY_DEDUP=PASS");
+    } ELSE {
+        ⚡ print("BATCH_NOVELTY_DEDUP=FAIL");
+    }
+
+    ⚡ print("VOCAB_WRITE=NONE");
+    ⚡ print("NEW_VOCAB_INGESTED=FALSE");
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.RESOURCE.OBJECT.LIMIT][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.HOST_OBJECT_LIMIT_TEST) {
+
+    ⚡ print("BEFORE_OBJECT_ALLOCATIONS");
+
+    ⚡ object1: H("list_new", NULL, NULL, NULL);
+    ⚡ print("OBJECT_1_CREATED");
+
+    ⚡ object2: H("map_new", NULL, NULL, NULL);
+    ⚡ print("OBJECT_2_CREATED");
+
+    ⚡ object3: H("bytes_new", NULL, NULL, NULL);
+
+    ⚡ print("MAIN_MUST_NOT_CONTINUE");
+}

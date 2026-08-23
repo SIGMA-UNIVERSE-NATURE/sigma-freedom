@@ -1,0 +1,32 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.GENERATIVE.SPACE][VERSION=0.1]
+
+⟡(Σ.GENERATIVE) {
+
+    ⚡ MATERIAL:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_PRIMITIVE_MATRIX_256_V01.sigma",
+            NULL,
+            NULL
+        );
+
+    ⚡ EXPERIENCE:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_CURRENT_R02.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ HISTORY:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_EXPERIENCE_BOUNDARY_V1.memory",
+            NULL,
+            NULL
+        );
+
+    print(MATERIAL);
+    print(EXPERIENCE);
+    print(HISTORY);
+}

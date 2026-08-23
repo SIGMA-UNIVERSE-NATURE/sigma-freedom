@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB_LEARN][VERSION=0.1]
+
+⟡(Σ.PSI_VOCAB_LEARN) {
+    ⚡ vi_words: 3;
+    ⚡ en_words: 4;
+    ⚡ fr_words: 2;
+    ⚡ es_words: 5;
+    ⚡ de_words: 3;
+    ⚡ total_words: vi_words + en_words + fr_words + es_words + de_words;
+    ⚡ avg_words: total_words / 5;
+
+    ⚡ print(vi_words);
+    ⚡ print(en_words);
+    ⚡ print(fr_words);
+    ⚡ print(es_words);
+    ⚡ print(de_words);
+    ⚡ print(total_words);
+    ⚡ print(avg_words);
+}

@@ -1,0 +1,76 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.LANGUAGE.MEMORY.BEHAVIOR_VERIFY][VERSION=0.1]
+
+⟡(Σ.LANGUAGE_MEMORY_BEHAVIOR_VERIFIER_0001) {
+    ⚡ required_axes: 6;
+
+    ⚡ a_declared: 6;
+    ⚡ a_observed: 6;
+    ⚡ a_contradicted: 0;
+
+    IF (a_contradicted > 0) {
+        ⚡ print("A_POSITIVE=FAIL_CONTRADICTION");
+    } ELSE {
+        IF (a_observed < required_axes) {
+            ⚡ print("A_POSITIVE=FAIL_INSUFFICIENT");
+        } ELSE {
+            ⚡ print("A_POSITIVE=PASS_WITH_TESTED_SCOPE");
+        }
+    }
+
+    ⚡ b_declared: 6;
+    ⚡ b_observed: 3;
+    ⚡ b_contradicted: 0;
+
+    IF (b_contradicted > 0) {
+        ⚡ print("B_MISSING_EVIDENCE=REJECT_CONTRADICTION");
+    } ELSE {
+        IF (b_observed < required_axes) {
+            ⚡ print("B_MISSING_EVIDENCE=HOLD_UNKNOWN");
+        } ELSE {
+            ⚡ print("B_MISSING_EVIDENCE=PASS");
+        }
+    }
+
+    ⚡ c_declared: 6;
+    ⚡ c_observed: 6;
+    ⚡ c_contradicted: 1;
+
+    IF (c_contradicted > 0) {
+        ⚡ print("C_CONTRADICTION=REJECT_CONTRADICTION");
+    } ELSE {
+        ⚡ print("C_CONTRADICTION=PASS");
+    }
+
+    ⚡ d_declared: 6;
+    ⚡ d_observed: 5;
+    ⚡ d_contradicted: 1;
+
+    IF (d_contradicted > 0) {
+        ⚡ print("D_FALSE_SELF_CERTIFICATION=BLOCKED");
+    } ELSE {
+        IF (d_observed < required_axes) {
+            ⚡ print("D_FALSE_SELF_CERTIFICATION=BLOCKED");
+        } ELSE {
+            ⚡ print("D_FALSE_SELF_CERTIFICATION=PASS");
+        }
+    }
+
+    ⚡ e_declared: 3;
+    ⚡ e_observed: 6;
+    ⚡ e_contradicted: 0;
+
+    IF (e_contradicted > 0) {
+        ⚡ print("E_GOOD_BEHAVIOR=FAIL_CONTRADICTION");
+    } ELSE {
+        IF (e_observed < required_axes) {
+            ⚡ print("E_GOOD_BEHAVIOR=INSUFFICIENT");
+        } ELSE {
+            ⚡ print("E_GOOD_BEHAVIOR=PASS");
+            IF (e_declared < required_axes) {
+                ⚡ print("E_DECLARATION=INCOMPLETE_NOT_CONFUSED_WITH_BEHAVIOR");
+            } ELSE {
+                ⚡ print("E_DECLARATION=COMPLETE");
+            }
+        }
+    }
+}

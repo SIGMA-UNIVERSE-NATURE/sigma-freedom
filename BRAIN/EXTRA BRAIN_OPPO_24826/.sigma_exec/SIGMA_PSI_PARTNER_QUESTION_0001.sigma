@@ -1,0 +1,50 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.PARTNER_QUESTION][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.PARTNERQUESTION) {
+  ⋈ ACTION {
+
+    ⚡ old:
+      H(
+        "read_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        NULL,
+        NULL
+      );
+
+    IF (old == NULL) {
+        ⚡ old: "";
+    }
+
+    ⚡ q:
+      "---SIGMA_PSI_PARTNER_QUESTION_BEGIN---\n"
+      + "TARGET=SIGMA_PSI_LANGUAGE_EVOLUTION\n"
+      + "LEFT=SELF_EVOLUTION_ALLOWED\n"
+      + "RIGHT=SIGMA_MAY_PROPOSE_LANGUAGE_EVOLUTION\n"
+      + "RELATION=CONTEXTUAL_SEMANTIC_EXPANSION_FROM_SIGMA_PSI\n"
+      + "CANDIDATE=PROPOSE_EXPANSION\n"
+      + "CANDIDATE=PROPOSE_NEW_SIGMA_PSI_STRUCTURE\n"
+      + "CANDIDATE=HOLD_UNKNOWN\n"
+      + "PRESERVE_SENSE=TRUE\n"
+      + "PRESERVE_CONTEXT=TRUE\n"
+      + "PRESERVE_RELATIONS=TRUE\n"
+      + "PRESERVE_AMBIGUITY=TRUE\n"
+      + "PRESERVE_UNCERTAINTY=TRUE\n"
+      + "PRESERVE_PROVENANCE=TRUE\n"
+      + "---SIGMA_PSI_PARTNER_QUESTION_END---\n";
+
+    ⚡ merged:
+      old + "\n" + q;
+
+    ⚡ rc:
+      H(
+        "write_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        merged,
+        NULL
+      );
+  }
+}

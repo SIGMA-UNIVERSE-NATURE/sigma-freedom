@@ -1,0 +1,26 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.LANGUAGE.BEHAVIOR_SELF_LOOP][VERSION=0.1]
+
+⟡(Σ.SELF_LOOP) {
+⚡ ambiguity_before:
+⚡ resolution_before:
+
+⚡ behavior_pressure:   
+
+⚡ ambiguity_after: ambiguity_before - behavior_pressure;  
+⚡ resolution_after: resolution_before + behavior_pressure;  
+
+⚡ ambiguity_loss: ambiguity_before - ambiguity_after;  
+
+⚡ print(ambiguity_before);  
+⚡ print(ambiguity_after);  
+⚡ print(resolution_before);  
+⚡ print(resolution_after);  
+⚡ print(ambiguity_loss);  
+
+IF (ambiguity_loss > 0) {  
+    ⚡ print(1);  
+} ELSE {  
+    ⚡ print(0);  
+}
+
+}

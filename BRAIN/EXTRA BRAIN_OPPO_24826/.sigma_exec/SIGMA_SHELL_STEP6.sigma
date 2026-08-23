@@ -1,0 +1,55 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ STATE:
+        "READY";
+
+
+    ⚡ COMMAND:
+        "help";
+
+
+    ⚡ ACTION:
+        "EXECUTE";
+
+
+    ⚡ BYTECODE:
+        "SIGMA_BYTECODE_TARGET";
+
+
+    ⚡ RESULT:
+        "SUCCESS";
+
+
+    ⚡ RUN_CAPABILITY:
+        "COMMAND→ACTION→BYTECODE→RESULT";
+
+
+    print("============================================");
+    print("Σ.SHELL — STEP 6");
+    print("RUN CAPABILITY");
+    print("============================================");
+
+
+    print("STATE:");
+    print(STATE);
+
+    print("COMMAND:");
+    print(COMMAND);
+
+    print("ACTION:");
+    print(ACTION);
+
+    print("BYTECODE:");
+    print(BYTECODE);
+
+    print("RESULT:");
+    print(RESULT);
+
+    print("RUN_CAPABILITY:");
+    print(RUN_CAPABILITY);
+
+
+    print("SIGMA_SHELL_STOPPED");
+}

@@ -1,0 +1,103 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.GATEKEEPER][VERSION=F174.ROUTING.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_routing_schema(storage, field_name, desc) {
+    ⚡ list_add(storage, field_name);
+    ⚡ print("ROUTING_INPUT_FIELD [", field_name, "]:", desc);
+    RETURN storage;
+}
+
+DEF register_gate_state_policy(storage, state_id, condition, action, allowed, forbidden) {
+    ⚡ list_add(storage, state_id);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("GATE_STATE_LAW [", state_id, "]");
+    ⚡ print("  CONDITION :", condition);
+    ⚡ print("  ACTION    :", action);
+    ⚡ print("  ALLOWED   :", allowed);
+    ⚡ print("  FORBIDDEN :", forbidden);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_ROUTING_POLICY) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 92_GATEKEEPER ROUTING POLICY ASSIMILATION   ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID    : 92_GATEKEEPER_ROUTING_POLICY");
+    ⚡ print("OWNER_ROLE : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS     : ACTIVE STANDARD");
+    ⚡ print("CLASS      : OPERATIONAL POLICY");
+    ⚡ print("PARENT     : 91_TURBO_ACTIVATION_TRIGGERS");
+    ⚡ print("CORE LAW   : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ ROUTING INPUT PACKET SCHEMA ] ---");
+    ⚡ register_routing_schema(STORAGE, "task_id", "Identifier for operational task");
+    ⚡ register_routing_schema(STORAGE, "artifact_id", "Target artifact reference");
+    ⚡ register_routing_schema(STORAGE, "blocked_route", "Currently blocked execution path");
+    ⚡ register_routing_schema(STORAGE, "current_checkpoint", "Last verified checkpoint hash");
+    ⚡ register_routing_schema(STORAGE, "gate_state", "GREEN | AMBER | RED | BLACK");
+    ⚡ register_routing_schema(STORAGE, "evidence_ref", "Observable telemetry/evidence pointer");
+    ⚡ register_routing_schema(STORAGE, "dependencies", "Explicit dependency chain");
+    ⚡ register_routing_schema(STORAGE, "permissions", "Cryptographic authorization context");
+    ⚡ register_routing_schema(STORAGE, "protected_data", "Data protection/privacy flags");
+    ⚡ register_routing_schema(STORAGE, "immutable_boundaries", "Core invariant boundary checks");
+    ⚡ register_routing_schema(STORAGE, "verification_plan", "Required verification test suite");
+    ⚡ register_routing_schema(STORAGE, "rollback_ref", "Deterministic rollback pointer");
+    ⚡ register_routing_schema(STORAGE, "authorized_route_set_A_x", "Pre-authorized fallback paths");
+    ⚡ register_routing_schema(STORAGE, "decision_deadline", "Timeout before autonomic reroute");
+
+    ⚡ print("--- [ GATE STATE LAW MATRIX ] ---");
+    ⚡ register_gate_state_policy(STORAGE, "GREEN",
+        "Current route authorized; no unresolved gate",
+        "EXECUTE",
+        "Current route",
+        "Unlogged scope or state change");
+
+    ⚡ register_gate_state_policy(STORAGE, "AMBER",
+        "Delay/dispute lacks BLACK condition; alternative authorized routes exist",
+        "DOCUMENT ONCE -> REROUTE",
+        "Preview, sandbox, async review, evidence package, unaffected branch",
+        "Argument loop without new evidence");
+
+    ⚡ register_gate_state_policy(STORAGE, "RED",
+        "Branch fails verification, conflicts, or unresolved truth/safety state",
+        "QUARANTINE BRANCH",
+        "All unaffected authorized branches",
+        "Release or merge of affected branch");
+
+    ⚡ register_gate_state_policy(STORAGE, "BLACK",
+        "Law, safety, privacy, access, immutable Production, merge/tag blocks action",
+        "DO NOT BYPASS",
+        "Only other independent authorized work",
+        "Evasion, fake approval, credential/access circumvention");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_ROUTING_POLICY_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_ROUTING_GRAPH:", TARGET_FILE);
+    ⚡ print("STATUS: 92_ROUTING POLICY LOCKED IN KEYGATE KEEPER ENGINE");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 92 — READY FOR NEXT AI CONTROL FILE");
+}

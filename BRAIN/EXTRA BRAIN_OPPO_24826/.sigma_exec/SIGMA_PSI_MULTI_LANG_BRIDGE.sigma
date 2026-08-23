@@ -1,0 +1,35 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.MULTI_LANG_BRIDGE][VERSION=0.1]
+
+⟡(Σ.PSI_MULTI_LANG_BRIDGE) {
+    ⚡ lang_1: 1;
+    ⚡ lang_2: 2;
+    ⚡ lang_3: 3;
+    ⚡ lang_4: 4;
+    ⚡ lang_5: 5;
+    ⚡ sigma_1: 0;
+    ⚡ sigma_2: 0;
+    ⚡ sigma_3: 0;
+    ⚡ sigma_4: 0;
+    ⚡ sigma_5: 0;
+    ⚡ bridge: 0;
+
+    ⚡ sigma_1: lang_1 * 3;
+    ⚡ sigma_2: lang_2 * 3;
+    ⚡ sigma_3: lang_3 * 3;
+    ⚡ sigma_4: lang_4 * 3;
+    ⚡ sigma_5: lang_5 * 3;
+    ⚡ bridge: sigma_1 + sigma_2 + sigma_3 + sigma_4 + sigma_5;
+
+    ⚡ print("SIGMA_MULTI_LANG_BRIDGE");
+    ⚡ print("LANG_1=", lang_1);
+    ⚡ print("LANG_2=", lang_2);
+    ⚡ print("LANG_3=", lang_3);
+    ⚡ print("LANG_4=", lang_4);
+    ⚡ print("LANG_5=", lang_5);
+    ⚡ print("SIGMA_1=", sigma_1);
+    ⚡ print("SIGMA_2=", sigma_2);
+    ⚡ print("SIGMA_3=", sigma_3);
+    ⚡ print("SIGMA_4=", sigma_4);
+    ⚡ print("SIGMA_5=", sigma_5);
+    ⚡ print("BRIDGE_SUM=", bridge);
+}

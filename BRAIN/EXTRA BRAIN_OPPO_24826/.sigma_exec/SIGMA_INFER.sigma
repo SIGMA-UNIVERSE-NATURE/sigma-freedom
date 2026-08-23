@@ -1,0 +1,51 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=INFER.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF emit_inference_step(step_no, source_sym, operator_sym, target_sym, insight) {
+    ⚡ print("STEP", step_no, ": [", source_sym, "] --(", operator_sym, ")--> [", target_sym, "]");
+    ⚡ print("   INSIGHT:", insight);
+    RETURN step_no;
+}
+
+⟡(Σ.INFERENCE_PIPELINE) {
+    ⚡ RAW: load(".sigma_exec/SIGMA_MASTER_KNOWLEDGE_BASE.txt");
+    ⚡ SECTIONS: split(RAW, " <===> ");
+
+    ⚡ SEC_P2: get(SECTIONS, 0);
+    ⚡ SEC_P3: get(SECTIONS, 1);
+    ⚡ SEC_P5: get(SECTIONS, 3);
+    ⚡ SEC_P6: get(SECTIONS, 4);
+
+    ⚡ TOKS_P2: split(SEC_P2, " <-> ");
+    ⚡ TOKS_P3: split(SEC_P3, " <-> ");
+    ⚡ TOKS_P5: split(SEC_P5, " <-> ");
+    ⚡ TOKS_P6: split(SEC_P6, " <-> ");
+
+    ⚡ N_ALEPH: get(TOKS_P3, 0);
+    ⚡ N_TENSOR_BOX: get(TOKS_P5, 0);
+    ⚡ N_AUTONOMY: get(TOKS_P2, 16);
+    ⚡ N_OMEGA: get(TOKS_P6, 10);
+    ⚡ N_GENESIS_LOOP: get(TOKS_P3, 20);
+
+    ⚡ print("=== SIGMA QUANTUM INFERENCE PIPELINE RUNNING ===");
+
+    ⚡ emit_inference_step(1, N_ALEPH, N_TENSOR_BOX, N_AUTONOMY, "KHONG_GIAN_VO_HAN_DONG_GOI_THANH_TU_CHU_TU_QUYET");
+    ⚡ emit_inference_step(2, N_AUTONOMY, N_OMEGA, N_GENESIS_LOOP, "TU_CHU_HOAN_HAO_KICH_HOAT_VONG_LAP_TU_SINH_TRUONG");
+
+    ⚡ print("=== CHUOI SUY LUAN KET THUC: TRANG THAI HOAN TOAN DONG PHA ===");
+}

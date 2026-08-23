@@ -1,0 +1,42 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.STATE.STABILITY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_STATE_STABILITY) {
+
+    ⚡ EVENT:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE:
+        H("write_text",
+          "sigma_shell_stability.state",
+          EVENT,
+          NULL);
+
+    ⚡ READ_FIRST:
+        H("read_text",
+          "sigma_shell_stability.state",
+          NULL,NULL);
+
+    ⚡ READ_SECOND:
+        H("read_text",
+          "sigma_shell_stability.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL STATE STABILITY OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_FIRST);
+
+        ⚡ print(READ_SECOND);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

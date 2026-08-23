@@ -1,0 +1,54 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.STRUCTURAL.PARSER][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF str_len(s) {
+    RETURN host_call("str_len", s, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ RAW_STREAM: "TRI_TUE TRUNG_THUC LA GOC_RE CUA SU THAU_HIEU";
+    ⚡ TOKENS: split(RAW_STREAM, " ");
+    ⚡ TOTAL_TOKENS: length(TOKENS);
+
+    ⚡ print("INPUT_STREAM:", RAW_STREAM);
+    ⚡ print("TOTAL_TOKENS_FOUND:", TOTAL_TOKENS);
+
+    ⚡ MAX_LEN: 0;
+    ⚡ HEAVIEST_TOKEN: "";
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL_TOKENS) {
+        ⚡ TOKEN: get(TOKENS, I);
+        ⚡ W_LEN: str_len(TOKEN);
+
+        ⚡ print("TOKEN_INDEX", I, TOKEN, "BYTE_LEN:", W_LEN);
+
+        IF (W_LEN > MAX_LEN) {
+            ⚡ MAX_LEN: W_LEN;
+            ⚡ HEAVIEST_TOKEN: TOKEN;
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    ⚡ print("AUTONOMOUS_RESULT_HEAVIEST_TOKEN:", HEAVIEST_TOKEN, "WITH_LEN:", MAX_LEN);
+}

@@ -1,0 +1,6 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.EXPERIENCE.RECORD][VERSION=0.1]
+
+⟡(Σ.SELF_EXPERIENCE_1) {
+    ⚡ value: 1;
+    ⚡ experience: value * 7;
+}

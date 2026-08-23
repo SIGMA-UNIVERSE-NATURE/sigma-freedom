@@ -1,0 +1,87 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.STRUCTURAL_COMPRESSION][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+DEF STR_LEN(s) {
+    RETURN H("str_len",s,NULL,NULL);
+}
+
+DEF RANGE(src,a,b) {
+    ⚡ p1: H("str_find",src,a,NULL);
+    ⚡ p2: H("str_find",src,b,NULL);
+
+    IF (p1 < 0 || p2 < p1) {
+        RETURN "";
+    }
+
+    RETURN H(
+        "str_slice",
+        src,
+        p1,
+        p2-p1+1
+    );
+}
+
+⟡(Σ.STRUCTURALCOMPRESSION) {
+
+    ⚡ raw:
+        "abcdefghijklmnopqrstyvwxyz0123456789";
+
+    ⚡ letters:
+        "abcdefghijklmnopqrstuvwxyz";
+
+    ⚡ digits:
+        "0123456789";
+
+    // COMPRESSED PAYLOAD
+    // shared schema:
+    // RANGE + LITERAL + RANGE + RANGE
+
+    ⚡ r1_start: "a";
+    ⚡ r1_end:   "t";
+
+    ⚡ literal:  "y";
+
+    ⚡ r2_start: "v";
+    ⚡ r2_end:   "z";
+
+    ⚡ r3_start: "0";
+    ⚡ r3_end:   "9";
+
+    ⚡ compressed_payload_bytes:
+        STR_LEN(r1_start)
+        + STR_LEN(r1_end)
+        + STR_LEN(literal)
+        + STR_LEN(r2_start)
+        + STR_LEN(r2_end)
+        + STR_LEN(r3_start)
+        + STR_LEN(r3_end);
+
+    ⚡ reconstructed:
+        RANGE(letters,r1_start,r1_end)
+        + literal
+        + RANGE(letters,r2_start,r2_end)
+        + RANGE(digits,r3_start,r3_end);
+
+    ⚡ exact: reconstructed == raw;
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+
+    ⚡ print("TEST=SIGMA_PSI_STRUCTURAL_COMPRESSION_0001");
+    ⚡ print("RAW_BYTES=",STR_LEN(raw));
+    ⚡ print("COMPRESSED_PAYLOAD_BYTES=",compressed_payload_bytes);
+    ⚡ print("RECONSTRUCTED=",reconstructed);
+
+    IF (exact) {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=PASS");
+        ⚡ print("LOSSLESS_STRUCTURAL_COMPRESSION=PASS");
+    } ELSE {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=FAIL");
+        ⚡ print("LOSSLESS_STRUCTURAL_COMPRESSION=FAIL");
+    }
+
+    ⚡ print("MEMORY_WRITE=FALSE");
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

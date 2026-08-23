@@ -1,0 +1,24 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.LANG_COMPARE][VERSION=0.1]
+
+⟡(Σ.PSI_LANG_COMPARE) {
+    ⚡ lang_vi: 3;
+    ⚡ lang_en: 4;
+    ⚡ lang_fr: 2;
+    ⚡ lang_es: 5;
+    ⚡ lang_de: 3;
+    ⚡ lang_ja: 2;
+    ⚡ lang_ko: 1;
+    ⚡ lang_zh: 4;
+    ⚡ lang_ru: 3;
+    ⚡ lang_ar: 2;
+
+    ⚡ max: lang_es;
+    ⚡ min: lang_ko;
+    ⚡ diff: max - min;
+    ⚡ avg: (lang_vi + lang_en + lang_fr + lang_es + lang_de + lang_ja + lang_ko + lang_zh + lang_ru + lang_ar) / 10;
+
+    ⚡ print(max);
+    ⚡ print(min);
+    ⚡ print(diff);
+    ⚡ print(avg);
+}

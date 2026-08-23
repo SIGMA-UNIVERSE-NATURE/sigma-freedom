@@ -1,0 +1,46 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SINGLE.HISTORY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_SINGLE_HISTORY) {
+
+    ⚡ EVENT_1:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_1:
+        H("write_text",
+          "sigma_shell_single_history.state",
+          EVENT_1,
+          NULL);
+
+
+    ⚡ EVENT_2:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_2:
+        H("write_text",
+          "sigma_shell_single_history.state",
+          EVENT_2,
+          NULL);
+
+
+    ⚡ READ_HISTORY:
+        H("read_text",
+          "sigma_shell_single_history.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL SINGLE HISTORY OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_HISTORY);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

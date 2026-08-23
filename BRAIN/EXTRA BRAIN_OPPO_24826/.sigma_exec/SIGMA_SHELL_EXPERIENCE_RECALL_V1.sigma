@@ -1,0 +1,14 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ EXPERIENCE:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_CURRENT_EXPERIENCE.memory",
+            NULL,
+            NULL
+        );
+
+    print(EXPERIENCE);
+}

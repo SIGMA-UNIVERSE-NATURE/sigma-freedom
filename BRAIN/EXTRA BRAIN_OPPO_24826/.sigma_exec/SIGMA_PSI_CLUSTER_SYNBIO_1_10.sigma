@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_SYNBIO_1_10][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_SYNBIO_1_10) {
+    ⚡ sb_c1: 100;
+    ⚡ sb_c2: 100;
+    ⚡ sb_c3: 100;
+    ⚡ sb_c4: 100;
+    ⚡ sb_c5: 100;
+    ⚡ sb_c6: 100;
+    ⚡ sb_c7: 100;
+    ⚡ sb_c8: 100;
+    ⚡ sb_c9: 100;
+    ⚡ sb_c10: 100;
+    ⚡ total_new: sb_c1 + sb_c2 + sb_c3 + sb_c4 + sb_c5 + sb_c6 + sb_c7 + sb_c8 + sb_c9 + sb_c10;
+    ⚡ total_all: 0 + total_new;
+    ⚡ avg_cluster: total_all / 10;
+
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

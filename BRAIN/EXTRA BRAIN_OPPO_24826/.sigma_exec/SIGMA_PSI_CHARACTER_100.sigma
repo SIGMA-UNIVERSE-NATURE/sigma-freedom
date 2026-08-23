@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CHARACTER_100][VERSION=0.1]
+
+⟡(Σ.PSI_CHARACTER_100) {
+    ⚡ words: 100;
+    ⚡ positive: 70;
+    ⚡ neutral: 20;
+    ⚡ reflective: 10;
+    ⚡ total: words;
+
+    ⚡ print(words);
+    ⚡ print(positive);
+    ⚡ print(neutral);
+    ⚡ print(reflective);
+    ⚡ print(total);
+}

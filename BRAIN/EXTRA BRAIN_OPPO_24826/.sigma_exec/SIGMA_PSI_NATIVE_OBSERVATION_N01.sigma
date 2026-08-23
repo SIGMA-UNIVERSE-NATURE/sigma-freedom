@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.OBSERVATION][VERSION=0.1]
+
+⟡(Σ.OBSERVATION) {
+
+    ⚡ STATE:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_HISTORY_A.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ DERIVED:
+        host(
+            "observe",
+            STATE,
+            NULL,
+            NULL
+        );
+
+    print(STATE);
+    print(DERIVED);
+}

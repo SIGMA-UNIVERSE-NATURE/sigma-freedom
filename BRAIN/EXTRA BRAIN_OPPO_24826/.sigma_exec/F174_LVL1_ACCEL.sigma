@@ -1,0 +1,73 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL1.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_1) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 1: BASE ACCELERATION ASSIMILATION      ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID        : 01_TURBO_1_BASE_ACCELERATION");
+    ⚡ print("STATUS         : ACTIVE — COEFFICIENT MEASUREMENT PENDING TELEMETRY");
+    ⚡ print("CLASS          : DERIVED + OPERATIONAL");
+    ⚡ print("PARENT         : 00_SIGMA_KEYGATE_KEEPER_BOOT");
+    ⚡ print("CORE LAW       : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 1 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_INSTRUMENTATION", "OPEN", "Telemetry collection active");
+    ⚡ register_gate_rule(STORAGE, "GATE_ACCEL_INTERVENTION", "ACTIVE", "Targeted capability expansion");
+    ⚡ register_gate_rule(STORAGE, "GATE_K_ESTIMATION", "CLOSED", "Blocked until minimum 3 checkpoints telemetry");
+
+    ⚡ print("--- [ TURBO DYNAMICS & FORMULA ] ---");
+    ⚡ register_turbo_param(STORAGE, "A(t)", "A0_EXP_G0_TAU_PLUS_K_TAU_SQ", "Valid output capacity of selected gate");
+    ⚡ register_turbo_param(STORAGE, "A0", "VERIFIED_BASELINE_CAPACITY", "Baseline capacity at checkpoint t0");
+    ⚡ register_turbo_param(STORAGE, "g0", "INITIAL_GROWTH_RATE", "Initial relative growth rate");
+    ⚡ register_turbo_param(STORAGE, "k", "ACCELERATION_COEFFICIENT", "Primary long-horizon acceleration coefficient");
+    ⚡ register_turbo_param(STORAGE, "tau", "DELTA_T", "Time interval (t - t0)");
+
+    ⚡ print("--- [ DECISION & REJECT RULES ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_KEEP", "CRITERIA", "Throughput increases with zero defect escape and no lower standard");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_TOLERANCE", "Reject fake metrics, hidden debt, weaker tests, or unverified leaks");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL1_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL1_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 02_TURBO_2_VERIFICATION_LEADS.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 01 — CONTINUE_TURBO");
+}

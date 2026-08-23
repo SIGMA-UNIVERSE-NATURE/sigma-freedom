@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CORPUS_READ][VERSION=0.1]
+
+⟡(Σ.PSI_CORPUS_READ) {
+    ⚡ total_words: 0;
+    ⚡ unique_words: 0;
+    ⚡ frequency: 0;
+
+    ⚡ total_words: 10;
+    ⚡ unique_words: 10;
+    ⚡ frequency: 1;
+
+    ⚡ print(total_words);
+    ⚡ print(unique_words);
+    ⚡ print(frequency);
+}

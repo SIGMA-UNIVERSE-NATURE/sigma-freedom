@@ -1,0 +1,17 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.REFERENCE][VERSION=0.1]
+
+⟡(Σ.REFERENCE) {
+
+    ⚡ SOURCE:
+        "REFERENCE_PROBE";
+
+    ⚡ REFERENCE:
+        SOURCE;
+
+    ⚡ REFERENCE_2:
+        REFERENCE;
+
+    print(SOURCE);
+    print(REFERENCE);
+    print(REFERENCE_2);
+}

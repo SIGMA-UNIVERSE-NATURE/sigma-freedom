@@ -1,0 +1,32 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.OBSERVATION.BOUNDARY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_OBSERVATION_BOUNDARY) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ MEMORY:
+        H("write_text",
+          "sigma_shell_observation_boundary.state",
+          OBSERVATION,
+          NULL);
+
+    ⚡ RECALL:
+        H("read_text",
+          "sigma_shell_observation_boundary.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(RECALL);
+
+    }
+
+}

@@ -1,0 +1,28 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HISTORY][VERSION=0.1]
+
+⟡(Σ.SHELL_HISTORY_SEMANTIC) {
+
+    ⚡ SHELL_MEMORY:
+        "ACTIVE";
+
+    ⚡ EXPERIENCE:
+        "USER_ENTERED_COMMAND_RUN";
+
+    ⚡ PRESERVED:
+        "TRUE";
+
+    ⚡ RECALL_STATE:
+        EXPERIENCE;
+
+    print("===== SHELL_HISTORY_SEMANTIC =====");
+    print("MEMORY:");
+    print(SHELL_MEMORY);
+
+    print("EXPERIENCE:");
+    print(EXPERIENCE);
+
+    print("RECALL:");
+    print(RECALL_STATE);
+
+    print("===== END =====");
+}

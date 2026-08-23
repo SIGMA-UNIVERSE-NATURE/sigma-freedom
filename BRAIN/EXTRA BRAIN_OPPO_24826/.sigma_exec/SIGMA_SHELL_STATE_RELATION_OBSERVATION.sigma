@@ -1,0 +1,53 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.STATE.RELATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_STATE_RELATION) {
+
+    ⚡ STATE_A:
+        H("input","",NULL,NULL);
+
+    ⚡ STATE_B:
+        H("input","",NULL,NULL);
+
+
+    ⚡ WRITE_A:
+        H("write_text",
+          "sigma_shell_relation_a.state",
+          STATE_A,
+          NULL);
+
+    ⚡ WRITE_B:
+        H("write_text",
+          "sigma_shell_relation_b.state",
+          STATE_B,
+          NULL);
+
+
+    ⚡ READ_A:
+        H("read_text",
+          "sigma_shell_relation_a.state",
+          NULL,NULL);
+
+    ⚡ READ_B:
+        H("read_text",
+          "sigma_shell_relation_b.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL STATE RELATION OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_A);
+
+        ⚡ print(READ_B);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

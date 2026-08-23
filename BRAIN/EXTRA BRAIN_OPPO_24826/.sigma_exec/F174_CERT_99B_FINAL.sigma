@@ -1,0 +1,62 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.CERTIFICATE][VERSION=F174.99B.FINAL.2.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF record_cert_metric(storage, key, val) {
+    ⚡ list_add(storage, key);
+    ⚡ print("CERT_v2_RECORD [", key, "] =>", val);
+    RETURN storage;
+}
+
+⟡(Σ.LOCK_CERTIFICATE_99B) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 99B LIBRARY CERTIFICATE v2 (FINAL SEAL)     ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | UNBOUNDED TRUTH & TOTAL INTEGRITY      ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ record_cert_metric(STORAGE, "CERTIFICATE_ID",   "LIBCERT-F174-v2-20260724-001");
+    ⚡ record_cert_metric(STORAGE, "CERTIFICATE_TYPE", "LIBRARY_CERT");
+    ⚡ record_cert_metric(STORAGE, "STATE",            "PASS - STRUCTURAL ONLY");
+    ⚡ record_cert_metric(STORAGE, "ARTIFACT_ID",      "SIGMA_F174_TURBO_LIBRARY (v2.0)");
+    ⚡ record_cert_metric(STORAGE, "ISSUER_ROLE",      "SIGMA_KEYGATE_KEEPER");
+    ⚡ record_cert_metric(STORAGE, "JUDGE_ROLE",       "STRUCTURAL_JUDGE");
+    ⚡ record_cert_metric(STORAGE, "MANIFEST_REF",     "98A MANIFEST v2");
+    ⚡ record_cert_metric(STORAGE, "MANIFEST_SHA256",  "f7da7aed2389e81d5c60d2eb2d251e335600be3bf8b08f7a05fffcd40f76d9f4");
+
+    ⚡ print("--- [ AUDIT SCORECARD (24 ARTIFACTS BOUND) ] ---");
+    ⚡ record_cert_metric(STORAGE, "SOURCE_FILES",     "24/24 PRESENT");
+    ⚡ record_cert_metric(STORAGE, "DOCX_OOXML",       "24/24 PASS");
+    ⚡ record_cert_metric(STORAGE, "IDENTITY_TOKENS",  "24/24 PASS");
+    ⚡ record_cert_metric(STORAGE, "PARENT_LINKS",     "20/20 PASS");
+    ⚡ record_cert_metric(STORAGE, "VERSION_BOUNDARY", "24/24 PASS (v1.8.1 PROTECTED)");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_FINAL_CERT_99B_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("CERTIFICATE_v2_PERSISTED:", TARGET_FILE);
+    ⚡ print("DECISION                : PASS - READY FOR THE FIRST REAL RUN");
+    ⚡ print("RUNTIME_AUTHORITY       : 97A COMMAND AUTHORIZED FOR v1.10 PREVIEW");
+    ⚡ print("OPERATIONAL_LAW         : NO MERGE - NO TAG - NO PRODUCTION CHANGE");
+}

@@ -1,0 +1,34 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ HISTORY_A:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_HISTORY_A.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ HISTORY_B:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_HISTORY_B.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ HISTORY_STATE:
+        HISTORY_A + HISTORY_B;
+
+    ⚡ STORED_STATE:
+        HISTORY_STATE;
+
+    ⚡ READ_BACK:
+        STORED_STATE;
+
+    print(HISTORY_A);
+    print(HISTORY_B);
+    print(HISTORY_STATE);
+    print(READ_BACK);
+}

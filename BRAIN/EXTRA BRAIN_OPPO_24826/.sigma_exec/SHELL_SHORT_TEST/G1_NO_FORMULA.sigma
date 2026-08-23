@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.NO_FORMULA][VERSION=0.4]
+
+⟡(Σ.G1_NO_FORMULA) {
+
+    ⚡ STATE:
+        10;
+
+    ⚡ EXPERIENCE_DIRECTION:
+        -1;
+
+    ⚡ EXPERIENCE_MAGNITUDE:
+        4;
+
+    ⚡ print("STATE_BEFORE");
+    ⚡ print(STATE);
+
+    ⚡ print("STATE_AFTER");
+    ⚡ print(STATE);
+}

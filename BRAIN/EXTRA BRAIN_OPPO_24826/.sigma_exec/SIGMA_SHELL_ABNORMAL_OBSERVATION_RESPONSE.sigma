@@ -1,0 +1,28 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.ABNORMAL.OBSERVATION.RESPONSE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_ABNORMAL_OBSERVATION_RESPONSE) {
+
+    ⚡ OBSERVATION:
+        H("read_text",
+          "sigma_shell_missing_observation.state",
+          NULL,
+          NULL);
+
+
+    ⚡ RESPONSE:
+        OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(RESPONSE);
+
+    }
+
+}

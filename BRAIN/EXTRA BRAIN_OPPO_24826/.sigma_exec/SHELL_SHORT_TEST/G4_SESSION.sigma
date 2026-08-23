@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SESSION.TEST][VERSION=0.5]
+
+⟡(Σ.SESSION_MEMORY_TEST) {
+
+    ⚡ STATE:
+        "BEFORE";
+
+    ⚡ print("STATE_1");
+    ⚡ print(STATE);
+
+    ⚡ STATE:
+        "AFTER_RIVER";
+
+    ⚡ print("STATE_2");
+    ⚡ print(STATE);
+
+    ⚡ print("LATER_USE");
+    ⚡ print(STATE);
+}

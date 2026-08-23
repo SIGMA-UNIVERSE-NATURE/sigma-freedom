@@ -1,0 +1,93 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.VALIDATION][VERSION=F174.PROTOCOL.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_validation_layer(storage, layer_name, test_req, pass_cond, fail_action) {
+    ⚡ list_add(storage, layer_name);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("VALIDATION_LAYER [", layer_name, "]");
+    ⚡ print("  REQUIRED TEST :", test_req);
+    ⚡ print("  PASS CONDITION:", pass_cond);
+    ⚡ print("  FAIL ACTION   :", fail_action);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("PROTOCOL_RULE [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_VALIDATION_PROTOCOL) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 95_TELEMETRY VALIDATION PROTOCOL            ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID        : 95_TURBO_TELEMETRY_VALIDATION_PROTOCOL");
+    ⚡ print("OWNER_ROLE     : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS         : ACTIVE VALIDATION STANDARD");
+    ⚡ print("CLASS          : OPERATIONAL CONTROL");
+    ⚡ print("PARENT         : 94_TURBO_TELEMETRY_INSTRUMENTATION");
+    ⚡ print("DEPENDS_ON     : 90 / 91 / 92 / 93 / 94");
+    ⚡ print("TARGET_ENV     : v1.10 SEPARATE PREVIEW RC");
+    ⚡ print("PROD_IMMUTABLE : v1.8.1 IMMUTABLE");
+    ⚡ print("BASELINE_STATUS: BLOCKED UNTIL THIS PROTOCOL PASSES");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ FIVE-LAYER TELEMETRY VALIDATION MATRIX ] ---");
+    ⚡ register_validation_layer(STORAGE, "SCHEMA",
+        "Required fields, enums, versions, units, EVU rubric",
+        "100 percent required fields valid",
+        "Reject event; mark run UNKNOWN");
+
+    ⚡ register_validation_layer(STORAGE, "IDENTITY",
+        "Unique event/run/artifact/DNA/branch IDs",
+        "No duplicate or ambiguous identity",
+        "Invalidate affected trace");
+
+    ⚡ register_validation_layer(STORAGE, "TRACE",
+        "INTAKE -> START -> terminal event across six gates",
+        "Complete ordered trace or declared quarantine/rollback",
+        "Detect missing/orphan event; FAIL");
+
+    ⚡ register_validation_layer(STORAGE, "TIME",
+        "UTC order, monotonic sequence, aligned windows",
+        "No impossible order or undeclared clock drift",
+        "Quarantine stream; repair clock source");
+
+    ⚡ register_validation_layer(STORAGE, "INTEGRITY",
+        "Checksum, version, evidence, Capsule, regression, rollback refs",
+        "All mandatory refs resolve and match",
+        "FAIL; no claim use");
+
+    ⚡ print("--- [ PROTOCOL INVARIANTS ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_FAIL_CLOSED", "ENFORCED", "Telemetry failure invalidates all downstream metrics and claims");
+    ⚡ register_gate_rule(STORAGE, "RULE_ZERO_NOISE", "ENFORCED", "No unverified baseline data may enter analysis pipeline");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_VALIDATION_PROTOCOL_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_PROTOCOL_GRAPH:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 95 — SẴN SÀNG TIẾP NHẬN TÀI LIỆU TIẾP THEO");
+}

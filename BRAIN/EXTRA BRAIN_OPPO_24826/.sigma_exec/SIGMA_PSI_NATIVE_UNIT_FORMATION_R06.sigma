@@ -1,0 +1,29 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.UNIT.FORMATION][VERSION=0.3]
+
+⟡(Σ.UNIT) {
+
+    ⚡ UNIT_1: host("input","Σ1> ",NULL,NULL);
+    ⚡ UNIT_2: host("input","Σ2> ",NULL,NULL);
+    ⚡ UNIT_3: host("input","Σ3> ",NULL,NULL);
+    ⚡ UNIT_4: host("input","Σ4> ",NULL,NULL);
+    ⚡ UNIT_5: host("input","Σ5> ",NULL,NULL);
+    ⚡ UNIT_6: host("input","Σ6> ",NULL,NULL);
+    ⚡ UNIT_7: host("input","Σ7> ",NULL,NULL);
+
+    ⚡ STORE_1: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_1.memory",UNIT_1,NULL);
+    ⚡ STORE_2: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_2.memory",UNIT_2,NULL);
+    ⚡ STORE_3: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_3.memory",UNIT_3,NULL);
+    ⚡ STORE_4: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_4.memory",UNIT_4,NULL);
+    ⚡ STORE_5: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_5.memory",UNIT_5,NULL);
+    ⚡ STORE_6: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_6.memory",UNIT_6,NULL);
+    ⚡ STORE_7: host("write_text",".sigma_exec/SIGMA_PSI_UNIT_R06_7.memory",UNIT_7,NULL);
+
+    print(UNIT_1);
+    print(UNIT_2);
+    print(UNIT_3);
+    print(UNIT_4);
+    print(UNIT_5);
+    print(UNIT_6);
+    print(UNIT_7);
+}
+

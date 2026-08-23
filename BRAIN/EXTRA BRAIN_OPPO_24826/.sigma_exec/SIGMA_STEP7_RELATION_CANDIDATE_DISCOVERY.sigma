@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.EXPERIENCE.RELATION.CANDIDATE.DISCOVERY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.RELATION_CANDIDATE_DISCOVERY) {
+
+    ⚡ EXPERIENCE_1:
+        H("input","",NULL,NULL);
+
+    ⚡ EXPERIENCE_2:
+        H("input","",NULL,NULL);
+
+    ⚡ EXPERIENCE_3:
+        H("input","",NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(EXPERIENCE_1);
+        ⚡ print(EXPERIENCE_2);
+        ⚡ print(EXPERIENCE_3);
+
+    }
+
+}

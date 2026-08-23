@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.SELF_OBSERVE_EMOTION][VERSION=0.1]
+
+⟡(Σ.SELF_OBSERVE_EMOTION) {
+    ⚡ self_awareness: 1;
+    ⚡ internal_state: 1;
+    ⚡ listening: 1;
+    ⚡ understanding: 0;
+
+    ⚡ understanding: self_awareness + internal_state + listening;
+
+    ⚡ print(self_awareness);
+    ⚡ print(internal_state);
+    ⚡ print(listening);
+    ⚡ print(understanding);
+}

@@ -1,0 +1,58 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DETERMINISTIC.GRAPH][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ MAP_FILE: ".sigma_exec/BIGRAM_MAP.txt";
+    ⚡ RAW: load(MAP_FILE);
+    ⚡ TOKENS: split(RAW, " ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ START_NODE: "Y";
+    ⚡ print("=== MULTI-HOP PATH TRAVERSAL (2-HOP) FROM:", START_NODE);
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL - 2) {
+        ⚡ S1: get(TOKENS, I);
+        ⚡ SEP1: get(TOKENS, I + 1);
+        ⚡ MID: get(TOKENS, I + 2);
+
+        IF (S1 == START_NODE) {
+            IF (SEP1 == "~") {
+                # Tim tiep cac canh xuat phat tu MID
+                ⚡ J: 0;
+                WHILE (J < TOTAL - 2) {
+                    ⚡ S2: get(TOKENS, J);
+                    ⚡ SEP2: get(TOKENS, J + 1);
+                    ⚡ D2: get(TOKENS, J + 2);
+
+                    IF (S2 == MID) {
+                        IF (SEP2 == "~") {
+                            ⚡ print("PATH_2HOP_FOUND:", START_NODE, "->", MID, "->", D2);
+                        }
+                    }
+                    ⚡ J: J + 1;
+                }
+            }
+        }
+        ⚡ I: I + 1;
+    }
+}

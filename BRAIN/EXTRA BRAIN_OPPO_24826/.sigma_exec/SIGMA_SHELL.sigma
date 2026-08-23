@@ -1,0 +1,47 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.4]
+
+⟡(Σ.SHELL) {
+
+    ⚡ STATE:
+        "READY";
+
+    ⚡ COMMAND_COUNT:
+        0;
+
+    ⚡ EXPERIENCE:
+        "NONE";
+
+    print("============================================");
+    print("Σ.SHELL — SIGMA-Ψ");
+    print("SIGMA LANGUAGE FIRST");
+    print("============================================");
+
+    ⚡ COMMAND:
+        "hello";
+
+    ⚡ COMMAND_COUNT:
+        COMMAND_COUNT + 1;
+
+    ⚡ EXPERIENCE:
+        COMMAND;
+
+    ⚡ RECALL:
+        EXPERIENCE;
+
+    print("STATE:");
+    print(STATE);
+
+    print("COMMAND:");
+    print(COMMAND);
+
+    print("EXPERIENCE:");
+    print(EXPERIENCE);
+
+    print("RECALL:");
+    print(RECALL);
+
+    print("SIGMA_SHELL_STOPPED");
+
+    print("TOTAL_COMMANDS:");
+    print(COMMAND_COUNT);
+}

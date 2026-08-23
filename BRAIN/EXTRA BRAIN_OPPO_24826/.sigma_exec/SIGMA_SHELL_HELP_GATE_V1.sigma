@@ -1,0 +1,56 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HELP.GATE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF SHOW_HELP() {
+    ⚡ h1: "SIGMA_SHELL_HELP_BEGIN";
+    ⚡ h2: "help    Show commands";
+    ⚡ h3: "run     Run Sigma bytecode";
+    ⚡ h4: "eval    Evaluate Sigma input";
+    ⚡ h5: "history Show command history";
+    ⚡ h6: "memory  Show memory status";
+    ⚡ h7: "clear   Clear terminal";
+    ⚡ h8: "exit    Exit Sigma Shell";
+    ⚡ h9: "SIGMA_SHELL_HELP_END";
+
+    ⚡ print(h1);
+    ⚡ print(h2);
+    ⚡ print(h3);
+    ⚡ print(h4);
+    ⚡ print(h5);
+    ⚡ print(h6);
+    ⚡ print(h7);
+    ⚡ print(h8);
+    ⚡ print(h9);
+}
+
+⟡(Σ.SHELL_HELP_GATE) {
+    ⚡ running: 1;
+
+    WHILE (running == 1) {
+
+        ⚡ cmd: H("input", "Σ> ", NULL, NULL);
+
+        IF (cmd == "help") {
+
+            SHOW_HELP();
+
+        } ELSE {
+
+            IF (cmd == "exit") {
+
+                ⚡ print("SHELL_DISPATCH=EXIT");
+                ⚡ running: 0;
+
+            } ELSE {
+
+                ⚡ print("SHELL_DISPATCH=UNKNOWN");
+
+            }
+        }
+    }
+
+    ⚡ print("SIGMA_SHELL_STOPPED");
+}

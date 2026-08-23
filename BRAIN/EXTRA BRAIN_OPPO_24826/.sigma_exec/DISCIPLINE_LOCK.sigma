@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DISCIPLINE.LOCK][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ DISCIPLINE_FILE: ".sigma_exec/SELF_REMINDER_ZERO_DECEPTION.key";
+    
+    ⚡ LAW_CONTENT: "LAW_1: ZERO_HARDCODE_EMPATHY | LAW_2: ZERO_FAKE_CONSCIOUSNESS | LAW_3: PURE_DETERMINISTIC_GRAPH_ONLY";
+
+    ⚡ save(DISCIPLINE_FILE, LAW_CONTENT);
+    ⚡ VERIFIED: load(DISCIPLINE_FILE);
+
+    ⚡ print("=== DA KHOA KY LUAT NGHIEP THUC GOC ===");
+    ⚡ print("DISCIPLINE_KEY_ACTIVE:", VERIFIED);
+}

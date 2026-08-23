@@ -1,0 +1,33 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.FEEDBACK.LOOP.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_FEEDBACK_LOOP_OBSERVATION) {
+
+    ⚡ OBSERVATION_1:
+        H("input","",NULL,NULL);
+
+    ⚡ ACTION_1:
+        H("str_split", OBSERVATION_1, " ", NULL);
+
+    ⚡ NEW_OBSERVATION:
+        H("list_len", ACTION_1, NULL, NULL);
+
+
+    ⚡ ACTION_2:
+        NEW_OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION_1);
+
+        ⚡ print(NEW_OBSERVATION);
+
+        ⚡ print(ACTION_2);
+
+    }
+
+}

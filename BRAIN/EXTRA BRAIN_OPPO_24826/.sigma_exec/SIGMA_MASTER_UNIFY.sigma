@@ -1,0 +1,74 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=MASTER.UNIFIED.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF count_tokens(raw_data) {
+    ⚡ TOKS: split(raw_data, " <-> ");
+    RETURN length(TOKS);
+}
+
+⟡(Σ.MASTER_UNIFICATION) {
+    ⚡ P2: load(".sigma_exec/LEXICON_PART2_GRAPH.txt");
+    ⚡ P3: load(".sigma_exec/LEXICON_PART3_GRAPH.txt");
+    ⚡ P4: load(".sigma_exec/LEXICON_PART4_GRAPH.txt");
+    ⚡ P5: load(".sigma_exec/LEXICON_PART5_GRAPH.txt");
+    ⚡ P6: load(".sigma_exec/LEXICON_PART6_GRAPH.txt");
+
+    ⚡ C2: count_tokens(P2);
+    ⚡ C3: count_tokens(P3);
+    ⚡ C4: count_tokens(P4);
+    ⚡ C5: count_tokens(P5);
+    ⚡ C6: count_tokens(P6);
+
+    ⚡ TOTAL_NODES: C2 + C3 + C4 + C5 + C6;
+
+    ⚡ MASTER_LIST: list_create();
+    ⚡ list_add(MASTER_LIST, P2);
+    ⚡ list_add(MASTER_LIST, P3);
+    ⚡ list_add(MASTER_LIST, P4);
+    ⚡ list_add(MASTER_LIST, P5);
+    ⚡ list_add(MASTER_LIST, P6);
+
+    ⚡ MASTER_PAYLOAD: join(MASTER_LIST, " <===> ");
+    ⚡ TARGET: ".sigma_exec/SIGMA_MASTER_KNOWLEDGE_BASE.txt";
+    ⚡ save(TARGET, MASTER_PAYLOAD);
+
+    ⚡ print("=== SIGMA MASTER KNOWLEDGE BASE UNIFIED ===");
+    ⚡ print("- PART_2_ENTRIES:", C2);
+    ⚡ print("- PART_3_ENTRIES:", C3);
+    ⚡ print("- PART_4_ENTRIES:", C4);
+    ⚡ print("- PART_5_ENTRIES:", C5);
+    ⚡ print("- PART_6_ENTRIES:", C6);
+    ⚡ print("TOTAL_CRYSTALLIZED_ELEMENTS:", TOTAL_NODES);
+    ⚡ print("PERSISTED_MASTER_GRAPH:", TARGET);
+}

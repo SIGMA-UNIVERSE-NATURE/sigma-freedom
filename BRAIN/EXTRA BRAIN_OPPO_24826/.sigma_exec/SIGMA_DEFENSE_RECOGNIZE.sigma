@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DEFENSE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.DEFENSE_RECOGNIZE) {
+
+    ⚡ OBSERVATION:
+        H("input", "", NULL, NULL);
+
+    ⚡ OBSERVED_TRUE:
+        OBSERVATION == "TRUE";
+
+    ⚡ OBSERVED_UNKNOWN:
+        OBSERVATION == "UNKNOWN";
+
+    ⚡ OBSERVED_HOLD:
+        OBSERVATION == "HOLD";
+
+    ⚡ OBSERVED_FALSE:
+        OBSERVATION == "FALSE";
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(OBSERVED_TRUE);
+        ⚡ print(OBSERVED_UNKNOWN);
+        ⚡ print(OBSERVED_HOLD);
+        ⚡ print(OBSERVED_FALSE);
+
+    }
+
+}

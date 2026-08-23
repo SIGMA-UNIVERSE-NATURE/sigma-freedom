@@ -1,0 +1,10 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.ITERATION.TEST][VERSION=1.0]
+
+⟡(Σ.MAIN) {
+    ⚡ i: 0;
+    ⚡ limit: 3;
+    WHILE (i < limit) {
+        ⚡ print("INDEX", i);
+        ⚡ i: i + 1;
+    }
+}

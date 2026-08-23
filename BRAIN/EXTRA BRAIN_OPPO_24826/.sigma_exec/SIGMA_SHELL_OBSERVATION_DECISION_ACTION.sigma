@@ -1,0 +1,29 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.OBSERVATION.DECISION.ACTION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_OBSERVATION_DECISION_ACTION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ TRANSFORMED:
+        H("str_split", OBSERVATION, " ", NULL);
+
+    ⚡ INFORMATION:
+        H("list_len", TRANSFORMED, NULL, NULL);
+
+
+    ⋈ ACTION {
+
+        IF (INFORMATION > 2) {
+            ⚡ print(OBSERVATION);
+        } ELSE {
+            ⚡ print(INFORMATION);
+        }
+
+    }
+
+}

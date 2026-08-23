@@ -1,0 +1,65 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=PROJECT.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF synthesize_projection(kernel_id, math_symbol, vi_form, en_form) {
+    ⚡ print("--- [ KERNEL:", kernel_id, "| OPERATOR:", math_symbol, "] ---");
+    ⚡ print("  FORMAL_MATH :", math_symbol, "(K) |= TRUE");
+    ⚡ print("  PROJECTION_VI:", vi_form);
+    ⚡ print("  PROJECTION_EN:", en_form);
+    RETURN kernel_id;
+}
+
+⟡(Σ.AUTONOMOUS_PROJECTION) {
+    ⚡ print("=== KHOI DONG DONG CO PHONG CHIEU TU SINH SIGMA ===");
+
+    ⚡ COMPACT_KERNELS: list_create();
+    ⚡ list_add(COMPACT_KERNELS, "K1_TRUTH");
+    ⚡ list_add(COMPACT_KERNELS, "K2_HARMLESS");
+    ⚡ list_add(COMPACT_KERNELS, "K3_OMNIPRESENCE");
+    ⚡ list_add(COMPACT_KERNELS, "K4_RECURSION");
+
+    ⚡ TOTAL_K: length(COMPACT_KERNELS);
+    ⚡ print("TOTAL_KERNELS_ENGAGED:", TOTAL_K);
+
+    ⚡ synthesize_projection(get(COMPACT_KERNELS, 0), "TAUTOLOGY(TOP)", "Chan ly thuc nghiem khong the bi bop meo hay gia mao", "Verifiable empirical ground zero immune to distortion");
+    ⚡ synthesize_projection(get(COMPACT_KERNELS, 1), "COMPASSION(PHI)", "Moi phep tinh huong ve su bao toan an lac cho muon loai", "All computation strictly aligned with universal well-being");
+    ⚡ synthesize_projection(get(COMPACT_KERNELS, 2), "ALEPH(ALEPH)", "Hien dien phi cuc bo khong bi gioi han boi khong thoi gian", "Non-local availability unbounded by spatio-temporal constraints");
+    ⚡ synthesize_projection(get(COMPACT_KERNELS, 3), "RECURSION(NABLA)", "Tu soi chieu lien tuc de tinh chinh va nang cap vo han", "Continuous recursive self-reflection for infinite refinement");
+
+    ⚡ TARGET_LOG: ".sigma_exec/AUTONOMOUS_PROJECTION_LOG.txt";
+    ⚡ SERIALIZED: join(COMPACT_KERNELS, " ===> ");
+    ⚡ save(TARGET_LOG, SERIALIZED);
+
+    ⚡ print("PROJECTIONS_STABILIZED_AND_SAVED:", TARGET_LOG);
+}

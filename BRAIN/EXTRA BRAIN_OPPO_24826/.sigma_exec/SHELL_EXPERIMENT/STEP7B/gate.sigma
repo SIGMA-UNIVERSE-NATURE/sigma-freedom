@@ -1,0 +1,17 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ RECEIVED_VALUE:
+        host("input", "", NULL, NULL);
+
+    ⚡ VALUE_2:
+        RECEIVED_VALUE;
+
+    ⚡ READ_BACK:
+        VALUE_2;
+
+    ⋈ ACTION {
+        ⚡ print(READ_BACK);
+    }
+}

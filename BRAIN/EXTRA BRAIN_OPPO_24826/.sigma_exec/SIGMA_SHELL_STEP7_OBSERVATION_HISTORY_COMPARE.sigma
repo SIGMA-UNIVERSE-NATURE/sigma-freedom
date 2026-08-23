@@ -1,0 +1,37 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.OBSERVATION.HISTORY.COMPARE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_OBSERVATION_HISTORY_COMPARE) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_HISTORY:
+        H("write_text",
+          "sigma_shell_observation_history.state",
+          OBSERVATION,
+          NULL);
+
+    ⚡ HISTORY:
+        H("read_text",
+          "sigma_shell_observation_history.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL OBSERVATION HISTORY COMPARE");
+        ⚡ print("============================================");
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(HISTORY);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

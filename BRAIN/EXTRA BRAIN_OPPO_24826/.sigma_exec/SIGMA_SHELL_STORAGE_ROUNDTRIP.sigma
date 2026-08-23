@@ -1,0 +1,40 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.STORAGE][VERSION=0.1]
+
+DEF H(op,a,b,c){RETURN host(op,a,b,c);}
+
+⟡(Σ.SHELL_STORAGE_ROUNDTRIP) {
+
+    ⚡ input_data:
+        H("input","",NULL,NULL);
+
+
+    ⚡ write_result:
+        H("write_text",
+          "sigma_shell_roundtrip.state",
+          input_data,
+          NULL);
+
+
+    ⚡ read_data:
+        H("read_text",
+          "sigma_shell_roundtrip.state",
+          NULL,NULL);
+
+
+    ⚡ compare_result:
+        input_data == read_data;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(input_data);
+
+        ⚡ print(write_result);
+
+        ⚡ print(read_data);
+
+        ⚡ print(compare_result);
+
+    }
+
+}

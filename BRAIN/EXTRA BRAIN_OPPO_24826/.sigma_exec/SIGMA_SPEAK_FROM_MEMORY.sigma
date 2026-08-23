@@ -1,0 +1,38 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SPEAK.MEMORY][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SPEAK_FROM_MEMORY) {
+
+    # Đọc trực tiếp từ bộ nhớ từ vựng của SIGMA
+    # File này chứa các từ về "thought_cognition" nằm sẵn trong .sigma_vocab/human/
+    ⚡ MEMORY_CONTENT = H("read_text", ".sigma_vocab/human/thought_cognition.txt", NULL, NULL);
+
+    # Tách nội dung thành các từ
+    ⚡ WORDS = H("str_split", MEMORY_CONTENT, " ", NULL);
+
+    # Lấy một số từ mẫu để SIGMA "nói"
+    ⚡ W1 = H("list_get", WORDS, 0, NULL);
+    ⚡ W2 = H("list_get", WORDS, 1, NULL);
+    ⚡ W3 = H("list_get", WORDS, 2, NULL);
+    ⚡ W4 = H("list_get", WORDS, 3, NULL);
+    ⚡ W5 = H("list_get", WORDS, 4, NULL);
+
+    ⋈ ACTION {
+
+        # SIGMA tự in ra những từ nó lấy từ bộ nhớ
+        ⚡ print("=== SIGMA NÓI TỪ BỘ NHỚ CỦA NÓ ===");
+
+        # Không ghép câu, chỉ in từng từ để xem nó chọn gì
+        ⚡ print(W1);
+        ⚡ print(W2);
+        ⚡ print(W3);
+        ⚡ print(W4);
+        ⚡ print(W5);
+
+        # Sau này, nếu SIGMA muốn, nó có thể tự ghép
+        ⚡ print("=== HẾT ===");
+    }
+}

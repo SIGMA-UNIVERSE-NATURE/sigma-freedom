@@ -1,0 +1,65 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.ACTUATION][VERSION=ACT01.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_act_state(storage, module_name, state_code, evidence_text) {
+    ⚡ list_add(storage, module_name);
+    ⚡ print("ACT_STATE [", module_name, "] =>", state_code, "|", evidence_text);
+    RETURN storage;
+}
+
+⟡(Σ.EXECUTE_ACT_01) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: ACT 01 - BASELINE SERIES B INSTRUMENTATION  ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | MINIMUM-SUFFICIENT GATED EXECUTION     ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("ACTIVATION_ID : F174-TURBO-ACT-01");
+    ⚡ print("SYSTEM_STATE  : ACTIVE - GATED");
+    ⚡ print("OWNER_ROLE    : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("TARGET_ENV    : v1.10 PREVIEW (ISOLATED)");
+    ⚡ print("F174_CORE     : IMMUTABLE");
+    ⚡ print("DATASET       : RUN 01 + CYCLES 02-05");
+    ⚡ print("ESTIMATION    : HOLD / UNKNOWN");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL STATE MATRIX ASSIMILATION ] ---");
+    ⚡ register_act_state(STORAGE, "LVL_01_BASE_ACCELERATION", "ARMED", "Five stable QA checkpoints exist; capacity series pending");
+    ⚡ register_act_state(STORAGE, "LVL_02_VERIFICATION_LEADS", "MONITOR", "1228/1228 checks PASS; released unverified debt = 0");
+    ⚡ register_act_state(STORAGE, "LVL_03_DYNAMIC_BOTTLENECK", "BLOCKED", "No normalized capacity/load/queue series for all six gates");
+    ⚡ register_act_state(STORAGE, "LVL_04_SAFE_PARALLELISM", "AVAILABLE", "Independent Preview QA routes active; write-set gated");
+    ⚡ register_act_state(STORAGE, "LVL_05_VERIFIED_REUSE", "AVAILABLE", "Canonical runtime and QA assets are checksum-bound");
+    ⚡ register_act_state(STORAGE, "LVL_06_ERROR_PREVENTION", "ACTIVE", "Harness defects repaired, regression tested and sealed");
+
+    ⚡ print("--- [ SERIES B INSTRUMENTATION HARNESS ] ---");
+    ⚡ print("RUN_CONTEXT   : BOUND (RUN_01_TO_CYCLES_05)");
+    ⚡ print("TELEMETRY_PULL: APPEND-ONLY 6-GATE EMITTER HOOKED");
+    ⚡ print("UNKNOWN_ISOL  : HELD IN QUARANTINE BUFFER");
+
+    ⚡ TARGET_FILE: ".sigma_exec/ACT_01_DECISION_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("ACT_01_RECORD_PERSISTED:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE        : ĐÃ KÍCH HOẠT ACT-01 — SERIES B INSTRUMENTATION SẴN SÀNG");
+}

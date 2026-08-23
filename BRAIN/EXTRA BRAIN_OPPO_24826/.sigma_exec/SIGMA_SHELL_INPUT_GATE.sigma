@@ -1,0 +1,16 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.INPUT.GATE][VERSION=0.1]
+
+⟡(Σ.SHELL_INPUT_GATE) {
+⚡ prompt: "Σ> ";
+⚡ value: H("input", prompt, NULL, NULL);
+
+⚡ print("SHELL_INPUT_RECEIVED=");  
+⚡ print(value);  
+
+IF (value == "SIGMA_INPUT_TEST") {  
+    ⚡ print("SHELL_INPUT_GATE=PASS");  
+} ELSE {  
+    ⚡ print("SHELL_INPUT_GATE=FAIL");  
+}
+
+}

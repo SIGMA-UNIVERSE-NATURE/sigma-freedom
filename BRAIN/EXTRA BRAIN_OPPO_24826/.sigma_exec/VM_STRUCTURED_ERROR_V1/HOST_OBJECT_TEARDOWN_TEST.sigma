@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.HOST.OBJECT.TEARDOWN][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.HOST_OBJECT_TEARDOWN_TEST) {
+
+    ⚡ list: H("list_new", NULL, NULL, NULL);
+    ⚡ ignore1: H("list_push", list, "SIGMA_LIST_VALUE", NULL);
+
+    ⚡ map: H("map_new", NULL, NULL, NULL);
+    ⚡ ignore2: H("map_set", map, "SIGMA_KEY", "SIGMA_MAP_VALUE");
+
+    ⚡ bytes: H("bytes_new", NULL, NULL, NULL);
+    ⚡ ignore3: H("bytes_u8", bytes, 65, NULL);
+    ⚡ ignore4: H("bytes_u8", bytes, 66, NULL);
+
+    ⚡ print("HOST_OBJECT_CREATION=PASS");
+}

@@ -1,0 +1,68 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PURE.TRAVERSAL][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF scan_second_hop(tokens, total, target_mid, j) {
+    ⚡ S2: get(tokens, j);
+    ⚡ SEP2: get(tokens, j + 1);
+    ⚡ D2: get(tokens, j + 2);
+
+    ⚡ MATCH_MID: S2 == target_mid;
+    ⚡ MATCH_SEP: SEP2 == "~";
+    ⚡ VALID: MATCH_MID && MATCH_SEP;
+
+    ⚡ NEXT_J: j + 1;
+    ⚡ HAS_MORE: NEXT_J < total - 2;
+
+    ⚡ DUMMY: VALID ? print("PATH_PURE_FOUND:", target_mid, "->", D2) : NULL;
+
+    RETURN HAS_MORE ? scan_second_hop(tokens, total, target_mid, NEXT_J) : NULL;
+}
+
+DEF scan_first_hop(tokens, total, root_node, i) {
+    ⚡ S1: get(tokens, i);
+    ⚡ SEP1: get(tokens, i + 1);
+    ⚡ MID: get(tokens, i + 2);
+
+    ⚡ MATCH_ROOT: S1 == root_node;
+    ⚡ MATCH_SEP: SEP1 == "~";
+    ⚡ VALID: MATCH_ROOT && MATCH_SEP;
+
+    ⚡ DUMMY: VALID ? scan_second_hop(tokens, total, MID, 0) : NULL;
+
+    ⚡ NEXT_I: i + 1;
+    ⚡ HAS_MORE: NEXT_I < total - 2;
+
+    RETURN HAS_MORE ? scan_first_hop(tokens, total, root_node, NEXT_I) : NULL;
+}
+
+⟡(Σ.MAIN) {
+    ⚡ MAP_FILE: ".sigma_exec/BIGRAM_MAP.txt";
+    ⚡ RAW: load(MAP_FILE);
+    ⚡ TOKENS: split(RAW, " ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ ROOT: "Y";
+    ⚡ print("=== PURE SIGMA NATIVE RECURSION TRAVERSAL ===");
+    ⚡ print("ROOT_NODE:", ROOT);
+
+    ⚡ scan_first_hop(TOKENS, TOTAL, ROOT, 0);
+}

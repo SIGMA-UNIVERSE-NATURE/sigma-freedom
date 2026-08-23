@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.ACTION2.NEW.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_ACTION2_NEW_OBSERVATION) {
+
+    ⚡ OBSERVATION_1:
+        H("input","",NULL,NULL);
+
+    ⚡ ACTION_1:
+        H("str_split", OBSERVATION_1, " ", NULL);
+
+    ⚡ NEW_OBSERVATION_1:
+        H("list_len", ACTION_1, NULL, NULL);
+
+
+    ⚡ ACTION_2:
+        H("str_split", NEW_OBSERVATION_1, "", NULL);
+
+    ⚡ OBSERVATION_2:
+        ACTION_2;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION_1);
+
+        ⚡ print(NEW_OBSERVATION_1);
+
+        ⚡ print(OBSERVATION_2);
+
+    }
+
+}

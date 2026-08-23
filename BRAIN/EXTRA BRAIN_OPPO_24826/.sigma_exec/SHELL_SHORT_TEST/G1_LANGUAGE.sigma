@@ -1,0 +1,40 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.LANGUAGE][VERSION=0.1]
+
+⟡(Σ.G1_LANGUAGE) {
+
+    ⚡ EXPERIENCE_A:
+        "MINH SAID STAY";
+
+    ⚡ EXPERIENCE_B:
+        "MINH SAID DO NOT STAY";
+
+    ⚡ MEANING_A:
+        "UNKNOWN";
+
+    ⚡ MEANING_B:
+        "UNKNOWN";
+
+    ⚡ RELATION:
+        "UNKNOWN";
+
+    ⚡ STATE:
+        "UNKNOWN";
+
+    ⚡ print("EXPERIENCE_A");
+    ⚡ print(EXPERIENCE_A);
+
+    ⚡ print("EXPERIENCE_B");
+    ⚡ print(EXPERIENCE_B);
+
+    ⚡ print("MEANING_A");
+    ⚡ print(MEANING_A);
+
+    ⚡ print("MEANING_B");
+    ⚡ print(MEANING_B);
+
+    ⚡ print("RELATION");
+    ⚡ print(RELATION);
+
+    ⚡ print("STATE");
+    ⚡ print(STATE);
+}

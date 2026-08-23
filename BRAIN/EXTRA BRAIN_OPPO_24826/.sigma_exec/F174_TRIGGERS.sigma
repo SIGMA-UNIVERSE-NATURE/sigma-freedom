@@ -1,0 +1,88 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.TRIGGERS.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_module_state(storage, state_id, desc) {
+    ⚡ list_add(storage, state_id);
+    ⚡ print("MODULE_STATE_DEFINED [", state_id, "]:", desc);
+    RETURN storage;
+}
+
+DEF register_activation_rule(storage, lvl, name, arm_cond, act_cond, block_cond, success_sig) {
+    ⚡ list_add(storage, lvl);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("ACTIVATION_MATRIX [", lvl, "|", name, "]");
+    ⚡ print("  ARM WHEN     :", arm_cond);
+    ⚡ print("  ACTIVATE ONLY:", act_cond);
+    ⚡ print("  CLOSE/BLOCK  :", block_cond);
+    ⚡ print("  SUCCESS      :", success_sig);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_TRIGGERS) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 91_ACTIVATION TRIGGERS MATRIX ASSIMILATION  ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID    : 91_TURBO_ACTIVATION_TRIGGERS");
+    ⚡ print("OWNER_ROLE : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS     : ACTIVE STANDARD");
+    ⚡ print("CLASS      : OPERATIONAL CONTROL");
+    ⚡ print("PARENT     : 90_TURBO_METRIC_DEFINITIONS");
+    ⚡ print("CORE LAW   : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ SIX MODULE LIFECYCLE STATES ] ---");
+    ⚡ register_module_state(STORAGE, "STATE_SLEEP", "Condition absent");
+    ⚡ register_module_state(STORAGE, "STATE_ARMED", "Condition detected, evidence incomplete");
+    ⚡ register_module_state(STORAGE, "STATE_ACTIVE", "Gate passed and execution authorized");
+    ⚡ register_module_state(STORAGE, "STATE_BLOCKED", "Required telemetry/permission/verification missing");
+    ⚡ register_module_state(STORAGE, "STATE_QUARANTINED", "Affected branch isolated");
+    ⚡ register_module_state(STORAGE, "STATE_COMPLETE", "Intervention verified and checkpoint recorded");
+
+    ⚡ print("--- [ LEVEL ACTIVATION MATRIX (LVL 01 - 03) ] ---");
+    ⚡ register_activation_rule(STORAGE, "LVL_01", "BASE ACCELERATION",
+        "One gate has a measured capacity or cycle-time gap",
+        "Same metric across >=3 aligned checkpoints; intervention and rollback defined",
+        "Sparse/incompatible data; no causal intervention; fake k claim",
+        "Verified throughput rises without quality/reserve loss");
+
+    ⚡ register_activation_rule(STORAGE, "LVL_02", "VERIFICATION LEADS",
+        "Reserve falls, verification queue grows, rework/escape appears",
+        "P and V share unit/scope/window; reserve requirement declared",
+        "Mismatched units; hidden queue/debt; weaker QA proposed",
+        "Reserve restored; released unverified debt remains zero");
+
+    ⚡ register_activation_rule(STORAGE, "LVL_03", "DYNAMIC BOTTLENECK",
+        "End-to-end throughput stalls or queues migrate",
+        "All six gates have normalized telemetry; lowest slack is corroborated",
+        "One checkpoint; selective telemetry; only local speed evidence",
+        "Confirmed bottleneck pressure falls and total throughput rises");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_TRIGGERS_PARTIAL_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_TRIGGERS_GRAPH:", TARGET_FILE);
+    ⚡ print("STATUS: MATRIX 01-03 LOCKED — READY FOR REMAINING MATRIX LEVELS");
+}

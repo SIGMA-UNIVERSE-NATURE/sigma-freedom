@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.ERROR.PROPAGATION.TEST][VERSION=0.1]
+
+DEF FAIL_DEEP() {
+    ⚡ running: 1;
+
+    WHILE (running == 1) {
+        ⚡ running: 1;
+    }
+
+    ⚡ print("DEEP_FUNCTION_MUST_NOT_CONTINUE");
+}
+
+⟡(Σ.ERROR_PROPAGATION_TEST) {
+
+    ⚡ print("BEFORE_DEEP_CALL");
+
+    FAIL_DEEP();
+
+    ⚡ print("MAIN_MUST_NOT_CONTINUE");
+}

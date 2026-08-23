@@ -1,0 +1,9 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.STEP.LIMIT.TEST][VERSION=0.1]
+
+⟡(Σ.STEP_LIMIT_TEST) {
+    ⚡ running: 1;
+
+    WHILE (running == 1) {
+        ⚡ running: 1;
+    }
+}

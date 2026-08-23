@@ -1,0 +1,42 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.DATA.COMPARE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_DATA_COMPARE) {
+
+    ⚡ received_data:
+        H("input","",NULL,NULL);
+
+
+    ⚡ write_result:
+        H("write_text",
+          "sigma_shell_compare.state",
+          received_data,
+          NULL);
+
+
+    ⚡ stored_data:
+        H("read_text",
+          "sigma_shell_compare.state",
+          NULL,NULL);
+
+
+    ⚡ same_data:
+        received_data == stored_data;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(received_data);
+
+        ⚡ print(write_result);
+
+        ⚡ print(stored_data);
+
+        ⚡ print(same_data);
+
+    }
+
+}

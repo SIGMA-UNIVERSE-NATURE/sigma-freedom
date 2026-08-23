@@ -1,0 +1,59 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.EXPERIENCE.INTERNAL.STATE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.EXPERIENCE_INTERNAL_STATE) {
+
+    ⚡ EXPERIENCE:
+        H("input","",NULL,NULL);
+
+
+    ⚡ EXPERIENCE_STRUCTURE:
+        H("str_split",
+          EXPERIENCE,
+          " ",
+          NULL);
+
+
+    ⚡ INTERNAL_STATE:
+        H("list_len",
+          EXPERIENCE_STRUCTURE,
+          NULL,
+          NULL);
+
+
+    ⚡ NEXT_EVENT:
+        H("input","",NULL,NULL);
+
+
+    ⚡ NEXT_STRUCTURE:
+        H("str_split",
+          NEXT_EVENT,
+          " ",
+          NULL);
+
+
+    ⚡ ACTION:
+        H("list_len",
+          NEXT_STRUCTURE,
+          NULL,
+          NULL)
+        +
+        INTERNAL_STATE;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(EXPERIENCE);
+
+        ⚡ print(INTERNAL_STATE);
+
+        ⚡ print(NEXT_EVENT);
+
+        ⚡ print(ACTION);
+
+    }
+
+}

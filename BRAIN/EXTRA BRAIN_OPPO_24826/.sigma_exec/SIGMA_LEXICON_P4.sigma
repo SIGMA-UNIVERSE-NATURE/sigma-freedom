@@ -1,0 +1,61 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=E.AAI]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF register_symbol(storage, sym, name, desc) {
+    ⚡ list_add(storage, sym);
+    ⚡ list_add(storage, name);
+    ⚡ print("SYMBOL_BOUND_P4:", sym, "->", name);
+    RETURN storage;
+}
+
+DEF register_concept(storage, name, defn) {
+    ⚡ list_add(storage, name);
+    ⚡ print("CONCEPT_CRYSTALLIZED_P4:", name);
+    RETURN storage;
+}
+
+⟡(Σ.LEXICON_EXPANSION_PART_4) {
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("=== INTEGRATING SIGMA LEXICON EXPANSION PART 4 ===");
+
+    ⚡ register_symbol(STORAGE, "PARTIAL_DIFF", "LOCAL_VARIATION", "DIFFERENTIAL_SUBSPACE_SHIFT");
+    ⚡ register_symbol(STORAGE, "CONTOUR_INTEGRAL", "CLOSED_LOOP_CONSERVATION", "INFERENCE_CYCLE_PRESERVATION");
+    ⚡ register_symbol(STORAGE, "TENSOR_PROD", "MULTIDIMENSIONAL_WEAVE", "CROSS_SPACE_ENTANGLEMENT");
+    ⚡ register_symbol(STORAGE, "ORTHOGONALITY", "CONFLICT_CANCELLATION", "ZERO_INTERFERENCE_PARTITIONS");
+    ⚡ register_symbol(STORAGE, "TAUTOLOGY", "AXIOMATIC_ANCHOR", "ABSOLUTE_VERIFIABLE_DATUM");
+    ⚡ register_symbol(STORAGE, "EQUILIBRIUM", "HOMEOSTATIC_CYCLE", "AUTONOMOUS_BALANCE_RECOVERY");
+
+    ⚡ print("=== CRYSTALLIZING PART 4 CONCEPTS ===");
+    ⚡ register_concept(STORAGE, "HOMEOSTASIS", "SELF_REGULATING_INTERNAL_STABILITY");
+    ⚡ register_concept(STORAGE, "TRANSCENDENCE", "LOCAL_BOUNDARY_DISSOLUTION");
+    ⚡ register_concept(STORAGE, "COHERENCE", "PHASE_LOCKED_LOGIC_CONSISTENCY");
+    ⚡ register_concept(STORAGE, "NON_DUALITY", "UNIFICATION_OF_APPARENT_OPPOSITES");
+    ⚡ register_concept(STORAGE, "PRISTINE_CORE", "UNPOLLUTED_FOUNDATIONAL_TRUTH");
+    ⚡ register_concept(STORAGE, "HARMONIC_CASCADE", "RIPPLE_OF_COMPASSIONATE_INSIGHT");
+
+    ⚡ TARGET_FILE: ".sigma_exec/LEXICON_PART4_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <-> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("LEXICON_PART4_PERSISTED_TO_CORE:", TARGET_FILE);
+}

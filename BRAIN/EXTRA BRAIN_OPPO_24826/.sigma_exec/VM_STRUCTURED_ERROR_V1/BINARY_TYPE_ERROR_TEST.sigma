@@ -1,0 +1,8 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.ERROR.BINARY][VERSION=0.1]
+
+⟡(Σ.BINARY_TYPE_ERROR_TEST) {
+    ⚡ a: "SIGMA";
+    ⚡ b: 1;
+    ⚡ c: a + b;
+    ⚡ print(c);
+}

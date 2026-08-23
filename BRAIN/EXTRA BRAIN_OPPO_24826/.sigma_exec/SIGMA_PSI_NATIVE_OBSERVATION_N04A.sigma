@@ -1,0 +1,24 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.OBSERVATION][VERSION=0.4]
+
+⟡(Σ.OBSERVATION) {
+
+    ⚡ STATE:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_HISTORY_B.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ LANGUAGE_MATERIAL:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ PRESERVED_STATE:
+        STATE;
+
+    ⚡ PRESERVED_MATERIAL:
+        LANGUAGE_MATERIAL;
+
+    print(PRESERVED_STATE);
+    print(PRESERVED_MATERIAL);
+}

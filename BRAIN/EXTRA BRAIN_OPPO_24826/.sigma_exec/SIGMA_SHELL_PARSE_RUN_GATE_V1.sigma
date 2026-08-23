@@ -1,0 +1,34 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.PARSE.RUN.GATE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF STARTS(text, prefix) {
+    RETURN H("str_starts", text, prefix, NULL);
+}
+
+DEF SLICE(text, start, count) {
+    RETURN H("str_slice", text, start, count);
+}
+
+⟡(Σ.SHELL_PARSE_RUN_GATE) {
+    ⚡ cmd: H("input", "Σ> ", NULL, NULL);
+
+    IF (STARTS(cmd, "run ")) {
+        ⚡ n: H("str_len", cmd, NULL, NULL);
+        ⚡ path: SLICE(cmd, 4, n - 4);
+
+        ⚡ print("SHELL_COMMAND=RUN");
+        ⚡ print("RUN_PATH=");
+        ⚡ print(path);
+
+        IF (H("file_exists", path, NULL, NULL)) {
+            ⚡ print("RUN_TARGET_EXISTS=TRUE");
+        } ELSE {
+            ⚡ print("RUN_TARGET_EXISTS=FALSE");
+        }
+    } ELSE {
+        ⚡ print("SHELL_COMMAND=NOT_RUN");
+    }
+}

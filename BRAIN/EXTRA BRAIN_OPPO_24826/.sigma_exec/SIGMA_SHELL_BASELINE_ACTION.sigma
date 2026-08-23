@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.BASELINE.ACTION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_BASELINE_ACTION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+
+    ⚡ ACTION_RESULT:
+        OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(ACTION_RESULT);
+
+    }
+
+}

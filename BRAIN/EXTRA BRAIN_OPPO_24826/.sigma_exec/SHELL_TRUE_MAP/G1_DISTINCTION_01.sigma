@@ -1,0 +1,38 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.TRUE.G1][VERSION=0.1]
+
+⟡(Σ.G1_DISTINCTION) {
+
+    ⚡ EXPERIENCE_A:
+        "MINH SAID STAY";
+
+    ⚡ EXPERIENCE_B:
+        "MINH SAID STAY";
+
+    ⚡ EXPERIENCE_C:
+        "MINH SAID GO";
+
+    ⚡ SAME_RELATION:
+        EXPERIENCE_A == EXPERIENCE_B;
+
+    ⚡ DIFFERENT_RELATION:
+        EXPERIENCE_A == EXPERIENCE_C;
+
+    ⚡ print("=== G1 LANGUAGE DISTINCTION ===");
+
+    ⚡ print("A");
+    ⚡ print(EXPERIENCE_A);
+
+    ⚡ print("B");
+    ⚡ print(EXPERIENCE_B);
+
+    ⚡ print("C");
+    ⚡ print(EXPERIENCE_C);
+
+    ⚡ print("A_REL_B");
+    ⚡ print(SAME_RELATION);
+
+    ⚡ print("A_REL_C");
+    ⚡ print(DIFFERENT_RELATION);
+
+    ⚡ print("=== END ===");
+}

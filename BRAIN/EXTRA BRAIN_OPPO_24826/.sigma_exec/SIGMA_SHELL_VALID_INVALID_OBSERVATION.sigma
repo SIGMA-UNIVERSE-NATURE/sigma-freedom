@@ -1,0 +1,29 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.VALID.INVALID.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_VALID_INVALID_OBSERVATION) {
+
+    ⚡ VALID_OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ EMPTY_OBSERVATION:
+        H("read_text",
+          "sigma_shell_missing_data.state",
+          NULL,
+          NULL);
+
+
+    ⋈ ACTION {
+
+        IF (EMPTY_OBSERVATION) {
+            ⚡ print(EMPTY_OBSERVATION);
+        } ELSE {
+            ⚡ print(VALID_OBSERVATION);
+        }
+
+    }
+
+}

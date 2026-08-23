@@ -1,0 +1,7 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.ERROR.BINARY.OP][VERSION=0.1]
+
+⟡(Σ.BINARY_OPCODE_BASE) {
+    ⚡ a: 1;
+    ⚡ b: 2;
+    ⚡ c: a + b;
+}

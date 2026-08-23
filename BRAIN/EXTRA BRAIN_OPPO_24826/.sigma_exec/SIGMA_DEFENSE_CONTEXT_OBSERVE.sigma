@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DEFENSE.CONTEXT][VERSION=0.1]
+
+⟡(Σ.DEFENSE_CONTEXT_OBSERVE) {
+
+    ⚡ OBSERVATION:
+        "EMPTY";
+
+    ⚡ CONTEXT:
+        "EMPTY";
+
+    ⚡ PROVENANCE:
+        "EMPTY";
+
+    ⚡ ACTION:
+        "EMPTY";
+
+    ⚡ print(OBSERVATION);
+    ⚡ print(CONTEXT);
+    ⚡ print(PROVENANCE);
+    ⚡ print(ACTION);
+}

@@ -1,0 +1,38 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ STATE:
+        "READY";
+
+    ⚡ COMMAND:
+        "help";
+
+    ⚡ EXPERIENCE:
+        COMMAND;
+
+    ⚡ RECALL:
+        EXPERIENCE;
+
+
+    print("============================================");
+    print("Σ.SHELL — STEP 2");
+    print("RECEIVE COMMAND");
+    print("============================================");
+
+
+    print("STATE:");
+    print(STATE);
+
+    print("COMMAND:");
+    print(COMMAND);
+
+    print("EXPERIENCE:");
+    print(EXPERIENCE);
+
+    print("RECALL:");
+    print(RECALL);
+
+
+    print("SIGMA_SHELL_STOPPED");
+}

@@ -1,0 +1,45 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.EXPERIENCE.STRUCTURE.EMISSION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.EXPERIENCE_STRUCTURE_EMISSION) {
+
+    ⚡ EXPERIENCE:
+        H("input","",NULL,NULL);
+
+    ⚡ STRUCTURE:
+        H("str_split",
+          EXPERIENCE,
+          " ",
+          NULL);
+
+    ⚡ STRUCTURE_SIZE:
+        H("list_len",
+          STRUCTURE,
+          NULL,
+          NULL);
+
+    ⚡ POSITION:
+        0;
+
+    ⋈ ACTION {
+
+        WHILE (POSITION < STRUCTURE_SIZE) {
+
+            ⚡ OBSERVED_PART:
+                H("list_get",
+                  STRUCTURE,
+                  POSITION,
+                  NULL);
+
+            ⚡ print(OBSERVED_PART);
+
+            ⚡ POSITION:
+                POSITION + 1;
+        }
+
+    }
+
+}

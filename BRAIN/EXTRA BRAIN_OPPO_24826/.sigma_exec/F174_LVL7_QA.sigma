@@ -1,0 +1,74 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL7.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_7) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 7: ADVERSARIAL QA ASSIMILATION        ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID       : 07_TURBO_7_ADVERSARIAL_QA");
+    ⚡ print("MODULE_STATUS : ACTIVE");
+    ⚡ print("CLASS         : OPERATIONAL");
+    ⚡ print("PARENT        : 06_TURBO_6_ERROR_PREVENTION");
+    ⚡ print("CORE LAW      : F174_VERIFIED_CORE = IMMUTABLE");
+    ⚡ print("RELEASE STATUS: CLOSED UNTIL ADVERSARIAL QA + QA-OF-QA PASS");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 7 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_ADVERSARIAL_QA", "REQUIRED", "Adversarial stress testing active");
+    ⚡ register_gate_rule(STORAGE, "GATE_MUTATION_SURVIVAL", "ZERO_CRITICAL", "Critical mutation survival must be strictly zero");
+    ⚡ register_gate_rule(STORAGE, "GATE_QA_OF_QA", "META_VERIFY", "QA-of-QA failure automatically invalidates cycle pass");
+    ⚡ register_gate_rule(STORAGE, "GATE_RELEASE_AUTH", "INDEPENDENT_JUDGE", "Release closed until independent Release Judge confirms pass");
+
+    ⚡ print("--- [ MUTATION SCORE & QA METRICS ] ---");
+    ⚡ register_turbo_param(STORAGE, "MS", "M_DETECTED_DIV_M_VALID", "Mutation score ratio");
+    ⚡ register_turbo_param(STORAGE, "QA_VALID", "CRITICAL_MUTATIONS_DETECTED", "1 only when all critical injected mutations are killed");
+    ⚡ register_turbo_param(STORAGE, "RELEASE_CONDITION", "PRODUCT_QA_AND_QA_OF_QA", "Logical conjunction of product and verification validity");
+
+    ⚡ print("--- [ KEEP / REJECT & PURIFICATION ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_INDEPENDENCE", "STRICT_SEPARATION", "Producer != Adversarial Tester != Release Judge");
+    ⚡ register_gate_rule(STORAGE, "RULE_MUTATION_REPAIR", "HEAL_FIRST", "If critical mutation survives: repair QA first, then rerun full regression");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_TOLERANCE", "Reject vanity mutations, tuned tests, and PASS issued under QA failure");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL7_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL7_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 08_TURBO_8_AUTHORIZED_ROUTING.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 07 — CONTINUE_TURBO");
+}

@@ -1,0 +1,45 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.BOUNDARY.ACCESS][VERSION=0.2]
+
+⟡(Σ.BOUNDARY) {
+
+    ⚡ PREVIOUS_STREAM:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_EXPERIENCE_BOUNDARY_V1.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ CURRENT_EXPERIENCE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ BOUNDARY:
+        "\n";
+
+    ⚡ STREAM_WITH_BOUNDARY:
+        PREVIOUS_STREAM + BOUNDARY;
+
+    ⚡ NEW_STREAM:
+        STREAM_WITH_BOUNDARY + CURRENT_EXPERIENCE;
+
+    ⚡ WRITE_STREAM:
+        host(
+            "write_text",
+            ".sigma_exec/SIGMA_SHELL_STREAM_R02.memory",
+            NEW_STREAM,
+            NULL
+        );
+
+    ⚡ WRITE_CURRENT:
+        host(
+            "write_text",
+            ".sigma_exec/SIGMA_SHELL_CURRENT_R02.memory",
+            CURRENT_EXPERIENCE,
+            NULL
+        );
+
+    print(CURRENT_EXPERIENCE);
+    print(NEW_STREAM);
+    print(WRITE_STREAM);
+    print(WRITE_CURRENT);
+}

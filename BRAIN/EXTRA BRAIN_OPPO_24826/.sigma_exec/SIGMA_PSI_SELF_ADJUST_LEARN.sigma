@@ -1,0 +1,17 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.SELF_ADJUST_LEARN][VERSION=0.1]
+
+⟡(Σ.PSI_SELF_ADJUST_LEARN) {
+    ⚡ input_text: 2;
+    ⚡ learned: 0;
+    ⚡ compressed: 0;
+    ⚡ understood: 0;
+
+    ⚡ learned: input_text * 2;
+    ⚡ compressed: learned / 2;
+    ⚡ understood: compressed;
+
+    ⚡ print(input_text);
+    ⚡ print(learned);
+    ⚡ print(compressed);
+    ⚡ print(understood);
+}

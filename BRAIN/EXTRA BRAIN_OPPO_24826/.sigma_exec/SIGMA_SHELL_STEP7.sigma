@@ -1,0 +1,9 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ input:"Σ> ";
+
+    ⚡ print(input);
+
+}

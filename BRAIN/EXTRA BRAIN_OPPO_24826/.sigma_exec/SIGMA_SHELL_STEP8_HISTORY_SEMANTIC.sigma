@@ -1,0 +1,33 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SHELL) {
+
+    ⚡ EXPERIENCE:
+        H("input", "", NULL, NULL);
+
+    ⚡ MEMORY_WRITE:
+        H("write_text", "sigma_shell_history.state", EXPERIENCE, NULL);
+
+    ⚡ MEMORY_READ:
+        H("read_text", "sigma_shell_history.state", NULL, NULL);
+
+    ⚡ RECALL:
+        MEMORY_READ;
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL — STEP 8");
+        ⚡ print("HISTORY SEMANTIC");
+        ⚡ print("============================================");
+
+        ⚡ print(RECALL);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+}

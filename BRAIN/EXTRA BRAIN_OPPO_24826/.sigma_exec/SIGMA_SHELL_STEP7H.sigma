@@ -1,0 +1,17 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ MESSAGE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ STORED_MESSAGE:
+        MESSAGE;
+
+    ⚡ READ_BACK:
+        STORED_MESSAGE;
+
+    print(MESSAGE);
+    print(STORED_MESSAGE);
+    print(READ_BACK);
+}

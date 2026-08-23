@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.RECURRENCE][VERSION=0.1]
+
+⟡(Σ.RECURRENCE) {
+
+    ⚡ U1:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_1.memory",NULL,NULL);
+
+    ⚡ U2:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_2.memory",NULL,NULL);
+
+    ⚡ U3:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_3.memory",NULL,NULL);
+
+    ⚡ U4:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_4.memory",NULL,NULL);
+
+    ⚡ U5:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_5.memory",NULL,NULL);
+
+    ⚡ U6:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_6.memory",NULL,NULL);
+
+    ⚡ U7:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_7.memory",NULL,NULL);
+}

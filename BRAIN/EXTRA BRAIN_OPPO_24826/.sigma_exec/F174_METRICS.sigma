@@ -1,0 +1,88 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.METRICS.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_schema_field(storage, field_name, field_type) {
+    ⚡ list_add(storage, field_name);
+    ⚡ print("TELEMETRY_SCHEMA_FIELD [", field_name, "] -> TYPE:", field_type);
+    RETURN storage;
+}
+
+DEF register_gate_output_unit(storage, gate_name, valid_unit_def) {
+    ⚡ list_add(storage, gate_name);
+    ⚡ print("GATE_UNIT_MAPPED [", gate_name, "] -> NATIVE_VALID_UNIT:", valid_unit_def);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_METRICS) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: SIX-GATE TELEMETRY METRIC DEFINITIONS       ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID    : 90_TURBO_METRIC_DEFINITIONS");
+    ⚡ print("OWNER_ROLE : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS     : ACTIVE STANDARD");
+    ⚡ print("CLASS      : OPERATIONAL CONTROL");
+    ⚡ print("PARENT     : 00_SIGMA_TURBO_INDEX");
+    ⚡ print("CORE LAW   : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ CANONICAL EVENT SCHEMA FIELDS (25-POINT MATRIX) ] ---");
+    ⚡ register_schema_field(STORAGE, "schema_version", "STRING");
+    ⚡ register_schema_field(STORAGE, "event_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "run_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "timestamp_utc", "TIMESTAMP");
+    ⚡ register_schema_field(STORAGE, "gate_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "event_type", "STRING");
+    ⚡ register_schema_field(STORAGE, "status", "ENUM");
+    ⚡ register_schema_field(STORAGE, "artifact_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "knowledge_dna_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "branch_id", "STRING");
+    ⚡ register_schema_field(STORAGE, "parent_checkpoint", "STRING");
+    ⚡ register_schema_field(STORAGE, "owner_role", "STRING");
+    ⚡ register_schema_field(STORAGE, "native_input_units", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "native_valid_output_units", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "complexity_weight", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "weighted_input_evu", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "weighted_valid_output_evu", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "queue_seconds", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "active_cycle_seconds", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "rework_evu", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "defects_generated", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "defects_detected", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "defects_escaped", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "automation_seconds", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "human_seconds", "NUMERIC");
+    ⚡ register_schema_field(STORAGE, "compute_seconds", "NUMERIC");
+
+    ⚡ print("--- [ GATE OUTPUT UNIT MAP ] ---");
+    ⚡ register_gate_output_unit(STORAGE, "DISCOVERY", "Falsifiable evidence-addressable candidate accepted for sourcing");
+    ⚡ register_gate_output_unit(STORAGE, "SOURCE", "Claim set with locked provenance scope freshness and conflict state");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_METRICS_PARTIAL_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_METRICS_GRAPH:", TARGET_FILE);
+    ⚡ print("STATUS: METRIC SCHEMA LOCKED — READY FOR REMAINING GATE DEFINITIONS");
+}

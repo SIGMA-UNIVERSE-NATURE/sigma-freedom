@@ -1,0 +1,13 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ EXPERIENCE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ PARTS:
+        host("str_split",EXPERIENCE," ",NULL);
+
+    print(EXPERIENCE);
+    print(PARTS);
+}

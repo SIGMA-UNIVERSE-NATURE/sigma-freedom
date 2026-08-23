@@ -1,0 +1,29 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.TRANSFORMED.OBSERVATION.RELATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_TRANSFORMED_OBSERVATION_RELATION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ TRANSFORMED:
+        H("str_split", OBSERVATION, " ", NULL);
+
+    ⚡ RELATION:
+        TRANSFORMED == OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(TRANSFORMED);
+
+        ⚡ print(RELATION);
+
+    }
+
+}

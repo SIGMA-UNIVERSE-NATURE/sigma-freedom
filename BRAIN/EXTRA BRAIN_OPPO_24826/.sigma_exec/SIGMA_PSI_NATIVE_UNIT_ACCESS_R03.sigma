@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.UNIT.ACCESS][VERSION=0.1]
+
+⟡(Σ.ACCESS) {
+
+    ⚡ MATERIAL:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_L53B_REAL_EXPERIENCE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR:
+        0;
+
+    ⚡ UNIT:
+        MATERIAL[CURSOR];
+
+    print(UNIT);
+}

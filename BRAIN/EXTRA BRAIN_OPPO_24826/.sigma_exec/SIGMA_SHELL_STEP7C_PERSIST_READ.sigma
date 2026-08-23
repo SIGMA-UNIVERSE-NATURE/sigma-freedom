@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SHELL) {
+
+    ⚡ READ_RESULT:
+        H("read_text", "sigma_shell_observation.state", NULL, NULL);
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL — STEP 7C PERSIST READ");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_RESULT);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+}

@@ -1,0 +1,7 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.LANGUAGE.LOGIC][VERSION=0.1]
+
+⟡(Σ.LOGIC_LEARN) {
+    ⚡ premise: 1;
+    ⚡ evidence: 0;
+    ⚡ conclusion: premise + evidence;
+}

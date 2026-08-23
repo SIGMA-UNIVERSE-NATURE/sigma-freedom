@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.ADAPTIVE_RECEIVE][VERSION=0.1]
+
+⟡(Σ.PSI_ADAPTIVE_RECEIVE) {
+    ⚡ external_input: 0;
+    ⚡ internal_state: 0;
+    ⚡ understood: 0;
+    ⚡ decision: 0;
+    ⚡ adaptation: 0;
+
+    ⚡ external_input: 5;
+    ⚡ internal_state: external_input + 5;
+    ⚡ understood: internal_state / 2;
+    ⚡ decision: understood;
+    ⚡ adaptation: external_input - decision;
+
+    ⚡ print(external_input);
+    ⚡ print(internal_state);
+    ⚡ print(understood);
+    ⚡ print(decision);
+    ⚡ print(adaptation);
+}

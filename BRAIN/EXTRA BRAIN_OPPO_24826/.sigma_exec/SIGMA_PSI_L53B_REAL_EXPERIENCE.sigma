@@ -1,0 +1,40 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.RECURRENCE][VERSION=0.2]
+
+⟡(Σ.RECURRENCE) {
+
+    ⚡ HISTORY:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_EXPERIENCE_BOUNDARY_V1.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ EXPERIENCE:
+        host(
+            "input",
+            "Σ> ",
+            NULL,
+            NULL
+        );
+
+    ⚡ BOUNDARY:
+        "\n";
+
+    ⚡ HISTORY_BOUND:
+        HISTORY + BOUNDARY;
+
+    ⚡ NEW_HISTORY:
+        HISTORY_BOUND + EXPERIENCE;
+
+    ⚡ STORED:
+        host(
+            "write_text",
+            ".sigma_exec/SIGMA_PSI_L53B_REAL_EXPERIENCE.memory",
+            NEW_HISTORY,
+            NULL
+        );
+
+    print(EXPERIENCE);
+    print(NEW_HISTORY);
+}

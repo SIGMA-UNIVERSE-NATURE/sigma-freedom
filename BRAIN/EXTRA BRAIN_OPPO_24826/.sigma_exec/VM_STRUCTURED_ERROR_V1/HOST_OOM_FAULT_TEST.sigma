@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.HOST.OOM.TEST][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.HOST_OOM_FAULT_TEST) {
+
+    ⚡ print("BEFORE_HOST_ALLOCATION");
+
+    ⚡ result: H(
+        "str_replace",
+        "SIGMA",
+        "SIGMA",
+        "SIGMA-PSI"
+    );
+
+    ⚡ print("MAIN_MUST_NOT_CONTINUE");
+}

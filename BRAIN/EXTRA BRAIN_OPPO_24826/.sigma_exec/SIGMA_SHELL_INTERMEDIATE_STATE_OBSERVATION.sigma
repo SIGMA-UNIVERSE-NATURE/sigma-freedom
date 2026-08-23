@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.INTERMEDIATE.STATE.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_INTERMEDIATE_STATE_OBSERVATION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+
+    ⚡ INTERMEDIATE_STATE:
+        OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(INTERMEDIATE_STATE);
+
+    }
+
+}

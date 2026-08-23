@@ -1,0 +1,74 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL6.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_6) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 6: ERROR PREVENTION ASSIMILATION       ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID          : 06_TURBO_6_ERROR_PREVENTION");
+    ⚡ print("MODULE_STATUS    : ACTIVE");
+    ⚡ print("CLASS            : OPERATIONAL");
+    ⚡ print("PARENT           : 05_TURBO_5_VERIFIED_REUSE");
+    ⚡ print("CORE LAW         : F174_VERIFIED_CORE = IMMUTABLE");
+    ⚡ print("PREVENTION STATUS: CLOSED UNTIL DEFECT BASELINE + CAUSAL EVIDENCE EXIST");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 6 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_DEFECT_TAXONOMY", "REQUIRED", "Taxonomy by gate, cause, severity, recurrence, and escape");
+    ⚡ register_gate_rule(STORAGE, "GATE_INTERVENTION_AUTH", "ROOT_CAUSE_ONLY", "Intervention permitted only on confirmed causal links");
+    ⚡ register_gate_rule(STORAGE, "GATE_ADVERSARIAL_QA", "MANDATORY", "Adversarial QA and affected regression after every intervention");
+    ⚡ register_gate_rule(STORAGE, "GATE_RELEASE_INTEGRITY", "CLOSED_ON_ESCAPE", "Release closed if new defect escape or unverified debt appears");
+
+    ⚡ print("--- [ ERROR PREVENTION FORMULAS ] ---");
+    ⚡ register_turbo_param(STORAGE, "Q_net", "P_MUL_Y_DIV_1_PLUS_R", "Net verified throughput after yield and rework");
+    ⚡ register_turbo_param(STORAGE, "Y", "FIRST_PASS_VERIFIED_RATIO", "First-pass yield ratio (Verified / Total submitted)");
+    ⚡ register_turbo_param(STORAGE, "R", "REWORK_EFFORT_RATIO", "Rework effort ratio (Rework effort / Original effort)");
+
+    ⚡ print("--- [ STRUCTURAL PREVENTION & IMMUNITY ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_EARLY_STOP", "PREFLIGHT", "Stop invalid input at earliest responsible gate with truthful fallback");
+    ⚡ register_gate_rule(STORAGE, "RULE_PERMANENT_FIXTURE", "MUTATION_SHIELD", "Promote each escaped defect into permanent regression fixture");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_TOLERANCE", "Reject brittle overfitting, hidden rework, and test standard reduction");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL6_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL6_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 07_TURBO_7_ADVERSARIAL_QA.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 06 — CONTINUE_TURBO");
+}

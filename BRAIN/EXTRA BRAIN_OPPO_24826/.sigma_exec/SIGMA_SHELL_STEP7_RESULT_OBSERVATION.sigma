@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.RESULT.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_RESULT_OBSERVATION) {
+
+    ⚡ OBSERVED_RESULT:
+        H("read_text",
+          "sigma_shell_verify.state",
+          NULL,
+          NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL RESULT OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(OBSERVED_RESULT);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.EXPERIENCE][VERSION=0.3]
+
+⟡(Σ.G1_EXPERIENCE_STRUCTURE) {
+
+    ⚡ STATE:
+        10;
+
+    ⚡ EXPERIENCE_DIRECTION:
+        -1;
+
+    ⚡ EXPERIENCE_MAGNITUDE:
+        4;
+
+    ⚡ print("STATE_BEFORE");
+    ⚡ print(STATE);
+
+    ⚡ STATE:
+        STATE + (EXPERIENCE_DIRECTION * EXPERIENCE_MAGNITUDE);
+
+    ⚡ print("STATE_AFTER");
+    ⚡ print(STATE);
+}

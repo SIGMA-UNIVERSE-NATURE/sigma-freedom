@@ -1,0 +1,58 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.RECORD][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ SEQ_A: "ONE TWO THREE FOUR FIVE";
+    ⚡ SEQ_B: "ONE X THREE Y FIVE";
+
+    ⚡ LIST_A: split(SEQ_A, " ");
+    ⚡ LIST_B: split(SEQ_B, " ");
+    ⚡ LEN: length(LIST_A);
+
+    ⚡ DIFF_RECORDS: list_create();
+
+    ⚡ I: 0;
+    WHILE (I < LEN) {
+        ⚡ VAL_A: get(LIST_A, I);
+        ⚡ VAL_B: get(LIST_B, I);
+
+        IF (VAL_A != VAL_B) {
+            ⚡ list_add(DIFF_RECORDS, VAL_A);
+            ⚡ list_add(DIFF_RECORDS, VAL_B);
+        }
+        ⚡ I: I + 1;
+    }
+
+    ⚡ TOTAL_DIFFS: length(DIFF_RECORDS);
+    ⚡ print("TOTAL_DIFF_TOKENS_RECORDED", TOTAL_DIFFS);
+
+    ⚡ K: 0;
+    WHILE (K < TOTAL_DIFFS) {
+        ⚡ DIFF_ITEM: get(DIFF_RECORDS, K);
+        ⚡ print("DIFF_TOKEN", K, DIFF_ITEM);
+        ⚡ K: K + 1;
+    }
+}

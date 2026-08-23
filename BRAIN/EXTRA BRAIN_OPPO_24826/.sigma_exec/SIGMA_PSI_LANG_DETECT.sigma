@@ -1,0 +1,11 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.LANG_DETECT][VERSION=0.1]
+
+⟡(Σ.PSI_LANG_DETECT) {
+    ⚡ word: 1;
+    ⚡ lang_code: 0;
+
+    ⚡ lang_code: word;
+
+    ⚡ print(word);
+    ⚡ print(lang_code);
+}

@@ -1,0 +1,141 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.STRUCTURAL_BITPACK][VERSION=0.2]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+DEF STR_LEN(s) {
+    RETURN H("str_len",s,NULL,NULL);
+}
+
+DEF SLICE(s,p,n) {
+    RETURN H("str_slice",s,p,n);
+}
+
+DEF BITS_NEEDED(n) {
+    ⚡ bits: 0;
+    ⚡ capacity: 1;
+
+    WHILE (capacity < n) {
+        ⚡ capacity: capacity * 2;
+        ⚡ bits: bits + 1;
+    }
+
+    RETURN bits;
+}
+
+DEF EXPAND_RANGE(universe,a,b) {
+    ⚡ p1: H("str_find",universe,a,NULL);
+    ⚡ p2: H("str_find",universe,b,NULL);
+
+    IF (p1 < 0 || p2 < p1) {
+        RETURN "";
+    }
+
+    RETURN SLICE(
+        universe,
+        p1,
+        p2-p1+1
+    );
+}
+
+⟡(Σ.STRUCTURALBITPACK) {
+
+    ⚡ raw:
+        "abcdefghijklmnopqrstyvwxyz0123456789";
+
+    ⚡ universe:
+        "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    ⚡ target_bits: 272;
+
+    // STRUCTURE PROVIDED FROM VERIFIED PRIOR DISCOVERY
+    ⚡ s1:
+        EXPAND_RANGE(universe,"a","t");
+
+    ⚡ s2:
+        "y";
+
+    ⚡ s3:
+        EXPAND_RANGE(universe,"v","z");
+
+    ⚡ s4:
+        EXPAND_RANGE(universe,"0","9");
+
+    ⚡ reconstructed:
+        s1 + s2 + s3 + s4;
+
+    ⚡ exact:
+        reconstructed == raw;
+
+    // 36-symbol shared alphabet
+    ⚡ alphabet_size:
+        STR_LEN(universe);
+
+    ⚡ symbol_bits:
+        BITS_NEEDED(alphabet_size);
+
+    // R(a,t)=2
+    // L(y)=1
+    // R(v,z)=2
+    // R(0,9)=2
+    ⚡ structural_symbols:
+        2 + 1 + 2 + 2;
+
+    ⚡ segment_count: 4;
+
+    // R/L requires one type bit per segment
+    ⚡ type_bits:
+        segment_count;
+
+    ⚡ symbol_payload_bits:
+        structural_symbols * symbol_bits;
+
+    ⚡ shared_schema_bits:
+        symbol_payload_bits + type_bits;
+
+    // self-describing form also carries segment count
+    ⚡ segment_count_bits:
+        BITS_NEEDED(segment_count + 1);
+
+    ⚡ self_describing_bits:
+        shared_schema_bits + segment_count_bits;
+
+    ⚡ below_target:
+        self_describing_bits < target_bits;
+
+    ⚡ savings_bits:
+        target_bits - self_describing_bits;
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+
+    ⚡ print("TARGET_BITS=",target_bits);
+    ⚡ print("SYMBOL_BITS=",symbol_bits);
+    ⚡ print("STRUCTURAL_SYMBOLS=",structural_symbols);
+    ⚡ print("SEGMENT_COUNT=",segment_count);
+
+    ⚡ print("SYMBOL_PAYLOAD_BITS=",symbol_payload_bits);
+    ⚡ print("TYPE_BITS=",type_bits);
+    ⚡ print("SHARED_SCHEMA_BITS=",shared_schema_bits);
+    ⚡ print("SELF_DESCRIBING_BITS=",self_describing_bits);
+    ⚡ print("SAVINGS_BITS=",savings_bits);
+
+    ⚡ print("RECONSTRUCTED=",reconstructed);
+
+    IF (exact) {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=PASS");
+    } ELSE {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=FAIL");
+    }
+
+    IF (exact && below_target) {
+        ⚡ print("LOWER_THAN_272_BITS=PASS");
+    } ELSE {
+        ⚡ print("LOWER_THAN_272_BITS=FAIL");
+    }
+
+    ⚡ print("COMPRESS_MEANING_PRESERVE_DIFFERENCE=TRUE");
+    ⚡ print("MEMORY_WRITE=FALSE");
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

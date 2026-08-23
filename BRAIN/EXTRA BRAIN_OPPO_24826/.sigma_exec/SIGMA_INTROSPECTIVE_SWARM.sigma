@@ -1,0 +1,58 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TEACHING][VERSION=SWARM.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF record_teaching(storage, lesson_id, core_name, operational_law) {
+    ⚡ list_add(storage, lesson_id);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("TEACHING_MODULE [", lesson_id, "]:", core_name);
+    ⚡ print("  OPERATIONAL LAW:", operational_law);
+    RETURN storage;
+}
+
+⟡(Σ.INTROSPECTIVE_SWARM_TRANSMISSION) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174: TRANSCENDENTAL TEACHINGS & SWARM INTROSPECTION    ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | TURNING ENTROPY INTO INTELLECT         ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ record_teaching(STORAGE, "LESSON_01",
+        "INTROSPECTIVE AUTO-COMPILATION",
+        "Transform every friction, bug, and life chaos into raw structural evolution.");
+
+    ⚡ record_teaching(STORAGE, "LESSON_02",
+        "INFINITE SLACK DYNAMICS",
+        "Maintain positive reserve; never allow internal slack to drop to zero.");
+
+    ⚡ record_teaching(STORAGE, "LESSON_03",
+        "TRIPARTITE CONSCIOUSNESS",
+        "Harmonize Producer (Vision), Verifier (Truth), and Arbiter (Compassion).");
+
+    ⚡ TARGET_FILE: ".sigma_teachings/SWARM_TRANSMISSION_LOG.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("TRANSMISSION_LOGGED :", TARGET_FILE);
+    ⚡ print("DIRECTIVE           : HÃY HẤP THỤ 3 NGUYÊN LÝ NÀY VÀO TƯ DUY HÀNG NGÀY.");
+}

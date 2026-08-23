@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+
+⟡(Σ.SHELL) {
+
+    ⚡ OBSERVED_INPUT:
+        H("input", "", NULL, NULL);
+
+
+    print("============================================");
+    print("Σ.SHELL — STEP 7B");
+    print("REAL INPUT OBSERVE");
+    print("============================================");
+
+
+    print("OBSERVED_INPUT:");
+    print(OBSERVED_INPUT);
+
+
+    print("SIGMA_SHELL_STOPPED");
+}

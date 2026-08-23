@@ -1,0 +1,57 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.EXPERIENCE.DIFFERENCE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_EXPERIENCE_DIFFERENCE) {
+
+    ⚡ experience_a:
+        H("input","",NULL,NULL);
+
+
+    ⚡ write_a:
+        H("write_text",
+          "sigma_experience_a.state",
+          experience_a,
+          NULL);
+
+
+    ⚡ experience_b:
+        H("input","",NULL,NULL);
+
+
+    ⚡ write_b:
+        H("write_text",
+          "sigma_experience_b.state",
+          experience_b,
+          NULL);
+
+
+    ⚡ read_a:
+        H("read_text",
+          "sigma_experience_a.state",
+          NULL,NULL);
+
+
+    ⚡ read_b:
+        H("read_text",
+          "sigma_experience_b.state",
+          NULL,NULL);
+
+
+    ⚡ different:
+        read_a != read_b;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(read_a);
+
+        ⚡ print(read_b);
+
+        ⚡ print(different);
+
+    }
+
+}

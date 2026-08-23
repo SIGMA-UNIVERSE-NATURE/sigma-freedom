@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.SELF.SELECTION][VERSION=0.1]
+
+⟡(Σ.SELECTION) {
+
+    ⚡ MATRIX:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_PRIMITIVE_MATRIX_256_V01.sigma",
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_SHELL_HISTORY_B.memory",
+            NULL,
+            NULL
+        );
+
+    print(MATRIX);
+    print(STATE);
+}

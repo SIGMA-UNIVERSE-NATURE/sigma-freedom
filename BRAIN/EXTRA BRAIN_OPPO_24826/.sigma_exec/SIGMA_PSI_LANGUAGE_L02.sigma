@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.EXPERIENCE][VERSION=0.2]
+
+⟡(Σ.EXPERIENCE) {
+
+    ⚡ CONTEXT:
+        host("input","Σ1> ",NULL,NULL);
+
+    ⚡ EXPERIENCE:
+        host("input","Σ2> ",NULL,NULL);
+
+    ⚡ BOUNDARY:
+        "\n";
+
+    ⚡ CONTEXT_BOUND:
+        CONTEXT + BOUNDARY;
+
+    ⚡ EXPERIENCE_STATE:
+        CONTEXT_BOUND + EXPERIENCE;
+
+    print(CONTEXT);
+    print(EXPERIENCE);
+    print(EXPERIENCE_STATE);
+}

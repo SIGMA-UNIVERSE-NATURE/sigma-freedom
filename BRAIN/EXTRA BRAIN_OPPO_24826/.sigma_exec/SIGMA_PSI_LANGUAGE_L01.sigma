@@ -1,0 +1,13 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.EXPERIENCE][VERSION=0.1]
+
+⟡(Σ.EXPERIENCE) {
+
+    ⚡ EXPERIENCE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ PRESERVED:
+        EXPERIENCE;
+
+    print(EXPERIENCE);
+    print(PRESERVED);
+}

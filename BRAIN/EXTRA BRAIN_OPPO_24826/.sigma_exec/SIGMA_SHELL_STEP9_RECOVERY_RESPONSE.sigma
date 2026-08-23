@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SHELL) {
+
+    ⚡ OBSERVATION:
+        H("read_text", "sigma_shell_nonexistent.state", NULL, NULL);
+
+    ⚡ RESPONSE:
+        OBSERVATION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL — STEP 9");
+        ⚡ print("RECOVERY RESPONSE");
+        ⚡ print("============================================");
+
+        ⚡ print(RESPONSE);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+}

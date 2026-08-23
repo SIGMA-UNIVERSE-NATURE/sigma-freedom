@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_41_50][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_41_50) {
+    ⚡ c41: 100;
+    ⚡ c42: 100;
+    ⚡ c43: 100;
+    ⚡ c44: 100;
+    ⚡ c45: 100;
+    ⚡ c46: 100;
+    ⚡ c47: 100;
+    ⚡ c48: 100;
+    ⚡ c49: 100;
+    ⚡ c50: 100;
+    ⚡ total_new: c41 + c42 + c43 + c44 + c45 + c46 + c47 + c48 + c49 + c50;
+    ⚡ total_all: 4000 + total_new;
+    ⚡ avg_cluster: total_all / 50;
+
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

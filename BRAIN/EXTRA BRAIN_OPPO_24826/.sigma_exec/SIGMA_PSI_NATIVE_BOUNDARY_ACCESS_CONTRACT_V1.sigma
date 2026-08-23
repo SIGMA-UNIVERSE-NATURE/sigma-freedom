@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.BOUNDARY.ACCESS][VERSION=0.1]
+
+⟡(Σ.BOUNDARY.ACCESS) {
+
+    ⚡ INPUT:
+        "STREAM";
+
+    ⚡ STRUCTURE:
+        "BOUNDARY";
+
+    ⚡ REQUIRED:
+        "INDIVIDUAL_RUNTIME_VALUE";
+
+    ⚡ STATUS:
+        "NOT_PROVEN";
+
+    print(INPUT);
+    print(STRUCTURE);
+    print(REQUIRED);
+    print(STATUS);
+}

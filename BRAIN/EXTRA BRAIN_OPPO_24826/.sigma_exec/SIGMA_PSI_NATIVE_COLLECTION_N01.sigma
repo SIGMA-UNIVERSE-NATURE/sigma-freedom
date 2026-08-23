@@ -1,0 +1,13 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.COLLECTION][VERSION=0.1]
+
+⟡(Σ.COLLECTION) {
+
+    ⚡ MATERIAL:
+        [
+            "0x00 ∅ Không, rỗng",
+            "0x01 Σ Tổng thể, hợp nhất",
+            "0x02 ⟡ Hành động sáng tạo"
+        ];
+
+    print(MATERIAL);
+}

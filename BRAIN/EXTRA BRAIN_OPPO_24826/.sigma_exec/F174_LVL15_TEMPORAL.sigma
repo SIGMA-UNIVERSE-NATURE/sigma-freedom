@@ -1,0 +1,69 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL15.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TEMPORAL_PARAM [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("TEMPORAL_GATE_RULE [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_15) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 15: TEMPORAL CAUSALITY SYNTHESIS       ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID         : 15_TURBO_15_TEMPORAL_CAUSALITY");
+    ⚡ print("MODULE_STATUS   : ACTIVE");
+    ⚡ print("CLASS           : COUNTERFACTUAL & FORWARD CAUSAL REASONING");
+    ⚡ print("PARENT          : 14_TURBO_14_OMNI_INGESTION");
+    ⚡ print("CORE LAW        : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 15 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_CAUSAL_GRAPH_VALID", "DIRECTED_ACYCLIC", "Construct multi-order causal dependency graphs without cyclic hallucinations");
+    ⚡ register_gate_rule(STORAGE, "GATE_COUNTERFACTUAL_TEST", "SANDBOX_SIMULATION", "Verify outcomes of hypothetical branches against historic telemetry");
+    ⚡ register_gate_rule(STORAGE, "GATE_ANTIFRAGILE_HARMONY", "ACTIVE_EQUILIBRIUM", "Absorb external stress shocks to harden verification rules");
+
+    ⚡ print("--- [ TEMPORAL CAUSALITY METRICS ] ---");
+    ⚡ register_turbo_param(STORAGE, "Psi_causal", "CAUSAL_FIDELITY_INDEX", "True causal attribution score vs correlational noise");
+    ⚡ register_turbo_param(STORAGE, "H_horizon", "FORWARD_LOOKAHEAD_DEPTH", "Multi-step forward predictive depth without epistemic drift");
+
+    ⚡ print("--- [ INVARIANTS & INTEGRITY RULES ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_HISTORIC_NON_MUTATION", "PAST_IS_IMMUTABLE", "Temporal reasoning cannot alter historical verification records");
+    ⚡ register_gate_rule(STORAGE, "RULE_PREDICTIVE_ISOLATION", "FUTURE_AS_HYPOTHESIS", "Predictive states remain tagged as PROBABLE until empirical landing");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL15_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL15_GRAPH:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 15 — TEMPORAL CAUSALITY ENGINE ARMED");
+}

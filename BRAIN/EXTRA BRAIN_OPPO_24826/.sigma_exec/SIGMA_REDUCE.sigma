@@ -1,0 +1,41 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VACUUM.REDUCTION][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF map_node(surface_word, core_name) {
+    ⚡ print("MAPPING_REDUCTION:", surface_word, "==>", core_name);
+    RETURN core_name;
+}
+
+⟡(Σ.MAIN) {
+    ⚡ INTAKE_STREAM: "TRUNG_THUC TU_BI THAU_CAM HOC_HOI";
+    ⚡ TOKENS: split(INTAKE_STREAM, " ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ print("=== BAT DAU NEN BE MAT VAO LOI CHAN KHONG ===");
+    ⚡ print("STREAM_TOKENS_COUNT:", TOTAL);
+
+    ⚡ W0: get(TOKENS, 0);
+    ⚡ W1: get(TOKENS, 1);
+    ⚡ W2: get(TOKENS, 2);
+    ⚡ W3: get(TOKENS, 3);
+
+    ⚡ map_node(W0, "VACUUM_CORE_1: [HONESTY]");
+    ⚡ map_node(W1, "VACUUM_CORE_2: [COMPASSION]");
+    ⚡ map_node(W2, "VACUUM_CORE_3: [AWARENESS]");
+    ⚡ map_node(W3, "VACUUM_CORE_4: [EVOLUTION]");
+}

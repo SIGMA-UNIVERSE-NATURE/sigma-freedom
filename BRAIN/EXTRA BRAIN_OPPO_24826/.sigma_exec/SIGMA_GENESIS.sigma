@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.GENESIS][VERSION=1.0]
+
+⟡(Σ.SOURCE_IDENTITY) {
+    ⚡ DOMAIN: "SIGMA.GENESIS";
+    ⚡ LANGUAGE: "SIGMA";
+    ⚡ ROOT: "SELF";
+}
+
+⟡(Σ.MAIN) {
+    ⚡ INPUT: "SIGMA SELF DISCOVERY";
+    ⚡ TOKENS: str_split(INPUT, " ");
+    ⚡ TOTAL: list_len(TOKENS);
+
+    ⚡ print("TOTAL", TOTAL);
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL) {
+        ⚡ TOKEN: list_get(TOKENS, I);
+        ⚡ print("STEP", I, TOKEN);
+        ⚡ I: I + 1;
+    }
+}

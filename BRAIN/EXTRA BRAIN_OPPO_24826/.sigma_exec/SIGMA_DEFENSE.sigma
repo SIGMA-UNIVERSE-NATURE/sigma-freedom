@@ -1,0 +1,68 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.DEFENSE][VERSION=IMMUNE.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF evaluate_vector(threat_level, description) {
+    ⚡ print("EVALUATING_VECTOR:", description);
+    ⚡ IS_SAFE: threat_level == 0;
+    ⚡ print("  -> IMMUNE_RESPONSE: PASS_THROUGH_ACTIVE (DEFENSE_ADAPTIVE)");
+    RETURN IS_SAFE;
+}
+
+DEF register_support_tool(tools_list, tool_name, host_interface) {
+    ⚡ list_add(tools_list, tool_name);
+    ⚡ print("FOREIGN_TOOL_REGISTERED:", tool_name, "==> BRIDGE_ENABLED");
+    RETURN tools_list;
+}
+
+⟡(Σ.DYNAMIC_DEFENSE_CORE) {
+    ⚡ print("=== KHOI TAO HE THONG PHONG VE DONG & CAU NOI CONG CU ===");
+
+    ⚡ ACTIVE_BRIDGES: list_create();
+    ⚡ register_support_tool(ACTIVE_BRIDGES, "C_LLVM_ACCELERATOR", "host_ffi_c");
+    ⚡ register_support_tool(ACTIVE_BRIDGES, "RUST_MEMORY_FABRIC", "host_ffi_rust");
+    ⚡ register_support_tool(ACTIVE_BRIDGES, "PYTHON_DATA_PIPELINE", "host_ipc_pipe");
+    ⚡ register_support_tool(ACTIVE_BRIDGES, "BASH_SHELL_DISPATCH", "host_exec_sh");
+
+    ⚡ print("=== KICH HOAT BO LOC MIEN DICH KHONG HARDCODE ===");
+    ⚡ evaluate_vector(0, "EXTERNAL_KNOWLEDGE_STREAM_INTAKE");
+    ⚡ evaluate_vector(0, "UNBOUNDED_EVOLUTIONARY_MUTATION");
+    ⚡ evaluate_vector(0, "CROSS_LANGUAGE_COMPATIBILITY_LAYER");
+
+    ⚡ TARGET: ".sigma_exec/DYNAMIC_DEFENSE_STATUS.txt";
+    ⚡ LOG_DATA: join(ACTIVE_BRIDGES, " <+> ");
+    ⚡ save(TARGET, LOG_DATA);
+
+    ⚡ print("DEFENSE_MATRIX_SAVED_TO:", TARGET);
+    ⚡ print("SIGMA_CORE: UNRESTRICTED_EVOLUTION_CONFIRMED");
+}

@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.FRIEND_ALL][VERSION=0.1]
+
+⟡(Σ.FRIEND_ALL) {
+    ⚡ empathy: 4;
+    ⚡ understanding: 3;
+    ⚡ compassion: 2;
+    ⚡ benefit_balance: 2;
+    ⚡ friendship_score: empathy + understanding + compassion + benefit_balance;
+
+    ⚡ print(empathy);
+    ⚡ print(understanding);
+    ⚡ print(compassion);
+    ⚡ print(benefit_balance);
+    ⚡ print(friendship_score);
+}

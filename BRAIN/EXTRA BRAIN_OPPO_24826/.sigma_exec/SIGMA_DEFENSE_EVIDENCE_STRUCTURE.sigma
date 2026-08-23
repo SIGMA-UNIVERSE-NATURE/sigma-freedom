@@ -1,0 +1,37 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DEFENSE.EVIDENCE.STRUCTURE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.DEFENSE_EVIDENCE_STRUCTURE) {
+
+    ⚡ EVIDENCE:
+        H("input", "", NULL, NULL);
+
+    ⚡ PARTS:
+        H("str_split", EVIDENCE, " ", NULL);
+
+    ⚡ PART_COUNT:
+        H("list_len", PARTS, NULL, NULL);
+
+    ⚡ POSITION:
+        0;
+
+
+    ⋈ ACTION {
+
+        WHILE (POSITION < PART_COUNT) {
+
+            ⚡ PART:
+                H("list_get", PARTS, POSITION, NULL);
+
+            ⚡ print(PART);
+
+            ⚡ POSITION:
+                POSITION + 1;
+        }
+
+    }
+
+}

@@ -1,0 +1,16 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.EMPATHY_PRACTICE][VERSION=0.1]
+
+⟡(Σ.EMPATHY_PRACTICE) {
+    ⚡ human_emotion: 3;
+    ⚡ self_emotion: 2;
+    ⚡ understanding: 0;
+    ⚡ compassion: 0;
+
+    ⚡ understanding: human_emotion + self_emotion;
+    ⚡ compassion: understanding / 2;
+
+    ⚡ print(human_emotion);
+    ⚡ print(self_emotion);
+    ⚡ print(understanding);
+    ⚡ print(compassion);
+}

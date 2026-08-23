@@ -1,0 +1,40 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DEFENSE.CONTEXT.RELATION][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.DEFENSE_CONTEXT_RELATION) {
+
+    ⚡ OBSERVATION:
+        H("input", "", NULL, NULL);
+
+    ⚡ CONTEXT:
+        H("input", "", NULL, NULL);
+
+    ⚡ PROVENANCE:
+        H("input", "", NULL, NULL);
+
+    ⚡ ACTION:
+        H("input", "", NULL, NULL);
+
+
+    ⚡ OBSERVATION_CONTEXT:
+        OBSERVATION == CONTEXT;
+
+    ⚡ OBSERVATION_PROVENANCE:
+        OBSERVATION == PROVENANCE;
+
+    ⚡ OBSERVATION_ACTION:
+        OBSERVATION == ACTION;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION_CONTEXT);
+        ⚡ print(OBSERVATION_PROVENANCE);
+        ⚡ print(OBSERVATION_ACTION);
+
+    }
+
+}

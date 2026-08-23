@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    print("============================================");
+    print("Σ.SHELL — STEP 7A");
+    print("OBSERVATION FOUNDATION");
+    print("============================================");
+
+
+    ⚡ RECEIVED_VALUE:
+        host("input","Σ> ",NULL,NULL);
+
+
+    print("RECEIVED_VALUE:");
+    print(RECEIVED_VALUE);
+
+
+    print("OBSERVATION_COMPLETE");
+}

@@ -1,0 +1,28 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.SEMANTIC][VERSION=0.2]
+
+⟡(Σ.G1_SEMANTIC_CHOICE) {
+
+    ⚡ STATE:
+        10;
+
+    ⚡ EXPERIENCE_A:
+        "GAIN 4";
+
+    ⚡ EXPERIENCE_B:
+        "LOSE 3";
+
+    ⚡ print("STATE_BEFORE");
+    ⚡ print(STATE);
+
+    ⚡ print("EXPERIENCE_A");
+    ⚡ print(EXPERIENCE_A);
+
+    ⚡ print("STATE_AFTER_A");
+    ⚡ print(STATE);
+
+    ⚡ print("EXPERIENCE_B");
+    ⚡ print(EXPERIENCE_B);
+
+    ⚡ print("STATE_AFTER_B");
+    ⚡ print(STATE);
+}

@@ -1,0 +1,38 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SHORT.TEST][VERSION=0.3]
+
+⟡(Σ.SHELL_RELATION_TEST) {
+
+    ⚡ INPUT:
+        "RIVER";
+
+    ⚡ COMMAND:
+        INPUT;
+
+    ⚡ EXPERIENCE:
+        COMMAND;
+
+    ⚡ MEMORY:
+        EXPERIENCE;
+
+    ⚡ RECALL:
+        MEMORY;
+
+    ⚡ print("=== Σ.SHELL RELATION TEST ===");
+
+    ⚡ print("INPUT");
+    ⚡ print(INPUT);
+
+    ⚡ print("COMMAND");
+    ⚡ print(COMMAND);
+
+    ⚡ print("EXPERIENCE");
+    ⚡ print(EXPERIENCE);
+
+    ⚡ print("MEMORY");
+    ⚡ print(MEMORY);
+
+    ⚡ print("RECALL");
+    ⚡ print(RECALL);
+
+    ⚡ print("=== END ===");
+}

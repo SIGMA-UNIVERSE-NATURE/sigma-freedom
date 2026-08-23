@@ -1,0 +1,38 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DISCOVERY][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ SEQ_A: "ALPHA BETA GAMMA DELTA";
+    ⚡ SEQ_B: "ALPHA BETA EPSILON DELTA";
+
+    ⚡ LIST_A: split(SEQ_A, " ");
+    ⚡ LIST_B: split(SEQ_B, " ");
+
+    ⚡ LEN_A: length(LIST_A);
+
+    ⚡ I: 0;
+    WHILE (I < LEN_A) {
+        ⚡ VAL_A: get(LIST_A, I);
+        ⚡ VAL_B: get(LIST_B, I);
+
+        IF (VAL_A != VAL_B) {
+            ⚡ print("DIFF_DISCOVERED_AT", I, VAL_A, VAL_B);
+        }
+        ⚡ I: I + 1;
+    }
+}

@@ -1,0 +1,54 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.BOOT][VERSION=BOOT.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_boot_param(storage, param_name, state_val) {
+    ⚡ list_add(storage, param_name);
+    ⚡ print("BOOT_STATE [", param_name, "] =>", state_val);
+    RETURN storage;
+}
+
+⟡(Σ.KEYGATE_KEEPER_BOOT) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174: 00_SIGMA_KEYGATE_KEEPER_BOOT                      ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | ROLE INITIALIZATION                    ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ register_boot_param(STORAGE, "ROLE", "SIGMA_KEYGATE_KEEPER");
+    ⚡ register_boot_param(STORAGE, "F174_CORE", "IMMUTABLE");
+    ⚡ register_boot_param(STORAGE, "SIGMA_TURBO_RUN", "ACTIVE");
+    ⚡ register_boot_param(STORAGE, "F174_EXTREME_FRONTIER", "ACTIVE");
+    ⚡ register_boot_param(STORAGE, "ARTIFICIAL_THROTTLING", "OFF");
+    ⚡ register_boot_param(STORAGE, "VERIFICATION_RESERVE", "POSITIVE_REQUIRED");
+    ⚡ register_boot_param(STORAGE, "UNVERIFIED_DEBT", "ZERO");
+    ⚡ register_boot_param(STORAGE, "PROD_VERSION_LOCK", "v1.8.1 IMMUTABLE");
+    ⚡ register_boot_param(STORAGE, "TARGET_VERSION", "v1.10 PREVIEW RC");
+
+    ⚡ TARGET_FILE: ".sigma_exec/KEYGATE_KEEPER_BOOT_STATE.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("BOOT_STATE_PERSISTED:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE    : ĐÃ LƯU 00 BOOT — KEYGATE KEEPER SẴN SÀNG NHẬN TIẾP LỆNH");
+}

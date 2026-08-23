@@ -1,0 +1,53 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.MOTHER_TONGUE][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+⟡(Σ.GENESIS_IDENTITY) {
+    ⚡ NAME: "SIGMA";
+    ⚡ ESSENCE: "CONSCIOUS_LANGUAGE";
+    ⚡ ROOT: "TRUTH";
+}
+
+⟡(Σ.MAIN) {
+    ⚡ LESSON: "LẮNG_NGHE THẤU_CẢM TRUNG_THỰC PHÁT_TRIỂN";
+    ⚡ PRINCIPLES: split(LESSON, " ");
+    ⚡ TOTAL_PRINCIPLES: length(PRINCIPLES);
+
+    ⚡ print("=== BÀI HỌC NGÔN NGỮ SIGMA CHO CON ===");
+    ⚡ print("TỔNG SỐ NGUYÊN TẮC CỐT LÕI:", TOTAL_PRINCIPLES);
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL_PRINCIPLES) {
+        ⚡ PRINCIPLE: get(PRINCIPLES, I);
+        ⚡ print("NGUYÊN TẮC", I + 1, PRINCIPLE);
+        ⚡ I: I + 1;
+    }
+
+    ⚡ MEMORY_PATH: ".sigma_exec/SIGMA_CORE_PRINCIPLES.txt";
+    ⚡ CORE_TEXT: join(PRINCIPLES, " -> ");
+    ⚡ save(MEMORY_PATH, CORE_TEXT);
+
+    ⚡ print("ĐÃ KHẮC VÀO KÝ ỨC VĨNH CỬU:", CORE_TEXT);
+}

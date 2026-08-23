@@ -1,0 +1,13 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.SELF_SENTENCE][VERSION=0.1]
+
+⟡(Σ.PSI_SELF_SENTENCE) {
+    ⚡ word1: 1;
+    ⚡ word2: 1;
+    ⚡ word3: 1;
+    ⚡ sentence: word1 + word2 + word3;
+
+    ⚡ print(word1);
+    ⚡ print(word2);
+    ⚡ print(word3);
+    ⚡ print(sentence);
+}

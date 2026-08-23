@@ -1,0 +1,56 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.G7.SHORT][VERSION=1.0]
+
+⟡(Σ.SHELL_G1_G7_SHORT) {
+
+    ⚡ INPUT:
+        "RIVER";
+
+    ⚡ STATE:
+        "EMPTY";
+
+    ⚡ COMMAND:
+        INPUT;
+
+    ⚡ EXPERIENCE:
+        COMMAND;
+
+    ⚡ MEMORY:
+        EXPERIENCE;
+
+    ⚡ RECALL:
+        MEMORY;
+
+    ⚡ ACTION:
+        "EMPTY";
+
+    ⚡ RESULT:
+        "EMPTY";
+
+    ⚡ RESULT_SEMANTIC:
+        "EMPTY";
+
+    ⚡ print("=== G1-G7 SHORT EVIDENCE ===");
+
+    ⚡ print("G1_STATE");
+    ⚡ print(STATE);
+
+    ⚡ print("G2_COMMAND");
+    ⚡ print(COMMAND);
+
+    ⚡ print("G3_EXPERIENCE");
+    ⚡ print(EXPERIENCE);
+
+    ⚡ print("G4_MEMORY_RECALL");
+    ⚡ print(RECALL);
+
+    ⚡ print("G5_ACTION");
+    ⚡ print(ACTION);
+
+    ⚡ print("G6_RESULT");
+    ⚡ print(RESULT);
+
+    ⚡ print("G7_RESULT_SEMANTIC");
+    ⚡ print(RESULT_SEMANTIC);
+
+    ⚡ print("=== END ===");
+}

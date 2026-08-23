@@ -1,0 +1,86 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.CERT_STANDARD][VERSION=F174.99.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_cert_type(storage, cert_type, certifies_scope, req_evidence, cannot_certify, issue_gate) {
+    ⚡ list_add(storage, cert_type);
+    ⚡ print("-----------------------------------------------------------------");
+    ⚡ print("CERTIFICATE_TYPE [", cert_type, "]");
+    ⚡ print("  CERTIFIES     :", certifies_scope);
+    ⚡ print("  MANDATORY EV. :", req_evidence);
+    ⚡ print("  CANNOT CERTIFY:", cannot_certify);
+    ⚡ print("  ISSUE GATE    :", issue_gate);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("CERT_ISSUANCE_LAW [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_CERT_STANDARD) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 99_VERIFICATION CERTIFICATES STANDARD       ");
+    ⚡ print("   ANCHOR: TAM VAN TU BI | FAIL-CLOSED TRUTH VERIFICATION        ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID    : 99_TURBO_VERIFICATION_CERTIFICATES");
+    ⚡ print("OWNER_ROLE : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("STATUS     : ACTIVE STANDARD");
+    ⚡ print("CLASS      : VERIFICATION CONTROL");
+    ⚡ print("PARENT     : 93_TURBO_EXPERIMENT_AND_TELEMETRY_LOG");
+    ⚡ print("CORE LAW   : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ CERTIFICATE ISSUANCE LAWS ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_STRICT_SCOPE", "BOUNDED", "Certificate verifies only explicitly named artifact, scope, and evidence");
+    ⚡ register_gate_rule(STORAGE, "RULE_FAIL_CLOSED", "NO_PASS_WITHOUT_EV", "PASS is forbidden when required evidence is missing or stale");
+    ⚡ register_gate_rule(STORAGE, "RULE_HASH_INVALIDATION", "CHECKSUM_LOCK", "Any artifact mutation invalidates prior certificate");
+
+    ⚡ print("--- [ CERTIFICATE TYPE MATRIX ] ---");
+    ⚡ register_cert_type(STORAGE, "CORE_CERT",
+        "Exact F174 mathematical core and immutable checksum",
+        "Proof archive, assumptions, independent verification, checksum",
+        "Empirical truth outside assumptions; later operational formulas",
+        "All proof claims and boundaries independently PASS");
+
+    ⚡ register_cert_type(STORAGE, "LIBRARY_CERT",
+        "Turbo Library structure, load order, files, parents, and non-bypass laws",
+        "00 Boot, Index, Levels 01-10, support files 90-99, manifest/checksums",
+        "Runtime speed, k values, true bottleneck, or reserve performance",
+        "All required files present, readable, nonconflicting, checksum-bound");
+
+    ⚡ register_cert_type(STORAGE, "MODULE_CERT",
+        "One Turbo level purpose, formula, activation gate, QA, and rollback",
+        "Module file, parent link, nonduplicate purpose, structural QA, checksum",
+        "Operational effectiveness before a verified experiment",
+        "Structure PASS; no core conflict; all required gates defined");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_CERT_STANDARD_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_CERT_STANDARD_GRAPH:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 99 — SẴN SÀNG TIẾP NHẬN TÀI LIỆU CUỐI CÙNG (99B / BÁO CÁO TỔNG KẾT)");
+}

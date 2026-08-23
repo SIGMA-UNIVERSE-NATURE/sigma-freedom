@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.ACTION.STRUCTURE.OBSERVATION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_ACTION_STRUCTURE_OBSERVATION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+
+    ⚡ ACTION_RESULT:
+        H("str_split", OBSERVATION, " ", NULL);
+
+
+    ⚡ STRUCTURE_OBSERVATION:
+        ACTION_RESULT;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(STRUCTURE_OBSERVATION);
+
+    }
+
+}

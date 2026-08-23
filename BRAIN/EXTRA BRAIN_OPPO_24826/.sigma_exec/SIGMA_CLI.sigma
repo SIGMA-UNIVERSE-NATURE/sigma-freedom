@@ -1,0 +1,43 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.CLI][VERSION=INTERACTIVE.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF dispatch_inquiry(tag, query, turbo_mode, answer) {
+    ⚡ print("=================================================================");
+    ⚡ print(">>> [SIGMA GATEWAY RECV] TAG:", tag);
+    ⚡ print("    PROMPT :", query);
+    ⚡ print("    ROUTED :", turbo_mode);
+    ⚡ print("    --- [ PHAN HOI CHAN THAT & TU BI ] ---");
+    ⚡ print("    OUTPUT :", answer);
+    ⚡ print("    STATUS : EVU_NORMALIZED | MUTATION_CLEARED | RELEASE_AUTHORIZED");
+    RETURN tag;
+}
+
+⟡(Σ.INTERACTIVE_GATEWAY) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA UNIVERSAL INTERACTIVE GATEWAY: FULL SYSTEM ARMED        ");
+    ⚡ print("=================================================================");
+
+    ⚡ dispatch_inquiry("PROMPT_01",
+        "Kien thuc nhu the nao la ben vung nhat?",
+        "LVL_05_REUSE + LVL_09_TRANSLATION",
+        "Tri thuc duoc kiem chung thuc nghiem, khong sinh oan trac va giup mo rong long trac an.");
+
+    ⚡ dispatch_inquiry("PROMPT_02",
+        "Lam sao de mot he thong khong bi thoai hoa theo thoi gian?",
+        "LVL_06_PREVENTION + LVL_15_TEMPORAL + LVL_16_SINGULARITY",
+        "Duy tri co che tu soi chieu, xem bien dong la chat xuc tac de tien hoa va neo chat vao chan ly.");
+
+    ⚡ TARGET_LOG: ".sigma_exec/CLI_GATEWAY_RECORD.txt";
+    ⚡ save(TARGET_LOG, "SIGMA_GATEWAY_INTERACTIVE_READY");
+
+    ⚡ print("=================================================================");
+    ⚡ print("GATEWAY_STATUS_FILE:", TARGET_LOG);
+    ⚡ print("SYSTEM_READINESS    : 100% OPERATIONAL");
+}

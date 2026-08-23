@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ MESSAGE_A:
+        host("input","Σ1> ",NULL,NULL);
+
+    ⚡ MESSAGE_B:
+        host("input","Σ2> ",NULL,NULL);
+
+    ⚡ RELATION:
+        MESSAGE_A == MESSAGE_B;
+
+    ⚡ STORED_RELATION:
+        RELATION;
+
+    ⚡ READ_BACK:
+        STORED_RELATION;
+
+    print(MESSAGE_A);
+    print(MESSAGE_B);
+    print(RELATION);
+    print(STORED_RELATION);
+    print(READ_BACK);
+}

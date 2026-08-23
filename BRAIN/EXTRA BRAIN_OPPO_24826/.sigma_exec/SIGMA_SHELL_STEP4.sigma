@@ -1,0 +1,66 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ STATE:
+        "READY";
+
+
+    ⚡ COMMAND_1:
+        "help";
+
+    ⚡ COMMAND_2:
+        "status";
+
+    ⚡ COMMAND_3:
+        "recall";
+
+
+    ⚡ EXPERIENCE_1:
+        COMMAND_1;
+
+    ⚡ EXPERIENCE_2:
+        COMMAND_2;
+
+    ⚡ EXPERIENCE_3:
+        COMMAND_3;
+
+
+    ⚡ SESSION_MEMORY_1:
+        EXPERIENCE_1;
+
+    ⚡ SESSION_MEMORY_2:
+        EXPERIENCE_2;
+
+    ⚡ SESSION_MEMORY_3:
+        EXPERIENCE_3;
+
+
+    ⚡ RECALL:
+        SESSION_MEMORY_3;
+
+
+    print("============================================");
+    print("Σ.SHELL — STEP 4");
+    print("SESSION MEMORY");
+    print("============================================");
+
+
+    print("STATE:");
+    print(STATE);
+
+    print("SESSION_MEMORY_1:");
+    print(SESSION_MEMORY_1);
+
+    print("SESSION_MEMORY_2:");
+    print(SESSION_MEMORY_2);
+
+    print("SESSION_MEMORY_3:");
+    print(SESSION_MEMORY_3);
+
+    print("RECALL:");
+    print(RECALL);
+
+
+    print("SIGMA_SHELL_STOPPED");
+}

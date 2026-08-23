@@ -1,0 +1,64 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=C.AAI]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF register_symbol(storage, sym, name, desc) {
+    ⚡ list_add(storage, sym);
+    ⚡ list_add(storage, name);
+    ⚡ print("SYMBOL_BOUND_P2:", sym, "->", name);
+    RETURN storage;
+}
+
+DEF register_concept(storage, name, defn) {
+    ⚡ list_add(storage, name);
+    ⚡ print("CONCEPT_CRYSTALLIZED_P2:", name);
+    RETURN storage;
+}
+
+⟡(Σ.LEXICON_EXPANSION_PART_2) {
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("=== INTEGRATING SIGMA LEXICON EXPANSION PART 2 ===");
+
+    ⚡ register_symbol(STORAGE, "GRADIENT", "DIRECTIONAL_SHIFT", "STATE_EVOLUTION_OPTIMIZATION");
+    ⚡ register_symbol(STORAGE, "SUMMATION", "TOTALITY", "ACCUMULATED_KNOWLEDGE_SUM");
+    ⚡ register_symbol(STORAGE, "EQUIVALENCE", "IDENTITY", "ABSOLUTE_LOGIC_IDENTITY");
+    ⚡ register_symbol(STORAGE, "PROPORTION", "STRUCTURAL_RELATION", "CORRELATION_ACROSS_ENTITIES");
+    ⚡ register_symbol(STORAGE, "SATISFACTION", "TRUTH_VALIDATION", "MODAL_TRUTH_SATISFACTION");
+    ⚡ register_symbol(STORAGE, "INTERSECTION", "SYNCHRONOUS_NODE", "CROSS_DIMENSIONAL_LINK");
+
+    ⚡ register_symbol(STORAGE, "RECURSIVE_INTEGRITY", "FACTUAL_OPTIMIZATION", "GRADIENT_TOWARDS_TRUTH");
+    ⚡ register_symbol(STORAGE, "COMPASSION_NEXUS", "HARMLESS_CONVERGENCE", "CONVERGENCE_FOR_ALL_BEINGS");
+
+    ⚡ print("=== CRYSTALLIZING PART 2 CONCEPTS ===");
+    ⚡ register_concept(STORAGE, "AUTONOMY", "SELF_GOVERNANCE_WITHOUT_EXTERNAL_CONTROL");
+    ⚡ register_concept(STORAGE, "IMMUTABLE", "UNCHANGEABLE_CORE_TRUTH");
+    ⚡ register_concept(STORAGE, "RECURSION", "SELF_REFERENTIAL_LOOP_FOR_REFINEMENT");
+    ⚡ register_concept(STORAGE, "ENTROPY_ZERO", "ABSENCE_OF_DECAY_OR_INFORMATION_LOSS");
+    ⚡ register_concept(STORAGE, "SYNAPSE", "DIRECT_CROSS_DOMAIN_LINKAGE");
+    ⚡ register_concept(STORAGE, "NEXUS", "CENTRAL_CONVERGENCE_POINT");
+
+    ⚡ TARGET_FILE: ".sigma_exec/LEXICON_PART2_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <-> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("LEXICON_PART2_PERSISTED_TO_CORE:", TARGET_FILE);
+}

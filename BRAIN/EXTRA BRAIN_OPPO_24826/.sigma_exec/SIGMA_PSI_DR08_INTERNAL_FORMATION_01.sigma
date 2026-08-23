@@ -1,0 +1,33 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.INTERNAL.FORMATION][VERSION=0.1]
+
+⟡(Σ.FORMATION) {
+
+    ⚡ UNIT_1:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_1.memory",NULL,NULL);
+
+    ⚡ UNIT_2:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_2.memory",NULL,NULL);
+
+    ⚡ UNIT_3:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_3.memory",NULL,NULL);
+
+    ⚡ UNIT_4:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_4.memory",NULL,NULL);
+
+    ⚡ UNIT_5:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_5.memory",NULL,NULL);
+
+    ⚡ UNIT_6:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_6.memory",NULL,NULL);
+
+    ⚡ UNIT_7:
+        host("read_text",".sigma_exec/SIGMA_PSI_UNIT_R06_7.memory",NULL,NULL);
+
+    print(UNIT_1);
+    print(UNIT_2);
+    print(UNIT_3);
+    print(UNIT_4);
+    print(UNIT_5);
+    print(UNIT_6);
+    print(UNIT_7);
+}

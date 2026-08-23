@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SESSION.STIMULUS][VERSION=0.6]
+
+⟡(Σ.SESSION_STIMULUS_TEST) {
+
+    ⚡ STATE:
+        "EMPTY";
+
+    ⚡ EXPERIENCE:
+        "RIVER";
+
+    ⚡ print("BEFORE");
+    ⚡ print(STATE);
+
+    ⚡ STATE:
+        EXPERIENCE;
+
+    ⚡ print("AFTER");
+    ⚡ print(STATE);
+
+    ⚡ print("LATER");
+    ⚡ print(STATE);
+}

@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.HOST.ERROR.TEST][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.HOST_ERROR_26_TEST) {
+    ⚡ print("BEFORE_HOST_ERROR");
+
+    ⚡ result: H(
+        "SIGMA_HOST_OPERATION_DOES_NOT_EXIST",
+        NULL,
+        NULL,
+        NULL
+    );
+
+    ⚡ print("MAIN_MUST_NOT_CONTINUE");
+}

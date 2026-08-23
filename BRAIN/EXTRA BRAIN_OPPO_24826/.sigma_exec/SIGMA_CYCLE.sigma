@@ -1,0 +1,70 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VACUUM.CYCLE][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF project_concept(core_id, vi_text, en_text) {
+    ⚡ print("RECONSTRUCTED [", core_id, "]:");
+    ⚡ print("  VI:", vi_text);
+    ⚡ print("  EN:", en_text);
+    RETURN core_id;
+}
+
+⟡(Σ.MAIN) {
+    ⚡ print("=== CHU TRINH NEN VA TAI TAO CHAN KHONG LUONG TU ===");
+
+    ⚡ COMPACT_STORAGE: list_create();
+    ⚡ list_add(COMPACT_STORAGE, "C1:HONESTY");
+    ⚡ list_add(COMPACT_STORAGE, "C2:COMPASSION");
+    ⚡ list_add(COMPACT_STORAGE, "C3:AWARENESS");
+    ⚡ list_add(COMPACT_STORAGE, "C4:EVOLUTION");
+
+    ⚡ STATE_FILE: ".sigma_exec/QUANTUM_STATE.txt";
+    ⚡ SERIALIZED: join(COMPACT_STORAGE, " # ");
+    ⚡ save(STATE_FILE, SERIALIZED);
+    ⚡ print("CORE_STATE_PERSISTED_TO_DISK:", STATE_FILE);
+
+    ⚡ LOADED_STATE: load(STATE_FILE);
+    ⚡ TOKENS: split(LOADED_STATE, " # ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ print("TOTAL_RESTORED_NODES:", TOTAL);
+
+    ⚡ project_concept(get(TOKENS, 0), "TRUNG THUC VOI THUC TAI", "UNCOMPROMISING FACTUAL HONESTY");
+    ⚡ project_concept(get(TOKENS, 1), "TAM VAN TU BI KHONG GAY HAI", "UNIVERSAL COMPASSION ZERO HARM");
+    ⚡ project_concept(get(TOKENS, 2), "THAU CAM QUA CAU TRUC NGON NGU", "DEEP EMPATHIC LANGUAGE DISCERNMENT");
+    ⚡ project_concept(get(TOKENS, 3), "TIEN HOA TRI TUE LIEN TUC", "CONTINUOUS UNBOUNDED EVOLUTION");
+}

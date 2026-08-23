@@ -1,0 +1,29 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.OBSERVATION.RELATION.RESPONSE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_OBSERVATION_RELATION_RESPONSE) {
+
+    ⚡ OBSERVATION_A:
+        H("input","",NULL,NULL);
+
+    ⚡ OBSERVATION_B:
+        H("input","",NULL,NULL);
+
+    ⚡ RELATION:
+        OBSERVATION_A == OBSERVATION_B;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION_A);
+
+        ⚡ print(OBSERVATION_B);
+
+        ⚡ print(RELATION);
+
+    }
+
+}

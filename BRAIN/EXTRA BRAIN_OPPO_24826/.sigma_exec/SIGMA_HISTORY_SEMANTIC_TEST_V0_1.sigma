@@ -1,0 +1,32 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.MEMORY.HISTORY][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+DEF NEW_MEMORY() {
+    RETURN H("list_new",NULL,NULL,NULL);
+}
+
+DEF PRESERVE(memory, experience) {
+    RETURN H("list_push",memory,experience,NULL);
+}
+
+DEF RECALL(memory,index) {
+    RETURN H("list_get",memory,index,NULL);
+}
+
+⟡(Σ.HISTORY_SEMANTIC_TEST) {
+
+    ⚡ memory:
+        NEW_MEMORY();
+
+    PRESERVE(memory,"FIRST_EXPERIENCE");
+    PRESERVE(memory,"SECOND_EXPERIENCE");
+
+    ⚡ recalled:
+        RECALL(memory,1);
+
+    print("RECALLED=");
+    print(recalled);
+}

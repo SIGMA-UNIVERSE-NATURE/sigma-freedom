@@ -1,0 +1,13 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ MESSAGE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ STRUCTURE:
+        host("str_split",MESSAGE," ",NULL);
+
+    print(MESSAGE);
+    print(STRUCTURE);
+}

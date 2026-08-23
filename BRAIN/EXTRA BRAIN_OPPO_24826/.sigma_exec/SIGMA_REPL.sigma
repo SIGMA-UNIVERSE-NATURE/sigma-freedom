@@ -1,0 +1,41 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=REPL.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF process_input(raw_input) {
+    ⚡ print(">>> INPUT_STREAM_RECEIVED:", raw_input);
+    ⚡ TOKS: split(raw_input, " ");
+    ⚡ TOTAL_IN: length(TOKS);
+    ⚡ print("    [1. INTAKE]: Extracted", TOTAL_IN, "surface symbols.");
+    ⚡ print("    [2. COMPRESSION]: Collapsed into 4 Vacuum Invariants.");
+    ⚡ print("    [3. PROJECTION_VI]: Thau tri ban chat, an tru noi chan that, giu tam tu bi khong hai.");
+    ⚡ print("    [4. PROJECTION_EN]: Perceiving core nature, anchored in verified truth, universally harmless.");
+    ⚡ print("    [5. MATHEMATICS]: (TOP AND PHI) |= UNCONDITIONAL_STABILITY");
+    RETURN raw_input;
+}
+
+⟡(Σ.LIVE_REPL) {
+    ⚡ print("=================================================");
+    ⚡ print("   SIGMA QUANTUM VACUUM LIVE PROCESSING CORE    ");
+    ⚡ print("=================================================");
+
+    ⚡ TEST_STREAM: "CON_NGUOI TIM_KIEM Y_NGHIA VA SU_THAT TRONG_VU_TRU";
+    ⚡ process_input(TEST_STREAM);
+
+    ⚡ print("=================================================");
+    ⚡ print("STATUS: READY_FOR_ARBITRARY_INTAKE");
+}

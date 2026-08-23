@@ -1,0 +1,108 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB.NOVELTY_RECALL][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF READ_BYTES(path) {
+    RETURN H("read_bytes", path, NULL, NULL);
+}
+
+DEF BYTES_LEN(bb) {
+    RETURN H("bytes_len", bb, NULL, NULL);
+}
+
+DEF BYTES_GET(bb, i) {
+    RETURN H("bytes_get", bb, i, NULL);
+}
+
+DEF STR_LEN(s) {
+    RETURN H("str_len", s, NULL, NULL);
+}
+
+DEF STR_BYTE(s, i) {
+    RETURN H("str_byte", s, i, NULL);
+}
+
+DEF MATCH_AT(bb, pos, s) {
+    ⚡ m: STR_LEN(s);
+    ⚡ j: 0;
+
+    WHILE (j < m) {
+        IF (BYTES_GET(bb, pos + j) != STR_BYTE(s, j)) {
+            RETURN FALSE;
+        }
+        ⚡ j: j + 1;
+    }
+
+    RETURN TRUE;
+}
+
+DEF CONTAINS_TEXT(bb, s) {
+    ⚡ n: BYTES_LEN(bb);
+    ⚡ m: STR_LEN(s);
+    ⚡ i: 0;
+
+    IF (m == 0) {
+        RETURN FALSE;
+    }
+
+    WHILE (i + m <= n) {
+        IF (MATCH_AT(bb, i, s)) {
+            RETURN TRUE;
+        }
+        ⚡ i: i + 1;
+    }
+
+    RETURN FALSE;
+}
+
+⟡(Σ.VOCABNOVELTYRECALL) {
+
+    ⚡ path: ".sigma_vocab/human_words_100.txt";
+    ⚡ bb: READ_BYTES(path);
+
+    ⚡ known_1: "human";
+    ⚡ known_2: "person";
+    ⚡ novel_probe: "zz_sigma_novel_probe_20260821";
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+    ⚡ print("TEST=SIGMA_PSI_VOCAB_NOVELTY_RECALL_0001");
+
+    IF (bb == NULL) {
+        ⚡ print("READ_BYTES=FAIL");
+        ⚡ print("NOVELTY_RECALL=FAIL");
+    } ELSE {
+        ⚡ human_known: CONTAINS_TEXT(bb, known_1);
+        ⚡ person_known: CONTAINS_TEXT(bb, known_2);
+        ⚡ probe_known: CONTAINS_TEXT(bb, novel_probe);
+
+        IF (human_known) {
+            ⚡ print("KNOWN_human=PASS");
+        } ELSE {
+            ⚡ print("KNOWN_human=FAIL");
+        }
+
+        IF (person_known) {
+            ⚡ print("KNOWN_person=PASS");
+        } ELSE {
+            ⚡ print("KNOWN_person=FAIL");
+        }
+
+        IF (probe_known) {
+            ⚡ print("NOVEL_PROBE=FAIL_ALREADY_PRESENT");
+        } ELSE {
+            ⚡ print("NOVEL_PROBE=PASS_NOT_PRESENT");
+        }
+
+        IF (human_known && person_known && !probe_known) {
+            ⚡ print("KNOWN_VS_NOVEL_CLASSIFICATION=PASS");
+        } ELSE {
+            ⚡ print("KNOWN_VS_NOVEL_CLASSIFICATION=FAIL");
+        }
+    }
+
+    ⚡ print("VOCAB_WRITE=NONE");
+    ⚡ print("NEW_VOCAB_INGESTED=FALSE");
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

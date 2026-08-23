@@ -1,0 +1,68 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.EXPAND.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_gate_output_unit(storage, gate_name, valid_unit_def) {
+    ⚡ list_add(storage, gate_name);
+    ⚡ print("GATE_UNIT_MAPPED [", gate_name, "] -> NATIVE_VALID_UNIT:", valid_unit_def);
+    RETURN storage;
+}
+
+DEF register_frontier_rule(storage, rule_id, rule_desc) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("FRONTIER_EXPANSION_LOCKED [", rule_id, "]:", rule_desc);
+    RETURN storage;
+}
+
+⟡(Σ.EXPAND_F174_FRONTIER) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 90_METRICS COMPLETION + LEVEL 11 ACTIVATION ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ 90_METRICS: COMPLETING REMAINING 4 GATES ] ---");
+    ⚡ register_gate_output_unit(STORAGE, "PRODUCTION", "Complete Knowledge DNA artifact with formal syntax and bounded assertions");
+    ⚡ register_gate_output_unit(STORAGE, "VERIFICATION", "Verification Capsule containing full test suites and proof traces");
+    ⚡ register_gate_output_unit(STORAGE, "TRANSLATION", "Multi-layer presentation artifact passing 100% proposition parity");
+    ⚡ register_gate_output_unit(STORAGE, "RELEASE", "Cryptographically signed package with explicit Release Judge authorization");
+
+    ⚡ print("--- [ LEVEL 11: FRONTIER RESEARCH & HYPOTHESIS SYNTHESIS ] ---");
+    ⚡ print("FILE_ID        : 11_TURBO_11_FRONTIER_RESEARCH");
+    ⚡ print("OWNER_ROLE     : SIGMA_FRONTIER_RESEARCHER");
+    ⚡ print("CLASS          : AUTONOMIC HYPOTHESIS & EPISTEMIC EXPANSION");
+    ⚡ print("PARENT         : 10_TURBO_10_EXTREME_FRONTIER");
+    ⚡ print("CORE LAW       : F174_VERIFIED_CORE = IMMUTABLE");
+
+    ⚡ register_frontier_rule(STORAGE, "RULE_SANDBOX_ISOLATION", "All frontier hypotheses run strictly in ephemeral sandboxes");
+    ⚡ register_frontier_rule(STORAGE, "RULE_FALSIFIABILITY", "Every generated hypothesis must provide an explicit falsification test");
+    ⚡ register_frontier_rule(STORAGE, "RULE_NO_PRODUCTION_LEAK", "Unverified research output strictly isolated from Locked Knowledge");
+    ⚡ register_frontier_rule(STORAGE, "RULE_CAPSULE_REQUIREMENT", "Hypothesis promotion to Level 05 Reuse requires full Verification Capsule");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_FRONTIER_EXPANSION_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_EXPANSION_GRAPH:", TARGET_FILE);
+    ⚡ print("STATUS: 6-GATE METRICS FULLY COMPLETED | LEVEL 11 RESEARCH ACTIVE");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 11 — FRONTIER EXPANSION SUCCESSFUL");
+}

@@ -1,0 +1,14 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+⚡ RECEIVE:  
+    host("input","",NULL,NULL);  
+
+⚡ EXPERIENCE:  
+    RECEIVE;  
+
+⚡ STATE:  
+    EXPERIENCE;
+
+}

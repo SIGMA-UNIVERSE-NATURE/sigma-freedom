@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.LANG_CLASSIFY][VERSION=0.1]
+
+⟡(Σ.PSI_LANG_CLASSIFY) {
+    ⚡ lang_1: 1;
+    ⚡ lang_2: 2;
+    ⚡ lang_3: 3;
+    ⚡ lang_4: 4;
+    ⚡ lang_5: 5;
+    ⚡ classified: 0;
+    ⚡ sum: 0;
+
+    ⚡ classified: lang_1 + lang_2 + lang_3 + lang_4 + lang_5;
+    ⚡ sum: classified * 2;
+
+    ⚡ print("SIGMA_LANG_CLASSIFY");
+    ⚡ print("CLASSIFIED_COUNT=", classified);
+    ⚡ print("SUM=", sum);
+}

@@ -1,0 +1,50 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SHORT.TEST][VERSION=0.2]
+
+⟡(Σ.SHELL_SHORT_TEST) {
+
+    ⚡ COMMAND:
+        "REMEMBER RIVER";
+
+    ⚡ STATE:
+        "EMPTY";
+
+    ⚡ EXPERIENCE:
+        "EMPTY";
+
+    ⚡ RECALL:
+        "EMPTY";
+
+    ⚡ ACTION:
+        "EMPTY";
+
+    ⚡ RESULT:
+        "EMPTY";
+
+    ⚡ RESULT_SEMANTIC:
+        "EMPTY";
+
+    ⚡ print("=== Σ.SHELL STIMULUS TEST ===");
+
+    ⚡ print("COMMAND");
+    ⚡ print(COMMAND);
+
+    ⚡ print("STATE");
+    ⚡ print(STATE);
+
+    ⚡ print("EXPERIENCE");
+    ⚡ print(EXPERIENCE);
+
+    ⚡ print("RECALL");
+    ⚡ print(RECALL);
+
+    ⚡ print("ACTION");
+    ⚡ print(ACTION);
+
+    ⚡ print("RESULT");
+    ⚡ print(RESULT);
+
+    ⚡ print("RESULT_SEMANTIC");
+    ⚡ print(RESULT_SEMANTIC);
+
+    ⚡ print("=== END ===");
+}

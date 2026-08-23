@@ -1,0 +1,31 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_11_20][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_11_20) {
+    ⚡ c11: 100;
+    ⚡ c12: 100;
+    ⚡ c13: 100;
+    ⚡ c14: 100;
+    ⚡ c15: 100;
+    ⚡ c16: 100;
+    ⚡ c17: 100;
+    ⚡ c18: 100;
+    ⚡ c19: 100;
+    ⚡ c20: 100;
+    ⚡ total_new: c11 + c12 + c13 + c14 + c15 + c16 + c17 + c18 + c19 + c20;
+    ⚡ total_all: 1000 + total_new;
+    ⚡ avg_cluster: total_all / 20;
+
+    ⚡ print(c11);
+    ⚡ print(c12);
+    ⚡ print(c13);
+    ⚡ print(c14);
+    ⚡ print(c15);
+    ⚡ print(c16);
+    ⚡ print(c17);
+    ⚡ print(c18);
+    ⚡ print(c19);
+    ⚡ print(c20);
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

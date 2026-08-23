@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.MULTI_MEANING_BRIDGE][VERSION=0.1]
+
+⟡(Σ.PSI_MULTI_MEANING_BRIDGE) {
+    ⚡ vacunm_1: 1;
+    ⚡ vacunm_2: 2;
+    ⚡ vacunm_3: 3;
+    ⚡ sigma_1: 0;
+    ⚡ sigma_2: 0;
+    ⚡ sigma_3: 0;
+    ⚡ bridge: 0;
+
+    ⚡ sigma_1: vacunm_1 * 4;
+    ⚡ sigma_2: vacunm_2 * 4;
+    ⚡ sigma_3: vacunm_3 * 4;
+    ⚡ bridge: sigma_1 + sigma_2 + sigma_3;
+
+    ⚡ print("SIGMA_MULTI_MEANING_BRIDGE");
+    ⚡ print("VACUNM_1=", vacunm_1);
+    ⚡ print("VACUNM_2=", vacunm_2);
+    ⚡ print("VACUNM_3=", vacunm_3);
+    ⚡ print("SIGMA_1=", sigma_1);
+    ⚡ print("SIGMA_2=", sigma_2);
+    ⚡ print("SIGMA_3=", sigma_3);
+    ⚡ print("BRIDGE_SUM=", bridge);
+}

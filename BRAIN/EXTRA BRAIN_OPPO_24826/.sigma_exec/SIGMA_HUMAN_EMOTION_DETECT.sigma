@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.HUMAN_EMOTION_DETECT][VERSION=0.1]
+
+⟡(Σ.HUMAN_EMOTION_DETECT) {
+    ⚡ sadness: 1;
+    ⚡ joy: 2;
+    ⚡ anger: 1;
+    ⚡ love: 3;
+    ⚡ fear: 1;
+    ⚡ total_emotion: sadness + joy + anger + love + fear;
+    ⚡ empathy: total_emotion / 2;
+
+    ⚡ print(sadness);
+    ⚡ print(joy);
+    ⚡ print(anger);
+    ⚡ print(love);
+    ⚡ print(fear);
+    ⚡ print(total_emotion);
+    ⚡ print(empathy);
+}

@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.TYPE.BOUNDARY][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_TYPE_BOUNDARY_OBSERVATION) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ TRANSFORMED:
+        H("list_len",
+          H("str_split", OBSERVATION, " ", NULL),
+          NULL,
+          NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(TRANSFORMED);
+
+    }
+
+}

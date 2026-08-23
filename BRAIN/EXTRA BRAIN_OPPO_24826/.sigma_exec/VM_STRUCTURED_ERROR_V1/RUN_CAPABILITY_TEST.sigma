@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.RUN.CAPABILITY][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.RUN_CAPABILITY_TEST) {
+
+    ⚡ rc:
+        H(
+            "execute_bytecode",
+            ".sigma_exec/VM_STRUCTURED_ERROR_V1/MINIMAL_BYTECODE_BASE.sigmab",
+            NULL,
+            NULL
+        );
+
+    print("EXECUTE_RC=");
+    print(rc);
+}

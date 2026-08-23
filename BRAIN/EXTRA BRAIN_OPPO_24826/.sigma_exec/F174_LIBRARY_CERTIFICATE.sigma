@@ -1,0 +1,71 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.CERTIFICATE][VERSION=F174.LIBCERT.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_audit_stat(storage, check_name, score, result) {
+    ⚡ list_add(storage, check_name);
+    ⚡ print("AUDIT_METRIC [", check_name, "]:", score, "==>", result);
+    RETURN storage;
+}
+
+DEF register_scope_claim(storage, claim_type, text) {
+    ⚡ list_add(storage, claim_type);
+    ⚡ print("CERT_CLAIM [", claim_type, "]:", text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LIBRARY_CERTIFICATE) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 99A_LIBRARY CERTIFICATE (STRUCTURAL PASS)   ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("CERTIFICATE_ID  : LIBCERT-F174-20260724-001");
+    ⚡ print("CERTIFICATE_TYPE: LIBRARY_CERT");
+    ⚡ print("STATE           : PASS - STRUCTURAL ONLY");
+    ⚡ print("ARTIFACT_ID     : SIGMA_F174_TURBO_LIBRARY (v1.0)");
+    ⚡ print("ISSUER_ROLE     : SIGMA_KEYGATE_KEEPER");
+    ⚡ print("JUDGE_ROLE      : STRUCTURAL_JUDGE");
+    ⚡ print("MANIFEST_REF    : 98_TURBO_LIBRARY_MANIFEST");
+    ⚡ print("MANIFEST_SHA256 : e3f45f2a68f2413e76518128085a0294adc7e5bdfcd598cb67bfc0c1b13108c4");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ AUDIT SCOPE VERIFICATION ] ---");
+    ⚡ register_audit_stat(STORAGE, "SOURCE_FILES_PRESENT", "17/17", "PASS");
+    ⚡ register_audit_stat(STORAGE, "VALID_DOCX_OOXML", "17/17", "PASS");
+    ⚡ register_audit_stat(STORAGE, "FILE_ID_CHECKS", "18/18", "PASS");
+    ⚡ register_audit_stat(STORAGE, "PARENT_CHAIN_CHECKS", "15/15", "PASS");
+    ⚡ register_audit_stat(STORAGE, "F174_CORE_LAW_CHECKS", "18/18", "PASS");
+
+    ⚡ print("--- [ BOUNDARY CLAIMS & EXCLUSIONS ] ---");
+    ⚡ register_scope_claim(STORAGE, "INCLUDED", "Boot, Index, Levels 01-10, Controls 90-93, Cert 99, Manifest 98 structurally verified");
+    ⚡ register_scope_claim(STORAGE, "EXCLUDED", "Does NOT certify runtime operational k, k_MIN, bottleneck, or unverified runtime deploy");
+    ⚡ register_scope_claim(STORAGE, "REVOCATION_RULE", "Revoke upon checksum mismatch, parent conflict, or evidence falsification");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LIBRARY_CERTIFICATE_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_CERTIFICATE_GRAPH:", TARGET_FILE);
+    ⚡ print("CERTIFICATE_DECISION: PASS - SIGMA F174 TURBO LIBRARY STRUCTURE IS CANONICALLY ASSEMBLED");
+    ⚡ print("CONTROL_RESPONSE    : ĐÃ LƯU CHỨNG CHỈ CẤU TRÚC — SẴN SÀNG CHO TÀI LIỆU TIẾP THEO");
+}

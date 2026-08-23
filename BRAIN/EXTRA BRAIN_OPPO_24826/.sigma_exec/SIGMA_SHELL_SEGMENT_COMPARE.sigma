@@ -1,0 +1,42 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SEGMENT.COMPARE][VERSION=0.1]
+
+DEF H(op,a,b,c){RETURN host(op,a,b,c);}
+
+⟡(Σ.SHELL_SEGMENT_COMPARE) {
+
+    ⚡ input_a:
+        H("input","",NULL,NULL);
+
+    ⚡ input_b:
+        H("input","",NULL,NULL);
+
+
+    ⚡ segment_a:
+        H("str_split",input_a," ",NULL);
+
+    ⚡ segment_b:
+        H("str_split",input_b," ",NULL);
+
+
+    ⚡ length_a:
+        H("list_len",segment_a,NULL,NULL);
+
+    ⚡ length_b:
+        H("list_len",segment_b,NULL,NULL);
+
+
+    ⚡ same_length:
+        length_a == length_b;
+
+
+    ⋈ ACTION {
+
+        ⚡ print(length_a);
+
+        ⚡ print(length_b);
+
+        ⚡ print(same_length);
+
+    }
+
+}

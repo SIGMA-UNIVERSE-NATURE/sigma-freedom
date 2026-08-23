@@ -1,0 +1,26 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.UNIT.FORMATION][VERSION=0.1]
+
+⟡(Σ.UNIT) {
+
+    ⚡ UNIT:
+        host(
+            "input",
+            "Σ> ",
+            NULL,
+            NULL
+        );
+
+    ⚡ PRESERVED:
+        UNIT;
+
+    ⚡ STORED:
+        host(
+            "write_text",
+            ".sigma_exec/SIGMA_PSI_NATIVE_UNIT_R04.memory",
+            PRESERVED,
+            NULL
+        );
+
+    print(UNIT);
+    print(PRESERVED);
+}

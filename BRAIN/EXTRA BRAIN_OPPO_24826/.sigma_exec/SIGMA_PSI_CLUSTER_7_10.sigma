@@ -1,0 +1,19 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_7_10][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_7_10) {
+    ⚡ cluster_7: 100;
+    ⚡ cluster_8: 100;
+    ⚡ cluster_9: 100;
+    ⚡ cluster_10: 100;
+    ⚡ total_new: cluster_7 + cluster_8 + cluster_9 + cluster_10;
+    ⚡ total_all: 600 + total_new;
+    ⚡ avg_cluster: total_all / 10;
+
+    ⚡ print(cluster_7);
+    ⚡ print(cluster_8);
+    ⚡ print(cluster_9);
+    ⚡ print(cluster_10);
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

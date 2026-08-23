@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SEGMENT][VERSION=0.1]
+
+DEF H(op,a,b,c){RETURN host(op,a,b,c);}
+
+⟡(Σ.SHELL_SEGMENT) {
+
+    ⚡ input_data:
+        H("input","",NULL,NULL);
+
+    ⚡ units:
+        H("str_split",input_data," ",NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(units);
+
+    }
+
+}

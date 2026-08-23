@@ -1,0 +1,7 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.FOUNDATION.COMPUTE][VERSION=1.0]
+
+⟡(Σ.MAIN) {
+    ⚡ text: "SIGMA_GENESIS";
+    ⚡ len: H("str_len", text, NULL, NULL);
+    ⚡ print("STRING_LENGTH_RESULT", len);
+}

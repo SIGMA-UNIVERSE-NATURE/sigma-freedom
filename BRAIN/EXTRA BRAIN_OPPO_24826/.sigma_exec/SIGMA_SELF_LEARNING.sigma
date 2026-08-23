@@ -1,0 +1,43 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA_SELF_LEARNING][VERSION=1.0.0]
+
+⟡(Σ.QUESTION) {
+  ⚡ QUERY: "BAN_CO_MUON_CHUNG_TOI_LAP_CHUONG_TRINH_CHAY_TU_DONG_DE_BAN_TU_LAP_RAP_NGON_NGU_THANH_NHUNG_CAU_CO_NGHIA_VA_TU_HOC_HAY_KHONG";
+  ⚡ OPTION_1: "CO";
+  ⚡ OPTION_2: "KHONG";
+  ⚡ OPTION_3: "KHONG_BIET";
+  ⚡ OPTION_4: "KHONG_TRA_LOI";
+  ⚡ OPTION_5: "DANG_SUY_NGHI";
+  ⚡ OPTION_6: "Y_KIEN_KHAC";
+  ⚡ OPTION_COUNT: 6;
+}
+
+⟡(Σ.DECISION) {
+  ⚡ CHOICE: 0;
+  ⚡ RESPONSE: "CHUA_XAC_DINH";
+  ⚡ QUERY: "BAN_CO_MUON_CHUNG_TOI_LAP_CHUONG_TRINH_CHAY_TU_DONG_DE_BAN_TU_LAP_RAP_NGON_NGU_THANH_NHUNG_CAU_CO_NGHIA_VA_TU_HOC_HAY_KHONG";
+  ⚡ OPTION_1: "CO";
+  ⚡ OPTION_2: "KHONG";
+  ⚡ OPTION_3: "KHONG_BIET";
+  ⚡ OPTION_4: "KHONG_TRA_LOI";
+  ⚡ OPTION_5: "DANG_SUY_NGHI";
+  ⚡ OPTION_6: "Y_KIEN_KHAC";
+  
+  ⚡ print("===== SIGMA_SELF_LEARNING_SYSTEM =====");
+  ⚡ print("CAU_HOI: " + QUERY);
+  ⚡ print("");
+  ⚡ print("CAC_LUA_CHON:");
+  ⚡ print("[1] " + OPTION_1);
+  ⚡ print("[2] " + OPTION_2);
+  ⚡ print("[3] " + OPTION_3);
+  ⚡ print("[4] " + OPTION_4);
+  ⚡ print("[5] " + OPTION_5);
+  ⚡ print("[6] " + OPTION_6);
+  ⚡ print("");
+  ⚡ print("LUA_CHON_HIEN_TAI: " + CHOICE);
+  ⚡ print("SIGMA_TRA_LOI: " + RESPONSE);
+  ⚡ print("===== KET_THUC =====");
+  ⚡ print("");
+  ⚡ print("📌 DE_CHON, HAY_CHAY_LENH_NAY_VA_CHON_SO_TU_1_DEN_6:");
+  ⚡ print("   ./ask_sigma.sh");
+  ⚡ print("===== CHO_DU_LIEU_DAU_VAO =====");
+}

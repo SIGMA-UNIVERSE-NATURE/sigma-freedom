@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ RECEIVED_VALUE:
+        host("input","Σ> ",NULL,NULL);
+
+    ⚡ STORED_VALUE:
+        RECEIVED_VALUE;
+
+    ⚡ READ_BACK:
+        STORED_VALUE;
+
+    print("RECEIVE:");
+    print(RECEIVED_VALUE);
+
+    print("STORE:");
+    print(STORED_VALUE);
+
+    print("READ_BACK:");
+    print(READ_BACK);
+}

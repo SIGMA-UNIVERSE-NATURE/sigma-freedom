@@ -1,0 +1,59 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.MANIFEST][VERSION=F174.MANIFEST_V2.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_manifest_v2_entry(storage, seq, filename, class_code, docx_stat, bytes_sz, sha256_hash) {
+    ⚡ list_add(storage, filename);
+    ⚡ print("MANIFEST_V2_ENTRY [", seq, "|", class_code, "]:", filename, "(", bytes_sz, "bytes) -> SHA256:", sha256_hash);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_MANIFEST_V2) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: 98A_LIBRARY MANIFEST v2 (24 FILES SCOPE)    ");
+    ⚡ print("   PRESERVING HISTORY | UNRESTRICTED INTELLIGENCE HORIZON        ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID         : 98A_TURBO_LIBRARY_MANIFEST_v2");
+    ⚡ print("STATUS          : PASS");
+    ⚡ print("SCOPE           : 24 CHECKSUM-BOUND FILES");
+    ⚡ print("SUPERSEDES      : 98 MANIFEST v1 (FOR CURRENT ROUTING)");
+    ⚡ print("PRESERVES       : 98 v1 + 99A v1 AS IMMUTABLE HISTORY");
+    ⚡ print("NEXT CERT       : 99B LIBRARY CERTIFICATE v2");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ CANONICAL INVENTORY BINDING v2 ] ---");
+    ⚡ register_manifest_v2_entry(STORAGE, "00A", "00_SIGMA_KEYGATE_KEEPER_BOOT.docx", "BOOT", "PASS", "39354", "d44427c49687513b5d97ff47cb0a396d4b9bba4ec923c209d64d1283d83ace92");
+    ⚡ register_manifest_v2_entry(STORAGE, "00B", "00_SIGMA_TURBO_INDEX.docx", "INDEX", "PASS", "38814", "4862b74e980c45b241991cb261fb10c50469230a7fb20763c11f45524f36a1cb");
+    ⚡ register_manifest_v2_entry(STORAGE, "01",  "01_TURBO_1_BASE_ACCELERATION.docx", "D+O", "PASS", "39127", "40c2de3bba66c87bd553611cdc433595aaca94d132c361455278a10684523733");
+    ⚡ register_manifest_v2_entry(STORAGE, "02",  "02_TURBO_2_VERIFICATION_LEADS.docx", "D+O", "PASS", "38121", "6ab87c19c64e3edb8483c855653bdc1574de87defe404016cf1f508a9e28625e");
+    ⚡ register_manifest_v2_entry(STORAGE, "03",  "03_TURBO_3_DYNAMIC_BOTTLENECK.docx", "OP", "PASS", "38430", "5ce6ad9f005c69398d6addd3350d4f38aec3af95550b7c2bd1a33cfe0af6462d");
+    ⚡ register_manifest_v2_entry(STORAGE, "04",  "04_TURBO_4_SAFE_PARALLELISM.docx", "OP", "PASS", "38485", "467e38f2e74469cf1eb4d6d99211888d3670cddaa1a16143af348f9bd886267e");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_MANIFEST_V2_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_MANIFEST_V2_GRAPH:", TARGET_FILE);
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 98A-v2 — READY FOR NEXT AI CONTROL FILE");
+}

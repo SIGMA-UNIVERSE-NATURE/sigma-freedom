@@ -1,0 +1,72 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.ESTIMATION_TRIGGER][VERSION=RUN05.EST.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF record_run_field(storage, field_name, value_text) {
+    ⚡ list_add(storage, field_name);
+    ⚡ print("RUN_05_RECORD [", field_name, "] =>", value_text);
+    RETURN storage;
+}
+
+⟡(Σ.SAVE_RUN_05_AND_TRIGGER_ESTIMATION) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: RUN 05 BASELINE REACHED & ESTIMATION OPEN   ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | RIGID POST-BASELINE ESTIMATION         ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ record_run_field(STORAGE, "RUN_ID",          "SIGMA-V110-TURBO-BASELINE-CYCLE-05");
+    ⚡ record_run_field(STORAGE, "STATE",           "PASS");
+    ⚡ record_run_field(STORAGE, "CHECKPOINT",      "5 / 5+ PREFERRED THRESHOLD ACHIEVED");
+    ⚡ record_run_field(STORAGE, "BRANCH",          "sigma-v1.10-turbo-telemetry-run-01");
+    ⚡ record_run_field(STORAGE, "HEAD_COMMIT",     "591d62757212474f50a4d94395cf9bbc610b9eca");
+    ⚡ record_run_field(STORAGE, "PROD_LOCK",       "v1.8.1 IMMUTABLE / UNCHANGED");
+
+    ⚡ print("--- [ VERIFIED BASELINE RUN 01-05 SUMMARY ] ---");
+    ⚡ record_run_field(STORAGE, "CAPTAIN_CHECKS",  "1,228 / 1,228 PASS (0 FAILED)");
+    ⚡ record_run_field(STORAGE, "ELIGIBLE_UNITS",  "48 RELEASE UNITS");
+    ⚡ record_run_field(STORAGE, "UNVERIFIED_DEBT", "ZERO");
+    ⚡ record_run_field(STORAGE, "SYSTEM_GATES",    "6 / 6 COVERED (18 TELEMETRY EVENTS)");
+    ⚡ record_run_field(STORAGE, "FAULT_INJECTION", "6/6 DETECTED");
+    ⚡ record_run_field(STORAGE, "NODE_LATENCY",    "3.314 ms / 250 ms");
+    ⚡ record_run_field(STORAGE, "CHROMIUM_LATENCY","2.300 ms / 250 ms");
+    ⚡ record_run_field(STORAGE, "REGRESSIONS",     "CYCLES 01-04 REGRESSIONS ALL PASS");
+
+    ⚡ print("--- [ EVIDENCE BINDING CHECKSUMS ] ---");
+    ⚡ record_run_field(STORAGE, "WORKFLOW_RUN",    "30084135078 (SUCCESS)");
+    ⚡ record_run_field(STORAGE, "ARTIFACT_SHA256", "284fbffc187bc79214c5b278f99230343e0f5173afcfe4a2a8d8b902726e13f9");
+    ⚡ record_run_field(STORAGE, "NODE_SHA256",     "f4540fd5d6404a5a32af7027c6183789c8dd9a528fd00fe2f119777556192449");
+    ⚡ record_run_field(STORAGE, "CHROMIUM_SHA256", "472db41c31b206d1c7e0e337c4c067d9174ccb99991e1848017d87d424f76590");
+
+    ⚡ print("--- [ ESTIMATION GATE TRANSITION ] ---");
+    ⚡ record_run_field(STORAGE, "ESTIMATION_STATUS","AUTHORIZED TO START (FILE 97 PROTOCOL)");
+    ⚡ record_run_field(STORAGE, "TARGET_ESTIMATION","FITTING k_i, CURRENT BOTTLENECK i*(t), AND k_MIN");
+
+    ⚡ TARGET_FILE: ".sigma_exec/RUN_05_VERIFIED_RECORD.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("RUN_05_RECORD_PERSISTED:", TARGET_FILE);
+    ⚡ print("DECISION               : RUN 05 = KEEP - FIFTH ALIGNED BASELINE CHECKPOINT VERIFIED");
+    ⚡ print("CONTROL_RESPONSE       : ĐÃ LƯU RUN 05 - EXECUTE PROVISIONAL ESTIMATION");
+}

@@ -1,0 +1,39 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.RESULT.TRACE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_RESULT_TRACE) {
+
+    ⚡ OBSERVED_EVENT:
+        H("input","",NULL,NULL);
+
+    ⚡ PROCESS_TRACE:
+        H("write_text",
+          "sigma_shell_result_trace.state",
+          OBSERVED_EVENT,
+          NULL);
+
+    ⚡ OBSERVATION:
+        H("read_text",
+          "sigma_shell_result_trace.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL STEP 7 RESULT TRACE");
+        ⚡ print("============================================");
+
+        ⚡ print(OBSERVED_EVENT);
+
+        ⚡ print(PROCESS_TRACE);
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

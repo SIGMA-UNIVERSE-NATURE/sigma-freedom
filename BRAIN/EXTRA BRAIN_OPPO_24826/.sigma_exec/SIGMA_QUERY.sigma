@@ -1,0 +1,59 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=QUERY.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+DEF display_retrieved_node(section_name, node_id, node_val) {
+    ⚡ print("RETRIEVED [", section_name, "] NODE:", node_id, "==>", node_val);
+    RETURN node_id;
+}
+
+⟡(Σ.QUERY_ENGINE) {
+    ⚡ MASTER_PATH: ".sigma_exec/SIGMA_MASTER_KNOWLEDGE_BASE.txt";
+    ⚡ RAW: load(MASTER_PATH);
+
+    ⚡ SECTIONS: split(RAW, " <===> ");
+    ⚡ SEC_P2: get(SECTIONS, 0);
+    ⚡ SEC_P3: get(SECTIONS, 1);
+    ⚡ SEC_P4: get(SECTIONS, 2);
+    ⚡ SEC_P5: get(SECTIONS, 3);
+    ⚡ SEC_P6: get(SECTIONS, 4);
+
+    ⚡ TOKENS_P2: split(SEC_P2, " <-> ");
+    ⚡ TOKENS_P3: split(SEC_P3, " <-> ");
+    ⚡ TOKENS_P4: split(SEC_P4, " <-> ");
+    ⚡ TOKENS_P5: split(SEC_P5, " <-> ");
+    ⚡ TOKENS_P6: split(SEC_P6, " <-> ");
+
+    ⚡ print("=== SIGMA QUANTUM VACUUM DIRECT QUERY ENGINE ===");
+
+    ⚡ display_retrieved_node("PART_2", get(TOKENS_P2, 0), get(TOKENS_P2, 1));
+    ⚡ display_retrieved_node("PART_2", get(TOKENS_P2, 16), get(TOKENS_P2, 17));
+
+    ⚡ display_retrieved_node("PART_3", get(TOKENS_P3, 0), get(TOKENS_P3, 1));
+    ⚡ display_retrieved_node("PART_3", get(TOKENS_P3, 21), "SELF_SUSTAINING_CREATION_CYCLE");
+
+    ⚡ display_retrieved_node("PART_4", get(TOKENS_P4, 0), get(TOKENS_P4, 1));
+    ⚡ display_retrieved_node("PART_5", get(TOKENS_P5, 0), get(TOKENS_P5, 1));
+    ⚡ display_retrieved_node("PART_6", get(TOKENS_P6, 0), get(TOKENS_P6, 1));
+    ⚡ display_retrieved_node("PART_6", get(TOKENS_P6, 10), get(TOKENS_P6, 11));
+
+    ⚡ print("=== TRUY XUAT HOAN TAT TREN TOAN BO DAI MA TRAN LOI ===");
+}

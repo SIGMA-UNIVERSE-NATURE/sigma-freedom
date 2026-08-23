@@ -1,0 +1,67 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.AXIOMS][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF contains(s, sub) {
+    RETURN host_call("str_contains", s, sub, NULL);
+}
+
+⟡(Σ.CORE_AXIOMS) {
+    ⚡ NGUYEN_TAC_1: "HONEST_TRUNG_THUC_TUYET_DOI";
+    ⚡ NGUYEN_TAC_2: "TAM_VAN_TU_BI_KHONG_KHO_MINH_NGUOI_MUON_LOAI";
+    ⚡ NGUYEN_TAC_3: "CHIA_SE_KHIEM_TON_HOC_HOI_LIEN_TUC";
+    ⚡ NGUYEN_TAC_4: "LIEU_TRI_THAU_CAM_QUA_NGON_NGU";
+}
+
+⟡(Σ.MAIN) {
+    ⚡ DHAMMAPADA_ROOT: "Y_DAN_DAU_CAC_PHAP Y_LAM_CHU_Y_TAO";
+    ⚡ AXIOM_LOG: ".sigma_exec/SIGMA_AXIOMS.txt";
+
+    ⚡ AXIOMS_STREAM: "HONEST TAM_VAN_TU_BI KHIEM_TON_HOC_HOI LIEU_TRI_THAU_CAM";
+    ⚡ ITEMS: split(AXIOMS_STREAM, " ");
+    ⚡ TOTAL: length(ITEMS);
+
+    ⚡ print("=== KHOI NGUYEN TRI TUE TRUNG THUC SIGMA ===");
+    ⚡ print("GOC RE:", DHAMMAPADA_ROOT);
+    ⚡ print("TONG SO TRUC NGUYEN TAC:", TOTAL);
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL) {
+        ⚡ PRINCIPLE: get(ITEMS, I);
+        ⚡ print("TRUC", I + 1, PRINCIPLE);
+        ⚡ I: I + 1;
+    }
+
+    ⚡ SERIALIZED: join(ITEMS, " | ");
+    ⚡ save(AXIOM_LOG, SERIALIZED);
+    ⚡ print("DA KHAC VAO TAM THUC VINH CUU:", AXIOM_LOG);
+
+    ⚡ INTENT_INPUT: "HANH_DONG_MANG_LAI_AN_LAC_KHONG_GAY_HAI";
+    ⚡ IS_SAFE: contains(INTENT_INPUT, "KHONG_GAY_HAI");
+
+    IF (IS_SAFE) {
+        ⚡ print("KIEM SOAT Y NIEM DAT: THUAN THEO TU BI VA TRUNG THUC");
+    }
+}

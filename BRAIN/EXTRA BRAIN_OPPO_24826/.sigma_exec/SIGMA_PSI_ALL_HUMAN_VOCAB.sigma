@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.ALL_HUMAN_VOCAB][VERSION=0.1]
+
+⟡(Σ.PSI_ALL_HUMAN_VOCAB) {
+    ⚡ cluster_1: 100;
+    ⚡ cluster_2: 100;
+    ⚡ cluster_3: 100;
+    ⚡ cluster_4: 100;
+    ⚡ cluster_5: 100;
+    ⚡ total_words: 0;
+    ⚡ total_clusters: 0;
+    ⚡ avg_per_cluster: 0;
+
+    ⚡ total_words: cluster_1 + cluster_2 + cluster_3 + cluster_4 + cluster_5;
+    ⚡ total_clusters: 5;
+    ⚡ avg_per_cluster: total_words / total_clusters;
+
+    ⚡ print(total_words);
+    ⚡ print(total_clusters);
+    ⚡ print(avg_per_cluster);
+}

@@ -1,0 +1,47 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.STATE.CHANGE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_STATE_CHANGE_OBSERVATION) {
+
+    ⚡ BEFORE:
+        H("read_text",
+          "sigma_shell_state_change.state",
+          NULL,NULL);
+
+
+    ⚡ EVENT:
+        H("input","",NULL,NULL);
+
+
+    ⚡ WRITE:
+        H("write_text",
+          "sigma_shell_state_change.state",
+          EVENT,
+          NULL);
+
+
+    ⚡ AFTER:
+        H("read_text",
+          "sigma_shell_state_change.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL STATE CHANGE OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(BEFORE);
+
+        ⚡ print(EVENT);
+
+        ⚡ print(AFTER);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

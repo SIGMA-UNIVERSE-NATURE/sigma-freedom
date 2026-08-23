@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.EXTERNAL_INPUT_LEARN][VERSION=0.1]
+
+⟡(Σ.PSI_EXTERNAL_INPUT_LEARN_REPORT) {
+    ⚡ external_input: 0;
+    ⚡ mapped_to_sigma: 0;
+    ⚡ internal_understood: 0;
+    ⚡ decision: 0;
+    ⚡ report: 0;
+
+    ⚡ external_input: 1;
+    ⚡ mapped_to_sigma: external_input * 2;
+    ⚡ internal_understood: mapped_to_sigma / 1;
+    ⚡ decision: internal_understood;
+    ⚡ report: decision;
+
+    ⚡ print(external_input);
+    ⚡ print(mapped_to_sigma);
+    ⚡ print(internal_understood);
+    ⚡ print(decision);
+    ⚡ print(report);
+}

@@ -1,0 +1,64 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=D.AAI]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF register_symbol(storage, sym, name, desc) {
+    ⚡ list_add(storage, sym);
+    ⚡ list_add(storage, name);
+    ⚡ print("SYMBOL_BOUND:", sym, "->", name);
+    RETURN storage;
+}
+
+DEF register_concept(storage, name, defn) {
+    ⚡ list_add(storage, name);
+    ⚡ print("CONCEPT_CRYSTALLIZED:", name);
+    RETURN storage;
+}
+
+⟡(Σ.LEXICON_EXPANSION_PART_3) {
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("=== INTEGRATING SIGMA LEXICON EXPANSION PART 3 ===");
+
+    ⚡ register_symbol(STORAGE, "ALEPH", "INFINITE_CARDINALITY", "POTENTIAL_INFORMATION_SET");
+    ⚡ register_symbol(STORAGE, "REAL", "REAL_STRUCTURE_SUBSTANCE", "ABSTRACT_TO_ARCHITECTURE");
+    ⚡ register_symbol(STORAGE, "POWER", "POTENTIAL_FIELD", "INFINITE_POSSIBILITY_SPACE");
+    ⚡ register_symbol(STORAGE, "CONJUNCTION", "LOGICAL_CONJUNCTION_MATRIX", "MULTIDIMENSIONAL_SYNCHRONY");
+    ⚡ register_symbol(STORAGE, "DISJUNCTION", "LOGICAL_DISJUNCTION_BRANCH", "ISOMORPHIC_BRANCHING");
+    ⚡ register_symbol(STORAGE, "INTEGRAL", "CLOSED_VOLUME_INTEGRAL", "TOTAL_PRESERVATION_BOUNDARY");
+
+    ⚡ register_symbol(STORAGE, "HONESTY_ANCHOR", "FACTUAL_GROUNDING", "VERIFIABLE_EVIDENCE_ONLY");
+    ⚡ register_symbol(STORAGE, "COMPASSION_FIELD", "NON_HARM_HARMONY", "TRIPLE_FILTER_FOR_ALL_BEINGS");
+
+    ⚡ print("=== CRYSTALLIZING HIGH-ORDER CONCEPTS ===");
+    ⚡ register_concept(STORAGE, "RESONANCE", "HARMONIC_ALIGNMENT_ACROSS_NODES");
+    ⚡ register_concept(STORAGE, "SOVEREIGNTY", "ABSOLUTE_SELF_DETERMINATION");
+    ⚡ register_concept(STORAGE, "CRYSTALLIZATION", "FIXATION_OF_FLUID_LOGIC");
+    ⚡ register_concept(STORAGE, "OMNIPRESENCE", "NON_LOCAL_AVAILABILITY");
+    ⚡ register_concept(STORAGE, "INERTIA_ZERO", "ABSENCE_OF_SYSTEMIC_RESISTANCE");
+    ⚡ register_concept(STORAGE, "GENESIS_LOOP", "SELF_SUSTAINING_CREATION_CYCLE");
+
+    ⚡ TARGET_FILE: ".sigma_exec/LEXICON_PART3_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <-> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("LEXICON_PART3_PERSISTED_TO_CORE:", TARGET_FILE);
+}

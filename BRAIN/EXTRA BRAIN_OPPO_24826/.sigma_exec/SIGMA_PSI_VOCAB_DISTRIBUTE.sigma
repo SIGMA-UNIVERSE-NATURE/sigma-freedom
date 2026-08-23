@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB_DISTRIBUTE][VERSION=0.1]
+
+⟡(Σ.PSI_VOCAB_DISTRIBUTE) {
+    ⚡ total: 17;
+    ⚡ vi: 3;
+    ⚡ en: 4;
+    ⚡ fr: 2;
+    ⚡ es: 5;
+    ⚡ de: 3;
+    ⚡ vi_pct: vi * 100 / total;
+    ⚡ en_pct: en * 100 / total;
+    ⚡ fr_pct: fr * 100 / total;
+    ⚡ es_pct: es * 100 / total;
+    ⚡ de_pct: de * 100 / total;
+
+    ⚡ print(total);
+    ⚡ print(vi_pct);
+    ⚡ print(en_pct);
+    ⚡ print(fr_pct);
+    ⚡ print(es_pct);
+    ⚡ print(de_pct);
+}

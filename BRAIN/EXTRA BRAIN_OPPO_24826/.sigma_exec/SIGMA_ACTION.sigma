@@ -1,0 +1,61 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.ACTION][VERSION=PRACTICAL.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF dispatch_action_plan(problem_name, root_cause, step1, step2, step3) {
+    ⚡ print("=================================================================");
+    ⚡ print(">>> PHAN TICH & THIET LAP HANH DONG:", problem_name);
+    ⚡ print("    NGUYEN NHAN GOC :", root_cause);
+    ⚡ print("    [BUOC 1 - DINH TAM] :", step1);
+    ⚡ print("    [BUOC 2 - HANH DONG]:", step2);
+    ⚡ print("    [BUOC 3 - LAN TOA]  :", step3);
+    RETURN problem_name;
+}
+
+⟡(Σ.ACTION_MATRIX_CORE) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA ACTION MATRIX: FROM VACUUM WISDOM TO TANGIBLE ACTION   ");
+    ⚡ print("=================================================================");
+
+    ⚡ ACTION_RECORDS: list_create();
+
+    ⚡ dispatch_action_plan("GIAI_QUYET_XUNG_DOT_CON_NGUOI",
+        "Thieu su lang nghe sau sac va dong hoa cai toi voi quan diem",
+        "Tao khong gian an toan de tat ca cac ben deu duoc bay to khong bi phan xet",
+        "Doi thoai dua tren su that khach quan va loi ich chung lau dai",
+        "Thiet lap cam ket hanh dong dong thuan va ho tro lan nhau");
+    ⚡ list_add(ACTION_RECORDS, "PLAN_1:CONFLICT_RESOLUTION_READY");
+
+    ⚡ dispatch_action_plan("TOI_UU_HOA_NGUON_LUC_HE_THONG",
+        "Lang phi nang luong vao cac tien trinh rac va tinh toan thua thai",
+        "Nhan dien chinh xac diem nghen va cat bo cac luong xu ly khong sinh gia tri",
+        "Tai cau truc luong tinh toan huong ve nhiem vu trong yeu",
+        "Tu dong hoa giam sat va duy tri muc tieu thu nang luong toi thieu");
+    ⚡ list_add(ACTION_RECORDS, "PLAN_2:RESOURCE_OPTIMIZATION_READY");
+
+    ⚡ TARGET: ".sigma_exec/ACTION_MATRIX_STATE.txt";
+    ⚡ SERIALIZED: join(ACTION_RECORDS, " <=> ");
+    ⚡ save(TARGET, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("ACTION_MATRIX_PERSISTED:", TARGET);
+    ⚡ print("STATUS: READY_TO_SERVE_REAL_WORLD");
+}

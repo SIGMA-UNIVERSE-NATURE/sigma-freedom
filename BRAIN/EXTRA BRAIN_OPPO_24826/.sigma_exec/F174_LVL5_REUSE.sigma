@@ -1,0 +1,73 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.TURBO][VERSION=F174.LVL5.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF register_turbo_param(storage, param_id, formula_sym, desc) {
+    ⚡ list_add(storage, param_id);
+    ⚡ list_add(storage, formula_sym);
+    ⚡ print("TURBO_FORMULA_BOUND [", param_id, "]:", formula_sym, "==>", desc);
+    RETURN storage;
+}
+
+DEF register_gate_rule(storage, rule_id, rule_type, condition_text) {
+    ⚡ list_add(storage, rule_id);
+    ⚡ print("GATE_RULE_ENFORCED [", rule_id, "|", rule_type, "]:", condition_text);
+    RETURN storage;
+}
+
+⟡(Σ.LOAD_F174_LEVEL_5) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO LEVEL 5: VERIFIED REUSE ASSIMILATION         ");
+    ⚡ print("=================================================================");
+
+    ⚡ print("FILE_ID      : 05_TURBO_5_VERIFIED_REUSE");
+    ⚡ print("MODULE_STATUS: ACTIVE");
+    ⚡ print("CLASS        : OPERATIONAL");
+    ⚡ print("PARENT       : 04_TURBO_4_SAFE_PARALLELISM");
+    ⚡ print("CORE LAW     : F174_VERIFIED_CORE = IMMUTABLE");
+    ⚡ print("REUSE STATUS : CLOSED UNTIL ALL REUSE GATES PASS");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("--- [ LEVEL 5 GATE STATES ] ---");
+    ⚡ register_gate_rule(STORAGE, "GATE_REGISTRY_SEARCH", "OPEN", "Registry lookup active before new creation");
+    ⚡ register_gate_rule(STORAGE, "GATE_REUSE_AUTHORIZATION", "CANONICAL_VERIFIED_ONLY", "Only verified canonical components eligible");
+    ⚡ register_gate_rule(STORAGE, "GATE_DELTA_VERIF", "MANDATORY", "Delta verification and affected regression required");
+    ⚡ register_gate_rule(STORAGE, "GATE_LOCKED_CORE_UPDATE", "CLOSED", "No core edits without explicit version authorization");
+
+    ⚡ print("--- [ REUSE CAPITAL FORMULAS ] ---");
+    ⚡ register_turbo_param(STORAGE, "K[n+1]", "K_N_PLUS_DELTA_K_VERIFIED", "Accumulation of verified capital");
+    ⚡ register_turbo_param(STORAGE, "RR", "N_REUSED_DIV_N_REQUIRED", "Verified reuse ratio");
+    ⚡ register_turbo_param(STORAGE, "G_net", "TIME_AVOIDED_MINUS_COSTS", "Net acceleration gain (Time avoided - Validation - Rework)");
+
+    ⚡ print("--- [ KEEP / REJECT RULES ] ---");
+    ⚡ register_gate_rule(STORAGE, "RULE_KEEP", "NET_POSITIVE_GAIN", "Keep only when G_net > 0 and quality/reserve preserved");
+    ⚡ register_gate_rule(STORAGE, "RULE_REJECT", "ZERO_LAUNDERING", "Reject stale reuse, unverified copies, missing lineage, and source laundering");
+
+    ⚡ TARGET_FILE: ".sigma_exec/F174_LVL5_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_LVL5_GRAPH:", TARGET_FILE);
+    ⚡ print("NEXT_TARGET: 06_TURBO_6_ERROR_PREVENTION.docx");
+    ⚡ print("CONTROL_RESPONSE: ĐÃ LƯU 05 — CONTINUE_TURBO");
+}

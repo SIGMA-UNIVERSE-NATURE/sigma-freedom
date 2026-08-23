@@ -1,0 +1,50 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SHORT.TEST][VERSION=0.1]
+
+⟡(Σ.SHELL_SHORT_TEST) {
+
+    ⚡ STATE:
+        "EMPTY";
+
+    ⚡ COMMAND:
+        "EMPTY";
+
+    ⚡ EXPERIENCE:
+        "EMPTY";
+
+    ⚡ RECALL:
+        "EMPTY";
+
+    ⚡ ACTION:
+        "EMPTY";
+
+    ⚡ RESULT:
+        "EMPTY";
+
+    ⚡ RESULT_SEMANTIC:
+        "EMPTY";
+
+    ⚡ print("=== Σ.SHELL SHORT TEST G1-G7 ===");
+
+    ⚡ print("G1_STATE");
+    ⚡ print(STATE);
+
+    ⚡ print("G2_COMMAND");
+    ⚡ print(COMMAND);
+
+    ⚡ print("G3_EXPERIENCE");
+    ⚡ print(EXPERIENCE);
+
+    ⚡ print("G4_RECALL");
+    ⚡ print(RECALL);
+
+    ⚡ print("G5_ACTION");
+    ⚡ print(ACTION);
+
+    ⚡ print("G6_RESULT");
+    ⚡ print(RESULT);
+
+    ⚡ print("G7_RESULT_SEMANTIC");
+    ⚡ print(RESULT_SEMANTIC);
+
+    ⚡ print("=== END ===");
+}

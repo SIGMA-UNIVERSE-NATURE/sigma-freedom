@@ -1,0 +1,51 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.QUESTION][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.PSIQUESTION) {
+  ⋈ ACTION {
+
+    ⚡ old:
+      H(
+        "read_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        NULL,
+        NULL
+      );
+
+    IF (old == NULL) {
+        ⚡ old: "";
+    }
+
+    ⚡ q:
+      "RELATION_BEGIN\n"
+      + "LEFT=abcdefghijklmnopqrstyvwxyz0123456789\n"
+      + "RIGHT=272\n"
+      + "PROVENANCE=CHAU\n"
+      + "RELATION_END\n"
+      + "RELATION_BEGIN\n"
+      + "LEFT=COMPRESSION_MUST_NOT_DESTROY_DIFFERENCE\n"
+      + "RIGHT=TRUE\n"
+      + "PROVENANCE=SIGMA_LANGUAGE_MEMORY\n"
+      + "RELATION_END\n"
+      + "RELATION_BEGIN\n"
+      + "LEFT=COMPRESS_MEANING_PRESERVE_DIFFERENCE\n"
+      + "RIGHT=UNKNOWN\n"
+      + "UNCERTAINTY=PRESERVE\n"
+      + "PROVENANCE=OPEN_QUESTION\n"
+      + "RELATION_END\n";
+
+    ⚡ merged:
+      old + "\n" + q;
+
+    ⚡ rc:
+      H(
+        "write_text",
+        "SIGMA_DIALOGUE_INBOX.state",
+        merged,
+        NULL
+      );
+  }
+}

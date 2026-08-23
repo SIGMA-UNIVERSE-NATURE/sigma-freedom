@@ -1,0 +1,10 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.RECALL][VERSION=0.4]
+
+⟡(Σ.RECALL_B) {
+
+    ⚡ RECALL:
+        "EMPTY";
+
+    ⚡ print("PROCESS_B");
+    ⚡ print(RECALL);
+}

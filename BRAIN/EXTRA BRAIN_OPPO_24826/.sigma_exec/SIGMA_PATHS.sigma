@@ -1,0 +1,46 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.STRUCTURAL.TRAVERSAL][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ MAP_FILE: ".sigma_exec/BIGRAM_MAP.txt";
+    ⚡ RAW_MAP: load(MAP_FILE);
+    ⚡ TOKENS: split(RAW_MAP, " ");
+    ⚡ TOTAL: length(TOKENS);
+
+    ⚡ ROOT_NODE: "Y";
+    ⚡ print("DANG DUYET CAC NHANH RE XUAT PHAT TU NUT GOC:", ROOT_NODE);
+
+    ⚡ I: 0;
+    WHILE (I < TOTAL - 2) {
+        ⚡ SRC_N: get(TOKENS, I);
+        ⚡ SEP: get(TOKENS, I + 1);
+        ⚡ DST_N: get(TOKENS, I + 2);
+
+        IF (SRC_N == ROOT_NODE) {
+            IF (SEP == "~") {
+                ⚡ print("NHANH_RE_TIM_THAY:", ROOT_NODE, "->", DST_N);
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+}

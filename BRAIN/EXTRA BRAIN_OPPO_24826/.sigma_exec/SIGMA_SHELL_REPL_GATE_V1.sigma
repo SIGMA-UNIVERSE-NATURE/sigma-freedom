@@ -1,0 +1,37 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.REPL.GATE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SHELL_REPL_GATE) {
+    ⚡ running: 1;
+    ⚡ count: 0;
+
+    WHILE (running == 1) {
+        ⚡ cmd: H("input", "Σ> ", NULL, NULL);
+
+        ⚡ count: count + 1;
+
+        ⚡ print("COMMAND_NUMBER=");
+        ⚡ print(count);
+
+        ⚡ print("COMMAND_RECEIVED=");
+        ⚡ print(cmd);
+
+        IF (cmd == "help") {
+            ⚡ print("SHELL_DISPATCH=HELP");
+        } ELSE {
+            IF (cmd == "exit") {
+                ⚡ print("SHELL_DISPATCH=EXIT");
+                ⚡ running: 0;
+            } ELSE {
+                ⚡ print("SHELL_DISPATCH=UNKNOWN");
+            }
+        }
+    }
+
+    ⚡ print("REPL_LOOP_ENDED");
+    ⚡ print("TOTAL_COMMANDS=");
+    ⚡ print(count);
+}

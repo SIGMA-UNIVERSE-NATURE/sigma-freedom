@@ -1,0 +1,43 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.OBSERVATION.RESPONSE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_OBSERVATION_RESPONSE) {
+
+    ⚡ OBSERVATION:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_HISTORY:
+        H("write_text",
+          "sigma_shell_observation_response.state",
+          OBSERVATION,
+          NULL);
+
+    ⚡ HISTORY:
+        H("read_text",
+          "sigma_shell_observation_response.state",
+          NULL,NULL);
+
+
+    ⚡ RESPONSE:
+        HISTORY;
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL OBSERVATION RESPONSE");
+        ⚡ print("============================================");
+
+        ⚡ print(OBSERVATION);
+
+        ⚡ print(HISTORY);
+
+        ⚡ print(RESPONSE);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

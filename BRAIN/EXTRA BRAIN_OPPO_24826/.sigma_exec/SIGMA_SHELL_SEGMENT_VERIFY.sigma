@@ -1,0 +1,27 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.SEGMENT.VERIFY][VERSION=0.1]
+
+DEF H(op,a,b,c){RETURN host(op,a,b,c);}
+
+⟡(Σ.SHELL_SEGMENT_VERIFY) {
+
+    ⚡ data:
+        H("input","",NULL,NULL);
+
+
+    ⚡ segments:
+        H("str_split",data," ",NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(H("list_len",segments,NULL,NULL));
+
+        ⚡ print(H("list_get",segments,0,NULL));
+
+        ⚡ print(H("list_get",segments,1,NULL));
+
+        ⚡ print(H("list_get",segments,2,NULL));
+
+    }
+
+}

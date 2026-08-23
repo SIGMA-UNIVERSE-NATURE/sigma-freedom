@@ -1,0 +1,47 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HISTORY.BEFORE.AFTER][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_HISTORY_BEFORE_AFTER) {
+
+    ⚡ EXPERIENCE_BEFORE:
+        H("input","",NULL,NULL);
+
+    ⚡ MEMORY_BEFORE:
+        H("write_text",
+          "sigma_shell_history_before_after.state",
+          EXPERIENCE_BEFORE,
+          NULL);
+
+    ⚡ OBSERVATION_BEFORE:
+        H("read_text",
+          "sigma_shell_history_before_after.state",
+          NULL,NULL);
+
+
+    ⚡ EXPERIENCE_AFTER:
+        H("input","",NULL,NULL);
+
+    ⚡ MEMORY_AFTER:
+        H("write_text",
+          "sigma_shell_history_before_after.state",
+          EXPERIENCE_AFTER,
+          NULL);
+
+    ⚡ OBSERVATION_AFTER:
+        H("read_text",
+          "sigma_shell_history_before_after.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(OBSERVATION_BEFORE);
+
+        ⚡ print(OBSERVATION_AFTER);
+
+    }
+
+}

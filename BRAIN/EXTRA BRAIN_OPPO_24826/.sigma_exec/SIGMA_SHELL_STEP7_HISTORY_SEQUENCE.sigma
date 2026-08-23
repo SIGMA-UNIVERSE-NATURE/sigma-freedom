@@ -1,0 +1,53 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HISTORY.SEQUENCE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_HISTORY_SEQUENCE) {
+
+    ⚡ EVENT_1:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_1:
+        H("write_text",
+          "sigma_shell_history_sequence_1.state",
+          EVENT_1,
+          NULL);
+
+
+    ⚡ EVENT_2:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_2:
+        H("write_text",
+          "sigma_shell_history_sequence_2.state",
+          EVENT_2,
+          NULL);
+
+
+    ⚡ READ_1:
+        H("read_text",
+          "sigma_shell_history_sequence_1.state",
+          NULL,NULL);
+
+    ⚡ READ_2:
+        H("read_text",
+          "sigma_shell_history_sequence_2.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL HISTORY SEQUENCE");
+        ⚡ print("============================================");
+
+        ⚡ print(READ_1);
+
+        ⚡ print(READ_2);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

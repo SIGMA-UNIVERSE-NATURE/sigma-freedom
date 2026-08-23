@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.RECURRENCE][VERSION=0.4]
+
+⟡(Σ.RECURRENCE) {
+
+    ⚡ MATERIAL:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_L53B_REAL_EXPERIENCE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ VIEW_1:
+        MATERIAL;
+
+    ⚡ VIEW_2:
+        MATERIAL;
+
+    print(VIEW_1);
+    print(VIEW_2);
+}

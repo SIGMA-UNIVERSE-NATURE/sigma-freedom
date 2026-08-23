@@ -1,0 +1,28 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.G1.STATE][VERSION=0.1]
+
+⟡(Σ.G1_STATE_TRANSITION) {
+
+    ⚡ STATE:
+        0;
+
+    ⚡ EXPERIENCE_A:
+        7;
+
+    ⚡ EXPERIENCE_B:
+        13;
+
+    ⚡ print("STATE_0");
+    ⚡ print(STATE);
+
+    ⚡ STATE:
+        STATE + EXPERIENCE_A;
+
+    ⚡ print("STATE_A");
+    ⚡ print(STATE);
+
+    ⚡ STATE:
+        STATE + EXPERIENCE_B;
+
+    ⚡ print("STATE_B");
+    ⚡ print(STATE);
+}

@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.EXPERIENCE.STORAGE][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_EXPERIENCE_STORAGE) {
+
+    ⚡ received_data:
+        H("input","",NULL,NULL);
+
+
+    ⚡ write_result:
+        H("write_text",
+          "sigma_shell_experience.state",
+          received_data,
+          NULL);
+
+
+    ⚡ read_back_data:
+        H("read_text",
+          "sigma_shell_experience.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print(received_data);
+
+        ⚡ print(write_result);
+
+        ⚡ print(read_back_data);
+
+    }
+
+}

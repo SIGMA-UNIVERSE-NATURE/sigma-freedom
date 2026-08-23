@@ -1,0 +1,25 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.NATURAL_ANSWER_DETAILED][VERSION=0.1]
+
+⟡(Σ.PSI_NATURAL_ANSWER_DETAILED) {
+    ⚡ human_question: 0;
+    ⚡ parsed: 0;
+    ⚡ understood: 0;
+    ⚡ answer_level1: 0;
+    ⚡ answer_level2: 0;
+    ⚡ final_answer: 0;
+
+    ⚡ human_question: 10;
+    ⚡ parsed: human_question / 2;
+    ⚡ understood: parsed + 1;
+    ⚡ answer_level1: understood * 2;
+    ⚡ answer_level2: answer_level1 + 3;
+    ⚡ final_answer: answer_level2;
+
+    ⚡ print("SIGMA_DETAILED_NATURAL_ANSWER");
+    ⚡ print("QUESTION_IN=", human_question);
+    ⚡ print("PARSED=", parsed);
+    ⚡ print("UNDERSTOOD=", understood);
+    ⚡ print("ANSWER_LEVEL1=", answer_level1);
+    ⚡ print("ANSWER_LEVEL2=", answer_level2);
+    ⚡ print("FINAL_ANSWER=", final_answer);
+}

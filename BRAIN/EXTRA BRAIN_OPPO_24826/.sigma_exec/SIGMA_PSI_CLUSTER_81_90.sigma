@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_81_90][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_81_90) {
+    ⚡ c81: 100;
+    ⚡ c82: 100;
+    ⚡ c83: 100;
+    ⚡ c84: 100;
+    ⚡ c85: 100;
+    ⚡ c86: 100;
+    ⚡ c87: 100;
+    ⚡ c88: 100;
+    ⚡ c89: 100;
+    ⚡ c90: 100;
+    ⚡ total_new: c81 + c82 + c83 + c84 + c85 + c86 + c87 + c88 + c89 + c90;
+    ⚡ total_all: 8000 + total_new;
+    ⚡ avg_cluster: total_all / 90;
+
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

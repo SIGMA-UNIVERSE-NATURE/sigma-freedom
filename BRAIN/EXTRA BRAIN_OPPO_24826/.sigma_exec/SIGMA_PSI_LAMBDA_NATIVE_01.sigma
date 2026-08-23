@@ -1,0 +1,12 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.LAMBDA][VERSION=0.1]
+
+⟡(Σ.LAMBDA) {
+
+    ⚡ SOURCE:
+        "sigma";
+
+    ⚡ RESULT:
+        λ SOURCE;
+
+    print(RESULT);
+}

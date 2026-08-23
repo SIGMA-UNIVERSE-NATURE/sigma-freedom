@@ -1,0 +1,113 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF STARTS(text, prefix) {
+    RETURN H("str_starts", text, 0, prefix);
+}
+
+DEF STR_LEN(text) {
+    RETURN H("str_len", text, NULL, NULL);
+}
+
+DEF STR_SLICE(text, start, count) {
+    RETURN H("str_slice", text, start, count);
+}
+
+DEF EXISTS(path) {
+    RETURN H("file_exists", path, NULL, NULL);
+}
+
+DEF SHOW_HELP() {
+    ⚡ h1: "SIGMA_SHELL_HELP_BEGIN";
+    ⚡ h2: "help              Show commands";
+    ⚡ h3: "run <file.sigmab> Validate Sigma bytecode target";
+    ⚡ h4: "exit              Exit Sigma Shell";
+    ⚡ h5: "SIGMA_SHELL_HELP_END";
+
+    ⚡ print(h1);
+    ⚡ print(h2);
+    ⚡ print(h3);
+    ⚡ print(h4);
+    ⚡ print(h5);
+}
+
+DEF HANDLE_RUN(cmd) {
+    ⚡ n: STR_LEN(cmd);
+    ⚡ path: STR_SLICE(cmd, 4, n - 4);
+
+    ⚡ print("SHELL_COMMAND=RUN");
+    ⚡ print("RUN_PATH=");
+    ⚡ print(path);
+
+    IF (STR_LEN(path) == 0) {
+
+        ⚡ print("RUN_STATUS=MISSING_ARGUMENT");
+
+    } ELSE {
+
+        IF (EXISTS(path)) {
+
+            ⚡ print("RUN_TARGET_EXISTS=TRUE");
+            ⚡ print("RUN_STATUS=EXECUTION_CAPABILITY_NOT_AVAILABLE");
+
+        } ELSE {
+
+            ⚡ print("RUN_TARGET_EXISTS=FALSE");
+            ⚡ print("RUN_STATUS=TARGET_NOT_FOUND");
+
+        }
+    }
+}
+
+⟡(Σ.SHELL) {
+    ⚡ running: 1;
+    ⚡ command_count: 0;
+
+    ⚡ banner1: "============================================";
+    ⚡ banner2: "Σ.SHELL — SIGMA-Ψ";
+    ⚡ banner3: "EXECUTABLE CANDIDATE v0.1";
+    ⚡ banner4: "============================================";
+
+    ⚡ print(banner1);
+    ⚡ print(banner2);
+    ⚡ print(banner3);
+    ⚡ print(banner4);
+
+    WHILE (running == 1) {
+
+        ⚡ cmd: H("input", "Σ> ", NULL, NULL);
+        ⚡ command_count: command_count + 1;
+
+        IF (cmd == "help") {
+
+            SHOW_HELP();
+
+        } ELSE {
+
+            IF (cmd == "exit") {
+
+                ⚡ print("SHELL_COMMAND=EXIT");
+                ⚡ running: 0;
+
+            } ELSE {
+
+                IF (STARTS(cmd, "run ")) {
+
+                    HANDLE_RUN(cmd);
+
+                } ELSE {
+
+                    ⚡ print("SHELL_COMMAND=UNKNOWN");
+
+                }
+            }
+        }
+    }
+
+    ⚡ print("SIGMA_SHELL_STOPPED");
+    ⚡ print("TOTAL_COMMANDS=");
+    ⚡ print(command_count);
+}

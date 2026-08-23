@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.CLUSTER_61_70][VERSION=0.1]
+
+⟡(Σ.PSI_CLUSTER_61_70) {
+    ⚡ c61: 100;
+    ⚡ c62: 100;
+    ⚡ c63: 100;
+    ⚡ c64: 100;
+    ⚡ c65: 100;
+    ⚡ c66: 100;
+    ⚡ c67: 100;
+    ⚡ c68: 100;
+    ⚡ c69: 100;
+    ⚡ c70: 100;
+    ⚡ total_new: c61 + c62 + c63 + c64 + c65 + c66 + c67 + c68 + c69 + c70;
+    ⚡ total_all: 6000 + total_new;
+    ⚡ avg_cluster: total_all / 70;
+
+    ⚡ print(total_new);
+    ⚡ print(total_all);
+    ⚡ print(avg_cluster);
+}

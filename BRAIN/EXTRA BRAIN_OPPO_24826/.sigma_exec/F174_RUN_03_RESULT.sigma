@@ -1,0 +1,71 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.RUN_RECORD][VERSION=RUN03.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF record_run_field(storage, field_name, value_text) {
+    ⚡ list_add(storage, field_name);
+    ⚡ print("RUN_03_RECORD [", field_name, "] =>", value_text);
+    RETURN storage;
+}
+
+⟡(Σ.SAVE_RUN_03_RESULT) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA F174 TURBO: RUN 03 BASELINE CYCLE RECORD                ");
+    ⚡ print("   GUIDE: TAM VAN TU BI | 3-CHECKPOINT PROVISIONAL THRESHOLD     ");
+    ⚡ print("=================================================================");
+
+    ⚡ STORAGE: list_create();
+
+    ⚡ record_run_field(STORAGE, "RUN_ID",          "SIGMA-V110-TURBO-BASELINE-CYCLE-03");
+    ⚡ record_run_field(STORAGE, "STATE",           "PASS");
+    ⚡ record_run_field(STORAGE, "CHECKPOINT",      "3 — PROVISIONAL ESTIMATION THRESHOLD");
+    ⚡ record_run_field(STORAGE, "BRANCH",          "sigma-v1.10-turbo-telemetry-run-01");
+    ⚡ record_run_field(STORAGE, "EVIDENCE_COMMIT", "d37f4c22770dfb9c0e8a29e6e45428f8d5ee4d1a");
+    ⚡ record_run_field(STORAGE, "PROD_LOCK",       "v1.8.1 IMMUTABLE / UNCHANGED");
+
+    ⚡ print("--- [ VERIFIED RESULTS & PERFORMANCE AUDIT ] ---");
+    ⚡ record_run_field(STORAGE, "CAPTAIN_CHECKS",  "1,228 / 1,228 PASS (0 FAILED)");
+    ⚡ record_run_field(STORAGE, "ELIGIBLE_UNITS",  "48 RELEASE UNITS");
+    ⚡ record_run_field(STORAGE, "UNVERIFIED_DEBT", "ZERO");
+    ⚡ record_run_field(STORAGE, "SYSTEM_GATES",    "6 / 6 COVERED (18 TELEMETRY EVENTS)");
+    ⚡ record_run_field(STORAGE, "FAULT_INJECTION", "6/6 DETECTED");
+    ⚡ record_run_field(STORAGE, "NODE_LATENCY",    "9.234 ms / 250 ms");
+    ⚡ record_run_field(STORAGE, "CHROMIUM_LATENCY","2.500 ms / 250 ms");
+    ⚡ record_run_field(STORAGE, "CYCLE_02_REGRESS","PASS");
+
+    ⚡ print("--- [ CLAIM STATUS: PROVISIONAL HOLD ] ---");
+    ⚡ record_run_field(STORAGE, "k_COEFFICIENT",   "UNKNOWN (PROVISIONAL ONLY; N >= 5 PREFERRED)");
+    ⚡ record_run_field(STORAGE, "k_MIN",           "UNKNOWN (PROVISIONAL ONLY)");
+    ⚡ record_run_field(STORAGE, "BOTTLENECK",      "UNKNOWN (PROVISIONAL ONLY)");
+
+    ⚡ print("--- [ EVIDENCE BINDING CHECKSUMS ] ---");
+    ⚡ record_run_field(STORAGE, "WORKFLOW_RUN",    "30080057459 (SUCCESS)");
+    ⚡ record_run_field(STORAGE, "ARTIFACT_SHA256", "4ceca426b17a17d393ac1a3066ba7e0d49161b72294331bcc182d244bfc70671");
+
+    ⚡ TARGET_FILE: ".sigma_exec/RUN_03_VERIFIED_RECORD.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <===> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("RUN_03_RECORD_PERSISTED:", TARGET_FILE);
+    ⚡ print("DECISION               : RUN 03 = KEEP — THIRD ALIGNED BASELINE CHECKPOINT VERIFIED");
+    ⚡ print("CONTROL_RESPONSE       : ĐÃ LƯU RUN 03 — COLLECT BASELINE CYCLE 04");
+}

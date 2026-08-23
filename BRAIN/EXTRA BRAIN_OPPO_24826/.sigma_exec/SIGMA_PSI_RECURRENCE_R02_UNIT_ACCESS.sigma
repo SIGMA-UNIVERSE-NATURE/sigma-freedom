@@ -1,0 +1,26 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.RECURRENCE][VERSION=0.5]
+
+⟡(Σ.RECURRENCE) {
+
+    ⚡ MATERIAL:
+        host(
+            "read_text",
+            ".sigma_exec/SIGMA_PSI_L53B_REAL_EXPERIENCE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ BOUNDARY:
+        "\n";
+
+    ⚡ UNIT_ACCESS:
+        host(
+            "str_split",
+            MATERIAL,
+            BOUNDARY,
+            NULL
+        );
+
+    print(MATERIAL);
+    print(UNIT_ACCESS);
+}

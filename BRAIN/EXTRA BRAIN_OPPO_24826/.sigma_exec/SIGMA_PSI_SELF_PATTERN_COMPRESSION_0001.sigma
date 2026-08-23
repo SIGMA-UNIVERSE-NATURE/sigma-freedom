@@ -1,0 +1,233 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.SELF_PATTERN_COMPRESSION][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+DEF STR_LEN(s) {
+    RETURN H("str_len",s,NULL,NULL);
+}
+
+DEF STR_BYTE(s,i) {
+    RETURN H("str_byte",s,i,NULL);
+}
+
+DEF SLICE(s,p,n) {
+    RETURN H("str_slice",s,p,n);
+}
+
+DEF LNEW() {
+    RETURN H("list_new",NULL,NULL,NULL);
+}
+
+DEF LPUSH(xs,x) {
+    RETURN H("list_push",xs,x,NULL);
+}
+
+DEF LLEN(xs) {
+    RETURN H("list_len",xs,NULL,NULL);
+}
+
+DEF LGET(xs,i) {
+    RETURN H("list_get",xs,i,NULL);
+}
+
+DEF EXPAND_RANGE(a,b) {
+    ⚡ universe:
+        "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    ⚡ p1:
+        H("str_find",universe,a,NULL);
+
+    ⚡ p2:
+        H("str_find",universe,b,NULL);
+
+    IF (p1 < 0 || p2 < p1) {
+        RETURN "";
+    }
+
+    RETURN SLICE(
+        universe,
+        p1,
+        p2-p1+1
+    );
+}
+
+⟡(Σ.SELFPATTERNCOMPRESSION) {
+
+    ⚡ raw:
+        "abcdefghijklmnopqrstyvwxyz0123456789";
+
+    ⚡ types: LNEW();
+    ⚡ starts: LNEW();
+    ⚡ ends: LNEW();
+
+    ⚡ range_count: 0;
+    ⚡ literal_count: 0;
+    ⚡ payload_symbol_bytes: 0;
+
+    ⚡ n: STR_LEN(raw);
+    ⚡ i: 0;
+
+    // Discover consecutive-byte runs.
+    // No boundaries are supplied in advance.
+
+    WHILE (i < n) {
+
+        ⚡ start: i;
+        ⚡ j: i;
+
+        WHILE (
+            j + 1 < n
+            && STR_BYTE(raw,j+1)
+               == STR_BYTE(raw,j) + 1
+        ) {
+            ⚡ j: j + 1;
+        }
+
+        ⚡ run_len: j-start+1;
+
+        IF (run_len >= 3) {
+
+            ⚡ a: SLICE(raw,start,1);
+            ⚡ b: SLICE(raw,j,1);
+
+            ⚡ p1: LPUSH(types,"R");
+            ⚡ p2: LPUSH(starts,a);
+            ⚡ p3: LPUSH(ends,b);
+
+            ⚡ range_count:
+                range_count + 1;
+
+            // RANGE payload keeps two boundary symbols.
+            ⚡ payload_symbol_bytes:
+                payload_symbol_bytes + 2;
+
+            ⚡ i: j + 1;
+
+        } ELSE {
+
+            ⚡ x: SLICE(raw,i,1);
+
+            ⚡ p4: LPUSH(types,"L");
+            ⚡ p5: LPUSH(starts,x);
+            ⚡ p6: LPUSH(ends,"");
+
+            ⚡ literal_count:
+                literal_count + 1;
+
+            // LITERAL payload keeps one symbol.
+            ⚡ payload_symbol_bytes:
+                payload_symbol_bytes + 1;
+
+            ⚡ i: i + 1;
+        }
+    }
+
+    // Reconstruct using only discovered structure.
+
+    ⚡ reconstructed: "";
+    ⚡ structure: "";
+    ⚡ k: 0;
+    ⚡ segment_count: LLEN(types);
+
+    WHILE (k < segment_count) {
+
+        ⚡ t: LGET(types,k);
+        ⚡ a2: LGET(starts,k);
+        ⚡ b2: LGET(ends,k);
+
+        IF (t == "R") {
+
+            ⚡ expanded:
+                EXPAND_RANGE(a2,b2);
+
+            ⚡ reconstructed:
+                reconstructed + expanded;
+
+            ⚡ structure:
+                structure
+                + "R("
+                + a2
+                + ","
+                + b2
+                + ")";
+
+        } ELSE {
+
+            ⚡ reconstructed:
+                reconstructed + a2;
+
+            ⚡ structure:
+                structure
+                + "L("
+                + a2
+                + ")";
+        }
+
+        IF (k + 1 < segment_count) {
+            ⚡ structure:
+                structure + "|";
+        }
+
+        ⚡ k: k + 1;
+    }
+
+    ⚡ exact:
+        reconstructed == raw;
+
+    // One type bit per segment.
+    ⚡ metadata_bytes: 0;
+    ⚡ remaining: segment_count;
+
+    WHILE (remaining > 0) {
+        ⚡ metadata_bytes:
+            metadata_bytes + 1;
+
+        ⚡ remaining:
+            remaining - 8;
+    }
+
+    ⚡ packed_payload_estimate:
+        payload_symbol_bytes
+        + metadata_bytes;
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+
+    ⚡ print("TEST=SIGMA_PSI_SELF_PATTERN_COMPRESSION_0001");
+    ⚡ print("RAW_BYTES=",n);
+    ⚡ print("DISCOVERED_SEGMENTS=",segment_count);
+    ⚡ print("DISCOVERED_RANGES=",range_count);
+    ⚡ print("DISCOVERED_LITERALS=",literal_count);
+    ⚡ print("DISCOVERED_STRUCTURE=",structure);
+
+    ⚡ print(
+        "STRUCTURAL_SYMBOL_BYTES=",
+        payload_symbol_bytes
+    );
+
+    ⚡ print(
+        "TYPE_METADATA_BYTES=",
+        metadata_bytes
+    );
+
+    ⚡ print(
+        "PACKED_PAYLOAD_ESTIMATE=",
+        packed_payload_estimate
+    );
+
+    ⚡ print("RECONSTRUCTED=",reconstructed);
+
+    IF (exact) {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=PASS");
+        ⚡ print("SELF_DISCOVERED_STRUCTURAL_ENCODING=PASS");
+    } ELSE {
+        ⚡ print("BYTE_EXACT_RECONSTRUCTION=FAIL");
+        ⚡ print("SELF_DISCOVERED_STRUCTURAL_ENCODING=FAIL");
+    }
+
+    ⚡ print("BOUNDARIES_PRESELECTED=FALSE");
+    ⚡ print("MEMORY_WRITE=FALSE");
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

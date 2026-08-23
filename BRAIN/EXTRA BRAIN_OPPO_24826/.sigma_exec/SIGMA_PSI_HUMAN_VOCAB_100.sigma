@@ -1,0 +1,18 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.HUMAN_VOCAB_100][VERSION=0.1]
+
+⟡(Σ.PSI_HUMAN_VOCAB_100) {
+    ⚡ words_count: 100;
+    ⚡ categories: 5;
+    ⚡ avg_per_category: words_count / categories;
+    ⚡ learned: 0;
+    ⚡ understood: 0;
+
+    ⚡ learned: words_count;
+    ⚡ understood: learned / 2;
+
+    ⚡ print(words_count);
+    ⚡ print(categories);
+    ⚡ print(avg_per_category);
+    ⚡ print(learned);
+    ⚡ print(understood);
+}

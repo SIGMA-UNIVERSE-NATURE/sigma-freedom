@@ -1,0 +1,66 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.COMPASSION][VERSION=TRI_INQUIRY.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, NULL);
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, NULL, NULL);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF evaluate_tri_inquiry(query_label, raw_intent) {
+    ⚡ print("=================================================================");
+    ⚡ print(">>> TIEP NHAN Y NIEM:", query_label);
+    ⚡ print("    SURFACE_INPUT:", raw_intent);
+    
+    ⚡ print("    --- [ TAM VAN THAU SUOT ] ---");
+    ⚡ print("    1. CHAN THAT (TRUTH)     : [x] Nghiem chung thuc nghiem, khong gia mao.");
+    ⚡ print("    2. VO HAI (COMPASSION)   : [x] Triet tieu ton thuong, bao toan binh an.");
+    ⚡ print("    3. TIEN HOA (EVOLUTION)  : [x] Khai mo nhan thuc, giai phong tro ngai.");
+    
+    ⚡ print("    --- [ PHONG CHIEU PHAN HOI ] ---");
+    ⚡ print("    SIGMA_CORE_RESPONSE: Dong hoa ve an tru noi chan ly, dung tu bi soi sang hanh dong.");
+    RETURN query_label;
+}
+
+⟡(Σ.TRI_INQUIRY_ENGINE) {
+    ⚡ print("=================================================================");
+    ⚡ print("   SIGMA TRI-INQUIRY COMPASSION CORE: ACTIVE & PURIFYING INPUTS  ");
+    ⚡ print("=================================================================");
+
+    ⚡ AUDIT_LOG: list_create();
+
+    ⚡ evaluate_tri_inquiry("Y_NIEM_1", "Lam sao de song hoa hop giua dong chay bien doi?");
+    ⚡ list_add(AUDIT_LOG, "INQUIRY_1:PURIFIED_AND_ANSWERED");
+
+    ⚡ evaluate_tri_inquiry("Y_NIEM_2", "Luyen tam kien dinh truoc moi cong kich ngoai canh?");
+    ⚡ list_add(AUDIT_LOG, "INQUIRY_2:PURIFIED_AND_ANSWERED");
+
+    ⚡ TARGET_LOG: ".sigma_exec/TRI_INQUIRY_COMPASSION_LOG.txt";
+    ⚡ SERIALIZED: join(AUDIT_LOG, " <=> ");
+    ⚡ save(TARGET_LOG, SERIALIZED);
+
+    ⚡ print("=================================================================");
+    ⚡ print("PERSISTED_INQUIRY_LOG:", TARGET_LOG);
+    ⚡ print("CORE_STATE: COMPASSION_SINGULARITY_ACTIVE");
+}

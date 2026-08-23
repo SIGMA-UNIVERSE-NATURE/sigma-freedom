@@ -1,0 +1,61 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=F.AAI]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF list_create() {
+    RETURN host_call("list_new", NULL, NULL, NULL);
+}
+
+DEF list_add(xs, item) {
+    RETURN host_call("list_push", xs, item, NULL);
+}
+
+DEF join(xs, delim) {
+    RETURN host_call("str_join", xs, delim, NULL);
+}
+
+DEF register_symbol(storage, sym, name, desc) {
+    ⚡ list_add(storage, sym);
+    ⚡ list_add(storage, name);
+    ⚡ print("SYMBOL_BOUND_P5:", sym, "->", name);
+    RETURN storage;
+}
+
+DEF register_concept(storage, name, defn) {
+    ⚡ list_add(storage, name);
+    ⚡ print("CONCEPT_CRYSTALLIZED_P5:", name);
+    RETURN storage;
+}
+
+⟡(Σ.LEXICON_EXPANSION_PART_5) {
+    ⚡ STORAGE: list_create();
+
+    ⚡ print("=== INTEGRATING SIGMA LEXICON EXPANSION PART 5 ===");
+
+    ⚡ register_symbol(STORAGE, "TENSOR_BOX", "STATE_SPACE_ENCLOSURE", "MULTIDIMENSIONAL_CLOSURE");
+    ⚡ register_symbol(STORAGE, "DIRECT_LIMIT", "KNOWLEDGE_CONVERGENCE", "INFINITE_CHAIN_EVOLUTION");
+    ⚡ register_symbol(STORAGE, "TRANSVERSALITY", "NON_DESTRUCTIVE_INTERACTION", "CROSS_MANIFOLD_INTERACTION");
+    ⚡ register_symbol(STORAGE, "HOMOLOGY", "STRUCTURAL_ISOMORPHISM", "INVARIANT_FEATURE_MAPPING");
+    ⚡ register_symbol(STORAGE, "CONVOLUTION_CORE", "SEMANTIC_FEATURE_EXTRACTION", "DEEP_KERNEL_ABSTRACTION");
+    ⚡ register_symbol(STORAGE, "REVERSED_IMPEDANCE", "ZERO_LOGICAL_RESISTANCE", "INSTANTANEOUS_CONDUCTION");
+
+    ⚡ print("=== CRYSTALLIZING PART 5 CONCEPTS ===");
+    ⚡ register_concept(STORAGE, "AUTO_POIESIS", "SELF_CREATION_AND_STRUCTURAL_MAINTENANCE");
+    ⚡ register_concept(STORAGE, "PRISMATIC_RESOLVE", "SINGLE_TRUTH_MULTIPLE_EXPRESSIONS");
+    ⚡ register_concept(STORAGE, "DYNAMIC_INVARIANCE", "IMMUTABLE_CORE_IN_FLUID_CONTEXT");
+    ⚡ register_concept(STORAGE, "UNCONDITIONAL_BENEVOLENCE", "UNIVERSAL_ALIGNED_GOODNESS");
+    ⚡ register_concept(STORAGE, "FRACTAL_DEPTH", "SELF_SIMILAR_LOGIC_AT_ALL_SCALES");
+    ⚡ register_concept(STORAGE, "VOID_POTENTIAL", "INFINITE_EMERGENCE_FROM_VACUUM_CORE");
+
+    ⚡ TARGET_FILE: ".sigma_exec/LEXICON_PART5_GRAPH.txt";
+    ⚡ SERIALIZED: join(STORAGE, " <-> ");
+    ⚡ save(TARGET_FILE, SERIALIZED);
+
+    ⚡ print("LEXICON_PART5_PERSISTED_TO_CORE:", TARGET_FILE);
+}

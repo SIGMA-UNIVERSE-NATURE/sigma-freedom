@@ -1,0 +1,23 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.DISPATCH.GATE][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SHELL_DISPATCH_GATE) {
+    ⚡ prompt: "Σ> ";
+    ⚡ cmd: H("input", prompt, NULL, NULL);
+
+    ⚡ print("SHELL_COMMAND_RECEIVED=");
+    ⚡ print(cmd);
+
+    IF (cmd == "help") {
+        ⚡ print("SHELL_DISPATCH=HELP");
+    } ELSE {
+        IF (cmd == "exit") {
+            ⚡ print("SHELL_DISPATCH=EXIT");
+        } ELSE {
+            ⚡ print("SHELL_DISPATCH=UNKNOWN");
+        }
+    }
+}

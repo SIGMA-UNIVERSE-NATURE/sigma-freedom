@@ -1,0 +1,22 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL][VERSION=0.5]
+
+⟡(Σ.SHELL) {
+
+    ⚡ FIRST:
+        host("input","Σ1> ",NULL,NULL);
+
+    ⚡ SECOND:
+        host("input","Σ2> ",NULL,NULL);
+
+    ⚡ RESULT:
+        FIRST == SECOND;
+
+    print("FIRST:");
+    print(FIRST);
+
+    print("SECOND:");
+    print(SECOND);
+
+    print("RESULT:");
+    print(RESULT);
+}

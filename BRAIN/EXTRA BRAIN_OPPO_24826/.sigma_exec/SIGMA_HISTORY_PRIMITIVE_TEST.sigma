@@ -1,0 +1,48 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HISTORY.TEST][VERSION=0.1]
+
+DEF H(op,a,b,c) {
+    RETURN host(op,a,b,c);
+}
+
+DEF NEW_LIST() {
+    RETURN H("list_new",NULL,NULL,NULL);
+}
+
+DEF PUSH(xs,v) {
+    RETURN H("list_push",xs,v,NULL);
+}
+
+DEF LEN(xs) {
+    RETURN H("list_len",xs,NULL,NULL);
+}
+
+DEF GET(xs,i) {
+    RETURN H("list_get",xs,i,NULL);
+}
+
+⟡(Σ.HISTORY_PRIMITIVE_TEST) {
+
+    ⚡ history:
+        NEW_LIST();
+
+    PUSH(history,"help");
+    PUSH(history,"run TEST");
+    PUSH(history,"exit");
+
+    ⚡ n:
+        LEN(history);
+
+    ⚡ i:
+        0;
+
+    WHILE (i < n) {
+
+        ⚡ item:
+            GET(history,i);
+
+        print(item);
+
+        ⚡ i:
+            i + 1;
+    }
+}

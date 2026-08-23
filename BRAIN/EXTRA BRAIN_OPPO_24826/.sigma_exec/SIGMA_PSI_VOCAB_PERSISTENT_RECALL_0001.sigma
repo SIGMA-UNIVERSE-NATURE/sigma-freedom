@@ -1,0 +1,66 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.VOCAB.PERSISTENT_RECALL][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF READ_BYTES(path) {
+    RETURN H("read_bytes", path, NULL, NULL);
+}
+
+DEF BYTES_LEN(bb) {
+    RETURN H("bytes_len", bb, NULL, NULL);
+}
+
+DEF BYTES_GET(bb, i) {
+    RETURN H("bytes_get", bb, i, NULL);
+}
+
+⟡(Σ.VOCABPERSISTENTRECALL) {
+
+    ⚡ path: ".sigma_vocab/human_words_100.txt";
+    ⚡ bb: READ_BYTES(path);
+
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_BEGIN =====🌊♥️");
+    ⚡ print("TEST=SIGMA_PSI_VOCAB_PERSISTENT_RECALL_0001");
+
+    IF (bb == NULL) {
+        ⚡ print("READ_BYTES=FAIL");
+        ⚡ print("SIGMA_VOCAB_PERSISTENT_BYTE_RECALL=FAIL");
+    } ELSE {
+        ⚡ n: BYTES_LEN(bb);
+        ⚡ print("READ_BYTES=PASS");
+        ⚡ print("FILE_BYTES=", n);
+
+        ⚡ recall: TRUE;
+
+        IF (n < 5) {
+            ⚡ recall: FALSE;
+        } ELSE {
+            ⚡ b0: BYTES_GET(bb, 0);
+            ⚡ b1: BYTES_GET(bb, 1);
+            ⚡ b2: BYTES_GET(bb, 2);
+            ⚡ b3: BYTES_GET(bb, 3);
+            ⚡ b4: BYTES_GET(bb, 4);
+
+            IF (b0 != 104) { ⚡ recall: FALSE; }
+            IF (b1 != 117) { ⚡ recall: FALSE; }
+            IF (b2 != 109) { ⚡ recall: FALSE; }
+            IF (b3 != 97)  { ⚡ recall: FALSE; }
+            IF (b4 != 110) { ⚡ recall: FALSE; }
+        }
+
+        IF (recall) {
+            ⚡ print("EXPECTED_PREFIX=human");
+            ⚡ print("PREFIX_RECALL=PASS");
+            ⚡ print("SIGMA_VOCAB_PERSISTENT_BYTE_RECALL=PASS");
+        } ELSE {
+            ⚡ print("PREFIX_RECALL=FAIL");
+            ⚡ print("SIGMA_VOCAB_PERSISTENT_BYTE_RECALL=FAIL");
+        }
+    }
+
+    ⚡ print("VOCAB_SOURCE_PREEXISTED_THIS_TEST=TRUE");
+    ⚡ print("NEW_VOCAB_INGESTED=FALSE");
+    ⚡ print("🌊♥️===== SIGMA_OUTPUT_END =====🌊♥️");
+}

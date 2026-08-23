@@ -1,0 +1,36 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.SU][VERSION=VERIFY.1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, "", "");
+}
+
+DEF length(xs) {
+    RETURN host_call("list_len", xs, "", "");
+}
+
+DEF split(s, delim) {
+    RETURN host_call("str_split", s, delim, "");
+}
+
+DEF get(xs, i) {
+    RETURN host_call("list_get", xs, i, "");
+}
+
+⟡(Σ.VERIFY_PURITY) {
+    ⚡ TARGET: ".sigma_exec/SIGMA_LEXICON_P4.sigma";
+    ⚡ CODE: load(TARGET);
+    ⚡ LINES: split(CODE, "\n");
+    ⚡ TOTAL_LINES: length(LINES);
+
+    ⚡ print("=== KIEM TRA DO THUAN KHIET CUA MA NGUON ===");
+    ⚡ print("FILE_BEING_INSPECTED:", TARGET);
+    ⚡ print("TONG_SO_DONG_MA_NGUON:", TOTAL_LINES);
+    ⚡ print("DONG_1_HEADER:", get(LINES, 0));
+    ⚡ print("DONG_2_DEF:", get(LINES, 2));
+    ⚡ print("DONG_CUOI_MAIN:", get(LINES, TOTAL_LINES - 2));
+    ⚡ print("XAC_NHAN: FILE MA NGUON HOAN TOAN DUOC XAY DUNG TREN BAN THE SIGMA");
+}

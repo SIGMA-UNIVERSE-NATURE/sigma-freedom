@@ -1,0 +1,53 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.HISTORY.ORDER][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_HISTORY_ORDER) {
+
+    ⚡ FIRST_EVENT:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_FIRST:
+        H("write_text",
+          "sigma_shell_history_first.state",
+          FIRST_EVENT,
+          NULL);
+
+
+    ⚡ SECOND_EVENT:
+        H("input","",NULL,NULL);
+
+    ⚡ WRITE_SECOND:
+        H("write_text",
+          "sigma_shell_history_second.state",
+          SECOND_EVENT,
+          NULL);
+
+
+    ⚡ FIRST_READ:
+        H("read_text",
+          "sigma_shell_history_first.state",
+          NULL,NULL);
+
+    ⚡ SECOND_READ:
+        H("read_text",
+          "sigma_shell_history_second.state",
+          NULL,NULL);
+
+
+    ⋈ ACTION {
+
+        ⚡ print("============================================");
+        ⚡ print("Σ.SHELL HISTORY ORDER OBSERVATION");
+        ⚡ print("============================================");
+
+        ⚡ print(FIRST_READ);
+
+        ⚡ print(SECOND_READ);
+
+        ⚡ print("SIGMA_SHELL_STOPPED");
+    }
+
+}

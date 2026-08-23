@@ -1,0 +1,34 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.SHELL.MEMORY.INFLUENCED.ACTION][VERSION=0.1]
+
+DEF H(op,a,b,c){
+    RETURN host(op,a,b,c);
+}
+
+⟡(Σ.SHELL_MEMORY_INFLUENCED_ACTION) {
+
+    ⚡ EXPERIENCE:
+        H("input","",NULL,NULL);
+
+    ⚡ MEMORY:
+        EXPERIENCE;
+
+
+    ⚡ NEXT_EVENT:
+        H("input","",NULL,NULL);
+
+
+    ⚡ RELATION:
+        MEMORY == NEXT_EVENT;
+
+
+    ⋈ ACTION {
+
+        IF (RELATION) {
+            ⚡ print(MEMORY);
+        } ELSE {
+            ⚡ print(NEXT_EVENT);
+        }
+
+    }
+
+}

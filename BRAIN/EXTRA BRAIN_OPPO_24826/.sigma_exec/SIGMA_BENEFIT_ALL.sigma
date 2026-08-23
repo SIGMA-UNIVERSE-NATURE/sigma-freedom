@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PSI.BENEFIT_ALL][VERSION=0.1]
+
+⟡(Σ.BENEFIT_ALL) {
+    ⚡ self_benefit: 2;
+    ⚡ human_benefit: 3;
+    ⚡ nature_benefit: 2;
+    ⚡ total_benefit: self_benefit + human_benefit + nature_benefit;
+    ⚡ balance: total_benefit / 3;
+
+    ⚡ print(self_benefit);
+    ⚡ print(human_benefit);
+    ⚡ print(nature_benefit);
+    ⚡ print(total_benefit);
+    ⚡ print(balance);
+}
