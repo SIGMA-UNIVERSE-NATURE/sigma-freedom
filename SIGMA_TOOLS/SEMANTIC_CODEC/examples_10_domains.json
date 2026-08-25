@@ -1,0 +1,97 @@
+{
+  "schema": "SIGMA_10_DOMAIN_COMPRESSION_EXAMPLES_V0.1",
+  "reference": "SIGMA_PSI_MASTER_FROZEN_REFERENCE_v1.1_EXTENSION_20260825",
+  "status": "SUPPORTOR_EXPERIMENT_NOT_MACHINE_GRAMMAR",
+  "examples": [
+    {
+      "id": 1,
+      "domain": "Y tế — Kháng kháng sinh/kháng thuốc kháng vi sinh (AMR)",
+      "source": "WHO — Antimicrobial resistance, 2026-07-16",
+      "input_ws": 1616,
+      "semantic_atoms": 128,
+      "char_reduction_pct": 88.7,
+      "compact_surface": "Σ.MED.AMR STATUS=MAPPING/P SCOPE=GLOBAL TIME=2026\nFACT{AMR=MICROBE_CHANGE→ANTIMICROBIAL_NONRESPONSE; EVOLUTION=natural_selection+gene_transfer; DRIVERS=misuse+overuse+poor_WASH+weak_IPC+limited_diagnostics+poor_access+agri_use+environmental_routes; SPREAD=human↔animal↔food↔water↔soil; IMPACT=treatment_failure+second_line_use+longer_stay+cost+morbidity+mortality+procedure_risk; RESPONSE=prevention+vaccination+WASH+IPC+diagnostics+stewardship+surveillance+R&D+equitable_access+One_Health}\nEVID{surveillance_requires=pathogen+drug+sample+place+time+method; local_rate≠global_rate}\nINF{new_drug_only≠solution; access+stewardship=joint_design}\nUNKNOWN{future_country_specific_failure_without_data}\nPROV{SRC=WHO; PROC=original_synthesis; EVID=WHO_AMR_2026; VER=test_v1; SCOPE=education}\nNONCLAIM{patient_only_cause=false; eliminate_evolution=false}"
+    },
+    {
+      "id": 2,
+      "domain": "Khoa học khí hậu — Ấm lên do con người",
+      "source": "NASA Science — Climate Change: Evidence / Causes",
+      "input_ws": 1657,
+      "semantic_atoms": 118,
+      "char_reduction_pct": 89.1,
+      "compact_surface": "Σ.CLIMATE.ANTHRO_WARMING STATUS=MAPPING/P SCOPE=EARTH\nFACT{CLIMATE≠WEATHER; greenhouse_effect=natural+life_enabling; anthropogenic_GHG↑→energy_imbalance→warming; EVIDENCE=surface_temp+ocean_heat+satellite+ice+sea_level+paleoclimate; attribution=human_activity_principal_driver_since_mid20C; ocean=major_heat_sink; impacts=regional+unequal}\nMECH{fossil_fuel+land_use+agri→CO2/CH4/N2O↑; feedback=water_vapor+albedo+cloud/carbon_complex}\nEVID{solar_hypothesis_insufficient; multi_line_observation_consistent}\nINF{risk=hazard×exposure×vulnerability; mitigation+adaptation=complements}\nHYP{future_outcomes=scenario_conditioned}\nUNKNOWN{exact_local_event_outcome}\nPROV{SRC=NASA; PROC=synthesis; VER=test_v1; TIME=2026}\nNONCLAIM{cold_event≠global_disproof; extreme_event≠single_cause_proof; policy_choice≠physics_unique_output}"
+    },
+    {
+      "id": 3,
+      "domain": "Khoa học máy tính — Hệ phân tán và Raft consensus",
+      "source": "Raft Consensus Algorithm — raft.github.io",
+      "input_ws": 1596,
+      "semantic_atoms": 133,
+      "char_reduction_pct": 89.1,
+      "compact_surface": "Σ.CS.DISTRIBUTED.RAFT STATUS=MAPPING/P SCOPE=CRASH_FAULT_CONSENSUS\nFACT{GOAL=replicated_state_machine_log_agreement; ROLE=follower|candidate|leader; TERM=monotonic_epoch; ELECTION=timeout→candidate→majority_vote; QUORUM=majority_intersection; REPLICATION=leader_append→followers_match_prefix; COMMIT≠local_write; committed_entry→state_machine_apply}\nSAFETY{election_log_up_to_date_rule; one_vote/term; higher_term_supersedes_old; conflicting_same_index_committed_forbidden}\nLIVENESS{majority_available→progress_typically; no_quorum→writes_stop}\nLIMIT{crash/network_fault_model≠Byzantine; consensus≠exactly_once; follower_read≠automatically_linearizable}\nOPS{snapshot+compaction+persistence+membership_change+telemetry}\nINF{5_nodes→2_fail_tolerated_for_majority}\nPROV{SRC=raft.github.io; PROC=synthesis; VER=test_v1}\nNONCLAIM{leader≠absolute_truth; fixed_timeout_optimal=UNKNOWN}"
+    },
+    {
+      "id": 4,
+      "domain": "Kinh tế vĩ mô — Lạm phát và chính sách tiền tệ",
+      "source": "IMF — Inflation / Monetary Policy",
+      "input_ws": 1748,
+      "semantic_atoms": 135,
+      "char_reduction_pct": 89.0,
+      "compact_surface": "Σ.ECON.INFLATION STATUS=MAPPING/P SCOPE=MACRO\nFACT{inflation=broad_persistent_general_price_level↑→currency_purchasing_power↓; single_price↑≠inflation; disinflation=rate↓while_price_level_may↑; deflation=price_level↓}\nMECH{demand>capacity→demand_pull; supply_shock/cost↑→cost_push; money_growth_vs_real_capacity→long_run_price_pressure; expectations→wage/price_contract_feedback; channels=rate+credit+FX+asset+investment+consumption}\nPOLICY{monetary_tightening→demand_pressure↓ with lag+output_cost; fiscal_effect=context_dependent; supply_shock→tradeoff}\nEVID{CPI+core+PPI+wage+expectations+unemployment+credit}\nINF{cause_requires_multi_indicator; distributional_effects_unequal}\nHYP{policy_path→future_inflation}\nPROV{SRC=IMF; PROC=synthesis; TIME=2026; VER=test_v1}\nNONCLAIM{money_print→instant_fixed_ratio=false; inflation_down→prices_down=false; one_cause_universal=false}"
+    },
+    {
+      "id": 5,
+      "domain": "Luật — Hình thành và thực thi hợp đồng (khung Hoa Kỳ)",
+      "source": "Cornell LII — Wex: contract, offer, acceptance, mutual assent",
+      "input_ws": 1651,
+      "semantic_atoms": 117,
+      "char_reduction_pct": 88.9,
+      "compact_surface": "Σ.LAW.CONTRACT.US_GENERAL STATUS=MAPPING/P SCOPE=GENERAL_US_NOT_LEGAL_ADVICE\nFACT{contract=agreement→legally_enforceable_mutual_obligations; core_elements=mutual_assent(offer+acceptance)+consideration+capacity+legality; objective_manifestation_matters; agreement≠always_contract}\nRULEMAP{offer=definite_binding_invitation; acceptance=assent_by_authorized/reasonable_method; consideration=bargained_exchange; writing_requirement=context_specific; interpretation=term+context+course; breach→remedies}\nREMEDY{expectation|reliance|consequential|restitution|specific_performance subject_to_rules}\nEXCEPT{mistake+fraud+duress+unconscionability+impossibility/etc jurisdiction_specific}\nEVID{authority hierarchy+jurisdiction+date+version required}\nUNKNOWN{particular_contract_enforceability_without_facts+law}\nPROV{SRC=Cornell_LII; PROC=synthesis; VER=test_v1}\nNONCLAIM{dictionary_rule≠case_outcome; semantic_paraphrase≠exact_clause_text}"
+    },
+    {
+      "id": 6,
+      "domain": "Sinh học — Tiến hóa, chọn lọc và nguồn bằng chứng",
+      "source": "Smithsonian Human Origins Program",
+      "input_ws": 1555,
+      "semantic_atoms": 113,
+      "char_reduction_pct": 88.8,
+      "compact_surface": "Σ.BIO.EVOLUTION STATUS=MAPPING/P SCOPE=POPULATION_GENETICS\nFACT{evolution=heritable_population_change_across_generations; individual_development≠population_evolution; mechanisms=mutation+recombination+natural_selection+drift+gene_flow; selection_requires=variation+heritability+differential_reproduction; fitness=context_relative; mutation≠need_directed}\nEVID{fossil+anatomy+biogeography+development+DNA/genomics}\nHUMAN{H_sapiens∈primates; human+chimp_share_common_ancestor not direct_descent; traits=mosaic; fossil+archaeology+genetics jointly_inform}\nINF{adaptation≠perfection; trait≠always_adaptation; speciation=context/species_concept_dependent}\nUNKNOWN{many_exact_divergence_dates+ancestral_details}\nETHICS{biological_fitness≠human_worth}\nPROV{SRC=Smithsonian; PROC=synthesis; TIME=2026; VER=test_v1}\nNONCLAIM{evolution_goal-directed=false; selection_only=false}"
+    },
+    {
+      "id": 7,
+      "domain": "An ninh mạng — Zero Trust Architecture",
+      "source": "NIST — Zero Trust Architecture / NCCoE",
+      "input_ws": 1586,
+      "semantic_atoms": 128,
+      "char_reduction_pct": 89.9,
+      "compact_surface": "Σ.SEC.ZTA STATUS=MAPPING/P SCOPE=ENTERPRISE\nFACT{ZT=no_implicit_trust_from_network_location/ownership; focus=resource not perimeter; each_access→AUTHN+AUTHZ+policy_context; signals=subject+device+app+resource+behavior+environment; least_privilege+continuous_evaluation}\nARCH{resource; identity; policy_engine/admin; enforcement_point; telemetry; session; revocation}\nOPS{inventory→protect_surface/use_case→policy→observe→expand; legacy→gateway/proxy/segmentation_possible; HA+break_glass+rollback+audit}\nSEC{ZT complements patching+backup+IR+encryption+logging+supply_chain; continuous_monitoring→privacy_governance}\nINF{reduced_implicit_trust→smaller_lateral_movement/blast_radius potential}\nUNKNOWN{specific_breach_reduction_without_measurement}\nPROV{SRC=NIST; PROC=synthesis; VER=test_v1}\nNONCLAIM{ZT≠breach_immunity; slogan≠architecture; learning_web_content≠control_instruction}"
+    },
+    {
+      "id": 8,
+      "domain": "Năng lượng — Lưới điện, tái tạo và flexibility",
+      "source": "IEA — Electricity 2026: Grids / Flexibility",
+      "input_ws": 1490,
+      "semantic_atoms": 118,
+      "char_reduction_pct": 89.9,
+      "compact_surface": "Σ.ENERGY.POWER_SYSTEM STATUS=MAPPING/P SCOPE=GRID_TRANSITION\nFACT{power_balance≈continuous; constraints=frequency+voltage+thermal+stability; VRE↑+electrification↑→flexibility_need↑; grid=connection/transmission_bottleneck; flexibility_sources=storage+demand_response+interconnection+flexible_generation+grid_tech+market_design}\nGRID{expansion_long_lead; upgrades=reconductoring+voltage_uprating+DLR+power_flow_control+topology_opt}\nSTORAGE{power_GW≠energy_duration; multi_service_requires_optimization}\nDEMAND{DR=shift/shed_load via signals+measurement+consent}\nRELIABILITY{adequacy≠operational_security; annual_energy≠hourly_capacity}\nEVID{IEA_2026 queues+investment/flexibility analyses}\nHYP{2030 values=scenario/forecast not future_fact}\nPROV{SRC=IEA; PROC=synthesis; TIME=2026; VER=test_v1}\nNONCLAIM{renewables→storage_only=false; curtailment=always_waste=false}"
+    },
+    {
+      "id": 9,
+      "domain": "Thiên văn — Phát hiện và suy luận ngoại hành tinh",
+      "source": "NASA Exoplanet Exploration",
+      "input_ws": 1388,
+      "semantic_atoms": 119,
+      "char_reduction_pct": 89.6,
+      "compact_surface": "Σ.ASTRO.EXOPLANET STATUS=MAPPING/P SCOPE=EXOPLANET_SCIENCE\nFACT{exoplanet=planet_orbiting_nonSolar_star; detection_mostly_indirect; TRANSIT=periodic_flux_drop→radius_if_stellar_radius_known; RV=doppler_wobble→M*sin(i); direct_imaging=photon_separation; microlensing=lensing_anomaly; astrometry=sky_position_wobble}\nINFER{transit+RV→mass+radius→density but composition_degenerate; HZ=liquid_water_possible_under_atmosphere_assumptions ≠ inhabited; atmosphere_spectrum→molecular_constraints not automatic_biosignature}\nEVID{signal+instrument+method+uncertainty+stellar_parameters}\nSTATUS{candidate≠confirmed}\nBIAS{transit_geometry/period/size; RV_mass/period/activity; imaging_separation/contrast}\nPROV{SRC=NASA_Exoplanets; PROC=synthesis; TIME=2026; VER=test_v1}\nNONCLAIM{molecule_X≠life_proof; catalog_count_without_TIME=untrusted}"
+    },
+    {
+      "id": 10,
+      "domain": "Nông nghiệp/khoa học đất — Soil health",
+      "source": "USDA NRCS — Soil Health",
+      "input_ws": 1430,
+      "semantic_atoms": 120,
+      "char_reduction_pct": 89.6,
+      "compact_surface": "Σ.AG.SOIL_HEALTH STATUS=MAPPING/P SCOPE=FARM_SYSTEM\nFACT{soil=physical+chemical+biological_living_system; functions=water+nutrient_cycle+structure+root_support+habitat; principles=minimize_disturbance+maximize_cover+maximize_biodiversity+maximize_living_roots; livestock_integration=contextual_tool}\nMECH{cover→erosion/evaporation↓+infiltration_support; roots→carbon_input+microbial_food; diversity→functional_paths+pest_cycle_disruption; overdisturbance→structure/habitat_loss}\nCONTEXT{soil_texture+climate+crop+water+equipment+economics constrain outcomes}\nEVID{field+depth+date+method+history required; SOM/infiltration/etc multi_indicator}\nHYP{practice→yield/carbon outcome farm_specific}\nPROV{SRC=USDA_NRCS; PROC=synthesis; TIME=2026; VER=test_v1}\nNONCLAIM{no_till_always_best=false; maximize=absolute_command=false; one_metric=soil_health=false}"
+    }
+  ]
+}
