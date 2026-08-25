@@ -1,0 +1,50 @@
+{
+  "schema": "SIGMA_SEMANTIC_GRAPH_V0.1",
+  "graph_status": "SUPPORTOR_MANUAL_MAPPING_REQUIRES_INDEPENDENT_VERIFICATION",
+  "propositions": [
+    {
+      "id": "P0001",
+      "epistemic": "DECL",
+      "subject_id": "SIGMA.SEMANTIC_CODEC",
+      "predicate_id": "PRESERVE_MEANING",
+      "object_id": "SEMANTIC_IDENTITY",
+      "object": null,
+      "negated": false,
+      "modality": "required",
+      "conditions": ["DURING_COMPRESSION"],
+      "quantities": [],
+      "scope": {
+        "source_language": "vi",
+        "operation": "compression"
+      },
+      "provenance_refs": ["SRC_RAW", "SUPPORTOR_MANUAL_MAP"]
+    },
+    {
+      "id": "P0002",
+      "epistemic": "DECL",
+      "subject_id": "SIGMA.SEMANTIC_CODEC",
+      "predicate_id": "PRESERVE_MEANING",
+      "object_id": "SEMANTIC_IDENTITY",
+      "object": null,
+      "negated": false,
+      "modality": "required",
+      "conditions": ["DURING_CROSS_LANGUAGE_MAPPING"],
+      "quantities": [],
+      "scope": {
+        "source_language": "vi",
+        "target_scope": "MULTILINGUAL"
+      },
+      "provenance_refs": ["SRC_RAW", "SUPPORTOR_MANUAL_MAP"]
+    }
+  ],
+  "relations": [
+    {
+      "relation": "AND",
+      "source_ids": ["P0001", "P0002"],
+      "meaning": "Both preservation requirements are jointly asserted."
+    }
+  ],
+  "uncertainties": [
+    "MANUAL_SEMANTIC_EXTRACTION_NOT_INDEPENDENTLY_VERIFIED"
+  ]
+}
