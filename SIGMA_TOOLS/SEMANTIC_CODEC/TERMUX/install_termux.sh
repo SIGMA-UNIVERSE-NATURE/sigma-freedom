@@ -36,8 +36,10 @@ fi
 chmod 700 "$TOOL_DIR"/*.sh "$TOOL_DIR"/*.py 2>/dev/null || true
 export SIGMA_TERMUX_CODEC_HOME="$STATE_ROOT"
 python "$TOOL_DIR/termux_self_test.py"
+python "$TOOL_DIR/seed_termux.py"
 
 printf '%s\n' '[SIGMA] INSTALL PASS'
 printf '%s\n' "[SIGMA] Source: $TOOL_DIR"
 printf '%s\n' "[SIGMA] State:  $STATE_ROOT"
+printf '%s\n' "[SIGMA] Seed:   $STATE_ROOT/seed"
 printf '%s\n' "[SIGMA] Start:  $TOOL_DIR/start_termux.sh"
