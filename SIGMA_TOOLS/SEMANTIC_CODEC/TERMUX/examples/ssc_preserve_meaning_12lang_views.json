@@ -1,0 +1,19 @@
+{
+  "schema": "SIGMA_12LANG_STRUCTURAL_VIEWS_V0.1",
+  "status": "SUPPORTOR_RENDERINGS_NOT_INDEPENDENTLY_VERIFIED_TRANSLATIONS",
+  "canonical_propositions": ["P0001", "P0002"],
+  "views": [
+    {"language":"vi","text":"SIGMA phải giữ nguyên nghĩa trong quá trình nén. SIGMA phải giữ nguyên nghĩa khi ánh xạ qua các ngôn ngữ.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"en","text":"SIGMA must preserve meaning during compression. SIGMA must preserve meaning during cross-language mapping.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"fr","text":"SIGMA doit préserver le sens pendant la compression. SIGMA doit préserver le sens lors de la mise en correspondance entre langues.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"de","text":"SIGMA muss die Bedeutung während der Komprimierung bewahren. SIGMA muss die Bedeutung bei der sprachübergreifenden Abbildung bewahren.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"es","text":"SIGMA debe preservar el significado durante la compresión. SIGMA debe preservar el significado durante el mapeo entre idiomas.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"pt","text":"SIGMA deve preservar o significado durante a compressão. SIGMA deve preservar o significado durante o mapeamento entre idiomas.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"it","text":"SIGMA deve preservare il significato durante la compressione. SIGMA deve preservare il significato durante la mappatura tra lingue.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"zh","text":"SIGMA 必须在压缩过程中保持含义不变。SIGMA 必须在跨语言映射过程中保持含义不变。","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"ja","text":"SIGMA は圧縮中に意味を保持しなければなりません。SIGMA は言語間マッピングでも意味を保持しなければなりません。","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"ko","text":"SIGMA는 압축 과정에서 의미를 보존해야 합니다. SIGMA는 언어 간 매핑에서도 의미를 보존해야 합니다.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"ru","text":"SIGMA должна сохранять смысл при сжатии. SIGMA должна сохранять смысл при межъязыковом отображении.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]},
+    {"language":"ar","text":"يجب على SIGMA الحفاظ على المعنى أثناء الضغط. ويجب على SIGMA الحفاظ على المعنى أثناء الربط بين اللغات.","clause_map":[{"clause":1,"proposition_ids":["P0001"]},{"clause":2,"proposition_ids":["P0002"]}]}
+  ]
+}
