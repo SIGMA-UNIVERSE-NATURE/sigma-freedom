@@ -1,0 +1,78 @@
+{
+  "schema": "SIGMA_MULTILINGUAL_MAPPING_DEMO_V0.1",
+  "status": "DEMO_RENDERINGS_NOT_MACHINE_VERIFIED_TRANSLATIONS",
+  "semantic_graph": {
+    "schema": "SIGMA_SEMANTIC_GRAPH_V0.1",
+    "graph_status": "DEMO_CANONICAL_GRAPH",
+    "propositions": [
+      {
+        "id": "P001",
+        "epistemic": "DECL",
+        "subject_id": "SIGMA.COMPACT_TOKEN",
+        "predicate_id": "ROLE",
+        "object_id": "SEMANTIC_LOCATOR",
+        "negated": false,
+        "modality": "asserted",
+        "conditions": [],
+        "quantities": [],
+        "scope": {"reference": "v1.1"},
+        "provenance_refs": ["REF_V1_1"]
+      },
+      {
+        "id": "P002",
+        "epistemic": "DECL",
+        "subject_id": "SIGMA.COMPACT_TOKEN",
+        "predicate_id": "PROVES_RUNTIME_CAPABILITY",
+        "object_id": "SIGMA.RUNTIME_CAPABILITY",
+        "negated": true,
+        "modality": "asserted",
+        "conditions": [],
+        "quantities": [],
+        "scope": {"reference": "v1.1"},
+        "provenance_refs": ["REF_V1_1"]
+      },
+      {
+        "id": "P003",
+        "epistemic": "DECL",
+        "subject_id": "SIGMA.SEMANTIC_ROUNDTRIP",
+        "predicate_id": "MUST_PRESERVE",
+        "object": ["proposition_identity", "negation", "modality", "quantities", "scope", "uncertainty", "evidence", "provenance"],
+        "negated": false,
+        "modality": "required",
+        "conditions": ["semantic_lossless_claim"],
+        "quantities": [],
+        "scope": {"mode": "semantic"},
+        "provenance_refs": ["METHOD_V0_1"]
+      },
+      {
+        "id": "P004",
+        "epistemic": "DECL",
+        "subject_id": "EXACT_ORIGINAL_TEXT",
+        "predicate_id": "REQUIRES",
+        "object_id": "SIGMA.RAW_SIDECAR",
+        "negated": false,
+        "modality": "required",
+        "conditions": ["byte_or_lexical_exact_roundtrip"],
+        "quantities": [],
+        "scope": {"mode": "exact"},
+        "provenance_refs": ["METHOD_V0_1"]
+      }
+    ],
+    "relations": [],
+    "uncertainties": []
+  },
+  "views": [
+    {"language":"vi","text":"Token SIGMA gọn là địa chỉ ngữ nghĩa, không phải bằng chứng về năng lực runtime. Ánh xạ semantic-lossless phải giữ định danh mệnh đề, phủ định, modality, số lượng, phạm vi, bất định, bằng chứng và provenance. Khôi phục nguyên văn cần RAW sidecar lossless.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"en","text":"A compact SIGMA token is a semantic locator, not proof of runtime capability. A semantic-lossless round trip must preserve proposition identity, negation, modality, quantities, scope, uncertainty, evidence, and provenance. Exact original wording requires a lossless RAW sidecar.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"fr","text":"Un jeton SIGMA compact est un repère sémantique, pas une preuve de capacité d’exécution. Un aller-retour sans perte sémantique doit préserver identité des propositions, négation, modalité, quantités, portée, incertitude, preuves et provenance. Le texte original exact exige un sidecar RAW sans perte.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"de","text":"Ein kompaktes SIGMA-Token ist ein semantischer Verweis und kein Nachweis einer Laufzeitfähigkeit. Ein semantisch verlustfreier Roundtrip muss Propositionenidentität, Negation, Modalität, Mengen, Geltungsbereich, Unsicherheit, Evidenz und Provenienz bewahren. Exakter Originaltext erfordert einen verlustfreien RAW-Sidecar.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"es","text":"Un token SIGMA compacto es un localizador semántico, no una prueba de capacidad del runtime. Un ciclo sin pérdida semántica debe conservar identidad de proposiciones, negación, modalidad, cantidades, alcance, incertidumbre, evidencia y procedencia. Recuperar exactamente el texto original requiere un sidecar RAW sin pérdida.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"pt","text":"Um token SIGMA compacto é um localizador semântico, não uma prova de capacidade de runtime. Uma ida e volta sem perda semântica deve preservar identidade das proposições, negação, modalidade, quantidades, escopo, incerteza, evidência e proveniência. Recuperar exatamente o texto original exige um sidecar RAW sem perda.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"it","text":"Un token SIGMA compatto è un riferimento semantico, non una prova di capacità del runtime. Un round trip senza perdita semantica deve preservare identità delle proposizioni, negazione, modalità, quantità, ambito, incertezza, evidenza e provenienza. Il testo originale esatto richiede un sidecar RAW senza perdita.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"zh","text":"紧凑的 SIGMA 标记是语义定位符，并不是运行时能力的证明。语义无损往返必须保留命题身份、否定、模态、数量、作用域、不确定性、证据和来源信息。要精确恢复原始文本，需要无损 RAW sidecar。","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"ja","text":"コンパクトな SIGMA トークンは意味論的な参照先であり、ランタイム能力の証明ではありません。意味を失わない往復変換では、命題の同一性、否定、モダリティ、数量、スコープ、不確実性、証拠、来歴を保持する必要があります。原文の完全復元には可逆な RAW サイドカーが必要です。","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"ko","text":"압축된 SIGMA 토큰은 의미론적 위치 표지이며 런타임 능력의 증거가 아닙니다. 의미 손실 없는 왕복 매핑은 명제 식별자, 부정, 양태, 수량, 범위, 불확실성, 증거 및 출처를 보존해야 합니다. 원문을 정확히 복원하려면 무손실 RAW 사이드카가 필요합니다.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"ru","text":"Компактный токен SIGMA является семантическим указателем, а не доказательством возможности среды выполнения. Семантически без потерь обратимое отображение должно сохранять идентичность утверждений, отрицание, модальность, количества, область действия, неопределённость, доказательства и происхождение данных. Для точного восстановления исходного текста требуется без потерь RAW-sidecar.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]},
+    {"language":"ar","text":"رمز SIGMA المضغوط هو محدد دلالي وليس دليلاً على قدرة وقت التشغيل. ويجب في التحويل الدلالي بلا فقد الحفاظ على هوية القضايا والنفي والجهة والكميات والنطاق وعدم اليقين والأدلة وسجل المصدر. أما الاستعادة الدقيقة للنص الأصلي فتتطلب RAW sidecar بلا فقد.","clause_map":[{"clause":1,"proposition_ids":["P001","P002"]},{"clause":2,"proposition_ids":["P003"]},{"clause":3,"proposition_ids":["P004"]}]}
+  ]
+}
