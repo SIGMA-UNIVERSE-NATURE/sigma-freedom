@@ -1,0 +1,14 @@
+CATEGORY_ID	CATEGORY_NAME	CASE_COUNT	PASS	FAIL	NOT_PROVEN	NOT_APPLICABLE	OUT_OF_CURRENT_LANGUAGE_SURFACE	CONFLICTED	RELEASE_BLOCKING_GAP
+01_SOURCE_SURFACE	source grammar surface	9	9	0	0	0	0	0	general grammar still blocked
+02_LITERALS_VALUES	literal forms and runtime mapping boundary	3	1	0	2	0	0	0	runtime type mapping blocked
+03_OPERATORS	operator surface and semantics boundary	3	1	0	1	0	0	1	operator semantic matrix blocked
+04_CONTROL_FLOW	IF/WHILE behavior and jump boundary	2	1	0	0	0	0	1	exact jump and IF/ELSE conflict blocked
+05_FUNCTIONS	DEF/CALL/RETURN and frame boundary	2	1	0	1	0	0	0	frame ABI blocked
+06_STORAGE_INPUT	locked storage/input capabilities	1	1	0	0	0	0	0	none for cited scope
+07_BYTECODE_ABI	byte-exact/source-correlated ABI	2	1	0	1	0	0	0	native VM decode semantics blocked
+08_VM_EXECUTION	known valid runtime execution and VM internals boundary	3	1	0	2	0	0	0	stack effects and HALT semantics blocked
+09_COMPILER_ERRORS	exact compiler rejection cases	23	23	0	0	0	0	0	human-readable diagnostic ABI blocked
+10_VM_ERRORS	VM malformed/error behavior	2	0	0	2	0	0	0	current malformed VM execution blocked
+11_BOUNDARY_CASES	exact accepted/rejected boundary forms	8	5	0	1	0	2	0	generic boundary rules blocked
+12_SEMANTIC_STRUCTURE	semantic structure, mapping, uncertainty, cognition boundary	7	1	0	5	0	0	1	cognition and registry completeness blocked
+13_PROVENANCE_INTEGRITY	provenance and orphan PASS prevention	1	1	0	0	0	0	0	none for suite construction
