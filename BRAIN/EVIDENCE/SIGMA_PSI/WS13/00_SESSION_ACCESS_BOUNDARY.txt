@@ -1,0 +1,30 @@
+WORKSTREAM=WS13
+EVIDENCE_TYPE=SESSION_HOST_ACCESS_BOUNDARY
+CLAIM_POLICY=CLAIM<=EVIDENCE
+
+REQUESTED_PRIMARY_ROOT=~/SIGMA/sigma_genesis1
+HOST_HOME=/home/oai
+RESOLVED_PRIMARY_ROOT=/home/oai/SIGMA/sigma_genesis1
+HOST_UNAME=Linux 32e57f11b713 6.18.35 #1 SMP Fri Aug 21 00:36:21 UTC 2026 x86_64 GNU/Linux
+HOST_ARCH=x86_64
+
+COMMAND=ls -ld "$HOME/SIGMA/sigma_genesis1"
+
+STDOUT_BEGIN
+STDOUT_END
+
+STDERR_BEGIN
+ls: cannot access '/home/oai/SIGMA/sigma_genesis1': No such file or directory
+STDERR_END
+
+RC=2
+
+PRIMARY_MACHINE_ABSENCE_CLAIM=NO
+PRIMARY_ROOT_ACCESSIBLE_IN_THIS_EXECUTION_HOST=NO
+NATIVE_SIGMAC_SHA256=NOT_CAPTURED
+NATIVE_SIGMA_VM_SHA256=NOT_CAPTURED
+NATIVE_BINARIES_VERIFIED=NO
+TESTS_RUN=0
+WRAPPERS_OR_ALTERNATE_LAUNCHERS_CREATED=NO
+
+BOUNDARY=This record proves only that the requested ~/SIGMA/sigma_genesis1 root is not mounted in this execution host. It is not evidence that the OPPO/Termux primary root or its native binaries are absent.
