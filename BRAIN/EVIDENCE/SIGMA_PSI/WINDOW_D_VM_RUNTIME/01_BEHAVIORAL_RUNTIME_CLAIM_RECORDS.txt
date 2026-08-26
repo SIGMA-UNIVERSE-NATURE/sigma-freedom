@@ -1,0 +1,78 @@
+WINDOW=WINDOW_D_VM_RUNTIME_CONTRACT_FREEZE
+CLASS=EXISTING_NATIVE_VM_EXECUTION_EVIDENCE
+CLAIM_POLICY=CLAIM<=EVIDENCE
+
+VM_ID=WD-RUN-01
+SUBJECT=BYTECODE_LOADING_AND_EXECUTION
+BYTE_OR_FIELD=KNOWN_VALID_CURRENT_BYTECODE_ACCEPTANCE
+STATUS=BEHAVIORALLY_PROVEN
+CONTROL_ARTIFACT=.sigma_tmp/WINDOW_A_SIGMA_PSI_SEMANTIC_DISCOVERY_CURRENT_20260826_131553.sigmab
+MUTATED_OR_VARIANT_ARTIFACT=NONE
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_RC=0
+STDOUT_SHA256=278bdb54ead9a96a83e070b440088b066ddd3373409f19f4c7553e7790e7cc4a
+STDERR_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+OBSERVED_TRANSITION=Fresh current-compiler bytecode artifact was accepted by the current native VM, executed, produced captured stdout, and returned RC=0 without mutating the bytecode identity.
+EXACT_SCOPE=This exact 8273-byte artifact and the tested current VM identity.
+NOT_PROVEN_BEYOND=Magic validation rule; decoder entry offset; malformed/truncated handling; per-opcode decode; stack effects.
+PROVENANCE=BRAIN/WORKSTREAMS/SIGMA_PSI/WINDOW_A_PROVENANCE_LINKAGE_CLOSURE_20260826.md
+
+VM_ID=WD-RUN-02
+SUBJECT=NORMAL_TERMINATION
+BYTE_OR_FIELD=NORMAL_RUN_TERMINATION
+STATUS=BEHAVIORALLY_PROVEN
+CONTROL_ARTIFACT=.sigma_tmp/WINDOW_A_SIGMA_PSI_SEMANTIC_DISCOVERY_CURRENT_20260826_131553.sigmab
+MUTATED_OR_VARIANT_ARTIFACT=NONE
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_RC=0
+STDOUT_SHA256=278bdb54ead9a96a83e070b440088b066ddd3373409f19f4c7553e7790e7cc4a
+STDERR_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+OBSERVED_TRANSITION=VM run completed normally with RC=0 and empty stderr.
+EXACT_SCOPE=Normal termination for the tested current artifact; corroborated by multiple current .sigmab runs in the runtime-scope memo.
+NOT_PROVEN_BEYOND=Exact 0xFF native mapping; whether 0xFF is mandatory; end-of-stream behavior; exit-code propagation rule.
+PROVENANCE=BRAIN/WORKSTREAMS/SIGMA_PSI/WINDOW_A_PROVENANCE_LINKAGE_CLOSURE_20260826.md; BRAIN/WORKSTREAMS/SIGMA_PSI/SIGMA_CURRENT_VM_RUNTIME_SCOPE_20260826.md
+
+VM_ID=WD-RUN-03
+SUBJECT=RESULT_PROPAGATION
+BYTE_OR_FIELD=NORMAL_RUN_OBSERVABLE_RESULT_CORRELATION
+STATUS=BEHAVIORALLY_PROVEN
+CONTROL_ARTIFACT=.sigma_tmp/WINDOW_A_SIGMA_PSI_SEMANTIC_DISCOVERY_CURRENT_20260826_131553.sigmab
+MUTATED_OR_VARIANT_ARTIFACT=NONE
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_RC=0
+STDOUT_SHA256=278bdb54ead9a96a83e070b440088b066ddd3373409f19f4c7553e7790e7cc4a
+STDERR_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+OBSERVED_TRANSITION=The tested program's runtime-produced observable output was captured byte-exactly while the VM returned RC=0.
+EXACT_SCOPE=Observable result/output correlation only for tested current runs.
+NOT_PROVEN_BEYOND=Internal result-selection rule; terminal stack selection; HALT result transport; function return-value transport to top level.
+PROVENANCE=BRAIN/WORKSTREAMS/SIGMA_PSI/WINDOW_A_PROVENANCE_LINKAGE_CLOSURE_20260826.md; authoritative checkpoint NORMAL_RUN_RESULT_CORRELATED capability
+
+VM_ID=WD-RUN-04
+SUBJECT=CALL_RETURN_RUNTIME
+BYTE_OR_FIELD=CALL_TO_FRAME_TO_CALLEE_TO_RETURN_TO_CALLER_CONTINUATION
+STATUS=BEHAVIORALLY_PROVEN
+CONTROL_ARTIFACT=MOTHER_TEST_0002 current compiled/run fixture; exact bytecode path/hash not captured in the required runtime-scope memo
+MUTATED_OR_VARIANT_ARTIFACT=NONE
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_RC=0
+STDOUT_SHA256=NOT_CAPTURED_IN_REQUIRED_PRIOR_EVIDENCE
+STDERR_SHA256=NOT_CAPTURED_IN_REQUIRED_PRIOR_EVIDENCE
+OBSERVED_TRANSITION=DEF function call and RETURN executed through a function frame and caller continuation with RC=0 in the tested scope.
+EXACT_SCOPE=Behavioral CALL -> function frame -> RETURN -> caller continuation only.
+NOT_PROVEN_BEYOND=Exact numeric opcode mapping; argument placement/transfer; frame slot/layout; return-value transfer; caller IP restoration mechanism; CALL/RETURN stack effects.
+PROVENANCE=BRAIN/WORKSTREAMS/SIGMA_PSI/SIGMA_CURRENT_VM_RUNTIME_SCOPE_20260826.md; BRAIN/WORKSTREAMS/SIGMA_PSI/WS06_REOPEN_EVIDENCE_CLOSURE_RESULT.md
+
+VM_ID=WD-RUN-05
+SUBJECT=JUMP_BRANCH_LOOP_RUNTIME
+BYTE_OR_FIELD=IF_ELSE_AND_WHILE_BEHAVIOR
+STATUS=BEHAVIORALLY_PROVEN
+CONTROL_ARTIFACT=Existing tested SIGMA IF/ELSE and WHILE fixtures; Stage4/5/6 self-host compiler VM runs cited by runtime-scope memo
+MUTATED_OR_VARIANT_ARTIFACT=Existing true/false and loop variants; exact artifact hashes not captured in the required runtime-scope memo
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_RC=0_IN_CITED_TESTED_RUNS
+STDOUT_SHA256=NOT_CAPTURED_IN_REQUIRED_PRIOR_EVIDENCE
+STDERR_SHA256=NOT_CAPTURED_IN_REQUIRED_PRIOR_EVIDENCE
+OBSERVED_TRANSITION=IF/ELSE and WHILE behavior executed successfully on the current VM in bounded tests.
+EXACT_SCOPE=Behavioral branch/loop execution only.
+NOT_PROVEN_BEYOND=Exact 0x40/0x41 runtime mapping; target interpretation; taken/not-taken IP transitions; condition representation; condition pop/peek behavior; target bounds/signedness.
+PROVENANCE=BRAIN/WORKSTREAMS/SIGMA_PSI/SIGMA_CURRENT_VM_RUNTIME_SCOPE_20260826.md; authoritative checkpoint locked IF/WHILE capabilities
