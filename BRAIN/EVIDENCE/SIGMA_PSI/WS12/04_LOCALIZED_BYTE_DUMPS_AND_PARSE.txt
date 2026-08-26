@@ -1,0 +1,167 @@
+WORKSTREAM=WS12
+CLASSIFICATION=ARCHIVED_SOURCE_CORRELATED_EMISSION
+CLAIM_POLICY=CLAIM<=EVIDENCE
+NOT_VM_DECODE_PROOF=TRUE
+NOT_STACK_EFFECT_PROOF=TRUE
+NOT_UNIVERSAL_ABI_CONTRACT=TRUE
+
+[OBSERVED_COMMON_PREFIX_ON_SELECTED_VALID_ARCHIVE_ARTIFACTS]
+OFFSET_0_7_HEX=53 49 47 4d 42 43 30 31
+OFFSET_0_7_ASCII=SIGMBC01
+OBSERVED_SELECTED_VALID_ARTIFACTS=MINIMAL_BYTECODE_BASE.sigmab,BINARY_OPCODE_BASE.sigmab,STEP3_ITER_TEST.sigmab,DISCIPLINE_LOCK.sigmab
+CLAIM=These selected archived compiler outputs begin with exact 8-byte ASCII SIGMBC01.
+EVIDENCE_SCOPE=Observed prefix only; no version/compatibility semantics inferred from the string.
+
+[OBSERVED_STRUCTURAL_SERIALIZATION_ON_SELECTED_CORPUS]
+- Immediately after the 8-byte prefix, all four selected valid artifacts contain bytes 01 00 00 00. This is an observed little-endian u32-shaped field with value 1; field semantics are NOT_PROVEN.
+- A subsequent u32 little-endian-shaped count matches the number of source-correlated constants in each selected artifact.
+- Observed constant tags in the selected corpus: 0x00 followed by no payload for NULL-correlated entries; 0x02 followed by an 8-byte little-endian integer payload; 0x04 followed by u32 little-endian byte length and UTF-8 bytes for string-correlated entries.
+- Source-correlated names serialize as u32 little-endian byte length followed by UTF-8 bytes.
+- Function-bearing DISCIPLINE_LOCK contains source-correlated function records with u32 name index, u16 parameter count, u32 parameter-name indices, u32 instruction count, then instruction bytes.
+- Main instruction count is observed as u32 little-endian immediately before the source-correlated main instruction stream in these selected artifacts.
+EVIDENCE_SCOPE=Repeated structural correlation across four archived pairs. This is not promoted as an exhaustive ABI, bounds contract, version contract, or decoder implementation.
+
+=== HEXDUMP MINIMAL_BYTECODE_BASE.sigmab ===
+0000: 53 49 47 4d 42 43 30 31 01 00 00 00 01 00 00 00  |SIGMBC01........|
+0010: 02 01 00 00 00 00 00 00 00 01 00 00 00 01 00 00  |................|
+0020: 00 61 00 00 00 00 03 00 00 00 01 00 00 00 00 11  |.a..............|
+0030: 00 00 00 00 ff                                   |.....|
+SOURCE_CORRELATION:
+main[0] offset=42 bytes=01 00 00 00 00 source='⚡ a: 1;' constant-index correlation=0
+main[1] offset=47 bytes=11 00 00 00 00 source='⚡ a: 1;' name-index correlation=0 ('a')
+main[2] offset=52 bytes=ff source=end of main
+
+=== HEXDUMP BINARY_OPCODE_BASE.sigmab ===
+0000: 53 49 47 4d 42 43 30 31 01 00 00 00 02 00 00 00  |SIGMBC01........|
+0010: 02 01 00 00 00 00 00 00 00 02 02 00 00 00 00 00  |................|
+0020: 00 00 03 00 00 00 01 00 00 00 61 01 00 00 00 62  |..........a....b|
+0030: 01 00 00 00 63 00 00 00 00 09 00 00 00 01 00 00  |....c...........|
+0040: 00 00 11 00 00 00 00 01 01 00 00 00 11 01 00 00  |................|
+0050: 00 10 00 00 00 00 10 01 00 00 00 21 01 11 02 00  |...........!....|
+0060: 00 00 ff                                         |...|
+SOURCE_CORRELATED_MAIN_SEGMENTATION:
+00 offset=61  byte=0x01 operand_u32=0
+01 offset=66  byte=0x11 operand_u32=0 name='a'
+02 offset=71  byte=0x01 operand_u32=1
+03 offset=76  byte=0x11 operand_u32=1 name='b'
+04 offset=81  byte=0x10 operand_u32=0 name='a'
+05 offset=86  byte=0x10 operand_u32=1 name='b'
+06 offset=91  byte=0x21 subop_u8=0x01 source expression='a + b'
+07 offset=93  byte=0x11 operand_u32=2 name='c'
+08 offset=98  byte=0xff
+
+=== HEXDUMP BAD_BINARY_SUBOP_FAULT.sigmab ===
+0000: 53 49 47 4d 42 43 30 31 01 00 00 00 02 00 00 00  |SIGMBC01........|
+0010: 02 01 00 00 00 00 00 00 00 02 02 00 00 00 00 00  |................|
+0020: 00 00 03 00 00 00 01 00 00 00 61 01 00 00 00 62  |..........a....b|
+0030: 01 00 00 00 63 00 00 00 00 09 00 00 00 01 00 00  |....c...........|
+0040: 00 00 11 00 00 00 00 01 01 00 00 00 11 01 00 00  |................|
+0050: 00 10 00 00 00 00 10 01 00 00 00 21 ff 11 02 00  |...........!....|
+0060: 00 00 ff                                         |...|
+CONTROLLED_PAIR_DIFF=BINARY_OPCODE_BASE.sigmab -> BAD_BINARY_SUBOP_FAULT.sigmab
+ONLY_CHANGED_BYTE_OFFSET=92
+BASE_BYTE=0x01
+FAULT_BYTE=0xff
+PRECEDING_BYTE_OFFSET_91=0x21
+CLAIM=In this labelled controlled pair, the sole mutation is the one-byte field immediately following source-correlated 0x21 binary emission.
+EVIDENCE_SCOPE=Supports a one-byte binary sub-operation field in this fixture. Does not prove VM rejection, diagnostic, RC, or all sub-op values.
+
+=== HEXDUMP STEP3_ITER_TEST.sigmab ===
+0000: 53 49 47 4d 42 43 30 31 01 00 00 00 04 00 00 00  |SIGMBC01........|
+0010: 02 00 00 00 00 00 00 00 00 02 03 00 00 00 00 00  |................|
+0020: 00 00 04 05 00 00 00 49 4e 44 45 58 02 01 00 00  |.......INDEX....|
+0030: 00 00 00 00 00 03 00 00 00 01 00 00 00 69 05 00  |.............i..|
+0040: 00 00 6c 69 6d 69 74 05 00 00 00 70 72 69 6e 74  |..limit....print|
+0050: 00 00 00 00 12 00 00 00 01 00 00 00 00 11 00 00  |................|
+0060: 00 00 01 01 00 00 00 11 01 00 00 00 10 00 00 00  |................|
+0070: 00 10 01 00 00 00 21 12 41 11 00 00 00 01 02 00  |......!.A.......|
+0080: 00 00 10 00 00 00 00 30 02 00 00 00 02 00 02 10  |.......0........|
+0090: 00 00 00 00 01 03 00 00 00 21 01 11 00 00 00 00  |.........!......|
+00a0: 40 04 00 00 00 ff                                |@.....|
+SOURCE_CORRELATED_MAIN_SEGMENTATION:
+00 offset=88  byte=0x01 operand_u32=0
+01 offset=93  byte=0x11 operand_u32=0 name='i'
+02 offset=98  byte=0x01 operand_u32=1
+03 offset=103 byte=0x11 operand_u32=1 name='limit'
+04 offset=108 byte=0x10 operand_u32=0 name='i'
+05 offset=113 byte=0x10 operand_u32=1 name='limit'
+06 offset=118 byte=0x21 subop_u8=0x12 source condition='i < limit'
+07 offset=120 byte=0x41 operand_u32=17
+08 offset=125 byte=0x01 operand_u32=2
+09 offset=130 byte=0x10 operand_u32=0 name='i'
+10 offset=135 byte=0x30 callee_name_u32=2 callee='print' argc_u16=2
+11 offset=142 byte=0x02
+12 offset=143 byte=0x10 operand_u32=0 name='i'
+13 offset=148 byte=0x01 operand_u32=3
+14 offset=153 byte=0x21 subop_u8=0x01 source expression='i + 1'
+15 offset=155 byte=0x11 operand_u32=0 name='i'
+16 offset=160 byte=0x40 operand_u32=4
+17 offset=165 byte=0xff
+JUMP_CORRELATION=0x40 operand 4 equals the source-correlated instruction ordinal at loop-condition reload; 0x41 operand 17 equals terminal instruction ordinal in this fixture.
+EVIDENCE_SCOPE=Compiler-emission correlation in this fixture only. Relative-vs-absolute VM target semantics, IP movement, condition pop/peek, loop execution count, and bounds behavior remain NOT_PROVEN.
+
+=== DISCIPLINE_LOCK SOURCE-CORRELATED CALL/RETURN SEGMENTS ===
+FUNCTION host_call argc=4
+00 offset=437 byte=0x10 operand_u32=1 name='op'
+01 offset=442 byte=0x10 operand_u32=2 name='a'
+02 offset=447 byte=0x10 operand_u32=3 name='b'
+03 offset=452 byte=0x10 operand_u32=4 name='c'
+04 offset=457 byte=0x30 callee_name_u32=5 callee='host' argc_u16=4
+05 offset=464 byte=0x31
+FUNCTION save argc=2
+00 offset=483 byte=0x01 operand_u32=0
+01 offset=488 byte=0x10 operand_u32=7 name='path'
+02 offset=493 byte=0x10 operand_u32=8 name='content'
+03 offset=498 byte=0x01 operand_u32=1
+04 offset=503 byte=0x30 callee_name_u32=0 callee='host_call' argc_u16=4
+05 offset=510 byte=0x31
+FUNCTION load argc=1
+00 offset=525 byte=0x01 operand_u32=2
+01 offset=530 byte=0x10 operand_u32=7 name='path'
+02 offset=535 byte=0x01 operand_u32=1
+03 offset=540 byte=0x01 operand_u32=1
+04 offset=545 byte=0x30 callee_name_u32=0 callee='host_call' argc_u16=4
+05 offset=552 byte=0x31
+MAIN_SELECTED:
+offset=587 byte=0x30 callee_name_u32=6 callee='save' argc_u16=2
+offset=594 byte=0x02
+offset=600 byte=0x30 callee_name_u32=9 callee='load' argc_u16=1
+offset=607 byte=0x11 operand_u32=12 name='VERIFIED'
+offset=617 byte=0x30 callee_name_u32=13 callee='print' argc_u16=1
+offset=624 byte=0x02
+offset=635 byte=0x30 callee_name_u32=13 callee='print' argc_u16=2
+offset=642 byte=0x02
+offset=643 byte=0xff
+CLAIM=The archived function/call source correlates repeatedly with 0x30 + u32 name index + u16 argument count, and explicit RETURN source correlates with single-byte 0x31.
+EVIDENCE_SCOPE=Compiler-emission correlation only; call-frame layout, argument stack placement, return-address/value convention, runtime CALL/RETURN behavior and stack effects remain NOT_PROVEN.
+
+[SOURCE_CORRELATED_EMISSION_TABLE]
+0x01 | PUSH_CONST_CORRELATED | operand=u32_le_constant_index | observed_width_after_opcode=4 | VM_DECODE=NOT_PROVEN
+0x02 | POP_OR_DISCARD_RESULT_CORRELATED | operand=none | observed_width_after_opcode=0 | VM_DECODE=NOT_PROVEN
+0x10 | LOAD_CORRELATED | operand=u32_le_name_index | observed_width_after_opcode=4 | VM_DECODE=NOT_PROVEN
+0x11 | STORE_CORRELATED | operand=u32_le_name_index | observed_width_after_opcode=4 | VM_DECODE=NOT_PROVEN
+0x21 | BINARY_CORRELATED | operand=u8_subop | observed_width_after_opcode=1 | VM_DECODE=NOT_PROVEN
+0x30 | CALL_CORRELATED | operand=u32_le_callee_name_index+u16_le_arg_count | observed_width_after_opcode=6 | VM_DECODE=NOT_PROVEN
+0x31 | RETURN_CORRELATED | operand=none | observed_width_after_opcode=0 | VM_DECODE=NOT_PROVEN
+0x40 | JUMP_BACKEDGE_CORRELATED | operand=u32_le_target_field | observed_width_after_opcode=4 | VM_DECODE=NOT_PROVEN
+0x41 | JUMP_IF_FALSE_CORRELATED | operand=u32_le_target_field | observed_width_after_opcode=4 | VM_DECODE=NOT_PROVEN
+0xff | HALT_OR_TERMINATOR_CORRELATED | operand=none | observed_width_after_opcode=0 | VM_DECODE=NOT_PROVEN
+BINARY_SUBOP_0x01 | ADD_CORRELATED | observed in BINARY_OPCODE_BASE and STEP3_ITER_TEST | VM_SEMANTICS=NOT_PROVEN
+BINARY_SUBOP_0x12 | LT_CORRELATED | observed in STEP3_ITER_TEST | VM_SEMANTICS=NOT_PROVEN
+
+[MALFORMED_FIXTURES]
+bad_magic.sigmab | len=19 | sha256=b449859fe2af41be3e2845a0e85d31900d61d07d2164cae330bb676642946ad4 | bytes ASCII 'NOT_SIGMA_BYTECODE\n'
+truncated.sigmab | len=8 | sha256=f666e4ccff096253426e4111d6746bd62c5b228422fb6617a873ee7af2746501 | bytes ASCII 'SIGMBC01'
+BAD_BINARY_SUBOP_FAULT.sigmab | len=99 | sha256=629ddc92b5cc1e0920bdc1f8fbc2d361d01d57f26245788f243d924e8e64f8d5 | controlled single-byte subop mutation
+MALFORMED_BEHAVIOR=NOT_PROVEN
+EXACT_STDOUT=NOT_CAPTURED
+EXACT_STDERR=NOT_CAPTURED
+EXACT_RC=NOT_CAPTURED
+
+[STACK_EFFECTS]
+STATUS=NOT_PROVEN
+REASON=No instruction-level primary VM stack/frame trace or VM decoder/execute source is available in the verified archive scope.
+
+[VM_DECODE_EXECUTE]
+STATUS=NOT_PROVEN
+REASON=Archived bytecode bytes plus source correlation prove compiler-output structure only; they do not prove that sigma-vm.v09_candidate decodes/executes each byte as correlated.
