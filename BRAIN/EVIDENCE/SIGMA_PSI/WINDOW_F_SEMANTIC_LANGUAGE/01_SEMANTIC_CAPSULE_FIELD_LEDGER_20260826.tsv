@@ -1,0 +1,30 @@
+FIELD	PRIMARY_STATUS	SECONDARY_STATUS	FROZEN_CLAIM	NOT_PROVEN_BEYOND	PROVENANCE
+concept_id	PERSISTED_STRUCTURE	DECLARED_ONLY	concept_id is a stable semantic identity anchor in the declared Semantic Capsule model.	Complete current concept registry and runtime identity behavior are NOT_PROVEN.	WS07
+canonical_name	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	canonical_name is a human-facing label, not an opcode or capability proof.	Name-to-capability, name-to-runtime-object, and name-to-cognition are NOT_PROVEN.	WS07
+kind	PERSISTED_STRUCTURE	DECLARED_ONLY	kind is a descriptive field in the capsule shape.	Runtime type behavior is NOT_PROVEN by kind.	WS07 Window_B
+status	PERSISTED_STRUCTURE	DECLARED_ONLY	Status vocabulary V D R X P C M H is preserved as evidence or role labeling.	Status labels are not interpreted beyond evidence and do not create machine facts.	WS08
+sense_id[]	PERSISTED_STRUCTURE	DECLARED_ONLY	sense_id separation is required; SAME_GLYPH != SAME_SEMANTICS and SAME_WORD != SAME_SENSE.	A full per-sense registry with executable semantics is NOT_PROVEN.	WS07
+machine_semantics	PERSISTED_STRUCTURE	NOT_PROVEN	The field exists as structure, but machine semantics requires execution evidence.	No current semantic-machine execution evidence proves meanings.	WS07 Window_A Window_B Window_E
+cognitive_semantics	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	The field exists as structure and exposition boundary.	Cognition, understanding, learning, reasoning, and self-awareness remain NOT_PROVEN.	WS07 BlindScope
+ontology	PERSISTED_STRUCTURE	DECLARED_ONLY	Ontology is a semantic relation surface.	Ontology is not proven as runtime type system or executable relation engine.	WS07
+inputs	PERSISTED_STRUCTURE	DECLARED_ONLY	inputs is part of the semantic contract shape.	Executable input enforcement is NOT_PROVEN.	WS07
+outputs	PERSISTED_STRUCTURE	DECLARED_ONLY	outputs is part of the semantic contract shape.	OUTPUT != COGNITION and output enforcement is NOT_PROVEN.	WS07
+preconditions	PERSISTED_STRUCTURE	DECLARED_ONLY	preconditions is part of the semantic contract shape.	Runtime precondition enforcement is NOT_PROVEN.	WS07
+postconditions	PERSISTED_STRUCTURE	DECLARED_ONLY	postconditions is part of the semantic contract shape.	Runtime postcondition enforcement is NOT_PROVEN.	WS07
+state_transition	PERSISTED_STRUCTURE	DECLARED_ONLY	state_transition is a declared semantic field.	Executable state transition behavior is NOT_PROVEN except external runtime evidence outside semantic meaning.	WS07 Window_D
+invariants	PERSISTED_STRUCTURE	DECLARED_ONLY	invariants is part of the semantic contract shape.	Runtime invariant enforcement is NOT_PROVEN.	WS07
+relations	PERSISTED_STRUCTURE	DECLARED_ONLY	relations are sense-scoped semantic links.	Symmetry, inverse logic, and runtime operator behavior are NOT_PROVEN.	WS07
+opposites	PERSISTED_STRUCTURE	DECLARED_ONLY	opposites are semantic declarations only.	Logical negation or machine inverse operation is NOT_PROVEN.	WS07
+temporal_semantics	PERSISTED_STRUCTURE	DECLARED_ONLY	temporal_semantics is a semantic field.	Runtime clock or scheduling behavior is NOT_PROVEN.	WS07
+uncertainty	PERSISTED_STRUCTURE	MACHINE_OBSERVED	uncertainty field is persisted, and bounded UNKNOWN or HOLD behavior is observed in blind fixtures.	Universal non-hallucination, revision semantics, and full propagation are NOT_PROVEN.	WS08 BlindScope
+evidence_requirements	PERSISTED_STRUCTURE	DECLARED_ONLY	evidence_requirements declares what evidence is required.	Evidence requirement text is not itself evidence.	WS07 WS08
+provenance	PERSISTED_STRUCTURE	DECLARED_ONLY	provenance is mandatory for promoted semantic claims.	Complete runtime provenance ledger and all per-sense provenance are NOT_PROVEN.	WS07 WS08
+error_modes	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	error_modes may describe error classes.	ERROR_DESCRIPTION != MACHINE_ERROR_ABI and no new error codes are invented.	WS07 Window_E
+security_boundary	DECLARED_ONLY	HUMAN_EXPOSITION	security_boundary is governance vocabulary.	Runtime security enforcement is NOT_PROVEN.	WS07 WS08
+ethical_boundary	DECLARED_ONLY	HUMAN_EXPOSITION	ethical_boundary is constitutional or governance vocabulary.	Runtime ethical enforcement is NOT_PROVEN.	WS07 WS08
+examples	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	examples can illustrate a sense or mapping.	Examples are not proof of general semantics.	WS07
+counterexamples	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	counterexamples can illustrate boundaries.	Counterexamples are not proof of complete exclusion behavior.	WS07
+tests	PERSISTED_STRUCTURE	DECLARED_ONLY	tests field may reference evidence requirements or fixtures.	A runnable SSC validator is NOT_PROVEN.	WS07
+mappings	PERSISTED_STRUCTURE	HUMAN_EXPOSITION	mappings bridge SIGMA-Ψ, human language, and GPT references.	Mapping is not identity, validation, understanding, or losslessness.	WS07 WS08
+expansion_graph	PERSISTED_STRUCTURE	DECLARED_ONLY	expansion_graph is semantic by default.	Runtime call graph or executable expansion is NOT_PROVEN.	WS07
+version	PERSISTED_STRUCTURE	DECLARED_ONLY	version is a document or schema field.	It is not compiler hash, VM hash, bytecode ABI version, or semantic validity proof.	WS07 Window_C Window_E
