@@ -1,0 +1,6 @@
+TEST_ID	TARGET_FIELD	CONTROL_ARTIFACT	MUTATION	VM_SHA256	VM_RC	STDOUT_SHA256	STDERR_SHA256	RESULT	PROVENANCE
+# TARGETED_TESTS_RUN=0
+# REASON=No current native VM executable or native VM decoder source is available in the connected repository snapshot/execution host. The anti-answer-imposition policy forbids arbitrary bytecode construction, and host code may not emulate SIGMA VM behavior.
+# EXISTING_CONTROLLED_BYTE_MUTATION=BINARY_OPCODE_BASE.sigmab -> BAD_BINARY_SUBOP_FAULT.sigmab, offset 92, 0x01 -> 0xFF after source-correlated 0x21; this proves only one-byte sub-op-field shape because no current-VM RC/stdout/stderr was captured for that pair.
+# DUPLICATE_CAPABILITY_RERUNS=0
+# DO_NOT_RERUN_CAPABILITIES_PRESERVED=21
