@@ -1,0 +1,12 @@
+WORKSTREAM=WS12
+REQUESTED_PRIMARY_ROOT=~/SIGMA/sigma_genesis1
+SESSION_HOME=/home/oai
+RESOLVED_SESSION_PATH=/home/oai/SIGMA/sigma_genesis1
+PRIMARY_PATH_ACCESS=UNAVAILABLE
+ACCESS_COMMAND=ls -ld "$HOME/SIGMA/sigma_genesis1"
+ACCESS_STDOUT=
+ACCESS_STDERR=ls: cannot access '/home/oai/SIGMA/sigma_genesis1': No such file or directory
+ACCESS_RC=2
+FRESH_NATIVE_EXECUTION=NO
+NO_WRAPPER_OR_LAUNCHER_CREATED=TRUE
+NOTE=This is session-host access evidence only. It does not prove absence on the OPPO/Termux primary machine.
