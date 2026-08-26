@@ -1,0 +1,100 @@
+WORKSTREAM=WS12
+EVIDENCE_CLASS=BYTE_EXACT_ARCHIVED_PRIMARY_SOURCE_SELECTION
+NOTE=Sources were selected from the existing OPPO/Termux archive; no new SIGMA grammar was invented.
+
+=== SOURCE ===
+PATH=.sigma_exec/VM_STRUCTURED_ERROR_V1/MINIMAL_BYTECODE_BASE.sigma
+SOURCE_SHA256=294a888511b15a14f64e98410a786eeee26ec0934a6f30de04758a270f013dc6
+---
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.REPAIR08.BASE][VERSION=0.1]
+
+⟡(Σ.MINIMAL) {
+    ⚡ a: 1;
+}
+---
+
+=== SOURCE ===
+PATH=.sigma_exec/VM_STRUCTURED_ERROR_V1/BINARY_OPCODE_BASE.sigma
+SOURCE_SHA256=51e69c08bace633fb42ed48257b15a891fb94e58283989f2f04e8b1f79ecb2a2
+---
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.ERROR.BINARY.OP][VERSION=0.1]
+
+⟡(Σ.BINARY_OPCODE_BASE) {
+    ⚡ a: 1;
+    ⚡ b: 2;
+    ⚡ c: a + b;
+}
+---
+
+=== SOURCE ===
+PATH=.sigma_exec/STEP3_ITER_TEST.sigma
+SOURCE_SHA256=b761ec81bf8ce7f6e2aec7aa6637cd822fbbf520eef99d84c1216a3ed131368e
+---
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.ITERATION.TEST][VERSION=1.0]
+
+⟡(Σ.MAIN) {
+    ⚡ i: 0;
+    ⚡ limit: 3;
+    WHILE (i < limit) {
+        ⚡ print("INDEX", i);
+        ⚡ i: i + 1;
+    }
+}
+---
+
+=== SOURCE ===
+PATH=.sigma_exec/DISCIPLINE_LOCK.sigma
+SOURCE_SHA256=cf82ef98514198df84a97e1bc3f7bd374db44ef3262bba934a74caffa5c0c94f
+---
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DISCIPLINE.LOCK][VERSION=1.0]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF save(path, content) {
+    RETURN host_call("write_text", path, content, NULL);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.MAIN) {
+    ⚡ DISCIPLINE_FILE: ".sigma_exec/SELF_REMINDER_ZERO_DECEPTION.key";
+    
+    ⚡ LAW_CONTENT: "LAW_1: ZERO_HARDCODE_EMPATHY | LAW_2: ZERO_FAKE_CONSCIOUSNESS | LAW_3: PURE_DETERMINISTIC_GRAPH_ONLY";
+
+    ⚡ save(DISCIPLINE_FILE, LAW_CONTENT);
+    ⚡ VERIFIED: load(DISCIPLINE_FILE);
+
+    ⚡ print("=== DA KHOA KY LUAT NGHIEP THUC GOC ===");
+    ⚡ print("DISCIPLINE_KEY_ACTIVE:", VERIFIED);
+}
+---
+
+=== SOURCE ===
+PATH=.sigma_exec/VM_STRUCTURED_ERROR_V1/HOST_ERROR_26_TEST.sigma
+SOURCE_SHA256=9615dec17fbc012715423e1c17f2be4bf36337a49713bb87929c07f755e6d031
+---
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VM.HOST.ERROR.TEST][VERSION=0.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.HOST_ERROR_26_TEST) {
+    ⚡ print("BEFORE_HOST_ERROR");
+
+    ⚡ result: H(
+        "SIGMA_HOST_OPERATION_DOES_NOT_EXIST",
+        NULL,
+        NULL,
+        NULL
+    );
+
+    ⚡ print("MAIN_MUST_NOT_CONTINUE");
+}
+---
+
+EVIDENCE_SCOPE=Archived primary SIGMA source bytes and SHA-256 identities only. Presence of an intended negative-test source does not prove its runtime outcome without localized VM execution evidence.
