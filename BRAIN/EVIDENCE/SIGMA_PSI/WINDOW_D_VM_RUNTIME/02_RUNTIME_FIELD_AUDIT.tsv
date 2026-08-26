@@ -1,0 +1,68 @@
+FIELD_ID	CATEGORY	SUBJECT	STATUS	EVIDENCE_BOUNDARY
+BL-01	BYTECODE_LOADING	Known valid current bytecode is accepted/executed by current VM in tested scope	BEHAVIORALLY_PROVEN	Current VM accepts/executes known valid bytecode in tested scope; no validation/decode rule inferred.
+BL-02	BYTECODE_LOADING	Exact native magic validation/handling	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BL-03	BYTECODE_LOADING	Invalid-magic rejection behavior on current VM	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BL-04	BYTECODE_LOADING	Exact native instruction-stream start / decoder entry offset	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BL-05	BYTECODE_LOADING	Truncated/malformed stream handling on current VM	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-01	DECODE_DISPATCH	Native opcode decoder/dispatch implementation location	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-02	DECODE_DISPATCH	Exact native runtime mapping for byte 0x01	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-03	DECODE_DISPATCH	Exact native runtime mapping for byte 0x02	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-04	DECODE_DISPATCH	Exact native runtime mapping for byte 0x10	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-05	DECODE_DISPATCH	Exact native runtime mapping for byte 0x11	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-06	DECODE_DISPATCH	Exact native runtime mapping for byte 0x21	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-07	DECODE_DISPATCH	Exact native runtime mapping for byte 0x30	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-08	DECODE_DISPATCH	Exact native runtime mapping for byte 0x31	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-09	DECODE_DISPATCH	Exact native runtime mapping for byte 0x40	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-10	DECODE_DISPATCH	Exact native runtime mapping for byte 0x41	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+DD-11	DECODE_DISPATCH	Exact native runtime mapping for byte 0xFF	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-01	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x01	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-02	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x02	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-03	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x10	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-04	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x11	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-05	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x21	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-06	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x30	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-07	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x31	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-08	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x40	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-09	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0x41	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+SE-10	STACK_EFFECTS	Exact STACK_BEFORE/STACK_AFTER, POP_COUNT, PUSH_COUNT for 0xFF	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+LS-01	LOAD_STORE_RUNTIME	Exact variable/name lookup mechanism and operand interpretation	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+LS-02	LOAD_STORE_RUNTIME	Exact state update/store behavior	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+LS-03	LOAD_STORE_RUNTIME	Exact scope/frame selected by load/store	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+LS-04	LOAD_STORE_RUNTIME	Undefined-name behavior	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BI-01	BINARY_RUNTIME	Runtime meaning of 0x21 sub-op 0x01	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BI-02	BINARY_RUNTIME	Runtime meaning of 0x21 sub-op 0x12	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BI-03	BINARY_RUNTIME	Exact operand order/type/coercion behavior	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+BI-04	BINARY_RUNTIME	Exact binary result representation/stack placement	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+CR-01	CALL_RETURN_RUNTIME	CALL -> function frame -> callee -> RETURN -> caller continuation in tested scope	BEHAVIORALLY_PROVEN	Composite CALL/frame/callee/RETURN/caller-continuation behavior only.
+CR-02	CALL_RETURN_RUNTIME	Exact argument transfer	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+CR-03	CALL_RETURN_RUNTIME	Exact frame creation/layout	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+CR-04	CALL_RETURN_RUNTIME	Exact return-value transfer	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+CR-05	CALL_RETURN_RUNTIME	Exact caller IP restoration mechanism	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+CR-06	CALL_RETURN_RUNTIME	Exact CALL/RETURN stack effects	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+JR-01	JUMP_RUNTIME	IF/ELSE and WHILE branch/loop runtime behavior in tested scope	BEHAVIORALLY_PROVEN	Composite IF/ELSE and WHILE behavior only.
+JR-02	JUMP_RUNTIME	Exact target-field interpretation for 0x40-correlated field	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+JR-03	JUMP_RUNTIME	Exact target-field interpretation for 0x41-correlated field	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+JR-04	JUMP_RUNTIME	Conditional value truth/false handling	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+JR-05	JUMP_RUNTIME	Conditional pop vs peek behavior	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+JR-06	JUMP_RUNTIME	Jump target signedness/bounds behavior	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-01	INSTRUCTION_POINTER	Exact sequential instruction advance semantics	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-02	INSTRUCTION_POINTER	Exact taken conditional-branch IP transition	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-03	INSTRUCTION_POINTER	Exact not-taken conditional-branch IP transition	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-04	INSTRUCTION_POINTER	Exact unconditional-jump IP transition	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-05	INSTRUCTION_POINTER	Exact CALL entry IP transition	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+IP-06	INSTRUCTION_POINTER	Exact RETURN restoration IP transition	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+TR-01	TERMINATION_RUNTIME	Normal termination with VM_RC=0 in tested current runs	BEHAVIORALLY_PROVEN	Normal RC=0 termination only.
+TR-02	TERMINATION_RUNTIME	Whether source-correlated 0xFF terminator is mandatory	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+TR-03	TERMINATION_RUNTIME	End-of-stream behavior without source-correlated 0xFF	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+TR-04	TERMINATION_RUNTIME	Exact native terminator/HALT transition semantics	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+TR-05	TERMINATION_RUNTIME	Exact VM exit-code propagation rule	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+RP-01	RESULT_PROPAGATION	Normal-run observable result/output correlation in tested scope	BEHAVIORALLY_PROVEN	Observable output/result correlation only.
+RP-02	RESULT_PROPAGATION	Exact top-level result selection rule	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+RP-03	RESULT_PROPAGATION	Exact terminal stack/result source	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+RP-04	RESULT_PROPAGATION	Exact function return-value propagation to top level	NOT_PROVEN	No direct current native VM localization/trace or isolated current-VM differential evidence closes this field.
+
+VM_FIELDS_REVIEWED=61
+BEHAVIORALLY_PROVEN_FIELDS=5
+VM_RUNTIME_LOCALIZED_FIELDS=0
+NOT_PROVEN_FIELDS=56
+CONFLICTED_FIELDS=0
