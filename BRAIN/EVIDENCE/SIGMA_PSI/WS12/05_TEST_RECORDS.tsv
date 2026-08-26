@@ -1,0 +1,2 @@
+SOURCE	SOURCE_SHA256	COMPILER	COMPILER_SHA256	BYTECODE	BYTECODE_SHA256	VM	VM_SHA256	COMMAND	STDOUT	STDERR	RC	CLAIM	EVIDENCE_SCOPE
+# TESTS_RUN=0; requested primary root was unavailable in this execution host; no fresh ./native/sigmac && ./native/sigma-vm.v09_candidate invocation was performed; no test row was fabricated.
