@@ -1,0 +1,35 @@
+WINDOW=WINDOW_E_ERROR_CONFORMANCE
+DATE=2026-08-26
+CLAIM_POLICY=CLAIM<=EVIDENCE
+TARGETED_TEST_POLICY_APPLIED=YES
+TARGETED_TESTS_RUN=0
+
+REASON_1=The connected GitHub snapshot available to Window E does not expose the exact current native compiler/VM execution channel used by the prior Termux evidence.
+REASON_2=Window D already records WINDOW_D_EXECUTION_HOST_CURRENT_VM_BINARY_AVAILABLE=NO and FRESH_NATIVE_DIFFERENTIAL_TEST_POSSIBLE=NO.
+REASON_3=Malformed VM tests require KNOWN_VALID_CONTROL -> ONE_FIELD_MUTATION -> current VM -> RC/stdout/stderr capture. Current VM execution for malformed artifacts is absent.
+REASON_4=Running Python/Bash/host emulation, inventing bytecode layouts, or assigning expected semantic outcomes would violate the anti-imposition and host-substitution laws.
+
+TESTS_NOT_RUN=
+- bad_magic.sigmab current VM execution
+- truncated.sigmab current VM execution
+- BAD_BINARY_SUBOP_FAULT.sigmab current VM execution
+- invalid opcode current VM execution
+- malformed operands current VM execution
+- undefined function current VM execution
+- stack underflow current VM execution
+- jump target fault current VM execution
+- step-limit/nontermination current VM execution
+
+EXISTING_EVIDENCE_REUSED=
+- Window A compiler reject probes: 24 current compiler reject variants, no VM execution.
+- Window C malformed bytecode catalog: bad_magic.sigmab, truncated.sigmab, BAD_BINARY_SUBOP_FAULT.sigmab.
+- Window D behavioral runtime evidence: known valid current bytecode VM RC=0 with stdout/stderr hashes; no malformed runtime tests.
+- WS09 inherited error taxonomy: NATIVE_COLLECTION_LIST_SYNTAX=FAIL_COMPILER_RC_4 and NATIVE_OBSERVE_HOST_OPERATION=FAIL_VM_RC_26 retained only at their named upstream scopes.
+
+DUPLICATE_CAPABILITY_RERUNS=0
+DO_NOT_RERUN_CAPABILITIES_PRESERVED=21
+UNKNOWN_CONVERTED_TO_FAIL=NO
+NOT_PROVEN_CONVERTED_TO_UNSUPPORTED=NO
+GPT_ANSWER_IMPOSITION_USED=NO
+HOST_ERROR_SUBSTITUTED_FOR_SIGMA=NO
+NEW_ERROR_CODES_INVENTED=NO
