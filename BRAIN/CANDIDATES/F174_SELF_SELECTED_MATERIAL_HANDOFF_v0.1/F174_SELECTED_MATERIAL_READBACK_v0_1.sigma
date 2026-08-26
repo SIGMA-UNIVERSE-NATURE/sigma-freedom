@@ -1,0 +1,15 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.F174.MATERIAL.READBACK][VERSION=P1.CANDIDATE.0.1]
+
+DEF host_call(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF load(path) {
+    RETURN host_call("read_text", path, NULL, NULL);
+}
+
+⟡(Σ.F174_SELECTED_MATERIAL_READBACK) {
+    ⚡ SELECTED_STATE: load(".sigma_exec/F174_SELECTED_MATERIAL_STATE_v0_1.txt");
+    ⚡ print("F174_SELECTED_MATERIAL_READBACK");
+    ⚡ print(SELECTED_STATE);
+}
