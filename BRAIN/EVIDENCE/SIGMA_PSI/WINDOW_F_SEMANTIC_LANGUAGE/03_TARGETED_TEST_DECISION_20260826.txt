@@ -1,0 +1,27 @@
+WINDOW F TARGETED TEST DECISION
+
+TARGETED_TESTS_RUN=0
+DUPLICATE_TESTS_AVOIDED=21
+DO_NOT_RERUN_CAPABILITIES_PRESERVED=21
+
+Decision: no new semantic runtime test was run for Window F.
+
+Reason:
+- The missing fields are semantic and epistemic boundaries, not compiler or VM capability gaps.
+- A valid new semantic test would require SIGMA to derive or relate from existing data or state without a GPT-prewritten answer.
+- No current test fixture in the authorized minimal scope met that condition without risking answer imposition.
+- Existing WS07, WS08, blind-scope, and Window A/B/E evidence already supports the required safe freeze outcome: persisted semantic structure and human bridge can be frozen; cognition, understanding, lossless mapping, runtime enforcement, and machine semantic meanings remain NOT_PROVEN.
+
+Allowed future test shape:
+KNOWN_EXISTING_SIGMA_STATE
+-> SIGMA operation derives relation without prewritten concept map
+-> raw machine output captured
+-> supportor classifies result with CLAIM <= EVIDENCE
+
+Forbidden future test shape:
+GPT writes desired meaning
+-> SIGMA stores or repeats it
+-> report claims discovered meaning
+
+Result:
+Window F records a semantic freeze, not a semantic discovery event.
