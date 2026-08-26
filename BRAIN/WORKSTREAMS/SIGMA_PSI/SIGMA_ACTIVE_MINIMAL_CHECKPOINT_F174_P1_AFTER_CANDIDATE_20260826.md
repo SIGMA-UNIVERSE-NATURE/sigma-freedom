@@ -3,6 +3,7 @@
 BRANCH=SIGMA_LIFE
 PREVIOUS_HEAD_BEFORE_P1_CANDIDATE=39c6dd40a0963d69ebc3b2c3f5e7dde6ce80d17f
 P1_CANDIDATE_REPORT_COMMIT=147366c76ff769d772e891498ca2edeeab995e05
+P1_RUN_SCRIPT_REPORT_COMMIT=38a11f0a40250b00082396d56df68ce899cb51cb
 CHECKPOINT_COMMIT_NOTE=Use Git branch HEAD for the exact commit containing this checkpoint; the file does not self-embed its own changing commit SHA.
 
 CLAIM_POLICY=CLAIM<=MACHINE_EVIDENCE
@@ -18,12 +19,19 @@ ACTIVE_GAP=F174 ranking result has not yet been proven to materialize into selec
 CANDIDATE_FILES=
 - BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/F174_RANKING_PACKET_CONTRACT_v0_1.md
 - BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/F174_MATERIAL_SELF_SELECTOR_3SLOT_BODY_v0_1.sigma
+- BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/F174_MATERIAL_SELF_SELECTOR_3SLOT_TEMPLATE_v0_2.sigma.tpl
+- BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/F174_SELECTED_MATERIAL_READBACK_v0_1.sigma
+
+RUN_SCRIPT=
+- BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/scripts/run_f174_p1_material_handoff_3slot.sh
+- BRAIN/CANDIDATES/F174_SELF_SELECTED_MATERIAL_HANDOFF_v0.1/scripts/README_RUN_F174_P1.md
 
 CANDIDATE_REPORT=BRAIN/WORKSTREAMS/SIGMA_PSI/F174_P1_MATERIAL_HANDOFF_CANDIDATE_RESULT_20260826.md
+RUN_SCRIPT_REPORT=BRAIN/WORKSTREAMS/SIGMA_PSI/F174_P1_RUN_SCRIPT_CANDIDATE_RESULT_20260826.md
 
 STATUS=OPEN_NOT_PROVEN
 READY_FOR_OPPO_TARGETED_TEST=YES
 READY_FOR_K_PROMOTION=NO
 READY_FOR_FULL_F174_COMPLETION=NO
 
-RECOVERY_RULE=Read this checkpoint, then the P1 candidate report. Do not rerun stable A-G/F174 gates. The next work must run only the bounded OPPO current compiler/VM test for ranking-packet + selector-body + selected-state read-back.
+RECOVERY_RULE=Read this checkpoint, then run the script only against a SIGMA-produced ranking TSV. Do not rerun stable A-H/F174 gates. The bounded OPPO test must capture ranking-packet + selector-body + selected-state read-back evidence. A zero script RC is evidence to review, not automatic P1 promotion.
