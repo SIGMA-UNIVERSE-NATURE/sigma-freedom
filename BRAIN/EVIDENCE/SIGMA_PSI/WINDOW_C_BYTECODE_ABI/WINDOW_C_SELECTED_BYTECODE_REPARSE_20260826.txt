@@ -1,0 +1,214 @@
+WINDOW_C=SIGMA_BYTECODE_ABI_FREEZE
+DATE=2026-08-26
+REPOSITORY=SIGMA-UNIVERSE-NATURE/sigma-freedom
+BRANCH=SIGMA_LIFE
+SOURCE_HEAD_BEFORE_WINDOW_C=58c9e27d23403e16d5319c2e278a7f8683ca2f3d
+CLAIM_POLICY=CLAIM<=EVIDENCE
+METHOD=DECODE_EXISTING_WS12_BASE64_AND_REPARSE_SELECTED_BYTES
+NEW_NATIVE_COMPILER_EXECUTION=NO
+NEW_VM_EXECUTION=NO
+STACK_EFFECT_INFERENCE=NO
+VM_OPCODE_MAPPING_INFERENCE=NO
+MATRIX_POSITION_AS_OPCODE_INFERENCE=NO
+
+INPUT_EXACT_BYTES=BRAIN/EVIDENCE/SIGMA_PSI/WS12/03_SELECTED_BYTECODE_BASE64.txt
+INPUT_PRIOR_LOCALIZATION=BRAIN/EVIDENCE/SIGMA_PSI/WS12/04_LOCALIZED_BYTE_DUMPS_AND_PARSE.txt
+INPUT_EXACT_SOURCES=BRAIN/EVIDENCE/SIGMA_PSI/WS12/02_SELECTED_ARCHIVED_SOURCES.txt
+
+[ARTIFACT_IDENTITIES]
+MINIMAL_BYTECODE_BASE.sigmab len=53 sha256=26984037391df0e06a01185177261a99fc4b7e6f6ab3998b3158a49ab7283875
+BINARY_OPCODE_BASE.sigmab len=99 sha256=23a483ddea89cf36a36618cc7d192d1a3efd51927ed3272a77574be23d14a13c
+STEP3_ITER_TEST.sigmab len=166 sha256=e15e17e7fa3aace360bddd0062880c3e10ac3e869ef256f05f073aa2f6381e4a
+DISCIPLINE_LOCK.sigmab len=644 sha256=e3d4f6169fbb83d0df8977f8029f53a2181531582954898e469e0e0e6ac1a4a0
+BAD_BINARY_SUBOP_FAULT.sigmab len=99 sha256=629ddc92b5cc1e0920bdc1f8fbc2d361d01d57f26245788f243d924e8e64f8d5
+bad_magic.sigmab len=19 sha256=b449859fe2af41be3e2845a0e85d31900d61d07d2164cae330bb676642946ad4
+truncated.sigmab len=8 sha256=f666e4ccff096253426e4111d6746bd62c5b228422fb6617a873ee7af2746501
+
+[COMMON_PREFIX]
+offset=0..7
+hex=53 49 47 4d 42 43 30 31
+ascii=SIGMBC01
+selected_valid_artifacts=4
+status=BYTE_EXACT_OBSERVED
+vm_validation_semantics=NOT_PROVEN
+
+[POST_MAGIC_FIELD]
+offset=8..11
+hex=01 00 00 00
+little_endian_shaped_value=1
+selected_valid_artifacts=4
+semantic_role=NOT_PROVEN
+version_meaning=NOT_PROVEN
+
+=== MINIMAL_BYTECODE_BASE ===
+const_count offset=12..15 bytes=01 00 00 00 value=1
+const[0] tag offset=16 byte=02
+const[0] payload offset=17..24 bytes=01 00 00 00 00 00 00 00 numeric_small_nonnegative_value=1
+name_count offset=25..28 bytes=01 00 00 00 value=1
+name[0] length offset=29..32 bytes=01 00 00 00 value=1
+name[0] bytes offset=33 value=61 ascii=a
+function_count offset=34..37 bytes=00 00 00 00 value=0
+main_instruction_count offset=38..41 bytes=03 00 00 00 value=3
+main_code offset=42..52
+main[0] offset=42 bytes=01 00 00 00 00
+main[1] offset=47 bytes=11 00 00 00 00
+main[2] offset=52 bytes=ff
+
+CURRENT_COMPILER_HASH_IDENTITY_BRIDGE:
+source_probe=BRAIN/EVIDENCE/SIGMA_PSI/WINDOW_A_SURFACE_PROBES/WINDOW_A_LITERAL_BATCH1_20260826.md
+current_compiler_sha256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+probe_source_form=Header + ⟡(Σ.MAIN) { ⚡ a: 1; }
+compile_rc=0
+bytecode_size=53
+bytecode_sha256=26984037391df0e06a01185177261a99fc4b7e6f6ab3998b3158a49ab7283875
+scope=hash/size identity with WS12 exact MINIMAL artifact; not universal current-compiler ABI proof
+
+=== BINARY_OPCODE_BASE ===
+const_count offset=12..15 bytes=02 00 00 00 value=2
+const[0] tag=02 @16 payload @17..24 value=1
+const[1] tag=02 @25 payload @26..33 value=2
+name_count offset=34..37 bytes=03 00 00 00 value=3
+name[0] len @38..41 value=1 bytes @42='a'
+name[1] len @43..46 value=1 bytes @47='b'
+name[2] len @48..51 value=1 bytes @52='c'
+function_count offset=53..56 value=0
+main_instruction_count offset=57..60 bytes=09 00 00 00 value=9
+main_code offset=61..98
+main[0] @61  =01 00 00 00 00
+main[1] @66  =11 00 00 00 00
+main[2] @71  =01 01 00 00 00
+main[3] @76  =11 01 00 00 00
+main[4] @81  =10 00 00 00 00
+main[5] @86  =10 01 00 00 00
+main[6] @91  =21 01
+main[7] @93  =11 02 00 00 00
+main[8] @98  =ff
+
+=== STEP3_ITER_TEST ===
+const_count offset=12..15 bytes=04 00 00 00 value=4
+const[0] tag=02 @16 payload @17..24 value=0
+const[1] tag=02 @25 payload @26..33 value=3
+const[2] tag=04 @34 length @35..38 bytes=05 00 00 00 value=5 payload @39..43='INDEX'
+const[3] tag=02 @44 payload @45..52 value=1
+name_count offset=53..56 bytes=03 00 00 00 value=3
+name[0] @57..61='i'
+name[1] @62..70='limit'
+name[2] @71..79='print'
+function_count offset=80..83 value=0
+main_instruction_count offset=84..87 bytes=12 00 00 00 value=18
+main_code offset=88..165
+main[6]  @118 =21 12
+main[7]  @120 =41 11 00 00 00 target_field=17
+main[10] @135 =30 02 00 00 00 02 00 callee_name_index=2 argc=2
+main[11] @142 =02
+main[14] @153 =21 01
+main[16] @160 =40 04 00 00 00 target_field=4
+main[17] @165 =ff
+jump_fixture_local_correlation=0x41 field 17 equals localized instruction ordinal 17; 0x40 field 4 equals localized instruction ordinal 4
+universal_absolute_vs_relative=NOT_PROVEN
+universal_byte_offset_vs_instruction_index=NOT_PROVEN
+compiler_backpatch_algorithm=NOT_PROVEN
+vm_target_decode_semantics=NOT_PROVEN
+
+=== DISCIPLINE_LOCK ===
+const_count offset=12..15 bytes=07 00 00 00 value=7
+const[0] tag=04 @16 length=10 payload='write_text'
+const[1] tag=00 @31 no_payload_observed
+const[2] tag=04 @32 length=9 payload='read_text'
+const[3] tag=04 @46 length=44 payload='.sigma_exec/SELF_REMINDER_ZERO_DECEPTION.key'
+const[4] tag=04 @95 length=100 payload='LAW_1: ZERO_HARDCODE_EMPATHY | LAW_2: ZERO_FAKE_CONSCIOUSNESS | LAW_3: PURE_DETERMINISTIC_GRAPH_ONLY'
+const[5] tag=04 @200 length=39 payload='=== DA KHOA KY LUAT NGHIEP THUC GOC ==='
+const[6] tag=04 @244 length=22 payload='DISCIPLINE_KEY_ACTIVE:'
+name_count offset=271..274 bytes=0e 00 00 00 value=14
+function_count offset=407..410 bytes=03 00 00 00 value=3
+
+function[0] record_start=411
+name_index @411..414 bytes=00 00 00 00 value=0 -> host_call
+parameter_count @415..416 bytes=04 00 value=4
+parameter_name_indices @417..432 values=1,2,3,4 -> op,a,b,c
+instruction_count @433..436 bytes=06 00 00 00 value=6
+code_stream @437..464 byte_length=28
+last_source_correlated_instruction @464 byte=31
+
+function[1] record_start=465
+name_index @465..468 value=6 -> save
+parameter_count @469..470 value=2
+parameter_name_indices @471..478 values=7,8 -> path,content
+instruction_count @479..482 value=6
+code_stream @483..510 byte_length=28
+last_source_correlated_instruction @510 byte=31
+
+function[2] record_start=511
+name_index @511..514 value=9 -> load
+parameter_count @515..516 value=1
+parameter_name_indices @517..520 value=7 -> path
+instruction_count @521..524 value=6
+code_stream @525..552 byte_length=28
+last_source_correlated_instruction @552 byte=31
+
+main_instruction_count offset=553..556 bytes=13 00 00 00 value=19
+main_code offset=557..643
+selected_call @587 bytes=30 06 00 00 00 02 00
+selected_post_call @594 byte=02
+selected_call @600 bytes=30 09 00 00 00 01 00
+selected_store @607 bytes=11 0c 00 00 00
+selected_call @617 bytes=30 0d 00 00 00 01 00
+selected_post_call @624 byte=02
+selected_call @635 bytes=30 0d 00 00 00 02 00
+selected_post_call @642 byte=02
+terminal @643 byte=ff
+
+[FUNCTION_RECORD_BOUNDARY]
+source_correlated_shape=u32_le_function_name_index + u16_le_parameter_count + parameter_count*u32_le_parameter_name_index + u32_le_instruction_count + instruction_bytes
+serialized_code_offset_field=NOT_PROVEN
+serialized_code_byte_length_field=NOT_PROVEN
+local_count_field=NOT_PROVEN
+flags_field=NOT_PROVEN
+runtime_frame_semantics=NOT_PROVEN
+
+[OPCODE_EMISSION_SHAPES]
+0x01 PUSH_CONST_CORRELATED operand=u32_le_constant_index
+0x02 POP_OR_DISCARD_RESULT_CORRELATED operand=none_observed
+0x10 LOAD_CORRELATED operand=u32_le_name_index
+0x11 STORE_CORRELATED operand=u32_le_name_index
+0x21 BINARY_CORRELATED operand=u8_subop
+0x30 CALL_CORRELATED operands=u32_le_callee_name_index + u16_le_argc
+0x31 RETURN_CORRELATED operand=none_observed
+0x40 JUMP_BACKEDGE_CORRELATED operand=u32_le_target_field
+0x41 JUMP_IF_FALSE_CORRELATED operand=u32_le_target_field
+0xff HALT_OR_TERMINATOR_CORRELATED operand=none_observed
+VM_OPCODE_DECODE_MAPPING=NOT_PROVEN
+
+[BINARY_SUBOPS]
+0x01 source_correlation=+
+0x12 source_correlation=<
+all_other_subop_values=NOT_PROVEN
+vm_binary_semantics=NOT_PROVEN
+
+[MALFORMED_BYTECODE_CATALOG]
+bad_magic.sigmab bytes=4e 4f 54 5f 53 49 47 4d 41 5f 42 59 54 45 43 4f 44 45 0a
+bad_magic_vm_behavior=NOT_PROVEN
+truncated.sigmab bytes=53 49 47 4d 42 43 30 31
+truncated_vm_behavior=NOT_PROVEN
+BAD_BINARY_SUBOP_FAULT sole_mutation_offset=92 base=01 fault=ff preceding_offset_91=21
+BAD_BINARY_SUBOP_FAULT_vm_behavior=NOT_PROVEN
+NO_ERROR_TAXONOMY_PROMOTION=YES
+
+[VM_RUNTIME_LOCALIZATION_BOUNDARY]
+current_vm_sha256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+whole_bytecode_execution_and_normal_termination=PROVEN_IN_TESTED_SCOPE
+function_call_return_behavior=PROVEN_AT_BEHAVIOR_LEVEL_IN_TESTED_SCOPE
+branch_loop_behavior=PROVEN_AT_BEHAVIOR_LEVEL_IN_TESTED_SCOPE
+native_opcode_dispatch_localized=NO
+exact_numeric_opcode_runtime_mapping=NO
+exact_header_field_validation_localized=NO
+per_opcode_stack_effects=NO
+exact_halt_result_semantics=NO
+ABI_FIELDS_VM_RUNTIME_LOCALIZED=0
+
+[REPARSE_DECISION]
+BYTE_EXACT_SELECTED_ARTIFACTS_REPARSED=4
+CONTROLLED_FAULT_PAIR_REVIEWED=1
+MALFORMED_SHAPES_CATALOGUED=3
+NEW_TARGETED_TESTS_RUN=0
+DUPLICATE_CAPABILITY_TESTS_RERUN=0
