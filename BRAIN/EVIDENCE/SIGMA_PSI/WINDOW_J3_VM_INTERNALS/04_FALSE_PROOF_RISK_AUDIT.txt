@@ -1,0 +1,59 @@
+WINDOW=WINDOW_J3_VM_INTERNALS_CLOSURE
+FALSE_PROOF_RISK_AUDIT=PASS
+
+RISK_01=SOURCE_CORRELATED_OPCODE_NAME_PROMOTED_TO_NATIVE_RUNTIME_MAPPING
+BLOCKED=YES
+DETAIL=0x10,0x11,0x30,0x31,0x40,0x41 remain source-correlated only.
+
+RISK_02=WORKING_VARIABLE_PROGRAM_PROMOTED_TO_LOOKUP_OR_STORE_MECHANISM
+BLOCKED=YES
+DETAIL=Functional LOAD/STORE existence is preserved, but lookup source, destination, local/global selection, shadowing, and persistence mechanism remain NOT_PROVEN.
+
+RISK_03=SUCCESSFUL_FUNCTION_CALL_PROMOTED_TO_ARGUMENT_ORDER_OR_FRAME_LAYOUT
+BLOCKED=YES
+DETAIL=MOTHER_TEST_0002 closes caller continuation only; argument transfer, binding, frame separation, nested isolation, and layout remain NOT_PROVEN.
+
+RISK_04=SUCCESSFUL_IF_WHILE_PROMOTED_TO_TARGET_BASIS_OR_IP_RULE
+BLOCKED=YES
+DETAIL=Compiler-local target values 4 and 17 are not promoted to native absolute instruction ordinals, byte offsets, or relative targets.
+
+RISK_05=OPCODE_NAME_OR_CONVENTIONAL_VM_DESIGN_PROMOTED_TO_STACK_EFFECT
+BLOCKED=YES
+DETAIL=No LOAD-push, STORE-pop, CALL-argc-pop, RETURN-pop/push, JUMP_IF_FALSE-pop, or HALT-result convention is inferred.
+
+RISK_06=PRINTED_STDOUT_PROMOTED_TO_INTERNAL_RESULT_SOURCE
+BLOCKED=YES
+DETAIL=Observable output correlation is preserved; terminal stack/register/top-level selection remains NOT_PROVEN.
+
+RISK_07=RC_ZERO_PROMOTED_TO_RESULT_PROPAGATION_CONTRACT
+BLOCKED=YES
+DETAIL=Successful RC=0 observations do not define internal result-to-process-RC mapping or error ABI.
+
+RISK_08=J2_LOWERCASE_NULL_ERROR_PROMOTED_TO_GENERAL_LOAD_UNDEFINED_NAME_RULE
+BLOCKED=YES
+DETAIL=The exact tested RC=11 undefined-symbol observation is preserved without attributing it to 0x10 or generalizing it.
+
+RISK_09=J1_0xFF_TERMINATION_PROMOTED_TO_TERMINAL_STACK_CONSUMPTION
+BLOCKED=YES
+DETAIL=HALT/termination localization does not prove whether a value is consumed, selected, discarded, or preserved.
+
+RISK_10=HOST_LANGUAGE_USED_TO_EMULATE_SIGMA_VM
+BLOCKED=YES
+DETAIL=No Python/Bash/C VM, semantic model, expected-output oracle, or substitute executable was created.
+
+RISK_11=ARBITRARY_SYNTHETIC_BYTECODE
+BLOCKED=YES
+DETAIL=No bytecode was created or mutated in J3.
+
+RISK_12=DUPLICATE_CAPABILITY_TEST
+BLOCKED=YES
+DETAIL=The 21 locked capability families were preserved; variable, call/return, IF/WHILE, and normal execution existence were not rerun.
+
+RISK_13=J4_RESERVED_TOPIC_LEAKAGE
+BLOCKED=YES
+DETAIL=BOOL literal runtime, short-circuit, coercion, and FLOORDIV role were not evaluated or concluded.
+
+CONFLICTS_FOUND=0
+GPT_EXPECTATION_USED_AS_RUNTIME_FACT=NO
+HOST_VM_EMULATION_USED=NO
+SYNTHETIC_BYTECODE_CREATED=NO

@@ -1,0 +1,53 @@
+WINDOW=WINDOW_J3_VM_INTERNALS_CLOSURE
+TARGETED_TEST_POLICY_APPLIED=YES
+CURRENT_COMPILER_SHA256_REQUIRED=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+CURRENT_VM_SHA256_REQUIRED=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+CURRENT_COMPILER_BINARY_AVAILABLE=NO
+CURRENT_VM_BINARY_AVAILABLE=NO
+FINGERPRINT_REHASH_FOR_NEW_EXECUTION=NOT_PERFORMED
+TARGETED_TESTS_RUN=0
+DUPLICATE_CAPABILITY_TESTS_RUN=0
+
+CANDIDATE_ID=J3-CAND-LOADSTORE-01
+NAMED_FIELD=LOAD_LOCAL_GLOBAL_SELECTION_AND_STORE_DESTINATION
+PROPOSED_METHOD=Known accepted source with controlled same-name local/global arrangement -> current compiler -> current VM -> exact stdout/RC.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=2
+REASON=Exact current compiler/VM binaries are unavailable and cannot be rehashed.
+
+CANDIDATE_ID=J3-CAND-LOAD-UNDEFINED-02
+NAMED_FIELD=LOAD_UNDEFINED_NAME_BEHAVIOR
+PROPOSED_METHOD=Known accepted symbol-reference source -> current compiler -> current VM -> exact stdout/stderr/RC.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=2
+REASON=Exact current compiler/VM binaries are unavailable and cannot be rehashed. The J2 lowercase-null observation is preserved but not generalized or attributed to LOAD.
+
+CANDIDATE_ID=J3-CAND-CALL-03
+NAMED_FIELD=CALL_ARGUMENT_ORDER_BINDING_COUNT
+PROPOSED_METHOD=Known accepted minimal function with neutral distinct arguments -> current compiler -> current VM -> exact output.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=2
+REASON=Exact current compiler/VM binaries are unavailable and cannot be rehashed.
+
+CANDIDATE_ID=J3-CAND-RETURN-04
+NAMED_FIELD=RETURN_VALUE_AND_NESTED_RETURN
+PROPOSED_METHOD=Known accepted nested function source -> current compiler -> current VM -> exact output/continuation.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=2
+REASON=Exact current compiler/VM binaries are unavailable and cannot be rehashed.
+
+CANDIDATE_ID=J3-CAND-JUMP-05
+NAMED_FIELD=JUMP_AND_JUMP_IF_FALSE_TARGET_BASIS_IP
+PROPOSED_METHOD=Existing byte-exact STEP3_ITER_TEST control -> one isolated already-grounded target-field mutation -> exact current VM -> RC/stdout/stderr.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=2
+REASON=Exact current VM binary is unavailable and cannot be rehashed. Running or interpreting a mutation without the current VM would not close runtime behavior.
+
+CANDIDATE_ID=J3-CAND-STACK-RESULT-06
+NAMED_FIELD=PER_OPCODE_STACK_EFFECT_AND_TOP_LEVEL_RESULT_SOURCE
+PROPOSED_METHOD=Direct stack/IP/result trace from exact current VM, if exposed without implementation inspection or modification.
+DECISION=DO_NOT_RUN
+FAILED_POLICY_CONDITION=1
+REASON=No direct stack/IP/result observation surface is present; whole-program stdout is insufficient.
+
+TEST_ID	VARIABLE_LAYOUT	OBSERVED_OUTPUT	VM_RC	PROVEN_FIELD	NOT_PROVEN_BEYOND
