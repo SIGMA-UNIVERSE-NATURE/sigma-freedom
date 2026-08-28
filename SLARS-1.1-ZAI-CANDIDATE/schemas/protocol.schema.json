@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sigma.local/slars/1.0/protocol.schema.json",
+  "title": "SLARS-1.0 locked evaluation protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard_version",
+    "artifact_status",
+    "protocol_id",
+    "protocol_lock",
+    "lesson",
+    "actors",
+    "anti_leakage",
+    "item_sets",
+    "track_policies",
+    "statistics",
+    "development",
+    "reasoning",
+    "retention",
+    "claim_policy"
+  ],
+  "properties": {
+    "standard_version": {"const": "SLARS-1.0"},
+    "artifact_status": {
+      "enum": ["TEMPLATE_NOT_EXECUTION_EVIDENCE", "LOCKED_PROTOCOL"]
+    },
+    "protocol_id": {"type": "string", "minLength": 1},
+    "protocol_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "locked_at_utc"],
+      "properties": {
+        "status": {"enum": ["DRAFT", "LOCKED"]},
+        "locked_at_utc": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "original_artifact_id",
+        "original_sha256",
+        "translation_artifact_id",
+        "translation_sha256",
+        "transport_evidence_id"
+      ],
+      "properties": {
+        "original_artifact_id": {"type": "string", "minLength": 1},
+        "original_sha256": {"$ref": "#/$defs/sha256"},
+        "translation_artifact_id": {"type": "string", "minLength": 1},
+        "translation_sha256": {"$ref": "#/$defs/sha256"},
+        "transport_evidence_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "actors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate", "evaluator", "toolchain"],
+      "properties": {
+        "candidate": {"$ref": "#/$defs/actor"},
+        "evaluator": {
+          "allOf": [
+            {"$ref": "#/$defs/actor"},
+            {
+              "type": "object",
+              "required": ["rubric_sha256", "independent"],
+              "properties": {
+                "rubric_sha256": {"$ref": "#/$defs/sha256"},
+                "independent": {"const": true}
+              }
+            }
+          ]
+        },
+        "toolchain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sigmac_sha256", "sigma_vm_sha256", "g20_template_sha256"],
+          "properties": {
+            "sigmac_sha256": {"$ref": "#/$defs/sha256"},
+            "sigma_vm_sha256": {"$ref": "#/$defs/sha256"},
+            "g20_template_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        }
+      }
+    },
+    "anti_leakage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_visible_manifest_sha256",
+        "candidate_forbidden_manifest_sha256",
+        "scan_policy_sha256",
+        "answer_keys_accessible_to_candidate",
+        "pre_vm_answer_material_allowed",
+        "host_answer_derivation_allowed",
+        "item_overlap_policy"
+      ],
+      "properties": {
+        "candidate_visible_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_forbidden_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "scan_policy_sha256": {"$ref": "#/$defs/sha256"},
+        "answer_keys_accessible_to_candidate": {"const": false},
+        "pre_vm_answer_material_allowed": {"const": false},
+        "host_answer_derivation_allowed": {"const": false},
+        "item_overlap_policy": {"const": "FAMILY_MATCHED_ITEM_AND_BYTES_DISJOINT"}
+      }
+    },
+    "item_sets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/item_set"}
+    },
+    "track_policies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/track_policy"}
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "bootstrap_iterations", "bootstrap_seed", "ci_level"],
+      "properties": {
+        "method": {"const": "PAIRED_PERCENTILE_BOOTSTRAP"},
+        "bootstrap_iterations": {"type": "integer", "minimum": 1000},
+        "bootstrap_seed": {"type": "integer"},
+        "ci_level": {"type": "number", "exclusiveMinimum": 0.5, "exclusiveMaximum": 1}
+      }
+    },
+    "development": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "max_cycles",
+        "stop_rule_id",
+        "error_taxonomy",
+        "fresh_items_each_cycle",
+        "evaluation_key_hidden"
+      ],
+      "properties": {
+        "required": {"type": "boolean"},
+        "max_cycles": {"type": "integer", "minimum": 1},
+        "stop_rule_id": {"type": "string", "minLength": 1},
+        "error_taxonomy": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "PREREQ_GAP",
+              "OMISSION",
+              "RULE_SELECTION",
+              "RULE_APPLICATION",
+              "TRANSFER_GAP",
+              "INVALID_INFERENCE",
+              "UNCERTAINTY",
+              "CLAIM_OVERREACH"
+            ]
+          }
+        },
+        "fresh_items_each_cycle": {"const": true},
+        "evaluation_key_hidden": {"const": true}
+      }
+    },
+    "reasoning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "novel_tasks_required",
+        "target_answer_absent_from_lesson_and_training",
+        "hidden_chain_of_thought_requested",
+        "required_audit_fields"
+      ],
+      "properties": {
+        "novel_tasks_required": {"const": true},
+        "target_answer_absent_from_lesson_and_training": {"const": true},
+        "hidden_chain_of_thought_requested": {"const": false},
+        "required_audit_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "premise_ids",
+              "rule_ids",
+              "derived_claim_ids",
+              "constraint_checks",
+              "counterexample_check",
+              "uncertainty",
+              "final_answer"
+            ]
+          },
+          "allOf": [
+            {"contains": {"const": "premise_ids"}},
+            {"contains": {"const": "constraint_checks"}},
+            {"contains": {"const": "uncertainty"}},
+            {"contains": {"const": "final_answer"}}
+          ]
+        }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "minimum_delay_seconds",
+        "ratio_floor",
+        "context_reset_required",
+        "allowed_persistence_manifest_sha256",
+        "hidden_lesson_reinjection_allowed",
+        "retention_scope"
+      ],
+      "properties": {
+        "required": {"type": "boolean"},
+        "minimum_delay_seconds": {"type": "integer", "minimum": 1},
+        "ratio_floor": {"type": "number", "minimum": 0, "maximum": 1},
+        "context_reset_required": {"const": true},
+        "allowed_persistence_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "hidden_lesson_reinjection_allowed": {"const": false},
+        "retention_scope": {"const": "DECLARED_PERSISTENCE_CHANNELS_ONLY"}
+      }
+    },
+    "claim_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "forbidden"],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "forbidden": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "actor": {
+      "type": "object",
+      "required": ["identity", "version", "configuration_sha256"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "configuration_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["item_id", "family_id", "track"],
+      "properties": {
+        "item_id": {"type": "string", "minLength": 1},
+        "family_id": {"type": "string", "minLength": 1},
+        "track": {"enum": ["P", "D", "N", "F", "X", "U", "C", "R"]}
+      }
+    },
+    "item_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["set_id", "phase", "sha256", "key_sha256", "candidate_can_access_key", "items"],
+      "properties": {
+        "set_id": {"type": "string", "minLength": 1},
+        "phase": {
+          "enum": ["BASELINE", "IMMEDIATE", "DEVELOPMENT_RETEST", "REASONING", "DELAYED"]
+        },
+        "cycle_number": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "key_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_can_access_key": {"const": false},
+        "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/item"}}
+      }
+    },
+    "track_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "track",
+        "baseline_phase",
+        "assessment_phase",
+        "mandatory",
+        "min_items",
+        "absolute_floor",
+        "min_effect",
+        "ci_lower_floor",
+        "retention_required"
+      ],
+      "properties": {
+        "track": {"enum": ["P", "D", "N", "F", "X", "U", "C", "R"]},
+        "baseline_phase": {"const": "BASELINE"},
+        "assessment_phase": {"enum": ["IMMEDIATE", "REASONING"]},
+        "mandatory": {"type": "boolean"},
+        "min_items": {"type": "integer", "minimum": 1},
+        "absolute_floor": {"type": "number", "minimum": 0, "maximum": 1},
+        "min_effect": {"type": "number", "minimum": -1, "maximum": 1},
+        "ci_lower_floor": {"type": "number", "minimum": -1, "maximum": 1},
+        "retention_required": {"type": "boolean"},
+        "brier_max": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  }
+}

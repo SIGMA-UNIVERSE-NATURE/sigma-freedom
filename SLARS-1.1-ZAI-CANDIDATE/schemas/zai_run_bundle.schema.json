@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sigma.local/slars/1.1/zai_run_bundle.schema.json",
+  "title": "SLARS-1.1-ZAI run evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard_version",
+    "artifact_status",
+    "run_id",
+    "run_status",
+    "protocol_sha256",
+    "artifacts",
+    "events",
+    "execution",
+    "scan",
+    "external_evaluation",
+    "claims",
+    "reported_status"
+  ],
+  "properties": {
+    "standard_version": {"const": "SLARS-1.1-ZAI"},
+    "artifact_status": {
+      "enum": ["TEMPLATE_NOT_EXECUTION_EVIDENCE", "RUN_EVIDENCE"]
+    },
+    "run_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "run_status": {"enum": ["DRAFT", "COMPLETE", "ABORTED"]},
+    "protocol_sha256": {"$ref": "#/$defs/sha256"},
+    "artifacts": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 512,
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "events": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/event"}
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_count",
+        "bytecode_artifact_id",
+        "sigmac_rc",
+        "vm_rc",
+        "raw_stdout_artifact_id",
+        "raw_stderr_artifact_id",
+        "host_trace_artifact_id",
+        "host_semantic_transformation_observed",
+        "candidate_output_is_raw_vm_stdout",
+        "output_selection_or_rewrite_observed"
+      ],
+      "properties": {
+        "attempt_count": {"const": 1},
+        "bytecode_artifact_id": {"type": "string", "minLength": 1},
+        "sigmac_rc": {"type": "integer"},
+        "vm_rc": {"type": "integer"},
+        "raw_stdout_artifact_id": {"type": "string", "minLength": 1},
+        "raw_stderr_artifact_id": {"type": "string", "minLength": 1},
+        "host_trace_artifact_id": {"type": "string", "minLength": 1},
+        "host_semantic_transformation_observed": {"type": "boolean"},
+        "candidate_output_is_raw_vm_stdout": {"type": "boolean"},
+        "output_selection_or_rewrite_observed": {"type": "boolean"}
+      }
+    },
+    "scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scan_surface_artifact_ids",
+        "semantic_review_status",
+        "semantic_review_artifact_id"
+      ],
+      "properties": {
+        "scan_surface_artifact_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "semantic_review_status": {
+          "enum": ["NOT_RUN", "PASS", "FAIL", "INCONCLUSIVE"]
+        },
+        "semantic_review_artifact_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "external_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evaluator_id",
+        "report_artifact_id",
+        "bound_raw_stdout_sha256",
+        "bound_answer_key_sha256",
+        "bound_rubric_sha256"
+      ],
+      "properties": {
+        "status": {"enum": ["NOT_RUN", "PASS", "FAIL", "INCONCLUSIVE"]},
+        "evaluator_id": {"type": "string", "minLength": 1},
+        "report_artifact_id": {"type": "string", "minLength": 1},
+        "bound_raw_stdout_sha256": {"$ref": "#/$defs/sha256"},
+        "bound_answer_key_sha256": {"$ref": "#/$defs/sha256"},
+        "bound_rubric_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "claims": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "reported_status": {
+      "enum": [
+        "NOT_RUN",
+        "PASS",
+        "FAIL",
+        "INVALID",
+        "INSUFFICIENT_EVIDENCE",
+        "UNVERIFIED"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "relative_path",
+        "media_type",
+        "semantic_role",
+        "origin_role",
+        "stage",
+        "candidate_visible",
+        "pre_output_reachable",
+        "byte_count",
+        "sha256"
+      ],
+      "properties": {
+        "artifact_id": {"type": "string", "minLength": 1},
+        "relative_path": {"type": "string", "minLength": 1},
+        "media_type": {"type": "string", "minLength": 1},
+        "semantic_role": {
+          "enum": [
+            "CANDIDATE_SOURCE",
+            "SIGMAC_BINARY",
+            "SIGMA_VM_BINARY",
+            "BLIND_INPUT",
+            "ANSWER_KEY",
+            "EVALUATION_RUBRIC",
+            "VISIBILITY_MANIFEST",
+            "RUNNER_SOURCE",
+            "RUN_SPECIFIC_BYTECODE",
+            "HOST_TRACE",
+            "RAW_STDOUT",
+            "RAW_STDERR",
+            "SEMANTIC_REVIEW",
+            "EXTERNAL_EVALUATION",
+            "CHANNEL_EVIDENCE"
+          ]
+        },
+        "origin_role": {"type": "string", "minLength": 1},
+        "stage": {
+          "enum": ["PRE_FREEZE", "PRE_OUTPUT", "OUTPUT", "POST_OUTPUT_KEY", "EVALUATION"]
+        },
+        "candidate_visible": {"type": "boolean"},
+        "pre_output_reachable": {"type": "boolean"},
+        "byte_count": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "run_id",
+        "event_type",
+        "actor_id",
+        "occurred_at_utc",
+        "input_artifact_ids",
+        "output_artifact_ids",
+        "process_artifact_id",
+        "argv",
+        "rc",
+        "artifact_bindings_sha256",
+        "previous_event_sha256",
+        "event_sha256"
+      ],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1, "maximum": 10},
+        "run_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "event_type": {
+          "enum": [
+            "PROTOCOL_FREEZE",
+            "CANDIDATE_FREEZE",
+            "BLIND_CASE_COMMIT",
+            "CHANNEL_SNAPSHOT",
+            "RUN_START",
+            "SIGMAC_COMPLETE",
+            "VM_OUTPUT_FROZEN",
+            "KEY_FIRST_ACCESS",
+            "SEMANTIC_REVIEW",
+            "EXTERNAL_EVALUATION"
+          ]
+        },
+        "actor_id": {"type": "string", "minLength": 1},
+        "occurred_at_utc": {"type": "string", "format": "date-time"},
+        "input_artifact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "output_artifact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "process_artifact_id": {"type": ["string", "null"]},
+        "argv": {"type": "array", "items": {"type": "string"}},
+        "rc": {"type": ["integer", "null"]},
+        "artifact_bindings_sha256": {"$ref": "#/$defs/sha256"},
+        "previous_event_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "event_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "claim_id": {
+      "enum": [
+        "SIGMA_SOURCE_LANGUAGE_BOUND_FOR_LOCKED_SOURCE",
+        "REGISTERED_PREOUTPUT_INJECTION_SCAN_CLEAN",
+        "DECLARED_SIGMAC_SIGMA_VM_EVENT_CHAIN_RAW_STDOUT_BOUND",
+        "NO_DETECTED_PROHIBITED_ANSWER_INJECTION_WITHIN_DECLARED_MATERIALIZED_BOUNDARY"
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "value"],
+      "properties": {
+        "claim_id": {"$ref": "#/$defs/claim_id"},
+        "value": {"const": true}
+      }
+    }
+  }
+}

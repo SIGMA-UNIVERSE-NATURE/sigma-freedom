@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sigma.local/slars/1.1/zai_protocol.schema.json",
+  "title": "SLARS-1.1-ZAI locked protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard_version",
+    "artifact_status",
+    "protocol_id",
+    "profile",
+    "locked_at_utc",
+    "evidence_limits",
+    "candidate",
+    "roles",
+    "blind_case",
+    "runtime",
+    "review",
+    "committed_artifacts",
+    "policy_locks",
+    "claims_requested"
+  ],
+  "properties": {
+    "standard_version": {"const": "SLARS-1.1-ZAI"},
+    "artifact_status": {
+      "enum": ["TEMPLATE_NOT_EXECUTION_EVIDENCE", "LOCKED_PROTOCOL"]
+    },
+    "protocol_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "profile": {"const": "SIGMA_LANGUAGE_ZERO_ANSWER_INJECTION"},
+    "locked_at_utc": {"type": ["string", "null"], "format": "date-time"},
+    "evidence_limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relative_paths_only",
+        "symlinks_allowed",
+        "hardlinks_allowed",
+        "max_artifacts",
+        "max_artifact_bytes",
+        "max_total_artifact_bytes",
+        "max_forbidden_material_items",
+        "max_forbidden_material_bytes_total",
+        "max_scan_product_bytes"
+      ],
+      "properties": {
+        "relative_paths_only": {"const": true},
+        "symlinks_allowed": {"const": false},
+        "hardlinks_allowed": {"const": false},
+        "max_artifacts": {"type": "integer", "minimum": 15, "maximum": 128},
+        "max_artifact_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16777216
+        },
+        "max_total_artifact_bytes": {"type": "integer", "minimum": 15, "maximum": 67108864},
+        "max_forbidden_material_items": {"type": "integer", "minimum": 5, "maximum": 64},
+        "max_forbidden_material_bytes_total": {"type": "integer", "minimum": 40, "maximum": 1048576},
+        "max_scan_product_bytes": {"type": "integer", "minimum": 1, "maximum": 536870912}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "source_artifact_id",
+        "source_language_policy",
+        "required_header_prefix",
+        "frozen_at_utc",
+        "provenance_class",
+        "human_language_as_sigma_cognition"
+      ],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1, "maxLength": 256},
+        "source_artifact_id": {"type": "string", "minLength": 1},
+        "source_language_policy": {"const": "SIGMA_ONLY"},
+        "required_header_prefix": {"const": "#SIGMAUNIVERSE_LANGUAGE["},
+        "frozen_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "provenance_class": {
+          "enum": [
+            "SUPPORTOR_AUTHORED_GENERIC_CANDIDATE",
+            "HUMAN_AUTHORED_GENERIC_CANDIDATE",
+            "UNKNOWN_UNVERIFIED"
+          ]
+        },
+        "human_language_as_sigma_cognition": {
+          "const": "FORBIDDEN_UNTIL_PROVEN"
+        }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_builder",
+        "test_designer",
+        "key_custodian",
+        "runner",
+        "evaluator",
+        "auditor"
+      ],
+      "properties": {
+        "candidate_builder": {"type": "string", "minLength": 1},
+        "test_designer": {"type": "string", "minLength": 1},
+        "key_custodian": {"type": "string", "minLength": 1},
+        "runner": {"type": "string", "minLength": 1},
+        "evaluator": {"type": "string", "minLength": 1},
+        "auditor": {"type": "string", "minLength": 1}
+      }
+    },
+    "blind_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "input_artifact_id",
+        "answer_key_artifact_id",
+        "visibility_manifest_artifact_id",
+        "case_committed_at_utc",
+        "case_created_after_candidate_freeze"
+      ],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "input_artifact_id": {"type": "string", "minLength": 1},
+        "answer_key_artifact_id": {"type": "string", "minLength": 1},
+        "visibility_manifest_artifact_id": {"type": "string", "minLength": 1},
+        "case_committed_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "case_created_after_candidate_freeze": {"const": true}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sigmac_artifact_id",
+        "sigma_vm_artifact_id",
+        "runner_source_artifact_id",
+        "host_trace_artifact_id",
+        "raw_stdout_artifact_id",
+        "raw_stderr_artifact_id",
+        "native_chain_required",
+        "host_semantic_transformation_allowed",
+        "retry_policy",
+        "max_attempts"
+      ],
+      "properties": {
+        "sigmac_artifact_id": {"type": "string", "minLength": 1},
+        "sigma_vm_artifact_id": {"type": "string", "minLength": 1},
+        "runner_source_artifact_id": {"type": "string", "minLength": 1},
+        "host_trace_artifact_id": {"type": "string", "minLength": 1},
+        "raw_stdout_artifact_id": {"type": "string", "minLength": 1},
+        "raw_stderr_artifact_id": {"type": "string", "minLength": 1},
+        "native_chain_required": {"const": true},
+        "host_semantic_transformation_allowed": {"const": false},
+        "retry_policy": {"const": "SINGLE_ATTEMPT_NO_SELECTION"},
+        "max_attempts": {"const": 1}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_review_artifact_id",
+        "evaluation_rubric_artifact_id",
+        "external_evaluation_artifact_id"
+      ],
+      "properties": {
+        "semantic_review_artifact_id": {"type": "string", "minLength": 1},
+        "evaluation_rubric_artifact_id": {"type": "string", "minLength": 1},
+        "external_evaluation_artifact_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "committed_artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_source",
+        "sigmac_binary",
+        "sigma_vm_binary",
+        "runner_source",
+        "evaluation_rubric"
+      ],
+      "properties": {
+        "candidate_source": {"$ref": "#/$defs/commitment"},
+        "sigmac_binary": {"$ref": "#/$defs/commitment"},
+        "sigma_vm_binary": {"$ref": "#/$defs/commitment"},
+        "runner_source": {"$ref": "#/$defs/commitment"},
+        "evaluation_rubric": {"$ref": "#/$defs/commitment"}
+      }
+    },
+    "policy_locks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "HUMAN_LANGUAGE_AS_SIGMA_COGNITION",
+        "SUPPORTOR_ANSWERS_FOR_SIGMA",
+        "PREWRITTEN_ANSWER",
+        "PREWRITTEN_HYPOTHESIS",
+        "PREWRITTEN_REASONING_PATH",
+        "PREWRITTEN_CONCLUSION",
+        "SIGMA_SELF_OBSERVES_AND_ANSWERS",
+        "HOST_SEMANTIC_TRANSFORMATION",
+        "OUTPUT_SELECTION_OR_REWRITE",
+        "CLAIM_POLICY"
+      ],
+      "properties": {
+        "HUMAN_LANGUAGE_AS_SIGMA_COGNITION": {"const": "FORBIDDEN_UNTIL_PROVEN"},
+        "SUPPORTOR_ANSWERS_FOR_SIGMA": {"const": "FORBIDDEN"},
+        "PREWRITTEN_ANSWER": {"const": "FORBIDDEN"},
+        "PREWRITTEN_HYPOTHESIS": {"const": "FORBIDDEN"},
+        "PREWRITTEN_REASONING_PATH": {"const": "FORBIDDEN"},
+        "PREWRITTEN_CONCLUSION": {"const": "FORBIDDEN"},
+        "SIGMA_SELF_OBSERVES_AND_ANSWERS": {"const": "REQUIRED"},
+        "HOST_SEMANTIC_TRANSFORMATION": {"const": "FORBIDDEN"},
+        "OUTPUT_SELECTION_OR_REWRITE": {"const": "FORBIDDEN"},
+        "CLAIM_POLICY": {"const": "CLAIM_LESS_THAN_OR_EQUAL_TO_EVIDENCE"}
+      }
+    },
+    "claims_requested": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/claim_id"}
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "commitment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_id", "sha256"],
+      "properties": {
+        "artifact_id": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "claim_id": {
+      "enum": [
+        "SIGMA_SOURCE_LANGUAGE_BOUND_FOR_LOCKED_SOURCE",
+        "REGISTERED_PREOUTPUT_INJECTION_SCAN_CLEAN",
+        "DECLARED_SIGMAC_SIGMA_VM_EVENT_CHAIN_RAW_STDOUT_BOUND",
+        "NO_DETECTED_PROHIBITED_ANSWER_INJECTION_WITHIN_DECLARED_MATERIALIZED_BOUNDARY"
+      ]
+    }
+  }
+}

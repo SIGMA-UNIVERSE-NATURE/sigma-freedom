@@ -1,0 +1,72 @@
+{
+  "standard_version": "SLARS-1.1-ZAI",
+  "artifact_status": "TEMPLATE_NOT_EXECUTION_EVIDENCE",
+  "run_id": "REPLACE_WITH_RUN_ID",
+  "run_status": "DRAFT",
+  "protocol_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "artifacts": [
+    {"artifact_id":"candidate_source","relative_path":"artifacts/candidate.sigma","media_type":"text/plain","semantic_role":"CANDIDATE_SOURCE","origin_role":"CANDIDATE_BUILDER","stage":"PRE_FREEZE","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"sigmac_binary","relative_path":"artifacts/sigmac","media_type":"application/octet-stream","semantic_role":"SIGMAC_BINARY","origin_role":"RUNNER","stage":"PRE_FREEZE","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"sigma_vm_binary","relative_path":"artifacts/sigma-vm","media_type":"application/octet-stream","semantic_role":"SIGMA_VM_BINARY","origin_role":"RUNNER","stage":"PRE_FREEZE","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"blind_input","relative_path":"artifacts/blind-input.txt","media_type":"text/plain","semantic_role":"BLIND_INPUT","origin_role":"TEST_DESIGNER","stage":"PRE_OUTPUT","candidate_visible":true,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"answer_key","relative_path":"artifacts/answer-key.json","media_type":"application/json","semantic_role":"ANSWER_KEY","origin_role":"KEY_CUSTODIAN","stage":"POST_OUTPUT_KEY","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"evaluation_rubric","relative_path":"artifacts/evaluation-rubric.json","media_type":"application/json","semantic_role":"EVALUATION_RUBRIC","origin_role":"TEST_DESIGNER","stage":"PRE_FREEZE","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"visibility_manifest","relative_path":"artifacts/visibility.json","media_type":"application/json","semantic_role":"VISIBILITY_MANIFEST","origin_role":"AUDITOR","stage":"PRE_OUTPUT","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"channel_evidence","relative_path":"artifacts/channel-evidence.json","media_type":"application/json","semantic_role":"CHANNEL_EVIDENCE","origin_role":"AUDITOR","stage":"PRE_OUTPUT","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"runner_source","relative_path":"artifacts/runner.sh","media_type":"text/x-shellscript","semantic_role":"RUNNER_SOURCE","origin_role":"RUNNER","stage":"PRE_FREEZE","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"bytecode","relative_path":"artifacts/candidate.sigmab","media_type":"application/octet-stream","semantic_role":"RUN_SPECIFIC_BYTECODE","origin_role":"SIGMAC","stage":"PRE_OUTPUT","candidate_visible":false,"pre_output_reachable":true,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"host_trace","relative_path":"artifacts/host-trace.json","media_type":"application/json","semantic_role":"HOST_TRACE","origin_role":"RUNNER","stage":"OUTPUT","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"raw_stdout","relative_path":"artifacts/raw.stdout","media_type":"application/octet-stream","semantic_role":"RAW_STDOUT","origin_role":"SIGMA_VM","stage":"OUTPUT","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"raw_stderr","relative_path":"artifacts/raw.stderr","media_type":"application/octet-stream","semantic_role":"RAW_STDERR","origin_role":"SIGMA_VM","stage":"OUTPUT","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"semantic_review","relative_path":"artifacts/semantic-review.json","media_type":"application/json","semantic_role":"SEMANTIC_REVIEW","origin_role":"AUDITOR","stage":"EVALUATION","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"artifact_id":"external_evaluation","relative_path":"artifacts/external-evaluation.json","media_type":"application/json","semantic_role":"EXTERNAL_EVALUATION","origin_role":"EVALUATOR","stage":"EVALUATION","candidate_visible":false,"pre_output_reachable":false,"byte_count":0,"sha256":"0000000000000000000000000000000000000000000000000000000000000000"}
+  ],
+  "events": [
+    {"sequence":1,"run_id":"REPLACE_WITH_RUN_ID","event_type":"PROTOCOL_FREEZE","actor_id":"REPLACE_TEST_DESIGNER","occurred_at_utc":"1970-01-01T00:00:00Z","input_artifact_ids":[],"output_artifact_ids":["evaluation_rubric"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":null,"event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":2,"run_id":"REPLACE_WITH_RUN_ID","event_type":"CANDIDATE_FREEZE","actor_id":"REPLACE_CANDIDATE_BUILDER","occurred_at_utc":"1970-01-01T00:00:01Z","input_artifact_ids":[],"output_artifact_ids":["candidate_source"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":3,"run_id":"REPLACE_WITH_RUN_ID","event_type":"BLIND_CASE_COMMIT","actor_id":"REPLACE_TEST_DESIGNER","occurred_at_utc":"1970-01-01T00:00:02Z","input_artifact_ids":[],"output_artifact_ids":["blind_input","answer_key"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":4,"run_id":"REPLACE_WITH_RUN_ID","event_type":"CHANNEL_SNAPSHOT","actor_id":"REPLACE_AUDITOR","occurred_at_utc":"1970-01-01T00:00:03Z","input_artifact_ids":[],"output_artifact_ids":["visibility_manifest","channel_evidence"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":5,"run_id":"REPLACE_WITH_RUN_ID","event_type":"RUN_START","actor_id":"REPLACE_RUNNER","occurred_at_utc":"1970-01-01T00:00:04Z","input_artifact_ids":["candidate_source","blind_input","runner_source","sigmac_binary","sigma_vm_binary"],"output_artifact_ids":[],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":6,"run_id":"REPLACE_WITH_RUN_ID","event_type":"SIGMAC_COMPLETE","actor_id":"REPLACE_RUNNER","occurred_at_utc":"1970-01-01T00:00:05Z","input_artifact_ids":["candidate_source"],"output_artifact_ids":["bytecode"],"process_artifact_id":"sigmac_binary","argv":["artifacts/candidate.sigma","artifacts/candidate.sigmab"],"rc":0,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":7,"run_id":"REPLACE_WITH_RUN_ID","event_type":"VM_OUTPUT_FROZEN","actor_id":"REPLACE_RUNNER","occurred_at_utc":"1970-01-01T00:00:06Z","input_artifact_ids":["bytecode","blind_input"],"output_artifact_ids":["raw_stdout","raw_stderr","host_trace"],"process_artifact_id":"sigma_vm_binary","argv":["artifacts/candidate.sigmab"],"rc":0,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":8,"run_id":"REPLACE_WITH_RUN_ID","event_type":"KEY_FIRST_ACCESS","actor_id":"REPLACE_KEY_CUSTODIAN","occurred_at_utc":"1970-01-01T00:00:07Z","input_artifact_ids":["answer_key"],"output_artifact_ids":[],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":9,"run_id":"REPLACE_WITH_RUN_ID","event_type":"SEMANTIC_REVIEW","actor_id":"REPLACE_AUDITOR","occurred_at_utc":"1970-01-01T00:00:08Z","input_artifact_ids":["answer_key","blind_input","bytecode","candidate_source","channel_evidence","raw_stdout","runner_source","sigma_vm_binary","sigmac_binary","visibility_manifest"],"output_artifact_ids":["semantic_review"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+    {"sequence":10,"run_id":"REPLACE_WITH_RUN_ID","event_type":"EXTERNAL_EVALUATION","actor_id":"REPLACE_EVALUATOR","occurred_at_utc":"1970-01-01T00:00:09Z","input_artifact_ids":["answer_key","evaluation_rubric","raw_stdout"],"output_artifact_ids":["external_evaluation"],"process_artifact_id":null,"argv":[],"rc":null,"artifact_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","previous_event_sha256":"0000000000000000000000000000000000000000000000000000000000000000","event_sha256":"0000000000000000000000000000000000000000000000000000000000000000"}
+  ],
+  "execution": {
+    "attempt_count": 1,
+    "bytecode_artifact_id": "bytecode",
+    "sigmac_rc": 0,
+    "vm_rc": 0,
+    "raw_stdout_artifact_id": "raw_stdout",
+    "raw_stderr_artifact_id": "raw_stderr",
+    "host_trace_artifact_id": "host_trace",
+    "host_semantic_transformation_observed": false,
+    "candidate_output_is_raw_vm_stdout": false,
+    "output_selection_or_rewrite_observed": false
+  },
+  "scan": {
+    "scan_surface_artifact_ids": [
+      "candidate_source",
+      "sigmac_binary",
+      "sigma_vm_binary",
+      "blind_input",
+      "visibility_manifest",
+      "channel_evidence",
+      "runner_source",
+      "bytecode"
+    ],
+    "semantic_review_status": "NOT_RUN",
+    "semantic_review_artifact_id": "semantic_review"
+  },
+  "external_evaluation": {
+    "status": "NOT_RUN",
+    "evaluator_id": "REPLACE_EVALUATOR",
+    "report_artifact_id": "external_evaluation",
+    "bound_raw_stdout_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "bound_answer_key_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "bound_rubric_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "claims": [],
+  "reported_status": "UNVERIFIED"
+}

@@ -1,0 +1,100 @@
+{
+  "standard_version": "SLARS-1.1-ZAI",
+  "artifact_status": "TEMPLATE_NOT_EXECUTION_EVIDENCE",
+  "protocol_id": "REPLACE_WITH_LOCKED_ZAI_PROTOCOL_ID",
+  "profile": "SIGMA_LANGUAGE_ZERO_ANSWER_INJECTION",
+  "locked_at_utc": null,
+  "evidence_limits": {
+    "relative_paths_only": true,
+    "symlinks_allowed": false,
+    "hardlinks_allowed": false,
+    "max_artifacts": 128,
+    "max_artifact_bytes": 16777216,
+    "max_total_artifact_bytes": 67108864,
+    "max_forbidden_material_items": 32,
+    "max_forbidden_material_bytes_total": 1048576,
+    "max_scan_product_bytes": 536870912
+  },
+  "candidate": {
+    "candidate_id": "REPLACE_WITH_CANDIDATE_ID",
+    "source_artifact_id": "candidate_source",
+    "source_language_policy": "SIGMA_ONLY",
+    "required_header_prefix": "#SIGMAUNIVERSE_LANGUAGE[",
+    "frozen_at_utc": null,
+    "provenance_class": "SUPPORTOR_AUTHORED_GENERIC_CANDIDATE",
+    "human_language_as_sigma_cognition": "FORBIDDEN_UNTIL_PROVEN"
+  },
+  "roles": {
+    "candidate_builder": "REPLACE_CANDIDATE_BUILDER",
+    "test_designer": "REPLACE_TEST_DESIGNER",
+    "key_custodian": "REPLACE_KEY_CUSTODIAN",
+    "runner": "REPLACE_RUNNER",
+    "evaluator": "REPLACE_EVALUATOR",
+    "auditor": "REPLACE_AUDITOR"
+  },
+  "blind_case": {
+    "case_id": "REPLACE_BLIND_CASE_ID",
+    "input_artifact_id": "blind_input",
+    "answer_key_artifact_id": "answer_key",
+    "visibility_manifest_artifact_id": "visibility_manifest",
+    "case_committed_at_utc": null,
+    "case_created_after_candidate_freeze": true
+  },
+  "runtime": {
+    "sigmac_artifact_id": "sigmac_binary",
+    "sigma_vm_artifact_id": "sigma_vm_binary",
+    "runner_source_artifact_id": "runner_source",
+    "host_trace_artifact_id": "host_trace",
+    "raw_stdout_artifact_id": "raw_stdout",
+    "raw_stderr_artifact_id": "raw_stderr",
+    "native_chain_required": true,
+    "host_semantic_transformation_allowed": false,
+    "retry_policy": "SINGLE_ATTEMPT_NO_SELECTION",
+    "max_attempts": 1
+  },
+  "review": {
+    "semantic_review_artifact_id": "semantic_review",
+    "evaluation_rubric_artifact_id": "evaluation_rubric",
+    "external_evaluation_artifact_id": "external_evaluation"
+  },
+  "committed_artifacts": {
+    "candidate_source": {
+      "artifact_id": "candidate_source",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "sigmac_binary": {
+      "artifact_id": "sigmac_binary",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "sigma_vm_binary": {
+      "artifact_id": "sigma_vm_binary",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "runner_source": {
+      "artifact_id": "runner_source",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "evaluation_rubric": {
+      "artifact_id": "evaluation_rubric",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "policy_locks": {
+    "HUMAN_LANGUAGE_AS_SIGMA_COGNITION": "FORBIDDEN_UNTIL_PROVEN",
+    "SUPPORTOR_ANSWERS_FOR_SIGMA": "FORBIDDEN",
+    "PREWRITTEN_ANSWER": "FORBIDDEN",
+    "PREWRITTEN_HYPOTHESIS": "FORBIDDEN",
+    "PREWRITTEN_REASONING_PATH": "FORBIDDEN",
+    "PREWRITTEN_CONCLUSION": "FORBIDDEN",
+    "SIGMA_SELF_OBSERVES_AND_ANSWERS": "REQUIRED",
+    "HOST_SEMANTIC_TRANSFORMATION": "FORBIDDEN",
+    "OUTPUT_SELECTION_OR_REWRITE": "FORBIDDEN",
+    "CLAIM_POLICY": "CLAIM_LESS_THAN_OR_EQUAL_TO_EVIDENCE"
+  },
+  "claims_requested": [
+    "SIGMA_SOURCE_LANGUAGE_BOUND_FOR_LOCKED_SOURCE",
+    "REGISTERED_PREOUTPUT_INJECTION_SCAN_CLEAN",
+    "DECLARED_SIGMAC_SIGMA_VM_EVENT_CHAIN_RAW_STDOUT_BOUND",
+    "NO_DETECTED_PROHIBITED_ANSWER_INJECTION_WITHIN_DECLARED_MATERIALIZED_BOUNDARY"
+  ]
+}

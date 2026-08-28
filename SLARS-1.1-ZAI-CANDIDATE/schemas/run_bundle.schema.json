@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sigma.local/slars/1.0/run_bundle.schema.json",
+  "title": "SLARS-1.0 run evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "standard_version",
+    "artifact_status",
+    "run_id",
+    "run_status",
+    "protocol_sha256",
+    "timestamps",
+    "identity_bridge",
+    "transport_gates",
+    "exposure",
+    "anti_leakage_evidence",
+    "phase_artifacts",
+    "development_cycles",
+    "observations",
+    "retention_evidence",
+    "reported_gate_results",
+    "external_verdict",
+    "claims"
+  ],
+  "properties": {
+    "standard_version": {"const": "SLARS-1.0"},
+    "artifact_status": {
+      "enum": ["TEMPLATE_NOT_EXECUTION_EVIDENCE", "RUN_EVIDENCE"]
+    },
+    "run_id": {"type": "string", "minLength": 1},
+    "run_status": {"enum": ["DRAFT", "COMPLETE", "ABORTED"]},
+    "protocol_sha256": {"$ref": "#/$defs/sha256"},
+    "timestamps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_started_at_utc", "run_completed_at_utc", "exposure_started_at_utc", "exposure_completed_at_utc", "delayed_started_at_utc"],
+      "properties": {
+        "run_started_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "run_completed_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "exposure_started_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "exposure_completed_at_utc": {"type": ["string", "null"], "format": "date-time"},
+        "delayed_started_at_utc": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "identity_bridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "original_sha_auth",
+        "original_sha_g1_pre",
+        "original_sha_g1_final",
+        "original_sha_g3_target",
+        "original_sha_run_final",
+        "translation_sha_reviewed",
+        "translation_sha_sigmac_input",
+        "translation_sha_g3_target",
+        "translation_sha_exposed",
+        "translation_sha_run_final",
+        "protocol_sha_locked",
+        "protocol_sha_at_run_start",
+        "protocol_sha_reported"
+      ],
+      "properties": {
+        "original_sha_auth": {"$ref": "#/$defs/sha256"},
+        "original_sha_g1_pre": {"$ref": "#/$defs/sha256"},
+        "original_sha_g1_final": {"$ref": "#/$defs/sha256"},
+        "original_sha_g3_target": {"$ref": "#/$defs/sha256"},
+        "original_sha_run_final": {"$ref": "#/$defs/sha256"},
+        "translation_sha_reviewed": {"$ref": "#/$defs/sha256"},
+        "translation_sha_sigmac_input": {"$ref": "#/$defs/sha256"},
+        "translation_sha_g3_target": {"$ref": "#/$defs/sha256"},
+        "translation_sha_exposed": {"$ref": "#/$defs/sha256"},
+        "translation_sha_run_final": {"$ref": "#/$defs/sha256"},
+        "protocol_sha_locked": {"$ref": "#/$defs/sha256"},
+        "protocol_sha_at_run_start": {"$ref": "#/$defs/sha256"},
+        "protocol_sha_reported": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "transport_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["g1_m", "g1_s", "g2", "g3_translation", "g3_original"],
+      "properties": {
+        "g1_m": {"$ref": "#/$defs/status"},
+        "g1_s": {"$ref": "#/$defs/status"},
+        "g2": {"$ref": "#/$defs/status"},
+        "g3_translation": {"$ref": "#/$defs/status"},
+        "g3_original": {"$ref": "#/$defs/status"}
+      }
+    },
+    "exposure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_input_transcript_sha256", "allowed_context_manifest_matches", "forbidden_context_match_count", "tool_policy_matches", "evaluator_key_visible"],
+      "properties": {
+        "candidate_input_transcript_sha256": {"$ref": "#/$defs/sha256"},
+        "allowed_context_manifest_matches": {"type": "boolean"},
+        "forbidden_context_match_count": {"type": "integer", "minimum": 0},
+        "tool_policy_matches": {"type": "boolean"},
+        "evaluator_key_visible": {"type": "boolean"}
+      }
+    },
+    "anti_leakage_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scan_policy_sha256", "scan_rc", "match_count", "host_answer_derivation_observed", "candidate_key_access_observed", "raw_scanner_transcript_sha256"],
+      "properties": {
+        "scan_policy_sha256": {"$ref": "#/$defs/sha256"},
+        "scan_rc": {"type": ["integer", "null"]},
+        "match_count": {"type": ["integer", "null"], "minimum": 0},
+        "host_answer_derivation_observed": {"type": ["boolean", "null"]},
+        "candidate_key_access_observed": {"type": ["boolean", "null"]},
+        "raw_scanner_transcript_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "phase_artifacts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/phase_artifact"}
+    },
+    "development_cycles": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/development_cycle"}
+    },
+    "observations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/observation"}
+    },
+    "retention_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context_reset_observed",
+        "allowed_persistence_manifest_sha256",
+        "hidden_lesson_reinjection_observed",
+        "candidate_state_pre_delay_sha256",
+        "candidate_state_at_delayed_start_sha256"
+      ],
+      "properties": {
+        "context_reset_observed": {"type": ["boolean", "null"]},
+        "allowed_persistence_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "hidden_lesson_reinjection_observed": {"type": ["boolean", "null"]},
+        "candidate_state_pre_delay_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_state_at_delayed_start_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "reported_gate_results": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["a0", "a1", "a2", "a3", "a4", "r1", "v1", "full_slars"],
+      "properties": {
+        "a0": {"$ref": "#/$defs/status"},
+        "a1": {"$ref": "#/$defs/status"},
+        "a2": {"$ref": "#/$defs/status"},
+        "a3": {"$ref": "#/$defs/status"},
+        "a4": {"$ref": "#/$defs/status"},
+        "r1": {"$ref": "#/$defs/status"},
+        "v1": {"$ref": "#/$defs/status"},
+        "full_slars": {"$ref": "#/$defs/status"}
+      }
+    },
+    "external_verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evaluator_identity", "rubric_sha256", "report_sha256", "bound_to_candidate_output_hashes"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "evaluator_identity": {"type": "string", "minLength": 1},
+        "rubric_sha256": {"$ref": "#/$defs/sha256"},
+        "report_sha256": {"$ref": "#/$defs/sha256"},
+        "bound_to_candidate_output_hashes": {"type": "boolean"}
+      }
+    },
+    "claims": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {
+      "enum": ["NOT_RUN", "PASS", "FAIL", "INVALID", "INSUFFICIENT_EVIDENCE", "UNVERIFIED"]
+    },
+    "phase_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "set_id", "set_sha256", "candidate_input_sha256", "candidate_output_sha256", "evaluator_record_sha256", "rc"],
+      "properties": {
+        "phase": {"enum": ["BASELINE", "IMMEDIATE", "DEVELOPMENT_RETEST", "REASONING", "DELAYED"]},
+        "set_id": {"type": "string", "minLength": 1},
+        "set_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_input_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_output_sha256": {"$ref": "#/$defs/sha256"},
+        "evaluator_record_sha256": {"$ref": "#/$defs/sha256"},
+        "rc": {"type": "integer"}
+      }
+    },
+    "development_cycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cycle_number", "error_class", "error_record_sha256", "intervention_sha256", "retest_set_id", "target_tracks", "no_evaluation_key_leakage", "rubric_unchanged"],
+      "properties": {
+        "cycle_number": {"type": "integer", "minimum": 1},
+        "error_class": {"type": "string", "minLength": 1},
+        "error_record_sha256": {"$ref": "#/$defs/sha256"},
+        "intervention_sha256": {"$ref": "#/$defs/sha256"},
+        "retest_set_id": {"type": "string", "minLength": 1},
+        "target_tracks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["P", "D", "N", "F", "X", "U", "C", "R"]}
+        },
+        "no_evaluation_key_leakage": {"type": "boolean"},
+        "rubric_unchanged": {"type": "boolean"}
+      }
+    },
+    "audit_record": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "premise_ids": {"type": "array", "items": {"type": "string"}},
+        "rule_ids": {"type": "array", "items": {"type": "string"}},
+        "derived_claim_ids": {"type": "array", "items": {"type": "string"}},
+        "constraint_checks": {"type": "array", "items": {"type": "string"}},
+        "counterexample_check": {"type": ["string", "boolean"]},
+        "uncertainty": {"type": ["number", "string"]},
+        "final_answer": {"type": "string"}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "set_id", "item_id", "family_id", "track", "external_score", "correct", "confidence", "candidate_output_sha256", "evaluator_record_sha256"],
+      "properties": {
+        "phase": {"enum": ["BASELINE", "IMMEDIATE", "DEVELOPMENT_RETEST", "REASONING", "DELAYED"]},
+        "set_id": {"type": "string", "minLength": 1},
+        "item_id": {"type": "string", "minLength": 1},
+        "family_id": {"type": "string", "minLength": 1},
+        "track": {"enum": ["P", "D", "N", "F", "X", "U", "C", "R"]},
+        "external_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "correct": {"type": "boolean"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "candidate_output_sha256": {"$ref": "#/$defs/sha256"},
+        "evaluator_record_sha256": {"$ref": "#/$defs/sha256"},
+        "audit_record": {"$ref": "#/$defs/audit_record"}
+      }
+    }
+  }
+}

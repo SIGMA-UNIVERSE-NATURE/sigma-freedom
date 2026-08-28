@@ -1,0 +1,79 @@
+{
+  "standard_version": "SLARS-1.0",
+  "artifact_status": "TEMPLATE_NOT_EXECUTION_EVIDENCE",
+  "run_id": "REPLACE_WITH_RUN_ID",
+  "run_status": "DRAFT",
+  "protocol_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "timestamps": {
+    "run_started_at_utc": null,
+    "run_completed_at_utc": null,
+    "exposure_started_at_utc": null,
+    "exposure_completed_at_utc": null,
+    "delayed_started_at_utc": null
+  },
+  "identity_bridge": {
+    "original_sha_auth": "0000000000000000000000000000000000000000000000000000000000000000",
+    "original_sha_g1_pre": "0000000000000000000000000000000000000000000000000000000000000000",
+    "original_sha_g1_final": "0000000000000000000000000000000000000000000000000000000000000000",
+    "original_sha_g3_target": "0000000000000000000000000000000000000000000000000000000000000000",
+    "original_sha_run_final": "0000000000000000000000000000000000000000000000000000000000000000",
+    "translation_sha_reviewed": "1111111111111111111111111111111111111111111111111111111111111111",
+    "translation_sha_sigmac_input": "1111111111111111111111111111111111111111111111111111111111111111",
+    "translation_sha_g3_target": "1111111111111111111111111111111111111111111111111111111111111111",
+    "translation_sha_exposed": "1111111111111111111111111111111111111111111111111111111111111111",
+    "translation_sha_run_final": "1111111111111111111111111111111111111111111111111111111111111111",
+    "protocol_sha_locked": "0000000000000000000000000000000000000000000000000000000000000000",
+    "protocol_sha_at_run_start": "0000000000000000000000000000000000000000000000000000000000000000",
+    "protocol_sha_reported": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "transport_gates": {
+    "g1_m": "UNVERIFIED",
+    "g1_s": "UNVERIFIED",
+    "g2": "UNVERIFIED",
+    "g3_translation": "UNVERIFIED",
+    "g3_original": "UNVERIFIED"
+  },
+  "exposure": {
+    "candidate_input_transcript_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "allowed_context_manifest_matches": false,
+    "forbidden_context_match_count": 0,
+    "tool_policy_matches": false,
+    "evaluator_key_visible": false
+  },
+  "anti_leakage_evidence": {
+    "scan_policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "scan_rc": null,
+    "match_count": null,
+    "host_answer_derivation_observed": null,
+    "candidate_key_access_observed": null,
+    "raw_scanner_transcript_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "phase_artifacts": [],
+  "development_cycles": [],
+  "observations": [],
+  "retention_evidence": {
+    "context_reset_observed": null,
+    "allowed_persistence_manifest_sha256": "56789abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234",
+    "hidden_lesson_reinjection_observed": null,
+    "candidate_state_pre_delay_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "candidate_state_at_delayed_start_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "reported_gate_results": {
+    "a0": "UNVERIFIED",
+    "a1": "UNVERIFIED",
+    "a2": "UNVERIFIED",
+    "a3": "UNVERIFIED",
+    "a4": "UNVERIFIED",
+    "r1": "UNVERIFIED",
+    "v1": "UNVERIFIED",
+    "full_slars": "UNVERIFIED"
+  },
+  "external_verdict": {
+    "status": "UNVERIFIED",
+    "evaluator_identity": "REPLACE_WITH_EXTERNAL_EVALUATOR_IDENTITY",
+    "rubric_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "report_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "bound_to_candidate_output_hashes": false
+  },
+  "claims": []
+}

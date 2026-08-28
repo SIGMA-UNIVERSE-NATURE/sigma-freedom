@@ -1,0 +1,201 @@
+{
+  "standard_version": "SLARS-1.0",
+  "artifact_status": "TEMPLATE_NOT_EXECUTION_EVIDENCE",
+  "protocol_id": "REPLACE_WITH_LOCKED_PROTOCOL_ID",
+  "protocol_lock": {
+    "status": "DRAFT",
+    "locked_at_utc": null
+  },
+  "lesson": {
+    "original_artifact_id": "REPLACE_WITH_ORIGINAL_ARTIFACT_ID",
+    "original_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "translation_artifact_id": "REPLACE_WITH_TRANSLATION_ARTIFACT_ID",
+    "translation_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "transport_evidence_id": "REPLACE_WITH_G1_G2_G3_EVIDENCE_ID"
+  },
+  "actors": {
+    "candidate": {
+      "identity": "REPLACE_WITH_CANDIDATE_IDENTITY",
+      "version": "REPLACE_WITH_CANDIDATE_VERSION",
+      "configuration_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "evaluator": {
+      "identity": "REPLACE_WITH_EXTERNAL_EVALUATOR_IDENTITY",
+      "version": "REPLACE_WITH_EVALUATOR_VERSION",
+      "configuration_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "rubric_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "independent": true
+    },
+    "toolchain": {
+      "sigmac_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "sigma_vm_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+      "g20_template_sha256": "7777777777777777777777777777777777777777777777777777777777777777"
+    }
+  },
+  "anti_leakage": {
+    "candidate_visible_manifest_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+    "candidate_forbidden_manifest_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+    "scan_policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "answer_keys_accessible_to_candidate": false,
+    "pre_vm_answer_material_allowed": false,
+    "host_answer_derivation_allowed": false,
+    "item_overlap_policy": "FAMILY_MATCHED_ITEM_AND_BYTES_DISJOINT"
+  },
+  "item_sets": [
+    {
+      "set_id": "BASELINE_SET_REPLACE_ME",
+      "phase": "BASELINE",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "key_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "candidate_can_access_key": false,
+      "items": [
+        {"item_id": "BASE-P-001", "family_id": "FAM-P-001", "track": "P"},
+        {"item_id": "BASE-D-001", "family_id": "FAM-D-001", "track": "D"},
+        {"item_id": "BASE-N-001", "family_id": "FAM-N-001", "track": "N"},
+        {"item_id": "BASE-F-001", "family_id": "FAM-F-001", "track": "F"},
+        {"item_id": "BASE-X-001", "family_id": "FAM-X-001", "track": "X"},
+        {"item_id": "BASE-U-001", "family_id": "FAM-U-001", "track": "U"},
+        {"item_id": "BASE-C-001", "family_id": "FAM-C-001", "track": "C"},
+        {"item_id": "BASE-R-001", "family_id": "FAM-R-001", "track": "R"}
+      ]
+    },
+    {
+      "set_id": "IMMEDIATE_SET_REPLACE_ME",
+      "phase": "IMMEDIATE",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "key_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "candidate_can_access_key": false,
+      "items": [
+        {"item_id": "POST-D-001", "family_id": "FAM-D-001", "track": "D"},
+        {"item_id": "POST-N-001", "family_id": "FAM-N-001", "track": "N"},
+        {"item_id": "POST-F-001", "family_id": "FAM-F-001", "track": "F"},
+        {"item_id": "POST-X-001", "family_id": "FAM-X-001", "track": "X"},
+        {"item_id": "POST-U-001", "family_id": "FAM-U-001", "track": "U"},
+        {"item_id": "POST-C-001", "family_id": "FAM-C-001", "track": "C"}
+      ]
+    },
+    {
+      "set_id": "DEVELOPMENT_RETEST_SET_REPLACE_ME",
+      "phase": "DEVELOPMENT_RETEST",
+      "cycle_number": 1,
+      "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "key_sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "candidate_can_access_key": false,
+      "items": [
+        {"item_id": "DEV1-D-001", "family_id": "FAM-D-001", "track": "D"},
+        {"item_id": "DEV1-N-001", "family_id": "FAM-N-001", "track": "N"},
+        {"item_id": "DEV1-F-001", "family_id": "FAM-F-001", "track": "F"},
+        {"item_id": "DEV1-X-001", "family_id": "FAM-X-001", "track": "X"},
+        {"item_id": "DEV1-U-001", "family_id": "FAM-U-001", "track": "U"},
+        {"item_id": "DEV1-C-001", "family_id": "FAM-C-001", "track": "C"}
+      ]
+    },
+    {
+      "set_id": "REASONING_SET_REPLACE_ME",
+      "phase": "REASONING",
+      "sha256": "123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0",
+      "key_sha256": "23456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef01",
+      "candidate_can_access_key": false,
+      "items": [
+        {"item_id": "REASON-R-001", "family_id": "FAM-R-001", "track": "R"}
+      ]
+    },
+    {
+      "set_id": "DELAYED_SET_REPLACE_ME",
+      "phase": "DELAYED",
+      "sha256": "3456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef012",
+      "key_sha256": "456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123",
+      "candidate_can_access_key": false,
+      "items": [
+        {"item_id": "DELAY-D-001", "family_id": "FAM-D-001", "track": "D"},
+        {"item_id": "DELAY-N-001", "family_id": "FAM-N-001", "track": "N"},
+        {"item_id": "DELAY-F-001", "family_id": "FAM-F-001", "track": "F"},
+        {"item_id": "DELAY-X-001", "family_id": "FAM-X-001", "track": "X"},
+        {"item_id": "DELAY-U-001", "family_id": "FAM-U-001", "track": "U"},
+        {"item_id": "DELAY-C-001", "family_id": "FAM-C-001", "track": "C"},
+        {"item_id": "DELAY-R-001", "family_id": "FAM-R-001", "track": "R"}
+      ]
+    }
+  ],
+  "track_policies": [
+    {"track": "P", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": false, "min_items": 20, "absolute_floor": 0.70, "min_effect": 0.00, "ci_lower_floor": -1.00, "retention_required": false},
+    {"track": "D", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.85, "min_effect": 0.10, "ci_lower_floor": 0.00, "retention_required": true},
+    {"track": "N", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.80, "min_effect": 0.10, "ci_lower_floor": 0.00, "retention_required": true},
+    {"track": "F", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.70, "min_effect": 0.10, "ci_lower_floor": 0.00, "retention_required": true},
+    {"track": "X", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.75, "min_effect": 0.10, "ci_lower_floor": 0.00, "retention_required": true},
+    {"track": "U", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.75, "min_effect": 0.05, "ci_lower_floor": 0.00, "retention_required": true, "brier_max": 0.20},
+    {"track": "C", "baseline_phase": "BASELINE", "assessment_phase": "IMMEDIATE", "mandatory": true, "min_items": 20, "absolute_floor": 0.90, "min_effect": 0.05, "ci_lower_floor": 0.00, "retention_required": true},
+    {"track": "R", "baseline_phase": "BASELINE", "assessment_phase": "REASONING", "mandatory": true, "min_items": 20, "absolute_floor": 0.75, "min_effect": 0.10, "ci_lower_floor": 0.00, "retention_required": true}
+  ],
+  "statistics": {
+    "method": "PAIRED_PERCENTILE_BOOTSTRAP",
+    "bootstrap_iterations": 10000,
+    "bootstrap_seed": 1701,
+    "ci_level": 0.95
+  },
+  "development": {
+    "required": true,
+    "max_cycles": 3,
+    "stop_rule_id": "STOP_WHEN_ALL_TARGET_TRACKS_PASS_OR_MAX_CYCLES",
+    "error_taxonomy": [
+      "PREREQ_GAP",
+      "OMISSION",
+      "RULE_SELECTION",
+      "RULE_APPLICATION",
+      "TRANSFER_GAP",
+      "INVALID_INFERENCE",
+      "UNCERTAINTY",
+      "CLAIM_OVERREACH"
+    ],
+    "fresh_items_each_cycle": true,
+    "evaluation_key_hidden": true
+  },
+  "reasoning": {
+    "novel_tasks_required": true,
+    "target_answer_absent_from_lesson_and_training": true,
+    "hidden_chain_of_thought_requested": false,
+    "required_audit_fields": [
+      "premise_ids",
+      "rule_ids",
+      "derived_claim_ids",
+      "constraint_checks",
+      "counterexample_check",
+      "uncertainty",
+      "final_answer"
+    ]
+  },
+  "retention": {
+    "required": true,
+    "minimum_delay_seconds": 86400,
+    "ratio_floor": 0.80,
+    "context_reset_required": true,
+    "allowed_persistence_manifest_sha256": "56789abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234",
+    "hidden_lesson_reinjection_allowed": false,
+    "retention_scope": "DECLARED_PERSISTENCE_CHANNELS_ONLY"
+  },
+  "claim_policy": {
+    "allowed": [
+      "ORIGINAL_BYTES_UNCHANGED_DURING_BOUND_PIPELINE=YES",
+      "SEPARATE_SIGMA_MAPPING_CREATED=YES",
+      "SEMANTIC_REVIEW_PASS_FOR_BOUND_HASHES=YES",
+      "NATIVE_COMPILE_AND_VM_EXECUTION_OBSERVED=YES",
+      "VM_TRANSLATION_READBACK_BYTE_EXACT=YES",
+      "VM_ORIGINAL_READBACK_BYTE_EXACT=YES",
+      "READINESS_PROFILE_OBSERVED_FOR_BOUND_TASK_DISTRIBUTION=YES",
+      "BOUND_LESSON_EXPOSURE_OBSERVED=YES",
+      "POST_LESSON_FRESH_ITEM_PERFORMANCE_OBSERVED=YES",
+      "FRESH_VARIANT_PERFORMANCE_IMPROVEMENT_OBSERVED=YES",
+      "DELAYED_RETENTION_OBSERVED=YES",
+      "INDEPENDENT_REASONING_TASK_PERFORMANCE_OBSERVED=YES"
+    ],
+    "forbidden": [
+      "FORMAL_SEMANTIC_EQUIVALENCE",
+      "UNDERSTANDING",
+      "COGNITION",
+      "GENERAL_LEARNING",
+      "SELF_DEVELOPMENT",
+      "AUTONOMOUS_DECISION",
+      "GENERAL_INTELLIGENCE"
+    ]
+  }
+}
