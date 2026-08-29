@@ -1,0 +1,8 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.J4.TEST][VERSION=1.0]
+
+⟡(Σ.J4_BOOL_TRUE_IF) {
+    IF (TRUE) {
+        ⚡ print("J4_B03_A");
+    }
+    ⚡ print("J4_B03_Z");
+}

@@ -1,0 +1,16 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.J4.TEST][VERSION=1.0]
+
+DEF j4_e01_a() {
+    ⚡ print("J4_E01_A");
+    RETURN 10;
+}
+
+DEF j4_e01_b() {
+    ⚡ print("J4_E01_B");
+    RETURN 3;
+}
+
+⟡(Σ.J4_EVAL_BINARY) {
+    ⚡ value: j4_e01_a() - j4_e01_b();
+    ⚡ print("J4_E01_Z:", value);
+}

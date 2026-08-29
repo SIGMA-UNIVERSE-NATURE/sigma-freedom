@@ -1,0 +1,21 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.J4.TEST][VERSION=1.0]
+
+DEF j4_e04_a() {
+    ⚡ print("J4_E04_A");
+    RETURN 2;
+}
+
+DEF j4_e04_b(x) {
+    ⚡ print("J4_E04_B");
+    RETURN x;
+}
+
+DEF j4_e04_c() {
+    ⚡ print("J4_E04_C");
+    RETURN 3;
+}
+
+⟡(Σ.J4_EVAL_CALL_OPERATOR) {
+    ⚡ value: j4_e04_b(j4_e04_a()) + j4_e04_c();
+    ⚡ print("J4_E04_Z:", value);
+}

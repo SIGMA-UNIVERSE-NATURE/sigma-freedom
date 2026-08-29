@@ -1,0 +1,20 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.J4.TEST][VERSION=1.0]
+
+DEF j4_e02_a() {
+    ⚡ print("J4_E02_A");
+    RETURN 1;
+}
+
+DEF j4_e02_b() {
+    ⚡ print("J4_E02_B");
+    RETURN 2;
+}
+
+DEF j4_e02_sink(a, b) {
+    RETURN a + b;
+}
+
+⟡(Σ.J4_EVAL_ARGUMENTS) {
+    ⚡ value: j4_e02_sink(j4_e02_a(), j4_e02_b());
+    ⚡ print("J4_E02_Z:", value);
+}

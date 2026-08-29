@@ -1,0 +1,6 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=AAA.J4.TEST][VERSION=1.0]
+
+⟡(Σ.J4_BOOL_FALSE_DIRECT) {
+    ⚡ value: FALSE;
+    ⚡ print("J4_B02:", value);
+}
