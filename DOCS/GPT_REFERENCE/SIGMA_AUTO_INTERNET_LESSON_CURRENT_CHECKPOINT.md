@@ -34,7 +34,7 @@ Host/C/Python/Bash may provide only generic mechanical capabilities: network tra
 
 ## PRESERVE LOCK
 
-QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f3836387541a3b1e648f383d5e1da6487f11e97c4b6a
+QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f383d5e1da6487f11e97c4b6a
 LESSON_READER_SHA256=ba2faf7bddb81789b3fbccff96bdf8f3c2021d0db252d7e8ef38dc92b182994c
 COMPILER_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
@@ -44,7 +44,7 @@ QUERY_ENGINE_REWRITE=FORBIDDEN
 LESSON_READER_REWRITE=FORBIDDEN
 ZERO_ANSWER_INJECTION=LOCKED
 
-NOTE: verify the query-engine hash from the actual preserved bytecode before use. If it does not match the known machine evidence, STOP rather than rewriting/rebuilding silently.
+NOTE: verify every preserved artifact hash from the actual bytecode before use. If identity does not match, STOP rather than rewriting/rebuilding silently.
 
 ## PROVEN TESTED SCOPE ALREADY AVAILABLE
 
