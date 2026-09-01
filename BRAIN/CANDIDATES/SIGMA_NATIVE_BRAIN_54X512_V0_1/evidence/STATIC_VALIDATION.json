@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.1.0",
+  "evidence_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-R1-STATIC-VALIDATION",
+  "recorded_at": "2026-08-18T19:32:26Z",
+  "status": "PASS_STRUCTURAL_R1_ABI_NEUTRAL_NOT_COMPILE_EVIDENCE",
+  "scope": "STATIC_STRUCTURE_UTF8_ABI_NEUTRAL_CONTRACT_ONLY",
+  "counts": {
+    "checks": 15,
+    "pass": 15,
+    "fail": 0
+  },
+  "artifacts": {
+    "source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+    "source_bytes": 19930,
+    "source_lines": 449,
+    "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a"
+  },
+  "checks": [
+    {"id": "assembly_exact", "pass": true},
+    {"id": "mandatory_header", "pass": true, "detail": "#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1-R1]"},
+    {"id": "no_bom", "pass": true},
+    {"id": "no_mojibake", "pass": true},
+    {"id": "delimiters_balanced", "pass": true},
+    {"id": "core_ids_1_54", "pass": true},
+    {"id": "core_names_unique", "pass": true},
+    {"id": "core_source_matches", "pass": true},
+    {"id": "no_unverified_container_host_calls", "pass": true, "detail": {"LNEW": 0, "LPUSH": 0, "LGET": 0, "MNEW": 0, "MSET": 0, "MGET": 0}},
+    {"id": "31_contiguous_sections", "pass": true},
+    {"id": "source_router_matches", "pass": true},
+    {"id": "static_reference_corpus_10_10", "pass": true},
+    {"id": "utf8_golden_literal", "pass": true},
+    {"id": "expected_stdout_utf8", "pass": true, "detail": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a"},
+    {"id": "hostvm_contract", "pass": true}
+  ],
+  "parent_failure": {
+    "runtime_rc": 8,
+    "stderr": "SIGMA C VM: undefined function MNEW\r\n",
+    "stderr_sha256": "89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484"
+  },
+  "non_claims": [
+    "NOT_R1_SIGMAC_COMPILE_EVIDENCE",
+    "NOT_R1_SIGMA_HOSTVM_EXECUTION_EVIDENCE",
+    "NOT_512_BEHAVIORAL_IMPLEMENTATION_EVIDENCE",
+    "NOT_IMPROVEMENT_OR_PROMOTION_EVIDENCE"
+  ],
+  "decision": "HOLD_PENDING_R1_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION"
+}

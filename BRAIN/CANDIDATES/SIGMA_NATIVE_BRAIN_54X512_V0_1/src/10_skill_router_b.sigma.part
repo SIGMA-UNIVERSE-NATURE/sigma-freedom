@@ -1,0 +1,62 @@
+                                                                                                IF (skill_id <= 350) {
+                                                                                                    RETURN "XXIII:metacognition_self_model";
+                                                                                                } ELSE {
+                                                                                                    IF (skill_id <= 370) {
+                                                                                                        RETURN "XXIV:language_semantics_precision";
+                                                                                                    } ELSE {
+                                                                                                        IF (skill_id <= 395) {
+                                                                                                            RETURN "XXV:planning_execution";
+                                                                                                        } ELSE {
+                                                                                                            IF (skill_id <= 415) {
+                                                                                                                RETURN "XXVI:human_ai_collaboration";
+                                                                                                            } ELSE {
+                                                                                                                IF (skill_id <= 440) {
+                                                                                                                    RETURN "XXVII:robustness_recovery";
+                                                                                                                } ELSE {
+                                                                                                                    IF (skill_id <= 465) {
+                                                                                                                        RETURN "XXVIII:evaluation_science";
+                                                                                                                    } ELSE {
+                                                                                                                        IF (skill_id <= 485) {
+                                                                                                                            RETURN "XXIX:knowledge_lifecycle";
+                                                                                                                        } ELSE {
+                                                                                                                            IF (skill_id <= 500) {
+                                                                                                                                RETURN "XXX:systems_intelligence";
+                                                                                                                            } ELSE {
+                                                                                                                                IF (skill_id <= 512) {
+                                                                                                                                    RETURN "XXXI:long_horizon_values_continuity";
+                                                                                                                                } ELSE {
+                                                                                                                                    RETURN "INVALID_SKILL_ID";
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

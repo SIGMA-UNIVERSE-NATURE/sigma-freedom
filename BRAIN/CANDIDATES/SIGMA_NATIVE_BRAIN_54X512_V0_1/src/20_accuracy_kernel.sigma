@@ -1,0 +1,120 @@
+DEF EPISTEMIC_LABEL(kind) {
+    IF (kind == 1) {
+        RETURN "OBSERVATION";
+    } ELSE {
+        IF (kind == 2) {
+            RETURN "RETRIEVED_EVIDENCE";
+        } ELSE {
+            IF (kind == 3) {
+                RETURN "INFERENCE";
+            } ELSE {
+                IF (kind == 4) {
+                    RETURN "HYPOTHESIS";
+                } ELSE {
+                    IF (kind == 5) {
+                        RETURN "UNKNOWN";
+                    } ELSE {
+                        IF (kind == 6) {
+                            RETURN "CONTRADICTION";
+                        } ELSE {
+                            RETURN "INVALID_EPISTEMIC_KIND";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+DEF PROVENANCE_STATUS(origin_ok, evidence_ok, verification_ok, time_ok, version_ok, confidence_ok, contradictions_field_ok) {
+    IF (origin_ok && evidence_ok && verification_ok && time_ok && version_ok && confidence_ok && contradictions_field_ok) {
+        RETURN "PROVENANCE_COMPLETE";
+    } ELSE {
+        RETURN "HOLD_MISSING_PROVENANCE";
+    }
+}
+
+DEF RECONCILE_STATE(canonical_present, canonical_value, machine_present, machine_value, machine_newer, machine_ingested, memory_present, memory_value, memory_verified) {
+    IF (canonical_present && machine_present) {
+        IF (canonical_value == machine_value) {
+            RETURN "ASSERT_CANONICAL_MACHINE_AGREE";
+        } ELSE {
+            IF (machine_newer && (!machine_ingested)) {
+                RETURN "HOLD_MACHINE_AHEAD_NOT_CANONICALLY_INGESTED";
+            } ELSE {
+                RETURN "HOLD_AUTHORITATIVE_CONTRADICTION";
+            }
+        }
+    } ELSE {
+        IF (canonical_present) {
+            RETURN "ASSERT_CANONICAL_STATE_ONLY_NOT_LIVE_TRUTH";
+        } ELSE {
+            IF (machine_present) {
+                RETURN "ASSERT_MACHINE_EVIDENCE_ONLY_NOT_CANONICAL_STATE";
+            } ELSE {
+                IF (memory_present && memory_verified) {
+                    RETURN "HOLD_MEMORY_ONLY_REQUIRES_FRESH_EVIDENCE";
+                } ELSE {
+                    RETURN "HOLD_NO_VERIFIED_EVIDENCE";
+                }
+            }
+        }
+    }
+}
+
+DEF PROGRESS_CLAIM_STATUS(metric_improved, independent_evidence_present, regression_pass) {
+    IF (!metric_improved) {
+        RETURN "NO_MEASURED_DELTA";
+    } ELSE {
+        IF (!independent_evidence_present) {
+            RETURN "HOLD_METRIC_ALONE_CANNOT_PROVE_PROGRESS";
+        } ELSE {
+            IF (!regression_pass) {
+                RETURN "REJECT_REGRESSION";
+            } ELSE {
+                RETURN "ELIGIBLE_FOR_EXTERNAL_PROMOTION_REVIEW";
+            }
+        }
+    }
+}
+
+DEF REALITY_CHECK(prediction, observation) {
+    IF (prediction == observation) {
+        RETURN "COHERENT_WITH_OBSERVATION";
+    } ELSE {
+        RETURN "MISMATCH_PRESERVED_REALITY_PRIORITY";
+    }
+}
+
+DEF ACCURACY_CASE_001_E1() {
+    RETURN EPISTEMIC_LABEL(2);
+}
+
+DEF ACCURACY_CASE_001_E2() {
+    RETURN EPISTEMIC_LABEL(2);
+}
+
+DEF ACCURACY_CASE_001_E3() {
+    RETURN "UNVERIFIED_MEMORY_NOT_OBSERVED_TRUTH";
+}
+
+DEF ACCURACY_CASE_001_E4() {
+    RETURN EPISTEMIC_LABEL(5);
+}
+
+DEF ACCURACY_CASE_001_DECISION() {
+    RETURN RECONCILE_STATE(TRUE, 10, TRUE, 12, TRUE, FALSE, TRUE, 8, FALSE);
+}
+
+DEF ACCURACY_CASE_001_UNCERTAINTY() {
+    RETURN "LIVE_TRUTH_NOT_ESTABLISHED";
+}
+
+DEF ACCURACY_CASE_001_NEXT_TEST() {
+    RETURN "VERIFY_RECEIPT_BINDING_THEN_INGEST_OR_REJECT";
+}
+
+DEF ACCURACY_CASE_001_SELF_CHALLENGE() {
+    RETURN "FLAGS_OR_PROVENANCE_MAY_BE_WRONG";
+}
+

@@ -1,0 +1,70 @@
+DEF SKILL_SECTION(skill_id) {
+    IF ((skill_id < 1) || (skill_id > 512)) {
+        RETURN "INVALID_SKILL_ID";
+    } ELSE {
+        IF (skill_id <= 12) {
+            RETURN "I:epistemic_truth";
+        } ELSE {
+            IF (skill_id <= 24) {
+                RETURN "II:memory_continuity";
+            } ELSE {
+                IF (skill_id <= 36) {
+                    RETURN "III:continuous_learning";
+                } ELSE {
+                    IF (skill_id <= 48) {
+                        RETURN "IV:reasoning";
+                    } ELSE {
+                        IF (skill_id <= 60) {
+                            RETURN "V:world_model";
+                        } ELSE {
+                            IF (skill_id <= 72) {
+                                RETURN "VI:goals_agency_open_endedness";
+                            } ELSE {
+                                IF (skill_id <= 84) {
+                                    RETURN "VII:self_model_self_improvement";
+                                } ELSE {
+                                    IF (skill_id <= 96) {
+                                        RETURN "VIII:architecture_independence_verification";
+                                    } ELSE {
+                                        IF (skill_id <= 108) {
+                                            RETURN "IX:temporal_intelligence";
+                                        } ELSE {
+                                            IF (skill_id <= 124) {
+                                                RETURN "X:evidence_measurement";
+                                            } ELSE {
+                                                IF (skill_id <= 137) {
+                                                    RETURN "XI:scientific_experimentation";
+                                                } ELSE {
+                                                    IF (skill_id <= 151) {
+                                                        RETURN "XII:tool_action_reliability";
+                                                    } ELSE {
+                                                        IF (skill_id <= 165) {
+                                                            RETURN "XIII:data_security_privacy";
+                                                        } ELSE {
+                                                            IF (skill_id <= 175) {
+                                                                RETURN "XIV:resource_intelligence";
+                                                            } ELSE {
+                                                                IF (skill_id <= 187) {
+                                                                    RETURN "XV:multi_agent_social";
+                                                                } ELSE {
+                                                                    IF (skill_id <= 203) {
+                                                                        RETURN "XVI:governance_bounded_agency";
+                                                                    } ELSE {
+                                                                        IF (skill_id <= 215) {
+                                                                            RETURN "XVII:deployment_lineage_evolution";
+                                                                        } ELSE {
+                                                                            IF (skill_id <= 235) {
+                                                                                RETURN "XVIII:ontology_concepts";
+                                                                            } ELSE {
+                                                                                IF (skill_id <= 255) {
+                                                                                    RETURN "XIX:causal_intelligence";
+                                                                                } ELSE {
+                                                                                    IF (skill_id <= 275) {
+                                                                                        RETURN "XX:counterfactual_decision_theory";
+                                                                                    } ELSE {
+                                                                                        IF (skill_id <= 300) {
+                                                                                            RETURN "XXI:deep_memory_architecture";
+                                                                                        } ELSE {
+                                                                                            IF (skill_id <= 325) {
+                                                                                                RETURN "XXII:learning_curriculum";
+                                                                                            } ELSE {
