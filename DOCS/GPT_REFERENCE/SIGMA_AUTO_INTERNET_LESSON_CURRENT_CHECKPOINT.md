@@ -6,24 +6,35 @@ CANONICAL_FOR_NEXT_WINDOWS=YES
 
 ## CURRENT GOAL
 
-ONE START
-→ RAW_TOPIC
-→ existing SIGMA query engine
-→ live Internet search
-→ RSS item-link extraction
-→ Network Safety Membrane
-→ automatic source fetch
-→ existing SIGMA lesson reader
-→ lesson experience saved
-→ provenance
-→ independent verification
-→ STOP
+The proof target is NOT a Bash-orchestrated one-start wrapper.
+The proof target is:
 
+```text
+USER RUNS SIGMA VM CONTROLLER ONCE
+→ SIGMA controller receives RAW_TOPIC
+→ SIGMA decides/requests query generation
+→ SIGMA requests Internet search capability
+→ SIGMA receives discovered URLs
+→ SIGMA requests technical network membrane/fetch
+→ SIGMA requests/uses lesson reader
+→ SIGMA requests lesson persistence/provenance
+→ SIGMA STOP
+```
+
+Required:
+
+```text
+MAIN_CONTROLLER_LANGUAGE=SIGMA
+MAIN_ENTRYPOINT=SIGMA_VM
+HOST_ORCHESTRATES_LEARNING_FLOW=NO
 HUMAN_INTERVENTION_BETWEEN_STAGES=0
+```
+
+Host/C/Python/Bash may provide only generic mechanical capabilities: network transport, DNS/TLS, RSS/XML transport parsing, file lifecycle, hash, resource limits, and exact child-Sigma execution if required. They may not choose query, URL, lesson, semantic winner, relevance, truth, or next cognitive stage.
 
 ## PRESERVE LOCK
 
-QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f383d5e1da6487f11e97c4b6a
+QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f3836387541a3b1e648f383d5e1da6487f11e97c4b6a
 LESSON_READER_SHA256=ba2faf7bddb81789b3fbccff96bdf8f3c2021d0db252d7e8ef38dc92b182994c
 COMPILER_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
@@ -31,10 +42,11 @@ HTTP_BRIDGE_SHA256=d7dcc121dbd4611ea5f2cf677f5ec08567b8a03ba11ae57ba4c1624b3f638
 
 QUERY_ENGINE_REWRITE=FORBIDDEN
 LESSON_READER_REWRITE=FORBIDDEN
-HOST_DRIVER_REPAIR_ONLY=YES
 ZERO_ANSWER_INJECTION=LOCKED
 
-## PROVEN TESTED SCOPE BEFORE ONE-START CLOSURE
+NOTE: verify the query-engine hash from the actual preserved bytecode before use. If it does not match the known machine evidence, STOP rather than rewriting/rebuilding silently.
+
+## PROVEN TESTED SCOPE ALREADY AVAILABLE
 
 SIGMA_QUERY_GENERATION=PASS_TESTED_SCOPE
 LIVE_INTERNET_SEARCH_TRANSPORT=PASS_TESTED_SCOPE
@@ -43,7 +55,7 @@ NETWORK_SAFETY_MEMBRANE=PASS_TESTED_SCOPE
 SIGMA_HUMAN_WEB_TEXT_EXTRACTION=PASS_TESTED_SCOPE
 BYTE_EXACT_EXPERIENCE_READBACK=PASS_TESTED_SCOPE
 
-## LAST REAL OPPO AUTO RUN
+## LAST REAL OPPO AUTO ATTEMPT
 
 RUN_DIR=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260901T120406Z_6891_26254
 SIGMA_QUERY_RC=0
@@ -64,9 +76,9 @@ NOT_NO_LESSON_FOUND=YES
 ROOT_CAUSE_1=BASH_ARITHMETIC_USED_COMMAND_SUBSTITUTION_INSTEAD_OF_ARITHMETIC_EXPANSION
 ROOT_CAUSE_2=PYTHON_WAS_INVOKED_WITH_RSS_BODY_AS_SOURCE_CODE_INSTEAD_OF_DATA_ARGUMENT
 
-## QA CANDIDATE BUILT AFTER FAILURE
+## DEPRECATED HOST-ORCHESTRATED QA CANDIDATE
 
-Candidate implementation is split into:
+The previously prepared five-script host wrapper:
 
 00_VERIFY_AUTO_LESSON_RUNTIME.sh
 10_RSS_ITEM_LINK_EXTRACT.py
@@ -74,62 +86,96 @@ Candidate implementation is split into:
 30_VERIFY_AUTO_INTERNET_LESSON_V1_R1.sh
 99_RUN_AUTO_INTERNET_LESSON_V1_R1.sh
 
-QA_ALREADY_PERFORMED_BY_PREVIOUS_WINDOW:
-- bash -n on all shell scripts: PASS
-- Python py_compile: PASS
-- synthetic RSS mechanics fixture: PASS
-  - channel link excluded
-  - item links extracted
-  - exact duplicate deduped
-  - order preserved
-- full mocked one-start pipeline: PASS
-- mocked independent verifier: PASS
-- lesson tamper test: verifier rejected with FAIL_LESSON_READBACK
+was syntax/mock QA'd, but it is now:
 
-IMPORTANT: MOCK_QA_IS_NOT_OPPO_MACHINE_EVIDENCE=YES
-ONE_START_AUTOMATIC_INTERNET_LESSON_ACQUISITION=NOT_YET_PROVEN_ON_OPPO
+```text
+DEPRECATED_FOR_SIGMA_AUTONOMY_PROOF=YES
+```
+
+It may be retained only as a host-integration test/reference. It MUST NOT be used to claim that Sigma itself orchestrates automatic lesson acquisition, because Bash controls the stage order.
 
 ## CURRENT FRONTIER
 
-CURRENT_FRONTIER=RUN_REAL_OPPO_ONE_START_AUTO_INTERNET_LESSON_V1_R1
+CURRENT_FRONTIER=BUILD_VM_CALLABLE_GENERIC_CAPABILITY_SUBSTRATE_FOR_SIGMA_CONTROLLER
 
-The next window must not reopen dynamic AST, relation reasoning, understanding tests, or rewrite Sigma engines.
-It must finish/install the five QA-candidate scripts exactly within this architecture, then run only the one-start wrapper on OPPO and review the real machine output.
+Do NOT jump directly to a fake SIGMA controller calling invented host operations.
+Current online evidence does not establish an existing VM host-op such as http_get/eval/shell that can drive the Internet pipeline directly.
 
-## REAL OPPO ACCEPTANCE GATE
+The next implementation must therefore proceed in this order:
+
+1. Determine the exact existing VM-to-host extension point using known runtime source/evidence; no broad local knowledge scan and no guessed host-op names.
+2. Build/verify a VM-callable GENERIC capability adapter at the substrate layer. It may expose only mechanical operations needed by a Sigma controller, such as safe network fetch, RSS item-link extraction, file/hash/resource operations, and exact child-Sigma execution if required.
+3. Independently machine-test each adapter operation with non-semantic fixtures.
+4. Build `SIGMA_AUTO_LESSON_CONTROLLER_V1.sigma` as the MAIN controller in SIGMA Language.
+5. The controller, not Bash/Python, must choose/request stage progression based on returned machine facts.
+6. Compile controller and run with the direct entrypoint:
+
+```bash
+./native/sigma-vm.v09_candidate "$CONTROLLER_BC" <"$REQUEST_INPUT" >"$CONTROLLER_OUT"
+```
+
+7. Only direct-VM execution may be used for the final autonomy proof.
+
+## GENERIC CAPABILITY BOUNDARY
+
+Allowed substrate capabilities:
+
+- SAFE_HTTP_FETCH(url, resource bounds) → technical response facts/body artifact
+- RSS_ITEM_LINKS(rss artifact) → ordered exact item links
+- FILE_READ/WRITE/EXISTS/SIZE
+- SHA256
+- resource accounting
+- exact RUN_SIGMA(child bytecode, input, outputs) if needed to preserve the existing query generator and lesson reader
+
+These names are capability-contract descriptions, NOT assumed existing host-op names. Implement only through the actual proven VM extension mechanism.
+
+Forbidden in host/substrate:
+
+- semantic query generation
+- semantic URL/source ranking
+- relevance decisions
+- truth decisions
+- lesson quality decisions
+- reasoning/conclusion
+- cognitive next-stage policy
+
+## FINAL ACCEPTANCE GATE
 
 Required before promotion:
 
-ONE_START_PIPELINE=YES
+MAIN_CONTROLLER_LANGUAGE=SIGMA
+MAIN_ENTRYPOINT=SIGMA_VM
+HOST_ORCHESTRATES_LEARNING_FLOW=NO
 HUMAN_INTERVENTION_BETWEEN_STAGES=0
-SIGMA_QUERY_RC=0
-SIGMA_QUERY_CANDIDATES>0
-QUERY_READBACK_CMP_RC=0
-SEARCH_REQUESTS>0
-RSS_PARSE_SUCCESS_COUNT>0
+SIGMA_CONTROLLER_RC=0
+SIGMA_QUERY_GENERATION_USED=YES
+LIVE_SEARCH_REQUESTS>0
 DISCOVERED_URLS>0
-SOURCE_REQUESTS>0
+TECHNICAL_SOURCE_FETCH_REQUESTS>0
 RESOURCE_BUDGET_OVERRUN=0
 BRIDGE_CEILING_VIOLATION=0
 LESSON_ACQUIRED=1
-SIGMA_READER_RC=0
+SIGMA_LESSON_READER_USED=YES
 LESSON_PARAGRAPHS>0
 LESSON_BYTES>0
 LESSON_READBACK_CMP_RC=0
 LESSON_SHA256=<real hash>
-PERSISTENT_LESSON_PATH=<real path>
+PROVENANCE_SHA256=<real hash>
 RAW_WEB_BODIES_RETAINED=0
 WEB_CONTENT_EXECUTED=0
 INDEPENDENT_VERIFY_RC=0
 
 Only then may the verifier emit:
+
 ONE_START_AUTOMATIC_INTERNET_LESSON_ACQUISITION=PASS_TESTED_SCOPE
 
-Still forbidden after PASS:
-FULL_AUTONOMOUS_LEARNING=PROVEN
-SEMANTIC_UNDERSTANDING=PROVEN
-TOPIC_RELEVANCE=ASSESSED
-SOURCE_TRUST=ASSESSED
-LESSON_TRUTH=ASSESSED
+Still NOT proven after that:
 
-NEXT_COMMAND=INSTALL_AND_RUN_QA_CANDIDATE_ONE_START_AUTO_LESSON_V1_R1
+FULL_AUTONOMOUS_LEARNING
+SEMANTIC_UNDERSTANDING
+TOPIC_RELEVANCE
+SOURCE_TRUST
+LESSON_TRUTH
+SELF_DIRECTED_CURRICULUM
+
+NEXT_COMMAND=BUILD_VM_CALLABLE_GENERIC_CAPABILITY_SUBSTRATE_V1
