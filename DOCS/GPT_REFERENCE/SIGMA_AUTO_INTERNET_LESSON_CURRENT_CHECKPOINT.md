@@ -32,6 +32,8 @@ RESOURCE_LIMIT_RETURNS_OBSERVATION_TO_SIGMA=YES
 NETWORK_FAILURE_RETURNS_OBSERVATION_TO_SIGMA=YES
 ```
 
+A resource bound is a tested-run condition, not a semantic ban on future Sigma Internet research.
+
 ## PRESERVE LOCK
 
 ```text
@@ -52,6 +54,7 @@ V12_R2_POOL_SOURCE_SHA256=761829c5362761cc02bb4367326dcb1e45c49662d92385be1423c0
 V12_R2_POOL_BYTECODE_SHA256=1b1661af5fca081ec6b0aaf8f61ddd0e767cec438be7af2788fcccc4a81af97d
 V12_CONTROLLER_SOURCE_SHA256=9d2400931ed7a8e65e05552a85bff7df3589e59c971c9b0ad9cab1384969f688
 V12_CONTROLLER_BYTECODE_SHA256=21078eec99958b7ba060b4495becd9b1f13aa932a3e691269f1091cc80755fbe
+V12_R3_REPAIRED_VERIFIER_SHA256=1204bf82646292f3b3d4941d243910a07c60cde71391162f84bde47f9b0990a7
 ```
 
 Identity mismatch => STOP; never silently replace a proven tool.
@@ -74,9 +77,8 @@ SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
+SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
 ```
-
-V12 remains NOT canonical PASS until repaired independent verification passes on the existing R2 run.
 
 ## LOCKED CHILD CONTRACTS — NEVER ASK USER AGAIN
 
@@ -114,7 +116,9 @@ COGNITIVE_POLICY_FAILURE=NO_EVIDENCE
 
 R1 failed package/run remain preserved.
 
-## V12 R2 LIVE RUNTIME — DRIVER PASS
+## V12 R2 LIVE + R3 VERIFIER REPAIR — CANONICAL PASS
+
+Runtime R2:
 
 ```text
 V12_R2_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T071222Z_12302_13559
@@ -125,72 +129,58 @@ ACTUATOR_RC=0
 DIVERSE_ALTERNATIVE_COUNT=2
 TERMINAL_STATE=KEEP_QUERY_PATTERN
 QUERY_MEMORY_RECORD=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_pattern_memory/440bd828785827af1a1bbe0774e7220de8450b69e37eb62f77cd2403fb301dab
+WINNER_TOPIC_PATH=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_adaptations/20260902T055051Z_29087_9627/adapted.topic
+WINNER_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/candidate_support_assessments/20260902T071247Z_14432_16117
 ```
 
-The R2 runtime completed successfully and Sigma emitted `KEEP_QUERY_PATTERN`. This strongly supports that the feedback controller reached a successful decision, but canonical V12 PASS still waits for independent verification repair.
-
-## V12 R2 VERIFIER FAILURE — ROOT CAUSE CONFIRMED
-
-Original verifier result:
+Original independent verifier failed only because `BASE` was undefined in its KEEP_QUERY_PATTERN memory checks. R3 repaired only that verifier path and reran verification against the existing R2 runtime artifacts; Sigma VM and Internet were not rerun.
 
 ```text
-INDEPENDENT_VERIFY_RC=80
-VERIFY_FAILURE_COUNT=3
-FAILURE_CLASS=FAIL_INDEPENDENT_VERIFICATION
-```
-
-Targeted inspection of the installed verifier returned only:
-
-```text
-126:    MEM="$BASE/query_pattern_memory/$QSHA"
-```
-
-No `BASE=` assignment exists anywhere in that verifier. With shell `set +u`, undefined `BASE` expands empty, so the verifier incorrectly checks `/query_pattern_memory/$QSHA` instead of `$HOME/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_pattern_memory/$QSHA`.
-
-The `KEEP_QUERY_PATTERN` verifier branch contains exactly three memory assertions (query.topic exists, byte-exact cmp, provenance contains Sigma KEEP decision), matching the observed `VERIFY_FAILURE_COUNT=3`.
-
-```text
-ROOT_CAUSE=INDEPENDENT_VERIFIER_UNDEFINED_BASE_PATH
-RUNTIME_RERUN_REQUIRED=NO
-SIGMA_VM_RERUN_REQUIRED=NO
-INTERNET_RERUN_REQUIRED=NO
-COGNITIVE_POLICY_CHANGE=NO
-QUERY_DIVERSITY_POLICY_CHANGE=NO
-OUTCOME_POLICY_CHANGE=NO
-```
-
-## V12 R3 VERIFIER-ONLY REPAIR — PREPARED
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY_V12
-CURRENT_STATUS=V12_R2_RUNTIME_DRIVER_PASS_VERIFIER_BUG_CONFIRMED_R3_PREPARED
-V12_R3_PACKAGE_TARGET=V1_R15R3_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_DIVERSITY_VERIFIER_PATH_REPAIR
-V12_R3_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_V12_R3_VERIFIER_PATH_REPAIR.sh
 V12_R3_INSTALLER_SHA256=6ac8e03a0f231088d8ae20ea5a88f1819dd35567e8acd13c8d48285d3478df8d
-LOCAL_INSTALLER_BASH_N=0
-```
-
-R3 changes only the independent verifier by defining:
-
-```text
-BASE="$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS"
-```
-
-R3 copies the R2 package additively, preserves all runtime Sigma source/bytecode identities, does NOT run Sigma VM or Internet, then runs the repaired verifier against the existing R2 live run.
-
-```text
-R2_RUNTIME_RERUN=NO
+V12_R3_REPAIRED_VERIFIER_SHA256=1204bf82646292f3b3d4941d243910a07c60cde71391162f84bde47f9b0990a7
+R2_VERIFIER_UNCHANGED=YES
+R2_RUNTIME_ARTIFACTS_UNCHANGED=YES
+VERIFIER_BASE_PATH_QA=PASS
 SIGMA_VM_EXECUTED_BY_R3=NO
 LIVE_INTERNET_REQUEST_EXECUTED_BY_R3=NO
+REPAIRED_INDEPENDENT_VERIFY_RC=0
+INDEPENDENT_VERIFY_RC=0
+OUTCOME_DECISION_PLANE=SIGMA_NATIVE_VM
+QUERY_DIVERSITY_PLANE=SIGMA_NATIVE_VM
+HOST_QUERY_SCORING=NO
+HOST_QUERY_COMPOSITION=NO
+DIVERSE_ALTERNATIVE_COUNT=2
+SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
+EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
+HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
+TERMINAL_STATE=KEEP_QUERY_PATTERN
+SUCCESSFUL_QUERY_PATTERN_PERSISTED=YES
+QUERY_OUTCOME_POLICY=SUPPORTED_COUNT_THEN_DISTINCT_SUPPORTED_SOURCES
+QUERY_DIVERSITY_DEDUP=PASS_TESTED_SCOPE_IN_RUN
+SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
+RUNTIME_RERUN_REQUIRED=NO
 ```
 
-NEXT_COMMAND=INSTALL_R3_AND_VERIFY_EXISTING_V12_R2_RUN
-
-Still not globally proven:
+Canonical interpretation:
 
 ```text
-SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
+Sigma Native diversity pool generated two distinct evidence-derived alternatives
+→ Sigma Native feedback controller evaluated the active adapted research collection through V6→V7→V8
+→ Sigma compared downstream support outcome against the baseline using explicit tested metrics
+→ Sigma emitted KEEP_QUERY_PATTERN
+→ successful query pattern was persisted only after that Sigma decision
+→ host did not score or compose queries
+→ no USER/GPT approval gate existed between research cycles
+```
+
+Claim boundary:
+
+```text
+QUERY_OUTCOME_FEEDBACK=PASS_TESTED_SCOPE
+QUERY_DIVERSITY=PASS_TESTED_SCOPE
+SUCCESSFUL_QUERY_PATTERN_MEMORY=PASS_TESTED_SCOPE
 BEST_KEYWORD_SELECTION=NOT_PROVEN
+SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
 ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
@@ -198,3 +188,40 @@ CONFLICT_DETECTION=NOT_PROVEN
 DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
+
+## CURRENT FRONTIER — V13
+
+V12 reached `KEEP_QUERY_PATTERN` under the explicit support-improvement policy and produced a winner support run. Therefore the next useful cognitive frontier is no longer query adaptation. Sigma now needs to inspect supported material across sources and distinguish agreement, disagreement/conflict, and insufficient-comparability before durable knowledge admission.
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION_V13
+CURRENT_STATUS=V12_CANONICAL_PASS_V13_NOT_BUILT
+```
+
+V13 target:
+
+```text
+winner V12 support run
++ grounded supported candidate/bindings
++ source provenance
+→ Sigma Native evidence-comparison engine
+→ observe comparable propositions/surfaces across distinct sources
+→ classify first tested scope as AGREEMENT / CONFLICT / INSUFFICIENT_COMPARABILITY / UNKNOWN
+→ preserve source-level bindings and exact evidence paths
+→ do not declare truth merely from majority or frequency
+```
+
+Governance:
+
+```text
+CONFLICT_DECISION_PLANE=SIGMA_NATIVE_VM
+HOST_SEMANTIC_COMPARISON=NO
+HOST_TRUTH_DECISION=NO
+MAJORITY_EQUALS_TRUTH=NO
+UNKNOWN_STAYS_UNKNOWN=YES
+INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
+```
+
+Only after V13 evidence comparison is proven should durable knowledge admission/storage be built.
+
+NEXT_COMMAND=BUILD_V13_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION
