@@ -4,7 +4,7 @@ STATUS_DATE=2026-09-02
 BRANCH=SIGMA_LIFE
 CANONICAL_FOR_NEXT_WINDOWS=YES
 
-## START RULE
+## START / CONTINUITY RULE
 
 ```text
 NO_BROAD_RESCAN=YES
@@ -16,26 +16,20 @@ CLAIM<=EVIDENCE
 GPT_RUNTIME_ROLE=NONE
 HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
-```
-
-## CONTINUITY GUARD
-
-```text
 READ_CHECKPOINT_BEFORE_GIVING_NEXT_SIGMA_DEVELOPMENT_STEP=YES
 GPT_MUST_NOT_PRETEND_CONTEXT_IS_COMPLETE_IF_UNCERTAIN=YES
 GPT_MUST_EXPLICITLY_TELL_HUMAN_IF_PROJECT_DIRECTION_OR_REQUIRED_HISTORY_SEEMS_MISSING=YES
-HUMAN_CAN_REANCHOR_GPT_TO_CHECKPOINT=YES
 DO_NOT_SILENTLY_INVENT_MISSING_SIGMA_HISTORY=YES
 PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 ```
 
-If active context is incomplete, contradictory, or insufficient to preserve the established SIGMA path, GPT must say so explicitly before proposing a new frontier or architecture change. GitHub checkpoint is the external continuity anchor.
+If context is incomplete, contradictory, or insufficient to preserve the established SIGMA path, say so before proposing a new frontier or architecture change.
 
 ## NORTH STAR
 
 SIGMA autonomously identifies knowledge gaps, chooses what to study, creates/selects Sigma-owned research surfaces, searches the Internet, reads results, assesses evidence, researches more when needed, compares sources, preserves uncertainty/conflict, forms durable knowledge only when warranted, classifies/dedups/versions/stores/backups/verifies it, and chooses the next gap.
 
-Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Raw evidence, Sigma-derived views, Sigma semantic compression, hashes/provenance/versioning, checkpointing and recovery remain distinct layers. Semantic compression/knowledge decisions stay in Sigma; host compression/index/hash/filesystem operations stay mechanical.
+Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Raw evidence, Sigma-derived views, Sigma semantic compression, hashes/provenance/versioning, checkpoint/recovery remain distinct layers. Semantic compression and knowledge decisions stay in Sigma; host compression/index/hash/filesystem/process/network operations stay mechanical.
 
 ## PRESERVE LOCK
 
@@ -72,7 +66,7 @@ SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY=PASS_TESTED_SCOPE
 ```
 
-## CANONICAL INPUTS
+## CANONICAL INPUT
 
 ```text
 V15_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/fresh_query_gap_expansions/20260902T095342Z_10290_2019
@@ -101,38 +95,19 @@ V16_R3_REASON=NO_NOVEL_OUTCOME_CONDITIONED_CANDIDATE
 V16_R3_PLANNER_STATE=CANDIDATE_SPACE_EXHAUSTED
 V16_R3_SIGMA_CRASH=NO
 V16_R3_NARROW_POLICY_EXHAUSTION=YES
+
+V16_R4_FIRST_INSTALL_FAILURE=FAIL_SIGMA_V16_COMPILE
+V16_R4_ROOT_CAUSE=INVALID_INTERIOR_HASH_COMMENT_SYNTAX_IN_SIGMA_SOURCE
+V16_R4_SIGMA_VM_EXECUTED=NO
+V16_R4_LIVE_INTERNET_EXECUTED=NO
 ```
 
-R3 established that increasing the old 2-cycle count alone cannot solve candidate-space exhaustion because planner invocation 1 had zero executable candidate.
-
-## V16 R4 FIRST OPPO INSTALL QA — FAILURE PRESERVE
+## V16 R4R1 INSTALL/COMPILE QA — PASS
 
 ```text
-FAILURE_CLASS=FAIL_SIGMA_V16_COMPILE
-SIGMAC_DIAGNOSTIC=line_218_col_5_expected_closing_brace_token_hash
-ROOT_CAUSE=INVALID_INTERIOR_HASH_COMMENT_SYNTAX_IN_SIGMA_SOURCE
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-```
-
-Three nonsemantic interior `#` comment lines inserted by GPT caused the source compile failure. This was a source-syntax defect, not Sigma cognition evidence.
-
-## V16 R4R1 OPPO INSTALL/COMPILE QA — CANONICAL PASS
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
-CURRENT_STATUS=V16_R4R1_OPPO_INSTALL_COMPILE_QA_PASS_READY_FOR_LIVE
 V16_R4R1_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R19R4R1_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_BROADER_SEARCH_SPACE_COMPILE_REPAIR
-V16_R4R1_INSTALLER_SHA256=754398cc97e96c1249f7fbdb12b8f37cf155c228838a0f58c84808c6cab5fea8
-R4_FAILED_INSTALL_EVIDENCE=PRESERVE
-REPAIR_SCOPE=REMOVE_THREE_NONSEMANTIC_INTERIOR_HASH_COMMENT_LINES_ONLY
-SIGMA_DECISION_LOGIC_CHANGE=NO
-SIGMA_CANDIDATE_POLICY_CHANGE=NO
-HOST_BEHAVIOR_CHANGE=NO
+INSTALL_QA_RESULT=PASS
 SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
-BASH_SYNTAX_QA=PASS
-OUTCOME_MEMORY_PYTHON_SYNTAX_QA=PASS
-EVOLUTION_VERIFIER_PYTHON_SYNTAX_QA=PASS
 R4_BROADER_TOKEN_POOL_QA=PASS
 FIXED_TWO_CYCLE_SIGMA_LIMIT_REMOVED_QA=PASS
 TERMINAL_STATE_SEMANTICS_QA=PASS
@@ -140,10 +115,6 @@ HOST_RESOURCE_OBSERVATION_BINDING_QA=PASS
 UNION_TOOL_PATH_BINDING_QA=PASS
 HISTORICAL_LEDGER_NAMESPACE_ISOLATION_QA=PASS
 QUERY_SURFACE_CANONICALIZATION_QA=PASS
-INSTALL_QA_RESULT=PASS
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-READY_TO_RUN_V16_OUTCOME_CONDITIONED_QUERY_EVOLUTION=YES
 ```
 
 ## V16 R4R1 TESTED DESIGN
@@ -158,10 +129,39 @@ MAX_OUTCOME_EVOLUTION_CYCLES=REMOVED_AS_SIGMA_SEMANTIC_LIMIT
 HOST_LIVE_RESEARCH_ACTION_BUDGET=4
 HOST_LIVE_RESEARCH_ACTION_BUDGET_ROLE=MECHANICAL_TEST_SAFETY_ONLY
 CANDIDATE_SPACE_EXHAUSTION_DISTINCT_FROM_RESOURCE_BOUND=YES
-SIGMA_DECIDES_RESEARCH_MORE_WITHIN_AVAILABLE_TEST_RESOURCES=YES
 ```
 
-The 4-action ceiling is a temporary mechanical live-test safety budget while widening the curriculum, not a semantic autonomy rule. Long term, host limits should reflect actual CPU/network/storage/time/battery/thermal conditions and return those as observations to Sigma.
+The 4-action ceiling is temporary live-test mechanical safety, not a semantic autonomy rule.
+
+## V16 R4R1 LIVE — DRIVER PASS, VERIFIER FAIL PENDING TARGETED DIAGNOSIS
+
+Observed wrapper output:
+
+```text
+V16_R4R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/outcome_conditioned_query_evolutions/20260902T152654Z_24932_4214
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=1
+VERIFY_FAILURE_COUNT=3
+FAILURE_CLASS=FAIL_INDEPENDENT_VERIFICATION
+FIXED_TWO_CYCLE_AUTONOMY_LIMIT=REMOVED
+HOST_LIVE_RESEARCH_ACTION_BUDGET=4
+SIGMA_TOKEN_POOL_MAX=12
+SIGMA_MAX_CANDIDATE_SURFACES=78
+```
+
+Canonical interpretation at this point:
+
+```text
+V16_R4R1_RUNTIME_COMPLETED=YES
+V16_R4R1_DRIVER_FAILURE=NO
+V16_R4R1_POST_RUN_VERIFICATION_FAILURE=YES
+EXACT_FAILED_ASSERTIONS=PENDING_TARGETED_DIAGNOSIS
+DO_NOT_ASSUME_SAME_CAUSE_AS_R3=YES
+DO_NOT_RERUN_LIVE_INTERNET_YET=YES
+DO_NOT_OPEN_V17=YES
+```
+
+`DRIVER_RC=0` proves the R4R1 runner reached a terminal path. It does not by itself prove outcome-conditioned query evolution. The three verifier failures must be localized on the existing run before any repair or rerun.
 
 ## GOVERNANCE
 
@@ -205,4 +205,8 @@ DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-NEXT_COMMAND=RUN_V16_R4R1_LIVE_WITH_EXPLICIT_CANONICAL_V15_R2_RUN
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
+CURRENT_STATUS=V16_R4R1_DRIVER_PASS_VERIFY_FAIL_3_PENDING_TARGETED_DIAGNOSIS
+NEXT_COMMAND=RUN_V16_R4R1_TARGETED_EXISTING_RUN_DIAGNOSIS
+```
