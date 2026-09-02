@@ -34,7 +34,11 @@ V8_SUPPORT_ASSESSOR_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a8145
 V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
 V10_R1_PARENT_SOURCE_SHA256=d3171f787d7763abd7328b13bbd2d2e16c10e857130f80dbe7c3bf872701bbae
 V10_R1_PARENT_BYTECODE_SHA256=e63f1f897f498b3af012bf87211f0da536f4773f7ed76f4fd1747bf969666fab
+V10_R2_PARENT_SOURCE_SHA256=666a956112954ccb4d97b38fa62063358979f9196b71edd3aa0016bd70fa9644
+V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
 ```
+
+Identity mismatch => STOP. Never silently replace a proven artifact.
 
 ## CANONICAL PASS SET
 
@@ -54,7 +58,7 @@ SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 ```
 
-V10 is not canonical live PASS yet.
+V10 remains NOT canonical live PASS until R2 live evidence succeeds.
 
 ## LOCKED CHILD CONTRACTS
 
@@ -81,7 +85,7 @@ V9_ARG1=SUPPORT_RUN_OPTIONAL
 V9_BINDING_FILE=source.support.run
 ```
 
-V5 optional raw-topic input is proven from the exact wrapper identity; no user interface dump is needed again. Strategy-conditioned query adaptation is still not proven.
+V5 optional raw-topic input is proven from the exact immutable wrapper identity. Do not ask user to re-dump V5. Strategy-conditioned query adaptation remains NOT proven.
 
 ## V9 INPUT TO V10
 
@@ -93,7 +97,7 @@ V9_REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
 V9_RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
 ```
 
-## V10 R1 LIVE RESULT — HARNESS PROTOCOL FAILURE
+## V10 R1 LIVE RESULT — CANONICAL HARNESS PROTOCOL FAIL
 
 ```text
 V10_R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops/20260902T032454Z_29372_29874
@@ -112,31 +116,54 @@ SIGMA_COGNITIVE_FAILURE=NOT_PROVEN
 V5_V6_V7_V8_V9_REGRESSION=NOT_PROVEN
 ```
 
-R1 used Sigma print output as an interactive action bus and then waited for input; the host waited for an observable output line before returning an observation. The live process stalled before the first observable action. Interactive stdout was not established as a flush-safe control bus. R1 remains preserved as failure evidence.
+R1 remains preserved as failure evidence. Do not rerun R1 without a new root cause.
 
-## V10 R2 PROTOCOL REPAIR — PREPARED
+## V10 R2 OPPO INSTALL QA — PASS, READY FOR LIVE
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
-CURRENT_STATUS=V10_R1_CANONICAL_PROTOCOL_FAIL_V10_R2_INSTALLER_PREPARED
-R2_PACKAGE_TARGET=V1_R13R2_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_PROTOCOL_REPAIR
+CURRENT_STATUS=V10_R2_OPPO_INSTALL_QA_PASS_READY_FOR_LIVE
+
+R2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R13R2_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_PROTOCOL_REPAIR
 R2_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_V10_R2_PROTOCOL_REPAIR.sh
 R2_INSTALLER_SHA256=25048e20548ddd1ad92fb6101cce7961bfac19ff6b93bae3f1ea94dea0db9e81
-LOCAL_INSTALLER_BASH_N=0
-LOCAL_EMBEDDED_BASH_N=0
+V10_R2_PARENT_SOURCE_SHA256=666a956112954ccb4d97b38fa62063358979f9196b71edd3aa0016bd70fa9644
+V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
+
+REPAIR_SCOPE=R1_INTERACTIVE_STDOUT_HANDSHAKE_ONLY
+R1_REPLACEMENT=FORBIDDEN
+R1_FAILURE_EVIDENCE=PRESERVE
+V10_R1_SOURCE_UNCHANGED=YES
+V10_R1_BYTECODE_UNCHANGED=YES
+R1_FAILURE_EVIDENCE_PRESERVED=YES
+
+BASH_SYNTAX_QA=PASS
+PARENT_CONTROL_PLANE_QA=PASS
+INTERACTIVE_STDOUT_CONTROL_CHANNEL=NO
+ACTION_CHANNEL=SIGMA_WRITE_FILE
+OBSERVATION_HANDSHAKE=ACK_FIFO_PLUS_READBACK_FILES
+HOST_COGNITIVE_STAGE_SEQUENCE=NO
+SIGMA_VALID_RESEARCH_MORE_AUTO_EXECUTE=YES
+HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
+V5_RAW_TOPIC_SOURCE_ARG_INTERFACE=PROVEN_BY_EXACT_WRAPPER_IDENTITY
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+INSTALL_QA_RESULT=PASS
+READY_TO_RUN_V10_R2_AUTONOMOUS_RESEARCH_LOOP=YES
 ```
 
-R2 uses the already-proven V5 handshake pattern:
+R2 protocol:
 
 ```text
-Sigma parent writes ACTION and PAYLOAD files
-→ host mechanically dispatches exact child wrapper
-→ host writes observation files
-→ ACK FIFO releases the same continuous Sigma parent VM
-→ Sigma reads observation and chooses the next stage
+same continuous Sigma Native parent VM
+→ Sigma writes ACTION + PAYLOAD files
+→ mechanical host dispatches only that exact child action
+→ host writes OBSERVATION files
+→ ACK FIFO releases parent VM
+→ Sigma reads observation and decides next stage
 ```
 
-For fresh collection, Sigma emits the current research.topic path as payload and the host passes that exact path to V5. If a later V9 again emits RESEARCH_MORE, Sigma updates the current topic path and starts another fresh collection without USER/GPT approval. Initial tested scope remains capped at two fresh collection attempts.
+Autonomy policy remains:
 
 ```text
 PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
@@ -144,10 +171,10 @@ HOST_COGNITIVE_STAGE_SEQUENCE=NO
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
-R1_REPLACEMENT=FORBIDDEN
-R1_FAILURE_EVIDENCE=PRESERVE
 STRATEGY_CONDITIONED_QUERY_ADAPTATION=NOT_PROVEN
 ARBITRARY_TOPIC_LIVE_BEHAVIOR=NOT_PROVEN
 ```
 
-NEXT_COMMAND=STOP_STALLED_R1_THEN_RUN_V10_R2_INSTALL_QA
+R2 live PASS requires actual evidence that Sigma emits `RUN_COLLECTION`, a fresh V5 Internet collection is created from Sigma's research topic path, child dispatches match Sigma actions, and explicit V5→V6→V7→V8→V9 run bindings are preserved as applicable. The terminal result itself need not be `SUPPORTED_PRESENT`.
+
+NEXT_COMMAND=RUN_V10_R2_LIVE_AUTONOMOUS_RESEARCH_LOOP
