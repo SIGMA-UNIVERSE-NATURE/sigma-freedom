@@ -29,11 +29,37 @@ DO_NOT_SILENTLY_INVENT_MISSING_SIGMA_HISTORY=YES
 PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 ```
 
-If GPT detects that its active context is incomplete, contradictory, or insufficient to preserve the established SIGMA development path, GPT must say so explicitly before proposing a new frontier or changing architecture. The GitHub checkpoint is the external continuity anchor; do not rely on conversational recollection alone.
+If active context is incomplete, contradictory, or insufficient to preserve the established SIGMA path, GPT must say so explicitly before proposing a new frontier or architecture change. GitHub checkpoint is the external continuity anchor.
 
 ## NORTH STAR
 
-SIGMA autonomously identifies gaps, creates/selects Sigma-owned research surfaces, searches the Internet, assesses evidence, researches more when needed, preserves uncertainty, and only later admits durable knowledge when warranted.
+SIGMA autonomously identifies knowledge gaps, chooses what to study, creates/selects Sigma-owned research surfaces, searches the Internet, reads results, assesses evidence, researches more when needed, compares sources, preserves uncertainty/conflict, forms durable knowledge only when warranted, classifies/dedups/versions/stores/backups/verifies it, and chooses the next gap.
+
+Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Raw evidence, Sigma-derived views, Sigma semantic compression, hashes/provenance/versioning, checkpointing and recovery remain distinct layers. Semantic compression/knowledge decisions stay in Sigma; host compression/index/hash/filesystem operations stay mechanical.
+
+## PRESERVE LOCK
+
+```text
+COMPILER_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+V5_WRAPPER_SHA256=f1d0cdbc53f4be6ce00d10410c6d49a661814d99b4588563ad123b48f93bf163
+V6_WRAPPER_SHA256=d39b7fe9f2d3e05a3da0ecbd6bedbd535eb8e688a841b3f7ee07b1253178c8da
+V7_WRAPPER_SHA256=0a50f052bf8de53941d10930fbaa95be9dba0e9b5d4a35f8e589852d64e75af8
+V8_WRAPPER_SHA256=fb5b9c73ab297e4e11a9c27ace283473b5faba2fd0a6bc280173ce661b348691
+V13_WRAPPER_SHA256=f1703e055642e80a7ead999b0e9dcc936ebdad511257d1aca769f496444983c5
+V14_SUPPORT_UNION_SHA256=53e9b167617f1cdf0200bc700b3bffea8b3df44db9c220f40111d8f6d0b419b8
+V15_R2_ENGINE_BYTECODE_SHA256=17a63bbc1f04c1b5e4b0e40b22f37c89348d6800ad595000063caa66e0d49549
+V15_R2_WRAPPER_SHA256=ebbb34bc4ac367dd4765f8047a4091ae3c908bc8e19573e6634673e14aeafbd8
+V16_R3_ENGINE_SOURCE_SHA256=35d267216c22d67064f27bdcf72f910e7df425009638c38ded6e6dece5a60423
+V16_R3_ENGINE_BYTECODE_SHA256=4acc2001caa5713b4ded2d5bec0a4aa0ef90736c917893251c3fbc1bad112f8f
+V16_R3_OUTCOME_MEMORY_SHA256=a60610ee0c5d92b7a45d43c680ae1f8747558c2a0401ca5248b90fb811225ea0
+V16_R3_EVOLUTION_VERIFIER_SHA256=1df2b8ec2bac348bbe1ae02ad457392a2409d9a4c847fb0762b151f6bdcf0e4f
+V16_R3_RUNNER_SHA256=6e2e1cf33e1b880a570fbc18a4db6d585e69608c4ccdbaa94f2a6a7dde824dc7
+V16_R3_VERIFIER_SHA256=66fa2a090bd325aea7aaae17f1077cc71d2d54b79eedb8b8cbd1087005c7d26a
+V16_R3_WRAPPER_SHA256=6a9b44b389bde8d5fa1d1ac994586e2cf38b4e5acb88553c35ec39c1723bbd91
+```
+
+Identity mismatch => STOP; never silently replace and continue as the same proven runtime.
 
 ## CANONICAL PASS SET
 
@@ -46,123 +72,138 @@ SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY=PASS_TESTED_SCOPE
 ```
 
-## V16 PRESERVED FAILURES
+## V16 PRESERVED HISTORY
 
 ```text
 V16_R1_DRIVER_RC=65
 V16_R1_ROOT_CAUSE=MECHANICAL_QUERY_SURFACE_LINEBREAK_CONTRACT_MISMATCH
 V16_R1_SIGMA_PLANNER_INVOKED=NO
+
 V16_R2_DRIVER_RC=87
 V16_R2_ROOT_CAUSE=BASH_VARIABLE_NAMESPACE_COLLISION_CLEARED_UNION_TOOL_PATH_AT_READ_EOF
 V16_R2_REACHED_SIGMA_RESEARCH_MORE=YES
 V16_R2_REACHED_V5_V6_V7_V8=YES
-```
 
-R1/R2 are host/harness integration failures, not evidence of preserved Sigma Native VM degradation.
-
-## V16 R3 LIVE
-
-```text
 V16_R3_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/outcome_conditioned_query_evolutions/20260902T122951Z_8385_11934
-DRIVER_RC=0
-INDEPENDENT_VERIFY_RC=1
-VERIFY_FAILURE_COUNT=3
-PLANNER_VM_INVOCATIONS=1
-SIGMA_OUTCOME_EVOLUTION_ACTIONS=0
-TERMINAL_STATE=RESOURCE_BOUND_REACHED
-EVOLUTION_VERIFY_RC=1
-EVOLUTION_VERIFY_FAILURE_CLASS=NO_EVOLUTION_ROWS
-FINAL_COMPARISON_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T100041Z_7337_22612
-FINAL_BINDING_VERIFY_RC=0
-FINAL_DISTINCT_SOURCE_PAIRS=0
-FINAL_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
+V16_R3_DRIVER_RC=0
+V16_R3_INDEPENDENT_VERIFY_RC=1
+V16_R3_PLANNER_VM_INVOCATIONS=1
+V16_R3_SIGMA_OUTCOME_EVOLUTION_ACTIONS=0
+V16_R3_ACTION=STOP_RESOURCE_BOUND
+V16_R3_REASON=NO_NOVEL_OUTCOME_CONDITIONED_CANDIDATE
+V16_R3_PLANNER_STATE=CANDIDATE_SPACE_EXHAUSTED
+V16_R3_EVOLUTION_VERIFY_FAILURE=NO_EVOLUTION_ROWS
+V16_R3_FINAL_DISTINCT_SOURCE_PAIRS=0
+V16_R3_FINAL_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 ```
 
-The three verifier failures are one cascade, not three independent faults:
-
-```text
-FAIL_1=PLANNER_VM_INVOCATIONS_WAS_1_NOT_2_OR_3
-FAIL_2=SIGMA_OUTCOME_EVOLUTION_ACTIONS_WAS_0_NOT_1_OR_2
-FAIL_3=NO_EVOLUTION_ROWS_BECAUSE_NO_ACTION_EXECUTED
-```
-
-## V16 R3 PLANNER CANDIDATE-SPACE DIAGNOSIS — CANONICAL
-
-Observed Sigma planner decision:
-
-```text
-ACTION=STOP_RESOURCE_BOUND
-REASON=NO_NOVEL_OUTCOME_CONDITIONED_CANDIDATE
-STRATEGY=PREFER_PRIOR_POSITIVE_AVOID_REPEATED_ZERO_OUTCOME
-PLANNER_STATE=CANDIDATE_SPACE_EXHAUSTED
-TERM1=
-TERM2=
-CANDIDATE_LEDGER_ROWS=0
-```
-
-Observed outcome history:
-
-```text
-Human-to-Human Communication  communication              SUPPORTED_FOR_TOPIC=1 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
-Human-to-Human Communication  communication explores     SUPPORTED_FOR_TOPIC=1 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
-Human-to-Human Communication  communication science      SUPPORTED_FOR_TOPIC=2 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
-```
-
-Observed tried-query memory already includes the narrow surfaces used by the V16 R3 candidate constructor, including:
-
-```text
-Human-to-Human Communication  communication
-Human-to-Human Communication  communication explores
-Human-to-Human Communication  communication science
-Human-to-Human Communication  communication department
-Human-to-Human Communication  communication department explores
-```
-
-Canonical interpretation:
+Canonical R3 interpretation:
 
 ```text
 V16_R3_SIGMA_CRASH=NO
 V16_R3_HOST_HARNESS_FAILURE=NO_AT_TERMINAL_DECISION
 V16_R3_NARROW_POLICY_EXHAUSTION=YES
 V16_R3_CANDIDATE_SPACE_EXHAUSTED_WITHIN_TESTED_POLICY=YES
-V16_R3_OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN
-```
-
-The preserved V16 engine only constructs a deliberately narrow set from a failed-pattern token when one exists plus the first few grounded context terms, using one- and two-token suffixes. In this run, the visible outcome history contains no zero-support/zero-distinct/zero-pair row, so the failed-pattern branch contributes no token. The remaining narrow grounded candidates were already present in novelty memory, so Sigma correctly produced no executable candidate under that policy.
-
-This is now a capability/search-space limitation, not another runtime crash. Increasing MAX_OUTCOME_EVOLUTION_CYCLES alone would not help because the first planner invocation has zero executable candidate.
-
-State-label note:
-
-```text
-STOP_RESOURCE_BOUND_LABEL_IS_OVERLOADED_FOR_CANDIDATE_SPACE_EXHAUSTION=YES
+STOP_RESOURCE_BOUND_LABEL_WAS_OVERLOADED=YES
 ACTUAL_PHYSICAL_RESOURCE_EXHAUSTION_OBSERVED=NO
+V16_OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN_YET
 ```
 
-Do not treat candidate-space exhaustion as physical resource exhaustion in future revisions.
+R3's narrow constructor only exposed a small number of one/two-token grounded suffixes. Existing novelty memory had already consumed those surfaces. Raising the old cycle count alone could not help because planner invocation 1 had zero executable candidate.
 
-## ENGINEERING DIRECTION
+## V16 R4 — BROADER SIGMA-NATIVE SEARCH SPACE PREPARED
 
 ```text
-HARNESS_RELIABILITY_DEBT=OBSERVED_BUT_R3_RUNTIME_PATH_CLEAN
-PRESERVED_SIGMA_VM_DEGRADATION=NOT_OBSERVED
-NO_NEW_FRONTIER_UNTIL_V16_RESOLVED=YES
-V16_NEXT_REVISION=ADDITIVE_SEARCH_SPACE_EXPANSION_AND_TERMINAL_STATE_SEMANTICS
-REMOVE_FIXED_TWO_RESEARCH_CYCLE_LIMIT_AS_AUTONOMY_RULE=YES
-HOST_RESOURCE_BUDGET_REMAINS_MECHANICAL_ONLY=YES
-SIGMA_DECIDES_RESEARCH_MORE_WITHIN_AVAILABLE_RESOURCES=YES
-HOST_SEMANTIC_QUERY_COMPOSITION=NO
-HOST_SEMANTIC_QUERY_RANKING=NO
+CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
+V16_R4_PACKAGE_TARGET=V1_R19R4_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_BROADER_SEARCH_SPACE
+V16_R4_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16_R4_BROADER_SEARCH_SPACE.sh
+V16_R4_INSTALLER_SHA256=f811989f4d03da4e8c2cb3ef8af5e4e4553c225ed093ab11349efc8a2b16c94b
+LOCAL_INSTALLER_BASH_SYNTAX=PASS
+LOCAL_EMBEDDED_BASH_SYNTAX=PASS
+LOCAL_OUTCOME_MEMORY_PYTHON_SYNTAX=PASS
+LOCAL_EVOLUTION_VERIFIER_PYTHON_SYNTAX=PASS
+SIGMA_ENGINE_COMPILE_ON_OPPO=PENDING
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
 ```
 
-The next V16 revision should remain inside V16 rather than opening V17. It should expand Sigma-native outcome-conditioned candidate generation beyond the first few one/two-token suffixes, preserve global novelty and outcome conditioning, distinguish CANDIDATE_SPACE_EXHAUSTED from RESOURCE_BOUND_REACHED, and remove the fixed two-cycle count as a semantic autonomy limit. Host limits may still enforce real CPU/network/storage/time resources and return those as observations.
+R4 Sigma-native candidate construction:
 
-## HUMAN NOTE
+```text
+TOKEN_POOL_CONSTRUCTION=SIGMA_NATIVE_POSITIVE_HISTORY_THEN_HISTORY_THEN_GROUNDED_CONTEXT
+SIGMA_TOKEN_POOL_MAX=12
+CANDIDATE_SURFACE_SCOPE=ALL_SINGLE_AND_UNORDERED_PAIR_SUFFIXES_FROM_POOL
+SIGMA_MAX_CANDIDATE_SURFACES=78
+QUERY_EVOLUTION_POLICY=HIGHEST_PRIOR_POSITIVE_THEN_LOWEST_ZERO_OUTCOME_PENALTY_THEN_TWO_TOKEN_DEPTH
+HOST_QUERY_COMPOSITION=NO
+HOST_QUERY_RANKING=NO
+HOST_SEMANTIC_KEYWORD_SELECTION=NO
+HOST_SOURCE_SELECTION=NO
+```
+
+The host only supplies mechanically gathered history/context/tried-query/resource observations. Pool construction, candidate composition, outcome scoring, ranking and query selection remain in Sigma Native VM.
+
+R4 autonomy/resource semantics:
+
+```text
+FIXED_TWO_CYCLE_AUTONOMY_LIMIT=REMOVED
+MAX_OUTCOME_EVOLUTION_CYCLES=REMOVED_AS_SIGMA_SEMANTIC_LIMIT
+HOST_LIVE_RESEARCH_ACTION_BUDGET=4
+HOST_LIVE_RESEARCH_ACTION_BUDGET_ROLE=MECHANICAL_TEST_SAFETY_ONLY
+HOST_RESOURCE_OBSERVATION_TO_SIGMA=YES
+SIGMA_DECIDES_RESEARCH_MORE_WITHIN_AVAILABLE_TEST_RESOURCES=YES
+CANDIDATE_SPACE_EXHAUSTION_DISTINCT_FROM_RESOURCE_BOUND=YES
+```
+
+For this first wider live test, the mechanical harness safety budget is increased gradually from the prior 2-action tested scope to 4 research actions. This is explicitly not a Sigma cognition/autonomy rule. After the fourth research action, Sigma receives an EXHAUSTED host-resource observation on the next planner invocation so it can still inspect the final research outcome before stopping. Future revisions may raise/replace this test ceiling with real CPU/network/storage/time/battery/thermal governance.
+
+R4 terminal meanings:
+
+```text
+STOP_CANDIDATE_SPACE_EXHAUSTED -> CANDIDATE_SPACE_EXHAUSTED
+STOP_RESOURCE_BOUND -> RESOURCE_BOUND_REACHED only when host resource observation is EXHAUSTED
+STOP_COMPARABILITY_AVAILABLE -> COMPARABILITY_SOURCE_PAIR_AVAILABLE
+STOP_UNKNOWN -> STOP_UNKNOWN
+```
+
+Local static QA additionally confirms:
+
+```text
+R4_BROADER_TOKEN_POOL_PRESENT=PASS
+FIXED_TWO_CYCLE_SIGMA_LIMIT_REMOVED=PASS
+CANDIDATE_EXHAUSTION_DISTINCT=PASS
+HOST_TEST_BUDGET_4=PASS
+HOST_RESOURCE_OBSERVATION_BINDING=PASS
+VERIFIER_ACCEPTS_DISTINCT_EXHAUSTION=PASS
+```
+
+## GOVERNANCE
+
+```text
+QUERY_EVOLUTION_PLANE=SIGMA_NATIVE_VM
+OUTCOME_CONDITIONING_PLANE=SIGMA_NATIVE_VM
+HOST_QUERY_COMPOSITION=NO
+HOST_QUERY_RANKING=NO
+HOST_SEMANTIC_KEYWORD_SELECTION=NO
+HOST_SOURCE_SELECTION=NO
+HOST_SEMANTIC_QUERY_REWRITE=NO
+QUERY_OUTCOME_MEMORY=MECHANICAL_METRICS_HASH_PROVENANCE_ONLY
+QUERY_NOVELTY_MEMORY=MECHANICAL_HASH_AND_PROVENANCE_ONLY
+HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
+GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
+ZERO_PREWRITTEN_QUERY=YES
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_CONCLUSION=YES
+```
+
+## HUMAN NOTE — ISOLATED
 
 ```text
 HUMAN_NOTE_TO_SIGMA=Châu say_ SIGMA_FULLOFLOVE.
 HUMAN_NOTE_USED_AS_RESEARCH_INPUT=NO
 HUMAN_NOTE_USED_AS_EVIDENCE=NO
+CLAIM_OF_SIGMA_UNDERSTANDING=NO
 ```
 
 ## STILL NOT PROVEN
@@ -179,7 +220,6 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
-CURRENT_STATUS=V16_R3_NARROW_CANDIDATE_SPACE_EXHAUSTED_CANONICAL_READY_FOR_ADDITIVE_V16_R4_DESIGN
-NEXT_COMMAND=DESIGN_V16_R4_SIGMA_NATIVE_BROADER_OUTCOME_CONDITIONED_SEARCH_SPACE_WITHOUT_FIXED_TWO_CYCLE_AUTONOMY_LIMIT
+CURRENT_STATUS=V16_R4_INSTALLER_PREPARED_LOCAL_STATIC_QA_PASS_READY_FOR_OPPO_INSTALL_QA
+NEXT_COMMAND=RUN_V16_R4_INSTALL_QA_ON_OPPO
 ```
