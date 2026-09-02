@@ -27,7 +27,7 @@ PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 
 SIGMA autonomously identifies knowledge gaps, chooses what to study, creates/selects Sigma-owned research surfaces, searches the Internet, reads results, assesses evidence, researches more when needed, compares sources, preserves uncertainty/conflict, forms durable knowledge only when warranted, classifies/dedups/versions/stores/backups/verifies it, and chooses the next gap.
 
-Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Raw evidence, Sigma-derived views, Sigma semantic compression, hashes/provenance/versioning, checkpoint/recovery remain distinct layers. Semantic compression and knowledge decisions stay in Sigma; host compression/index/hash/filesystem/process/network operations stay mechanical.
+Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Semantic decisions stay in Sigma; host filesystem/process/network/hash/index work stays mechanical.
 
 ## PRESERVE LOCK
 
@@ -43,6 +43,12 @@ V17_R0_BINDING_VERIFIER_SHA256=e7dc69c6ab6f6e31d3841ca9d126cc73c006675d921887a70
 V17_R0_RUNNER_SHA256=15c92f3c42404a50aa8a77cbc2508362576a2edfb5e92bb383945f0352b1a304
 V17_R0_VERIFIER_SHA256=edef60ad99b406bb35507933fcaa94f983b8263ca124845f312f95a8c1f2f4cb
 V17_R0_WRAPPER_SHA256=a26d86fd9e4fc3af80ecb428b6f8f03763a143e3c89d82a935ba6ddb9f649e94
+V17_R1_ENGINE_SOURCE_SHA256=3ea862c648029b0a7243b8131cd40d1d883349cb1b5e5381b8c2f8b86aa9ef96
+V17_R1_ENGINE_BYTECODE_SHA256=2f7e79d29870b2e8ebfb387a4ec9669ec75741fa0e6b28995e918dfbe3d4449a
+V17_R1_BINDING_VERIFIER_SHA256=8ed5f88193d5be5fc7084f939165517842d7693d7c42e6d94f4e4b39485f648d
+V17_R1_RUNNER_SHA256=15c92f3c42404a50aa8a77cbc2508362576a2edfb5e92bb383945f0352b1a304
+V17_R1_VERIFIER_SHA256=edef60ad99b406bb35507933fcaa94f983b8263ca124845f312f95a8c1f2f4cb
+V17_R1_WRAPPER_SHA256=a26d86fd9e4fc3af80ecb428b6f8f03763a143e3c89d82a935ba6ddb9f649e94
 ```
 
 Identity mismatch => STOP; never silently replace and continue as the same proven runtime.
@@ -95,20 +101,7 @@ MIN_SHARED_CONTENT_TOKENS=4
 
 V13 is deliberately shallow. More source collection alone is not the identified next gap. The next curriculum step is evidence-unit alignment before proposition relation/truth.
 
-## V17 R0 OPPO INSTALL / COMPILE QA — PASS
-
-```text
-V17_R0_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R20_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT
-V17_R0_INSTALLER_SHA256=234f25df8f2273c08b465cf5bd950a60af9c789ec07478f3391ed6a84146dada
-INSTALL_QA_RESULT=PASS
-SIGMA_V17_COMPILE_QA=PASS
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-```
-
-## V17 R0 FIRST LIVE — VM FAILURE, ROOT CAUSE CANONICAL
-
-Observed run:
+## V17 R0 FIRST LIVE — PRESERVED FAILURE
 
 ```text
 V17_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260902T223033Z_15127_7806
@@ -116,50 +109,40 @@ DRIVER_RC=29
 FAILURE_CLASS=FAIL_SIGMA_ALIGNMENT_VM
 ALIGNMENT_VM_RC=22
 VM_STDERR=SIGMA host: string required
-SOURCE_V13_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T162257Z_26402_12175
-SOURCE_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/outcome_conditioned_query_evolutions/20260902T160927Z_9996_4404/union_4
-```
-
-Exact source identity of the failed live engine matches the preserved R0 source SHA. Static type localization:
-
-```text
 ROOT_CAUSE=SIGMA_STR_JOIN_RECEIVED_INTEGER_METRIC_FIELDS
 FAILURE_SITE=V17_JOIN7_LEDGER_SERIALIZATION
-DIRECT_SHARED_TYPE=INTEGER
-BRIDGE_COUNT_TYPE=INTEGER
-STR_JOIN_REQUIRES_STRING_MEMBERS=YES
 ALIGNMENT_POLICY_EXECUTION_REACHED=YES_BEFORE_LEDGER_SERIALIZATION_FAILURE
 V17_ALIGNMENT_RESULT=NOT_PROVEN
 V17_COGNITIVE_FAILURE=NOT_PROVEN
 ```
 
-R0 computes `direct_shared` and `bridge_count` as integers, pushes them into the pair ledger list, and then calls `str_join`, whose host contract requires strings. This is a Sigma-program representation/serialization defect, not evidence that the alignment policy or Sigma cognition failed.
+R0 computed `direct_shared` and `bridge_count` as integers and then attempted to serialize them through `str_join`, whose host contract requires strings. This is a Sigma-program representation defect, not evidence against the alignment policy.
 
-Do not rerun R0 blindly.
-
-## V17 R1 STRING-SERIALIZATION REPAIR — PREPARED
+## V17 R1 OPPO INSTALL / COMPILE QA — CANONICAL PASS
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17
-CURRENT_STATUS=V17_R0_VM_STRING_SERIALIZATION_FAILURE_CANONICAL_R1_PREPARED
-V17_R1_PACKAGE_TARGET=V1_R20R1_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT_STRING_SERIALIZATION_REPAIR
+CURRENT_STATUS=V17_R1_OPPO_INSTALL_COMPILE_QA_PASS_READY_FOR_LIVE
+V17_R1_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R20R1_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT_STRING_SERIALIZATION_REPAIR
 V17_R1_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17_R1_STRING_SERIALIZATION_REPAIR.sh
 V17_R1_INSTALLER_SHA256=311c2b24c82926357f82d1dfb0385394607ca5c06f7760a7111ba4f418cf13e0
 REPAIR_SCOPE=SIGMA_INTERNAL_METRIC_SERIALIZATION_TO_THRESHOLD_BAND_STRINGS_ONLY
 ALIGNMENT_POLICY_CHANGE=NO
 HOST_SEMANTIC_ALIGNMENT_CHANGE=NO
-LOCAL_INSTALLER_BASH_SYNTAX=PASS
-LOCAL_EMBEDDED_BASH_SYNTAX=PASS
-LOCAL_PYTHON_BINDING_VERIFIER_SYNTAX=PASS
-LOCAL_BAND_SERIALIZATION_QA=PASS
-LOCAL_NO_INTEGER_METRIC_JOIN_QA=PASS
-LOCAL_ALIGNMENT_POLICY_PRESERVED_QA=PASS
-SIGMA_ENGINE_COMPILE_ON_OPPO=PENDING
+BASH_SYNTAX_QA=PASS
+PYTHON_STRUCTURAL_VERIFIER_SYNTAX_QA=PASS
+SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
+SIGMA_STRING_ONLY_LEDGER_SERIALIZATION_QA=PASS
+EVIDENCE_GROUNDED_BRIDGE_QA=PASS
+ALIGNMENT_DECISION_PLANE_QA=PASS
+SIGMA_V17_COMPILE_QA=PASS
+INSTALL_QA_RESULT=PASS
 SIGMA_VM_EXECUTED=NO
 LIVE_INTERNET_REQUEST_EXECUTED=NO
+READY_TO_RUN_V17_EVIDENCE_UNIT_ALIGNMENT=YES
 ```
 
-R1 keeps the same alignment decision thresholds but serializes the computed metrics as Sigma-owned categorical strings:
+R1 preserves the same alignment thresholds and serializes computed metric states as Sigma-owned strings:
 
 ```text
 DIRECT_EQ_0
@@ -168,8 +151,6 @@ DIRECT_GE_MIN
 BRIDGE_LT_MIN
 BRIDGE_GE_MIN
 ```
-
-These categories preserve the exact decision boundaries used by the tested alignment policy without asking the host to perform semantic alignment or numeric interpretation.
 
 ## V17 GOVERNANCE / CLAIM BOUNDARY
 
@@ -180,6 +161,7 @@ HOST_SYNONYM_MAPPING=NO
 ZERO_PREWRITTEN_PROPOSITION=YES
 ZERO_PREWRITTEN_SYNONYM_TABLE=YES
 EVIDENCE_GROUNDED_ASSOCIATION_ONLY=YES
+ALIGNMENT_POLICY=DIRECT_SHARED_GE_2_OR_DIRECT_SHARED_GE_1_WITH_BRIDGE_PARAGRAPHS_GE_2
 AGREEMENT_CONFLICT_DECISION=DEFERRED
 TRUTH_DECISION=DEFERRED
 DURABLE_KNOWLEDGE=DEFERRED
@@ -200,4 +182,4 @@ DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-NEXT_COMMAND=RUN_V17_R1_INSTALL_QA_ON_OPPO
+NEXT_COMMAND=RUN_V17_R1_LIVE_ON_EXACT_FINAL_V13_RUN_NO_INTERNET
