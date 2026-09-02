@@ -20,8 +20,6 @@ HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
-A fresh window reads this file first and continues only from `CURRENT_STATUS` / `NEXT_COMMAND`.
-
 ## PRESERVE LOCK
 
 ```text
@@ -30,7 +28,6 @@ VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 HTTP_BRIDGE_SHA256=d7dcc121dbd4611ea5f2cf677f5ec08567b8a03ba11ae57ba4c1624b3f638d1e
 QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f383d5e1da6487f11e97c4b6a
 LESSON_READER_SHA256=ba2faf7bddb81789b3fbccff96bdf8f3c2021d0db252d7e8ef38dc92b182994c
-V4_SOURCE_SELECTOR_SHA256=a37c1c2de9dabedce36ffb25fb791301e6061e09d510e3eb19e1981e5fbad40c
 V5_MULTI_SOURCE_CONTROLLER_SHA256=2fd1cfd60203e61092d4a40bd3ee9e2ce3a350f65f86a133aeb3fb159392c62b
 V6_CORPUS_EVIDENCE_ASSESSOR_SHA256=f8cd858a1b4eaae7120154ad9d9a226d48bdb123baa26b050a50e2bbf679a13c
 V7_KNOWLEDGE_BUILDER_SHA256=3bb1243057bd445d677257e6953ad6957856b0dc202629b44468fb45fe8a730b
@@ -59,37 +56,25 @@ SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 ```
 
-V10 is installed and QA-passed but NOT YET canonical live PASS.
+V10 is installed and QA-passed but NOT canonical live PASS.
 
 ## CANONICAL RUN CHAIN
 
 ```text
 V5_COLLECTION_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260902T002658Z_2018_21848
-V5_COLLECTION_MANIFEST_SHA256=4caf5b5ab033541b85468937855a6a05b4fce7cb3181a9d66df5ce05cdb93ba5
-
 V6_ASSESSMENT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/assessments/20260902T005402Z_18194_9606
-V6_ASSESSMENT_STATE=COLLECTION_ENOUGH_FOR_NEXT_STAGE
-
 V7_KNOWLEDGE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/knowledge_candidates/20260902T015922Z_29525_18467
-V7_KNOWLEDGE_SHA256=b92377c8e3aa8233254d2f62b3cb46e593d1420be67a2778eaaa7abeb110b421
-V7_BINDINGS_SHA256=05377779a63ddb03d36c87a61c57cf7fefca071c1734be7eedcc2a4898efee3d
-
 V8_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/candidate_support_assessments/20260902T024553Z_13409_14243
 V8_SUPPORT_STATE=NO_SUPPORTED_FOR_TOPIC
 V8_TOTAL_ASSESSED=8
 V8_SUPPORTED_FOR_TOPIC=0
 V8_WEAK_SUPPORT=7
 V8_MALFORMED_SURFACE=1
-V8_RAW_BINDING_FAILURES=0
-
 V9_REPLAN_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
 V9_REPLAN_ACTION=RESEARCH_MORE
 V9_REPLAN_REASON=WEAK_SUPPORT_PRESENT_NO_SUPPORTED
 V9_REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
-V9_RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
 ```
-
-V8 negative result is valid. V9 raw origin verification proved the Sigma Native VM emitted `RESEARCH_MORE`; host did not derive it.
 
 ## LOCKED CHILD WRAPPER CONTRACTS — NEVER ASK USER AGAIN
 
@@ -102,32 +87,26 @@ V5_WRAPPER_SHA256=f1d0cdbc53f4be6ce00d10410c6d49a661814d99b4588563ad123b48f93bf1
 
 V6_WRAPPER=$BASE/V1_R9_SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSOR/99_RUN_SIGMA_NATIVE_EVIDENCE_ASSESSMENT_V6.sh
 V6_ARG1=SOURCE_COLLECTION_RUN_OPTIONAL
-V6_OUTPUT=RUN_DIR
 V6_BINDING_FILE=source.collection.run
 V6_WRAPPER_SHA256=d39b7fe9f2d3e05a3da0ecbd6bedbd535eb8e688a841b3f7ee07b1253178c8da
 
 V7_WRAPPER=$BASE/V1_R10_SIGMA_NATIVE_KNOWLEDGE_BUILDER/99_RUN_SIGMA_NATIVE_KNOWLEDGE_BUILDER_V7.sh
 V7_ARG1=ASSESSMENT_RUN_OPTIONAL
-V7_OUTPUT=RUN_DIR
 V7_BINDING_FILE=source.assessment.run
 V7_WRAPPER_SHA256=0a50f052bf8de53941d10930fbaa95be9dba0e9b5d4a35f8e589852d64e75af8
 
 V8_WRAPPER=$BASE/V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR/99_RUN_SIGMA_NATIVE_CANDIDATE_SUPPORT_V8.sh
 V8_ARG1=KNOWLEDGE_RUN_OPTIONAL
-V8_OUTPUT=RUN_DIR
 V8_BINDING_FILE=source.knowledge.run
 V8_WRAPPER_SHA256=fb5b9c73ab297e4e11a9c27ace283473b5faba2fd0a6bc280173ce661b348691
 
 V9_WRAPPER=$BASE/V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN/99_RUN_SIGMA_NATIVE_RESEARCH_REPLAN_V9.sh
 V9_ARG1=SUPPORT_RUN_OPTIONAL
-V9_OUTPUT=RUN_DIR
 V9_BINDING_FILE=source.support.run
 V9_WRAPPER_SHA256=1cb6d5e1b842c6f8b015be74e8f829d77c218895d3208cb9f95dd1b40a753de6
 ```
 
-Preferred chain always passes exact prior `RUN_DIR` as `$1`; do not rely on mutable pointers where explicit binding exists.
-
-Scope limit: V5 exposes no observed `$1` topic/query input. Current V10 may re-run V5 for the existing tested topic/configuration, but must not claim arbitrary-topic injection or strategy-conditioned query adaptation.
+Preferred chain passes the exact previous RUN_DIR as $1 where supported. V5 exposes no observed arbitrary-topic input; do not claim strategy-conditioned query adaptation.
 
 ## V10 AUTONOMY POLICY
 
@@ -140,21 +119,14 @@ PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
 HOST_COGNITIVE_STAGE_SEQUENCE=NO
 ```
 
-Host may dispatch an exact child wrapper only after the Sigma parent emits the corresponding protocol action, and may return only mechanical observations such as `RC`, `RUN_DIR`, exact state content and hashes.
-
-## V10 OPPO INSTALL QA — PASS, READY FOR LIVE
+## V10 INSTALLED QA PASS
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
-CURRENT_STATUS=V10_OPPO_INSTALL_QA_PASS_READY_FOR_LIVE
-
 PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R13_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP
-INSTALLER_FILE=INSTALL_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_V10_ADDITIVE.sh
 INSTALLER_SHA256=836309b93269f556648dc704ee411ecf70a5adc9f970b716ce92f6411fae85af
 V10_PARENT_SOURCE_SHA256=d3171f787d7763abd7328b13bbd2d2e16c10e857130f80dbe7c3bf872701bbae
 V10_PARENT_BYTECODE_SHA256=e63f1f897f498b3af012bf87211f0da536f4773f7ed76f4fd1747bf969666fab
-
-BASH_SYNTAX_QA=PASS
+INSTALL_QA_RESULT=PASS
 PARENT_CONTROL_PLANE_QA=PASS
 HOST_COGNITIVE_STAGE_SEQUENCE=NO
 SIGMA_VALID_RESEARCH_MORE_AUTO_EXECUTE=YES
@@ -164,39 +136,26 @@ PARENT_V8_UNCHANGED=YES
 PARENT_V7_UNCHANGED=YES
 PARENT_V6_UNCHANGED=YES
 PARENT_V5_UNCHANGED=YES
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-INSTALL_QA_RESULT=PASS
-READY_TO_RUN_V10_AUTONOMOUS_RESEARCH_LOOP=YES
 ```
 
-Prepared V10 architecture:
+## V10 LIVE ATTEMPT — STALLED BEFORE FIRST OBSERVED SIGMA ACTION
+
+User launched the V10 live wrapper. A separate read-only status check found:
 
 ```text
-canonical V9 RESEARCH_MORE
-→ one continuous V10 Sigma Native parent VM
-→ Sigma emits RUN_COLLECTION
-→ host mechanically invokes preserved V5
-→ Sigma receives fresh collection RUN_DIR
-→ Sigma emits RUN_V6 with exact run path
-→ host invokes preserved V6
-→ Sigma decides from V6 state
-→ Sigma emits RUN_V7 / RUN_V8 / RUN_V9 as applicable
-→ if new V9 again says RESEARCH_MORE, Sigma automatically starts another fresh V5 cycle
-→ max fresh collection attempts for initial V10 tested scope = 2
-→ no USER/GPT approval between cycles
+V10_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops/20260902T032454Z_29372_29874
+CONTROL_LEDGER_OBSERVED_LINES=0
+CHILD_LEDGER_OBSERVED_LINES=0
 ```
 
-V10 PASS must not depend on ending with supported evidence. `SUPPORTED_PRESENT`, `STOP_UNKNOWN`, or `RESOURCE_BOUND_REACHED` may all be valid terminal outcomes depending on runtime evidence. Capability PASS requires proof that Sigma controlled the stage sequence and actually triggered at least one fresh Internet collection from the V9 replan action.
+Interpretation boundary: the run directory exists, but at the observation time no Sigma parent action and no child dispatch had appeared. Therefore do NOT say Sigma is currently searching the Web. Current evidence points to a stall before the first `RUN_COLLECTION` action or before that action became observable.
+
+Do not Ctrl+C until the exact parent process/stderr state is checked unless the user chooses to abort.
 
 ```text
-STRATEGY_CONDITIONED_QUERY_ADAPTATION=NOT_PROVEN
-GENERIC_ARBITRARY_TOPIC_V5_INPUT=NOT_PROVEN
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
-SEMANTIC_UNDERSTANDING=NOT_PROVEN
-CONFLICT_DETECTION=NOT_PROVEN
-CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
+CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
+CURRENT_STATUS=V10_LIVE_STALLED_BEFORE_FIRST_ACTION_PENDING_TARGETED_DIAGNOSIS
+NEXT_COMMAND=RUN_V10_PARENT_STALL_TARGETED_DIAGNOSIS
 ```
 
-NEXT_COMMAND=RUN_V10_LIVE_AUTONOMOUS_RESEARCH_LOOP
+Targeted diagnosis only: inspect `parent.vm.ledger`, `parent.stderr`, process status, and byte counts for `parent.stdout`, `control.ledger`, `child.ledger`. Do not broad-rescan V5–V9 and do not ask the user for interface dumps again.
