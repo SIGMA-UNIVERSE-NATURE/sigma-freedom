@@ -78,6 +78,7 @@ SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
+SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=PASS_TESTED_SCOPE
 ```
 
 ## LOCKED WRAPPER CONTRACTS — NEVER ASK USER AGAIN
@@ -123,21 +124,7 @@ V13_STRUCTURAL_VERIFIER_SHA256=f5cc36043fc436b3eac15b499e85d8518269693ffd460033f
 INSTALL_QA_RESULT=PASS
 ```
 
-Governance:
-
-```text
-COMPARISON_DECISION_PLANE=SIGMA_NATIVE_VM
-HOST_SEMANTIC_COMPARISON=NO
-HOST_TRUTH_DECISION=NO
-MAJORITY_EQUALS_TRUTH=NO
-TRUTH_OF_SUPPORTED_MATERIAL=NOT_ASSESSED
-SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
-UNKNOWN_STAYS_UNKNOWN=YES
-```
-
-## V13 FIRST LIVE ATTEMPT — MECHANICAL INPUT-POINTER FAIL
-
-Observed output:
+## V13 FIRST LIVE ATTEMPT — PRESERVED MECHANICAL POINTER FAIL
 
 ```text
 RUN_DIR=
@@ -146,27 +133,87 @@ FAILURE_CLASS=FAIL_V12_RUN_MISSING
 SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=NOT_PROVEN
 ```
 
-Interpretation: failure occurred before V13 Sigma VM invocation because the no-argument runner attempted to read `$BASE/current_query_outcome_feedback.path`, but the canonical V12 R2 runtime pointer was never advanced after its original verifier failed; R3 later verified the existing run without creating that convenience pointer. This is a mechanical pointer/binding issue, not evidence of a V13 comparison-policy failure.
+This occurred before Sigma VM execution because a convenience pointer was missing. It is not a V13 comparison-policy failure. V13 was then rerun with the exact canonical V12 RUN_DIR explicitly.
 
-Do NOT rebuild V13 and do NOT rerun V12. V13 already accepts an explicit V12 run argument. Use the exact canonical V12 R2 RUN_DIR.
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION_V13
-CURRENT_STATUS=V13_FIRST_LIVE_FAIL_MISSING_CONVENIENCE_POINTER_READY_EXPLICIT_V12_BINDING
-NEXT_COMMAND=RUN_V13_LIVE_WITH_EXPLICIT_CANONICAL_V12_RUN
-```
-
-Exact resume command:
-
-```bash
-V12="/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T071222Z_12302_13559"
-"$HOME/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R16_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT/99_RUN_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_V13.sh" "$V12"
-```
-
-Still not proven:
+## V13 LIVE WITH EXPLICIT V12 BINDING — CANONICAL PASS
 
 ```text
-SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=NOT_PROVEN
+V13_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T081032Z_17490_12110
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=0
+COMPARISON_DECISION_PLANE=SIGMA_NATIVE_VM
+HOST_SEMANTIC_COMPARISON=NO
+HOST_TRUTH_DECISION=NO
+MAJORITY_EQUALS_TRUTH=NO
+SOURCE_EVIDENCE_MUTATED=NO
+BINDING_VERIFY_RC=0
+SUPPORTED_PARAGRAPHS=1
+DISTINCT_SOURCE_PAIRS=0
+SURFACE_AGREEMENT_PAIRS=0
+SURFACE_CONFLICT_PAIRS=0
+INSUFFICIENT_COMPARABILITY_PAIRS=0
+COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
+SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=PASS_TESTED_SCOPE
+TRUTH_OF_SUPPORTED_MATERIAL=NOT_ASSESSED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
+```
+
+Canonical interpretation:
+
+```text
+V12 produced one supported paragraph in the winning support run.
+V13 verified the paragraph/source grounding and source evidence unchanged.
+Because only one supported paragraph existed, there were zero distinct-source supported pairs to compare.
+Sigma therefore preserved uncertainty as INSUFFICIENT_COMPARABILITY rather than inventing agreement/conflict or truth.
+```
+
+`INSUFFICIENT_COMPARABILITY` is a valid evidence-dependent outcome and is not a V13 capability failure.
+
+## CURRENT FRONTIER — V14
+
+Do NOT proceed to durable knowledge admission yet. V13 proved the comparison capability but also exposed a concrete evidence gap: there is no second supported source for a cross-source comparison.
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION_V14
+CURRENT_STATUS=V13_CANONICAL_PASS_V14_NOT_BUILT
+```
+
+V14 target:
+
+```text
+V13 comparison.state + binding.verify metrics
++ V12 winner topic/support evidence
+→ Sigma Native gap-reasoning layer
+→ if INSUFFICIENT_COMPARABILITY with DISTINCT_SOURCE_PAIRS=0:
+     RESEARCH_MORE
+     reason=NO_DISTINCT_SUPPORTED_SOURCE_PAIR
+     strategy=EXPAND_COMPARABLE_SOURCE_COVERAGE
+→ generate a new Sigma-owned research/query surface aimed at obtaining additional supported evidence from a distinct source
+→ automatically invoke preserved Internet capability when Sigma emits a valid research action
+→ feed the new support outcome back through V13 comparison
+```
+
+Governance for V14:
+
+```text
+GAP_DECISION_PLANE=SIGMA_NATIVE_VM
+QUERY_COMPOSITION_PLANE=SIGMA_NATIVE_VM
+HOST_SEMANTIC_GAP_DECISION=NO
+HOST_QUERY_COMPOSITION=NO
+HOST_SOURCE_SELECTION=NO
+HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
+GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_QUERY=YES
+ZERO_PREWRITTEN_CONCLUSION=YES
+```
+
+V14 must not encode a preferred website/source. The objective is additional comparable supported evidence, not a majority vote or a truth shortcut.
+
+Still not proven globally:
+
+```text
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
 SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
@@ -174,3 +221,5 @@ ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
 DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
+
+NEXT_COMMAND=BUILD_V14_SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION
