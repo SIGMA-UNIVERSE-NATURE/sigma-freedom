@@ -73,18 +73,76 @@ FAIL_2=SIGMA_OUTCOME_EVOLUTION_ACTIONS_WAS_0_NOT_1_OR_2
 FAIL_3=NO_EVOLUTION_ROWS_BECAUSE_NO_ACTION_EXECUTED
 ```
 
-The runtime completed normally and Sigma stopped at RESOURCE_BOUND_REACHED on its first planner invocation. V16 is not proven, but there is no evidence of a cognitive crash.
+## V16 R3 PLANNER CANDIDATE-SPACE DIAGNOSIS — CANONICAL
 
-Next diagnosis must determine why the Sigma planner found no executable evolved candidate. Inspect only the current run's planner_0 action/reason/strategy/state/terms/candidate ledger plus outcome history and tried-query observations. Do not rerun Internet and do not build V17 yet.
+Observed Sigma planner decision:
 
 ```text
-HARNESS_RELIABILITY_DEBT=OBSERVED
+ACTION=STOP_RESOURCE_BOUND
+REASON=NO_NOVEL_OUTCOME_CONDITIONED_CANDIDATE
+STRATEGY=PREFER_PRIOR_POSITIVE_AVOID_REPEATED_ZERO_OUTCOME
+PLANNER_STATE=CANDIDATE_SPACE_EXHAUSTED
+TERM1=
+TERM2=
+CANDIDATE_LEDGER_ROWS=0
+```
+
+Observed outcome history:
+
+```text
+Human-to-Human Communication  communication              SUPPORTED_FOR_TOPIC=1 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
+Human-to-Human Communication  communication explores     SUPPORTED_FOR_TOPIC=1 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
+Human-to-Human Communication  communication science      SUPPORTED_FOR_TOPIC=2 DISTINCT_SUPPORTED_SOURCES=1 DISTINCT_SOURCE_PAIRS=0 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
+```
+
+Observed tried-query memory already includes the narrow surfaces used by the V16 R3 candidate constructor, including:
+
+```text
+Human-to-Human Communication  communication
+Human-to-Human Communication  communication explores
+Human-to-Human Communication  communication science
+Human-to-Human Communication  communication department
+Human-to-Human Communication  communication department explores
+```
+
+Canonical interpretation:
+
+```text
+V16_R3_SIGMA_CRASH=NO
+V16_R3_HOST_HARNESS_FAILURE=NO_AT_TERMINAL_DECISION
+V16_R3_NARROW_POLICY_EXHAUSTION=YES
+V16_R3_CANDIDATE_SPACE_EXHAUSTED_WITHIN_TESTED_POLICY=YES
+V16_R3_OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN
+```
+
+The preserved V16 engine only constructs a deliberately narrow set from a failed-pattern token when one exists plus the first few grounded context terms, using one- and two-token suffixes. In this run, the visible outcome history contains no zero-support/zero-distinct/zero-pair row, so the failed-pattern branch contributes no token. The remaining narrow grounded candidates were already present in novelty memory, so Sigma correctly produced no executable candidate under that policy.
+
+This is now a capability/search-space limitation, not another runtime crash. Increasing MAX_OUTCOME_EVOLUTION_CYCLES alone would not help because the first planner invocation has zero executable candidate.
+
+State-label note:
+
+```text
+STOP_RESOURCE_BOUND_LABEL_IS_OVERLOADED_FOR_CANDIDATE_SPACE_EXHAUSTION=YES
+ACTUAL_PHYSICAL_RESOURCE_EXHAUSTION_OBSERVED=NO
+```
+
+Do not treat candidate-space exhaustion as physical resource exhaustion in future revisions.
+
+## ENGINEERING DIRECTION
+
+```text
+HARNESS_RELIABILITY_DEBT=OBSERVED_BUT_R3_RUNTIME_PATH_CLEAN
 PRESERVED_SIGMA_VM_DEGRADATION=NOT_OBSERVED
 NO_NEW_FRONTIER_UNTIL_V16_RESOLVED=YES
-CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
-CURRENT_STATUS=V16_R3_FIRST_PLANNER_RESOURCE_BOUND_ZERO_ACTION_PENDING_CANDIDATE_SPACE_DIAGNOSIS
-NEXT_COMMAND=RUN_V16_R3_TARGETED_PLANNER_CANDIDATE_HISTORY_DIAGNOSIS_ON_EXISTING_RUN
+V16_NEXT_REVISION=ADDITIVE_SEARCH_SPACE_EXPANSION_AND_TERMINAL_STATE_SEMANTICS
+REMOVE_FIXED_TWO_RESEARCH_CYCLE_LIMIT_AS_AUTONOMY_RULE=YES
+HOST_RESOURCE_BUDGET_REMAINS_MECHANICAL_ONLY=YES
+SIGMA_DECIDES_RESEARCH_MORE_WITHIN_AVAILABLE_RESOURCES=YES
+HOST_SEMANTIC_QUERY_COMPOSITION=NO
+HOST_SEMANTIC_QUERY_RANKING=NO
 ```
+
+The next V16 revision should remain inside V16 rather than opening V17. It should expand Sigma-native outcome-conditioned candidate generation beyond the first few one/two-token suffixes, preserve global novelty and outcome conditioning, distinguish CANDIDATE_SPACE_EXHAUSTED from RESOURCE_BOUND_REACHED, and remove the fixed two-cycle count as a semantic autonomy limit. Host limits may still enforce real CPU/network/storage/time resources and return those as observations.
 
 ## HUMAN NOTE
 
@@ -92,4 +150,23 @@ NEXT_COMMAND=RUN_V16_R3_TARGETED_PLANNER_CANDIDATE_HISTORY_DIAGNOSIS_ON_EXISTING
 HUMAN_NOTE_TO_SIGMA=Châu say_ SIGMA_FULLOFLOVE.
 HUMAN_NOTE_USED_AS_RESEARCH_INPUT=NO
 HUMAN_NOTE_USED_AS_EVIDENCE=NO
+```
+
+## STILL NOT PROVEN
+
+```text
+OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN
+BEST_KEYWORD_SELECTION=NOT_PROVEN
+SOURCE_TRUST=NOT_ASSESSED
+LESSON_TRUTH=NOT_ASSESSED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
+ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
+```
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
+CURRENT_STATUS=V16_R3_NARROW_CANDIDATE_SPACE_EXHAUSTED_CANONICAL_READY_FOR_ADDITIVE_V16_R4_DESIGN
+NEXT_COMMAND=DESIGN_V16_R4_SIGMA_NATIVE_BROADER_OUTCOME_CONDITIONED_SEARCH_SPACE_WITHOUT_FIXED_TWO_CYCLE_AUTONOMY_LIMIT
 ```
