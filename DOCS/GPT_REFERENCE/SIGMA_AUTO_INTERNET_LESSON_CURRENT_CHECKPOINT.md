@@ -55,6 +55,7 @@ SIGMA_NATIVE_MULTI_SOURCE_COLLECTION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_KNOWLEDGE_CANDIDATE=PASS_TESTED_SCOPE
 SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
+SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 ```
 
 Key canonical artifacts:
@@ -78,6 +79,68 @@ V8_RAW_BINDING_FAILURES=0
 
 V8 negative result is valid: capability PASS, but no paragraph met the explicit support policy.
 
+## V9 — SIGMA NATIVE RESEARCH REPLAN — CANONICAL PASS
+
+Installed identities:
+
+```text
+V9_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN
+V9_REPLAN_SOURCE_SHA256=608338dee912646aa1d2970a931b171f51e90f7257854c5d1116d0f8709e541f
+V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
+```
+
+Canonical live run:
+
+```text
+V9_REPLAN_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
+SOURCE_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/candidate_support_assessments/20260902T024553Z_13409_14243
+SOURCE_COLLECTION_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260902T002658Z_2018_21848
+REPLAN_VM_INVOCATIONS=1
+REPLAN_VM_RC=0
+REPLAN_ACTION=RESEARCH_MORE
+REPLAN_REASON=WEAK_SUPPORT_PRESENT_NO_SUPPORTED
+REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
+ACTION_SHA256=d3a4fc3d14ee16f98775492e9c166f6cd94fb9a34b59a3831657ab49aee8b478
+REASON_SHA256=2c99649b49c5a6e883e5bcc8ff21725a3ad148b281bfe042d3b8a2d03feb9f96
+STRATEGY_SHA256=d8bde22c57ef3b1d33c85ff30ac056e624c2f0a8b6e6b257e98cbea93da22e49
+RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
+```
+
+Strict raw origin verification:
+
+```text
+SUPPORT_STATE=NO_SUPPORTED_FOR_TOPIC
+TOTAL_ASSESSED=8
+SUPPORTED_FOR_TOPIC=0
+WEAK_SUPPORT=7
+OFF_TOPIC=0
+MALFORMED_SURFACE=1
+UNKNOWN=0
+
+ACTION_READBACK_CMP_RC=0
+REASON_READBACK_CMP_RC=0
+STRATEGY_READBACK_CMP_RC=0
+RESEARCH_TOPIC_READBACK_CMP_RC=0
+RESEARCH_TOPIC_EQUALS_RAW_TOPIC_RC=0
+V8_BEFORE_AFTER_CMP_RC=0
+
+CURRENT_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+CURRENT_V9_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
+```
+
+Origin proof: the `.sigma` source contains the state/metric branches and writes `ACTION_OUT_PATH`, `REASON_OUT_PATH`, and `STRATEGY_OUT_PATH`. Host shell only validates action vocabulary / copies metrics / hashes provenance; grep found no host branch deriving the action from V8 semantic metrics.
+
+Canonical claim:
+
+```text
+SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
+REPLAN_DECISION_PLANE=SIGMA_NATIVE_VM
+HOST_REPLAN_DECISION=NO
+V8_ARTIFACTS_MUTATED=NO
+```
+
+Claim boundary: V9 proves that Sigma Native VM applied an explicit replan policy and emitted `RESEARCH_MORE`. It does NOT prove Sigma invented the policy, generated a new query, or completed a fresh Internet cycle.
+
 Still not proven:
 
 ```text
@@ -90,51 +153,37 @@ CONFLICT_DETECTION=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-## CURRENT FRONTIER — V9
+## CURRENT FRONTIER — V10
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_RESEARCH_REPLAN_FROM_SUPPORT_FAILURE_V9
-CURRENT_STATUS=V9_LIVE_SUMMARY_PASS_PENDING_RAW_CANONICAL_VERIFY
+CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
+CURRENT_STATUS=V9_CANONICAL_PASS_V10_INTERFACE_BINDING_NOT_YET_VERIFIED
 ```
 
-V9 installed identities:
+V10 target is to make the V9 `RESEARCH_MORE` action actually drive a fresh evidence cycle while preserving the proven tools:
 
 ```text
-V9_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN
-V9_REPLAN_SOURCE_SHA256=608338dee912646aa1d2970a931b171f51e90f7257854c5d1116d0f8709e541f
-V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
-V9_INSTALL_QA=PASS
-PARENT_V8_UNCHANGED=YES
-PARENT_V7_UNCHANGED=YES
-PARENT_V6_UNCHANGED=YES
-PARENT_V5_UNCHANGED=YES
+V9 RESEARCH_MORE
+        ↓
+Sigma-controlled V10 parent/controller
+        ↓
+fresh query/research action through preserved Sigma query/V5 capability
+        ↓
+fresh Internet collection
+        ↓
+V6 assessment
+        ↓
+V7 candidate
+        ↓
+V8 support assessment
+        ↓
+Sigma decides continue / stop / unknown
 ```
 
-V9 live summary observed:
+Do NOT implement V10 by Bash reading `RESEARCH_MORE` and semantically deciding the stage sequence. The parent control decision must remain Sigma-native; host may only launch exact proven child capabilities and return mechanical observations.
+
+Before building V10, verify the exact callable/CLI contracts of the preserved V5/V6/V7/V8 wrappers and current pointers. This is a targeted interface inspection, not a broad rescan. Do not guess wrapper names or arguments.
 
 ```text
-V9_REPLAN_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
-REPLAN_VM_INVOCATIONS=1
-REPLAN_VM_RC=0
-INDEPENDENT_VERIFY_RC=0
-REPLAN_ACTION=RESEARCH_MORE
-REPLAN_REASON=WEAK_SUPPORT_PRESENT_NO_SUPPORTED
-REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
-ACTION_SHA256=d3a4fc3d14ee16f98775492e9c166f6cd94fb9a34b59a3831657ab49aee8b478
-REASON_SHA256=2c99649b49c5a6e883e5bcc8ff21725a3ad148b281bfe042d3b8a2d03feb9f96
-STRATEGY_SHA256=d8bde22c57ef3b1d33c85ff30ac056e624c2f0a8b6e6b257e98cbea93da22e49
-RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
-V8_ARTIFACTS_MUTATED=NO
-```
-
-Do NOT canonicalize V9 solely from the summary. Next step is strict read-only raw-origin verification: VM ledger; raw input metrics; action/reason/strategy/topic and byte-exact readbacks; source `.sigma` decision origin; absence of host replan derivation; V8 immutability; provenance identities.
-
-Important claim boundary: V9 uses explicit policy vocabulary/branches. A PASS would prove Sigma Native VM applied the policy and emitted the replan action; it would NOT prove Sigma independently invented the research policy or generated a new query yet.
-
-## AFTER V9
-
-If raw verification canonicalizes V9 and its action remains `RESEARCH_MORE`, the next frontier is V10: connect Sigma's replan action back into a fresh Internet evidence cycle using preserved query/V5 capabilities, then reassess through V6→V7→V8. Do not jump to conflict analysis while support remains zero.
-
-```text
-NEXT_COMMAND=RUN_V9_FINAL_RAW_ORIGIN_VERIFY
+NEXT_COMMAND=RUN_V10_TARGETED_CHILD_INTERFACE_CONTRACT_SNAPSHOT
 ```
