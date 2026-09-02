@@ -56,11 +56,10 @@ SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_KNOWLEDGE_CANDIDATE=PASS_TESTED_SCOPE
 SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
+SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 ```
 
-V10 remains NOT canonical live PASS until R2 live evidence succeeds.
-
-## LOCKED CHILD CONTRACTS
+## LOCKED CHILD CONTRACTS — NEVER ASK USER AGAIN
 
 ```text
 V5_WRAPPER_SHA256=f1d0cdbc53f4be6ce00d10410c6d49a661814d99b4588563ad123b48f93bf163
@@ -85,7 +84,7 @@ V9_ARG1=SUPPORT_RUN_OPTIONAL
 V9_BINDING_FILE=source.support.run
 ```
 
-V5 optional raw-topic input is proven from the exact immutable wrapper identity. Do not ask user to re-dump V5. Strategy-conditioned query adaptation remains NOT proven.
+V5 optional raw-topic input is proven from the exact immutable wrapper identity. Do not ask user to re-dump V5.
 
 ## V9 INPUT TO V10
 
@@ -118,63 +117,95 @@ V5_V6_V7_V8_V9_REGRESSION=NOT_PROVEN
 
 R1 remains preserved as failure evidence. Do not rerun R1 without a new root cause.
 
-## V10 R2 OPPO INSTALL QA — PASS, READY FOR LIVE
+## V10 R2 LIVE RESULT — CANONICAL PASS
+
+Installed R2 identities:
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
-CURRENT_STATUS=V10_R2_OPPO_INSTALL_QA_PASS_READY_FOR_LIVE
-
 R2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R13R2_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_PROTOCOL_REPAIR
-R2_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_V10_R2_PROTOCOL_REPAIR.sh
 R2_INSTALLER_SHA256=25048e20548ddd1ad92fb6101cce7961bfac19ff6b93bae3f1ea94dea0db9e81
 V10_R2_PARENT_SOURCE_SHA256=666a956112954ccb4d97b38fa62063358979f9196b71edd3aa0016bd70fa9644
 V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
-
-REPAIR_SCOPE=R1_INTERACTIVE_STDOUT_HANDSHAKE_ONLY
-R1_REPLACEMENT=FORBIDDEN
-R1_FAILURE_EVIDENCE=PRESERVE
-V10_R1_SOURCE_UNCHANGED=YES
-V10_R1_BYTECODE_UNCHANGED=YES
-R1_FAILURE_EVIDENCE_PRESERVED=YES
-
-BASH_SYNTAX_QA=PASS
-PARENT_CONTROL_PLANE_QA=PASS
-INTERACTIVE_STDOUT_CONTROL_CHANNEL=NO
-ACTION_CHANNEL=SIGMA_WRITE_FILE
-OBSERVATION_HANDSHAKE=ACK_FIFO_PLUS_READBACK_FILES
-HOST_COGNITIVE_STAGE_SEQUENCE=NO
-SIGMA_VALID_RESEARCH_MORE_AUTO_EXECUTE=YES
-HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
-V5_RAW_TOPIC_SOURCE_ARG_INTERFACE=PROVEN_BY_EXACT_WRAPPER_IDENTITY
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-INSTALL_QA_RESULT=PASS
-READY_TO_RUN_V10_R2_AUTONOMOUS_RESEARCH_LOOP=YES
 ```
 
-R2 protocol:
+Canonical live run:
 
 ```text
-same continuous Sigma Native parent VM
-→ Sigma writes ACTION + PAYLOAD files
-→ mechanical host dispatches only that exact child action
-→ host writes OBSERVATION files
-→ ACK FIFO releases parent VM
-→ Sigma reads observation and decides next stage
-```
-
-Autonomy policy remains:
-
-```text
+V10_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops_r2/20260902T045710Z_19580_9192
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=0
+PARENT_VM_INVOCATIONS=1
+PARENT_VM_RC=0
+FRESH_V5_COLLECTION_RUN_CREATED=YES
+SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
+EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
+SIGMA_EMITTED_TOPIC_PATH_TO_V5_BINDING=PASS
 PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
 HOST_COGNITIVE_STAGE_SEQUENCE=NO
+HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
+GPT_RUNTIME_ROLE=NONE
+TERMINAL_STATE=RESOURCE_BOUND_REACHED
+SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
+```
+
+Canonical interpretation:
+
+```text
+V9 RESEARCH_MORE
+→ same continuous Sigma Native parent VM
+→ Sigma emitted fresh-research child actions
+→ host dispatched only corresponding mechanical child wrappers
+→ at least one fresh V5 Internet collection was created
+→ exact run-path bindings were preserved through subsequent child stages as applicable
+→ Sigma's research-topic path was bound exactly into V5
+→ no USER/GPT approval was required between research cycles
+→ tested resource bound terminated the run after the allowed attempts
+```
+
+`RESOURCE_BOUND_REACHED` is a valid terminal result for this tested resource policy. It is not a capability failure. V10 proves autonomous replan→fresh-Internet execution and Sigma-owned stage sequencing within the tested scope; it does not prove that the research strategy changed the query surface enough to improve evidence quality.
+
+Autonomy/claim boundary:
+
+```text
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
+PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
+HOST_COGNITIVE_STAGE_SEQUENCE=NO
 STRATEGY_CONDITIONED_QUERY_ADAPTATION=NOT_PROVEN
 ARBITRARY_TOPIC_LIVE_BEHAVIOR=NOT_PROVEN
+SOURCE_TRUST=NOT_ASSESSED
+LESSON_TRUTH=NOT_ASSESSED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
+CONFLICT_DETECTION=NOT_PROVEN
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-R2 live PASS requires actual evidence that Sigma emits `RUN_COLLECTION`, a fresh V5 Internet collection is created from Sigma's research topic path, child dispatches match Sigma actions, and explicit V5→V6→V7→V8→V9 run bindings are preserved as applicable. The terminal result itself need not be `SUPPORTED_PRESENT`.
+## CURRENT FRONTIER — V11
 
-NEXT_COMMAND=RUN_V10_R2_LIVE_AUTONOMOUS_RESEARCH_LOOP
+Because V10 reached `RESOURCE_BOUND_REACHED` rather than supported material, do not jump to agreement/conflict analysis yet. The next gap is to make Sigma's `RESEARCH_MORE` strategy alter the next research/query surface rather than merely rerun the same topic path.
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION_V11
+CURRENT_STATUS=V10_R2_CANONICAL_PASS_V11_NOT_BUILT
+```
+
+V11 target:
+
+```text
+V9 replan.strategy + research.topic
+→ Sigma Native VM query-adaptation layer
+→ revised/generic search-query candidates generated by Sigma
+→ fresh V5 Internet collection using those Sigma-generated research inputs
+→ preserve ZERO_PREWRITTEN_QUERY / ZERO_PREWRITTEN_SOURCE / ZERO_PREWRITTEN_ANSWER
+```
+
+Do not encode target-specific query strings, source names, expected answers or semantic ranking in Bash/Python. Host remains mechanical only. V11 must preserve all V5–V10 identities and R1 failure evidence.
+
+Only after supported material exists should the next frontier become multi-source agreement/conflict observation.
+
+```text
+NEXT_COMMAND=BUILD_V11_SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION
+```
