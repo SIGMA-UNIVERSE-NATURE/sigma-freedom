@@ -19,6 +19,23 @@ HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
+## INTERNET AUTONOMY — USER POLICY LOCK
+
+The project must not introduce USER/GPT approval gates that suppress a valid Sigma research action. Internet access is a capability Sigma may invoke when its own control state requests research, subject only to mechanical safety/resource/transport constraints that return honest observations back to Sigma.
+
+```text
+INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
+HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
+GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
+HOST_MAY_REWRITE_SIGMA_RESEARCH_INTENT=NO
+RESOURCE_LIMIT_RETURNS_OBSERVATION_TO_SIGMA=YES
+NETWORK_FAILURE_RETURNS_OBSERVATION_TO_SIGMA=YES
+IDENTITY_MISMATCH_STOPS_FOR_SAFETY=YES
+```
+
+Do not confuse resource bounds with permission gates. A bound may stop one tested run, but must not become a semantic prohibition against Sigma going online again when its state legitimately requests more research.
+
 ## PRESERVE LOCK
 
 ```text
@@ -86,49 +103,21 @@ V9_BINDING_FILE=source.support.run
 
 V5 optional raw-topic input is proven from the exact immutable wrapper identity. Do not ask user to re-dump V5.
 
-## V9 INPUT TO V10
-
-```text
-V9_REPLAN_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
-V9_REPLAN_ACTION=RESEARCH_MORE
-V9_REPLAN_REASON=WEAK_SUPPORT_PRESENT_NO_SUPPORTED
-V9_REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
-V9_RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
-```
-
-## V10 R1 LIVE RESULT — CANONICAL HARNESS PROTOCOL FAIL
+## V10 R1 FAILURE — PRESERVE
 
 ```text
 V10_R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops/20260902T032454Z_29372_29874
-PARENT_PID=29385
-PARENT_ALIVE_AT_DIAGNOSIS=YES
-PARENT_STDERR_BYTES=0
-PARENT_STDOUT_BYTES=0
-CONTROL_LEDGER_BYTES=0
-CHILD_LEDGER_BYTES=0
+V10_R1_RESULT=FAIL_HARNESS_PROTOCOL
+FAILURE_CLASS=INTERACTIVE_STDOUT_HANDSHAKE_DEADLOCK_BEFORE_FIRST_ACTION
 FIRST_SIGMA_ACTION_OBSERVED=NO
 FIRST_CHILD_DISPATCH_OBSERVED=NO
 LIVE_INTERNET_REQUEST_OBSERVED=NO
-V10_R1_RESULT=FAIL_HARNESS_PROTOCOL
-FAILURE_CLASS=INTERACTIVE_STDOUT_HANDSHAKE_DEADLOCK_BEFORE_FIRST_ACTION
 SIGMA_COGNITIVE_FAILURE=NOT_PROVEN
-V5_V6_V7_V8_V9_REGRESSION=NOT_PROVEN
 ```
 
-R1 remains preserved as failure evidence. Do not rerun R1 without a new root cause.
+R1 remains failure evidence. Do not rerun without a new root cause.
 
-## V10 R2 LIVE RESULT — CANONICAL PASS
-
-Installed R2 identities:
-
-```text
-R2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R13R2_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_PROTOCOL_REPAIR
-R2_INSTALLER_SHA256=25048e20548ddd1ad92fb6101cce7961bfac19ff6b93bae3f1ea94dea0db9e81
-V10_R2_PARENT_SOURCE_SHA256=666a956112954ccb4d97b38fa62063358979f9196b71edd3aa0016bd70fa9644
-V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
-```
-
-Canonical live run:
+## V10 R2 LIVE — CANONICAL PASS
 
 ```text
 V10_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops_r2/20260902T045710Z_19580_9192
@@ -148,64 +137,90 @@ TERMINAL_STATE=RESOURCE_BOUND_REACHED
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 ```
 
-Canonical interpretation:
+`RESOURCE_BOUND_REACHED` was a valid tested-run terminal under the explicit resource cap; it is not a prohibition on future Sigma Internet actions.
+
+## V11 — TOPIC / KEYWORD TOOLING DOCTRINE
+
+User direction: give Sigma more tools and explicit research guidance so it can stay anchored to the intended topic and construct better search terms itself, without GPT/host composing the query.
+
+V11 must add Sigma-native tools with these responsibilities:
 
 ```text
-V9 RESEARCH_MORE
-→ same continuous Sigma Native parent VM
-→ Sigma emitted fresh-research child actions
-→ host dispatched only corresponding mechanical child wrappers
-→ at least one fresh V5 Internet collection was created
-→ exact run-path bindings were preserved through subsequent child stages as applicable
-→ Sigma's research-topic path was bound exactly into V5
-→ no USER/GPT approval was required between research cycles
-→ tested resource bound terminated the run after the allowed attempts
+TOPIC_ANCHOR_EXTRACTOR=SIGMA_NATIVE
+EVIDENCE_CONTEXT_TERM_MINER=SIGMA_NATIVE
+QUERY_ADAPTER=SIGMA_NATIVE
+QUERY_DIVERSITY_DEDUP=SIGMA_NATIVE_OR_MECHANICAL_DEDUP_ONLY
+OUTCOME_FEEDBACK_TO_REPLAN=SIGMA_NATIVE
+HOST_QUERY_COMPOSITION=NO
+HOST_SEMANTIC_KEYWORD_SELECTION=NO
+ZERO_PREWRITTEN_QUERY=YES
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_ANSWER=YES
 ```
 
-`RESOURCE_BOUND_REACHED` is a valid terminal result for this tested resource policy. It is not a capability failure. V10 proves autonomous replan→fresh-Internet execution and Sigma-owned stage sequencing within the tested scope; it does not prove that the research strategy changed the query surface enough to improve evidence quality.
-
-Autonomy/claim boundary:
+Guidance policy for the first tested scope:
 
 ```text
-HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
-GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
-HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
-PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
-HOST_COGNITIVE_STAGE_SEQUENCE=NO
-STRATEGY_CONDITIONED_QUERY_ADAPTATION=NOT_PROVEN
-ARBITRARY_TOPIC_LIVE_BEHAVIOR=NOT_PROVEN
+1. Preserve the full source research.topic as the mandatory anchor.
+2. Read the actual grounded V7 knowledge candidate as evidence context.
+3. Mine candidate context terms from that evidence inside Sigma Native VM.
+4. Exclude only an explicit generic stopword policy; do not inject target-specific vocabulary.
+5. Under STRENGTHEN_TOPIC_COOCCURRENCE, Sigma composes an adapted research topic from the full topic anchor + Sigma-mined evidence context term.
+6. Sigma emits RUN_ADAPTED_COLLECTION; host may then mechanically pass the exact adapted-topic file to preserved V5.
+7. No USER/GPT approval is inserted between Sigma adaptation and Internet execution.
+8. If no defensible context term exists, preserve UNKNOWN/STOP rather than host inventing keywords.
+```
+
+This is still a surface/evidence-derived adaptation policy. It does not by itself prove semantic understanding or that the chosen term is objectively the best search phrase.
+
+## V11 PREPARED ARTIFACT — NOT YET OPPO QA
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION_V11
+CURRENT_STATUS=V11_INSTALLER_PREPARED_NOT_YET_OPPO_QA
+
+V11_PACKAGE_TARGET=V1_R14_SIGMA_NATIVE_STRATEGY_QUERY_ADAPTER
+V11_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_STRATEGY_QUERY_ADAPTER_V11_ADDITIVE.sh
+V11_INSTALLER_SHA256=d57c1e6cc9b62cb5d9dbfc3f8adb76e9297365c62fb8949ca940249435a621eb
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+```
+
+Prepared V11 tested-scope flow:
+
+```text
+V9 replan.action + replan.strategy + research.topic
++ grounded V7 knowledge.candidate
+→ Sigma Native V11 adapter
+→ full topic anchor + Sigma-mined context term
+→ Sigma action RUN_ADAPTED_COLLECTION
+→ host mechanically calls preserved V5 with exact adapted.topic file
+→ fresh Internet collection
+```
+
+Acceptance direction:
+
+```text
+QUERY_ADAPTATION_PLANE=SIGMA_NATIVE_VM
+HOST_QUERY_COMPOSITION=NO
+ADAPTED_TOPIC_DIFFERS_FROM_SOURCE_TOPIC=YES
+ADAPTED_TOPIC_TO_V5_BYTE_EXACT_BINDING=PASS
+FRESH_INTERNET_COLLECTION_FROM_ADAPTED_TOPIC=YES
+HUMAN_APPROVAL_BETWEEN_ADAPTATION_AND_INTERNET=0
+SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
+```
+
+Still not proven until live evidence:
+
+```text
+SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
+BEST_KEYWORD_SELECTION=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
-SEMANTIC_UNDERSTANDING=NOT_PROVEN
 ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
 CONFLICT_DETECTION=NOT_PROVEN
 DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-## CURRENT FRONTIER — V11
-
-Because V10 reached `RESOURCE_BOUND_REACHED` rather than supported material, do not jump to agreement/conflict analysis yet. The next gap is to make Sigma's `RESEARCH_MORE` strategy alter the next research/query surface rather than merely rerun the same topic path.
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION_V11
-CURRENT_STATUS=V10_R2_CANONICAL_PASS_V11_NOT_BUILT
-```
-
-V11 target:
-
-```text
-V9 replan.strategy + research.topic
-→ Sigma Native VM query-adaptation layer
-→ revised/generic search-query candidates generated by Sigma
-→ fresh V5 Internet collection using those Sigma-generated research inputs
-→ preserve ZERO_PREWRITTEN_QUERY / ZERO_PREWRITTEN_SOURCE / ZERO_PREWRITTEN_ANSWER
-```
-
-Do not encode target-specific query strings, source names, expected answers or semantic ranking in Bash/Python. Host remains mechanical only. V11 must preserve all V5–V10 identities and R1 failure evidence.
-
-Only after supported material exists should the next frontier become multi-source agreement/conflict observation.
-
-```text
-NEXT_COMMAND=BUILD_V11_SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION
-```
+NEXT_COMMAND=RUN_V11_INSTALL_QA_ON_OPPO
