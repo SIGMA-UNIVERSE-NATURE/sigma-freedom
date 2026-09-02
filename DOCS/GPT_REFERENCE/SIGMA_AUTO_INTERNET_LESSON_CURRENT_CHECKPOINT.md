@@ -4,7 +4,7 @@ STATUS_DATE=2026-09-02
 BRANCH=SIGMA_LIFE
 CANONICAL_FOR_NEXT_WINDOWS=YES
 
-## START RULE
+## START RULE — DO NOT REDISCOVER
 
 ```text
 NO_BROAD_RESCAN=YES
@@ -19,9 +19,7 @@ HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
-## INTERNET AUTONOMY — USER POLICY LOCK
-
-The project must not introduce USER/GPT approval gates that suppress a valid Sigma research action. Internet access is a capability Sigma may invoke when its own control state requests research, subject only to mechanical safety/resource/transport constraints that return honest observations back to Sigma.
+## INTERNET AUTONOMY POLICY
 
 ```text
 INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
@@ -34,7 +32,7 @@ NETWORK_FAILURE_RETURNS_OBSERVATION_TO_SIGMA=YES
 IDENTITY_MISMATCH_STOPS_FOR_SAFETY=YES
 ```
 
-Do not confuse resource bounds with permission gates. A bound may stop one tested run, but must not become a semantic prohibition against Sigma going online again when its state legitimately requests more research.
+A resource bound is a tested-run safety/resource condition, not a semantic ban on future Sigma Internet research.
 
 ## PRESERVE LOCK
 
@@ -49,15 +47,13 @@ V6_CORPUS_EVIDENCE_ASSESSOR_SHA256=f8cd858a1b4eaae7120154ad9d9a226d48bdb123baa26
 V7_KNOWLEDGE_BUILDER_SHA256=3bb1243057bd445d677257e6953ad6957856b0dc202629b44468fb45fe8a730b
 V8_SUPPORT_ASSESSOR_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a81456e4e625eab0
 V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
-V10_R1_PARENT_SOURCE_SHA256=d3171f787d7763abd7328b13bbd2d2e16c10e857130f80dbe7c3bf872701bbae
 V10_R1_PARENT_BYTECODE_SHA256=e63f1f897f498b3af012bf87211f0da536f4773f7ed76f4fd1747bf969666fab
-V10_R2_PARENT_SOURCE_SHA256=666a956112954ccb4d97b38fa62063358979f9196b71edd3aa0016bd70fa9644
 V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
 V11_ADAPTER_SOURCE_SHA256=82e25898da18059c3abee97c77529a137db4a33ae85fdd4c042e3ce7b7e14b3f
 V11_ADAPTER_BYTECODE_SHA256=40f6b83e55c5dff238b7fe4a9f208e6bfabec3c73a70e5b5c95b93941fa353f0
 ```
 
-Identity mismatch => STOP. Never silently replace a proven artifact.
+Identity mismatch => STOP; never silently replace a proven tool.
 
 ## CANONICAL PASS SET
 
@@ -79,32 +75,34 @@ SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 ```
 
-## LOCKED CHILD CONTRACTS — NEVER ASK USER AGAIN
+## LOCKED CHILD WRAPPER CONTRACTS — NEVER ASK USER AGAIN
 
 ```text
+V5_WRAPPER=$BASE/V1_R8_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION/99_RUN_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION_V5.sh
 V5_WRAPPER_SHA256=f1d0cdbc53f4be6ce00d10410c6d49a661814d99b4588563ad123b48f93bf163
 V5_ARG1=RAW_TOPIC_SOURCE_OPTIONAL
 V5_OUTPUT=RUN_DIR
-V5_POINTER=current_collection.path
 
+V6_WRAPPER=$BASE/V1_R9_SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSOR/99_RUN_SIGMA_NATIVE_EVIDENCE_ASSESSMENT_V6.sh
 V6_WRAPPER_SHA256=d39b7fe9f2d3e05a3da0ecbd6bedbd535eb8e688a841b3f7ee07b1253178c8da
 V6_ARG1=SOURCE_COLLECTION_RUN_OPTIONAL
 V6_BINDING_FILE=source.collection.run
 
+V7_WRAPPER=$BASE/V1_R10_SIGMA_NATIVE_KNOWLEDGE_BUILDER/99_RUN_SIGMA_NATIVE_KNOWLEDGE_BUILDER_V7.sh
 V7_WRAPPER_SHA256=0a50f052bf8de53941d10930fbaa95be9dba0e9b5d4a35f8e589852d64e75af8
 V7_ARG1=ASSESSMENT_RUN_OPTIONAL
 V7_BINDING_FILE=source.assessment.run
 
+V8_WRAPPER=$BASE/V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR/99_RUN_SIGMA_NATIVE_CANDIDATE_SUPPORT_V8.sh
 V8_WRAPPER_SHA256=fb5b9c73ab297e4e11a9c27ace283473b5faba2fd0a6bc280173ce661b348691
 V8_ARG1=KNOWLEDGE_RUN_OPTIONAL
 V8_BINDING_FILE=source.knowledge.run
 
+V9_WRAPPER=$BASE/V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN/99_RUN_SIGMA_NATIVE_RESEARCH_REPLAN_V9.sh
 V9_WRAPPER_SHA256=1cb6d5e1b842c6f8b015be74e8f829d77c218895d3208cb9f95dd1b40a753de6
 V9_ARG1=SUPPORT_RUN_OPTIONAL
 V9_BINDING_FILE=source.support.run
 ```
-
-V5 optional raw-topic input is proven from the exact immutable wrapper identity. Do not ask user to re-dump V5.
 
 ## V10 R1 FAILURE — PRESERVE
 
@@ -118,7 +116,7 @@ LIVE_INTERNET_REQUEST_OBSERVED=NO
 SIGMA_COGNITIVE_FAILURE=NOT_PROVEN
 ```
 
-R1 remains failure evidence. Do not rerun without a new root cause.
+Do not rerun R1 without a new root cause.
 
 ## V10 R2 LIVE — CANONICAL PASS
 
@@ -135,25 +133,11 @@ SIGMA_EMITTED_TOPIC_PATH_TO_V5_BINDING=PASS
 PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
 HOST_COGNITIVE_STAGE_SEQUENCE=NO
 HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
-GPT_RUNTIME_ROLE=NONE
 TERMINAL_STATE=RESOURCE_BOUND_REACHED
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 ```
 
-`RESOURCE_BOUND_REACHED` was a valid tested-run terminal under the explicit resource cap; it is not a prohibition on future Sigma Internet actions.
-
-## V11 — STRATEGY-CONDITIONED QUERY ADAPTATION — CANONICAL PASS
-
-Installed identities:
-
-```text
-V11_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R14_SIGMA_NATIVE_STRATEGY_QUERY_ADAPTER
-V11_INSTALLER_SHA256=d57c1e6cc9b62cb5d9dbfc3f8adb76e9297365c62fb8949ca940249435a621eb
-V11_ADAPTER_SOURCE_SHA256=82e25898da18059c3abee97c77529a137db4a33ae85fdd4c042e3ce7b7e14b3f
-V11_ADAPTER_BYTECODE_SHA256=40f6b83e55c5dff238b7fe4a9f208e6bfabec3c73a70e5b5c95b93941fa353f0
-```
-
-Canonical live run:
+## V11 LIVE — CANONICAL PASS
 
 ```text
 V11_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_adaptations/20260902T055051Z_29087_9627
@@ -170,28 +154,86 @@ HUMAN_APPROVAL_BETWEEN_ADAPTATION_AND_INTERNET=0
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 ```
 
-Canonical interpretation:
+V11 proves Sigma can adapt a research input from its own replan strategy + grounded evidence context and immediately use it for a fresh Internet collection. It does NOT prove the selected keyword is objectively best or that downstream evidence improved.
+
+## CURRENT FRONTIER — V12
 
 ```text
-V9 replan.action=RESEARCH_MORE
-+ V9 strategy=STRENGTHEN_TOPIC_COOCCURRENCE
-+ full research.topic anchor
-+ grounded V7 knowledge candidate
-→ Sigma Native V11 adapter mined an evidence-context term
-→ Sigma produced an adapted research topic different from the source topic
-→ host did not compose the query
-→ adapted topic was passed byte-exact into preserved V5
-→ a fresh Internet collection was created immediately
-→ no USER/GPT approval gate existed between Sigma adaptation and Internet execution
+CURRENT_FRONTIER=SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY_V12
+CURRENT_STATUS=V12_INSTALLER_PREPARED_NOT_YET_OPPO_QA
 ```
 
-Claim boundary:
+V12 goal is the next cognitive-growth step: Sigma must observe query outcomes, compare evidence support, retain a successful query pattern, and try distinct alternatives when the current query is ineffective.
+
+Prepared V12 architecture:
+
+```text
+V11 adapted collection
++ original grounded V7 knowledge candidate
++ baseline V8 support metrics
+→ Sigma Native diversity-pool engine mines up to 2 additional distinct evidence-context terms
+→ same full source topic remains mandatory anchor
+→ Sigma Native feedback-controller runs V6 → V7 → V8 for the current trial
+→ Sigma compares downstream support metrics against baseline
+→ explicit first tested policy:
+     higher SUPPORTED_FOR_TOPIC => KEEP_QUERY_PATTERN
+     if supported > 0 and tied, higher DISTINCT_SUPPORTED_SOURCES => KEEP_QUERY_PATTERN
+     otherwise => TRY_ALTERNATIVE
+     missing/inconsistent state => STOP_UNKNOWN
+→ if TRY_ALTERNATIVE and a diverse candidate exists:
+     Sigma emits RUN_COLLECTION with exact alternative topic path
+     host mechanically runs preserved V5
+     no USER/GPT approval gate
+→ successful query pattern may be persisted mechanically only after Sigma emits KEEP_QUERY_PATTERN
+```
+
+V12 does not let Bash/Python score query quality or compose keywords. Alternative context terms and outcome decisions stay in Sigma Native VM.
+
+```text
+OUTCOME_DECISION_PLANE=SIGMA_NATIVE_VM
+QUERY_DIVERSITY_PLANE=SIGMA_NATIVE_VM
+HOST_QUERY_SCORING=NO
+HOST_QUERY_COMPOSITION=NO
+QUERY_DIVERSITY_DEDUP=IN_RUN_DISTINCT_CANDIDATES
+SUCCESSFUL_QUERY_MEMORY=MECHANICAL_PERSIST_AFTER_SIGMA_KEEP_DECISION
+ZERO_PREWRITTEN_QUERY=YES
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_ANSWER=YES
+```
+
+Prepared installer:
+
+```text
+V12_PACKAGE_TARGET=V1_R15_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_DIVERSITY
+V12_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_DIVERSITY_V12_ADDITIVE.sh
+V12_INSTALLER_SHA256=478a379ee08944bde6a44475390c495d69edb6c03921a0fb8baeff45dd23ebd5
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+SIGMA_VM_EXECUTED_BY_PREP=NO
+LIVE_INTERNET_EXECUTED_BY_PREP=NO
+```
+
+Live V12 acceptance direction after OPPO install QA:
+
+```text
+OUTCOME_DECISION_PLANE=SIGMA_NATIVE_VM
+QUERY_DIVERSITY_PLANE=SIGMA_NATIVE_VM
+HOST_QUERY_SCORING=NO
+HOST_QUERY_COMPOSITION=NO
+DIVERSE_ALTERNATIVE_COUNT>=1
+SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
+EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
+HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
+SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
+```
+
+A valid terminal may be `KEEP_QUERY_PATTERN`, `STOP_UNKNOWN`, or `RESOURCE_BOUND_REACHED`, depending on live evidence. Do not require a preselected outcome.
+
+Still not proven:
 
 ```text
 SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
 BEST_KEYWORD_SELECTION=NOT_PROVEN
-QUERY_OUTCOME_IMPROVEMENT=NOT_PROVEN
-QUERY_DIVERSITY_POLICY=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
 ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
@@ -200,49 +242,4 @@ DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-V11 proves that Sigma Native VM can adapt a research input from its own replan strategy and grounded evidence context and automatically use it for a fresh Internet collection. It does not prove that the chosen context term was the objectively best keyword or that evidence quality improved.
-
-## CURRENT FRONTIER — V12
-
-The next gap is not Internet permission. Sigma already has autonomous Internet invocation in the tested scope. The next gap is query-quality learning: Sigma must observe whether an adapted query actually improves downstream evidence/support, compare outcomes, retain successful query patterns, avoid repeating ineffective adaptations, and generate diverse alternatives when evidence remains weak.
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY_V12
-CURRENT_STATUS=V11_CANONICAL_PASS_V12_NOT_BUILT
-```
-
-V12 target:
-
-```text
-V11 adapted collection
-→ V6 → V7 → V8 downstream evidence/support outcome
-→ Sigma Native query-outcome evaluator
-→ compare against prior research outcome using explicit evidence metrics
-→ KEEP_QUERY_PATTERN / TRY_ALTERNATIVE / STOP_UNKNOWN
-→ if TRY_ALTERNATIVE: Sigma generates another evidence-derived adapted query
-→ dedup against prior query hashes
-→ Internet auto-executes again without USER/GPT approval
-```
-
-V12 design requirements:
-
-```text
-QUERY_OUTCOME_EVALUATION_PLANE=SIGMA_NATIVE_VM
-HOST_SEMANTIC_QUERY_SCORING=NO
-HOST_QUERY_COMPOSITION=NO
-QUERY_HISTORY_CONTENT_ADDRESSED=YES
-QUERY_DEDUP_MECHANICAL_HASH_ONLY=YES
-NO_USER_GPT_APPROVAL_GATE=YES
-ZERO_PREWRITTEN_QUERY=YES
-ZERO_PREWRITTEN_SOURCE=YES
-ZERO_PREWRITTEN_ANSWER=YES
-UNKNOWN_STAYS_UNKNOWN=YES
-```
-
-The evaluator may use explicit measured metrics such as support-state, supported count, weak-support count, malformed count, distinct supported sources, and collection/evidence counts. Those are observations, not prewritten answers. Sigma must own the comparison and next research decision.
-
-Only after evidence becomes supported should agreement/conflict observation become the next frontier.
-
-```text
-NEXT_COMMAND=BUILD_V12_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY
-```
+NEXT_COMMAND=RUN_V12_INSTALL_QA_ON_OPPO
