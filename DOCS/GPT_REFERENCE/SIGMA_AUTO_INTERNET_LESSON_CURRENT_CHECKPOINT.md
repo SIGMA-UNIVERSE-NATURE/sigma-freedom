@@ -4,9 +4,7 @@ STATUS_DATE=2026-09-02
 BRANCH=SIGMA_LIFE
 CANONICAL_FOR_NEXT_WINDOWS=YES
 
-## START RULE — MANDATORY
-
-Read this file first. Do not rediscover proven history or ask the user to repaste interface dumps.
+## START HERE — DO NOT REDISCOVER
 
 ```text
 NO_BROAD_RESCAN=YES
@@ -21,6 +19,8 @@ GPT_RUNTIME_ROLE=NONE
 HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
+
+A fresh window reads this file first and continues only from `CURRENT_STATUS` / `NEXT_COMMAND`.
 
 ## PRESERVE LOCK
 
@@ -38,9 +38,9 @@ V8_SUPPORT_ASSESSOR_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a8145
 V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
 ```
 
-Identity mismatch => STOP. Never silently rebuild/replace a proven tool.
+Identity mismatch => STOP. Never silently replace a proven artifact.
 
-## CANONICAL PASS SET — DO NOT RE-INVESTIGATE
+## CANONICAL PASS SET
 
 ```text
 SIGMA_QUERY_GENERATION=PASS_TESTED_SCOPE
@@ -58,7 +58,7 @@ SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 ```
 
-## KEY CANONICAL RUNS
+## CANONICAL RUN CHAIN
 
 ```text
 V5_COLLECTION_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260902T002658Z_2018_21848
@@ -86,113 +86,92 @@ V9_REPLAN_STRATEGY=STRENGTHEN_TOPIC_COOCCURRENCE
 V9_RESEARCH_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
 ```
 
-V8 negative support result is valid. V9 canonical proof established that the Sigma Native VM applied explicit replan policy and emitted `RESEARCH_MORE`; host did not derive that decision.
+V8 negative result is valid. V9 raw origin verification proved the Sigma Native VM emitted `RESEARCH_MORE`; host did not derive it.
 
-## LOCKED CHILD CALL INTERFACE CONTRACTS FOR V10
-
-These contracts were obtained from the final targeted local interface dump and from the exact additive V7/V8/V9 wrappers already built in this development line. Do not ask the user to dump them again.
-
-### V5 — fresh multi-source Internet collection
+## LOCKED CHILD WRAPPER CONTRACTS — NEVER ASK USER AGAIN
 
 ```text
-PACKAGE=V1_R8_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION
-CALLABLE_WRAPPER=99_RUN_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION_V5.sh
-POSITIONAL_INPUT=NONE_OBSERVED
-OUTPUT_CONTRACT=RUN_DIR=<fresh collection run>
-POINTER_WRITTEN=$BASE/current_collection.path
-NATIVE_CONTROLLER_COMMAND_EXPOSED=YES
+V5_WRAPPER=$BASE/V1_R8_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION/99_RUN_SIGMA_NATIVE_MULTI_SOURCE_COLLECTION_V5.sh
+V5_ARG1=NONE_OBSERVED
+V5_OUTPUT=RUN_DIR
+V5_POINTER=$BASE/current_collection.path
+
+V6_WRAPPER=$BASE/V1_R9_SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSOR/99_RUN_SIGMA_NATIVE_EVIDENCE_ASSESSMENT_V6.sh
+V6_ARG1=SOURCE_COLLECTION_RUN_OPTIONAL
+V6_OUTPUT=RUN_DIR
+V6_BINDING_FILE=source.collection.run
+
+V7_WRAPPER=$BASE/V1_R10_SIGMA_NATIVE_KNOWLEDGE_BUILDER/99_RUN_SIGMA_NATIVE_KNOWLEDGE_BUILDER_V7.sh
+V7_ARG1=ASSESSMENT_RUN_OPTIONAL
+V7_OUTPUT=RUN_DIR
+V7_BINDING_FILE=source.assessment.run
+
+V8_WRAPPER=$BASE/V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR/99_RUN_SIGMA_NATIVE_CANDIDATE_SUPPORT_V8.sh
+V8_ARG1=KNOWLEDGE_RUN_OPTIONAL
+V8_OUTPUT=RUN_DIR
+V8_BINDING_FILE=source.knowledge.run
+
+V9_WRAPPER=$BASE/V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN/99_RUN_SIGMA_NATIVE_RESEARCH_REPLAN_V9.sh
+V9_ARG1=SUPPORT_RUN_OPTIONAL
+V9_OUTPUT=RUN_DIR
+V9_BINDING_FILE=source.support.run
 ```
 
-Important scope boundary: the observed V5 wrapper exposes no `$1` topic argument. For V10, invoking it is valid for the already-tested current research topic/configuration only. Do NOT claim generic arbitrary-topic injection through this wrapper.
+Preferred chain always passes exact prior `RUN_DIR` as `$1`; do not rely on mutable pointers where explicit binding exists.
 
-### V6 — corpus evidence assessor
+Scope limit: V5 exposes no observed `$1` topic/query input. Current V10 may re-run V5 for the existing tested topic/configuration, but must not claim arbitrary-topic injection or strategy-conditioned query adaptation.
 
-```text
-PACKAGE=V1_R9_SIGMA_NATIVE_CORPUS_EVIDENCE_ASSESSOR
-CALLABLE_WRAPPER=99_RUN_SIGMA_NATIVE_EVIDENCE_ASSESSMENT_V6.sh
-ARG1=SOURCE_COLLECTION_RUN (optional; empty falls back to current_collection.path)
-OUTPUT_CONTRACT=RUN_DIR=<assessment run>
-SOURCE_BINDING=$RUN_DIR/source.collection.run
-```
-
-Preferred V10 call: pass the exact fresh V5 `RUN_DIR` as `$1`; do not rely on mutable pointer state.
-
-### V7 — knowledge candidate builder
-
-```text
-PACKAGE=V1_R10_SIGMA_NATIVE_KNOWLEDGE_BUILDER
-CALLABLE_WRAPPER=99_RUN_SIGMA_NATIVE_KNOWLEDGE_BUILDER_V7.sh
-ARG1=ASSESSMENT_RUN (optional)
-OUTPUT_CONTRACT=RUN_DIR=<knowledge candidate run>
-POINTER_WRITTEN=$BASE/current_knowledge_candidate.path when candidate created
-```
-
-Preferred V10 call: pass the exact V6 assessment `RUN_DIR` as `$1`.
-
-### V8 — candidate evidence-support assessor
-
-```text
-PACKAGE=V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR
-CALLABLE_WRAPPER=99_RUN_SIGMA_NATIVE_CANDIDATE_SUPPORT_V8.sh
-ARG1=KNOWLEDGE_RUN (optional)
-OUTPUT_CONTRACT=RUN_DIR=<support assessment run>
-POINTER_WRITTEN=$BASE/current_candidate_support_assessment.path
-```
-
-Preferred V10 call: pass the exact V7 knowledge `RUN_DIR` as `$1`.
-
-### V9 — research replan
-
-```text
-PACKAGE=V1_R12_SIGMA_NATIVE_RESEARCH_REPLAN
-CALLABLE_WRAPPER=99_RUN_SIGMA_NATIVE_RESEARCH_REPLAN_V9.sh
-ARG1=SUPPORT_RUN (optional)
-OUTPUT_CONTRACT=RUN_DIR=<research replan run>
-POINTER_WRITTEN=$BASE/current_research_replan.path
-```
-
-Preferred V10 call: pass the exact V8 support `RUN_DIR` as `$1`.
-
-## V10 CONTROL BOUNDARY
+## V10 AUTONOMY POLICY
 
 ```text
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 SIGMA_VALID_RESEARCH_MORE_AUTO_EXECUTE=YES
 HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
+PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
+HOST_COGNITIVE_STAGE_SEQUENCE=NO
 ```
 
-V10 must use a Sigma Native parent/controller as the stage owner. Host may dispatch exact child wrappers and return mechanical observations (`RC`, `RUN_DIR`, exact state-file content, hashes). Host must NOT decide the cognitive stage sequence.
+Host may dispatch an exact child wrapper only after the Sigma parent emits the corresponding protocol action, and may return only mechanical observations such as `RC`, `RUN_DIR`, exact state content and hashes.
 
-A valid initial V10 tested scope may re-invoke V5 for the current proven topic when Sigma says `RESEARCH_MORE`, then explicitly bind V5→V6→V7→V8→V9 by exact run paths. Because V5 exposes no observed new-topic/query argument, V10 must NOT yet claim strategy-conditioned query adaptation.
+## V10 PREPARED ARTIFACT — NOT YET OPPO QA
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
+CURRENT_STATUS=V10_INSTALLER_PREPARED_NOT_YET_OPPO_QA
+
+INSTALLER_FILE=INSTALL_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_V10_ADDITIVE.sh
+INSTALLER_SHA256=836309b93269f556648dc704ee411ecf70a5adc9f970b716ce92f6411fae85af
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+```
+
+Prepared V10 architecture:
+
+```text
+canonical V9 RESEARCH_MORE
+→ one continuous V10 Sigma Native parent VM
+→ Sigma emits RUN_COLLECTION
+→ host mechanically invokes preserved V5
+→ Sigma receives fresh collection RUN_DIR
+→ Sigma emits RUN_V6 with exact run path
+→ host invokes preserved V6
+→ Sigma decides from V6 state
+→ Sigma emits RUN_V7 / RUN_V8 / RUN_V9 as applicable
+→ if new V9 again says RESEARCH_MORE, Sigma automatically starts another fresh V5 cycle
+→ max fresh collection attempts for initial V10 tested scope = 2
+→ no USER/GPT approval between cycles
+```
+
+V10 PASS must not depend on ending with supported evidence. `SUPPORTED_PRESENT`, `STOP_UNKNOWN`, or `RESOURCE_BOUND_REACHED` may all be valid terminal outcomes depending on runtime evidence. Capability PASS requires proof that Sigma controlled the stage sequence and actually triggered at least one fresh Internet collection from the V9 replan action.
 
 ```text
 STRATEGY_CONDITIONED_QUERY_ADAPTATION=NOT_PROVEN
 GENERIC_ARBITRARY_TOPIC_V5_INPUT=NOT_PROVEN
+SOURCE_TRUST=NOT_ASSESSED
+LESSON_TRUTH=NOT_ASSESSED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+CONFLICT_DETECTION=NOT_PROVEN
 ```
 
-## CURRENT FRONTIER
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_EVIDENCE_LOOP_V10
-CURRENT_STATUS=V10_CHILD_INTERFACES_LOCKED_READY_TO_BUILD
-NEXT_COMMAND=BUILD_AND_QA_V10_SIGMA_NATIVE_AUTONOMOUS_RESEARCH_LOOP_CONTROLLER
-```
-
-V10 acceptance direction:
-
-```text
-PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
-HOST_COGNITIVE_STAGE_SEQUENCE=NO
-HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
-GPT_RUNTIME_ROLE=NONE
-V9_RESEARCH_MORE_TRIGGER_CONSUMED_BY_SIGMA=YES
-FRESH_V5_COLLECTION_RUN_CREATED=YES
-V6_BOUND_TO_FRESH_V5_RUN=YES
-V7_BOUND_TO_V6_RUN=YES
-V8_BOUND_TO_V7_RUN=YES
-V9_BOUND_TO_V8_RUN=YES
-PRESERVED_V5_V6_V7_V8_V9=YES
-```
-
-Still not proven after V10 merely closes this loop: truth, source trust, semantic understanding, conflict detection, arbitrary-topic adaptation, or strategy-conditioned query generation.
+NEXT_COMMAND=RUN_V10_INSTALL_QA_ON_OPPO
