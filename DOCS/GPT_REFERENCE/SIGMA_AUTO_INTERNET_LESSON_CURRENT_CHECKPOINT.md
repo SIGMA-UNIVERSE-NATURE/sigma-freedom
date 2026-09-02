@@ -18,6 +18,19 @@ HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
+## CONTINUITY GUARD
+
+```text
+READ_CHECKPOINT_BEFORE_GIVING_NEXT_SIGMA_DEVELOPMENT_STEP=YES
+GPT_MUST_NOT_PRETEND_CONTEXT_IS_COMPLETE_IF_UNCERTAIN=YES
+GPT_MUST_EXPLICITLY_TELL_HUMAN_IF_PROJECT_DIRECTION_OR_REQUIRED_HISTORY_SEEMS_MISSING=YES
+HUMAN_CAN_REANCHOR_GPT_TO_CHECKPOINT=YES
+DO_NOT_SILENTLY_INVENT_MISSING_SIGMA_HISTORY=YES
+PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
+```
+
+If GPT detects that its active context is incomplete, contradictory, or insufficient to preserve the established SIGMA development path, GPT must say so explicitly before proposing a new frontier or changing architecture. The GitHub checkpoint is the external continuity anchor; do not rely on conversational recollection alone.
+
 ## NORTH STAR
 
 SIGMA autonomously identifies gaps, creates/selects Sigma-owned research surfaces, searches the Internet, assesses evidence, researches more when needed, preserves uncertainty, and only later admits durable knowledge when warranted.
