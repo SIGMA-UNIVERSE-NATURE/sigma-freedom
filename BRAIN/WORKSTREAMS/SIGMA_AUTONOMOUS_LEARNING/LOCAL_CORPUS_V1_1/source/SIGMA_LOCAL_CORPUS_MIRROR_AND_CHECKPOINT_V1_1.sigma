@@ -1,0 +1,250 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.AUTONOMOUS_LEARNING.LOCAL_CORPUS][VERSION=1.1]
+
+DEF LCM_H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF LCM_PATH(a, b) {
+    RETURN a + "/" + b;
+}
+
+DEF LCM_MKDIR(path) {
+    RETURN LCM_H("mkdir", path, NULL, NULL);
+}
+
+DEF LCM_READ(path) {
+    RETURN LCM_H("read_text", path, NULL, NULL);
+}
+
+DEF LCM_WRITE(path, value) {
+    RETURN LCM_H("write_text", path, value, NULL);
+}
+
+DEF LCM_LIST(path) {
+    RETURN LCM_H("listdir", path, NULL, NULL);
+}
+
+DEF LCM_LIST_LEN(xs) {
+    RETURN LCM_H("list_len", xs, NULL, NULL);
+}
+
+DEF LCM_LIST_GET(xs, index) {
+    RETURN LCM_H("list_get", xs, index, NULL);
+}
+
+DEF LCM_ENDS(text, suffix) {
+    RETURN LCM_H("str_ends", text, suffix, NULL);
+}
+
+DEF LCM_INTEGER(text) {
+    RETURN LCM_H("to_int", text, NULL, NULL);
+}
+
+DEF LCM_INPUT() {
+    RETURN LCM_H("input", NULL, NULL, NULL);
+}
+
+DEF LCM_PREPARE_STATE(state_root) {
+    IF (LCM_MKDIR(state_root) != 0) {
+        RETURN 0;
+    }
+
+    IF (LCM_MKDIR(LCM_PATH(state_root, "sources")) != 0) {
+        RETURN 0;
+    }
+
+    IF (LCM_MKDIR(LCM_PATH(state_root, "checkpoints")) != 0) {
+        RETURN 0;
+    }
+
+    RETURN 1;
+}
+
+DEF LCM_RECORD_FILE(source_path, mirror_path) {
+    ⚡ content: LCM_READ(source_path);
+
+    IF (content == NULL) {
+        RETURN -1;
+    }
+
+    ⚡ previous: LCM_READ(mirror_path);
+
+    IF (previous == content) {
+        RETURN 0;
+    }
+
+    ⚡ write_rc: LCM_WRITE(mirror_path, content);
+
+    IF (write_rc == 0) {
+        RETURN 1;
+    }
+
+    RETURN -1;
+}
+
+DEF LCM_WALK(
+    source_path,
+    mirror_path,
+    depth,
+    max_depth
+) {
+    IF (depth > max_depth) {
+        RETURN -1;
+    }
+
+    ⚡ entries: LCM_LIST(source_path);
+
+    IF (entries == NULL) {
+        RETURN LCM_RECORD_FILE(source_path, mirror_path);
+    }
+
+    IF (LCM_MKDIR(mirror_path) != 0) {
+        RETURN -1;
+    }
+
+    ⚡ count: LCM_LIST_LEN(entries);
+    ⚡ index: 0;
+    ⚡ changed: 0;
+
+    WHILE (index < count) {
+        ⚡ name: LCM_LIST_GET(entries, index);
+        ⚡ source_child: LCM_PATH(source_path, name);
+        ⚡ mirror_child: LCM_PATH(mirror_path, name);
+
+        ⚡ child_result:
+            LCM_WALK(
+                source_child,
+                mirror_child,
+                depth + 1,
+                max_depth
+            );
+
+        IF (child_result < 0) {
+            RETURN child_result;
+        }
+
+        ⚡ changed: changed + child_result;
+
+        ⚡ index: index + 1;
+    }
+
+    RETURN changed;
+}
+
+DEF LCM_INDEX_SOURCE(
+    source_name,
+    source_path,
+    state_root,
+    max_depth
+) {
+    ⚡ mirror_root:
+        LCM_PATH(
+            LCM_PATH(state_root, "sources"),
+            source_name
+        );
+
+    IF (LCM_MKDIR(mirror_root) != 0) {
+        RETURN -1;
+    }
+
+    ⚡ changed:
+        LCM_WALK(
+            source_path,
+            mirror_root,
+            0,
+            max_depth
+        );
+
+    ⚡ checkpoint_path:
+        LCM_PATH(
+            LCM_PATH(state_root, "checkpoints"),
+            source_name + ".state"
+        );
+
+    IF (changed < 0) {
+        ⚡ print(source_path);
+        ⚡ print(changed);
+        RETURN changed;
+    }
+
+    IF (LCM_WRITE(checkpoint_path, source_path) != 0) {
+        RETURN -1;
+    }
+
+    ⚡ print(source_path);
+    ⚡ print(changed);
+
+    RETURN changed;
+}
+
+⟡(Σ.LOCAL_CORPUS_MIRROR_AND_CHECKPOINT) {
+    ⚡ sources_dir: LCM_INPUT();
+    ⚡ state_root: LCM_INPUT();
+    ⚡ max_depth: LCM_INTEGER(LCM_INPUT());
+
+    ⚡ state_ready: LCM_PREPARE_STATE(state_root);
+
+    IF (state_ready == 0) {
+        ⚡ print("STATE_PREPARE_FAILURE");
+    }
+
+    IF (state_ready == 1) {
+        ⚡ source_entries: LCM_LIST(sources_dir);
+
+        IF (source_entries == NULL) {
+            ⚡ print("SOURCE_REGISTRY_UNAVAILABLE");
+        }
+
+        IF (source_entries != NULL) {
+            ⚡ source_count: LCM_LIST_LEN(source_entries);
+            ⚡ source_index: 0;
+            ⚡ indexed_sources: 0;
+            ⚡ failed_sources: 0;
+            ⚡ changed_text_views: 0;
+
+            WHILE (source_index < source_count) {
+                ⚡ source_name:
+                    LCM_LIST_GET(source_entries, source_index);
+
+                IF (LCM_ENDS(source_name, ".path")) {
+                    ⚡ source_file:
+                        LCM_PATH(sources_dir, source_name);
+
+                    ⚡ source_path: LCM_READ(source_file);
+
+                    IF (source_path != NULL) {
+                        ⚡ source_result:
+                            LCM_INDEX_SOURCE(
+                                source_name,
+                                source_path,
+                                state_root,
+                                max_depth
+                            );
+
+                        IF (source_result < 0) {
+                            ⚡ failed_sources: failed_sources + 1;
+                        }
+
+                        IF (source_result >= 0) {
+                            ⚡ changed_text_views:
+                                changed_text_views + source_result;
+
+                            ⚡ indexed_sources: indexed_sources + 1;
+                        }
+                    }
+
+                    IF (source_path == NULL) {
+                        ⚡ failed_sources: failed_sources + 1;
+                    }
+                }
+
+                ⚡ source_index: source_index + 1;
+            }
+
+            ⚡ print(indexed_sources);
+            ⚡ print(failed_sources);
+            ⚡ print(changed_text_views);
+            ⚡ print(state_root);
+        }
+    }
+}
