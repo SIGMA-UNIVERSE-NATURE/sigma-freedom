@@ -30,10 +30,7 @@ HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
 HOST_MAY_REWRITE_SIGMA_RESEARCH_INTENT=NO
 RESOURCE_LIMIT_RETURNS_OBSERVATION_TO_SIGMA=YES
 NETWORK_FAILURE_RETURNS_OBSERVATION_TO_SIGMA=YES
-IDENTITY_MISMATCH_STOPS_FOR_SAFETY=YES
 ```
-
-A resource bound is a tested-run condition, not a semantic ban on future Sigma Internet research.
 
 ## PRESERVE LOCK
 
@@ -48,7 +45,6 @@ V6_CORPUS_EVIDENCE_ASSESSOR_SHA256=f8cd858a1b4eaae7120154ad9d9a226d48bdb123baa26
 V7_KNOWLEDGE_BUILDER_SHA256=3bb1243057bd445d677257e6953ad6957856b0dc202629b44468fb45fe8a730b
 V8_SUPPORT_ASSESSOR_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a81456e4e625eab0
 V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
-V10_R1_PARENT_BYTECODE_SHA256=e63f1f897f498b3af012bf87211f0da536f4773f7ed76f4fd1747bf969666fab
 V10_R2_PARENT_BYTECODE_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
 V11_ADAPTER_BYTECODE_SHA256=40f6b83e55c5dff238b7fe4a9f208e6bfabec3c73a70e5b5c95b93941fa353f0
 V12_R1_POOL_BYTECODE_SHA256=173310083bf19a57826d76e3fba4e78c4696c24c157c71b1025cfc3d111f15fc
@@ -57,6 +53,8 @@ V12_R2_POOL_BYTECODE_SHA256=1b1661af5fca081ec6b0aaf8f61ddd0e767cec438be7af2788fc
 V12_CONTROLLER_SOURCE_SHA256=9d2400931ed7a8e65e05552a85bff7df3589e59c971c9b0ad9cab1384969f688
 V12_CONTROLLER_BYTECODE_SHA256=21078eec99958b7ba060b4495becd9b1f13aa932a3e691269f1091cc80755fbe
 ```
+
+Identity mismatch => STOP; never silently replace a proven tool.
 
 ## CANONICAL PASS SET
 
@@ -78,7 +76,7 @@ SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 ```
 
-V12 remains NOT canonical PASS until independent verification is repaired/confirmed.
+V12 remains NOT canonical PASS until repaired independent verification passes on the existing R2 run.
 
 ## LOCKED CHILD CONTRACTS — NEVER ASK USER AGAIN
 
@@ -108,56 +106,89 @@ SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 
 ```text
 V12_R1_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T063034Z_26760_11331
-DRIVER_RC=35
 POOL_VM_RC=22
 POOL_STDERR=SIGMA host: string required
 ROOT_CAUSE=POOL_COUNT_INTEGER_PASSED_TO_HOST_WRITE_TEXT_STRING_INTERFACE
 COGNITIVE_POLICY_FAILURE=NO_EVIDENCE
-QUERY_DIVERSITY_SELECTION_FAILURE=NO_EVIDENCE
 ```
 
-R1 failed package/run remain preserved as evidence.
+R1 failed package/run remain preserved.
 
-## V12 R2 INSTALL QA — PASS
-
-```text
-V12_R2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R15R2_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_DIVERSITY_TYPE_REPAIR
-V12_R2_INSTALLER_SHA256=4d27b4ac0e20bf00096bf2149f06ba9f834173eb9c343c0ce1390b18ee419bc3
-REPAIR_SCOPE=POOL_COUNT_SERIALIZATION_ONLY
-COUNT_SERIALIZATION_QA=PASS
-CONTROLLER_IDENTITY_QA=PASS
-COGNITIVE_POLICY_CHANGE=NO
-QUERY_DIVERSITY_POLICY_CHANGE=NO
-OUTCOME_POLICY_CHANGE=NO
-INSTALL_QA_RESULT=PASS
-```
-
-## V12 R2 LIVE — DRIVER PASS, INDEPENDENT VERIFY FAIL
+## V12 R2 LIVE RUNTIME — DRIVER PASS
 
 ```text
 V12_R2_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T071222Z_12302_13559
 DRIVER_RC=0
+POOL_VM_RC=0
+PARENT_VM_RC=0
+ACTUATOR_RC=0
+DIVERSE_ALTERNATIVE_COUNT=2
+TERMINAL_STATE=KEEP_QUERY_PATTERN
+QUERY_MEMORY_RECORD=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_pattern_memory/440bd828785827af1a1bbe0774e7220de8450b69e37eb62f77cd2403fb301dab
+```
+
+The R2 runtime completed successfully and Sigma emitted `KEEP_QUERY_PATTERN`. This strongly supports that the feedback controller reached a successful decision, but canonical V12 PASS still waits for independent verification repair.
+
+## V12 R2 VERIFIER FAILURE — ROOT CAUSE CONFIRMED
+
+Original verifier result:
+
+```text
 INDEPENDENT_VERIFY_RC=80
 VERIFY_FAILURE_COUNT=3
 FAILURE_CLASS=FAIL_INDEPENDENT_VERIFICATION
 ```
 
-Interpretation boundary: unlike R1, the R2 runtime driver completed successfully. Therefore the pool type repair worked far enough for the complete driver to return RC 0. V12 still cannot be canonicalized because three verifier assertions failed. Do not rerun the expensive Internet loop blindly. Diagnose the existing R2 run and verifier only.
+Targeted inspection of the installed verifier returned only:
 
-There is a specific implementation suspicion to test, not yet canonical fact: the V12 verifier's `KEEP_QUERY_PATTERN` memory checks may reference `$BASE/query_pattern_memory/...` without defining `BASE`, which would yield exactly three missing-memory assertions if the live terminal was `KEEP_QUERY_PATTERN`. Confirm from the exact run and installed verifier before repair.
+```text
+126:    MEM="$BASE/query_pattern_memory/$QSHA"
+```
+
+No `BASE=` assignment exists anywhere in that verifier. With shell `set +u`, undefined `BASE` expands empty, so the verifier incorrectly checks `/query_pattern_memory/$QSHA` instead of `$HOME/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_pattern_memory/$QSHA`.
+
+The `KEEP_QUERY_PATTERN` verifier branch contains exactly three memory assertions (query.topic exists, byte-exact cmp, provenance contains Sigma KEEP decision), matching the observed `VERIFY_FAILURE_COUNT=3`.
+
+```text
+ROOT_CAUSE=INDEPENDENT_VERIFIER_UNDEFINED_BASE_PATH
+RUNTIME_RERUN_REQUIRED=NO
+SIGMA_VM_RERUN_REQUIRED=NO
+INTERNET_RERUN_REQUIRED=NO
+COGNITIVE_POLICY_CHANGE=NO
+QUERY_DIVERSITY_POLICY_CHANGE=NO
+OUTCOME_POLICY_CHANGE=NO
+```
+
+## V12 R3 VERIFIER-ONLY REPAIR — PREPARED
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY_V12
-CURRENT_STATUS=V12_R2_DRIVER_PASS_VERIFY_FAIL_PENDING_TARGETED_DIAGNOSIS
-NEXT_COMMAND=RUN_V12_R2_VERIFY_TARGETED_DIAGNOSIS
+CURRENT_STATUS=V12_R2_RUNTIME_DRIVER_PASS_VERIFIER_BUG_CONFIRMED_R3_PREPARED
+V12_R3_PACKAGE_TARGET=V1_R15R3_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_DIVERSITY_VERIFIER_PATH_REPAIR
+V12_R3_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_V12_R3_VERIFIER_PATH_REPAIR.sh
+V12_R3_INSTALLER_SHA256=6ac8e03a0f231088d8ae20ea5a88f1819dd35567e8acd13c8d48285d3478df8d
+LOCAL_INSTALLER_BASH_N=0
 ```
 
-Targeted diagnosis only: inspect `terminal.state`, `run.metrics.state`, winner paths, and the verifier's `BASE`/`MEM` definitions. Do not broad-rescan V5–V11.
-
-Still not proven:
+R3 changes only the independent verifier by defining:
 
 ```text
-SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=NOT_PROVEN
+BASE="$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS"
+```
+
+R3 copies the R2 package additively, preserves all runtime Sigma source/bytecode identities, does NOT run Sigma VM or Internet, then runs the repaired verifier against the existing R2 live run.
+
+```text
+R2_RUNTIME_RERUN=NO
+SIGMA_VM_EXECUTED_BY_R3=NO
+LIVE_INTERNET_REQUEST_EXECUTED_BY_R3=NO
+```
+
+NEXT_COMMAND=INSTALL_R3_AND_VERIFY_EXISTING_V12_R2_RUN
+
+Still not globally proven:
+
+```text
 SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
 BEST_KEYWORD_SELECTION=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
