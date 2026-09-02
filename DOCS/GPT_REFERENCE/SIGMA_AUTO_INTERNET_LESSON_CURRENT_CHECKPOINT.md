@@ -76,9 +76,8 @@ SIGMA_NATIVE_KNOWLEDGE_CANDIDATE=PASS_TESTED_SCOPE
 SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT=PASS_TESTED_SCOPE
 SIGMA_NATIVE_RESEARCH_REPLAN=PASS_TESTED_SCOPE
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
+SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 ```
-
-V11 is installed and QA-passed but is NOT canonical live PASS yet.
 
 ## LOCKED CHILD CONTRACTS — NEVER ASK USER AGAIN
 
@@ -143,83 +142,27 @@ SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
 
 `RESOURCE_BOUND_REACHED` was a valid tested-run terminal under the explicit resource cap; it is not a prohibition on future Sigma Internet actions.
 
-## V11 — TOPIC / KEYWORD TOOLING DOCTRINE
+## V11 — STRATEGY-CONDITIONED QUERY ADAPTATION — CANONICAL PASS
 
-User direction: give Sigma more tools and explicit research guidance so it can stay anchored to the intended topic and construct better search terms itself, without GPT/host composing the query.
-
-V11 adds Sigma-native responsibilities:
+Installed identities:
 
 ```text
-TOPIC_ANCHOR_EXTRACTOR=SIGMA_NATIVE
-EVIDENCE_CONTEXT_TERM_MINER=SIGMA_NATIVE
-QUERY_ADAPTER=SIGMA_NATIVE
-HOST_QUERY_COMPOSITION=NO
-HOST_SEMANTIC_KEYWORD_SELECTION=NO
-ZERO_PREWRITTEN_QUERY=YES
-ZERO_PREWRITTEN_SOURCE=YES
-ZERO_PREWRITTEN_ANSWER=YES
-```
-
-Guidance policy for the first tested scope:
-
-```text
-1. Preserve the full source research.topic as the mandatory anchor.
-2. Read the actual grounded V7 knowledge candidate as evidence context.
-3. Mine candidate context terms from that evidence inside Sigma Native VM.
-4. Exclude only an explicit generic stopword policy; do not inject target-specific vocabulary.
-5. Under STRENGTHEN_TOPIC_COOCCURRENCE, Sigma composes an adapted research topic from the full topic anchor + Sigma-mined evidence context term.
-6. Sigma emits RUN_ADAPTED_COLLECTION; host may then mechanically pass the exact adapted-topic file to preserved V5.
-7. No USER/GPT approval is inserted between Sigma adaptation and Internet execution.
-8. If no defensible context term exists, preserve UNKNOWN/STOP rather than host inventing keywords.
-```
-
-This is still a surface/evidence-derived adaptation policy. It does not by itself prove semantic understanding or that the chosen term is objectively the best search phrase.
-
-## V11 OPPO INSTALL QA — PASS, READY FOR LIVE
-
-```text
-CURRENT_FRONTIER=SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION_V11
-CURRENT_STATUS=V11_OPPO_INSTALL_QA_PASS_READY_FOR_LIVE
-
 V11_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R14_SIGMA_NATIVE_STRATEGY_QUERY_ADAPTER
-V11_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_STRATEGY_QUERY_ADAPTER_V11_ADDITIVE.sh
 V11_INSTALLER_SHA256=d57c1e6cc9b62cb5d9dbfc3f8adb76e9297365c62fb8949ca940249435a621eb
 V11_ADAPTER_SOURCE_SHA256=82e25898da18059c3abee97c77529a137db4a33ae85fdd4c042e3ce7b7e14b3f
 V11_ADAPTER_BYTECODE_SHA256=40f6b83e55c5dff238b7fe4a9f208e6bfabec3c73a70e5b5c95b93941fa353f0
-
-BASH_SYNTAX_QA=PASS
-QUERY_ADAPTATION_PLANE_QA=PASS
-HOST_QUERY_COMPOSITION=NO
-SIGMA_VALID_ADAPTED_RESEARCH_AUTO_EXECUTE=YES
-HUMAN_APPROVAL_BETWEEN_ADAPTATION_AND_INTERNET=0
-PRESERVED_V5_CONTROLLER_SHA256=2fd1cfd60203e61092d4a40bd3ee9e2ce3a350f65f86a133aeb3fb159392c62b
-PRESERVED_QUERY_ENGINE_SHA256=db199f572a9415dc812fb3936387541a3b1e648f383d5e1da6487f11e97c4b6a
-PRESERVED_LESSON_READER_SHA256=ba2faf7bddb81789b3fbccff96bdf8f3c2021d0db252d7e8ef38dc92b182994c
-PRESERVED_V9_REPLAN_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
-PRESERVED_V10_R2_PARENT_SHA256=b1af11965e2e2480b0acb2496d6c36fac043332d6c743e20971d2134a8658cf5
-INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
-HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
-GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
-HOST_MAY_SILENTLY_SUPPRESS_SIGMA_ACTION=NO
-QUERY_ADAPTATION_PLANE=SIGMA_NATIVE_VM
-ZERO_PREWRITTEN_QUERY=YES
-ZERO_PREWRITTEN_SOURCE=YES
-ZERO_PREWRITTEN_ANSWER=YES
-TOPIC_ANCHOR_POLICY=FULL_SOURCE_TOPIC_PRESERVED_PLUS_SIGMA_MINED_CONTEXT_TERM
-CONTEXT_TERM_SOURCE=GROUNDED_V7_KNOWLEDGE_CANDIDATE
-STOPWORD_POLICY=EXPLICIT_GENERIC_GUIDANCE_INPUT
-STRATEGY_TESTED_SCOPE=STRENGTHEN_TOPIC_COOCCURRENCE
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-INSTALL_QA_RESULT=PASS
-READY_TO_RUN_V11_STRATEGY_QUERY_ADAPTER=YES
 ```
 
-V11 live acceptance direction:
+Canonical live run:
 
 ```text
+V11_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_adaptations/20260902T055051Z_29087_9627
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=0
 QUERY_ADAPTATION_PLANE=SIGMA_NATIVE_VM
 HOST_QUERY_COMPOSITION=NO
+ADAPTER_STATE=ADAPTED_QUERY_READY
+ADAPTER_ACTION=RUN_ADAPTED_COLLECTION
 ADAPTED_TOPIC_DIFFERS_FROM_SOURCE_TOPIC=YES
 ADAPTED_TOPIC_TO_V5_BYTE_EXACT_BINDING=PASS
 FRESH_INTERNET_COLLECTION_FROM_ADAPTED_TOPIC=YES
@@ -227,11 +170,28 @@ HUMAN_APPROVAL_BETWEEN_ADAPTATION_AND_INTERNET=0
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
 ```
 
-Still not proven until live evidence:
+Canonical interpretation:
+
+```text
+V9 replan.action=RESEARCH_MORE
++ V9 strategy=STRENGTHEN_TOPIC_COOCCURRENCE
++ full research.topic anchor
++ grounded V7 knowledge candidate
+→ Sigma Native V11 adapter mined an evidence-context term
+→ Sigma produced an adapted research topic different from the source topic
+→ host did not compose the query
+→ adapted topic was passed byte-exact into preserved V5
+→ a fresh Internet collection was created immediately
+→ no USER/GPT approval gate existed between Sigma adaptation and Internet execution
+```
+
+Claim boundary:
 
 ```text
 SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
 BEST_KEYWORD_SELECTION=NOT_PROVEN
+QUERY_OUTCOME_IMPROVEMENT=NOT_PROVEN
+QUERY_DIVERSITY_POLICY=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
 ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
@@ -240,4 +200,49 @@ DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-NEXT_COMMAND=RUN_V11_LIVE_STRATEGY_QUERY_ADAPTER
+V11 proves that Sigma Native VM can adapt a research input from its own replan strategy and grounded evidence context and automatically use it for a fresh Internet collection. It does not prove that the chosen context term was the objectively best keyword or that evidence quality improved.
+
+## CURRENT FRONTIER — V12
+
+The next gap is not Internet permission. Sigma already has autonomous Internet invocation in the tested scope. The next gap is query-quality learning: Sigma must observe whether an adapted query actually improves downstream evidence/support, compare outcomes, retain successful query patterns, avoid repeating ineffective adaptations, and generate diverse alternatives when evidence remains weak.
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY_V12
+CURRENT_STATUS=V11_CANONICAL_PASS_V12_NOT_BUILT
+```
+
+V12 target:
+
+```text
+V11 adapted collection
+→ V6 → V7 → V8 downstream evidence/support outcome
+→ Sigma Native query-outcome evaluator
+→ compare against prior research outcome using explicit evidence metrics
+→ KEEP_QUERY_PATTERN / TRY_ALTERNATIVE / STOP_UNKNOWN
+→ if TRY_ALTERNATIVE: Sigma generates another evidence-derived adapted query
+→ dedup against prior query hashes
+→ Internet auto-executes again without USER/GPT approval
+```
+
+V12 design requirements:
+
+```text
+QUERY_OUTCOME_EVALUATION_PLANE=SIGMA_NATIVE_VM
+HOST_SEMANTIC_QUERY_SCORING=NO
+HOST_QUERY_COMPOSITION=NO
+QUERY_HISTORY_CONTENT_ADDRESSED=YES
+QUERY_DEDUP_MECHANICAL_HASH_ONLY=YES
+NO_USER_GPT_APPROVAL_GATE=YES
+ZERO_PREWRITTEN_QUERY=YES
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_ANSWER=YES
+UNKNOWN_STAYS_UNKNOWN=YES
+```
+
+The evaluator may use explicit measured metrics such as support-state, supported count, weak-support count, malformed count, distinct supported sources, and collection/evidence counts. Those are observations, not prewritten answers. Sigma must own the comparison and next research decision.
+
+Only after evidence becomes supported should agreement/conflict observation become the next frontier.
+
+```text
+NEXT_COMMAND=BUILD_V12_SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY
+```
