@@ -42,9 +42,27 @@ INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 HOST_QUERY_COMPOSITION=NO
+HOST_QUERY_RANKING=NO
 HOST_SEMANTIC_KEYWORD_SELECTION=NO
 HOST_SOURCE_SELECTION=NO
 ```
+
+## PRESERVE LOCK
+
+```text
+COMPILER_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+V5_WRAPPER_SHA256=f1d0cdbc53f4be6ce00d10410c6d49a661814d99b4588563ad123b48f93bf163
+V6_WRAPPER_SHA256=d39b7fe9f2d3e05a3da0ecbd6bedbd535eb8e688a841b3f7ee07b1253178c8da
+V7_WRAPPER_SHA256=0a50f052bf8de53941d10930fbaa95be9dba0e9b5d4a35f8e589852d64e75af8
+V8_WRAPPER_SHA256=fb5b9c73ab297e4e11a9c27ace283473b5faba2fd0a6bc280173ce661b348691
+V13_WRAPPER_SHA256=f1703e055642e80a7ead999b0e9dcc936ebdad511257d1aca769f496444983c5
+V14_SUPPORT_UNION_SHA256=53e9b167617f1cdf0200bc700b3bffea8b3df44db9c220f40111d8f6d0b419b8
+V15_R2_ENGINE_BYTECODE_SHA256=17a63bbc1f04c1b5e4b0e40b22f37c89348d6800ad595000063caa66e0d49549
+V15_R2_WRAPPER_SHA256=ebbb34bc4ac367dd4765f8047a4091ae3c908bc8e19573e6634673e14aeafbd8
+```
+
+Identity mismatch => STOP; do not silently replace a proven artifact.
 
 ## CANONICAL PASS SET
 
@@ -80,18 +98,9 @@ DUPLICATE_QUERY_SHA256=a6987011ef709df40071c024a588bda4a0db4a9710d214a923924815e
 ROOT_CAUSE=NOVELTY_HORIZON_MISMATCH
 ```
 
-R1 failure evidence remains preserved. R2 moved full-query novelty awareness into Sigma and retained the host only as an invariant guard.
-
 ## V15 R2 LIVE — CANONICAL PASS
 
 ```text
-V15_R2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R18R2_SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_NOVELTY_GLOBAL_MEMORY_REPAIR
-V15_R2_INSTALLER_SHA256=2213472c4eb4a2d597b1468555591deaa09f947def4671f00eb9f30a367ae55b
-V15_R2_ENGINE_SOURCE_SHA256=b196213b0aab324e2a6479ffedba2a9611e634127d1bc36131ebc3b58798a7a9
-V15_R2_ENGINE_BYTECODE_SHA256=17a63bbc1f04c1b5e4b0e40b22f37c89348d6800ad595000063caa66e0d49549
-V15_R2_NOVELTY_VERIFIER_SHA256=92994c3e0d6e7cd5311b1ce2c0419f863c71a427f54cf7c349443f5bd7ecddf2
-V15_R2_RUNNER_SHA256=50069a00a63d164806024014bac7ac7150e1259232e17dd40720d0b7d0b5f8ed
-V15_R2_VERIFIER_SHA256=ac60e5433c95fe47b2e45db5249a42cfbb6a4fb3a82fe80e3361d619038a30bb
 V15_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/fresh_query_gap_expansions/20260902T095342Z_10290_2019
 DRIVER_RC=0
 INDEPENDENT_VERIFY_RC=0
@@ -100,43 +109,22 @@ GAP_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_QUERY_COMPOSITION=NO
 HOST_SEMANTIC_KEYWORD_SELECTION=NO
 HOST_SOURCE_SELECTION=NO
-QUERY_NOVELTY_MEMORY=MECHANICAL_HASH_AND_PROVENANCE_ONLY
 NOVELTY_HORIZON=GLOBAL_PREEXISTING_QUERY_MEMORY_PLUS_IN_RUN
 SIGMA_FULL_QUERY_NOVELTY_DECISION=YES
-SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
-EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
-HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
-GPT_RUNTIME_ROLE=NONE
 NOVELTY_VERIFY_RC=0
 FRESH_QUERY_COUNT=2
 UNIQUE_FRESH_QUERY_HASHES=2
 ANCHOR_PRESERVATION=PASS
 QUERY_NOVELTY_VS_PREEXISTING_GLOBAL_MEMORY=PASS
-QUERY_NOVELTY_MEMORY=PASS_TESTED_SCOPE
-PLANNER_VM_INVOCATIONS=3
 SIGMA_FRESH_QUERY_ACTIONS=2
 FINAL_COMPARISON_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T100041Z_7337_22612
 TERMINAL_STATE=RESOURCE_BOUND_REACHED
 FINAL_DISTINCT_SOURCE_PAIRS=0
 FINAL_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY=PASS_TESTED_SCOPE
-BEST_KEYWORD_SELECTION=NOT_PROVEN
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
 ```
 
-Canonical interpretation:
-
-```text
-Sigma Native consumed global preexisting query-memory text as an observation.
-Sigma itself checked full candidate-query novelty and generated two fresh anchored queries whose hashes were unique versus preexisting global memory and each other.
-Sigma emitted two autonomous RESEARCH_MORE actions with no USER/GPT approval gate.
-Host only persisted hash/provenance and mechanically executed the preserved Internet/evidence chain.
-Both new query cycles still failed to obtain a distinct supported source pair.
-Sigma stopped at the tested resource bound instead of fabricating comparability.
-```
-
-`RESOURCE_BOUND_REACHED` is a valid tested terminal and does not ban future Internet research.
+Canonical interpretation: Sigma generated two genuinely novel anchored queries and researched them autonomously, but novelty alone still did not obtain a second supported source.
 
 ## HUMAN NOTE — ISOLATED
 
@@ -147,33 +135,47 @@ HUMAN_NOTE_USED_AS_EVIDENCE=NO
 CLAIM_OF_SIGMA_UNDERSTANDING=NO
 ```
 
-## CURRENT FRONTIER — V16
-
-V15 proved novelty, but novelty alone did not improve the evidence gap. The next capability should make Sigma use prior query outcomes to evolve the next research surface rather than merely selecting the first unused grounded token.
+## CURRENT FRONTIER — V16 PREPARED
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16
-CURRENT_STATUS=V15_R2_CANONICAL_PASS_RESOURCE_BOUND_V16_NOT_BUILT
+CURRENT_STATUS=V16_INSTALLER_PREPARED_NOT_YET_OPPO_QA
+V16_PACKAGE_TARGET=V1_R19_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION
+V16_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION_V16_ADDITIVE.sh
+V16_INSTALLER_SHA256=523553907043c14d8cc99845c6a119070afaab74503b4bc194f04c1c5fb2f414
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+LOCAL_OUTCOME_MEMORY_PY_COMPILE=0
+LOCAL_EVOLUTION_VERIFIER_PY_COMPILE=0
 ```
 
-V16 target:
+V16 first tested policy:
 
 ```text
-V15 global query novelty memory
-+ tried-query outcome history (support counts / distinct supported sources / final comparability)
-+ grounded supported and weak-evidence context
-+ exact topic anchor
-→ Sigma Native builds multiple novel candidate research surfaces
-→ Sigma Native rejects/penalizes patterns associated with repeated zero-support / zero-comparability outcomes
-→ Sigma Native chooses a new query surface using explicit tested outcome-conditioned policy
-→ host does not compose/rank/select query semantics
-→ preserved Internet path V5→V6→V7→V8
-→ mechanical evidence union
-→ V13 comparison
-→ outcome returned to Sigma and persisted mechanically
+INPUT=V15_FINAL_GAP_PLUS_GLOBAL_QUERY_NOVELTY_MEMORY_PLUS_MECHANICAL_QUERY_OUTCOME_HISTORY_PLUS_GROUNDED_CONTEXT_PLUS_EXACT_ANCHOR
+HISTORICAL_OUTCOME_FIELDS=SUPPORTED_FOR_TOPIC|DISTINCT_SUPPORTED_SOURCES|DISTINCT_SOURCE_PAIRS|COMPARISON_STATE
+CANDIDATE_SURFACE_SCOPE=ONE_AND_TWO_GROUNDED_TOKEN_SUFFIXES
+SIGMA_FAILED_PATTERN_SOURCE=FIRST_SUFFIX_TOKEN_FROM_PRIOR_ZERO_SUPPORT_ZERO_SOURCE_PAIR_QUERY
+SIGMA_RANKING_POLICY=HIGHEST_PRIOR_POSITIVE_THEN_LOWEST_ZERO_OUTCOME_PENALTY_THEN_TWO_TOKEN_DEPTH
+MAX_OUTCOME_EVOLUTION_CYCLES=2
 ```
 
-First V16 tested policy should remain narrow and auditable. Candidate generation may use one- and two-grounded-token suffixes, but all candidate construction/ranking must remain in Sigma Native VM. The host may only provide outcome records, hashes, files, and execute emitted actions.
+V16 architecture:
+
+```text
+mechanically index canonical V12/V14/V15 query outcomes into query_outcome_memory
+→ provide exact outcome rows + grounded context + tried query text to Sigma Native
+→ Sigma builds multiple novel candidate query surfaces
+→ Sigma labels prior-positive / prior-zero-outcome associations
+→ Sigma ranks and chooses the next query using the explicit tested policy
+→ Sigma emits RESEARCH_MORE
+→ host persists novelty/outcome metrics mechanically only
+→ preserved V5 Internet → V6 → V7 → V8
+→ preserved mechanical support union
+→ V13 comparison
+→ mechanically record observed outcome
+→ updated outcome history returns to the same Sigma planner
+```
 
 Governance:
 
@@ -185,6 +187,7 @@ HOST_QUERY_RANKING=NO
 HOST_SEMANTIC_KEYWORD_SELECTION=NO
 HOST_SOURCE_SELECTION=NO
 QUERY_OUTCOME_MEMORY=MECHANICAL_METRICS_HASH_PROVENANCE_ONLY
+QUERY_NOVELTY_MEMORY=MECHANICAL_HASH_AND_PROVENANCE_ONLY
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
@@ -194,12 +197,10 @@ ZERO_PREWRITTEN_CONCLUSION=YES
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
-Do NOT proceed to durable knowledge admission while distinct-source comparability is still absent.
-
-## STILL NOT PROVEN
+Claim boundary:
 
 ```text
-OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN
+OUTCOME_CONDITIONED_QUERY_EVOLUTION=NOT_PROVEN_UNTIL_LIVE
 BEST_KEYWORD_SELECTION=NOT_PROVEN
 SOURCE_TRUST=NOT_ASSESSED
 LESSON_TRUTH=NOT_ASSESSED
@@ -209,4 +210,6 @@ DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-NEXT_COMMAND=BUILD_V16_SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION
+Do NOT proceed to durable knowledge admission while distinct-source comparability remains absent.
+
+NEXT_COMMAND=RUN_V16_INSTALL_QA_ON_OPPO
