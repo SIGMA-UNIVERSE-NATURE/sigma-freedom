@@ -92,11 +92,7 @@ FINAL_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION=PASS_TESTED_SCOPE
 ```
 
-Interpretation: V16 broke the prior zero-action narrow candidate-space exhaustion. Sigma generated and selected four distinct outcome-conditioned query surfaces, researched them autonomously, and closed the distinct-source-pair availability gap in the narrow counted-pair sense.
-
 ## FINAL V13 COMPARISON DIAGNOSIS — CANONICAL
-
-Final comparison run:
 
 ```text
 FINAL_V13_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T162257Z_26402_12175
@@ -107,18 +103,11 @@ SURFACE_AGREEMENT_PAIRS=0
 SURFACE_CONFLICT_PAIRS=0
 INSUFFICIENT_COMPARABILITY_PAIRS=25
 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
-```
-
-Preserved V13 comparison policy:
-
-```text
 COMPARISON_POLICY=SURFACE_LEXICAL_OVERLAP_PLUS_GENERIC_NEGATION_CUE
 MIN_SHARED_CONTENT_TOKENS=4
 ```
 
-V13 classifies a distinct-source paragraph pair as surface-agreement/conflict only when the pair has at least 4 shared unique eligible whole-word content tokens after ASCII case-fold and stopword filtering. Conflict additionally requires a generic negation-cue mismatch. It does not perform punctuation normalization, stemming, synonym/paraphrase learning, proposition extraction, or semantic equivalence.
-
-Canonical conclusion:
+V13 requires at least four shared unique eligible whole-word content tokens after ASCII case-fold and stopword filtering before it can emit a surface agreement/conflict class. It does not do punctuation normalization, stemming, synonym/paraphrase learning, proposition extraction, or semantic equivalence.
 
 ```text
 SOURCE_PAIR_AVAILABILITY_GAP=CLOSED_IN_COUNTED_PAIR_SENSE
@@ -132,29 +121,52 @@ LESSON_TRUTH=NOT_ASSESSED
 DURABLE_KNOWLEDGE_ADMISSION=BLOCKED
 ```
 
-This is not evidence that the 25 pairs discuss different propositions. It is only evidence that V13's deliberately shallow surface comparator cannot align them under its tested lexical rule.
+This does not prove the 25 pairs discuss different propositions. It proves only that V13's deliberately shallow surface comparator cannot align them under its tested lexical rule.
 
-## NEXT TEACHING DIRECTION
+## V17 DESIGN — EVIDENCE-GROUNDED UNIT ALIGNMENT
 
-Teach Sigma to identify which evidence units are plausibly about the same proposition even when wording differs, before asking Sigma to judge agreement, conflict, truth, or durable knowledge.
+Teaching goal: before asking Sigma to decide agreement/conflict/truth, teach it to identify which distinct-source evidence units are plausible alignment candidates even when surface wording is not identical enough for V13.
 
-Requirements:
+Prepared additive installer:
 
 ```text
-NEXT_CAPABILITY=SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT
+V17_PACKAGE_TARGET=V1_R20_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT
+V17_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17_ADDITIVE.sh
+V17_INSTALLER_SHA256=234f25df8f2273c08b465cf5bd950a60af9c789ec07478f3391ed6a84146dada
+LOCAL_INSTALLER_BASH_SYNTAX=PASS
+LOCAL_EMBEDDED_BASH_SYNTAX=PASS
+LOCAL_PYTHON_STRUCTURAL_VERIFIER_SYNTAX=PASS
+LOCAL_SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
+LOCAL_BRIDGE_POLICY_QA=PASS
+LOCAL_NO_SYNONYM_TABLE_QA=PASS
+LOCAL_AGREEMENT_CONFLICT_DEFERRED_QA=PASS
+SIGMA_ENGINE_COMPILE_ON_OPPO=PENDING
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+```
+
+V17 tested policy:
+
+```text
 ALIGNMENT_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_SEMANTIC_ALIGNMENT=NO
 HOST_SYNONYM_MAPPING=NO
 ZERO_PREWRITTEN_PROPOSITION=YES
 ZERO_PREWRITTEN_SYNONYM_TABLE=YES
 EVIDENCE_GROUNDED_ASSOCIATION_ONLY=YES
-UNKNOWN_ALIGNMENT_STAYS_UNKNOWN=YES
-AGREEMENT_CONFLICT_DECISION=DEFER_UNTIL_ALIGNMENT_PROVEN
-TRUTH_DECISION=DEFER
-DURABLE_KNOWLEDGE=DEFER
+SIGMA_ALIGNMENT_TOKEN_LIMIT_PER_PARAGRAPH=24
+GENERIC_TOKEN_NORMALIZATION=ASCII_CASE_FOLD_PLUS_PUNCTUATION_REMOVAL
+ALIGNMENT_POLICY=DIRECT_SHARED_GE_2_OR_DIRECT_SHARED_GE_1_WITH_BRIDGE_PARAGRAPHS_GE_2
+BRIDGE_PARAGRAPH=ANOTHER_SUPPORTED_PARAGRAPH_WITH_AT_LEAST_ONE_CONTENT_TOKEN_SHARED_WITH_EACH_MEMBER_OF_THE_PAIR
+OUTPUT_CLASS_1=ALIGNED_EVIDENCE_CANDIDATE
+OUTPUT_CLASS_2=INSUFFICIENT_ALIGNMENT
+AGREEMENT_CONFLICT_DECISION=DEFERRED
+TRUTH_DECISION=DEFERRED
+DURABLE_KNOWLEDGE=DEFERRED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 ```
 
-The intended curriculum is additive: first align evidence units, later assess relation/agreement/conflict, then provenance/trust/uncertainty, and only then consider durable knowledge. Semantic compression remains a later Sigma-native capability, not a host shortcut.
+This is deliberately an intermediate curriculum step. `ALIGNED_EVIDENCE_CANDIDATE` means the pair has enough direct/evidence-neighborhood grounding under the V17 policy to deserve later relation analysis. It does not mean equivalent proposition, agreement, conflict, or truth.
 
 ## GOVERNANCE
 
@@ -199,6 +211,6 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17
-CURRENT_STATUS=V16_CANONICAL_PASS_V13_SURFACE_COMPARABILITY_GAP_CANONICAL_READY_FOR_V17_DESIGN
-NEXT_COMMAND=DESIGN_V17_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT_WITHOUT_PREWRITTEN_SYNONYMS_OR_PROPOSITIONS
+CURRENT_STATUS=V17_INSTALLER_PREPARED_LOCAL_STATIC_QA_PASS_READY_FOR_OPPO_INSTALL_QA
+NEXT_COMMAND=RUN_V17_INSTALL_QA_ON_OPPO
 ```
