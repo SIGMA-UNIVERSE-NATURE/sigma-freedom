@@ -95,133 +95,82 @@ V9_WRAPPER_SHA256=1cb6d5e1b842c6f8b015be74e8f829d77c218895d3208cb9f95dd1b40a753d
 V9_ARG1=SUPPORT_RUN_OPTIONAL
 ```
 
-## PROVEN V10/V11
+## PROVEN V10 / V11 / V12
 
 ```text
 V10_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/autonomous_research_loops_r2/20260902T045710Z_19580_9192
 SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
+
 V11_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_adaptations/20260902T055051Z_29087_9627
 SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
-```
 
-## V12 R1 FAILURE — PRESERVE
-
-```text
-V12_R1_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T063034Z_26760_11331
-POOL_VM_RC=22
-POOL_STDERR=SIGMA host: string required
-ROOT_CAUSE=POOL_COUNT_INTEGER_PASSED_TO_HOST_WRITE_TEXT_STRING_INTERFACE
-COGNITIVE_POLICY_FAILURE=NO_EVIDENCE
-```
-
-R1 failed package/run remain preserved.
-
-## V12 R2 LIVE + R3 VERIFIER REPAIR — CANONICAL PASS
-
-Runtime R2:
-
-```text
 V12_R2_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T071222Z_12302_13559
-DRIVER_RC=0
 POOL_VM_RC=0
 PARENT_VM_RC=0
 ACTUATOR_RC=0
 DIVERSE_ALTERNATIVE_COUNT=2
 TERMINAL_STATE=KEEP_QUERY_PATTERN
-QUERY_MEMORY_RECORD=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_pattern_memory/440bd828785827af1a1bbe0774e7220de8450b69e37eb62f77cd2403fb301dab
+SUCCESSFUL_QUERY_PATTERN_PERSISTED=YES
+SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
 WINNER_TOPIC_PATH=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_adaptations/20260902T055051Z_29087_9627/adapted.topic
 WINNER_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/candidate_support_assessments/20260902T071247Z_14432_16117
 ```
 
-Original independent verifier failed only because `BASE` was undefined in its KEEP_QUERY_PATTERN memory checks. R3 repaired only that verifier path and reran verification against the existing R2 runtime artifacts; Sigma VM and Internet were not rerun.
+V12 R1 type failure and R2 original verifier failure remain preserved as evidence. R3 repaired only the verifier path; runtime was not rerun.
 
-```text
-V12_R3_INSTALLER_SHA256=6ac8e03a0f231088d8ae20ea5a88f1819dd35567e8acd13c8d48285d3478df8d
-V12_R3_REPAIRED_VERIFIER_SHA256=1204bf82646292f3b3d4941d243910a07c60cde71391162f84bde47f9b0990a7
-R2_VERIFIER_UNCHANGED=YES
-R2_RUNTIME_ARTIFACTS_UNCHANGED=YES
-VERIFIER_BASE_PATH_QA=PASS
-SIGMA_VM_EXECUTED_BY_R3=NO
-LIVE_INTERNET_REQUEST_EXECUTED_BY_R3=NO
-REPAIRED_INDEPENDENT_VERIFY_RC=0
-INDEPENDENT_VERIFY_RC=0
-OUTCOME_DECISION_PLANE=SIGMA_NATIVE_VM
-QUERY_DIVERSITY_PLANE=SIGMA_NATIVE_VM
-HOST_QUERY_SCORING=NO
-HOST_QUERY_COMPOSITION=NO
-DIVERSE_ALTERNATIVE_COUNT=2
-SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
-EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
-HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
-TERMINAL_STATE=KEEP_QUERY_PATTERN
-SUCCESSFUL_QUERY_PATTERN_PERSISTED=YES
-QUERY_OUTCOME_POLICY=SUPPORTED_COUNT_THEN_DISTINCT_SUPPORTED_SOURCES
-QUERY_DIVERSITY_DEDUP=PASS_TESTED_SCOPE_IN_RUN
-SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
-RUNTIME_RERUN_REQUIRED=NO
-```
-
-Canonical interpretation:
-
-```text
-Sigma Native diversity pool generated two distinct evidence-derived alternatives
-→ Sigma Native feedback controller evaluated the active adapted research collection through V6→V7→V8
-→ Sigma compared downstream support outcome against the baseline using explicit tested metrics
-→ Sigma emitted KEEP_QUERY_PATTERN
-→ successful query pattern was persisted only after that Sigma decision
-→ host did not score or compose queries
-→ no USER/GPT approval gate existed between research cycles
-```
-
-Claim boundary:
-
-```text
-QUERY_OUTCOME_FEEDBACK=PASS_TESTED_SCOPE
-QUERY_DIVERSITY=PASS_TESTED_SCOPE
-SUCCESSFUL_QUERY_PATTERN_MEMORY=PASS_TESTED_SCOPE
-BEST_KEYWORD_SELECTION=NOT_PROVEN
-SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
-ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
-CONFLICT_DETECTION=NOT_PROVEN
-DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
-CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
-```
-
-## CURRENT FRONTIER — V13
-
-V12 reached `KEEP_QUERY_PATTERN` under the explicit support-improvement policy and produced a winner support run. Therefore the next useful cognitive frontier is no longer query adaptation. Sigma now needs to inspect supported material across sources and distinguish agreement, disagreement/conflict, and insufficient-comparability before durable knowledge admission.
+## CURRENT FRONTIER — V13 PREPARED
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION_V13
-CURRENT_STATUS=V12_CANONICAL_PASS_V13_NOT_BUILT
+CURRENT_STATUS=V13_INSTALLER_PREPARED_NOT_YET_OPPO_QA
+V13_PACKAGE_TARGET=V1_R16_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT
+V13_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_V13_ADDITIVE.sh
+V13_INSTALLER_SHA256=713000cd9ce0a897005e9b9cee6bd925d5de719b942494a937e5fff94e2dd58e
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+LOCAL_STRUCTURAL_VERIFIER_PY_COMPILE=0
 ```
 
-V13 target:
+V13 first tested-scope policy:
 
 ```text
-winner V12 support run
-+ grounded supported candidate/bindings
-+ source provenance
-→ Sigma Native evidence-comparison engine
-→ observe comparable propositions/surfaces across distinct sources
-→ classify first tested scope as AGREEMENT / CONFLICT / INSUFFICIENT_COMPARABILITY / UNKNOWN
-→ preserve source-level bindings and exact evidence paths
-→ do not declare truth merely from majority or frequency
+INPUT=V12_WINNER_SUPPORTED_CANDIDATE_PLUS_BINDINGS_PLUS_CORPUS_VIEW
+PAIR_SCOPE=DISTINCT_SOURCE_SUPPORTED_PARAGRAPH_PAIRS
+COMPARABILITY_POLICY=MIN_4_SHARED_UNIQUE_NON_STOPWORD_SURFACE_TOKENS
+CONFLICT_CUE=GENERIC_EXPLICIT_NEGATION_POLARITY_DIFFERENCE
+AGREEMENT_CUE=SAME_NEGATION_POLARITY_WITH_COMPARABLE_SURFACE
+PAIR_CLASSES=SURFACE_AGREEMENT|SURFACE_CONFLICT|INSUFFICIENT_COMPARABILITY
+OVERALL_STATES=SURFACE_AGREEMENT_OBSERVED|SURFACE_CONFLICT_OBSERVED|INSUFFICIENT_COMPARABILITY|UNKNOWN
 ```
+
+The structural verifier checks source bindings, exact source lesson hashes, paragraph grounding, exhaustive distinct-source pair coverage and output vocabulary. It does NOT recompute or choose Sigma's semantic class.
 
 Governance:
 
 ```text
-CONFLICT_DECISION_PLANE=SIGMA_NATIVE_VM
+COMPARISON_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_SEMANTIC_COMPARISON=NO
 HOST_TRUTH_DECISION=NO
 MAJORITY_EQUALS_TRUTH=NO
+TRUTH_OF_SUPPORTED_MATERIAL=NOT_ASSESSED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 UNKNOWN_STAYS_UNKNOWN=YES
 INTERNET_AUTONOMY=ALLOW_ON_VALID_SIGMA_ACTION
+ZERO_PREWRITTEN_SOURCE=YES
+ZERO_PREWRITTEN_CONCLUSION=YES
 ```
 
-Only after V13 evidence comparison is proven should durable knowledge admission/storage be built.
+V13 is deliberately a surface-level evidence-relation observer. `SURFACE_AGREEMENT` is not truth; `SURFACE_CONFLICT` is not a final contradiction adjudication. This stage teaches Sigma to detect evidence relationships while preserving uncertainty and provenance.
 
-NEXT_COMMAND=BUILD_V13_SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION
+Still not proven:
+
+```text
+SOURCE_TRUST=NOT_ASSESSED
+LESSON_TRUTH=NOT_ASSESSED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
+ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
+```
+
+NEXT_COMMAND=RUN_V13_INSTALL_QA_ON_OPPO
