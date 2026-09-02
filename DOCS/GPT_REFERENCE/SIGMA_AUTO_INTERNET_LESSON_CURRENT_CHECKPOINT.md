@@ -4,9 +4,9 @@ STATUS_DATE=2026-09-02
 BRANCH=SIGMA_LIFE
 CANONICAL_FOR_NEXT_WINDOWS=YES
 
-## 0. NEXT-WINDOW START RULE
+## 0. MANDATORY NEXT-WINDOW RULE
 
-**READ THIS FILE FIRST. DO NOT RE-DISCOVER THE HISTORY.**
+**READ THIS FILE FIRST. DO NOT RE-DISCOVER HISTORY.**
 
 ```text
 NO_BROAD_RESCAN=YES
@@ -16,9 +16,9 @@ REUSE_PROVEN_ARTIFACTS_FIRST=YES
 CAPABILITY_GROWTH=ADDITIVE_NOT_REPLACEMENT
 ```
 
-A new window must continue only from `CURRENT_FRONTIER`. Do not spend context re-finding hashes, re-running V4–V7, or asking the user to repaste history unless machine evidence contradicts this checkpoint.
+A new GPT window must continue only from `CURRENT_FRONTIER`. Do not re-find hashes, re-run V4–V7, or ask the user to repaste historical handoff unless machine evidence contradicts this checkpoint.
 
-After every canonical PASS, canonical FAIL/root-cause change, or frontier transition, update this file before moving on.
+After every canonical PASS, canonical FAIL/root-cause change, install-QA transition, or frontier transition: **update this file before moving on**.
 
 ---
 
@@ -29,10 +29,10 @@ SIGMA on OPPO
 → detect knowledge/evidence gaps
 → choose what to study
 → generate query
-→ autonomously use Internet capabilities
+→ autonomously use Internet
 → collect multiple sources
 → read material
-→ assess evidence state
+→ assess evidence
 → search more when insufficient
 → form knowledge artifacts
 → classify / dedup / version
@@ -43,7 +43,7 @@ SIGMA on OPPO
 → STOP / WAIT / REPLAN when UNKNOWN
 ```
 
-Incremental proof only. Do not attempt the entire target in one step.
+Incremental proof only. Do not attempt the full target in one step.
 
 ---
 
@@ -60,7 +60,9 @@ CAPABILITY_GROWTH=ADDITIVE_NOT_REPLACEMENT
 SILENT_REPLACEMENT=FORBIDDEN
 ```
 
-SIGMA Native VM owns semantic/cognitive decisions. Host/Bash/Python may only do mechanical transport, RSS/XML parsing, files, hashes, atomic persistence, resource accounting, provenance plumbing, process orchestration, and independent structural verification.
+SIGMA Native VM owns semantic/cognitive decisions.
+
+Host/Bash/Python may only do mechanical transport, RSS/XML parsing, filesystem, exact hashes, atomic persistence, resource accounting, provenance plumbing, process orchestration, and independent structural verification.
 
 Host must not choose semantic query/source winner, truth, relevance, lesson quality, evidence sufficiency, knowledge conclusion, or next cognitive frontier.
 
@@ -68,7 +70,7 @@ Host must not choose semantic query/source winner, truth, relevance, lesson qual
 
 ## 3. PRESERVE LOCK
 
-### Runtime
+### Runtime identities
 
 ```text
 COMPILER_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
@@ -89,13 +91,13 @@ V6_CORPUS_EVIDENCE_ASSESSOR_SHA256=f8cd858a1b4eaae7120154ad9d9a226d48bdb123baa26
 V7_KNOWLEDGE_BUILDER_SHA256=3bb1243057bd445d677257e6953ad6957856b0dc202629b44468fb45fe8a730b
 ```
 
-All are PRESERVE. New work is additive unless later machine evidence isolates a defect in a specific engine.
+All are PRESERVE. New capability work is additive unless later machine evidence isolates a defect in a specific engine.
 
 ---
 
-## 4. CANONICAL PASSES
+## 4. CANONICAL TESTED-SCOPE PASSES
 
-### Native Internet baseline
+### Baseline
 
 ```text
 SIGMA_QUERY_GENERATION=PASS_TESTED_SCOPE
@@ -107,7 +109,7 @@ BYTE_EXACT_EXPERIENCE_READBACK=PASS_TESTED_SCOPE
 SIGMA_NATIVE_CONTROLLED_INTERNET_LESSON=PASS_TESTED_SCOPE
 ```
 
-### V4 — source surface selection
+### V4 — Native source surface selection
 
 ```text
 RUN_DIR=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260902T000344Z_21606_19991
@@ -118,7 +120,7 @@ DECLINED_LESSONS=2
 INDEPENDENT_VERIFY_RC=0
 ```
 
-### V5 — multi-source collection
+### V5 — Native multi-source collection
 
 ```text
 RUN_DIR=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260902T002658Z_2018_21848
@@ -137,7 +139,7 @@ UNIQUE_LESSON_HASHES=8
 COLLECTION_MANIFEST_SHA256=4caf5b5ab033541b85468937855a6a05b4fce7cb3181a9d66df5ce05cdb93ba5
 ```
 
-### V6 — corpus evidence assessment
+### V6 — Native corpus evidence assessment
 
 ```text
 ASSESSMENT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/assessments/20260902T005402Z_18194_9606
@@ -153,9 +155,9 @@ ASSESSMENT_READBACK_CMP_RC=0
 SOURCE_CORPUS_MUTATED=NO
 ```
 
-Origin verification proved the `.sigma` engine itself computes metrics and writes the assessment state. Minimum thresholds remain policy inputs; semantic evidence sufficiency is not philosophically proven.
+Origin verification proved the Sigma engine itself computes metrics and writes the state. Minimum thresholds remain policy inputs; semantic/philosophical sufficiency is not proven.
 
-### V7 — evidence-grounded knowledge candidate
+### V7 — Native evidence-grounded knowledge candidate
 
 ```text
 KNOWLEDGE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/knowledge_candidates/20260902T015922Z_29525_18467
@@ -178,7 +180,7 @@ CORPUS_BEFORE_AFTER_CMP_RC=0
 
 V7 proves an extractive grounded candidate only. Raw candidate exposed off-topic lexical matches and malformed Web markup.
 
-Still NOT proven:
+Still not proven:
 
 ```text
 TOPIC_RELEVANCE=NOT_PROVEN
@@ -196,88 +198,92 @@ CONFLICT_DETECTION=NOT_PROVEN
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_CANDIDATE_EVIDENCE_SUPPORT_ASSESSMENT_V8
-CURRENT_STATUS=V8_R1_INSTALL_QA_FAIL_FIXED_IN_R2_NOT_YET_OPPO_QA
+CURRENT_STATUS=V8_R2_OPPO_INSTALL_QA_PASS_READY_FOR_LIVE
 ```
 
-V8 target remains additive:
+### V8 target
 
 ```text
-V7 knowledge candidate + bindings + bound lessons + RAW_TOPIC
-→ candidate_evidence_support_assessor_v8.sigmab on SIGMA v0.9 Native VM
-→ per-paragraph state:
-   SUPPORTED_FOR_TOPIC / WEAK_SUPPORT / OFF_TOPIC / MALFORMED_SURFACE / UNKNOWN
-→ candidate.assessment.tsv
-→ supported.candidate.txt
-→ supported.bindings.tsv
-→ readback / provenance / independent grounding verification
+V7 knowledge.candidate.txt
++ V7 knowledge.bindings.tsv
++ exact bound source lessons
++ RAW_TOPIC
+        ↓
+SIGMA v0.9 Native VM
+candidate_evidence_support_assessor_v8.sigmab
+        ↓
+per-paragraph runtime classifications:
+SUPPORTED_FOR_TOPIC / WEAK_SUPPORT / OFF_TOPIC / MALFORMED_SURFACE / UNKNOWN
+        ↓
+candidate.assessment.tsv
+supported.candidate.txt
+supported.bindings.tsv
+        ↓
+byte-exact readback
+provenance
+independent binding/grounding verification
 ```
 
-State names are interface vocabulary, not prewritten paragraph answers. Actual classifications must come from SIGMA Native VM.
+State names are interface vocabulary, not prewritten answers. Actual paragraph classifications must come from SIGMA Native VM.
 
-### V8 R1 OPPO INSTALL QA — CANONICAL HARNESS FAIL
+Host may mechanically verify that assessed paragraphs exist in V7 candidate and resolve to the exact source lesson/hash. Host must not classify paragraph semantics.
 
-Observed machine output:
-
-```text
-TASK=INSTALL_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR_V8
-MODE=BUILD_QA_ONLY_NO_INTERNET_NO_SIGMA_VM
-BASH_SYNTAX_QA=PASS
-PYTHON_SYNTAX_QA=PASS
-INSTALL_QA_RESULT=FAIL
-FAILURE_CLASS=FAIL_BINDING_VERIFIER_SYNTHETIC
-```
-
-Classification:
+### V8 R1 install QA — canonical harness fail
 
 ```text
 V8_R1_RESULT=FAIL_HARNESS_SYNTHETIC_FIXTURE
+FAILURE_CLASS=FAIL_BINDING_VERIFIER_SYNTHETIC
 NOT_SIGMA_ENGINE_FAILURE=YES
 SIGMA_VM_EXECUTED=NO
 LIVE_INTERNET_REQUEST_EXECUTED=NO
-PARENT_V7_MUTATED=NO_EXPECTED
-PARENT_V6_MUTATED=NO_EXPECTED
-PARENT_V5_MUTATED=NO_EXPECTED
 ```
 
-Exact root cause was reproduced independently: the synthetic QA wrote `supported.txt` with a trailing newline while the candidate's first paragraph had no trailing newline after paragraph splitting. The mechanical verifier correctly rejected the byte-different synthetic fixture with `SUPPORTED_TEXT_NOT_SIGMA_CLASS_FILTER`.
+Root cause: synthetic fixture wrote `supported.txt` with a trailing newline while the verifier correctly required byte-exact Sigma-class-filter output. Only fixture formatting was repaired.
 
-This is a QA fixture-format bug, not V8 semantic logic.
+### V8 R2 OPPO install QA — PASS
 
-### V8 R2 repair prepared
-
-Only the synthetic fixture formatting was changed:
-
-```text
-OLD: printf 'alpha beta evidence\n' > "$FIX/supported.txt"
-NEW: printf '%s' 'alpha beta evidence' > "$FIX/supported.txt"
-```
-
-No Sigma engine, policy, classification logic, runtime, or parent artifact was changed.
-
-Prepared installer:
+Installer:
 
 ```text
 FILE=INSTALL_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR_V8_ADDITIVE_R2.sh
-SHA256=3295c1b017b08a97055153bce8bfe268e87b4f3d22e34cac117224ab7c87c651
+INSTALLER_SHA256=3295c1b017b08a97055153bce8bfe268e87b4f3d22e34cac117224ab7c87c651
 ```
 
-Independent local QA of R2:
+OPPO machine QA:
 
 ```text
-INSTALLER_BASH_N=0
-EMBEDDED_BASH_N=0
-PYTHON_COMPILE=0
-SYNTHETIC_BINDING_VERIFIER_RC=0
-BINDING_VERIFY_RC=0
-TOTAL_ASSESSED=2
-SUPPORTED_FOR_TOPIC=1
+BASH_SYNTAX_QA=PASS
+PYTHON_SYNTAX_QA=PASS
+CANDIDATE_BINDING_MECHANICS_QA=PASS
+EXPLICIT_NATIVE_VM_CALL_QA=PASS
+ASSESSOR_PLANE=SIGMA_NATIVE_VM
+HOST_SEMANTIC_PARAGRAPH_CLASSIFICATION=NO
+HOST_BINDING_VERIFY_ROLE=MECHANICAL_ONLY
+PARENT_V7_UNCHANGED=YES
+PARENT_V6_UNCHANGED=YES
+PARENT_V5_UNCHANGED=YES
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+INSTALL_QA_RESULT=PASS
+READY_TO_RUN_NATIVE_CANDIDATE_SUPPORT_ASSESSOR=YES
 ```
 
-R2 has NOT yet been machine-QA'd on OPPO. Do not claim V8 installed or PASS yet.
+Installed V8 identities:
 
-### V8 acceptance gate
+```text
+V8_ASSESSOR_SOURCE_SHA256=5ea5f15b09f65ce150dcba835127d2e45fc37a6ae765650fe7ef996f608ffb78
+V8_ASSESSOR_BYTECODE_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a81456e4e625eab0
+```
 
-Before canonical V8 PASS require at least:
+Installed package:
+
+```text
+/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR
+```
+
+### V8 live acceptance gate
+
+Before canonical V8 PASS require at minimum:
 
 ```text
 ASSESSOR_PLANE=SIGMA_NATIVE_VM
@@ -290,10 +296,13 @@ ASSESSOR_VM_RC=0
 ASSESSMENT_READBACK_CMP_RC=0
 SUPPORTED_CANDIDATE_READBACK_CMP_RC=0
 SUPPORTED_BINDINGS_READBACK_CMP_RC=0
+BINDING_VERIFY_RC=0
 INDEPENDENT_VERIFY_RC=0
 ```
 
-Do not claim truth, trust, full understanding, or conflict resolution.
+After live summary, independently inspect raw VM ledger, raw assessment rows, supported candidate/bindings, readbacks, source/hash bindings, and parent immutability before canonicalizing.
+
+Do not claim truth, source trust, full understanding, or conflict resolution.
 
 ---
 
@@ -309,6 +318,8 @@ V14 backup + Git/GitHub lifecycle
 V15 survival integration: checkpoint/recovery/reboot/network WAIT-resume
 ```
 
+Every stage preserves earlier proven tools and adds capability rather than silently replacing it.
+
 ---
 
 ## 7. NEXT WINDOW ENTRY POINT
@@ -316,13 +327,14 @@ V15 survival integration: checkpoint/recovery/reboot/network WAIT-resume
 A fresh GPT window must:
 
 1. Read this checkpoint first.
-2. Accept V4/V5/V6/V7 as canonical PASS.
-3. Accept V8 R1 as `FAIL_HARNESS_SYNTHETIC_FIXTURE`, not a Sigma failure.
-4. Do not broad-scan or rerun earlier stages.
-5. Continue by OPPO machine-QA of V8 R2 only.
-6. If V8 R2 install QA PASS, update this checkpoint before live V8 run.
+2. Accept baseline + V4/V5/V6/V7 as canonical PASS.
+3. Accept V8 R1 as a synthetic-QA harness failure only.
+4. Accept V8 R2 OPPO install QA as PASS; do not rerun installation.
+5. Do not broad-scan or rediscover hashes.
+6. Continue with the live V8 run only.
 
 ```text
-NEXT_COMMAND=RUN_V8_R2_INSTALL_QA_ON_OPPO
-NEXT_INSTALLER_SHA256=3295c1b017b08a97055153bce8bfe268e87b4f3d22e34cac117224ab7c87c651
+NEXT_COMMAND=RUN_V8_LIVE_ON_OPPO
+RUN_COMMAND=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R11_SIGMA_NATIVE_CANDIDATE_SUPPORT_ASSESSOR/99_RUN_SIGMA_NATIVE_CANDIDATE_SUPPORT_V8.sh
+V8_ASSESSOR_BYTECODE_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a81456e4e625eab0
 ```
