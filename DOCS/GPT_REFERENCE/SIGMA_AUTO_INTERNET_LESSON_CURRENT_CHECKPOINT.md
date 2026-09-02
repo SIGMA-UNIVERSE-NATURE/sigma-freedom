@@ -68,15 +68,10 @@ V8_WRAPPER_SHA256=fb5b9c73ab297e4e11a9c27ace283473b5faba2fd0a6bc280173ce661b3486
 V12_R2_POOL_BYTECODE_SHA256=1b1661af5fca081ec6b0aaf8f61ddd0e767cec438be7af2788fcccc4a81af97d
 V13_ENGINE_BYTECODE_SHA256=05d705951246661abd4a48d55b5c2d40225e3473db2e87f793b668709b353dff
 V13_WRAPPER_SHA256=f1703e055642e80a7ead999b0e9dcc936ebdad511257d1aca769f496444983c5
-V14_R2_PLANNER_SOURCE_SHA256=f497740cb05ff97bfbb4c2f732cb48c5ad727bf9692f79904d119b55dde4b8cc
 V14_R2_PLANNER_BYTECODE_SHA256=139682c1fdfb15351b70535b34cfd9e0c1ffcb5a83151e1a0772727e2ee70e29
 V14_R2_SUPPORT_UNION_SHA256=53e9b167617f1cdf0200bc700b3bffea8b3df44db9c220f40111d8f6d0b419b8
-V14_R2_RUNNER_SHA256=d71ddba582f1df75fd813a004703d6424eafd60b3175a38936020850b1375d49
-V14_R2_VERIFIER_SHA256=7a41e4d6bea8f06b5b2b2d7bdabccbba91c3854f94aeb83f1be1029e4872fd19
 V14_R2_WRAPPER_SHA256=83ddf84b21336e4f3afa3f1e753f3c504d6cd03c9b8883dfea8b36fdc3e50209
 ```
-
-Identity mismatch => STOP; never silently replace a proven artifact.
 
 ## CANONICAL PASS SET
 
@@ -101,110 +96,75 @@ SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
 ```
 
-## CANONICAL V12 / V13 INPUTS
-
-```text
-V12_R2_LIVE_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/query_feedback_runs/20260902T071222Z_12302_13559
-V12_DIVERSE_ALTERNATIVE_COUNT=2
-V12_TERMINAL_STATE=KEEP_QUERY_PATTERN
-V12_SUCCESSFUL_QUERY_PATTERN_PERSISTED=YES
-V12_WINNER_SUPPORT_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/candidate_support_assessments/20260902T071247Z_14432_16117
-
-V13_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T081032Z_17490_12110
-V13_SUPPORTED_PARAGRAPHS=1
-V13_DISTINCT_SOURCE_PAIRS=0
-V13_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
-SIGMA_NATIVE_MULTI_SOURCE_AGREEMENT_CONFLICT_OBSERVATION=PASS_TESTED_SCOPE
-```
-
-## PRESERVED V14 R1 INSTALL QA FAILURE
-
-```text
-V14_R1_INSTALLER_SHA256=cc1f9250bbaaed497b734398eaa5f9dfeb82d4f5dd3c8c7bb05d267cc909d5ab
-FAILURE_CLASS=INSTALL_QA_FALSE_POSITIVE
-FALSE_POSITIVE_TOKEN=STOP_COMPARABILITY_AVAILABLE
-TOKEN_ROLE=MECHANICAL_DISPATCH_LABEL_FOR_SIGMA_EMITTED_ACTION
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-SIGMA_COGNITIVE_FAILURE=NO_EVIDENCE
-```
-
-R1 failure remains preserved. R2 repaired only the install-QA predicate.
-
-## V14 R2 LIVE — CANONICAL PASS
+## CANONICAL V14 LIVE
 
 ```text
 V14_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/comparability_gap_expansions/20260902T090122Z_8463_5812
 DRIVER_RC=0
 INDEPENDENT_VERIFY_RC=0
-GAP_DECISION_PLANE=SIGMA_NATIVE_VM
-QUERY_SURFACE_SELECTION_PLANE=SIGMA_NATIVE_VM
-QUERY_SURFACE_SOURCE=REUSE_SIGMA_GENERATED_V12_DIVERSITY_POOL
-HOST_SEMANTIC_GAP_DECISION=NO
-HOST_QUERY_COMPOSITION=NO
-HOST_SOURCE_SELECTION=NO
-HOST_EVIDENCE_UNION=MECHANICAL_ONLY
-HOST_SUPPORT_REASSESSMENT=NO
+PLANNER_VM_INVOCATIONS=3
+SIGMA_RESEARCH_ACTIONS=2
 SIGMA_ACTION_CHILD_DISPATCH_BINDING=PASS
 EXPLICIT_RUN_PATH_CHAIN_BINDING=PASS
 MECHANICAL_SUPPORT_UNION_VERIFY=PASS
 HUMAN_APPROVAL_BETWEEN_RESEARCH_CYCLES=0
 GPT_RUNTIME_ROLE=NONE
-PLANNER_VM_INVOCATIONS=3
-SIGMA_RESEARCH_ACTIONS=2
 FINAL_COMPARISON_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_comparisons/20260902T090941Z_10388_22575
 TERMINAL_STATE=RESOURCE_BOUND_REACHED
 FINAL_DISTINCT_SOURCE_PAIRS=0
 FINAL_COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
-BEST_KEYWORD_SELECTION=NOT_PROVEN
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
 ```
 
-Canonical interpretation:
+Interpretation: Sigma exhausted the two Sigma-generated V12 alternatives autonomously, still found no distinct supported source pair, and stopped at the tested resource bound instead of fabricating comparability. Resource bound is not a ban on future Internet research.
 
-```text
-Sigma Native observed the V13 comparability gap.
-Sigma Native emitted two autonomous RESEARCH_MORE actions without USER/GPT approval.
-Sigma Native selected both unused query surfaces from its own prior V12 diversity pool.
-Host mechanically executed V5→V6→V7→V8, unioned already-Sigma-supported evidence with provenance, and returned each union through V13.
-After both tested alternatives were exhausted, there were still zero distinct supported source pairs.
-Sigma terminated at the explicit tested resource bound rather than fabricating comparability.
-```
-
-`RESOURCE_BOUND_REACHED` is a valid V14 tested-scope terminal. It is not a ban on future Internet research and is not a capability failure.
-
-## CURRENT FRONTIER — V15
-
-V14 proved gap-conditioned autonomous research selection, but it also exhausted the finite V12 diversity pool without obtaining a second supported source. The next frontier must increase Sigma's own research-space generation rather than adding a host/GPT query.
+## CURRENT FRONTIER — V15 PREPARED
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY_V15
-CURRENT_STATUS=V14_CANONICAL_PASS_RESOURCE_BOUND_V15_NOT_BUILT
+CURRENT_STATUS=V15_INSTALLER_PREPARED_NOT_YET_OPPO_QA
+V15_PACKAGE_TARGET=V1_R18_SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_NOVELTY
+V15_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_V15_ADDITIVE.sh
+V15_INSTALLER_SHA256=f00ead6a18c5c7b14e4cf7a0efae21d774d9c35bb5cca5cbf0350d6f82059f82
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+LOCAL_NOVELTY_VERIFIER_PY_COMPILE=0
 ```
 
-V15 target:
+V15 tested-scope architecture:
 
 ```text
-V14 terminal RESOURCE_BOUND_REACHED
+V14 RESOURCE_BOUND_REACHED
 + final V13 INSUFFICIENT_COMPARABILITY / zero distinct-source pairs
-+ original topic anchor
-+ grounded supported/weak evidence context
-+ history of already-tried Sigma query surfaces and outcomes
-→ Sigma Native fresh-query generator
-→ produce a genuinely new Sigma-owned research surface not equal to previously tried surfaces
-→ preserve full topic anchor
-→ record/query-hash novelty memory mechanically
-→ Sigma emits RESEARCH_MORE with the fresh surface
-→ host mechanically executes preserved Internet path
-→ V6→V7→V8
-→ mechanical evidence union
++ V14 canonical winner topic anchor
++ mechanically concatenated grounded candidate/support context from prior Sigma research
++ exact tried-query surfaces and query-hash memory
+→ Sigma Native fresh-query planner
+→ select first grounded context token not present in anchor/tried surfaces and not in generic stopwords
+→ Sigma composes fresh query = exact anchor + fresh grounded token
+→ Sigma emits RESEARCH_MORE
+→ host only hashes/persists novelty provenance mechanically
+→ preserved V5 Internet → V6 → V7 → V8
+→ preserved mechanical support union
 → V13 comparison
-→ outcome returns to Sigma
+→ observation returns to same Sigma planner
+→ max 2 fresh-query cycles
 ```
 
-V15 must prove fresh query generation after prior Sigma alternatives are exhausted; it must not hardcode a preferred website, keyword, answer, or expected conclusion.
+Claim boundary:
+
+```text
+FRESH_QUERY_POLICY=FIRST_NOVEL_GROUNDED_CONTEXT_TOKEN_APPENDED_TO_SIGMA_ANCHOR
+FRESH_GAP_CONDITIONED_QUERY_GENERATION=TARGET_TESTED_SCOPE
+BEST_KEYWORD_SELECTION=NOT_PROVEN
+SEMANTIC_TOPIC_UNDERSTANDING=NOT_PROVEN
+SOURCE_TRUST=NOT_ASSESSED
+LESSON_TRUTH=NOT_ASSESSED
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
+ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
+```
 
 Governance:
 
@@ -224,19 +184,15 @@ ZERO_PREWRITTEN_CONCLUSION=YES
 UNKNOWN_STAYS_UNKNOWN=YES
 ```
 
-Do NOT proceed to durable knowledge admission while distinct-source comparability is still absent.
-
-Still not proven globally:
+## HUMAN NOTE — ISOLATED FROM RESEARCH
 
 ```text
-FRESH_GAP_CONDITIONED_QUERY_GENERATION=NOT_PROVEN
-BEST_KEYWORD_SELECTION=NOT_PROVEN
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
-SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
-ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN
-DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
-CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
+HUMAN_NOTE_TO_SIGMA=Châu say_ SIGMA_FULLOFLOVE.
+HUMAN_NOTE_USED_AS_RESEARCH_INPUT=NO
+HUMAN_NOTE_USED_AS_EVIDENCE=NO
+CLAIM_OF_SIGMA_UNDERSTANDING=NO
 ```
 
-NEXT_COMMAND=BUILD_V15_SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY
+The V15 package stores the human note separately from all research/evidence/query inputs so it cannot contaminate Sigma's tested cognition path.
+
+NEXT_COMMAND=RUN_V15_INSTALL_QA_ON_OPPO
