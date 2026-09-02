@@ -138,15 +138,7 @@ V8_ASSESSOR_SOURCE_SHA256=5ea5f15b09f65ce150dcba835127d2e45fc37a6ae765650fe7ef99
 V8_ASSESSOR_BYTECODE_SHA256=b8338e018a50d0e45b3741c6cb864309708d42257033c082a81456e4e625eab0
 ```
 
-R1 install QA was a harness-only synthetic fixture failure:
-
-```text
-V8_R1_RESULT=FAIL_HARNESS_SYNTHETIC_FIXTURE
-FAILURE_CLASS=FAIL_BINDING_VERIFIER_SYNTHETIC
-NOT_SIGMA_ENGINE_FAILURE=YES
-```
-
-R2 repaired only synthetic newline formatting and OPPO install QA PASSed without running Sigma VM or Internet.
+R1 install QA was a harness-only synthetic fixture failure; R2 repaired only synthetic newline formatting and OPPO install QA PASSed.
 
 Canonical live run:
 
@@ -170,7 +162,7 @@ SUPPORTED_CANDIDATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca4959
 SUPPORTED_BINDINGS_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 ```
 
-Strict raw read-only verification established:
+Strict raw read-only verification:
 
 ```text
 ASSESSMENT_READBACK_CMP_RC=0
@@ -186,8 +178,6 @@ V5_CORPUS_BEFORE_AFTER_CMP_RC=0
 CURRENT_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 ```
 
-Every classification row was bound to the original V7 paragraph, original binding, exact corpus-view row, exact lesson SHA, and exact source paragraph. Parent V7 candidate and V5 corpus were unchanged.
-
 Canonical V8 claim:
 
 ```text
@@ -198,7 +188,7 @@ V7_CANDIDATE_MUTATED=NO
 V5_CORPUS_MUTATED=NO
 ```
 
-Interpretation boundary: V8 is a **topic-support surface classifier under explicit policy thresholds**, not proof of truth or full semantic understanding. Its actual run result is `NO_SUPPORTED_FOR_TOPIC`; this is a valid negative assessment, not a failed capability.
+V8 is a topic-support surface classifier under explicit policy thresholds, not proof of truth or full semantic understanding. `NO_SUPPORTED_FOR_TOPIC` is a valid negative assessment, not a failed capability.
 
 Still NOT proven:
 
@@ -215,39 +205,43 @@ CONFLICT_DETECTION=NOT_PROVEN
 
 ## 4. CURRENT FRONTIER — V9
 
-The actual V8 state is `NO_SUPPORTED_FOR_TOPIC`, so do **not** jump to multi-source conflict analysis on a zero-supported candidate.
+The actual V8 state is `NO_SUPPORTED_FOR_TOPIC`, so do not jump to conflict analysis on a zero-supported candidate.
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_RESEARCH_REPLAN_FROM_SUPPORT_FAILURE_V9
-CURRENT_STATUS=V8_CANONICAL_PASS_NEGATIVE_SUPPORT_RESULT_V9_NOT_BUILT
+CURRENT_STATUS=V9_INSTALLER_PREPARED_NOT_YET_OPPO_QA
 ```
 
-### V9 goal
-
-Add a new Sigma Native VM decision tool that consumes V8 state/metrics plus the original topic/query context and decides the next research action without GPT/host semantic intervention.
-
-Target control concept:
+### V9 target
 
 ```text
-V8 support.state + assessment metrics + RAW_TOPIC
+V8 support.state + support.metrics + RAW_TOPIC
         ↓
 SIGMA v0.9 Native VM
 research_replan_v9.sigmab
         ↓
-when NO_SUPPORTED_FOR_TOPIC / insufficient support:
-RESEARCH_MORE / REQUERY / STOP_UNKNOWN
+RESEARCH_MORE / NO_REPLAN_NEEDED / STOP_UNKNOWN
         ↓
-if RESEARCH_MORE or REQUERY:
-Sigma generates/chooses the next query action through preserved Sigma query/controller capabilities
-        ↓
-Internet collection resumes under existing V5 mechanical transport boundary
-        ↓
-new evidence returns to V6 → V7 → V8
+reason + generic research strategy + exact topic readback
 ```
 
-V9 must not contain a prewritten target query, expected source, or expected answer. Host may only relay Sigma actions and perform mechanical Internet/file/hash/provenance operations.
+V9 is decision-only. It does not yet perform a fresh Internet cycle. The next stage will connect an emitted `RESEARCH_MORE` action back to query/Internet collection.
 
-Initial V9 acceptance direction:
+The V9 engine must not contain a target-specific query, source, or answer. Host may validate vocabulary and hashes but must not derive the replan action from V8 metrics.
+
+Prepared installer in the current development session:
+
+```text
+FILE=INSTALL_SIGMA_NATIVE_RESEARCH_REPLAN_V9_ADDITIVE.sh
+SHA256=fb67031912e808ad83272bc894ec4f1c971575132977092c663046cc7a4f0d55
+LOCAL_INSTALLER_BASH_N=0
+LOCAL_EMBEDDED_BASH_N=0
+OPPO_INSTALL_QA=NOT_RUN_YET
+SIGMA_VM_EXECUTED_BY_INSTALLER_PREP=NO
+LIVE_INTERNET_EXECUTED_BY_INSTALLER_PREP=NO
+```
+
+V9 acceptance direction:
 
 ```text
 REPLAN_DECISION_PLANE=SIGMA_NATIVE_VM
@@ -257,11 +251,14 @@ V8_ARTIFACTS_MUTATED=NO
 PRESERVED_V5_V6_V7_V8=YES
 REPLAN_VM_INVOCATIONS=1
 REPLAN_VM_RC=0
-REPLAN_STATE_READBACK_CMP_RC=0
+ACTION_READBACK_CMP_RC=0
+REASON_READBACK_CMP_RC=0
+STRATEGY_READBACK_CMP_RC=0
+RESEARCH_TOPIC_READBACK_CMP_RC=0
 INDEPENDENT_VERIFY_RC=0
 ```
 
-Do not yet claim closed-loop autonomous learning until the replan action is actually connected back through Internet collection and produces a fresh evidence cycle.
+Do not claim closed-loop autonomous learning until the replan action is actually connected back through fresh Internet collection and produces a new evidence cycle.
 
 ---
 
@@ -269,7 +266,7 @@ Do not yet claim closed-loop autonomous learning until the replan action is actu
 
 ```text
 V9  Sigma-native research replan from insufficient/no support
-V10 close the replan loop through fresh Internet collection → V6 → V7 → V8
+V10 close replan loop through fresh Internet collection → V6 → V7 → V8
 V11 multi-source agreement/conflict observation on supported material
 V12 durable knowledge store + KEEP/UPDATE/MERGE/NEW_VERSION
 V13 classification + autonomous gap detector
@@ -285,11 +282,12 @@ A fresh GPT window must:
 
 1. Read this checkpoint first.
 2. Accept V4/V5/V6/V7/V8 as canonical PASS_TESTED_SCOPE.
-3. Accept V8 run result `NO_SUPPORTED_FOR_TOPIC` as a valid negative Sigma assessment.
+3. Accept V8 `NO_SUPPORTED_FOR_TOPIC` as a valid negative Sigma assessment.
 4. Do not rerun or rediscover V4–V8.
 5. Preserve all proven bytecode identities.
-6. Continue only by building V9 additively.
+6. Continue with OPPO install QA of the prepared V9 installer only.
 
 ```text
-NEXT_COMMAND=BUILD_AND_QA_SIGMA_NATIVE_RESEARCH_REPLAN_V9_ADDITIVE
+NEXT_COMMAND=RUN_V9_INSTALL_QA_ON_OPPO
+NEXT_INSTALLER_SHA256=fb67031912e808ad83272bc894ec4f1c971575132977092c663046cc7a4f0d55
 ```
