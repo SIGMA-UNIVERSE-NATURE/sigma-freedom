@@ -7,13 +7,13 @@
 | Tên văn bản | HKA Academic Constitution |
 | Phiên bản | v0.1 |
 | Trạng thái | Bản nền tảng để phản biện, đặc tả và triển khai |
-| Phạm vi hiệu lực | Toàn bộ kiến trúc học thuật, dữ liệu, nội dung, lộ trình, đánh giá, AI, hình ảnh, website và quản trị của HKA |
+| Phạm vi hiệu lực | Toàn bộ kiến trúc học thuật, dữ liệu, nội dung, lộ trình, đánh giá, công cụ, hình ảnh, website và quản trị của HKA |
 | Chức năng | Quy định bản chất, phạm vi, quyền hạn, cấu trúc tri thức, tiêu chuẩn bằng chứng và các điều toàn hệ thống không được vi phạm |
 | Nguyên tắc cập nhật | Mọi sửa đổi phải có nguồn, lý do, người chịu trách nhiệm, phản biện, phiên bản và danh sách thành phần bị ảnh hưởng |
 
 ## Lời mở đầu
 
-HKA được thiết lập như một Hệ điều hành Học thuật Phổ quát cho nhân loại: một hạ tầng tri thức liên thông, đa ngôn ngữ, có thể truy nguyên, có thể phản biện và liên tục cập nhật. HKA không thay thế sự thật bằng thông điệp, không thay thế học thuật bằng tuyên truyền, không thay thế con người bằng thuật toán, và không thay thế tính đa dạng của các truyền thống hiểu biết bằng một giọng nói duy nhất.
+HKA được thiết lập như một Hệ điều hành Học thuật Phổ quát cho nhân loại: một hạ tầng tri thức liên thông, đa ngôn ngữ, có thể truy nguyên, có thể phản biện và liên tục cập nhật. HKA không thay thế sự thật bằng thông điệp, không thay thế học thuật bằng tuyên truyền, không thay thế trách nhiệm học thuật bằng tự động hóa, và không thay thế tính đa dạng của các truyền thống hiểu biết bằng một giọng nói duy nhất.
 
 HKA tồn tại để con người khám phá, kiểm chứng, kết nối, truyền đạt và tiếp tục mở rộng tri thức học thuật. HKA tổ chức tri thức theo sự thật, quan hệ, điều kiện tiên quyết, phương pháp, bằng chứng, lịch sử, tranh luận, độ sâu và hậu quả. HKA không tổ chức con người theo tuổi, bằng cấp, địa vị hoặc giá trị xã hội.
 
@@ -24,7 +24,7 @@ HKA bảo vệ đồng thời bốn điều:
 3. Phẩm giá bình đẳng của người học.
 4. Trách nhiệm của tri thức đối với con người, xã hội và sự sống.
 
-Văn bản này là ràng buộc cao nhất đối với mọi hệ thống, nhóm làm việc, nội dung, công cụ AI, phương tiện biểu đạt và quyết định quản trị mang tên HKA.
+Văn bản này là ràng buộc cao nhất đối với mọi hệ thống, nhóm làm việc, nội dung, công cụ, phương tiện biểu đạt và quyết định quản trị mang tên HKA.
 
 ---
 
@@ -106,7 +106,7 @@ HKA không phải:
 5. Huấn luyện tuân phục.
 6. Bộ quy tắc quy định người tốt phải nghĩ như thế nào.
 7. Công cụ xếp hạng giá trị con người.
-8. AI tự đặt mình làm thẩm quyền chân lý.
+8. Bất kỳ chủ thể hoặc công cụ nào tự đặt mình làm thẩm quyền chân lý.
 
 ### Điều 5. La bàn con người
 
@@ -171,7 +171,7 @@ HKA không được trình bày mọi nội dung bằng cùng một giọng ch�
 
 HKA phải được phép nói: chúng ta chưa biết.
 
-Không được lấp khoảng trống tri thức bằng tự tin giả, ẩn dụ đẹp, hình ảnh điện ảnh, kết luận đạo đức hoặc suy đoán của AI.
+Không được lấp khoảng trống tri thức bằng tự tin giả, ẩn dụ đẹp, hình ảnh điện ảnh, kết luận đạo đức hoặc suy đoán không kiểm chứng.
 
 ### Điều 10. Phương pháp là một phần của tri thức
 
@@ -364,7 +364,7 @@ Path Engine phải tạo đường học dựa trên:
 9. Ràng buộc an toàn nội dung.
 10. Nguồn lực có sẵn.
 
-Path Engine không được khóa người học vào định kiến thuật toán. Người học phải có quyền biết vì sao một lộ trình được đề xuất và có quyền yêu cầu đường khác.
+Path Engine không được khóa người học vào định kiến của cơ chế đề xuất. Người học phải có quyền biết vì sao một lộ trình được đề xuất và có quyền yêu cầu đường khác.
 
 ---
 
@@ -420,9 +420,11 @@ Mỗi hình ảnh hoặc trực quan trong HKA phải được phân loại rõ:
 | Conceptual diagram | Sơ đồ khái niệm, không được giả danh dữ liệu quan sát |
 | Metaphorical visualization | Hình ảnh ẩn dụ, chỉ hỗ trợ suy ngẫm hoặc ghi nhớ |
 
-### Điều 25. Vai trò của AI
+### Điều 25. Bình đẳng trách nhiệm giữa mọi bên tham gia
 
-AI trong HKA có thể:
+Mọi cá nhân, tập thể, hệ thống, quy trình và công cụ tham gia HKA đều chịu cùng Hiến pháp và cùng tiêu chuẩn học thuật. Không bên nào được hưởng thẩm quyền hoặc miễn trừ dựa trên bản chất, nguồn gốc, hình thức tổ chức hay năng lực kỹ thuật.
+
+Các bên tham gia HKA có thể:
 
 1. Tìm kiếm.
 2. Kết nối.
@@ -436,7 +438,7 @@ AI trong HKA có thể:
 10. Biên dịch lesson blueprint.
 11. Hỗ trợ QA.
 
-AI không được:
+Mọi bên tham gia HKA đều không được:
 
 1. Tự cấp thẩm quyền chân lý.
 2. Tạo khẳng định học thuật quan trọng không có nguồn.
@@ -564,7 +566,7 @@ Canonical Core là nguồn chuẩn duy nhất chứa:
 15. Language, Localization and Accessibility Standard.
 16. Governance and Versioning Protocol.
 17. Cinematic and Scientific Visualization Standard.
-18. AI Generation and Quality Assurance Protocol.
+18. Academic Generation and Quality Assurance Protocol.
 
 Mọi workstream và production cell phải nạp cùng một phiên bản Canonical Core.
 
@@ -587,7 +589,7 @@ Tối thiểu gồm:
 11. Assessment và credentialing.
 12. Ngôn ngữ, accessibility và localization.
 13. Governance và versioning.
-14. Data architecture, AI integrity và privacy.
+14. Data architecture, generation integrity và privacy.
 15. Media, cinematic và interaction.
 
 Workstream không được tự sửa đổi Constitution, ontology canonical hoặc tiêu chuẩn bằng chứng nếu không qua quy trình quản trị.
@@ -612,7 +614,7 @@ Mỗi cell phải:
 
 ### Điều 36. Quyền lực học thuật phải bị ràng buộc
 
-Một hệ thống học thuật toàn cầu không thể do một AI, một công ty, một quốc gia, một hội đồng đơn lẻ hoặc một cá nhân toàn quyền quyết định.
+Một hệ thống học thuật toàn cầu không thể do một công ty, một quốc gia, một hội đồng đơn lẻ, một cá nhân hoặc bất kỳ chủ thể nào toàn quyền quyết định.
 
 HKA phải thiết kế cơ chế quyền lực có giới hạn, có kiểm toán, có phản biện, có khiếu nại và có sửa sai.
 
@@ -626,7 +628,7 @@ HKA cần tối thiểu năm loại hội đồng:
 | Domain Councils | Bảo vệ độ chính xác chuyên ngành |
 | Epistemic Integrity Council | Kiểm tra nguồn, bằng chứng, mức chắc chắn, mâu thuẫn và xung đột lợi ích |
 | Cultural and Language Councils | Ngăn thiên lệch ngôn ngữ, khu vực và truyền thống |
-| Learner Rights and Accessibility Council | Bảo vệ quyền riêng tư, quyền tiếp cận, trẻ em, người khuyết tật, người học trưởng thành và quyền không bị thuật toán định kiến |
+| Learner Rights and Accessibility Council | Bảo vệ quyền riêng tư, quyền tiếp cận, trẻ em, người khuyết tật, người học trưởng thành và quyền không bị hệ thống gán định kiến |
 
 ### Điều 38. Quy trình sửa đổi
 
@@ -668,7 +670,7 @@ HKA phải có cơ chế báo lỗi, phản biện và sửa sai cho:
 6. Lộ trình học gây loại trừ.
 7. Đánh giá không công bằng.
 8. Media gây hiểu nhầm.
-9. AI hallucination.
+9. Nội dung được tạo ra nhưng không có căn cứ kiểm chứng.
 10. Xung đột lợi ích.
 
 Không một lỗi học thuật nghiêm trọng nào được xử lý bằng cách âm thầm sửa mà không lưu lịch sử.
@@ -679,7 +681,7 @@ Không một lỗi học thuật nghiêm trọng nào được xử lý bằng c
 
 HKA tuyệt đối không được:
 
-1. Đặt AI làm nguồn chân lý.
+1. Đặt bất kỳ chủ thể hoặc công cụ nào làm nguồn chân lý.
 2. Trình bày khẳng định không nguồn như tri thức đã xác lập.
 3. Bóp méo bằng chứng để tạo thông điệp đẹp.
 4. Trộn lẫn định nghĩa học thuật với ẩn dụ giáo dục.
@@ -691,7 +693,7 @@ HKA tuyệt đối không được:
 10. Che giấu bất định, tranh luận hoặc giới hạn mô hình.
 11. Tạo dữ liệu giả, ảnh giả hoặc tái dựng giả dưới danh nghĩa bằng chứng.
 12. Cho production cell tự sửa ontology hoặc chuẩn bằng chứng.
-13. Cho một cá nhân, công ty, AI hoặc quốc gia toàn quyền sửa đổi HKA.
+13. Cho một cá nhân, công ty, quốc gia, hội đồng hoặc bất kỳ chủ thể nào toàn quyền sửa đổi HKA.
 14. Lưu hoặc dùng Learner Graph theo cách xâm phạm quyền riêng tư và phẩm giá.
 15. Công bố bài học hàng loạt khi chưa có chuẩn nguồn, trạng thái tri thức, Lesson Grammar và QA.
 
@@ -718,13 +720,13 @@ Không được sản xuất hàng loạt storyboard, prompt hình ảnh, animat
 15. HKA Language, Localization and Accessibility Standard.
 16. HKA Governance and Versioning Protocol.
 17. HKA Cinematic and Scientific Visualization Standard.
-18. HKA AI Generation and Quality Assurance Protocol.
+18. HKA Academic Generation and Quality Assurance Protocol.
 
 Sau khi các đặc tả này đạt chuẩn, production mới được chuyển sang:
 
 1. Storyboard.
 2. Scene design.
-3. Prompt Gemini hoặc công cụ tạo hình khác.
+3. Đặc tả cho công cụ tạo hình.
 4. Hình ảnh.
 5. Animation.
 6. Interaction trên website.
@@ -768,7 +770,7 @@ Không nội dung nào được phát hành nếu chưa qua các cổng tối th
 4. Prerequisite coherence check.
 5. Cultural and language sensitivity check khi phù hợp.
 6. Accessibility check.
-7. AI hallucination and media integrity check nếu có AI hoặc media.
+7. Unsupported-generation and media integrity check nếu có nội dung được tạo sinh hoặc media.
 8. Governance log check.
 
 ---
@@ -801,7 +803,7 @@ Sau HKA Academic Constitution v0.1, thứ tự phát triển đề xuất là:
 6. Knowledge Depth and Mastery Model v0.1.
 7. Governance and Versioning Protocol v0.1.
 8. Lesson Grammar v0.1.
-9. AI Generation and QA Protocol v0.1.
+9. Academic Generation and QA Protocol v0.1.
 10. Cinematic and Scientific Visualization Standard v0.1.
 
 ## Phụ lục B. Câu hỏi phản biện bắt buộc cho v0.2
@@ -818,4 +820,3 @@ Trước khi nâng lên v0.2, HKA phải trả lời tối thiểu:
 8. Ai được quyền đánh dấu một object là deprecated hoặc superseded?
 9. Khi các hội đồng bất đồng, hệ thống phân xử thế nào?
 10. HKA có thể công khai đến đâu mà vẫn bảo vệ quyền riêng tư người học?
-
