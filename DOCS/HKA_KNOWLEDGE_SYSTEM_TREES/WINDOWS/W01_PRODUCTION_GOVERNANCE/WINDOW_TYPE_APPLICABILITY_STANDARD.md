@@ -1,7 +1,7 @@
 ---
 title: "HKA Window Type Applicability Standard"
-version: "1.0"
-status: "PROPOSED REFERENCE — ARCHITECT REVIEW REQUIRED"
+version: "1.1"
+status: "ARCHITECT FINALIZED REFERENCE"
 ---
 
 # HKA WINDOW TYPE APPLICABILITY STANDARD
@@ -35,11 +35,10 @@ TREE.md
 NODE_CATALOG.md
 RELATION_CATALOG.md
 SOURCE_REGISTER.md
-ACADEMIC_COVERAGE_AUDIT.md
 ACADEMIC_QA_REPORT.md
 ```
 
-Visual authoring only if Window Contract requires it.
+Academic QA phải chứa coverage audit hoặc liên kết tới matrix riêng nếu cần. Visual authoring only if Window Contract requires it.
 
 ## 3. DOMAIN / DISCIPLINE CONTENT WINDOW
 
@@ -50,7 +49,7 @@ Primary jobs:
 - D1–D4 progression;
 - Program-to-Visual authoring when visual production is in scope.
 
-Default full academic workflow applies.
+Default full academic workflow applies, nhưng không tạo file audit riêng nếu cùng bằng chứng có thể nằm rõ trong `ACADEMIC_QA_REPORT.md`.
 
 Expected initial applicability: content windows in W02–W60 unless an exact contract says otherwise.
 
@@ -84,7 +83,7 @@ Primary jobs may include:
 - cross-window graph/identifier validation;
 - final system QA.
 
-These windows are **not** forced to create `TREE.md + prompt package` unless their own Window Contract explicitly assigns content-authoring scope.
+These windows are not forced to create `TREE.md + prompt package` unless their own Window Contract explicitly assigns content-authoring scope.
 
 W61–W64 are expected to use system QA/integration semantics under the established architecture unless their future exact contracts state otherwise.
 
@@ -96,8 +95,8 @@ W61–W64 are expected to use system QA/integration semantics under the establis
 | TREE/NODE authoring | AS CONTRACTED | REQUIRED | HUB-OWNED ONLY | NOT DEFAULT |
 | Relation Catalog | REQUIRED/AS NEEDED | REQUIRED | REQUIRED/PRIMARY | AUDIT/INTEGRATION |
 | Source Register | REQUIRED | REQUIRED | REQUIRED | AUDIT SOURCES AS NEEDED |
-| Academic Coverage Audit | REQUIRED IF CONTENT | REQUIRED | REQUIRED FOR HUB SCOPE | SYSTEM-SPECIFIC AUDIT |
-| Academic QA Report | REQUIRED IF CONTENT | REQUIRED | REQUIRED | SYSTEM QA REPORT |
+| Academic QA Report with coverage evidence | REQUIRED IF CONTENT | REQUIRED | REQUIRED | SYSTEM QA REPORT |
+| Separate Coverage Audit/Matrix | OPTIONAL WHEN USEFUL | OPTIONAL WHEN LARGE | OFTEN USEFUL | SYSTEM-SPECIFIC |
 | Program-to-Visual Brief | IF VISUALS IN SCOPE | REQUIRED IF VISUALS IN SCOPE | IF VISUALS IN SCOPE | NOT DEFAULT |
 | Prompt/Manifest authoring | IF CONTRACTED | IF VISUALS IN SCOPE | IF CONTRACTED | NOT DEFAULT |
 | Image generation | FORBIDDEN IN CONTENT WINDOW | FORBIDDEN | FORBIDDEN | FORBIDDEN UNLESS SEPARATE PRODUCTION ROLE |
