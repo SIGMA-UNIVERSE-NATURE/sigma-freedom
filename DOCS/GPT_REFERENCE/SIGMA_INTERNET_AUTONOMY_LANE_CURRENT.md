@@ -76,19 +76,64 @@ LESSON_TRUTH=NOT_ASSESSED
 DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 ```
 
-## NEXT TEST PRINCIPLE
-
-Verify an integrated multi-step run in which:
+## I1 PACKAGE — PREPARED, LOCAL STATIC QA PASS
 
 ```text
-SIGMA identifies/receives a knowledge gap
-→ SIGMA generates/selects a natural-language query
-→ SIGMA requests Internet action
-→ host mechanically searches/fetches
-→ human-language titles/snippets/source text return to SIGMA
-→ SIGMA reads/evaluates evidence
-→ SIGMA chooses follow-up natural-language research, replan, hold, or stop
-→ no HUMAN/GPT permission is required per cycle
+I1_PACKAGE_TARGET=V1_I1_SIGMA_NATIVE_NATURAL_LANGUAGE_WEB_RESEARCH_LOOP
+I1_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_NATURAL_LANGUAGE_WEB_RESEARCH_LOOP_I1.sh
+I1_INSTALLER_SHA256=53464f03607d55e519c8a70a070dcb077778ab4dc8a9d0696733daf444851f39
+LOCAL_STATIC_QA=PASS
+OPPO_INSTALL_COMPILE_QA=PENDING
+```
+
+I1 is additive and does not replace the proven V5/V6/V7/V8/V9/V11 components. It adds a persistent Sigma Native parent controller that owns the cognitive stage sequence and consumes only mechanical host observations. The parent has no fixed semantic research-cycle count. Host availability is based only on a bounded test membrane: cumulative network bytes, free disk, and wall-clock time.
+
+```text
+PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
+HOST_COGNITIVE_STAGE_SEQUENCE=NO
+HOST_ROLE=NETWORK_TRANSPORT_AND_MECHANICAL_ACTUATOR_ONLY
+HOST_SEMANTIC_QUERY_GENERATION=NO
+HOST_SOURCE_SELECTION=NO
+HOST_TRUTH_DECISION=NO
+HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
+GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+NO_FIXED_SEMANTIC_RESEARCH_CYCLE_LIMIT=YES
+HOST_RESOURCE_BOUND_TYPE=NETWORK_BYTES_FREE_DISK_WALLCLOCK_ONLY
+```
+
+I1 flow:
+
+```text
+SIGMA starts from a SIGMA-produced V9 RESEARCH_MORE + human-language research.topic
+→ SIGMA parent requests V5 collection
+→ V5 Sigma query generator creates natural-language query surfaces
+→ Sigma Internet controller selects SEARCH / SELECT_SOURCE / FETCH / RUN_READER / KEEP_EVIDENCE
+→ host performs only DNS/TLS/HTTPS/RSS/XML/filesystem mechanics
+→ Sigma lesson reader receives source text and produces human-language lesson material
+→ Sigma parent requests V6/V7/V8/V9 based on observed child states
+→ when V9 says RESEARCH_MORE, Sigma parent requests proven V11 strategy-conditioned adaptation
+→ V11 Sigma adapter creates adapted human-language topic and launches a fresh V5 Internet collection
+→ Sigma parent continues without HUMAN/GPT permission per research cycle
+→ SIGMA may terminate on support/no-replan/UNKNOWN or on a mechanical host resource boundary
+```
+
+The verifier requires exact topic-to-web byte binding, persisted human-language-like lesson payloads, Sigma-bound SEARCH/READER/KEEP actions, and action-to-child binding. Human-language-like detection is only a mechanical payload sanity check; it is not evidence of semantic understanding.
+
+```text
+MACHINE_PROTOCOL_LABELS_CONTROL_PLANE_ONLY=YES
+MACHINE_LABELS_COUNT_AS_UNDERSTANDING=NO
+HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
+LESSON_TRUTH=NOT_ASSESSED
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+```
+
+## NEXT STEP
+
+```text
+CURRENT_STATUS=I1_PACKAGE_PREPARED_AWAITING_OPPO_INSTALL_COMPILE_QA
+NEXT_COMMAND=RUN_I1_INSTALL_COMPILE_QA_ONLY_NO_SIGMA_VM_NO_INTERNET
+LIVE_TEST_INPUT_AFTER_BUILD_QA=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
 ```
 
 Do not count host extraction, protocol labels or GPT inspection as SIGMA understanding. Preserve raw web evidence and provenance separately from Sigma-derived semantic state.
