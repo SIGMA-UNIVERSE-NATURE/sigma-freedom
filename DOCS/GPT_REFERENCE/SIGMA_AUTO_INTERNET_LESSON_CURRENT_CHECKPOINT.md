@@ -18,7 +18,6 @@ HOST_ROLE=MECHANICAL_ONLY
 UNKNOWN_STAYS_UNKNOWN=YES
 READ_CHECKPOINT_BEFORE_GIVING_NEXT_SIGMA_DEVELOPMENT_STEP=YES
 GPT_MUST_NOT_PRETEND_CONTEXT_IS_COMPLETE_IF_UNCERTAIN=YES
-GPT_MUST_EXPLICITLY_TELL_HUMAN_IF_PROJECT_DIRECTION_OR_REQUIRED_HISTORY_SEEMS_MISSING=YES
 DO_NOT_SILENTLY_INVENT_MISSING_SIGMA_HISTORY=YES
 PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 ```
@@ -51,7 +50,7 @@ V18_R0_VERIFIER_SHA256=6c7e65cf12ec169186b71bb2260c67d88edb425613eab17905c60513e
 V18_R0_WRAPPER_SHA256=d1926a7496a3a77c60832d433f421892bac6882e28e8156dc0554ea894aa5fe3
 ```
 
-Identity mismatch => STOP; never silently replace and continue as the same proven runtime.
+Identity mismatch => STOP; never silently replace and continue as same proven runtime.
 
 ## CANONICAL PASS SET
 
@@ -64,9 +63,10 @@ SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY=PASS_TESTED_SCOPE
 SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
+SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION=PASS_TESTED_SCOPE
 ```
 
-## V16 / V13 CANONICAL BASIS
+## V16 / V13 BASIS
 
 ```text
 V16_R4R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/outcome_conditioned_query_evolutions/20260902T160927Z_9996_4404
@@ -86,27 +86,7 @@ INSUFFICIENT_COMPARABILITY_PAIRS=25
 COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 ```
 
-V13 is deliberately shallow and does not prove the pairs discuss different propositions.
-
-## V17 EVIDENCE-UNIT ALIGNMENT
-
-Preserved failure/repair history:
-
-```text
-V17_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260902T223033Z_15127_7806
-V17_R0_DRIVER_RC=29
-V17_R0_ALIGNMENT_VM_RC=22
-V17_R0_ROOT_CAUSE=SIGMA_STR_JOIN_RECEIVED_INTEGER_METRIC_FIELDS
-V17_R0_COGNITIVE_FAILURE=NOT_PROVEN
-
-V17_R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260903T014403Z_24337_21216
-V17_R1_ALIGNMENT_VM_RC=0
-V17_R1_DRIVER_RC=33
-V17_R1_ROOT_CAUSE=RUNNER_PASSED_V13_DIRECTORY_WHERE_VERIFIER_REQUIRES_REGULAR_FILE
-V17_R1_TARGETED_EXISTING_ARTIFACT_VERIFY_RC=0
-```
-
-Canonical R2 pass:
+## V17 EVIDENCE-UNIT ALIGNMENT — CANONICAL PASS
 
 ```text
 V17_R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260903T023540Z_11837_128
@@ -123,9 +103,9 @@ SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
 SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 ```
 
-## POST-V17 EXACT DEDUP / V18 INPUT
+Preserved failures: R0 serialization defect; R1 post-Sigma verifier input-binding defect. Neither is evidence of cognitive failure.
 
-Record-level duplicate inflation was mechanically observed and must not be treated as independent support.
+## POST-V17 EXACT DEDUP / V18 INPUT — CANONICAL PASS
 
 ```text
 DEDUP_VIEW=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_exact_dedup_views/from_20260903T023540Z_11837_128
@@ -149,48 +129,58 @@ SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 V18_INPUT_EXACT_DEDUP_VIEW=PASS_TESTED_SCOPE
 ```
 
-Five unique evidence surfaces were targeted and inspected before V18 design. No proposition text was prewritten into the runtime. The evidence shape shows that whole paragraphs may contain multiple assertion-like surfaces, so V18 is staged rather than jumping directly to proposition equivalence.
+Duplicate inflation must not be treated as independent support.
 
 ## V18 R0 — PROPOSITION-SPAN CANDIDATE FORMATION
 
-Purpose: first conservative formation stage only. Sigma Native mechanically exposes exact period-delimited substrings from the five unique evidence units as proposition-span candidates. No abstraction, paraphrase, synonym mapping, agreement/conflict, truth or durable-knowledge decision is present.
+Purpose: conservative first formation stage. Sigma Native exposes exact period-delimited evidence substrings as proposition-span candidates. It does not abstract, paraphrase, map synonyms, judge semantic proposition identity, agreement/conflict, truth, or durable knowledge.
+
+Package / policy:
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
-V18_STAGE=R0_PROPOSITION_SPAN_CANDIDATE_FORMATION_ONLY
 V18_R0_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R21_SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0
-V18_R0_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0.sh
 V18_R0_INSTALLER_SHA256=55c1df76afa8b3b5f7cd39d476f2d8809b4508bfa817bd94202945491d13043f
 FORMATION_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_PROPOSITION_FORMATION=NO
 HOST_SEMANTIC_REWRITE=NO
 ZERO_PREWRITTEN_PROPOSITION=YES
 PROPOSITION_CANDIDATE_POLICY=PERIOD_DELIMITED_SURFACE_SPANS_NO_ABSTRACTION
+```
+
+OPPO install/compile QA PASS; build QA did not execute Sigma VM or live Internet.
+
+### V18 R0 LIVE — CANONICAL PASS
+
+```text
+V18_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
+FORMATION_VM_RC=0
+FORMATION_VERIFY_RC=0
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=0
+UNIQUE_EXACT_EVIDENCE_UNITS=5
+PROPOSITION_SPAN_CANDIDATE_COUNT=10
+FORMATION_STATE=PROPOSITION_SPAN_CANDIDATES_AVAILABLE
+FORMATION_DECISION_PLANE=SIGMA_NATIVE_VM
+HOST_PROPOSITION_FORMATION=NO
+HOST_SEMANTIC_REWRITE=NO
+CANDIDATE_TEXT_SOURCE=EXACT_PERIOD_DELIMITED_EVIDENCE_SUBSTRING
+SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION=PASS_TESTED_SCOPE
+```
+
+Canonical interpretation:
+
+```text
+V18_R0_SURFACE_SPAN_FORMATION=PASS_TESTED_SCOPE
+V18_R0_CANDIDATE_COUNT=10
 SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 PROPOSITION_ALIGNMENT=DEFERRED
 AGREEMENT_CONFLICT_DECISION=DEFERRED
 TRUTH_DECISION=DEFERRED
 DURABLE_KNOWLEDGE=DEFERRED
 ```
 
-OPPO install/compile QA canonical pass:
-
-```text
-BASH_SYNTAX_QA=PASS
-PYTHON_VERIFIER_SYNTAX_QA=PASS
-SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
-PERIOD_SEGMENTATION_QA=PASS
-EXACT_PERIOD_SEGMENT_COVERAGE_QA=PASS
-PREMATURE_RELATION_OR_TRUTH_LOGIC_QA=PASS
-FORMATION_DECISION_PLANE_QA=PASS
-SIGMA_V18_R0_COMPILE_QA=PASS
-INSTALL_QA_RESULT=PASS
-SIGMA_VM_EXECUTED=NO
-LIVE_INTERNET_REQUEST_EXECUTED=NO
-READY_TO_RUN_V18_R0_PROPOSITION_SPAN_CANDIDATE_FORMATION=YES
-```
-
-The tested input contains five unique evidence units and, under the exact period-delimited R0 policy, mechanically corresponds to nine non-empty surface spans. This is an expected structural count only; live Sigma output and independent verification are still required before capability PASS.
+The earlier pre-live expectation of 9 spans was only a manual structural estimate and was wrong. The live Sigma output and independent verifier both agree on 10 exact period-delimited non-empty spans. Do not alter the proven result to match the prior estimate; inspect the exact ledger before designing the next stage.
 
 ## GOVERNANCE / CLAIM BOUNDARY
 
@@ -234,6 +224,7 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ## NEXT STEP
 
 ```text
-CURRENT_STATUS=V18_R0_OPPO_INSTALL_COMPILE_QA_PASS_READY_FOR_LIVE
-NEXT_COMMAND=RUN_V18_R0_LIVE_ON_EXACT_CANONICAL_DEDUP_VIEW_NO_INTERNET
+CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
+CURRENT_STATUS=V18_R0_CANONICAL_PASS_READY_FOR_TARGETED_SPAN_LEDGER_INSPECTION
+NEXT_COMMAND=INSPECT_EXACT_10_V18_R0_SPAN_CANDIDATES_FROM_CANONICAL_RUN_NO_RERUN_NO_INTERNET
 ```
