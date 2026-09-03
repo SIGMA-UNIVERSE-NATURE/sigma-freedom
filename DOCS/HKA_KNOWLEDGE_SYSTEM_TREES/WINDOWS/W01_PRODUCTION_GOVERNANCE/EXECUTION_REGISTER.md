@@ -1,8 +1,8 @@
 ---
 title: "HKA W01 — Execution Register"
 window_id: "W01"
-version: "1.1"
-status: "READY_FOR_DELEGATION"
+version: "2.0"
+status: "IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW"
 language: "vi"
 date: "2026-09-03"
 ---
@@ -20,7 +20,7 @@ BASE COMMIT SHA: b2c6b8dacfb425c5e6d260176ed879fb75da6dae
 EXECUTION BRANCH: hka-tree/w01-production-governance
 ```
 
-## 2. Issued control documents
+## 2. Source locks
 
 ```text
 WINDOW CONTRACT:
@@ -34,6 +34,11 @@ PROMPT FILE COMMIT SHA: 02cdd6281effcf3e41df05d03ef1757fa665abc8
 ARCHITECT ACCEPTANCE GATE:
 DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/ARCHITECT_ACCEPTANCE_GATE.md
 ACCEPTANCE FILE COMMIT SHA: dcdec2faada90b4efcfcb4c5fd02a2165aaf1df4
+
+BRAND REPOSITORY:
+linkcomltd-byte/sigma-universe-web
+BRAND ASSET COMMIT SHA:
+2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
 ## 3. Tracking and review surfaces
@@ -55,18 +60,47 @@ MERGE AUTHORIZATION:
 NO
 ```
 
-## 4. Current state
+## 4. Delegated-window blocker disposition
 
 ```text
-STATE: READY_FOR_DELEGATION
-OWNER TYPE: GPT WINDOW W01
-PRODUCTION: NOT AUTHORIZED
-R2 UPLOAD: NOT AUTHORIZED
-MERGE: NOT AUTHORIZED
-WEBSITE DEPLOY: NOT AUTHORIZED
+BLOCKER ID: HKA-W01-BLK-001
+CAUSE: Delegated window lacked GitHub write capability
+REPORT DISPOSITION: ACCEPTED AS VALID SAFETY STOP
+CONTENT FAILURE: NO
+SCOPE VIOLATION: NO
+REASSIGNED TO: WRITE-CAPABLE ARCHITECT SESSION
+ISSUE EVIDENCE: Issue #13 comment ID 5522872315
 ```
 
-## 5. Locked quantity
+## 5. Implementation SHAs
+
+```text
+PROMPT CONTENT COMMIT SHA:
+04da1831a597f22c7eab5737b9b674e545b71622
+
+FINAL MANIFEST COMMIT SHA:
+7f8b57232a54e5a918fe72688337e47d52d4a47a
+
+SELF-AUDIT COMMIT SHA:
+1e8e7042be0d6b21e23b86175cec1e5bbacec463
+```
+
+Later audit/register commits do not alter the immutable prompt content or the three locked manifests.
+
+## 6. Completion counts
+
+```text
+GOVERNANCE DOCUMENTS: 9 / 9
+VISUAL PACKAGE DOCUMENTS: 5 / 5
+CALIBRATION PROMPT RECORDS: 12 / 12
+BATCH PROMPT FILES: 3 / 3
+BATCH MANIFESTS: 3 / 3
+MANIFEST SHA-256 SIDECARS: 3 / 3
+PRODUCTION STATUS RECORDS: 3 / 3
+CHANGE REQUESTS: 3
+```
+
+## 7. Locked quantity
 
 ```text
 PACKAGE: P12
@@ -75,47 +109,69 @@ BATCHES:
 - HKA-W01-B00 = 2 assets
 - HKA-W01-B01 = 6 assets
 - HKA-W01-B02 = 4 assets
-PROMPTS REQUIRED: 12
+PROMPTS: 12
 CLEAN MASTERS REQUIRED LATER: 12
 BRANDED FINALS REQUIRED LATER: 12
 TOTAL IMAGE FILES REQUIRED LATER: 24
 ```
 
-## 6. Next authorized transition
+## 8. Validation
 
 ```text
-READY_FOR_DELEGATION
-→ W01_EXECUTING
+B00 MANIFEST: SCHEMA PASS
+B01 MANIFEST: SCHEMA PASS
+B02 MANIFEST: SCHEMA PASS
+CROSS-BATCH ASSET-ID UNIQUENESS: PASS
+PROMPT ↔ MANIFEST COUNT: PASS 12/12
+AUDIENCE DISTRIBUTION: PASS
+COMPANION DISTRIBUTION: PASS
+EXACT MOTTO: PASS
+OUT-OF-SCOPE MODIFICATIONS: 0
 ```
 
-Điều kiện chuyển trạng thái:
-
-1. Một cửa sổ GPT mới nhận nguyên văn `GPT_EXECUTION_PROMPT.md`.
-2. Cửa sổ xác nhận đọc được repository, base SHA, contract SHA và brand asset SHA.
-3. Cửa sổ làm việc trên đúng execution branch.
-4. Không có blocker P0.
-
-## 7. Evidence to return
-
-W01 phải trả:
+## 9. Prompt hash payload boundary
 
 ```text
-FINAL STATUS
-CONTENT COMMIT SHA
-FINAL MANIFEST COMMIT SHA
-FILES CREATED
-FILES MODIFIED OUTSIDE PREFIX
-CALIBRATION PROMPT COUNT
-BATCH MANIFEST COUNT
-CHANGE REQUEST COUNT
-OPEN RISKS
+B00 PAYLOADS 0001–0002: MATERIALIZED AND REPRODUCIBLE
+B01 PAYLOADS 0003–0008: NOT YET MATERIALIZED
+B02 PAYLOADS 0009–0012: NOT YET MATERIALIZED
 ```
 
-Sau đó kiến trúc sư HKA sẽ áp dụng `ARCHITECT_ACCEPTANCE_GATE.md` trên 100% đầu ra và ghi kết quả vào Draft PR #14.
+B01/B02 may not be authorized for production until their individual canonical payload files are materialized and verified. This does not alter the registered prompt hashes or batch mapping.
 
-## 8. Change log
+## 10. Current state and authorization
+
+```text
+STATE: IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW
+OWNER TYPE: CANONICAL ARCHITECT REVIEW
+B00 PRODUCTION: NOT AUTHORIZED
+B01 PRODUCTION: NOT AUTHORIZED
+B02 PRODUCTION: NOT AUTHORIZED
+R2 UPLOAD: NOT AUTHORIZED
+MERGE: NOT AUTHORIZED
+WEBSITE DEPLOY: NOT AUTHORIZED
+```
+
+## 11. Next authorized transition
+
+```text
+IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW
+→ ARCHITECT_ACCEPTED_REFERENCE
+```
+
+or:
+
+```text
+IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW
+→ RETURN_FOR_REWORK
+```
+
+Architect must apply `ARCHITECT_ACCEPTANCE_GATE.md` to 100% of W01 output and record the decision in Draft PR #14.
+
+## 12. Change log
 
 | Version | Date | State | Evidence |
 |---|---|---|---|
 | 1.0 | 2026-09-03 | READY_FOR_DELEGATION | Contract, execution prompt and acceptance gate issued |
 | 1.1 | 2026-09-03 | READY_FOR_DELEGATION | Execution Issue #13 and Draft PR #14 recorded |
+| 2.0 | 2026-09-03 | IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW | Governance pack, P12 prompt pack, manifests, validation and self-audit completed |
