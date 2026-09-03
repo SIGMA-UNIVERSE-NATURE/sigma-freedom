@@ -1,0 +1,101 @@
+---
+title: "HKA W01 — Execution Register"
+window_id: "W01"
+version: "1.0"
+status: "READY_FOR_DELEGATION"
+language: "vi"
+date: "2026-09-03"
+---
+
+# HKA W01 — EXECUTION REGISTER
+
+## 1. Identity
+
+```text
+WINDOW ID: W01
+WINDOW NAME: Production Governance & Reference Implementation
+REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
+BASE BRANCH: hka-knowledge-system-trees
+BASE COMMIT SHA: b2c6b8dacfb425c5e6d260176ed879fb75da6dae
+EXECUTION BRANCH: hka-tree/w01-production-governance
+```
+
+## 2. Issued control documents
+
+```text
+WINDOW CONTRACT:
+DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/WINDOW_CONTRACT.md
+CONTRACT COMMIT SHA: 7d1d77da5007029b2ef0f4af0736147d8646c1b5
+
+GPT EXECUTION PROMPT:
+DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/GPT_EXECUTION_PROMPT.md
+PROMPT FILE COMMIT SHA: 02cdd6281effcf3e41df05d03ef1757fa665abc8
+
+ARCHITECT ACCEPTANCE GATE:
+DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/ARCHITECT_ACCEPTANCE_GATE.md
+ACCEPTANCE FILE COMMIT SHA: dcdec2faada90b4efcfcb4c5fd02a2165aaf1df4
+```
+
+## 3. Current state
+
+```text
+STATE: READY_FOR_DELEGATION
+OWNER TYPE: GPT WINDOW W01
+PRODUCTION: NOT AUTHORIZED
+R2 UPLOAD: NOT AUTHORIZED
+MERGE: NOT AUTHORIZED
+WEBSITE DEPLOY: NOT AUTHORIZED
+```
+
+## 4. Locked quantity
+
+```text
+PACKAGE: P12
+ASSET IDS: HKA-VIS-W01-0001 ... HKA-VIS-W01-0012
+BATCHES:
+- HKA-W01-B00 = 2 assets
+- HKA-W01-B01 = 6 assets
+- HKA-W01-B02 = 4 assets
+PROMPTS REQUIRED: 12
+CLEAN MASTERS REQUIRED LATER: 12
+BRANDED FINALS REQUIRED LATER: 12
+TOTAL IMAGE FILES REQUIRED LATER: 24
+```
+
+## 5. Next authorized transition
+
+```text
+READY_FOR_DELEGATION
+→ W01_EXECUTING
+```
+
+Điều kiện chuyển trạng thái:
+
+1. Một cửa sổ GPT mới nhận nguyên văn `GPT_EXECUTION_PROMPT.md`.
+2. Cửa sổ xác nhận đọc được repository, base SHA, contract SHA và brand asset SHA.
+3. Cửa sổ làm việc trên đúng execution branch.
+4. Không có blocker P0.
+
+## 6. Evidence to return
+
+W01 phải trả:
+
+```text
+FINAL STATUS
+CONTENT COMMIT SHA
+FINAL MANIFEST COMMIT SHA
+FILES CREATED
+FILES MODIFIED OUTSIDE PREFIX
+CALIBRATION PROMPT COUNT
+BATCH MANIFEST COUNT
+CHANGE REQUEST COUNT
+OPEN RISKS
+```
+
+Sau đó kiến trúc sư HKA sẽ áp dụng `ARCHITECT_ACCEPTANCE_GATE.md` trên 100% đầu ra.
+
+## 7. Change log
+
+| Version | Date | State | Evidence |
+|---|---|---|---|
+| 1.0 | 2026-09-03 | READY_FOR_DELEGATION | Contract, execution prompt and acceptance gate issued |
