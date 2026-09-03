@@ -1,16 +1,14 @@
 ---
 title: "HKA — Window Contract Template"
-version: "1.0"
-status: "REFERENCE TEMPLATE"
+version: "2.0"
+status: "DIRECTOR-INTEGRATED REFERENCE — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
 ---
 
 # HKA WINDOW CONTRACT TEMPLATE
 
-> Sao chép template này thành `WINDOW_CONTRACT.md` của từng cửa sổ. Mọi placeholder phải được thay bằng giá trị cụ thể trước khi phát hành. Không cho phép `TBD`, `latest`, hoặc khoảng số lượng trong bản `CONTRACT_LOCKED`.
-
----
+> Dùng cho W02–W64. Bản `CONTRACT_LOCKED` không được còn `TBD`, `latest`, khoảng số lượng hoặc ownership mơ hồ.
 
 ## 01. WINDOW IDENTITY
 
@@ -39,11 +37,10 @@ EXECUTION BRANCH:
 ALLOWED WRITE PREFIX:
 BRAND REPOSITORY:
 BRAND ASSET COMMIT SHA:
+DIRECTOR STANDARD REF:
 ```
 
 ## 03. POSITION IN HKA
-
-Nêu rõ cửa sổ nằm ở đâu trong HKA World Tree:
 
 ```text
 ROOT / DOMAIN / TREE / BRANCH PATH:
@@ -55,109 +52,115 @@ CANONICAL OWNER OF OVERLAPPING NODES:
 ## 04. CENTRAL QUESTION
 
 ```text
-CÂU HỎI TRUNG TÂM:
+CENTRAL QUESTION:
 WHY THIS QUESTION MATTERS:
+PROGRAM PROMISE:
 ```
 
-## 05. SINGLE OBJECTIVE
+## 05. WINDOW OBJECTIVE
 
-Viết một mục tiêu duy nhất, đo được ở cấp gói đầu ra. Không dùng khẩu hiệu thay mục tiêu.
+Một objective đo được ở cấp toàn chương trình; không dùng khẩu hiệu.
 
 ## 06. MANDATORY SCOPE
-
-Liệt kê chính xác các cành, nhánh, phương pháp, ứng dụng và vấn đề phải phát triển.
 
 ```text
 MANDATORY BRANCHES:
 MANDATORY METHODS:
 MANDATORY APPLICATIONS:
 MANDATORY CONTROVERSIES / OPEN QUESTIONS:
+MANDATORY MODERN / EMERGING AREAS:
 ```
 
 ## 07. EXCLUDED SCOPE
 
-Liệt kê những phần cửa sổ không được chiếm. Với mỗi phần, chỉ rõ `TARGET WINDOW` và loại liên kết được phép tạo.
+Mỗi phần excluded phải có Target Window và loại relation được phép.
 
 ## 08. CANONICAL BRANCH STRUCTURE
 
-Dán cây canonical được phép phát triển. Không tự đổi tên cấp 1 nếu chưa có change request được phê duyệt.
+Dán exact branch structure được phép phát triển. Không tự đổi tên level-1 branch.
 
-## 09. ACADEMIC COVERAGE BASELINE
+## 09. REQUIRED ACADEMIC OUTPUTS
 
-Xác định các vùng học thuật, chuẩn năng lực, giáo trình hoặc classification scheme dùng để kiểm toán độ phủ. Chúng là nguồn đối chiếu, không phải cấu trúc tối cao.
+```text
+TREE.md
+NODE_CATALOG.md
+RELATION_CATALOG.md
+SOURCE_REGISTER.md
+SELF_AUDIT.md
+```
+
+Không được dừng ở outline. Window phải viết toàn bộ chương trình trong mandatory scope.
+
+## 10. ACADEMIC COVERAGE BASELINE
 
 ```text
 COVERAGE SOURCES:
 MINIMUM CORE AREAS:
-EXPLICITLY REQUIRED MODERN / EMERGING AREAS:
+FOUNDATIONAL AREAS:
+MODERN / EMERGING AREAS:
+DOMAIN-SPECIFIC TAXONOMIES:
 ```
 
-## 10. DOMAIN-SPECIFIC METHODS
+## 11. DOMAIN METHODS & EVIDENCE
 
-Liệt kê các phương pháp hình thành tri thức đặc thù của lĩnh vực và tiêu chuẩn bằng chứng tương ứng.
+Liệt kê phương pháp hình thành tri thức, loại bằng chứng và giới hạn của từng phương pháp.
 
-## 11. NON-NEGOTIABLE CORE NODES
-
-Bảng bắt buộc:
+## 12. NON-NEGOTIABLE CORE NODES
 
 | Core Node | Node Type | Why Non-Negotiable | Minimum D1–D4 Reach |
 |---|---|---|---|
 
-## 12. OPEN QUESTIONS
-
-Mỗi câu hỏi mở phải ghi:
+## 13. PREREQUISITE REQUIREMENTS
 
 ```text
-QUESTION:
-CURRENT STATUS:
-WHY OPEN:
-EVIDENCE NEEDED:
-MISREPRESENTATION TO AVOID:
+CORE PREREQUISITE CHAINS:
+ALLOWED ENTRY POINTS:
+ORPHAN PREREQUISITE TOLERANCE: 0 for locked core nodes
 ```
 
-## 13. ACADEMIC CONTROVERSIES
+## 14. EPISTEMIC STATUS
 
-Phân biệt:
+Window phải phân biệt:
 
-- tranh luận về dữ liệu;
-- tranh luận về phương pháp;
-- tranh luận về diễn giải;
-- tranh luận triết học;
-- khác biệt chuẩn tắc.
+```text
+SETTLED / HIGH CONSENSUS
+CONTEXT-DEPENDENT
+ACTIVE DEBATE
+OPEN QUESTION
+MODEL / APPROXIMATION
+NORMATIVE / VALUE JUDGMENT
+```
 
-Không được biến khác biệt học thuật thành “hai bên đều đúng” nếu bằng chứng không cân bằng.
+## 15. OPEN QUESTIONS
 
-## 14. REQUIRED CROSS-TREE LINKS
+Mỗi câu hỏi mở phải ghi status, evidence needed và misrepresentation to avoid.
+
+## 16. ACADEMIC CONTROVERSIES
+
+Phân biệt tranh luận về dữ liệu, phương pháp, diễn giải, triết học và giá trị. Không tạo false balance.
+
+## 17. REQUIRED CROSS-TREE LINKS
 
 | Source Node/Branch | Target Window | Target Node/Branch | Relation Type | Reason | Ownership Rule |
 |---|---|---|---|---|---|
 
-## 15. HIGH-RISK MISCONCEPTIONS
-
-Bảng:
+## 18. HIGH-RISK MISCONCEPTIONS
 
 | Misconception | Why Harmful | Correct Model | Visual Risk | Required Countermeasure |
 |---|---|---|---|---|
 
-## 16. D1–D4 REQUIREMENTS
+## 19. D1–D4 REQUIREMENTS
 
 ```text
-D1 — GẶP GỠ:
-Observable capability indicators:
-
-D2 — KIẾN TẠO:
-Observable capability indicators:
-
-D3 — HÌNH THỨC HÓA:
-Observable capability indicators:
-
-D4 — NGHIÊN CỨU & TỔNG HỢP:
-Observable capability indicators:
+D1 — observable encounter/recognition capability:
+D2 — observable construction/explanation capability:
+D3 — observable formalization/model/test capability:
+D4 — observable research/synthesis/critique capability:
 ```
 
-Không gắn D1–D4 với tuổi.
+D1–D4 không phải age bands.
 
-## 17. A1–A5 EXPRESSION REQUIREMENTS
+## 20. A1–A5 EXPRESSION REQUIREMENTS
 
 | Mode | Default Ages | Language | Visual Density | Interaction | Safety/Sensitivity |
 |---|---:|---|---|---|---|
@@ -168,25 +171,41 @@ Không gắn D1–D4 với tuổi.
 | A5 | 19–24 | | | | |
 | R | Research | | | | |
 
-Tuổi chỉ điều chỉnh cách biểu đạt, không khóa tri thức.
+## 21. DIRECTOR ACADEMIC GATE
 
-## 18. VISUAL COVERAGE UNIT RULES
+Window không được chuyển sang visual package trước:
 
-Xác định:
+```text
+MANDATORY BRANCH COVERAGE = 100%
+CORE PREREQUISITES CONNECTED = YES
+UNSUPPORTED HIGH-RISK CLAIMS = 0
+OWNERSHIP CONFLICTS UNRESOLVED = 0
+DIRECTOR ACADEMIC GATE = PASS
+```
 
-- cách nhóm nút thành VCU;
-- tối đa 2 cành cấp 1/VCU;
+Director có thể sửa trực tiếp lỗi nhỏ/khách quan; material academic rewrite trả đúng section về owner Window.
+
+## 22. PROGRAM-TO-VISUAL DIRECTOR BRIEF
+
+Bắt buộc dùng `PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md` để khóa visual thesis, learning arc, spiral visuals, continuity và VCU map trước prompt lock.
+
+## 23. VISUAL COVERAGE UNIT RULES
+
+- tối đa 2 level-1 branches/VCU;
 - tối đa 6 node IDs/asset;
-- một learning objective chính;
-- tiêu chí chấm Centrality 0–3, Visualization Need 0–3, Misconception Risk 0–2, Cross-link Value 0–2;
-- điều kiện cần ảnh và điều kiện nên dùng phương tiện khác.
+- một primary learning objective;
+- Centrality 0–3;
+- Visualization Need 0–3;
+- Misconception Risk 0–2;
+- Cross-link Value 0–2;
+- ghi rõ phần không cần hình và vì sao.
 
-## 19. LOCKED PACKAGE
+## 24. LOCKED PACKAGE
 
 ```text
 SELECTED PACKAGE: P12 / P18 / P24 / P30 / P36
 LOCKED ASSET COUNT:
-CALIBRATION BATCH COUNT: 2 assets
+B00: 2 assets
 PRODUCTION BATCH MAP:
 EXPECTED CLEAN MASTER COUNT:
 EXPECTED BRANDED FINAL COUNT:
@@ -196,161 +215,126 @@ RATIONALE:
 
 Không dùng khoảng số lượng.
 
-## 20. REQUIRED ASSET TYPES
+## 25. ASSET & CHARACTER DISTRIBUTION
 
-Chỉ rõ số lượng chính xác theo loại:
+Ghi exact count theo asset type và Companion. Mỗi asset có ít nhất một primary Companion; HERO đủ bốn trừ khi canonical contract khác.
 
-```text
-HERO:
-ANCHOR/OVERVIEW:
-CONCEPT/PROCESS/MECHANISM/RECONSTRUCTION:
-COMPARISON/SCALE/MISCONCEPTION:
-CROSS-LINK:
-HUMAN IMPACT/ETHICAL SCENARIO:
-RESEARCH POSTER:
-TOTAL:
-```
-
-## 21. CHARACTER DISTRIBUTION
+## 26. BRAND LOCK
 
 ```text
-SIGMA PRIMARY COUNT:
-CRICKET PRIMARY COUNT:
-LITTLE ANT PRIMARY COUNT:
-PROFESSOR OWL PRIMARY COUNT:
-ENSEMBLE FOUR COUNT:
-ALLOWED JUSTIFICATION FOR IMBALANCE:
-```
-
-Mỗi asset phải có ít nhất một companion; HERO phải đủ bốn.
-
-## 22. LOGO & MOTTO LOCK
-
-```text
-LOGO MASTER PATH:
-COMPACT EMBLEM PATH:
+BRAND REPOSITORY: linkcomltd-byte/sigma-universe-web
+BRAND ASSET COMMIT SHA: 2d3aa9d8418acccd39a3d263e917d4157e029e17
+LOGO MASTER: assets/logo/sigma-logo-master.jpg
+COMPACT EMBLEM: assets/logo/sigma-emblem-shell.jpg
 EXACT MOTTO: PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
 POST-PRODUCTION COMPOSITING REQUIRED: YES
 MODEL-GENERATED LOGO/TEXT ALLOWED: NO
 ```
 
-## 23. BRAND ASSET SOURCE
+## 27. PROMPT RECORD STANDARD
 
-Ghi repo + full 40-char commit SHA + exact character paths. Không dùng link branch mutable làm nguồn sản xuất.
+Dùng `PROMPT_ASSET_RECORD_TEMPLATE.md`. Prompt phải đủ để IMG Unit không tự suy luận học thuật.
 
-## 24. PROMPT RECORD SCHEMA
-
-Tham chiếu `PROMPT_ASSET_RECORD_TEMPLATE.md` và bổ sung các trường chuyên ngành bắt buộc.
-
-## 25. NEGATIVE PROMPTS
-
-Tách ba lớp:
+## 28. DIRECTOR VISUAL GATE
 
 ```text
-GLOBAL HKA NEGATIVE PROMPT:
-DOMAIN-SPECIFIC NEGATIVE PROMPT:
-ASSET-SPECIFIC NEGATIVE PROMPT:
+ALL VCUS TRACE TO LOCKED NODES: YES
+DECORATIVE-ONLY ASSETS: 0
+PROMPT RECORDS COMPLETE: YES
+PROMPT HASHES REPRODUCIBLE: YES
+BATCH MAP VALID: YES
+IMG UNIT PLAN VALID: YES
+DIRECTOR VISUAL GATE: PASS
 ```
 
-## 26. SELF-AUDIT REQUIREMENTS
+## 29. IMG UNIT PLAN
 
-Tối thiểu kiểm:
-
-- độ phủ cành cấp 1;
-- node trùng/sai owner;
-- liên kết mơ hồ;
-- nguồn yếu;
-- tranh luận bị trình bày như sự thật;
-- prompt ↔ manifest;
-- batch count;
-- character distribution;
-- brand lock;
-- placeholder SHA;
-- file ngoài prefix.
-
-## 27. ACCEPTANCE GATES
-
-Chỉ rõ bằng chứng và PASS/FAIL/BLOCKED cho:
+Batch là canonical unit; IMG Unit là generation unit.
 
 ```text
-Academic
-Pedagogy
-Visual
-Character & Brand
-Accessibility
-Integrity
+MAX AUTHORIZED ASSETS PER IMG UNIT: 2
+B00 DEFAULT IMG UNIT COUNT: 1
 ```
 
-## 28. GIT PATHS & VERSION CONTROL
+Liệt kê:
 
-```text
-REPOSITORY:
-EXECUTION BRANCH:
-ALLOWED WRITE PREFIX:
-FORBIDDEN PATHS:
-COMMIT CONVENTION:
-CONTENT COMMIT RULE:
-FINAL MANIFEST COMMIT RULE:
-MERGE AUTHORIZATION: NO
-```
+| IMG Unit ID | Batch ID | Run ID | Authorized Asset IDs |
+|---|---|---|---|
 
-## 29. HANDOFF RECEIPT
+Naming dùng `IMG-WXX-BYY-UZZ-RNN`.
 
-Yêu cầu cửa sổ trả đầy đủ:
+## 30. IMG EXECUTION PACK
+
+Mỗi IMG Unit phải nhận bản đã điền từ `IMG_EXECUTION_PACK_TEMPLATE.md`. IMG Unit không tự duyệt branch để chọn prompt.
+
+## 31. PRODUCTION ANTI-DRIFT LOCK
+
+Bắt buộc:
+
+- reread immutable asset source trước mỗi asset;
+- reload official character reference trước mỗi relevant asset;
+- không dùng generated image trước làm character master;
+- close asset trước asset kế;
+- close IMG Unit sau tối đa 2 assets;
+- same failure twice = root-cause stop.
+
+## 32. QA / RELEASE BOUNDARY
+
+Director Production Review dùng để bắt lỗi nhanh trước formal QA. Independent Image QA vẫn là release gate canonical. R2 release và website giữ đúng canonical pipeline/amendments.
+
+## 33. SELF-AUDIT & HANDOFF
+
+Window phải trả:
 
 ```text
 STATUS
-CONTENT COMMIT SHA
+ACADEMIC CONTENT COMMIT SHA
+PROMPT CONTENT COMMIT SHA
 FINAL MANIFEST COMMIT SHA
 FILES CREATED
 OUT-OF-SCOPE CHANGES
 NODE/RELATION/SOURCE COUNTS
 ASSET/PROMPT/BATCH COUNTS
+IMG UNIT COUNT
+DIRECTOR ACADEMIC GATE
+DIRECTOR VISUAL GATE
 SCHEMA VALIDATION
 BRAND VERIFICATION
 OPEN RISKS
 EXPERT REVIEW REQUIRED
 ```
 
-## 30. BLOCKED CONDITIONS
+## 34. BLOCKED CONDITIONS
 
-Cửa sổ phải dừng nếu:
+Dừng nếu:
 
-- không đọc được source lock;
-- không có quyền ghi khi commit là đầu ra bắt buộc;
-- schema không thể biểu diễn output;
-- prompt mâu thuẫn học thuật;
-- brand asset thiếu/sai;
-- manifest chưa khóa được số lượng;
-- còn placeholder SHA;
-- bị yêu cầu merge, R2 upload hoặc deploy trái quyền.
+- source lock không đọc/xác minh được;
+- scope ownership chưa giải quyết;
+- high-risk academic claim thiếu nguồn;
+- prompt mâu thuẫn chương trình;
+- brand source sai;
+- manifest/count chưa khóa;
+- IMG Unit >2 assets;
+- required official reference không load được;
+- generated image được dùng làm character master kế tiếp;
+- same failure lặp hai lần mà chưa root-cause review;
+- bị yêu cầu merge/R2/deploy trái authority.
 
-Mỗi blocker phải có:
-
-```text
-BLOCKER ID:
-SOURCE:
-AFFECTED OUTPUTS:
-WHY EXECUTION CANNOT CONTINUE SAFELY:
-REQUIRED DECISION:
-```
-
----
+Mỗi blocker ghi source, affected outputs, reason và required decision.
 
 # FINAL CONTRACT CHECK
 
-Trước khi chuyển `CONTRACT_LOCKED`, người phát hành phải xác nhận:
-
 ```text
-[ ] 30 phần đã điền đầy đủ
-[ ] Không còn placeholder/TBD
+[ ] 34 phần đã điền đầy đủ
+[ ] Không placeholder/TBD/latest
 [ ] Một phạm vi duy nhất
-[ ] Gói và số lượng chính xác
-[ ] Batch map chính xác
-[ ] Brand repo/commit/path chính xác
-[ ] MOTTO chính xác
-[ ] Git prefix và quyền hạn rõ
-[ ] Acceptance criteria có thể quan sát
+[ ] Academic outputs bắt buộc rõ
+[ ] Director Academic Gate rõ
+[ ] Package/batch exact
+[ ] Director Visual Gate rõ
+[ ] IMG Unit plan max 2 assets
+[ ] Brand lock exact
+[ ] Git paths/SHAs rõ
 [ ] Stop conditions rõ
-[ ] Contract commit SHA được ghi vào execution prompt
+[ ] Architect can independently review
 ```
