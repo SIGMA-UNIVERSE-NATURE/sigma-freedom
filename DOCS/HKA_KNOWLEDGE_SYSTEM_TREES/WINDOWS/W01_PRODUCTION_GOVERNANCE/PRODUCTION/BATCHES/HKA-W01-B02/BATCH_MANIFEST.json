@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "window_id": "W01",
+  "tree_id": "HKA-TREE-00-GOV",
+  "tree_slug": "production-governance",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w01-production-governance",
+  "prompt_commit_sha": "04da1831a597f22c7eab5737b9b674e545b71622",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "batch_id": "HKA-W01-B02",
+  "run_id": "HKA-W01-B02-R01",
+  "asset_count": 4,
+  "assets": [
+    {
+      "asset_id": "HKA-VIS-W01-0009",
+      "prompt_sha256": "2d3aedd6742607ca71d2e8ebf495960abfc0bb542e9e693c1d1fcfa6712ccb92",
+      "asset_type": "MECHANISM",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A4_16_18",
+      "academic_depth": "D3",
+      "primary_companion": "CRICKET",
+      "node_ids": ["HKA-W01-GOV-0009"],
+      "clean_master_filename": "HKA-VIS-W01-0009_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0009_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W01-0010",
+      "prompt_sha256": "327994459702f02039131329d3949429fa6e3f5ef7678117247dabab91f4e283",
+      "asset_type": "CROSS_LINK",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A5_19_24",
+      "academic_depth": "D4",
+      "primary_companion": "SIGMA",
+      "secondary_companions": ["CRICKET"],
+      "node_ids": ["HKA-W01-GOV-0010"],
+      "clean_master_filename": "HKA-VIS-W01-0010_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0010_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W01-0011",
+      "prompt_sha256": "067828db12c464f4c9f01f5cc4748ac16d525d90ea374c3aceaefbd7125187bf",
+      "asset_type": "PROCESS",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A5_19_24",
+      "academic_depth": "D4",
+      "primary_companion": "LITTLE_ANT",
+      "secondary_companions": ["PROFESSOR_OWL"],
+      "node_ids": ["HKA-W01-GOV-0011"],
+      "clean_master_filename": "HKA-VIS-W01-0011_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0011_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W01-0012",
+      "prompt_sha256": "abba6830e4859fc7506119959a29b93a1a39d2b4916cf7c80840e7eb3f7dca59",
+      "asset_type": "RESEARCH_POSTER",
+      "representation_type": "DATA_RESEARCH_POSTER",
+      "primary_audience": "RESEARCH",
+      "academic_depth": "D4",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": ["HKA-W01-GOV-0012"],
+      "clean_master_filename": "HKA-VIS-W01-0012_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0012_BRANDED_FINAL.png"
+    }
+  ],
+  "created_at": "2026-09-03T00:00:00Z",
+  "status": "BATCH_READY"
+}

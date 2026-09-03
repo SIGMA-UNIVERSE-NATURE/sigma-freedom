@@ -1,0 +1,163 @@
+---
+title: "HKA W01 — Prompt Package Handoff Receipt"
+window_id: "W01"
+version: "2.0"
+status: "AWAITING ARCHITECT ACCEPTANCE"
+language: "vi"
+date: "2026-09-03"
+---
+
+# HKA W01 — PROMPT PACKAGE HANDOFF RECEIPT
+
+## 1. Source identity
+
+```text
+WINDOW ID: W01
+TREE ID: HKA-TREE-00-GOV
+TREE SLUG: production-governance
+REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
+EXECUTION BRANCH: hka-tree/w01-production-governance
+CANONICAL BASE COMMIT SHA: b2c6b8dacfb425c5e6d260176ed879fb75da6dae
+WINDOW CONTRACT COMMIT SHA: 7d1d77da5007029b2ef0f4af0736147d8646c1b5
+PROMPT CONTENT COMMIT SHA: 04da1831a597f22c7eab5737b9b674e545b71622
+FINAL MANIFEST COMMIT SHA: 7f8b57232a54e5a918fe72688337e47d52d4a47a
+BRAND REPOSITORY: linkcomltd-byte/sigma-universe-web
+BRAND ASSET COMMIT SHA: 2d3aa9d8418acccd39a3d263e917d4157e029e17
+```
+
+`PROMPT CONTENT COMMIT SHA` is the immutable commit containing the complete prompt source and the three `BATCH_PROMPTS.md` files. `FINAL MANIFEST COMMIT SHA` is the first commit containing all three batch manifests and their SHA-256 sidecars. Later validation and audit commits do not alter those source artifacts.
+
+## 2. Locked quantity
+
+```text
+SELECTED PACKAGE: P12
+LOCKED ASSET COUNT: 12
+EXPECTED CLEAN MASTER COUNT: 12
+EXPECTED BRANDED FINAL COUNT: 12
+EXPECTED TOTAL IMAGE FILES: 24
+BATCH COUNT: 3
+CANONICAL PROMPT HASH PAYLOAD COUNT: 12
+```
+
+## 3. B00
+
+```text
+BATCH ID: HKA-W01-B00
+PLANNED RUN ID: HKA-W01-B00-R01
+ASSET COUNT: 2
+ASSET IDS: HKA-VIS-W01-0001, HKA-VIS-W01-0002
+MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B00/BATCH_MANIFEST.json
+MANIFEST SHA-256: d3756529d6fb5cf0239f3df53558dd1f6de365e41e64184ad9146c272314261e
+BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B00/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 2 / 2
+SCHEMA VALIDATION: PASS
+STATUS: BATCH_READY — NOT YET AUTHORIZED FOR PRODUCTION
+```
+
+## 4. B01
+
+```text
+BATCH ID: HKA-W01-B01
+PLANNED RUN ID: HKA-W01-B01-R01
+ASSET COUNT: 6
+ASSET IDS: HKA-VIS-W01-0003 ... HKA-VIS-W01-0008
+MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B01/BATCH_MANIFEST.json
+MANIFEST SHA-256: 19588c4e659ac9e980e7d2358d94f4644cd4999a3d7f6eeecc3eca479c8abf28
+BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B01/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 6 / 6
+SCHEMA VALIDATION: PASS
+STATUS: BATCH_READY — MUST WAIT FOR B00 INDEPENDENT QA APPROVAL
+```
+
+## 5. B02
+
+```text
+BATCH ID: HKA-W01-B02
+PLANNED RUN ID: HKA-W01-B02-R01
+ASSET COUNT: 4
+ASSET IDS: HKA-VIS-W01-0009 ... HKA-VIS-W01-0012
+MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B02/BATCH_MANIFEST.json
+MANIFEST SHA-256: b015118db333be2d6a0c1f40a8326cfc573c256a1f18e9f6650826999b64cd65
+BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B02/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 4 / 4
+SCHEMA VALIDATION: PASS
+STATUS: BATCH_READY — MUST WAIT FOR B00 INDEPENDENT QA APPROVAL
+```
+
+## 6. Prompt hash payload registry
+
+```text
+DIRECTORY:
+PROMPT_HASH_PAYLOADS/
+
+FILES:
+HKA-VIS-W01-0001.json ... HKA-VIS-W01-0012.json
+SHA256SUMS.txt
+README.md
+
+PROFILE:
+HKA-PROMPT-RECORD-JSON-V1
+
+RESULT:
+PAYLOAD SHA = MANIFEST PROMPT SHA = CSV PROMPT SHA FOR 12 / 12 ASSETS
+```
+
+A mismatch at production handoff is P0 and stops the batch.
+
+## 7. Brand lock
+
+```text
+SIGMA: assets/characters/sigma.png
+CRICKET: assets/characters/cricket.png
+LITTLE ANT: assets/characters/little-ant.png
+PROFESSOR OWL: assets/characters/professor-owl.png
+LOGO MASTER: assets/logo/sigma-logo-master.jpg
+COMPACT EMBLEM: assets/logo/sigma-emblem-shell.jpg
+EXACT MOTTO: PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
+MODEL-GENERATED LOGO/TEXT: FORBIDDEN
+```
+
+## 8. Validation summary
+
+```text
+BATCH MANIFESTS VALID: YES 3/3
+MANIFEST ASSET-COUNT EQUALITY: YES
+CROSS-BATCH ASSET-ID UNIQUENESS: YES
+PROMPT COUNT: 12
+PROMPT HASH COUNT: 12
+CANONICAL PAYLOAD COUNT: 12
+BATCH MAPPING: 2 / 6 / 4
+AUDIENCE DISTRIBUTION: 1 / 2 / 2 / 2 / 2 / 2 / 1
+COMPANION LEADS: ENSEMBLE 1; SIGMA 2; CRICKET 3; LITTLE ANT 3; PROFESSOR OWL 3
+PLACEHOLDER SHA REMAINING: 0
+OUT-OF-SCOPE FILE CHANGES: 0
+```
+
+## 9. Open change requests
+
+```text
+HKA-CR-W01-001 — legacy brand-path blueprint versus immutable brand lock
+HKA-CR-W01-002 — semantic definition of two-commit prompt/manifest procedure
+HKA-CR-W01-003 — asset_id uniqueness not enforced by JSON Schema alone
+```
+
+All are recorded and nonblocking under current precedence, two-commit semantics and external uniqueness validation.
+
+## 10. Authorization boundary
+
+This receipt does not authorize:
+
+```text
+IMAGE PRODUCTION
+R2 UPLOAD
+MERGE
+WEBSITE DEPLOYMENT
+```
+
+Next required decision:
+
+```text
+ARCHITECT ACCEPTANCE OF W01
+```
+
+After acceptance, B00 still requires a separate Production Handoff Authorization. B01 and B02 cannot start before B00 independent QA approval.

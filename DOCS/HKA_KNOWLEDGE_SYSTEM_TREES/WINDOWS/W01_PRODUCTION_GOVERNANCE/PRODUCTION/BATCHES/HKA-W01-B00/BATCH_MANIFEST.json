@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "window_id": "W01",
+  "tree_id": "HKA-TREE-00-GOV",
+  "tree_slug": "production-governance",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w01-production-governance",
+  "prompt_commit_sha": "04da1831a597f22c7eab5737b9b674e545b71622",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "batch_id": "HKA-W01-B00",
+  "run_id": "HKA-W01-B00-R01",
+  "asset_count": 2,
+  "assets": [
+    {
+      "asset_id": "HKA-VIS-W01-0001",
+      "prompt_sha256": "c5d839c819e5ed185a30033af26bdb5dd79d28c1db00269492ad7d6e9d5dbf38",
+      "asset_type": "HERO",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "UNIVERSAL",
+      "academic_depth": "MULTI_DEPTH",
+      "primary_companion": "ENSEMBLE_FOUR",
+      "secondary_companions": [
+        "SIGMA",
+        "CRICKET",
+        "LITTLE_ANT",
+        "PROFESSOR_OWL"
+      ],
+      "node_ids": [
+        "HKA-W01-GOV-0001"
+      ],
+      "clean_master_filename": "HKA-VIS-W01-0001_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0001_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W01-0002",
+      "prompt_sha256": "a922ea27d31b9f50803a0ebb48adf59b9fab8ee9449c81c59739d0efd7e89793",
+      "asset_type": "CONCEPT",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A1_5_8",
+      "academic_depth": "D1",
+      "primary_companion": "SIGMA",
+      "node_ids": [
+        "HKA-W01-GOV-0002"
+      ],
+      "clean_master_filename": "HKA-VIS-W01-0002_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W01-0002_BRANDED_FINAL.png"
+    }
+  ],
+  "created_at": "2026-09-03T00:00:00Z",
+  "status": "BATCH_READY"
+}
