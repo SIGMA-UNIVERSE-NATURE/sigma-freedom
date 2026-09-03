@@ -45,6 +45,12 @@ V18_R0_VERIFIER_PY_SHA256=a6664245d02e92dc78f8c7c73b07a58aca27d3dfa989ec9dd675b6
 V18_R0_RUNNER_SHA256=747e98334b12e4efff8c11d48cea70a03952c167563d27b27eaf18626c06cb5f
 V18_R0_VERIFIER_SHA256=6c7e65cf12ec169186b71bb2260c67d88edb425613eab17905c60513e035a027
 V18_R0_WRAPPER_SHA256=d1926a7496a3a77c60832d433f421892bac6882e28e8156dc0554ea894aa5fe3
+V18_R1_ENGINE_SOURCE_SHA256=401dc4af5187fd10d9138174a3e46f09b9ea26564b449ca63a3215adc59502ee
+V18_R1_ENGINE_BYTECODE_SHA256=45fc2071cc640e341eb5d9b80dfe279e71fc079803b965c855496e250ef8dddb
+V18_R1_VERIFIER_PY_SHA256=d410d7b1667ece50568f3ac7ac9643fbd83b729a895f28625bf972d9fcb589ea
+V18_R1_RUNNER_SHA256=35e26fbe82dd231dadaae83362e4290322409607b45a081936fbcc555c04c256
+V18_R1_VERIFIER_SHA256=cb76a2d68716aaafe6917752f86e9a23b34986a302269509ec6c003c3817abcc
+V18_R1_WRAPPER_SHA256=c767bb761e9d7e7134e52e48b3324a5876ad62c00f782ba54b64affd7b491e4c
 ```
 
 Identity mismatch => STOP; never silently replace and continue as same proven runtime.
@@ -101,7 +107,7 @@ SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
 SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 ```
 
-Preserved failures: R0 Sigma serialization defect; R1 post-Sigma verifier input-binding defect. Neither is evidence of cognitive failure.
+Preserved failures: V17 R0 Sigma string-serialization defect; V17 R1 post-Sigma verifier input-binding defect. Neither is evidence of cognitive failure.
 
 ## POST-V17 EXACT DEDUP / V18 INPUT — CANONICAL PASS
 
@@ -160,7 +166,7 @@ ADJACENT_CLOSER_FRAGMENT_PAIRS=1
 RECONSTRUCTABLE_EVIDENCE_UNITS=5/5
 ```
 
-Observed root cause:
+Primary observed boundary event:
 
 ```text
 SPAN_04_UID=U003
@@ -169,10 +175,10 @@ SPAN_05_UID=U003
 SPAN_05_PUNCTUATION_ONLY=YES
 SPAN_05_CURLY_QUOTE_BALANCE=-1
 ADJACENT_CLOSER_FRAGMENT=SPAN_04->SPAN_05
-V18_R0_PRIMARY_BOUNDARY_ROOT_CAUSE=NAIVE_PERIOD_SPLIT_OCCURS_BEFORE_TRAILING_CLOSING_QUOTE
+V18_R0_PRIMARY_BOUNDARY_ROOT_CAUSE=NAIVE_PERIOD_SPLIT_OCCURS_BEFORE_TRAILING_CLOSING_CURLY_QUOTE
 ```
 
-Leading ASCII boundary whitespace appears on U004 spans 07-10. All five evidence units remain reconstructable from the R0 span stream, so this is a local boundary-integrity / candidate-hygiene defect, not evidence loss.
+`PUNCTUATION_ONLY_SPANS=1`, `QUOTE_IMBALANCED_SPANS=2`, and `ADJACENT_CLOSER_FRAGMENT_PAIRS=1` are multiple measurements of the same observed boundary event, not four independent semantic failures. Leading ASCII boundary whitespace on U004 spans 07-10 is a separate mechanical hygiene issue. All five evidence units remain reconstructable, so this is not evidence loss.
 
 ```text
 V18_R0_PASS_REMAINS_VALID=YES
@@ -185,17 +191,18 @@ ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
 SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
 ```
 
-Do not beautify output or hardcode U003. The next capability is structural self-checking: candidate boundary integrity, fragment qualification, UNKNOWN on unresolved structure, and provenance preservation. Composite assertion atomicity is a separate later problem.
+Do not beautify output or hardcode U003. Boundary integrity and candidate hygiene must be learned/tested before composite assertion atomicity and proposition alignment.
 
-## V18 R1 PACKAGE — PREPARED, NOT YET OPPO-PROVEN
+## V18 R1 SPAN BOUNDARY INTEGRITY — OPPO INSTALL / COMPILE QA PASS
 
 ```text
 CURRENT_STAGE=V18_R1_SPAN_BOUNDARY_INTEGRITY_AND_CANDIDATE_HYGIENE
+V18_R1_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R21R1_SIGMA_NATIVE_SPAN_BOUNDARY_INTEGRITY_CANDIDATE_HYGIENE_V18_R1
 V18_R1_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_SPAN_BOUNDARY_INTEGRITY_V18_R1.sh
 V18_R1_INSTALLER_SHA256=fc22fb75f7c6c56d4c0e3880f1281d36c8bfdde54a67823972372121d569e963
-V18_R1_PACKAGE_TARGET=V1_R21R1_SIGMA_NATIVE_SPAN_BOUNDARY_INTEGRITY_CANDIDATE_HYGIENE_V18_R1
 R0_CANONICAL_PASS=PRESERVE
 R0_RAW_SPAN_LEDGER=PRESERVE
+OBSERVED_ROOT_CAUSE=NAIVE_PERIOD_SPLIT_BEFORE_TRAILING_CLOSING_CURLY_QUOTE
 BOUNDARY_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_SEMANTIC_REWRITE=NO
 HOST_PROPOSITION_FORMATION=NO
@@ -203,14 +210,44 @@ ZERO_PREWRITTEN_PROPOSITION=YES
 ZERO_EVIDENCE_SENTENCE_HARDCODE=YES
 TESTED_QUOTE_CLASS=CURLY_DOUBLE_QUOTES
 BOUNDARY_POLICY=QUOTE_BALANCE_CARRY_PLUS_ASCII_BOUNDARY_SPACE_NORMALIZATION
-SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
-ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
-PROPOSITION_ALIGNMENT=DEFERRED
 ```
 
-Local static QA PASS: Bash/Python syntax, no Sigma interior hash comments, no evidence-specific words/IDs, curly-quote balance state present, unresolved/UNKNOWN classes present, nonlexical-fragment qualification present, ASCII boundary-space normalization present, no agreement/conflict/truth/durable-knowledge logic, and only previously used string primitives `str_byte`, `str_join`, `str_len`, `str_split`.
+OPPO build QA:
 
-R1 is intentionally tested-scope syntax training, not universal punctuation understanding. It carries period-split fragments while curly double-quote balance is open, merges only when the structural quote balance closes, qualifies unresolved structure instead of guessing, and retains both raw grouped surface and ASCII-boundary-normalized surface. No expected candidate count is hardcoded; the verifier mechanically replays the same structural policy from the preserved R0 ledger.
+```text
+BASH_SYNTAX_QA=PASS
+PYTHON_VERIFIER_SYNTAX_QA=PASS
+SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
+ZERO_EVIDENCE_SENTENCE_HARDCODE_QA=PASS
+QUOTE_BALANCE_STATE_QA=PASS
+UNKNOWN_ON_UNRESOLVED_STRUCTURE_QA=PASS
+NONLEXICAL_FRAGMENT_QUALIFICATION_QA=PASS
+ASCII_BOUNDARY_SPACE_NORMALIZATION_QA=PASS
+PREMATURE_SEMANTIC_RELATION_QA=PASS
+STRING_PRIMITIVES_QA=ONLY_PREVIOUSLY_USED_STR_BYTE_JOIN_LEN_SPLIT
+SIGMA_V18_R1_COMPILE_QA=PASS
+INSTALL_QA_RESULT=PASS
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+READY_TO_RUN_V18_R1_SPAN_BOUNDARY_INTEGRITY=YES
+```
+
+R1 tested-scope behavior is structural, not semantic: carry period-split fragments while curly-double-quote balance remains open; emit a candidate only when balance closes; qualify unresolved unclosed/unmatched/nonlexical structure rather than guessing; preserve raw grouped surface plus ASCII-boundary-normalized surface. The runtime contains no evidence sentence, U003, source-name, agreement/conflict/truth, or durable-knowledge hardcode.
+
+R1 install identities:
+
+```text
+V18_R1_ENGINE_SOURCE_SHA256=401dc4af5187fd10d9138174a3e46f09b9ea26564b449ca63a3215adc59502ee
+V18_R1_ENGINE_BYTECODE_SHA256=45fc2071cc640e341eb5d9b80dfe279e71fc079803b965c855496e250ef8dddb
+V18_R1_VERIFIER_PY_SHA256=d410d7b1667ece50568f3ac7ac9643fbd83b729a895f28625bf972d9fcb589ea
+V18_R1_RUNNER_SHA256=35e26fbe82dd231dadaae83362e4290322409607b45a081936fbcc555c04c256
+V18_R1_VERIFIER_SHA256=cb76a2d68716aaafe6917752f86e9a23b34986a302269509ec6c003c3817abcc
+V18_R1_WRAPPER_SHA256=c767bb761e9d7e7134e52e48b3324a5876ad62c00f782ba54b64affd7b491e4c
+PRESERVED_V18_R0_WRAPPER_SHA256=d1926a7496a3a77c60832d433f421892bac6882e28e8156dc0554ea894aa5fe3
+PRESERVED_V18_R0_ENGINE_SOURCE_SHA256=81523feb7c59a90b6bb5d284c65a679d3fd76ad692f84b0a6685c4d2693dcb7a
+```
+
+R1 capability result is NOT yet proven; build QA did not execute Sigma VM.
 
 ## STILL NOT PROVEN
 
@@ -235,7 +272,8 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
-CURRENT_STATUS=V18_R1_PACKAGE_PREPARED_AWAITING_OPPO_INSTALL_COMPILE_QA
+CURRENT_STATUS=V18_R1_OPPO_INSTALL_COMPILE_QA_PASS_READY_FOR_LIVE
 NO_NEW_INTERNET_REQUIRED=YES
-NEXT_COMMAND=RUN_V18_R1_INSTALL_COMPILE_QA_ONLY_NO_SIGMA_VM_NO_INTERNET
+NEXT_COMMAND=RUN_V18_R1_LIVE_ON_EXACT_CANONICAL_V18_R0_RUN_NO_INTERNET
+EXACT_V18_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
 ```
