@@ -1,0 +1,13 @@
+BRANCH_ID,NODE_ID,VCU_ID,ASSET_ID,COVERAGE_ROLE,PRIMARY_AUDIENCE,ACADEMIC_DEPTH,NOTES
+HKA-W01-GOV-ORIENTATION,HKA-W01-GOV-0001,HKA-VCU-W01-001,HKA-VIS-W01-0001,HERO_AND_SYSTEM_ORIENTATION,UNIVERSAL,MULTI_DEPTH,"Six equal HKA domains; four-companion ensemble; conceptual model disclosure"
+HKA-W01-GOV-QUESTION,HKA-W01-GOV-0002,HKA-VCU-W01-001,HKA-VIS-W01-0002,SEED_QUESTION,A1_5_8,D1,"One observable phenomenon; no invisible mechanism shown"
+HKA-W01-GOV-OBSERVATION,HKA-W01-GOV-0003,HKA-VCU-W01-002,HKA-VIS-W01-0003,OBSERVE_COMPARE_CLASSIFY,A1_5_8,D1,"Exactly twelve safe objects; sorting by observable criteria"
+HKA-W01-GOV-CONNECTION,HKA-W01-GOV-0004,HKA-VCU-W01-003,HKA-VIS-W01-0004,CROSS_TREE_RELATION,A2_9_12,D2,"Flower bee light soil root relationships; no false one-way causality"
+HKA-W01-GOV-EVIDENCE,HKA-W01-GOV-0005,HKA-VCU-W01-003,HKA-VIS-W01-0005,OBSERVATION_VS_INFERENCE,A2_9_12,D2,"Tracks feather and bent grass without showing or naming an animal"
+HKA-W01-GOV-SCALE,HKA-W01-GOV-0006,HKA-VCU-W01-004,HKA-VIS-W01-0006,SCALE_AND_MODEL_BOUNDARY,A3_13_15,D3,"Hair pollen and bacteria in separate magnification panels with scale-bar regions"
+HKA-W01-GOV-RECONSTRUCTION,HKA-W01-GOV-0007,HKA-VCU-W01-005,HKA-VIS-W01-0007,EVIDENCE_BASED_RECONSTRUCTION,A3_13_15,D3,"Excavated traces versus explicitly uncertain historical reconstruction"
+HKA-W01-GOV-EXPERIMENT,HKA-W01-GOV-0008,HKA-VCU-W01-006,HKA-VIS-W01-0008,CONTROLLED_VARIABLES,A4_16_18,D3,"Pendulum length varied; bob release angle and measurement arrangement controlled"
+HKA-W01-GOV-SYSTEM,HKA-W01-GOV-0009,HKA-VCU-W01-006,HKA-VIS-W01-0009,FEEDBACK_SYSTEM_MODEL,A4_16_18,D3,"Greenhouse state sensor controller actuator feedback loop"
+HKA-W01-GOV-INTERDISCIPLINARY,HKA-W01-GOV-0010,HKA-VCU-W01-007,HKA-VIS-W01-0010,INTERDISCIPLINARY_FIELD_INQUIRY,A5_19_24,D4,"Wetland hydrology ecology and social evidence streams remain methodologically distinct"
+HKA-W01-GOV-REPRODUCIBILITY,HKA-W01-GOV-0011,HKA-VCU-W01-007,HKA-VIS-W01-0011,REPRODUCIBLE_WORKFLOW,A5_19_24,D4,"Sample identity preparation replicates versioning and independent check"
+HKA-W01-GOV-RESEARCH-COMMS,HKA-W01-GOV-0012,HKA-VCU-W01-008,HKA-VIS-W01-0012,RESEARCH_POSTER,RESEARCH,D4,"Pendulum poster framework with methods data uncertainty limitations and sources added in post"
