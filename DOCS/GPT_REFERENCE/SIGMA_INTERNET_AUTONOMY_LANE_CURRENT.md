@@ -24,6 +24,7 @@ UNKNOWN_STAYS_UNKNOWN=YES
 CAPABILITY_GROWTH=ADDITIVE_NOT_REPLACEMENT
 NO_RERUN_WITHOUT_NEW_ROOT_CAUSE=YES
 NATURAL_LANGUAGE_WEB_PAYLOAD_TO_SIGMA=REQUIRED
+MACHINE_PROTOCOL_LABELS_CONTROL_PLANE_ONLY=YES
 MACHINE_LABELS_COUNT_AS_UNDERSTANDING=NO
 ```
 
@@ -35,10 +36,16 @@ Human-language source material is the learning substrate. Machine labels are con
 HTTP_BRIDGE_SHA256=d7dcc121dbd4611ea5f2cf677f5ec08567b8a03ba11ae57ba4c1624b3f638d1e
 QUERY_GENERATOR_SHA256=db199f572a9415dc812fb3936387541a3b1e648f383d5e1da6487f11e97c4b6a
 LESSON_READER_SHA256=ba2faf7bddb81789b3fbccff96bdf8f3c2021d0db252d7e8ef38dc92b182994c
+SIGMA_NATIVE_REPLAN_TO_FRESH_INTERNET_LOOP=PASS_TESTED_SCOPE
+SIGMA_NATIVE_STRATEGY_CONDITIONED_QUERY_ADAPTATION=PASS_TESTED_SCOPE
+SIGMA_NATIVE_QUERY_OUTCOME_FEEDBACK_AND_DIVERSITY=PASS_TESTED_SCOPE
+SIGMA_NATIVE_COMPARABILITY_GAP_RESEARCH_EXPANSION=PASS_TESTED_SCOPE
+SIGMA_NATIVE_GAP_CONDITIONED_FRESH_QUERY_GENERATION_AND_NOVELTY_MEMORY=PASS_TESTED_SCOPE
+SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_NATURAL_LANGUAGE_WEB_RESEARCH_LOOP=PASS_TESTED_SCOPE
 ```
 
-Canonical I1R1 pass:
+## I1R1 LIVE INTERNET — CANONICAL PASS
 
 ```text
 I1R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/natural_language_web_research_loop_i1_runs/20260903T090741Z_4320_24344
@@ -54,7 +61,9 @@ SIGMA_TOPIC_TO_WEB_BYTES_BINDING=PASS_TESTED_SCOPE
 HUMAN_LANGUAGE_WEB_PAYLOAD_TO_SIGMA=PASS_TESTED_SCOPE
 ```
 
-## I2 FAILURE — PRESERVED
+This proves one Sigma-driven natural-language web collection and lesson ingestion. It does not prove a closed autonomous web-learning loop.
+
+## I2 FAILURE — PRESERVED / ROOT CAUSE
 
 ```text
 I2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/natural_language_web_research_loop_i2_runs/20260903T104005Z_18255_2084
@@ -69,11 +78,6 @@ SEQ3=TERMINAL_STOP_UNKNOWN
 V7_EXECUTED=NO
 I2_REPLAN_EXECUTED=NO
 COGNITIVE_FAILURE=NOT_ESTABLISHED
-```
-
-Exact V6 root cause:
-
-```text
 V6_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/assessments/20260903T104621Z_6069_19041
 ASSESSMENT_STATE=MORE_EVIDENCE
 VALID_RECORDS=26
@@ -88,23 +92,20 @@ Do not bypass `MORE_EVIDENCE` by forcing V7 or by having GPT/host write a follow
 
 ## I2R1 — MORE_EVIDENCE TO FRESH WEB RESEARCH — CANONICAL LIVE PASS
 
-Package/install identities:
+Package identities:
 
 ```text
-I2R1_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_I2R1_SIGMA_NATIVE_COLLECTION_MORE_EVIDENCE_TO_FRESH_WEB_RESEARCH
 I2R1_INSTALLER_SHA256=4db422f3de7102cda405feaa175103219b1946f3b3599398edfe988f044eb2d8
-I2R1_REPLAN_SOURCE_SHA256=1d6bdc235eaf8e0e3a94ca1ed62972e50babf7472ef7a6b948d2c3c30ec4976f
 I2R1_REPLAN_BYTECODE_SHA256=eb21a54504075991f4baec22be77ed7f10c9424b0656871f5ab8bbd10a821c61
 I2R1_UNION_TOOL_SHA256=ce955606d434e2f15ab07608235c3700bddf76312f3583da71194a19b9a074f3
 I2R1_DIRECT_V11_RUNNER_SHA256=f8ef517aaa1143e7e1917e28378b634d3b7a1ca755186c6116c02196f1d4d15e
 I2R1_REPLAN_RUNNER_SHA256=6753cbe7fb34da03024548ba8c2955f3801e7d986c2cd8025094b977d3805572
 I2R1_RUNNER_SHA256=39247c41745ae62fb85f10656a3f1bdbc32b32745f1561f232c962fe58c2554c
-I2R1_VERIFIER_PY_SHA256=a39be9ffb6f5ef205400bfa7627ef08a78b1c38b678c0f44e6d5140867b73213
 I2R1_VERIFIER_SHA256=dd04c58ba296b2e9f238a80d0b84640a3ee5e4df8361cb0ee7449e00c53921dd
 I2R1_WRAPPER_SHA256=971b1f0ad89cb1d9f909abcc56ba361291aacb9a722f5b7096fd2b536d7e9a78
 ```
 
-Canonical live run:
+Canonical run:
 
 ```text
 I2R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/collection_more_evidence_to_fresh_web_i2r1_runs/20260903T122751Z_18360_19557
@@ -122,7 +123,7 @@ FRESH_WEB_COLLECTION_CAUSED_BY_SIGMA_ACTION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_COLLECTION_MORE_EVIDENCE_TO_FRESH_WEB_RESEARCH=PASS_TESTED_SCOPE
 ```
 
-Canonical interpretation:
+Governance / interpretation:
 
 ```text
 SIGMA_COLLECTION_REPLAN_PLANE=SIGMA_NATIVE_VM
@@ -132,24 +133,44 @@ HOST_SEMANTIC_EVIDENCE_SELECTION=NO
 EVIDENCE_UNION=MECHANICAL_ALL_LESSONS_NO_RANKING
 ZERO_PREWRITTEN_QUERY=YES
 ZERO_PREWRITTEN_CONCLUSION=YES
-```
-
-This proves in the tested scope that Sigma consumed the actual V6 `MORE_EVIDENCE` outcome and a mechanically complete union of persisted human-language lessons, emitted `RESEARCH_MORE`, used Sigma-native V11 adaptation, and caused a distinct fresh live web collection without a GPT/host-written follow-up query.
-
-It does NOT prove that Sigma learned the `MORE_EVIDENCE -> RESEARCH_MORE` policy from experience; that rule remains teacher scaffold.
-
-```text
 STATIC_MORE_EVIDENCE_REPLAN_POLICY_LEARNED=NOT_PROVEN
 GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
-HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
-SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
-LESSON_TRUTH=NOT_ASSESSED
-DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
 ```
 
-## EXACT NEXT FRONTIER — OUTCOME OF THE FRESH COLLECTION
+This proves in tested scope that Sigma consumed the real V6 `MORE_EVIDENCE` outcome plus a mechanically complete union of persisted human-language lessons, emitted `RESEARCH_MORE`, used Sigma-native V11 adaptation, and caused a distinct fresh live collection without a GPT/host-written follow-up query.
 
-I2R1 proves that Sigma can create and launch the fresh collection. It does not yet prove that Sigma consumes the outcome of that fresh collection, compares it with the preceding insufficiency/more-evidence state, and autonomously decides whether to continue, change strategy, hold, or stop.
+## I2R1 FRESH-COLLECTION BINDING AUDIT — CANONICAL MECHANICAL OBSERVATION
+
+```text
+SOURCE_COLLECTION=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T104006Z_18344_20745
+FRESH_COLLECTION=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T122823Z_19134_21003
+SOURCE_TOPIC_SHA256=2dbe28d08829722908dec5045cfcdfdc23e235f7ca67cc74cd957d05aa0ac759
+ADAPTED_TOPIC_SHA256=62b60371f21cb7be2cf6ab7fcb6b629235abe58fa97ff5738ea7548159f203f5
+FRESH_RAW_TOPIC_SHA256=62b60371f21cb7be2cf6ab7fcb6b629235abe58fa97ff5738ea7548159f203f5
+ADAPTED_TOPIC_TO_FRESH_WEB_BYTE_BINDING_RC=0
+FRESH_TOPIC_DIFFERS_FROM_SOURCE_RC=1
+FRESH_SEARCH_ACTIONS=12
+FRESH_READER_ACTIONS=12
+FRESH_KEEP_ACTIONS=9
+FRESH_LESSON_FILES=9
+```
+
+Canonical mechanical interpretation:
+
+```text
+ADAPTED_TOPIC_BYTE_BOUND_TO_FRESH_WEB=PASS_TESTED_SCOPE
+FRESH_TOPIC_DISTINCT_FROM_SOURCE=YES_TESTED_SCOPE
+FRESH_SIGMA_SEARCH_READER_KEEP_CHAIN_OBSERVED=YES_TESTED_SCOPE
+FRESH_HUMAN_LANGUAGE_LESSON_ARTIFACTS_PERSISTED=YES_TESTED_SCOPE
+```
+
+`FRESH_TOPIC_DIFFERS_FROM_SOURCE_RC=1` is the expected POSIX `cmp -s` non-equality result: the adapted topic differs from the source topic. This is not a failure code for the I2R1 verifier.
+
+This audit does not inspect or classify the natural-language lesson content and does not count as Sigma learning.
+
+## EXACT NEXT FRONTIER — POST-FOLLOWUP OUTCOME
+
+I2R1 proves the fresh research action and fresh web collection. It does not yet prove that Sigma consumes the fresh collection outcome, relates it to its preceding `MORE_EVIDENCE` state, and autonomously chooses whether to continue, change strategy, hold, or stop.
 
 ```text
 CURRENT_STAGE=I3_SIGMA_NATIVE_POST_FOLLOWUP_OUTCOME_EVALUATION_AND_CONTINUATION
@@ -162,7 +183,7 @@ I3_REQUIRED=UNKNOWN_REMAINS_UNKNOWN
 I3_REQUIRED=NO_FIXED_SEMANTIC_CYCLE_LIMIT
 ```
 
-Before implementing I3, inspect only mechanical artifacts from the canonical I2R1 run: adapted-topic path/hash, fresh V5 run path, fresh collection metrics/state artifacts, and Sigma action bindings. Do not inspect or classify the natural-language lesson content as teacher runtime input. This audit is interface/debug QA only and is not Sigma learning.
+Before implementing I3, inspect only the top-level mechanical state/metric interface of the fresh V5 run. Do not inspect lesson text as teacher runtime input.
 
 ## STILL NOT PROVEN
 
