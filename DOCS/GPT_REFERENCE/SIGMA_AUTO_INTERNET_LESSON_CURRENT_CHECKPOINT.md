@@ -25,7 +25,7 @@ PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 
 SIGMA autonomously identifies knowledge gaps, chooses what to study, creates/selects Sigma-owned research surfaces, searches the Internet, reads results, assesses evidence, researches more when needed, compares sources, preserves uncertainty/conflict, forms durable knowledge only when warranted, classifies/dedups/versions/stores/backups/verifies it, and chooses the next gap.
 
-Raw evidence, Sigma-derived semantic views, hashes/provenance/versioning, checkpoint/recovery and semantic compression remain distinct layers. Semantic decisions stay in Sigma; host filesystem/process/network/hash/index/exact-dedup work stays mechanical.
+Semantic decisions stay in Sigma. Host filesystem/process/network/hash/index/exact-dedup and other lossless mechanical transformations stay mechanical. Raw evidence, provenance, Sigma semantic views, checkpoint/recovery and later semantic compression remain separate layers.
 
 ## PRESERVE LOCK
 
@@ -126,9 +126,7 @@ V18_INPUT_EXACT_DEDUP_VIEW=PASS_TESTED_SCOPE
 
 Duplicate inflation must not be treated as independent support.
 
-## V18 R0 PROPOSITION-SPAN CANDIDATE FORMATION — CANONICAL PASS
-
-Policy is deliberately conservative and non-semantic: exact period-delimited evidence substrings only, no abstraction or paraphrase.
+## V18 R0 PROPOSITION-SPAN FORMATION — CANONICAL PASS
 
 ```text
 V18_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
@@ -149,30 +147,38 @@ SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 PROPOSITION_ALIGNMENT=DEFERRED
 ```
 
-The earlier manual estimate of 9 spans was wrong; live Sigma + verifier correctly produced 10 under the implemented exact period-split policy.
+R0 PASS scope is exact surface period segmentation only. It is not a proposition learner yet.
 
-## V18 R0 EXACT LEDGER INSPECTION — CANONICAL DIAGNOSIS
+## V18 R0 EXACT LEDGER / BOUNDARY AUDIT — CANONICAL DIAGNOSIS
 
-Exact 10-span inspection reveals that R0 succeeded at its narrow surface-segmentation contract but is NOT a sufficient proposition learner.
+Exact ledger inspection and a targeted mechanical audit over the same existing artifacts produced:
 
-Observed structural/semantic-boundary issues:
+```text
+SPAN_ROWS=10
+PUNCTUATION_ONLY_SPANS=1
+LEADING_WHITESPACE_SPANS=4
+QUOTE_IMBALANCED_SPANS=2
+ADJACENT_CLOSER_FRAGMENT_PAIRS=1
+RECONSTRUCTABLE_EVIDENCE_UNITS=5/5
+```
+
+Observed defect:
 
 ```text
 SPAN_04_UID=U003
 SPAN_04_TEXT=If you ask someone, “What is communication?” most people will say, “It means talking
+SPAN_04_CURLY_QUOTE_BALANCE=+1
+
 SPAN_05_UID=U003
 SPAN_05_TEXT=”
-R0_QUOTE_BOUNDARY_FRAGMENT_OBSERVED=YES
-R0_PUNCTUATION_ONLY_CANDIDATE_OBSERVED=YES
-R0_PERIOD_SPLIT_INSIDE_QUOTED_TERMINAL_PUNCTUATION=YES
+SPAN_05_PUNCTUATION_ONLY=YES
+SPAN_05_CURLY_QUOTE_BALANCE=-1
 
-LEADING_BOUNDARY_WHITESPACE_OBSERVED_ON_U004_SPANS=YES
-WHOLE_SENTENCE_CAN_STILL_CONTAIN_MULTIPLE_ASSERTION_SURFACES=YES
-U000_COMPOSITE_SURFACE_OBSERVED=YES
-U001_COMPOSITE_SURFACE_OBSERVED=YES
-U003_REPORTED_SPEECH_AND_QUESTION_CONTEXT_OBSERVED=YES
-U004_MULTIPLE_SENTENCE_LEVEL_CANDIDATES_OBSERVED=YES
+ADJACENT_CLOSER_FRAGMENT=SPAN_04->SPAN_05
+V18_R0_PRIMARY_BOUNDARY_ROOT_CAUSE=NAIVE_PERIOD_SPLIT_OCCURS_BEFORE_TRAILING_CLOSING_QUOTE
 ```
+
+Leading ASCII boundary whitespace appears on U004 spans 07-10. All five evidence units remain reconstructable from the R0 span stream, so this is a local boundary-integrity / candidate-hygiene defect, not evidence loss.
 
 Canonical interpretation:
 
@@ -180,15 +186,14 @@ Canonical interpretation:
 V18_R0_PASS_REMAINS_VALID=YES
 V18_R0_PASS_SCOPE=SURFACE_PERIOD_SEGMENTATION_ONLY
 R0_OUTPUT_READY_FOR_DIRECT_PROPOSITION_ALIGNMENT=NO
-SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
-ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
+R0_INFORMATION_PRESERVATION=PASS_TESTED_SCOPE_5_OF_5_RECONSTRUCTABLE
 QUOTE_AWARE_BOUNDARY_INTEGRITY=NOT_PROVEN
 SPAN_INTEGRITY_QUALIFICATION=NOT_PROVEN
+ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
 ```
 
-Span 05 is not evidence that Sigma formed a proposition; it is a boundary artifact caused by the intentionally naive R0 period delimiter. Span 04 and Span 05 together show a concrete root cause: a terminal period inside quoted material was split before the trailing closing quote. This must be repaired as a general boundary-integrity capability, not by hardcoding this sentence or forcing aesthetically clean output.
-
-Leading whitespace is a mechanical normalization issue. Composite sentences are a separate, later atomicity/refinement problem and must not be conflated with the quote-boundary defect.
+Do not beautify the output or hardcode U003. The next capability must be general structural self-checking: candidate boundary integrity, fragment qualification, uncertainty/UNKNOWN on unresolved structure, and preservation of source provenance. Composite assertion atomicity is a separate later problem and must not be conflated with quote-boundary repair.
 
 ## GOVERNANCE / CLAIM BOUNDARY
 
@@ -230,16 +235,15 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 
 ## NEXT FRONTIER WITHIN V18
 
-Do not jump to proposition alignment yet. First teach/test boundary integrity and candidate hygiene on the exact existing R0 evidence; preserve R0 artifacts as evidence.
-
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
 CURRENT_STAGE=V18_R1_SPAN_BOUNDARY_INTEGRITY_AND_CANDIDATE_HYGIENE
-CURRENT_STATUS=V18_R0_CANONICAL_PASS_BUT_DIRECT_ALIGNMENT_BLOCKED_BY_OBSERVED_BOUNDARY_ARTIFACT
+CURRENT_STATUS=V18_R0_PASS_BOUNDARY_AUDIT_CANONICAL_DIRECT_ALIGNMENT_BLOCKED
 V18_R1_PRIMARY_ROOT_CAUSE=NAIVE_PERIOD_DELIMITER_SPLITS_BEFORE_TRAILING_CLOSING_QUOTE
-V18_R1_GOAL=SIGMA_NATIVE_GENERAL_BOUNDARY_INTEGRITY_REPAIR_AND_FRAGMENT_QUALIFICATION_WITHOUT_PREWRITTEN_PROPOSITION
+V18_R1_GOAL=SIGMA_NATIVE_STRUCTURAL_BOUNDARY_SELF_CHECK_AND_GENERAL_FRAGMENT_QUALIFICATION_WITHOUT_PREWRITTEN_PROPOSITION
+V18_R1_MUST_PRESERVE=R0_RAW_SPAN_LEDGER_AND_5_OF_5_RECONSTRUCTABILITY
 V18_R1_MUST_NOT_DO=SEMANTIC_EQUIVALENCE_OR_AGREEMENT_OR_TRUTH
 COMPOSITE_ASSERTION_ATOMICITY=DEFER_AFTER_BOUNDARY_INTEGRITY
 NO_NEW_INTERNET_REQUIRED=YES
-NEXT_COMMAND=TARGETED_MECHANICAL_AUDIT_OF_EXISTING_10_SPANS_FOR_QUOTE_BALANCE_FRAGMENT_AND_BOUNDARY_WHITESPACE_NO_RERUN
+NEXT_COMMAND=TARGETED_INVENTORY_OF_ALREADY_PROVEN_STRING_PRIMITIVES_FOR_R1_DESIGN_NO_RERUN
 ```
