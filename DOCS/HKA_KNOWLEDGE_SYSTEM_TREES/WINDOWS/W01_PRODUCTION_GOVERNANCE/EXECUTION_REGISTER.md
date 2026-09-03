@@ -1,36 +1,40 @@
 ---
-title: "HKA W01 — Execution Register"
+title: "HKA W01 — Architect Reference Execution Register"
 window_id: "W01"
-version: "3.0"
-status: "ARCHITECT_ACCEPTED_REFERENCE"
+version: "4.0"
+status: "ARCHITECT_REFERENCE_COMPLETE_PENDING_W01_VALIDATION"
 language: "vi"
 date: "2026-09-03"
 ---
 
-# HKA W01 — EXECUTION REGISTER
+# HKA W01 — ARCHITECT REFERENCE EXECUTION REGISTER
 
-## 1. Identity
+## 1. Provenance
 
 ```text
-WINDOW ID: W01
-WINDOW NAME: Production Governance & Reference Implementation
-REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
-BASE BRANCH: hka-knowledge-system-trees
-BASE COMMIT SHA: b2c6b8dacfb425c5e6d260176ed879fb75da6dae
-EXECUTION BRANCH: hka-tree/w01-production-governance
+ARCHITECT REFERENCE BRANCH:
+hka-tree/w01-architect-reference
+
+AUTHOR:
+Canonical Architect / President session
+
+DELEGATED W01 OFFICIAL BRANCH:
+hka-tree/w01-production-governance
+
+DELEGATED W01 OFFICIAL RESULT:
+BLOCKED — 0 mandatory output files, 0 prompt records, 0 batch manifests
 ```
 
-## 2. Immutable source and control SHAs
+The Architect Reference is valid project work but must never be attributed to W01.
+
+## 2. Immutable source and implementation SHAs
 
 ```text
+CANONICAL BASE COMMIT SHA:
+b2c6b8dacfb425c5e6d260176ed879fb75da6dae
+
 WINDOW CONTRACT COMMIT SHA:
 7d1d77da5007029b2ef0f4af0736147d8646c1b5
-
-GPT EXECUTION PROMPT COMMIT SHA:
-02cdd6281effcf3e41df05d03ef1757fa665abc8
-
-ARCHITECT ACCEPTANCE GATE COMMIT SHA:
-dcdec2faada90b4efcfcb4c5fd02a2165aaf1df4
 
 PROMPT CONTENT COMMIT SHA:
 04da1831a597f22c7eab5737b9b674e545b71622
@@ -47,50 +51,23 @@ SCHEMA VALIDATION V2 COMMIT SHA:
 SELF-AUDIT V2 COMMIT SHA:
 d9b60efeb51c700bf6fd1b9af8beebf4fd014932
 
-ARCHITECT REVIEW COMMIT SHA:
+ARCHITECT SELF-REVIEW COMMIT SHA:
 9de1016214b8bee9828de6c2ba05c739a473b068
 
-B00 PRODUCTION AUTHORIZATION COMMIT SHA:
-a5ca18b3951573cafdaec24802144d11d2b57cd2
+RESTORED ARCHITECT REFERENCE SOURCE COMMIT:
+5ed62129b8eae603d9d9917ca57a46a03361c909
 
-B00 IMAGE PRODUCTION EXECUTION PROMPT COMMIT SHA:
-d04e24ce1e87dec5de033f9b7c18f57c67f542d1
+PROVENANCE CLARIFICATION COMMIT:
+59130f8b6f02799f8e13d5a4308488ec6eca6160
+
+W01 INDEPENDENT VALIDATION PROMPT COMMIT:
+415920e14fdf06c903d88068e794465d2a4bb278
 
 BRAND ASSET COMMIT SHA:
 2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
-## 3. Tracking and review surfaces
-
-```text
-EXECUTION ISSUE:
-https://github.com/SIGMA-UNIVERSE-NATURE/sigma-freedom/issues/13
-
-DRAFT REVIEW PR:
-https://github.com/SIGMA-UNIVERSE-NATURE/sigma-freedom/pull/14
-
-PR BASE:
-hka-knowledge-system-trees
-
-PR HEAD:
-hka-tree/w01-production-governance
-
-MERGE AUTHORIZATION:
-NO
-```
-
-## 4. Delegated-window blocker disposition
-
-```text
-BLOCKER ID: HKA-W01-BLK-001
-CAUSE: Delegated GPT window had no GitHub write capability
-DISPOSITION: VALID SAFETY STOP ACCEPTED
-CONTENT FAILURE: NO
-SCOPE VIOLATION: NO
-RESOLUTION: REASSIGNED TO WRITE-CAPABLE ARCHITECT SESSION
-```
-
-## 5. Completion and validation
+## 3. Architect Reference completion
 
 ```text
 GOVERNANCE DOCUMENTS: 9 / 9
@@ -102,22 +79,9 @@ BATCH MANIFESTS: 3 / 3
 MANIFEST SHA-256 SIDECARS: 3 / 3
 PRODUCTION STATUS RECORDS: 3 / 3
 CHANGE REQUESTS: 3 DISCLOSED
-OUT-OF-SCOPE MODIFICATIONS: 0
 ```
 
-```text
-GATE A: PASS
-GATE B: PASS
-GATE C: PASS
-GATE D: PASS
-GATE E: PASS
-GATE F: PASS
-GATE G: PASS
-P0/P1/P2/P3 UNRESOLVED: 0/0/0/0
-ARCHITECT DECISION: APPROVE_FOR_REFERENCE
-```
-
-## 6. Locked P12 package
+## 4. Locked P12 reference package
 
 ```text
 ASSET IDS: HKA-VIS-W01-0001 ... HKA-VIS-W01-0012
@@ -129,60 +93,63 @@ EXPECTED BRANDED FINALS: 12
 EXPECTED TOTAL IMAGE FILES: 24
 ```
 
-## 7. Current authorization state
+## 5. Validation state
+
+Architect self-review exists and is retained as design evidence, but it is not the final independent verdict.
 
 ```text
-W01 REFERENCE IMPLEMENTATION: ACCEPTED
-B00 HKA-W01-B00-R01: AUTHORIZED_TO_CLAIM
-B01 HKA-W01-B01-R01: NOT AUTHORIZED — WAIT FOR B00 INDEPENDENT QA
-B02 HKA-W01-B02-R01: NOT AUTHORIZED — WAIT FOR B00 INDEPENDENT QA
+ARCHITECT SELF-REVIEW: PASS
+INDEPENDENT W01 VALIDATION: PENDING
+FINAL REFERENCE VALIDATION: PENDING W01 REPORT + ARCHITECT DISPOSITION
+```
+
+W01 validation instructions:
+
+```text
+W01_INDEPENDENT_VALIDATION_PROMPT.md
+```
+
+W01 only needs read access to perform this validation.
+
+## 6. Authorization state
+
+```text
+ARCHITECT REFERENCE: ACTIVE / PRESERVED / OPEN FOR REVIEW
+B00 PRODUCTION: SUSPENDED PENDING W01 INDEPENDENT VALIDATION
+B01 PRODUCTION: SUSPENDED
+B02 PRODUCTION: SUSPENDED
 R2 UPLOAD: NOT AUTHORIZED
-MERGE: NOT AUTHORIZED
+MERGE TO CANONICAL BASE: NOT AUTHORIZED
 WEBSITE DEPLOY: NOT AUTHORIZED
 SIGMASTUDY.NET PRODUCTION: HOLD
 ```
 
-## 8. B00 exact handoff
+The former B00 production authorization is retained as historical design work but is not executable until an explicit post-validation reauthorization is issued.
+
+## 7. Correct next transition
 
 ```text
-AUTHORIZATION FILE:
-PRODUCTION/BATCHES/HKA-W01-B00/PRODUCTION_HANDOFF_AUTHORIZATION.md
-
-IMAGE PRODUCTION EXECUTION PROMPT:
-PRODUCTION/BATCHES/HKA-W01-B00/IMAGE_PRODUCTION_EXECUTION_PROMPT.md
-
-ASSET COUNT: 2
-IMAGE FILE COUNT REQUIRED: 4
-B00 MANIFEST SHA-256:
-d3756529d6fb5cf0239f3df53558dd1f6de365e41e64184ad9146c272314261e
+ARCHITECT_REFERENCE_COMPLETE_PENDING_W01_VALIDATION
+→ W01_INDEPENDENT_VALIDATION_COMPLETE
+→ ARCHITECT_DISPOSITION
 ```
 
-Before generation, the Image Production Window must prove it can pass the official character PNG bytes as actual visual references. Otherwise it must return `ASSET_REFERENCE_BLOCKED`.
-
-## 9. Current states
+Architect disposition may be:
 
 ```text
-W01: ARCHITECT_ACCEPTED_REFERENCE
-B00: BATCH_READY / AUTHORIZED_TO_CLAIM
-B01: BATCH_READY / CLOSED
-B02: BATCH_READY / CLOSED
+ACCEPT_WITHOUT_CHANGE
+ACCEPT_WITH_CORRECTIONS
+RETURN_FOR_ARCHITECT_REVISION
+REJECT_REFERENCE
 ```
 
-## 10. Next authorized transition
+Only after disposition may production authorization be reconsidered.
+
+## 8. Governance principle
 
 ```text
-B00:
-BATCH_READY
-→ PRODUCTION_CLAIMED
+Architect builds and controls the reference.
+W01 independently checks the reference.
+Architect decides how to incorporate W01 findings.
+Production starts only after explicit authorization.
 ```
-
-No other transition is authorized.
-
-## 11. Change log
-
-| Version | Date | State | Evidence |
-|---|---|---|---|
-| 1.0 | 2026-09-03 | READY_FOR_DELEGATION | Contract and controls issued |
-| 1.1 | 2026-09-03 | READY_FOR_DELEGATION | Issue #13 and Draft PR #14 recorded |
-| 2.0 | 2026-09-03 | IMPLEMENTATION_COMPLETE_PENDING_ARCHITECT_REVIEW | Governance and P12 implementation completed |
-| 3.0 | 2026-09-03 | ARCHITECT_ACCEPTED_REFERENCE | Seven gates passed; B00 separately authorized to claim |
