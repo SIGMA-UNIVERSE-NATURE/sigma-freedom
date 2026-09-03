@@ -1,6 +1,6 @@
 ---
 title: "HKA Window Contract — Director Addendum"
-version: "1.2"
+version: "1.3"
 status: "ARCHITECT FINALIZED REFERENCE"
 ---
 
@@ -157,3 +157,34 @@ Do not add receipt fields that duplicate information already present in an immut
 ## K. Release boundary
 
 Director Layer does not replace Independent Image QA, canonical R2 buckets or Amendment 1.1 release order. `hka-c4k-staging` remains non-active pending separate amendment.
+
+## L. Default GitHub write authority — automatic for every Window
+
+Every Window opened by Architect receives GitHub write authority by default for its own assigned execution branch and allowed write prefix. No separate user approval is required for routine Window-owned GitHub writes.
+
+The Window may, without asking the user for each action:
+
+```text
+CREATE FILES
+UPDATE FILES
+DELETE ITS OWN DRAFT FILES
+CREATE DIRECTORIES
+COMMIT
+VERSION
+CREATE MANIFESTS / CHECKSUMS / QA REPORTS / SELF-AUDITS / CHANGE REQUESTS
+UPDATE ITS OWN ISSUE / DRAFT PR REVIEW SURFACES WHEN CONTRACTED
+```
+
+At completion, the Window must commit all required durable outputs to GitHub before returning its Completion Receipt. Local-only completion is not accepted when GitHub write capability is available.
+
+This automatic authority is bounded by the exact Window Contract:
+
+```text
+WRITE ONLY TO ASSIGNED BRANCH / PREFIX
+DO NOT EDIT CANONICAL FILES OUTSIDE AUTHORIZED SCOPE
+DO NOT WRITE INTO ANOTHER WINDOW'S PREFIX OR BRANCH
+DO NOT MERGE UNLESS SEPARATELY AUTHORIZED
+DO NOT TREAT GITHUB WRITE AUTHORITY AS R2 / WEBSITE / PRODUCTION AUTHORITY
+```
+
+Architect issues these write boundaries when opening the Window and does not ask the user again for per-file or per-commit permission inside the assigned scope.
