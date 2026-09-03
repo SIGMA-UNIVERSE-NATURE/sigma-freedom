@@ -1,7 +1,7 @@
 ---
 title: "HKA W01 — Schema & Integrity Validation Report"
 window_id: "W01"
-version: "1.0"
+version: "2.0"
 status: "VALIDATED"
 language: "vi"
 date: "2026-09-03"
@@ -29,15 +29,22 @@ PROMPT HASH PROFILE:
 HKA-PROMPT-RECORD-JSON-V1
 ```
 
+Canonical payload rules:
+
+```text
+UTF-8, no BOM, sorted JSON keys, separators ',' and ':',
+ensure_ascii=false, no prompt_sha256 field, no terminal newline.
+```
+
 ## 3. Batch manifest validation
 
-| Batch | Assets | Schema | Asset-count equality | Asset-ID uniqueness | Manifest SHA-256 |
+| Batch | Assets | Schema | Count equality | Asset-ID uniqueness | Manifest SHA-256 |
 |---|---:|---|---|---|---|
 | HKA-W01-B00 | 2 | PASS | PASS | PASS | `d3756529d6fb5cf0239f3df53558dd1f6de365e41e64184ad9146c272314261e` |
 | HKA-W01-B01 | 6 | PASS | PASS | PASS | `19588c4e659ac9e980e7d2358d94f4644cd4999a3d7f6eeecc3eca479c8abf28` |
 | HKA-W01-B02 | 4 | PASS | PASS | PASS | `b015118db333be2d6a0c1f40a8326cfc573c256a1f18e9f6650826999b64cd65` |
 
-Validation was executed against the exact enum, regex, required-field and additional-properties rules of the canonical schema. Date-time format checking was enabled.
+Validation covered required fields, enums, regex patterns, `additionalProperties`, date-time format, asset-count equality, cross-batch ID uniqueness and filename-to-ID equality.
 
 ## 4. Cross-batch integrity
 
@@ -47,26 +54,14 @@ UNIQUE ASSET IDS: 12
 DUPLICATE ASSET IDS: 0
 UNDECLARED ASSET IDS: 0
 MISSING ASSET IDS: 0
-
 B00: 0001–0002 = 2
 B01: 0003–0008 = 6
 B02: 0009–0012 = 4
 ```
 
-## 5. Filename validation
+## 5. Prompt payload verification registry
 
-All filenames conform to:
-
-```regex
-^HKA-VIS-W01-[0-9]{4}_CLEAN_MASTER\.png$
-^HKA-VIS-W01-[0-9]{4}_BRANDED_FINAL\.png$
-```
-
-For every manifest record, the numeric Asset ID portion matches both filenames.
-
-## 6. Prompt hash registry
-
-| Asset ID | Prompt SHA-256 |
+| Asset ID | Expected and registered payload SHA-256 |
 |---|---|
 | HKA-VIS-W01-0001 | `c5d839c819e5ed185a30033af26bdb5dd79d28c1db00269492ad7d6e9d5dbf38` |
 | HKA-VIS-W01-0002 | `a922ea27d31b9f50803a0ebb48adf59b9fab8ee9449c81c59739d0efd7e89793` |
@@ -80,6 +75,26 @@ For every manifest record, the numeric Asset ID portion matches both filenames.
 | HKA-VIS-W01-0010 | `327994459702f02039131329d3949429fa6e3f5ef7678117247dabab91f4e283` |
 | HKA-VIS-W01-0011 | `067828db12c464f4c9f01f5cc4748ac16d525d90ea374c3aceaefbd7125187bf` |
 | HKA-VIS-W01-0012 | `abba6830e4859fc7506119959a29b93a1a39d2b4916cf7c80840e7eb3f7dca59` |
+
+For all 12 assets:
+
+```text
+CANONICAL PAYLOAD FILE PRESENT: PASS
+PAYLOAD SHA = MANIFEST PROMPT SHA: PASS
+PAYLOAD SHA = CSV PROMPT SHA: PASS
+SHA256SUMS ENTRY PRESENT: PASS
+```
+
+## 6. Filename validation
+
+All image filenames conform to:
+
+```regex
+^HKA-VIS-W01-[0-9]{4}_CLEAN_MASTER\.png$
+^HKA-VIS-W01-[0-9]{4}_BRANDED_FINAL\.png$
+```
+
+The Asset ID in every filename matches the manifest record.
 
 ## 7. Audience distribution
 
@@ -117,21 +132,31 @@ EXACT MOTTO: PASS
 MODEL-GENERATED BRAND TEXT: FORBIDDEN IN ALL 12 PROMPTS
 ```
 
-Exact MOTTO verified:
+Exact MOTTO:
 
 ```text
 PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
 ```
 
-## 10. Production authorization
+## 10. Validation conclusion
 
 ```text
-PROMPTS: READY
+MANIFEST SCHEMA VALIDATION: PASS 3/3
+PROMPT PAYLOAD REPRODUCIBILITY: PASS 12/12
+PROMPT ↔ MANIFEST MAPPING: PASS 12/12
+PLACEHOLDER SHA: 0
+VALIDATION RESULT: PASS
+```
+
+## 11. Authorization boundary
+
+```text
+PROMPTS: READY FOR ARCHITECT ACCEPTANCE
 MANIFESTS: BATCH_READY
-IMAGE PRODUCTION: NOT AUTHORIZED BY THIS VALIDATION REPORT
+IMAGE PRODUCTION: NOT AUTHORIZED BY THIS REPORT
 R2 UPLOAD: NOT AUTHORIZED
 MERGE: NOT AUTHORIZED
 WEBSITE DEPLOY: NOT AUTHORIZED
 ```
 
-B00 must be explicitly handed off and independently approved before B01/B02 production may be opened.
+B00 requires a separate production authorization after Architect Acceptance. B01 and B02 remain sequenced after B00 independent QA approval.
