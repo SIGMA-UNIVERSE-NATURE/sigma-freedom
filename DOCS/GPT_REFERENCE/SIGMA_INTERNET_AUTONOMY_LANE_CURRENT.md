@@ -61,23 +61,9 @@ INITIAL_V9_REPLAN_ACTION=RESEARCH_MORE
 V9_REPLAN_BYTECODE_SHA256=3813a4422944173d7f8811e139f247cf546a2e88f8716117b56114c2c46a3cbb
 ```
 
-## I1 / I1R1 PRESERVED IDENTITIES
-
-```text
-I1_INSTALLER_SHA256=53464f03607d55e519c8a70a070dcb077778ab4dc8a9d0696733daf444851f39
-I1_ENGINE_SOURCE_SHA256=58f141c85565cebd3fb58ff1e1c083cfff9e53b6747d8f2e28f0b091a3e9e403
-I1_ENGINE_BYTECODE_SHA256=c90724bb240fd53010f7a006e07018f63bc6a7d5fda2b01281de89c5545057ab
-I1_ACTUATOR_SHA256=0b0b105f6d6b8166691db5127173603c516876154b2b9b6959813445bd151405
-I1_DATAFLOW_VERIFIER_SHA256=fe98ea29d65417edf6b49a0592fa81ad8a9c149305943ee409e792f282f79824
-I1_VERIFIER_SHA256=64468ba1f327a8a2cfd9b002035442ad7a78155eda6c45184468d2330a884f02
-I1_WRAPPER_SHA256=54fcdfb1fd5ce8fc5315d9b7354f62b2cca325f12318c1ad8ce843ae4aa55fb0
-I1R1_INSTALLER_SHA256=472202e876b5987db4c260b2976fc941402001b9ab8fa56da19e8ebde7a81da4
-I1R1_RUNNER_SHA256=4efcad4ae5f8bf1ec4f150e329635e5979abb6878e169de97e910417ded4ce51
-```
-
-Original I1 first live attempt stopped pre-VM because the runner expected nonexistent provenance field `V9_ENGINE_SHA256` while canonical V9 writes `V9_REPLAN_BYTECODE_SHA256`. Hash value was identical. I1R1 repaired only that field-name binding; parent engine, actuator, verifier, Internet policy and natural-language dataflow were preserved.
-
 ## I1R1 LIVE INTERNET RUN — CANONICAL PASS
+
+Original I1 live attempt stopped pre-VM because its runner expected nonexistent provenance field `V9_ENGINE_SHA256`; I1R1 repaired only that field-name binding to canonical `V9_REPLAN_BYTECODE_SHA256`. Parent engine, actuator, verifier, Internet policy and natural-language dataflow were preserved.
 
 ```text
 I1R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/natural_language_web_research_loop_i1_runs/20260903T090741Z_4320_24344
@@ -102,11 +88,9 @@ HUMAN_LANGUAGE_WEB_PAYLOAD_TO_SIGMA=PASS_TESTED_SCOPE
 SIGMA_NATIVE_NATURAL_LANGUAGE_WEB_RESEARCH_LOOP=PASS_TESTED_SCOPE
 ```
 
-This proves a Sigma-driven natural-language web-research control path through one live collection and human-language lesson ingestion. It does not prove the closed autonomous learning loop because no follow-up collection was exercised after V7 insufficiency.
+This proves a Sigma-driven natural-language web-research control path through one live collection and human-language lesson ingestion. It does not prove a closed autonomous learning loop because no fresh follow-up collection was exercised after V7 insufficiency.
 
 ## V7 INSUFFICIENCY AUDIT — CANONICAL MECHANICAL OBSERVATION
-
-Exact V7 run reached by the canonical I1R1 live run:
 
 ```text
 V7_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/knowledge_candidates/20260903T091059Z_15664_18583
@@ -122,65 +106,64 @@ KNOWLEDGE_HIGH_BYTES=0
 KNOWLEDGE_FILE_BYTES=115
 KNOWLEDGE_BINDING_ROWS=1
 SOURCE_COLLECTION_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T090743Z_4405_21969
-```
-
-Canonical interpretation is deliberately narrow:
-
-```text
 PARTIAL_EXTRACTIVE_HUMAN_LANGUAGE_EVIDENCE_AVAILABLE=YES_TESTED_SCOPE
-PARTIAL_EVIDENCE_BYTES=115
-PARTIAL_EVIDENCE_BINDINGS=1
-DISTINCT_BOUND_SOURCES_BELOW_CURRENT_MINIMUM=YES
 HOST_OR_GPT_SEMANTIC_DIAGNOSIS_COUNTS_AS_SIGMA_LEARNING=NO
 ```
 
-This audit only establishes that the V7 insufficiency state still has a nonempty evidence-grounded human-language candidate that can be passed back to SIGMA. It does not decide what that text means and does not choose a semantic follow-up query.
+The audit establishes only that nonempty evidence-grounded human-language material remains available for SIGMA after V7 marks the current candidate insufficient. It does not decide what that text means or what query should follow.
 
-## EXACT BLOCKER
-
-The I1 parent currently terminates on V7 `INSUFFICIENT` rather than allowing SIGMA to use its partial evidence to continue research.
-
-```text
-CURRENT_BLOCKER=SIGMA_PARENT_HAS_NO_RESEARCH_CONTINUATION_POLICY_FOR_V7_KNOWLEDGE_INSUFFICIENCY
-NETWORK_FAILURE=NO_EVIDENCE
-PARENT_VM_FAILURE=NO
-CURRENT_POLICY_LIMITATION=YES
-MULTI_CYCLE_RESEARCH_FOLLOWUP_AFTER_KNOWLEDGE_INSUFFICIENCY=NOT_PROVEN
-```
-
-Do not solve this by having host/GPT choose a follow-up query.
-
-## I2 — KNOWLEDGE INSUFFICIENCY TO FRESH WEB RESEARCH — PACKAGE PREPARED
+## I2 — KNOWLEDGE INSUFFICIENCY TO FRESH WEB RESEARCH — OPPO INSTALL / COMPILE QA PASS
 
 ```text
 CURRENT_STAGE=I2_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH
-I2_PACKAGE_TARGET=V1_I2_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH
+I2_PACKAGE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_I2_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH
 I2_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH_I2.sh
 I2_INSTALLER_SHA256=765b47e1e4737fd7a09e221813440d8926349f3a9a56d780eea8da39f8ef9274
-LOCAL_STATIC_QA=PASS
-OPPO_INSTALL_COMPILE_QA=PENDING
+INSTALL_QA_RESULT=PASS
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+READY_TO_RUN_I2_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH=YES
 ```
 
-I2 is additive. It does not replace the canonical I1R1 evidence. It teaches a narrow continuation scaffold inside SIGMA Native:
+OPPO QA:
 
 ```text
-V7 knowledge.state=INSUFFICIENT
-+ exact current human-language research topic
-+ exact nonempty partial knowledge.candidate
-+ exact knowledge bindings
-→ SIGMA Native insufficiency replanner decides RESEARCH_MORE or STOP_UNKNOWN
-→ for the tested partial-evidence branch, SIGMA emits a general strategy token
-→ preserved V11 Sigma Native adapter consumes the exact topic + partial human-language evidence
-→ V11 selects a context term from that evidence and creates an adapted human-language topic
-→ SIGMA parent emits a distinct RUN_I2_V11 action
-→ host mechanically dispatches the exact SIGMA action
-→ V5 performs a fresh live web collection from the Sigma-adapted topic
-→ parent continues the V6/V7/... loop without HUMAN/GPT per-cycle permission
+BASH_SYNTAX_QA=PASS
+PYTHON_SYNTAX_QA=PASS
+SIGMA_INTERIOR_HASH_COMMENT_QA=PASS
+ZERO_EVIDENCE_SPECIFIC_HARDCODE_QA=PASS
+PARENT_I2_ACTION_QA=PASS
+PARENT_I2_V11_ACTION_QA=PASS
+SIGMA_RESEARCH_MORE_DECISION_QA=PASS
+PARTIAL_EVIDENCE_INPUT_QA=PASS
+HOST_MECHANICAL_ACTION_DISPATCH_QA=PASS
+I2_V11_DIRECT_ADAPTER_QA=PASS
+NO_FIXED_SEMANTIC_CYCLE_LIMIT_QA=PASS
+MULTI_CYCLE_VERIFY_QA=PASS
+PARTIAL_EVIDENCE_BINDING_VERIFY_QA=PASS
+SIGMA_I2_REPLAN_COMPILE_QA=PASS
+SIGMA_I2_PARENT_COMPILE_QA=PASS
 ```
 
-I2 uses the preserved V11 Sigma engine directly through an additive mechanical integration wrapper because the historical V11 host runner assumes a V8→V9 support-run chain. The I2 integration does not synthesize a fake support run and does not change the V11 semantic engine.
+Installed I2 identities:
 
-Governance / claim boundaries:
+```text
+I2_PARENT_SOURCE_SHA256=fc27a23d73fa73df6b4c40298d3c345a2317cd72553bec2751c34270d010210b
+I2_PARENT_BYTECODE_SHA256=82625bcbb64b8e2046e9d836d352244de64c699595665d8e317028efbdbf0387
+I2_REPLAN_SOURCE_SHA256=d457b03530a11e024946e332a4f6e5f026d83227803157f60b0c8eb8a35bd31b
+I2_REPLAN_BYTECODE_SHA256=c771bd1f541d2faa0899a2e3d4fd96eeb07bc16086e152a59ff6e09fef8dd701
+I2_ACTUATOR_SHA256=d148fd6d673fc7e5cb5d4777e69ce53578455fdf56f72e8a6332177d24eb0e27
+I2_DIRECT_V11_RUNNER_SHA256=015839ba6c1ef0f4e1d0d387f39d4669e3807a4e6d008cf467e23c7ca3efc49a
+I2_REPLAN_RUNNER_SHA256=b0cb797049ea047dbc8be63788075ee13cf35cf734b7e37da35d59202e12c0e0
+I2_RUNNER_SHA256=537181fd6997bff0ccfa91ee7d21eb867053fd2c3d8deb2f8e9a56eb6d5f0fbe
+I2_DATAFLOW_VERIFIER_SHA256=b69e4cc3c290f1a574e2777f52498aeaa44baa7c0633bb03cb4b0d62178d632a
+I2_VERIFIER_SHA256=ff968036917ebb69b78297bc6b34104b8a92ad98315406b253ded923b004ae70
+I2_DIRECT_V11_WRAPPER_SHA256=0a875bbe6b5796ad57bf84b0c4d4deef7b5e8fcc08b8e77a130513d834030be2
+I2_REPLAN_WRAPPER_SHA256=7b8198f5db59870bc5c2a817fb1daae2070f1a166567689c7ffc4810e2ac51ed
+I2_WRAPPER_SHA256=9488f5139a591a004a7b5fdf0845759d55d01e888e99efb53312fafc70aa7ab6
+```
+
+I2 flow / governance:
 
 ```text
 PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
@@ -195,9 +178,10 @@ FRESH_WEB_COLLECTION_MUST_BE_CAUSED_BY_SIGMA_ACTION=YES
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
 GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
 NO_FIXED_SEMANTIC_RESEARCH_CYCLE_LIMIT=YES
+NATURAL_LANGUAGE_WEB_PAYLOAD_TO_SIGMA=REQUIRED
 ```
 
-The current insufficiency→`RESEARCH_MORE` policy and strategy family are teacher scaffold encoded in SIGMA Native. Therefore a future I2 PASS must not be described as a learned general research policy.
+The current insufficiency→`RESEARCH_MORE` decision rule and strategy family are teacher scaffold encoded in SIGMA Native. A live PASS may prove only the tested continuation path, not a learned general research policy.
 
 ```text
 STATIC_INSUFFICIENCY_REPLAN_POLICY_LEARNED=NOT_PROVEN
@@ -212,12 +196,14 @@ CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
 
 I2 verifier requires at least one V7 insufficiency, at least one Sigma-native I2 replan, at least one Sigma-native V11 adapted follow-up caused by that replan, exact partial-evidence/topic byte binding, and at least two distinct web collection runs. A resource-bound terminal after those events is acceptable as a mechanical safety stop; it is not a semantic cycle limit.
 
-## NEXT STEP
+## NEXT STEP — LIVE INTERNET TEST
 
 ```text
-CURRENT_STATUS=I2_PACKAGE_PREPARED_AWAITING_OPPO_INSTALL_COMPILE_QA
-NEXT_COMMAND=RUN_I2_INSTALL_COMPILE_QA_ONLY_NO_SIGMA_VM_NO_INTERNET
-LIVE_INPUT_AFTER_BUILD_QA=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
+CURRENT_STATUS=I2_OPPO_INSTALL_COMPILE_QA_PASS_READY_FOR_LIVE
+EXACT_INITIAL_REPLAN_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
+NEXT_COMMAND=RUN_I2_LIVE_ON_EXACT_SIGMA_PRODUCED_V9_REPLAN_WITH_INTERNET
+LIVE_INTERNET_REQUEST_EXPECTED=YES
+I2_CLAIM_TARGET=SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH_PASS_TESTED_SCOPE
 ```
 
 ## STILL NOT PROVEN
