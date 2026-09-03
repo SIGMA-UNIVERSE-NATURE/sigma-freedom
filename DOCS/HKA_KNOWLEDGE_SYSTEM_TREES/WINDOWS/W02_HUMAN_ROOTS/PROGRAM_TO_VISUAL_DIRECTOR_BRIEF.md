@@ -1,99 +1,115 @@
 ---
 title: "HKA W02 — Program-to-Visual Director Brief"
-version: "1.0"
+version: "2.0"
 status: "DIRECTOR_VISUAL_GATE_PASS"
+window_id: "W02"
+date: "2026-09-04"
 ---
 
 # PROGRAM → VISUAL DIRECTOR BRIEF
 
-## 1. Program lock
+## 1. Academic lock
 
 ```text
-WINDOW ID: W02
-TREE ID: HKA-TREE-00-HROOT
-ACADEMIC CONTENT COMMIT SHA: 240352eaaf03497aca1291617ac4fada382ed9b6
+ACADEMIC CONTENT COMMIT SHA: e900d3b623c27f6d4a0fe2750fa499295788776e
 ACADEMIC QA RESULT: PASS
 DIRECTOR ACADEMIC GATE: PASS
-NODE COUNT: 24
-MATERIAL CLAIM COUNT: 42
-SOURCE COUNT: 32
+ROOT COVERAGE: 21/21
+NODE / RELATION / SOURCE / MATERIAL CLAIM: 24 / 63 / 32 / 42
+CLAIM→SOURCE: 42/42
+UNSUPPORTED HIGH-RISK CLAIMS: 0
+OWNERSHIP CONFLICTS: 0
 ```
 
-## 2. Visual thesis
+Visual authoring starts from that immutable academic snapshot. W02 retains human-root meaning and interfaces; specialist mechanisms stay with owner Windows. Models, reconstructions, philosophical debates and normative claims are never presented as documentary scientific fact.
 
-Human Roots must not become a collection of inspirational portraits. The visual system shows **relations, distinctions and epistemic boundaries**: body + environment; emotion + uncertainty; memory + evidence; identity + change; choice + context; relation/care/cooperation; conflict vs violence; multiple fairness principles; person–nature–Earth dependency; history evidence vs memory; scenarios vs predictions.
+## 2. Visual thesis and learning arc
 
-Documentary reality is used where lived human interaction is the phenomenon. Conceptual models are used only when the relation itself cannot be shown in one real scene. Research posters reserve factual labels/data/citations for controlled post-production.
+Human Roots is shown as **embodied life + relations + world-belonging**, not as inspirational portraiture. Documentary reality is used where interaction is observable; controlled comparison, conceptual/scientific visualization, historical reconstruction and research posters are used only when the learning relation cannot be shown honestly in one photographic scene.
 
-## 3. VCU map
-
-| VCU | Node IDs | Core visual job | Assets |
+| Sequence | Depth | Visual job | Truth lock |
 |---|---|---|---|
-| HKA-VCU-W02-001 | A0, B0, C0 | whole-system orientation | 0001 |
-| HKA-VCU-W02-002 | A06, B07 | agency under context/constraints | 0002 |
-| HKA-VCU-W02-003 | A01 | body + environment + participation | 0003 |
-| HKA-VCU-W02-004 | A02, A03 | emotion components without face determinism | 0004 |
-| HKA-VCU-W02-005 | B02, B03, B04 | relation/care/cooperation | 0005 |
-| HKA-VCU-W02-006 | A04 | reconstructive memory | 0006 |
-| HKA-VCU-W02-007 | B01 | language influences attention without determinism | 0007 |
-| HKA-VCU-W02-008 | C03, C04 | community/culture without stereotype | 0008 |
-| HKA-VCU-W02-009 | A05, A07 | identity continuity/change | 0009, 0016 |
-| HKA-VCU-W02-010 | B04–B07 | fairness/conflict/responsibility | 0010, 0011, 0015 |
-| HKA-VCU-W02-011 | C01,C02,C06 | nature/life/Earth relations | 0012, 0014 |
-| HKA-VCU-W02-012 | A04,C05,C06,C07 | evidence/history/futures uncertainty | 0013, 0017 |
-| HKA-VCU-W02-013 | A0,B0,C0 + cross-cutting | research provenance synthesis | 0018 |
+| 0001–0005 | orientation/D1 | equal roots; embodiment/context; mind/emotion boundary; reciprocal relations | no hierarchy, diagnosis, face-reading or universal human default |
+| 0006–0008 | D2 | reconstructive memory; flexible categorization; within-community/cultural variation | no camera-memory, linguistic determinism or fixed culture |
+| 0009–0014 | D3 | identity layers; fairness; conflict; nature values; historical evidence; living/Earth systems | preserve normative, reconstruction, power, scale and causal limits |
+| 0015–0016 | D4 | responsibility categories; plasticity with constraints | no blame collapse or effort-only narrative |
+| 0017–0018 | research D4 | scenarios/uncertainty; claim-type provenance | no prediction theater, fake data or epistemic category collapse |
 
-All 21 canonical root concepts map to at least one VCU.
+## 3. VCU map and prompt handoff
 
-## 4. Package decision
+Each row is one distinct visual learning job. Prompt fields resolve through `G-W02-PROMPT-2.0` plus the asset block in the named batch file.
+
+| Asset/VCU | Nodes | Claims | Sources | Audience/Depth | Representation | Companion | Batch | Learning objective |
+|---|---|---|---|---|---|---|---|---|
+| HKA-VIS-W02-0001 / HKA-VCU-W02-001 | HKA-W02-A01;HKA-W02-A05;HKA-W02-B02;HKA-W02-B06;HKA-W02-C02;HKA-W02-C07 | CLAIM-W02-A01-01;CLAIM-W02-A05-01;CLAIM-W02-B02-01;CLAIM-W02-B06-01;CLAIM-W02-C02-01;CLAIM-W02-C07-01 | SRC-W02-001;SRC-W02-006;SRC-W02-012;SRC-W02-013;SRC-W02-018;SRC-W02-019;SRC-W02-022;SRC-W02-026;SRC-W02-027 | UNIVERSAL/MULTI_DEPTH | CONCEPTUAL_MODEL | ENSEMBLE_FOUR | HKA-W02-B00 | Nhận ra self–others–world là ba cửa nhìn ngang hàng, liên thông vào cùng đời sống con người. |
+| HKA-VIS-W02-0002 / HKA-VCU-W02-002 | HKA-W02-A06;HKA-W02-B07 | CLAIM-W02-A06-01;CLAIM-W02-A06-02;CLAIM-W02-B07-01 | SRC-W02-009;SRC-W02-010;SRC-W02-020 | A4_16_18/D3 | CONCEPTUAL_MODEL | PROFESSOR_OWL | HKA-W02-B00 | Phân biệt agency/choice với ảnh hưởng của defaults, information, resources và constraints; không suy ra free will. |
+| HKA-VIS-W02-0003 / HKA-VCU-W02-003 | HKA-W02-A01 | CLAIM-W02-A01-01;CLAIM-W02-A01-02 | SRC-W02-001 | A1_5_8/D1 | DOCUMENTARY_REALITY | SIGMA | HKA-W02-B01 | Nhìn thấy participation phụ thuộc cả body và environment; không có một normal-body baseline duy nhất. |
+| HKA-VIS-W02-0004 / HKA-VCU-W02-004 | HKA-W02-A02;HKA-W02-A03 | CLAIM-W02-A02-01;CLAIM-W02-A02-02;CLAIM-W02-A03-01;CLAIM-W02-A03-02 | SRC-W02-002;SRC-W02-008;SRC-W02-003;SRC-W02-004 | A1_5_8/D1 | CONCEPTUAL_MODEL | LITTLE_ANT | HKA-W02-B01 | Nhận ra emotion có nhiều components và one face không xác định emotion hay toàn bộ mind. |
+| HKA-VIS-W02-0005 / HKA-VCU-W02-005 | HKA-W02-B02;HKA-W02-B03;HKA-W02-B04 | CLAIM-W02-B02-01;CLAIM-W02-B03-01;CLAIM-W02-B04-01 | SRC-W02-012;SRC-W02-013;SRC-W02-014;SRC-W02-016;SRC-W02-017 | A1_5_8/D1 | DOCUMENTARY_REALITY | CRICKET | HKA-W02-B01 | Thấy relationship quality/care/cooperation qua reciprocal interaction, không qua headcount. |
+| HKA-VIS-W02-0006 / HKA-VCU-W02-006 | HKA-W02-A04 | CLAIM-W02-A04-01;CLAIM-W02-A04-02 | SRC-W02-002;SRC-W02-005 | A2_9_12/D2 | CONCEPTUAL_MODEL | PROFESSOR_OWL | HKA-W02-B01 | Phân biệt remembering với exact replay; memory có thể reconstruct và sai mà không phải mọi memory đều false. |
+| HKA-VIS-W02-0007 / HKA-VCU-W02-007 | HKA-W02-B01 | CLAIM-W02-B01-01;CLAIM-W02-B01-02 | SRC-W02-029 | A2_9_12/D2 | CONCEPTUAL_MODEL | SIGMA | HKA-W02-B01 | Hiểu language/symbol systems có thể influence attention/categorization nhưng không determine thought. |
+| HKA-VIS-W02-0008 / HKA-VCU-W02-008 | HKA-W02-C03;HKA-W02-C04 | CLAIM-W02-C03-01;CLAIM-W02-C04-01;CLAIM-W02-C04-02 | SRC-W02-030;SRC-W02-023;SRC-W02-007 | A2_9_12/D2 | DOCUMENTARY_REALITY | CRICKET | HKA-W02-B01 | Nhận ra community/culture hình thành qua practices, participation và change, với variation ngay trong group. |
+| HKA-VIS-W02-0009 / HKA-VCU-W02-009 | HKA-W02-A05 | CLAIM-W02-A05-01;CLAIM-W02-A05-02 | SRC-W02-006;SRC-W02-007;SRC-W02-008 | A3_13_15/D3 | CONCEPTUAL_MODEL | PROFESSOR_OWL | HKA-W02-B02 | Phân biệt personal identity, roles, group belonging, narrative và continuity/change mà không essentialize. |
+| HKA-VIS-W02-0010 / HKA-VCU-W02-010 | HKA-W02-B06 | CLAIM-W02-B06-01;CLAIM-W02-B06-02 | SRC-W02-018;SRC-W02-019 | A3_13_15/D3 | CONCEPTUAL_MODEL | LITTLE_ANT | HKA-W02-B02 | So sánh distributive principles và procedural fairness trong cùng một case. |
+| HKA-VIS-W02-0011 / HKA-VCU-W02-011 | HKA-W02-B05;HKA-W02-B04 | CLAIM-W02-B05-01;CLAIM-W02-B05-02;CLAIM-W02-B04-02 | SRC-W02-031;SRC-W02-024;SRC-W02-016 | A3_13_15/D3 | CONCEPTUAL_MODEL | CRICKET | HKA-W02-B02 | Phân biệt disagreement/conflict/violence và thấy escalation không tất yếu. |
+| HKA-VIS-W02-0012 / HKA-VCU-W02-012 | HKA-W02-C01 | CLAIM-W02-C01-01;CLAIM-W02-C01-02 | SRC-W02-021 | A4_16_18/D3 | CONCEPTUAL_MODEL | SIGMA | HKA-W02-B02 | Nhìn thấy instrumental, intrinsic và relational values cùng tồn tại mà không hierarchy. |
+| HKA-VIS-W02-0013 / HKA-VCU-W02-013 | HKA-W02-C05;HKA-W02-A04 | CLAIM-W02-C05-01;CLAIM-W02-C05-02;CLAIM-W02-A04-02 | SRC-W02-024;SRC-W02-025;SRC-W02-005 | A4_16_18/D3 | HISTORICAL_RECONSTRUCTION | PROFESSOR_OWL | HKA-W02-B02 | Phân biệt source, evidence, memory và historical reconstruction; multiperspectivity không bằng false equivalence. |
+| HKA-VIS-W02-0014 / HKA-VCU-W02-014 | HKA-W02-C02;HKA-W02-C06 | CLAIM-W02-C02-01;CLAIM-W02-C02-02;CLAIM-W02-C06-01 | SRC-W02-022;SRC-W02-027 | A5_19_24/D3 | SCIENTIFIC_VISUALIZATION | CRICKET | HKA-W02-B02 | Thấy human life phụ thuộc coupled living/Earth systems và effects có thể phân bố không đều. |
+| HKA-VIS-W02-0015 / HKA-VCU-W02-015 | HKA-W02-B07;HKA-W02-C03 | CLAIM-W02-B07-01;CLAIM-W02-B07-02;CLAIM-W02-C03-01 | SRC-W02-020;SRC-W02-032;SRC-W02-030 | A5_19_24/D4 | CONCEPTUAL_MODEL | LITTLE_ANT | HKA-W02-B03 | Phân biệt causal, role, moral, legal/institutional và collective responsibility trong cùng case. |
+| HKA-VIS-W02-0016 / HKA-VCU-W02-016 | HKA-W02-A07;HKA-W02-A05 | CLAIM-W02-A07-01;CLAIM-W02-A07-02;CLAIM-W02-A05-01 | SRC-W02-002;SRC-W02-011;SRC-W02-006 | A5_19_24/D4 | SCIENTIFIC_VISUALIZATION | SIGMA | HKA-W02-B03 | Nhận ra continuity/change, plasticity và constraints trong person–experience–environment interaction. |
+| HKA-VIS-W02-0017 / HKA-VCU-W02-017 | HKA-W02-C07;HKA-W02-C06 | CLAIM-W02-C07-01;CLAIM-W02-C06-02 | SRC-W02-026;SRC-W02-027 | RESEARCH/D4 | DATA_RESEARCH_POSTER | PROFESSOR_OWL | HKA-W02-B03 | Đọc scenario pathways với assumptions/signposts/uncertainty mà không hiểu như probability forecast. |
+| HKA-VIS-W02-0018 / HKA-VCU-W02-018 | HKA-W02-A06;HKA-W02-B06;HKA-W02-C07 | CLAIM-W02-A06-02;CLAIM-W02-B06-02;CLAIM-W02-C07-02 | SRC-W02-010;SRC-W02-019;SRC-W02-028 | RESEARCH/D4 | DATA_RESEARCH_POSTER | LITTLE_ANT | HKA-W02-B03 | Tổng hợp W02 mà vẫn phân biệt empirical, interpretive, philosophical, normative/policy và lived-experience evidence. |
+
+## 4. Deduplication, spiral and count decision
+
+P18 is the smallest sufficient package after academic trace, misconception-risk review and deduplication. Compatible concepts are combined only where one observable relation teaches them without category loss; one-image-per-node inflation is rejected. P12 would force unsafe compression of distinct jobs (free-will boundary, memory reconstruction, fairness, conflict, historical evidence, Earth/scenario uncertainty, responsibility and provenance). P24+ would mostly add age/style/Companion variants or specialist depth outside W02.
+
+Deliberate spiral has learning delta: identity reappears from D3 layers (0009) to D4 life-course change (0016); Earth/futures reappear from D3 system relation (0014) to research-D4 scenario uncertainty (0017). No age/style-only duplicate is admitted.
 
 ```text
 SELECTED PACKAGE: P18
-LOCKED ASSET COUNT: 18
-RATIONALE: P12 would collapse distinct high-risk visual jobs; P18 covers all 21 concepts through 13 VCUs with no decorative-only asset. P24+ would add redundancy rather than new learning jobs.
-AGE DISTRIBUTION: HERO 1 + A1 3 + A2 3 + A3 3 + A4 3 + A5 3 + RESEARCH 2
-LEAD DISTRIBUTION EXCLUDING HERO: Sigma 4 / Cricket 4 / Little Ant 4 / Professor Owl 5
-MAX LEAD DIFFERENCE: 1
+ASSETS / VCUS: 18 / 18
+ROOT COVERAGE: 21/21
+B00/B01/B02/B03: 2 / 6 / 6 / 4
+HERO: 1
+A1/A2/A3/A4/A5: 3 / 3 / 3 / 3 / 3
+RESEARCH: 2
+DUPLICATE VISUAL JOBS: 0
+DECORATIVE-ONLY ASSETS: 0
 ```
 
-## 5. Truth and dedup lock
+## 5. Continuity and production truth locks
 
-Each asset below traces to `NODE → CLAIM → SOURCE` in the prompt payloads and source register. No new asset is justified by age, camera, style or companion alone. Spiral successor 0016 adds life-course constraint analysis beyond 0009 identity layering; 0017/0018 are D4 research jobs, not enlarged teaching scenes.
-
-## 6. Asset sequence
-
-| Asset | VCU | Audience | Depth | Companion | Unique job |
-|---|---|---|---|---|---|
-| HKA-VIS-W02-0001 | HKA-VCU-W02-001 | UNIVERSAL | MULTI_DEPTH | ENSEMBLE_FOUR | Nhận ra ba câu hỏi Rễ Nhân bản là ba cửa nhìn cùng một con người trong quan hệ với bản thân, người khác và thế giới. |
-| HKA-VIS-W02-0002 | HKA-VCU-W02-002 | A4_16_18 | D3 | PROFESSOR_OWL | Phân biệt năng lực lựa chọn với ảnh hưởng của thông tin, defaults, nguồn lực và ràng buộc; không suy ra free will từ một thí nghiệm hành vi. |
-| HKA-VIS-W02-0003 | HKA-VCU-W02-003 | A1_5_8 | D1 | SIGMA | Nhìn thấy rằng khả năng tham gia phụ thuộc cả cơ thể và môi trường hỗ trợ, không có một 'cơ thể chuẩn' duy nhất. |
-| HKA-VIS-W02-0004 | HKA-VCU-W02-004 | A1_5_8 | D1 | LITTLE_ANT | Nhận ra cảm xúc có cảm nhận, cơ thể và hành động/biểu đạt nhưng không có một nét mặt duy nhất luôn xác định cảm xúc. |
-| HKA-VIS-W02-0005 | HKA-VCU-W02-005 | A1_5_8 | D1 | CRICKET | Nhìn thấy quan hệ tốt được tạo bởi hành động chăm sóc và phối hợp hai chiều, không chỉ bởi số người ở cạnh nhau. |
-| HKA-VIS-W02-0006 | HKA-VCU-W02-006 | A2_9_12 | D2 | PROFESSOR_OWL | Phân biệt ký ức với bản ghi camera bằng cách thấy cùng một sự kiện được nhớ lại từ các cue và góc nhìn khác nhau. |
-| HKA-VIS-W02-0007 | HKA-VCU-W02-007 | A2_9_12 | D2 | SIGMA | Hiểu rằng ngôn ngữ cung cấp các cách phân loại/nhấn mạnh khác nhau nhưng không khóa con người vào một cách nghĩ duy nhất. |
-| HKA-VIS-W02-0008 | HKA-VCU-W02-008 | A2_9_12 | D2 | CRICKET | Nhận ra cộng đồng/văn hóa được tạo qua nhiều thực hành và sự tham gia, với khác biệt ngay bên trong cùng cộng đồng. |
-| HKA-VIS-W02-0009 | HKA-VCU-W02-009 | A3_13_15 | D3 | PROFESSOR_OWL | Phân biệt các lớp căn tính cá nhân, vai trò, nhóm, câu chuyện đời và sự thay đổi theo thời gian. |
-| HKA-VIS-W02-0010 | HKA-VCU-W02-010 | A3_13_15 | D3 | LITTLE_ANT | So sánh ít nhất ba nguyên tắc phân bổ và một quy trình ra quyết định để thấy fairness có nhiều chiều. |
-| HKA-VIS-W02-0011 | HKA-VCU-W02-010 | A3_13_15 | D3 | CRICKET | Nhận ra bất đồng có thể đi qua nhiều nhánh: escalation hoặc negotiation/cooperation, và bạo lực không phải kết cục tất yếu. |
-| HKA-VIS-W02-0012 | HKA-VCU-W02-011 | A4_16_18 | D3 | SIGMA | Nhìn thấy instrumental, intrinsic và relational values có thể cùng tồn tại và xung đột trong một quyết định về nơi chốn. |
-| HKA-VIS-W02-0013 | HKA-VCU-W02-012 | A4_16_18 | D3 | PROFESSOR_OWL | Phân biệt nguồn gốc, bằng chứng, ký ức và tái dựng lịch sử; multiperspectivity không phải mọi version đều ngang giá. |
-| HKA-VIS-W02-0014 | HKA-VCU-W02-011 | A5_19_24 | D3 | CRICKET | Thấy các dòng nước, không khí, thức ăn/năng lượng và biodiversity nối đời sống người với Earth systems mà không biến graph thành causal overclaim. |
-| HKA-VIS-W02-0015 | HKA-VCU-W02-010 | A5_19_24 | D4 | LITTLE_ANT | Phân biệt causal, role, moral, legal và collective responsibility trong cùng một case mà không trộn chúng. |
-| HKA-VIS-W02-0016 | HKA-VCU-W02-009 | A5_19_24 | D4 | SIGMA | Nhận ra phát triển có cả thay đổi và liên tục, bị ảnh hưởng bởi kinh nghiệm/môi trường nhưng không vô hạn. |
-| HKA-VIS-W02-0017 | HKA-VCU-W02-012 | RESEARCH | D4 | PROFESSOR_OWL | Đọc một scenario tree có assumptions, branching pathways và uncertainty mà không hiểu nó như forecast xác suất. |
-| HKA-VIS-W02-0018 | HKA-VCU-W02-013 | RESEARCH | D4 | LITTLE_ANT | Tổng hợp ba root bằng một research map phân biệt empirical, interpretive, philosophical và normative claims và trace về source. |
-
-## 7. Director Visual Gate
+- Sigma = question/orientation; Cricket = grounded connection; Little Ant = steps/reproducibility; Professor Owl = evidence/limits. Companion function follows pedagogy, not decoration.
+- Documentary scenes use credible human scale. Scientific scale changes require visible boundary/cues. Historical reconstruction is bordered and disclosed. Research posters generate no labels, numbers or citations; those are controlled post-production.
+- Color never carries meaning alone; shape/position/border/pattern duplicates category information.
+- No universal body, emotion-face, family, culture, identity essence, fairness formula, responsibility collapse, conflict=violence, or inevitable future.
+- Official characters/logo/motto are locked to brand commit; model-generated logo, motto and critical text are forbidden.
 
 ```text
+PROMPT CONTENT AUTHORING SHA: 65c852bfd12adc94745c65a5c8e900c40ef501c5
+BRAND ASSET SHA: 2d3aa9d8418acccd39a3d263e917d4157e029e17
+OFFICIAL CHARACTERS: assets/characters/sigma.png; cricket.png; little-ant.png; professor-owl.png
+OFFICIAL LOGO: assets/logo/sigma-logo-master.jpg
+EXACT MOTTO: PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
+B00 PILOT: 0001–0002; future image QA must pass before any later batch run
+ACTUAL IMAGE RUNS BY W02: 0
+R2 UPLOADS BY W02: 0
+MERGE: NO
+DEPLOY: NO
+```
+
+## 6. Director gate
+
+```text
+PROGRAM COVERAGE VERIFIED: YES — 21/21
 ACADEMIC QA PASS: YES
-ALL VCUS TRACE NODE→CLAIM→SOURCE: YES
+ASSET→VCU→NODE→CLAIM→SOURCE TRACE: YES — 18/18
+NORMALIZED A–J RECORD RESOLUTION: PASS — 18/18
 UNIQUE VISUAL JOB PER ASSET: YES
-FINAL DUPLICATE VISUAL JOB COUNT: 0
-DECORATIVE-ONLY ASSETS: 0
+FINAL DUPLICATE COUNT: 0
 PACKAGE IS SMALLEST SUFFICIENT: YES — P18
-PROMPT RECORDS COMPLETE: YES
-BATCH MAP VALID: YES
-DIRECTOR VISUAL GATE: PASS
+PROMPT / MANIFEST LOCK: PASS
+DIRECTOR VISUAL GATE: PASS — prompt/manifest scope only
 IMAGE PRODUCTION AUTHORIZED BY W02: NO
 ```
