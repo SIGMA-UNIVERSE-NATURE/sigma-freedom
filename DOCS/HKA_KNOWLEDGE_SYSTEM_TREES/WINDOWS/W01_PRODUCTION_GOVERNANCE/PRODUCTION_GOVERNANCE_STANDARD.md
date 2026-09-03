@@ -1,341 +1,300 @@
 ---
 title: "HKA W01 — Production Governance Standard"
 window_id: "W01"
-version: "1.0"
-status: "REFERENCE IMPLEMENTATION"
+version: "2.0"
+status: "DIRECTOR-INTEGRATED REFERENCE — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
 ---
 
 # HKA W01 — PRODUCTION GOVERNANCE STANDARD
 
-## 1. Mục đích
+## 1. Mission
 
-Tài liệu này biến kiến trúc HKA CINEMATIC 4K thành một quy trình có thể thi hành, kiểm đếm, kiểm định và truy vết. Không tác nhân nào được tự suy đoán phần việc thuộc tác nhân khác.
+W01 là lớp đạo diễn vận hành. Mục tiêu là để W02–W64 nhận đúng nhánh, viết trọn chương trình, chuyển chương trình thành visual package và giao các đơn vị IMG nhỏ để sản xuất ổn định.
 
 ```text
 Canonical standards
 → Window Contract
-→ Academic development
-→ Visual strategy and locked count
+→ Complete academic program
+→ Director Academic Gate
+→ Visual strategy / VCU / locked count
 → Prompt records
+→ Director Visual Gate
 → Batch manifests
-→ Production
-→ Self-QA
-→ Independent QA
+→ IMG Production Units (max 2 assets/unit)
+→ Director Production Consistency Review
+→ Independent Image QA
 → R2 release
 → Website approval later
 ```
 
-## 2. Thứ bậc hiệu lực
+Không tạo thêm reviewer nếu Director có thể sửa một lỗi nhỏ, khách quan và truy vết được.
 
-Khi có mâu thuẫn, áp dụng theo thứ tự:
+## 2. Authority and precedence
 
-1. Amendment có phiên bản cao hơn.
-2. JSON Schema hiện hành cho hồ sơ tương ứng.
-3. HKA CINEMATIC 4K Brand Asset Lock.
-4. HKA Cloudflare Batch Pipeline.
-5. HKA CINEMATIC 4K Production Standard.
-6. Window Contract đã khóa.
-7. Nội dung do cửa sổ tạo.
+Canonical precedence giữ nguyên:
 
-Không được giải quyết mâu thuẫn bằng sửa âm thầm. Mọi điểm cần đổi canonical phải vào `CHANGE_REQUESTS.md`.
+1. higher-version amendment;
+2. current JSON Schema for the record;
+3. Brand Asset Lock;
+4. Cloudflare Batch Pipeline;
+5. CINEMATIC 4K Production Standard;
+6. locked Window Contract;
+7. Window-created content.
 
-## 3. Vai trò và decision rights
+Director Layer không tự sửa canonical conflict. Conflict có tính canonical phải được ghi change request.
 
-### 3.1. Canonical Architect
+## 3. Roles
 
-Được quyền:
+### 3.1 Canonical Architect
 
-- phát hành và khóa Window Contract;
-- quyết định phạm vi, Tree ID, Window ID và tiêu chuẩn đầu ra;
-- chấp nhận hoặc trả lại kết quả qua Architect Acceptance Gate;
-- phê duyệt thay đổi canonical;
-- cho phép merge, production, R2 release hoặc website integration bằng quyết định riêng.
+- khóa Window Contract và canonical scope;
+- phê duyệt/return Director Layer và Window output;
+- quyết định canonical changes, merge, release infrastructure và website authorization.
 
-Không thay QA độc lập bằng nhận xét cảm tính.
+### 3.2 W01 Director
 
-### 3.2. Prompt Window
+- sở hữu cross-window consistency cho W02–W64;
+- kiểm academic completeness và visual coherence;
+- sửa trực tiếp lỗi nhỏ/khách quan trong Window output;
+- trả đúng section về owner Window nếu cần material academic rewrite;
+- phát hành Director correction locks cho production;
+- không tự tuyên bố Architect acceptance.
 
-Đầu vào:
+### 3.3 W02–W64 Knowledge Tree Authoring & Visual Direction Window
 
-- canonical index commit SHA;
-- window contract commit SHA;
-- brand asset commit SHA;
-- phạm vi duy nhất.
+Một Window làm trọn:
 
-Được quyền:
+```text
+TREE.md
+NODE_CATALOG.md
+RELATION_CATALOG.md
+SOURCE_REGISTER.md
+full academic program
+visual strategy
+VCUs
+Asset IDs
+prompt records
+batch prompts
+manifests
+handoff
+```
 
-- phát triển nội dung học thuật trong phạm vi;
-- tạo node/relation/source catalogs;
-- thiết kế Visual Coverage Units;
-- chọn hoặc nhận gói P12–P36;
-- viết prompt, manifest và batch handoff.
+Content Window không sản xuất hình.
 
-Không được:
+### 3.4 IMG Production Unit
 
-- sản xuất hình;
-- sửa output hình;
-- upload R2;
-- thay canonical;
-- chiếm nội dung cửa sổ khác;
-- dùng từ `latest` thay cho SHA.
+IMG Unit chỉ generate đúng 1–2 authorized Asset IDs.
 
-### 3.3. Image Production Window
+- nhận exact execution pack;
+- reread immutable source trước mỗi asset;
+- reload official visual references trước mỗi relevant asset;
+- generate CLEAN MASTER trước;
+- chỉ post-composite Logo/MOTTO sau clean pass;
+- self-check trước asset kế;
+- close unit sau tối đa 2 assets.
 
-Đầu vào bắt buộc:
+Không sửa curriculum/prompt và không dùng generated image trước làm character master cho image sau.
 
-- Prompt Commit SHA;
-- Manifest SHA-256;
-- Batch ID và Run ID;
-- exact Asset IDs;
-- brand repo + immutable commit + exact paths.
+### 3.5 Independent Image QA
 
-Được quyền tạo đúng CLEAN MASTER và BRANDED FINAL trong batch.
+Đây là release gate độc lập của canonical pipeline. QA kiểm full batch snapshot và không biên tập curriculum/prompt/image.
 
-Không được sửa prompt. Nếu prompt mâu thuẫn, thiếu hoặc không thể thực hiện an toàn, trả `PROMPT_BLOCKED`.
+### 3.6 Release Uploader / Website Publisher
 
-### 3.4. Independent QA Window
+Giữ đúng canonical pipeline và Amendment 1.1. Director Layer không mở R2 staging bằng quy tắc ngầm.
 
-Độc lập với Production Window. Kiểm 100% asset ở full resolution qua sáu gate:
+## 4. Academic Definition of Done
 
-- Academic;
-- Pedagogy;
-- Visual;
-- Character & Brand;
-- Accessibility;
-- Integrity.
+Trước Visual Strategy, Window phải có:
 
-Chỉ trả `QA_APPROVED`, `QA_REJECTED` hoặc `QA_BLOCKED`. Không sửa hình và không viết lại prompt.
+- 100% mandatory branch coverage;
+- explicit excluded scope/owner;
+- no orphan core prerequisites;
+- source support for material claims;
+- epistemic status for uncertainty/debate/open questions;
+- D1–D4 progression thực chất;
+- high-risk misconceptions và countermeasures;
+- cross-tree ownership rõ.
 
-### 3.5. Release Uploader
+Result:
 
-Chỉ hoạt động sau `QA_APPROVED`. Xác minh SHA, upload R2 theo đúng thứ tự, ghi receipt, ghi `RELEASED.json` cuối cùng trong vault prefix, khóa prefix, ghi audit record và cập nhật release index.
+```text
+DIRECTOR ACADEMIC GATE: PASS
+```
 
-### 3.6. Website Publisher
+## 5. Visual Definition of Done
 
-Chỉ hoạt động sau lệnh `WEB_APPROVED`. Không được xem `R2_VERIFIED` là quyền tự động deploy.
+Trước Prompt Lock:
 
-## 4. State machine duy nhất
+- mọi VCU trace về node đã khóa;
+- mỗi asset có một primary learning objective;
+- package P12/P18/P24/P30/P36 có rationale;
+- spiral/continuity được ghi trong Program-to-Visual Director Brief;
+- không decorative-only asset;
+- prompt record đầy đủ;
+- official brand references exact;
+- prompt ↔ manifest 1:1;
+- IMG unit assignments không quá 2 asset.
+
+Result:
+
+```text
+DIRECTOR VISUAL GATE: PASS
+```
+
+## 6. Batch and IMG Unit model
+
+Batch vẫn là canonical manifest/QA/release unit, tối đa 6 assets.
+
+IMG Unit là execution unit:
+
+```text
+HKA-W02-B01-R01
+├── IMG-W02-B01-U01-R01 → 0003,0004
+├── IMG-W02-B01-U02-R01 → 0005,0006
+└── IMG-W02-B01-U03-R01 → 0007,0008
+```
+
+B00 = 2 assets = one IMG Unit by default.
+
+Không giao thêm asset vào IMG Unit sau khi nó bắt đầu.
+
+## 7. Anti-drift production rule
+
+Trước MỖI Asset ID, IMG Unit phải:
+
+1. reread exact asset record;
+2. verify prompt SHA;
+3. reload official character references;
+4. reread mandatory/forbidden objects;
+5. reread PASS/FAIL;
+6. generate and close asset before next asset.
+
+Không dùng “same as previous”, memory của IMG Window hoặc generated output trước làm source of truth.
+
+Nếu official reference không load được:
+
+```text
+ASSET_REFERENCE_BLOCKED
+```
+
+## 8. Correction and repeated-error control
+
+Nếu prompt đúng nhưng output sai:
+
+```text
+OUTPUT_ERROR
+→ do not overwrite
+→ Director correction record
+→ new canonical Run ID per existing rework rule
+→ fresh IMG Unit for affected assets
+```
+
+Nếu cùng failure lặp hai lần liên tiếp:
+
+```text
+STOP REGENERATING
+→ diagnose prompt/reference/model/composition root cause
+→ fix root cause
+→ only then authorize another run
+```
+
+## 9. State model
+
+Canonical release state machine giữ nguyên. Director adds pre-production gates, không thay schema enum trừ khi canonical schema được versioned.
+
+Logical flow:
 
 ```text
 DRAFT
-→ ACADEMIC_REVIEWED
+→ ACADEMIC PROGRAM COMPLETE
+→ DIRECTOR ACADEMIC PASS
+→ VISUAL/PROMPT PACKAGE COMPLETE
+→ DIRECTOR VISUAL PASS
 → PROMPT_LOCKED
 → BATCH_READY
-→ PRODUCTION_CLAIMED
+→ IMG UNIT CLAIMED
 → PRODUCING
 → SELF_QA
+→ DIRECTOR PRODUCTION REVIEW
 → QA_REVIEW
+→ QA_APPROVED / QA_REJECTED / QA_BLOCKED
+→ canonical R2 flow
 ```
 
-Từ `QA_REVIEW`:
+Machine-readable status records phải dùng enum hiện hành; Director-only gates được ghi trong Director records nếu schema chưa có field tương ứng.
+
+## 10. SHA chain
+
+Mỗi release phải truy được tối thiểu:
 
 ```text
-QA_REJECTED
-→ REWORK_REQUIRED
-→ NEW RUN ID
-→ QA_REVIEW
+CANONICAL BASE COMMIT SHA
+WINDOW CONTRACT COMMIT SHA
+ACADEMIC CONTENT COMMIT SHA / exact academic paths when adopted by Window
+PROMPT CONTENT COMMIT SHA
+FINAL MANIFEST COMMIT SHA
+BRAND ASSET COMMIT SHA
+PROMPT SHA-256
+MANIFEST SHA-256
+CLEAN MASTER SHA-256
+BRANDED FINAL SHA-256
+BATCH PACKAGE SHA-256
+QA REPORT SHA-256
+R2 UPLOAD RECEIPT SHA-256
+R2 RELEASE AUDIT RECORD SHA-256
+RELEASE INDEX
 ```
 
-hoặc:
+Prompt/manifest two-commit rule từ W01 accepted baseline giữ nguyên.
+
+## 11. Director direct-fix rule
+
+Director được sửa trực tiếp khi defect:
+
+- nhỏ;
+- objectively verifiable;
+- không thay canonical scope;
+- không thay material academic claim mà chưa có source review;
+- có thể rehash/version đúng sau sửa.
+
+Material content rewrite trả đúng phần về owner Window một lần, không tạo chuỗi reviewer.
+
+## 12. R2 boundary
+
+Current canonical buckets remain:
 
 ```text
-QA_BLOCKED
-→ PROMPT_REVISION_REQUIRED
-→ NEW PROMPT COMMIT SHA
-→ BATCH_READY
+hka-c4k-vault
+hka-c4k-audit
+hka-c4k-delivery
 ```
 
-hoặc:
+`hka-c4k-staging` chỉ là candidate change request trong `DIRECTOR_CHANGE_REQUESTS.md`, không phải active rule.
+
+## 13. Stop conditions
+
+Dừng khi:
+
+- source/commit/hash mismatch;
+- scope ownership không giải quyết được;
+- high-risk academic claim thiếu nguồn;
+- IMG Unit >2 assets;
+- official visual reference cần thiết không load được;
+- generated output bị dùng làm character master kế tiếp;
+- same production failure lặp hai lần mà chưa root-cause review;
+- request R2/merge/deploy vượt authority.
+
+## 14. Final responsibility
 
 ```text
-QA_APPROVED
-→ R2_UPLOAD_AUTHORIZED
-→ UPLOADING
-→ R2_VERIFYING
-→ R2_OBJECTS_VERIFIED
-→ RELEASED
-→ R2_VERIFIED
-→ WEB_APPROVED later
-→ PUBLISHED later
+CONTENT WINDOW OWNS THE PROGRAM.
+DIRECTOR OWNS CROSS-WINDOW CONSISTENCY.
+IMG UNIT OWNS AT MOST TWO IMAGE ASSETS.
+INDEPENDENT QA OWNS RELEASE VERDICT.
+ARCHITECT OWNS FINAL REFERENCE ACCEPTANCE.
 ```
 
-Không nhảy trạng thái. Mỗi chuyển trạng thái phải có bằng chứng và hồ sơ hợp schema.
-
-## 5. Definition of Ready
-
-### 5.1. Prompt Window Ready
-
-- Có Window ID, Tree ID và phạm vi duy nhất.
-- Đọc được toàn bộ nguồn bắt buộc tại SHA đã khóa.
-- Có execution branch.
-- Có allowed write prefix.
-- Brand references tồn tại.
-- Không có blocker P0.
-
-### 5.2. Batch Ready for Production
-
-- Prompt records hoàn chỉnh.
-- `BATCH_MANIFEST.json` hợp schema.
-- Asset count khớp manifest.
-- Prompt SHA-256 tồn tại cho từng asset.
-- Prompt Commit SHA là 40 ký tự và tồn tại.
-- Một batch chỉ dùng một Prompt Commit SHA.
-- Không còn placeholder.
-- Status là `BATCH_READY`.
-
-### 5.3. Ready for Independent QA
-
-- Đủ CLEAN MASTER và BRANDED FINAL.
-- Package SHA-256 tồn tại.
-- `PRODUCTION_REPORT.md` và `SELF_QA_REPORT.json` hoàn chỉnh.
-- Filename, count và checksums khớp manifest.
-
-### 5.4. Ready for R2 Upload
-
-- Independent QA status là `QA_APPROVED`.
-- P0=P1=P2=P3 unresolved=0.
-- QA report SHA-256 hợp lệ.
-- Release ID được cấp.
-- R2 prefix chưa tồn tại hoặc chưa khóa.
-
-## 6. Definition of Done
-
-### 6.1. Prompt Window Done
-
-- Toàn bộ file bắt buộc tồn tại.
-- 100% cành cấp 1 được ánh xạ.
-- Gói hình có một con số khóa cứng.
-- Prompt ↔ manifest là quan hệ 1:1.
-- Batch mapping chính xác.
-- Brand references và MOTTO chính xác.
-- Self-audit trung thực.
-- Không sửa ngoài prefix.
-- Báo Content Commit SHA và Final Manifest Commit SHA.
-
-### 6.2. Production Batch Done
-
-- 100% Asset IDs được tạo.
-- N CLEAN MASTER và N BRANDED FINAL.
-- Self-QA pass.
-- Package và checksums hoàn chỉnh.
-- Chưa đồng nghĩa QA approved.
-
-### 6.3. R2 Release Done
-
-- Upload receipt được xác minh.
-- `RELEASED.json` là object cuối trong vault prefix.
-- Release marker checksum đúng.
-- Prefix lock đã áp dụng.
-- Audit record tồn tại trong audit bucket.
-- GitHub release index được cập nhật.
-
-## 7. SHA chain
-
-Mỗi Asset ID phải truy ngược được qua:
-
-```text
-CANONICAL_INDEX_COMMIT_SHA
-WINDOW_CONTRACT_COMMIT_SHA
-PROMPT_CONTENT_COMMIT_SHA
-FINAL_MANIFEST_COMMIT_SHA
-BRAND_ASSET_COMMIT_SHA
-PROMPT_SHA256
-MANIFEST_SHA256
-CLEAN_MASTER_SHA256
-BRANDED_FINAL_SHA256
-BATCH_PACKAGE_SHA256
-QA_REPORT_SHA256
-R2_UPLOAD_RECEIPT_SHA256
-R2_RELEASE_AUDIT_RECORD_SHA256
-RELEASE_INDEX_SHA256
-```
-
-Git SHA chứng minh phiên bản repository. SHA-256 chứng minh nội dung byte. Không dùng ETag thay SHA-256.
-
-## 8. Quy tắc hai commit cho prompt và manifest
-
-Để tránh tự tham chiếu:
-
-1. Hoàn thiện toàn bộ prompt source, strategy, coverage và batch prompt files.
-2. Commit; SHA này là `PROMPT_CONTENT_COMMIT_SHA`.
-3. Tạo/cập nhật manifests tham chiếu SHA đó.
-4. Tính manifest SHA-256 và sidecar.
-5. Commit; SHA cuối là `FINAL_MANIFEST_COMMIT_SHA`.
-
-Manifest không được tự trỏ đến commit chứa chính lần cập nhật manifest đó. Handoff phải ghi cả hai SHA và giải thích vai trò.
-
-## 9. Stop conditions
-
-Bất kỳ tác nhân nào cũng phải trả `BLOCKED` khi:
-
-- thiếu hoặc không xác minh được SHA bắt buộc;
-- thiếu GitHub write capability cho nhiệm vụ bắt buộc phải commit;
-- manifest không hợp schema;
-- checksum không khớp;
-- prompt sai hoặc mâu thuẫn nguồn;
-- Asset ID ngoài manifest;
-- batch trộn nhiều Prompt Commit SHA;
-- brand asset không đúng commit/path;
-- MOTTO sai ký tự;
-- có yêu cầu ghi đè release;
-- có yêu cầu upload trước QA;
-- có yêu cầu deploy khi production HOLD.
-
-Dừng an toàn không phải thất bại. Tuyên bố thành công khi thiếu bằng chứng là P0.
-
-## 10. Phân loại lỗi và đường sửa
-
-| Mức | Ví dụ | Hành động |
-|---|---|---|
-| P0 | Sai SHA, sai nguồn, nhầm batch, deploy trái phép, brand giả | Dừng batch và đóng băng phần liên quan |
-| P1 | Sai cơ chế, giải phẫu, lịch sử, tỷ lệ hoặc nội dung giảng dạy | Fail asset; xem xét prompt hay output |
-| P2 | Bố cục, ánh sáng, pose, độ rõ chưa đạt | Tái sản xuất asset bằng Run ID mới nếu output sai |
-| P3 | Metadata, alt text, filename, report | Sửa metadata; tăng version khi cần |
-
-Nếu prompt đúng nhưng output sai: giữ Prompt Commit SHA, tăng Run ID.
-
-Nếu prompt sai: tạo Prompt Commit SHA mới; batch cũ không được tiếp tục.
-
-## 11. Escalation path
-
-```text
-Execution uncertainty
-→ BLOCKED report with evidence
-→ Canonical Architect decision
-→ Contract clarification or canonical change request
-→ New immutable commit
-→ Resume from authorized state
-```
-
-Không giải quyết bằng tin nhắn ngoài hồ sơ mà không đưa quyết định trở lại GitHub.
-
-## 12. Nguyên tắc không tự suy đoán
-
-Tác nhân phải dùng chính xác:
-
-- repo;
-- branch;
-- commit SHA;
-- path;
-- schema version;
-- Asset ID;
-- Batch ID;
-- Run ID;
-- Release ID.
-
-Nếu một dữ kiện bắt buộc không có, phải dừng. Không được lấy file cùng tên ở branch khác hoặc chọn asset “gần giống”.
-
-## 13. Quy tắc số lượng
-
-- Prompt Window khóa P12/P18/P24/P30/P36.
-- Batch tối đa 6 asset.
-- B00 luôn là calibration batch 2 asset.
-- Không dùng khoảng số lượng.
-- Không thêm asset ngoài manifest để “bù”.
-- Một asset sửa vẫn giữ Asset ID, nhưng tăng Run ID/revision; ý tưởng mới phải có Asset ID mới.
-
-## 14. Trách nhiệm cuối
-
-Mục tiêu không phải tối đa hóa số file. Mục tiêu là để mỗi đầu ra có thể được giao nguyên vẹn, sản xuất đúng, từ chối đúng và truy vết đến tận nguồn quyết định.
+Mục tiêu là làm đúng ngay, sửa nhanh khi cần và tiếp tục sản xuất; không tối ưu cho số lượng hồ sơ hoặc số vòng kiểm tra.
