@@ -1,0 +1,18 @@
+{
+  "window_id": "W02",
+  "tree_id": "HKA-TREE-00-HROOT",
+  "batch_id": "HKA-W02-B00",
+  "run_id_planned": "HKA-W02-B00-R01",
+  "status": "PROMPT_LOCKED_NO_RUN",
+  "academic_content_commit_sha": "e900d3b623c27f6d4a0fe2750fa499295788776e",
+  "prompt_content_authoring_sha": "65c852bfd12adc94745c65a5c8e900c40ef501c5",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "prompt_registry": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md",
+  "image_generation_executed": false,
+  "r2_upload_executed": false,
+  "requires_b00_qa_before_run": false,
+  "assets": [
+    {"asset_id":"HKA-VIS-W02-0001","vcu_id":"HKA-VCU-W02-001","prompt_sha256":"e9813ecb4df49c5a58f662abfa5595527b3b2ddfe5f32ec10f6f3c591c5244e3","clean_master_filename":"HKA-VIS-W02-0001_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0001_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0002","vcu_id":"HKA-VCU-W02-002","prompt_sha256":"08879368b994ab07b0fdcb57ead67319b83cc78bbe7bd801154168cca772a7c5","clean_master_filename":"HKA-VIS-W02-0002_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0002_BRANDED_FINAL.png","production_status":"NOT_RUN"}
+  ]
+}

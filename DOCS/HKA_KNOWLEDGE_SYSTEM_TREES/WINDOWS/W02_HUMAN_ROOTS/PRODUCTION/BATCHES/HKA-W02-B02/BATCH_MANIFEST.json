@@ -1,0 +1,13 @@
+{
+  "window_id":"W02","tree_id":"HKA-TREE-00-HROOT","batch_id":"HKA-W02-B02","run_id_planned":"HKA-W02-B02-R01","status":"PROMPT_LOCKED_NO_RUN",
+  "academic_content_commit_sha":"e900d3b623c27f6d4a0fe2750fa499295788776e","prompt_content_authoring_sha":"65c852bfd12adc94745c65a5c8e900c40ef501c5","brand_asset_commit_sha":"2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "prompt_registry":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md","image_generation_executed":false,"r2_upload_executed":false,"requires_b00_qa_before_run":true,
+  "assets":[
+    {"asset_id":"HKA-VIS-W02-0009","vcu_id":"HKA-VCU-W02-009","prompt_sha256":"2855e3dbe39fc5c9e120b7c85ff9e4aef28a108e3c5c1b8eb1da1234465411d1","clean_master_filename":"HKA-VIS-W02-0009_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0009_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0010","vcu_id":"HKA-VCU-W02-010","prompt_sha256":"4101f5787ad6a45d3b0e122fbf6848e82f774cfe965b73483afcb6e68555922b","clean_master_filename":"HKA-VIS-W02-0010_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0010_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0011","vcu_id":"HKA-VCU-W02-011","prompt_sha256":"558839869e3b10b345e5aa5eedf7950e946ec7ab747b0151ae49ada1dd32fa68","clean_master_filename":"HKA-VIS-W02-0011_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0011_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0012","vcu_id":"HKA-VCU-W02-012","prompt_sha256":"2c2db72a222d61605dab83dd408a2d2b85d1a1cf17a9ef83a996142664247dd5","clean_master_filename":"HKA-VIS-W02-0012_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0012_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0013","vcu_id":"HKA-VCU-W02-013","prompt_sha256":"662f062fa496883637863623c86175663fce0a5f373041603d3b26a6f01f02a6","clean_master_filename":"HKA-VIS-W02-0013_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0013_BRANDED_FINAL.png","production_status":"NOT_RUN"},
+    {"asset_id":"HKA-VIS-W02-0014","vcu_id":"HKA-VCU-W02-014","prompt_sha256":"10aebac6138c2b1737d418f18bfaa599f67e4624b6b494352b095b0783fd513d","clean_master_filename":"HKA-VIS-W02-0014_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0014_BRANDED_FINAL.png","production_status":"NOT_RUN"}
+  ]
+}
