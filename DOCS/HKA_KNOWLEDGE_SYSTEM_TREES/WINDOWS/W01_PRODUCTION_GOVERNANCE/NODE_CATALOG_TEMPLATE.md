@@ -1,7 +1,7 @@
 ---
 title: "HKA NODE_CATALOG.md Template"
-version: "1.1"
-status: "PROPOSED REFERENCE TEMPLATE — ARCHITECT REVIEW REQUIRED"
+version: "1.2"
+status: "ARCHITECT FINALIZED REFERENCE"
 ---
 
 # HKA NODE CATALOG
@@ -126,18 +126,21 @@ D4 — learner can:
 
 Mỗi dòng phải mô tả năng lực quan sát được; D4 không được chỉ là D3 viết khó hơn.
 
-### 9. HKA Compass links
+### 9. HKA Compass — canonical seven dimensions
+
+La bàn HKA là một trục phản tư độc lập với bằng chứng học thuật. Không dùng La bàn để thay thế truth/evidence checks.
 
 ```text
-HKA COMPASS LINKS:
-QUESTION / WONDER:
-EVIDENCE / REASON:
-CONNECTION / SYSTEM:
-ACTION / CREATION:
-REFLECTION / ETHICS, WHEN APPLICABLE:
+SỰ THẬT / TRUTH:
+SỰ SỐNG / LIFE:
+TÍNH LIÊN KẾT / INTERCONNECTION:
+PHẨM GIÁ / DIGNITY:
+CÔNG BẰNG / JUSTICE:
+HÒA BÌNH / PEACE:
+TRÁCH NHIỆM / RESPONSIBILITY:
 ```
 
-Nếu một Compass dimension không áp dụng, ghi `NOT APPLICABLE — reason`.
+Không bắt buộc mọi node phải có tác động material ở cả bảy chiều. Với chiều không áp dụng, ghi `NOT APPLICABLE — reason`; không tự tạo liên hệ đạo đức để lấp trường.
 
 ### 10. Relations
 
