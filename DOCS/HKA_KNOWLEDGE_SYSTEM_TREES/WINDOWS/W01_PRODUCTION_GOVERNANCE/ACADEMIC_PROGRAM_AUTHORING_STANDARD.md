@@ -1,6 +1,6 @@
 ---
 title: "HKA Academic Program Authoring Standard"
-version: "1.0"
+version: "1.1"
 status: "PROPOSED REFERENCE — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
@@ -11,6 +11,8 @@ date: "2026-09-03"
 ## 1. Objective
 
 Tài liệu này định nghĩa cách W02–W64 biến một canonical Knowledge Tree branch thành một chương trình học thuật hoàn chỉnh trước khi tạo visual assets.
+
+Chuẩn này phải đọc cùng `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md` để tránh cả under-development và over-development.
 
 ## 2. Required sequence
 
@@ -39,13 +41,15 @@ Cho mỗi mandatory branch, lập inventory:
 - open questions;
 - cross-tree dependencies.
 
+Mỗi mandatory branch phải có Branch Coverage Record theo `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md`.
+
 Không chuyển sang visual khi inventory còn vùng trắng không được giải trình.
 
 ### Phase C — Node decomposition
 
 Một node tốt phải:
 
-- có một knowledge function rõ;
+- có một primary knowledge function rõ;
 - đủ nhỏ để có thể kiểm claim/source;
 - đủ lớn để không biến catalog thành danh sách trivia;
 - có prerequisites;
@@ -53,6 +57,8 @@ Một node tốt phải:
 - có D1–D4 progression;
 - có source evidence;
 - có visual implication hoặc `VISUAL NOT REQUIRED — reason`.
+
+Authoring envelope và review triggers cho node được định nghĩa trong `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md`; chúng là trigger kiểm tra, không phải quota để kéo dài/rút ngắn giả tạo.
 
 ### Phase D — Learning progression
 
@@ -82,7 +88,7 @@ NORMATIVE / VALUE JUDGMENT
 
 Không trình bày open question như settled fact.
 
-### Phase F — Coverage audit
+### Phase F — Coverage and density audit
 
 Window tự kiểm:
 
@@ -92,7 +98,13 @@ Window tự kiểm:
 - no orphan prerequisites;
 - no duplicate ownership;
 - no unsupported high-risk claim;
-- no D4 section consisting only of harder wording.
+- no D4 section consisting only of harder wording;
+- Branch Coverage Record complete;
+- Compression Test PASS;
+- Expansion Test PASS;
+- short-content review triggers resolved;
+- long-content / flat fan-out review triggers resolved;
+- no trivia fragmentation used to inflate node count.
 
 ### Phase G — Director review
 
@@ -100,7 +112,9 @@ Director có quyền:
 
 - sửa trực tiếp naming/metadata/obvious omissions;
 - yêu cầu bổ sung exact missing branch/source/node;
-- dừng visual phase nếu chương trình chưa đủ.
+- yêu cầu merge/compress redundant material;
+- yêu cầu split node khi nhiều primary knowledge functions bị trộn;
+- dừng visual phase nếu chương trình chưa đủ hoặc đang phình lặp.
 
 Chỉ sau `DIRECTOR ACADEMIC GATE: PASS` mới tạo visual package.
 
@@ -129,3 +143,17 @@ Một chương trình đạt khi một domain expert có thể:
 8. không phải hỏi Window tác giả để hiểu cấu trúc.
 
 Nếu cần hỏi lại vì file thiếu thông tin, program chưa done.
+
+## 5. Program economy test
+
+Program cũng chưa done nếu cùng một knowledge function bị lặp ở nhiều node/section mà không có progression hoặc ownership reason.
+
+Mục tiêu:
+
+```text
+COMPLETE COVERAGE
++
+MINIMUM REDUNDANCY
+```
+
+Độ dài không phải thành tích. Mỗi đoạn phải phục vụ một knowledge function, evidence function, progression function hoặc boundary function rõ ràng.
