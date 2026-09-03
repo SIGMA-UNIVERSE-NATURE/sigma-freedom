@@ -1,7 +1,7 @@
 ---
 title: "HKA W01 — Prompt Package Handoff Receipt"
 window_id: "W01"
-version: "1.0"
+version: "2.0"
 status: "AWAITING ARCHITECT ACCEPTANCE"
 language: "vi"
 date: "2026-09-03"
@@ -25,7 +25,7 @@ BRAND REPOSITORY: linkcomltd-byte/sigma-universe-web
 BRAND ASSET COMMIT SHA: 2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
-`PROMPT CONTENT COMMIT SHA` is the immutable commit containing the complete prompt source and all three `BATCH_PROMPTS.md` files. `FINAL MANIFEST COMMIT SHA` is the first commit whose tree contains all three batch manifests and all three manifest SHA-256 sidecars. Later audit/status commits do not change prompt or manifest content.
+`PROMPT CONTENT COMMIT SHA` is the immutable commit containing the complete prompt source and the three `BATCH_PROMPTS.md` files. `FINAL MANIFEST COMMIT SHA` is the first commit containing all three batch manifests and their SHA-256 sidecars. Later validation and audit commits do not alter those source artifacts.
 
 ## 2. Locked quantity
 
@@ -36,6 +36,7 @@ EXPECTED CLEAN MASTER COUNT: 12
 EXPECTED BRANDED FINAL COUNT: 12
 EXPECTED TOTAL IMAGE FILES: 24
 BATCH COUNT: 3
+CANONICAL PROMPT HASH PAYLOAD COUNT: 12
 ```
 
 ## 3. B00
@@ -48,6 +49,7 @@ ASSET IDS: HKA-VIS-W01-0001, HKA-VIS-W01-0002
 MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B00/BATCH_MANIFEST.json
 MANIFEST SHA-256: d3756529d6fb5cf0239f3df53558dd1f6de365e41e64184ad9146c272314261e
 BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B00/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 2 / 2
 SCHEMA VALIDATION: PASS
 STATUS: BATCH_READY — NOT YET AUTHORIZED FOR PRODUCTION
 ```
@@ -62,6 +64,7 @@ ASSET IDS: HKA-VIS-W01-0003 ... HKA-VIS-W01-0008
 MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B01/BATCH_MANIFEST.json
 MANIFEST SHA-256: 19588c4e659ac9e980e7d2358d94f4644cd4999a3d7f6eeecc3eca479c8abf28
 BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B01/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 6 / 6
 SCHEMA VALIDATION: PASS
 STATUS: BATCH_READY — MUST WAIT FOR B00 INDEPENDENT QA APPROVAL
 ```
@@ -76,11 +79,32 @@ ASSET IDS: HKA-VIS-W01-0009 ... HKA-VIS-W01-0012
 MANIFEST PATH: PRODUCTION/BATCHES/HKA-W01-B02/BATCH_MANIFEST.json
 MANIFEST SHA-256: b015118db333be2d6a0c1f40a8326cfc573c256a1f18e9f6650826999b64cd65
 BATCH PROMPTS PATH: PRODUCTION/BATCHES/HKA-W01-B02/BATCH_PROMPTS.md
+PROMPT HASH PAYLOADS: 4 / 4
 SCHEMA VALIDATION: PASS
 STATUS: BATCH_READY — MUST WAIT FOR B00 INDEPENDENT QA APPROVAL
 ```
 
-## 6. Brand lock
+## 6. Prompt hash payload registry
+
+```text
+DIRECTORY:
+PROMPT_HASH_PAYLOADS/
+
+FILES:
+HKA-VIS-W01-0001.json ... HKA-VIS-W01-0012.json
+SHA256SUMS.txt
+README.md
+
+PROFILE:
+HKA-PROMPT-RECORD-JSON-V1
+
+RESULT:
+PAYLOAD SHA = MANIFEST PROMPT SHA = CSV PROMPT SHA FOR 12 / 12 ASSETS
+```
+
+A mismatch at production handoff is P0 and stops the batch.
+
+## 7. Brand lock
 
 ```text
 SIGMA: assets/characters/sigma.png
@@ -93,22 +117,23 @@ EXACT MOTTO: PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
 MODEL-GENERATED LOGO/TEXT: FORBIDDEN
 ```
 
-## 7. Validation summary
+## 8. Validation summary
 
 ```text
-BATCH MANIFESTS VALID: YES
+BATCH MANIFESTS VALID: YES 3/3
 MANIFEST ASSET-COUNT EQUALITY: YES
 CROSS-BATCH ASSET-ID UNIQUENESS: YES
 PROMPT COUNT: 12
 PROMPT HASH COUNT: 12
+CANONICAL PAYLOAD COUNT: 12
 BATCH MAPPING: 2 / 6 / 4
 AUDIENCE DISTRIBUTION: 1 / 2 / 2 / 2 / 2 / 2 / 1
-COMPANION LEAD DISTRIBUTION: ENSEMBLE 1; SIGMA 2; CRICKET 3; LITTLE ANT 3; PROFESSOR OWL 3
-PLACEHOLDER SHA REMAINING IN MANIFESTS: 0
+COMPANION LEADS: ENSEMBLE 1; SIGMA 2; CRICKET 3; LITTLE ANT 3; PROFESSOR OWL 3
+PLACEHOLDER SHA REMAINING: 0
 OUT-OF-SCOPE FILE CHANGES: 0
 ```
 
-## 8. Open change requests
+## 9. Open change requests
 
 ```text
 HKA-CR-W01-001 — legacy brand-path blueprint versus immutable brand lock
@@ -116,9 +141,9 @@ HKA-CR-W01-002 — semantic definition of two-commit prompt/manifest procedure
 HKA-CR-W01-003 — asset_id uniqueness not enforced by JSON Schema alone
 ```
 
-All three are recorded and nonblocking under the current precedence and external uniqueness validation.
+All are recorded and nonblocking under current precedence, two-commit semantics and external uniqueness validation.
 
-## 9. Authorization boundary
+## 10. Authorization boundary
 
 This receipt does not authorize:
 
@@ -135,4 +160,4 @@ Next required decision:
 ARCHITECT ACCEPTANCE OF W01
 ```
 
-Only after W01 is accepted may the architect issue a separate B00 Production Handoff Authorization.
+After acceptance, B00 still requires a separate Production Handoff Authorization. B01 and B02 cannot start before B00 independent QA approval.
