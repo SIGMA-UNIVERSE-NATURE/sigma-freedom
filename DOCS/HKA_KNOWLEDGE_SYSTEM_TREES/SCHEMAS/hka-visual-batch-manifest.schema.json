@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hka.sigmastudy.net/schemas/hka-visual-batch-manifest.schema.json",
+  "title": "HKA Visual Batch Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "window_id",
+    "tree_id",
+    "tree_slug",
+    "prompt_repository",
+    "prompt_branch",
+    "prompt_commit_sha",
+    "brand_repository",
+    "brand_asset_commit_sha",
+    "batch_id",
+    "run_id",
+    "asset_count",
+    "assets",
+    "status"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "window_id": { "type": "string", "pattern": "^W[0-9]{2}$" },
+    "tree_id": { "type": "string", "minLength": 5, "maxLength": 100 },
+    "tree_slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "prompt_repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+    "prompt_branch": { "type": "string", "minLength": 1, "maxLength": 250 },
+    "prompt_commit_sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "brand_repository": { "const": "linkcomltd-byte/sigma-universe-web" },
+    "brand_asset_commit_sha": { "const": "2d3aa9d8418acccd39a3d263e917d4157e029e17" },
+    "batch_id": { "type": "string", "pattern": "^HKA-W[0-9]{2}-B[0-9]{2}$" },
+    "run_id": { "type": "string", "pattern": "^HKA-W[0-9]{2}-B[0-9]{2}-R[0-9]{2}$" },
+    "asset_count": { "type": "integer", "minimum": 1, "maximum": 6 },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_id",
+          "prompt_sha256",
+          "asset_type",
+          "representation_type",
+          "primary_audience",
+          "academic_depth",
+          "primary_companion",
+          "clean_master_filename",
+          "branded_final_filename"
+        ],
+        "properties": {
+          "asset_id": { "type": "string", "pattern": "^HKA-VIS-W[0-9]{2}-[0-9]{4}$" },
+          "prompt_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "asset_type": {
+            "type": "string",
+            "enum": [
+              "HERO",
+              "ANCHOR_OVERVIEW",
+              "CONCEPT",
+              "PROCESS",
+              "MECHANISM",
+              "RECONSTRUCTION",
+              "COMPARISON",
+              "SCALE",
+              "MISCONCEPTION",
+              "CROSS_LINK",
+              "HUMAN_IMPACT",
+              "ETHICAL_SCENARIO",
+              "RESEARCH_POSTER"
+            ]
+          },
+          "representation_type": {
+            "type": "string",
+            "enum": [
+              "DOCUMENTARY_REALITY",
+              "SCIENTIFIC_RECONSTRUCTION",
+              "HISTORICAL_RECONSTRUCTION",
+              "SCIENTIFIC_VISUALIZATION",
+              "CONCEPTUAL_MODEL",
+              "HUMANISTIC_METAPHOR",
+              "DATA_RESEARCH_POSTER"
+            ]
+          },
+          "primary_audience": {
+            "type": "string",
+            "enum": ["UNIVERSAL", "A1_5_8", "A2_9_12", "A3_13_15", "A4_16_18", "A5_19_24", "RESEARCH"]
+          },
+          "academic_depth": {
+            "type": "string",
+            "enum": ["D1", "D2", "D3", "D4", "MULTI_DEPTH"]
+          },
+          "primary_companion": {
+            "type": "string",
+            "enum": ["SIGMA", "CRICKET", "LITTLE_ANT", "PROFESSOR_OWL", "ENSEMBLE_FOUR"]
+          },
+          "secondary_companions": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": ["SIGMA", "CRICKET", "LITTLE_ANT", "PROFESSOR_OWL"]
+            }
+          },
+          "node_ids": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 5, "maxLength": 120 }
+          },
+          "clean_master_filename": {
+            "type": "string",
+            "pattern": "^HKA-VIS-W[0-9]{2}-[0-9]{4}_CLEAN_MASTER\\.png$"
+          },
+          "branded_final_filename": {
+            "type": "string",
+            "pattern": "^HKA-VIS-W[0-9]{2}-[0-9]{4}_BRANDED_FINAL\\.png$"
+          }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "status": { "const": "BATCH_READY" }
+  }
+}
