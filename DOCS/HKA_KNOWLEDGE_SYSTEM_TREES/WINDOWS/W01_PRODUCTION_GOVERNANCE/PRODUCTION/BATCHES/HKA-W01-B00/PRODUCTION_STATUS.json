@@ -10,6 +10,6 @@
   "asset_passed_self_qa": 0,
   "asset_failed_self_qa": 0,
   "blocked_asset_ids": [],
-  "notes": "Prompt and manifest ready. Image production remains unauthorized until explicit handoff authorization.",
-  "updated_at": "2026-09-03T00:00:00Z"
+  "notes": "Architect review passed at commit 9de1016214b8bee9828de6c2ba05c739a473b068. Production handoff was authorized at commit a5ca18b3951573cafdaec24802144d11d2b57cd2. Awaiting one Image Production Window to verify official visual references and claim HKA-W01-B00-R01. No image, R2, merge, or website action has occurred.",
+  "updated_at": "2026-09-03T09:08:31Z"
 }
