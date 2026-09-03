@@ -1,8 +1,8 @@
 ---
 title: "HKA W01 — Director Layer Execution Register"
 window_id: "W01"
-version: "1.1"
-status: "READY_FOR_ARCHITECT_REVIEW"
+version: "2.0"
+status: "ARCHITECT_ACCEPTED_FOR_AUTHORING"
 language: "vi"
 date: "2026-09-03"
 ---
@@ -11,111 +11,87 @@ date: "2026-09-03"
 
 ## 1. Purpose
 
-Director Layer bổ sung phần còn thiếu giữa Knowledge Tree contract và image-production pipeline. Mục tiêu là để W02–W64 tự làm trọn một phạm vi tri thức, tạo prompt chính xác, rồi giao các đơn vị IMG nhỏ và ổn định để sản xuất hình.
+Director Layer nối Knowledge Tree contract với academic authoring, visual direction và production handoff. Mục tiêu là để các Window làm đúng phần tri thức của mình với ít vòng lặp nhất.
 
-## 2. Baseline
+## 2. Provenance
 
 ```text
 REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
-ARCHITECT-ACCEPTED BASELINE COMMIT:
+ARCHITECT-ACCEPTED BASELINE:
 5ed62129b8eae603d9d9917ca57a46a03361c909
 
-DIRECTOR WORK BRANCH:
+W01 DIRECTOR CORRECTION COMMIT:
+447ce385385dea7aad20a80ad1db7bcde6428d4c
+
+ARCHITECT FINALIZATION HEAD:
+a53eead2b7a15108c1417def33f55e9305675bb9
+
+DIRECTOR BRANCH:
 hka-tree/w01-director-layer
 
-CANONICAL BASE COMMIT:
+CANONICAL BASE:
 b2c6b8dacfb425c5e6d260176ed879fb75da6dae
-
-BRAND REPOSITORY:
-linkcomltd-byte/sigma-universe-web
 
 BRAND ASSET COMMIT:
 2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
-Director Layer là additive. Architect-Accepted baseline files được giữ nguyên byte trên final Director branch.
-
-## 3. Operating decision
+## 3. Architect Review Round 2 decision
 
 ```text
-W02–W64:
-ACADEMIC AUTHORING + VISUAL DIRECTION + PROMPT AUTHORING
-
-W01 DIRECTOR:
-CROSS-WINDOW QUALITY OWNER + DIRECT CORRECTION AUTHORITY INSIDE WINDOW OUTPUTS
-
-IMG UNITS:
-IMAGE GENERATION ONLY; MAXIMUM 2 AUTHORIZED ASSETS PER UNIT
-
-INDEPENDENT IMAGE QA:
-ONE RELEASE GATE REQUIRED BY EXISTING CANONICAL PIPELINE
-
-R2 RELEASE:
-UNCHANGED UNTIL A SEPARATE CANONICAL AMENDMENT IS ACCEPTED
+HKA-ADR-W01-001 ... HKA-ADR-W01-011: CLOSED
+CANONICAL HKA COMPASS ALIGNMENT: FIXED BY ARCHITECT
+PROCESS DUPLICATION: REDUCED BY ARCHITECT
+DIRECTOR LAYER AUTHORING STATUS: ACCEPTED
+UNRESOLVED P0/P1 FOR W02 AUTHORING: 0
 ```
 
-Không tạo một Academic QA Window bắt buộc. Director kiểm chương trình học thuật trước visual/prompt lock.
+One reporting discrepancy was corrected at review: W01 correction diff contained 24 changed files rather than the reported 21. The three extra reference files are retained but are not mandatory per-Window steps.
 
-## 4. Director package
+## 4. Lean operating model
+
+For a W02-like content Window, default critical path is:
 
 ```text
-DIRECTOR_LAYER_INDEX.md
-DIRECTOR_OPERATING_STANDARD.md
-ACADEMIC_PROGRAM_AUTHORING_STANDARD.md
-WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md
-TREE_TEMPLATE.md
-NODE_CATALOG_TEMPLATE.md
-RELATION_CATALOG_TEMPLATE.md
-SOURCE_REGISTER_TEMPLATE.md
-PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md
-DIRECTOR_REVIEW_GATE.md
-IMAGE_PRODUCTION_WINDOW_STANDARD.md
-IMG_EXECUTION_PACK_TEMPLATE.md
-PRODUCTION_CORRECTION_REGISTER_TEMPLATE.md
-DIRECTOR_CHANGE_REQUESTS.md
-DIRECTOR_SELF_AUDIT.md
+WINDOW CONTRACT
+→ TREE / NODE / RELATION / SOURCE
+→ ONE ACADEMIC QA REPORT
+→ PROGRAM-TO-VISUAL BRIEF
+→ PROMPTS + MANIFEST
 ```
 
-Existing accepted controls retained:
+Coverage matrices, separate Truth Packs, dedup registries, global ledgers and correction/provenance templates are used only when complexity or an actual defect requires them.
+
+## 5. Active production semantics
 
 ```text
-PRODUCTION_GOVERNANCE_STANDARD.md
-WINDOW_CONTRACT_TEMPLATE.md
-DIRECTORY_NAMING_STANDARD.md
-BATCH_HANDOFF_TEMPLATE.md
-PROMPT_ASSET_RECORD_TEMPLATE.md
-VISUAL_ART_DIRECTION.md
-QA_ACCEPTANCE_MATRIX.md
-VISUAL_QA_CHECKLIST.md
-W01 P12 calibration package and hash/manifest evidence
+CONTENT WINDOW GENERATES IMAGES: NO
+ACTIVE PRODUCTION RULE: ONE IMAGE PRODUCTION WINDOW PER BATCH
+PROPOSED IMG UNIT <=2 ASSETS MODEL: NOT ACTIVE
+INDEPENDENT IMAGE QA: MANDATORY
+B00 DIRECTOR PASS + B00 QA_APPROVED BEFORE B01+: MANDATORY
+R2 STAGING: NOT ACTIVE
 ```
 
-## 5. Critical Director locks
+IMG Unit and R2 staging amendments are deferred until image production is actually approaching. They do not block W02 academic/visual authoring.
+
+## 6. W02 authorization
 
 ```text
-CONTENT WINDOW DOES NOT GENERATE IMAGES.
-MAX IMG ASSETS PER UNIT = 2.
-BATCH REMAINS CANONICAL MANIFEST/QA/RELEASE UNIT.
-EACH ASSET REREADS IMMUTABLE SOURCE.
-OFFICIAL CHARACTER REFERENCE IS RELOADED PER RELEVANT ASSET.
-GENERATED OUTPUT NEVER BECOMES THE NEXT CHARACTER MASTER.
-SAME FAILURE TWICE = ROOT-CAUSE STOP.
-DIRECTOR MAY DIRECT-FIX SMALL OBJECTIVE DEFECTS.
-INDEPENDENT IMAGE QA RELEASE GATE REMAINS.
+W01 DIRECTOR LAYER: ACCEPTED FOR AUTHORING
+W02 EXACT CONTRACT: AUTHORIZED TO ISSUE
+W02 ACADEMIC AUTHORING: MAY OPEN AFTER CONTRACT SHA EXISTS
+W02 IMAGE PRODUCTION: NOT YET AUTHORIZED
+R2: NOT YET AUTHORIZED
+MERGE: SEPARATE DECISION
+WEBSITE: HOLD
 ```
 
-## 6. W02 opening condition
-
-W02 chỉ được mở khi:
+## 7. Final principle
 
 ```text
-DIRECTOR LAYER: COMMITTED
-DIRECTOR SELF-AUDIT: PASS
-ARCHITECT INDEPENDENT REVIEW: PASS
-W02 EXACT PROGRAM / WINDOW CONTRACT: ISSUED
-```
-
-```text
-CURRENT W02 STATUS: NOT OPENED
-CURRENT DIRECTOR STATUS: READY_FOR_ARCHITECT_REVIEW
+WRITE THE KNOWLEDGE FIRST.
+VERIFY THE KNOWLEDGE ONCE.
+DESIGN ONLY THE VISUALS THAT ADD LEARNING VALUE.
+DO NOT BUILD PROCEDURE FOR ITS OWN SAKE.
 ```
