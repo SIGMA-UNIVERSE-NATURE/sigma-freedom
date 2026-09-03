@@ -1,139 +1,173 @@
 ---
 title: "HKA — Batch Handoff Template"
-version: "1.0"
-status: "REFERENCE TEMPLATE"
+version: "2.0"
+status: "DIRECTOR-INTEGRATED REFERENCE — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
 ---
 
 # HKA BATCH HANDOFF TEMPLATE
 
-Mỗi chuyển giao phải được ghi thành biên nhận có SHA và số lượng cụ thể. Tin nhắn ngoài GitHub không thay thế biên nhận.
+Mọi handoff phải có exact SHA, exact count và authorized scope. Tin nhắn ngoài GitHub không thay biên nhận.
 
----
-
-# A. PROMPT WINDOW → PRODUCTION WINDOW
+# A. CONTENT WINDOW → DIRECTOR
 
 ```text
-HANDOFF TYPE: PROMPT_TO_PRODUCTION
-HANDOFF VERSION:
-STATUS: BATCH_READY
-
-PROMPT WINDOW ID:
+HANDOFF TYPE: CONTENT_TO_DIRECTOR
+STATUS: READY_FOR_DIRECTOR_REVIEW
+WINDOW ID:
 TREE ID:
-TREE SLUG:
 REPOSITORY:
 EXECUTION BRANCH:
-CANONICAL INDEX COMMIT SHA:
 WINDOW CONTRACT COMMIT SHA:
+ACADEMIC CONTENT COMMIT SHA:
+TREE PATH:
+NODE CATALOG PATH:
+RELATION CATALOG PATH:
+SOURCE REGISTER PATH:
+MANDATORY BRANCH COVERAGE:
+NODE COUNT:
+RELATION COUNT:
+SOURCE COUNT:
+OPEN ACADEMIC RISKS:
+```
+
+Director trả:
+
+```text
+DIRECTOR ACADEMIC GATE: PASS / RETURN / BLOCKED
+DIRECT FIXES APPLIED:
+RETURNED SECTIONS, IF ANY:
+```
+
+# B. CONTENT WINDOW → DIRECTOR VISUAL REVIEW
+
+```text
+HANDOFF TYPE: VISUAL_TO_DIRECTOR
+STATUS: READY_FOR_DIRECTOR_VISUAL_REVIEW
+WINDOW ID:
+ACADEMIC CONTENT COMMIT SHA:
+PROGRAM-TO-VISUAL DIRECTOR BRIEF PATH:
+VISUAL STRATEGY PATH:
+VISUAL COVERAGE MATRIX PATH:
+VISUAL PRODUCTION MANIFEST PATH:
+PROMPT SOURCE PATH:
+PROMPT COUNT:
+SELECTED PACKAGE:
+LOCKED ASSET COUNT:
+BATCH MAP:
+PROMPT HASH COUNT:
+IMG UNIT PLAN:
+```
+
+Director trả:
+
+```text
+DIRECTOR VISUAL GATE: PASS / RETURN / BLOCKED
+```
+
+# C. DIRECTOR → IMG UNIT
+
+Mỗi IMG Unit nhận một `IMG_EXECUTION_PACK.md` đã điền đầy đủ.
+
+```text
+HANDOFF TYPE: DIRECTOR_TO_IMG
+STATUS: BATCH_READY / PRODUCTION_AUTHORIZED
+CONTENT WINDOW ID:
+IMG UNIT ID:
+BATCH ID:
+RUN ID:
+AUTHORIZED ASSET COUNT: 1 / 2
+AUTHORIZED ASSET IDS:
+
+REPOSITORY:
 PROMPT CONTENT COMMIT SHA:
 FINAL MANIFEST COMMIT SHA:
-BRAND REPOSITORY:
-BRAND ASSET COMMIT SHA:
-
-BATCH ID:
-PLANNED RUN ID:
 MANIFEST PATH:
 MANIFEST SHA-256:
 BATCH PROMPTS PATH:
-ASSET COUNT:
-ASSET IDS:
 PROMPT SHA-256 PER ASSET:
+PROMPT PAYLOAD PATHS:
 
-EXPECTED CLEAN MASTER COUNT:
-EXPECTED BRANDED FINAL COUNT:
-EXPECTED TOTAL IMAGE FILES:
-
+BRAND REPOSITORY:
+BRAND ASSET COMMIT SHA:
 OFFICIAL CHARACTER PATHS:
 LOGO MASTER PATH:
-COMPACT EMBLEM PATH:
 EXACT MOTTO:
 
-SCHEMA VALIDATION: PASS / FAIL
-PLACEHOLDER COUNT:
-OPEN PROMPT RISKS:
-PRODUCTION MUST NOT INTERPRET OR EDIT:
-
+DIRECTOR CONTINUITY LOCKS:
+DIRECTOR CORRECTION LOCKS:
 AUTHORIZED NEXT STATE: PRODUCTION_CLAIMED
-AUTHORIZED BY:
-AUTHORIZED AT (UTC):
 ```
 
-## A — Pass conditions
+Pass conditions:
 
-- Full 40-character SHAs.
-- Manifest hash reproducible.
-- Asset count equals manifest array length.
-- Every Asset ID has exactly one prompt hash.
-- No placeholder.
-- Status is `BATCH_READY`.
+- every SHA full and reproducible;
+- authorized asset count = 1 or 2;
+- every asset belongs to batch manifest;
+- no placeholder;
+- official references exact;
+- IMG Unit has no authority outside listed assets.
 
----
-
-# B. PRODUCTION WINDOW → INDEPENDENT QA WINDOW
+# D. IMG UNIT → DIRECTOR
 
 ```text
-HANDOFF TYPE: PRODUCTION_TO_QA
-HANDOFF VERSION:
-STATUS: SELF_QA_COMPLETE
-
-PRODUCTION WINDOW:
+HANDOFF TYPE: IMG_TO_DIRECTOR
+STATUS: PRODUCTION_UNIT_COMPLETE / OUTPUT_FAILED / PROMPT_BLOCKED / ASSET_REFERENCE_BLOCKED
+IMG UNIT ID:
 BATCH ID:
 RUN ID:
-PROMPT CONTENT COMMIT SHA VERIFIED: YES / NO
-FINAL MANIFEST COMMIT SHA VERIFIED: YES / NO
-MANIFEST SHA-256 VERIFIED: YES / NO
-BRAND ASSET COMMIT SHA VERIFIED: YES / NO
+AUTHORIZED ASSET IDS:
+PRODUCED ASSET IDS:
+OFFICIAL REFERENCES VERIFIED: YES / NO / N/A
+CLEAN MASTER REFERENCES:
+BRANDED FINAL REFERENCES:
+SHA-256 PER FILE:
+SELF-QA PER ASSET:
+KNOWN LIMITATIONS:
+```
 
+Director kiểm consistency trước khi batch package đi formal QA.
+
+# E. DIRECTOR / BATCH ASSEMBLY → INDEPENDENT IMAGE QA
+
+```text
+HANDOFF TYPE: BATCH_TO_INDEPENDENT_QA
+STATUS: SELF_QA_COMPLETE
+BATCH ID:
+RUN ID:
+PROMPT CONTENT COMMIT SHA VERIFIED: YES/NO
+FINAL MANIFEST COMMIT SHA VERIFIED: YES/NO
+MANIFEST SHA-256 VERIFIED: YES/NO
+BRAND ASSET COMMIT SHA VERIFIED: YES/NO
 ASSET COUNT REQUIRED:
-ASSET COUNT PRODUCED:
+ASSET COUNT PRESENT:
 CLEAN MASTER COUNT:
 BRANDED FINAL COUNT:
 UNDECLARED FILE COUNT:
-
 SHA256SUMS PATH:
 PRODUCTION REPORT PATH:
 SELF-QA REPORT PATH:
+DIRECTOR PRODUCTION REVIEW: PASS
 PACKAGE LOCATION:
 BATCH PACKAGE SHA-256:
-
-ASSETS PASSED SELF-QA:
-ASSETS FAILED SELF-QA:
-BLOCKED ASSET IDS:
-KNOWN LIMITATIONS:
-
-AUTHORIZED NEXT STATE: QA_REVIEW
-PRODUCTION SIGN-OFF:
-COMPLETED AT (UTC):
 ```
 
-## B — Pass conditions
+Independent QA không sửa image/prompt và không thay Director bằng một vòng curriculum review khác.
 
-- Counts exactly match manifest.
-- No undeclared image file.
-- Every clean/branded file has SHA-256.
-- Self-QA report exists.
-- Package SHA-256 is reproducible.
-- Production does not claim `QA_APPROVED`.
-
----
-
-# C. INDEPENDENT QA WINDOW → RELEASE UPLOADER
+# F. INDEPENDENT QA → RELEASE
 
 ```text
 HANDOFF TYPE: QA_TO_RELEASE
-HANDOFF VERSION:
 STATUS: QA_APPROVED / QA_REJECTED / QA_BLOCKED
-
 QA WINDOW:
 BATCH ID:
 RUN ID:
 PROMPT CONTENT COMMIT SHA:
 MANIFEST SHA-256:
-BATCH PACKAGE SHA-256 VERIFIED: YES / NO
+BATCH PACKAGE SHA-256 VERIFIED: YES/NO
 QA REPORT PATH:
 QA REPORT SHA-256:
-
 ASSETS REVIEWED:
 ASSETS PASSED:
 ASSETS FAILED:
@@ -142,95 +176,35 @@ P0 COUNT:
 P1 COUNT:
 P2 UNRESOLVED COUNT:
 P3 UNRESOLVED COUNT:
-
 ACADEMIC GATE:
 PEDAGOGY GATE:
 VISUAL GATE:
 CHARACTER & BRAND GATE:
 ACCESSIBILITY GATE:
 INTEGRITY GATE:
-
-AUTHORIZED NEXT STATE:
-- If QA_APPROVED: R2_UPLOAD_AUTHORIZED
-- If QA_REJECTED: REWORK_REQUIRED
-- If QA_BLOCKED: PROMPT_REVISION_REQUIRED
-
-QA SIGN-OFF:
-REVIEWED AT (UTC):
 ```
 
-## C — Release authorization conditions
+`QA_APPROVED` chỉ khi all assets PASS, all six gates PASS và unresolved P0–P3 = 0.
 
-Chỉ `QA_APPROVED` khi:
+# G. RELEASE UPLOADER → RELEASE INDEX
+
+Giữ canonical release order và Amendment 1.1:
 
 ```text
-P0 = 0
-P1 = 0
-P2 unresolved = 0
-P3 unresolved = 0
-All six gates = PASS
+verify package
+→ upload/verify authorized Vault objects
+→ R2_UPLOAD_RECEIPT.json
+→ verify receipt
+→ RELEASED.json as final Vault-prefix object
+→ verify marker
+→ apply prefix lock
+→ write audit record to hka-c4k-audit
+→ update GitHub Release Index
 ```
 
-QA không được sửa output để tự biến FAIL thành PASS.
+Receipt tối thiểu ghi Release ID, Batch/Run, prompt/final-manifest SHA, manifest/package/QA hashes, object count, marker hash, lock status, audit record và Release Index commit.
 
----
-
-# D. RELEASE UPLOADER → RELEASE INDEX
-
-```text
-HANDOFF TYPE: R2_RELEASE_TO_GITHUB_INDEX
-HANDOFF VERSION:
-STATUS: R2_VERIFIED / R2_FAILED
-
-RELEASE ID:
-BATCH ID:
-RUN ID:
-PROMPT CONTENT COMMIT SHA:
-FINAL MANIFEST COMMIT SHA:
-MANIFEST SHA-256:
-BATCH PACKAGE SHA-256:
-QA REPORT SHA-256:
-
-R2 VAULT BUCKET:
-R2 VAULT PREFIX:
-EXPECTED OBJECT COUNT:
-VERIFIED OBJECT COUNT:
-CHECKSUMS VERIFIED: YES / NO
-UPLOAD RECEIPT KEY:
-UPLOAD RECEIPT SHA-256:
-UPLOAD RECEIPT STATUS: R2_OBJECTS_VERIFIED
-
-RELEASED MARKER KEY:
-RELEASED MARKER SHA-256:
-RELEASED MARKER VERIFIED: YES / NO
-PREFIX LOCK APPLIED: YES / NO
-LOCK POLICY:
-
-AUDIT BUCKET:
-R2 RELEASE AUDIT RECORD KEY:
-R2 RELEASE AUDIT RECORD SHA-256:
-
-GITHUB RELEASE INDEX PATH:
-RELEASE INDEX COMMIT SHA:
-
-AUTHORIZED NEXT STATE:
-- R2_VERIFIED only; WEB_APPROVED requires separate decision
-
-RELEASE UPLOADER SIGN-OFF:
-RELEASED AT (UTC):
-```
-
-## D — Pass conditions
-
-- Upload receipt is written and verified before `RELEASED.json`.
-- `RELEASED.json` is final object in vault prefix.
-- Prefix lock applied after marker verification.
-- Audit record written to audit bucket, not locked vault prefix.
-- Release Index points to exact immutable keys and hashes.
-
----
-
-# E. BLOCKED RECEIPT — DÙNG CHUNG
+# H. BLOCKED RECEIPT
 
 ```text
 HANDOFF TYPE: BLOCKED
@@ -241,31 +215,24 @@ SEVERITY:
 SOURCE FILE / SCHEMA / ASSET:
 AFFECTED OUTPUTS:
 OBSERVED EVIDENCE:
-WHY CONTINUING WOULD BE UNSAFE OR INVALID:
+WHY CONTINUING WOULD BE INVALID:
 REQUIRED DECISION OR CAPABILITY:
 UNCHANGED SHAS:
-FILES CREATED BEFORE BLOCK:
-OUT-OF-SCOPE MODIFICATIONS: 0 / <details>
+OUT-OF-SCOPE MODIFICATIONS:
 NEXT AUTHORIZED STATE: NONE UNTIL DECISION
 ```
 
-## Quy tắc
+Không dùng `BLOCKED` để tránh công việc khó.
 
-- Không dùng `BLOCKED` để tránh làm công việc khó.
-- Dùng `BLOCKED` khi thiếu quyền, nguồn, SHA, schema, dữ kiện học thuật quyết định, hoặc khi tiếp tục sẽ tạo kết quả không thể kiểm chứng.
-- Không tuyên bố `COMPLETE` cùng lúc với `BLOCKED`.
-
----
-
-# F. Handoff integrity checklist
+# I. Integrity checklist
 
 ```text
-[ ] Mọi SHA đầy đủ, không rút gọn
-[ ] Mọi count là số nguyên cụ thể
-[ ] Asset IDs khớp manifest
-[ ] Batch/Run/Window IDs cùng một namespace
-[ ] Không có `latest`, `current`, `TBD`
-[ ] Trạng thái hợp state machine
-[ ] Người nhận chỉ được chuyển sang đúng next state
-[ ] Handoff đã được commit hoặc lưu trong audit plane
+[ ] Full SHAs
+[ ] Exact integer counts
+[ ] IDs match manifest
+[ ] IMG Unit <=2 assets
+[ ] No latest/current/TBD
+[ ] Official references exact
+[ ] State transition authorized
+[ ] Handoff committed or retained in approved audit plane
 ```
