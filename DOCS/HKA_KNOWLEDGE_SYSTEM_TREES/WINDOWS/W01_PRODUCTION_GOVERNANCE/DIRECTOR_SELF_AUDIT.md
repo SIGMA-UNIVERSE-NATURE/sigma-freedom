@@ -1,6 +1,6 @@
 ---
 title: "HKA W01 Director Layer — Self Audit"
-version: "1.0"
+version: "1.1"
 status: "READY_FOR_ARCHITECT_REVIEW"
 language: "vi"
 date: "2026-09-03"
@@ -23,12 +23,16 @@ b2c6b8dacfb425c5e6d260176ed879fb75da6dae
 
 Director branch được tạo từ accepted baseline để không ghi đè branch W01 mà Architect đang thay đổi song song.
 
+Trong quá trình self-check, bốn accepted documents từng bị rewrite trên Director branch đã được phục hồi về đúng accepted blob SHA trước final review. Director Layer cuối cùng là additive, không destructive.
+
 ## 2. Director package present
 
 ```text
+DIRECTOR_LAYER_INDEX.md: PASS
 DIRECTOR_EXECUTION_REGISTER.md: PASS
 DIRECTOR_OPERATING_STANDARD.md: PASS
 ACADEMIC_PROGRAM_AUTHORING_STANDARD.md: PASS
+WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md: PASS
 TREE_TEMPLATE.md: PASS
 NODE_CATALOG_TEMPLATE.md: PASS
 RELATION_CATALOG_TEMPLATE.md: PASS
@@ -42,26 +46,23 @@ DIRECTOR_CHANGE_REQUESTS.md: PASS
 DIRECTOR_SELF_AUDIT.md: PASS
 ```
 
-## 3. Entry-point integration
+## 3. Accepted baseline preservation
 
-Updated on Director branch:
-
-```text
-PRODUCTION_GOVERNANCE_STANDARD.md → v2.0
-WINDOW_CONTRACT_TEMPLATE.md → v2.0
-DIRECTORY_NAMING_STANDARD.md → v2.0
-BATCH_HANDOFF_TEMPLATE.md → v2.0
-```
-
-Existing accepted assets retained without rewrite:
+The following accepted files remain byte-identical to commit `5ed62129...` on final Director branch:
 
 ```text
+PRODUCTION_GOVERNANCE_STANDARD.md
+WINDOW_CONTRACT_TEMPLATE.md
+DIRECTORY_NAMING_STANDARD.md
+BATCH_HANDOFF_TEMPLATE.md
 PROMPT_ASSET_RECORD_TEMPLATE.md
 VISUAL_ART_DIRECTION.md
 QA_ACCEPTANCE_MATRIX.md
 VISUAL_QA_CHECKLIST.md
 W01 calibration prompts/manifests/hash payloads
 ```
+
+Director additions are connected through `DIRECTOR_LAYER_INDEX.md` and `WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md` pending Architect acceptance.
 
 ## 4. Critical rules audit
 
@@ -126,10 +127,10 @@ W02 OPENED: NO
 
 ## 8. Residual items for Architect
 
-1. Decide whether Director Layer becomes the accepted W01 reference for W02–W64.
-2. Review the new `IMG-WXX-BYY-UZZ-RNN` execution-unit naming.
+1. Decide whether Director Layer becomes accepted supplemental W01 reference for W02–W64.
+2. Review `IMG-WXX-BYY-UZZ-RNN` execution-unit naming.
 3. Review batch-run carry-forward provenance rule for partial rework.
-4. Decide separately whether to canonicalize an R2 staging plane; current Director Layer does not activate it.
+4. Decide separately whether to canonicalize an R2 staging plane; Director Layer does not activate it.
 
 ## 9. Result
 
