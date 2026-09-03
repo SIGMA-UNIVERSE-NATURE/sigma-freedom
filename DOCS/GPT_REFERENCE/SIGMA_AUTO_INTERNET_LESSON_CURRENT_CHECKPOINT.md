@@ -95,7 +95,7 @@ COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 MIN_SHARED_CONTENT_TOKENS=4
 ```
 
-V13 is deliberately shallow. More source collection alone is not the identified next gap. The next curriculum step is evidence-unit alignment before proposition relation/truth.
+V13 is deliberately shallow. More source collection alone is not the identified next gap. The current curriculum step is evidence-unit alignment before proposition relation/truth.
 
 ## V17 R0 FIRST LIVE — PRESERVED FAILURE
 
@@ -124,8 +124,6 @@ INSTALL_QA_RESULT=PASS
 
 ## V17 R1 LIVE — SIGMA VM PASS, HOST VERIFIER INPUT-BINDING FAILURE
 
-Observed run:
-
 ```text
 V17_R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260903T014403Z_24337_21216
 ALIGNMENT_VM_RC=0
@@ -134,32 +132,67 @@ DRIVER_RC=33
 FAILURE_CLASS=FAIL_ALIGNMENT_BINDING_VERIFY
 ALIGNMENT_BINDING_VERIFY_RC=1
 BINDING_VERIFY_FAILURE_CLASS=INPUT_MISSING
-BINDING_ROWS=14
-LEDGER_WC_L_COUNT=24
-```
-
-Important: `wc -l=24` is not yet evidence that only 24 ledger rows exist, because Sigma serializes the ledger with no trailing newline; line-count tools based on newline count can undercount by one. Do not infer pair-coverage failure from this value.
-
-Targeted source diagnosis of the exact installed R1 verifier/runner contract:
-
-```text
-R1_RUNNER_VERIFIER_ARG_1=SUPPORTED_CANDIDATE_FILE
-R1_RUNNER_VERIFIER_ARG_2=SUPPORTED_BINDINGS_FILE
-R1_RUNNER_VERIFIER_ARG_3=ALIGNMENT_LEDGER_FILE
-R1_RUNNER_VERIFIER_ARG_4=ALIGNMENT_STATE_FILE
-R1_RUNNER_VERIFIER_ARG_5=V13_RUN_DIRECTORY
-R1_VERIFIER_REQUIRES_ALL_5_ARGS_IS_FILE=YES
-R1_VERIFIER_ARG_5_USAGE=EXISTENCE_CHECK_ONLY
 ROOT_CAUSE=HOST_STRUCTURAL_VERIFIER_RECEIVED_V13_DIRECTORY_WHERE_ITS_OWN_CONTRACT_REQUIRED_FILE
-FAILURE_STAGE=POST_SIGMA_STRUCTURAL_VERIFICATION
 SIGMA_VM_FAILURE=NO
 SIGMA_ALIGNMENT_POLICY_FAILURE=NOT_PROVEN
-V17_ALIGNMENT_CAPABILITY=NOT_PROVEN_YET
 ```
 
-The Sigma VM completed successfully and emitted `ALIGNED_CANDIDATE_AVAILABLE`. The failure is in host-side structural verification argument binding: the runner passes the V13 run directory as verifier arg 5, while the verifier mechanically rejects any arg that is not a regular file. This is not semantic alignment logic and is not a Sigma cognition failure.
+The runner passed the V13 run directory as verifier argument 5, while the verifier mechanically requires all five arguments to be regular files. This is a post-Sigma host structural-verifier binding defect.
 
-Before creating a repair or rerunning Sigma, perform a targeted no-Internet/no-VM verification on the existing R1 artifacts by substituting an actual V13 provenance file as verifier arg 5. This will reveal whether any additional structural defect exists after the `INPUT_MISSING` gate.
+## V17 R1 TARGETED EXISTING-ARTIFACT REVERIFY — PASS
+
+No Internet and no Sigma VM were executed. The exact R1 ledger/state and exact original supported evidence were rechecked by the same R1 Python structural verifier, changing only verifier argument 5 from the V13 directory to the existing `V13/binding.verify.state` regular file.
+
+```text
+TARGETED_VERIFY_RC=0
+LEDGER_RECORDS=25
+SUPPORTED_PARAGRAPHS=14
+DISTINCT_SOURCE_PAIRS=25
+ALIGNED_EVIDENCE_CANDIDATE_PAIRS=22
+INSUFFICIENT_ALIGNMENT_PAIRS=3
+ALIGNMENT_STATE=ALIGNED_CANDIDATE_AVAILABLE
+HOST_SEMANTIC_ALIGNMENT=NO
+HOST_SYNONYM_MAPPING=NO
+SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
+```
+
+Canonical interpretation:
+
+```text
+R1_SIGMA_OUTPUT_STRUCTURALLY_VALID_UNDER_CORRECT_VERIFIER_FILE_BINDING=YES_TESTED_SCOPE
+ADDITIONAL_POST_INPUT_MISSING_STRUCTURAL_DEFECT_OBSERVED=NO
+R1_LEDGER_PAIR_COVERAGE=25_OF_25_DISTINCT_SOURCE_PAIRS
+R1_ALIGNED_CANDIDATE_DISCOVERY=22_OF_25_UNDER_V17_CURRICULUM_POLICY
+R1_INSUFFICIENT_ALIGNMENT=3_OF_25
+V17_FULL_WRAPPER_PASS=NOT_YET_PROVEN
+```
+
+The 22 aligned pairs are only evidence-unit alignment candidates under the current V17 lexical/evidence-neighborhood policy. They do not prove proposition equivalence, agreement, conflict, source trust, or truth.
+
+## V17 R2 VERIFIER INPUT-BINDING REPAIR — PREPARED
+
+```text
+CURRENT_FRONTIER=SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17
+V17_R2_PACKAGE_TARGET=V1_R20R2_SIGMA_NATIVE_EVIDENCE_GROUNDED_ALIGNMENT_VERIFIER_INPUT_BINDING_REPAIR
+V17_R2_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17_R2_VERIFIER_INPUT_BINDING_REPAIR.sh
+V17_R2_INSTALLER_SHA256=c7a23b9cd0fbc87eaafb18c3702bcb4783d0a35dc1fc2b533de0797fabb64809
+REPAIR_SCOPE=RUNNER_VERIFIER_FIFTH_ARGUMENT_BINDING_FILE_ONLY
+SIGMA_ALIGNMENT_LOGIC_CHANGE=NO
+ALIGNMENT_POLICY_CHANGE=NO
+HOST_SEMANTIC_ALIGNMENT_CHANGE=NO
+LOCAL_INSTALLER_BASH_SYNTAX=PASS
+LOCAL_EMBEDDED_BASH_SYNTAX=PASS
+LOCAL_PYTHON_BINDING_VERIFIER_SYNTAX=PASS
+LOCAL_CORRECT_BINDING_FILE_ARG_QA=PASS
+LOCAL_NO_V13_DIR_AS_VERIFIER_ARG_QA=PASS
+LOCAL_SIGMA_POLICY_PRESERVED_QA=PASS
+LOCAL_R1_BAND_SERIALIZATION_PRESERVED_QA=PASS
+SIGMA_ENGINE_COMPILE_ON_OPPO=PENDING
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+```
+
+R2 changes only the runner's structural-verifier fifth argument from the V13 directory to the already-proven `V13/binding.verify.state` file. Sigma engine, alignment thresholds, candidate classes, and semantic ownership are preserved.
 
 ## V17 GOVERNANCE / CLAIM BOUNDARY
 
@@ -177,8 +210,6 @@ DURABLE_KNOWLEDGE=DEFERRED
 SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
 ```
 
-`ALIGNED_EVIDENCE_CANDIDATE` remains only a candidate for later relation analysis. It is not proposition equivalence, agreement, conflict, source trust, or truth.
-
 ## STILL NOT PROVEN
 
 ```text
@@ -192,7 +223,6 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
 ```text
-CURRENT_FRONTIER=SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT_V17
-CURRENT_STATUS=V17_R1_SIGMA_VM_PASS_HOST_VERIFIER_INPUT_BINDING_FAILURE_CANONICAL
-NEXT_COMMAND=TARGETED_REVERIFY_EXISTING_V17_R1_ARTIFACTS_WITH_ACTUAL_V13_PROVENANCE_FILE_NO_VM_NO_INTERNET
+CURRENT_STATUS=V17_R1_TARGETED_STRUCTURAL_REVERIFY_PASS_R2_VERIFIER_BINDING_REPAIR_PREPARED
+NEXT_COMMAND=RUN_V17_R2_INSTALL_QA_ON_OPPO
 ```
