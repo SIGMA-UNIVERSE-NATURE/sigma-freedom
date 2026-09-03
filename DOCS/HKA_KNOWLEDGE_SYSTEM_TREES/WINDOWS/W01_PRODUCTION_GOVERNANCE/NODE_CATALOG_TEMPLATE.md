@@ -1,0 +1,111 @@
+---
+title: "HKA NODE_CATALOG.md Template"
+version: "1.0"
+status: "PROPOSED REFERENCE TEMPLATE"
+---
+
+# HKA NODE CATALOG
+
+Mỗi node dùng đúng một record.
+
+---
+
+## NODE: <NODE ID>
+
+```text
+NODE ID:
+WINDOW ID:
+TREE ID:
+PARENT NODE / BRANCH:
+NODE VERSION:
+STATUS: DRAFT / REVIEWED / LOCKED
+TITLE:
+NODE TYPE: CONCEPT / PROCESS / MECHANISM / METHOD / EVIDENCE / CASE / DEBATE / OPEN_QUESTION / APPLICATION
+```
+
+### 1. Knowledge contract
+
+```text
+CENTRAL QUESTION:
+CORE CLAIM / DEFINITION:
+WHY THIS NODE EXISTS:
+BOUNDARY — INCLUDED:
+BOUNDARY — EXCLUDED:
+```
+
+### 2. Prerequisites
+
+```text
+REQUIRED PREREQUISITE NODE IDS:
+HELPFUL PRIOR NODES:
+WHAT MAY BE INTRODUCED HERE WITHOUT PRIOR FORMALISM:
+```
+
+### 3. Content
+
+```text
+KEY COMPONENTS:
+PROCESS / MECHANISM:
+CAUSE–EFFECT LIMITS:
+EXAMPLES:
+COUNTEREXAMPLES:
+APPLICATIONS:
+```
+
+### 4. Evidence and epistemic status
+
+```text
+EPISTEMIC STATUS:
+EVIDENCE TYPE:
+SOURCE IDS:
+KNOWN LIMITATIONS:
+UNCERTAINTY:
+ACTIVE DEBATE:
+OPEN QUESTIONS:
+```
+
+### 5. Misconceptions
+
+| Misconception | Why wrong/incomplete | Correct model | Counterexample/evidence |
+|---|---|---|---|
+
+### 6. D1–D4 progression
+
+```text
+D1 — learner can:
+D2 — learner can:
+D3 — learner can:
+D4 — learner can:
+```
+
+Mỗi dòng phải mô tả năng lực quan sát được.
+
+### 7. Relations
+
+```text
+PARENT:
+CHILDREN:
+SIBLING RELATIONS:
+CROSS-TREE RELATION IDS:
+```
+
+### 8. Visual implication
+
+```text
+VISUAL NEED: REQUIRED / USEFUL / NOT_REQUIRED
+WHY:
+WHAT MUST BE SEEN:
+WHAT MUST NOT BE IMPLIED:
+CANDIDATE REPRESENTATION TYPE:
+MISCONCEPTION RISK:
+```
+
+### 9. Acceptance
+
+```text
+SOURCE COMPLETE: YES/NO
+PREREQUISITE COMPLETE: YES/NO
+D1-D4 COMPLETE: YES/NO
+OWNERSHIP CLEAR: YES/NO
+DIRECTOR REVIEW: PASS / RETURN
+```
