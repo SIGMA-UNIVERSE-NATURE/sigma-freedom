@@ -1,8 +1,8 @@
 ---
 title: "HKA W01 — Execution Register"
 window_id: "W01"
-version: "1.1"
-status: "READY_FOR_DELEGATION"
+version: "1.2"
+status: "BLOCKED"
 language: "vi"
 date: "2026-09-03"
 ---
@@ -55,49 +55,91 @@ MERGE AUTHORIZATION:
 NO
 ```
 
-## 4. Current state
+## 4. Authoritative execution result
 
 ```text
-STATE: READY_FOR_DELEGATION
-OWNER TYPE: GPT WINDOW W01
-PRODUCTION: NOT AUTHORIZED
-R2 UPLOAD: NOT AUTHORIZED
-MERGE: NOT AUTHORIZED
-WEBSITE DEPLOY: NOT AUTHORIZED
+STATE: BLOCKED
+WINDOW-REPORTED STATUS: BLOCKED
+WINDOW-CREATED MANDATORY OUTPUT FILES: 0
+WINDOW-COMMITTED PROMPT RECORDS: 0 / 12
+WINDOW-COMMITTED BATCH MANIFESTS: 0 / 3
+WINDOW-CREATED GOVERNANCE DOCUMENTS: 0 / 9
+FINAL COMMIT SHA FROM WINDOW: NOT CREATED
+CONTENT COMMIT SHA FROM WINDOW: NOT CREATED
+FINAL MANIFEST COMMIT SHA FROM WINDOW: NOT CREATED
 ```
 
-## 5. Locked quantity
+The delegated GPT Window did not create any prompt, manifest, governance output, or final commit. This is the only correct provenance statement for W01 execution.
+
+## 5. Blocker
 
 ```text
-PACKAGE: P12
-ASSET IDS: HKA-VIS-W01-0001 ... HKA-VIS-W01-0012
-BATCHES:
+BLOCKER ID: HKA-W01-BLK-001
+SOURCE: Delegated execution environment GitHub capability
+CAUSE: Read/search/fetch available; no authenticated create/update/commit/ref-write action or authenticated Git transport
+AFFECTED OUTPUTS: All mandatory W01 implementation outputs and required Git SHAs
+REQUIRED DECISION: Provide a write-capable execution environment, then rerun the immutable W01 execution prompt
+```
+
+The window correctly stopped rather than generating local-only files and falsely claiming GitHub completion.
+
+## 6. Provenance correction
+
+An architect session subsequently created implementation files after receiving the BLOCKED report and incorrectly described those files as W01 completion. That was a provenance error.
+
+Corrective action taken:
+
+```text
+BRANCH RESET TO PRE-IMPLEMENTATION HEAD:
+2326d4d639495d3e552e41fe0763b5bfc573e56d
+
+ALL ARCHITECT-GENERATED PROMPT/MANIFEST/PRODUCTION FILES AFTER THAT HEAD:
+REMOVED FROM THE ACTIVE W01 BRANCH BY REF RESET
+
+W01 EXECUTION STATUS:
+RESTORED TO BLOCKED
+```
+
+Those superseded architect-generated commits must not be used as W01 evidence, prompt source, production authorization, QA evidence, or release source.
+
+## 7. Locked intended quantity — not produced
+
+```text
+PACKAGE DESIGN TARGET: P12
+PROMPTS REQUIRED: 12
+BATCHES PLANNED: 3
 - HKA-W01-B00 = 2 assets
 - HKA-W01-B01 = 6 assets
 - HKA-W01-B02 = 4 assets
-PROMPTS REQUIRED: 12
-CLEAN MASTERS REQUIRED LATER: 12
-BRANDED FINALS REQUIRED LATER: 12
-TOTAL IMAGE FILES REQUIRED LATER: 24
+EXPECTED CLEAN MASTERS LATER: 12
+EXPECTED BRANDED FINALS LATER: 12
+EXPECTED TOTAL IMAGE FILES LATER: 24
 ```
 
-## 6. Next authorized transition
+These are requirements only. They are not evidence that any prompt or image has been created.
+
+## 8. Authorization state
 
 ```text
-READY_FOR_DELEGATION
+W01 IMPLEMENTATION: BLOCKED
+IMAGE PRODUCTION: NOT AUTHORIZED
+B00/B01/B02 PRODUCTION: NOT AUTHORIZED
+R2 UPLOAD: NOT AUTHORIZED
+MERGE: NOT AUTHORIZED
+WEBSITE DEPLOY: NOT AUTHORIZED
+SIGMASTUDY.NET PRODUCTION: HOLD
+```
+
+## 9. Next authorized transition
+
+```text
+BLOCKED
 → W01_EXECUTING
 ```
 
-Điều kiện chuyển trạng thái:
+Only after W01 is rerun in a GitHub write-capable environment using the immutable `GPT_EXECUTION_PROMPT.md`.
 
-1. Một cửa sổ GPT mới nhận nguyên văn `GPT_EXECUTION_PROMPT.md`.
-2. Cửa sổ xác nhận đọc được repository, base SHA, contract SHA và brand asset SHA.
-3. Cửa sổ làm việc trên đúng execution branch.
-4. Không có blocker P0.
-
-## 7. Evidence to return
-
-W01 phải trả:
+## 10. Evidence required from rerun
 
 ```text
 FINAL STATUS
@@ -105,17 +147,20 @@ CONTENT COMMIT SHA
 FINAL MANIFEST COMMIT SHA
 FILES CREATED
 FILES MODIFIED OUTSIDE PREFIX
-CALIBRATION PROMPT COUNT
+GOVERNANCE DOCUMENT COUNT
+PROMPT COUNT
 BATCH MANIFEST COUNT
 CHANGE REQUEST COUNT
+SCHEMA VALIDATION
 OPEN RISKS
 ```
 
-Sau đó kiến trúc sư HKA sẽ áp dụng `ARCHITECT_ACCEPTANCE_GATE.md` trên 100% đầu ra và ghi kết quả vào Draft PR #14.
+No architect-generated substitute may be counted as a W01-created output.
 
-## 8. Change log
+## 11. Change log
 
 | Version | Date | State | Evidence |
 |---|---|---|---|
 | 1.0 | 2026-09-03 | READY_FOR_DELEGATION | Contract, execution prompt and acceptance gate issued |
-| 1.1 | 2026-09-03 | READY_FOR_DELEGATION | Execution Issue #13 and Draft PR #14 recorded |
+| 1.1 | 2026-09-03 | READY_FOR_DELEGATION | Issue #13 and Draft PR #14 recorded |
+| 1.2 | 2026-09-03 | BLOCKED | Delegated W01 report: zero outputs; branch provenance corrected and reset |
