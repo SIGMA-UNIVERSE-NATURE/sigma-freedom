@@ -1,14 +1,14 @@
 ---
 title: "HKA Director Review Gate"
-version: "1.1"
-status: "PROPOSED REVIEW STANDARD — ARCHITECT REVIEW REQUIRED"
+version: "1.2"
+status: "ARCHITECT FINALIZED REFERENCE"
 language: "vi"
 date: "2026-09-03"
 ---
 
 # HKA DIRECTOR REVIEW GATE
 
-Director review has two primary authoring gates and a production-consistency review. It does not replace Independent Image QA.
+Director review có hai authoring gates và một production-consistency review. Không thay Independent Image QA.
 
 ## GATE A — Academic Program
 
@@ -18,12 +18,12 @@ PASS only when:
 
 ```text
 [ ] exact Window Contract read
-[ ] Window Type declared and applicability profile correct
+[ ] Window Type correct
 [ ] mandatory branches 100% mapped
 [ ] TREE/NODE/RELATION/SOURCE artifacts complete as contracted
 [ ] canonical minimum node anatomy complete
-[ ] Academic Coverage Audit exists and PASS
 [ ] Academic QA Report exists and PASS
+[ ] Academic QA contains or links adequate coverage/graph/source evidence
 [ ] semantic duplicate-node count unresolved = 0
 [ ] orphan/unreachable required nodes = 0 or justified
 [ ] prerequisite targets exist
@@ -40,11 +40,12 @@ PASS only when:
 [ ] external curriculum/classification mapping complete when contracted
 [ ] unresolved material expert-review items = 0 or explicitly deferred by contract
 [ ] cross-window ownership conflicts unresolved = 0
-[ ] Compression Test PASS
-[ ] Expansion Test PASS
+[ ] program economy / redundancy check PASS
 ```
 
-Director may direct-fix only bounded nonmaterial defects using `DIRECTOR_FIX_PROVENANCE_TEMPLATE.md`. Material academic changes return to owner Window.
+A separate `ACADEMIC_COVERAGE_AUDIT` file is optional if the same durable evidence is already in Academic QA.
+
+Director may direct-fix only bounded nonmaterial defects with provenance. Material academic changes return to owner Window.
 
 Result:
 
@@ -61,7 +62,7 @@ PASS only when:
 [ ] every VCU traces to locked Node IDs
 [ ] every material VCU/asset traces Node → Claim → Source
 [ ] Academic Content Commit SHA locked
-[ ] Academic Truth Pack complete per asset/candidate
+[ ] truth metadata complete per asset/candidate
 [ ] certainty/content class preserved into visual handoff
 [ ] misconception to prevent explicit
 [ ] WHAT MUST BE SEEN explicit
@@ -81,7 +82,9 @@ PASS only when:
 [ ] batch map valid
 ```
 
-IMG Unit plan is **not** a Gate B activation requirement until a canonical IMG Unit amendment is accepted.
+Truth metadata and dedup evidence may be embedded in `PROGRAM_TO_VISUAL_DIRECTOR_BRIEF.md`; separate files are not required unless useful.
+
+IMG Unit plan is not a Gate B activation requirement until a canonical IMG Unit amendment is accepted.
 
 Result:
 
@@ -102,12 +105,12 @@ Director checks returned production before batch submission to Independent Image
 [ ] clean/branded distinction correct
 [ ] file names and hashes present
 [ ] per-asset provenance complete when carry-forward applies
-[ ] correction records applied
+[ ] correction records applied when applicable
 ```
 
 Director may reject production before formal QA to save time. Director review status is never `QA_APPROVED`.
 
-## B00 mass-production gate — P0 lock
+## B00 mass-production gate
 
 No B01+ mass production may open until:
 
@@ -117,19 +120,18 @@ AND
 B00 INDEPENDENT IMAGE QA = QA_APPROVED
 ```
 
-`QA_REJECTED` or `QA_BLOCKED` keeps every B01+ production path closed. Director review alone is insufficient.
+`QA_REJECTED` or `QA_BLOCKED` keeps every B01+ production path closed.
 
 ## Error handling
 
 ```text
-SMALL NONMATERIAL METADATA / OBJECTIVE DEFECT
-→ Director direct-fix only with provenance + new commit SHA
+SMALL NONMATERIAL DEFECT
+→ bounded direct-fix with provenance
 
 MATERIAL ACADEMIC DEFECT
 → owner Window correction
 → new Academic Content Commit
-→ rerun affected coverage/QA
-→ invalidate affected truth/visual/prompt/manifest locks
+→ rerun only affected QA/downstream locks
 
 GENERATION DEFECT
 → canonical rework path / new run
@@ -141,38 +143,15 @@ CANONICAL CONFLICT
 → BLOCK + change request/amendment
 ```
 
-## Direct-fix invalidation check
-
-For every post-lock Director edit:
-
-```text
-DIRECTOR FIX COMMIT SHA PRESENT: YES/NO
-SUPERSEDES ACADEMIC CONTENT COMMIT SHA PRESENT: YES/NO
-AFFECTED NODE/CLAIM/RELATION IDS PRESENT: YES/NO
-SOURCE IMPACT CLASSIFIED: YES/NO
-DOWNSTREAM PROMPT INVALIDATION DECIDED: YES/NO
-```
-
-## Partial rework provenance check
-
-When a later complete Batch Run carries forward prior bytes:
-
-```text
-BATCH_ASSET_PROVENANCE RECORD COUNT = MANIFEST ASSET COUNT
-ORIGIN RUN/UNIT/HASH PRESENT PER ASSET
-CARRIED_FORWARD FLAG PRESENT
-REVALIDATED_IN_FINAL_BATCH = YES FOR FINAL SNAPSHOT
-```
-
-Independent QA still reviews the complete final snapshot.
+Do not rerun unaffected gates or rewrite unaffected files.
 
 ## W02 opening rule
 
-W02 academic authoring may not open as an operating inheritance until:
+W02 academic authoring may open when:
 
 ```text
 Director Layer Architect Review Round 2 = PASS
 W02 exact Window Contract / Window Type = ISSUED
 ```
 
-W02 image production additionally requires the applicable academic/visual gates and current canonical production authorization. Proposed IMG Unit semantics cannot activate without canonical amendment.
+W02 authoring does not wait for IMG Unit or R2 staging amendments. Image production remains separately gated.
