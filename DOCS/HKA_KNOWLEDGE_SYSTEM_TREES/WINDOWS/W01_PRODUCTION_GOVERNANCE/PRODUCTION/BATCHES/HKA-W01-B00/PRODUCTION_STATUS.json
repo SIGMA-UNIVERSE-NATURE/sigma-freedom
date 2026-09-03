@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "batch_id": "HKA-W01-B00",
+  "run_id": "HKA-W01-B00-R01",
+  "prompt_commit_sha": "04da1831a597f22c7eab5737b9b674e545b71622",
+  "manifest_sha256": "d3756529d6fb5cf0239f3df53558dd1f6de365e41e64184ad9146c272314261e",
+  "status": "BATCH_READY",
+  "asset_total": 2,
+  "asset_completed": 0,
+  "asset_passed_self_qa": 0,
+  "asset_failed_self_qa": 0,
+  "blocked_asset_ids": [],
+  "notes": "Prompt and manifest ready. Image production remains unauthorized until explicit handoff authorization.",
+  "updated_at": "2026-09-03T00:00:00Z"
+}
