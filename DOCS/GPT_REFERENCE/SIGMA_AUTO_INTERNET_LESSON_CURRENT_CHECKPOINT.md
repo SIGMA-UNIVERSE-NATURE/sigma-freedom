@@ -151,8 +151,6 @@ R0 PASS scope is exact surface period segmentation only. It is not a proposition
 
 ## V18 R0 EXACT LEDGER / BOUNDARY AUDIT — CANONICAL DIAGNOSIS
 
-Exact ledger inspection and a targeted mechanical audit over the same existing artifacts produced:
-
 ```text
 SPAN_ROWS=10
 PUNCTUATION_ONLY_SPANS=1
@@ -162,25 +160,19 @@ ADJACENT_CLOSER_FRAGMENT_PAIRS=1
 RECONSTRUCTABLE_EVIDENCE_UNITS=5/5
 ```
 
-Observed defect:
+Observed root cause:
 
 ```text
 SPAN_04_UID=U003
-SPAN_04_TEXT=If you ask someone, “What is communication?” most people will say, “It means talking
 SPAN_04_CURLY_QUOTE_BALANCE=+1
-
 SPAN_05_UID=U003
-SPAN_05_TEXT=”
 SPAN_05_PUNCTUATION_ONLY=YES
 SPAN_05_CURLY_QUOTE_BALANCE=-1
-
 ADJACENT_CLOSER_FRAGMENT=SPAN_04->SPAN_05
 V18_R0_PRIMARY_BOUNDARY_ROOT_CAUSE=NAIVE_PERIOD_SPLIT_OCCURS_BEFORE_TRAILING_CLOSING_QUOTE
 ```
 
 Leading ASCII boundary whitespace appears on U004 spans 07-10. All five evidence units remain reconstructable from the R0 span stream, so this is a local boundary-integrity / candidate-hygiene defect, not evidence loss.
-
-Canonical interpretation:
 
 ```text
 V18_R0_PASS_REMAINS_VALID=YES
@@ -193,26 +185,32 @@ ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
 SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
 ```
 
-Do not beautify the output or hardcode U003. The next capability must be general structural self-checking: candidate boundary integrity, fragment qualification, uncertainty/UNKNOWN on unresolved structure, and preservation of source provenance. Composite assertion atomicity is a separate later problem and must not be conflated with quote-boundary repair.
+Do not beautify output or hardcode U003. The next capability is structural self-checking: candidate boundary integrity, fragment qualification, UNKNOWN on unresolved structure, and provenance preservation. Composite assertion atomicity is a separate later problem.
 
-## GOVERNANCE / CLAIM BOUNDARY
+## V18 R1 PACKAGE — PREPARED, NOT YET OPPO-PROVEN
 
 ```text
-QUERY_EVOLUTION_PLANE=SIGMA_NATIVE_VM
-ALIGNMENT_DECISION_PLANE=SIGMA_NATIVE_VM
-FORMATION_DECISION_PLANE=SIGMA_NATIVE_VM
+CURRENT_STAGE=V18_R1_SPAN_BOUNDARY_INTEGRITY_AND_CANDIDATE_HYGIENE
+V18_R1_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_SPAN_BOUNDARY_INTEGRITY_V18_R1.sh
+V18_R1_INSTALLER_SHA256=fc22fb75f7c6c56d4c0e3880f1281d36c8bfdde54a67823972372121d569e963
+V18_R1_PACKAGE_TARGET=V1_R21R1_SIGMA_NATIVE_SPAN_BOUNDARY_INTEGRITY_CANDIDATE_HYGIENE_V18_R1
+R0_CANONICAL_PASS=PRESERVE
+R0_RAW_SPAN_LEDGER=PRESERVE
+BOUNDARY_DECISION_PLANE=SIGMA_NATIVE_VM
 HOST_SEMANTIC_REWRITE=NO
-HOST_SEMANTIC_ALIGNMENT=NO
-HOST_SYNONYM_MAPPING=NO
 HOST_PROPOSITION_FORMATION=NO
-HOST_EXACT_DEDUP=ALLOWED_MECHANICAL_ONLY
-HOST_DEDUP_MUST_PRESERVE_ALL_PROVENANCE_ALIASES=YES
-ZERO_PREWRITTEN_QUERY=YES
-ZERO_PREWRITTEN_SOURCE=YES
-ZERO_PREWRITTEN_CONCLUSION=YES
 ZERO_PREWRITTEN_PROPOSITION=YES
-ZERO_PREWRITTEN_SYNONYM_TABLE=YES
+ZERO_EVIDENCE_SENTENCE_HARDCODE=YES
+TESTED_QUOTE_CLASS=CURLY_DOUBLE_QUOTES
+BOUNDARY_POLICY=QUOTE_BALANCE_CARRY_PLUS_ASCII_BOUNDARY_SPACE_NORMALIZATION
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
+ATOMIC_PROPOSITION_FORMATION=NOT_PROVEN
+PROPOSITION_ALIGNMENT=DEFERRED
 ```
+
+Local static QA PASS: Bash/Python syntax, no Sigma interior hash comments, no evidence-specific words/IDs, curly-quote balance state present, unresolved/UNKNOWN classes present, nonlexical-fragment qualification present, ASCII boundary-space normalization present, no agreement/conflict/truth/durable-knowledge logic, and only previously used string primitives `str_byte`, `str_join`, `str_len`, `str_split`.
+
+R1 is intentionally tested-scope syntax training, not universal punctuation understanding. It carries period-split fragments while curly double-quote balance is open, merges only when the structural quote balance closes, qualifies unresolved structure instead of guessing, and retains both raw grouped surface and ASCII-boundary-normalized surface. No expected candidate count is hardcoded; the verifier mechanically replays the same structural policy from the preserved R0 ledger.
 
 ## STILL NOT PROVEN
 
@@ -233,17 +231,11 @@ KNOWLEDGE_REUSE_IN_FUTURE_DECISION=NOT_PROVEN
 CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 ```
 
-## NEXT FRONTIER WITHIN V18
+## NEXT STEP
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
-CURRENT_STAGE=V18_R1_SPAN_BOUNDARY_INTEGRITY_AND_CANDIDATE_HYGIENE
-CURRENT_STATUS=V18_R0_PASS_BOUNDARY_AUDIT_CANONICAL_DIRECT_ALIGNMENT_BLOCKED
-V18_R1_PRIMARY_ROOT_CAUSE=NAIVE_PERIOD_DELIMITER_SPLITS_BEFORE_TRAILING_CLOSING_QUOTE
-V18_R1_GOAL=SIGMA_NATIVE_STRUCTURAL_BOUNDARY_SELF_CHECK_AND_GENERAL_FRAGMENT_QUALIFICATION_WITHOUT_PREWRITTEN_PROPOSITION
-V18_R1_MUST_PRESERVE=R0_RAW_SPAN_LEDGER_AND_5_OF_5_RECONSTRUCTABILITY
-V18_R1_MUST_NOT_DO=SEMANTIC_EQUIVALENCE_OR_AGREEMENT_OR_TRUTH
-COMPOSITE_ASSERTION_ATOMICITY=DEFER_AFTER_BOUNDARY_INTEGRITY
+CURRENT_STATUS=V18_R1_PACKAGE_PREPARED_AWAITING_OPPO_INSTALL_COMPILE_QA
 NO_NEW_INTERNET_REQUIRED=YES
-NEXT_COMMAND=TARGETED_INVENTORY_OF_ALREADY_PROVEN_STRING_PRIMITIVES_FOR_R1_DESIGN_NO_RERUN
+NEXT_COMMAND=RUN_V18_R1_INSTALL_COMPILE_QA_ONLY_NO_SIGMA_VM_NO_INTERNET
 ```
