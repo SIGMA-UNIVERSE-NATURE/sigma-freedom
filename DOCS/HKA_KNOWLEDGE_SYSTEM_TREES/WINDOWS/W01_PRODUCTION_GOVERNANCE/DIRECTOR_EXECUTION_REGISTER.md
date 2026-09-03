@@ -1,8 +1,8 @@
 ---
 title: "HKA W01 — Director Layer Execution Register"
 window_id: "W01"
-version: "1.0"
-status: "DIRECTOR_IMPLEMENTATION_PENDING_ARCHITECT_REVIEW"
+version: "1.1"
+status: "READY_FOR_ARCHITECT_REVIEW"
 language: "vi"
 date: "2026-09-03"
 ---
@@ -11,7 +11,7 @@ date: "2026-09-03"
 
 ## 1. Purpose
 
-Director Layer bổ sung phần còn thiếu giữa Knowledge Tree contract và image-production pipeline. Mục tiêu là để W02–W64 có thể tự làm trọn một phạm vi tri thức, tạo prompt chính xác, rồi giao các đơn vị IMG nhỏ và ổn định để sản xuất hình.
+Director Layer bổ sung phần còn thiếu giữa Knowledge Tree contract và image-production pipeline. Mục tiêu là để W02–W64 tự làm trọn một phạm vi tri thức, tạo prompt chính xác, rồi giao các đơn vị IMG nhỏ và ổn định để sản xuất hình.
 
 ## 2. Baseline
 
@@ -33,7 +33,7 @@ BRAND ASSET COMMIT:
 2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
-Director Layer không thay đổi canonical source files và không hủy Architect Accepted baseline.
+Director Layer là additive. Architect-Accepted baseline files được giữ nguyên byte trên final Director branch.
 
 ## 3. Operating decision
 
@@ -54,34 +54,57 @@ R2 RELEASE:
 UNCHANGED UNTIL A SEPARATE CANONICAL AMENDMENT IS ACCEPTED
 ```
 
-Không tạo một Academic QA Window bắt buộc. Director kiểm chương trình học thuật trước khi prompt lock.
+Không tạo một Academic QA Window bắt buộc. Director kiểm chương trình học thuật trước visual/prompt lock.
 
 ## 4. Director package
 
-Director Layer gồm:
+```text
+DIRECTOR_LAYER_INDEX.md
+DIRECTOR_OPERATING_STANDARD.md
+ACADEMIC_PROGRAM_AUTHORING_STANDARD.md
+WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md
+TREE_TEMPLATE.md
+NODE_CATALOG_TEMPLATE.md
+RELATION_CATALOG_TEMPLATE.md
+SOURCE_REGISTER_TEMPLATE.md
+PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md
+DIRECTOR_REVIEW_GATE.md
+IMAGE_PRODUCTION_WINDOW_STANDARD.md
+IMG_EXECUTION_PACK_TEMPLATE.md
+PRODUCTION_CORRECTION_REGISTER_TEMPLATE.md
+DIRECTOR_CHANGE_REQUESTS.md
+DIRECTOR_SELF_AUDIT.md
+```
 
-- `DIRECTOR_OPERATING_STANDARD.md`
-- `ACADEMIC_PROGRAM_AUTHORING_STANDARD.md`
-- `TREE_TEMPLATE.md`
-- `NODE_CATALOG_TEMPLATE.md`
-- `RELATION_CATALOG_TEMPLATE.md`
-- `SOURCE_REGISTER_TEMPLATE.md`
-- `PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md`
-- `IMAGE_PRODUCTION_WINDOW_STANDARD.md`
-- `PRODUCTION_CORRECTION_REGISTER_TEMPLATE.md`
-- `DIRECTOR_REVIEW_GATE.md`
-- `DIRECTOR_CHANGE_REQUESTS.md`
-- `DIRECTOR_SELF_AUDIT.md`
+Existing accepted controls retained:
 
-Các tài liệu W01 đã đạt và tiếp tục được giữ làm chuẩn:
+```text
+PRODUCTION_GOVERNANCE_STANDARD.md
+WINDOW_CONTRACT_TEMPLATE.md
+DIRECTORY_NAMING_STANDARD.md
+BATCH_HANDOFF_TEMPLATE.md
+PROMPT_ASSET_RECORD_TEMPLATE.md
+VISUAL_ART_DIRECTION.md
+QA_ACCEPTANCE_MATRIX.md
+VISUAL_QA_CHECKLIST.md
+W01 P12 calibration package and hash/manifest evidence
+```
 
-- `PROMPT_ASSET_RECORD_TEMPLATE.md`
-- `VISUAL_ART_DIRECTION.md`
-- `QA_ACCEPTANCE_MATRIX.md`
-- `VISUAL_QA_CHECKLIST.md`
-- batch manifest schema and existing SHA rules.
+## 5. Critical Director locks
 
-## 5. W02 opening condition
+```text
+CONTENT WINDOW DOES NOT GENERATE IMAGES.
+MAX IMG ASSETS PER UNIT = 2.
+BATCH REMAINS CANONICAL MANIFEST/QA/RELEASE UNIT.
+EACH ASSET REREADS IMMUTABLE SOURCE.
+OFFICIAL CHARACTER REFERENCE IS RELOADED PER RELEVANT ASSET.
+GENERATED OUTPUT NEVER BECOMES THE NEXT CHARACTER MASTER.
+SAME FAILURE TWICE = ROOT-CAUSE STOP.
+DIRECTOR MAY DIRECT-FIX SMALL OBJECTIVE DEFECTS.
+INDEPENDENT IMAGE QA RELEASE GATE REMAINS.
+```
+
+## 6. W02 opening condition
 
 W02 chỉ được mở khi:
 
@@ -92,4 +115,7 @@ ARCHITECT INDEPENDENT REVIEW: PASS
 W02 EXACT PROGRAM / WINDOW CONTRACT: ISSUED
 ```
 
-Không mở W02 chỉ dựa trên một mô tả hội thoại.
+```text
+CURRENT W02 STATUS: NOT OPENED
+CURRENT DIRECTOR STATUS: READY_FOR_ARCHITECT_REVIEW
+```
