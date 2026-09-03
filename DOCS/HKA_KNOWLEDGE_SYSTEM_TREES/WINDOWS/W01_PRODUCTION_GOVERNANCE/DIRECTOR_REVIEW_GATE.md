@@ -1,6 +1,6 @@
 ---
 title: "HKA Director Review Gate"
-version: "1.0"
+version: "1.1"
 status: "PROPOSED REVIEW STANDARD"
 language: "vi"
 date: "2026-09-03"
@@ -22,13 +22,21 @@ PASS chỉ khi:
 [ ] NODE_CATALOG.md complete
 [ ] RELATION_CATALOG.md complete
 [ ] SOURCE_REGISTER.md complete
+[ ] Branch Coverage Record complete for every mandatory branch
 [ ] core prerequisites connected
 [ ] D1-D4 progression substantive
 [ ] high-risk misconceptions addressed
 [ ] controversies/open questions separated from settled claims
 [ ] ownership/cross-tree links explicit
 [ ] unsupported high-risk claims = 0
+[ ] Compression Test passed
+[ ] Expansion Test passed
+[ ] short-content review triggers resolved/justified
+[ ] long-content / flat fan-out review triggers resolved/justified
+[ ] no trivia fragmentation used to inflate node count
 ```
+
+Director dùng `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md` để kiểm under-development và over-development.
 
 Director được sửa trực tiếp lỗi nhỏ, khách quan. Material academic rewrite trả đúng section về owner Window.
 
@@ -45,8 +53,17 @@ PASS chỉ khi:
 ```text
 [ ] every VCU traces to locked nodes
 [ ] every asset has one primary learning objective
+[ ] every admitted asset has one unique visual learning job
+[ ] VCU admission score recorded
+[ ] package is the smallest package sufficient for admitted visual jobs
 [ ] package count justified
+[ ] no asset exists merely to fill package capacity
 [ ] no decorative-only asset
+[ ] default 1 primary asset per VCU; any second asset separately justified
+[ ] spiral asset has observable learning/epistemic delta
+[ ] VISUAL_DEDUPLICATION_REGISTER complete
+[ ] within-window duplicate count = 0
+[ ] known cross-window duplicate conflicts resolved by reuse/cross-link/justification
 [ ] continuity/spiral logic documented
 [ ] prompt records complete
 [ ] official brand references exact
@@ -55,6 +72,14 @@ PASS chỉ khi:
 [ ] batch map valid
 [ ] IMG unit assignments max 2 assets
 [ ] B00 assignment exactly 2 assets
+```
+
+Director dùng:
+
+```text
+KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md
+VISUAL_DEDUPLICATION_REGISTER_TEMPLATE.md
+PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md
 ```
 
 Result:
@@ -81,6 +106,28 @@ Director may reject a generation before formal QA to save time.
 
 Director review status is not `QA_APPROVED`.
 
+## Scale metrics required per Window
+
+Before Visual Gate PASS, Window reports:
+
+```text
+MANDATORY BRANCH COUNT:
+CORE NODE COUNT:
+SHORT-CONTENT REVIEW TRIGGERS:
+LONG-CONTENT REVIEW TRIGGERS:
+CANDIDATE VISUAL JOB COUNT:
+ADMITTED CANONICAL ASSET COUNT:
+MERGED VISUAL CANDIDATES:
+REUSED EXISTING ASSETS:
+DERIVATIVE-ONLY CASES:
+REJECTED DUPLICATES:
+FINAL DUPLICATE COUNT: 0
+SELECTED PACKAGE:
+UNUSED PACKAGE CAPACITY:
+```
+
+Unused package capacity is acceptable. Filling capacity is not a quality objective.
+
 ## Error handling
 
 ```text
@@ -92,6 +139,12 @@ GENERATION DEFECT
 
 PROMPT DEFECT
 → Window prompt correction + new prompt hash/commit.
+
+ACADEMIC SCOPE DEFECT
+→ return only affected branch/node section before visual relock.
+
+DUPLICATE VISUAL INTENT
+→ merge/reuse/reject before Asset ID lock.
 
 CANONICAL CONFLICT
 → BLOCK + change request.
