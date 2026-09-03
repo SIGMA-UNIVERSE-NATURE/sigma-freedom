@@ -1,7 +1,7 @@
 ---
 title: "HKA W01 — Execution Register"
 window_id: "W01"
-version: "1.0"
+version: "1.1"
 status: "READY_FOR_DELEGATION"
 language: "vi"
 date: "2026-09-03"
@@ -36,7 +36,26 @@ DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/ARCHITECT_ACCE
 ACCEPTANCE FILE COMMIT SHA: dcdec2faada90b4efcfcb4c5fd02a2165aaf1df4
 ```
 
-## 3. Current state
+## 3. Tracking and review surfaces
+
+```text
+EXECUTION ISSUE:
+https://github.com/SIGMA-UNIVERSE-NATURE/sigma-freedom/issues/13
+
+DRAFT REVIEW PR:
+https://github.com/SIGMA-UNIVERSE-NATURE/sigma-freedom/pull/14
+
+PR BASE:
+hka-knowledge-system-trees
+
+PR HEAD:
+hka-tree/w01-production-governance
+
+MERGE AUTHORIZATION:
+NO
+```
+
+## 4. Current state
 
 ```text
 STATE: READY_FOR_DELEGATION
@@ -47,7 +66,7 @@ MERGE: NOT AUTHORIZED
 WEBSITE DEPLOY: NOT AUTHORIZED
 ```
 
-## 4. Locked quantity
+## 5. Locked quantity
 
 ```text
 PACKAGE: P12
@@ -62,7 +81,7 @@ BRANDED FINALS REQUIRED LATER: 12
 TOTAL IMAGE FILES REQUIRED LATER: 24
 ```
 
-## 5. Next authorized transition
+## 6. Next authorized transition
 
 ```text
 READY_FOR_DELEGATION
@@ -76,7 +95,7 @@ READY_FOR_DELEGATION
 3. Cửa sổ làm việc trên đúng execution branch.
 4. Không có blocker P0.
 
-## 6. Evidence to return
+## 7. Evidence to return
 
 W01 phải trả:
 
@@ -92,10 +111,11 @@ CHANGE REQUEST COUNT
 OPEN RISKS
 ```
 
-Sau đó kiến trúc sư HKA sẽ áp dụng `ARCHITECT_ACCEPTANCE_GATE.md` trên 100% đầu ra.
+Sau đó kiến trúc sư HKA sẽ áp dụng `ARCHITECT_ACCEPTANCE_GATE.md` trên 100% đầu ra và ghi kết quả vào Draft PR #14.
 
-## 7. Change log
+## 8. Change log
 
 | Version | Date | State | Evidence |
 |---|---|---|---|
 | 1.0 | 2026-09-03 | READY_FOR_DELEGATION | Contract, execution prompt and acceptance gate issued |
+| 1.1 | 2026-09-03 | READY_FOR_DELEGATION | Execution Issue #13 and Draft PR #14 recorded |
