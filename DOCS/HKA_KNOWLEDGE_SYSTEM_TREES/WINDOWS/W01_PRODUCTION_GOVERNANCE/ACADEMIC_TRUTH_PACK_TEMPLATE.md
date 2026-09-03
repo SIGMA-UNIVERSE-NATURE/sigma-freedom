@@ -1,0 +1,69 @@
+---
+title: "HKA Academic Truth Pack Template"
+version: "1.0"
+status: "PROPOSED REFERENCE TEMPLATE — ARCHITECT REVIEW REQUIRED"
+---
+
+# HKA ACADEMIC TRUTH PACK
+
+Mỗi VCU/Asset candidate phải mang theo đủ metadata để trace:
+
+```text
+IMAGE → ASSET ID → VCU → NODE → CLAIM → SOURCE
+```
+
+## 1. Identity
+
+```text
+WINDOW ID:
+TREE ID:
+ACADEMIC CONTENT COMMIT SHA:
+VCU ID:
+ASSET ID / CANDIDATE ID:
+PRIMARY NODE ID:
+SECONDARY NODE IDS:
+```
+
+## 2. Claim lock
+
+| Claim ID | Claim text/scope | Certainty | Content class | Context dependence | Normative status | Model/approximation status |
+|---|---|---|---|---|---|---|
+
+## 3. Source lock
+
+| Claim ID | Source ID | Exact source location/version | Support type | Source fitness | Cross-check status |
+|---|---|---|---|---|---|
+
+## 4. Visual truth contract
+
+```text
+PRIMARY LEARNING OBJECTIVE:
+MISCONCEPTION TO PREVENT:
+WHAT MUST BE SEEN:
+WHAT MUST NOT BE IMPLIED:
+REPRESENTATION DISCLOSURE:
+ACADEMIC TRUTH LOCKS:
+KNOWN UNCERTAINTY / LIMITS:
+REQUIRED EXPERT REVIEW:
+EXPERT REVIEW STATUS:
+```
+
+## 5. Production transfer
+
+```text
+PROMPT RECORD MUST RESTATE MATERIAL TRUTH LOCKS: YES/NO
+IMG EXECUTION PACK REFERENCES THIS TRUTH PACK: YES/NO
+INDEPENDENT IMAGE QA CAN RESOLVE CLAIM/SOURCE PATH: YES/NO
+```
+
+## 6. Acceptance
+
+```text
+ALL MATERIAL CLAIM IDS PRESENT: YES/NO
+SOURCE IDS RESOLVABLE: YES/NO
+CERTAINTY / CONTENT CLASS SEPARATE: YES/NO
+MISCONCEPTION LOCK PRESENT: YES/NO
+WHAT MUST NOT BE IMPLIED PRESENT: YES/NO
+EXPERT REVIEW CLEARED OR NOT_APPLICABLE: YES/NO
+DIRECTOR TRUTH-PACK REVIEW: PASS / RETURN / BLOCKED
+```

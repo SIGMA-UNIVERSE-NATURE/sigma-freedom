@@ -1,30 +1,37 @@
 ---
 title: "HKA IMG Unit Execution Pack Template"
-version: "1.0"
-status: "PROPOSED REFERENCE TEMPLATE"
+version: "1.1"
+status: "PROPOSED — USE ONLY AFTER CANONICAL IMG UNIT AMENDMENT"
 ---
 
 # IMG UNIT EXECUTION PACK
 
-Mỗi IMG Unit phải nhận một bản đã điền hoàn chỉnh. IMG Unit không được tự duyệt branch để chọn prompt hay asset.
+This template is inactive for real production until the IMG Unit canonical amendment is accepted. It defines the exact handoff if/when that model is activated.
 
 ## 1. Identity
 
 ```text
 CONTENT WINDOW ID:
+WINDOW TYPE:
 TREE ID:
 TREE SLUG:
 IMG UNIT ID:
 BATCH ID:
-RUN ID:
+TARGET COMPLETE BATCH RUN ID:
 AUTHORIZED ASSET COUNT: 1 / 2
 AUTHORIZED ASSET IDS:
 ```
 
-## 2. Immutable knowledge/prompt lock
+## 2. Immutable academic/prompt lock
 
 ```text
 REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
+ACADEMIC CONTENT COMMIT SHA:
+ACADEMIC COVERAGE AUDIT PATH:
+ACADEMIC QA REPORT PATH:
+PROGRAM-TO-VISUAL DIRECTOR BRIEF PATH:
+ACADEMIC TRUTH PACK PATHS PER ASSET:
+
 PROMPT CONTENT COMMIT SHA:
 FINAL MANIFEST COMMIT SHA:
 BATCH MANIFEST PATH:
@@ -33,8 +40,25 @@ BATCH PROMPTS PATH:
 PROMPT PAYLOAD PATHS:
 PROMPT SHA-256 PER ASSET:
 VISUAL QA CHECKLIST PATH:
-PROGRAM-TO-VISUAL DIRECTOR BRIEF PATH:
 ```
+
+For each authorized asset, the pack must expose/reference:
+
+```text
+PRIMARY NODE ID
+CLAIM IDS
+SOURCE IDS + exact source locations/versions
+CERTAINTY
+CONTENT CLASS
+MISCONCEPTION TO PREVENT
+WHAT MUST BE SEEN
+WHAT MUST NOT BE IMPLIED
+REPRESENTATION DISCLOSURE
+ACADEMIC TRUTH LOCKS
+REQUIRED EXPERT REVIEW STATUS
+```
+
+Production must be able to trace `ASSET → VCU → NODE → CLAIM → SOURCE` without reading a mutable branch.
 
 ## 3. Brand lock
 
@@ -56,33 +80,33 @@ BATCH-SPECIFIC LOCKS:
 OPEN CORRECTION LOCKS:
 ```
 
-Không thêm instruction từ memory hoặc previous generation.
+No instruction may be added from memory or previous generations.
 
 ## 5. Preflight
 
-IMG Unit phải trả trước generation:
-
 ```text
+ACADEMIC CONTENT SHA VERIFIED: YES/NO
+ACADEMIC TRUTH PACK RESOLVED PER ASSET: YES/NO
+REQUIRED EXPERT REVIEW CLEARED: YES/NO/NOT_APPLICABLE
 PROMPT CONTENT SHA VERIFIED: YES/NO
 FINAL MANIFEST SHA VERIFIED: YES/NO
 MANIFEST SHA-256 VERIFIED: YES/NO
 PROMPT SHA-256 VERIFIED PER ASSET: YES/NO
 OFFICIAL CHARACTER FILE BYTES LOADABLE: YES/NO/NOT_APPLICABLE
 AUTHORIZED ASSET COUNT <= 2: YES/NO
-STATUS: PRODUCTION_CLAIMED / PROMPT_BLOCKED / ASSET_REFERENCE_BLOCKED
+STATUS: PRODUCTION_CLAIMED / PROMPT_BLOCKED / ASSET_REFERENCE_BLOCKED / ACADEMIC_TRUTH_BLOCKED
 ```
 
-Chỉ `PRODUCTION_CLAIMED` mới được generate.
+Only `PRODUCTION_CLAIMED` may continue.
 
 ## 6. Per-asset production order
 
-Cho từng asset, theo đúng thứ tự:
-
 ```text
-READ EXACT ASSET RECORD
+READ ACADEMIC TRUTH PACK
+→ READ EXACT ASSET RECORD
 → RELOAD OFFICIAL REFERENCES
 → GENERATE CLEAN MASTER
-→ CHECK PASS/FAIL
+→ CHECK TRUTH / PROMPT PASS-FAIL
 → CORRECT BEFORE MOVING ON
 → POST-COMPOSITE OFFICIAL BRAND
 → CHECK BRANDED FINAL
@@ -91,22 +115,25 @@ READ EXACT ASSET RECORD
 → RESET TO IMMUTABLE SOURCE
 ```
 
-Không generate asset thứ hai trước khi asset thứ nhất được self-check hoàn chỉnh.
-
-## 7. Required return
+## 7. Required Unit return
 
 ```text
 IMG UNIT ID:
 BATCH ID:
-RUN ID:
+TARGET BATCH RUN ID:
 PRODUCED ASSET IDS:
+ACADEMIC TRUTH PACK REFERENCES:
 CLEAN MASTER FILE REFERENCES:
 BRANDED FINAL FILE REFERENCES:
 SHA-256 PER FILE:
-SELF-QA PER ASSET:
+UNIT SELF-QA PER ASSET:
 REFERENCE METHOD:
 KNOWN LIMITATIONS:
-STATUS: PRODUCTION_UNIT_COMPLETE / PROMPT_BLOCKED / ASSET_REFERENCE_BLOCKED / OUTPUT_FAILED
+STATUS: PRODUCTION_UNIT_COMPLETE / PROMPT_BLOCKED / ASSET_REFERENCE_BLOCKED / ACADEMIC_TRUTH_BLOCKED / OUTPUT_FAILED
 ```
 
-Không được báo `QA_APPROVED`.
+## 8. Assembly boundary
+
+Unit return is not a complete batch handoff. The Batch Production Orchestrator must assemble all Unit outputs into one complete batch snapshot, produce batch-level self-QA, package hash and `BATCH_ASSET_PROVENANCE` before Independent QA.
+
+No partial Unit set may enter Independent QA and no Unit may claim `QA_APPROVED`.

@@ -1,153 +1,186 @@
 ---
 title: "HKA Director Operating Standard"
-version: "1.0"
+version: "1.1"
 status: "PROPOSED REFERENCE — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
-applies_to: "W02-W64"
+applies_by_window_type: true
 ---
 
 # HKA DIRECTOR OPERATING STANDARD
 
 ## 1. Mission
 
-Mục tiêu của mỗi Content Window là hoàn thành một phần HKA, không phải tạo thêm thủ tục.
+Director Layer exists to make later Windows complete assigned work with minimum rework while preserving canonical academic, visual and release controls.
+
+For content-authoring Window Types:
 
 ```text
 WINDOW CONTRACT
-→ EXACT KNOWLEDGE BRANCH
+→ EXACT KNOWLEDGE SCOPE
 → COMPLETE ACADEMIC PROGRAM
-→ DIRECTOR REVIEW / DIRECT FIX
-→ VISUAL COVERAGE
-→ PROMPT PACKAGE
-→ MANIFEST LOCK
-→ SMALL IMG PRODUCTION UNITS
+→ ACADEMIC COVERAGE AUDIT
+→ ACADEMIC QA REPORT
+→ DIRECTOR ACADEMIC GATE
+→ PROGRAM-TO-VISUAL BRIEF + TRUTH PACKS
+→ PROMPT PACKAGE / MANIFEST LOCK
+→ CANONICAL PRODUCTION MODEL
 → DIRECTOR CONSISTENCY REVIEW
 → INDEPENDENT IMAGE QA
 → CANONICAL RELEASE PIPELINE
 ```
 
-## 2. Ownership
+Window applicability is defined by `WINDOW_TYPE_APPLICABILITY_STANDARD.md`, not by numeric range alone.
 
-### W02–W64 — Knowledge Tree Authoring & Visual Direction Window
+## 2. Window Types
 
-Một Window chịu trách nhiệm trọn gói trong phạm vi được giao:
+Every Window Contract must state one profile:
 
-- đọc exact Window Contract;
-- phát triển toàn bộ chương trình;
-- tạo `TREE.md`, `NODE_CATALOG.md`, `RELATION_CATALOG.md`, `SOURCE_REGISTER.md`;
-- kiểm độ phủ và ownership;
-- thiết kế visual coverage;
-- tạo Asset IDs;
-- viết prompt;
-- khóa manifests và handoff.
+```text
+FOUNDATION / ROOT / METHOD WINDOW
+DOMAIN / DISCIPLINE CONTENT WINDOW
+CROSS-DOMAIN HUB WINDOW
+SYSTEM QA / INTEGRATION WINDOW
+```
 
-Content Window **không tạo hình**.
+Full academic-authoring workflow is expected mainly for applicable W02–W60 content windows. W61–W64 are not presumed curriculum-authoring windows; their exact system QA/integration contracts control.
+
+## 3. Ownership
+
+### Applicable Content Window
+
+Owns the complete program within assigned scope:
+
+- reads exact contract;
+- authors required TREE/NODE/RELATION/SOURCE artifacts according to Window Type;
+- creates durable Academic Coverage Audit and Academic QA evidence;
+- authors visual coverage and prompts only if visuals are in scope;
+- never generates images.
 
 ### W01 Director
 
-Director chịu trách nhiệm nhất quán giữa W02–W64:
+Owns cross-window consistency and gates:
 
-- phát hiện scope drift;
-- kiểm completeness;
-- kiểm nguồn và epistemic boundaries;
-- kiểm D1–D4 progression;
-- kiểm visual coverage;
-- kiểm prompt executability;
-- sửa trực tiếp lỗi nhỏ trong output của Window;
-- phát hành correction lock khi production lặp lỗi;
-- mở/đóng production batch theo các gate đã khóa.
+- scope/ownership completeness;
+- node/graph integrity;
+- claim/source fitness and epistemic boundaries;
+- D1–D4 progression;
+- Program→Visual truth transfer;
+- visual deduplication/package economy;
+- prompt executability;
+- production consistency review;
+- bounded direct fixes with provenance.
 
-Director không thay đổi canonical source chỉ để tránh một blocker.
+Director does not silently change canonical architecture.
 
-### IMG Production Unit
+### Production
 
-IMG Unit chỉ tạo hình. Tối đa **2 authorized Asset IDs** trên một cửa sổ IMG.
+Until canonical amendment approval, active semantics remain **one Image Production Window per batch**.
 
-IMG Unit không:
-
-- viết curriculum;
-- sửa prompt;
-- tự chọn Asset ID;
-- tự chọn character master;
-- dùng generated image trước làm character master cho ảnh sau;
-- tiếp tục khi reference không load được.
+The proposed anti-drift IMG Unit design is documented separately and is not active solely because Director Layer exists.
 
 ### Independent Image QA
 
-Giữ đúng vai trò canonical: một release gate độc lập trước Vault/R2 release. Không dùng QA Window như một vòng biên tập curriculum.
+Remains a mandatory independent batch release gate. Director review never substitutes for `QA_APPROVED`.
 
-## 3. Director review philosophy
-
-Không tạo review loop khi lỗi có thể sửa chắc chắn ngay.
+## 4. Director review philosophy
 
 ```text
 SMALL / OBJECTIVE DEFECT
-→ DIRECTOR FIX
-→ RECORD FIX
+→ DIRECTOR FIX ONLY WITH DIRECTOR_FIX_PROVENANCE RECORD
 
-MATERIAL CONTENT DEFECT
-→ RETURN EXACT SECTION TO OWNER WINDOW
-→ ONE CORRECTION PASS
+MATERIAL ACADEMIC DEFECT
+→ RETURN EXACT AFFECTED SECTION TO OWNER WINDOW
+→ NEW ACADEMIC CONTENT COMMIT
+→ RE-RUN AFFECTED COVERAGE/QA/DOWNSTREAM LOCKS
 
-SYSTEMIC OR CANONICAL CONFLICT
+SYSTEMIC / CANONICAL CONFLICT
 → BLOCK / CHANGE REQUEST
 ```
 
-Không dùng review để chuyển trách nhiệm.
+## 5. Content Window Definition of Done
 
-## 4. Content Window Definition of Done
+Applicable content window may enter Program-to-Visual only when:
 
-Window chỉ được chuyển sang prompt lock khi:
+- mandatory branch coverage = 100%;
+- durable Academic Coverage Audit = PASS;
+- Academic QA Report = PASS;
+- node anatomy meets canonical minimum;
+- semantic duplicate-node issues resolved;
+- prerequisite graph valid/reachable;
+- material claims have stable claim-to-source mappings;
+- certainty and content class remain separate;
+- unsupported high-risk claims = 0;
+- D1–D4 progression substantive;
+- ownership conflicts = 0;
+- unresolved material expert-review items = 0 or explicitly handled by contract.
 
-- toàn bộ mandatory branches được bao phủ;
-- mọi node có owner và nguồn;
-- prerequisites không đứt;
-- D1–D4 là progression thật, không chỉ đổi câu chữ;
-- controversies/open questions được tách khỏi settled claims;
-- cross-tree relations có target owner;
-- high-risk misconceptions có countermeasure;
-- visual coverage xuất phát từ chương trình;
-- mỗi asset có một learning objective chính;
-- prompt đủ để Production không tự đoán.
+## 6. Visual package Definition of Done
 
-## 5. Batch vs IMG Unit
+Before prompt lock:
 
-Batch là đơn vị manifest, QA và release. IMG Unit là đơn vị tạo hình.
+- every VCU traces to node→claim→source;
+- Academic Truth Pack exists per asset/candidate as required;
+- truth locks, forbidden implications and representation disclosure are explicit;
+- duplicate visual jobs are removed/reused;
+- package is the smallest sufficient canonical package;
+- prompt is sufficient for Production without academic inference.
 
-Ví dụ batch 6 assets:
+## 7. Production sequencing
+
+B00 is the calibration gate.
+
+No B01+ mass production opens until:
 
 ```text
-BATCH: HKA-W02-B01
-RUN: HKA-W02-B01-R01
-
-IMG-W02-B01-U01-R01 → assets 0003, 0004
-IMG-W02-B01-U02-R01 → assets 0005, 0006
-IMG-W02-B01-U03-R01 → assets 0007, 0008
+B00 DIRECTOR CONSISTENCY REVIEW = PASS
+AND
+B00 INDEPENDENT IMAGE QA = QA_APPROVED
 ```
 
-Một IMG Unit không được nhận thêm asset sau khi đã bắt đầu.
+`QA_REJECTED` or `QA_BLOCKED` keeps later production closed.
 
-## 6. Correction
+## 8. Proposed IMG Unit model
 
-Nếu output sai nhưng prompt đúng:
-
-- giữ Asset ID;
-- không overwrite;
-- Director ghi correction;
-- mở IMG Unit mới trong batch run mới theo rework rule;
-- chỉ regenerate affected assets;
-- package run mới phải là một snapshot hoàn chỉnh có provenance rõ.
-
-Nếu cùng lỗi xuất hiện hai lần liên tiếp, dừng regenerate và sửa root cause trước.
-
-## 7. Director master principle
+The design:
 
 ```text
-ONE WINDOW OWNS THE PROGRAM.
+IMG UNIT = generation sub-unit, proposed max 2 assets
+BATCH = complete snapshot / self-QA / Independent QA / release unit
+```
+
+is **PROPOSED ONLY** pending canonical amendment. See `IMG_UNIT_CANONICAL_AMENDMENT_PROPOSAL.md`.
+
+Until amendment acceptance, Window Contracts must not authorize multiple IMG Units as active canonical production semantics.
+
+## 9. Director direct-fix provenance
+
+Any post-lock Director edit must record:
+
+```text
+DIRECTOR FIX COMMIT SHA
+SUPERSEDES ACADEMIC CONTENT COMMIT SHA
+AFFECTED NODE/CLAIM/RELATION IDS
+SOURCE IMPACT
+DOWNSTREAM INVALIDATION
+```
+
+If material claim, prerequisite, source, learning objective, scope/ownership or visual learning job changes, Director must return the affected section to owner Window and downstream locks are invalidated as required.
+
+## 10. Partial rework provenance
+
+When accepted bytes are carried into a later complete Batch Run snapshot, every Asset ID records origin run/unit/hash and carry-forward/revalidation fields according to `BATCH_ASSET_PROVENANCE_TEMPLATE.md`.
+
+Independent QA reviews the complete final snapshot, including carried-forward bytes.
+
+## 11. Director master principle
+
+```text
+EXACT CONTRACT DEFINES WINDOW TYPE.
+ONE OWNER WINDOW OWNS EACH CONTENT SCOPE.
 ONE DIRECTOR OWNS CROSS-WINDOW CONSISTENCY.
-ONE IMG UNIT OWNS AT MOST TWO IMAGE ASSETS.
-ONE RELEASE GATE VERIFIES THE FINAL BATCH.
+INDEPENDENT IMAGE QA OWNS FINAL IMAGE APPROVAL.
+CANONICAL CHANGES REQUIRE CANONICAL AMENDMENT.
 ```
 
-Mục tiêu là throughput có kiểm soát, không phải tối đa hóa số reviewer.
+Throughput is achieved by clear ownership and bounded correction, not by bypassing gates.

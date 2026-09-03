@@ -1,107 +1,187 @@
 ---
 title: "HKA Window Contract — Director Addendum"
-version: "1.0"
+version: "1.1"
 status: "PROPOSED REFERENCE ADDENDUM — ARCHITECT REVIEW REQUIRED"
 ---
 
 # HKA WINDOW CONTRACT — DIRECTOR ADDENDUM
 
-Áp dụng cùng `WINDOW_CONTRACT_TEMPLATE.md` cho W02–W64 sau khi Architect chấp nhận Director Layer.
+Use with the accepted `WINDOW_CONTRACT_TEMPLATE.md` only after Architect accepts this Director Layer.
 
-## A. Required academic outputs
+## A. Window Type — mandatory
 
-Window Contract phải yêu cầu:
+Every future contract must state:
+
+```text
+WINDOW TYPE:
+FOUNDATION / ROOT / METHOD WINDOW
+DOMAIN / DISCIPLINE CONTENT WINDOW
+CROSS-DOMAIN HUB WINDOW
+SYSTEM QA / INTEGRATION WINDOW
+
+PRIMARY FUNCTION:
+ACADEMIC AUTHORING PROFILE:
+VISUAL AUTHORING IN SCOPE: YES/NO
+SYSTEM QA / INTEGRATION DUTIES:
+REQUIRED OUTPUT PROFILE:
+```
+
+Use `WINDOW_TYPE_APPLICABILITY_STANDARD.md`. Do not force W61–W64 into ordinary curriculum/prompt semantics unless their exact contracts explicitly do so.
+
+## B. Required academic outputs by applicable content profile
+
+For content-authoring windows, contract must require as applicable:
 
 ```text
 TREE.md
 NODE_CATALOG.md
 RELATION_CATALOG.md
 SOURCE_REGISTER.md
+ACADEMIC_COVERAGE_AUDIT.md or ACADEMIC_COVERAGE_MATRIX.csv
+ACADEMIC_QA_REPORT.md
 SELF_AUDIT.md
 ```
 
-Window không được dừng ở outline. Mandatory scope phải được viết thành chương trình hoàn chỉnh.
+Window does not stop at outline. Mandatory scope becomes a complete, auditable program.
 
-## B. Director Academic Gate
+## C. Director Academic Gate
 
-Contract phải khóa:
+Contract must lock:
 
 ```text
 MANDATORY BRANCH COVERAGE = 100%
-CORE PREREQUISITES CONNECTED = YES
+SEMANTIC DUPLICATE NODES UNRESOLVED = 0
+ORPHAN / UNREACHABLE REQUIRED NODES = 0 OR JUSTIFIED
+MISSING PREREQUISITE TARGETS = 0
+PREREQUISITE CYCLE CHECK = PASS / EXEMPT_WITH_REASON
+CLAIM-TO-SOURCE COVERAGE = PASS
 UNSUPPORTED HIGH-RISK CLAIMS = 0
+HIGH-RISK CROSS-CHECKS = COMPLETE
+CERTAINTY / CONTENT CLASS = SEPARATE
+D1-D4 = SUBSTANTIVE
+UNRESOLVED MATERIAL EXPERT-REVIEW ITEMS = 0 OR CONTRACTED DEFERMENT
 UNRESOLVED OWNERSHIP CONFLICTS = 0
-DIRECTOR ACADEMIC GATE = PASS BEFORE VISUAL PACKAGE
+ACADEMIC COVERAGE AUDIT = PASS
+ACADEMIC QA REPORT = PASS
+DIRECTOR ACADEMIC GATE = PASS BEFORE PROGRAM-TO-VISUAL
 ```
 
-## C. Program-to-Visual bridge
+## D. Program-to-Visual bridge
 
-Bắt buộc tạo:
+When visual authoring is in scope, require:
 
 ```text
 PROGRAM_TO_VISUAL_DIRECTOR_BRIEF.md
+ACADEMIC_TRUTH_PACK per VCU/Asset or equivalent embedded records
 ```
 
-trước Prompt Lock. Brief phải ghi visual thesis, learning arc, spiral visuals, continuity locks, VCU map, asset sequence và phần cố ý không visualized.
-
-## D. Director Visual Gate
-
-Contract phải yêu cầu:
-
-```text
-ALL VCUS TRACE TO LOCKED NODES
-DECORATIVE-ONLY ASSETS = 0
-PROMPT RECORDS COMPLETE
-PROMPT HASHES REPRODUCIBLE
-BATCH MAP VALID
-IMG UNIT PLAN VALID
-DIRECTOR VISUAL GATE = PASS
-```
-
-## E. IMG Unit plan
-
-Batch vẫn theo canonical P12/P18/P24/P30/P36 mapping và batch max 6 assets.
-
-Generation được chia thành IMG Units:
-
-```text
-MAX AUTHORIZED ASSETS PER IMG UNIT = 2
-IMG UNIT ID = IMG-WXX-BYY-UZZ-RNN
-```
-
-Contract phải liệt kê mỗi IMG Unit, Batch ID, Run ID và exact authorized Asset IDs.
-
-## F. Anti-drift production lock
-
-Contract phải yêu cầu IMG Unit:
-
-- reread immutable source trước mỗi asset;
-- reload official character master trước mỗi relevant asset;
-- không dùng generated output trước làm character reference;
-- close asset trước asset kế;
-- close IMG Unit sau tối đa 2 assets;
-- same failure twice = root-cause stop.
-
-## G. Director correction authority
-
-Director được direct-fix lỗi nhỏ, khách quan và truy vết được trong Window-generated content/metadata nếu không thay canonical scope hoặc material academic claim thiếu source review.
-
-Generation defect phải dùng fresh IMG Unit/new run path; không overwrite.
-
-## H. Required handoff fields
-
-Window completion receipt bổ sung:
+The handoff must preserve:
 
 ```text
 ACADEMIC CONTENT COMMIT SHA
-DIRECTOR ACADEMIC GATE
-PROGRAM-TO-VISUAL BRIEF PATH
-DIRECTOR VISUAL GATE
-IMG UNIT COUNT
-IMG UNIT ASSIGNMENTS
-OPEN DIRECTOR CORRECTIONS
+NODE IDS
+CLAIM IDS
+SOURCE IDS + exact locations/versions
+CERTAINTY
+CONTENT CLASS
+MISCONCEPTION TO PREVENT
+WHAT MUST BE SEEN
+WHAT MUST NOT BE IMPLIED
+REPRESENTATION DISCLOSURE
+ACADEMIC TRUTH LOCKS
+REQUIRED EXPERT REVIEW STATUS
 ```
 
-## I. Release boundary
+## E. Director Visual Gate
 
-Director Layer không thay Independent Image QA release gate, canonical R2 buckets hoặc Amendment 1.1 release order. `hka-c4k-staging` chưa phải active canonical rule.
+```text
+ALL VCUS TRACE NODE→CLAIM→SOURCE
+ACADEMIC TRUTH PACKS COMPLETE
+DECORATIVE-ONLY ASSETS = 0
+FINAL DUPLICATE VISUAL JOB COUNT = 0
+PROMPT RECORDS COMPLETE
+PROMPT HASHES REPRODUCIBLE
+BATCH MAP VALID
+PACKAGE = SMALLEST SUFFICIENT CANONICAL PACKAGE
+DIRECTOR VISUAL GATE = PASS
+```
+
+## F. Production model boundary
+
+Current active canonical production semantics remain the accepted canonical pipeline.
+
+The anti-drift model:
+
+```text
+IMG UNIT ID = IMG-WXX-BYY-UZZ-RNN
+PROPOSED MAX ASSETS PER IMG UNIT = 2
+```
+
+is **not active** until a canonical amendment is approved. See `IMG_UNIT_CANONICAL_AMENDMENT_PROPOSAL.md`.
+
+A Window Contract must not activate multiple IMG Units merely by referencing Director Layer.
+
+## G. B00 production gate
+
+Before any B01+ mass production may open:
+
+```text
+B00 DIRECTOR CONSISTENCY REVIEW = PASS
+AND
+B00 INDEPENDENT IMAGE QA = QA_APPROVED
+```
+
+`QA_REJECTED` or `QA_BLOCKED` keeps later production closed.
+
+## H. Director correction authority and provenance
+
+Director direct-fix is allowed only for bounded nonmaterial defects and must use `DIRECTOR_FIX_PROVENANCE_TEMPLATE.md`.
+
+Required fields include:
+
+```text
+DIRECTOR FIX COMMIT SHA
+SUPERSEDES ACADEMIC CONTENT COMMIT SHA
+AFFECTED NODE/CLAIM/RELATION IDS
+SOURCE IMPACT
+DOWNSTREAM PROMPT INVALIDATION
+```
+
+Material claim/prerequisite/source/learning-objective/scope change returns to owner Window and invalidates downstream locks as appropriate.
+
+## I. Partial rework provenance
+
+If bytes from an older run carry into a later complete batch snapshot, require per-asset `BATCH_ASSET_PROVENANCE` with:
+
+```text
+ORIGIN_RUN_ID
+ORIGIN_IMG_UNIT_ID
+ORIGIN_CLEAN_SHA256
+ORIGIN_BRANDED_SHA256
+CARRIED_FORWARD
+REVALIDATED_IN_FINAL_BATCH
+```
+
+Independent QA reviews the complete final snapshot.
+
+## J. Required completion receipt additions
+
+For applicable content windows:
+
+```text
+WINDOW TYPE
+ACADEMIC CONTENT COMMIT SHA
+ACADEMIC COVERAGE AUDIT PATH / RESULT
+ACADEMIC QA REPORT PATH / RESULT
+DIRECTOR ACADEMIC GATE
+PROGRAM-TO-VISUAL BRIEF PATH, IF APPLICABLE
+ACADEMIC TRUTH PACK STATUS, IF APPLICABLE
+DIRECTOR VISUAL GATE, IF APPLICABLE
+DIRECTOR FIX RECORDS
+OPEN EXPERT-REVIEW ITEMS
+OPEN CANONICAL CHANGE REQUESTS
+```
+
+## K. Release boundary
+
+Director Layer does not replace Independent Image QA, canonical R2 buckets or Amendment 1.1 release order. `hka-c4k-staging` remains non-active pending separate amendment.

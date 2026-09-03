@@ -1,44 +1,50 @@
 ---
 title: "HKA Director Review Gate"
 version: "1.1"
-status: "PROPOSED REVIEW STANDARD"
+status: "PROPOSED REVIEW STANDARD — ARCHITECT REVIEW REQUIRED"
 language: "vi"
 date: "2026-09-03"
 ---
 
 # HKA DIRECTOR REVIEW GATE
 
-Director review có hai cổng chính và một review production nhanh. Không thay Independent Image QA release gate.
+Director review has two primary authoring gates and a production-consistency review. It does not replace Independent Image QA.
 
 ## GATE A — Academic Program
 
-PASS chỉ khi:
+Apply only to Window Types with academic-authoring scope.
+
+PASS only when:
 
 ```text
 [ ] exact Window Contract read
+[ ] Window Type declared and applicability profile correct
 [ ] mandatory branches 100% mapped
-[ ] excluded scope respected
-[ ] TREE.md complete
-[ ] NODE_CATALOG.md complete
-[ ] RELATION_CATALOG.md complete
-[ ] SOURCE_REGISTER.md complete
-[ ] Branch Coverage Record complete for every mandatory branch
-[ ] core prerequisites connected
+[ ] TREE/NODE/RELATION/SOURCE artifacts complete as contracted
+[ ] canonical minimum node anatomy complete
+[ ] Academic Coverage Audit exists and PASS
+[ ] Academic QA Report exists and PASS
+[ ] semantic duplicate-node count unresolved = 0
+[ ] orphan/unreachable required nodes = 0 or justified
+[ ] prerequisite targets exist
+[ ] prerequisite-cycle check PASS or documented co-requisite exception
+[ ] entry-point reachability PASS
+[ ] material claim-to-source mapping adequate
+[ ] unsupported high-risk claims = 0
+[ ] high-risk cross-checks complete
+[ ] certainty and content class classified independently
+[ ] model/normative/context status not conflated with certainty
 [ ] D1-D4 progression substantive
 [ ] high-risk misconceptions addressed
-[ ] controversies/open questions separated from settled claims
-[ ] ownership/cross-tree links explicit
-[ ] unsupported high-risk claims = 0
-[ ] Compression Test passed
-[ ] Expansion Test passed
-[ ] short-content review triggers resolved/justified
-[ ] long-content / flat fan-out review triggers resolved/justified
-[ ] no trivia fragmentation used to inflate node count
+[ ] open/debated/settled separation correct
+[ ] external curriculum/classification mapping complete when contracted
+[ ] unresolved material expert-review items = 0 or explicitly deferred by contract
+[ ] cross-window ownership conflicts unresolved = 0
+[ ] Compression Test PASS
+[ ] Expansion Test PASS
 ```
 
-Director dùng `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md` để kiểm under-development và over-development.
-
-Director được sửa trực tiếp lỗi nhỏ, khách quan. Material academic rewrite trả đúng section về owner Window.
+Director may direct-fix only bounded nonmaterial defects using `DIRECTOR_FIX_PROVENANCE_TEMPLATE.md`. Material academic changes return to owner Window.
 
 Result:
 
@@ -48,39 +54,34 @@ DIRECTOR ACADEMIC GATE: PASS / RETURN / BLOCKED
 
 ## GATE B — Visual & Prompt Package
 
-PASS chỉ khi:
+PASS only when:
 
 ```text
-[ ] every VCU traces to locked nodes
+[ ] Academic QA PASS
+[ ] every VCU traces to locked Node IDs
+[ ] every material VCU/asset traces Node → Claim → Source
+[ ] Academic Content Commit SHA locked
+[ ] Academic Truth Pack complete per asset/candidate
+[ ] certainty/content class preserved into visual handoff
+[ ] misconception to prevent explicit
+[ ] WHAT MUST BE SEEN explicit
+[ ] WHAT MUST NOT BE IMPLIED explicit
+[ ] representation disclosure explicit
+[ ] required expert review cleared
 [ ] every asset has one primary learning objective
-[ ] every admitted asset has one unique visual learning job
-[ ] VCU admission score recorded
-[ ] package is the smallest package sufficient for admitted visual jobs
-[ ] package count justified
-[ ] no asset exists merely to fill package capacity
+[ ] unique visual job per asset
+[ ] final duplicate visual-job count = 0
+[ ] package is smallest sufficient canonical package
 [ ] no decorative-only asset
-[ ] default 1 primary asset per VCU; any second asset separately justified
-[ ] spiral asset has observable learning/epistemic delta
-[ ] VISUAL_DEDUPLICATION_REGISTER complete
-[ ] within-window duplicate count = 0
-[ ] known cross-window duplicate conflicts resolved by reuse/cross-link/justification
 [ ] continuity/spiral logic documented
 [ ] prompt records complete
 [ ] official brand references exact
 [ ] manifest mapping exact
 [ ] prompt hashes reproducible
 [ ] batch map valid
-[ ] IMG unit assignments max 2 assets
-[ ] B00 assignment exactly 2 assets
 ```
 
-Director dùng:
-
-```text
-KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md
-VISUAL_DEDUPLICATION_REGISTER_TEMPLATE.md
-PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md
-```
+IMG Unit plan is **not** a Gate B activation requirement until a canonical IMG Unit amendment is accepted.
 
 Result:
 
@@ -90,73 +91,88 @@ DIRECTOR VISUAL GATE: PASS / RETURN / BLOCKED
 
 ## GATE C — Production Consistency Review
 
-Director checks each returned IMG Unit before batch is submitted to Independent Image QA:
+Director checks returned production before batch submission to Independent Image QA:
 
 ```text
 [ ] correct Asset IDs
+[ ] complete batch snapshot
+[ ] academic truth locks preserved
 [ ] character identity consistent
-[ ] no repeated production defect
-[ ] academic scene requirement met
+[ ] no repeated unresolved production defect
 [ ] clean/branded distinction correct
 [ ] file names and hashes present
-[ ] correction register applied
+[ ] per-asset provenance complete when carry-forward applies
+[ ] correction records applied
 ```
 
-Director may reject a generation before formal QA to save time.
+Director may reject production before formal QA to save time. Director review status is never `QA_APPROVED`.
 
-Director review status is not `QA_APPROVED`.
+## B00 mass-production gate — P0 lock
 
-## Scale metrics required per Window
-
-Before Visual Gate PASS, Window reports:
+No B01+ mass production may open until:
 
 ```text
-MANDATORY BRANCH COUNT:
-CORE NODE COUNT:
-SHORT-CONTENT REVIEW TRIGGERS:
-LONG-CONTENT REVIEW TRIGGERS:
-CANDIDATE VISUAL JOB COUNT:
-ADMITTED CANONICAL ASSET COUNT:
-MERGED VISUAL CANDIDATES:
-REUSED EXISTING ASSETS:
-DERIVATIVE-ONLY CASES:
-REJECTED DUPLICATES:
-FINAL DUPLICATE COUNT: 0
-SELECTED PACKAGE:
-UNUSED PACKAGE CAPACITY:
+B00 DIRECTOR CONSISTENCY REVIEW = PASS
+AND
+B00 INDEPENDENT IMAGE QA = QA_APPROVED
 ```
 
-Unused package capacity is acceptable. Filling capacity is not a quality objective.
+`QA_REJECTED` or `QA_BLOCKED` keeps every B01+ production path closed. Director review alone is insufficient.
 
 ## Error handling
 
 ```text
-SMALL METADATA / CONTROLLED POST-PRODUCTION DEFECT
-→ Director fixes directly if authorized and rehashes affected package.
+SMALL NONMATERIAL METADATA / OBJECTIVE DEFECT
+→ Director direct-fix only with provenance + new commit SHA
+
+MATERIAL ACADEMIC DEFECT
+→ owner Window correction
+→ new Academic Content Commit
+→ rerun affected coverage/QA
+→ invalidate affected truth/visual/prompt/manifest locks
 
 GENERATION DEFECT
-→ fresh IMG Unit / new run path.
+→ canonical rework path / new run
 
 PROMPT DEFECT
-→ Window prompt correction + new prompt hash/commit.
-
-ACADEMIC SCOPE DEFECT
-→ return only affected branch/node section before visual relock.
-
-DUPLICATE VISUAL INTENT
-→ merge/reuse/reject before Asset ID lock.
+→ prompt correction + new prompt hash/commit
 
 CANONICAL CONFLICT
-→ BLOCK + change request.
+→ BLOCK + change request/amendment
 ```
+
+## Direct-fix invalidation check
+
+For every post-lock Director edit:
+
+```text
+DIRECTOR FIX COMMIT SHA PRESENT: YES/NO
+SUPERSEDES ACADEMIC CONTENT COMMIT SHA PRESENT: YES/NO
+AFFECTED NODE/CLAIM/RELATION IDS PRESENT: YES/NO
+SOURCE IMPACT CLASSIFIED: YES/NO
+DOWNSTREAM PROMPT INVALIDATION DECIDED: YES/NO
+```
+
+## Partial rework provenance check
+
+When a later complete Batch Run carries forward prior bytes:
+
+```text
+BATCH_ASSET_PROVENANCE RECORD COUNT = MANIFEST ASSET COUNT
+ORIGIN RUN/UNIT/HASH PRESENT PER ASSET
+CARRIED_FORWARD FLAG PRESENT
+REVALIDATED_IN_FINAL_BATCH = YES FOR FINAL SNAPSHOT
+```
+
+Independent QA still reviews the complete final snapshot.
 
 ## W02 opening rule
 
-No W02 production until:
+W02 academic authoring may not open as an operating inheritance until:
 
 ```text
-Director Layer Architect Review = PASS
-W02 Director Academic Gate = PASS
-W02 Director Visual Gate = PASS
-B00 execution pack = LOCKED
+Director Layer Architect Review Round 2 = PASS
+W02 exact Window Contract / Window Type = ISSUED
 ```
+
+W02 image production additionally requires the applicable academic/visual gates and current canonical production authorization. Proposed IMG Unit semantics cannot activate without canonical amendment.

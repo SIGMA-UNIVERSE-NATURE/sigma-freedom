@@ -8,81 +8,90 @@ status: "PROPOSED REFERENCE — ARCHITECT REVIEW REQUIRED"
 
 ## 1. Baseline policy
 
-Director Layer is additive. It does not delete or rewrite the Architect-Accepted W01 baseline at:
+Director Layer remains additive and does not rewrite Architect-Accepted W01 baseline at:
 
 ```text
 5ed62129b8eae603d9d9917ca57a46a03361c909
 ```
 
-The accepted files `PRODUCTION_GOVERNANCE_STANDARD.md`, `WINDOW_CONTRACT_TEMPLATE.md`, `DIRECTORY_NAMING_STANDARD.md`, `BATCH_HANDOFF_TEMPLATE.md`, `PROMPT_ASSET_RECORD_TEMPLATE.md`, `VISUAL_ART_DIRECTION.md`, `QA_ACCEPTANCE_MATRIX.md` and `VISUAL_QA_CHECKLIST.md` remain intact on this branch.
+Accepted governance/prompt/QA/calibration files remain intact.
 
 ## 2. Required Director Layer read order
 
-For W02–W64 contract design and execution, read the accepted baseline first, then:
+For future contract design/execution, after accepted baseline read:
 
-1. `DIRECTOR_OPERATING_STANDARD.md`
-2. `ACADEMIC_PROGRAM_AUTHORING_STANDARD.md`
-3. `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md`
-4. `WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md`
-5. `TREE_TEMPLATE.md`
-6. `NODE_CATALOG_TEMPLATE.md`
-7. `RELATION_CATALOG_TEMPLATE.md`
-8. `SOURCE_REGISTER_TEMPLATE.md`
-9. `PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md`
-10. `VISUAL_DEDUPLICATION_REGISTER_TEMPLATE.md`
-11. `GLOBAL_VISUAL_ASSET_LEDGER_TEMPLATE.md`
-12. `DIRECTOR_REVIEW_GATE.md`
-13. `IMAGE_PRODUCTION_WINDOW_STANDARD.md`
-14. `IMG_EXECUTION_PACK_TEMPLATE.md`
-15. `PRODUCTION_CORRECTION_REGISTER_TEMPLATE.md`
-16. `DIRECTOR_CHANGE_REQUESTS.md`
+1. `WINDOW_TYPE_APPLICABILITY_STANDARD.md`
+2. `DIRECTOR_OPERATING_STANDARD.md`
+3. `ACADEMIC_PROGRAM_AUTHORING_STANDARD.md`
+4. `KNOWLEDGE_BRANCH_SCOPE_AND_VISUAL_BUDGET_STANDARD.md`
+5. `WINDOW_CONTRACT_DIRECTOR_ADDENDUM.md`
+6. `TREE_TEMPLATE.md`
+7. `NODE_CATALOG_TEMPLATE.md`
+8. `RELATION_CATALOG_TEMPLATE.md`
+9. `SOURCE_REGISTER_TEMPLATE.md`
+10. `ACADEMIC_COVERAGE_AUDIT_TEMPLATE.md`
+11. `ACADEMIC_QA_REPORT_TEMPLATE.md`
+12. `PROGRAM_TO_VISUAL_DIRECTOR_BRIEF_TEMPLATE.md`
+13. `ACADEMIC_TRUTH_PACK_TEMPLATE.md`
+14. `VISUAL_DEDUPLICATION_REGISTER_TEMPLATE.md`
+15. `GLOBAL_VISUAL_ASSET_LEDGER_TEMPLATE.md`
+16. `DIRECTOR_REVIEW_GATE.md`
+17. `DIRECTOR_FIX_PROVENANCE_TEMPLATE.md`
+18. `PRODUCTION_CORRECTION_REGISTER_TEMPLATE.md`
+19. `BATCH_ASSET_PROVENANCE_TEMPLATE.md`
+20. `IMAGE_PRODUCTION_WINDOW_STANDARD.md`
+21. `IMG_EXECUTION_PACK_TEMPLATE.md`
+22. `IMG_UNIT_CANONICAL_AMENDMENT_PROPOSAL.md`
+23. `DIRECTOR_CHANGE_REQUESTS.md`
+24. `DIRECTOR_SELF_AUDIT.md`
 
-## 3. Intended relationship to accepted baseline
+## 3. Core additions
 
-Director Layer fills five gaps without weakening accepted controls:
+Director Layer fills:
 
 ```text
-A. FULL ACADEMIC AUTHORING METHOD
-B. CONTENT SIZING / BRANCH DENSITY CONTROL
-C. PROGRAM → VISUAL DIRECTOR BRIDGE
-D. WINDOW + CROSS-WINDOW VISUAL DEDUPLICATION
-E. SMALL ANTI-DRIFT IMG EXECUTION UNITS
+A. WINDOW TYPE / APPLICABILITY
+B. FULL ACADEMIC AUTHORING + DURABLE COVERAGE/QA
+C. CLAIM→SOURCE / TWO-AXIS EPISTEMIC TRACE
+D. PROGRAM→VISUAL ACADEMIC TRUTH TRANSFER
+E. CONTENT SIZING + VISUAL DEDUPLICATION
+F. DIRECTOR FIX / PARTIAL-REWORK PROVENANCE
+G. ANTI-DRIFT IMG UNIT DESIGN — PROPOSED, NOT ACTIVE UNTIL CANONICAL AMENDMENT
 ```
 
-Existing prompt schema, visual art direction, QA severity, SHA chain, batch manifest rules and canonical R2 release order remain in force.
+Existing prompt schema, visual art direction, Independent Image QA severity, SHA chain, batch manifest and canonical R2 release order remain in force.
 
-## 4. Scale-containment rule
-
-W02–W64 must not convert curriculum length directly into image count.
-
-Director controls scale through:
+## 4. IMG Unit activation boundary
 
 ```text
-Branch Coverage Records
-Compression / Expansion tests
-node density review triggers
-VCU admission thresholds
-smallest-sufficient package rule
-Visual Deduplication Register
-Global Visual Asset Ledger
-P12/P18/P24/P30/P36 package cap
+IMG UNIT MODEL: PROPOSED DESIGN
+CANONICAL ACTIVE STATUS: NO
+ACTIVE RULE UNTIL AMENDMENT: ONE IMAGE PRODUCTION WINDOW PER BATCH
 ```
 
-Canonical Asset IDs, production runs and web derivatives are separate counts and must never be conflated.
+No Window Contract may activate multiple IMG Units solely through this Director Layer.
 
-## 5. Conflict rule pending Architect acceptance
-
-Until Architect accepts Director Layer, the accepted baseline remains authoritative.
-
-After Architect acceptance, Director Layer may supplement Window-generated operating rules only where it is stricter or more specific and does not conflict with higher canonical authority.
-
-Any actual canonical conflict still follows `HKA_VISUAL_PRODUCTION_CANONICAL_INDEX.md` precedence and requires a change request.
-
-## 6. W02 gate
+## 5. B00 gate
 
 ```text
-W02 MAY NOT OPEN UNTIL:
+B00 DIRECTOR CONSISTENCY REVIEW = PASS
+AND
+B00 INDEPENDENT IMAGE QA = QA_APPROVED
+```
+
+Both are required before B01+ mass production.
+
+## 6. Conflict rule pending Architect acceptance
+
+Until Architect review round 2 passes, accepted baseline remains authoritative. Director additions may supplement only where consistent with higher canonical authority. Canonical changes require separate amendment.
+
+## 7. W02 gate
+
+```text
+W02 MAY NOT OPEN AS OPERATING INHERITANCE UNTIL:
 DIRECTOR SELF-AUDIT = PASS
-ARCHITECT DIRECTOR-LAYER REVIEW = PASS
-W02 EXACT WINDOW CONTRACT / PROGRAM = ISSUED
+ARCHITECT DIRECTOR-LAYER REVIEW ROUND 2 = PASS
+W02 EXACT WINDOW CONTRACT + WINDOW TYPE = ISSUED
 ```
+
+Image production remains separately gated by current canonical production authorization and any required amendment.
