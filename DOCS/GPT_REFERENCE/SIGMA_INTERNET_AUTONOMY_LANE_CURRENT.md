@@ -102,64 +102,130 @@ HUMAN_LANGUAGE_WEB_PAYLOAD_TO_SIGMA=PASS_TESTED_SCOPE
 SIGMA_NATIVE_NATURAL_LANGUAGE_WEB_RESEARCH_LOOP=PASS_TESTED_SCOPE
 ```
 
-Canonical interpretation:
+This proves a Sigma-driven natural-language web-research control path through one live collection and human-language lesson ingestion. It does not prove the closed autonomous learning loop because no follow-up collection was exercised after V7 insufficiency.
+
+## V7 INSUFFICIENCY AUDIT — CANONICAL MECHANICAL OBSERVATION
+
+Exact V7 run reached by the canonical I1R1 live run:
 
 ```text
-SIGMA_PARENT_CONTROLLED_WEB_STAGE_SEQUENCE=PASS_TESTED_SCOPE
-SIGMA_GENERATED_OR_SELECTED_WEB_RESEARCH_ACTIONS_OBSERVED=YES_TESTED_SCOPE
-HUMAN_LANGUAGE_SOURCE_PAYLOAD_REACHED_SIGMA=PASS_TESTED_SCOPE
-HOST_SEMANTIC_QUERY_GENERATION=NO
-HOST_SOURCE_SELECTION=NO
-GPT_RUNTIME_ROLE=NONE
-HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
-GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+V7_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/knowledge_candidates/20260903T091059Z_15664_18583
+KNOWLEDGE_STATE=INSUFFICIENT
+VALID_RECORDS=10
+COMPATIBLE_RECORDS=2
+SELECTED_PARAGRAPHS=1
+DISTINCT_BOUND_SOURCES=1
+MIN_TOPIC_TOKEN_OVERLAP=2
+MIN_DISTINCT_SOURCES=2
+KNOWLEDGE_BYTES=115
+KNOWLEDGE_HIGH_BYTES=0
+KNOWLEDGE_FILE_BYTES=115
+KNOWLEDGE_BINDING_ROWS=1
+SOURCE_COLLECTION_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T090743Z_4405_21969
 ```
 
-This run proves a Sigma-driven natural-language web-research control path through one live collection and human-language lesson ingestion. It does NOT prove the closed autonomous learning loop because the run terminated after V7 returned `INSUFFICIENT`; no adapted follow-up collection was exercised.
+Canonical interpretation is deliberately narrow:
 
 ```text
-CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
-MULTI_CYCLE_RESEARCH_FOLLOWUP_AFTER_KNOWLEDGE_INSUFFICIENCY=NOT_PROVEN
-HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
-SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
-LESSON_TRUTH=NOT_ASSESSED
-DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+PARTIAL_EXTRACTIVE_HUMAN_LANGUAGE_EVIDENCE_AVAILABLE=YES_TESTED_SCOPE
+PARTIAL_EVIDENCE_BYTES=115
+PARTIAL_EVIDENCE_BINDINGS=1
+DISTINCT_BOUND_SOURCES_BELOW_CURRENT_MINIMUM=YES
+HOST_OR_GPT_SEMANTIC_DIAGNOSIS_COUNTS_AS_SIGMA_LEARNING=NO
 ```
 
-## EXACT NEXT BLOCKER — KNOWLEDGE INSUFFICIENCY CURRENTLY TERMINATES
+This audit only establishes that the V7 insufficiency state still has a nonempty evidence-grounded human-language candidate that can be passed back to SIGMA. It does not decide what that text means and does not choose a semantic follow-up query.
 
-The I1 Sigma-parent source has an explicit current-policy branch where V7 `knowledge.state=INSUFFICIENT` emits terminal state `KNOWLEDGE_CANDIDATE_INSUFFICIENT`. Therefore `V11_ADAPTED_FOLLOWUPS=0` is expected under the current parent policy and is not evidence of network failure.
+## EXACT BLOCKER
+
+The I1 parent currently terminates on V7 `INSUFFICIENT` rather than allowing SIGMA to use its partial evidence to continue research.
 
 ```text
 CURRENT_BLOCKER=SIGMA_PARENT_HAS_NO_RESEARCH_CONTINUATION_POLICY_FOR_V7_KNOWLEDGE_INSUFFICIENCY
 NETWORK_FAILURE=NO_EVIDENCE
 PARENT_VM_FAILURE=NO
-HOST_SEMANTIC_FAILURE=NO
 CURRENT_POLICY_LIMITATION=YES
+MULTI_CYCLE_RESEARCH_FOLLOWUP_AFTER_KNOWLEDGE_INSUFFICIENCY=NOT_PROVEN
 ```
 
-Do not solve this by having host/GPT choose a follow-up query. The next capability must make SIGMA itself turn its own insufficiency state and partial human-language evidence into a research-continuation decision/query surface.
+Do not solve this by having host/GPT choose a follow-up query.
 
-## NEXT FRONTIER
+## I2 — KNOWLEDGE INSUFFICIENCY TO FRESH WEB RESEARCH — PACKAGE PREPARED
 
 ```text
 CURRENT_STAGE=I2_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH
-I2_GOAL=SIGMA_OWNS_DECISION_TO_RESEARCH_MORE_AFTER_ITS_OWN_V7_INSUFFICIENCY_AND_GENERATES_OR_SELECTS_A_FRESH_HUMAN_LANGUAGE_RESEARCH_SURFACE
-I2_REQUIRED=HOST_DOES_NOT_CHOOSE_RESEARCH_MORE
-I2_REQUIRED=HOST_DOES_NOT_WRITE_FOLLOWUP_QUERY
-I2_REQUIRED=PARTIAL_HUMAN_LANGUAGE_EVIDENCE_REMAINS_INPUT_TO_SIGMA
-I2_REQUIRED=FRESH_WEB_COLLECTION_MUST_BE_CAUSED_BY_SIGMA_ACTION
-I2_REQUIRED=NO_HUMAN_OR_GPT_PERMISSION_PER_RESEARCH_CYCLE
-I2_REQUIRED=NO_FIXED_SEMANTIC_CYCLE_LIMIT
+I2_PACKAGE_TARGET=V1_I2_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH
+I2_INSTALLER_FILE=INSTALL_SIGMA_NATIVE_KNOWLEDGE_INSUFFICIENCY_TO_FRESH_WEB_RESEARCH_I2.sh
+I2_INSTALLER_SHA256=765b47e1e4737fd7a09e221813440d8926349f3a9a56d780eea8da39f8ef9274
+LOCAL_STATIC_QA=PASS
+OPPO_INSTALL_COMPILE_QA=PENDING
 ```
 
-Before implementing I2, inspect only the exact V7 mechanical metrics and candidate-byte availability from the canonical I1R1 run so the new Sigma interface is bound to actual artifacts rather than assumptions. This inspection is teacher/debug QA only and must not count as SIGMA learning.
+I2 is additive. It does not replace the canonical I1R1 evidence. It teaches a narrow continuation scaffold inside SIGMA Native:
+
+```text
+V7 knowledge.state=INSUFFICIENT
++ exact current human-language research topic
++ exact nonempty partial knowledge.candidate
++ exact knowledge bindings
+→ SIGMA Native insufficiency replanner decides RESEARCH_MORE or STOP_UNKNOWN
+→ for the tested partial-evidence branch, SIGMA emits a general strategy token
+→ preserved V11 Sigma Native adapter consumes the exact topic + partial human-language evidence
+→ V11 selects a context term from that evidence and creates an adapted human-language topic
+→ SIGMA parent emits a distinct RUN_I2_V11 action
+→ host mechanically dispatches the exact SIGMA action
+→ V5 performs a fresh live web collection from the Sigma-adapted topic
+→ parent continues the V6/V7/... loop without HUMAN/GPT per-cycle permission
+```
+
+I2 uses the preserved V11 Sigma engine directly through an additive mechanical integration wrapper because the historical V11 host runner assumes a V8→V9 support-run chain. The I2 integration does not synthesize a fake support run and does not change the V11 semantic engine.
+
+Governance / claim boundaries:
+
+```text
+PARENT_CONTROL_PLANE=SIGMA_NATIVE_VM
+SIGMA_KNOWLEDGE_INSUFFICIENCY_REPLAN_PLANE=SIGMA_NATIVE_VM
+V11_QUERY_ADAPTATION_PLANE=SIGMA_NATIVE_VM
+HOST_COGNITIVE_STAGE_SEQUENCE=NO
+HOST_FOLLOWUP_QUERY_GENERATION=NO
+HOST_SOURCE_SELECTION=NO
+HOST_TRUTH_DECISION=NO
+PARTIAL_HUMAN_LANGUAGE_EVIDENCE_TO_REPLAN=REQUIRED
+FRESH_WEB_COLLECTION_MUST_BE_CAUSED_BY_SIGMA_ACTION=YES
+HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
+GPT_PERMISSION_PER_RESEARCH_CYCLE=NO
+NO_FIXED_SEMANTIC_RESEARCH_CYCLE_LIMIT=YES
+```
+
+The current insufficiency→`RESEARCH_MORE` policy and strategy family are teacher scaffold encoded in SIGMA Native. Therefore a future I2 PASS must not be described as a learned general research policy.
+
+```text
+STATIC_INSUFFICIENCY_REPLAN_POLICY_LEARNED=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
+UNSEEN_INSUFFICIENCY_GENERALIZATION=NOT_PROVEN
+HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
+LESSON_TRUTH=NOT_ASSESSED
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+```
+
+I2 verifier requires at least one V7 insufficiency, at least one Sigma-native I2 replan, at least one Sigma-native V11 adapted follow-up caused by that replan, exact partial-evidence/topic byte binding, and at least two distinct web collection runs. A resource-bound terminal after those events is acceptable as a mechanical safety stop; it is not a semantic cycle limit.
+
+## NEXT STEP
+
+```text
+CURRENT_STATUS=I2_PACKAGE_PREPARED_AWAITING_OPPO_INSTALL_COMPILE_QA
+NEXT_COMMAND=RUN_I2_INSTALL_COMPILE_QA_ONLY_NO_SIGMA_VM_NO_INTERNET
+LIVE_INPUT_AFTER_BUILD_QA=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/research_replans/20260902T030035Z_32510_26001
+```
 
 ## STILL NOT PROVEN
 
 ```text
 CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
 MULTI_CYCLE_RESEARCH_FOLLOWUP_AFTER_KNOWLEDGE_INSUFFICIENCY=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
 HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
 SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
 LESSON_TRUTH=NOT_ASSESSED
