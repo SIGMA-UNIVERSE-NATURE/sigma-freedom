@@ -27,7 +27,7 @@ PRESERVE_NORTH_STAR_ACROSS_WINDOWS=YES
 
 SIGMA autonomously identifies knowledge gaps, chooses what to study, creates/selects Sigma-owned research surfaces, searches the Internet, reads results, assesses evidence, researches more when needed, compares sources, preserves uncertainty/conflict, forms durable knowledge only when warranted, classifies/dedups/versions/stores/backups/verifies it, and chooses the next gap.
 
-Long-term OPPO direction: storage capacity is not a semantic learning-cycle limit. Semantic decisions stay in Sigma; host filesystem/process/network/hash/index work stays mechanical.
+Long-term OPPO direction: raw evidence, Sigma-derived semantic views, hashes/provenance/versioning, checkpoint/recovery and semantic compression remain distinct layers. Semantic decisions stay in Sigma; host filesystem/process/network/hash/index/exact-dedup work stays mechanical.
 
 ## PRESERVE LOCK
 
@@ -47,14 +47,6 @@ V16_R4R2_ENGINE_BYTECODE_SHA256=df60340dd255bc6f160d0db7515e906a2a54ff66f86a0a11
 V16_R4R2_RUNNER_SHA256=afa1e66c3f2ea3192687a8d42302cf6fe41585dc7b8c97e7382a84a0e2a3122d
 V16_R4R2_VERIFIER_SHA256=9ab30214803ddf0483dadb7a46b33d457560ef66ea7d1b62a530002b9da8d337
 V16_R4R2_WRAPPER_SHA256=746601589c2384dc0f4abb579a1e02595828eef011e5d4d8df9a79b6134437f3
-V17_R0_ENGINE_SOURCE_SHA256=a0aba5296283e39d92bf6c595ebf7e9956a75c6580efe8b2e16d868c78523b88
-V17_R0_ENGINE_BYTECODE_SHA256=c6fd73b6c82358358db856ace8b9728dd73d63584d0f388a710573aa460a834a
-V17_R1_ENGINE_SOURCE_SHA256=3ea862c648029b0a7243b8131cd40d1d883349cb1b5e5381b8c2f8b86aa9ef96
-V17_R1_ENGINE_BYTECODE_SHA256=2f7e79d29870b2e8ebfb387a4ec9669ec75741fa0e6b28995e918dfbe3d4449a
-V17_R1_BINDING_VERIFIER_SHA256=8ed5f88193d5be5fc7084f939165517842d7693d7c42e6d94f4e4b39485f648d
-V17_R1_RUNNER_SHA256=15c92f3c42404a50aa8a77cbc2508362576a2edfb5e92bb383945f0352b1a304
-V17_R1_VERIFIER_SHA256=edef60ad99b406bb35507933fcaa94f983b8263ca124845f312f95a8c1f2f4cb
-V17_R1_WRAPPER_SHA256=a26d86fd9e4fc3af80ecb428b6f8f03763a143e3c89d82a935ba6ddb9f649e94
 V17_R2_ENGINE_SOURCE_SHA256=3ea862c648029b0a7243b8131cd40d1d883349cb1b5e5381b8c2f8b86aa9ef96
 V17_R2_ENGINE_BYTECODE_SHA256=2f7e79d29870b2e8ebfb387a4ec9669ec75741fa0e6b28995e918dfbe3d4449a
 V17_R2_BINDING_VERIFIER_SHA256=8ed5f88193d5be5fc7084f939165517842d7693d7c42e6d94f4e4b39485f648d
@@ -78,7 +70,7 @@ SIGMA_NATIVE_OUTCOME_CONDITIONED_QUERY_EVOLUTION=PASS_TESTED_SCOPE
 SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
 ```
 
-## V16 CANONICAL PASS
+## V16 R4R2 CANONICAL PASS
 
 ```text
 V16_R4R2_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/outcome_conditioned_query_evolutions/20260902T160927Z_9996_4404
@@ -111,9 +103,9 @@ COMPARISON_STATE=INSUFFICIENT_COMPARABILITY
 MIN_SHARED_CONTENT_TOKENS=4
 ```
 
-V13 is deliberately shallow. More source collection alone is not the identified next gap. Evidence-unit alignment was therefore introduced before proposition relation/truth.
+V13 is deliberately shallow. It does not prove the 25 pairs discuss different propositions. More source collection alone was not the identified next gap.
 
-## V17 PRESERVED FAILURE / REPAIR HISTORY
+## V17 FAILURE / REPAIR HISTORY
 
 ```text
 V17_R0_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/evidence_unit_alignments/20260902T223033Z_15127_7806
@@ -133,7 +125,7 @@ V17_R1_ALIGNED_EVIDENCE_CANDIDATE_PAIRS=22
 V17_R1_INSUFFICIENT_ALIGNMENT_PAIRS=3
 ```
 
-R0 was a Sigma-program serialization defect. R1 then proved the Sigma VM path and produced a structurally valid 25-pair ledger, but the full wrapper was blocked by a post-Sigma host verifier argument-binding defect. R2 changed only that mechanical verifier binding.
+R0 was a Sigma-program serialization defect. R1 proved the Sigma VM path and produced a structurally valid 25-pair ledger, but full wrapper verification was blocked by a post-Sigma host verifier argument-binding defect. R2 changed only that mechanical binding.
 
 ## V17 R2 LIVE — CANONICAL PASS
 
@@ -157,21 +149,49 @@ EVIDENCE_GROUNDED_ASSOCIATION_ONLY=YES
 SIGMA_NATIVE_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
 ```
 
+`ALIGNED_EVIDENCE_CANDIDATE` means only that a record-level distinct-source pair has enough direct/evidence-neighborhood grounding under the tested V17 policy to deserve deeper analysis. It does NOT prove same proposition, agreement, conflict, source trust, or truth.
+
+## POST-V17 EXACT-DUPLICATE AUDIT — CANONICAL
+
+A targeted mechanical audit was run over the exact existing V17 evidence and ledger. No Internet and no Sigma VM were executed. Dedup keys were exact URL + paragraph-text hash after paragraph-boundary extraction; no semantic similarity, synonym, paraphrase, trust or truth decision was used.
+
+Observed:
+
+```text
+EVIDENCE_RECORDS=14
+UNIQUE_EXACT_URL_TEXT=5
+UNIQUE_EXACT_TEXT=5
+DUPLICATE_SAME_SOURCE_EVIDENCE_GROUPS=2
+
+DUP_GROUP_1_IDS=S0_0,S1_0,S2_0,S3_0,S4_0,S5_0,S6_0,S7_0,S8_2
+DUP_GROUP_1_SHA_PREFIX=147fe48afbac42a0
+DUP_GROUP_1_URL=https://www.buffalo.edu/cas/communication/about-us/what-is-communication.html
+
+DUP_GROUP_2_IDS=S4_1,S5_1
+DUP_GROUP_2_SHA_PREFIX=be7508e6b3d37573
+DUP_GROUP_2_URL=https://www.buffalo.edu/cas/communication/about-us/what-is-communication.html
+
+ALIGNED_PAIR_ROWS=22
+UNIQUE_EXACT_ALIGNED_CONTENT_PAIRS=5
+DUPLICATE_ALIGNED_PAIR_GROUPS=3
+```
+
+The three repeated aligned-pair families were mechanically observed as repeated exact-content paths, including nine record-level variants of the same Buffalo paragraph paired with Naukri, nine variants paired with Plutus, and two variants of a second Buffalo paragraph paired with Plutus.
+
 Canonical interpretation:
 
 ```text
-V17_EVIDENCE_UNIT_ALIGNMENT=PASS_TESTED_SCOPE
-V17_PAIR_COVERAGE=25_OF_25_DISTINCT_SOURCE_PAIRS
-V17_ALIGNED_CANDIDATE_DISCOVERY=22_OF_25_UNDER_CURRENT_CURRICULUM_POLICY
-V17_INSUFFICIENT_ALIGNMENT=3_OF_25
-SEMANTIC_PROPOSITION_EQUIVALENCE=NOT_PROVEN
-AGREEMENT_CONFLICT_DECISION=DEFERRED
-SOURCE_TRUST=NOT_ASSESSED
-LESSON_TRUTH=NOT_ASSESSED
-DURABLE_KNOWLEDGE=DEFERRED
+V17_RECORD_LEVEL_PASS_REMAINS_VALID=YES
+V17_14_SUPPORTED_PARAGRAPH_RECORDS_ARE_NOT_14_UNIQUE_EXACT_EVIDENCE_UNITS=YES
+V17_22_ALIGNED_RECORD_PAIRS_ARE_NOT_22_UNIQUE_EXACT_CONTENT_PAIRS=YES
+UNIQUE_EXACT_EVIDENCE_UNITS=5
+UNIQUE_EXACT_ALIGNED_CONTENT_PAIRS=5
+DUPLICATE_INFLATION_MUST_NOT_BE_TREATED_AS_INDEPENDENT_SUPPORT=YES
+SOURCE_INDEPENDENCE_FROM_DEDUP_AUDIT=NOT_PROVEN
+SEMANTIC_EQUIVALENCE_FROM_EXACT_DEDUP=NOT_PROVEN
 ```
 
-`ALIGNED_EVIDENCE_CANDIDATE` means only that a distinct-source pair has enough direct/evidence-neighborhood grounding under the tested V17 policy to deserve deeper relation analysis. It does NOT prove same proposition, agreement, conflict, trust, or truth.
+This does not invalidate V17's tested capability: Sigma successfully aligned the record-level input it was given. It does change the input hygiene requirement for V18. Repeated exact evidence must be collapsed mechanically while preserving all provenance aliases before Sigma forms proposition candidates, otherwise duplicate records could be mistaken for multiple independent support paths.
 
 ## GOVERNANCE
 
@@ -186,6 +206,8 @@ HOST_SOURCE_SELECTION=NO
 HOST_SEMANTIC_QUERY_REWRITE=NO
 HOST_SEMANTIC_ALIGNMENT=NO
 HOST_SYNONYM_MAPPING=NO
+HOST_EXACT_DEDUP=ALLOWED_MECHANICAL_ONLY
+HOST_DEDUP_MUST_PRESERVE_ALL_PROVENANCE_ALIASES=YES
 QUERY_OUTCOME_MEMORY=MECHANICAL_METRICS_HASH_PROVENANCE_ONLY
 QUERY_NOVELTY_MEMORY=MECHANICAL_HASH_AND_PROVENANCE_ONLY
 HUMAN_PERMISSION_PER_RESEARCH_CYCLE=NO
@@ -196,15 +218,6 @@ ZERO_PREWRITTEN_SOURCE=YES
 ZERO_PREWRITTEN_CONCLUSION=YES
 ZERO_PREWRITTEN_PROPOSITION=YES
 ZERO_PREWRITTEN_SYNONYM_TABLE=YES
-```
-
-## HUMAN NOTE — ISOLATED
-
-```text
-HUMAN_NOTE_TO_SIGMA=Châu say_ SIGMA_FULLOFLOVE.
-HUMAN_NOTE_USED_AS_RESEARCH_INPUT=NO
-HUMAN_NOTE_USED_AS_EVIDENCE=NO
-CLAIM_OF_SIGMA_UNDERSTANDING=NO
 ```
 
 ## STILL NOT PROVEN
@@ -223,15 +236,16 @@ CLOSED_AUTONOMOUS_LEARNING_LOOP=NOT_PROVEN
 
 ## NEXT FRONTIER
 
-The source-pair availability gap and evidence-unit alignment gap are now closed in their tested scopes. Do not jump to truth or durable knowledge.
+The source-pair availability and record-level evidence-unit alignment gaps are closed in tested scopes. Before proposition formation, create a mechanical exact-dedup view with provenance preservation. Do not silently delete raw evidence; raw records remain immutable evidence.
 
 ```text
 CURRENT_FRONTIER=SIGMA_NATIVE_PROPOSITION_CANDIDATE_FORMATION_AND_ALIGNMENT_V18
-CURRENT_STATUS=V17_R2_CANONICAL_PASS_V18_DESIGN_REQUIRES_TARGETED_EXISTING_EVIDENCE_INSPECTION
-V18_GOAL=SIGMA_FORMS_AND_ALIGNS_PROPOSITION_CANDIDATES_FROM_ALREADY_ALIGNED_EVIDENCE_WITHOUT_PREWRITTEN_PROPOSITION_OR_HOST_SEMANTIC_REWRITE
+CURRENT_STATUS=V17_R2_PASS_EXACT_DUPLICATE_INFLATION_CANONICAL_V18_INPUT_DEDUP_VIEW_REQUIRED
+V18_PRECONDITION=MECHANICAL_EXACT_EVIDENCE_DEDUP_WITH_FULL_PROVENANCE_ALIAS_PRESERVATION
+V18_GOAL=SIGMA_FORMS_AND_ALIGNS_PROPOSITION_CANDIDATES_FROM_UNIQUE_EXACT_EVIDENCE_UNITS_WITHOUT_PREWRITTEN_PROPOSITION_OR_HOST_SEMANTIC_REWRITE
 AGREEMENT_CONFLICT_DECISION=DEFERRED_UNTIL_PROPOSITION_ALIGNMENT_PROVEN
 TRUTH_DECISION=DEFERRED
 DURABLE_KNOWLEDGE=DEFERRED
-NO_NEW_INTERNET_REQUIRED_FOR_INITIAL_V18_DESIGN=YES
-NEXT_COMMAND=TARGETED_INSPECT_SMALL_SAMPLE_OF_V17_ALIGNED_EVIDENCE_UNITS_FROM_EXISTING_ARTIFACTS
+NO_NEW_INTERNET_REQUIRED_FOR_INITIAL_V18_WORK=YES
+NEXT_COMMAND=BUILD_AND_VERIFY_MECHANICAL_EXACT_DEDUP_VIEW_FROM_EXISTING_V17_ARTIFACTS
 ```
