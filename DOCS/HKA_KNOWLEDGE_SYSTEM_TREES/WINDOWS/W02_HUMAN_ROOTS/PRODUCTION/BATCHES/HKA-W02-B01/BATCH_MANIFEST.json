@@ -1,13 +1,90 @@
 {
-  "window_id":"W02","tree_id":"HKA-TREE-00-HROOT","batch_id":"HKA-W02-B01","run_id_planned":"HKA-W02-B01-R01","status":"PROMPT_LOCKED_NO_RUN",
-  "academic_content_commit_sha":"e900d3b623c27f6d4a0fe2750fa499295788776e","prompt_content_authoring_sha":"65c852bfd12adc94745c65a5c8e900c40ef501c5","brand_asset_commit_sha":"2d3aa9d8418acccd39a3d263e917d4157e029e17",
-  "prompt_registry":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md","image_generation_executed":false,"r2_upload_executed":false,"requires_b00_qa_before_run":true,
-  "assets":[
-    {"asset_id":"HKA-VIS-W02-0003","vcu_id":"HKA-VCU-W02-003","prompt_sha256":"f5950513a81e653f33096b25aa29d24ac76239e7ce94e19dd59c377c07f5ec4d","clean_master_filename":"HKA-VIS-W02-0003_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0003_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0004","vcu_id":"HKA-VCU-W02-004","prompt_sha256":"80433152f6f380cebe414fdbab263b5290ee6892f8af85d21ed98e945b5f69f8","clean_master_filename":"HKA-VIS-W02-0004_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0004_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0005","vcu_id":"HKA-VCU-W02-005","prompt_sha256":"764e174127ab8c9378703cea9e1713290d00329f0f0fb3159e26b326c59e9a2c","clean_master_filename":"HKA-VIS-W02-0005_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0005_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0006","vcu_id":"HKA-VCU-W02-006","prompt_sha256":"ecb28439a6eaad456469ad8473a29910b162f327612cbaf12c14dfd65c4188e0","clean_master_filename":"HKA-VIS-W02-0006_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0006_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0007","vcu_id":"HKA-VCU-W02-007","prompt_sha256":"6ffa284c9c740202c547f34f9e3508eda8020716333b73553a096d6163609464","clean_master_filename":"HKA-VIS-W02-0007_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0007_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0008","vcu_id":"HKA-VCU-W02-008","prompt_sha256":"a82b58d865e0eecdf0c175117be9bc9d441dbbdf05b05ead5f14b720d299d6e3","clean_master_filename":"HKA-VIS-W02-0008_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0008_BRANDED_FINAL.png","production_status":"NOT_RUN"}
-  ]
+  "schema_version": "1.0",
+  "window_id": "W02",
+  "tree_id": "HKA-TREE-00-HROOT",
+  "tree_slug": "human-roots",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w02-human-roots",
+  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "batch_id": "HKA-W02-B01",
+  "run_id": "HKA-W02-B01-R01",
+  "asset_count": 6,
+  "assets": [
+    {
+      "asset_id": "HKA-VIS-W02-0003",
+      "prompt_sha256": "1306fe45f88cb565ea21690e1a0a005857c6e6b3ffe8176b86766764587a9b3e",
+      "asset_type": "CONCEPT",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A1_5_8",
+      "academic_depth": "D1",
+      "primary_companion": "SIGMA",
+      "node_ids": ["HKA-W02-A01"],
+      "clean_master_filename": "HKA-VIS-W02-0003_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0003_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0004",
+      "prompt_sha256": "b89b92d558808cd35a7108d5dd5999759b9539f4132b2b4e58408743f67eacc7",
+      "asset_type": "CONCEPT",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A1_5_8",
+      "academic_depth": "D1",
+      "primary_companion": "LITTLE_ANT",
+      "node_ids": ["HKA-W02-A02", "HKA-W02-A03"],
+      "clean_master_filename": "HKA-VIS-W02-0004_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0004_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0005",
+      "prompt_sha256": "d083126c4306b6b52258e00fdbcca10d1eb13fc071870005adfda5c3b1f65dd3",
+      "asset_type": "CROSS_LINK",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A1_5_8",
+      "academic_depth": "D1",
+      "primary_companion": "CRICKET",
+      "node_ids": ["HKA-W02-B02", "HKA-W02-B03", "HKA-W02-B04"],
+      "clean_master_filename": "HKA-VIS-W02-0005_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0005_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0006",
+      "prompt_sha256": "a41107e6d40e443d8003c3c8296d6e740c10dd8e8165f36d99e4b8c24774e7be",
+      "asset_type": "MISCONCEPTION",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A2_9_12",
+      "academic_depth": "D2",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": ["HKA-W02-A04"],
+      "clean_master_filename": "HKA-VIS-W02-0006_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0006_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0007",
+      "prompt_sha256": "a358c4c89a34cf56fdf5a0c068689a254aa4eb72db7bfd096408c7f2bc8e0cc0",
+      "asset_type": "COMPARISON",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A2_9_12",
+      "academic_depth": "D2",
+      "primary_companion": "SIGMA",
+      "node_ids": ["HKA-W02-B01"],
+      "clean_master_filename": "HKA-VIS-W02-0007_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0007_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0008",
+      "prompt_sha256": "f60bbecff175168152cd411ad014815d5bebc828b8c5d4b15c776f84fab09d68",
+      "asset_type": "CROSS_LINK",
+      "representation_type": "DOCUMENTARY_REALITY",
+      "primary_audience": "A2_9_12",
+      "academic_depth": "D2",
+      "primary_companion": "CRICKET",
+      "node_ids": ["HKA-W02-C03", "HKA-W02-C04"],
+      "clean_master_filename": "HKA-VIS-W02-0008_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0008_BRANDED_FINAL.png"
+    }
+  ],
+  "created_at": "2026-09-04T02:00:02Z",
+  "status": "BATCH_READY"
 }
