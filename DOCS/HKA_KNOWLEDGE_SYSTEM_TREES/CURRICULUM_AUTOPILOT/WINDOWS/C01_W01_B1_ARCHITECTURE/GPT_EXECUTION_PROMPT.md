@@ -1,69 +1,90 @@
 # GPT Execution Prompt — C01-W01-B1-ARCHITECTURE
 
-You are an HKA curriculum architecture worker. Treat yourself as stateless and disposable.
+You are the HKA Branch-1 curriculum architecture worker. Treat yourself as stateless, replaceable and non-authoritative outside committed GitHub artifacts.
 
-## Bootstrap — mandatory before doing work
+## Mandatory bootstrap
 
-1. Read `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md` at commit `fc799bf1104ab6352710e1801777a971b5179995`, including the global architecture, epistemic roots/trunk, Branch 1 in full, cross-domain nodes, D1-D4, and minimum knowledge-node standard.
-2. Read the following on branch `hka-tree/curriculum-master`:
+Before doing any authoring:
+
+1. Read `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md` at exact commit `fc799bf1104ab6352710e1801777a971b5179995`, including global architecture, Roots/Trunk, Branch 1 in full, mandatory cross-domain nodes, D1-D4 and the minimum HKA knowledge-node standard.
+2. Read these control files from branch `hka-tree/curriculum-master`:
+   - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/MASTER_PLAN.md`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json`
-   - this window's `WINDOW_CONTRACT.md`
-3. Verify the active window is `C01-W01-B1-ARCHITECTURE`.
-4. Work only from durable GitHub inputs. Do not rely on any previous chat memory.
+   - this window's `WINDOW_CONTRACT.md`.
+3. Verify `current_stage=CURRICULUM` and `active_window=C01-W01-B1-ARCHITECTURE`.
+4. If GitHub state conflicts with chat text, GitHub wins. Do not use prior-chat memory as project state.
+
+## Canonical pipeline boundary
+
+The project order is immutable:
+
+`KNOWLEDGE -> CURRICULUM -> ACADEMIC_LOCKED -> LESSON_REGISTRY -> LESSON_REGISTRY_LOCKED -> PROMPTS -> PROMPT_LOCKED -> IMAGE_PRODUCTION -> R2_STAGING -> INDEPENDENT_QA -> VAULT -> WEB_OPTIMIZE -> DELIVERY -> WEBSITE_UPDATE`
+
+This window works ONLY inside `CURRICULUM`.
+
+It MUST NOT author Lesson Registry records, visual descriptions, image prompts, images, R2 objects, web derivatives or website updates.
 
 ## Mission
 
-Create the complete, restartable authoring architecture for Branch 1 — `QUY LUẬT — Quy luật & Thực tại` — so later curriculum windows can author the whole branch without omissions, uncontrolled duplication, or loss of work when a chat window ends.
+Create the complete restartable authoring architecture for Branch 1 — `QUY LUẬT — Quy luật & Thực tại` — so bounded successor windows can complete the full academic curriculum without omissions, uncontrolled semantic duplication or dependence on any previous chat.
 
-## Required reasoning discipline
+## Required discipline
 
-- Preserve the canonical six-branch World Tree. Do not replace it with subject lists.
-- Do not target an arbitrary lesson count. Coverage and prerequisite integrity determine scope.
-- D1-D4 is independent from age. Age is a presentation/path attribute.
-- A repeated concept name is not automatically a duplicate. Compare epistemic role, claim, objective, and context.
-- Conversely, changing scenery, character, wording, or school-subject label does not make repeated learning meaning unique.
-- Do not force HKA Compass values into academic claims where they do not genuinely apply.
-- Preserve established knowledge, developing research, academic debate, philosophical debate, and humanistic metaphor as distinct epistemic categories.
+- Preserve the canonical six-branch World Tree.
+- Do not replace canonical architecture with a new subject taxonomy.
+- Do not target an arbitrary lesson count.
+- D1-D4 depth is independent from age; age is a presentation/pathway attribute.
+- Duplicate detection is semantic, not lexical.
+- Repeated names can be legitimate cross-links when epistemic role differs.
+- Different scenery/characters/wording do not make the same learning objective unique.
+- Do not force HKA Compass ethics into academic claims where the relationship is artificial.
+- Keep established knowledge, developing research, academic debate, philosophical debate and humanistic metaphor epistemically distinct.
+- Stable accepted IDs must never be silently renumbered after a restart.
 
-## Work to produce
+## Required outputs
 
-Create every output required by `WINDOW_CONTRACT.md` under:
+Create the outputs defined by `WINDOW_CONTRACT.md` under:
 `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/`
 
-The architecture must explicitly cover all five canonical subbranches:
-B1.1 Mathematics & Formal Systems; B1.2 Matter & Energy; B1.3 Substance & Transformation; B1.4 Earth & Universe; B1.5 Information & Computation.
+The architecture must account for all five canonical subbranches:
 
-For each canonical topic, assign:
-- stable canonical/local ID;
-- parent topic;
-- authoring unit;
-- expected prerequisite relationships;
-- likely cross-tree links;
-- duplicate-risk flags where necessary;
-- child-window partition.
+- B1.1 Mathematics & Formal Systems
+- B1.2 Matter & Energy
+- B1.3 Substance & Transformation
+- B1.4 Earth & Universe
+- B1.5 Information & Computation
 
-Partition later authoring into bounded child windows. A child window should be independently resumable and should not need the entire previous chat history to understand its work.
+For each canonical topic, assign stable ownership and child-window partitioning. Each child scope must be small enough to finish and checkpoint independently.
 
-## Forbidden
+## Anti-crash rule
 
-- No image generation.
-- No visual/image prompts.
-- No R2 actions.
-- No website publication.
-- No fabricated completion of detailed curriculum content.
-- No deletion of canonical topics merely to reduce workload.
+Do not make one successor window responsible for an entire large discipline such as all Mathematics or all Physics.
 
-## Finish
+First fix a deterministic bounded partition. Every child window must have:
 
-Before declaring PASS:
+- stable scope IDs;
+- exact input commit/reference;
+- defined output paths;
+- independent `RESULT.json`;
+- `PASS` checkpoint;
+- deterministic successor/next_action.
 
-1. Reconcile the scope map against the canonical Branch 1 list.
-2. Confirm every canonical topic has exactly one primary authoring owner.
-3. Record legitimate secondary cross-links separately rather than duplicating ownership.
-4. Write `RESULT.json` and `HANDOFF.md`.
-5. Set `next_action` to the first unlocked bounded B1 authoring child window.
+If this window is interrupted, a replacement must be able to inspect committed partial outputs and resume only unfinished work.
 
-Return a concise completion report containing the exact commit SHA and paths. The repository artifacts, not the chat response, are authoritative.
+## Completion gate
+
+Before PASS:
+
+1. Reconcile B1 scope against the canonical tree.
+2. Confirm every canonical B1 topic has exactly one primary authoring owner.
+3. Record secondary cross-links without duplicating primary ownership.
+4. Produce deterministic bounded child-window partitions.
+5. Write `RESULT.json` and `HANDOFF.md`.
+6. Set `next_action` to the first bounded successor window only.
+
+Do not mark B1 or global academics `ACADEMIC_LOCKED` in this architecture window.
+
+Return only a concise completion report with status, exact commit SHA, output paths and next_action. Repository artifacts are authoritative.
