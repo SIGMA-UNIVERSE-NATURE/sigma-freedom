@@ -1,0 +1,695 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.SELECTED.WORK.DEEP.RELEARN][VERSION=2.8D1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.SELECTED_WORK_DEEP_RELEARN_V28D1) {
+
+    ⚡ SELECTED_WORK:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28R1_SELECTED_WORK.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SNAPSHOT_DIR:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28D1_SNAPSHOT_DIR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ ACTIVE_WORK:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28D1_ACTIVE_WORK.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR_TEXT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28D1_CURSOR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_EVIDENCE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28D1_DEEP_EVIDENCE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ EVIDENCE_LINES:
+        H(
+            "str_split",
+            OLD_EVIDENCE,
+            "\n",
+            NULL
+        );
+
+    ⚡ EVIDENCE_LINE_TOTAL:
+        H(
+            "list_len",
+            EVIDENCE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_EVIDENCE_SPLIT_LINES:
+        65;
+
+    ⚡ EVIDENCE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_EVIDENCE_SPLIT_LINES < EVIDENCE_LINE_TOTAL) {
+        ⚡ EVIDENCE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ SELECTED_WORK_VALID:
+        1;
+
+    IF (SELECTED_WORK == "") {
+        ⚡ SELECTED_WORK_VALID:
+            0;
+    }
+
+    ⚡ DOCUMENT_PATH:
+        "";
+
+    ⚡ DOCUMENT_EXISTS:
+        0;
+
+    IF (SELECTED_WORK_VALID) {
+
+        ⚡ DOCUMENT_PATH:
+            SNAPSHOT_DIR
+            + "/"
+            + SELECTED_WORK
+            + ".document";
+
+        ⚡ DOCUMENT_EXISTS:
+            H(
+                "file_exists",
+                DOCUMENT_PATH,
+                NULL,
+                NULL
+            );
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (EVIDENCE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SELECTED_WORK_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (DOCUMENT_EXISTS == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ print("SIGMA_V28D1_SELECTED_WORK_DEEP_RELEARN");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("SELECTED_WORK_VALID", SELECTED_WORK_VALID);
+        ⚡ print("DOCUMENT_EXISTS", DOCUMENT_EXISTS);
+        ⚡ print("EVIDENCE_LINE_TOTAL", EVIDENCE_LINE_TOTAL);
+        ⚡ print("EVIDENCE_LIMIT_EXCEEDED", EVIDENCE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_EVIDENCE_SPLIT_LINES", MAX_EVIDENCE_SPLIT_LINES);
+        ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+        ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ SAME_ACTIVE_WORK:
+            0;
+
+        IF (ACTIVE_WORK == SELECTED_WORK) {
+            ⚡ SAME_ACTIVE_WORK:
+                1;
+        }
+
+        ⚡ WORK_SWITCHED:
+            0;
+
+        ⚡ ACTIVE_WRITE_RC:
+            0;
+
+        ⚡ CURSOR_RESET_RC:
+            0;
+
+        IF (SAME_ACTIVE_WORK == 0) {
+
+            ⚡ WORK_SWITCHED:
+                1;
+
+            ⚡ ACTIVE_WRITE_RC:
+                H(
+                    "write_text",
+                    ".sigma_exec/SIGMA_V28D1_ACTIVE_WORK.memory",
+                    SELECTED_WORK,
+                    NULL
+                );
+
+            ⚡ CURSOR_RESET_RC:
+                H(
+                    "write_text",
+                    ".sigma_exec/SIGMA_V28D1_CURSOR.memory",
+                    "",
+                    NULL
+                );
+
+            ⚡ CURSOR_TEXT:
+                "";
+        }
+
+        ⚡ DOCUMENT_TEXT:
+            H(
+                "read_text",
+                DOCUMENT_PATH,
+                NULL,
+                NULL
+            );
+
+        ⚡ DOCUMENT_LINES:
+            H(
+                "str_split",
+                DOCUMENT_TEXT,
+                "\n",
+                NULL
+            );
+
+        ⚡ LINE_TOTAL:
+            H(
+                "list_len",
+                DOCUMENT_LINES,
+                NULL,
+                NULL
+            );
+
+        ⚡ CURSOR_PARTS:
+            H(
+                "str_split",
+                CURSOR_TEXT,
+                "|",
+                NULL
+            );
+
+        ⚡ CURSOR_PART_TOTAL:
+            H(
+                "list_len",
+                CURSOR_PARTS,
+                NULL,
+                NULL
+            );
+
+        ⚡ SEGMENT_INDEX:
+            CURSOR_PART_TOTAL - 1;
+
+        ⚡ SEGMENT_LINE_BUDGET:
+            8;
+
+        ⚡ START_LINE:
+            0;
+
+        ⚡ C:
+            0;
+
+        WHILE (C < SEGMENT_INDEX) {
+
+            ⚡ START_LINE:
+                START_LINE + SEGMENT_LINE_BUDGET;
+
+            ⚡ C:
+                C + 1;
+        }
+
+        ⚡ COMPLETE:
+            0;
+
+        IF (LINE_TOTAL < START_LINE + 1) {
+            ⚡ COMPLETE:
+                1;
+        }
+
+        IF (COMPLETE) {
+
+            ⚡ print("SIGMA_V28D1_SELECTED_WORK_DEEP_RELEARN");
+            ⚡ print("DEEP_RELEARN_COMPLETE", "YES");
+            ⚡ print("SELECTED_WORK", SELECTED_WORK);
+            ⚡ print("DOCUMENT_PATH", DOCUMENT_PATH);
+            ⚡ print("DOCUMENT_EXISTS", DOCUMENT_EXISTS);
+            ⚡ print("WORK_SWITCHED", WORK_SWITCHED);
+            ⚡ print("LINE_TOTAL", LINE_TOTAL);
+            ⚡ print("SEGMENT_INDEX", SEGMENT_INDEX);
+            ⚡ print("SEGMENT_START_LINE", START_LINE);
+            ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+            ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+            ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+            ⚡ print("HOST_LEARNING", "NO");
+            ⚡ print("SEGMENT_COMPUTATION_BOUNDED", "YES");
+            ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+            ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+        }
+
+        IF (COMPLETE == 0) {
+
+            ⚡ END_LINE:
+                START_LINE + SEGMENT_LINE_BUDGET;
+
+            IF (LINE_TOTAL < END_LINE) {
+                ⚡ END_LINE:
+                    LINE_TOTAL;
+            }
+
+            ⚡ REL_COUNTS:
+                H(
+                    "map_new",
+                    NULL,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ REL_ORDER:
+                H(
+                    "list_new",
+                    NULL,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ TOKEN_COUNT:
+                0;
+
+            ⚡ RELATION_OCCURRENCES:
+                0;
+
+            ⚡ SKIPPED_EMPTY_RELATIONS:
+                0;
+
+            ⚡ L:
+                START_LINE;
+
+            WHILE (L < END_LINE) {
+
+                ⚡ LINE:
+                    H(
+                        "list_get",
+                        DOCUMENT_LINES,
+                        L,
+                        NULL
+                    );
+
+                ⚡ TOKENS:
+                    H(
+                        "str_split",
+                        LINE,
+                        " ",
+                        NULL
+                    );
+
+                ⚡ TOKEN_TOTAL:
+                    H(
+                        "list_len",
+                        TOKENS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ TOKEN_COUNT:
+                    TOKEN_COUNT + TOKEN_TOTAL;
+
+                ⚡ LIMIT:
+                    TOKEN_TOTAL - 1;
+
+                ⚡ I:
+                    0;
+
+                WHILE (I < LIMIT) {
+
+                    ⚡ LEFT:
+                        H(
+                            "list_get",
+                            TOKENS,
+                            I,
+                            NULL
+                        );
+
+                    ⚡ RIGHT:
+                        H(
+                            "list_get",
+                            TOKENS,
+                            I + 1,
+                            NULL
+                        );
+
+                    ⚡ VALID_RELATION:
+                        1;
+
+                    IF (LEFT == "") {
+                        ⚡ VALID_RELATION:
+                            0;
+                    }
+
+                    IF (RIGHT == "") {
+                        ⚡ VALID_RELATION:
+                            0;
+                    }
+
+                    IF (VALID_RELATION) {
+
+                        ⚡ RELATION:
+                            LEFT + " => " + RIGHT;
+
+                        ⚡ EXISTS:
+                            H(
+                                "map_has",
+                                REL_COUNTS,
+                                RELATION,
+                                NULL
+                            );
+
+                        IF (EXISTS) {
+
+                            ⚡ OLD_COUNT:
+                                H(
+                                    "map_get",
+                                    REL_COUNTS,
+                                    RELATION,
+                                    NULL
+                                );
+
+                            ⚡ SET_COUNT:
+                                H(
+                                    "map_set",
+                                    REL_COUNTS,
+                                    RELATION,
+                                    OLD_COUNT + 1
+                                );
+                        }
+
+                        IF (EXISTS == FALSE) {
+
+                            ⚡ SET_FIRST:
+                                H(
+                                    "map_set",
+                                    REL_COUNTS,
+                                    RELATION,
+                                    1
+                                );
+
+                            ⚡ PUSH_ORDER:
+                                H(
+                                    "list_push",
+                                    REL_ORDER,
+                                    RELATION,
+                                    NULL
+                                );
+                        }
+
+                        ⚡ RELATION_OCCURRENCES:
+                            RELATION_OCCURRENCES + 1;
+                    }
+
+                    IF (VALID_RELATION == 0) {
+                        ⚡ SKIPPED_EMPTY_RELATIONS:
+                            SKIPPED_EMPTY_RELATIONS + 1;
+                    }
+
+                    ⚡ I:
+                        I + 1;
+                }
+
+                ⚡ L:
+                    L + 1;
+            }
+
+            ⚡ UNIQUE_RELATIONS:
+                H(
+                    "list_len",
+                    REL_ORDER,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ BEST_LOCAL_RELATION:
+                "";
+
+            ⚡ BEST_LOCAL_SUPPORT:
+                0;
+
+            ⚡ R:
+                0;
+
+            WHILE (R < UNIQUE_RELATIONS) {
+
+                ⚡ REL:
+                    H(
+                        "list_get",
+                        REL_ORDER,
+                        R,
+                        NULL
+                    );
+
+                ⚡ SUPPORT:
+                    H(
+                        "map_get",
+                        REL_COUNTS,
+                        REL,
+                        NULL
+                    );
+
+                IF (BEST_LOCAL_SUPPORT < SUPPORT) {
+
+                    ⚡ BEST_LOCAL_SUPPORT:
+                        SUPPORT;
+
+                    ⚡ BEST_LOCAL_RELATION:
+                        REL;
+                }
+
+                ⚡ R:
+                    R + 1;
+            }
+
+            ⚡ EVIDENCE_ALREADY_COMMITTED:
+                0;
+
+            ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+                0;
+
+            ⚡ E:
+                0;
+
+            WHILE (E < EVIDENCE_LINE_TOTAL) {
+
+                ⚡ EVIDENCE_LINE:
+                    H(
+                        "list_get",
+                        EVIDENCE_LINES,
+                        E,
+                        NULL
+                    );
+
+                ⚡ VALID_EVIDENCE_LINE:
+                    1;
+
+                IF (EVIDENCE_LINE == "") {
+                    ⚡ VALID_EVIDENCE_LINE:
+                        0;
+                }
+
+                IF (VALID_EVIDENCE_LINE) {
+
+                    ⚡ EPARTS:
+                        H(
+                            "str_split",
+                            EVIDENCE_LINE,
+                            " || ",
+                            NULL
+                        );
+
+                    ⚡ EPART_TOTAL:
+                        H(
+                            "list_len",
+                            EPARTS,
+                            NULL,
+                            NULL
+                        );
+
+                    ⚡ COMMITTED_EVIDENCE:
+                        0;
+
+                    IF (3 < EPART_TOTAL) {
+
+                        ⚡ ECOMMIT_FIELD:
+                            H(
+                                "list_get",
+                                EPARTS,
+                                3,
+                                NULL
+                            );
+
+                        IF (ECOMMIT_FIELD == "COMMIT=YES") {
+                            ⚡ COMMITTED_EVIDENCE:
+                                1;
+                        }
+                    }
+
+                    IF (COMMITTED_EVIDENCE) {
+
+                        ⚡ EWORK_FIELD:
+                            H(
+                                "list_get",
+                                EPARTS,
+                                0,
+                                NULL
+                            );
+
+                        ⚡ ECURSOR_FIELD:
+                            H(
+                                "list_get",
+                                EPARTS,
+                                1,
+                                NULL
+                            );
+
+                        ⚡ EWORK:
+                            H(
+                                "str_replace",
+                                EWORK_FIELD,
+                                "WORK=",
+                                ""
+                            );
+
+                        ⚡ ECURSOR:
+                            H(
+                                "str_replace",
+                                ECURSOR_FIELD,
+                                "CURSOR=",
+                                ""
+                            );
+
+                        IF (EWORK == SELECTED_WORK) {
+                            IF (ECURSOR == CURSOR_TEXT) {
+                                ⚡ EVIDENCE_ALREADY_COMMITTED:
+                                    1;
+                            }
+                        }
+                    }
+
+                    IF (COMMITTED_EVIDENCE == 0) {
+                        ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+                            IGNORED_EVIDENCE_RECORD_COUNT + 1;
+                    }
+                }
+
+                ⚡ E:
+                    E + 1;
+            }
+
+            ⚡ EVIDENCE_APPEND_RC:
+                0;
+
+            ⚡ EVIDENCE_READY:
+                0;
+
+            IF (EVIDENCE_ALREADY_COMMITTED) {
+                ⚡ EVIDENCE_READY:
+                    1;
+            }
+
+            IF (EVIDENCE_ALREADY_COMMITTED == 0) {
+
+                ⚡ EVIDENCE_RECORD:
+                    "\nWORK="
+                    + SELECTED_WORK
+                    + " || CURSOR="
+                    + CURSOR_TEXT
+                    + " || BEST_LOCAL_RELATION="
+                    + BEST_LOCAL_RELATION
+                    + " || COMMIT=YES";
+
+                ⚡ EVIDENCE_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V28D1_DEEP_EVIDENCE.memory",
+                        EVIDENCE_RECORD,
+                        NULL
+                    );
+
+                IF (EVIDENCE_APPEND_RC == 0) {
+                    ⚡ EVIDENCE_READY:
+                        1;
+                }
+            }
+
+            ⚡ CURSOR_APPEND_RC:
+                -1;
+
+            IF (EVIDENCE_READY) {
+
+                ⚡ CURSOR_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V28D1_CURSOR.memory",
+                        "|",
+                        NULL
+                    );
+            }
+
+            ⚡ print("SIGMA_V28D1_SELECTED_WORK_DEEP_RELEARN");
+            ⚡ print("DEEP_RELEARN_COMPLETE", "NO");
+            ⚡ print("SELECTED_WORK", SELECTED_WORK);
+            ⚡ print("DOCUMENT_PATH", DOCUMENT_PATH);
+            ⚡ print("DOCUMENT_EXISTS", DOCUMENT_EXISTS);
+            ⚡ print("WORK_SWITCHED", WORK_SWITCHED);
+            ⚡ print("ACTIVE_WRITE_RC", ACTIVE_WRITE_RC);
+            ⚡ print("CURSOR_RESET_RC", CURSOR_RESET_RC);
+            ⚡ print("LINE_TOTAL", LINE_TOTAL);
+            ⚡ print("SEGMENT_INDEX", SEGMENT_INDEX);
+            ⚡ print("SEGMENT_START_LINE", START_LINE);
+            ⚡ print("SEGMENT_END_LINE", END_LINE);
+            ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+            ⚡ print("TOKEN_COUNT", TOKEN_COUNT);
+            ⚡ print("RELATION_OCCURRENCES", RELATION_OCCURRENCES);
+            ⚡ print("SKIPPED_EMPTY_RELATIONS", SKIPPED_EMPTY_RELATIONS);
+            ⚡ print("UNIQUE_RELATIONS", UNIQUE_RELATIONS);
+            ⚡ print("BEST_LOCAL_RELATION", BEST_LOCAL_RELATION);
+            ⚡ print("BEST_LOCAL_SUPPORT", BEST_LOCAL_SUPPORT);
+            ⚡ print("EVIDENCE_ALREADY_COMMITTED", EVIDENCE_ALREADY_COMMITTED);
+            ⚡ print("IGNORED_EVIDENCE_RECORD_COUNT", IGNORED_EVIDENCE_RECORD_COUNT);
+            ⚡ print("EVIDENCE_APPEND_RC", EVIDENCE_APPEND_RC);
+            ⚡ print("EVIDENCE_READY", EVIDENCE_READY);
+            ⚡ print("CURSOR_APPEND_RC", CURSOR_APPEND_RC);
+            ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+            ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+            ⚡ print("HOST_LEARNING", "NO");
+            ⚡ print("SEGMENT_COMPUTATION_BOUNDED", "YES");
+            ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+            ⚡ print("EVIDENCE_COMMIT_FILTER", "COMMIT_YES_REQUIRED");
+            ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+            ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+        }
+    }
+}
