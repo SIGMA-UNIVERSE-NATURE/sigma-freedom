@@ -42,7 +42,7 @@ VM SHA256:
 
 Keep V2.4 running unless it emits a real VM failure.
 
-Proven in exact tested scope:
+Proven in tested scope:
 
 - dynamic structural relation generation;
 - persistent recurrence;
@@ -58,13 +58,10 @@ Production source:
 Source SHA256:
 `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2`
 
-## Curriculum / re-learning design
+## Curriculum / re-learning lifecycle
 
 Read:
-
 `SIGMA_PROFESSOR/DESIGN/SIGMA_CURRICULUM_RELEARNING_V1.md`
-
-Lifecycle:
 
 RAW_DOCUMENT
 -> SURVEY
@@ -77,49 +74,17 @@ RAW_DOCUMENT
 -> REVALIDATE
 -> REVISIT
 
-## V2.5A QA
+## V2.5 full-corpus survey — PASS
 
-V2.5A original failed cleanly on H wrapper arity.
-
-V2.5A.1 failed cleanly because direct `str(...)` compiled but locked VM returned `undefined function str`.
-
-V2.5A.2 repaired both and PASSED on a 3-document QA corpus.
-
-Checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V25A2_DOCUMENT_SURVEY_PREFLIGHT_PASS.md`
-
-## V2.5B full-corpus survey — PASS
-
-A frozen mechanical snapshot of the real raw corpus contains:
+Frozen mechanical snapshot:
 
 `SNAPSHOT_DOCUMENT_COUNT=56`
 
-Host snapshot behavior was exact copy of all `*.document` files present at initialization. Host did not choose documents semantically.
+V2.5B.2 final device evidence:
 
-Historical failures retained as evidence:
-
-- initial V2.5B failed on incompatible `str_starts` runtime call pattern;
-- V2.5B.1 later exposed empty-token contamination: `BEST_LOCAL_RELATION= =>`, support 110;
-- V2.5B.1 state is tainted historical evidence and must not be promoted.
-
-V2.5B.2 repaired this with a native empty-token relation gate and fresh derived survey namespace.
-
-Native source:
-`SIGMA_PROFESSOR/artifacts/SIGMA_DOCUMENT_SURVEY_V2_5B_2.sigma`
-
-SOURCE_SHA256:
-`b260544d4afdf8787a2653ee4b3350a6b76663c4377252623638db82e2502d3b`
-
-Observed bytecode SHA256:
-`5525f3f8475a14e37051c99a2108487c014ef0dd7927efedd932390aaba54c5c`
-
-Final device evidence:
-
-- final VM cycle `VM_RC=0`;
+- final `VM_RC=0`;
 - `SURVEY_COMPLETE YES`;
-- `RAW_FILE_COUNT 56`;
-- `COMMITTED_SURVEY_COUNT 56`;
-- `SNAPSHOT_DOCUMENT_COUNT=56`;
+- `COMMITTED_SURVEY_COUNT=56`;
 - `SURVEY_COMPLETE_SENTINEL=1`;
 - `PRODUCTION_RAW_MUTATED=NO`;
 - `PRODUCTION_LEARNER_MEMORY_MUTATED=NO`;
@@ -134,79 +99,144 @@ Proven claim scope:
 
 `PERSISTENT_SURVEY_RESUME_ACROSS_RUNNER_INVOCATIONS=PROVEN_IN_TESTED_SCOPE`
 
-Important limit:
-
-- native survey computation is bounded to 32 lines;
-- current `read_text` still loads the whole file;
-- `BOUNDED_FILE_IO=NOT_PROVEN`.
-
 Checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V25B2_FULL_CORPUS_SURVEY_PASS.md`
 
 Checkpoint commit:
 `dca66b408fba5c21d081983d6ba15ca510e63c2c`
 
-## CURRENT FRONTIER — V2.6 bounded segment cursor restart preflight
+Historical failures retained as evidence:
 
-Goal:
+- original V2.5B: `str_starts` runtime incompatibility;
+- V2.5B.1: empty-token contamination (`BEST_LOCAL_RELATION= =>`, support 110);
+- tainted V2.5B.1 state must not be promoted.
 
-Prove SIGMA itself selects the next fixed-size segment from persistent cursor state and resumes the next segment after the supervising runner process is deliberately terminated and restarted.
+## V2.6 bounded segment cursor restart preflight — PASS
+
+Fixture:
+
+`ccfdecb4cd296cd18d5d44c53be4638b027b212a2c6df2372abd350e2782efac.document`
+
+Observed line count: 63.
 
 Native source:
 `SIGMA_PROFESSOR/artifacts/SIGMA_BOUNDED_SEGMENT_CURSOR_V2_6P.sigma`
 
-SOURCE_SHA256:
+Source SHA256:
 `9cac5d9ddb10295b3ebf1f4300412e1b6dc3adceaf5f1de70eb83d0508f3b970`
 
+Observed bytecode SHA256:
+`e850848a9b0fc8905ae50ddf609e28235a1c431fe045011bd88d9fc0c39e33b2`
+
+Phase 1 evidence:
+
+- `VM_RC=0`;
+- `SEGMENT_INDEX 0`;
+- `SEGMENT_START_LINE 0`;
+- `SEGMENT_END_LINE 8`;
+- `CURSOR_APPEND_RC 0`;
+- `CURSOR_BYTES_AFTER=1`;
+- runner deliberately terminated its own process after the commit.
+
+Phase 2 fresh runner invocation:
+
+- `V26_INITIALIZATION=REUSE_PERSISTED_CURSOR`;
+- `CURSOR_BYTES_BEFORE=1`;
+- `RECOVERY_DETECTED=YES`;
+- `VM_RC=0`;
+- `SEGMENT_INDEX 1`;
+- `SEGMENT_START_LINE 8`;
+- `SEGMENT_END_LINE 16`;
+- `CURSOR_APPEND_RC 0`;
+- `CURSOR_BYTES_AFTER=2`;
+- `V26_BOUNDED_SEGMENT_CURSOR_PREFLIGHT=PASS`;
+- `PERSISTED_CURSOR_RESUME_AFTER_PROCESS_TERMINATION=PASS`.
+
+Proven claim scope:
+
+- SIGMA derives the next fixed 8-line segment from persistent cursor state;
+- host does not select the next segment;
+- restart between committed VM cycles resumes the next segment;
+- segment computation is bounded.
+
+Not proven:
+
+- bounded file I/O (`read_text` still loads whole file);
+- atomic recovery from kill during `append_text`;
+- semantic understanding.
+
+Important observation:
+
+Segment 1 produced zero valid relations and many skipped empty relations. This does not invalidate cursor proof. Future grouping/curriculum must tolerate evidence-empty segments rather than forcing every segment to yield knowledge.
+
+Checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V26_SEGMENT_CURSOR_RESTART_PREFLIGHT_PASS.md`
+
+Checkpoint commit:
+`81c8c72e66c30292e17c567d8c3824490dc00e7a`
+
+## CURRENT FRONTIER — V2.6F complete full-document segment traversal
+
+Goal:
+
+Prove complete traversal of the 63-line fixture using persistent native cursor before moving to structural grouping.
+
+Native source:
+`SIGMA_PROFESSOR/artifacts/SIGMA_FULL_DOCUMENT_SEGMENT_CURSOR_V2_6F.sigma`
+
+SOURCE_SHA256:
+`adfadcb91e71a38272d09dfc27997faf915ab71666993c67e9288e69b5b3a366`
+
 Source artifact commit:
-`dd4ceff9ae17c8de3a6f9d24e379577c3a4fca3d`
+`0194c6278c8d83a3625a54e3a946bb87996cf1cd`
 
-Local/device runner artifact to install:
-`RUN_SIGMA_V26_BOUNDED_SEGMENT_CURSOR_RESTART_PREFLIGHT.sh`
+Runner:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V26F_FULL_DOCUMENT_SEGMENT_CURSOR_BATCHED.sh`
 
-Runner SHA256:
-`e9304695d280fef406e0193a33103f212536cd8dac6e02d99629fd387279ca56`
+RUNNER_SHA256:
+`506f606dd110141b2f78b90ec96df4dfb01ea1f8340824ea0ebbf20d1693a15f`
 
-QA fixture from frozen V2.5 snapshot:
+Runner artifact commit:
+`c6cacaa6fd9ef1bb630270f817a830c460a65df9`
 
-`ccfdecb4cd296cd18d5d44c53be4638b027b212a2c6df2372abd350e2782efac.document`
+Policy:
 
-Previously observed `LINE_TOTAL=63`, therefore it contains multiple 8-line segments.
+- fresh V2.6F derived cursor namespace;
+- fixed 8-line windows;
+- SIGMA derives segment index from persistent cursor;
+- one successful non-complete VM cycle must advance cursor exactly one byte;
+- batch limit = 3 VM cycles per invocation;
+- same runner resumes next batch;
+- evidence-empty segments are permitted;
+- host does not select segments.
 
-V2.6 native policy:
+Expected fixture traversal:
 
-- persistent cursor is a string of `|` markers;
-- empty cursor -> segment index 0;
-- SIGMA computes index from `str_split(cursor,"|")` and `list_len - 1`;
-- fixed mechanical segment window = 8 consecutive lines;
-- SIGMA computes start/end lines itself;
-- SIGMA filters empty-token relations natively;
-- after a successfully computed segment, SIGMA appends one `|` itself;
-- host does not choose the next segment.
+- segment 0: `[0,8)`;
+- segment 1: `[8,16)`;
+- segment 2: `[16,24)`;
+- segment 3: `[24,32)`;
+- segment 4: `[32,40)`;
+- segment 5: `[40,48)`;
+- segment 6: `[48,56)`;
+- segment 7: `[56,63)`;
+- next native invocation: `DOCUMENT_SEGMENTS_COMPLETE YES`, `SEGMENT_INDEX 8`.
 
-Restart admission protocol:
+PASS requires:
 
-First invocation:
+- all VM cycles `RC=0`;
+- cursor advances exactly one marker for every processed segment;
+- `CURSOR_BYTES_AT_END=8`;
+- `DOCUMENT_COMPLETE_SENTINEL=1`;
+- completion log contains `SEGMENT_INDEX 8`;
+- `V26F_FULL_DOCUMENT_TRAVERSAL=PASS`;
+- `HOST_SEGMENT_SELECTION=NO`;
+- `HOST_LEARNING=NO`;
+- production learner memory not mutated.
 
-1. initialize isolated test state;
-2. VM must process segment index 0, lines 0..7;
-3. cursor must advance from 0 to 1 byte;
-4. runner deliberately sends `TERM` to its own process AFTER the VM commit.
+After PASS:
 
-Second invocation of the SAME runner:
-
-1. must detect persisted cursor byte count 1;
-2. VM must resume segment index 1, lines 8..15;
-3. cursor must advance to 2 bytes;
-4. emit `V26_BOUNDED_SEGMENT_CURSOR_PREFLIGHT=PASS`.
-
-Claim limits:
-
-- this tests restart/resume BETWEEN committed VM cycles;
-- kill during `append_text` is not tested;
-- `MID_COMMIT_CRASH_ATOMICITY=NOT_PROVEN`;
-- `BOUNDED_FILE_IO=NOT_PROVEN`;
-- semantic understanding remains NOT PROVEN.
+`NEXT_ACTION=BUILD_V27_STRUCTURAL_GROUPING_PREFLIGHT`
 
 ## Host ABI status
 
@@ -230,29 +260,14 @@ Read:
 
 Keep all 54 DNA. Active DNA cognition must be native `.sigma`. Work dependency-first/capability-first.
 
-Native-admitted evidence currently exists in exact tested scope for:
-
-- DNA-01
-- DNA-02
-- DNA-03
-- DNA-04
-- DNA-05
-- DNA-06
-- DNA-07
-- DNA-50
-
-Latest dependency frontier recorded by the 54-DNA lane:
-
-`DNA-08 Learning World`
-
-Do not infer semantic understanding from these admission labels beyond each exact test scope.
+Do not infer semantic understanding from DNA admission labels beyond each exact runtime test scope.
 
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. Install V2.6 source + restart preflight runner.
-3. Run the V2.6 runner once; expected result is deliberate process termination after segment 0 commit.
-4. Run the SAME runner a second time; admission requires resume at segment index 1 and PASS.
-5. If PASS, checkpoint V2.6 and build full-document segment cursor runner.
-6. After V2.6: structural grouping, curriculum queue, consolidation, revalidation.
-7. Keep all V2.2/V2.3/V2.4 raw/done/log/history state and tainted V2.5B.1 evidence.
+2. Install V2.6F source + batched runner.
+3. Run same V2.6F runner batch-by-batch until native `DOCUMENT_SEGMENTS_COMPLETE YES` at `SEGMENT_INDEX 8` and cursor bytes = 8.
+4. If V2.6F PASSes, checkpoint it.
+5. Then build V2.7 structural grouping preflight.
+6. After grouping: curriculum queue, consolidation, revalidation.
+7. Preserve all prior raw/done/log/history state and failure evidence.
