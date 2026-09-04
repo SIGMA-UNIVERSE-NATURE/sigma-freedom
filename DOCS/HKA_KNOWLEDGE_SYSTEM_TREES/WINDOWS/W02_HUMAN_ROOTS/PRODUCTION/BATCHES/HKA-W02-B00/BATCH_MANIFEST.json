@@ -5,7 +5,7 @@
   "tree_slug": "human-roots",
   "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "prompt_branch": "hka-tree/w02-human-roots",
-  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "prompt_commit_sha": "295f73a8e833b5a0ffb9642078514e7e3924700a",
   "brand_repository": "linkcomltd-byte/sigma-universe-web",
   "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
   "batch_id": "HKA-W02-B00",
@@ -14,7 +14,7 @@
   "assets": [
     {
       "asset_id": "HKA-VIS-W02-0001",
-      "prompt_sha256": "5e41812815359fec5e2bce778f1ebb7e09dee63372aba3fccd2ee4f34e137250",
+      "prompt_sha256": "ed03f468a3a59a3e460036e377cfb6407a0f767191883f49ea806ac476f6580c",
       "asset_type": "HERO",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "UNIVERSAL",
@@ -29,11 +29,17 @@
         "HKA-W02-C07"
       ],
       "clean_master_filename": "HKA-VIS-W02-0001_CLEAN_MASTER.png",
-      "branded_final_filename": "HKA-VIS-W02-0001_BRANDED_FINAL.png"
+      "branded_final_filename": "HKA-VIS-W02-0001_BRANDED_FINAL.png",
+      "secondary_companions": [
+        "SIGMA",
+        "CRICKET",
+        "LITTLE_ANT",
+        "PROFESSOR_OWL"
+      ]
     },
     {
       "asset_id": "HKA-VIS-W02-0002",
-      "prompt_sha256": "94fda4881bfbfce8f470fd61de5e16e5c9cc4048e966901054057394f00514d1",
+      "prompt_sha256": "ca9297d02eb179523de398727733c59982fe57c168861b18106c8944e88e9195",
       "asset_type": "ETHICAL_SCENARIO",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "A4_16_18",
@@ -47,6 +53,5 @@
       "branded_final_filename": "HKA-VIS-W02-0002_BRANDED_FINAL.png"
     }
   ],
-  "created_at": "2026-09-04T02:00:02Z",
   "status": "BATCH_READY"
 }

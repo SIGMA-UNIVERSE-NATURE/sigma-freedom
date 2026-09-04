@@ -1,13 +1,14 @@
 ---
 title: "HKA W02 — CINEMATIC 4K Prompt Registry"
 version: "2.1"
-status: "PROMPT_CONTENT_FINAL_SNAPSHOT"
+status: "TARGETED_HANDOFF_CORRECTIONS_COMPLETE_PENDING_DIRECTOR_RE_REVIEW"
 window_id: "W02"
 tree_id: "HKA-TREE-00-HROOT"
 tree_slug: "human-roots"
 package: "P18"
 asset_count: 18
 academic_content_commit: "e900d3b623c27f6d4a0fe2750fa499295788776e"
+prompt_content_commit: "295f73a8e833b5a0ffb9642078514e7e3924700a"
 prompt_content_authoring_commit: "65c852bfd12adc94745c65a5c8e900c40ef501c5"
 reviewed_prompt_package_commit: "73c55dc9825dc1113f444c2a5c7468ee9ef09b43"
 brand_asset_commit: "2d3aa9d8418acccd39a3d263e917d4157e029e17"
@@ -54,9 +55,9 @@ Director Independent Review 01 (`164775dd7d3aef0e0179440a88eb323eb8c23fa0`) acce
 
 ## Canonical resolved payload profile — HKA-PROMPT-RESOLVED-AJ-JSON-V1
 
-The prompt-content snapshot is this Git commit together with the four frozen `PRODUCTION/BATCHES/HKA-W02-B00..B03/BATCH_PROMPTS.md` files in the same tree.
+The immutable prompt-content snapshot is commit `295f73a8e833b5a0ffb9642078514e7e3924700a` together with the four frozen `PRODUCTION/BATCHES/HKA-W02-B00..B03/BATCH_PROMPTS.md` files in that tree.
 
-After this snapshot commit exists, the production handoff derives exactly one canonical JSON payload for each Asset ID. The payload contains:
+The successor production-handoff commit deterministically resolves exactly one canonical JSON payload for each Asset ID by injecting `PROMPT_CONTENT_COMMIT_SHA=295f73a8e833b5a0ffb9642078514e7e3924700a` into the resolved A-section integrity metadata. The payload contains:
 
 - `profile = HKA-PROMPT-RESOLVED-AJ-JSON-V1`;
 - the Asset ID;
@@ -81,7 +82,40 @@ SHA-256 over the exact serialized payload bytes
 lowercase 64-hex
 ```
 
-The derived payload files and production hashes are written only in the successor handoff commit, so the prior snapshot SHA can be injected without self-reference.
+Per Director Review 01, separate per-asset payload files are optional. Reproducibility is locked by the immutable prompt snapshot, the complete inherited A–J contract above, the exact resolver/serialization profile, and the 18 registered hashes below. The prior snapshot SHA is therefore injected without self-reference.
+
+## Canonical prompt-hash registry
+
+```text
+PROMPT CONTENT COMMIT SHA: 295f73a8e833b5a0ffb9642078514e7e3924700a
+PROMPT HASH PROFILE: HKA-PROMPT-RESOLVED-AJ-JSON-V1
+DETERMINISTIC RESOLVED PAYLOADS: 18/18
+PROMPT HASH VERIFICATION: PASS 18/18
+PER-ASSET PAYLOAD FILES: NOT REQUIRED — DETERMINISTIC REPRODUCIBILITY LOCKED
+```
+
+| Asset ID | Batch | Prompt SHA-256 | Resolved source |
+|---|---|---|---|
+| HKA-VIS-W02-0001 | HKA-W02-B00 | `ed03f468a3a59a3e460036e377cfb6407a0f767191883f49ea806ac476f6580c` | `HKA-W02-B00/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0002 | HKA-W02-B00 | `ca9297d02eb179523de398727733c59982fe57c168861b18106c8944e88e9195` | `HKA-W02-B00/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0003 | HKA-W02-B01 | `7860356738221087770070a1c4fc8ed31a0af861ff74059142c8e25c8fb02f34` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0004 | HKA-W02-B01 | `c0f6f190b4ab7e7d21899a79af216f4ab25f32e02b859d19859582e076d39648` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0005 | HKA-W02-B01 | `94fc835fdb4732b14b1f96aca12f7ce0e3cc1a0ce7546cff9739773d5c8c39b7` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0006 | HKA-W02-B01 | `83f5f69fbe28b43695ec86739b19ddacc5ee7c352c5fa2740069f4fa4f1269cd` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0007 | HKA-W02-B01 | `cfc77d3340209df99c8db6597da3e87fa0bea842e4f261b0910917d7856534f0` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0008 | HKA-W02-B01 | `fbaeb9cf763baf914c0721831a3e07f988ef5af8e0930204388485a2e52b59f1` | `HKA-W02-B01/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0009 | HKA-W02-B02 | `a8a7abbce968a7d47a516d141ddbbf1dd8e228b030f864e857969770360e257e` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0010 | HKA-W02-B02 | `e4ffdbc7764673fe10a79b0c64308d2be3f90f2c76fb140b9e484094a11eef36` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0011 | HKA-W02-B02 | `f08f0696f98372b335e7066cbc4c50609e3ad5fee81df4af266d37cd08a2f141` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0012 | HKA-W02-B02 | `5078e9a422949c2af8007e00981ae3b131f29d6d10e9087ab9136d681c687b18` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0013 | HKA-W02-B02 | `2ef90121d075b8baede5dc7e3520b5fa3823909acd597ec6cd9da8a18befa986` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0014 | HKA-W02-B02 | `cabfcb562d772f556d9548feabd0dcf5641ec9ab9ba4c469fdf097ef6ea1b835` | `HKA-W02-B02/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0015 | HKA-W02-B03 | `2a56147bf050e671b28bdc905dc4954ebf2d8ff43f573c5cd35cf7fa21cced80` | `HKA-W02-B03/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0016 | HKA-W02-B03 | `cb1b6647e33719f7bca426bb19bd3867a180e06dd6db1088d9fab9caaa4f0d5e` | `HKA-W02-B03/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0017 | HKA-W02-B03 | `1e913bf721741bfe589c44799abac1f11cbf4f427eb9ca444fb9048f4c86a535` | `HKA-W02-B03/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+| HKA-VIS-W02-0018 | HKA-W02-B03 | `7c9740ce78c75815d27c5fe97f29a32aaefeba28f20e6f16a48ed430c769dc45` | `HKA-W02-B03/BATCH_PROMPTS.md + G-W02-PROMPT-2.0` |
+
+For verification, resolve the named frozen batch block with `G-W02-PROMPT-2.0`, apply the integrity substitution and canonical JSON serialization above, then SHA-256 the exact UTF-8 bytes. No prompt-hash field is included.
 
 ## Frozen package map
 
@@ -99,7 +133,7 @@ HKA-W02-B03: 0015–0018 = 4
 ACADEMIC CONTENT COMMIT SHA: e900d3b623c27f6d4a0fe2750fa499295788776e
 ACADEMIC: ACCEPTED BY DIRECTOR REVIEW 01
 VISUAL/PROMPT CONTENT: ACCEPTED BY DIRECTOR REVIEW 01
-PRODUCTION HANDOFF: SNAPSHOT COMMIT PRECEDES DERIVED HASH/MANIFEST COMMIT
+PRODUCTION HANDOFF: TARGETED CORRECTIONS COMPLETE — AWAITING DIRECTOR NARROW RE-REVIEW
 B00 IMAGE PRODUCTION: CLOSED — AWAITING DIRECTOR RE-REVIEW
 B01–B03: CLOSED
 R2: NOT AUTHORIZED

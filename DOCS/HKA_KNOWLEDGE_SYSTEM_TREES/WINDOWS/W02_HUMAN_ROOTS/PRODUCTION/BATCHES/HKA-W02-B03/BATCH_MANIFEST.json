@@ -5,7 +5,7 @@
   "tree_slug": "human-roots",
   "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "prompt_branch": "hka-tree/w02-human-roots",
-  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "prompt_commit_sha": "295f73a8e833b5a0ffb9642078514e7e3924700a",
   "brand_repository": "linkcomltd-byte/sigma-universe-web",
   "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
   "batch_id": "HKA-W02-B03",
@@ -14,7 +14,7 @@
   "assets": [
     {
       "asset_id": "HKA-VIS-W02-0015",
-      "prompt_sha256": "18cf6f241e2dccb159f9d70a3e7af7125206f807b40cbb6d30832136a0b4b9ad",
+      "prompt_sha256": "2a56147bf050e671b28bdc905dc4954ebf2d8ff43f573c5cd35cf7fa21cced80",
       "asset_type": "ETHICAL_SCENARIO",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "A5_19_24",
@@ -29,7 +29,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0016",
-      "prompt_sha256": "9a1b8702773593bdd901a4f72def382d573d63cc72cd7fa6989ecb16d214c262",
+      "prompt_sha256": "cb1b6647e33719f7bca426bb19bd3867a180e06dd6db1088d9fab9caaa4f0d5e",
       "asset_type": "PROCESS",
       "representation_type": "SCIENTIFIC_VISUALIZATION",
       "primary_audience": "A5_19_24",
@@ -44,7 +44,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0017",
-      "prompt_sha256": "737662632c1e2d63125c1995fd621d2c41d6a6cd90f043d9c0f1fe6593616977",
+      "prompt_sha256": "1e913bf721741bfe589c44799abac1f11cbf4f427eb9ca444fb9048f4c86a535",
       "asset_type": "RESEARCH_POSTER",
       "representation_type": "DATA_RESEARCH_POSTER",
       "primary_audience": "RESEARCH",
@@ -59,7 +59,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0018",
-      "prompt_sha256": "eaf0dd645bd59a56013ae006a8b215c30170cdc0724f9d1f86a300d9a59a8e51",
+      "prompt_sha256": "7c9740ce78c75815d27c5fe97f29a32aaefeba28f20e6f16a48ed430c769dc45",
       "asset_type": "RESEARCH_POSTER",
       "representation_type": "DATA_RESEARCH_POSTER",
       "primary_audience": "RESEARCH",
@@ -74,6 +74,5 @@
       "branded_final_filename": "HKA-VIS-W02-0018_BRANDED_FINAL.png"
     }
   ],
-  "created_at": "2026-09-04T02:00:02Z",
   "status": "BATCH_READY"
 }

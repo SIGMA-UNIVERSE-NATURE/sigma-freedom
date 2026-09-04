@@ -5,7 +5,7 @@
   "tree_slug": "human-roots",
   "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
   "prompt_branch": "hka-tree/w02-human-roots",
-  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "prompt_commit_sha": "295f73a8e833b5a0ffb9642078514e7e3924700a",
   "brand_repository": "linkcomltd-byte/sigma-universe-web",
   "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
   "batch_id": "HKA-W02-B01",
@@ -14,7 +14,7 @@
   "assets": [
     {
       "asset_id": "HKA-VIS-W02-0003",
-      "prompt_sha256": "1306fe45f88cb565ea21690e1a0a005857c6e6b3ffe8176b86766764587a9b3e",
+      "prompt_sha256": "7860356738221087770070a1c4fc8ed31a0af861ff74059142c8e25c8fb02f34",
       "asset_type": "CONCEPT",
       "representation_type": "DOCUMENTARY_REALITY",
       "primary_audience": "A1_5_8",
@@ -28,7 +28,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0004",
-      "prompt_sha256": "b89b92d558808cd35a7108d5dd5999759b9539f4132b2b4e58408743f67eacc7",
+      "prompt_sha256": "c0f6f190b4ab7e7d21899a79af216f4ab25f32e02b859d19859582e076d39648",
       "asset_type": "CONCEPT",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "A1_5_8",
@@ -43,7 +43,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0005",
-      "prompt_sha256": "d083126c4306b6b52258e00fdbcca10d1eb13fc071870005adfda5c3b1f65dd3",
+      "prompt_sha256": "94fc835fdb4732b14b1f96aca12f7ce0e3cc1a0ce7546cff9739773d5c8c39b7",
       "asset_type": "CROSS_LINK",
       "representation_type": "DOCUMENTARY_REALITY",
       "primary_audience": "A1_5_8",
@@ -59,7 +59,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0006",
-      "prompt_sha256": "a41107e6d40e443d8003c3c8296d6e740c10dd8e8165f36d99e4b8c24774e7be",
+      "prompt_sha256": "83f5f69fbe28b43695ec86739b19ddacc5ee7c352c5fa2740069f4fa4f1269cd",
       "asset_type": "MISCONCEPTION",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "A2_9_12",
@@ -73,7 +73,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0007",
-      "prompt_sha256": "a358c4c89a34cf56fdf5a0c068689a254aa4eb72db7bfd096408c7f2bc8e0cc0",
+      "prompt_sha256": "cfc77d3340209df99c8db6597da3e87fa0bea842e4f261b0910917d7856534f0",
       "asset_type": "COMPARISON",
       "representation_type": "CONCEPTUAL_MODEL",
       "primary_audience": "A2_9_12",
@@ -87,7 +87,7 @@
     },
     {
       "asset_id": "HKA-VIS-W02-0008",
-      "prompt_sha256": "f60bbecff175168152cd411ad014815d5bebc828b8c5d4b15c776f84fab09d68",
+      "prompt_sha256": "fbaeb9cf763baf914c0721831a3e07f988ef5af8e0930204388485a2e52b59f1",
       "asset_type": "CROSS_LINK",
       "representation_type": "DOCUMENTARY_REALITY",
       "primary_audience": "A2_9_12",
@@ -101,6 +101,5 @@
       "branded_final_filename": "HKA-VIS-W02-0008_BRANDED_FINAL.png"
     }
   ],
-  "created_at": "2026-09-04T02:00:02Z",
   "status": "BATCH_READY"
 }
