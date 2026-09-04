@@ -1,54 +1,124 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "REVIEW_REQUIRED",
+  "status": "PASS",
   "execution_branch": "hka-tree/c01-w02-math-c01",
   "input_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
   "execution_baseline_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af",
   "accepted_predecessor_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
   "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
-  "control_plane_snapshot_commit_sha": "02d6d4ac7d03964dba31f7042afc5fcfaafb450f",
-  "candidate_terminal_commit_sha": "359359ae5663f5a62383c1774c2ff359ccb092a7",
+  "director_repair_input_head_sha": "3c0906772ae6a356a4671d372180a0d38933fbca",
+  "control_plane_snapshot_commit_sha": "262cbe8f63cb6bfda2f017313883dd15bc9ed7dc",
+  "academic_repair_commit_sha": "24f26793d923dd55e87839331994c45489109d88",
+  "pre_pass_checkpoint_id": "CP06-REPAIR-PRE-PASS-AUDIT",
+  "pre_pass_checkpoint_commit_sha": "a62420f15499a60cdab78c176a5c6b4a5510e0e7",
   "scope_ids": ["B1.1-C01"],
   "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
-  "current_counts": {"nodes":8,"claims":25,"sources":7,"learning_objectives":32,"cross_links":10,"sequence_intents":8},
-  "director_review": {
-    "decision": "REVIEW_REQUIRED",
-    "reason": "Initial schema/coverage PASS does not yet prove academic closure between the claim/source set and all authored learning objectives.",
-    "repair_order": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/DIRECTOR_CORRECTION_ORDER.md",
-    "identified_gaps": [
-      "N001 propositional syntax/well-formed-formula claim closure",
-      "N003 axiomatic set-existence/separation claim closure",
-      "N008 decidability-distinction claim closure while preserving R04",
-      "immutable/versioned source identity for lock-critical Open Logic Project citations",
-      "explicit claim-to-learning-objective support audit for all 32 objectives"
-    ]
+  "counts": {
+    "nodes": 8,
+    "claims": 38,
+    "sources": 8,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_records": 32,
+    "cross_links": 10,
+    "sequence_intents": 8
+  },
+  "director_repair": {
+    "status": "PASS",
+    "identified_gaps_remaining": 0,
+    "propositional_syntax_and_WFF_claim_closure": "PASS",
+    "set_existence_and_Separation_claim_closure": "PASS",
+    "decidability_distinction_without_B1_5_scope_transfer": "PASS",
+    "immutable_OpenLogic_source_pin": "PASS",
+    "learning_objective_claim_support_audit_32_of_32": "PASS",
+    "additional_minimum_closure_discovered_by_full_audit": "PASS"
+  },
+  "learning_objective_closure": {
+    "status": "PASS",
+    "total_objectives": 32,
+    "closure_records": 32,
+    "supported_by_claims": 32,
+    "unsupported": 0,
+    "requires_unlocked_scope_claims": 0,
+    "missing_supporting_claim_ids": 0,
+    "B1_5_boundary_references_used_as_support_claims": 0,
+    "artifact": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl"
+  },
+  "source_pin": {
+    "status": "PASS",
+    "active_immutable_source_id": "HKA-SRC-73f520eedb8e",
+    "normalization_basis": "open_textbook|https://github.com/OpenLogicProject/OpenLogic/tree/1e960beff9ed7835bf3e3f1335e21af3439cd107|commit-1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "source_id_sha256_prefix_verified": true,
+    "upstream_repository": "OpenLogicProject/OpenLogic",
+    "upstream_commit_sha": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "superseded_historical_source_ids": ["HKA-SRC-cf3f2232b1bf","HKA-SRC-7ff0e7a8abe8"],
+    "active_claim_refs_to_superseded_sources": 0,
+    "active_node_refs_to_superseded_sources": 0
   },
   "contract_results": {
     "coverage": "PASS",
     "stable_ids": "PASS",
     "node_fields": "PASS",
-    "claim_epistemics_and_source_traceability": "PASS_WITH_REPAIR_REQUIRED_FOR_IMMUTABLE_PIN",
+    "claim_epistemics_certainty_scope_and_source_traceability": "PASS",
     "D1_D4_depth": "PASS",
+    "claim_to_learning_objective_closure": "PASS",
+    "immutable_source_pin": "PASS",
     "R04_duplicate_risk": "PASS",
     "semantic_duplicate_scan": "PASS",
     "prerequisite_and_sequence": "PASS",
     "stage_boundary": "PASS",
     "durable_status": "PASS",
-    "claim_to_learning_objective_closure": "REVIEW_REQUIRED",
-    "immutable_source_pin": "REVIEW_REQUIRED",
-    "director_acceptance": "REVIEW_REQUIRED"
+    "pre_pass_audit": "PASS"
   },
   "r04": {
     "status": "PASS",
     "disposition": "OVERLAP_REVIEW",
     "targets": ["B1.5-C02","B1.5-C04"],
-    "primary_ownership_transferred": false
+    "primary_ownership_transferred": false,
+    "boundary": "B1.1-C01 owns mathematical logic, axioms, proof/model-theoretic foundations, and formal-theory limit claims. B1.5-C02 owns detailed computability/formal-language/automata/complexity/limits-of-computation curriculum; B1.5-C04 owns program verification and programming-language/software formal methods."
   },
-  "stage_boundary": {"status":"PASS","B1.1-C02_authored":false,"lesson_registry":false,"image_prompt":false,"image":false,"R2":false,"website":false,"ACADEMIC_LOCKED":false},
+  "duplicate_scan": {
+    "status": "PASS",
+    "method": "NODE MEANING + CLAIM SET + LEARNING OBJECTIVE + CONTEXT",
+    "new_learning_objectives_created_in_repair": 0,
+    "uncontrolled_overlap": 0
+  },
+  "stage_boundary": {
+    "status": "PASS",
+    "repair_diff_scoped_to_C01_output_and_C01_status_only": true,
+    "B1.1-C02_authored": false,
+    "lesson_registry": false,
+    "image_prompt": false,
+    "image": false,
+    "R2": false,
+    "website": false,
+    "ACADEMIC_LOCKED": false
+  },
+  "control_plane_at_pre_pass": {
+    "commit_sha": "262cbe8f63cb6bfda2f017313883dd15bc9ed7dc",
+    "stage": "CURRICULUM",
+    "active_scope_id": "B1.1-C01",
+    "active_window_status": "REVIEW_REQUIRED",
+    "repair_authorized": true,
+    "successor_unlocked": false
+  },
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/RESULT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/HANDOFF.md"
+  ],
+  "status_folder": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01",
   "successor_unlocked": false,
-  "next_action": "Repair this same C01 scope according to DIRECTOR_CORRECTION_ORDER.md and return a new committed result for independent Director audit.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01"
+  "director_acceptance_pending": true,
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "next_action_gate": "Independent Director audit/acceptance of this repaired C01 PASS must be recorded in control-plane before C02 may be unlocked or executed.",
+  "completed_at": "2026-09-05T00:49:03+07:00"
 }
