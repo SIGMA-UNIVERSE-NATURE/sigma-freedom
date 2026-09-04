@@ -1,9 +1,11 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "program": "HKA World Tree 1.0",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
   "pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
+  "status_report_standard": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md",
+  "status_report_root": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS",
   "pipeline_sequence": [
     "KNOWLEDGE",
     "CURRICULUM",
@@ -42,7 +44,7 @@
   "active_window": "C01-W01-B1-ARCHITECTURE",
   "window_execution_branch": "hka-tree/c01-w01-b1-architecture",
   "last_accepted_work_checkpoint": null,
-  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt. It may only architect and partition B1 curriculum work. It must not author lesson registry, visual prompts, images, R2 artifacts or website changes.",
+  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt. It may only architect and partition B1 curriculum work. It must maintain its mandatory STATUS_REPORTS/C01-W01-B1-ARCHITECTURE folder. It must not author lesson registry, visual prompts, images, R2 artifacts or website changes.",
   "branches": [
     {
       "branch_id": "B1",
@@ -63,6 +65,7 @@
     {"branch_id":"B6","name":"CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý","status":"NOT_STARTED"}
   ],
   "gates": {
+    "status_folder_required_for_pass": true,
     "all_six_branches_complete": false,
     "global_curriculum_coverage_audit_pass": false,
     "global_curriculum_prerequisite_audit_pass": false,
@@ -75,11 +78,19 @@
     "web_optimize_pass_required_for_delivery": true,
     "delivery_required_for_website_update": true
   },
+  "status_reporting": {
+    "mandatory": true,
+    "applies_to": ["DIRECTOR","CONTROLLER","ACADEMIC_WINDOW","LESSON_WINDOW","PROMPT_WINDOW","PRODUCTION_WORKER","QA_WORKER","RELEASE_WORKER","WEBSITE_WORKER"],
+    "required_files": ["STATUS.json","REPORT.md"],
+    "checkpoint_directory": "CHECKPOINTS",
+    "acceptance_rule": "NO STATUS FOLDER = NO ACCEPTED COMPLETION",
+    "bootstrap_rule": "Replacement reads state, status folder, latest checkpoint and exact committed outputs before resuming."
+  },
   "recovery": {
-    "source_of_truth": "GitHub accepted commits plus machine-readable state; Cloudflare becomes runtime source of truth from IMAGE_PRODUCTION onward",
+    "source_of_truth": "GitHub accepted commits plus machine-readable state and mandatory status folders; Cloudflare becomes runtime source of truth from IMAGE_PRODUCTION onward",
     "chat_memory_authoritative": false,
     "resume_policy": "Resume from last accepted checkpoint; never infer completion from chat history.",
-    "incomplete_window_policy": "If RESULT.json is absent or not PASS, treat the window as incomplete and resume only unfinished scope.",
+    "incomplete_window_policy": "If RESULT.json is absent/not PASS or required status folder is missing, treat the window as incomplete and resume only unfinished scope.",
     "stable_id_policy": "Never silently recreate or renumber accepted NODE_ID, CLAIM_ID, LESSON_ID or ASSET_ID."
   }
 }
