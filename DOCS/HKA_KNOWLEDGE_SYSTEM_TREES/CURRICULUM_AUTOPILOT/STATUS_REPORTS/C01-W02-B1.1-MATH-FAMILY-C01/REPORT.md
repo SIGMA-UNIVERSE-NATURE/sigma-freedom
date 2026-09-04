@@ -1,31 +1,34 @@
 # C01-W02-B1.1-MATH-FAMILY-C01 — Durable Status Report
 
-Status: `IN_PROGRESS`  
+Status: `CHECKPOINTED`  
 Stage: `CURRICULUM`  
 Scope: `B1.1-C01 — Logic, tập hợp và chứng minh`  
 Execution branch: `hka-tree/c01-w02-math-c01`
 
-## Repair bootstrap complete
+## Repair academic closure checkpoint
 
-The window was re-bootstrapped from child repair head `3c0906772ae6a356a4671d372180a0d38933fbca` and current control-plane commit `262cbe8f63cb6bfda2f017313883dd15bc9ed7dc`. GitHub confirms C01 is `REVIEW_REQUIRED`, C02 is not unlocked, and the Director correction order is authoritative.
+Director-reopened repair has completed the academic/source work and is checkpointed at `CP05-REPAIR-ACADEMIC-CLOSURE`, commit `40023f836059a7ae5a9edefa2806ffdb04edbb72`. The repaired academic record commit is `24f26793d923dd55e87839331994c45489109d88`.
 
-Checkpoint `CP04-REPAIR-BOOTSTRAP` is committed at `f794eaa333e1dfd7093155372743dab4cf4f405d`.
+Current repaired counts: 8 nodes, 38 claims, 8 sources, 32 learning objectives, 32 claim-to-objective closure records, 10 cross-links, and 8 sequence-intent records.
 
-## Source pin verified
+## Five Director repairs
 
-The correct upstream repository is `OpenLogicProject/OpenLogic`. Exact immutable commit `1e960beff9ed7835bf3e3f1335e21af3439cd107` has been verified and contains the relevant propositional-syntax, set-separation and decidability material required for this repair.
+1. Propositional syntax/WFF closure: repaired with sourced N001 claims.
+2. Axiomatic set existence/Separation closure: repaired with sourced N003 claims; the audit also added the minimum `∈` versus `⊆` closure needed by D1.
+3. Decidability distinction: repaired at N008 while explicitly leaving machines, Church–Turing, automata, complexity and detailed computability in `B1.5-C02`.
+4. Open Logic source identity: active provenance is now deterministic `HKA-SRC-73f520eedb8e`, pinned to exact upstream commit `OpenLogicProject/OpenLogic@1e960beff9ed7835bf3e3f1335e21af3439cd107`. The two moving OLP sources remain historical only and have zero active claim/node references.
+5. 32/32 LO support audit: `CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl` contains exactly one record per objective; every record has `SUPPORTED_BY_CLAIMS=true` and `requires_unlocked_scope_claims=false`. B1.5 references appear only as boundary references where R04 matters.
 
-## Work in progress
+The independent closure audit also found and repaired minimum factual gaps for first-order term/formula syntax, equivalence-relation/function-property definitions, and mechanized proof versus program-verification ownership. These are closure claims, not new scope expansion.
 
-- Append only the minimum sourced closure claims required by the Director order and by the independent 32/32 objective audit.
-- Replace moving Open Logic Project lock-critical identities with deterministic commit-pinned provenance.
-- Produce a machine-readable mapping for all 32 learning objectives to explicit supporting Claim IDs with `SUPPORTED_BY_CLAIMS=true` only where closure is real.
-- Re-run all prior gates plus immutable-source-pin, claim-objective closure and director-gap audits from committed files.
+## R04 and stage boundary
 
-## Boundaries
+`B1.5-C02` retains detailed computability/formal-language/automata ownership and `B1.5-C04` retains program verification/formal methods. Existing `OVERLAP_REVIEW` cross-links remain unchanged and do not transfer primary ownership.
 
-Do not renumber existing IDs, rewrite the scope, author B1.1-C02, or create Lesson Registry, prompt/image, R2, delivery, website or `ACADEMIC_LOCKED` artifacts. Detailed computability/formal-language/automata remains B1.5-C02; program verification/formal methods remains B1.5-C04.
+No B1.1-C02, Lesson Registry, image prompt/image, R2, delivery, website, or `ACADEMIC_LOCKED` artifact has been authored.
 
-## Next action
+## Remaining work
 
-Commit the repaired academic/source set and 32/32 closure audit, then create a new pre-PASS checkpoint for independent Director review.
+Re-read the current control-plane, run the final committed pre-PASS audit against all original and Director-added gates, write `CP06-REPAIR-PRE-PASS-AUDIT`, then finalize `RESULT.json`, `STATUS.json`, `REPORT.md` and `HANDOFF.md` only if every gate remains PASS.
+
+C02 remains locked until an independent Director accepts the repaired C01 result.

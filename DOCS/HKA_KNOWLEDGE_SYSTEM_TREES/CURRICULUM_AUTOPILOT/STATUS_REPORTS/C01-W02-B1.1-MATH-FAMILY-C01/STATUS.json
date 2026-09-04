@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "IN_PROGRESS",
+  "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/c01-w02-math-c01",
   "input_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
   "execution_baseline_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af",
@@ -11,41 +11,51 @@
   "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
   "control_plane_snapshot_commit_sha": "262cbe8f63cb6bfda2f017313883dd15bc9ed7dc",
   "repair_input_head_sha": "3c0906772ae6a356a4671d372180a0d38933fbca",
-  "last_checkpoint_commit_sha": "f794eaa333e1dfd7093155372743dab4cf4f405d",
-  "last_checkpoint_id": "CP04-REPAIR-BOOTSTRAP",
+  "academic_repair_commit_sha": "24f26793d923dd55e87839331994c45489109d88",
+  "last_checkpoint_commit_sha": "40023f836059a7ae5a9edefa2806ffdb04edbb72",
+  "last_checkpoint_id": "CP05-REPAIR-ACADEMIC-CLOSURE",
   "scope_ids": ["B1.1-C01"],
   "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
+  "counts": {"nodes":8,"claims":38,"sources":8,"learning_objectives":32,"claim_to_learning_objective_closure_records":32,"cross_links":10,"sequence_intents":8},
   "completed_work": [
-    "Re-bootstrapped from child repair head 3c0906772ae6a356a4671d372180a0d38933fbca and current control-plane commit 262cbe8f63cb6bfda2f017313883dd15bc9ed7dc.",
-    "Verified Director repair order and CP03 reopen checkpoint; C02 remains locked.",
-    "Verified exact immutable OpenLogicProject/OpenLogic commit 1e960beff9ed7835bf3e3f1335e21af3439cd107 as source-pin candidate.",
-    "Started independent 32-objective claim-closure audit and identified that repair must remain append-only for existing stable IDs."
+    "Re-bootstrapped from Director-reopened C01 repair state and verified C02 remains locked.",
+    "Added sourced propositional syntax/well-formed-formula claim closure.",
+    "Added sourced set-existence/Separation claim closure and minimum set-relation closure found by the 32/32 audit.",
+    "Added sourced decidability-distinction claim closure while preserving B1.5-C02 ownership of detailed computability/formal-language/automata curriculum.",
+    "Pinned active Open Logic Project provenance to exact OpenLogicProject/OpenLogic commit 1e960beff9ed7835bf3e3f1335e21af3439cd107 under deterministic SOURCE_ID HKA-SRC-73f520eedb8e; old moving sources are historical only.",
+    "Completed explicit 32/32 Learning Objective -> supporting Claim ID closure audit with 0 unsupported objectives and 0 objectives requiring unlocked-scope claims.",
+    "Checkpointed repaired academic closure at CP05-REPAIR-ACADEMIC-CLOSURE."
   ],
   "remaining_work": [
-    "Append minimum sourced closure claims required by Director order and any additional gaps found by 32/32 audit.",
-    "Replace moving Open Logic Project lock-critical source identities with deterministic immutable commit-pinned source ID and update active claim/source traceability.",
-    "Produce machine-readable 32/32 learning-objective to supporting-claim closure audit.",
-    "Commit repairs, create a new pre-PASS checkpoint, and re-run all prior and Director-added gates from committed files.",
-    "Return terminal PASS only as a candidate for independent Director acceptance; do not unlock C02."
+    "Re-read current control-plane immediately before terminal audit and stop if it moved incompatibly.",
+    "Run final pre-PASS audit from committed files for all original contract gates plus Director-added repair gates.",
+    "Create append-only CP06-REPAIR-PRE-PASS-AUDIT checkpoint.",
+    "Finalize RESULT.json, STATUS.json, REPORT.md and HANDOFF.md consistently only if all gates remain PASS."
   ],
   "output_paths": [
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl"
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "Existing stable node/claim/objective IDs are preserved; new closure claims append only.",
-    "B1.1-C01 remains the only authored scope; C02 remains locked pending Director acceptance.",
-    "R04 keeps detailed computability/formal languages/automata in B1.5-C02 and program verification/formal methods in B1.5-C04.",
-    "No Lesson Registry, prompt/image, R2, website, delivery or ACADEMIC_LOCKED artifact is authorized."
+    "Existing stable IDs are preserved; repair used append-only claim IDs and record-version updates.",
+    "Active Open Logic Project lock-critical citations use only HKA-SRC-73f520eedb8e pinned to exact upstream commit.",
+    "Detailed computability/formal languages/automata remain B1.5-C02; program verification/formal methods remain B1.5-C04.",
+    "B1.5 references in the LO-closure audit are boundary references only and are never supporting Claim IDs.",
+    "C02 remains locked pending independent Director acceptance; this worker does not unlock it."
   ],
   "do_not_repeat": [
-    "Do not rewrite the entire C01 curriculum.",
-    "Do not renumber existing IDs.",
-    "Do not import B1.5 computability/program-verification curriculum into the decidability closure.",
-    "Do not use moving Open Logic landing/build pages as active lock-critical provenance."
+    "Do not rewrite C01 or renumber accepted IDs.",
+    "Do not use superseded moving Open Logic sources as active claim/node provenance.",
+    "Do not import B1.5 curriculum content to make the decidability or proof objectives appear closed.",
+    "Do not author B1.1-C02 or any later-stage artifact."
   ],
-  "next_action": "Apply Director repair claims/source pin and complete the 32/32 claim-to-objective closure audit on this branch.",
+  "next_action": "Run CP06 repair pre-PASS audit from committed GitHub files; if all gates PASS, finalize repaired C01 for independent Director acceptance while leaving C02 locked.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01",
-  "updated_at": "2026-09-05T00:22:00+07:00"
+  "updated_at": "2026-09-05T00:45:45+07:00"
 }
