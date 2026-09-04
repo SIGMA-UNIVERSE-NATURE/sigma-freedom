@@ -10,7 +10,7 @@ Execution baseline: `02ff47d64fd3b3b03d1fa2ae70d773afb071995e`
 Git commits cannot contain their own future SHA. Therefore every successor resolves this architecture's accepted input by an immutable deterministic selector, then pins the resulting SHA before authoring:
 
 1. Read first-parent history of `hka-tree/c01-w01-b1-architecture` after baseline `02ff47d64fd3b3b03d1fa2ae70d773afb071995e`.
-2. Select the earliest commit that contains `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/RESULT.json` with `window_id=C01-W01-B1-ARCHITECTURE`, `stage=CURRICULUM`, `status=PASS`, all seven contract output paths present, and the mandatory status folder containing `STATUS.json`, `REPORT.md`, and at least one checkpoint.
+2. Select the earliest commit that contains `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/RESULT.json` with `window_id=C01-W01-B1-ARCHITECTURE`, `stage=CURRICULUM`, `status=PASS`, all seven contract output paths present, `STATUS.json.status=PASS`, a current `REPORT.md` recording `PASS`, and at least one append-only pre-PASS checkpoint.
 3. Record that exact SHA as `input_commit_sha` in the family/child checkpoint before any authoring.
 4. Reject a floating branch-only input. If zero or multiple commits satisfy the selector due to history rewriting, return `BLOCKED_CONTRADICTION`.
 
@@ -164,7 +164,7 @@ A child returns `PASS` only if all conditions hold:
 
 ## 8. Resume algorithm
 
-On restart, a family controller enumerates the child table in order and checks each child's committed `RESULT.json`. It skips every `PASS` child, resumes the first child without PASS using its existing stable IDs/artifacts, and does not touch later children. This makes progress independent of chat history.
+On restart, a family controller enumerates the child table in order and checks each child's committed `STATUS.json`, latest checkpoint, and `RESULT.json`. It skips only a child whose durable status and result both say `PASS`; otherwise it resumes the first unfinished child using its existing stable IDs/artifacts and does not touch later children. This makes progress independent of chat history.
 
 ## 9. First successor only
 
