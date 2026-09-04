@@ -3,208 +3,137 @@ title: "HKA W02 B00 — Production Handoff Authorization"
 window_id: "W02"
 batch_id: "HKA-W02-B00"
 run_id: "HKA-W02-B00-R01"
-version: "1.0"
-status: "AUTHORIZED_TO_CLAIM"
+version: "1.1"
+status: "AUTHORIZED_TO_CLAIM — AUTO_REFERENCE_RUNTIME"
 language: "vi"
 date: "2026-09-04"
 ---
 
 # HKA-W02-B00-R01 — PRODUCTION HANDOFF AUTHORIZATION
 
-## 1. Director narrow re-review decision
+## 1. Authorization decision
 
 ```text
-ACADEMIC PROGRAM: PASS — unchanged from Director Review 01
-VISUAL / PROMPT CONTENT: PASS — unchanged from Director Review 01
-PROMPT HASH TRACE: PASS — 18/18 cross-file propagation
-BATCH MANIFEST SCHEMA: PASS — 4/4
-CANONICAL MANIFEST SHA-256 SIDECARS: PASS — 4/4 after Director correction
+ACADEMIC PROGRAM: PASS
+VISUAL / PROMPT CONTENT: PASS
 B00 PRODUCTION HANDOFF: PASS
 DIRECTOR ACCEPTED FOR B00 IMAGE PRODUCTION: YES
 ```
 
-Only B00 is opened. B01–B03 remain closed.
-
-## 2. Authorized action
+Authorized only:
 
 ```text
-One Image Production Window may claim and produce:
-HKA-W02-B00-R01
-
-AUTHORIZED ASSET IDS:
 HKA-VIS-W02-0001
 HKA-VIS-W02-0002
+```
 
-AUTHORIZED OUTPUTS:
+Outputs:
+
+```text
 2 CLEAN MASTER PNG
 2 BRANDED FINAL PNG
-TOTAL CANONICAL IMAGE FILES: 4
+TOTAL: 4 canonical image files
 ```
 
-No other Asset ID or batch is authorized.
+B01–B03 remain closed.
 
-## 3. Immutable evidence
+## 2. Immutable evidence
 
 ```text
-REPOSITORY:
-SIGMA-UNIVERSE-NATURE/sigma-freedom
-
-EXECUTION BRANCH:
-hka-tree/w02-human-roots
-
-WINDOW CONTRACT COMMIT SHA:
-a8d8a2a6a23bface2f2116e6f2337201be806ad2
-
-W02 EXECUTION PROMPT COMMIT SHA:
-690873b30784233b44e19a8d37b1ae1c52741e87
-
-ACADEMIC CONTENT COMMIT SHA:
-e900d3b623c27f6d4a0fe2750fa499295788776e
-
-PROMPT CONTENT COMMIT SHA:
-295f73a8e833b5a0ffb9642078514e7e3924700a
-
-W02 FINAL HANDOFF COMMIT SHA:
-f176b9fcf4692bf9a5ec5478fd19ee2091bbc84d
-
-DIRECTOR MANIFEST-HASH CORRECTION / EFFECTIVE FINAL INTEGRITY COMMIT SHA:
-7028f0c008bca4e8dcaea2bd878ef9210113e223
-
-BRAND REPOSITORY:
-linkcomltd-byte/sigma-universe-web
-
-BRAND ASSET COMMIT SHA:
-2d3aa9d8418acccd39a3d263e917d4157e029e17
+REPOSITORY: SIGMA-UNIVERSE-NATURE/sigma-freedom
+EXECUTION BRANCH: hka-tree/w02-human-roots
+WINDOW CONTRACT COMMIT: a8d8a2a6a23bface2f2116e6f2337201be806ad2
+W02 EXECUTION PROMPT COMMIT: 690873b30784233b44e19a8d37b1ae1c52741e87
+ACADEMIC CONTENT COMMIT: e900d3b623c27f6d4a0fe2750fa499295788776e
+PROMPT CONTENT COMMIT: 295f73a8e833b5a0ffb9642078514e7e3924700a
+EFFECTIVE FINAL MANIFEST / INTEGRITY COMMIT: 7028f0c008bca4e8dcaea2bd878ef9210113e223
+SHARED IMAGE PRODUCTION RUNTIME STANDARD COMMIT: 07dbb95d7631976caad1c8217546eb2d660dda7e
+BRAND ASSET COMMIT: 2d3aa9d8418acccd39a3d263e917d4157e029e17
 ```
 
-## 4. Exact B00 sources
+## 3. B00 source lock
 
 ```text
-BATCH ID: HKA-W02-B00
-RUN ID: HKA-W02-B00-R01
-ASSET COUNT: 2
-
-PROMPT REGISTRY PATH:
-DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md
-READ AT PROMPT CONTENT COMMIT:
-295f73a8e833b5a0ffb9642078514e7e3924700a
-
-BATCH PROMPTS PATH:
-DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/PRODUCTION/BATCHES/HKA-W02-B00/BATCH_PROMPTS.md
-READ AT PROMPT CONTENT COMMIT:
-295f73a8e833b5a0ffb9642078514e7e3924700a
-
-BATCH MANIFEST PATH:
+BATCH MANIFEST:
 DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/PRODUCTION/BATCHES/HKA-W02-B00/BATCH_MANIFEST.json
-READ AT EFFECTIVE FINAL INTEGRITY COMMIT:
-7028f0c008bca4e8dcaea2bd878ef9210113e223
 
-BATCH MANIFEST SHA-256:
+MANIFEST SHA-256:
 b30f15d36d97f1b04b1dacb00072d4da2be2a59d0a9407472f1d00dc2635d60b
+
+BATCH PROMPTS:
+DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/PRODUCTION/BATCHES/HKA-W02-B00/BATCH_PROMPTS.md
 
 PROMPT SHA-256:
 HKA-VIS-W02-0001 = ed03f468a3a59a3e460036e377cfb6407a0f767191883f49ea806ac476f6580c
 HKA-VIS-W02-0002 = ca9297d02eb179523de398727733c59982fe57c168861b18106c8944e88e9195
 ```
 
-Manifest SHA-256 is computed from canonical JSON serialization: UTF-8, sorted keys, compact separators, no extraneous whitespace.
+## 4. Runtime binding — no manual user upload
 
-## 5. Official brand/reference lock
-
-```text
-SIGMA: assets/characters/sigma.png
-CRICKET: assets/characters/cricket.png
-LITTLE ANT: assets/characters/little-ant.png
-PROFESSOR OWL: assets/characters/professor-owl.png
-LOGO MASTER: assets/logo/sigma-logo-master.jpg
-COMPACT EMBLEM: assets/logo/sigma-emblem-shell.jpg
-EXACT MOTTO: PEACEFUL MIND-KINDLY HEART-KEEP GROWING.
-```
-
-Asset 0001 requires all four official Companion identities.
-Asset 0002 requires Professor Owl as primary Companion.
-
-The production system must load the actual official character image bytes from the immutable brand commit as visual references. Filenames or text descriptions alone are insufficient.
-
-If exact reference bytes cannot be passed to the image-generation system:
+Production must obey:
 
 ```text
-STATUS: ASSET_REFERENCE_BLOCKED
+DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W01_PRODUCTION_GOVERNANCE/SHARED_IMAGE_PRODUCTION_RUNTIME_STANDARD.md
+@ 07dbb95d7631976caad1c8217546eb2d660dda7e
 ```
 
-Do not approximate or redraw from memory.
+The Production Window must automatically fetch actual official brand bytes from immutable GitHub source and verify Git blob SHA/size before generation.
 
-## 6. Production rules
+Manual user upload of Sigma/Cricket/Little Ant/Professor Owl/logo is **not required and must not be requested as the normal path**.
 
-1. Verify all immutable SHAs before generation.
-2. Recompute B00 canonical manifest SHA-256 and both prompt SHA-256 values.
-3. Load exact official visual references for every relevant asset.
-4. Do not edit, paraphrase or reinterpret the locked prompts.
-5. Produce asset 0001 first; complete self-check before starting 0002.
-6. Produce CLEAN MASTER first.
-7. Only after CLEAN MASTER passes, composite official logo + exact motto in controlled post-production to create BRANDED FINAL.
-8. Do not let the image model generate logo, motto, captions, labels or factual text.
-9. Preserve exact Asset IDs and filenames.
-10. Hash all final files and create production evidence package.
-11. Do not upload R2.
-12. Do not claim Independent QA approval.
-
-## 7. Required filenames
+Locked brand blobs:
 
 ```text
-HKA-VIS-W02-0001_CLEAN_MASTER.png
-HKA-VIS-W02-0001_BRANDED_FINAL.png
-HKA-VIS-W02-0002_CLEAN_MASTER.png
-HKA-VIS-W02-0002_BRANDED_FINAL.png
+Sigma           72e29ad1ba8e71a25f7fc7d4da656a6196fdf6db  1094258
+Cricket         87e30fe00beb0a122fefde8126c54d98ae7c0e08  1535430
+Little Ant      a931ae833d184ecb48f1b20bc90a8cbeee181d8c  1224688
+Professor Owl   b5c58c5502ee39aff941769fa143f071384c3472  1843472
+Sigma logo      1f19dcbb970ef414fe3a58d406d1b4b55360853e   225466
 ```
 
-## 8. Technical lock
+Previous `ASSET_REFERENCE_BLOCKED` returns caused only by missing chat attachments are superseded. No generation occurred, so Run ID remains `HKA-W02-B00-R01`.
+
+A future `ASSET_REFERENCE_BLOCKED` is valid only with diagnostics:
 
 ```text
-RESOLUTION: 3840 × 2160
-ASPECT RATIO: 16:9
-COLOR SPACE: sRGB
-MASTER FORMAT: PNG lossless
-MODEL-GENERATED READABLE TEXT: FORBIDDEN
-MODEL-GENERATED LOGO: FORBIDDEN
-MODEL-GENERATED MOTTO: FORBIDDEN
+REFERENCE_FETCH: PASS/FAIL
+BLOB_VERIFY: PASS/FAIL
+GENERATION_ENGINE_REFERENCE_INGEST: PASS/FAIL
+BLOCKING_CAPABILITY: <exact capability>
 ```
 
-## 9. Required production return
+Text descriptions or model memory may never replace official binary references.
 
-```text
-STATUS:
-BATCH ID:
-RUN ID:
-PRODUCED ASSET IDS:
-OFFICIAL REFERENCE BYTES VERIFIED: YES/NO
-CLEAN MASTER FILE REFERENCES:
-BRANDED FINAL FILE REFERENCES:
-SHA-256 PER FILE:
-SELF-QA PER ASSET:
-PRODUCTION REPORT REFERENCE:
-SELF-QA REPORT REFERENCE:
-SHA256SUMS REFERENCE:
-PACKAGE REFERENCE:
-PACKAGE SHA-256:
-KNOWN LIMITATIONS:
-```
+## 5. Production / QA / R2 separation
 
-The production return must not claim `QA_APPROVED`.
+Production Window:
+- generates exactly B00;
+- creates self-QA + checksums + package;
+- does not claim Independent QA;
+- does not upload canonical package to R2.
 
-## 10. Stop conditions
+Independent QA Window:
+- reviews actual full-resolution B00 outputs;
+- returns `QA_APPROVED`, `QA_REJECTED`, or `QA_BLOCKED`;
+- does not modify images;
+- does not upload R2.
 
-Stop with `PROMPT_BLOCKED`, `ASSET_REFERENCE_BLOCKED` or `OUTPUT_FAILED` when applicable if any immutable SHA/hash fails, official reference bytes cannot be used, prompt execution would violate its truth locks, exact branding cannot be controlled, or 4K lossless output cannot be delivered.
+Cloudflare Release Uploader:
+- may run only after `QA_APPROVED`;
+- then uploads and verifies the approved release automatically under canonical R2 pipeline Amendment 1.1.
 
-## 11. Locked downstream state
+This sequencing satisfies the requirement that finished approved images are stored in Cloudflare without manual user transfer while preserving the Independent QA gate.
+
+## 6. Locked downstream
 
 ```text
 HKA-W02-B01: CLOSED
 HKA-W02-B02: CLOSED
 HKA-W02-B03: CLOSED
-R2 UPLOAD: NOT AUTHORIZED
+R2 BEFORE QA_APPROVED: FORBIDDEN
+R2 AFTER QA_APPROVED: RELEASE UPLOADER ELIGIBLE
 MERGE: NOT AUTHORIZED
 WEBSITE DEPLOY: NOT AUTHORIZED
 ```
 
-B01–B03 may open only after B00 actual outputs pass Director consistency review and Independent Image QA returns `QA_APPROVED`.
+B01–B03 may open only after B00 Director consistency PASS and Independent Image QA = `QA_APPROVED`.
