@@ -5,6 +5,8 @@ Canonical tree: `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md`
 Canonical tree commit: `fc799bf1104ab6352710e1801777a971b5179995`
 Governance base: `b2c6b8dacfb425c5e6d260176ed879fb75da6dae`
 Canonical pipeline: `CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json`
+Brand asset lock: `DOCS/HKA_CINEMATIC_4K_BRAND_ASSET_LOCK.md`
+BIS reference adoption lock: `CURRICULUM_AUTOPILOT/HKA_BIS_REFERENCE_ADOPTION_LOCK.md`
 
 ## Canonical production order — no stage skipping
 
@@ -62,23 +64,33 @@ Requires global lesson coverage, prerequisite, sequencing, age/path and duplicat
 ### PROMPTS
 Author visual descriptions and exact prompts only from locked lesson records. Every visual job must have a distinct learning purpose and be checked against the full corpus for semantic and visual duplication.
 
+Every production-bound visual record must also carry the exact locked character references when required, exact brand commit, brand-safe placement, and the policies:
+
+`LOGO = DETERMINISTIC_POST_ONLY`
+
+`MOTTO = DETERMINISTIC_POST_ONLY`
+
 ### PROMPT_LOCKED
-Requires prompt integrity and global visual duplicate audits PASS. Only this lock enables image production.
+Requires prompt integrity, global visual duplicate audit and mandatory brand-field audit PASS. Only this lock enables image production.
 
 ### IMAGE_PRODUCTION
 `HKA_AUTOPILOT` invokes Generation AI from locked prompts and official references. Chat windows are not on the production critical path.
 
+Generation AI creates the educational `CLEAN_MASTER`. It must not draw the official Sigma logo or generate the official motto text. A deterministic compositor creates `BRANDED_FINAL` using the locked logo source and exact canonical motto.
+
+A generated CLEAN_MASTER alone is not production complete.
+
 ### R2 STAGING
-Generated exact binaries and provenance are written create-only to Cloudflare R2 staging and read-back/checksum verified.
+Both CLEAN_MASTER and BRANDED_FINAL plus separate hashes and provenance are written create-only to Cloudflare R2 staging and read-back/checksum verified.
 
 ### INDEPENDENT QA
-Independent QA AI reads exact staging binaries. Only `QA_APPROVED` assets can progress.
+Independent QA AI reads exact staging binaries. It checks academic, visual, technical and brand integrity. A missing/malformed official logo or motto is `BRAND_GATE_FAILED`; such an asset cannot receive `QA_APPROVED`.
 
 ### VAULT
 Only approved exact binaries are promoted to canonical R2 vault with release verification and immutable provenance.
 
 ### WEB OPTIMIZE
-Create web derivatives only from verified vault masters. Optimization must preserve required visual quality and must never overwrite the canonical master.
+Create web derivatives only from verified vault masters. Optimization must preserve required visual quality and official branding and must never overwrite the canonical master or reconstruct branding generatively.
 
 ### DELIVERY
 Store approved website-ready derivatives plus release metadata in R2 delivery. Website must not read staging or vault directly.
@@ -89,6 +101,18 @@ Publish by locked mapping only:
 `ASSET_ID -> LESSON_ID -> PROGRAM/PATH -> AGE/PRESENTATION -> WEBSITE_SLOT`
 
 No placement by guesswork.
+
+## Brand identity inheritance
+
+The earlier BIS Sigma standards are retained as historical/reference evidence only. HKA does not inherit BIS episode structure, fixed 7-scene design, fixed 9:16 ratio or BIS curriculum taxonomy.
+
+Useful identity principles are retained under the current HKA Brand Asset Lock: official Sigma characters, official logo, official motto and anti-repetition discipline.
+
+Exact current HKA motto:
+
+`PEACEFUL MIND-KINDLY HEART-KEEP GROWING.`
+
+The image model is never trusted to remember this text or recreate the logo. Missing branding is a deterministic post-production defect and must be repaired without wasting a new full image render when the CLEAN_MASTER itself is valid.
 
 ## Canonical branches
 
@@ -114,6 +138,8 @@ Duplicate detection is semantic, not lexical. The minimum identity comparison is
 `NODE + CLAIM + LEARNING_OBJECTIVE + CONTEXT + VISUAL_JOB`
 
 During Knowledge/Curriculum and Lesson Registry, `VISUAL_JOB` may be null. During Prompts it becomes mandatory for any image-bearing lesson.
+
+Older BIS rules such as `No Repeated Scene`, `No Repeated Camera` and `No Repeated Environment` are treated as duplicate-risk signals, not universal bans. Intentional continuity is permitted only when the visual/learning job is genuinely different.
 
 ## Window independence and recovery
 
