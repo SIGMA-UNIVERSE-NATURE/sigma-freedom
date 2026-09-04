@@ -65,13 +65,26 @@ BYTECODE_SHA256=9afed5ab5bfc6652e9066c1420d2ce69fa9ee254ea55516a3ae5959fef419f10
 PERSISTENT_STATE=YES
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
+## Source-ready / not admitted
+
+### DNA-09 Independent Verification Wall
+CANON_REFERENCE_BLOB_SHA1=5c4c69aee534404dd7df6a01f6ea498e6a4da399
+SOURCE_SHA256=0eb3907b6b18a01daf96f994102cbb6a78038b34f3d6ba63e1d0d3ecee8e6ae5
+RUNNER_SHA256=b819edaaa1083fec89b65ba5119e9abca7ac3081c064566b4fe43c6f8f47aade
+BUNDLE_SHA256=ed5699c94921a44be39d9f39d8910fc39602a887a43ce6e07a876452def5cb31
+DNA09_COMPILE=NOT_RUN
+DNA09_VM=NOT_RUN
+DNA09_ADMISSION=NOT_RUN
+CANDIDATE_DIGEST_DERIVATION=NOT_PROVEN
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA09_NATIVE_ADMISSION_SOURCE_READY.md
+
 ## Historical failures retained as evidence
 
 DNA-08 V1: COMPILE_RC=4 at line 181 token replacement character; FIX1 replacing 59 `🪞` emission lines with `⚡ print(...)` compiled and passed all runtime tests. Scope is this exact source/compiler delta only.
 
 ## Current dependency frontier
 
-NEXT_TARGET=DNA-09 Independent Verification Wall
+NEXT_TARGET=RUN DNA-09 Independent Verification Wall
 PLANNED_CHAIN=DNA-09 -> DNA-10 Memory Genome -> DNA-11 Knowledge Graph
 
 DNA-09 canonical dependencies include DNA-01 through DNA-08 bound/pass.
