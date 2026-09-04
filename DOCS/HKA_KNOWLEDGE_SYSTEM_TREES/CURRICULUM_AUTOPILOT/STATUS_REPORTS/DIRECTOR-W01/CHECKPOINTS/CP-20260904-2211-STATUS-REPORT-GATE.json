@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260904-2211-STATUS-REPORT-GATE",
+  "window_id": "DIRECTOR-W01",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_facts": [
+    "Mandatory durable per-window status folders are activated.",
+    "A status folder is required for accepted PASS.",
+    "Recovery uses GitHub state, status report, checkpoint and exact artifacts rather than chat memory."
+  ],
+  "control_commits": [
+    "289d70c7c335e4b022bca125a95ad307b3e5b593",
+    "bc2a7323ef70e28d789dda67bb0a9baf3276efc3",
+    "89bc8b9996de757a18708d5c3f30613822b8e33d"
+  ],
+  "next_action": "Patch the active C01-W01 execution instructions in place.",
+  "created_at": "2026-09-04T22:11:08+07:00"
+}
