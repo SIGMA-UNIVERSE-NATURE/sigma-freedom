@@ -1,18 +1,42 @@
 {
+  "schema_version": "1.0",
   "window_id": "W02",
   "tree_id": "HKA-TREE-00-HROOT",
-  "batch_id": "HKA-W02-B00",
-  "run_id_planned": "HKA-W02-B00-R01",
-  "status": "PROMPT_LOCKED_NO_RUN",
-  "academic_content_commit_sha": "e900d3b623c27f6d4a0fe2750fa499295788776e",
-  "prompt_content_authoring_sha": "65c852bfd12adc94745c65a5c8e900c40ef501c5",
+  "tree_slug": "human-roots",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w02-human-roots",
+  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
   "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
-  "prompt_registry": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md",
-  "image_generation_executed": false,
-  "r2_upload_executed": false,
-  "requires_b00_qa_before_run": false,
+  "batch_id": "HKA-W02-B00",
+  "run_id": "HKA-W02-B00-R01",
+  "asset_count": 2,
   "assets": [
-    {"asset_id":"HKA-VIS-W02-0001","vcu_id":"HKA-VCU-W02-001","prompt_sha256":"e9813ecb4df49c5a58f662abfa5595527b3b2ddfe5f32ec10f6f3c591c5244e3","clean_master_filename":"HKA-VIS-W02-0001_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0001_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0002","vcu_id":"HKA-VCU-W02-002","prompt_sha256":"08879368b994ab07b0fdcb57ead67319b83cc78bbe7bd801154168cca772a7c5","clean_master_filename":"HKA-VIS-W02-0002_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0002_BRANDED_FINAL.png","production_status":"NOT_RUN"}
-  ]
+    {
+      "asset_id": "HKA-VIS-W02-0001",
+      "prompt_sha256": "5e41812815359fec5e2bce778f1ebb7e09dee63372aba3fccd2ee4f34e137250",
+      "asset_type": "HERO",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "UNIVERSAL",
+      "academic_depth": "MULTI_DEPTH",
+      "primary_companion": "ENSEMBLE_FOUR",
+      "node_ids": ["HKA-W02-A01", "HKA-W02-A05", "HKA-W02-B02", "HKA-W02-B06", "HKA-W02-C02", "HKA-W02-C07"],
+      "clean_master_filename": "HKA-VIS-W02-0001_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0001_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0002",
+      "prompt_sha256": "94fda4881bfbfce8f470fd61de5e16e5c9cc4048e966901054057394f00514d1",
+      "asset_type": "ETHICAL_SCENARIO",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A4_16_18",
+      "academic_depth": "D3",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": ["HKA-W02-A06", "HKA-W02-B07"],
+      "clean_master_filename": "HKA-VIS-W02-0002_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0002_BRANDED_FINAL.png"
+    }
+  ],
+  "created_at": "2026-09-04T02:00:02Z",
+  "status": "BATCH_READY"
 }
