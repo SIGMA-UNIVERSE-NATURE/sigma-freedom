@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C02-ACCEPTED-C03-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_child": {
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+    "scope_id": "B1.1-C02",
+    "candidate_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "decision": "DIRECTOR_ACCEPTED_PASS",
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 64,
+    "sources": 7,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure": "32/32 PASS",
+    "cross_links": 15,
+    "sequence_intents": 8
+  },
+  "independent_audit": {
+    "claims_read": "64/64",
+    "sources_read": "7/7",
+    "source_deterministic_ids": "PASS",
+    "source_version_or_persistent_identity": "PASS",
+    "learning_objective_closure": "PASS",
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "stage_boundary": "PASS",
+    "NIST_SP811_round_to_even": "VERIFIED",
+    "divisibility_zero_divisor_definition": "DOCUMENTED_CONVENTION_NOT_BLOCKER",
+    "blocking_issues": 0
+  },
+  "activated_child": {
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+    "scope_id": "B1.1-C03",
+    "scope": "Đại số và cấu trúc",
+    "status": "READY",
+    "execution_branch": "hka-tree/c01-w02-math-c03",
+    "accepted_predecessor_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "contract_commit_sha": "2aee98b0bf17eb23fa0af5969d816c6408c03d5e",
+    "execution_prompt_commit_sha": "0037ccf9f1c0ad8ea9de5a53570962214cd92b83",
+    "open_order_commit_sha": "55034606c0c182a3082b082b7018836ca5efc029",
+    "bootstrap_checkpoint_commit_sha": "a5ac5945ccdc4db8ee2647a15399d1fbfb734877",
+    "status_commit_sha": "08bc25856ab43db833519447e8b3ea56a9137d07",
+    "report_commit_sha": "0764720e10362e9267aa62373850ae6d05ea146f"
+  },
+  "control_plane": {
+    "state_commit_sha": "54e9f7867e44dbcbef4744dfc6a8246f38566048",
+    "registry_commit_sha": "09d379c8747bce087dbbe0944bb7c096b220b39a",
+    "current_stage": "CURRICULUM",
+    "active_scope_id": "B1.1-C03",
+    "C04_and_later_locked": true,
+    "later_pipeline_stages_gated": true
+  },
+  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C03 only; independently audit candidate PASS before unlocking C04."
+}
