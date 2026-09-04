@@ -2,86 +2,94 @@
 
 ## Purpose
 
-Every GPT window must be replaceable. A dead window must not destroy project memory, progress, or production state.
+Every GPT window is disposable. Project memory, progress and production state must survive the loss of any chat window.
 
-## Bootstrap sequence for every new window
+Canonical pipeline:
 
-A new window MUST do these actions before authoring:
+`KNOWLEDGE -> CURRICULUM -> ACADEMIC_LOCKED -> LESSON_REGISTRY -> LESSON_REGISTRY_LOCKED -> PROMPTS -> PROMPT_LOCKED -> IMAGE_PRODUCTION -> R2_STAGING -> INDEPENDENT_QA -> VAULT -> WEB_OPTIMIZE -> DELIVERY -> WEBSITE_UPDATE`
 
-1. Read `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md` at canonical tree commit `fc799bf1104ab6352710e1801777a971b5179995` for the scope it needs.
-2. Read `CURRICULUM_AUTOPILOT/MASTER_PLAN.md`.
-3. Read `CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json`.
-4. Read its own `WINDOW_CONTRACT.md` and `GPT_EXECUTION_PROMPT.md`.
-5. Read every predecessor artifact listed in the window contract by exact commit/path.
-6. Verify that all predecessor statuses are accepted.
-7. Continue only the `next_action` assigned to the window.
+No stage may be skipped.
 
-The window MUST NOT rely on chat memory, summaries, or claims that another window finished work unless GitHub contains the accepted artifact.
+## Mandatory bootstrap for every new window
+
+Before authoring, a new window MUST:
+
+1. Read `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md` at the canonical commit required by its scope.
+2. Read `CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json`.
+3. Read `CURRICULUM_AUTOPILOT/MASTER_PLAN.md`.
+4. Read `CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json`.
+5. Read `CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json`.
+6. Read its own `WINDOW_CONTRACT.md` and `GPT_EXECUTION_PROMPT.md`.
+7. Read predecessor artifacts by exact commit/path.
+8. Verify predecessor PASS/LOCKED gates and verify `current_stage` permits its work.
+9. Execute only the recorded `next_action` and assigned scope.
+
+If chat history conflicts with GitHub state, GitHub state wins.
 
 ## Checkpoint contract
 
-Every execution window must produce:
+Every execution window must commit:
 
-- `RESULT.json` — machine-readable result and status.
-- `HANDOFF.md` — concise human-readable continuation note.
-- Academic/curriculum artifacts defined by its contract.
+- required scope artifacts;
+- `RESULT.json`;
+- `HANDOFF.md` when a human-readable continuation note is useful.
 
-A completed window ends with one of:
+`RESULT.json` must include at least:
+
+- `window_id`;
+- `stage`;
+- `status`;
+- `input_commit_sha`;
+- output paths;
+- stable scope IDs;
+- counts;
+- duplicate/coverage results when applicable;
+- `next_action`.
+
+Allowed terminal statuses:
 
 - `PASS`
 - `BLOCKED_INPUT`
 - `BLOCKED_CONTRADICTION`
 - `REVIEW_REQUIRED`
 
-Only `PASS` may unlock its successor.
+Only `PASS` can unlock the registered successor.
 
 ## Crash recovery
 
 If a window dies:
 
-1. Replacement reads the state file.
-2. It checks whether `RESULT.json` exists and is `PASS`.
-3. If `PASS`, it does not redo the work; it proceeds to the next registered action.
-4. If no PASS result exists, it reads the latest committed partial artifacts and resumes only unfinished work.
-5. It must preserve stable IDs already committed.
-6. It must never silently recreate or renumber accepted nodes, claims, lessons, or assets.
+1. Replacement reads `HKA_CURRICULUM_STATE.json`.
+2. It verifies the canonical stage and active/next action.
+3. It checks committed `RESULT.json` for the assigned window.
+4. If `RESULT.json=PASS`, it must not repeat that work; continue to the registered successor.
+5. If PASS is absent, inspect committed partial artifacts and resume only unfinished scope.
+6. Preserve all accepted stable IDs and accepted ownership assignments.
+7. Never silently recreate, renumber or duplicate accepted Node, Claim, Lesson or Asset records.
 
-## Idempotency
+## Long-window protection
 
-Every knowledge artifact must have stable IDs. Re-running the same window against the same accepted inputs must not create duplicate canonical records.
+No large discipline or production batch may depend on one long chat window.
 
-Every result records:
+Large scopes must be partitioned before detailed authoring into bounded deterministic child windows. Each child has an independent input commit, stable scope IDs, output paths, `RESULT.json`, PASS checkpoint and successor.
 
-- `window_id`
-- `input_commit_sha`
-- `output_commit_sha` when known
-- `scope_ids`
-- `counts`
-- `duplicate_audit`
-- `status`
-- `next_action`
+A controller window may define/check child scopes, but completed child artifacts are durable GitHub state and must not be reauthored merely because the controller chat is gone.
 
-## State ownership
+## Stage gates
 
-- GitHub = canonical durable project memory.
-- Cloudflare = runtime state and binary state once production is enabled.
-- ChatGPT window = disposable worker.
+- Until global `ACADEMIC_LOCKED`: no Lesson Registry authoring.
+- Until `LESSON_REGISTRY_LOCKED`: no visual/image prompt authoring.
+- Until `PROMPT_LOCKED`: no image generation or R2 staging writes.
+- Until exact binary is in `R2_STAGING`: Independent QA cannot approve it.
+- Until `QA_APPROVED`: no Vault promotion.
+- Until `VAULT_VERIFIED`: no Web Optimize.
+- Until Web Optimize PASS: no Delivery publication.
+- Until `DELIVERY_READY`: no Website Update.
 
-No ChatGPT window may be the sole holder of a decision required by later windows.
+## Durable ownership
 
-## Long-window rule
+- GitHub = canonical knowledge/curriculum/lesson/prompt state, accepted commits and durable control plane.
+- Cloudflare = runtime state and binary state from Image Production onward.
+- ChatGPT window = disposable worker only.
 
-If scope cannot be completed reliably within one window, the window must partition by stable canonical sub-scope and write the partition plan to GitHub before continuing. Partitioning must not change the canonical tree architecture.
-
-## Forbidden during curriculum phases
-
-Until `all_curriculum_locked=true`:
-
-- no visual prompt authoring;
-- no image generation;
-- no R2 image release;
-- no website publication based on incomplete curriculum.
-
-Until `all_visual_prompts_locked=true`:
-
-- image production remains disabled.
+No decision required by a later stage may exist only in a chat transcript.
