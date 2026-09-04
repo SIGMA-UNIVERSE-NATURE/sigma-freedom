@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-BOOTSTRAP-SCOPE-LOCK",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "IN_PROGRESS",
+  "execution_branch": "hka-tree/c01-w02-math-c02",
+  "branch_head_before_checkpoint": "6c9ff91502cff56709c4c7e70bc750e3cb7fda18",
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "control_plane_branch": "hka-tree/curriculum-master",
+  "control_plane_state": {
+    "current_stage": "CURRICULUM",
+    "active_scope_id": "B1.1-C02",
+    "active_window": "C01-W02-B1.1-MATH-FAMILY-C02",
+    "active_window_status": "READY",
+    "window_execution_branch": "hka-tree/c01-w02-math-c02",
+    "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+    "C03_and_later_locked": true
+  },
+  "scope_lock": {
+    "scope_ids": ["B1.1-C02"],
+    "canonical_topic_ids": [
+      "B1.1-C02-T01","B1.1-C02-T02","B1.1-C02-T03","B1.1-C02-T04",
+      "B1.1-C02-T05","B1.1-C02-T06","B1.1-C02-T07","B1.1-C02-T08"
+    ],
+    "primary_authoring_owner": "C01-W02-B1.1-MATH-FAMILY-C02",
+    "later_scope_authoring_forbidden": true
+  },
+  "bootstrap_reads": {
+    "pipeline_canonical": true,
+    "control_plane_state": true,
+    "window_contract": true,
+    "B1_scope_map": true,
+    "B1_id_and_record_standard": true,
+    "B1_authoring_sequence": true,
+    "B1_duplicate_control": true,
+    "accepted_C01_nodes_claims_sources_objectives_closure_links_sequence_result_handoff": true,
+    "durable_C02_status_report_latest_checkpoint": true
+  },
+  "predecessor_duplicate_boundary": {
+    "accepted_C01_node_ids_reused_as_prerequisites": [
+      "HKA-B1-1-C01-N003",
+      "HKA-B1-1-C01-N004",
+      "HKA-B1-1-C01-N006"
+    ],
+    "rule": "C02 authors number-system/arithmetic/number-theory meanings only; generic set, relation/function and proof/counterexample meanings remain owned by accepted C01 and are referenced rather than duplicated.",
+    "method": "NODE MEANING + CLAIM SET + LEARNING OBJECTIVE + CONTEXT"
+  },
+  "required_outputs": [
+    "NODES.jsonl","CLAIMS.jsonl","SOURCES.jsonl","LEARNING_OBJECTIVES.jsonl",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl","CROSS_LINKS.jsonl",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl","RESULT.json","HANDOFF.md"
+  ],
+  "gates_locked": {
+    "claim_to_learning_objective_closure_exactly_one_row_per_objective": true,
+    "no_unlocked_scope_academic_dependency": true,
+    "source_traceability_required": true,
+    "immutable_or_versioned_source_identity_where_practicable": true,
+    "D1_D4_epistemic_not_age": true,
+    "no_later_stage_artifacts": true,
+    "candidate_PASS_does_not_unlock_C03": true
+  },
+  "next_action": "Author and source the complete B1.1-C02 academic record set, then run closure, duplicate, source, prerequisite/sequence and stage-boundary audits before pre-PASS checkpoint.",
+  "created_at": "2026-09-05T01:24:23+07:00"
+}
