@@ -1,11 +1,79 @@
 {
-  "window_id":"W02","tree_id":"HKA-TREE-00-HROOT","batch_id":"HKA-W02-B03","run_id_planned":"HKA-W02-B03-R01","status":"PROMPT_LOCKED_NO_RUN",
-  "academic_content_commit_sha":"e900d3b623c27f6d4a0fe2750fa499295788776e","prompt_content_authoring_sha":"65c852bfd12adc94745c65a5c8e900c40ef501c5","brand_asset_commit_sha":"2d3aa9d8418acccd39a3d263e917d4157e029e17",
-  "prompt_registry":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md","image_generation_executed":false,"r2_upload_executed":false,"requires_b00_qa_before_run":true,
-  "assets":[
-    {"asset_id":"HKA-VIS-W02-0015","vcu_id":"HKA-VCU-W02-015","prompt_sha256":"23b645a4c2ca44b421cd5bcadf9879126531883945b6f3eae2b610ef0d56675f","clean_master_filename":"HKA-VIS-W02-0015_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0015_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0016","vcu_id":"HKA-VCU-W02-016","prompt_sha256":"7823b8c2817e94e05960cf48dfa9e2bd9b8f48f4acb2f3c09d1af6b4e044bd36","clean_master_filename":"HKA-VIS-W02-0016_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0016_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0017","vcu_id":"HKA-VCU-W02-017","prompt_sha256":"94eded6ee23e390598d252837588025d5db918cd71fc05e243db2997d814b1b9","clean_master_filename":"HKA-VIS-W02-0017_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0017_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0018","vcu_id":"HKA-VCU-W02-018","prompt_sha256":"530aa0e6049bf2b017e5679aadeeee6455217c325f491446f1ec4297617814b1","clean_master_filename":"HKA-VIS-W02-0018_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0018_BRANDED_FINAL.png","production_status":"NOT_RUN"}
-  ]
+  "schema_version": "1.0",
+  "window_id": "W02",
+  "tree_id": "HKA-TREE-00-HROOT",
+  "tree_slug": "human-roots",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w02-human-roots",
+  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "batch_id": "HKA-W02-B03",
+  "run_id": "HKA-W02-B03-R01",
+  "asset_count": 4,
+  "assets": [
+    {
+      "asset_id": "HKA-VIS-W02-0015",
+      "prompt_sha256": "18cf6f241e2dccb159f9d70a3e7af7125206f807b40cbb6d30832136a0b4b9ad",
+      "asset_type": "ETHICAL_SCENARIO",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A5_19_24",
+      "academic_depth": "D4",
+      "primary_companion": "LITTLE_ANT",
+      "node_ids": [
+        "HKA-W02-B07",
+        "HKA-W02-C03"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0015_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0015_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0016",
+      "prompt_sha256": "9a1b8702773593bdd901a4f72def382d573d63cc72cd7fa6989ecb16d214c262",
+      "asset_type": "PROCESS",
+      "representation_type": "SCIENTIFIC_VISUALIZATION",
+      "primary_audience": "A5_19_24",
+      "academic_depth": "D4",
+      "primary_companion": "SIGMA",
+      "node_ids": [
+        "HKA-W02-A07",
+        "HKA-W02-A05"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0016_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0016_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0017",
+      "prompt_sha256": "737662632c1e2d63125c1995fd621d2c41d6a6cd90f043d9c0f1fe6593616977",
+      "asset_type": "RESEARCH_POSTER",
+      "representation_type": "DATA_RESEARCH_POSTER",
+      "primary_audience": "RESEARCH",
+      "academic_depth": "D4",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": [
+        "HKA-W02-C07",
+        "HKA-W02-C06"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0017_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0017_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0018",
+      "prompt_sha256": "eaf0dd645bd59a56013ae006a8b215c30170cdc0724f9d1f86a300d9a59a8e51",
+      "asset_type": "RESEARCH_POSTER",
+      "representation_type": "DATA_RESEARCH_POSTER",
+      "primary_audience": "RESEARCH",
+      "academic_depth": "D4",
+      "primary_companion": "LITTLE_ANT",
+      "node_ids": [
+        "HKA-W02-A06",
+        "HKA-W02-B06",
+        "HKA-W02-C07"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0018_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0018_BRANDED_FINAL.png"
+    }
+  ],
+  "created_at": "2026-09-04T02:00:02Z",
+  "status": "BATCH_READY"
 }
