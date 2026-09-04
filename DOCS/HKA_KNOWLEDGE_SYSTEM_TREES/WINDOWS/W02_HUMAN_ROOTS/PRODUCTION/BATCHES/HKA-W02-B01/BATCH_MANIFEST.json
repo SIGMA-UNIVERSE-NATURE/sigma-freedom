@@ -20,7 +20,9 @@
       "primary_audience": "A1_5_8",
       "academic_depth": "D1",
       "primary_companion": "SIGMA",
-      "node_ids": ["HKA-W02-A01"],
+      "node_ids": [
+        "HKA-W02-A01"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0003_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0003_BRANDED_FINAL.png"
     },
@@ -32,7 +34,10 @@
       "primary_audience": "A1_5_8",
       "academic_depth": "D1",
       "primary_companion": "LITTLE_ANT",
-      "node_ids": ["HKA-W02-A02", "HKA-W02-A03"],
+      "node_ids": [
+        "HKA-W02-A02",
+        "HKA-W02-A03"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0004_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0004_BRANDED_FINAL.png"
     },
@@ -44,7 +49,11 @@
       "primary_audience": "A1_5_8",
       "academic_depth": "D1",
       "primary_companion": "CRICKET",
-      "node_ids": ["HKA-W02-B02", "HKA-W02-B03", "HKA-W02-B04"],
+      "node_ids": [
+        "HKA-W02-B02",
+        "HKA-W02-B03",
+        "HKA-W02-B04"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0005_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0005_BRANDED_FINAL.png"
     },
@@ -56,7 +65,9 @@
       "primary_audience": "A2_9_12",
       "academic_depth": "D2",
       "primary_companion": "PROFESSOR_OWL",
-      "node_ids": ["HKA-W02-A04"],
+      "node_ids": [
+        "HKA-W02-A04"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0006_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0006_BRANDED_FINAL.png"
     },
@@ -68,7 +79,9 @@
       "primary_audience": "A2_9_12",
       "academic_depth": "D2",
       "primary_companion": "SIGMA",
-      "node_ids": ["HKA-W02-B01"],
+      "node_ids": [
+        "HKA-W02-B01"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0007_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0007_BRANDED_FINAL.png"
     },
@@ -80,7 +93,10 @@
       "primary_audience": "A2_9_12",
       "academic_depth": "D2",
       "primary_companion": "CRICKET",
-      "node_ids": ["HKA-W02-C03", "HKA-W02-C04"],
+      "node_ids": [
+        "HKA-W02-C03",
+        "HKA-W02-C04"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0008_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0008_BRANDED_FINAL.png"
     }
