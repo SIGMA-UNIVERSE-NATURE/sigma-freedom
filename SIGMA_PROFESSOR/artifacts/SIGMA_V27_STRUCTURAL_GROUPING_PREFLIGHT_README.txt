@@ -40,15 +40,16 @@ STRUCTURAL grouping only.
 No semantic grouping, topic understanding, or semantic understanding is claimed.
 
 Source SHA256:
-c82320003b0f5b76b7a8eeb578a54a9fe720fddea2513cf698baa792a3f542d5
+ab6eb3bf5e8796f2ec4b772159d70c648458fd85895f59f521407ab4209d6419
 
 Runner SHA256:
-e4798911cfac76f87e85d8e885e52547bd4ad4421cfe25330e90ff902661aa6b
+420ae29866f39cc087cc95f28b8c1099785d0faf7af51c88727ef3b0bcc325fd
 
 Static:
 H_CALL_ARITY_AUDIT=PASS
 STR_STARTS_DEPENDENCY=NONE
 DIRECT_STR_DEPENDENCY=NONE
+NATIVE_NOT_EQUAL_DEPENDENCY=NONE
 BASH_N_RC=0
 
 Runner failure-propagation audit: PASS (case RC preserved across diagnostic printing).
