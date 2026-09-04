@@ -17,6 +17,7 @@ This window does NOT create lesson-registry records, visual prompts, images, R2 
   - `CURRICULUM_AUTOPILOT/MASTER_PLAN.md`
   - `CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json`
   - `CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md`
+  - `CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md`
   - `CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json`
 
 ## Pipeline position
@@ -66,7 +67,13 @@ Create under:
    - Semantic duplicate method.
    - Distinguish legitimate cross-domain reuse from repeated learning meaning.
 
-6. `RESULT.json`
+6. Durable status folder:
+   `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/`
+   - `STATUS.json`
+   - `REPORT.md`
+   - `CHECKPOINTS/<CHECKPOINT_ID>.json` for meaningful checkpoints
+
+7. `RESULT.json`
    - `window_id`
    - `stage` = `CURRICULUM`
    - `status`
@@ -77,9 +84,9 @@ Create under:
    - duplicate-risk result
    - `next_action`
 
-7. `HANDOFF.md`
+8. `HANDOFF.md`
    - Concise recovery note.
-   - No essential information may exist only in HANDOFF or chat; it must be present in durable artifacts.
+   - No essential information may exist only in HANDOFF or chat; it must be present in durable artifacts/status.
 
 ## PASS gate
 
@@ -88,8 +95,12 @@ PASS requires:
 - every canonical B1 topic accounted for;
 - exactly one primary authoring owner per canonical topic;
 - deterministic bounded child partitions;
+- mandatory status folder present and current;
+- latest status/checkpoint agrees with committed outputs;
 - no unauthorized work from later pipeline stages;
 - `RESULT.json` committed with next_action pointing only to the first successor window.
+
+`NO STATUS FOLDER = NO ACCEPTED COMPLETION`.
 
 No branch or global curriculum may be marked `ACADEMIC_LOCKED` by this architecture window.
 
@@ -97,4 +108,4 @@ No branch or global curriculum may be marked `ACADEMIC_LOCKED` by this architect
 
 If canonical scope is genuinely ambiguous, record it and return `REVIEW_REQUIRED`; do not invent a silent canonical change.
 
-If the window dies, a replacement reads GitHub state plus committed partial outputs and resumes unfinished scope according to `WINDOW_RECOVERY_PROTOCOL.md`.
+If the window dies, a replacement reads GitHub state, the window status folder, the latest checkpoint and committed partial outputs, then resumes unfinished scope according to `WINDOW_RECOVERY_PROTOCOL.md`.
