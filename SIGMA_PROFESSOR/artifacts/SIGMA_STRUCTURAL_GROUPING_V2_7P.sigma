@@ -89,7 +89,15 @@ DEF H(op, a, b, c) {
                 NULL
             );
 
-        IF (LINE != "") {
+        ⚡ VALID_LINE:
+            1;
+
+        IF (LINE == "") {
+            ⚡ VALID_LINE:
+                0;
+        }
+
+        IF (VALID_LINE) {
 
             ⚡ PARTS:
                 H(
