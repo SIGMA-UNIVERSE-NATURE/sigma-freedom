@@ -6,68 +6,64 @@ Last updated: 2026-09-04 (Asia/Ho_Chi_Minh)
 
 Current target: **SIGMA native continuous self-directed learning** with `HOST_LEARNING=NO`.
 
-### Current runtime status
+## Current runtime status
 
-`V2.3 = STOPPED`
+- V2.3: STOPPED. It hit `SIGMA C VM: step limit` on history-heavy execution because endpoint `TOKEN_LOAD` added extra full-history scans.
+- V2.4 preflight: **PASS** on both short and previously failing long context.
+- V2.4 production source + runner: **BUILT AND SAVED; READY TO INSTALL/RUN**.
 
-V2.3 previously failed with `SIGMA C VM: step limit` on long/history-heavy execution. The failure surfaced through runner `rc=9` after many valid candidates.
+## V2.4 preflight proof
 
-### V2.4 status
+Short context:
 
-A cheaper SIGMA-native policy is under preflight:
-
-- endpoint `TOKEN_LOAD` full-history scan removed;
-- recurrence `SUPPORT` remains native;
-- only relations with `SUPPORT > 1` can become a learning gap;
-- frontier selection remains inside SIGMA;
-- host still does not generate candidates, score knowledge, or select queries.
-
-V2.4 preflight source SHA-256:
-
-`bbcba488e30fd22a638017195b5a7b63900a1da8fba0c3bfaf140df3628d00a7`
-
-Device-compiled bytecode SHA observed:
-
-`ef68c925ef0d4d15eb8466395edcd6d9011a5849c95719a5ad7b5117559a0b9b`
-
-Short context `0a7410aa3d627753302469a32fc70485059468de8ed08ede9a74dca82ad03bb4` PASSED:
+`0a7410aa3d627753302469a32fc70485059468de8ed08ede9a74dca82ad03bb4`
 
 - `SHORT_VM_RC=0`
+
+Previously failing long context:
+
+`d891e5ff25d3c9d390d6ab383e6bc0d90bc740b0397e47f6f88bc5fcc6a626de`
+
+- `LONG_D891_VM_RC=0`
+- `INPUT_LINE_COUNT=9`
 - `HISTORY_LINE_COUNT=17270`
-- selected pattern `of => the`
-- selected support `34`
-- native gap `Centauri => (α`
-- request `Centauri (α`
-- request support `2`
+- `NEW_CONTEXT_RELATION_COUNT=668`
+- `SELECTED_PATTERN=is => a`
+- `SELECTED_CONTEXT_SUPPORT=35`
+- `LEARNING_GAP=Moon => is`
+- `FETCH_REQUEST=Moon is`
+- `FETCH_REQUEST_SUPPORT=2`
 
-The long context `d891e5ff25d3c9d390d6ab383e6bc0d90bc740b0397e47f6f88bc5fcc6a626de` has NOT YET run under V2.4 because the first preflight runner hit an orchestration bug before that case: the short input inherited mode `0400`, and the next `cp` could not overwrite it.
+Admission result:
 
-This is not a SIGMA learning failure and not a reproduced step-limit failure.
+- `V24_1_STEP_LIMIT_PREFLIGHT=PASS`
+- `SIGMA_C_VM_STEP_LIMIT_REPRODUCED=NO`
+- `PRODUCTION_MEMORY_MUTATED=NO`
 
-Corrected runner:
+## V2.4 native policy
 
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
+- endpoint `TOKEN_LOAD` removed completely;
+- SIGMA still computes recurrence support itself;
+- only relations with `CONTEXT_SUPPORT > 1` may become a fetch gap;
+- among eligible not-yet-fetched relations, SIGMA selects the lowest-support recurrent frontier;
+- host does not generate candidates, score knowledge, choose gaps, or choose queries.
 
-Build-workspace SHA-256:
+## Production artifacts
 
-`877962d45eaedf86bc3cebf57506957bfaca1a743e73fc3b07c10cd04c6c3eab`
+- `SIGMA_PROFESSOR/artifacts/SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sigma`
+  - SHA-256: `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2`
+- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh`
+  - SHA-256: `01c6e54cd384e7c931d66bea69c9da1a39553965cc08279df9a28e9392129067`
+- transport decoder remains:
+  - SHA-256: `c8d10c640d32d23d3998590a291d187de0936368d0cd3559706ed6509fd31705`
 
-The corrected runner atomically replaces the read-only test input between cases.
+Runner safety additions:
 
-## Exact checkpoints
-
-Read newest first:
-
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V24_SHORT_PASS_READONLY_INPUT_FIX.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V23_STEP_LIMIT_HANDOFF.md`
-
-## Saved artifacts
-
-- `SIGMA_PROFESSOR/artifacts/SIGMA_V24_PREFLIGHT_RECURRENT_FRONTIER.sigma`
-- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
-- `SIGMA_PROFESSOR/artifacts/SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sigma`
-- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sh`
-- `SIGMA_PROFESSOR/artifacts/SIGMA_WIKIMEDIA_TRANSPORT_DECODE_V1.py`
+- atomic current-input replacement;
+- bytecode-scoped `hold/` quarantine after VM execution failure;
+- a held context becomes retryable automatically when bytecode changes;
+- HTTP 429 and normal transport backoff retained;
+- fetch interval retained.
 
 ## Locked compiler / VM
 
@@ -83,30 +79,28 @@ Read newest first:
 - DNA03 native self-selection: PASS
 - DNA04 cross-context support: PASS
 - V2.2 native gap -> fetch request -> Internet transport -> decoded plaintext -> SIGMA learning: PROVEN end-to-end
-- V2.4 recurrent-frontier policy on short context: PASS
+- V2.4 short-context execution: PASS
+- V2.4 previously failing long-context execution: PASS
 
-Still not proven:
+Still NOT proven:
 
-- V2.4 long-context step-limit fix
 - semantic understanding
 - semantic curiosity
 - general autonomous reasoning
 
+## Exact newest checkpoint
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260904_V24_PREFLIGHT_PASS_AND_PRODUCTION_READY.md`
+
 ## NEXT ACTION
 
-Keep V2.3 stopped.
-
-Run corrected preflight:
-
-`RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
-
-Admission to a V2.4 continuous runner requires:
-
-- `SHORT_VM_RC=0`
-- `LONG_D891_VM_RC=0`
-- `V24_1_STEP_LIMIT_PREFLIGHT=PASS`
-
-If the long context still returns `rc=9 / SIGMA C VM: step limit`, do not move scoring/selection to Python/shell. Move to bounded or incremental native processing.
+1. Keep V2.3 and older continuous runners stopped.
+2. Install V2.4 `.sigma` source and V2.4 runner.
+3. Verify source and runner SHA-256.
+4. Start V2.4.
+5. Observe 2–3 native request -> fetch -> learn cycles.
+6. If a VM context fails, inspect `~/SIGMA/SIGMA_CONTINUOUS_NATIVE_V2_2/hold/<sha>.hold` and its log; do not manually hot-retry it.
+7. If V2.4 completes meaningful stable cycles, create a new checkpoint before the next policy change.
 
 Do not delete V2.2/V2.3 raw/done/log/history state.
 
