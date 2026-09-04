@@ -80,9 +80,8 @@ Frozen mechanical snapshot:
 
 `SNAPSHOT_DOCUMENT_COUNT=56`
 
-V2.5B.2 final device evidence:
+Final proof:
 
-- final `VM_RC=0`;
 - `SURVEY_COMPLETE YES`;
 - `COMMITTED_SURVEY_COUNT=56`;
 - `SURVEY_COMPLETE_SENTINEL=1`;
@@ -90,10 +89,9 @@ V2.5B.2 final device evidence:
 - `PRODUCTION_LEARNER_MEMORY_MUTATED=NO`;
 - `HOST_LEARNING=NO`;
 - `HOST_DOCUMENT_SELECTION=NO`;
-- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
 - `V25B_2_FULL_CORPUS_SURVEY=PASS`.
 
-Proven claim scope:
+Admitted claim:
 
 `NATIVE_STRUCTURAL_FULL_CORPUS_SURVEY=PROVEN_FOR_FROZEN_56_DOCUMENT_SNAPSHOT`
 
@@ -102,16 +100,16 @@ Proven claim scope:
 Checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V25B2_FULL_CORPUS_SURVEY_PASS.md`
 
-Checkpoint commit:
+Commit:
 `dca66b408fba5c21d081983d6ba15ca510e63c2c`
 
-Historical failures retained as evidence:
+Historical failure evidence retained:
 
 - original V2.5B: `str_starts` runtime incompatibility;
 - V2.5B.1: empty-token contamination (`BEST_LOCAL_RELATION= =>`, support 110);
 - tainted V2.5B.1 state must not be promoted.
 
-## V2.6 bounded segment cursor restart preflight — PASS
+## V2.6 persisted segment cursor restart — PASS
 
 Fixture:
 
@@ -119,124 +117,175 @@ Fixture:
 
 Observed line count: 63.
 
-Native source:
-`SIGMA_PROFESSOR/artifacts/SIGMA_BOUNDED_SEGMENT_CURSOR_V2_6P.sigma`
+Phase 1:
 
-Source SHA256:
-`9cac5d9ddb10295b3ebf1f4300412e1b6dc3adceaf5f1de70eb83d0508f3b970`
-
-Observed bytecode SHA256:
-`e850848a9b0fc8905ae50ddf609e28235a1c431fe045011bd88d9fc0c39e33b2`
-
-Phase 1 evidence:
-
-- `VM_RC=0`;
 - `SEGMENT_INDEX 0`;
 - `SEGMENT_START_LINE 0`;
 - `SEGMENT_END_LINE 8`;
 - `CURSOR_APPEND_RC 0`;
 - `CURSOR_BYTES_AFTER=1`;
-- runner deliberately terminated its own process after the commit.
+- runner deliberately terminated after committed VM cycle.
 
-Phase 2 fresh runner invocation:
+Fresh runner invocation:
 
 - `V26_INITIALIZATION=REUSE_PERSISTED_CURSOR`;
 - `CURSOR_BYTES_BEFORE=1`;
 - `RECOVERY_DETECTED=YES`;
-- `VM_RC=0`;
 - `SEGMENT_INDEX 1`;
 - `SEGMENT_START_LINE 8`;
 - `SEGMENT_END_LINE 16`;
-- `CURSOR_APPEND_RC 0`;
 - `CURSOR_BYTES_AFTER=2`;
-- `V26_BOUNDED_SEGMENT_CURSOR_PREFLIGHT=PASS`;
 - `PERSISTED_CURSOR_RESUME_AFTER_PROCESS_TERMINATION=PASS`.
 
-Proven claim scope:
+Admitted claim:
 
-- SIGMA derives the next fixed 8-line segment from persistent cursor state;
-- host does not select the next segment;
+- SIGMA derives next fixed segment from persisted cursor;
+- host does not select segment;
 - restart between committed VM cycles resumes the next segment;
 - segment computation is bounded.
 
 Not proven:
 
-- bounded file I/O (`read_text` still loads whole file);
+- bounded file I/O;
 - atomic recovery from kill during `append_text`;
 - semantic understanding.
-
-Important observation:
-
-Segment 1 produced zero valid relations and many skipped empty relations. This does not invalidate cursor proof. Future grouping/curriculum must tolerate evidence-empty segments rather than forcing every segment to yield knowledge.
 
 Checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V26_SEGMENT_CURSOR_RESTART_PREFLIGHT_PASS.md`
 
-Checkpoint commit:
+Commit:
 `81c8c72e66c30292e17c567d8c3824490dc00e7a`
 
-## CURRENT FRONTIER — V2.6F complete full-document segment traversal
+## V2.6F complete full-document segment traversal — PASS
+
+Same 63-line frozen fixture traversed with fixed 8-line native cursor windows.
+
+Expected windows were completed:
+
+- segment 0 `[0,8)`;
+- segment 1 `[8,16)`;
+- segment 2 `[16,24)`;
+- segment 3 `[24,32)`;
+- segment 4 `[32,40)`;
+- segment 5 `[40,48)`;
+- segment 6 `[48,56)`;
+- segment 7 `[56,63)`;
+- completion sentinel at segment index 8.
+
+Final device proof:
+
+- `VM_RC=0`;
+- `DOCUMENT_SEGMENTS_COMPLETE YES`;
+- `LINE_TOTAL 63`;
+- `SEGMENT_INDEX 8`;
+- `SEGMENT_START_LINE 64`;
+- `CURSOR_BYTES_AT_START=6`;
+- `CURSOR_BYTES_AT_END=8`;
+- `DOCUMENT_COMPLETE_SENTINEL=1`;
+- `HOST_SEGMENT_SELECTION=NO`;
+- `HOST_LEARNING=NO`;
+- `SEGMENT_COMPUTATION_BOUNDED=YES`;
+- `PRODUCTION_LEARNER_MEMORY_MUTATED=NO`;
+- `V26F_FULL_DOCUMENT_TRAVERSAL=PASS`.
+
+Admitted claim:
+
+`NATIVE_COMPLETE_FIXED_WINDOW_TRAVERSAL=PROVEN_IN_FIXTURE_SCOPE`
+
+Evidence-empty segments are valid and must not force fabricated knowledge.
+
+Checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V26F_FULL_DOCUMENT_SEGMENT_TRAVERSAL_PASS.md`
+
+Commit:
+`97b2e047211d6606b0772daf451b6a9c16359946`
+
+## CURRENT FRONTIER — V2.7 structural grouping preflight
 
 Goal:
 
-Prove complete traversal of the 63-line fixture using persistent native cursor before moving to structural grouping.
+Prove native structural grouping without topic taxonomy or host semantic classification.
 
 Native source:
-`SIGMA_PROFESSOR/artifacts/SIGMA_FULL_DOCUMENT_SEGMENT_CURSOR_V2_6F.sigma`
+`SIGMA_PROFESSOR/artifacts/SIGMA_STRUCTURAL_GROUPING_V2_7P.sigma`
 
 SOURCE_SHA256:
-`adfadcb91e71a38272d09dfc27997faf915ab71666993c67e9288e69b5b3a366`
+`ab6eb3bf5e8796f2ec4b772159d70c648458fd85895f59f521407ab4209d6419`
 
-Source artifact commit:
-`0194c6278c8d83a3625a54e3a946bb87996cf1cd`
+Source artifact latest commit:
+`5e19321003c600982d57771dec8c024cfc0d0541`
 
 Runner:
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V26F_FULL_DOCUMENT_SEGMENT_CURSOR_BATCHED.sh`
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V27_STRUCTURAL_GROUPING_PREFLIGHT.sh`
 
 RUNNER_SHA256:
-`506f606dd110141b2f78b90ec96df4dfb01ea1f8340824ea0ebbf20d1693a15f`
+`420ae29866f39cc087cc95f28b8c1099785d0faf7af51c88727ef3b0bcc325fd`
 
-Runner artifact commit:
-`c6cacaa6fd9ef1bb630270f817a830c460a65df9`
+Runner artifact latest commit:
+`7f8e8cc777e8a1a06fcb7e154ca0646ffff6443d`
 
-Policy:
+README latest commit:
+`9506073238eafc2967ca57d3fdb9d17ced138314`
 
-- fresh V2.6F derived cursor namespace;
-- fixed 8-line windows;
-- SIGMA derives segment index from persistent cursor;
-- one successful non-complete VM cycle must advance cursor exactly one byte;
-- batch limit = 3 VM cycles per invocation;
-- same runner resumes next batch;
-- evidence-empty segments are permitted;
-- host does not select segments.
+V2.7 policy:
 
-Expected fixture traversal:
+- profile input shape: `DOC=<id> || ANCHOR=<structural relation>`;
+- SIGMA deduplicates exact document-anchor pairs;
+- repeated same doc-anchor pair must not inflate cross-document support;
+- exact anchor support >1 across distinct admitted doc-anchor pairs -> `GROUP=SHARED`;
+- support 1 -> `GROUP=SINGLETON`;
+- assignments are written by native SIGMA to `.sigma_exec/SIGMA_V27T_GROUP_ASSIGNMENTS.memory`;
+- host supplies QA bytes and mechanically checks protocol/hash only;
+- host does not choose groups or classify topics.
 
-- segment 0: `[0,8)`;
-- segment 1: `[8,16)`;
-- segment 2: `[16,24)`;
-- segment 3: `[24,32)`;
-- segment 4: `[32,40)`;
-- segment 5: `[40,48)`;
-- segment 6: `[48,56)`;
-- segment 7: `[56,63)`;
-- next native invocation: `DOCUMENT_SEGMENTS_COMPLETE YES`, `SEGMENT_INDEX 8`.
+Same bytecode admission cases:
 
-PASS requires:
+### Positive
 
-- all VM cycles `RC=0`;
-- cursor advances exactly one marker for every processed segment;
-- `CURSOR_BYTES_AT_END=8`;
-- `DOCUMENT_COMPLETE_SENTINEL=1`;
-- completion log contains `SEGMENT_INDEX 8`;
-- `V26F_FULL_DOCUMENT_TRAVERSAL=PASS`;
-- `HOST_SEGMENT_SELECTION=NO`;
+- two shared-anchor groups;
+- 4 grouped documents;
+- 1 singleton;
+- 1 duplicate profile ignored.
+
+### Negative / counterexample
+
+- no shared anchor across distinct documents;
+- 0 groups;
+- 0 grouped documents;
+- 5 singletons;
+- duplicate within same document must still not create a group.
+
+### Replay
+
+Exact positive input must reproduce exact assignment SHA.
+
+Static checks before device run:
+
+- `H_CALL_ARITY_AUDIT=PASS`;
+- `STR_STARTS_DEPENDENCY=NONE`;
+- `DIRECT_STR_DEPENDENCY=NONE`;
+- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
+- runner `bash -n=PASS`;
+- runner failure RC propagation audit PASS.
+
+PASS must include:
+
+- `V27_STRUCTURAL_GROUPING_PREFLIGHT=PASS`;
+- `NATIVE_STRUCTURAL_GROUPING=PROVEN_IN_QA_SCOPE`;
+- `DISTINCT_DOC_ANCHOR_DEDUP=PROVEN_IN_QA_SCOPE`;
+- `DYNAMIC_INPUT_DEPENDENCE=PASS`;
+- `NEGATIVE_COUNTEREXAMPLE=PASS`;
+- `DETERMINISTIC_REPLAY=PASS`;
+- `PERSISTED_GROUP_ASSIGNMENTS=PASS`;
+- `HOST_GROUP_SELECTION=NO`;
+- `HOST_TOPIC_CLASSIFICATION=NO`;
 - `HOST_LEARNING=NO`;
-- production learner memory not mutated.
+- `SEMANTIC_GROUPING=NOT_PROVEN`;
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`.
 
-After PASS:
+After V2.7 PASS:
 
-`NEXT_ACTION=BUILD_V27_STRUCTURAL_GROUPING_PREFLIGHT`
+`NEXT_ACTION=BUILD_V28_CURRICULUM_PRIORITY_PREFLIGHT`
 
 ## Host ABI status
 
@@ -260,14 +309,11 @@ Read:
 
 Keep all 54 DNA. Active DNA cognition must be native `.sigma`. Work dependency-first/capability-first.
 
-Do not infer semantic understanding from DNA admission labels beyond each exact runtime test scope.
-
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. Install V2.6F source + batched runner.
-3. Run same V2.6F runner batch-by-batch until native `DOCUMENT_SEGMENTS_COMPLETE YES` at `SEGMENT_INDEX 8` and cursor bytes = 8.
-4. If V2.6F PASSes, checkpoint it.
-5. Then build V2.7 structural grouping preflight.
-6. After grouping: curriculum queue, consolidation, revalidation.
-7. Preserve all prior raw/done/log/history state and failure evidence.
+2. Install V2.7 source + runner.
+3. Run V2.7 preflight once; it executes positive, negative, and replay cases with the same bytecode.
+4. If any case fails, preserve exact output/state and repair the narrowest failing gate.
+5. If V2.7 PASSes, checkpoint it and proceed to native curriculum priority.
+6. Preserve all prior raw/done/log/history state and all failure evidence.
