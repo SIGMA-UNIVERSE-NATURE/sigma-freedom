@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "2.1",
   "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule": "Successor windows read GitHub state and predecessor artifacts; chat history is never a dependency.",
-  "child_window_rule": "Large academic scopes are bounded window families. Each child writes RESULT.json and a durable checkpoint. Only PASS unlocks successor work.",
+  "child_window_rule": "Large academic scopes are bounded window families. Each child writes RESULT.json plus a mandatory durable status folder. Only PASS unlocks successor work.",
   "stage_order": [
     "KNOWLEDGE",
     "CURRICULUM",
@@ -31,8 +31,26 @@
       "entry_gate": "KNOWLEDGE=LOCKED_INPUT",
       "exit_gate": "all six branches complete and global coverage/prerequisite/semantic duplicate audits PASS",
       "windows": [
-        {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"READY","depends_on":[]},
-        {"window_id":"C01-W02-B1.1-MATH-FAMILY","scope":"B1.1 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c","depends_on":[]},
+        {
+          "window_id":"C01-W02-B1.1-MATH-FAMILY",
+          "scope":"B1.1 bounded authoring family",
+          "status":"IN_PROGRESS",
+          "depends_on":["C01-W01-B1-ARCHITECTURE"],
+          "accepted_predecessor_commit_sha":"265bb584b5d7e36e11091289d58558408880118c",
+          "children":[
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"READY","execution_branch":"hka-tree/c01-w02-math-c01","topic_count":8,"depends_on":[]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"LOCKED","topic_count":8,"depends_on":[]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C03","scope_id":"B1.1-C03","scope":"Đại số và cấu trúc","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C01","B1.1-C02"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C02","B1.1-C03"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C05","scope_id":"B1.1-C05","scope":"Giải tích và biến đổi liên tục","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C02","B1.1-C03","B1.1-C04"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C06","scope_id":"B1.1-C06","scope":"Phương trình vi phân và hệ động lực","status":"LOCKED","topic_count":8,"depends_on":["B1.1-C03","B1.1-C05"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C07","scope_id":"B1.1-C07","scope":"Xác suất, thống kê và suy luận","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C01","B1.1-C02","B1.1-C03"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C08","scope_id":"B1.1-C08","scope":"Toán rời rạc và tổ hợp","status":"LOCKED","topic_count":8,"depends_on":["B1.1-C01","B1.1-C02"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C09","scope_id":"B1.1-C09","scope":"Tô pô và hình học hiện đại","status":"LOCKED","topic_count":7,"depends_on":["B1.1-C01","B1.1-C04"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C10","scope_id":"B1.1-C10","scope":"Toán ứng dụng và tính toán","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"]}
+          ]
+        },
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","scope":"B1.2 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
         {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","scope":"B1.3 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
         {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","scope":"B1.4 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
@@ -46,45 +64,26 @@
         {"window_id":"C07-GLOBAL-CURRICULUM-AUDIT","scope":"All-tree coverage, cross-tree prerequisite graph, shared-node and semantic duplicate audit","status":"LOCKED","depends_on":["C06-B6-CURRICULUM-FAMILY"]}
       ]
     },
+    {"stage_id":"ACADEMIC_LOCKED","status":"GATED","entry_gate":"CURRICULUM exit gate PASS","exit_gate":"global academic lock commit recorded in state"},
     {
-      "stage_id": "ACADEMIC_LOCKED",
-      "status": "GATED",
-      "entry_gate": "CURRICULUM exit gate PASS",
-      "exit_gate": "global academic lock commit recorded in state"
-    },
-    {
-      "stage_id": "LESSON_REGISTRY",
-      "status": "GATED",
-      "entry_gate": "ACADEMIC_LOCKED=LOCKED",
-      "windows": [
+      "stage_id":"LESSON_REGISTRY","status":"GATED","entry_gate":"ACADEMIC_LOCKED=LOCKED",
+      "windows":[
         {"window_id":"L01-LESSON-ARCHITECTURE","scope":"Lesson schema, stable IDs, age/presentation paths, prerequisite and D1-D4 rules","status":"GATED"},
         {"window_id":"L02-LESSON-REGISTRY-FAMILY","scope":"Complete lesson registry through bounded restartable families","status":"GATED"},
         {"window_id":"L03-WEBSITE-MAPPING","scope":"LESSON_ID to program/path, age/presentation, route and WEBSITE_SLOT","status":"GATED"},
         {"window_id":"L04-LESSON-GLOBAL-AUDIT","scope":"Global lesson coverage, prerequisite, sequencing and duplicate audit","status":"GATED"}
       ]
     },
+    {"stage_id":"LESSON_REGISTRY_LOCKED","status":"GATED","entry_gate":"L04 PASS","exit_gate":"lesson registry lock commit recorded in state"},
     {
-      "stage_id": "LESSON_REGISTRY_LOCKED",
-      "status": "GATED",
-      "entry_gate": "L04 PASS",
-      "exit_gate": "lesson registry lock commit recorded in state"
-    },
-    {
-      "stage_id": "PROMPTS",
-      "status": "GATED",
-      "entry_gate": "LESSON_REGISTRY_LOCKED=LOCKED",
-      "windows": [
+      "stage_id":"PROMPTS","status":"GATED","entry_gate":"LESSON_REGISTRY_LOCKED=LOCKED",
+      "windows":[
         {"window_id":"V01-VISUAL-SYSTEM","scope":"Visual-job taxonomy and representation rules","status":"GATED"},
         {"window_id":"V02-VISUAL-PROMPT-AUTHORING-FAMILY","scope":"Exact descriptions/prompts from locked lessons through bounded windows","status":"GATED"},
         {"window_id":"V03-VISUAL-DUPLICATE-AUDIT","scope":"Global semantic/visual duplicate and prompt integrity audit","status":"GATED"}
       ]
     },
-    {
-      "stage_id": "PROMPT_LOCKED",
-      "status": "GATED",
-      "entry_gate": "V03 PASS",
-      "exit_gate": "prompt lock commit recorded in state"
-    },
+    {"stage_id":"PROMPT_LOCKED","status":"GATED","entry_gate":"V03 PASS","exit_gate":"prompt lock commit recorded in state"},
     {"stage_id":"IMAGE_PRODUCTION","status":"GATED","entry_gate":"PROMPT_LOCKED=LOCKED","runtime":"HKA_AUTOPILOT + Generation AI"},
     {"stage_id":"R2_STAGING","status":"GATED","entry_gate":"generated asset provenance complete","runtime":"Cloudflare R2 staging create-only + checksum/read-back"},
     {"stage_id":"INDEPENDENT_QA","status":"GATED","entry_gate":"exact staging binary exists","runtime":"Independent QA AI; only QA_APPROVED may progress"},
