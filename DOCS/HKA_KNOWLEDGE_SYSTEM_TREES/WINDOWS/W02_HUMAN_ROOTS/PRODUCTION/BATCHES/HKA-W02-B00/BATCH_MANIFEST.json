@@ -20,7 +20,14 @@
       "primary_audience": "UNIVERSAL",
       "academic_depth": "MULTI_DEPTH",
       "primary_companion": "ENSEMBLE_FOUR",
-      "node_ids": ["HKA-W02-A01", "HKA-W02-A05", "HKA-W02-B02", "HKA-W02-B06", "HKA-W02-C02", "HKA-W02-C07"],
+      "node_ids": [
+        "HKA-W02-A01",
+        "HKA-W02-A05",
+        "HKA-W02-B02",
+        "HKA-W02-B06",
+        "HKA-W02-C02",
+        "HKA-W02-C07"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0001_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0001_BRANDED_FINAL.png"
     },
@@ -32,7 +39,10 @@
       "primary_audience": "A4_16_18",
       "academic_depth": "D3",
       "primary_companion": "PROFESSOR_OWL",
-      "node_ids": ["HKA-W02-A06", "HKA-W02-B07"],
+      "node_ids": [
+        "HKA-W02-A06",
+        "HKA-W02-B07"
+      ],
       "clean_master_filename": "HKA-VIS-W02-0002_CLEAN_MASTER.png",
       "branded_final_filename": "HKA-VIS-W02-0002_BRANDED_FINAL.png"
     }
