@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260904-2244-C01W01-ACCEPTED-C01-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_work": {
+    "window_id": "C01-W01-B1-ARCHITECTURE",
+    "accepted_terminal_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+    "result_commit_sha": "2ec918cb4dca4a851b917dc420e488042c07d240",
+    "status_commit_sha": "ff6e218e68a28a33ec969af8c1f726824d9b9647",
+    "director_verification": "PASS"
+  },
+  "verification_summary": {
+    "canonical_topic_leaves": 348,
+    "topics_with_exactly_one_primary_owner": 348,
+    "bounded_child_windows": 52,
+    "max_child_topics": 10,
+    "prerequisite_graph_acyclic": true,
+    "uncontrolled_architecture_duplicate_risks": 0,
+    "status_folder_pass": true,
+    "stage_boundary_pass": true
+  },
+  "activated_work": {
+    "family": "C01-W02-B1.1-MATH-FAMILY",
+    "child_window": "C01-W02-B1.1-MATH-FAMILY-C01",
+    "scope_id": "B1.1-C01",
+    "scope_name": "Logic, tập hợp và chứng minh",
+    "execution_branch": "hka-tree/c01-w02-math-c01",
+    "accepted_predecessor_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+    "child_status": "READY"
+  },
+  "control_plane_commits": {
+    "state_activation_commit_sha": "c46f5d8abd834cb64092e4becad9ef3ab3a0bdba",
+    "registry_activation_commit_sha": "d49a21c3267786f622ec01ed1180d39f0cbe5e29"
+  },
+  "child_setup_commits": {
+    "contract_commit_sha": "180a9c62b221ff1e4e9daaeb202c3704f3d27e59",
+    "prompt_commit_sha": "84aee4786c13e6ba0553b7d095ffc203a764f172",
+    "initial_status_commit_sha": "ec13c5e13f23b5eadd0ed8814a525728eaa41d4a",
+    "initial_report_commit_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af"
+  },
+  "locked_boundary": "Only C01-W02-B1.1-MATH-FAMILY-C01 is unlocked. C02-C10 remain locked. No Lesson Registry, prompts, images, R2, delivery or website work is authorized.",
+  "next_action": "Open a new chat window and execute C01-W02-B1.1-MATH-FAMILY-C01 from hka-tree/c01-w02-math-c01.",
+  "created_at": "2026-09-04T22:44:00+07:00"
+}
