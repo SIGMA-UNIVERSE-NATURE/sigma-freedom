@@ -236,6 +236,65 @@ Read:
 
 Keep all 54 DNA. Active DNA cognition must be native `.sigma`. Numeric order is not required; work dependency-first/capability-first.
 
+### Native-admitted DNA lane — 2026-09-05 checkpoint
+
+Native admission evidence in exact tested scope now exists for:
+
+- DNA-01 Purpose & Existence
+- DNA-02 Foundation Intelligence Substrate
+- DNA-03 Unified Cognitive State
+- DNA-04 Eight Cognitive Layers
+- DNA-05 Ethical Intelligence
+- DNA-06 Interlayer Feedback
+- DNA-07 Persistent Existence
+- DNA-50 Core Immutability vs Evolvability
+
+Latest completed capability: `DNA-07 Persistent Existence`.
+
+DNA-07 locked evidence:
+
+- source SHA256: `9d92cbbedc068cdeba43b578e9c70bce49728f89b0083e757fb7ec73ec8b6c00`
+- bytecode SHA256: `edc902fb39a9bf500c9c1a51cd8551ab3c3f4f5bb12aa260bbf5ad30c886b17f`
+- `TOTAL_VM_INVOCATIONS=48`
+- `POST_VM_ALIGNMENT_FAIL_COUNT=0`
+- `VM_NONZERO_COUNT=0`
+- `STEP_LIMIT_HIT_COUNT=0`
+- `RESTART_MISMATCH_COUNT=0`
+- `STATE_READBACK_MISMATCH_COUNT=0`
+- `SIGMA_CHECKPOINT_SAVE_COUNT=13`
+- `PERSISTENT_STATE_TEST=PASS`
+- `DYNAMIC_INPUT=YES`
+- `PERSISTENT_STATE=YES`
+- `HOST_LEARNING=NO`
+- `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `PYTHON_USED=NO`
+- `ADMISSION=PASS`
+- `RESULT=PASS_IN_EXACT_TESTED_SCOPE`
+
+Claim boundary remains:
+
+- `FULL_HISTORY_PERSISTENCE=NOT_PROVEN`
+- `CRASH_SAFE_ATOMIC_STATE=NOT_PROVEN`
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+
+Immutable checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA07_NATIVE_ADMISSION_PASS_AND_54DNA_STATE.md`
+
+54-DNA dependency frontier:
+
+`DNA-08 Learning World`
+
+Planned immediate chain after DNA-08:
+
+`DNA-08 -> DNA-09 Independent Verification Wall -> DNA-10 Memory Genome -> DNA-11 Knowledge Graph`
+
+Checkpoint discipline for this lane:
+
+1. after every completed DNA or material failure, update `CURRENT_HANDOFF.md` in the same work cycle;
+2. create an immutable checkpoint under `SIGMA_PROFESSOR/CHECKPOINTS/`;
+3. save materially changed native source/runner artifacts under `SIGMA_PROFESSOR/artifacts/` when they are promoted to repository artifacts;
+4. never reconstruct or invent a missing hash from memory.
+
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
@@ -246,5 +305,7 @@ Keep all 54 DNA. Active DNA cognition must be native `.sigma`. Numeric order is 
 6. Final admission requires `COMMITTED_SURVEY_COUNT=56` and native `SURVEY_COMPLETE YES`.
 7. Then checkpoint full-corpus survey PASS and build V2.6 bounded segment cursor + deliberate kill/restart/resume test.
 8. After V2.6: structural grouping, curriculum queue, consolidation, revalidation.
+9. In the 54-DNA lane, proceed next with DNA-08 Learning World under the native-only admission standard.
+10. After every completed 54-DNA milestone, update this handoff and create an immutable checkpoint before moving on.
 
 Do not delete V2.2/V2.3/V2.4 raw/done/log/history state or tainted V2.5B.1 evidence.
