@@ -1,0 +1,41 @@
+# DNA-10 NATIVE ADMISSION V1 — SOURCE READY
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+
+DNA_ID=DNA-10
+NAME=Memory Genome
+CANON_REFERENCE_BLOB_SHA1=d1397419764592442e3115f1193f8e9620f66ef4
+
+SOURCE_PATH=DNA10_MEMORY_GENOME_NATIVE_V1.sigma
+SOURCE_SHA256=3901bc045d34195ca089f18ebce3a37bebbbbb790bd94d255b203a523b055304
+RUNNER_SHA256=c69486659bd7b9b4c17b627c2c4a04058036108b5509377233425c1da5674e8c
+BUNDLE_SHA256=048caf6756ad415b5e75ee1b1e849261128b1d9b7d86eaefbec79bcd306c207b
+MANIFEST_SHA256=0aa3d1680bd41a865ced867f839f988833e52e20c5e81971768ea7fd219508c7
+
+STATIC_AUDIT=BASH_SYNTAX_PASS_MANIFEST_PASS_ZIP_INTEGRITY_PASS
+PYTHON_USED_BY_RUNNER=NO
+ACTIVE_DNA_IMPLEMENTATION_LANGUAGE=SIGMA_NATIVE_ONLY
+
+TEST_DESIGN:
+- exact six Canon memory classes: working, episodic, hypothesis, verified, rejected, strategy;
+- dynamic DNA-03/DNA-08/DNA-09-compatible state after bytecode freeze;
+- working routing from structured state;
+- episodic routing from qualified world event;
+- candidate routing into exactly one of hypothesis/verified/rejected;
+- strategy routing from active goal/strategy/recovery state;
+- repeated identical routing idempotence tested within each bounded VM activation;
+- dynamic replay and boundedness checks;
+- shell is post-VM oracle only.
+
+CLAIM_BOUNDARIES:
+PERSISTENT_MEMORY_RUNTIME=NOT_EXECUTED
+CROSS_PROCESS_MEMORY_DURABILITY=NOT_PROVEN
+CANDIDATE_DIGEST_DERIVATION=NOT_PROVEN
+NEURAL_LEARNING=NOT_EXECUTED
+EXTERNAL_STORAGE_WRITE=NOT_EXECUTED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+
+DNA10_COMPILE=NOT_RUN
+DNA10_VM=NOT_RUN
+DNA10_ADMISSION=NOT_RUN
