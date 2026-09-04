@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "program": "HKA World Tree 1.0",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
+  "phase": "PHASE_A_CURRICULUM",
+  "global_status": "ACTIVE",
+  "image_prompt_authoring_enabled": false,
+  "image_production_enabled": false,
+  "website_publication_enabled": false,
+  "active_branch": "B1",
+  "active_window": "C01-W01-B1-ARCHITECTURE",
+  "last_accepted_checkpoint": null,
+  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt.",
+  "branches": [
+    {
+      "branch_id": "B1",
+      "name": "QUY LUẬT — Quy luật & Thực tại",
+      "status": "IN_PROGRESS",
+      "subbranches": [
+        {"id": "B1.1", "name": "Toán học & Hệ hình thức", "status": "NOT_STARTED"},
+        {"id": "B1.2", "name": "Vật chất & Năng lượng", "status": "NOT_STARTED"},
+        {"id": "B1.3", "name": "Chất & Biến đổi", "status": "NOT_STARTED"},
+        {"id": "B1.4", "name": "Trái Đất & Vũ trụ", "status": "NOT_STARTED"},
+        {"id": "B1.5", "name": "Thông tin & Tính toán", "status": "NOT_STARTED"}
+      ]
+    },
+    {"branch_id": "B2", "name": "SỰ SỐNG — Sự sống, Sức khỏe & Tâm trí", "status": "NOT_STARTED"},
+    {"branch_id": "B3", "name": "KẾT NỐI — Hệ thống, Thiết kế & Kết nối", "status": "NOT_STARTED"},
+    {"branch_id": "B4", "name": "THỜI GIAN — Thời gian, Nơi chốn & Tương lai", "status": "NOT_STARTED"},
+    {"branch_id": "B5", "name": "BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa", "status": "NOT_STARTED"},
+    {"branch_id": "B6", "name": "CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý", "status": "NOT_STARTED"}
+  ],
+  "gates": {
+    "all_curriculum_locked": false,
+    "global_duplicate_audit_pass": false,
+    "lesson_registry_locked": false,
+    "all_visual_prompts_locked": false
+  },
+  "recovery": {
+    "source_of_truth": "GitHub accepted commits plus machine-readable state",
+    "chat_memory_authoritative": false,
+    "resume_policy": "Resume from last accepted checkpoint; never infer completion from chat history.",
+    "incomplete_window_policy": "If RESULT.json is absent or not PASS, treat the window as incomplete."
+  }
+}
