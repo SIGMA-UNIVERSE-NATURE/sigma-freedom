@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP04-PRE-PASS-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c02",
+  "branch_head_before_checkpoint": "78f017dca2d7748f31a51202876e3095988b6e78",
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "control_plane_recheck": {
+    "branch": "hka-tree/curriculum-master",
+    "current_stage": "CURRICULUM",
+    "active_scope_id": "B1.1-C02",
+    "active_window": "C01-W02-B1.1-MATH-FAMILY-C02",
+    "active_window_status": "READY",
+    "window_execution_branch": "hka-tree/c01-w02-math-c02",
+    "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+    "C03_and_later_locked": true,
+    "control_plane_mutated_by_worker": false
+  },
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 64,
+    "sources": 7,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_rows": 32,
+    "cross_links": 15,
+    "curriculum_sequence_intent_rows": 8
+  },
+  "academic_blob_hashes": {
+    "NODES.jsonl": "d92e3e1702307fdac2d21db9822d503b4028b678",
+    "CLAIMS.jsonl": "b72750777b8e43afd4d514fd08a0c0a2cec6fd96",
+    "SOURCES.jsonl": "70d2f725a36e40b41711ab3b5c577595f17788cb",
+    "LEARNING_OBJECTIVES.jsonl": "78d1ff586d5ffabd1ee576733dd4daf8a0744c9b",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "bcae6b9233308bfe872f406a8d0d970b97387421",
+    "CROSS_LINKS.jsonl": "a4e3d9c78774458767fbc674666d7d8617c72804",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "b5af498a49491d6ef337080a917823829404d6f1"
+  },
+  "pre_pass_gates": {
+    "canonical_topic_coverage_8_of_8": "PASS",
+    "stable_unique_ids": "PASS",
+    "node_required_fields": "PASS",
+    "atomic_sourced_scoped_claims": "PASS",
+    "claim_epistemic_class_and_certainty": "PASS",
+    "D1_D4_age_independent_depths": "PASS",
+    "exactly_one_closure_row_per_learning_objective": "PASS",
+    "claim_to_learning_objective_closure_32_of_32": "PASS",
+    "closure_coverage_percent": 100,
+    "support_claim_ids_resolve": "PASS",
+    "accepted_C01_support_claim_ids_resolve_at_pinned_predecessor": "PASS",
+    "unlocked_scope_support_claims": 0,
+    "future_scope_claim_ids_in_supporting_claim_ids": 0,
+    "source_traceability": "PASS",
+    "source_deterministic_id_hashes": "PASS",
+    "source_persistent_or_versioned_identity_7_of_7": "PASS",
+    "semantic_duplicate_scan_against_accepted_C01_and_current_C02": "PASS",
+    "generic_C01_foundations_reused_not_duplicated": "PASS",
+    "prerequisite_graph": "PASS",
+    "prerequisite_cycles": 0,
+    "curriculum_sequence_graph": "PASS",
+    "cross_link_ownership_boundaries": "PASS",
+    "primary_ownership_transfers": 0,
+    "stage_boundary": "PASS",
+    "later_stage_artifacts_created": 0,
+    "C03_or_later_academic_records_created": 0,
+    "control_plane_mutated": false
+  },
+  "accepted_C01_dependencies": {
+    "prerequisite_nodes": [
+      "HKA-B1-1-C01-N003",
+      "HKA-B1-1-C01-N004",
+      "HKA-B1-1-C01-N006"
+    ],
+    "closure_support_claim_ids": [
+      "HKA-B1-1-C01-N004-C004",
+      "HKA-B1-1-C01-N006-C001",
+      "HKA-B1-1-C01-N006-C002",
+      "HKA-B1-1-C01-N006-C003"
+    ],
+    "duplicate_boundary": "Generic set, relation/equivalence and proof/counterexample meanings remain C01-owned; C02 owns only number-system, arithmetic, approximation, ratio/rate, divisibility/prime, congruence and number-theory specializations."
+  },
+  "source_gate": {
+    "status": "PASS",
+    "source_records": 7,
+    "persistent_or_versioned_records": 7,
+    "moving_unversioned_lock_critical_sources": 0
+  },
+  "stage_boundary_diff": {
+    "base_commit": "6c9ff91502cff56709c4c7e70bc750e3cb7fda18",
+    "audited_head": "78f017dca2d7748f31a51202876e3095988b6e78",
+    "status": "PASS",
+    "authorized_change_classes": [
+      "B1.1-C02 academic output files",
+      "C02 STATUS/REPORT",
+      "C02 checkpoints"
+    ],
+    "unauthorized_paths": [],
+    "lesson_registry_files": 0,
+    "prompt_or_image_files": 0,
+    "R2_delivery_website_files": 0,
+    "C03_or_later_scope_files": 0
+  },
+  "candidate_terminal_readiness": {
+    "ready_for_worker_candidate_PASS": true,
+    "blocking_issues": [],
+    "worker_PASS_is_director_candidate_only": true,
+    "worker_may_unlock_C03": false,
+    "worker_may_mutate_control_plane": false
+  },
+  "next_action_after_candidate_PASS": "C01-W02-B1.1-MATH-FAMILY-C03 — GATED pending Director acceptance of C02",
+  "created_at": "2026-09-05T01:52:04+07:00"
+}
