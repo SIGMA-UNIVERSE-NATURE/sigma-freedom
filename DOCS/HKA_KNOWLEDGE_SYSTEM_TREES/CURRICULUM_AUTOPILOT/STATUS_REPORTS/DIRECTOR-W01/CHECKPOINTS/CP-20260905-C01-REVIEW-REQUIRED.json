@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C01-REVIEW-REQUIRED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "reviewed_window": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "candidate_terminal_commit_sha": "359359ae5663f5a62383c1774c2ff359ccb092a7",
+  "decision": "REVIEW_REQUIRED",
+  "repair_order_control_plane_commit_sha": "47fecc509f31cbf018654bdefcf04608f6e2d6b2",
+  "state_update_commit_sha": "98ad1a2cd7ed2a82f8b1387d5364bc85079fae8e",
+  "registry_update_commit_sha": "84ce8017ac344970f845ce7f846b57ed4efbd436",
+  "child_reopen_checkpoint_sha": "3c5e0e79d4ef6fe244ba7786769cf41872d1eb12",
+  "successor_unlocked": false,
+  "next_action": "Repair C01 only, then rerun independent Director acceptance audit. C02 remains locked."
+}
