@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C01-ACCEPTED-C02-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "audited_child_window": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "accepted_child_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "prior_rejected_candidate_sha": "359359ae5663f5a62383c1774c2ff359ccb092a7",
+  "audit": {
+    "canonical_topics_8_of_8": "PASS",
+    "claims": 38,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_32_of_32": "PASS",
+    "repair_items_5_of_5": "PASS",
+    "propositional_syntax_closure": "PASS",
+    "set_Separation_closure": "PASS",
+    "decidability_boundary": "PASS",
+    "immutable_OpenLogic_source_pin": "PASS",
+    "OpenLogic_source_id": "HKA-SRC-73f520eedb8e",
+    "OpenLogic_source_id_sha256_prefix": "VERIFIED",
+    "OpenLogic_upstream_commit": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "OpenLogic_upstream_commit_exists": true,
+    "active_refs_to_superseded_OpenLogic_sources": 0,
+    "R04": "PASS_NO_OWNERSHIP_TRANSFER",
+    "semantic_duplicate_scan": "PASS",
+    "stage_boundary": "PASS",
+    "repair_diff_only_C01_output_and_status_paths": true
+  },
+  "decision": "DIRECTOR_ACCEPTED_PASS",
+  "successor": {
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+    "scope_id": "B1.1-C02",
+    "status": "READY",
+    "execution_branch": "hka-tree/c01-w02-math-c02",
+    "predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2"
+  },
+  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C02 from its locked execution prompt; C03 remains locked pending independent Director acceptance of C02."
+}
