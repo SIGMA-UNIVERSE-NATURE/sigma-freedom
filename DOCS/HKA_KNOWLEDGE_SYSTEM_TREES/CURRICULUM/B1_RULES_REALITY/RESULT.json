@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W01-B1-ARCHITECTURE",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "execution_branch": "hka-tree/c01-w01-b1-architecture",
+  "input_commit_sha": "02ff47d64fd3b3b03d1fa2ae70d773afb071995e",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "pre_pass_checkpoint_id": "CP02-PRE-PASS-AUDIT",
+  "pre_pass_checkpoint_commit_sha": "2b3ba51abeb5cf7f08be6a727b4aa441351fae6d",
+  "governance_updates_adopted": [
+    "7ee6efa385909139fb4718bca5eb72ecd8f73732",
+    "f52ddcb7fd7c6c821fede8af452c80efcc8ddead"
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_SCOPE_MAP.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_COVERAGE_MATRIX.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_ID_AND_RECORD_STANDARD.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_AUTHORING_SEQUENCE.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_DUPLICATE_CONTROL.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/RESULT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/HANDOFF.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/STATUS.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/REPORT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/CHECKPOINTS/CP01-ARCHITECTURE-DRAFT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/CHECKPOINTS/CP02-PRE-PASS-AUDIT.json"
+  ],
+  "counts": {
+    "canonical_subbranches": 5,
+    "stable_primary_scopes": 68,
+    "nested_canonical_cluster_headings": 44,
+    "canonical_topic_leaves": 348,
+    "unique_named_canonical_entries_below_subbranch_roots": 392,
+    "bounded_child_windows": 52,
+    "max_child_topics": 10,
+    "exact_repeated_topic_labels": 3,
+    "semantic_cross_domain_risk_cases": 15,
+    "mandatory_cross_domain_nodes": 8
+  },
+  "coverage_result": {
+    "status": "PASS",
+    "all_five_subbranches_accounted": true,
+    "canonical_topic_leaves": 348,
+    "topics_with_exactly_one_primary_owner": 348,
+    "orphan_topic_leaves": 0,
+    "multi_primary_owner_topic_leaves": 0,
+    "stable_scope_ids_unique": true,
+    "stable_topic_ids_unique": true
+  },
+  "duplicate_risk_result": {
+    "status": "PASS",
+    "method": "NODE MEANING + CLAIM SET + LEARNING OBJECTIVE + CONTEXT",
+    "exact_repeated_labels": [
+      "Dao động",
+      "Mã sửa lỗi",
+      "Entropy"
+    ],
+    "registered_risk_cases": 15,
+    "uncontrolled_architecture_duplicate_risks": 0,
+    "cross_domain_links_transfer_primary_ownership": false,
+    "future_children_must_reaudit_actual_claims_and_objectives": true
+  },
+  "partition_result": {
+    "status": "PASS",
+    "family_controllers": 5,
+    "bounded_child_windows": 52,
+    "child_partition_topic_total": 348,
+    "max_child_topics": 10,
+    "prerequisite_graph_nodes": 68,
+    "unknown_prerequisite_scope_ids": 0,
+    "prerequisite_graph_acyclic": true,
+    "durable_status_folder_required_per_child_and_controller": true,
+    "stable_accepted_ids_append_only": true
+  },
+  "depth_and_record_result": {
+    "status": "PASS",
+    "depths": ["D1", "D2", "D3", "D4"],
+    "depth_independent_of_age": true,
+    "node_claim_source_learning_objective_ids_defined": true,
+    "future_lesson_slot_reference_is_non_registry": true
+  },
+  "stage_boundary_result": {
+    "status": "PASS",
+    "lesson_registry_authored": false,
+    "visual_or_image_prompt_authored": false,
+    "image_authored": false,
+    "r2_touched": false,
+    "website_updated": false,
+    "academic_locked_set": false
+  },
+  "status_report_result": {
+    "pre_pass_audit": "PASS",
+    "status_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/STATUS.json",
+    "report_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/REPORT.md",
+    "latest_checkpoint_id": "CP02-PRE-PASS-AUDIT",
+    "latest_checkpoint_commit_sha": "2b3ba51abeb5cf7f08be6a727b4aa441351fae6d",
+    "terminal_acceptance_requires_status_and_report_pass": true
+  },
+  "next_action": "C01-W02-B1.1-MATH-FAMILY",
+  "next_action_detail": "After terminal STATUS.json and REPORT.md are finalized to PASS, open only C01-W02-B1.1-MATH-FAMILY and begin its bounded child C01-W02-B1.1-MATH-FAMILY-C01 after pinning the accepted architecture predecessor commit per B1_AUTHORING_SEQUENCE.md."
+}
