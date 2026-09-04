@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-PRE-PASS-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "execution_branch": "hka-tree/c01-w02-math-c01",
+  "audited_commit_sha": "00db31ad16c92435e449f945580c65e47dc9e262",
+  "input_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+  "execution_baseline_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "control_plane_snapshot_commit_sha": "02d6d4ac7d03964dba31f7042afc5fcfaafb450f",
+  "scope_ids": ["B1.1-C01"],
+  "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
+  "audit": {
+    "coverage": {"status":"PASS","nodes":8,"canonical_topics":8,"claims":25,"sources":7,"learning_objectives":32,"cross_links":10,"sequence_intents":8},
+    "stable_ids": {"status":"PASS","node_ids_unique":true,"claim_ids_unique":true,"source_ids_unique":true,"source_ids_deterministic":true,"learning_objective_ids_unique":true},
+    "node_record_fields": {"status":"PASS","minimum_required_fields_complete":true,"D1_D4_descriptors_present":true},
+    "claims_sources": {"status":"PASS","claims_have_epistemic_class_certainty_scope_limits":true,"all_claim_source_ids_resolve":true,"persistent_locators_present":true},
+    "depth": {"status":"PASS","exactly_one_D1_D2_D3_D4_objective_per_node":true,"age_coded":false,"LSREF_only_non_registry":true},
+    "r04": {"status":"PASS","risk_id":"R04","dispositions":["B1.5-C02:OVERLAP_REVIEW","B1.5-C04:OVERLAP_REVIEW"],"primary_ownership_transferred":false},
+    "semantic_duplicate_scan": {"status":"PASS","method":"NODE MEANING + CLAIM SET + LEARNING OBJECTIVE + CONTEXT","node_fingerprints_unique":true,"claim_statements_unique":true,"learning_fingerprints_unique_by_node_depth":true,"prior_accepted_detailed_child_records":0,"uncontrolled_overlap":0},
+    "prerequisites_sequence": {"status":"PASS","local_prerequisites_resolve":true,"local_prerequisite_graph_acyclic":true,"sequence_records":8},
+    "stage_boundary": {"status":"PASS","baseline_compare_head":"00db31ad16c92435e449f945580c65e47dc9e262","only_allowed_output_and_status_paths_changed":true,"B1_1_C02_authored":false,"lesson_registry_authored":false,"image_prompt_authored":false,"image_authored":false,"r2_touched":false,"website_updated":false,"academic_locked_set":false},
+    "provenance": {"status":"PASS","record_version_and_created_in_window_present":true,"created_at_commit_policy":"field present and intentionally null until an external controller accepts a concrete commit; standard says created_at_commit once accepted"}
+  },
+  "blocking_issues": [],
+  "remaining_work": ["Commit this pre-PASS checkpoint, then finalize RESULT.json, STATUS.json, REPORT.md and HANDOFF.md consistently without changing academic records."],
+  "next_action": "Finalize terminal PASS artifacts for this window only.",
+  "created_at": "2026-09-04T23:27:00+07:00"
+}
