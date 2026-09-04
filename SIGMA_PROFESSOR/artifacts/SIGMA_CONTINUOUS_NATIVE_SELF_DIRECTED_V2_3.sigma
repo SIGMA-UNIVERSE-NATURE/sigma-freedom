@@ -1,0 +1,567 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CONTINUOUS.NATIVE.SELF.DIRECTED.LEARNING][VERSION=2.3]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.CONTINUOUS_NATIVE_SELF_DIRECTED_LEARN) {
+
+    ⚡ CONTEXT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_CL22_CURRENT_CONTEXT.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ INPUT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_CL22_CURRENT_EXPERIENCE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_HISTORY:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_CL22_CONTEXT_RELATION_HISTORY.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_KNOWLEDGE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_CL22_SELECTED_KNOWLEDGE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ FETCHED_REQUESTS:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_CL22_FETCHED_REQUESTS.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ LINES:
+        H(
+            "str_split",
+            INPUT,
+            "\n",
+            NULL
+        );
+
+    ⚡ LINE_TOTAL:
+        H(
+            "list_len",
+            LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ HISTORY_LINES:
+        H(
+            "str_split",
+            OLD_HISTORY,
+            "\n",
+            NULL
+        );
+
+    ⚡ HISTORY_TOTAL:
+        H(
+            "list_len",
+            HISTORY_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ REQUEST_LINES:
+        H(
+            "str_split",
+            FETCHED_REQUESTS,
+            "\n",
+            NULL
+        );
+
+    ⚡ REQUEST_TOTAL:
+        H(
+            "list_len",
+            REQUEST_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ NEW_RECORDS:
+        H(
+            "list_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ BEST_RELATION:
+        "";
+
+    ⚡ BEST_SUPPORT:
+        0;
+
+    ⚡ GAP_RELATION:
+        "";
+
+    ⚡ GAP_QUERY:
+        "";
+
+    ⚡ GAP_SUPPORT:
+        0;
+
+    ⚡ GAP_LOAD:
+        0;
+
+    ⚡ GAP_SET:
+        0;
+
+    ⚡ L:
+        0;
+
+    WHILE (L < LINE_TOTAL) {
+
+        ⚡ LINE:
+            H(
+                "list_get",
+                LINES,
+                L,
+                NULL
+            );
+
+        ⚡ TOKENS:
+            H(
+                "str_split",
+                LINE,
+                " ",
+                NULL
+            );
+
+        ⚡ TOTAL:
+            H(
+                "list_len",
+                TOKENS,
+                NULL,
+                NULL
+            );
+
+        ⚡ LIMIT:
+            TOTAL - 1;
+
+        ⚡ I:
+            0;
+
+        WHILE (I < LIMIT) {
+
+            ⚡ LEFT:
+                H(
+                    "list_get",
+                    TOKENS,
+                    I,
+                    NULL
+                );
+
+            ⚡ RIGHT:
+                H(
+                    "list_get",
+                    TOKENS,
+                    I + 1,
+                    NULL
+                );
+
+            ⚡ RELATION:
+                LEFT + " => " + RIGHT;
+
+            ⚡ QUERY:
+                LEFT + " " + RIGHT;
+
+            ⚡ RECORD:
+                CONTEXT + " || " + RELATION;
+
+            ⚡ CURRENT_SEEN:
+                0;
+
+            ⚡ NEW_TOTAL:
+                H(
+                    "list_len",
+                    NEW_RECORDS,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ N:
+                0;
+
+            WHILE (N < NEW_TOTAL) {
+
+                ⚡ NEW_RECORD:
+                    H(
+                        "list_get",
+                        NEW_RECORDS,
+                        N,
+                        NULL
+                    );
+
+                IF (NEW_RECORD == RECORD) {
+                    ⚡ CURRENT_SEEN:
+                        1;
+                }
+
+                ⚡ N:
+                    N + 1;
+            }
+
+            IF (CURRENT_SEEN < 1) {
+
+                ⚡ SUPPORT:
+                    0;
+
+                ⚡ LEFT_LOAD:
+                    1;
+
+                ⚡ RIGHT_LOAD:
+                    1;
+
+                ⚡ ALREADY_RECORDED:
+                    0;
+
+                ⚡ J:
+                    0;
+
+                WHILE (J < HISTORY_TOTAL) {
+
+                    ⚡ OLD_LINE:
+                        H(
+                            "list_get",
+                            HISTORY_LINES,
+                            J,
+                            NULL
+                        );
+
+                    IF (OLD_LINE == RECORD) {
+                        ⚡ ALREADY_RECORDED:
+                            1;
+                    }
+
+                    ⚡ PARTS:
+                        H(
+                            "str_split",
+                            OLD_LINE,
+                            " || ",
+                            NULL
+                        );
+
+                    ⚡ PART_TOTAL:
+                        H(
+                            "list_len",
+                            PARTS,
+                            NULL,
+                            NULL
+                        );
+
+                    IF (1 < PART_TOTAL) {
+
+                        ⚡ OLD_RELATION:
+                            H(
+                                "list_get",
+                                PARTS,
+                                1,
+                                NULL
+                            );
+
+                        IF (OLD_RELATION == RELATION) {
+                            ⚡ SUPPORT:
+                                SUPPORT + 1;
+                        }
+
+                        ⚡ RELATION_PARTS:
+                            H(
+                                "str_split",
+                                OLD_RELATION,
+                                " => ",
+                                NULL
+                            );
+
+                        ⚡ RELATION_PART_TOTAL:
+                            H(
+                                "list_len",
+                                RELATION_PARTS,
+                                NULL,
+                                NULL
+                            );
+
+                        IF (1 < RELATION_PART_TOTAL) {
+
+                            ⚡ OLD_LEFT:
+                                H(
+                                    "list_get",
+                                    RELATION_PARTS,
+                                    0,
+                                    NULL
+                                );
+
+                            ⚡ OLD_RIGHT:
+                                H(
+                                    "list_get",
+                                    RELATION_PARTS,
+                                    1,
+                                    NULL
+                                );
+
+                            IF (OLD_LEFT == LEFT) {
+                                ⚡ LEFT_LOAD:
+                                    LEFT_LOAD + 1;
+                            }
+
+                            IF (OLD_RIGHT == LEFT) {
+                                ⚡ LEFT_LOAD:
+                                    LEFT_LOAD + 1;
+                            }
+
+                            IF (OLD_LEFT == RIGHT) {
+                                ⚡ RIGHT_LOAD:
+                                    RIGHT_LOAD + 1;
+                            }
+
+                            IF (OLD_RIGHT == RIGHT) {
+                                ⚡ RIGHT_LOAD:
+                                    RIGHT_LOAD + 1;
+                            }
+                        }
+                    }
+
+                    ⚡ J:
+                        J + 1;
+                }
+
+                IF (ALREADY_RECORDED < 1) {
+
+                    ⚡ SUPPORT:
+                        SUPPORT + 1;
+
+                    ⚡ PUSH_RECORD:
+                        H(
+                            "list_push",
+                            NEW_RECORDS,
+                            RECORD,
+                            NULL
+                        );
+                }
+
+                IF (BEST_SUPPORT < SUPPORT) {
+
+                    ⚡ BEST_SUPPORT:
+                        SUPPORT;
+
+                    ⚡ BEST_RELATION:
+                        RELATION;
+                }
+
+                ⚡ REQUESTED:
+                    0;
+
+                ⚡ Q:
+                    0;
+
+                WHILE (Q < REQUEST_TOTAL) {
+
+                    ⚡ OLD_REQUEST:
+                        H(
+                            "list_get",
+                            REQUEST_LINES,
+                            Q,
+                            NULL
+                        );
+
+                    IF (OLD_REQUEST == QUERY) {
+                        ⚡ REQUESTED:
+                            1;
+                    }
+
+                    ⚡ Q:
+                        Q + 1;
+                }
+
+                ⚡ TOKEN_LOAD:
+                    LEFT_LOAD + RIGHT_LOAD;
+
+                IF (REQUESTED < 1) {
+
+                    IF (1 < SUPPORT) {
+
+                        IF (GAP_SET == 0) {
+
+                            ⚡ GAP_SET:
+                                1;
+
+                            ⚡ GAP_SUPPORT:
+                                SUPPORT;
+
+                            ⚡ GAP_LOAD:
+                                TOKEN_LOAD;
+
+                            ⚡ GAP_RELATION:
+                                RELATION;
+
+                            ⚡ GAP_QUERY:
+                                QUERY;
+                        }
+
+                        IF (TOKEN_LOAD < GAP_LOAD) {
+
+                            ⚡ GAP_SUPPORT:
+                                SUPPORT;
+
+                            ⚡ GAP_LOAD:
+                                TOKEN_LOAD;
+
+                            ⚡ GAP_RELATION:
+                                RELATION;
+
+                            ⚡ GAP_QUERY:
+                                QUERY;
+                        }
+
+                        IF (TOKEN_LOAD == GAP_LOAD) {
+
+                            IF (GAP_SUPPORT < SUPPORT) {
+
+                                ⚡ GAP_SUPPORT:
+                                    SUPPORT;
+
+                                ⚡ GAP_RELATION:
+                                    RELATION;
+
+                                ⚡ GAP_QUERY:
+                                    QUERY;
+                            }
+                        }
+                    }
+                }
+
+                ⚡ print(
+                    "CANDIDATE",
+                    RELATION,
+                    "CONTEXT_SUPPORT",
+                    SUPPORT,
+                    "TOKEN_LOAD",
+                    TOKEN_LOAD
+                );
+            }
+
+            ⚡ I:
+                I + 1;
+        }
+
+        ⚡ L:
+            L + 1;
+    }
+
+    ⚡ NEW_RECORD_TEXT:
+        H(
+            "str_join",
+            NEW_RECORDS,
+            "\n",
+            NULL
+        );
+
+    ⚡ NEW_RECORD_COUNT:
+        H(
+            "list_len",
+            NEW_RECORDS,
+            NULL,
+            NULL
+        );
+
+    ⚡ UPDATED_HISTORY:
+        OLD_HISTORY;
+
+    ⚡ UPDATED_KNOWLEDGE:
+        OLD_KNOWLEDGE;
+
+    IF (0 < NEW_RECORD_COUNT) {
+
+        ⚡ UPDATED_HISTORY:
+            OLD_HISTORY
+            + NEW_RECORD_TEXT
+            + "\n";
+
+        IF (0 < BEST_SUPPORT) {
+
+            ⚡ KNOWLEDGE_RECORD:
+                CONTEXT
+                + " || "
+                + BEST_RELATION;
+
+            ⚡ UPDATED_KNOWLEDGE:
+                OLD_KNOWLEDGE
+                + KNOWLEDGE_RECORD
+                + "\n";
+        }
+    }
+
+    ⚡ WRITE_HISTORY:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_CONTEXT_RELATION_HISTORY.memory",
+            UPDATED_HISTORY,
+            NULL
+        );
+
+    ⚡ WRITE_SELECTION:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_SELECTED_PATTERN.memory",
+            BEST_RELATION,
+            NULL
+        );
+
+    ⚡ WRITE_KNOWLEDGE:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_SELECTED_KNOWLEDGE.memory",
+            UPDATED_KNOWLEDGE,
+            NULL
+        );
+
+    ⚡ WRITE_LAST_CONTEXT:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_LAST_CONTEXT.memory",
+            CONTEXT,
+            NULL
+        );
+
+    ⚡ WRITE_REQUEST:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_FETCH_REQUEST.memory",
+            GAP_QUERY,
+            NULL
+        );
+
+    ⚡ WRITE_GAP:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_CL22_CURRENT_GAP.memory",
+            GAP_RELATION,
+            NULL
+        );
+
+    ⚡ print("SIGMA_CONTEXT", CONTEXT);
+    ⚡ print("INPUT_LINE_COUNT", LINE_TOTAL);
+    ⚡ print("NEW_CONTEXT_RELATION_COUNT", NEW_RECORD_COUNT);
+    ⚡ print("SELECTED_PATTERN", BEST_RELATION);
+    ⚡ print("SELECTED_CONTEXT_SUPPORT", BEST_SUPPORT);
+    ⚡ print("LEARNING_GAP", GAP_RELATION);
+    ⚡ print("FETCH_REQUEST", GAP_QUERY);
+    ⚡ print("FETCH_REQUEST_SUPPORT", GAP_SUPPORT);
+    ⚡ print("FETCH_REQUEST_TOKEN_LOAD", GAP_LOAD);
+}
