@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP04-REPAIR-BOOTSTRAP",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "IN_PROGRESS",
+  "repair_input_head_sha": "3c0906772ae6a356a4671d372180a0d38933fbca",
+  "control_plane_commit_sha": "262cbe8f63cb6bfda2f017313883dd15bc9ed7dc",
+  "director_reopen_checkpoint_id": "CP03-DIRECTOR-REVIEW-REOPEN",
+  "director_order_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W02-B1.1-MATH-FAMILY-C01-REPAIR.md",
+  "verified_repair_authorization": {
+    "active_scope": "B1.1-C01",
+    "active_window_status": "REVIEW_REQUIRED",
+    "C02_unlocked": false,
+    "stage": "CURRICULUM"
+  },
+  "source_pin_candidate": {
+    "repository": "OpenLogicProject/OpenLogic",
+    "commit_sha": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "verified_as_exact_repository_commit": true
+  },
+  "repair_scope": [
+    "append propositional syntax closure claims",
+    "append axiomatic set-existence/separation closure claims",
+    "append decidability distinction claims while preserving R04",
+    "replace moving Open Logic Project lock-critical source identities with immutable commit pin",
+    "audit all 32 learning objectives against explicit supporting claim IDs and append any minimum closure claims discovered"
+  ],
+  "forbidden_scope_preserved": [
+    "B1.1-C02 authoring",
+    "Lesson Registry",
+    "image prompts or images",
+    "R2",
+    "website",
+    "ACADEMIC_LOCKED"
+  ],
+  "next_action": "Apply repair claims/source pin, produce 32/32 claim-objective closure audit, then audit committed files."
+}
