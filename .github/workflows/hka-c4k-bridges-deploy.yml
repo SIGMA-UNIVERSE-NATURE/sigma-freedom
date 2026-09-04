@@ -1,0 +1,59 @@
+name: HKA C4K Bridges Deploy
+on:
+  workflow_dispatch:
+  push:
+    branches: [hka-tree/w02-human-roots]
+    paths:
+      - 'INFRA/CLOUDFLARE/HKA_C4K_BRIDGES/**'
+      - '.github/workflows/hka-c4k-bridges-deploy.yml'
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.HKA_CF_DEPLOY_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.HKA_CF_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install -g wrangler@latest
+      - name: Validate secrets
+        env:
+          PROD_AUTH: ${{ secrets.HKA_PRODUCTION_BRIDGE_AUTH_TOKEN }}
+          QA_AUTH: ${{ secrets.HKA_QA_BRIDGE_AUTH_TOKEN }}
+          REL_AUTH: ${{ secrets.HKA_RELEASE_BRIDGE_AUTH_TOKEN }}
+          LOCK_TOKEN: ${{ secrets.HKA_CF_R2_LOCK_API_TOKEN }}
+          GH_APP_ID: ${{ secrets.HKA_GITHUB_APP_ID }}
+          GH_INSTALL_ID: ${{ secrets.HKA_GITHUB_APP_INSTALLATION_ID }}
+          GH_PRIVATE_KEY: ${{ secrets.HKA_GITHUB_APP_PRIVATE_KEY }}
+        run: |
+          for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID PROD_AUTH QA_AUTH REL_AUTH LOCK_TOKEN GH_APP_ID GH_INSTALL_ID GH_PRIVATE_KEY; do test -n "${!v}" || { echo "::error::$v missing"; exit 1; }; done
+      - name: Production bridge
+        env: {S: '${{ secrets.HKA_PRODUCTION_BRIDGE_AUTH_TOKEN }}'}
+        run: |
+          CFG=INFRA/CLOUDFLARE/HKA_C4K_BRIDGES/production/wrangler.jsonc
+          printf '%s' "$S" | wrangler secret put HKA_PRODUCTION_BRIDGE_AUTH_TOKEN --config "$CFG"
+          wrangler deploy --config "$CFG"
+      - name: QA bridge
+        env: {S: '${{ secrets.HKA_QA_BRIDGE_AUTH_TOKEN }}'}
+        run: |
+          CFG=INFRA/CLOUDFLARE/HKA_C4K_BRIDGES/qa/wrangler.jsonc
+          printf '%s' "$S" | wrangler secret put HKA_QA_BRIDGE_AUTH_TOKEN --config "$CFG"
+          wrangler deploy --config "$CFG"
+      - name: Release bridge
+        env:
+          REL_AUTH: ${{ secrets.HKA_RELEASE_BRIDGE_AUTH_TOKEN }}
+          LOCK_TOKEN: ${{ secrets.HKA_CF_R2_LOCK_API_TOKEN }}
+          GH_APP_ID: ${{ secrets.HKA_GITHUB_APP_ID }}
+          GH_INSTALL_ID: ${{ secrets.HKA_GITHUB_APP_INSTALLATION_ID }}
+          GH_PRIVATE_KEY: ${{ secrets.HKA_GITHUB_APP_PRIVATE_KEY }}
+        run: |
+          CFG=INFRA/CLOUDFLARE/HKA_C4K_BRIDGES/release/wrangler.jsonc
+          printf '%s' "$REL_AUTH" | wrangler secret put HKA_RELEASE_BRIDGE_AUTH_TOKEN --config "$CFG"
+          printf '%s' "$LOCK_TOKEN" | wrangler secret put HKA_CF_R2_LOCK_API_TOKEN --config "$CFG"
+          printf '%s' "$GH_APP_ID" | wrangler secret put HKA_GITHUB_APP_ID --config "$CFG"
+          printf '%s' "$GH_INSTALL_ID" | wrangler secret put HKA_GITHUB_APP_INSTALLATION_ID --config "$CFG"
+          printf '%s' "$GH_PRIVATE_KEY" | wrangler secret put HKA_GITHUB_APP_PRIVATE_KEY --config "$CFG"
+          wrangler deploy --config "$CFG"

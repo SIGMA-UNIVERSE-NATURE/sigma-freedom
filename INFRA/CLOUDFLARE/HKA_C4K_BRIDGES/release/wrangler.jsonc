@@ -1,0 +1,13 @@
+{
+  "name": "hka-c4k-release-bridge",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-04",
+  "observability": { "enabled": true },
+  "vars": {"HKA_CF_ACCOUNT_ID":"B1F10676B09967CE4CE14CA555A8F7C6","HKA_GITHUB_REPO":"SIGMA-UNIVERSE-NATURE/sigma-freedom"},
+  "r2_buckets": [
+    { "binding": "STAGING", "bucket_name": "hka-c4k-staging" },
+    { "binding": "AUDIT", "bucket_name": "hka-c4k-audit" },
+    { "binding": "VAULT", "bucket_name": "hka-c4k-vault" }
+  ],
+  "workflows": [{"name":"hka-c4k-release-workflow","binding":"RELEASE_WORKFLOW","class_name":"ReleaseWorkflow"}]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "hka-c4k-production-upload-bridge",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-04",
+  "observability": { "enabled": true },
+  "r2_buckets": [{ "binding": "STAGING", "bucket_name": "hka-c4k-staging" }]
+}
