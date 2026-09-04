@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP05-REPAIR-ACADEMIC-CLOSURE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "academic_repair_commit_sha": "24f26793d923dd55e87839331994c45489109d88",
+  "control_plane_commit_sha": "262cbe8f63cb6bfda2f017313883dd15bc9ed7dc",
+  "scope_ids": ["B1.1-C01"],
+  "counts": {
+    "nodes": 8,
+    "claims": 38,
+    "sources": 8,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_records": 32,
+    "cross_links": 10,
+    "sequence_intents": 8
+  },
+  "director_repair_interim_audit": {
+    "propositional_syntax_closure": "PASS",
+    "set_existence_and_separation_closure": "PASS",
+    "decidability_distinction_with_R04_boundary": "PASS",
+    "immutable_open_logic_source_pin": "PASS",
+    "learning_objective_claim_closure": "PASS"
+  },
+  "immutable_source_pin": {
+    "source_id": "HKA-SRC-73f520eedb8e",
+    "upstream_repository": "OpenLogicProject/OpenLogic",
+    "upstream_commit_sha": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "source_id_sha256_prefix_verified": true,
+    "superseded_historical_source_ids": ["HKA-SRC-cf3f2232b1bf", "HKA-SRC-7ff0e7a8abe8"],
+    "active_claim_references_to_superseded_sources": 0,
+    "active_node_references_to_superseded_sources": 0
+  },
+  "learning_objective_closure": {
+    "total_learning_objectives": 32,
+    "closure_records": 32,
+    "SUPPORTED_BY_CLAIMS_true": 32,
+    "unsupported": 0,
+    "requires_unlocked_scope_claims_true": 0,
+    "B1.5_references_used_as_support_claims": 0,
+    "R04_boundary_references_only": ["B1.5-C02", "B1.5-C04"]
+  },
+  "additional_minimum_closure_found_and_resolved": [
+    "first-order term/formula syntax and free/bound variable closure",
+    "membership versus subset relation closure",
+    "equivalence-relation and function-property definition closure",
+    "mechanized proof checking versus program-verification ownership closure"
+  ],
+  "R04": {
+    "status": "PASS",
+    "targets": ["B1.5-C02", "B1.5-C04"],
+    "duplicate_disposition": "OVERLAP_REVIEW",
+    "primary_ownership_transferred": false
+  },
+  "successor_unlocked": false,
+  "next_action": "Run final committed pre-PASS audit, re-check current control-plane authorization, then finalize repaired C01 only if every repair and original contract gate remains PASS."
+}
