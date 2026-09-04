@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP03-DIRECTOR-REVIEW-REOPEN",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "REVIEW_REQUIRED",
+  "candidate_terminal_commit_sha": "359359ae5663f5a62383c1774c2ff359ccb092a7",
+  "director_order_commit_sha": "94125cd8f0f39aba54f0feaf3ebe44c8414df3cc",
+  "director_decision": "REOPEN_FOR_ACADEMIC_CLOSURE_REPAIR",
+  "identified_gaps": [
+    "N001 propositional syntax claim closure",
+    "N003 axiomatic set-existence/separation claim closure",
+    "N008 decidability distinction claim closure with R04 preserved",
+    "immutable/versioned lock-critical Open Logic Project source identity",
+    "claim-to-learning-objective closure audit for all 32 objectives"
+  ],
+  "successor_unlocked": false,
+  "next_action": "Execute DIRECTOR_CORRECTION_ORDER.md on the same C01 branch and return a new committed pre-PASS audit."
+}
