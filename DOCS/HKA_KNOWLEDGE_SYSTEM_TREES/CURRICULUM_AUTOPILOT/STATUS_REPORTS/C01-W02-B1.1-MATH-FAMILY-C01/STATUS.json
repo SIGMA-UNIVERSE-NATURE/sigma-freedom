@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c01",
+  "accepted_predecessor_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+  "scope_ids": ["B1.1-C01"],
+  "canonical_topic_ids": [
+    "B1.1-C01-T01",
+    "B1.1-C01-T02",
+    "B1.1-C01-T03",
+    "B1.1-C01-T04",
+    "B1.1-C01-T05",
+    "B1.1-C01-T06",
+    "B1.1-C01-T07",
+    "B1.1-C01-T08"
+  ],
+  "completed_work": [
+    "Execution branch created from accepted predecessor commit.",
+    "Window contract and execution prompt installed."
+  ],
+  "remaining_work": [
+    "Bootstrap from canonical GitHub inputs.",
+    "Author complete B1.1-C01 curriculum records.",
+    "Disposition R04 and run semantic duplicate audit.",
+    "Create meaningful checkpoints and pre-PASS audit.",
+    "Finalize RESULT.json, STATUS.json and REPORT.md consistently."
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C01 only.",
+    "No Lesson Registry, prompt, image, R2 or website work.",
+    "NO STATUS FOLDER = NO ACCEPTED COMPLETION."
+  ],
+  "next_action": "Execute GPT_EXECUTION_PROMPT.md for C01-W02-B1.1-MATH-FAMILY-C01.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "updated_at": "2026-09-04T22:44:00+07:00"
+}
