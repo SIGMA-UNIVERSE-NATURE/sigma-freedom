@@ -4,77 +4,70 @@ Last updated: 2026-09-04 (Asia/Ho_Chi_Minh)
 
 ## READ THIS FIRST
 
-Current development target: **SIGMA native continuous self-directed learning** with `HOST_LEARNING=NO`.
+Current target: **SIGMA native continuous self-directed learning** with `HOST_LEARNING=NO`.
 
 ### Current runtime status
 
-`V2.3 = STOPPED / MUST REMAIN STOPPED UNTIL STEP-LIMIT FIX`
+`V2.3 = STOPPED`
 
-Latest proven failure:
+V2.3 previously failed with `SIGMA C VM: step limit` on long/history-heavy execution. The failure surfaced through runner `rc=9` after many valid candidates.
 
-- VM error: `SIGMA C VM: step limit`
-- NEW context: `d891e5ff25d3c9d390d6ab383e6bc0d90bc740b0397e47f6f88bc5fcc6a626de`
-- RECONSIDER context also failed: `0a7410aa3d627753302469a32fc70485059468de8ed08ede9a74dca82ad03bb4`
-- Both surfaced through runner as `rc=9`
-- State observed: `RAW=39`, `DONE=38`
+### V2.4 status
 
-The VM produced many valid V2.3 candidates first, then hit its step limit. This means V2.3 compiles and starts, but its current runtime complexity is too high for long/history-heavy contexts.
+A cheaper SIGMA-native policy is under preflight:
 
-## Exact checkpoint
+- endpoint `TOKEN_LOAD` full-history scan removed;
+- recurrence `SUPPORT` remains native;
+- only relations with `SUPPORT > 1` can become a learning gap;
+- frontier selection remains inside SIGMA;
+- host still does not generate candidates, score knowledge, or select queries.
 
-Read:
+V2.4 preflight source SHA-256:
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260904_V23_STEP_LIMIT_HANDOFF.md`
+`bbcba488e30fd22a638017195b5a7b63900a1da8fba0c3bfaf140df3628d00a7`
 
-It contains the complete proven milestones, hashes, failures, and next-action constraints.
+Device-compiled bytecode SHA observed:
 
-## V2.4 preflight candidate — prepared, NOT YET DEVICE-PROVEN
+`ef68c925ef0d4d15eb8466395edcd6d9011a5849c95719a5ad7b5117559a0b9b`
 
-A cheaper native policy has now been prepared to test the first recommended fix:
-
-- remove all per-candidate endpoint-load calculation;
-- keep `SUPPORT > 1` as the eligibility gate for autonomous fetch requests;
-- select the recurrent frontier with the lowest support;
-- deterministic tie behavior: first eligible relation encountered;
-- copy production learning memory to isolated test memory before execution;
-- test both a short real context and the exact previously failing long context `d891e5ff...`;
-- production `SIGMA_CL22_*` memory must not be mutated by preflight.
-
-Saved preflight artifacts:
-
-- `SIGMA_PROFESSOR/artifacts/SIGMA_V24_PREFLIGHT_RECURRENT_FRONTIER.sigma`
-- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_STEP_LIMIT_PREFLIGHT.sh`
-
-Artifact SHA-256:
-
-- V2.4 preflight `.sigma`: `bbcba488e30fd22a638017195b5a7b63900a1da8fba0c3bfaf140df3628d00a7`
-- V2.4 preflight runner: `4bf60064e8bec4581816dd525d105f7a9426270f7831af87011ff7cbe521309a`
-
-Current status of V2.4 preflight:
-
-`AWAITING_DEVICE_RUN`
-
-Do not call V2.4 PASS until the Termux device reports:
+Short context `0a7410aa3d627753302469a32fc70485059468de8ed08ede9a74dca82ad03bb4` PASSED:
 
 - `SHORT_VM_RC=0`
-- `LONG_D891_VM_RC=0`
-- `V24_STEP_LIMIT_PREFLIGHT=PASS`
+- `HISTORY_LINE_COUNT=17270`
+- selected pattern `of => the`
+- selected support `34`
+- native gap `Centauri => (α`
+- request `Centauri (α`
+- request support `2`
 
-## Saved V2.3 artifacts
+The long context `d891e5ff25d3c9d390d6ab383e6bc0d90bc740b0397e47f6f88bc5fcc6a626de` has NOT YET run under V2.4 because the first preflight runner hit an orchestration bug before that case: the short input inherited mode `0400`, and the next `cp` could not overwrite it.
 
+This is not a SIGMA learning failure and not a reproduced step-limit failure.
+
+Corrected runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
+
+Build-workspace SHA-256:
+
+`877962d45eaedf86bc3cebf57506957bfaca1a743e73fc3b07c10cd04c6c3eab`
+
+The corrected runner atomically replaces the read-only test input between cases.
+
+## Exact checkpoints
+
+Read newest first:
+
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V24_SHORT_PASS_READONLY_INPUT_FIX.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V23_STEP_LIMIT_HANDOFF.md`
+
+## Saved artifacts
+
+- `SIGMA_PROFESSOR/artifacts/SIGMA_V24_PREFLIGHT_RECURRENT_FRONTIER.sigma`
+- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
 - `SIGMA_PROFESSOR/artifacts/SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sigma`
 - `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sh`
 - `SIGMA_PROFESSOR/artifacts/SIGMA_WIKIMEDIA_TRANSPORT_DECODE_V1.py`
-
-Artifact SHA-256 from the V2.3 build workspace at handoff:
-
-- V2.3 `.sigma` source: `0c088350efefea3b7dec94c8582136fdbea96d63114fee5b29240da4f6e2a08f`
-- V2.3 runner: `3b419965a7367a9813e8fcf3a422cdc2b30e45a3342c81bf50c89cbeafb332ef`
-- transport decoder: `c8d10c640d32d23d3998590a291d187de0936368d0cd3559706ed6509fd31705`
-
-Device-compiled V2.3 bytecode SHA observed:
-
-`5fecb1751039bdca087d5e1714068a07f14b5c78c0e629cb16eb67a42e7619b0`
 
 ## Locked compiler / VM
 
@@ -90,28 +83,37 @@ Device-compiled V2.3 bytecode SHA observed:
 - DNA03 native self-selection: PASS
 - DNA04 cross-context support: PASS
 - V2.2 native gap -> fetch request -> Internet transport -> decoded plaintext -> SIGMA learning: PROVEN end-to-end
+- V2.4 recurrent-frontier policy on short context: PASS
 
 Still not proven:
 
+- V2.4 long-context step-limit fix
 - semantic understanding
 - semantic curiosity
 - general autonomous reasoning
 
 ## NEXT ACTION
 
-1. Keep V2.3 stopped.
-2. Copy the V2.4 preflight source and runner to the device.
-3. Run only `RUN_SIGMA_V24_STEP_LIMIT_PREFLIGHT.sh`.
-4. Inspect both short and `d891...` results.
-5. If both return RC 0 and preflight PASS, checkpoint the result and build the V2.4 continuous runner.
-6. If `d891...` still hits step limit, do not move scoring to host; next design is bounded/incremental native processing.
+Keep V2.3 stopped.
+
+Run corrected preflight:
+
+`RUN_SIGMA_V24_1_STEP_LIMIT_PREFLIGHT.sh`
+
+Admission to a V2.4 continuous runner requires:
+
+- `SHORT_VM_RC=0`
+- `LONG_D891_VM_RC=0`
+- `V24_1_STEP_LIMIT_PREFLIGHT=PASS`
+
+If the long context still returns `rc=9 / SIGMA C VM: step limit`, do not move scoring/selection to Python/shell. Move to bounded or incremental native processing.
 
 Do not delete V2.2/V2.3 raw/done/log/history state.
 
 ## Checkpoint discipline
 
-When a meaningful milestone completes:
+Whenever a meaningful milestone completes:
 
 1. update this file;
-2. for major milestones/failures create a new immutable file under `SIGMA_PROFESSOR/CHECKPOINTS/`;
-3. save the exact source/runner artifact under `SIGMA_PROFESSOR/artifacts/` when code changes materially.
+2. create an immutable checkpoint under `SIGMA_PROFESSOR/CHECKPOINTS/` for major milestones/failures;
+3. save materially changed source/runner artifacts under `SIGMA_PROFESSOR/artifacts/`.
