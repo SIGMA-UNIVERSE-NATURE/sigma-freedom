@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_for_director_review": true,
+  "director_acceptance_required": true,
+  "execution_branch": "hka-tree/c01-w02-math-c02",
+  "scope_ids": ["B1.1-C02"],
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "pre_pass_checkpoint": {
+    "checkpoint_id": "CP04-PRE-PASS-AUDIT",
+    "commit_sha": "0952311bc26d0ef19f09882a8d60996317fcfc9a",
+    "status": "PASS"
+  },
+  "canonical_topic_ids": [
+    "B1.1-C02-T01","B1.1-C02-T02","B1.1-C02-T03","B1.1-C02-T04",
+    "B1.1-C02-T05","B1.1-C02-T06","B1.1-C02-T07","B1.1-C02-T08"
+  ],
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 64,
+    "sources": 7,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_records": 32,
+    "cross_links": 15,
+    "sequence_intents": 8
+  },
+  "academic_blob_hashes": {
+    "NODES.jsonl": "d92e3e1702307fdac2d21db9822d503b4028b678",
+    "CLAIMS.jsonl": "b72750777b8e43afd4d514fd08a0c0a2cec6fd96",
+    "SOURCES.jsonl": "70d2f725a36e40b41711ab3b5c577595f17788cb",
+    "LEARNING_OBJECTIVES.jsonl": "78d1ff586d5ffabd1ee576733dd4daf8a0744c9b",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "bcae6b9233308bfe872f406a8d0d970b97387421",
+    "CROSS_LINKS.jsonl": "a4e3d9c78774458767fbc674666d7d8617c72804",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "b5af498a49491d6ef337080a917823829404d6f1"
+  },
+  "contract_results": {
+    "canonical_topic_coverage": "PASS",
+    "stable_ids": "PASS",
+    "node_fields": "PASS",
+    "atomic_sourced_scoped_claims": "PASS",
+    "claim_epistemic_class_and_certainty": "PASS",
+    "D1_D4_age_independent_depths": "PASS",
+    "claim_to_learning_objective_closure": "PASS",
+    "source_traceability": "PASS",
+    "source_identity_version_lock": "PASS",
+    "semantic_duplicate_scan": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "stage_boundary": "PASS",
+    "durable_status": "PASS",
+    "pre_pass_audit": "PASS"
+  },
+  "learning_objective_closure": {
+    "status": "PASS",
+    "total_objectives": 32,
+    "closure_records": 32,
+    "supported_by_claims": 32,
+    "coverage_percent": 100,
+    "unsupported": 0,
+    "requires_unlocked_scope_claims": 0,
+    "future_scope_claim_ids_in_supporting_claim_ids": 0,
+    "missing_supporting_claim_ids": 0,
+    "accepted_predecessor_support_claim_ids": [
+      "HKA-B1-1-C01-N004-C004",
+      "HKA-B1-1-C01-N006-C001",
+      "HKA-B1-1-C01-N006-C002",
+      "HKA-B1-1-C01-N006-C003"
+    ],
+    "artifact": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl"
+  },
+  "source_audit": {
+    "status": "PASS",
+    "source_records": 7,
+    "persistent_or_versioned_records": 7,
+    "moving_unversioned_lock_critical_sources": 0,
+    "deterministic_source_id_hash_check": "PASS"
+  },
+  "semantic_duplicate_audit": {
+    "status": "PASS",
+    "method": "NODE MEANING + CLAIM SET + LEARNING OBJECTIVE + CONTEXT",
+    "accepted_C01_reference_nodes": [
+      "HKA-B1-1-C01-N003",
+      "HKA-B1-1-C01-N004",
+      "HKA-B1-1-C01-N006"
+    ],
+    "uncontrolled_overlap": 0,
+    "primary_ownership_transferred": false,
+    "boundary": "C01 retains generic set foundations, generic relations/equivalence and generic proof/counterexample logic. C02 owns number-system/arithmetic/number-theory specializations only. Later algebra, measurement uncertainty, numerical analysis and advanced analytic/geometric/computational methods are boundary references, not support claims."
+  },
+  "prerequisite_sequence_audit": {
+    "status": "PASS",
+    "prerequisite_cycles": 0,
+    "unresolved_or_disallowed_prerequisites": 0,
+    "sequence_rows": 8,
+    "sequence_rows_resolve": true,
+    "external_academic_prerequisites": [
+      "HKA-B1-1-C01-N003",
+      "HKA-B1-1-C01-N004",
+      "HKA-B1-1-C01-N006"
+    ]
+  },
+  "stage_boundary": {
+    "status": "PASS",
+    "compare_base_commit_sha": "6c9ff91502cff56709c4c7e70bc750e3cb7fda18",
+    "pre_pass_audited_head_sha": "78f017dca2d7748f31a51202876e3095988b6e78",
+    "later_stage_artifacts_authored": false,
+    "B1_1_C03_or_later_academic_records_authored": false,
+    "lesson_registry": false,
+    "prompt_or_image": false,
+    "R2_or_delivery_or_website": false,
+    "ACADEMIC_LOCKED": false,
+    "control_plane_mutated": false
+  },
+  "worker_result_note": "This PASS is a worker candidate only. It does not unlock C03 and does not mutate the control-plane. Independent Director acceptance is required before any successor execution.",
+  "blocking_issues": [],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/RESULT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/HANDOFF.md"
+  ],
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C03 — GATED pending Director acceptance of C02",
+  "completed_at": "2026-09-05T01:53:28+07:00"
+}
