@@ -1,7 +1,9 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "name": "HKA Canonical End-to-End Pipeline",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "brand_asset_lock": "DOCS/HKA_CINEMATIC_4K_BRAND_ASSET_LOCK.md",
+  "bis_reference_adoption_lock": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_BIS_REFERENCE_ADOPTION_LOCK.md",
   "sequence": [
     "KNOWLEDGE",
     "CURRICULUM",
@@ -27,7 +29,16 @@
     "image_generation_before_prompt_locked": false,
     "prompt_authoring_before_lesson_registry_locked": false,
     "lesson_registry_before_academic_locked": false,
-    "website_reads_only_delivery": true
+    "website_reads_only_delivery": true,
+    "brand_gate_mandatory": true,
+    "clean_master_required": true,
+    "branded_final_required": true,
+    "official_logo_required_in_branded_final": true,
+    "exact_motto_required_in_branded_final": true,
+    "logo_generation_by_model_forbidden": true,
+    "motto_generation_by_model_forbidden": true,
+    "logo_and_motto_method": "DETERMINISTIC_POST_ONLY",
+    "brand_gate_failure_blocks_qa_approval": true
   },
   "stages": [
     {"stage":"KNOWLEDGE","system":"GitHub","exit_gate":"canonical HKA World Tree source fixed by exact commit"},
@@ -35,15 +46,16 @@
     {"stage":"ACADEMIC_LOCKED","system":"GitHub","exit_gate":"global academic lock commit exists; later stages reference it immutably"},
     {"stage":"LESSON_REGISTRY","system":"GitHub","exit_gate":"complete lesson records and website-target metadata authored from academic lock"},
     {"stage":"LESSON_REGISTRY_LOCKED","system":"GitHub","exit_gate":"global lesson prerequisite, coverage, age/path and duplicate audits PASS"},
-    {"stage":"PROMPTS","system":"GitHub","exit_gate":"all required visual descriptions and exact prompts authored only from locked lesson records"},
-    {"stage":"PROMPT_LOCKED","system":"GitHub","exit_gate":"global semantic/visual duplicate audit and prompt integrity audit PASS"},
-    {"stage":"IMAGE_PRODUCTION","system":"HKA_AUTOPILOT plus Generation AI","exit_gate":"locked assets generated with stable Asset IDs and provenance"},
-    {"stage":"R2_STAGING","system":"Cloudflare R2 staging","exit_gate":"exact generated binaries stored create-only and checksum/read-back verified"},
-    {"stage":"INDEPENDENT_QA","system":"Independent QA AI","exit_gate":"exact staging binaries receive QA_APPROVED; rejected assets cannot progress"},
+    {"stage":"PROMPTS","system":"GitHub","exit_gate":"all required visual descriptions and exact prompts authored only from locked lesson records; every production-bound asset includes locked character references when required plus deterministic logo/motto policies and brand-safe placement"},
+    {"stage":"PROMPT_LOCKED","system":"GitHub","exit_gate":"global semantic/visual duplicate audit, prompt integrity audit and mandatory brand-field audit PASS"},
+    {"stage":"IMAGE_PRODUCTION","system":"HKA_AUTOPILOT plus Generation AI plus deterministic brand compositor","exit_gate":"CLEAN_MASTER generated with stable Asset ID/provenance and BRANDED_FINAL deterministically composed using official locked logo and exact motto"},
+    {"stage":"R2_STAGING","system":"Cloudflare R2 staging","exit_gate":"CLEAN_MASTER and BRANDED_FINAL stored create-only with separate checksums, brand provenance and read-back verification"},
+    {"stage":"INDEPENDENT_QA","system":"Independent QA AI","exit_gate":"exact staging binaries receive QA_APPROVED only after academic, visual, technical and brand-integrity checks; BRAND_GATE_FAILED cannot progress"},
     {"stage":"VAULT","system":"Cloudflare R2 vault","exit_gate":"only QA_APPROVED exact binaries promoted and canonical release verified"},
-    {"stage":"WEB_OPTIMIZE","system":"Cloudflare deterministic optimizer","exit_gate":"web derivatives generated only from verified vault masters and quality checks PASS"},
+    {"stage":"WEB_OPTIMIZE","system":"Cloudflare deterministic optimizer","exit_gate":"web derivatives generated only from verified vault masters; official branding is preserved without generative reconstruction and quality checks PASS"},
     {"stage":"DELIVERY","system":"Cloudflare R2 delivery","exit_gate":"approved optimized derivatives plus release metadata available to website"},
     {"stage":"WEBSITE_UPDATE","system":"Website deployment/update pipeline","exit_gate":"LESSON_ID mapping places delivery asset into correct program, age/path, lesson and website slot"}
   ],
-  "recovery_rule": "Every stage records durable checkpoint, accepted commit/object hashes, status and next_action. Any replacement window or worker reads those records and resumes; it never depends on chat history."
+  "recovery_rule": "Every stage records durable checkpoint, accepted commit/object hashes, status and next_action. Any replacement window or worker reads those records and resumes; it never depends on chat history.",
+  "brand_failure_rule": "Missing or malformed logo/motto is a deterministic BRAND_GATE_FAILED defect. Fix branding and re-verify; do not spend a new full Generation AI render unless the educational CLEAN_MASTER itself is defective."
 }
