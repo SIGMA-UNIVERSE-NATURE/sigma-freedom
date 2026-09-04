@@ -6,24 +6,24 @@
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/c01-w02-math-c02",
   "input_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "c6e2a0577a0ccd85084d97de31cf5463daa5e705",
-  "last_checkpoint_id": "CP03-ACADEMIC-CLOSURE",
+  "last_checkpoint_commit_sha": "0952311bc26d0ef19f09882a8d60996317fcfc9a",
+  "last_checkpoint_id": "CP04-PRE-PASS-AUDIT",
   "scope_ids": ["B1.1-C02"],
   "completed_work": [
-    "Director open order and locked execution prompt executed from GitHub durable state.",
-    "Control-plane activation, accepted C01 predecessor pin and C03+ lock verified.",
-    "All eight B1.1-C02 canonical topics authored as eight stable nodes.",
-    "Committed 64 atomic sourced claims, seven versioned/persistent source records and 32 age-independent D1-D4 learning objectives.",
-    "Committed exactly 32 Claim-to-Learning-Objective closure rows for 32 objectives; every support Claim ID resolves to C02 or the accepted C01 predecessor and no objective requires an unlocked-scope claim.",
-    "Committed 15 cross-links and eight curriculum-sequence rows; future lesson refs are placeholders only.",
-    "Git blob hashes of all seven committed academic record sets matched the independently audited parsed bytes.",
-    "Source identity/version, semantic duplicate boundary, prerequisite/sequence and stage-boundary audits passed.",
-    "Created CP03-ACADEMIC-CLOSURE."
+    "Bootstrap and scope lock completed from GitHub durable state only.",
+    "All eight canonical B1.1-C02 topics authored and committed.",
+    "Committed 8 nodes, 64 atomic sourced claims, 7 persistent/versioned sources, 32 D1-D4 learning objectives, 32 closure rows, 15 cross-links and 8 curriculum-sequence rows.",
+    "Claim-to-Learning-Objective closure is 32/32 (100%); every support Claim ID resolves to C02 or accepted C01 and no future/unlocked scope claim is used as support.",
+    "Semantic duplicate audit passed: generic set, relation/equivalence and proof/counterexample meanings remain accepted C01-owned prerequisites/references.",
+    "Source deterministic-ID/version/traceability audit passed 7/7.",
+    "Prerequisite and sequence audits passed with zero cycles and zero disallowed prerequisites.",
+    "Stage-boundary audit passed; no C03+ academic record, later pipeline artifact or control-plane mutation was made.",
+    "CP03-ACADEMIC-CLOSURE and mandatory CP04-PRE-PASS-AUDIT committed."
   ],
   "remaining_work": [
-    "Run the final pre-PASS gate audit against the committed academic set and stage boundary.",
-    "Create mandatory pre-PASS checkpoint before any terminal PASS write.",
-    "Write RESULT.json and HANDOFF.md and synchronize terminal STATUS.json/REPORT.md without mutating control-plane or unlocking C03."
+    "Write candidate PASS RESULT.json and HANDOFF.md.",
+    "Record terminal checkpoint and synchronize terminal STATUS.json/REPORT.md.",
+    "Do not unlock C03; Director acceptance is required after worker candidate PASS."
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C02/NODES.jsonl",
@@ -37,26 +37,26 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/REPORT.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/CHECKPOINTS/CP01-BOOTSTRAP-ACTIVATED.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/CHECKPOINTS/CP02-BOOTSTRAP-SCOPE-LOCK.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/CHECKPOINTS/CP03-ACADEMIC-CLOSURE.json"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/CHECKPOINTS/CP03-ACADEMIC-CLOSURE.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C02/CHECKPOINTS/CP04-PRE-PASS-AUDIT.json"
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope remains B1.1-C02 only with the eight Director-listed topics.",
-    "Accepted predecessor remains C01 commit 5659288da80a239e2ded408da87348670c1410c2.",
-    "C01 generic set, relation/function and proof/counterexample meanings are reused by reference and are not duplicated.",
-    "All C03+ references are boundary-only and never supporting Claim IDs.",
+    "Scope is B1.1-C02 only and exactly eight Director-listed topics are authored.",
+    "Accepted predecessor is 5659288da80a239e2ded408da87348670c1410c2.",
+    "C01 generic set/relation/proof meanings are referenced rather than duplicated.",
+    "Future scopes are boundary references only and never academic support claims.",
     "D1-D4 are epistemic depths independent of age.",
-    "No later pipeline artifact or ACADEMIC_LOCKED artifact may be created.",
-    "C03 and all later scopes remain locked; worker PASS cannot mutate control-plane."
+    "No later pipeline artifact or ACADEMIC_LOCKED artifact is allowed.",
+    "Worker PASS is a Director-review candidate only and cannot mutate control-plane or unlock C03."
   ],
   "do_not_repeat": [
     "Do not re-author C01 or renumber accepted IDs.",
-    "Do not reopen the scope partition.",
+    "Do not reopen the C02 scope partition or academic closure unless Director explicitly rejects for repair.",
     "Do not start C03 or any later scope.",
-    "Do not use chat history as project state.",
-    "Do not mark PASS before the mandatory pre-PASS checkpoint."
+    "Do not use chat history as project state."
   ],
-  "next_action": "Run final pre-PASS gates and checkpoint; C03 remains locked.",
+  "next_action": "Write C02 candidate PASS terminal artifacts; C03 remains GATED pending Director acceptance.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C03",
-  "updated_at": "2026-09-05T01:49:18+07:00"
+  "updated_at": "2026-09-05T01:52:04+07:00"
 }
