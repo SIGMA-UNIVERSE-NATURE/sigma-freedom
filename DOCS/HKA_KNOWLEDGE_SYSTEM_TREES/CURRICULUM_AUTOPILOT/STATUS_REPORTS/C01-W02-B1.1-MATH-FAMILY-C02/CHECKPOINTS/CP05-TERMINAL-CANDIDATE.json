@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP05-TERMINAL-CANDIDATE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_for_director_review": true,
+  "execution_branch": "hka-tree/c01-w02-math-c02",
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "pre_pass_checkpoint_id": "CP04-PRE-PASS-AUDIT",
+  "pre_pass_checkpoint_commit_sha": "0952311bc26d0ef19f09882a8d60996317fcfc9a",
+  "result_commit_sha": "99e74da44c6613a34b3dc43289a70bec6518779e",
+  "handoff_commit_sha": "85878c75bed4329ce24aa8b89e54359c9a516242",
+  "terminal_diff_audit": {
+    "base_commit_sha": "6c9ff91502cff56709c4c7e70bc750e3cb7fda18",
+    "audited_head_sha": "85878c75bed4329ce24aa8b89e54359c9a516242",
+    "ahead_by": 18,
+    "behind_by": 0,
+    "status": "PASS",
+    "changed_path_classes": [
+      "B1.1-C02 academic outputs including RESULT.json and HANDOFF.md",
+      "C02 STATUS/REPORT",
+      "C02 checkpoints"
+    ],
+    "unauthorized_paths": [],
+    "C03_or_later_academic_records": 0,
+    "later_pipeline_artifacts": 0,
+    "control_plane_mutations": 0
+  },
+  "terminal_gates": {
+    "canonical_topics_8_of_8": "PASS",
+    "nodes_8": "PASS",
+    "claims_64_atomic_sourced_scoped": "PASS",
+    "sources_7_persistent_or_versioned": "PASS",
+    "learning_objectives_32_D1_D4": "PASS",
+    "claim_to_learning_objective_closure_32_of_32": "PASS",
+    "unlocked_scope_support_claims_0": "PASS",
+    "semantic_duplicate_scan": "PASS",
+    "prerequisite_sequence": "PASS",
+    "stage_boundary": "PASS",
+    "blocking_issues_0": "PASS"
+  },
+  "worker_authority_boundary": {
+    "worker_PASS_is_candidate_only": true,
+    "director_acceptance_required": true,
+    "C03_is_unlocked": false,
+    "control_plane_mutated": false
+  },
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C03 — GATED pending Director acceptance of C02",
+  "created_at": "2026-09-05T01:54:37+07:00"
+}
