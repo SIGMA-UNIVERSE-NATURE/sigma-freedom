@@ -1,55 +1,61 @@
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
   "input_commit_sha": "825f76a7f25c02b132d87bde816b2dced2c6ed0d",
-  "last_checkpoint_commit_sha": "10bcc4cdd32fee2b9a874ed727598925319e3734",
-  "last_checkpoint_id": "CP-20260905-C01-ACCEPTED-C02-ACTIVATED",
-  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02"],
+  "last_checkpoint_commit_sha": "12b33ee81fb84e1c7bca7cc48c0ae4c189cc349a",
+  "last_checkpoint_id": "CP-20260905-C02-ACCEPTED-C03-ACTIVATED",
+  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03"],
   "completed_work": [
     "Accepted C01-W01-B1-ARCHITECTURE as durable predecessor after independent verification.",
-    "Rejected the initial C01 academic candidate 359359ae5663f5a62383c1774c2ff359ccb092a7 for academic closure gaps and issued a five-item repair order.",
-    "Independently audited repaired C01 candidate 5659288da80a239e2ded408da87348670c1410c2.",
-    "Verified all 5 Director repairs: propositional syntax/WFF closure, set Separation/existence closure, decidability distinction without B1.5 ownership transfer, immutable OpenLogic source pin, and 32/32 claim-to-learning-objective closure.",
-    "Verified exact OpenLogic upstream commit 1e960beff9ed7835bf3e3f1335e21af3439cd107 exists and directly contains the cited formation-rule, Separation and undecidability source material.",
-    "Verified deterministic source ID HKA-SRC-73f520eedb8e and zero active claim/node references to superseded moving OpenLogic source IDs.",
-    "Verified R04, semantic duplicate control, prerequisite/sequence and stage boundary remain PASS.",
-    "Accepted C01 as DIRECTOR_ACCEPTED_PASS at commit 5659288da80a239e2ded408da87348670c1410c2.",
-    "Created hka-tree/c01-w02-math-c02 from the accepted C01 commit and installed a stronger C02 contract/execution prompt requiring claim-to-objective closure before PASS.",
-    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json to activate only C02 and keep C03/later scopes locked."
+    "Reopened and repaired C01 before accepting it at 5659288da80a239e2ded408da87348670c1410c2.",
+    "Activated C02 with mandatory Claim-to-Learning-Objective closure and stronger source/version gates.",
+    "Independently audited C02 final candidate cfd9746e2296280705e2e2e67b2c5980d440f02d across all 64 claims, all 7 sources, all 32 Learning Objectives/closure mappings, 15 cross-links, prerequisites/sequence and stage boundary.",
+    "Verified 32/32 Claim-to-Learning-Objective closure with zero future/unlocked support claims.",
+    "Verified source deterministic IDs and persistent/versioned source identities; NIST SP 811 round-to-even claim was independently confirmed.",
+    "Rechecked C02's a!=0 divisibility convention and classified it as an explicitly documented convention difference rather than an academic blocker.",
+    "Verified no uncontrolled semantic duplicates or ownership transfers against accepted C01.",
+    "Verified C02 made no C03+, Lesson Registry, prompt/image, R2, delivery, website, ACADEMIC_LOCKED or control-plane writes.",
+    "Accepted C02 as DIRECTOR_ACCEPTED_PASS at cfd9746e2296280705e2e2e67b2c5980d440f02d.",
+    "Created and activated C03 on hka-tree/c01-w02-math-c03 with contract, execution prompt, Director open order and durable bootstrap checkpoint/status/report.",
+    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json to make only C03 READY while C04/later scopes remain LOCKED."
   ],
   "remaining_work": [
-    "Run C01-W02-B1.1-MATH-FAMILY-C02 only.",
-    "Independently audit C02 candidate claims, sources, 32/32-or-applicable claim-to-learning-objective closure, duplicate scan against accepted C01, prerequisites and stage boundary before accepting it.",
-    "Do not unlock C03 until Director-accepted C02 PASS."
+    "Run only C01-W02-B1.1-MATH-FAMILY-C03.",
+    "Independently audit C03 candidate claims, sources, Claim-to-Learning-Objective closure, high-risk internal ownership boundaries, prerequisites and stage boundary before accepting it.",
+    "Do not unlock C04 until Director-accepted C03 PASS."
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260905-C01-ACCEPTED-C02-ACTIVATED.json",
-    "hka-tree/c01-w02-math-c02:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C02/WINDOW_CONTRACT.md",
-    "hka-tree/c01-w02-math-c02:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C02/GPT_EXECUTION_PROMPT.md"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260905-C02-ACCEPTED-C03-ACTIVATED.json",
+    "hka-tree/c01-w02-math-c03:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/WINDOW_CONTRACT.md",
+    "hka-tree/c01-w02-math-c03:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/GPT_EXECUTION_PROMPT.md",
+    "hka-tree/c01-w02-math-c03:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/DIRECTOR_OPEN_ORDER.md",
+    "hka-tree/c01-w02-math-c03:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C03/STATUS.json",
+    "hka-tree/c01-w02-math-c03:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C03/REPORT.md"
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "C01 repaired commit 5659288da80a239e2ded408da87348670c1410c2 is the Director-accepted academic predecessor for C02.",
-    "The old C01 candidate 359359ae5663f5a62383c1774c2ff359ccb092a7 is not an accepted predecessor.",
-    "Claim-to-learning-objective closure is mandatory for every subsequent academic child before candidate PASS.",
-    "Lock-critical online academic sources must use immutable/versioned identities where practicable.",
-    "R04 ownership remains unchanged.",
-    "C03 and all later scopes remain locked."
+    "C01 accepted commit remains 5659288da80a239e2ded408da87348670c1410c2.",
+    "C02 accepted commit is cfd9746e2296280705e2e2e67b2c5980d440f02d.",
+    "Claim-to-Learning-Objective closure remains mandatory for every subsequent academic child.",
+    "C03 must resolve T04/T05 internal ownership and T06-T09 algebraic hierarchy overlaps explicitly before candidate PASS.",
+    "C03 must reuse C01/C02 generic foundations rather than re-author them.",
+    "C04 and all later scopes remain locked.",
+    "Pipeline remains at CURRICULUM; all later stages remain gated."
   ],
   "do_not_repeat": [
-    "Do not reopen accepted C01 without a concrete contradiction discovered by a later integration/global audit.",
-    "Do not renumber C01 accepted IDs.",
-    "Do not let C02 re-teach C01 logic/set/proof foundations as duplicate arithmetic objectives.",
-    "Do not skip claim-to-learning-objective closure audit.",
+    "Do not reopen accepted C01/C02 without a concrete contradiction found by later integration/global audit.",
+    "Do not renumber accepted IDs.",
+    "Do not duplicate generic C01/C02 learning meaning inside C03.",
+    "Do not skip C03 internal ownership/closure audit.",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during CURRICULUM."
   ],
-  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C02 from hka-tree/c01-w02-math-c02 using its locked GPT_EXECUTION_PROMPT.md.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C02",
-  "updated_at": "2026-09-05T01:05:00+07:00"
+  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C03 from hka-tree/c01-w02-math-c03 using its DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "updated_at": "2026-09-05T02:30:00+07:00"
 }
