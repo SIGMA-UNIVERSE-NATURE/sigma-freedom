@@ -1,0 +1,453 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.PRIORITY.PERSISTENT][VERSION=2.8P1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.CURRICULUM_PRIORITY_V28P1) {
+
+    ⚡ INPUT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28T_WORK_PROFILES.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_STATE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28T_CURRICULUM_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ INPUT_LINES:
+        H(
+            "str_split",
+            INPUT,
+            "\n",
+            NULL
+        );
+
+    ⚡ STATE_LINES:
+        H(
+            "str_split",
+            OLD_STATE,
+            "\n",
+            NULL
+        );
+
+    ⚡ INPUT_LINE_TOTAL:
+        H(
+            "list_len",
+            INPUT_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE_LINE_TOTAL:
+        H(
+            "list_len",
+            STATE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_INPUT_SPLIT_LINES:
+        16;
+
+    ⚡ MAX_STATE_SPLIT_LINES:
+        65;
+
+    ⚡ INPUT_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ STATE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_INPUT_SPLIT_LINES < INPUT_LINE_TOTAL) {
+        ⚡ INPUT_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_STATE_SPLIT_LINES < STATE_LINE_TOTAL) {
+        ⚡ STATE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (INPUT_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ print("SIGMA_V28P1_PERSISTENT_CURRICULUM_PRIORITY");
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("INPUT_LINE_TOTAL", INPUT_LINE_TOTAL);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("INPUT_LIMIT_EXCEEDED", INPUT_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_STATE_SPLIT_LINES", MAX_STATE_SPLIT_LINES);
+        ⚡ print("MAX_INPUT_SPLIT_LINES", MAX_INPUT_SPLIT_LINES);
+        ⚡ print("HOST_CURRICULUM_PRIORITY", "NO");
+        ⚡ print("HOST_LESSON_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_IMPORTANCE", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ DISPATCHED:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ PERSISTED_DISPATCH_COUNT:
+            0;
+
+        ⚡ IGNORED_STATE_RECORD_COUNT:
+            0;
+
+        ⚡ S:
+            0;
+
+        WHILE (S < STATE_LINE_TOTAL) {
+
+            ⚡ STATE_LINE:
+                H(
+                    "list_get",
+                    STATE_LINES,
+                    S,
+                    NULL
+                );
+
+            ⚡ VALID_STATE_LINE:
+                1;
+
+            IF (STATE_LINE == "") {
+                ⚡ VALID_STATE_LINE:
+                    0;
+            }
+
+            IF (VALID_STATE_LINE) {
+
+                ⚡ STATE_PARTS:
+                    H(
+                        "str_split",
+                        STATE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ STATE_PART_TOTAL:
+                    H(
+                        "list_len",
+                        STATE_PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_STATE:
+                    0;
+
+                IF (2 < STATE_PART_TOTAL) {
+
+                    ⚡ STATE_COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            2,
+                            NULL
+                        );
+
+                    IF (STATE_COMMIT_FIELD == "COMMIT=YES") {
+                        ⚡ COMMITTED_STATE:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_STATE) {
+
+                    ⚡ STATE_WORK_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ STATE_STATUS_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ STATE_WORK_ID:
+                        H(
+                            "str_replace",
+                            STATE_WORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    IF (STATE_STATUS_FIELD == "DISPATCHED=YES") {
+
+                        ⚡ ALREADY_DISPATCHED:
+                            H(
+                                "map_has",
+                                DISPATCHED,
+                                STATE_WORK_ID,
+                                NULL
+                            );
+
+                        IF (ALREADY_DISPATCHED == FALSE) {
+
+                            ⚡ MARK_DISPATCHED:
+                                H(
+                                    "map_set",
+                                    DISPATCHED,
+                                    STATE_WORK_ID,
+                                    1
+                                );
+
+                            ⚡ PERSISTED_DISPATCH_COUNT:
+                                PERSISTED_DISPATCH_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED_STATE == 0) {
+                    ⚡ IGNORED_STATE_RECORD_COUNT:
+                        IGNORED_STATE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ S:
+                S + 1;
+        }
+
+        ⚡ WORK_IDS:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ COMPLETE_FLAGS:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ INCOMPLETE_FLAGS:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ UNRESOLVED_FLAGS:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ DIVERSITIES:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ AGES:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ RECURRENCES:
+            H("list_new", NULL, NULL, NULL);
+        ⚡ SEEN_WORK:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ ADMITTED_WORK_COUNT: 0;
+        ⚡ DUPLICATE_WORK_COUNT: 0;
+        ⚡ INVALID_WORK_COUNT: 0;
+        ⚡ ELIGIBLE_UNDISPATCHED_COUNT: 0;
+        ⚡ L: 0;
+
+        WHILE (L < INPUT_LINE_TOTAL) {
+            ⚡ LINE: H("list_get", INPUT_LINES, L, NULL);
+            ⚡ VALID_LINE: 1;
+            IF (LINE == "") { ⚡ VALID_LINE: 0; }
+
+            IF (VALID_LINE) {
+                ⚡ PARTS: H("str_split", LINE, " || ", NULL);
+                ⚡ PART_TOTAL: H("list_len", PARTS, NULL, NULL);
+
+                IF (6 < PART_TOTAL) {
+                    ⚡ WORK_FIELD: H("list_get", PARTS, 0, NULL);
+                    ⚡ COMPLETE_FIELD: H("list_get", PARTS, 1, NULL);
+                    ⚡ INCOMPLETE_FIELD: H("list_get", PARTS, 2, NULL);
+                    ⚡ UNRESOLVED_FIELD: H("list_get", PARTS, 3, NULL);
+                    ⚡ DIVERSITY_FIELD: H("list_get", PARTS, 4, NULL);
+                    ⚡ AGE_FIELD: H("list_get", PARTS, 5, NULL);
+                    ⚡ RECURRENCE_FIELD: H("list_get", PARTS, 6, NULL);
+
+                    ⚡ WORK_ID: H("str_replace", WORK_FIELD, "WORK=", "");
+                    ⚡ COMPLETE_TEXT: H("str_replace", COMPLETE_FIELD, "COMPLETE=", "");
+                    ⚡ INCOMPLETE_TEXT: H("str_replace", INCOMPLETE_FIELD, "INCOMPLETE=", "");
+                    ⚡ UNRESOLVED_TEXT: H("str_replace", UNRESOLVED_FIELD, "UNRESOLVED=", "");
+                    ⚡ DIVERSITY_TEXT: H("str_replace", DIVERSITY_FIELD, "DIVERSITY=", "");
+                    ⚡ AGE_TEXT: H("str_replace", AGE_FIELD, "AGE=", "");
+                    ⚡ RECURRENCE_TEXT: H("str_replace", RECURRENCE_FIELD, "RECURRENCE=", "");
+
+                    ⚡ COMPLETE: H("to_int", COMPLETE_TEXT, NULL, NULL);
+                    ⚡ INCOMPLETE: H("to_int", INCOMPLETE_TEXT, NULL, NULL);
+                    ⚡ UNRESOLVED: H("to_int", UNRESOLVED_TEXT, NULL, NULL);
+                    ⚡ DIVERSITY: H("to_int", DIVERSITY_TEXT, NULL, NULL);
+                    ⚡ AGE: H("to_int", AGE_TEXT, NULL, NULL);
+                    ⚡ RECURRENCE: H("to_int", RECURRENCE_TEXT, NULL, NULL);
+
+                    ⚡ VALID_WORK: 1;
+                    IF (WORK_ID == "") { ⚡ VALID_WORK: 0; }
+
+                    IF (VALID_WORK) {
+                        ⚡ SEEN: H("map_has", SEEN_WORK, WORK_ID, NULL);
+                        IF (SEEN == FALSE) {
+                            ⚡ MARK_SEEN: H("map_set", SEEN_WORK, WORK_ID, 1);
+                            ⚡ PUSH_WORK: H("list_push", WORK_IDS, WORK_ID, NULL);
+                            ⚡ PUSH_COMPLETE: H("list_push", COMPLETE_FLAGS, COMPLETE, NULL);
+                            ⚡ PUSH_INCOMPLETE: H("list_push", INCOMPLETE_FLAGS, INCOMPLETE, NULL);
+                            ⚡ PUSH_UNRESOLVED: H("list_push", UNRESOLVED_FLAGS, UNRESOLVED, NULL);
+                            ⚡ PUSH_DIVERSITY: H("list_push", DIVERSITIES, DIVERSITY, NULL);
+                            ⚡ PUSH_AGE: H("list_push", AGES, AGE, NULL);
+                            ⚡ PUSH_RECURRENCE: H("list_push", RECURRENCES, RECURRENCE, NULL);
+                            ⚡ ADMITTED_WORK_COUNT: ADMITTED_WORK_COUNT + 1;
+
+                            ⚡ WAS_DISPATCHED: H("map_has", DISPATCHED, WORK_ID, NULL);
+                            IF (COMPLETE == 0) {
+                                IF (WAS_DISPATCHED == FALSE) {
+                                    ⚡ ELIGIBLE_UNDISPATCHED_COUNT: ELIGIBLE_UNDISPATCHED_COUNT + 1;
+                                }
+                            }
+                        }
+                        IF (SEEN) { ⚡ DUPLICATE_WORK_COUNT: DUPLICATE_WORK_COUNT + 1; }
+                    }
+                }
+
+                IF (PART_TOTAL < 7) { ⚡ INVALID_WORK_COUNT: INVALID_WORK_COUNT + 1; }
+            }
+
+            ⚡ L: L + 1;
+        }
+
+        ⚡ QUEUE: H("list_new", NULL, NULL, NULL);
+        ⚡ PICKED: H("map_new", NULL, NULL, NULL);
+        ⚡ TOTAL_WORK: H("list_len", WORK_IDS, NULL, NULL);
+        ⚡ QUEUE_COUNT: 0;
+
+        WHILE (QUEUE_COUNT < ELIGIBLE_UNDISPATCHED_COUNT) {
+            ⚡ BEST_SET: 0;
+            ⚡ BEST_WORK: "";
+            ⚡ BEST_INCOMPLETE: 0;
+            ⚡ BEST_UNRESOLVED: 0;
+            ⚡ BEST_DIVERSITY: 0;
+            ⚡ BEST_AGE: 0;
+            ⚡ BEST_RECURRENCE: 0;
+            ⚡ W: 0;
+
+            WHILE (W < TOTAL_WORK) {
+                ⚡ WORK_ID: H("list_get", WORK_IDS, W, NULL);
+                ⚡ COMPLETE: H("list_get", COMPLETE_FLAGS, W, NULL);
+                ⚡ WAS_DISPATCHED: H("map_has", DISPATCHED, WORK_ID, NULL);
+                ⚡ ALREADY_PICKED: H("map_has", PICKED, WORK_ID, NULL);
+                ⚡ ELIGIBLE: 1;
+                IF (COMPLETE) { ⚡ ELIGIBLE: 0; }
+                IF (WAS_DISPATCHED) { ⚡ ELIGIBLE: 0; }
+                IF (ALREADY_PICKED) { ⚡ ELIGIBLE: 0; }
+
+                IF (ELIGIBLE) {
+                    ⚡ INCOMPLETE: H("list_get", INCOMPLETE_FLAGS, W, NULL);
+                    ⚡ UNRESOLVED: H("list_get", UNRESOLVED_FLAGS, W, NULL);
+                    ⚡ DIVERSITY: H("list_get", DIVERSITIES, W, NULL);
+                    ⚡ AGE: H("list_get", AGES, W, NULL);
+                    ⚡ RECURRENCE: H("list_get", RECURRENCES, W, NULL);
+                    ⚡ BETTER: 0;
+                    IF (BEST_SET == 0) { ⚡ BETTER: 1; }
+
+                    IF (BEST_SET) {
+                        IF (BEST_INCOMPLETE < INCOMPLETE) { ⚡ BETTER: 1; }
+                        IF (INCOMPLETE == BEST_INCOMPLETE) {
+                            IF (BEST_UNRESOLVED < UNRESOLVED) { ⚡ BETTER: 1; }
+                            IF (UNRESOLVED == BEST_UNRESOLVED) {
+                                IF (BEST_DIVERSITY < DIVERSITY) { ⚡ BETTER: 1; }
+                                IF (DIVERSITY == BEST_DIVERSITY) {
+                                    IF (BEST_AGE < AGE) { ⚡ BETTER: 1; }
+                                    IF (AGE == BEST_AGE) {
+                                        IF (BEST_RECURRENCE < RECURRENCE) { ⚡ BETTER: 1; }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    IF (BETTER) {
+                        ⚡ BEST_SET: 1;
+                        ⚡ BEST_WORK: WORK_ID;
+                        ⚡ BEST_INCOMPLETE: INCOMPLETE;
+                        ⚡ BEST_UNRESOLVED: UNRESOLVED;
+                        ⚡ BEST_DIVERSITY: DIVERSITY;
+                        ⚡ BEST_AGE: AGE;
+                        ⚡ BEST_RECURRENCE: RECURRENCE;
+                    }
+                }
+
+                ⚡ W: W + 1;
+            }
+
+            IF (BEST_SET) {
+                ⚡ MARK_PICKED: H("map_set", PICKED, BEST_WORK, 1);
+                ⚡ PUSH_QUEUE: H("list_push", QUEUE, BEST_WORK, NULL);
+                ⚡ QUEUE_COUNT: QUEUE_COUNT + 1;
+            }
+        }
+
+        ⚡ QUEUE_TEXT: H("str_join", QUEUE, "\n", NULL);
+        ⚡ WRITE_QUEUE_RC: H("write_text", ".sigma_exec/SIGMA_V28T_CURRICULUM_QUEUE.memory", QUEUE_TEXT, NULL);
+        ⚡ SELECTED_WORK: "";
+        IF (0 < QUEUE_COUNT) { ⚡ SELECTED_WORK: H("list_get", QUEUE, 0, NULL); }
+
+        ⚡ DISPATCH_APPEND_RC: 0;
+        IF (SELECTED_WORK == "") { ⚡ DISPATCH_APPEND_RC: 0; }
+
+        ⚡ HAS_SELECTED_WORK: 1;
+        IF (SELECTED_WORK == "") { ⚡ HAS_SELECTED_WORK: 0; }
+
+        IF (HAS_SELECTED_WORK) {
+            ⚡ DISPATCH_RECORD: "\nWORK=" + SELECTED_WORK + " || DISPATCHED=YES || COMMIT=YES";
+            ⚡ DISPATCH_APPEND_RC: H("append_text", ".sigma_exec/SIGMA_V28T_CURRICULUM_STATE.memory", DISPATCH_RECORD, NULL);
+        }
+
+        ⚡ print("SIGMA_V28P1_PERSISTENT_CURRICULUM_PRIORITY");
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("INPUT_LINE_TOTAL", INPUT_LINE_TOTAL);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("INPUT_LIMIT_EXCEEDED", INPUT_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "YES");
+        ⚡ print("PERSISTED_DISPATCH_COUNT", PERSISTED_DISPATCH_COUNT);
+        ⚡ print("PERSISTED_STATE_USED", PERSISTED_DISPATCH_COUNT);
+        ⚡ print("IGNORED_STATE_RECORD_COUNT", IGNORED_STATE_RECORD_COUNT);
+        ⚡ print("ADMITTED_WORK_COUNT", ADMITTED_WORK_COUNT);
+        ⚡ print("DUPLICATE_WORK_COUNT", DUPLICATE_WORK_COUNT);
+        ⚡ print("INVALID_WORK_COUNT", INVALID_WORK_COUNT);
+        ⚡ print("ELIGIBLE_UNDISPATCHED_COUNT", ELIGIBLE_UNDISPATCHED_COUNT);
+        ⚡ print("QUEUE_COUNT", QUEUE_COUNT);
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("WRITE_QUEUE_RC", WRITE_QUEUE_RC);
+        ⚡ print("DISPATCH_APPEND_RC", DISPATCH_APPEND_RC);
+        ⚡ print("PRIORITY_POLICY", "LEXICOGRAPHIC_INCOMPLETE_UNRESOLVED_DIVERSITY_AGE_RECURRENCE_FIRST_ENCOUNTER_TIE");
+        ⚡ print("PERSISTENT_STATE_POLICY", "COMMIT_YES_DISPATCH_RECORDS_ONLY");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_STATE_SPLIT_LINES", MAX_STATE_SPLIT_LINES);
+        ⚡ print("MAX_INPUT_SPLIT_LINES", MAX_INPUT_SPLIT_LINES);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("HOST_CURRICULUM_PRIORITY", "NO");
+        ⚡ print("HOST_LESSON_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_PRIORITY_ONLY", "YES");
+        ⚡ print("SEMANTIC_IMPORTANCE", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
