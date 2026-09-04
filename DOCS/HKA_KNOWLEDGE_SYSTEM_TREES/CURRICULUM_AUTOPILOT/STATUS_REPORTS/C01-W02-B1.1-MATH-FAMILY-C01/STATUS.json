@@ -11,14 +11,15 @@
   "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
   "control_plane_snapshot_commit_sha": "02d6d4ac7d03964dba31f7042afc5fcfaafb450f",
   "academic_records_commit_sha": "00db31ad16c92435e449f945580c65e47dc9e262",
-  "last_checkpoint_commit_sha": "45de60cc09e60d61b5eb58c3d71368c00229a3fc",
-  "last_checkpoint_id": "CP02-PRE-PASS-AUDIT",
+  "last_checkpoint_commit_sha": "3c5e0e79d4ef6fe244ba7786769cf41872d1eb12",
+  "last_checkpoint_id": "CP03-DIRECTOR-REVIEW-REOPEN",
   "scope_ids": ["B1.1-C01"],
   "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
   "completed_work": [
     "Initial bounded authoring completed for 8 canonical topics with 8 nodes, 25 claims, 7 sources, 32 D1-D4 objectives, 10 cross-links and 8 sequence intents.",
     "Initial child pre-PASS audits passed for schema/coverage/IDs/R04/duplicates/prerequisites/stage boundary.",
-    "Director independently audited the committed candidate terminal result 359359ae5663f5a62383c1774c2ff359ccb092a7 and reopened the child before acceptance."
+    "Director independently audited candidate terminal commit 359359ae5663f5a62383c1774c2ff359ccb092a7 and reopened the child before acceptance.",
+    "Director correction order and durable CP03 reopen checkpoint committed."
   ],
   "remaining_work": [
     "Append minimum sourced claim closure for propositional syntax in HKA-B1-1-C01-N001.",
@@ -38,6 +39,7 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/RESULT.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/HANDOFF.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/DIRECTOR_CORRECTION_ORDER.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/CHECKPOINTS/CP03-DIRECTOR-REVIEW-REOPEN.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/STATUS.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md"
   ],
@@ -62,5 +64,5 @@
   ],
   "next_action": "Execute DIRECTOR_CORRECTION_ORDER.md on this same C01 branch, commit repairs, run a new pre-PASS audit from committed files, and return a new terminal result for Director review.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01",
-  "updated_at": "2026-09-05T00:05:00+07:00"
+  "updated_at": "2026-09-05T00:10:00+07:00"
 }
