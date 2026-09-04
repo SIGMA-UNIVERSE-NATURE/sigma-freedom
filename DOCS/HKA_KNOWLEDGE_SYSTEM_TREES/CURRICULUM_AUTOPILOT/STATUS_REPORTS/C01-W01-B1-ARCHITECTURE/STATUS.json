@@ -3,11 +3,12 @@
   "window_id": "C01-W01-B1-ARCHITECTURE",
   "role": "HKA Curriculum Director C01-W01-B1-ARCHITECTURE",
   "stage": "CURRICULUM",
-  "status": "CHECKPOINTED",
+  "status": "PASS",
   "execution_branch": "hka-tree/c01-w01-b1-architecture",
   "input_commit_sha": "02ff47d64fd3b3b03d1fa2ae70d773afb071995e",
   "last_checkpoint_commit_sha": "2b3ba51abeb5cf7f08be6a727b4aa441351fae6d",
   "last_checkpoint_id": "CP02-PRE-PASS-AUDIT",
+  "accepted_result_commit_sha": "2ec918cb4dca4a851b917dc420e488042c07d240",
   "scope_ids": [
     "B1.1-C01", "B1.1-C02", "B1.1-C03", "B1.1-C04", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08", "B1.1-C09", "B1.1-C10",
     "B1.2-C01", "B1.2-C02", "B1.2-C03", "B1.2-C04", "B1.2-C05", "B1.2-C06", "B1.2-C07", "B1.2-C08", "B1.2-C09", "B1.2-C10", "B1.2-C11", "B1.2-C12",
@@ -26,13 +27,10 @@
     "Durable status requirements integrated into child/controller authoring and recovery rules",
     "HANDOFF.md synchronized with durable status recovery",
     "Post-commit architecture audit passed at CP02-PRE-PASS-AUDIT",
-    "Prompt/contract governance drift checked and the two observed status-reporting governance updates adopted"
+    "Prompt/contract governance drift checked and two observed status-reporting governance updates adopted",
+    "RESULT.json committed with PASS and deterministic next_action C01-W02-B1.1-MATH-FAMILY"
   ],
-  "remaining_work": [
-    "Commit RESULT.json=PASS",
-    "Finalize STATUS.json to PASS referencing the accepted RESULT commit",
-    "Finalize REPORT.md to PASS so durable terminal artifacts agree"
-  ],
+  "remaining_work": [],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_SCOPE_MAP.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_COVERAGE_MATRIX.md",
@@ -64,9 +62,9 @@
     "Do not collapse repeated labels Entropy, Mã sửa lỗi or Dao động without their registered claim-boundary dispositions",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs",
     "Do not mark B1 or global ACADEMIC_LOCKED",
-    "Do not open C01-W02 until terminal durable PASS artifacts agree"
+    "Do not redo C01-W01-B1-ARCHITECTURE after terminal PASS; start only its registered successor"
   ],
-  "next_action": "Commit RESULT.json for this architecture window, then finalize durable STATUS.json and REPORT.md to PASS. Do not open the successor before terminal agreement.",
+  "next_action": "C01-W02-B1.1-MATH-FAMILY",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY",
-  "updated_at": "2026-09-04T15:26:10Z"
+  "updated_at": "2026-09-04T22:27:22+07:00"
 }
