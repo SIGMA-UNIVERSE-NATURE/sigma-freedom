@@ -1,13 +1,24 @@
 {
-  "window_id":"W02","tree_id":"HKA-TREE-00-HROOT","batch_id":"HKA-W02-B02","run_id_planned":"HKA-W02-B02-R01","status":"PROMPT_LOCKED_NO_RUN",
-  "academic_content_commit_sha":"e900d3b623c27f6d4a0fe2750fa499295788776e","prompt_content_authoring_sha":"65c852bfd12adc94745c65a5c8e900c40ef501c5","brand_asset_commit_sha":"2d3aa9d8418acccd39a3d263e917d4157e029e17",
-  "prompt_registry":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/VISUAL_PROMPTS_CINEMATIC_4K.md","image_generation_executed":false,"r2_upload_executed":false,"requires_b00_qa_before_run":true,
-  "assets":[
-    {"asset_id":"HKA-VIS-W02-0009","vcu_id":"HKA-VCU-W02-009","prompt_sha256":"2855e3dbe39fc5c9e120b7c85ff9e4aef28a108e3c5c1b8eb1da1234465411d1","clean_master_filename":"HKA-VIS-W02-0009_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0009_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0010","vcu_id":"HKA-VCU-W02-010","prompt_sha256":"4101f5787ad6a45d3b0e122fbf6848e82f774cfe965b73483afcb6e68555922b","clean_master_filename":"HKA-VIS-W02-0010_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0010_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0011","vcu_id":"HKA-VCU-W02-011","prompt_sha256":"558839869e3b10b345e5aa5eedf7950e946ec7ab747b0151ae49ada1dd32fa68","clean_master_filename":"HKA-VIS-W02-0011_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0011_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0012","vcu_id":"HKA-VCU-W02-012","prompt_sha256":"2c2db72a222d61605dab83dd408a2d2b85d1a1cf17a9ef83a996142664247dd5","clean_master_filename":"HKA-VIS-W02-0012_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0012_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0013","vcu_id":"HKA-VCU-W02-013","prompt_sha256":"662f062fa496883637863623c86175663fce0a5f373041603d3b26a6f01f02a6","clean_master_filename":"HKA-VIS-W02-0013_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0013_BRANDED_FINAL.png","production_status":"NOT_RUN"},
-    {"asset_id":"HKA-VIS-W02-0014","vcu_id":"HKA-VCU-W02-014","prompt_sha256":"10aebac6138c2b1737d418f18bfaa599f67e4624b6b494352b095b0783fd513d","clean_master_filename":"HKA-VIS-W02-0014_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0014_BRANDED_FINAL.png","production_status":"NOT_RUN"}
-  ]
+  "schema_version": "1.0",
+  "window_id": "W02",
+  "tree_id": "HKA-TREE-00-HROOT",
+  "tree_slug": "human-roots",
+  "prompt_repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+  "prompt_branch": "hka-tree/w02-human-roots",
+  "prompt_commit_sha": "c409ee08c763b0145ff72378d6bf370e6b62ea14",
+  "brand_repository": "linkcomltd-byte/sigma-universe-web",
+  "brand_asset_commit_sha": "2d3aa9d8418acccd39a3d263e917d4157e029e17",
+  "batch_id": "HKA-W02-B02",
+  "run_id": "HKA-W02-B02-R01",
+  "asset_count": 6,
+  "assets": [
+    {"asset_id":"HKA-VIS-W02-0009","prompt_sha256":"720e503c6f76b362fa9510626d44b8b2a686a70fc9bad879e681114d55c74b5f","asset_type":"CONCEPT","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"PROFESSOR_OWL","node_ids":["HKA-W02-A05"],"clean_master_filename":"HKA-VIS-W02-0009_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0009_BRANDED_FINAL.png"},
+    {"asset_id":"HKA-VIS-W02-0010","prompt_sha256":"4a1748e785a66224a35e30fd527d003790f57242375fe4f0b80716bf8701185a","asset_type":"COMPARISON","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"LITTLE_ANT","node_ids":["HKA-W02-B06"],"clean_master_filename":"HKA-VIS-W02-0010_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0010_BRANDED_FINAL.png"},
+    {"asset_id":"HKA-VIS-W02-0011","prompt_sha256":"27ff02137347f4d8fb98ad577e889f5cacd4b17eef9d2ae94d5e2de480fefae2","asset_type":"PROCESS","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"CRICKET","node_ids":["HKA-W02-B05","HKA-W02-B04"],"clean_master_filename":"HKA-VIS-W02-0011_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0011_BRANDED_FINAL.png"},
+    {"asset_id":"HKA-VIS-W02-0012","prompt_sha256":"d5046d6a4f90bd8a8003a1ee79c8f51614fabbddce39b022bd33b579cd185ad8","asset_type":"COMPARISON","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A4_16_18","academic_depth":"D3","primary_companion":"SIGMA","node_ids":["HKA-W02-C01"],"clean_master_filename":"HKA-VIS-W02-0012_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0012_BRANDED_FINAL.png"},
+    {"asset_id":"HKA-VIS-W02-0013","prompt_sha256":"cd6b90f07a3ef8c1c3dba608ef15f117bd741e54a97630d4e2b3044c68fa6847","asset_type":"RECONSTRUCTION","representation_type":"HISTORICAL_RECONSTRUCTION","primary_audience":"A4_16_18","academic_depth":"D3","primary_companion":"PROFESSOR_OWL","node_ids":["HKA-W02-C05","HKA-W02-A04"],"clean_master_filename":"HKA-VIS-W02-0013_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0013_BRANDED_FINAL.png"},
+    {"asset_id":"HKA-VIS-W02-0014","prompt_sha256":"ad4b9323a40a3e898bcdf55640b5b4b2b83a7f536253ac1cd92b2ac16d870236","asset_type":"CROSS_LINK","representation_type":"SCIENTIFIC_VISUALIZATION","primary_audience":"A5_19_24","academic_depth":"D3","primary_companion":"CRICKET","node_ids":["HKA-W02-C02","HKA-W02-C06"],"clean_master_filename":"HKA-VIS-W02-0014_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0014_BRANDED_FINAL.png"}
+  ],
+  "created_at": "2026-09-04T02:00:02Z",
+  "status": "BATCH_READY"
 }
