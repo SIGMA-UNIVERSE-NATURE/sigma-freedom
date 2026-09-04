@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.2",
+  "schema_version": "2.3",
   "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule": "Successor windows read GitHub state and predecessor artifacts; chat history is never a dependency.",
   "child_window_rule": "Large academic scopes are bounded window families. Each child writes RESULT.json plus a mandatory durable status folder. Only Director-accepted PASS unlocks successor work.",
@@ -26,8 +26,8 @@
           "depends_on":["C01-W01-B1-ARCHITECTURE"],
           "accepted_predecessor_commit_sha":"265bb584b5d7e36e11091289d58558408880118c",
           "children":[
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"REVIEW_REQUIRED","execution_branch":"hka-tree/c01-w02-math-c01","topic_count":8,"repair_order":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W02-B1.1-MATH-FAMILY-C01-REPAIR.md","candidate_commit_sha":"359359ae5663f5a62383c1774c2ff359ccb092a7","depends_on":[]},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"LOCKED","topic_count":8,"depends_on":["Director-accepted PASS of B1.1-C01"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c01","accepted_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","topic_count":8,"claim_count":38,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","depends_on":[]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"READY","execution_branch":"hka-tree/c01-w02-math-c02","accepted_predecessor_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","topic_count":8,"depends_on":["Director-accepted PASS of B1.1-C01"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C03","scope_id":"B1.1-C03","scope":"Đại số và cấu trúc","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C01","B1.1-C02"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C02","B1.1-C03"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C05","scope_id":"B1.1-C05","scope":"Giải tích và biến đổi liên tục","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C02","B1.1-C03","B1.1-C04"]},
