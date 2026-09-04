@@ -12,12 +12,93 @@
   "run_id": "HKA-W02-B02-R01",
   "asset_count": 6,
   "assets": [
-    {"asset_id":"HKA-VIS-W02-0009","prompt_sha256":"720e503c6f76b362fa9510626d44b8b2a686a70fc9bad879e681114d55c74b5f","asset_type":"CONCEPT","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"PROFESSOR_OWL","node_ids":["HKA-W02-A05"],"clean_master_filename":"HKA-VIS-W02-0009_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0009_BRANDED_FINAL.png"},
-    {"asset_id":"HKA-VIS-W02-0010","prompt_sha256":"4a1748e785a66224a35e30fd527d003790f57242375fe4f0b80716bf8701185a","asset_type":"COMPARISON","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"LITTLE_ANT","node_ids":["HKA-W02-B06"],"clean_master_filename":"HKA-VIS-W02-0010_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0010_BRANDED_FINAL.png"},
-    {"asset_id":"HKA-VIS-W02-0011","prompt_sha256":"27ff02137347f4d8fb98ad577e889f5cacd4b17eef9d2ae94d5e2de480fefae2","asset_type":"PROCESS","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A3_13_15","academic_depth":"D3","primary_companion":"CRICKET","node_ids":["HKA-W02-B05","HKA-W02-B04"],"clean_master_filename":"HKA-VIS-W02-0011_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0011_BRANDED_FINAL.png"},
-    {"asset_id":"HKA-VIS-W02-0012","prompt_sha256":"d5046d6a4f90bd8a8003a1ee79c8f51614fabbddce39b022bd33b579cd185ad8","asset_type":"COMPARISON","representation_type":"CONCEPTUAL_MODEL","primary_audience":"A4_16_18","academic_depth":"D3","primary_companion":"SIGMA","node_ids":["HKA-W02-C01"],"clean_master_filename":"HKA-VIS-W02-0012_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0012_BRANDED_FINAL.png"},
-    {"asset_id":"HKA-VIS-W02-0013","prompt_sha256":"cd6b90f07a3ef8c1c3dba608ef15f117bd741e54a97630d4e2b3044c68fa6847","asset_type":"RECONSTRUCTION","representation_type":"HISTORICAL_RECONSTRUCTION","primary_audience":"A4_16_18","academic_depth":"D3","primary_companion":"PROFESSOR_OWL","node_ids":["HKA-W02-C05","HKA-W02-A04"],"clean_master_filename":"HKA-VIS-W02-0013_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0013_BRANDED_FINAL.png"},
-    {"asset_id":"HKA-VIS-W02-0014","prompt_sha256":"ad4b9323a40a3e898bcdf55640b5b4b2b83a7f536253ac1cd92b2ac16d870236","asset_type":"CROSS_LINK","representation_type":"SCIENTIFIC_VISUALIZATION","primary_audience":"A5_19_24","academic_depth":"D3","primary_companion":"CRICKET","node_ids":["HKA-W02-C02","HKA-W02-C06"],"clean_master_filename":"HKA-VIS-W02-0014_CLEAN_MASTER.png","branded_final_filename":"HKA-VIS-W02-0014_BRANDED_FINAL.png"}
+    {
+      "asset_id": "HKA-VIS-W02-0009",
+      "prompt_sha256": "720e503c6f76b362fa9510626d44b8b2a686a70fc9bad879e681114d55c74b5f",
+      "asset_type": "CONCEPT",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A3_13_15",
+      "academic_depth": "D3",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": [
+        "HKA-W02-A05"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0009_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0009_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0010",
+      "prompt_sha256": "4a1748e785a66224a35e30fd527d003790f57242375fe4f0b80716bf8701185a",
+      "asset_type": "COMPARISON",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A3_13_15",
+      "academic_depth": "D3",
+      "primary_companion": "LITTLE_ANT",
+      "node_ids": [
+        "HKA-W02-B06"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0010_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0010_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0011",
+      "prompt_sha256": "27ff02137347f4d8fb98ad577e889f5cacd4b17eef9d2ae94d5e2de480fefae2",
+      "asset_type": "PROCESS",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A3_13_15",
+      "academic_depth": "D3",
+      "primary_companion": "CRICKET",
+      "node_ids": [
+        "HKA-W02-B05",
+        "HKA-W02-B04"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0011_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0011_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0012",
+      "prompt_sha256": "d5046d6a4f90bd8a8003a1ee79c8f51614fabbddce39b022bd33b579cd185ad8",
+      "asset_type": "COMPARISON",
+      "representation_type": "CONCEPTUAL_MODEL",
+      "primary_audience": "A4_16_18",
+      "academic_depth": "D3",
+      "primary_companion": "SIGMA",
+      "node_ids": [
+        "HKA-W02-C01"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0012_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0012_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0013",
+      "prompt_sha256": "cd6b90f07a3ef8c1c3dba608ef15f117bd741e54a97630d4e2b3044c68fa6847",
+      "asset_type": "RECONSTRUCTION",
+      "representation_type": "HISTORICAL_RECONSTRUCTION",
+      "primary_audience": "A4_16_18",
+      "academic_depth": "D3",
+      "primary_companion": "PROFESSOR_OWL",
+      "node_ids": [
+        "HKA-W02-C05",
+        "HKA-W02-A04"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0013_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0013_BRANDED_FINAL.png"
+    },
+    {
+      "asset_id": "HKA-VIS-W02-0014",
+      "prompt_sha256": "ad4b9323a40a3e898bcdf55640b5b4b2b83a7f536253ac1cd92b2ac16d870236",
+      "asset_type": "CROSS_LINK",
+      "representation_type": "SCIENTIFIC_VISUALIZATION",
+      "primary_audience": "A5_19_24",
+      "academic_depth": "D3",
+      "primary_companion": "CRICKET",
+      "node_ids": [
+        "HKA-W02-C02",
+        "HKA-W02-C06"
+      ],
+      "clean_master_filename": "HKA-VIS-W02-0014_CLEAN_MASTER.png",
+      "branded_final_filename": "HKA-VIS-W02-0014_BRANDED_FINAL.png"
+    }
   ],
   "created_at": "2026-09-04T02:00:02Z",
   "status": "BATCH_READY"
