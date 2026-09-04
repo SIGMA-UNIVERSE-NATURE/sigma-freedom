@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c03",
+  "input_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "last_checkpoint_commit_sha": "a5ac5945ccdc4db8ee2647a15399d1fbfb734877",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "scope_ids": ["B1.1-C03"],
+  "completed_work": [
+    "Director independently accepted C02 predecessor at cfd9746e2296280705e2e2e67b2c5980d440f02d.",
+    "Created C03 execution branch from the accepted C02 commit.",
+    "Installed C03 Window Contract, GPT Execution Prompt and Director Open Order.",
+    "Control-plane activated C03 as READY and kept C04/later scopes locked.",
+    "Created CP01-BOOTSTRAP-ACTIVATED with exact control-plane and setup commit references."
+  ],
+  "remaining_work": [
+    "Author complete B1.1-C03 curriculum records for all nine canonical topics.",
+    "Explicitly disposition T03 vs accepted C01 relation/function foundation.",
+    "Create a non-duplicative ownership split between T04 Linear Algebra and T05 Matrices and Vector Spaces.",
+    "Control shared foundations across T06 Group, T07 Ring and Field, T08 Commutative Algebra, and T09 Representation Theory.",
+    "Prevent T01/T02 from re-authoring accepted C02 arithmetic/order learning meaning.",
+    "Create 100% Claim-to-Learning-Objective closure, source/version audit, semantic duplicate audit, prerequisite/sequence audit and stage-boundary audit from committed files.",
+    "Create substantive academic-closure and pre-PASS checkpoints before any worker candidate PASS."
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/WINDOW_CONTRACT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/GPT_EXECUTION_PROMPT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C03/DIRECTOR_OPEN_ORDER.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C03/STATUS.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C03/REPORT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C03/CHECKPOINTS/CP01-BOOTSTRAP-ACTIVATED.json"
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C03 only.",
+    "Accepted predecessor is C02 commit cfd9746e2296280705e2e2e67b2c5980d440f02d; accepted C01 remains 5659288da80a239e2ded408da87348670c1410c2.",
+    "C01/C02 accepted IDs and learning meanings are prerequisites/references, not duplicate authoring targets.",
+    "Claim-to-Learning-Objective closure is mandatory before candidate PASS.",
+    "T04/T05 ownership overlap must be explicitly resolved before PASS.",
+    "D1-D4 remain independent of age.",
+    "No B1.1-C04 or later-pipeline artifact is allowed."
+  ],
+  "do_not_repeat": [
+    "Do not re-author C01 or C02.",
+    "Do not renumber accepted IDs.",
+    "Do not duplicate generic relation/function, arithmetic/order, proof or set foundations.",
+    "Do not start C04.",
+    "Do not use chat history as project state.",
+    "Do not mark PASS from count/schema checks without academic and ownership closure."
+  ],
+  "next_action": "Execute the locked C03 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C03 only.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "updated_at": "2026-09-05T02:25:00+07:00"
+}
