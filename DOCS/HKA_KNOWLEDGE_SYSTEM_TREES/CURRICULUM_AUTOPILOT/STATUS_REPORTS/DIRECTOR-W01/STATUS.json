@@ -1,58 +1,59 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
   "input_commit_sha": "825f76a7f25c02b132d87bde816b2dced2c6ed0d",
-  "last_checkpoint_commit_sha": "f20d8d44d9ea2e4f0f5326f719959fc1b608a8ad",
-  "last_checkpoint_id": "CP-20260904-2244-C01W01-ACCEPTED-C01-ACTIVATED",
+  "last_checkpoint_commit_sha": "5a9f4513e3928294c33803917a7e5b452402e204",
+  "last_checkpoint_id": "CP-20260905-C01-REVIEW-REQUIRED",
   "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","C01-W01-B1-ARCHITECTURE","B1.1-C01"],
   "completed_work": [
-    "Created mandatory durable per-window status-report standard and templates.",
-    "Updated recovery protocol and curriculum state so missing status folder blocks accepted PASS.",
-    "Patched C01-W01-B1-ARCHITECTURE in place for durable reporting without force reset.",
-    "Independently verified C01-W01 terminal commit 265bb584b5d7e36e11091289d58558408880118c, RESULT PASS, STATUS PASS, 348/348 ownership coverage, 52 bounded children, acyclic prerequisite graph, duplicate-control PASS and stage-boundary PASS.",
-    "Accepted C01-W01-B1-ARCHITECTURE as durable predecessor.",
-    "Activated C01-W02-B1.1-MATH-FAMILY and only child C01-W02-B1.1-MATH-FAMILY-C01.",
-    "Created child execution branch hka-tree/c01-w02-math-c01 from the accepted predecessor commit.",
-    "Installed the child contract, execution prompt, and initial durable status/report folder.",
-    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json to reflect the accepted predecessor and active child."
+    "Created mandatory durable per-window status-report standard and recovery protocol.",
+    "Accepted C01-W01-B1-ARCHITECTURE as durable predecessor after independent verification.",
+    "Activated only C01-W02-B1.1-MATH-FAMILY-C01 while keeping later math children locked.",
+    "Independently audited C01 candidate terminal commit 359359ae5663f5a62383c1774c2ff359ccb092a7 across all 8 nodes, 25 claims, 7 sources, 32 D1-D4 learning objectives, cross-links, prerequisites and stage boundary.",
+    "Found no clear mathematical falsehood in the 25 current claims, but found academic closure gaps between the claim/source set and existing learning objectives.",
+    "Issued a durable Director correction order for N001 propositional syntax closure, N003 axiomatic set-existence/separation closure, N008 decidability distinction, immutable/versioned Open Logic source pinning, and claim-to-objective closure audit for all 32 objectives.",
+    "Set canonical control-plane state and window registry to REVIEW_REQUIRED for C01 and kept C02 LOCKED.",
+    "Reopened the child branch durably by changing RESULT/STATUS/REPORT and creating CP03-DIRECTOR-REVIEW-REOPEN."
   ],
   "remaining_work": [
-    "Wait for C01-W02-B1.1-MATH-FAMILY-C01 to execute its bounded academic scope and return durable PASS.",
-    "Verify child RESULT.json, STATUS.json, checkpoints, sources, duplicate/R04 disposition and stage boundary before accepting it.",
-    "Unlock C02 only after Director verification of C01 PASS."
+    "Wait for the same C01 child to execute only the Director correction order and return a new committed pre-PASS audit.",
+    "Independently verify the repaired claims, source pins, all 32 claim-to-objective support mappings, R04 boundary, duplicate scan, prerequisite graph and stage boundary.",
+    "Unlock C02 only after Director-accepted repaired PASS."
   ],
   "output_paths": [
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W02-B1.1-MATH-FAMILY-C01-REPAIR.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260904-2244-C01W01-ACCEPTED-C01-ACTIVATED.json",
-    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/WINDOW_CONTRACT.md",
-    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/GPT_EXECUTION_PROMPT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260905-C01-REVIEW-REQUIRED.json",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/DIRECTOR_CORRECTION_ORDER.md",
     "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/STATUS.json",
-    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md"
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/CHECKPOINTS/CP03-DIRECTOR-REVIEW-REOPEN.json"
   ],
-  "blocking_issues": [],
+  "blocking_issues": [
+    "C01 candidate is not yet academically closed enough for immutable acceptance because some existing learning objectives require propositions not yet explicitly locked as sourced claims.",
+    "Lock-critical Open Logic source identity must be made immutable/versioned where practicable before acceptance."
+  ],
   "decisions_locked": [
-    "Every HKA worker and Director maintains a durable status folder.",
-    "NO STATUS FOLDER = NO ACCEPTED COMPLETION.",
-    "Chat history is never authoritative recovery state.",
-    "Accepted stable IDs and predecessor commits are immutable inputs to successor work.",
-    "Only one bounded child is active in the math family at this checkpoint.",
-    "C01-W02-B1.1-MATH-FAMILY-C02 remains locked until C01 is independently accepted PASS."
+    "A child RESULT.json=PASS is only a candidate until Director independently accepts it.",
+    "Academic lock readiness requires claim-to-learning-objective closure, not only schema/count/coverage PASS.",
+    "Existing stable IDs are preserved during repair; use append-only claim/source additions where possible.",
+    "R04 ownership stays unchanged: B1.1-C01 owns logic/proof/model-theoretic foundations; B1.5-C02/C04 own detailed computability/formal-language/program-verification curricula.",
+    "C01-W02-B1.1-MATH-FAMILY-C02 remains locked until repaired C01 receives Director-accepted PASS.",
+    "No Lesson Registry, prompts, images, R2, delivery or website outputs are allowed during this repair."
   ],
   "do_not_repeat": [
-    "Do not redo C01-W01-B1-ARCHITECTURE after accepted terminal PASS.",
-    "Do not create a competing reporting system.",
-    "Do not force/reset active execution branches.",
-    "Do not unlock C02 or later scopes from chat claims alone.",
-    "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during this stage."
+    "Do not redo C01-W01-B1-ARCHITECTURE.",
+    "Do not rewrite C01 from scratch or renumber existing IDs.",
+    "Do not unlock C02 from the old candidate PASS.",
+    "Do not equate passing schema/count checks with academic closure.",
+    "Do not advance to later pipeline stages."
   ],
-  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C01 from hka-tree/c01-w02-math-c01 and return durable PASS for Director verification.",
+  "next_action": "Execute only the C01 Director correction order on hka-tree/c01-w02-math-c01, then return a new committed result for independent Director acceptance.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01",
-  "updated_at": "2026-09-04T22:44:00+07:00"
+  "updated_at": "2026-09-05T00:15:00+07:00"
 }
