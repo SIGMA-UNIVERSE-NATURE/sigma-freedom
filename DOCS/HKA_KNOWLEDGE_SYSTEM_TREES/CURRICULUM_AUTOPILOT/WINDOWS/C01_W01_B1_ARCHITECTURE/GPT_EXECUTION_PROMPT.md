@@ -12,10 +12,13 @@ Before doing any authoring:
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/MASTER_PLAN.md`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md`
+   - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md`
    - `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json`
    - this window's `WINDOW_CONTRACT.md`.
-3. Verify `current_stage=CURRICULUM` and `active_window=C01-W01-B1-ARCHITECTURE`.
-4. If GitHub state conflicts with chat text, GitHub wins. Do not use prior-chat memory as project state.
+3. Read or create this window's durable status folder on the execution branch:
+   `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/`
+4. Verify `current_stage=CURRICULUM` and `active_window=C01-W01-B1-ARCHITECTURE`.
+5. If GitHub state conflicts with chat text, GitHub wins. Do not use prior-chat memory as project state.
 
 ## Canonical pipeline boundary
 
@@ -69,10 +72,23 @@ First fix a deterministic bounded partition. Every child window must have:
 - exact input commit/reference;
 - defined output paths;
 - independent `RESULT.json`;
+- its own mandatory status folder;
 - `PASS` checkpoint;
 - deterministic successor/next_action.
 
-If this window is interrupted, a replacement must be able to inspect committed partial outputs and resume only unfinished work.
+This window itself MUST maintain:
+
+`DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/`
+
+with at least:
+
+- `STATUS.json`
+- `REPORT.md`
+- `CHECKPOINTS/<CHECKPOINT_ID>.json` for meaningful checkpoints.
+
+Update the status folder after substantial work, before changing sub-scope, when blocked and before PASS.
+
+If this window is interrupted, a replacement must be able to inspect the durable status folder plus committed partial outputs and resume only unfinished work.
 
 ## Completion gate
 
@@ -82,8 +98,11 @@ Before PASS:
 2. Confirm every canonical B1 topic has exactly one primary authoring owner.
 3. Record secondary cross-links without duplicating primary ownership.
 4. Produce deterministic bounded child-window partitions.
-5. Write `RESULT.json` and `HANDOFF.md`.
-6. Set `next_action` to the first bounded successor window only.
+5. Write/update the mandatory status folder so `completed_work`, `remaining_work`, authoritative commits/paths, locked decisions, `do_not_repeat` and `next_action` are current.
+6. Write `RESULT.json` and `HANDOFF.md`.
+7. Set `next_action` to the first bounded successor window only.
+
+`RESULT.json=PASS` without the mandatory status folder is NOT accepted completion.
 
 Do not mark B1 or global academics `ACADEMIC_LOCKED` in this architecture window.
 
