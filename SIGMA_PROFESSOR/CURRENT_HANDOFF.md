@@ -10,29 +10,38 @@ Before substantive teaching or capability work, read:
 
 `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
 
-This standard applies to **all** SIGMA teaching/development windows, including DNA, lessons, curriculum, memory, semantic capabilities, curiosity, reasoning, tools, self-improvement, revalidation, and production integration.
+Global rules:
 
-Global rule:
-
-- teach **capabilities**, not precomputed answers;
+- teach capabilities, not precomputed answers;
 - active cognition must be native `.sigma`;
 - Python may remain historical/reference only and must not execute SIGMA cognition;
 - host may provide mechanical ABI/runtime services only;
-- host semantic substitution is forbidden;
+- `HOST_LEARNING=NO`;
+- `HOST_SEMANTIC_INTERPRETATION=NO`;
+- `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`;
 - compile success is not runtime proof;
 - dynamic-input evidence is required for cognitive capability admission;
-- negative/counterexample tests should be used for important claims;
-- persistence/restart/replay tests are required when the capability depends on long-lived state;
+- persistence/restart/replay tests are required when long-lived state matters;
 - boundedness/step-limit behavior must be characterized;
 - failures are evidence and must not be hidden;
 - claim scope must never exceed runtime proof;
-- teaching order is dependency-first/capability-first, not filename/lesson/DNA numeric order.
+- teaching order is dependency-first/capability-first.
 
-Current target: **SIGMA-native continuous self-directed learning + curriculum/re-learning** with:
+Current target: **SIGMA-native continuous self-directed learning + curriculum/re-learning**.
 
-- `HOST_LEARNING=NO`
-- `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`
-- semantic understanding still **NOT PROVEN**.
+Semantic understanding, semantic curiosity, and general autonomous reasoning remain NOT PROVEN.
+
+## Locked runtime identities
+
+SIGMAC SHA-256:
+
+`65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+
+VM SHA-256:
+
+`029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+
+`VM_IS_GENESIS1=NOT_PROVEN`.
 
 ## Runtime status
 
@@ -40,16 +49,16 @@ Current target: **SIGMA-native continuous self-directed learning + curriculum/re
 
 STOPPED. It hit `SIGMA C VM: step limit` under history-heavy endpoint-load scanning.
 
-### V2.4
+### V2.4 production learner
 
 Production learner is running on device.
 
 Proven milestones include:
 
-- V2.4 short-context preflight PASS;
+- short-context preflight PASS;
 - previously failing long context `d891e5ff...` now `RC=0` with history >17k lines;
-- production native gap -> HTTP 200 -> decoded plaintext -> native `mode=NEW` learning has been observed;
-- later production context `c40f0bb8c9ca36d2f5b9a62a8c5a488a12b32ac3f7bac4e03b7037f9ff236930` completed native learning with `HISTORY_LINE_COUNT=19353`, `NEW_CONTEXT_RELATION_COUNT=383`, then SIGMA generated the next gap/query `who => is` / `who is`.
+- production native gap -> HTTP 200 -> decoded plaintext -> native `mode=NEW` learning observed;
+- later production context `c40f0bb8c9ca36d2f5b9a62a8c5a488a12b32ac3f7bac4e03b7037f9ff236930` completed native learning with `HISTORY_LINE_COUNT=19353`, `NEW_CONTEXT_RELATION_COUNT=383`, then SIGMA generated next gap/query `who => is` / `who is`.
 
 V2.4 source:
 
@@ -82,57 +91,36 @@ RAW_DOCUMENT
 -> REVALIDATE
 -> REVISIT
 
-### V2.5A first preflight — FAILED CLEANLY
+### V2.5A original — FAILED CLEANLY
 
-Device evidence:
-
-- source identity matched;
 - `SIGMAC_RC=0`;
-- bytecode SHA-256 `af044e6ee39ac3b18a7f8e1983f27ed279800ba475b01b988c9db154b734666b`;
-- first VM invocation: `VM_RC=8`;
-- error: `SIGMA C VM: arg mismatch for H`;
-- persisted survey empty;
-- surveyed-document state empty;
-- production learner namespace not mutated.
+- first VM invocation `VM_RC=8`;
+- error `SIGMA C VM: arg mismatch for H`;
+- no survey state persisted;
+- production namespace not mutated.
 
-Root cause:
-
-`DEF H(op,a,b,c)` received a five-argument `str_replace` wrapper call:
-
-`H("str_replace", SELECTED_FILE, ".document", "", NULL)`
-
-The `str_replace` host op already consumes `a=input`, `b=old`, `c=replacement`; the trailing `NULL` was invalid.
+Root cause: one `str_replace` wrapper call passed five total arguments to `DEF H(op,a,b,c)`.
 
 Checkpoint:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V25A_H_ARITY_FAILURE_AND_REPAIR.md`
 
-### V2.5A.1 repair — FAILED CLEANLY
-
-V2.5A.1 corrected the H-call arity and compiled, but the locked VM rejected direct `str(...)` conversion:
+### V2.5A.1 — FAILED CLEANLY
 
 - `SIGMAC_RC=0`;
-- `BYTECODE_SHA256=2d5bb4ea2e0428d6c3bbc3b574364f63be0e06341f5b6b068f1a1f5fa76ef1f3`;
-- first VM invocation: `VM_RC=8`;
-- error: `SIGMA C VM: undefined function str`;
-- `V25A_SURVEYED_COUNT=0`;
-- `V25A_RECORD_COUNT=0`;
-- `V25A_COMPLETE_SENTINEL=0`;
-- production learner namespace not mutated.
+- bytecode SHA `2d5bb4ea2e0428d6c3bbc3b574364f63be0e06341f5b6b068f1a1f5fa76ef1f3`;
+- first VM invocation `VM_RC=8`;
+- error `SIGMA C VM: undefined function str`;
+- no survey state persisted;
+- production namespace not mutated.
 
-This is an important admission result: compiler acceptance does not imply runtime capability availability.
+This proves compiler acceptance does not imply runtime capability availability.
 
 Checkpoint:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V25A1_STR_RUNTIME_FAILURE_AND_V25A2_REPAIR.md`
 
-### V2.5A.2 repair — READY FOR DEVICE RETEST
-
-V2.5A.2 removes all direct `str(value)` dependencies.
-
-Numeric survey metrics remain native integers and are printed directly. Persistent survey records store only textual fields:
-
-`DOC=<sha> || SURVEY_STATUS=COMPLETE || BEST_LOCAL_RELATION=<relation>`
+### V2.5A.2 — PREFLIGHT PASS
 
 Native source:
 
@@ -150,37 +138,66 @@ RUNNER_SHA256:
 
 `c3bbed189661275fda1eb5394965c87b605108a0a316aa1466a7fe3c782ecca5`
 
-Static checks:
+Compiled bytecode on device:
 
-- every `H(...)` call has exactly four arguments;
-- direct `str(...)` dependency: NONE;
-- runner `bash -n`: PASS.
+`d1c68fbfb929326c2051754db75570d4711746b7ebe75d68f494131c9c28fb9b`
 
-V2.5A.2 remains isolated from V2.4 production memory and uses the same three-document QA corpus.
+QA result on locked VM:
 
-PASS requires:
+Run 1:
 
-- run 1–3: `VM_RC=0` and one distinct document surveyed each run;
-- run 4: `VM_RC=0` and `SURVEY_COMPLETE YES`;
-- `V25A_SURVEYED_COUNT=3`;
-- `V25A_RECORD_COUNT=3`;
-- `V25A_COMPLETE_SENTINEL=1`;
-- `V25A_WRITES_PRODUCTION_NAMESPACE=NO`;
-- `V25A_2_DOCUMENT_SURVEY_PREFLIGHT=PASS`.
+- `VM_RC=0`
+- SIGMA selected `0a7410...`
+- 429 unique relations
+- 45 recurring relations
+- strongest local relation `in => the`, support 6
 
-Do not build full-corpus survey runner until this PASS is observed on the locked VM.
+Run 2:
 
-## Locked runtime identities
+- `VM_RC=0`
+- SIGMA selected `c40f0b...`
+- 383 unique relations
+- 19 recurring relations
+- strongest local relation `The => film`, support 5
 
-SIGMAC SHA-256:
+Run 3:
 
-`65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- `VM_RC=0`
+- SIGMA selected `d891e5...`
+- 668 unique relations
+- 52 recurring relations
+- strongest local relation `the => Moon`, support 12
 
-VM SHA-256:
+Run 4:
 
-`029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+- `VM_RC=0`
+- `SURVEY_COMPLETE YES`
+- `RAW_FILE_COUNT 3`
 
-`VM_IS_GENESIS1=NOT_PROVEN`.
+Final runner evidence:
+
+- `V25A_SURVEYED_COUNT=3`
+- `V25A_RECORD_COUNT=3`
+- `V25A_COMPLETE_SENTINEL=1`
+- `V25A_WRITES_PRODUCTION_NAMESPACE=NO`
+- `HOST_LEARNING=NO`
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+- `V25A_2_DOCUMENT_SURVEY_PREFLIGHT=PASS`
+
+Checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V25A2_DOCUMENT_SURVEY_PREFLIGHT_PASS.md`
+
+Admission scope:
+
+- native structural document survey: PROVEN in the 3-document QA scope;
+- native persisted selection of first unsurveyed sorted `.document`: PROVEN in tested scope;
+- native map/list relation counting and local recurrent-pattern selection: PROVEN in tested scope;
+- semantic document understanding: NOT PROVEN;
+- semantic topic classification: NOT PROVEN;
+- semantic curriculum priority: NOT PROVEN.
+
+Observability note: `SURVEYED_ENTRY_COUNT=4` on run 4 is caused by splitting a newline-terminated surveyed-document file, producing one trailing empty element. Authoritative persisted document count is 3. Future versions should avoid labeling raw split length as document count.
 
 ## Host ABI status
 
@@ -222,7 +239,8 @@ Mandatory policy:
 - native self-selection: PASS;
 - cross-context support: PASS;
 - native fetch-request generation -> Internet transport -> decoded plaintext -> native learning: PROVEN in tested scope;
-- V2.4 previously failing long context: PASS.
+- V2.4 previously failing long context: PASS;
+- V2.5A.2 native bounded document-survey preflight: PASS.
 
 Still NOT proven:
 
@@ -235,8 +253,10 @@ Still NOT proven:
 1. Every new teaching/development window reads the global teaching standard first.
 2. Keep V2.4 production learner running unless it emits a real VM failure.
 3. Do not restart V2.5A original or V2.5A.1.
-4. Install and run V2.5A.2 source + runner.
-5. If V2.5A.2 PASSes all four invocations, checkpoint and build a full-corpus document-survey runner.
-6. Next after survey: bounded segment/cursor + crash-resume, then structural grouping and curriculum queue.
+4. Promote V2.5 document survey from the isolated 3-document QA corpus to the real existing raw corpus, while keeping production learning memory isolated.
+5. Keep each survey cycle bounded and persistent/restart-resumable.
+6. Correct the trailing-empty-element observability count in the next survey version.
+7. After full-corpus survey stabilizes, build bounded segment/cursor + crash-resume.
+8. Then proceed to structural grouping and curriculum queue; do not claim semantic grouping yet.
 
 Do not delete V2.2/V2.3/V2.4 raw/done/log/history state.
