@@ -1,0 +1,16 @@
+openapi: 3.1.0
+info: {title: HKA Release Bridge, version: 1.0.0}
+servers: [{url: https://hka-c4k-release-bridge.__WORKERS_SUBDOMAIN__.workers.dev}]
+components: {securitySchemes: {bearerAuth: {type: http, scheme: bearer}}}
+security: [{bearerAuth: []}]
+paths:
+  /v1/release/approved/{run_id}:
+    get: {operationId: release_get_approved_run, parameters: [{in: path, name: run_id, required: true, schema: {type: string}}], responses: {'200': {description: Eligibility}}}
+  /v1/release/runs/{run_id}/execute:
+    post:
+      operationId: release_execute
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {application/json: {schema: {type: object}}}}
+      responses: {'202': {description: Started}, '200': {description: Existing}}
+  /v1/release/runs/{run_id}/status:
+    get: {operationId: release_get_status, parameters: [{in: path, name: run_id, required: true, schema: {type: string}}], responses: {'200': {description: Workflow status}}}

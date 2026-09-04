@@ -1,0 +1,29 @@
+openapi: 3.1.0
+info: {title: HKA Production Upload Bridge, version: 1.0.0}
+servers: [{url: https://hka-c4k-production-upload-bridge.__WORKERS_SUBDOMAIN__.workers.dev}]
+components: {securitySchemes: {bearerAuth: {type: http, scheme: bearer}}}
+security: [{bearerAuth: []}]
+paths:
+  /v1/production/runs:
+    post:
+      operationId: production_begin_run
+      requestBody: {required: true, content: {application/json: {schema: {type: object}}}}
+      responses: {'200': {description: Run active}}
+  /v1/production/runs/{run_id}/assets:
+    post:
+      operationId: production_upload_asset
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {multipart/form-data: {schema: {type: object, properties: {asset_id: {type: string}, variant: {type: string}, sha256: {type: string}, file: {type: string, format: binary}}}}}}
+      responses: {'200': {description: Stored verified}}
+  /v1/production/runs/{run_id}/records:
+    post:
+      operationId: production_upload_record
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {multipart/form-data: {schema: {type: object, properties: {record_type: {type: string}, asset_id: {type: string}, sha256: {type: string}, file: {type: string, format: binary}}}}}}
+      responses: {'200': {description: Stored verified}}
+  /v1/production/runs/{run_id}/complete:
+    post:
+      operationId: production_complete_run
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {application/json: {schema: {type: object}}}}
+      responses: {'200': {description: QA pending}}

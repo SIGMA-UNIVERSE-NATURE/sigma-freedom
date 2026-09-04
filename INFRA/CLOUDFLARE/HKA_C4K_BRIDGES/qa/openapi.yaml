@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info: {title: HKA QA Bridge, version: 1.0.0}
+servers: [{url: https://hka-c4k-qa-bridge.__WORKERS_SUBDOMAIN__.workers.dev}]
+components: {securitySchemes: {bearerAuth: {type: http, scheme: bearer}}}
+security: [{bearerAuth: []}]
+paths:
+  /v1/qa/runs/{run_id}:
+    get: {operationId: qa_get_run, parameters: [{in: path, name: run_id, required: true, schema: {type: string}}], responses: {'200': {description: Run}}}
+  /v1/qa/runs/{run_id}/assets:
+    get: {operationId: qa_list_run_assets, parameters: [{in: path, name: run_id, required: true, schema: {type: string}}], responses: {'200': {description: Assets}}}
+  /v1/qa/runs/{run_id}/assets/{asset_id}/{variant}:
+    get:
+      operationId: qa_get_asset
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}, {in: path, name: asset_id, required: true, schema: {type: string}}, {in: path, name: variant, required: true, schema: {type: string}}]
+      responses: {'200': {description: Exact binary, content: {image/png: {schema: {type: string, format: binary}}}}}
+  /v1/qa/runs/{run_id}/manifest:
+    get: {operationId: qa_get_manifest, parameters: [{in: path, name: run_id, required: true, schema: {type: string}}], responses: {'200': {description: Manifest}}}
+  /v1/qa/runs/{run_id}/verdict:
+    post:
+      operationId: qa_submit_verdict
+      parameters: [{in: path, name: run_id, required: true, schema: {type: string}}]
+      requestBody: {required: true, content: {application/json: {schema: {type: object}}}}
+      responses: {'200': {description: Verdict stored}}

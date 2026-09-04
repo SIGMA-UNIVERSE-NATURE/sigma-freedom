@@ -1,0 +1,27 @@
+name: HKA W02 B00 Generation Runner
+on:
+  workflow_dispatch:
+  push:
+    branches: [hka-tree/w02-human-roots]
+    paths:
+      - 'DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/WINDOWS/W02_HUMAN_ROOTS/PRODUCTION/BATCHES/HKA-W02-B00/B00_GENERATION_REQUEST.json'
+permissions: {contents: read}
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      HKA_PRODUCTION_BRIDGE_URL: ${{ secrets.HKA_PRODUCTION_BRIDGE_URL }}
+      HKA_PRODUCTION_BRIDGE_AUTH_TOKEN: ${{ secrets.HKA_PRODUCTION_BRIDGE_AUTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install requests pillow
+      - name: Validate runner secrets
+        run: |
+          test -n "$OPENAI_API_KEY" || { echo '::error::OPENAI_API_KEY missing'; exit 1; }
+          test -n "$HKA_PRODUCTION_BRIDGE_URL" || { echo '::error::HKA_PRODUCTION_BRIDGE_URL missing'; exit 1; }
+          test -n "$HKA_PRODUCTION_BRIDGE_AUTH_TOKEN" || { echo '::error::HKA_PRODUCTION_BRIDGE_AUTH_TOKEN missing'; exit 1; }
+      - run: python INFRA/CLOUDFLARE/HKA_C4K_BRIDGES/generation/hka_w02_b00.py
