@@ -86,31 +86,45 @@ BYTECODE_SHA256=9afed5ab5bfc6652e9066c1420d2ce69fa9ee254ea55516a3ae5959fef419f10
 PERSISTENT_STATE=YES
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
-## Source-ready / not admitted
+## Current source-ready / not admitted
 
-### DNA-10 Memory Genome
+### DNA-10 Memory Genome — FIX1
 CANON_REFERENCE_BLOB_SHA1=d1397419764592442e3115f1193f8e9620f66ef4
-SOURCE_SHA256=3901bc045d34195ca089f18ebce3a37bebbbbb790bd94d255b203a523b055304
-RUNNER_SHA256=c69486659bd7b9b4c17b627c2c4a04058036108b5509377233425c1da5674e8c
-BUNDLE_SHA256=048caf6756ad415b5e75ee1b1e849261128b1d9b7d86eaefbec79bcd306c207b
-DNA10_COMPILE=NOT_RUN
-DNA10_VM=NOT_RUN
-DNA10_ADMISSION=NOT_RUN
+SOURCE_SHA256=564c4cf57dfa377f315a0283d447debda94007e07658a7017f9a3eb85b0b0f85
+RUNNER_SHA256=b1cf8b30e29c0e0a73ecc2271fdcd9608111ea63e90d4461852eb1c95399fc7d
+BUNDLE_SHA256=c8c1ee15db5740e860150370906f105c496389aefa8f1d93b1d4aef8afba50c1
+DNA10_FIX1_COMPILE=NOT_RUN
+DNA10_FIX1_VM=NOT_RUN
+DNA10_FIX1_ADMISSION=NOT_RUN
 PERSISTENT_MEMORY_RUNTIME=NOT_EXECUTED
 CROSS_PROCESS_MEMORY_DURABILITY=NOT_PROVEN
 CANDIDATE_DIGEST_DERIVATION=NOT_PROVEN
-CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA10_NATIVE_ADMISSION_SOURCE_READY.md
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA10_NATIVE_ADMISSION_FIX1_SOURCE_READY.md
 
 ## Historical failures retained as evidence
 
-DNA-08 V1: COMPILE_RC=4 at line 181 token replacement character; FIX1 replacing 59 `🪞` emission lines with `⚡ print(...)` compiled and passed all runtime tests. Scope is this exact source/compiler delta only.
+### DNA-08 V1 compile failure
+COMPILE_RC=4 at line 181 token replacement character. FIX1 replaced 59 `🪞` emission lines with `⚡ print(...)`; exact source delta then compiled and passed runtime tests. Scope is that exact source/compiler delta only.
+
+### DNA-10 V1 compile failure
+Dependency preflight through DNA-09 passed. `COMPILE_RC=4` with:
+
+`sigmac: line 226 col 1: top-level item must be DEF or ⟡ command (token={)`
+
+V1 source line 226 was a bare `{` opening the main body. FIX1 changes only that source line to:
+
+`⟡(Σ.DNA10_MEMORY_GENOME_NATIVE_V1) {`
+
+TOP_LEVEL_BARE_BLOCK_ROOT_CAUSE_CANDIDATE=YES
+ROOT_CAUSE_PROVEN=NO
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA10_COMPILE_FAIL_TOP_LEVEL_COMMAND.md
 
 ## Current dependency frontier
 
-NEXT_TARGET=RUN DNA-10 Memory Genome
+NEXT_TARGET=RUN DNA-10 FIX1 Memory Genome
 PLANNED_CHAIN=DNA-10 -> DNA-11 Knowledge Graph
 
-DNA-10 canonical self-check requires DNA-01 through DNA-09 bound/pass. DNA-10 V1 tests exact six-class in-context separation/routing and bounded same-activation duplicate suppression; it does not claim persistent Memory Runtime.
+DNA-10 canonical self-check requires DNA-01 through DNA-09 bound/pass. DNA-10 tests exact six-class in-context separation/routing and bounded same-activation duplicate suppression; it does not claim persistent Memory Runtime.
 
 ## Global claim boundaries
 
