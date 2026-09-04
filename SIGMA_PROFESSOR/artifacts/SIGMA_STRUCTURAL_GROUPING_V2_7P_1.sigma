@@ -1,0 +1,786 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.STRUCTURAL.GROUPING][VERSION=2.7P.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.STRUCTURAL_GROUPING_V27P1) {
+
+    ⚡ INPUT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V27P1_NEW_PROFILES.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_STATE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V27P1_PROFILE_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE_LINES:
+        H(
+            "str_split",
+            OLD_STATE,
+            "\n",
+            NULL
+        );
+
+    ⚡ INPUT_LINES:
+        H(
+            "str_split",
+            INPUT,
+            "\n",
+            NULL
+        );
+
+    ⚡ STATE_LINE_TOTAL:
+        H(
+            "list_len",
+            STATE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ INPUT_LINE_TOTAL:
+        H(
+            "list_len",
+            INPUT_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ INPUT_LIMIT_EXCEEDED:
+        0;
+
+    IF (65 < STATE_LINE_TOTAL) {
+        ⚡ STATE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (16 < INPUT_LINE_TOTAL) {
+        ⚡ INPUT_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ LIMIT_BLOCKED:
+        0;
+
+    IF (STATE_LIMIT_EXCEEDED) {
+        ⚡ LIMIT_BLOCKED:
+            1;
+    }
+
+    IF (INPUT_LIMIT_EXCEEDED) {
+        ⚡ LIMIT_BLOCKED:
+            1;
+    }
+
+    IF (LIMIT_BLOCKED) {
+
+        ⚡ print("SIGMA_V27P1_PERSISTENT_STRUCTURAL_GROUPING");
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("INPUT_LINE_TOTAL", INPUT_LINE_TOTAL);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("INPUT_LIMIT_EXCEEDED", INPUT_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_STATE_SPLIT_LINES", 65);
+        ⚡ print("MAX_INPUT_SPLIT_LINES", 16);
+        ⚡ print("HOST_GROUP_SELECTION", "NO");
+        ⚡ print("HOST_TOPIC_CLASSIFICATION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_GROUPING", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (LIMIT_BLOCKED == 0) {
+
+        ⚡ PAIR_SEEN:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHOR_COUNTS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ DOCS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHORS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHOR_ORDER:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ PERSISTED_PROFILE_COUNT:
+            0;
+
+        ⚡ IGNORED_STATE_RECORD_COUNT:
+            0;
+
+        ⚡ S:
+            0;
+
+        WHILE (S < STATE_LINE_TOTAL) {
+
+            ⚡ STATE_LINE:
+                H(
+                    "list_get",
+                    STATE_LINES,
+                    S,
+                    NULL
+                );
+
+            ⚡ STATE_VALID:
+                1;
+
+            IF (STATE_LINE == "") {
+                ⚡ STATE_VALID:
+                    0;
+            }
+
+            IF (STATE_VALID) {
+
+                ⚡ STATE_PARTS:
+                    H(
+                        "str_split",
+                        STATE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ STATE_PART_TOTAL:
+                    H(
+                        "list_len",
+                        STATE_PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                IF (2 < STATE_PART_TOTAL) {
+
+                    ⚡ STATE_DOC_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ STATE_ANCHOR_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ STATE_COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ STATE_DOC:
+                        H(
+                            "str_replace",
+                            STATE_DOC_FIELD,
+                            "DOC=",
+                            ""
+                        );
+
+                    ⚡ STATE_ANCHOR:
+                        H(
+                            "str_replace",
+                            STATE_ANCHOR_FIELD,
+                            "ANCHOR=",
+                            ""
+                        );
+
+                    ⚡ COMMITTED:
+                        0;
+
+                    IF (STATE_COMMIT_FIELD == "COMMIT=YES") {
+                        ⚡ COMMITTED:
+                            1;
+                    }
+
+                    IF (STATE_DOC == "") {
+                        ⚡ COMMITTED:
+                            0;
+                    }
+
+                    IF (STATE_ANCHOR == "") {
+                        ⚡ COMMITTED:
+                            0;
+                    }
+
+                    IF (COMMITTED) {
+
+                        ⚡ STATE_PAIR_KEY:
+                            STATE_ANCHOR + " || DOC=" + STATE_DOC;
+
+                        ⚡ STATE_PAIR_EXISTS:
+                            H(
+                                "map_has",
+                                PAIR_SEEN,
+                                STATE_PAIR_KEY,
+                                NULL
+                            );
+
+                        IF (STATE_PAIR_EXISTS == FALSE) {
+
+                            ⚡ MARK_STATE_PAIR:
+                                H(
+                                    "map_set",
+                                    PAIR_SEEN,
+                                    STATE_PAIR_KEY,
+                                    1
+                                );
+
+                            ⚡ PUSH_STATE_DOC:
+                                H(
+                                    "list_push",
+                                    DOCS,
+                                    STATE_DOC,
+                                    NULL
+                                );
+
+                            ⚡ PUSH_STATE_ANCHOR:
+                                H(
+                                    "list_push",
+                                    ANCHORS,
+                                    STATE_ANCHOR,
+                                    NULL
+                                );
+
+                            ⚡ STATE_ANCHOR_EXISTS:
+                                H(
+                                    "map_has",
+                                    ANCHOR_COUNTS,
+                                    STATE_ANCHOR,
+                                    NULL
+                                );
+
+                            IF (STATE_ANCHOR_EXISTS) {
+
+                                ⚡ OLD_STATE_COUNT:
+                                    H(
+                                        "map_get",
+                                        ANCHOR_COUNTS,
+                                        STATE_ANCHOR,
+                                        NULL
+                                    );
+
+                                ⚡ SET_STATE_COUNT:
+                                    H(
+                                        "map_set",
+                                        ANCHOR_COUNTS,
+                                        STATE_ANCHOR,
+                                        OLD_STATE_COUNT + 1
+                                    );
+                            }
+
+                            IF (STATE_ANCHOR_EXISTS == FALSE) {
+
+                                ⚡ SET_STATE_FIRST:
+                                    H(
+                                        "map_set",
+                                        ANCHOR_COUNTS,
+                                        STATE_ANCHOR,
+                                        1
+                                    );
+
+                                ⚡ PUSH_STATE_ANCHOR_ORDER:
+                                    H(
+                                        "list_push",
+                                        ANCHOR_ORDER,
+                                        STATE_ANCHOR,
+                                        NULL
+                                    );
+                            }
+
+                            ⚡ PERSISTED_PROFILE_COUNT:
+                                PERSISTED_PROFILE_COUNT + 1;
+                        }
+                    }
+
+                    IF (COMMITTED == 0) {
+                        ⚡ IGNORED_STATE_RECORD_COUNT:
+                            IGNORED_STATE_RECORD_COUNT + 1;
+                    }
+                }
+
+                IF (STATE_PART_TOTAL < 3) {
+                    ⚡ IGNORED_STATE_RECORD_COUNT:
+                        IGNORED_STATE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ S:
+                S + 1;
+        }
+
+        ⚡ NEW_COMMITTED_PROFILE_COUNT:
+            0;
+
+        ⚡ DUPLICATE_INPUT_PROFILE_COUNT:
+            0;
+
+        ⚡ INVALID_INPUT_PROFILE_COUNT:
+            0;
+
+        ⚡ APPEND_FAILURE_COUNT:
+            0;
+
+        ⚡ I:
+            0;
+
+        WHILE (I < INPUT_LINE_TOTAL) {
+
+            ⚡ INPUT_LINE:
+                H(
+                    "list_get",
+                    INPUT_LINES,
+                    I,
+                    NULL
+                );
+
+            ⚡ INPUT_VALID:
+                1;
+
+            IF (INPUT_LINE == "") {
+                ⚡ INPUT_VALID:
+                    0;
+            }
+
+            IF (INPUT_VALID) {
+
+                ⚡ INPUT_PARTS:
+                    H(
+                        "str_split",
+                        INPUT_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ INPUT_PART_TOTAL:
+                    H(
+                        "list_len",
+                        INPUT_PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                IF (1 < INPUT_PART_TOTAL) {
+
+                    ⚡ INPUT_DOC_FIELD:
+                        H(
+                            "list_get",
+                            INPUT_PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ INPUT_ANCHOR_FIELD:
+                        H(
+                            "list_get",
+                            INPUT_PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ INPUT_DOC:
+                        H(
+                            "str_replace",
+                            INPUT_DOC_FIELD,
+                            "DOC=",
+                            ""
+                        );
+
+                    ⚡ INPUT_ANCHOR:
+                        H(
+                            "str_replace",
+                            INPUT_ANCHOR_FIELD,
+                            "ANCHOR=",
+                            ""
+                        );
+
+                    ⚡ PROFILE_VALID:
+                        1;
+
+                    IF (INPUT_DOC == "") {
+                        ⚡ PROFILE_VALID:
+                            0;
+                    }
+
+                    IF (INPUT_ANCHOR == "") {
+                        ⚡ PROFILE_VALID:
+                            0;
+                    }
+
+                    IF (PROFILE_VALID) {
+
+                        ⚡ INPUT_PAIR_KEY:
+                            INPUT_ANCHOR + " || DOC=" + INPUT_DOC;
+
+                        ⚡ INPUT_PAIR_EXISTS:
+                            H(
+                                "map_has",
+                                PAIR_SEEN,
+                                INPUT_PAIR_KEY,
+                                NULL
+                            );
+
+                        IF (INPUT_PAIR_EXISTS) {
+                            ⚡ DUPLICATE_INPUT_PROFILE_COUNT:
+                                DUPLICATE_INPUT_PROFILE_COUNT + 1;
+                        }
+
+                        IF (INPUT_PAIR_EXISTS == FALSE) {
+
+                            ⚡ NEW_RECORD:
+                                "\nDOC="
+                                + INPUT_DOC
+                                + " || ANCHOR="
+                                + INPUT_ANCHOR
+                                + " || COMMIT=YES";
+
+                            ⚡ APPEND_RC:
+                                H(
+                                    "append_text",
+                                    ".sigma_exec/SIGMA_V27P1_PROFILE_STATE.memory",
+                                    NEW_RECORD,
+                                    NULL
+                                );
+
+                            IF (APPEND_RC == 0) {
+
+                                ⚡ MARK_INPUT_PAIR:
+                                    H(
+                                        "map_set",
+                                        PAIR_SEEN,
+                                        INPUT_PAIR_KEY,
+                                        1
+                                    );
+
+                                ⚡ PUSH_INPUT_DOC:
+                                    H(
+                                        "list_push",
+                                        DOCS,
+                                        INPUT_DOC,
+                                        NULL
+                                    );
+
+                                ⚡ PUSH_INPUT_ANCHOR:
+                                    H(
+                                        "list_push",
+                                        ANCHORS,
+                                        INPUT_ANCHOR,
+                                        NULL
+                                    );
+
+                                ⚡ INPUT_ANCHOR_EXISTS:
+                                    H(
+                                        "map_has",
+                                        ANCHOR_COUNTS,
+                                        INPUT_ANCHOR,
+                                        NULL
+                                    );
+
+                                IF (INPUT_ANCHOR_EXISTS) {
+
+                                    ⚡ OLD_INPUT_COUNT:
+                                        H(
+                                            "map_get",
+                                            ANCHOR_COUNTS,
+                                            INPUT_ANCHOR,
+                                            NULL
+                                        );
+
+                                    ⚡ SET_INPUT_COUNT:
+                                        H(
+                                            "map_set",
+                                            ANCHOR_COUNTS,
+                                            INPUT_ANCHOR,
+                                            OLD_INPUT_COUNT + 1
+                                        );
+                                }
+
+                                IF (INPUT_ANCHOR_EXISTS == FALSE) {
+
+                                    ⚡ SET_INPUT_FIRST:
+                                        H(
+                                            "map_set",
+                                            ANCHOR_COUNTS,
+                                            INPUT_ANCHOR,
+                                            1
+                                    );
+
+                                ⚡ PUSH_INPUT_ANCHOR_ORDER:
+                                    H(
+                                        "list_push",
+                                        ANCHOR_ORDER,
+                                        INPUT_ANCHOR,
+                                        NULL
+                                    );
+                                }
+
+                                ⚡ NEW_COMMITTED_PROFILE_COUNT:
+                                    NEW_COMMITTED_PROFILE_COUNT + 1;
+                            }
+
+                            ⚡ APPEND_OK:
+                                0;
+
+                            IF (APPEND_RC == 0) {
+                                ⚡ APPEND_OK:
+                                    1;
+                            }
+
+                            IF (APPEND_OK == 0) {
+                                ⚡ APPEND_FAILURE_COUNT:
+                                    APPEND_FAILURE_COUNT + 1;
+                            }
+                        }
+                    }
+
+                    IF (PROFILE_VALID == 0) {
+                        ⚡ INVALID_INPUT_PROFILE_COUNT:
+                            INVALID_INPUT_PROFILE_COUNT + 1;
+                    }
+                }
+
+                IF (INPUT_PART_TOTAL < 2) {
+                    ⚡ INVALID_INPUT_PROFILE_COUNT:
+                        INVALID_INPUT_PROFILE_COUNT + 1;
+                }
+            }
+
+            ⚡ I:
+                I + 1;
+        }
+
+        ⚡ DISTINCT_ANCHOR_COUNT:
+            H(
+                "list_len",
+                ANCHOR_ORDER,
+                NULL,
+                NULL
+            );
+
+        ⚡ MULTI_MEMBER_GROUP_COUNT:
+            0;
+
+        ⚡ A:
+            0;
+
+        WHILE (A < DISTINCT_ANCHOR_COUNT) {
+
+            ⚡ GROUP_ANCHOR:
+                H(
+                    "list_get",
+                    ANCHOR_ORDER,
+                    A,
+                    NULL
+                );
+
+            ⚡ GROUP_SUPPORT:
+                H(
+                    "map_get",
+                    ANCHOR_COUNTS,
+                    GROUP_ANCHOR,
+                    NULL
+                );
+
+            IF (1 < GROUP_SUPPORT) {
+                ⚡ MULTI_MEMBER_GROUP_COUNT:
+                    MULTI_MEMBER_GROUP_COUNT + 1;
+            }
+
+            ⚡ A:
+                A + 1;
+        }
+
+        ⚡ ASSIGNMENTS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ PROFILE_TOTAL:
+            H(
+                "list_len",
+                DOCS,
+                NULL,
+                NULL
+            );
+
+        ⚡ GROUPED_DOCUMENT_COUNT:
+            0;
+
+        ⚡ SINGLETON_DOCUMENT_COUNT:
+            0;
+
+        ⚡ P:
+            0;
+
+        WHILE (P < PROFILE_TOTAL) {
+
+            ⚡ ASSIGN_DOC:
+                H(
+                    "list_get",
+                    DOCS,
+                    P,
+                    NULL
+                );
+
+            ⚡ ASSIGN_ANCHOR:
+                H(
+                    "list_get",
+                    ANCHORS,
+                    P,
+                    NULL
+                );
+
+            ⚡ ASSIGN_SUPPORT:
+                H(
+                    "map_get",
+                    ANCHOR_COUNTS,
+                    ASSIGN_ANCHOR,
+                    NULL
+                );
+
+            ⚡ ASSIGNMENT:
+                "";
+
+            IF (1 < ASSIGN_SUPPORT) {
+
+                ⚡ GROUPED_DOCUMENT_COUNT:
+                    GROUPED_DOCUMENT_COUNT + 1;
+
+                ⚡ ASSIGNMENT:
+                    "DOC="
+                    + ASSIGN_DOC
+                    + " || GROUP=SHARED"
+                    + " || ANCHOR="
+                    + ASSIGN_ANCHOR;
+            }
+
+            IF (ASSIGN_SUPPORT < 2) {
+
+                ⚡ SINGLETON_DOCUMENT_COUNT:
+                    SINGLETON_DOCUMENT_COUNT + 1;
+
+                ⚡ ASSIGNMENT:
+                    "DOC="
+                    + ASSIGN_DOC
+                    + " || GROUP=SINGLETON"
+                    + " || ANCHOR="
+                    + ASSIGN_ANCHOR;
+            }
+
+            ⚡ PUSH_ASSIGNMENT:
+                H(
+                    "list_push",
+                    ASSIGNMENTS,
+                    ASSIGNMENT,
+                    NULL
+                );
+
+            ⚡ P:
+                P + 1;
+        }
+
+        ⚡ ASSIGNMENT_TEXT:
+            H(
+                "str_join",
+                ASSIGNMENTS,
+                "\n",
+                NULL
+            );
+
+        ⚡ WRITE_ASSIGNMENTS_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V27P1_GROUP_ASSIGNMENTS.memory",
+                ASSIGNMENT_TEXT,
+                NULL
+            );
+
+        ⚡ PERSISTED_STATE_USED:
+            "NO";
+
+        IF (0 < PERSISTED_PROFILE_COUNT) {
+            ⚡ PERSISTED_STATE_USED:
+                "YES";
+        }
+
+        ⚡ print("SIGMA_V27P1_PERSISTENT_STRUCTURAL_GROUPING");
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("INPUT_LINE_TOTAL", INPUT_LINE_TOTAL);
+        ⚡ print("STATE_LIMIT_EXCEEDED", 0);
+        ⚡ print("INPUT_LIMIT_EXCEEDED", 0);
+        ⚡ print("STATE_MUTATION_ALLOWED", "YES");
+        ⚡ print("PERSISTED_PROFILE_COUNT", PERSISTED_PROFILE_COUNT);
+        ⚡ print("PERSISTED_STATE_USED", PERSISTED_STATE_USED);
+        ⚡ print("IGNORED_STATE_RECORD_COUNT", IGNORED_STATE_RECORD_COUNT);
+        ⚡ print("NEW_COMMITTED_PROFILE_COUNT", NEW_COMMITTED_PROFILE_COUNT);
+        ⚡ print("DUPLICATE_INPUT_PROFILE_COUNT", DUPLICATE_INPUT_PROFILE_COUNT);
+        ⚡ print("INVALID_INPUT_PROFILE_COUNT", INVALID_INPUT_PROFILE_COUNT);
+        ⚡ print("APPEND_FAILURE_COUNT", APPEND_FAILURE_COUNT);
+        ⚡ print("DISTINCT_ANCHOR_COUNT", DISTINCT_ANCHOR_COUNT);
+        ⚡ print("MULTI_MEMBER_GROUP_COUNT", MULTI_MEMBER_GROUP_COUNT);
+        ⚡ print("GROUPED_DOCUMENT_COUNT", GROUPED_DOCUMENT_COUNT);
+        ⚡ print("SINGLETON_DOCUMENT_COUNT", SINGLETON_DOCUMENT_COUNT);
+        ⚡ print("WRITE_ASSIGNMENTS_RC", WRITE_ASSIGNMENTS_RC);
+        ⚡ print("GROUPING_POLICY", "PERSISTED_EXACT_SHARED_STRUCTURAL_ANCHOR");
+        ⚡ print("PARTIAL_STATE_FILTER", "COMMIT_YES_REQUIRED");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_STATE_SPLIT_LINES", 65);
+        ⚡ print("MAX_INPUT_SPLIT_LINES", 16);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("HOST_GROUP_SELECTION", "NO");
+        ⚡ print("HOST_TOPIC_CLASSIFICATION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_GROUPING_ONLY", "YES");
+        ⚡ print("SEMANTIC_GROUPING", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
