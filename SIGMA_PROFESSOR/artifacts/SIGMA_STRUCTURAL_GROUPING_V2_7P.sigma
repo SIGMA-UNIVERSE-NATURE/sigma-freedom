@@ -1,0 +1,422 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.STRUCTURAL.GROUPING][VERSION=2.7P]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.STRUCTURAL_GROUPING_V27P) {
+
+    ⚡ INPUT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V27T_STRUCTURAL_PROFILES.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ LINES:
+        H(
+            "str_split",
+            INPUT,
+            "\n",
+            NULL
+        );
+
+    ⚡ LINE_TOTAL:
+        H(
+            "list_len",
+            LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ ANCHOR_COUNTS:
+        H(
+            "map_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ SEEN_PAIRS:
+        H(
+            "map_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ DOCS:
+        H(
+            "list_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ ANCHORS:
+        H(
+            "list_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ ANCHOR_ORDER:
+        H(
+            "list_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ ADMITTED_PROFILE_COUNT:
+        0;
+
+    ⚡ DUPLICATE_PROFILE_COUNT:
+        0;
+
+    ⚡ L:
+        0;
+
+    WHILE (L < LINE_TOTAL) {
+
+        ⚡ LINE:
+            H(
+                "list_get",
+                LINES,
+                L,
+                NULL
+            );
+
+        IF (LINE != "") {
+
+            ⚡ PARTS:
+                H(
+                    "str_split",
+                    LINE,
+                    " || ",
+                    NULL
+                );
+
+            ⚡ PART_TOTAL:
+                H(
+                    "list_len",
+                    PARTS,
+                    NULL,
+                    NULL
+                );
+
+            IF (1 < PART_TOTAL) {
+
+                ⚡ DOC_FIELD:
+                    H(
+                        "list_get",
+                        PARTS,
+                        0,
+                        NULL
+                    );
+
+                ⚡ ANCHOR_FIELD:
+                    H(
+                        "list_get",
+                        PARTS,
+                        1,
+                        NULL
+                    );
+
+                ⚡ DOC_ID:
+                    H(
+                        "str_replace",
+                        DOC_FIELD,
+                        "DOC=",
+                        ""
+                    );
+
+                ⚡ ANCHOR:
+                    H(
+                        "str_replace",
+                        ANCHOR_FIELD,
+                        "ANCHOR=",
+                        ""
+                    );
+
+                ⚡ VALID_PROFILE:
+                    1;
+
+                IF (DOC_ID == "") {
+                    ⚡ VALID_PROFILE:
+                        0;
+                }
+
+                IF (ANCHOR == "") {
+                    ⚡ VALID_PROFILE:
+                        0;
+                }
+
+                IF (VALID_PROFILE) {
+
+                    ⚡ PAIR_KEY:
+                        ANCHOR + " || DOC=" + DOC_ID;
+
+                    ⚡ PAIR_EXISTS:
+                        H(
+                            "map_has",
+                            SEEN_PAIRS,
+                            PAIR_KEY,
+                            NULL
+                        );
+
+                    IF (PAIR_EXISTS == FALSE) {
+
+                        ⚡ MARK_PAIR:
+                            H(
+                                "map_set",
+                                SEEN_PAIRS,
+                                PAIR_KEY,
+                                1
+                            );
+
+                        ⚡ PUSH_DOC:
+                            H(
+                                "list_push",
+                                DOCS,
+                                DOC_ID,
+                                NULL
+                            );
+
+                        ⚡ PUSH_ANCHOR:
+                            H(
+                                "list_push",
+                                ANCHORS,
+                                ANCHOR,
+                                NULL
+                            );
+
+                        ⚡ ANCHOR_EXISTS:
+                            H(
+                                "map_has",
+                                ANCHOR_COUNTS,
+                                ANCHOR,
+                                NULL
+                            );
+
+                        IF (ANCHOR_EXISTS) {
+
+                            ⚡ OLD_COUNT:
+                                H(
+                                    "map_get",
+                                    ANCHOR_COUNTS,
+                                    ANCHOR,
+                                    NULL
+                                );
+
+                            ⚡ SET_COUNT:
+                                H(
+                                    "map_set",
+                                    ANCHOR_COUNTS,
+                                    ANCHOR,
+                                    OLD_COUNT + 1
+                                );
+                        }
+
+                        IF (ANCHOR_EXISTS == FALSE) {
+
+                            ⚡ SET_FIRST:
+                                H(
+                                    "map_set",
+                                    ANCHOR_COUNTS,
+                                    ANCHOR,
+                                    1
+                                );
+
+                            ⚡ PUSH_ANCHOR_ORDER:
+                                H(
+                                    "list_push",
+                                    ANCHOR_ORDER,
+                                    ANCHOR,
+                                    NULL
+                                );
+                        }
+
+                        ⚡ ADMITTED_PROFILE_COUNT:
+                            ADMITTED_PROFILE_COUNT + 1;
+                    }
+
+                    IF (PAIR_EXISTS) {
+                        ⚡ DUPLICATE_PROFILE_COUNT:
+                            DUPLICATE_PROFILE_COUNT + 1;
+                    }
+                }
+            }
+        }
+
+        ⚡ L:
+            L + 1;
+    }
+
+    ⚡ DISTINCT_ANCHOR_COUNT:
+        H(
+            "list_len",
+            ANCHOR_ORDER,
+            NULL,
+            NULL
+        );
+
+    ⚡ MULTI_MEMBER_GROUP_COUNT:
+        0;
+
+    ⚡ A:
+        0;
+
+    WHILE (A < DISTINCT_ANCHOR_COUNT) {
+
+        ⚡ GROUP_ANCHOR:
+            H(
+                "list_get",
+                ANCHOR_ORDER,
+                A,
+                NULL
+            );
+
+        ⚡ GROUP_SUPPORT:
+            H(
+                "map_get",
+                ANCHOR_COUNTS,
+                GROUP_ANCHOR,
+                NULL
+            );
+
+        IF (1 < GROUP_SUPPORT) {
+            ⚡ MULTI_MEMBER_GROUP_COUNT:
+                MULTI_MEMBER_GROUP_COUNT + 1;
+        }
+
+        ⚡ A:
+            A + 1;
+    }
+
+    ⚡ ASSIGNMENTS:
+        H(
+            "list_new",
+            NULL,
+            NULL,
+            NULL
+        );
+
+    ⚡ PROFILE_TOTAL:
+        H(
+            "list_len",
+            DOCS,
+            NULL,
+            NULL
+        );
+
+    ⚡ GROUPED_DOCUMENT_COUNT:
+        0;
+
+    ⚡ SINGLETON_DOCUMENT_COUNT:
+        0;
+
+    ⚡ P:
+        0;
+
+    WHILE (P < PROFILE_TOTAL) {
+
+        ⚡ DOC_ID:
+            H(
+                "list_get",
+                DOCS,
+                P,
+                NULL
+            );
+
+        ⚡ ANCHOR:
+            H(
+                "list_get",
+                ANCHORS,
+                P,
+                NULL
+            );
+
+        ⚡ SUPPORT:
+            H(
+                "map_get",
+                ANCHOR_COUNTS,
+                ANCHOR,
+                NULL
+            );
+
+        ⚡ ASSIGNMENT:
+            "";
+
+        IF (1 < SUPPORT) {
+
+            ⚡ GROUPED_DOCUMENT_COUNT:
+                GROUPED_DOCUMENT_COUNT + 1;
+
+            ⚡ ASSIGNMENT:
+                "DOC="
+                + DOC_ID
+                + " || GROUP=SHARED"
+                + " || ANCHOR="
+                + ANCHOR;
+        }
+
+        IF (SUPPORT < 2) {
+
+            ⚡ SINGLETON_DOCUMENT_COUNT:
+                SINGLETON_DOCUMENT_COUNT + 1;
+
+            ⚡ ASSIGNMENT:
+                "DOC="
+                + DOC_ID
+                + " || GROUP=SINGLETON"
+                + " || ANCHOR="
+                + ANCHOR;
+        }
+
+        ⚡ PUSH_ASSIGNMENT:
+            H(
+                "list_push",
+                ASSIGNMENTS,
+                ASSIGNMENT,
+                NULL
+            );
+
+        ⚡ P:
+            P + 1;
+    }
+
+    ⚡ ASSIGNMENT_TEXT:
+        H(
+            "str_join",
+            ASSIGNMENTS,
+            "\n",
+            NULL
+        );
+
+    ⚡ WRITE_ASSIGNMENTS:
+        H(
+            "write_text",
+            ".sigma_exec/SIGMA_V27T_GROUP_ASSIGNMENTS.memory",
+            ASSIGNMENT_TEXT,
+            NULL
+        );
+
+    ⚡ print("SIGMA_V27_STRUCTURAL_GROUPING");
+    ⚡ print("INPUT_LINE_COUNT", LINE_TOTAL);
+    ⚡ print("ADMITTED_PROFILE_COUNT", ADMITTED_PROFILE_COUNT);
+    ⚡ print("DUPLICATE_PROFILE_COUNT", DUPLICATE_PROFILE_COUNT);
+    ⚡ print("DISTINCT_ANCHOR_COUNT", DISTINCT_ANCHOR_COUNT);
+    ⚡ print("MULTI_MEMBER_GROUP_COUNT", MULTI_MEMBER_GROUP_COUNT);
+    ⚡ print("GROUPED_DOCUMENT_COUNT", GROUPED_DOCUMENT_COUNT);
+    ⚡ print("SINGLETON_DOCUMENT_COUNT", SINGLETON_DOCUMENT_COUNT);
+    ⚡ print("GROUPING_POLICY", "SHARED_EXACT_STRUCTURAL_ANCHOR_ACROSS_DISTINCT_DOC_ANCHOR_PAIRS");
+    ⚡ print("HOST_GROUP_SELECTION", "NO");
+    ⚡ print("HOST_TOPIC_CLASSIFICATION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("STRUCTURAL_GROUPING_ONLY", "YES");
+    ⚡ print("SEMANTIC_GROUPING", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
