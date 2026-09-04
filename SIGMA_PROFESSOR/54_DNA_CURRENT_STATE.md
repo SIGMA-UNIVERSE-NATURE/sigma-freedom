@@ -86,16 +86,31 @@ BYTECODE_SHA256=9afed5ab5bfc6652e9066c1420d2ce69fa9ee254ea55516a3ae5959fef419f10
 PERSISTENT_STATE=YES
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
+## Source-ready / not admitted
+
+### DNA-10 Memory Genome
+CANON_REFERENCE_BLOB_SHA1=d1397419764592442e3115f1193f8e9620f66ef4
+SOURCE_SHA256=3901bc045d34195ca089f18ebce3a37bebbbbb790bd94d255b203a523b055304
+RUNNER_SHA256=c69486659bd7b9b4c17b627c2c4a04058036108b5509377233425c1da5674e8c
+BUNDLE_SHA256=048caf6756ad415b5e75ee1b1e849261128b1d9b7d86eaefbec79bcd306c207b
+DNA10_COMPILE=NOT_RUN
+DNA10_VM=NOT_RUN
+DNA10_ADMISSION=NOT_RUN
+PERSISTENT_MEMORY_RUNTIME=NOT_EXECUTED
+CROSS_PROCESS_MEMORY_DURABILITY=NOT_PROVEN
+CANDIDATE_DIGEST_DERIVATION=NOT_PROVEN
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA10_NATIVE_ADMISSION_SOURCE_READY.md
+
 ## Historical failures retained as evidence
 
 DNA-08 V1: COMPILE_RC=4 at line 181 token replacement character; FIX1 replacing 59 `🪞` emission lines with `⚡ print(...)` compiled and passed all runtime tests. Scope is this exact source/compiler delta only.
 
 ## Current dependency frontier
 
-NEXT_TARGET=DNA-10 Memory Genome
+NEXT_TARGET=RUN DNA-10 Memory Genome
 PLANNED_CHAIN=DNA-10 -> DNA-11 Knowledge Graph
 
-DNA-10 canonical dependencies include DNA-03 Unified Cognitive State, DNA-08 Learning World, and DNA-09 Independent Verification Wall; exact self-check dependency chain must be read before build.
+DNA-10 canonical self-check requires DNA-01 through DNA-09 bound/pass. DNA-10 V1 tests exact six-class in-context separation/routing and bounded same-activation duplicate suppression; it does not claim persistent Memory Runtime.
 
 ## Global claim boundaries
 
