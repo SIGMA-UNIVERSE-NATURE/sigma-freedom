@@ -28,13 +28,45 @@ Read:
 
 It contains the complete proven milestones, hashes, failures, and next-action constraints.
 
-## Saved artifacts
+## V2.4 preflight candidate — prepared, NOT YET DEVICE-PROVEN
+
+A cheaper native policy has now been prepared to test the first recommended fix:
+
+- remove all per-candidate endpoint-load calculation;
+- keep `SUPPORT > 1` as the eligibility gate for autonomous fetch requests;
+- select the recurrent frontier with the lowest support;
+- deterministic tie behavior: first eligible relation encountered;
+- copy production learning memory to isolated test memory before execution;
+- test both a short real context and the exact previously failing long context `d891e5ff...`;
+- production `SIGMA_CL22_*` memory must not be mutated by preflight.
+
+Saved preflight artifacts:
+
+- `SIGMA_PROFESSOR/artifacts/SIGMA_V24_PREFLIGHT_RECURRENT_FRONTIER.sigma`
+- `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V24_STEP_LIMIT_PREFLIGHT.sh`
+
+Artifact SHA-256:
+
+- V2.4 preflight `.sigma`: `bbcba488e30fd22a638017195b5a7b63900a1da8fba0c3bfaf140df3628d00a7`
+- V2.4 preflight runner: `4bf60064e8bec4581816dd525d105f7a9426270f7831af87011ff7cbe521309a`
+
+Current status of V2.4 preflight:
+
+`AWAITING_DEVICE_RUN`
+
+Do not call V2.4 PASS until the Termux device reports:
+
+- `SHORT_VM_RC=0`
+- `LONG_D891_VM_RC=0`
+- `V24_STEP_LIMIT_PREFLIGHT=PASS`
+
+## Saved V2.3 artifacts
 
 - `SIGMA_PROFESSOR/artifacts/SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sigma`
 - `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_3.sh`
 - `SIGMA_PROFESSOR/artifacts/SIGMA_WIKIMEDIA_TRANSPORT_DECODE_V1.py`
 
-Artifact SHA-256 from the build workspace at handoff:
+Artifact SHA-256 from the V2.3 build workspace at handoff:
 
 - V2.3 `.sigma` source: `0c088350efefea3b7dec94c8582136fdbea96d63114fee5b29240da4f6e2a08f`
 - V2.3 runner: `3b419965a7367a9813e8fcf3a422cdc2b30e45a3342c81bf50c89cbeafb332ef`
@@ -67,16 +99,12 @@ Still not proven:
 
 ## NEXT ACTION
 
-Do **not** move scoring/selection to Python/shell.
-
-Fix V2.3 step complexity inside the SIGMA-native policy. Preferred first attempt:
-
-1. remove per-candidate full-history endpoint-load calculation;
-2. keep only recurrent relations (`SUPPORT > 1`) eligible;
-3. choose a cheaper native structural gap policy with deterministic tie-breaking;
-4. test short context;
-5. test the previously failing long context `d891e5...`;
-6. only if both pass, restart the continuous runner.
+1. Keep V2.3 stopped.
+2. Copy the V2.4 preflight source and runner to the device.
+3. Run only `RUN_SIGMA_V24_STEP_LIMIT_PREFLIGHT.sh`.
+4. Inspect both short and `d891...` results.
+5. If both return RC 0 and preflight PASS, checkpoint the result and build the V2.4 continuous runner.
+6. If `d891...` still hits step limit, do not move scoring to host; next design is bounded/incremental native processing.
 
 Do not delete V2.2/V2.3 raw/done/log/history state.
 
