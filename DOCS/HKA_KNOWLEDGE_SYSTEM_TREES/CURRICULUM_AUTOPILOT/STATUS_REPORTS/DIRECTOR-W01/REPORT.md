@@ -4,79 +4,90 @@
 
 `CURRICULUM`
 
-## Accepted academic predecessor
+No later pipeline stage is unlocked.
 
-`C01-W02-B1.1-MATH-FAMILY-C01 — Logic, tập hợp và chứng minh`
+## Director-accepted academic scopes
 
-Director-accepted commit:
+### B1.1-C01 — Logic, tập hợp và chứng minh
+
+Accepted commit:
 `5659288da80a239e2ded408da87348670c1410c2`
 
-The earlier candidate `359359ae5663f5a62383c1774c2ff359ccb092a7` was not accepted; it was reopened for academic repair.
+C01 was repaired before acceptance and remains the canonical prerequisite for generic logic, set, relation/function and proof foundations.
 
-Independent Director verification of the repaired commit confirmed:
+### B1.1-C02 — Số học và lý thuyết số
 
-- 8/8 canonical topics covered;
-- 38 claims and 32 D1–D4 learning objectives;
-- 32/32 objectives have explicit supporting Claim IDs;
-- all five Director repair items PASS;
-- immutable Open Logic source `HKA-SRC-73f520eedb8e` hashes correctly and pins upstream commit `1e960beff9ed7835bf3e3f1335e21af3439cd107`;
-- that upstream commit exists and directly contains the cited propositional formation-rule, Separation and undecidability material;
-- superseded moving OpenLogic source IDs have zero active claim/node references;
-- R04 remains `OVERLAP_REVIEW` with no ownership transfer;
-- semantic duplicate, prerequisite/sequence and stage-boundary audits PASS.
+Director-accepted commit:
+`cfd9746e2296280705e2e2e67b2c5980d440f02d`
 
-C01 is therefore `DIRECTOR_ACCEPTED_PASS` and must not be re-authored casually. Any later correction requires a concrete contradiction discovered by integration/global audit and must preserve accepted IDs/version history.
+Independent Director audit confirmed:
+
+- 8/8 canonical topics, 8 nodes;
+- 64/64 claims reviewed;
+- 7/7 persistent/versioned sources reviewed and deterministic IDs verified;
+- 32/32 Learning Objectives have explicit supporting Claim IDs;
+- zero future/unlocked support claims;
+- 15 cross-links with no primary ownership transfer;
+- prerequisite/sequence graph PASS;
+- stage boundary PASS;
+- NIST SP 811 round-to-even claim verified;
+- the `a!=0` divisibility definition was rechecked and treated as an explicitly declared convention difference, not a blocker.
+
+C02 is `DIRECTOR_ACCEPTED_PASS` and must not be re-authored casually.
 
 ## Active work
 
 Only active child:
-`C01-W02-B1.1-MATH-FAMILY-C02`
+`C01-W02-B1.1-MATH-FAMILY-C03`
 
 Scope:
-`B1.1-C02 — Số học và lý thuyết số`
+`B1.1-C03 — Đại số và cấu trúc`
 
 Execution branch:
-`hka-tree/c01-w02-math-c02`
+`hka-tree/c01-w02-math-c03`
 
 Pinned predecessor:
-`5659288da80a239e2ded408da87348670c1410c2`
+`cfd9746e2296280705e2e2e67b2c5980d440f02d`
 
 Canonical topics:
 
-1. Số tự nhiên, số nguyên và phân số
-2. Số hữu tỉ, vô tỉ, thực và phức
-3. Phép toán và thứ tự
-4. Ước lượng và độ lớn
-5. Tỉ lệ, phần trăm và tỉ suất
-6. Chia hết và số nguyên tố
-7. Đồng dư
-8. Lý thuyết số hiện đại
+1. Biểu thức và phương trình
+2. Bất phương trình
+3. Hàm và quan hệ
+4. Đại số tuyến tính
+5. Ma trận và không gian vectơ
+6. Nhóm
+7. Vành và trường
+8. Đại số giao hoán
+9. Lý thuyết biểu diễn
 
-## Stronger academic gate from C02 onward
+## Mandatory C03 risk controls
 
-Every academic child must now prove claim-to-learning-objective closure before candidate PASS:
+- C03 T03 must not duplicate C01 generic relation/function foundations.
+- C03 T01/T02 must not duplicate C02 arithmetic/order foundations.
+- T04/T05 must establish one primary owner per linear-algebra/matrix/vector-space proposition and objective, especially systems, vector spaces, span/independence, basis/dimension, matrices, linear maps, rank/nullity, determinants and eigen concepts.
+- T06/T07/T08/T09 must form a prerequisite/specialization hierarchy rather than repeat shared algebraic-structure content.
+- 100% Claim → Learning Objective closure remains mandatory.
+- Future locked scopes may be boundary references only, never support claims.
 
-- exactly one closure row per Learning Objective;
-- all supporting Claim IDs resolve;
-- no academic meaning depends on an unlocked future scope;
-- boundary references are not counted as support claims;
-- lock-critical online sources use immutable/versioned identities where practicable;
-- internal HKA ownership prose stays in boundary metadata/cross-links rather than being disguised as externally sourced academic fact.
+## Durable activation
+
+- Control-plane state activation: `54e9f7867e44dbcbef4744dfc6a8246f38566048`
+- Window registry activation: `09d379c8747bce087dbbe0944bb7c096b220b39a`
+- C03 contract: `2aee98b0bf17eb23fa0af5969d816c6408c03d5e`
+- C03 execution prompt: `0037ccf9f1c0ad8ea9de5a53570962214cd92b83`
+- C03 Director open order: `55034606c0c182a3082b082b7018836ca5efc029`
+- C03 bootstrap checkpoint: `a5ac5945ccdc4db8ee2647a15399d1fbfb734877`
+- Director checkpoint: `12b33ee81fb84e1c7bca7cc48c0ae4c189cc349a`
 
 ## Locked rules
 
 - `NO STATUS FOLDER = NO ACCEPTED COMPLETION`.
 - Chat memory is not project state.
-- A worker `PASS` is only a candidate until Director acceptance.
-- C03 and later scopes remain locked until C02 is independently accepted.
-- No Lesson Registry, prompts, images, R2, delivery or website artifacts may be authored during CURRICULUM.
-
-## Director checkpoint
-
-`CP-20260905-C01-ACCEPTED-C02-ACTIVATED`
+- Worker PASS is only a candidate until independent Director acceptance.
+- C04 and later scopes remain locked until C03 is accepted.
+- No Lesson Registry, prompts, images, R2, delivery, website or `ACADEMIC_LOCKED` artifacts during CURRICULUM.
 
 ## Next action
 
-Run only `C01-W02-B1.1-MATH-FAMILY-C02` from its locked `GPT_EXECUTION_PROMPT.md` on `hka-tree/c01-w02-math-c02`.
-
-When C02 returns candidate PASS, independently audit the committed claims, sources, claim-to-objective closure, duplicate scan against accepted C01, prerequisites, source immutability and stage boundary before unlocking C03.
+Run only `C01-W02-B1.1-MATH-FAMILY-C03` from `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md` on `hka-tree/c01-w02-math-c03`.
