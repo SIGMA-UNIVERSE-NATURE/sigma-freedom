@@ -1,6 +1,6 @@
 ---
 title: "HKA — Shared Image Production Runtime Standard"
-version: "1.0"
+version: "1.1"
 status: "DIRECTOR OPERATIONAL STANDARD — ADDITIVE"
 language: "vi"
 date: "2026-09-04"
@@ -10,9 +10,18 @@ date: "2026-09-04"
 
 ## 1. Mục tiêu
 
-Chuẩn này loại bỏ hoàn toàn yêu cầu người dùng phải upload lại character/logo assets cho từng Image Production Window. Mọi Production Window phải tự lấy **actual binary bytes** từ immutable brand source, tự verify, rồi truyền chính bytes đó vào image-generation engine làm visual references.
+Chuẩn này loại bỏ hoàn toàn yêu cầu người dùng phải upload lại character/logo assets hoặc production outputs bằng tay giữa các HKA Windows.
 
-Chuẩn này không thay đổi academic content, prompt semantics, batch manifest schema, Independent QA gate hay Cloudflare release order.
+Mọi Production Window phải:
+
+1. tự lấy **actual official brand binary bytes** từ immutable brand source;
+2. verify đúng bytes;
+3. truyền bytes vào image-generation engine làm visual references;
+4. sau khi output tự-QA đạt, tự persist exact output qua Production Bridge vào Cloudflare staging;
+5. bàn giao exact staging binaries cho Independent QA;
+6. sau `QA_APPROVED`, Release Bridge canonize exact approved binaries vào Vault theo Cloudflare Amendment 1.1/1.2.
+
+Chuẩn này không thay đổi academic content, prompt semantics, batch manifest schema hay Independent QA authority.
 
 ## 2. Immutable brand source
 
@@ -44,58 +53,113 @@ Before any generation call, Production Window must execute this sequence:
 
 1. Verify the immutable brand commit exists.
 2. Query GitHub contents metadata at that exact commit for every required reference file.
-3. Verify returned path, Git blob SHA-1 and byte size against the locked table above.
-4. Download the binary with a **binary-capable** mechanism, using one of these equivalent methods:
-   - GitHub `download_url` returned by contents API at the immutable ref;
-   - immutable `raw.githubusercontent.com/<repo>/<commit>/<path>` URL;
-   - `git fetch/checkout` of the exact commit followed by local file read.
-5. Verify the downloaded bytes by recomputing Git blob identity:
+3. Verify path, Git blob SHA-1 and byte size against the locked table.
+4. Download binary with a binary-capable mechanism using immutable commit addressing.
+5. Recompute Git blob identity:
 
 ```text
 SHA1("blob " + decimal_byte_length + "\0" + file_bytes)
 ```
 
-The result must equal the locked Git blob SHA-1.
-6. Store verified files only in ephemeral run workspace/cache.
-7. Pass the local binary bytes/files directly into the image-generation engine's image-reference/image-conditioning inputs.
-8. Generated output must never become the character reference for another asset. Reuse of the **verified official source bytes** within the same run is allowed.
+6. Verify equality to the locked Git blob SHA-1.
+7. Store verified references only in run workspace/cache.
+8. Pass local binary bytes/files directly into image-reference/image-conditioning inputs.
+9. Generated output must never become the reference source for another asset. Reload/reuse verified official source bytes.
 
-A mutable branch (`main`, `master`, `latest`) is never an acceptable brand source.
+Mutable branch names are never acceptable brand sources.
 
 ## 4. No manual user upload dependency
 
-Normal production must **never require the user to re-upload official character/logo files**.
+Normal production must never require the user to re-upload official character/logo files.
 
-Manual upload is not a production dependency and must not be included in window completion instructions.
+`ASSET_REFERENCE_BLOCKED` is valid only when binary retrieval/verification genuinely fails or the generation engine cannot accept verified reference bytes.
 
-`ASSET_REFERENCE_BLOCKED` is valid only when the Production Window has successfully obtained and verified the binary source, but its generation engine cannot accept local/reference image bytes, or when every binary-capable retrieval path available to that runtime fails.
-
-A blocked return must identify exactly which capability is missing:
+Blocked return must include:
 
 ```text
 REFERENCE_FETCH: PASS/FAIL
 BLOB_VERIFY: PASS/FAIL
+LOCAL_MATERIALIZATION: PASS/FAIL
 GENERATION_ENGINE_REFERENCE_INGEST: PASS/FAIL
 BLOCKING_CAPABILITY: <exact capability>
 ```
 
-Text descriptions, filenames and model memory are never substitutes for the official reference bytes.
+“User did not upload attachments” is not a valid blocker.
 
-## 5. Production and QA separation
+## 5. Cloudflare staging transport is active
 
-Canonical flow remains:
+Authority:
+
+```text
+DOCS/HKA_CINEMATIC_4K_CLOUDFLARE_PIPELINE_AMENDMENT_1_2.md
+```
+
+Production output transport bucket:
+
+```text
+hka-c4k-staging
+```
+
+Staging is temporary/non-canonical. Production must never treat it as a release or website origin.
+
+Staging prefix:
+
+```text
+tmp/v1/windows/<WINDOW_ID>-<TREE_SLUG>/
+  prompt-commit/<PROMPT_COMMIT_SHA>/
+  batches/<BATCH_ID>/
+  runs/<RUN_ID>/
+```
+
+Writes are create-only/no-overwrite.
+
+## 6. Production Bridge
+
+Logical connected service:
+
+```text
+HKA_PRODUCTION_UPLOAD_BRIDGE
+```
+
+Expected callable actions:
+
+```text
+production_begin_run(...)
+production_upload_asset(...)
+production_upload_record(...)
+production_complete_run(...)
+```
+
+After CLEAN MASTER and BRANDED FINAL pass Production self-QA, upload exact binaries immediately to staging with their SHA-256 and metadata. At run completion persist the production evidence package/records required by the batch contract and mark the run complete through the bridge.
+
+The Production Window receives no raw Cloudflare credential.
+
+If the bridge action itself is unavailable, report:
+
+```text
+STATUS: PRODUCTION_BRIDGE_BLOCKED
+GENERATION: COMPLETE/NOT_STARTED/PARTIAL
+LOCAL_OUTPUT_HASHES: <if any>
+BRIDGE_ACTION_AVAILABLE: NO
+```
+
+Do not ask the user to move files manually.
+
+## 7. Production and QA separation
+
+Flow:
 
 ```text
 BATCH_READY
 → PRODUCTION_CLAIMED
 → PRODUCING
 → SELF_QA
+→ STAGING_PERSISTED
+→ QA_PENDING
 → QA_REVIEW
 ```
 
-Production creates CLEAN MASTER + BRANDED FINAL + checksums/reports/package, but does not claim Independent QA approval.
-
-Only an independent QA Window may return:
+Only Independent QA may return:
 
 ```text
 QA_APPROVED
@@ -103,45 +167,47 @@ QA_REJECTED
 QA_BLOCKED
 ```
 
-## 6. Automatic Cloudflare handoff after QA_APPROVED
+QA reads the exact staging binaries through `HKA_QA_BRIDGE`, not user-reuploaded copies.
 
-Once Independent QA returns `QA_APPROVED`, orchestration must immediately hand the approved package to Release Uploader. No user re-upload or manual asset transfer should be required.
-
-Canonical buckets:
+Required QA actions:
 
 ```text
-hka-c4k-vault
-hka-c4k-audit
-hka-c4k-delivery
+qa_get_run(...)
+qa_list_run_assets(...)
+qa_get_asset(...)
+qa_get_manifest(...)
+qa_submit_verdict(...)
 ```
 
-`hka-c4k-staging` is not active canonical and must not be used.
+## 8. QA-approved release
 
-Release Uploader must follow `HKA_CINEMATIC_4K_CLOUDFLARE_PIPELINE_AMENDMENT_1_1.md` exactly:
+After `QA_APPROVED`, orchestration hands the same approved run to:
 
 ```text
-1. Upload CLEAN MASTER objects
-2. Upload BRANDED FINAL objects
-3. Upload asset metadata sidecars
-4. Upload prompts and manifests
-5. Upload production and independent QA reports
-6. Upload SHA256SUMS.txt
-7. Upload batch package ZIP
-8. Verify object count, metadata and SHA-256
-9. Generate/upload R2_UPLOAD_RECEIPT.json
-10. Verify R2_UPLOAD_RECEIPT.json
-11. Upload RELEASED.json as final vault-prefix object
-12. Verify RELEASED.json
-13. Apply prefix lock
-14. Write R2_RELEASE_AUDIT_RECORD.json to hka-c4k-audit
-15. Update GitHub RELEASE_INDEX.json
+HKA_RELEASE_BRIDGE
 ```
 
-No canonical R2 upload occurs before `QA_APPROVED`.
+Release Bridge reads staging + audit, copies exact approved bytes to `hka-c4k-vault`, and follows Amendment 1.1 release order exactly:
 
-## 7. R2 namespace
+```text
+1. CLEAN MASTER
+2. BRANDED FINAL
+3. asset metadata
+4. prompts/manifests
+5. production + independent QA reports
+6. SHA256SUMS.txt
+7. release ZIP
+8. verify objects + SHA-256
+9. R2_UPLOAD_RECEIPT.json
+10. verify receipt
+11. RELEASED.json LAST in vault prefix
+12. verify marker
+13. lock prefix
+14. audit record to hka-c4k-audit
+15. update GitHub RELEASE_INDEX.json
+```
 
-For each approved run:
+Vault prefix:
 
 ```text
 v1/windows/<WINDOW_ID>-<TREE_SLUG>/
@@ -150,17 +216,31 @@ v1/windows/<WINDOW_ID>-<TREE_SLUG>/
   runs/<RUN_ID>/
 ```
 
-GitHub remains control plane. R2 remains binary asset plane. 4K masters are not committed to Git history.
+No regeneration or mutation of QA-approved binaries is allowed during release.
 
-## 8. Default inheritance for future production windows
+## 9. Delivery remains WEB_APPROVED-only
 
-All future HKA Image Production Windows should inherit this runtime standard by immutable commit reference. Window-specific execution prompts should only add:
+`hka-c4k-delivery` is not automatically populated merely because QA passes or Vault reaches `R2_VERIFIED`.
 
-- Window/Tree IDs;
-- Batch/Run IDs;
-- exact Asset IDs;
-- prompt/manifest SHA locks;
-- asset-specific required companions;
-- output filenames and dimensions.
+Website delivery requires:
 
-They must not reintroduce manual brand-asset upload steps.
+```text
+R2_VERIFIED + RELEASED + WEB_APPROVED
+```
+
+Only website-consumable branded assets/metadata may then move to delivery. CLEAN MASTER never moves to delivery.
+
+## 10. Rejected runs
+
+For `QA_REJECTED`:
+
+- preserve staging run under its immutable Run ID according to staging retention policy;
+- preserve QA audit report;
+- no Vault write;
+- no Delivery write;
+- no release marker;
+- next attempt uses a new Run ID.
+
+## 11. Default inheritance
+
+All future HKA Image Production Windows inherit this runtime standard by immutable commit reference. Window-specific prompts add only IDs, SHAs, asset list, companion requirements and output locks. They must not reintroduce manual brand upload or manual production-file transfer.
