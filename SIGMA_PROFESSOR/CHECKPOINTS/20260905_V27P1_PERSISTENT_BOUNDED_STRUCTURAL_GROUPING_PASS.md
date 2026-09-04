@@ -1,0 +1,73 @@
+# V2.7P.1 PERSISTENT + BOUNDED STRUCTURAL GROUPING — PASS
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+
+## Locked identities
+
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+SOURCE_SHA256=3142d5f5bcc75f7a7c3640be2352de373604713a39f977ef54ba14c414455163
+BYTECODE_SHA256=ec5d6fe79c07e97817c717da9a8c9634f3c0caa6e2bec1c1dcaeca8f0ba9fc49
+
+## Admission evidence
+
+COMPILE_PASS=YES
+RUNTIME_PASS=YES
+
+Positive phase 1:
+- VM_RC=0
+- persisted profile count before input=0
+- new committed profile count=1
+- singleton count=1
+- state SHA256=97bf1b80b3f6aecb34c4694d00db3c7f4883d336be8fb880d45f9cc15c77b06b
+
+Positive phase 2, fresh VM process:
+- VM_RC=0
+- PERSISTED_PROFILE_COUNT=1
+- PERSISTED_STATE_USED=YES
+- new committed profile count=1
+- MULTI_MEMBER_GROUP_COUNT=1
+- GROUPED_DOCUMENT_COUNT=2
+- state SHA256=59179d8d6c9470c9d67f5de277b8745898daff658d00922d3e26a4184999e440
+- assignment SHA256=66839c6476b17f0c8cda5f55fc356fff575f57adb48ed272adc4cd1d5bb8d4f9
+
+Replay, fresh VM:
+- VM_RC=0
+- persisted state reused
+- duplicate input did not mutate state
+- replay state SHA equals positive phase 2 state SHA
+- replay assignment SHA equals positive phase 2 assignment SHA
+
+Negative gates:
+- same-document duplicate does not create a shared group
+- different structural anchor remains singleton
+- partial/uncommitted state record is ignored
+- over-budget state (67 split lines > 65) refuses mutation
+- over-budget input (17 split lines > 16) refuses mutation
+
+## Final admission
+
+V27P1_PERSISTENT_STRUCTURAL_GROUPING_PREFLIGHT=PASS
+NATIVE_INCREMENTAL_STRUCTURAL_GROUPING=PROVEN_IN_QA_SCOPE
+DYNAMIC_INPUT_DEPENDENCE=PASS
+NEGATIVE_COUNTEREXAMPLE=PASS
+PERSISTENT_STATE_INFLUENCES_LATER_VM_RUN=PASS
+FRESH_VM_PROCESS_REUSE=PASS
+DETERMINISTIC_REPLAY=PASS
+PARTIAL_STATE_COMMIT_FILTER=PASS
+STEP_LIMIT_STATUS=BOUNDED
+HOST_GROUP_SELECTION=NO
+HOST_TOPIC_CLASSIFICATION=NO
+HOST_LEARNING=NO
+PRODUCTION_LEARNER_MEMORY_MUTATED=NO
+
+## Claim limits
+
+STRUCTURAL_GROUPING_ONLY=YES
+SEMANTIC_GROUPING=NOT_PROVEN
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+BOUNDED_FILE_IO=NOT_PROVEN
+MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN
+
+ADMISSION=PASS
+NEXT_ACTION=BUILD_V28_PERSISTENT_NATIVE_CURRICULUM_PRIORITY_RESUME_PREFLIGHT
