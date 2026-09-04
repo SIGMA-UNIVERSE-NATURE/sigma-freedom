@@ -6,8 +6,8 @@
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/c01-w01-b1-architecture",
   "input_commit_sha": "02ff47d64fd3b3b03d1fa2ae70d773afb071995e",
-  "last_checkpoint_commit_sha": "7a98aa5d52f29a08e17fc0760465186426cf9aaf",
-  "last_checkpoint_id": "CP01-ARCHITECTURE-DRAFT",
+  "last_checkpoint_commit_sha": "2b3ba51abeb5cf7f08be6a727b4aa441351fae6d",
+  "last_checkpoint_id": "CP02-PRE-PASS-AUDIT",
   "scope_ids": [
     "B1.1-C01", "B1.1-C02", "B1.1-C03", "B1.1-C04", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08", "B1.1-C09", "B1.1-C10",
     "B1.2-C01", "B1.2-C02", "B1.2-C03", "B1.2-C04", "B1.2-C05", "B1.2-C06", "B1.2-C07", "B1.2-C08", "B1.2-C09", "B1.2-C10", "B1.2-C11", "B1.2-C12",
@@ -17,20 +17,21 @@
   ],
   "completed_work": [
     "Canonical B1 scope reconciled to 5 subbranches, 68 stable scopes and 348 canonical topic leaves",
-    "Exactly one primary owner assigned to every canonical topic leaf",
-    "52 bounded restartable child windows defined; largest child has 10 topics",
-    "Prerequisite scope graph defined and validated acyclic",
+    "Exactly one primary owner assigned to every canonical topic leaf; orphan and multi-primary counts are zero",
+    "52 bounded restartable child windows defined; largest child has 10 topics and the child partition covers all 348 topics exactly once",
+    "Prerequisite scope graph defined over 68 scopes and audited acyclic with zero unknown prerequisite IDs",
     "Stable Node/Claim/Source/Learning Objective/future lesson-slot reference rules defined",
-    "Semantic duplicate control defined with 3 exact repeated labels and 15 registered risk cases",
+    "Semantic duplicate control defined with 3 exact repeated labels, 15 registered risk cases and zero uncontrolled architecture duplicate risks",
     "Mandatory cross-domain nodes represented as secondary links without ownership transfer",
     "Durable status requirements integrated into child/controller authoring and recovery rules",
-    "HANDOFF.md written"
+    "HANDOFF.md synchronized with durable status recovery",
+    "Post-commit architecture audit passed at CP02-PRE-PASS-AUDIT",
+    "Prompt/contract governance drift checked and the two observed status-reporting governance updates adopted"
   ],
   "remaining_work": [
-    "Run full post-commit audit on current GitHub branch state",
-    "Write append-only pre-PASS audit checkpoint",
-    "Commit RESULT.json only if all gates pass",
-    "Finalize HANDOFF.md, REPORT.md and STATUS.json so durable status agrees with PASS result"
+    "Commit RESULT.json=PASS",
+    "Finalize STATUS.json to PASS referencing the accepted RESULT commit",
+    "Finalize REPORT.md to PASS so durable terminal artifacts agree"
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_SCOPE_MAP.json",
@@ -42,7 +43,8 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/HANDOFF.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/STATUS.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/REPORT.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/CHECKPOINTS/CP01-ARCHITECTURE-DRAFT.json"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/CHECKPOINTS/CP01-ARCHITECTURE-DRAFT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W01-B1-ARCHITECTURE/CHECKPOINTS/CP02-PRE-PASS-AUDIT.json"
   ],
   "blocking_issues": [],
   "decisions_locked": [
@@ -53,6 +55,7 @@
     "Semantic duplicate identity uses node meaning + claim set + learning objective + context at CURRICULUM",
     "Family windows are controllers over bounded child windows, not whole-discipline single-chat jobs",
     "Accepted IDs are append-only and never silently renumbered",
+    "Successor acceptance requires RESULT.json.status=PASS plus STATUS.json.status=PASS plus a current PASS report and pre-PASS checkpoint",
     "No later pipeline-stage artifact may be authored in this window"
   ],
   "do_not_repeat": [
@@ -60,9 +63,10 @@
     "Do not duplicate the 348 topic ownership assignments under alternate wording/scenery",
     "Do not collapse repeated labels Entropy, Mã sửa lỗi or Dao động without their registered claim-boundary dispositions",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs",
-    "Do not mark B1 or global ACADEMIC_LOCKED"
+    "Do not mark B1 or global ACADEMIC_LOCKED",
+    "Do not open C01-W02 until terminal durable PASS artifacts agree"
   ],
-  "next_action": "Run the post-commit architecture audit and create the pre-PASS checkpoint. Do not open the successor yet.",
+  "next_action": "Commit RESULT.json for this architecture window, then finalize durable STATUS.json and REPORT.md to PASS. Do not open the successor before terminal agreement.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY",
-  "updated_at": "2026-09-04T15:18:37Z"
+  "updated_at": "2026-09-04T15:26:10Z"
 }
