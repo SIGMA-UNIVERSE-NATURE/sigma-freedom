@@ -83,30 +83,56 @@ Checkpoint:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V25A_H_ARITY_FAILURE_AND_REPAIR.md`
 
-### V2.5A.1 repair — READY FOR DEVICE RETEST
+### V2.5A.1 repair — FAILED CLEANLY
 
-Corrected native source:
+V2.5A.1 corrected the H-call arity and compiled, but the locked VM rejected direct `str(...)` conversion:
 
-`SIGMA_PROFESSOR/artifacts/SIGMA_DOCUMENT_SURVEY_V2_5A_1.sigma`
+- `SIGMAC_RC=0`;
+- `BYTECODE_SHA256=2d5bb4ea2e0428d6c3bbc3b574364f63be0e06341f5b6b068f1a1f5fa76ef1f3`;
+- first VM invocation: `VM_RC=8`;
+- error: `SIGMA C VM: undefined function str`;
+- `V25A_SURVEYED_COUNT=0`;
+- `V25A_RECORD_COUNT=0`;
+- `V25A_COMPLETE_SENTINEL=0`;
+- production learner namespace not mutated.
 
-SHA-256:
+This is an important admission result: compiler acceptance does not imply runtime capability availability.
 
-`210b1227f2805ddd460f95db89dd71258f84ba5a892aa5b50787cea84cf3eb85`
+Checkpoint:
 
-Corrected runner:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260904_V25A1_STR_RUNTIME_FAILURE_AND_V25A2_REPAIR.md`
 
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V25A_1_DOCUMENT_SURVEY_PREFLIGHT.sh`
+### V2.5A.2 repair — READY FOR DEVICE RETEST
 
-SHA-256:
+V2.5A.2 removes all direct `str(value)` dependencies.
 
-`7ab3f2b157aa21d2effc3eeff7b6ae816e5ae88d27f32a15ffaaf1d840796ed3`
+Numeric survey metrics remain native integers and are printed directly. Persistent survey records store only textual fields:
 
-Static checks already PASS:
+`DOC=<sha> || SURVEY_STATUS=COMPLETE || BEST_LOCAL_RELATION=<relation>`
 
-- every `H(...)` call has exactly four total arguments;
-- runner `bash -n` PASS.
+Native source:
 
-V2.5A.1 remains isolated from V2.4 production memory and uses a three-document QA corpus copied mechanically from production raw storage.
+`SIGMA_PROFESSOR/artifacts/SIGMA_DOCUMENT_SURVEY_V2_5A_2.sigma`
+
+SOURCE_SHA256:
+
+`153431aa3f78e282ddf0b2ddd73be993440abd9ce4118d4e717aa5ce83f14eb8`
+
+Runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V25A_2_DOCUMENT_SURVEY_PREFLIGHT.sh`
+
+RUNNER_SHA256:
+
+`c3bbed189661275fda1eb5394965c87b605108a0a316aa1466a7fe3c782ecca5`
+
+Static checks:
+
+- every `H(...)` call has exactly four arguments;
+- direct `str(...)` dependency: NONE;
+- runner `bash -n`: PASS.
+
+V2.5A.2 remains isolated from V2.4 production memory and uses the same three-document QA corpus.
 
 PASS requires:
 
@@ -116,7 +142,7 @@ PASS requires:
 - `V25A_RECORD_COUNT=3`;
 - `V25A_COMPLETE_SENTINEL=1`;
 - `V25A_WRITES_PRODUCTION_NAMESPACE=NO`;
-- `V25A_1_DOCUMENT_SURVEY_PREFLIGHT=PASS`.
+- `V25A_2_DOCUMENT_SURVEY_PREFLIGHT=PASS`.
 
 Do not build full-corpus survey runner until this PASS is observed on the locked VM.
 
@@ -183,9 +209,9 @@ Still NOT proven:
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. Do not restart V2.5A original.
-3. Install and run V2.5A.1 corrected source + runner.
-4. If V2.5A.1 PASSes all four invocations, checkpoint and build a full-corpus document-survey runner.
+2. Do not restart V2.5A original or V2.5A.1.
+3. Install and run V2.5A.2 source + runner.
+4. If V2.5A.2 PASSes all four invocations, checkpoint and build a full-corpus document-survey runner.
 5. Next after survey: bounded segment/cursor + crash-resume, then structural grouping and curriculum queue.
 
 Do not delete V2.2/V2.3/V2.4 raw/done/log/history state.
