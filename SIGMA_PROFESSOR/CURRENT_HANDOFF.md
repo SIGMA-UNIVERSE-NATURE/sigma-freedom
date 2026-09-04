@@ -10,7 +10,8 @@ Current target: **SIGMA native continuous self-directed learning** with `HOST_LE
 
 - V2.3: STOPPED. It hit `SIGMA C VM: step limit` on history-heavy execution because endpoint `TOKEN_LOAD` added extra full-history scans.
 - V2.4 preflight: **PASS** on both short and previously failing long context.
-- V2.4 production source + runner: **BUILT AND SAVED; READY TO INSTALL/RUN**.
+- V2.4 production source + runner: **BUILT, INSTALLED/RUNNING ON DEVICE; first production native gap -> HTTP 200 -> decoded-context fetch leg observed**.
+- Full V2.4 end-to-end stability checkpoint still requires the newly fetched context to complete native `mode=NEW` learning plus additional cycles without VM failure.
 
 ## V2.4 preflight proof
 
@@ -88,19 +89,67 @@ Still NOT proven:
 - semantic curiosity
 - general autonomous reasoning
 
-## Exact newest checkpoint
+## 54 CORE integration policy
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260904_V24_PREFLIGHT_PASS_AND_PRODUCTION_READY.md`
+Read:
+
+`SIGMA_PROFESSOR/DESIGN/54_CORE_NATIVE_INTEGRATION_POLICY_V1.md`
+
+Decision:
+
+- continue DNA01 -> DNA54; delete no canonical DNA core;
+- canonical Python `54_CORES/*.py` are CANON/CONTRACT/VALIDATION reference unless capability is separately proven in native `.sigma` on the locked VM;
+- do not auto-load Python DNA genes and call them cognition;
+- relevant DNA capabilities must be derived into `.sigma`, compiled, runtime-tested, and admitted before production binding.
+
+## Host ABI inventory milestone
+
+Read:
+
+`SIGMA_PROFESSOR/DESIGN/HOST_ABI_INVENTORY_20260904_V1.md`
+
+Device-side source inventory of `~/SIGMA/sigma_genesis1/sigma_vm.c` found **93 host operations**.
+
+Important existing source-level capabilities include:
+
+- list mechanics including set/get/push/pop/shift/unshift/reverse/slice/sort;
+- map mechanics including set/get/has/delete/keys/values/items;
+- byte buffers and typed byte encoding/decoding;
+- `read_text`, `read_bytes`, `write_text`, `append_text`, `file_exists`, `listdir`, mkdir/rmdir;
+- string search/slice/replace/split/join and ASCII-oriented case helpers;
+- JSON load/dump/encode/decode;
+- Base64;
+- `crypto_digest`;
+- `time_now`, `time_sleep`, `time_strftime`;
+- random primitives;
+- `net_fetch`, `net_ping`, `dns_lookup`;
+- math primitives.
+
+Do NOT request duplicate map/set/string-search/listdir/append/time/network/JSON/digest tools before exact semantics and locked-binary runtime support are characterized.
+
+`set_*` primitives are not currently necessary: SIGMA can implement deterministic membership/dedup with `map_set(key, TRUE)` + `map_has(key)`.
+
+### Next host-ABI inspection targets
+
+Before asking the tool team to add anything, inspect exact implementations/semantics of:
+
+1. `read_bytes` — whether bounded offset/count reading already exists;
+2. `crypto_digest` — supported algorithms and SHA-256 output representation;
+3. `write_text` — whether it is crash-safe/atomic or plain truncate/write;
+4. `net_fetch` — request/response format, schemes, limits and raw-byte semantics;
+5. `json_decode/json_load` — whether current Python Wikimedia decoder can eventually be removed while keeping semantic policy native;
+6. `list_sort` — deterministic ordering semantics;
+7. Unicode behavior — Unicode-aware normalization is NOT proven.
+
+Potential remaining ABI additions are therefore narrow and **NOT YET APPROVED**: bounded file range/line read if absent, atomic state replacement if absent, possibly file size/mtime metadata, and possibly purely mechanical Unicode normalization.
 
 ## NEXT ACTION — immediate
 
 1. Keep V2.3 and older continuous runners stopped.
-2. Install V2.4 `.sigma` source and V2.4 runner.
-3. Verify source and runner SHA-256.
-4. Start V2.4.
-5. Observe 2–3 native request -> fetch -> learn cycles.
-6. If a VM context fails, inspect `~/SIGMA/SIGMA_CONTINUOUS_NATIVE_V2_2/hold/<sha>.hold` and its log; do not manually hot-retry it.
-7. If V2.4 completes meaningful stable cycles, create a new checkpoint before the next policy change.
+2. Keep observing V2.4 production until multiple request -> fetch -> native learn cycles complete without VM failure.
+3. Do not add duplicate host tools yet.
+4. Finish exact host-op semantics inventory for the high-priority unknowns above.
+5. If V2.4 completes meaningful stable cycles, checkpoint it before the next learner policy change.
 
 ## NEXT DEVELOPMENT TARGET — curriculum + re-learning
 
