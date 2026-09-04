@@ -92,7 +92,7 @@ Still NOT proven:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260904_V24_PREFLIGHT_PASS_AND_PRODUCTION_READY.md`
 
-## NEXT ACTION
+## NEXT ACTION — immediate
 
 1. Keep V2.3 and older continuous runners stopped.
 2. Install V2.4 `.sigma` source and V2.4 runner.
@@ -101,6 +101,44 @@ Still NOT proven:
 5. Observe 2–3 native request -> fetch -> learn cycles.
 6. If a VM context fails, inspect `~/SIGMA/SIGMA_CONTINUOUS_NATIVE_V2_2/hold/<sha>.hold` and its log; do not manually hot-retry it.
 7. If V2.4 completes meaningful stable cycles, create a new checkpoint before the next policy change.
+
+## NEXT DEVELOPMENT TARGET — curriculum + re-learning
+
+After V2.4 demonstrates stable continuous cycles, the next major layer is **SIGMA curriculum and re-learning**, not more one-pass fetching.
+
+Read the design spec:
+
+`SIGMA_PROFESSOR/DESIGN/SIGMA_CURRICULUM_RELEARNING_V1.md`
+
+Required direction:
+
+RAW_DOCUMENT
+-> SURVEY OLD MATERIAL
+-> BOUNDED NATIVE SEGMENTATION
+-> STRUCTURAL PROFILE
+-> NATIVE GROUPING
+-> CURRICULUM PRIORITY
+-> DEEP RE-LEARN
+-> CROSS-DOCUMENT CONSOLIDATION
+-> REVALIDATION
+-> REVISIT WHEN NEW EVIDENCE CHANGES PRIORITY
+
+Key invariants:
+
+- raw documents remain immutable;
+- SIGMA decides what is worth deeper learning;
+- SIGMA decides grouping/priority from native evidence;
+- large documents must become bounded learning units to avoid VM step-limit growth;
+- recovery resumes the persistent curriculum queue instead of becoming idle;
+- host may persist/hash/schedule exact work identities but must not summarize, score, classify topics, choose lessons, or select knowledge.
+
+Planned sequence after V2.4 stability:
+
+1. V2.5 DOCUMENT_SURVEY
+2. V2.6 BOUNDED_SEGMENT_CURSOR
+3. V2.7 STRUCTURAL_GROUPING
+4. V2.8 CURRICULUM_QUEUE
+5. V2.9 GROUP_CONSOLIDATION + REVALIDATION
 
 Do not delete V2.2/V2.3 raw/done/log/history state.
 
