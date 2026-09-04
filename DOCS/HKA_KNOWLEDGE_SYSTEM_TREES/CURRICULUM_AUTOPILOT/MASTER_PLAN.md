@@ -4,29 +4,91 @@ Status: ACTIVE
 Canonical tree: `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md`
 Canonical tree commit: `fc799bf1104ab6352710e1801777a971b5179995`
 Governance base: `b2c6b8dacfb425c5e6d260176ed879fb75da6dae`
+Canonical pipeline: `CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json`
 
-## Non-negotiable production order
+## Canonical production order — no stage skipping
 
-HKA is built in four locked phases. Later phases MUST NOT start early.
+```text
+KNOWLEDGE
+↓
+CURRICULUM
+↓
+ACADEMIC_LOCKED
+↓
+LESSON_REGISTRY
+↓
+LESSON_REGISTRY_LOCKED
+↓
+PROMPTS
+↓
+PROMPT_LOCKED
+↓
+IMAGE_PRODUCTION
+↓
+R2 STAGING
+↓
+INDEPENDENT QA
+↓
+VAULT
+↓
+WEB OPTIMIZE
+↓
+DELIVERY
+↓
+WEBSITE UPDATE
+```
 
-1. `PHASE_A_CURRICULUM`
-   - Complete the academic/curriculum architecture for all six canonical HKA branches.
-   - Produce nodes, claims, sources, prerequisites, D1-D4 depth paths, age/presentation paths, learning objectives, lesson sequencing, cross-links, misconception/limit records, certainty labels, and duplicate controls.
-   - No image prompts. No image generation.
+This order is mandatory. A later stage MUST NOT start until the previous stage's exit gate is durably recorded as PASS/LOCKED.
 
-2. `PHASE_B_LESSON_SPEC`
-   - Starts only after every canonical branch is `ACADEMIC_LOCKED` and the global cross-tree audit passes.
-   - Produce complete lesson records and website mapping.
-   - No image generation.
+## Stage responsibilities
 
-3. `PHASE_C_VISUAL_PROMPTS`
-   - Starts only after the global lesson registry is `LESSON_LOCKED`.
-   - Produce visual descriptions and exact image prompts, with duplicate prevention against the complete lesson corpus.
-   - No image generation.
+### KNOWLEDGE
+The HKA World Tree is the canonical knowledge architecture. It is read from the exact canonical commit and is not reconstructed from chat memory.
 
-4. `PHASE_D_IMAGE_PRODUCTION`
-   - Starts only after all required visual prompts are `PROMPT_LOCKED`.
-   - HKA_AUTOPILOT generates images, writes R2 staging, invokes Independent QA, promotes approved masters to vault, optimizes delivery derivatives, and updates website mappings.
+### CURRICULUM
+Complete all six canonical HKA branches before global academic lock. Produce stable nodes/claims/sources, prerequisites, D1-D4 paths, age/presentation paths, learning objectives, lesson sequencing intent, cross-links, misconceptions/limits, certainty labels and semantic duplicate controls.
+
+Branch-level locks are allowed as internal checkpoints, but they do NOT unlock Lesson Registry. Only the global `ACADEMIC_LOCKED` gate does.
+
+### ACADEMIC_LOCKED
+Requires all six branches complete plus global cross-tree coverage, prerequisite and semantic duplicate audits PASS. This creates the immutable academic input for lesson authoring.
+
+### LESSON_REGISTRY
+Author complete lesson records from the academic lock. Each lesson must have stable IDs and exact mapping intent, including program/path/age presentation metadata and website target metadata. No visual prompt authoring yet.
+
+### LESSON_REGISTRY_LOCKED
+Requires global lesson coverage, prerequisite, sequencing, age/path and duplicate audits PASS. Only this lock enables visual prompt authoring.
+
+### PROMPTS
+Author visual descriptions and exact prompts only from locked lesson records. Every visual job must have a distinct learning purpose and be checked against the full corpus for semantic and visual duplication.
+
+### PROMPT_LOCKED
+Requires prompt integrity and global visual duplicate audits PASS. Only this lock enables image production.
+
+### IMAGE_PRODUCTION
+`HKA_AUTOPILOT` invokes Generation AI from locked prompts and official references. Chat windows are not on the production critical path.
+
+### R2 STAGING
+Generated exact binaries and provenance are written create-only to Cloudflare R2 staging and read-back/checksum verified.
+
+### INDEPENDENT QA
+Independent QA AI reads exact staging binaries. Only `QA_APPROVED` assets can progress.
+
+### VAULT
+Only approved exact binaries are promoted to canonical R2 vault with release verification and immutable provenance.
+
+### WEB OPTIMIZE
+Create web derivatives only from verified vault masters. Optimization must preserve required visual quality and must never overwrite the canonical master.
+
+### DELIVERY
+Store approved website-ready derivatives plus release metadata in R2 delivery. Website must not read staging or vault directly.
+
+### WEBSITE UPDATE
+Publish by locked mapping only:
+
+`ASSET_ID -> LESSON_ID -> PROGRAM/PATH -> AGE/PRESENTATION -> WEBSITE_SLOT`
+
+No placement by guesswork.
 
 ## Canonical branches
 
@@ -37,42 +99,39 @@ HKA is built in four locked phases. Later phases MUST NOT start early.
 5. B5 — BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa
 6. B6 — CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý
 
-## Branch completion rule
+## Academic traceability
 
-A branch may be marked `ACADEMIC_LOCKED` only when all of its canonical subbranches have completed authoring and a branch integration audit has passed.
-
-Each knowledge unit must be traceable as:
+Each knowledge unit must remain traceable as:
 
 `NODE_ID -> CLAIM_ID -> SOURCE_ID -> PREREQUISITES -> DEPTH(D1-D4) -> LEARNING_OBJECTIVE -> LESSON_SLOT`
 
 Age is a presentation/pathway attribute, not a replacement for D1-D4 depth.
 
-## Duplicate rule
+## Duplicate control
 
-Duplicate detection is semantic, not lexical. Repeated words across the World Tree are allowed only when their epistemic role is different.
-
-The minimum duplicate key is:
+Duplicate detection is semantic, not lexical. The minimum identity comparison is:
 
 `NODE + CLAIM + LEARNING_OBJECTIVE + CONTEXT + VISUAL_JOB`
 
-During Phases A and B, `VISUAL_JOB` may remain null. During Phase C it becomes mandatory for visual assets.
+During Knowledge/Curriculum and Lesson Registry, `VISUAL_JOB` may be null. During Prompts it becomes mandatory for any image-bearing lesson.
 
-## Window independence rule
+## Window independence and recovery
 
-No ChatGPT window is authoritative memory.
+No ChatGPT window is authoritative project memory. Every window bootstraps from GitHub state, exact accepted commits and predecessor artifacts. Every completed unit writes `RESULT.json`, checkpoint data and `next_action`.
 
-Every window MUST bootstrap from GitHub state, exact accepted commits, and predecessor artifacts. Every completed window MUST write a machine-readable result and handoff. A new window MUST be able to continue with zero access to prior chat history.
+If a window dies, its replacement resumes from the last accepted checkpoint. It MUST NOT infer completion from chat history and MUST NOT renumber accepted IDs.
 
-## Failure rule
-
-If a window dies before an accepted completion commit, the replacement window resumes from the last accepted checkpoint. It MUST NOT infer completion from chat text.
+Large scopes must be partitioned into bounded child windows before detailed authoring. Each child has an independent PASS checkpoint so a dead long window cannot erase completed work.
 
 ## Current execution
 
-Current phase: `PHASE_A_CURRICULUM`
+Current canonical stage: `CURRICULUM`
 Current branch: `B1`
 Current window: `C01-W01-B1-ARCHITECTURE`
 
-Image prompt authoring: DISABLED
-Image production: DISABLED
-Website publication: DISABLED
+`KNOWLEDGE` input exists at the canonical tree commit above.
+`ACADEMIC_LOCKED`: NOT YET.
+`LESSON_REGISTRY`: GATED.
+`PROMPTS`: GATED.
+`IMAGE_PRODUCTION`: GATED.
+`WEBSITE_UPDATE`: GATED.
