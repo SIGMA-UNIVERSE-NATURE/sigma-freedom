@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c02",
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "control_plane_activation_head_sha": "d68f256c3a28a1d8442fbc99554e423765ab5444",
+  "scope_ids": ["B1.1-C02"],
+  "canonical_topic_ids": [
+    "B1.1-C02-T01","B1.1-C02-T02","B1.1-C02-T03","B1.1-C02-T04",
+    "B1.1-C02-T05","B1.1-C02-T06","B1.1-C02-T07","B1.1-C02-T08"
+  ],
+  "bootstrap": {
+    "C01_director_accepted": true,
+    "C01_accepted_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+    "C02_control_plane_status": "READY",
+    "C03_status": "LOCKED",
+    "contract_installed": true,
+    "execution_prompt_installed": true,
+    "claim_to_learning_objective_closure_required": true
+  },
+  "next_action": "Author only B1.1-C02 from the locked execution prompt, checkpoint substantial academic work, and return a candidate result for independent Director review."
+}
