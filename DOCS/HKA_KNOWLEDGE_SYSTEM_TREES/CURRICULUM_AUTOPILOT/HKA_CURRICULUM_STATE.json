@@ -40,7 +40,8 @@
   },
   "active_branch": "B1",
   "active_window": "C01-W01-B1-ARCHITECTURE",
-  "last_accepted_checkpoint": "89dbfc0ec13de779b4f2787a5d01ec05d8de6c46",
+  "window_execution_branch": "hka-tree/c01-w01-b1-architecture",
+  "last_accepted_work_checkpoint": null,
   "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt. It may only architect and partition B1 curriculum work. It must not author lesson registry, visual prompts, images, R2 artifacts or website changes.",
   "branches": [
     {
@@ -48,18 +49,18 @@
       "name": "QUY LUẬT — Quy luật & Thực tại",
       "status": "IN_PROGRESS",
       "subbranches": [
-        {"id": "B1.1", "name": "Toán học & Hệ hình thức", "status": "NOT_STARTED"},
-        {"id": "B1.2", "name": "Vật chất & Năng lượng", "status": "NOT_STARTED"},
-        {"id": "B1.3", "name": "Chất & Biến đổi", "status": "NOT_STARTED"},
-        {"id": "B1.4", "name": "Trái Đất & Vũ trụ", "status": "NOT_STARTED"},
-        {"id": "B1.5", "name": "Thông tin & Tính toán", "status": "NOT_STARTED"}
+        {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"NOT_STARTED"},
+        {"id":"B1.2","name":"Vật chất & Năng lượng","status":"NOT_STARTED"},
+        {"id":"B1.3","name":"Chất & Biến đổi","status":"NOT_STARTED"},
+        {"id":"B1.4","name":"Trái Đất & Vũ trụ","status":"NOT_STARTED"},
+        {"id":"B1.5","name":"Thông tin & Tính toán","status":"NOT_STARTED"}
       ]
     },
-    {"branch_id": "B2", "name": "SỰ SỐNG — Sự sống, Sức khỏe & Tâm trí", "status": "NOT_STARTED"},
-    {"branch_id": "B3", "name": "KẾT NỐI — Hệ thống, Thiết kế & Kết nối", "status": "NOT_STARTED"},
-    {"branch_id": "B4", "name": "THỜI GIAN — Thời gian, Nơi chốn & Tương lai", "status": "NOT_STARTED"},
-    {"branch_id": "B5", "name": "BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa", "status": "NOT_STARTED"},
-    {"branch_id": "B6", "name": "CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý", "status": "NOT_STARTED"}
+    {"branch_id":"B2","name":"SỰ SỐNG — Sự sống, Sức khỏe & Tâm trí","status":"NOT_STARTED"},
+    {"branch_id":"B3","name":"KẾT NỐI — Hệ thống, Thiết kế & Kết nối","status":"NOT_STARTED"},
+    {"branch_id":"B4","name":"THỜI GIAN — Thời gian, Nơi chốn & Tương lai","status":"NOT_STARTED"},
+    {"branch_id":"B5","name":"BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa","status":"NOT_STARTED"},
+    {"branch_id":"B6","name":"CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý","status":"NOT_STARTED"}
   ],
   "gates": {
     "all_six_branches_complete": false,
