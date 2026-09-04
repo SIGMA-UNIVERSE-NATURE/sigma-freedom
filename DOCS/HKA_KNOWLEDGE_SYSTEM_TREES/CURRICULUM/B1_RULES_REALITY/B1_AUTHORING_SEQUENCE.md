@@ -10,7 +10,7 @@ Execution baseline: `02ff47d64fd3b3b03d1fa2ae70d773afb071995e`
 Git commits cannot contain their own future SHA. Therefore every successor resolves this architecture's accepted input by an immutable deterministic selector, then pins the resulting SHA before authoring:
 
 1. Read first-parent history of `hka-tree/c01-w01-b1-architecture` after baseline `02ff47d64fd3b3b03d1fa2ae70d773afb071995e`.
-2. Select the earliest commit that contains `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/RESULT.json` with `window_id=C01-W01-B1-ARCHITECTURE`, `stage=CURRICULUM`, `status=PASS`, and all seven required output paths present.
+2. Select the earliest commit that contains `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/RESULT.json` with `window_id=C01-W01-B1-ARCHITECTURE`, `stage=CURRICULUM`, `status=PASS`, all seven contract output paths present, and the mandatory status folder containing `STATUS.json`, `REPORT.md`, and at least one checkpoint.
 3. Record that exact SHA as `input_commit_sha` in the family/child checkpoint before any authoring.
 4. Reject a floating branch-only input. If zero or multiple commits satisfy the selector due to history rewriting, return `BLOCKED_CONTRADICTION`.
 
@@ -25,6 +25,7 @@ Within each family:
 - only one child scope is active per child checkpoint;
 - each child owns stable scope IDs listed here;
 - each child writes its own `RESULT.json` and `HANDOFF.md` under its exact output path;
+- each child and each family controller maintains the mandatory durable status folder `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/<WINDOW_ID>/`;
 - a failed/interrupted child resumes only its unfinished assigned scope;
 - accepted IDs from PASS children are immutable;
 - the next child may start only after the current child's `PASS`;
@@ -44,6 +45,14 @@ Each bounded child writes under its listed directory:
 - `HANDOFF.md`.
 
 No child may create Lesson Registry, prompt, image, R2, delivery, or website artifacts.
+
+### Mandatory child/controller status path
+
+For every child or family controller, the status path is deterministic from its exact window ID:
+
+`DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/<WINDOW_ID>/`
+
+It must contain `STATUS.json`, `REPORT.md`, and append-only `CHECKPOINTS/<CHECKPOINT_ID>.json` records conforming to `STATUS_REPORT_STANDARD.md`. A child or controller `RESULT.json=PASS` is invalid unless its status folder is current and also says `PASS`. The status folder is control-plane state; it does not change curriculum ownership or create a later-stage artifact.
 
 ## 4. Prerequisite-aware family execution order
 
@@ -150,7 +159,8 @@ A child returns `PASS` only if all conditions hold:
 6. Duplicate scan is run against all previously accepted B1 child artifacts plus risk cases in `B1_DUPLICATE_CONTROL.md`.
 7. Secondary cross-links are recorded without ownership transfer.
 8. No later pipeline-stage work is authored.
-9. Child `RESULT.json` records exact `input_commit_sha`, output paths, IDs/counts, coverage, duplicate disposition, status and deterministic `next_action`.
+9. The child's mandatory status folder is current, includes an append-only pre-PASS checkpoint, and records completed/remaining work, authoritative paths/commits, locked decisions, do-not-repeat, status and next action.
+10. Child `RESULT.json` records exact `input_commit_sha`, output paths, IDs/counts, coverage, duplicate disposition, status and deterministic `next_action`.
 
 ## 8. Resume algorithm
 
