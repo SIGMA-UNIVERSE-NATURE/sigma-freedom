@@ -1,0 +1,492 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.DOCUMENT.SURVEY][VERSION=2.5B]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.DOCUMENT_SURVEY_V25B) {
+
+    ⚡ RAW_DIR:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V25B_RAW_DIR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_SURVEY:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V25B_DOCUMENT_SURVEY.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ FILES:
+        H(
+            "listdir",
+            RAW_DIR,
+            NULL,
+            NULL
+        );
+
+    ⚡ SORTED:
+        H(
+            "list_sort",
+            FILES,
+            NULL,
+            NULL
+        );
+
+    ⚡ FILE_TOTAL:
+        H(
+            "list_len",
+            FILES,
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_LINES:
+        H(
+            "str_split",
+            OLD_SURVEY,
+            "\n",
+            NULL
+        );
+
+    ⚡ SURVEY_TOTAL:
+        H(
+            "list_len",
+            SURVEY_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ COMMITTED_SURVEY_COUNT:
+        0;
+
+    ⚡ SR:
+        0;
+
+    WHILE (SR < SURVEY_TOTAL) {
+
+        ⚡ EXISTING_RECORD:
+            H(
+                "list_get",
+                SURVEY_LINES,
+                SR,
+                NULL
+            );
+
+        ⚡ IS_COMMITTED_RECORD:
+            H(
+                "str_ends",
+                EXISTING_RECORD,
+                " || COMMIT=YES",
+                NULL
+            );
+
+        IF (IS_COMMITTED_RECORD) {
+            ⚡ COMMITTED_SURVEY_COUNT:
+                COMMITTED_SURVEY_COUNT + 1;
+        }
+
+        ⚡ SR:
+            SR + 1;
+    }
+
+    ⚡ SELECTED_FILE:
+        "";
+
+    ⚡ SELECTED_ID:
+        "";
+
+    ⚡ SELECTED_SET:
+        0;
+
+    ⚡ F:
+        0;
+
+    WHILE (F < FILE_TOTAL) {
+
+        ⚡ NAME:
+            H(
+                "list_get",
+                FILES,
+                F,
+                NULL
+            );
+
+        ⚡ IS_DOCUMENT:
+            H(
+                "str_ends",
+                NAME,
+                ".document",
+                NULL
+            );
+
+        IF (IS_DOCUMENT) {
+
+            ⚡ DOC_ID:
+                H(
+                    "str_replace",
+                    NAME,
+                    ".document",
+                    ""
+                );
+
+            ⚡ DOC_PREFIX:
+                "DOC=" + DOC_ID + " || ";
+
+            ⚡ ALREADY_SURVEYED:
+                0;
+
+            ⚡ S:
+                0;
+
+            WHILE (S < SURVEY_TOTAL) {
+
+                ⚡ OLD_RECORD:
+                    H(
+                        "list_get",
+                        SURVEY_LINES,
+                        S,
+                        NULL
+                    );
+
+                ⚡ SAME_DOC:
+                    H(
+                        "str_starts",
+                        OLD_RECORD,
+                        DOC_PREFIX,
+                        NULL
+                    );
+
+                ⚡ RECORD_COMMITTED:
+                    H(
+                        "str_ends",
+                        OLD_RECORD,
+                        " || COMMIT=YES",
+                        NULL
+                    );
+
+                IF (SAME_DOC) {
+                    IF (RECORD_COMMITTED) {
+                        ⚡ ALREADY_SURVEYED:
+                            1;
+                    }
+                }
+
+                ⚡ S:
+                    S + 1;
+            }
+
+            IF (ALREADY_SURVEYED < 1) {
+
+                IF (SELECTED_SET == 0) {
+
+                    ⚡ SELECTED_SET:
+                        1;
+
+                    ⚡ SELECTED_FILE:
+                        NAME;
+
+                    ⚡ SELECTED_ID:
+                        DOC_ID;
+                }
+            }
+        }
+
+        ⚡ F:
+            F + 1;
+    }
+
+    IF (SELECTED_SET == 0) {
+
+        ⚡ print("SIGMA_V25B_DOCUMENT_SURVEY");
+        ⚡ print("SURVEY_COMPLETE", "YES");
+        ⚡ print("RAW_FILE_COUNT", FILE_TOTAL);
+        ⚡ print("COMMITTED_SURVEY_COUNT", COMMITTED_SURVEY_COUNT);
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (0 < SELECTED_SET) {
+
+        ⚡ DOC_PATH:
+            RAW_DIR + "/" + SELECTED_FILE;
+
+        ⚡ INPUT:
+            H(
+                "read_text",
+                DOC_PATH,
+                NULL,
+                NULL
+            );
+
+        ⚡ LINES:
+            H(
+                "str_split",
+                INPUT,
+                "\n",
+                NULL
+            );
+
+        ⚡ LINE_TOTAL:
+            H(
+                "list_len",
+                LINES,
+                NULL,
+                NULL
+            );
+
+        ⚡ SURVEY_LINE_LIMIT:
+            LINE_TOTAL;
+
+        IF (32 < SURVEY_LINE_LIMIT) {
+            ⚡ SURVEY_LINE_LIMIT:
+                32;
+        }
+
+        ⚡ REL_COUNTS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ REL_ORDER:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ TOKEN_COUNT:
+            0;
+
+        ⚡ RELATION_OCCURRENCES:
+            0;
+
+        ⚡ L:
+            0;
+
+        WHILE (L < SURVEY_LINE_LIMIT) {
+
+            ⚡ LINE:
+                H(
+                    "list_get",
+                    LINES,
+                    L,
+                    NULL
+                );
+
+            ⚡ TOKENS:
+                H(
+                    "str_split",
+                    LINE,
+                    " ",
+                    NULL
+                );
+
+            ⚡ TOTAL:
+                H(
+                    "list_len",
+                    TOKENS,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ TOKEN_COUNT:
+                TOKEN_COUNT + TOTAL;
+
+            ⚡ LIMIT:
+                TOTAL - 1;
+
+            ⚡ I:
+                0;
+
+            WHILE (I < LIMIT) {
+
+                ⚡ LEFT:
+                    H(
+                        "list_get",
+                        TOKENS,
+                        I,
+                        NULL
+                    );
+
+                ⚡ RIGHT:
+                    H(
+                        "list_get",
+                        TOKENS,
+                        I + 1,
+                        NULL
+                    );
+
+                ⚡ RELATION:
+                    LEFT + " => " + RIGHT;
+
+                ⚡ EXISTS:
+                    H(
+                        "map_has",
+                        REL_COUNTS,
+                        RELATION,
+                        NULL
+                    );
+
+                IF (EXISTS) {
+
+                    ⚡ OLD_COUNT:
+                        H(
+                            "map_get",
+                            REL_COUNTS,
+                            RELATION,
+                            NULL
+                        );
+
+                    ⚡ SET_COUNT:
+                        H(
+                            "map_set",
+                            REL_COUNTS,
+                            RELATION,
+                            OLD_COUNT + 1
+                        );
+                }
+
+                IF (EXISTS == FALSE) {
+
+                    ⚡ SET_FIRST:
+                        H(
+                            "map_set",
+                            REL_COUNTS,
+                            RELATION,
+                            1
+                        );
+
+                    ⚡ PUSH_ORDER:
+                        H(
+                            "list_push",
+                            REL_ORDER,
+                            RELATION,
+                            NULL
+                        );
+                }
+
+                ⚡ RELATION_OCCURRENCES:
+                    RELATION_OCCURRENCES + 1;
+
+                ⚡ I:
+                    I + 1;
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ UNIQUE_RELATIONS:
+            H(
+                "list_len",
+                REL_ORDER,
+                NULL,
+                NULL
+            );
+
+        ⚡ RECURRING_RELATIONS:
+            0;
+
+        ⚡ BEST_RELATION:
+            "";
+
+        ⚡ BEST_LOCAL_SUPPORT:
+            0;
+
+        ⚡ R:
+            0;
+
+        WHILE (R < UNIQUE_RELATIONS) {
+
+            ⚡ REL:
+                H(
+                    "list_get",
+                    REL_ORDER,
+                    R,
+                    NULL
+                );
+
+            ⚡ COUNT:
+                H(
+                    "map_get",
+                    REL_COUNTS,
+                    REL,
+                    NULL
+                );
+
+            IF (1 < COUNT) {
+                ⚡ RECURRING_RELATIONS:
+                    RECURRING_RELATIONS + 1;
+            }
+
+            IF (BEST_LOCAL_SUPPORT < COUNT) {
+
+                ⚡ BEST_LOCAL_SUPPORT:
+                    COUNT;
+
+                ⚡ BEST_RELATION:
+                    REL;
+            }
+
+            ⚡ R:
+                R + 1;
+        }
+
+        ⚡ NOW:
+            H(
+                "time_now",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ RECORD:
+            "DOC="
+            + SELECTED_ID
+            + " || SURVEY_STATUS=COMPLETE"
+            + " || BEST_LOCAL_RELATION="
+            + BEST_RELATION
+            + " || COMMIT=YES"
+            + "\n";
+
+        ⚡ WRITE_SURVEY:
+            H(
+                "append_text",
+                ".sigma_exec/SIGMA_V25B_DOCUMENT_SURVEY.memory",
+                RECORD,
+                NULL
+            );
+
+        ⚡ print("SIGMA_V25B_DOCUMENT_SURVEY");
+        ⚡ print("SURVEY_COMPLETE", "NO");
+        ⚡ print("DOCUMENT_ID", SELECTED_ID);
+        ⚡ print("DOCUMENT_FILE", SELECTED_FILE);
+        ⚡ print("LINE_TOTAL", LINE_TOTAL);
+        ⚡ print("SURVEY_LINE_LIMIT", SURVEY_LINE_LIMIT);
+        ⚡ print("SAMPLE_TOKEN_COUNT", TOKEN_COUNT);
+        ⚡ print("RELATION_OCCURRENCES", RELATION_OCCURRENCES);
+        ⚡ print("UNIQUE_RELATIONS", UNIQUE_RELATIONS);
+        ⚡ print("RECURRING_RELATIONS", RECURRING_RELATIONS);
+        ⚡ print("BEST_LOCAL_RELATION", BEST_RELATION);
+        ⚡ print("BEST_LOCAL_SUPPORT", BEST_LOCAL_SUPPORT);
+        ⚡ print("SURVEY_TIME", NOW);
+        ⚡ print("COMMITTED_SURVEY_COUNT_BEFORE", COMMITTED_SURVEY_COUNT);
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+        ⚡ print("SIGMA_DOCUMENT_SELECTION", "FIRST_UNSURVEYED_SORTED_SNAPSHOT_ENTRY");
+        ⚡ print("SURVEY_COMPUTATION_LINE_BUDGET", 32);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
