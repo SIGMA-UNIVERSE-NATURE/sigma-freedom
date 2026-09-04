@@ -1,0 +1,750 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.REAL.SURVEY.BRIDGE][VERSION=2.8R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.REAL_SURVEY_CURRICULUM_BRIDGE_V28R1) {
+
+    ⚡ SURVEY_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28R1_SURVEY_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_TEXT:
+        H(
+            "read_text",
+            SURVEY_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_STATE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V28R1_CURRICULUM_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_LINES:
+        H(
+            "str_split",
+            SURVEY_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ STATE_LINES:
+        H(
+            "str_split",
+            OLD_STATE,
+            "\n",
+            NULL
+        );
+
+    ⚡ SURVEY_LINE_TOTAL:
+        H(
+            "list_len",
+            SURVEY_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE_LINE_TOTAL:
+        H(
+            "list_len",
+            STATE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_SURVEY_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_STATE_SPLIT_LINES:
+        65;
+
+    ⚡ SURVEY_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ STATE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_SURVEY_SPLIT_LINES < SURVEY_LINE_TOTAL) {
+        ⚡ SURVEY_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_STATE_SPLIT_LINES < STATE_LINE_TOTAL) {
+        ⚡ STATE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (SURVEY_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ print("SIGMA_V28R1_REAL_SURVEY_CURRICULUM_BRIDGE");
+        ⚡ print("SURVEY_LINE_TOTAL", SURVEY_LINE_TOTAL);
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("SURVEY_LIMIT_EXCEEDED", SURVEY_LIMIT_EXCEEDED);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_SURVEY_SPLIT_LINES", MAX_SURVEY_SPLIT_LINES);
+        ⚡ print("MAX_STATE_SPLIT_LINES", MAX_STATE_SPLIT_LINES);
+        ⚡ print("HOST_WORK_PROFILE_GENERATION", "NO");
+        ⚡ print("HOST_CURRICULUM_PRIORITY", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_IMPORTANCE", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ DISPATCHED:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ PERSISTED_DISPATCH_COUNT:
+            0;
+
+        ⚡ IGNORED_STATE_RECORD_COUNT:
+            0;
+
+        ⚡ S:
+            0;
+
+        WHILE (S < STATE_LINE_TOTAL) {
+
+            ⚡ STATE_LINE:
+                H(
+                    "list_get",
+                    STATE_LINES,
+                    S,
+                    NULL
+                );
+
+            ⚡ VALID_STATE_LINE:
+                1;
+
+            IF (STATE_LINE == "") {
+                ⚡ VALID_STATE_LINE:
+                    0;
+            }
+
+            IF (VALID_STATE_LINE) {
+
+                ⚡ STATE_PARTS:
+                    H(
+                        "str_split",
+                        STATE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ STATE_PART_TOTAL:
+                    H(
+                        "list_len",
+                        STATE_PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_STATE:
+                    0;
+
+                IF (2 < STATE_PART_TOTAL) {
+
+                    ⚡ STATE_COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            2,
+                            NULL
+                        );
+
+                    IF (STATE_COMMIT_FIELD == "COMMIT=YES") {
+                        ⚡ COMMITTED_STATE:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_STATE) {
+
+                    ⚡ STATE_WORK_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ STATE_STATUS_FIELD:
+                        H(
+                            "list_get",
+                            STATE_PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ STATE_WORK_ID:
+                        H(
+                            "str_replace",
+                            STATE_WORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    IF (STATE_STATUS_FIELD == "DISPATCHED=YES") {
+
+                        ⚡ STATE_SEEN:
+                            H(
+                                "map_has",
+                                DISPATCHED,
+                                STATE_WORK_ID,
+                                NULL
+                            );
+
+                        IF (STATE_SEEN == FALSE) {
+
+                            ⚡ MARK_STATE:
+                                H(
+                                    "map_set",
+                                    DISPATCHED,
+                                    STATE_WORK_ID,
+                                    1
+                                );
+
+                            ⚡ PERSISTED_DISPATCH_COUNT:
+                                PERSISTED_DISPATCH_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED_STATE == 0) {
+                    ⚡ IGNORED_STATE_RECORD_COUNT:
+                        IGNORED_STATE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ S:
+                S + 1;
+        }
+
+        ⚡ DOCS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHORS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ EMPTY_FLAGS:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ SEEN_DOCS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHOR_COUNTS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ ANCHOR_ORDER:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ REAL_SURVEY_COMMITTED_DOC_COUNT:
+            0;
+
+        ⚡ DUPLICATE_SURVEY_DOC_COUNT:
+            0;
+
+        ⚡ IGNORED_SURVEY_RECORD_COUNT:
+            0;
+
+        ⚡ EMPTY_PROFILE_COUNT:
+            0;
+
+        ⚡ L:
+            0;
+
+        WHILE (L < SURVEY_LINE_TOTAL) {
+
+            ⚡ LINE:
+                H(
+                    "list_get",
+                    SURVEY_LINES,
+                    L,
+                    NULL
+                );
+
+            ⚡ VALID_LINE:
+                1;
+
+            IF (LINE == "") {
+                ⚡ VALID_LINE:
+                    0;
+            }
+
+            IF (VALID_LINE) {
+
+                ⚡ PARTS:
+                    H(
+                        "str_split",
+                        LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ PART_TOTAL:
+                    H(
+                        "list_len",
+                        PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ VALID_SURVEY_RECORD:
+                    0;
+
+                IF (3 < PART_TOTAL) {
+
+                    ⚡ DOC_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ STATUS_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ ANCHOR_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (STATUS_FIELD == "SURVEY_STATUS=COMPLETE") {
+                        IF (COMMIT_FIELD == "COMMIT=YES") {
+                            ⚡ VALID_SURVEY_RECORD:
+                                1;
+                        }
+                    }
+                }
+
+                IF (VALID_SURVEY_RECORD) {
+
+                    ⚡ DOC_ID:
+                        H(
+                            "str_replace",
+                            DOC_FIELD,
+                            "DOC=",
+                            ""
+                        );
+
+                    ⚡ ANCHOR:
+                        H(
+                            "str_replace",
+                            ANCHOR_FIELD,
+                            "BEST_LOCAL_RELATION=",
+                            ""
+                        );
+
+                    ⚡ VALID_DOC:
+                        1;
+
+                    IF (DOC_ID == "") {
+                        ⚡ VALID_DOC:
+                            0;
+                    }
+
+                    IF (VALID_DOC) {
+
+                        ⚡ DOC_SEEN:
+                            H(
+                                "map_has",
+                                SEEN_DOCS,
+                                DOC_ID,
+                                NULL
+                            );
+
+                        IF (DOC_SEEN == FALSE) {
+
+                            ⚡ MARK_DOC:
+                                H(
+                                    "map_set",
+                                    SEEN_DOCS,
+                                    DOC_ID,
+                                    1
+                                );
+
+                            ⚡ PUSH_DOC:
+                                H(
+                                    "list_push",
+                                    DOCS,
+                                    DOC_ID,
+                                    NULL
+                                );
+
+                            ⚡ PUSH_ANCHOR:
+                                H(
+                                    "list_push",
+                                    ANCHORS,
+                                    ANCHOR,
+                                    NULL
+                                );
+
+                            ⚡ EMPTY_FLAG:
+                                0;
+
+                            IF (ANCHOR == "") {
+
+                                ⚡ EMPTY_FLAG:
+                                    1;
+
+                                ⚡ EMPTY_PROFILE_COUNT:
+                                    EMPTY_PROFILE_COUNT + 1;
+                            }
+
+                            ⚡ PUSH_EMPTY:
+                                H(
+                                    "list_push",
+                                    EMPTY_FLAGS,
+                                    EMPTY_FLAG,
+                                    NULL
+                                );
+
+                            IF (EMPTY_FLAG == 0) {
+
+                                ⚡ ANCHOR_SEEN:
+                                    H(
+                                        "map_has",
+                                        ANCHOR_COUNTS,
+                                        ANCHOR,
+                                        NULL
+                                    );
+
+                                IF (ANCHOR_SEEN) {
+
+                                    ⚡ OLD_COUNT:
+                                        H(
+                                            "map_get",
+                                            ANCHOR_COUNTS,
+                                            ANCHOR,
+                                            NULL
+                                        );
+
+                                    ⚡ SET_COUNT:
+                                        H(
+                                            "map_set",
+                                            ANCHOR_COUNTS,
+                                            ANCHOR,
+                                            OLD_COUNT + 1
+                                        );
+                                }
+
+                                IF (ANCHOR_SEEN == FALSE) {
+
+                                    ⚡ SET_FIRST:
+                                        H(
+                                            "map_set",
+                                            ANCHOR_COUNTS,
+                                            ANCHOR,
+                                            1
+                                        );
+
+                                    ⚡ PUSH_ANCHOR_ORDER:
+                                        H(
+                                            "list_push",
+                                            ANCHOR_ORDER,
+                                            ANCHOR,
+                                            NULL
+                                        );
+                                }
+                            }
+
+                            ⚡ REAL_SURVEY_COMMITTED_DOC_COUNT:
+                                REAL_SURVEY_COMMITTED_DOC_COUNT + 1;
+                        }
+
+                        IF (DOC_SEEN) {
+                            ⚡ DUPLICATE_SURVEY_DOC_COUNT:
+                                DUPLICATE_SURVEY_DOC_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (VALID_SURVEY_RECORD == 0) {
+                    ⚡ IGNORED_SURVEY_RECORD_COUNT:
+                        IGNORED_SURVEY_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ DISTINCT_NONEMPTY_ANCHOR_COUNT:
+            H(
+                "list_len",
+                ANCHOR_ORDER,
+                NULL,
+                NULL
+            );
+
+        ⚡ TOTAL_DOCS:
+            H(
+                "list_len",
+                DOCS,
+                NULL,
+                NULL
+            );
+
+        ⚡ ELIGIBLE_UNDISPATCHED_COUNT:
+            0;
+
+        ⚡ BEST_SET:
+            0;
+
+        ⚡ SELECTED_WORK:
+            "";
+
+        ⚡ SELECTED_EMPTY_PROFILE:
+            0;
+
+        ⚡ SELECTED_ANCHOR_SUPPORT:
+            0;
+
+        ⚡ D:
+            0;
+
+        WHILE (D < TOTAL_DOCS) {
+
+            ⚡ DOC_ID:
+                H(
+                    "list_get",
+                    DOCS,
+                    D,
+                    NULL
+                );
+
+            ⚡ ANCHOR:
+                H(
+                    "list_get",
+                    ANCHORS,
+                    D,
+                    NULL
+                );
+
+            ⚡ EMPTY_FLAG:
+                H(
+                    "list_get",
+                    EMPTY_FLAGS,
+                    D,
+                    NULL
+                );
+
+            ⚡ WAS_DISPATCHED:
+                H(
+                    "map_has",
+                    DISPATCHED,
+                    DOC_ID,
+                    NULL
+                );
+
+            IF (WAS_DISPATCHED == FALSE) {
+
+                ⚡ ELIGIBLE_UNDISPATCHED_COUNT:
+                    ELIGIBLE_UNDISPATCHED_COUNT + 1;
+
+                ⚡ SUPPORT:
+                    0;
+
+                IF (EMPTY_FLAG == 0) {
+
+                    ⚡ SUPPORT:
+                        H(
+                            "map_get",
+                            ANCHOR_COUNTS,
+                            ANCHOR,
+                            NULL
+                        );
+                }
+
+                ⚡ BETTER:
+                    0;
+
+                IF (BEST_SET == 0) {
+                    ⚡ BETTER:
+                        1;
+                }
+
+                IF (BEST_SET) {
+
+                    IF (SELECTED_EMPTY_PROFILE < EMPTY_FLAG) {
+                        ⚡ BETTER:
+                            1;
+                    }
+
+                    IF (EMPTY_FLAG == SELECTED_EMPTY_PROFILE) {
+
+                        IF (SELECTED_ANCHOR_SUPPORT < SUPPORT) {
+                            ⚡ BETTER:
+                                1;
+                        }
+                    }
+                }
+
+                IF (BETTER) {
+
+                    ⚡ BEST_SET:
+                        1;
+
+                    ⚡ SELECTED_WORK:
+                        DOC_ID;
+
+                    ⚡ SELECTED_EMPTY_PROFILE:
+                        EMPTY_FLAG;
+
+                    ⚡ SELECTED_ANCHOR_SUPPORT:
+                        SUPPORT;
+                }
+            }
+
+            ⚡ D:
+                D + 1;
+        }
+
+        ⚡ WRITE_SELECTED_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V28R1_SELECTED_WORK.memory",
+                SELECTED_WORK,
+                NULL
+            );
+
+        ⚡ DISPATCH_APPEND_RC:
+            0;
+
+        ⚡ HAS_SELECTED_WORK:
+            1;
+
+        IF (SELECTED_WORK == "") {
+            ⚡ HAS_SELECTED_WORK:
+                0;
+        }
+
+        IF (HAS_SELECTED_WORK) {
+
+            ⚡ DISPATCH_RECORD:
+                "\nWORK="
+                + SELECTED_WORK
+                + " || DISPATCHED=YES || COMMIT=YES";
+
+            ⚡ DISPATCH_APPEND_RC:
+                H(
+                    "append_text",
+                    ".sigma_exec/SIGMA_V28R1_CURRICULUM_STATE.memory",
+                    DISPATCH_RECORD,
+                    NULL
+                );
+        }
+
+        ⚡ print("SIGMA_V28R1_REAL_SURVEY_CURRICULUM_BRIDGE");
+        ⚡ print("SURVEY_LINE_TOTAL", SURVEY_LINE_TOTAL);
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("SURVEY_LIMIT_EXCEEDED", SURVEY_LIMIT_EXCEEDED);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "YES");
+        ⚡ print("REAL_SURVEY_COMMITTED_DOC_COUNT", REAL_SURVEY_COMMITTED_DOC_COUNT);
+        ⚡ print("DUPLICATE_SURVEY_DOC_COUNT", DUPLICATE_SURVEY_DOC_COUNT);
+        ⚡ print("IGNORED_SURVEY_RECORD_COUNT", IGNORED_SURVEY_RECORD_COUNT);
+        ⚡ print("EMPTY_PROFILE_COUNT", EMPTY_PROFILE_COUNT);
+        ⚡ print("DISTINCT_NONEMPTY_ANCHOR_COUNT", DISTINCT_NONEMPTY_ANCHOR_COUNT);
+        ⚡ print("PERSISTED_DISPATCH_COUNT", PERSISTED_DISPATCH_COUNT);
+        ⚡ print("IGNORED_STATE_RECORD_COUNT", IGNORED_STATE_RECORD_COUNT);
+        ⚡ print("ELIGIBLE_UNDISPATCHED_COUNT", ELIGIBLE_UNDISPATCHED_COUNT);
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("SELECTED_EMPTY_PROFILE", SELECTED_EMPTY_PROFILE);
+        ⚡ print("SELECTED_ANCHOR_SUPPORT", SELECTED_ANCHOR_SUPPORT);
+        ⚡ print("WRITE_SELECTED_RC", WRITE_SELECTED_RC);
+        ⚡ print("DISPATCH_APPEND_RC", DISPATCH_APPEND_RC);
+        ⚡ print("REAL_SURVEY_PRIORITY_POLICY", "EMPTY_PROFILE_FIRST_THEN_EXACT_ANCHOR_DISTINCT_DOC_SUPPORT_DESC_FIRST_ENCOUNTER_TIE");
+        ⚡ print("PERSISTENT_STATE_POLICY", "COMMIT_YES_DISPATCH_RECORDS_ONLY");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_SURVEY_SPLIT_LINES", MAX_SURVEY_SPLIT_LINES);
+        ⚡ print("MAX_STATE_SPLIT_LINES", MAX_STATE_SPLIT_LINES);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("HOST_WORK_PROFILE_GENERATION", "NO");
+        ⚡ print("HOST_CURRICULUM_PRIORITY", "NO");
+        ⚡ print("HOST_LESSON_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_FRONTIER_ONLY", "YES");
+        ⚡ print("SEMANTIC_IMPORTANCE", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
