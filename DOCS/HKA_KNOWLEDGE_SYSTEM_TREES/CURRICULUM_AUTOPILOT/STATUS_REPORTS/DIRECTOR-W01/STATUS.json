@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/curriculum-master",
+  "input_commit_sha": "825f76a7f25c02b132d87bde816b2dced2c6ed0d",
+  "last_checkpoint_commit_sha": "89bc8b9996de757a18708d5c3f30613822b8e33d",
+  "last_checkpoint_id": "CP-20260904-2211-STATUS-REPORT-GATE",
+  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING"],
+  "completed_work": [
+    "Created mandatory durable per-window status-report standard.",
+    "Created machine and human report templates.",
+    "Updated recovery protocol so replacement windows bootstrap from durable status folders.",
+    "Updated curriculum state so a status folder is required for accepted PASS."
+  ],
+  "remaining_work": [
+    "Ensure active and future execution-window prompts/contracts reference the status-report standard.",
+    "Director must verify status folder consistency before accepting each successor PASS."
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/_TEMPLATE/STATUS.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/_TEMPLATE/REPORT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json"
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Every HKA worker and Director maintains a durable status folder.",
+    "NO STATUS FOLDER = NO ACCEPTED COMPLETION.",
+    "Chat history is never authoritative recovery state."
+  ],
+  "do_not_repeat": [
+    "Do not recreate a second competing status-report system.",
+    "Do not accept RESULT.json=PASS without verifying the mandatory status folder."
+  ],
+  "next_action": "Patch the active C01-W01-B1-ARCHITECTURE execution instructions to require its own durable status folder before PASS.",
+  "successor_window": "C01-W01-B1-ARCHITECTURE",
+  "updated_at": "2026-09-04T22:11:08+07:00"
+}
