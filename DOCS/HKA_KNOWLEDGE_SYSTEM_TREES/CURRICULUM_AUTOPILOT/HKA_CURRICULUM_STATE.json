@@ -10,8 +10,9 @@
   "website_publication_enabled": false,
   "active_branch": "B1",
   "active_window": "C01-W01-B1-ARCHITECTURE",
-  "last_accepted_checkpoint": null,
-  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt.",
+  "window_definition_commit": "a6fbf95f9ebc0e462996a96e17ea4ade3db7d595",
+  "last_accepted_checkpoint": "a6fbf95f9ebc0e462996a96e17ea4ade3db7d595",
+  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt; successor windows remain gated until RESULT.json=PASS.",
   "branches": [
     {
       "branch_id": "B1",
