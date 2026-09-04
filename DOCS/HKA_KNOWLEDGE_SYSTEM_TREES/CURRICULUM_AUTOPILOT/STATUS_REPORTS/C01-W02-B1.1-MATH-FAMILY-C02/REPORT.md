@@ -1,41 +1,67 @@
 # C01-W02-B1.1-MATH-FAMILY-C02 — Durable Status Report
 
-Status: `CHECKPOINTED — PRE-PASS`  
+Status: `PASS` — **worker candidate for Director review**  
 Stage: `CURRICULUM`  
 Scope: `B1.1-C02 — Số học và lý thuyết số`  
 Execution branch: `hka-tree/c01-w02-math-c02`
 
-## Authoritative inputs
+## Terminal artifacts
 
-- Accepted C01 predecessor: `5659288da80a239e2ded408da87348670c1410c2`
-- Canonical tree: `fc799bf1104ab6352710e1801777a971b5179995`
-- Mandatory pre-PASS checkpoint: `CP04-PRE-PASS-AUDIT` at `0952311bc26d0ef19f09882a8d60996317fcfc9a`
+- `RESULT.json=PASS` committed at `99e74da44c6613a34b3dc43289a70bec6518779e`.
+- `HANDOFF.md` committed at `85878c75bed4329ce24aa8b89e54359c9a516242`.
+- Mandatory pre-PASS checkpoint `CP04-PRE-PASS-AUDIT` committed at `0952311bc26d0ef19f09882a8d60996317fcfc9a`.
+- Terminal checkpoint `CP05-TERMINAL-CANDIDATE` committed at `0b6216c1f46c53772de829974fffc971b92ab896`.
 
-## Academic record set
+## Completed record set
 
-- Topics `8/8`; nodes `8`; atomic claims `64`; sources `7`.
-- Learning objectives `32` = D1–D4 for every node; closure `32/32` = `100%`.
-- Cross-links `15`; curriculum-sequence rows `8`.
-- Seven academic file blob hashes were independently reconciled with the exact parsed bytes used for audit.
+- canonical topics: `8/8`
+- nodes: `8`
+- atomic sourced claims: `64`
+- persistent/versioned source records: `7`
+- age-independent D1–D4 learning objectives: `32`
+- Claim → Learning Objective closure: `32/32 = 100%`
+- cross-links: `15`
+- curriculum sequence rows: `8`
 
-## Pre-PASS gates
+## Gates
 
-All required gates are `PASS`: topic coverage, stable IDs, atomic/sourced/scoped claim fields, epistemic classification/certainty, age-independent D1–D4, 32/32 Claim → Learning Objective closure, source traceability/version identity, semantic duplicate scan, prerequisite/sequence graph and stage boundary.
+All candidate-PASS gates are green:
 
-There are `0` future-scope support Claim IDs, `0` prerequisite cycles, `0` primary-ownership transfers, `0` C03+ academic records and `0` later-pipeline artifacts.
+- stable IDs and canonical topic coverage: `PASS`;
+- atomic/sourced/scoped claims with epistemic class and certainty: `PASS`;
+- D1–D4 depth coverage independent of age: `PASS`;
+- Claim → Learning Objective closure: `PASS`, no missing supports and no future-scope support Claim IDs;
+- source deterministic-ID, version identity and traceability: `PASS`;
+- semantic duplicate scan against accepted C01 and current C02: `PASS`;
+- prerequisite/sequence graph: `PASS`, zero cycles and zero disallowed prerequisites;
+- stage boundary: `PASS`, zero later-stage artifacts and zero C03+ academic records.
 
-Accepted C01 foundations remain references rather than duplicates: `HKA-B1-1-C01-N003` (set foundations), `HKA-B1-1-C01-N004` (relations/equivalence), `HKA-B1-1-C01-N006` (proof/counterexample). The exact C01 support claims used in closure resolve at the accepted predecessor commit.
+## Duplicate-control boundary
 
-## Control-plane recheck
+Accepted C01 remains primary owner of:
 
-Immediately before pre-PASS, the durable control-plane still named C02 as the active `READY` window on this execution branch and explicitly kept C03 locked until Director-accepted C02 PASS. The worker has not mutated control-plane.
+- `HKA-B1-1-C01-N003` — generic set foundations;
+- `HKA-B1-1-C01-N004` — generic relations/equivalence;
+- `HKA-B1-1-C01-N006` — generic proof/counterexample logic.
 
-## Remaining work
+C02 references those foundations and owns only the number-system/arithmetic/number-theory specializations. No primary ownership was transferred.
 
-Write `RESULT.json=PASS` as a worker candidate, write `HANDOFF.md`, record terminal checkpoint, and synchronize terminal `STATUS.json`/`REPORT.md`.
+## Stage/control-plane boundary
 
-## Locked next action
+Terminal diff from the Director-open-order base showed only authorized C02 academic outputs, C02 status/report and C02 checkpoints. No Lesson Registry, prompt, image, R2, delivery, website, `ACADEMIC_LOCKED`, C03+ academic file or control-plane write was made.
 
-`C01-W02-B1.1-MATH-FAMILY-C03 — GATED pending Director acceptance of C02`.
+The worker did **not** update `hka-tree/curriculum-master`.
 
-Do not unlock or execute C03 from this worker.
+## Blocking issues
+
+None for worker candidate PASS.
+
+## Director action required
+
+This PASS does **not** unlock the successor. The Director must independently review and accept C02 before changing durable control-plane state.
+
+Until then the exact next action remains:
+
+`C01-W02-B1.1-MATH-FAMILY-C03 — GATED pending Director acceptance of C02`
+
+Do not execute C03 from this worker result alone.
