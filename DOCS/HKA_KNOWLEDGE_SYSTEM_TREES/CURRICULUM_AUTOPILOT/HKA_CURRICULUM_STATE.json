@@ -1,18 +1,47 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "program": "HKA World Tree 1.0",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
-  "phase": "PHASE_A_CURRICULUM",
+  "pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
+  "pipeline_sequence": [
+    "KNOWLEDGE",
+    "CURRICULUM",
+    "ACADEMIC_LOCKED",
+    "LESSON_REGISTRY",
+    "LESSON_REGISTRY_LOCKED",
+    "PROMPTS",
+    "PROMPT_LOCKED",
+    "IMAGE_PRODUCTION",
+    "R2_STAGING",
+    "INDEPENDENT_QA",
+    "VAULT",
+    "WEB_OPTIMIZE",
+    "DELIVERY",
+    "WEBSITE_UPDATE"
+  ],
   "global_status": "ACTIVE",
-  "image_prompt_authoring_enabled": false,
-  "image_production_enabled": false,
-  "website_publication_enabled": false,
+  "current_stage": "CURRICULUM",
+  "stage_status": {
+    "KNOWLEDGE": "LOCKED_INPUT",
+    "CURRICULUM": "IN_PROGRESS",
+    "ACADEMIC_LOCKED": "GATED",
+    "LESSON_REGISTRY": "GATED",
+    "LESSON_REGISTRY_LOCKED": "GATED",
+    "PROMPTS": "GATED",
+    "PROMPT_LOCKED": "GATED",
+    "IMAGE_PRODUCTION": "GATED",
+    "R2_STAGING": "GATED",
+    "INDEPENDENT_QA": "GATED",
+    "VAULT": "GATED",
+    "WEB_OPTIMIZE": "GATED",
+    "DELIVERY": "GATED",
+    "WEBSITE_UPDATE": "GATED"
+  },
   "active_branch": "B1",
   "active_window": "C01-W01-B1-ARCHITECTURE",
-  "window_definition_commit": "a6fbf95f9ebc0e462996a96e17ea4ade3db7d595",
-  "last_accepted_checkpoint": "a6fbf95f9ebc0e462996a96e17ea4ade3db7d595",
-  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt; successor windows remain gated until RESULT.json=PASS.",
+  "last_accepted_checkpoint": "89dbfc0ec13de779b4f2787a5d01ec05d8de6c46",
+  "next_action": "Run C01-W01-B1-ARCHITECTURE from its locked execution prompt. It may only architect and partition B1 curriculum work. It must not author lesson registry, visual prompts, images, R2 artifacts or website changes.",
   "branches": [
     {
       "branch_id": "B1",
@@ -33,15 +62,23 @@
     {"branch_id": "B6", "name": "CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý", "status": "NOT_STARTED"}
   ],
   "gates": {
-    "all_curriculum_locked": false,
-    "global_duplicate_audit_pass": false,
+    "all_six_branches_complete": false,
+    "global_curriculum_coverage_audit_pass": false,
+    "global_curriculum_prerequisite_audit_pass": false,
+    "global_curriculum_duplicate_audit_pass": false,
+    "academic_locked": false,
     "lesson_registry_locked": false,
-    "all_visual_prompts_locked": false
+    "prompt_locked": false,
+    "qa_approved_required_for_vault": true,
+    "vault_verified_required_for_web_optimize": true,
+    "web_optimize_pass_required_for_delivery": true,
+    "delivery_required_for_website_update": true
   },
   "recovery": {
-    "source_of_truth": "GitHub accepted commits plus machine-readable state",
+    "source_of_truth": "GitHub accepted commits plus machine-readable state; Cloudflare becomes runtime source of truth from IMAGE_PRODUCTION onward",
     "chat_memory_authoritative": false,
     "resume_policy": "Resume from last accepted checkpoint; never infer completion from chat history.",
-    "incomplete_window_policy": "If RESULT.json is absent or not PASS, treat the window as incomplete."
+    "incomplete_window_policy": "If RESULT.json is absent or not PASS, treat the window as incomplete and resume only unfinished scope.",
+    "stable_id_policy": "Never silently recreate or renumber accepted NODE_ID, CLAIM_ID, LESSON_ID or ASSET_ID."
   }
 }
