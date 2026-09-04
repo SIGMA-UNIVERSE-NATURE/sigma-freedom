@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "window_id": "<WINDOW_ID>",
+  "role": "<ROLE>",
+  "stage": "<PIPELINE_STAGE>",
+  "status": "READY",
+  "execution_branch": "<BRANCH>",
+  "input_commit_sha": "<40-char SHA>",
+  "last_checkpoint_commit_sha": null,
+  "last_checkpoint_id": null,
+  "scope_ids": [],
+  "completed_work": [],
+  "remaining_work": [],
+  "output_paths": [],
+  "blocking_issues": [],
+  "decisions_locked": [],
+  "do_not_repeat": [],
+  "next_action": "<NEXT_ACTION>",
+  "successor_window": null,
+  "updated_at": "<ISO-8601>"
+}
