@@ -1,49 +1,58 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
   "input_commit_sha": "825f76a7f25c02b132d87bde816b2dced2c6ed0d",
-  "last_checkpoint_commit_sha": "f52ddcb7fd7c6c821fede8af452c80efcc8ddead",
-  "last_checkpoint_id": "CP-20260904-2213-ACTIVE-WINDOW-STATUS-ENFORCEMENT",
-  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","C01-W01-B1-ARCHITECTURE"],
+  "last_checkpoint_commit_sha": "f20d8d44d9ea2e4f0f5326f719959fc1b608a8ad",
+  "last_checkpoint_id": "CP-20260904-2244-C01W01-ACCEPTED-C01-ACTIVATED",
+  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","C01-W01-B1-ARCHITECTURE","B1.1-C01"],
   "completed_work": [
-    "Created mandatory durable per-window status-report standard.",
-    "Created machine and human report templates.",
-    "Updated recovery protocol so replacement windows bootstrap from durable status folders.",
-    "Updated curriculum state so a status folder is required for accepted PASS.",
-    "Patched the active C01-W01-B1-ARCHITECTURE execution prompt in place to require its own status folder and checkpoints.",
-    "Patched the active C01-W01-B1-ARCHITECTURE contract so missing status folder blocks accepted PASS."
+    "Created mandatory durable per-window status-report standard and templates.",
+    "Updated recovery protocol and curriculum state so missing status folder blocks accepted PASS.",
+    "Patched C01-W01-B1-ARCHITECTURE in place for durable reporting without force reset.",
+    "Independently verified C01-W01 terminal commit 265bb584b5d7e36e11091289d58558408880118c, RESULT PASS, STATUS PASS, 348/348 ownership coverage, 52 bounded children, acyclic prerequisite graph, duplicate-control PASS and stage-boundary PASS.",
+    "Accepted C01-W01-B1-ARCHITECTURE as durable predecessor.",
+    "Activated C01-W02-B1.1-MATH-FAMILY and only child C01-W02-B1.1-MATH-FAMILY-C01.",
+    "Created child execution branch hka-tree/c01-w02-math-c01 from the accepted predecessor commit.",
+    "Installed the child contract, execution prompt, and initial durable status/report folder.",
+    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json to reflect the accepted predecessor and active child."
   ],
   "remaining_work": [
-    "Apply the same status-folder requirement when each future execution window is created/unlocked.",
-    "Verify C01-W01's own status folder and RESULT.json before accepting its PASS.",
-    "Director must continue updating this folder after every governance/action checkpoint."
+    "Wait for C01-W02-B1.1-MATH-FAMILY-C01 to execute its bounded academic scope and return durable PASS.",
+    "Verify child RESULT.json, STATUS.json, checkpoints, sources, duplicate/R04 disposition and stage boundary before accepting it.",
+    "Unlock C02 only after Director verification of C01 PASS."
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/_TEMPLATE/STATUS.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/_TEMPLATE/REPORT.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_RECOVERY_PROTOCOL.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
-    "hka-tree/c01-w01-b1-architecture:.../C01_W01_B1_ARCHITECTURE/GPT_EXECUTION_PROMPT.md",
-    "hka-tree/c01-w01-b1-architecture:.../C01_W01_B1_ARCHITECTURE/WINDOW_CONTRACT.md"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260904-2244-C01W01-ACCEPTED-C01-ACTIVATED.json",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/WINDOW_CONTRACT.md",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/GPT_EXECUTION_PROMPT.md",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/STATUS.json",
+    "hka-tree/c01-w02-math-c01:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md"
   ],
   "blocking_issues": [],
   "decisions_locked": [
     "Every HKA worker and Director maintains a durable status folder.",
     "NO STATUS FOLDER = NO ACCEPTED COMPLETION.",
     "Chat history is never authoritative recovery state.",
-    "Active execution branches are patched in place; they are not force-reset merely to inherit governance updates."
+    "Accepted stable IDs and predecessor commits are immutable inputs to successor work.",
+    "Only one bounded child is active in the math family at this checkpoint.",
+    "C01-W02-B1.1-MATH-FAMILY-C02 remains locked until C01 is independently accepted PASS."
   ],
   "do_not_repeat": [
-    "Do not recreate a second competing status-report system.",
-    "Do not accept RESULT.json=PASS without verifying the mandatory status folder.",
-    "Do not force/reset C01-W01-B1-ARCHITECTURE to import control-plane changes."
+    "Do not redo C01-W01-B1-ARCHITECTURE after accepted terminal PASS.",
+    "Do not create a competing reporting system.",
+    "Do not force/reset active execution branches.",
+    "Do not unlock C02 or later scopes from chat claims alone.",
+    "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during this stage."
   ],
-  "next_action": "Let C01-W01-B1-ARCHITECTURE continue on its current branch, create/update its mandatory status folder, finish only its assigned curriculum-architecture scope, then return PASS for Director verification.",
-  "successor_window": "C01-W01-B1-ARCHITECTURE",
-  "updated_at": "2026-09-04T22:13:31+07:00"
+  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C01 from hka-tree/c01-w02-math-c01 and return durable PASS for Director verification.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "updated_at": "2026-09-04T22:44:00+07:00"
 }
