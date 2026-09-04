@@ -220,7 +220,7 @@ Each record carries:
 - `supersedes` only when identity changes;
 - append-only `version_history`.
 
-A replacement worker must read the last committed `RESULT.json` for its child. If status is `PASS`, it must not reauthor or renumber those records. If PASS is absent, it resumes unfinished scope using the existing accepted IDs.
+A replacement worker must bootstrap from the mandatory durable status folder first: `STATUS.json`, `REPORT.md`, then the latest append-only checkpoint, followed by the exact output commits/paths referenced there and the child `RESULT.json`. A child is accepted as complete only when both `STATUS.json.status=PASS` and `RESULT.json.status=PASS` agree. If either PASS is absent, it resumes only `remaining_work` using the existing accepted IDs and must not reauthor or renumber accepted records.
 
 ## 9. Duplicate fingerprint
 
@@ -244,4 +244,5 @@ A child can return `PASS` only when:
 - no canonical topic has been transferred to another primary owner;
 - semantic duplicate scan against all prior accepted B1 scopes has been run;
 - all overlap-risk tags from `B1_DUPLICATE_CONTROL.md` are dispositioned;
+- the mandatory `STATUS_REPORTS/<WINDOW_ID>/` folder is current, includes `STATUS.json`, `REPORT.md` and a pre-PASS checkpoint, and agrees with `RESULT.json`;
 - no later-stage artifact has been authored.
