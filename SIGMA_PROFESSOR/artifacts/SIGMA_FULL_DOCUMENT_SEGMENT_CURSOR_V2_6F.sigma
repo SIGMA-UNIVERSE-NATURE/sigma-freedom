@@ -1,0 +1,365 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.BOUNDED.SEGMENT.CURSOR][VERSION=2.6F]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.BOUNDED_SEGMENT_CURSOR_V26P) {
+
+    ⚡ DOC_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V26F_DOCUMENT_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ DOC_ID:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V26F_DOCUMENT_ID.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR_TEXT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V26F_CURSOR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ INPUT:
+        H(
+            "read_text",
+            DOC_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ LINES:
+        H(
+            "str_split",
+            INPUT,
+            "\n",
+            NULL
+        );
+
+    ⚡ LINE_TOTAL:
+        H(
+            "list_len",
+            LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR_PARTS:
+        H(
+            "str_split",
+            CURSOR_TEXT,
+            "|",
+            NULL
+        );
+
+    ⚡ CURSOR_PART_TOTAL:
+        H(
+            "list_len",
+            CURSOR_PARTS,
+            NULL,
+            NULL
+        );
+
+    ⚡ SEGMENT_INDEX:
+        CURSOR_PART_TOTAL - 1;
+
+    ⚡ SEGMENT_LINE_BUDGET:
+        8;
+
+    ⚡ START_LINE:
+        0;
+
+    ⚡ C:
+        0;
+
+    WHILE (C < SEGMENT_INDEX) {
+        ⚡ START_LINE:
+            START_LINE + SEGMENT_LINE_BUDGET;
+
+        ⚡ C:
+            C + 1;
+    }
+
+    ⚡ COMPLETE:
+        0;
+
+    IF (LINE_TOTAL < START_LINE + 1) {
+        ⚡ COMPLETE:
+            1;
+    }
+
+    IF (COMPLETE) {
+
+        ⚡ print("SIGMA_V26F_FULL_DOCUMENT_SEGMENT_CURSOR");
+        ⚡ print("DOCUMENT_SEGMENTS_COMPLETE", "YES");
+        ⚡ print("DOCUMENT_ID", DOC_ID);
+        ⚡ print("LINE_TOTAL", LINE_TOTAL);
+        ⚡ print("SEGMENT_INDEX", SEGMENT_INDEX);
+        ⚡ print("SEGMENT_START_LINE", START_LINE);
+        ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+        ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (COMPLETE == 0) {
+
+        ⚡ END_LINE:
+            START_LINE + SEGMENT_LINE_BUDGET;
+
+        IF (LINE_TOTAL < END_LINE) {
+            ⚡ END_LINE:
+                LINE_TOTAL;
+        }
+
+        ⚡ REL_COUNTS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ REL_ORDER:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ RELATION_OCCURRENCES:
+            0;
+
+        ⚡ SKIPPED_EMPTY_RELATIONS:
+            0;
+
+        ⚡ TOKEN_COUNT:
+            0;
+
+        ⚡ L:
+            START_LINE;
+
+        WHILE (L < END_LINE) {
+
+            ⚡ LINE:
+                H(
+                    "list_get",
+                    LINES,
+                    L,
+                    NULL
+                );
+
+            ⚡ TOKENS:
+                H(
+                    "str_split",
+                    LINE,
+                    " ",
+                    NULL
+                );
+
+            ⚡ TOKEN_TOTAL:
+                H(
+                    "list_len",
+                    TOKENS,
+                    NULL,
+                    NULL
+                );
+
+            ⚡ TOKEN_COUNT:
+                TOKEN_COUNT + TOKEN_TOTAL;
+
+            ⚡ LIMIT:
+                TOKEN_TOTAL - 1;
+
+            ⚡ I:
+                0;
+
+            WHILE (I < LIMIT) {
+
+                ⚡ LEFT:
+                    H(
+                        "list_get",
+                        TOKENS,
+                        I,
+                        NULL
+                    );
+
+                ⚡ RIGHT:
+                    H(
+                        "list_get",
+                        TOKENS,
+                        I + 1,
+                        NULL
+                    );
+
+                ⚡ VALID:
+                    1;
+
+                IF (LEFT == "") {
+                    ⚡ VALID:
+                        0;
+                }
+
+                IF (RIGHT == "") {
+                    ⚡ VALID:
+                        0;
+                }
+
+                IF (VALID) {
+
+                    ⚡ RELATION:
+                        LEFT + " => " + RIGHT;
+
+                    ⚡ EXISTS:
+                        H(
+                            "map_has",
+                            REL_COUNTS,
+                            RELATION,
+                            NULL
+                        );
+
+                    IF (EXISTS) {
+
+                        ⚡ OLD_COUNT:
+                            H(
+                                "map_get",
+                                REL_COUNTS,
+                                RELATION,
+                                NULL
+                            );
+
+                        ⚡ SET_COUNT:
+                            H(
+                                "map_set",
+                                REL_COUNTS,
+                                RELATION,
+                                OLD_COUNT + 1
+                            );
+                    }
+
+                    IF (EXISTS == FALSE) {
+
+                        ⚡ SET_FIRST:
+                            H(
+                                "map_set",
+                                REL_COUNTS,
+                                RELATION,
+                                1
+                            );
+
+                        ⚡ PUSH_ORDER:
+                            H(
+                                "list_push",
+                                REL_ORDER,
+                                RELATION,
+                                NULL
+                            );
+                    }
+
+                    ⚡ RELATION_OCCURRENCES:
+                        RELATION_OCCURRENCES + 1;
+                }
+
+                IF (VALID == 0) {
+                    ⚡ SKIPPED_EMPTY_RELATIONS:
+                        SKIPPED_EMPTY_RELATIONS + 1;
+                }
+
+                ⚡ I:
+                    I + 1;
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ UNIQUE_RELATIONS:
+            H(
+                "list_len",
+                REL_ORDER,
+                NULL,
+                NULL
+            );
+
+        ⚡ BEST_LOCAL_RELATION:
+            "";
+
+        ⚡ BEST_LOCAL_SUPPORT:
+            0;
+
+        ⚡ R:
+            0;
+
+        WHILE (R < UNIQUE_RELATIONS) {
+
+            ⚡ REL:
+                H(
+                    "list_get",
+                    REL_ORDER,
+                    R,
+                    NULL
+                );
+
+            ⚡ SUPPORT:
+                H(
+                    "map_get",
+                    REL_COUNTS,
+                    REL,
+                    NULL
+                );
+
+            IF (BEST_LOCAL_SUPPORT < SUPPORT) {
+
+                ⚡ BEST_LOCAL_SUPPORT:
+                    SUPPORT;
+
+                ⚡ BEST_LOCAL_RELATION:
+                    REL;
+            }
+
+            ⚡ R:
+                R + 1;
+        }
+
+        ⚡ CURSOR_APPEND_RC:
+            H(
+                "append_text",
+                ".sigma_exec/SIGMA_V26F_CURSOR.memory",
+                "|",
+                NULL
+            );
+
+        ⚡ print("SIGMA_V26F_FULL_DOCUMENT_SEGMENT_CURSOR");
+        ⚡ print("DOCUMENT_SEGMENTS_COMPLETE", "NO");
+        ⚡ print("DOCUMENT_ID", DOC_ID);
+        ⚡ print("LINE_TOTAL", LINE_TOTAL);
+        ⚡ print("SEGMENT_INDEX", SEGMENT_INDEX);
+        ⚡ print("SEGMENT_START_LINE", START_LINE);
+        ⚡ print("SEGMENT_END_LINE", END_LINE);
+        ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+        ⚡ print("TOKEN_COUNT", TOKEN_COUNT);
+        ⚡ print("RELATION_OCCURRENCES", RELATION_OCCURRENCES);
+        ⚡ print("SKIPPED_EMPTY_RELATIONS", SKIPPED_EMPTY_RELATIONS);
+        ⚡ print("UNIQUE_RELATIONS", UNIQUE_RELATIONS);
+        ⚡ print("BEST_LOCAL_RELATION", BEST_LOCAL_RELATION);
+        ⚡ print("BEST_LOCAL_SUPPORT", BEST_LOCAL_SUPPORT);
+        ⚡ print("CURSOR_APPEND_RC", CURSOR_APPEND_RC);
+        ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+        ⚡ print("SIGMA_SEGMENT_SELECTION", "PERSISTED_CURSOR_NEXT_FIXED_WINDOW");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEGMENT_COMPUTATION_BOUNDED", "YES");
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
