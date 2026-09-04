@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "name": "HKA Canonical End-to-End Pipeline",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "sequence": [
+    "KNOWLEDGE",
+    "CURRICULUM",
+    "ACADEMIC_LOCKED",
+    "LESSON_REGISTRY",
+    "LESSON_REGISTRY_LOCKED",
+    "PROMPTS",
+    "PROMPT_LOCKED",
+    "IMAGE_PRODUCTION",
+    "R2_STAGING",
+    "INDEPENDENT_QA",
+    "VAULT",
+    "WEB_OPTIMIZE",
+    "DELIVERY",
+    "WEBSITE_UPDATE"
+  ],
+  "rules": {
+    "no_stage_skipping": true,
+    "chat_window_is_disposable": true,
+    "durable_project_memory": "GitHub",
+    "production_runtime_state": "Cloudflare",
+    "successor_unlock_requires_pass": true,
+    "image_generation_before_prompt_locked": false,
+    "prompt_authoring_before_lesson_registry_locked": false,
+    "lesson_registry_before_academic_locked": false,
+    "website_reads_only_delivery": true
+  },
+  "stages": [
+    {"stage":"KNOWLEDGE","system":"GitHub","exit_gate":"canonical HKA World Tree source fixed by exact commit"},
+    {"stage":"CURRICULUM","system":"GitHub","exit_gate":"all six canonical branches complete plus global coverage, prerequisite and semantic duplicate audits PASS"},
+    {"stage":"ACADEMIC_LOCKED","system":"GitHub","exit_gate":"global academic lock commit exists; later stages reference it immutably"},
+    {"stage":"LESSON_REGISTRY","system":"GitHub","exit_gate":"complete lesson records and website-target metadata authored from academic lock"},
+    {"stage":"LESSON_REGISTRY_LOCKED","system":"GitHub","exit_gate":"global lesson prerequisite, coverage, age/path and duplicate audits PASS"},
+    {"stage":"PROMPTS","system":"GitHub","exit_gate":"all required visual descriptions and exact prompts authored only from locked lesson records"},
+    {"stage":"PROMPT_LOCKED","system":"GitHub","exit_gate":"global semantic/visual duplicate audit and prompt integrity audit PASS"},
+    {"stage":"IMAGE_PRODUCTION","system":"HKA_AUTOPILOT plus Generation AI","exit_gate":"locked assets generated with stable Asset IDs and provenance"},
+    {"stage":"R2_STAGING","system":"Cloudflare R2 staging","exit_gate":"exact generated binaries stored create-only and checksum/read-back verified"},
+    {"stage":"INDEPENDENT_QA","system":"Independent QA AI","exit_gate":"exact staging binaries receive QA_APPROVED; rejected assets cannot progress"},
+    {"stage":"VAULT","system":"Cloudflare R2 vault","exit_gate":"only QA_APPROVED exact binaries promoted and canonical release verified"},
+    {"stage":"WEB_OPTIMIZE","system":"Cloudflare deterministic optimizer","exit_gate":"web derivatives generated only from verified vault masters and quality checks PASS"},
+    {"stage":"DELIVERY","system":"Cloudflare R2 delivery","exit_gate":"approved optimized derivatives plus release metadata available to website"},
+    {"stage":"WEBSITE_UPDATE","system":"Website deployment/update pipeline","exit_gate":"LESSON_ID mapping places delivery asset into correct program, age/path, lesson and website slot"}
+  ],
+  "recovery_rule": "Every stage records durable checkpoint, accepted commit/object hashes, status and next_action. Any replacement window or worker reads those records and resumes; it never depends on chat history."
+}
