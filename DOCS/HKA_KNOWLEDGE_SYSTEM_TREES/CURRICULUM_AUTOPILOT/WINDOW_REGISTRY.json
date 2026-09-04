@@ -1,61 +1,96 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
+  "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule": "Successor windows read GitHub state and predecessor artifacts; chat history is never a dependency.",
-  "child_window_rule": "Large academic scopes are window families. Architecture output fixes bounded child-window partitions before authoring. Each child has its own RESULT.json and checkpoint.",
-  "phases": [
+  "child_window_rule": "Large academic scopes are bounded window families. Each child writes RESULT.json and a durable checkpoint. Only PASS unlocks successor work.",
+  "stage_order": [
+    "KNOWLEDGE",
+    "CURRICULUM",
+    "ACADEMIC_LOCKED",
+    "LESSON_REGISTRY",
+    "LESSON_REGISTRY_LOCKED",
+    "PROMPTS",
+    "PROMPT_LOCKED",
+    "IMAGE_PRODUCTION",
+    "R2_STAGING",
+    "INDEPENDENT_QA",
+    "VAULT",
+    "WEB_OPTIMIZE",
+    "DELIVERY",
+    "WEBSITE_UPDATE"
+  ],
+  "stages": [
     {
-      "phase_id": "PHASE_A_CURRICULUM",
-      "entry_gate": "ALWAYS",
-      "exit_gate": "all six branches ACADEMIC_LOCKED and global cross-tree audit PASS",
+      "stage_id": "KNOWLEDGE",
+      "status": "LOCKED_INPUT",
+      "artifacts": ["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md@fc799bf1104ab6352710e1801777a971b5179995"]
+    },
+    {
+      "stage_id": "CURRICULUM",
+      "status": "IN_PROGRESS",
+      "entry_gate": "KNOWLEDGE=LOCKED_INPUT",
+      "exit_gate": "all six branches complete and global coverage/prerequisite/semantic duplicate audits PASS",
       "windows": [
-        {"window_id": "C01-W01-B1-ARCHITECTURE", "scope": "B1 coverage, stable IDs, bounded child-window partition, sequencing plan", "status": "READY", "depends_on": []},
-        {"window_id": "C01-W02-B1.1-MATH-FAMILY", "scope": "B1.1 controller plus bounded child authoring windows from the locked B1 partition", "status": "LOCKED", "depends_on": ["C01-W01-B1-ARCHITECTURE"]},
-        {"window_id": "C01-W03-B1.2-PHYSICS-FAMILY", "scope": "B1.2 controller plus bounded child authoring windows from the locked B1 partition", "status": "LOCKED", "depends_on": ["C01-W01-B1-ARCHITECTURE"]},
-        {"window_id": "C01-W04-B1.3-CHEMISTRY-FAMILY", "scope": "B1.3 controller plus bounded child authoring windows from the locked B1 partition", "status": "LOCKED", "depends_on": ["C01-W01-B1-ARCHITECTURE"]},
-        {"window_id": "C01-W05-B1.4-EARTH-UNIVERSE-FAMILY", "scope": "B1.4 controller plus bounded child authoring windows from the locked B1 partition", "status": "LOCKED", "depends_on": ["C01-W01-B1-ARCHITECTURE"]},
-        {"window_id": "C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY", "scope": "B1.5 controller plus bounded child authoring windows from the locked B1 partition", "status": "LOCKED", "depends_on": ["C01-W01-B1-ARCHITECTURE"]},
-        {"window_id": "C01-W07-B1-INTEGRATION-LOCK", "scope": "B1 prerequisite graph, semantic overlap audit, canonical coverage audit, branch academic lock", "status": "LOCKED", "depends_on": ["all PASS child windows in C01-W02 through C01-W06"]},
-        {"window_id": "C02-B2-CURRICULUM-FAMILY", "scope": "B2 architecture then deterministic bounded child windows by canonical subbranch", "status": "LOCKED", "depends_on": ["C01-W07-B1-INTEGRATION-LOCK"]},
-        {"window_id": "C03-B3-CURRICULUM-FAMILY", "scope": "B3 architecture then deterministic bounded child windows by canonical subbranch", "status": "LOCKED", "depends_on": ["C02-B2-CURRICULUM-FAMILY"]},
-        {"window_id": "C04-B4-CURRICULUM-FAMILY", "scope": "B4 architecture then deterministic bounded child windows by canonical subbranch", "status": "LOCKED", "depends_on": ["C03-B3-CURRICULUM-FAMILY"]},
-        {"window_id": "C05-B5-CURRICULUM-FAMILY", "scope": "B5 architecture then deterministic bounded child windows by canonical subbranch", "status": "LOCKED", "depends_on": ["C04-B4-CURRICULUM-FAMILY"]},
-        {"window_id": "C06-B6-CURRICULUM-FAMILY", "scope": "B6 architecture then deterministic bounded child windows by canonical subbranch", "status": "LOCKED", "depends_on": ["C05-B5-CURRICULUM-FAMILY"]},
-        {"window_id": "C07-GLOBAL-CROSS-TREE-AUDIT", "scope": "Global nodes, mandatory intersections, prerequisites, semantic duplicate audit and coverage lock", "status": "LOCKED", "depends_on": ["C06-B6-CURRICULUM-FAMILY"]}
+        {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"READY","depends_on":[]},
+        {"window_id":"C01-W02-B1.1-MATH-FAMILY","scope":"B1.1 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","scope":"B1.2 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","scope":"B1.3 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","scope":"B1.4 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","scope":"B1.5 bounded authoring family","status":"LOCKED","depends_on":["C01-W01-B1-ARCHITECTURE"]},
+        {"window_id":"C01-W07-B1-INTEGRATION-LOCK","scope":"B1 integration, prerequisite, coverage and semantic duplicate audit","status":"LOCKED","depends_on":["all PASS children C01-W02 through C01-W06"]},
+        {"window_id":"C02-B2-CURRICULUM-FAMILY","scope":"Complete B2 through architecture plus bounded children","status":"LOCKED","depends_on":["C01-W07-B1-INTEGRATION-LOCK"]},
+        {"window_id":"C03-B3-CURRICULUM-FAMILY","scope":"Complete B3 through architecture plus bounded children","status":"LOCKED","depends_on":["C02-B2-CURRICULUM-FAMILY"]},
+        {"window_id":"C04-B4-CURRICULUM-FAMILY","scope":"Complete B4 through architecture plus bounded children","status":"LOCKED","depends_on":["C03-B3-CURRICULUM-FAMILY"]},
+        {"window_id":"C05-B5-CURRICULUM-FAMILY","scope":"Complete B5 through architecture plus bounded children","status":"LOCKED","depends_on":["C04-B4-CURRICULUM-FAMILY"]},
+        {"window_id":"C06-B6-CURRICULUM-FAMILY","scope":"Complete B6 through architecture plus bounded children","status":"LOCKED","depends_on":["C05-B5-CURRICULUM-FAMILY"]},
+        {"window_id":"C07-GLOBAL-CURRICULUM-AUDIT","scope":"All-tree coverage, cross-tree prerequisite graph, shared-node and semantic duplicate audit","status":"LOCKED","depends_on":["C06-B6-CURRICULUM-FAMILY"]}
       ]
     },
     {
-      "phase_id": "PHASE_B_LESSON_SPEC",
-      "entry_gate": "all_curriculum_locked=true and global_duplicate_audit_pass=true",
-      "exit_gate": "lesson_registry_locked=true",
+      "stage_id": "ACADEMIC_LOCKED",
+      "status": "GATED",
+      "entry_gate": "CURRICULUM exit gate PASS",
+      "exit_gate": "global academic lock commit recorded in state"
+    },
+    {
+      "stage_id": "LESSON_REGISTRY",
+      "status": "GATED",
+      "entry_gate": "ACADEMIC_LOCKED=LOCKED",
       "windows": [
-        {"window_id": "L01-LESSON-ARCHITECTURE", "scope": "Lesson schema, age/presentation paths, prerequisite and D1-D4 progression", "status": "GATED"},
-        {"window_id": "L02-LESSON-REGISTRY-FAMILY", "scope": "Complete lesson registry through bounded restartable authoring windows", "status": "GATED"},
-        {"window_id": "L03-WEBSITE-MAPPING", "scope": "LESSON_ID to program, age, route and website slot mapping", "status": "GATED"},
-        {"window_id": "L04-LESSON-GLOBAL-AUDIT-LOCK", "scope": "Prerequisite, coverage, duplication and pedagogical audit", "status": "GATED"}
+        {"window_id":"L01-LESSON-ARCHITECTURE","scope":"Lesson schema, stable IDs, age/presentation paths, prerequisite and D1-D4 rules","status":"GATED"},
+        {"window_id":"L02-LESSON-REGISTRY-FAMILY","scope":"Complete lesson registry through bounded restartable families","status":"GATED"},
+        {"window_id":"L03-WEBSITE-MAPPING","scope":"LESSON_ID to program/path, age/presentation, route and WEBSITE_SLOT","status":"GATED"},
+        {"window_id":"L04-LESSON-GLOBAL-AUDIT","scope":"Global lesson coverage, prerequisite, sequencing and duplicate audit","status":"GATED"}
       ]
     },
     {
-      "phase_id": "PHASE_C_VISUAL_PROMPTS",
-      "entry_gate": "lesson_registry_locked=true",
-      "exit_gate": "all_visual_prompts_locked=true",
+      "stage_id": "LESSON_REGISTRY_LOCKED",
+      "status": "GATED",
+      "entry_gate": "L04 PASS",
+      "exit_gate": "lesson registry lock commit recorded in state"
+    },
+    {
+      "stage_id": "PROMPTS",
+      "status": "GATED",
+      "entry_gate": "LESSON_REGISTRY_LOCKED=LOCKED",
       "windows": [
-        {"window_id": "V01-VISUAL-SYSTEM", "scope": "Visual-job taxonomy and representation rules", "status": "GATED"},
-        {"window_id": "V02-VISUAL-PROMPT-AUTHORING-FAMILY", "scope": "Exact visual descriptions and prompts from locked lessons through bounded windows", "status": "GATED"},
-        {"window_id": "V03-VISUAL-DUPLICATE-AUDIT-LOCK", "scope": "Global semantic and visual duplicate audit before any generation", "status": "GATED"}
+        {"window_id":"V01-VISUAL-SYSTEM","scope":"Visual-job taxonomy and representation rules","status":"GATED"},
+        {"window_id":"V02-VISUAL-PROMPT-AUTHORING-FAMILY","scope":"Exact descriptions/prompts from locked lessons through bounded windows","status":"GATED"},
+        {"window_id":"V03-VISUAL-DUPLICATE-AUDIT","scope":"Global semantic/visual duplicate and prompt integrity audit","status":"GATED"}
       ]
     },
     {
-      "phase_id": "PHASE_D_IMAGE_PRODUCTION",
-      "entry_gate": "all_visual_prompts_locked=true",
-      "exit_gate": "approved assets delivered and website mapping updated",
-      "windows": [
-        {"window_id": "P01-HKA-AUTOPILOT", "scope": "GitHub trigger and durable orchestration; chat window not on critical path", "status": "GATED"},
-        {"window_id": "P02-GENERATION-AI", "scope": "Locked-prompt generation only", "status": "GATED"},
-        {"window_id": "P03-R2-STAGING", "scope": "Create-only staging, exact binary and provenance", "status": "GATED"},
-        {"window_id": "P04-INDEPENDENT-QA-AI", "scope": "Independent exact-binary QA", "status": "GATED"},
-        {"window_id": "P05-R2-VAULT-DELIVERY", "scope": "Approved canonical vault then optimized delivery derivatives", "status": "GATED"},
-        {"window_id": "P06-WEBSITE-UPDATE", "scope": "Publish only by locked lesson/website mapping", "status": "GATED"}
-      ]
-    }
+      "stage_id": "PROMPT_LOCKED",
+      "status": "GATED",
+      "entry_gate": "V03 PASS",
+      "exit_gate": "prompt lock commit recorded in state"
+    },
+    {"stage_id":"IMAGE_PRODUCTION","status":"GATED","entry_gate":"PROMPT_LOCKED=LOCKED","runtime":"HKA_AUTOPILOT + Generation AI"},
+    {"stage_id":"R2_STAGING","status":"GATED","entry_gate":"generated asset provenance complete","runtime":"Cloudflare R2 staging create-only + checksum/read-back"},
+    {"stage_id":"INDEPENDENT_QA","status":"GATED","entry_gate":"exact staging binary exists","runtime":"Independent QA AI; only QA_APPROVED may progress"},
+    {"stage_id":"VAULT","status":"GATED","entry_gate":"QA_APPROVED","runtime":"R2 vault canonical exact approved masters"},
+    {"stage_id":"WEB_OPTIMIZE","status":"GATED","entry_gate":"VAULT_VERIFIED","runtime":"deterministic web derivatives from vault only"},
+    {"stage_id":"DELIVERY","status":"GATED","entry_gate":"WEB_OPTIMIZE PASS","runtime":"R2 delivery website-ready derivatives and metadata"},
+    {"stage_id":"WEBSITE_UPDATE","status":"GATED","entry_gate":"DELIVERY_READY","runtime":"publish by locked LESSON_ID/ASSET_ID/PROGRAM/AGE/WEBSITE_SLOT mapping only"}
   ]
 }
