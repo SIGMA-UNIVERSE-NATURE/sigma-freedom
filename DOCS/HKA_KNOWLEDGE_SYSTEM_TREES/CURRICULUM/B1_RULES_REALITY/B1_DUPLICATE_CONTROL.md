@@ -41,7 +41,7 @@ For every proposed node/objective, the child must:
 | Risk | Type | Affected stable IDs | Required disposition | Control |
 |---|---|---|---|---|
 | `R01` | same-label-distinct-epistemic-role | `B1.2-C04-T03`, `B1.5-C01-T02` | `CROSS_LINK_NOT_DUPLICATE` | Physics owns thermodynamic/statistical-mechanical entropy claims; information/computation owns Shannon/information entropy claims. Shared mathematics is cross-linked, not duplicated. |
-| `R02` | same-label-overlapping-formal-object | `B1.1-C08-T07`, `B1.5-C01-T05` | `CROSS_LINK_WITH_CLAIM_BOUNDARY` | B1.1 owns combinatorial/algebraic structure and proof-oriented claims; B1.5 owns coding-channel reliability/information-system claims. Do not restate identical objectives. |
+| `R02` | same-label-overlapping-formal-object | `B1.1-C08-T07`, `B1.5-C01-T05` | `CROSS_LINK_NOT_DUPLICATE` | B1.1 owns combinatorial/algebraic structure and proof-oriented claims; B1.5 owns coding-channel reliability/information-system claims. Do not restate identical objectives. |
 | `R03` | same-label-abstraction-vs-phenomenon | `B1.1-C06-T05`, `B1.2-C02-T06` | `CROSS_LINK_NOT_DUPLICATE` | B1.1 owns formal dynamical-system treatment; B1.2 owns physical oscillation phenomenon and measurement. Shared equations may be reused by reference. |
 | `R04` | formal-foundation-vs-computation | `B1.1-C01`, `B1.5-C02`, `B1.5-C04` | `OVERLAP_REVIEW` | B1.1 owns mathematical logic, axioms, proof/model-theoretic claims; B1.5 owns computability/formal-language/program-verification claims. Explicit prerequisites and cross-links required. |
 | `R05` | mathematics-vs-algorithms | `B1.1-C08`, `B1.5-C03` | `OVERLAP_REVIEW` | B1.1 owns graph/combinatorial structures and proofs; B1.5 owns algorithmic operations, complexity and data-structure use. |
