@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "PASS",
+  "status": "REVIEW_REQUIRED",
   "execution_branch": "hka-tree/c01-w02-math-c01",
   "input_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
   "execution_baseline_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af",
@@ -16,13 +16,18 @@
   "scope_ids": ["B1.1-C01"],
   "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
   "completed_work": [
-    "Bootstrap/control-plane/predecessor verification completed and checkpointed.",
-    "Authored all eight canonical B1.1-C01 curriculum nodes with 25 atomic claims and 7 real traceable sources.",
-    "Authored 32 D1-D4 learning objectives, 10 cross-links and 8 sequence-intent records without Lesson Registry artifacts.",
-    "Dispositioned R04 with OVERLAP_REVIEW for B1.5-C02 and B1.5-C04 without ownership transfer.",
-    "Committed academic records and passed pre-PASS audits for coverage, IDs, fields, sources, depths, duplicates, prerequisites, sequence and stage boundaries."
+    "Initial bounded authoring completed for 8 canonical topics with 8 nodes, 25 claims, 7 sources, 32 D1-D4 objectives, 10 cross-links and 8 sequence intents.",
+    "Initial child pre-PASS audits passed for schema/coverage/IDs/R04/duplicates/prerequisites/stage boundary.",
+    "Director independently audited the committed candidate terminal result 359359ae5663f5a62383c1774c2ff359ccb092a7 and reopened the child before acceptance."
   ],
-  "remaining_work": [],
+  "remaining_work": [
+    "Append minimum sourced claim closure for propositional syntax in HKA-B1-1-C01-N001.",
+    "Append minimum sourced axiomatic set-existence/separation claim closure for HKA-B1-1-C01-N003.",
+    "Append minimum sourced decidability-distinction claim closure for HKA-B1-1-C01-N008 while preserving R04 ownership.",
+    "Pin lock-critical Open Logic Project sources to immutable/versioned scholarly identities where practicable and recompute deterministic SOURCE_IDs if normalization identity changes.",
+    "Run claim-to-learning-objective closure audit for all 32 objectives with explicit supporting claim IDs.",
+    "Re-run all prior gates plus immutable_source_pin and director_identified_gaps=0 from committed files."
+  ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/NODES.jsonl",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIMS.jsonl",
@@ -32,24 +37,30 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/RESULT.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/HANDOFF.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C01/DIRECTOR_CORRECTION_ORDER.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/STATUS.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/CHECKPOINTS/CP01-BOOTSTRAP-LOCK.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/CHECKPOINTS/CP02-PRE-PASS-AUDIT.json"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md"
   ],
-  "blocking_issues": [],
+  "blocking_issues": [
+    "Director claim-to-objective closure audit found academic propositions required by existing learning objectives that are not yet explicitly locked as sourced claims.",
+    "Lock-critical Open Logic Project source identities currently use moving website/build locators rather than an immutable/versioned source identity."
+  ],
   "decisions_locked": [
-    "Scope B1.1-C01 is complete; no B1.1-C02 content was authored.",
+    "Existing NODE_ID, CLAIM_ID, LEARNING_OBJECTIVE_ID and scope ownership are preserved; repair is append-only unless a factual correction requires a versioned change.",
+    "No B1.1-C02 curriculum may be authored during repair.",
     "R04 preserves B1.5 ownership for computability/formal languages/automata and program verification/formal methods.",
-    "D1-D4 are age-independent epistemic depths; LSREF values remain non-registry sequencing placeholders.",
-    "No Lesson Registry, prompt/image, R2, website, delivery or ACADEMIC_LOCKED artifacts were created."
+    "D1-D4 remain age-independent epistemic depths; LSREF values remain non-registry placeholders.",
+    "No Lesson Registry, prompt/image, R2, website, delivery or ACADEMIC_LOCKED artifact may be created.",
+    "C02 remains locked until repaired C01 receives independent Director acceptance."
   ],
   "do_not_repeat": [
-    "Do not re-author B1.1-C01 unless a controller reopens this PASS result.",
-    "Do not convert LSREF placeholders into Lesson Registry records in this curriculum window.",
-    "Do not duplicate B1.1-C01 proof/metalogic objectives inside B1.5; consume them as prerequisites/cross-links."
+    "Do not rewrite the entire C01 scope.",
+    "Do not renumber existing IDs.",
+    "Do not expand decidability repair into the B1.5-C02 computability curriculum.",
+    "Do not treat moving source landing pages as sufficient immutable lock provenance when a versioned/commit source can be pinned.",
+    "Do not return PASS merely because schema and count checks pass."
   ],
-  "next_action": "C01-W02-B1.1-MATH-FAMILY-C02",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C02",
-  "updated_at": "2026-09-04T23:31:00+07:00"
+  "next_action": "Execute DIRECTOR_CORRECTION_ORDER.md on this same C01 branch, commit repairs, run a new pre-PASS audit from committed files, and return a new terminal result for Director review.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C01",
+  "updated_at": "2026-09-05T00:05:00+07:00"
 }
