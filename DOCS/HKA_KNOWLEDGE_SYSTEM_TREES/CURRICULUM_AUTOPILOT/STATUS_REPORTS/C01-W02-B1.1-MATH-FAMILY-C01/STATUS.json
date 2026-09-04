@@ -3,38 +3,53 @@
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "READY",
+  "status": "IN_PROGRESS",
   "execution_branch": "hka-tree/c01-w02-math-c01",
+  "input_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+  "execution_baseline_sha": "77da719c5db27dd253e9cdee01bbcb67e0fe24af",
   "accepted_predecessor_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "control_plane_snapshot_commit_sha": "02d6d4ac7d03964dba31f7042afc5fcfaafb450f",
+  "last_checkpoint_commit_sha": "a17d069f5a66844891c7636dc5d6cf100cd0e518",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-LOCK",
   "scope_ids": ["B1.1-C01"],
-  "canonical_topic_ids": [
-    "B1.1-C01-T01",
-    "B1.1-C01-T02",
-    "B1.1-C01-T03",
-    "B1.1-C01-T04",
-    "B1.1-C01-T05",
-    "B1.1-C01-T06",
-    "B1.1-C01-T07",
-    "B1.1-C01-T08"
-  ],
+  "canonical_topic_ids": ["B1.1-C01-T01","B1.1-C01-T02","B1.1-C01-T03","B1.1-C01-T04","B1.1-C01-T05","B1.1-C01-T06","B1.1-C01-T07","B1.1-C01-T08"],
   "completed_work": [
-    "Execution branch created from accepted predecessor commit.",
-    "Window contract and execution prompt installed."
+    "Mandatory bootstrap complete and checkpointed.",
+    "Scope and eight canonical topic IDs locked.",
+    "R04 boundary locked.",
+    "Complete academic record set authored in working form: 8 nodes, 25 atomic claims, 7 sources, 32 D1-D4 objectives, 10 cross-links, 8 sequence-intent records."
   ],
   "remaining_work": [
-    "Bootstrap from canonical GitHub inputs.",
-    "Author complete B1.1-C01 curriculum records.",
-    "Disposition R04 and run semantic duplicate audit.",
-    "Create meaningful checkpoints and pre-PASS audit.",
-    "Finalize RESULT.json, STATUS.json and REPORT.md consistently."
+    "Commit academic records.",
+    "Run committed-file audits for coverage, IDs, fields, sources, D1-D4, R04, duplicates, prerequisites and forbidden stage outputs.",
+    "Create academic-complete and pre-PASS checkpoints.",
+    "Finalize PASS artifacts only if every audit passes."
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/STATUS.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/REPORT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C01/CHECKPOINTS/CP01-BOOTSTRAP-LOCK.json"
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope is B1.1-C01 only.",
-    "No Lesson Registry, prompt, image, R2 or website work.",
-    "NO STATUS FOLDER = NO ACCEPTED COMPLETION."
+    "Primary scope is B1.1-C01 only.",
+    "Eight canonical topic IDs are immutable.",
+    "R04 preserves B1.5-C02/B1.5-C04 ownership of computing/formal-language/program-verification curricula.",
+    "LSREF values are non-registry curriculum sequencing placeholders only."
   ],
-  "next_action": "Execute GPT_EXECUTION_PROMPT.md for C01-W02-B1.1-MATH-FAMILY-C01.",
+  "do_not_repeat": [
+    "Do not author B1.1-C02.",
+    "Do not create Lesson Registry records, image prompts, images, R2 objects, delivery/website artifacts, or ACADEMIC_LOCKED.",
+    "Do not silently renumber the authored N001-N008 node namespace."
+  ],
+  "next_action": "Commit academic records, audit committed artifacts, and checkpoint academic completion.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C02",
-  "updated_at": "2026-09-04T22:44:00+07:00"
+  "updated_at": "2026-09-04T23:20:00+07:00"
 }

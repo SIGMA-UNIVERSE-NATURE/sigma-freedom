@@ -1,37 +1,37 @@
 # C01-W02-B1.1-MATH-FAMILY-C01 — Durable Status Report
 
-Status: `READY`
-Stage: `CURRICULUM`
-Execution branch: `hka-tree/c01-w02-math-c01`
-Accepted predecessor: `265bb584b5d7e36e11091289d58558408880118c`
+Status: `IN_PROGRESS`  
+Stage: `CURRICULUM`  
+Execution branch: `hka-tree/c01-w02-math-c01`  
+Input predecessor: `265bb584b5d7e36e11091289d58558408880118c`  
+Control-plane snapshot: `02d6d4ac7d03964dba31f7042afc5fcfaafb450f`
 
 ## Assigned job
 
-Author the complete curriculum record set for `B1.1-C01 — Logic, tập hợp và chứng minh` only, covering all eight canonical topic IDs from propositional logic through limits of formal systems.
+Author the complete HKA curriculum record set for `B1.1-C01 — Logic, tập hợp và chứng minh` only, covering all eight immutable canonical topic IDs.
 
-## Finished
+## Definitely finished
 
-- Execution branch created from the accepted C01-W01 predecessor.
-- Exact bounded window contract installed.
-- Exact execution prompt installed.
-- Durable status folder initialized before academic authoring begins.
+- Mandatory bootstrap is complete and durable checkpoint `CP01-BOOTSTRAP-LOCK` is committed at `a17d069f5a66844891c7636dc5d6cf100cd0e518`.
+- Control-plane authorization, predecessor identity, scope, topic IDs, stage boundaries and R04 ownership boundary are locked.
+- Academic working set is complete: 8 nodes, 25 claims, 7 normalized sources, 32 D1–D4 learning objectives, 10 cross-links and 8 curriculum-sequence-intent records.
 
 ## Not finished
 
-All academic authoring remains to be executed by this window.
+- Academic records must be committed and audited from GitHub.
+- A separate academic-complete checkpoint and pre-PASS checkpoint remain.
+- `RESULT.json`, terminal `STATUS.json`, `REPORT.md` and `HANDOFF.md` are not yet PASS artifacts.
 
-## Mandatory boundary
+## Locked decisions
 
-This is `CURRICULUM` only. No Lesson Registry, visual/image prompt, image generation, R2, delivery or website work is authorized.
+`B1.1-C01` owns mathematical logic, set/foundational, axiomatic, proof and model-theoretic foundations. Under `R04`, computability/formal-language/automata and program-verification curricula remain with B1.5 and are cross-linked rather than duplicated.
 
-## Duplicate-risk control
+D1–D4 are epistemic depths independent of age. `LSREF-*` is sequencing intent only and is not a Lesson Registry record.
 
-`R04` is mandatory: mathematical logic/formal-system/model-theoretic foundations stay in B1.1-C01; B1.5 computation/formal-language/program-verification content must be referenced/cross-linked rather than duplicated.
+## Known risks
 
-## Recovery
-
-A replacement window reads GitHub control state, this folder, latest checkpoint, accepted predecessor commit, and committed academic outputs. It does not rely on chat history.
+No current blocker. PASS remains conditional on real source traceability, semantic duplicate scan, R04 disposition, stable-ID/field/prerequisite audits and a clean stage-boundary diff.
 
 ## Next action
 
-Execute this window's `GPT_EXECUTION_PROMPT.md`, checkpoint meaningful progress, and return PASS only after the full contract and pre-PASS audit succeed.
+Commit the academic records, audit the committed files, create academic-complete and pre-PASS checkpoints, then finalize only if every gate passes. Do not start C02 or any later pipeline stage.
