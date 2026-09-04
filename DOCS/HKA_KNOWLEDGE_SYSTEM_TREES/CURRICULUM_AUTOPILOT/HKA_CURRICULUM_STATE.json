@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "program": "HKA World Tree 1.0",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
@@ -42,25 +42,34 @@
   },
   "active_branch": "B1",
   "active_subbranch": "B1.1",
-  "active_scope_id": "B1.1-C01",
-  "active_window": "C01-W02-B1.1-MATH-FAMILY-C01",
-  "active_window_status": "REVIEW_REQUIRED",
-  "window_execution_branch": "hka-tree/c01-w02-math-c01",
-  "accepted_predecessor_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
+  "active_scope_id": "B1.1-C02",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C02",
+  "active_window_status": "READY",
+  "window_execution_branch": "hka-tree/c01-w02-math-c02",
+  "accepted_predecessor_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
   "last_accepted_work_checkpoint": {
-    "window_id": "C01-W01-B1-ARCHITECTURE",
-    "status": "PASS",
-    "commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
-    "result_commit_sha": "2ec918cb4dca4a851b917dc420e488042c07d240",
-    "status_commit_sha": "ff6e218e68a28a33ec969af8c1f726824d9b9647"
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C01",
+    "scope_id": "B1.1-C01",
+    "status": "DIRECTOR_ACCEPTED_PASS",
+    "commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+    "candidate_status": "PASS",
+    "claims": 38,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure": "32/32 PASS"
   },
   "director_review": {
-    "candidate_commit_sha": "359359ae5663f5a62383c1774c2ff359ccb092a7",
-    "decision": "REVIEW_REQUIRED",
-    "repair_order": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W02-B1.1-MATH-FAMILY-C01-REPAIR.md",
-    "successor_unlocked": false
+    "candidate_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+    "decision": "ACCEPTED_PASS",
+    "prior_candidate_rejected_for_repair": "359359ae5663f5a62383c1774c2ff359ccb092a7",
+    "repairs_verified": 5,
+    "claim_to_learning_objective_closure": "32/32",
+    "immutable_OpenLogic_source_id": "HKA-SRC-73f520eedb8e",
+    "immutable_OpenLogic_upstream_commit": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "R04": "PASS_NO_OWNERSHIP_TRANSFER",
+    "stage_boundary": "PASS",
+    "successor_unlocked": true
   },
-  "next_action": "Repair only C01-W02-B1.1-MATH-FAMILY-C01 according to the Director correction order, re-run committed academic/source/claim-objective closure audits, and return a new durable result. C02 remains locked until independent Director acceptance.",
+  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C02 on hka-tree/c01-w02-math-c02 from its locked GPT_EXECUTION_PROMPT.md. Scope B1.1-C02 only; C03 remains locked until Director-accepted C02 PASS.",
   "branches": [
     {
       "branch_id": "B1",
@@ -69,7 +78,7 @@
       "architecture_status": "PASS",
       "architecture_accepted_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
       "subbranches": [
-        {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"IN_PROGRESS","active_scope":"B1.1-C01"},
+        {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"IN_PROGRESS","active_scope":"B1.1-C02","accepted_scopes":["B1.1-C01"]},
         {"id":"B1.2","name":"Vật chất & Năng lượng","status":"NOT_STARTED"},
         {"id":"B1.3","name":"Chất & Biến đổi","status":"NOT_STARTED"},
         {"id":"B1.4","name":"Trái Đất & Vũ trụ","status":"NOT_STARTED"},
@@ -108,7 +117,7 @@
     "source_of_truth": "GitHub accepted commits plus machine-readable state and mandatory status folders; Cloudflare becomes runtime source of truth from IMAGE_PRODUCTION onward",
     "chat_memory_authoritative": false,
     "resume_policy": "Resume from last accepted checkpoint; never infer completion from chat history.",
-    "incomplete_window_policy": "If RESULT.json is absent/not PASS, required status folder is missing, or Director decision is REVIEW_REQUIRED, treat the window as incomplete and resume only unfinished/ordered repair scope.",
+    "incomplete_window_policy": "If RESULT.json is absent/not PASS, required status folder is missing, or Director has not accepted candidate PASS, treat the window as incomplete and resume only unfinished scope.",
     "stable_id_policy": "Never silently recreate or renumber accepted NODE_ID, CLAIM_ID, LESSON_ID or ASSET_ID."
   }
 }
