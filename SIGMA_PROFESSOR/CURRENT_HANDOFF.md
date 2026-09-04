@@ -1,8 +1,32 @@
 # CURRENT HANDOFF — SIGMA_PROFESSOR
 
-Last updated: 2026-09-04 (Asia/Ho_Chi_Minh)
+Last updated: 2026-09-05 (Asia/Ho_Chi_Minh)
 
 ## READ THIS FIRST
+
+### GLOBAL TEACHING STANDARD — MANDATORY FOR EVERY SIGMA WINDOW / LANE
+
+Before substantive teaching or capability work, read:
+
+`SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+
+This standard applies to **all** SIGMA teaching/development windows, including DNA, lessons, curriculum, memory, semantic capabilities, curiosity, reasoning, tools, self-improvement, revalidation, and production integration.
+
+Global rule:
+
+- teach **capabilities**, not precomputed answers;
+- active cognition must be native `.sigma`;
+- Python may remain historical/reference only and must not execute SIGMA cognition;
+- host may provide mechanical ABI/runtime services only;
+- host semantic substitution is forbidden;
+- compile success is not runtime proof;
+- dynamic-input evidence is required for cognitive capability admission;
+- negative/counterexample tests should be used for important claims;
+- persistence/restart/replay tests are required when the capability depends on long-lived state;
+- boundedness/step-limit behavior must be characterized;
+- failures are evidence and must not be hidden;
+- claim scope must never exceed runtime proof;
+- teaching order is dependency-first/capability-first, not filename/lesson/DNA numeric order.
 
 Current target: **SIGMA-native continuous self-directed learning + curriculum/re-learning** with:
 
@@ -208,10 +232,11 @@ Still NOT proven:
 
 ## NEXT ACTION
 
-1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. Do not restart V2.5A original or V2.5A.1.
-3. Install and run V2.5A.2 source + runner.
-4. If V2.5A.2 PASSes all four invocations, checkpoint and build a full-corpus document-survey runner.
-5. Next after survey: bounded segment/cursor + crash-resume, then structural grouping and curriculum queue.
+1. Every new teaching/development window reads the global teaching standard first.
+2. Keep V2.4 production learner running unless it emits a real VM failure.
+3. Do not restart V2.5A original or V2.5A.1.
+4. Install and run V2.5A.2 source + runner.
+5. If V2.5A.2 PASSes all four invocations, checkpoint and build a full-corpus document-survey runner.
+6. Next after survey: bounded segment/cursor + crash-resume, then structural grouping and curriculum queue.
 
 Do not delete V2.2/V2.3/V2.4 raw/done/log/history state.
