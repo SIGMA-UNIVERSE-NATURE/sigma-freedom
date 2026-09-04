@@ -200,7 +200,7 @@ Checkpoint:
 Commit:
 `97b2e047211d6606b0772daf451b6a9c16359946`
 
-## CURRENT FRONTIER — V2.7 structural grouping preflight
+## V2.7 original structural grouping package — SOURCE READY, RUNTIME PASS NOT CHECKPOINTED
 
 Goal:
 
@@ -238,7 +238,7 @@ V2.7 policy:
 - host supplies QA bytes and mechanically checks protocol/hash only;
 - host does not choose groups or classify topics.
 
-Same bytecode admission cases:
+Same bytecode admission cases prepared:
 
 ### Positive
 
@@ -259,7 +259,7 @@ Same bytecode admission cases:
 
 Exact positive input must reproduce exact assignment SHA.
 
-Static checks before device run:
+Static checks recorded:
 
 - `H_CALL_ARITY_AUDIT=PASS`;
 - `STR_STARTS_DEPENDENCY=NONE`;
@@ -268,24 +268,112 @@ Static checks before device run:
 - runner `bash -n=PASS`;
 - runner failure RC propagation audit PASS.
 
-PASS must include:
+No durable runtime PASS checkpoint for this package was found during the latest bootstrap. Source/runner existence must not be treated as admission.
 
-- `V27_STRUCTURAL_GROUPING_PREFLIGHT=PASS`;
-- `NATIVE_STRUCTURAL_GROUPING=PROVEN_IN_QA_SCOPE`;
-- `DISTINCT_DOC_ANCHOR_DEDUP=PROVEN_IN_QA_SCOPE`;
-- `DYNAMIC_INPUT_DEPENDENCE=PASS`;
-- `NEGATIVE_COUNTEREXAMPLE=PASS`;
-- `DETERMINISTIC_REPLAY=PASS`;
-- `PERSISTED_GROUP_ASSIGNMENTS=PASS`;
-- `HOST_GROUP_SELECTION=NO`;
-- `HOST_TOPIC_CLASSIFICATION=NO`;
-- `HOST_LEARNING=NO`;
-- `SEMANTIC_GROUPING=NOT_PROVEN`;
-- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`.
+## ADVANCED MATHEMATICS + BEYOND PROGRAM — INITIALIZED
 
-After V2.7 PASS:
+Read:
+`SIGMA_PROFESSOR/DESIGN/SIGMA_ADVANCED_MATHEMATICS_BEYOND_CAPABILITY_PROGRAM_V1.md`
+
+Program commit:
+`0ee78a4981e73d50f0fc928cd62ef04f8213b3df`
+
+Mission:
+transform advanced mathematics and beyond into native reusable capability families, not theorem-answer caches or host-selected lessons.
+
+Program families:
+
+- `MATH-R0`: representation, domain/preconditions, exactness, evidence, counterexamples;
+- `MATH-R1`: arithmetic/algebra/discrete structures;
+- `MATH-R2`: linear algebra/geometry substrate;
+- `MATH-R3`: calculus and real/complex analysis;
+- `MATH-R4`: differential equations, dynamics, probability, optimization;
+- `MATH-R5`: abstract algebra, topology, measure, functional analysis;
+- `MATH-R6`: advanced geometry and number theory;
+- `MATH-R7`: category/homological/compositional and higher abstractions;
+- `MATH-R8`: proof, theorem discovery, and research behavior.
+
+These IDs are program/dependency identifiers only. They are NOT admission claims.
+
+`GENERAL_AUTONOMOUS_MATHEMATICAL_RESEARCH=NOT_PROVEN`.
+
+## CURRENT FRONTIER — V2.7P.1 strict persistent + bounded structural grouping
+
+The global teaching standard requires persistent-state/restart evidence for curriculum capabilities and boundedness evidence for history/corpus scans. Therefore the next admission gate is the strict P1 package, not a source-existence inference from V2.7.
+
+Native source:
+`SIGMA_PROFESSOR/artifacts/SIGMA_STRUCTURAL_GROUPING_V2_7P_1.sigma`
+
+Durable exact identity:
+`SOURCE_SHA256=3142d5f5bcc75f7a7c3640be2352de373604713a39f977ef54ba14c414455163`
+`GIT_BLOB_SHA1=88e52075c8d1025d2034da7c732c30f8eda86d35`
+
+Source commit:
+`b56190825a5aaff9436d1b2994ee58922459363a`
+
+Runner:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V27P1_PERSISTENT_STRUCTURAL_GROUPING_PREFLIGHT.sh`
+
+Runner exact identity:
+`RUNNER_SHA256=9ff2269fb1450f3d128200e52b89ce1c800fa427a000131a9f9f91823054e3f5`
+`GIT_BLOB_SHA1=4dec69928adf701062a3ffa5694dbd8e301b275d`
+
+Runner pin-fix commit:
+`37bc7138afce4ba75f005e7997250ba7761feb94`
+
+README:
+`SIGMA_PROFESSOR/artifacts/SIGMA_V27P1_PERSISTENT_STRUCTURAL_GROUPING_PREFLIGHT_README.txt`
+
+Checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_ADVANCED_MATH_BEYOND_PROGRAM_V27P1_SOURCE_READY.md`
+
+Checkpoint commit:
+`3dfa40edeb0863f3d8031af764ac8dc22ac497a3`
+
+P1 native policy:
+
+- prior state is reused only from complete `COMMIT=YES` records;
+- malformed/uncommitted state is ignored;
+- exact doc-anchor pairs are deduplicated;
+- second fresh VM process must be able to turn A/X singleton into A+B/X shared by reading prior committed state;
+- same-document duplicate must not inflate support;
+- different anchor remains singleton;
+- state split-line budget = 65;
+- input split-line budget = 16;
+- over-budget state/input must refuse mutation before record scan.
+
+Static source-ready audit:
+
+- `H_CALLS=56`;
+- `H_CALL_ARITY_AUDIT=PASS`;
+- `STR_STARTS_DEPENDENCY=NONE`;
+- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
+- runner `bash -n` RC = 0;
+- durable byte identity checks PASS.
+
+Current admission truth:
+
+- `COMPILE_PASS=NOT_PROVEN`;
+- `RUNTIME_PASS=NOT_PROVEN`;
+- `BYTECODE_SHA256=UNKNOWN`;
+- `VM_RC=UNKNOWN`;
+- `OUTPUT_DEPENDS_ON_INPUT=NOT_PROVEN`;
+- `NEGATIVE_TEST=NOT_PROVEN`;
+- `PERSISTENT_STATE_TEST=NOT_PROVEN`;
+- `RESTART_REPLAY_TEST=NOT_PROVEN`;
+- `STEP_LIMIT_STATUS=NOT_PROVEN`;
+- `BOUNDED_FILE_IO=NOT_PROVEN`;
+- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`;
+- `ADMISSION=NOT_PROVEN`;
+- `PRODUCTION_STATE_MUTATED=NO`.
+
+Claim scope is structural exact-anchor grouping in the bounded synthetic QA protocol only. No semantic grouping, semantic understanding, curriculum priority, mathematical understanding, or production readiness is claimed.
+
+After a real locked-runtime P1 admission PASS:
 
 `NEXT_ACTION=BUILD_V28_CURRICULUM_PRIORITY_PREFLIGHT`
+
+Only after declared dependencies are admitted should the smallest `MATH-R0` native mathematical cognition capabilities begin admission.
 
 ## Host ABI status
 
@@ -312,8 +400,10 @@ Keep all 54 DNA. Active DNA cognition must be native `.sigma`. Work dependency-f
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. Install V2.7 source + runner.
-3. Run V2.7 preflight once; it executes positive, negative, and replay cases with the same bytecode.
-4. If any case fails, preserve exact output/state and repair the narrowest failing gate.
-5. If V2.7 PASSes, checkpoint it and proceed to native curriculum priority.
-6. Preserve all prior raw/done/log/history state and all failure evidence.
+2. Install the exact V2.7P.1 source + runner into an isolated Termux preflight namespace.
+3. Run V2.7P.1 with the locked compiler/VM; preserve exact source/bytecode/runtime hashes, every VM_RC, logs and state hashes.
+4. If any case fails, preserve state and repair the narrowest failing gate; do not weaken PASS criteria.
+5. If P1 passes all dynamic, negative, persistence and boundedness gates in its claim scope, checkpoint the exact admission evidence.
+6. Then build V2.8 persistent native curriculum priority/resume.
+7. Begin `MATH-R0` capability admission only when its declared dependencies are satisfied; do not load precomputed advanced-math results.
+8. Preserve all prior raw/done/log/history state and all failure evidence.
