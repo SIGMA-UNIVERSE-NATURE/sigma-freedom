@@ -121,54 +121,91 @@ DNA-08 V1 compile failure: exact print-token source delta later compiled/runtime
 DNA-10 V1 compile failure: bare top-level block repaired to explicit `⟡(...) {`; exact delta later compiled/runtime-passed.
 DNA-14 V1 alignment failure: 50/50 VM RC=0 but 22 shell-oracle mismatches; FIX1 kept `.sigma` byte-identical, repaired only positional A1..A4 oracle policy, then full rerun passed 50/50.
 
+DNA-15 V1 runtime admission failure:
+```text
+SOURCE_SHA256=2f8c58101ee2a543fed7a8ecab2e2b4cbeeff6b1beefd89ae461b4e557433f51
+BYTECODE_SHA256=4240280f7b352e22e18ea2c81ddc8f1135b77088124d15b4dfa8ee3bee33dca5
+TOTAL_VM_INVOCATIONS=50
+POST_VM_ALIGNMENT_PASS_COUNT=46
+POST_VM_ALIGNMENT_FAIL_COUNT=4
+POST_VM_NUMERIC_ALIGNMENT_PASS_COUNT=50
+POST_VM_NUMERIC_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+REPLAY_IDENTICAL_INPUT_DECISION=YES
+ADMISSION=FAIL
+RESULT=FAIL_IN_TESTED_SCOPE
+```
+Checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_V1_FAIL_46_OF_50_AND_HFREE_DERIVED_K_DIRECTIVE.md`
+
 ## DNA-15 / F174 governance
 
-Previous state:
-```text
-DNA15=DEFERRED_BY_USER
-F174_DEPENDENCY_RUNTIME=NOT_EXECUTED
-```
-
-User explicitly reversed the defer on 2026-09-05 to continue the chain without the blocker.
-
-Current governance:
-```text
 DNA15_DEFER_REVERSED_BY_USER=YES
 DNA15_NATIVE_ADMISSION_AUTHORIZED=YES
 F174_NATIVE_ADMISSION_AUTHORIZED=YES
-```
 
-Authorization checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_DEFER_EXPLICITLY_REVERSED_BY_USER.md`
+After V1 failure, user explicitly directed an H-free active calculation and state-derived k.
 
-Authorization is not capability evidence.
+Historical Canon remains provenance. The V2 operational extension candidate preserves the base equation but does not read H or caller-k as active inputs.
 
-## DNA-15 Native Admission V1 — source ready / not admitted
+## DNA-15 Native Admission V2 — H-free state-derived-k — source ready / not admitted
 
 CANON_REFERENCE_BLOB_SHA1=50ec4940f554d594c385a96ef986fc88dca7f53c
-SOURCE_PATH=DNA15_F174_DEVELOPMENT_DYNAMICS_NATIVE_V1.sigma
-SOURCE_SHA256=2f8c58101ee2a543fed7a8ecab2e2b4cbeeff6b1beefd89ae461b4e557433f51
-RUNNER_SHA256=6ef6581d1282dab0d1811981aea9c3d0191f6209a4d4b0c269a9c7e583e084fd
-MANIFEST_SHA256=d589d2c8916d1b880653815612c93a3d5bce25c137c6d533c7f7b9973f329ee2
-BUNDLE_SHA256=827bbcaf521a78b3d7a5cf073f2e8af5f67cd1cf58cb74a5bb535a7c51a2b51f
+ACTIVE_PROFILE=H_FREE_STATE_DERIVED_K_V2
+SOURCE_PATH=DNA15_F174_HFREE_STATE_DERIVED_K_NATIVE_V2.sigma
+SOURCE_SHA256=94f4684115d03116bff19348ce840457f5c066d2399c7f83dd3f5b9ecfd24f26
+RUNNER_SHA256=decb39240bd0cac6f8a851a03a2a0da3424efee09cc3d8dd7ea35fda3395dd18
+MANIFEST_SHA256=60a9cdd66bcb14d43f92b306e0670b5d8c65f91bd83cf6d3c96ce8e74157637e
+BUNDLE_SHA256=4c4c6d08f0017231153eceb24726cd5c52ccba91155cb0e28604aea372585086
 
-DNA15_SOURCE=SOURCE_ONLY
-DNA15_COMPILE=NOT_RUN
-DNA15_VM=NOT_RUN
-DNA15_ADMISSION=NOT_RUN
+DNA15_V2_SOURCE=SOURCE_ONLY
+DNA15_V2_COMPILE=NOT_RUN
+DNA15_V2_VM=NOT_RUN
+DNA15_V2_ADMISSION=NOT_RUN
 PERSISTENT_STATE=NA
+
+Active candidate formula:
+`k=ln(A_t/A0)/(t-t0)^2`
+
+Domain:
+- `A0>0`;
+- observed `A_t>0`;
+- `t!=t0`.
+
+State binding under test:
+- increase -> positive k;
+- stable -> zero k;
+- decrease -> negative k.
+
+Static facts:
+```text
+H_INPUT_PATH_READ_COUNT=0
+CALLER_K_INPUT_PATH_READ_COUNT=0
+MATH_LOG_CALL_COUNT=1
+MATH_EXP_CALL_COUNT=1
+TO_FLOAT_CALL_COUNT=1
+RUNNER_PYTHON_COMMAND_COUNT=0
+BASH_SYNTAX=PASS
+MANIFEST=PASS
+ZIP_INTEGRITY=PASS
+```
 
 Admission plan:
 - exact DNA-01..DNA-14 dependency preflight;
-- 16 directed + 32 randomized + 2 identical replay = 50 VM invocations;
-- dynamic inputs generated only after compile/freeze;
-- `to_float` and `math_exp` mechanical ABI exercised in bounded numeric-text/F174 scope;
-- deterministic shell/awk oracle starts only after each VM invocation;
-- no Python device-runner command;
-- F174 remains measurement-only, not permission/ethics/policy/authority.
+- 16 directed + 32 randomized + 2 replay = 50 VM invocations;
+- dynamic input generated after compile/freeze;
+- stale H/k independence pair requires changed shell input SHA but identical VM stdout SHA;
+- `math_log` must work in locked VM; no semantic fallback.
 
 Boundaries:
 ```text
+ACTIVE_H_INPUT=REMOVED_CANDIDATE_NOT_RUNTIME_PROVEN
+CALLER_K_INPUT=REMOVED_CANDIDATE_NOT_RUNTIME_PROVEN
+STATE_DERIVED_K=NOT_PROVEN_UNTIL_RUNTIME_PASS
+MATH_LOG_ABI=NOT_PROVEN_UNTIL_RUNTIME_PASS
+K_TEMPORAL_CONSTANCY=NOT_PROVEN
+DERIVATIVE_FROM_DERIVED_K=NOT_EXECUTED
 NUMERIC_TEXT_VALIDATION=NOT_PROVEN
 GLOBAL_F174_CANON_FILE_READ_NATIVE=NOT_PROVEN
 PARAMETER_OPTIMIZATION=NOT_EXECUTED
@@ -182,11 +219,11 @@ SEMANTIC_UNDERSTANDING=NOT_PROVEN
 ```
 
 SOURCE_READY checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_SOURCE_READY.md`
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_V2_HFREE_DERIVED_K_SOURCE_READY.md`
 
 ## Current frontier
 
-NEXT_TARGET=RUN DNA-15 NATIVE ADMISSION V1
+NEXT_TARGET=RUN DNA-15 NATIVE ADMISSION V2 HFREE STATE-DERIVED-K
 PLANNED_NEXT_IF_PASS=DNA-16 Experience-Driven Learning
 
 ## Global claim boundaries
