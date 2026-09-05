@@ -1,0 +1,384 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.LANGUAGE.OPERATOR.SCOPE.BINDING][VERSION=LANG-02A-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF leq(a, b) {
+    IF (b < a) { RETURN 0; }
+    RETURN 1;
+}
+
+⟡(Σ.LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_LANG_02A_OPERATOR_SCOPE_BINDING_V1";
+
+    ⚡ DEPENDENCY_CAPABILITY:
+        H("read_text", BASE + "/input/dependency_capability.txt", NULL, NULL);
+    ⚡ DEPENDENCY_STATUS:
+        H("read_text", BASE + "/input/dependency_status.txt", NULL, NULL);
+    ⚡ SCOPE_TEXT:
+        H("read_text", BASE + "/input/scopes.memory", NULL, NULL);
+    ⚡ OPERATOR_TEXT:
+        H("read_text", BASE + "/input/operators.memory", NULL, NULL);
+
+    ⚡ DEPENDENCY_CAPABILITY_VALID:
+        exact(
+            DEPENDENCY_CAPABILITY,
+            "LANG-01A_NATIVE_DISTRIBUTIONAL_EVENT_FRAME_HYPOTHESIS_INDUCTION"
+        );
+    ⚡ DEPENDENCY_STATUS_VALID:
+        exact(DEPENDENCY_STATUS, "ADMITTED_IN_EXACT_TESTED_SCOPE");
+    ⚡ DEPENDENCY_BINDING_VALID:
+        DEPENDENCY_CAPABILITY_VALID * DEPENDENCY_STATUS_VALID;
+
+    ⚡ RAW_SCOPE_LINES:
+        H("str_split", SCOPE_TEXT, "\n", NULL);
+    ⚡ RAW_SCOPE_LINE_TOTAL:
+        H("list_len", RAW_SCOPE_LINES, NULL, NULL);
+    ⚡ RAW_OPERATOR_LINES:
+        H("str_split", OPERATOR_TEXT, "\n", NULL);
+    ⚡ RAW_OPERATOR_LINE_TOTAL:
+        H("list_len", RAW_OPERATOR_LINES, NULL, NULL);
+
+    ⚡ MAX_SCOPE_SPLIT_LINES: 16;
+    ⚡ MAX_OPERATOR_SPLIT_LINES: 4;
+    ⚡ SCOPE_CAPACITY: 8;
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+
+    IF (MAX_SCOPE_SPLIT_LINES < RAW_SCOPE_LINE_TOTAL) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+    IF (MAX_OPERATOR_SPLIT_LINES < RAW_OPERATOR_LINE_TOTAL) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ OPERATOR_COUNT: 0;
+    ⚡ OPERATOR_LINE: "";
+    ⚡ OI: 0;
+    WHILE (OI < RAW_OPERATOR_LINE_TOTAL) {
+        ⚡ OLINE:
+            H("list_get", RAW_OPERATOR_LINES, OI, NULL);
+        ⚡ OLINE_PRESENT:
+            present(OLINE);
+        IF (OLINE_PRESENT == 1) {
+            ⚡ OPERATOR_COUNT: OPERATOR_COUNT + 1;
+            IF (OPERATOR_COUNT == 1) {
+                ⚡ OPERATOR_LINE: OLINE;
+            }
+        }
+        ⚡ OI: OI + 1;
+    }
+
+    ⚡ OPERATOR_RECORD_VALID: 0;
+    ⚡ OPERATOR_ID: "";
+    ⚡ OPERATOR_POSITION_TEXT: "";
+    ⚡ OPERATOR_POSITION: 0;
+    ⚡ OPERATOR_SOURCE_ID: "";
+
+    IF (OPERATOR_COUNT == 1) {
+        ⚡ OPARTS:
+            H("str_split", OPERATOR_LINE, "||", NULL);
+        ⚡ OPART_TOTAL:
+            H("list_len", OPARTS, NULL, NULL);
+        IF (OPART_TOTAL == 7) {
+            ⚡ OPREFIX: H("list_get", OPARTS, 0, NULL);
+            ⚡ OPERATOR_ID: H("list_get", OPARTS, 1, NULL);
+            ⚡ OPERATOR_POSITION_TEXT: H("list_get", OPARTS, 2, NULL);
+            ⚡ OCLASS_FIELD: H("list_get", OPARTS, 3, NULL);
+            ⚡ OCLASS_VALUE: H("list_get", OPARTS, 4, NULL);
+            ⚡ OSOURCE_FIELD: H("list_get", OPARTS, 5, NULL);
+            ⚡ OPERATOR_SOURCE_ID: H("list_get", OPARTS, 6, NULL);
+
+            ⚡ O_FIELDS_VALID:
+                exact(OPREFIX, "OPERATOR")
+                * present(OPERATOR_ID)
+                * present(OPERATOR_POSITION_TEXT)
+                * exact(OCLASS_FIELD, "CLASS")
+                * exact(OCLASS_VALUE, "SCOPE_OPERATOR")
+                * exact(OSOURCE_FIELD, "SOURCE")
+                * present(OPERATOR_SOURCE_ID);
+
+            IF (O_FIELDS_VALID == 1) {
+                ⚡ OPERATOR_POSITION:
+                    H("to_int", OPERATOR_POSITION_TEXT, NULL, NULL);
+                IF (OPERATOR_POSITION < 0) {
+                    ⚡ OPERATOR_RECORD_VALID: 0;
+                }
+                IF (leq(0, OPERATOR_POSITION) == 1) {
+                    ⚡ OPERATOR_RECORD_VALID: 1;
+                }
+            }
+        }
+    }
+
+    ⚡ SCOPE_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ SCOPE_STARTS: H("list_new", NULL, NULL, NULL);
+    ⚡ SCOPE_ENDS: H("list_new", NULL, NULL, NULL);
+    ⚡ SCOPE_SOURCES: H("list_new", NULL, NULL, NULL);
+    ⚡ SEEN_SCOPE_FINGERPRINTS: H("map_new", NULL, NULL, NULL);
+
+    ⚡ UNIQUE_SCOPE_COUNT: 0;
+    ⚡ DUPLICATE_SCOPE_COUNT: 0;
+    ⚡ SCOPE_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_SCOPE_COUNT: 0;
+    ⚡ SI: 0;
+
+    WHILE (SI < RAW_SCOPE_LINE_TOTAL) {
+        ⚡ SLINE:
+            H("list_get", RAW_SCOPE_LINES, SI, NULL);
+        ⚡ SLINE_PRESENT:
+            present(SLINE);
+
+        IF (SLINE_PRESENT == 1) {
+            ⚡ SPARTS:
+                H("str_split", SLINE, "||", NULL);
+            ⚡ SPART_TOTAL:
+                H("list_len", SPARTS, NULL, NULL);
+            ⚡ SCOPE_RECORD_VALID: 0;
+
+            IF (SPART_TOTAL == 6) {
+                ⚡ SPREFIX: H("list_get", SPARTS, 0, NULL);
+                ⚡ SCOPE_ID: H("list_get", SPARTS, 1, NULL);
+                ⚡ SCOPE_START_TEXT: H("list_get", SPARTS, 2, NULL);
+                ⚡ SCOPE_END_TEXT: H("list_get", SPARTS, 3, NULL);
+                ⚡ SSOURCE_FIELD: H("list_get", SPARTS, 4, NULL);
+                ⚡ SCOPE_SOURCE_ID: H("list_get", SPARTS, 5, NULL);
+
+                ⚡ S_FIELDS_VALID:
+                    exact(SPREFIX, "SCOPE")
+                    * present(SCOPE_ID)
+                    * present(SCOPE_START_TEXT)
+                    * present(SCOPE_END_TEXT)
+                    * exact(SSOURCE_FIELD, "SOURCE")
+                    * present(SCOPE_SOURCE_ID);
+
+                IF (S_FIELDS_VALID == 1) {
+                    ⚡ SCOPE_START:
+                        H("to_int", SCOPE_START_TEXT, NULL, NULL);
+                    ⚡ SCOPE_END:
+                        H("to_int", SCOPE_END_TEXT, NULL, NULL);
+                    ⚡ RANGE_VALID:
+                        leq(SCOPE_START, SCOPE_END) * leq(0, SCOPE_START);
+
+                    IF (RANGE_VALID == 1) {
+                        ⚡ SCOPE_RECORD_VALID: 1;
+                        ⚡ FINGERPRINT:
+                            SCOPE_START_TEXT + "||" + SCOPE_END_TEXT + "||" + SCOPE_SOURCE_ID;
+                        ⚡ SEEN_ID:
+                            H("map_has", SEEN_SCOPE_FINGERPRINTS, SCOPE_ID, NULL);
+
+                        IF (SEEN_ID == FALSE) {
+                            ⚡ SAVE_FP:
+                                H("map_set", SEEN_SCOPE_FINGERPRINTS, SCOPE_ID, FINGERPRINT);
+                            ⚡ PUSH_ID:
+                                H("list_push", SCOPE_IDS, SCOPE_ID, NULL);
+                            ⚡ PUSH_START:
+                                H("list_push", SCOPE_STARTS, SCOPE_START, NULL);
+                            ⚡ PUSH_END:
+                                H("list_push", SCOPE_ENDS, SCOPE_END, NULL);
+                            ⚡ PUSH_SOURCE:
+                                H("list_push", SCOPE_SOURCES, SCOPE_SOURCE_ID, NULL);
+                            ⚡ UNIQUE_SCOPE_COUNT: UNIQUE_SCOPE_COUNT + 1;
+                        }
+
+                        IF (SEEN_ID) {
+                            ⚡ PRIOR_FP:
+                                H("map_get", SEEN_SCOPE_FINGERPRINTS, SCOPE_ID, NULL);
+                            ⚡ SAME_FP:
+                                exact(PRIOR_FP, FINGERPRINT);
+                            IF (SAME_FP == 1) {
+                                ⚡ DUPLICATE_SCOPE_COUNT: DUPLICATE_SCOPE_COUNT + 1;
+                            }
+                            IF (SAME_FP == 0) {
+                                ⚡ SCOPE_ID_COLLISION_COUNT: SCOPE_ID_COLLISION_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (SCOPE_RECORD_VALID == 0) {
+                ⚡ INVALID_SCOPE_COUNT: INVALID_SCOPE_COUNT + 1;
+            }
+        }
+
+        ⚡ SI: SI + 1;
+    }
+
+    ⚡ SCOPE_CAPACITY_EXCEEDED: 0;
+    IF (SCOPE_CAPACITY < UNIQUE_SCOPE_COUNT) {
+        ⚡ SCOPE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ INPUT_ACCEPTED: 1;
+    ⚡ REFUSAL_REASON: "NONE";
+
+    IF (DEPENDENCY_BINDING_VALID == 0) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "DEPENDENCY_BINDING_INVALID";
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "INPUT_BOUND_EXCEEDED";
+    }
+    IF (OPERATOR_COUNT < 1) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "OPERATOR_COUNT_INVALID";
+    }
+    IF (1 < OPERATOR_COUNT) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "OPERATOR_COUNT_INVALID";
+    }
+    IF (OPERATOR_COUNT == 1) {
+        IF (OPERATOR_RECORD_VALID == 0) {
+            ⚡ INPUT_ACCEPTED: 0;
+            ⚡ REFUSAL_REASON: "OPERATOR_RECORD_INVALID";
+        }
+    }
+    IF (0 < INVALID_SCOPE_COUNT) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "SCOPE_RECORD_INVALID";
+    }
+    IF (0 < SCOPE_ID_COLLISION_COUNT) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "SCOPE_ID_COLLISION";
+    }
+    IF (SCOPE_CAPACITY_EXCEEDED == 1) {
+        ⚡ INPUT_ACCEPTED: 0;
+        ⚡ REFUSAL_REASON: "SCOPE_CAPACITY_EXCEEDED";
+    }
+
+    ⚡ ENCLOSING_SCOPE_COUNT: 0;
+    ⚡ BEST_SET: 0;
+    ⚡ BEST_SCOPE_ID: "NONE";
+    ⚡ BEST_SCOPE_WIDTH: 0;
+    ⚡ MINIMUM_WIDTH_TIED: 0;
+
+    IF (INPUT_ACCEPTED == 1) {
+        ⚡ BI: 0;
+        WHILE (BI < UNIQUE_SCOPE_COUNT) {
+            ⚡ BID: H("list_get", SCOPE_IDS, BI, NULL);
+            ⚡ BSTART: H("list_get", SCOPE_STARTS, BI, NULL);
+            ⚡ BEND: H("list_get", SCOPE_ENDS, BI, NULL);
+            ⚡ LEFT_OK: leq(BSTART, OPERATOR_POSITION);
+            ⚡ RIGHT_OK: leq(OPERATOR_POSITION, BEND);
+            ⚡ ENCLOSES: LEFT_OK * RIGHT_OK;
+
+            IF (ENCLOSES == 1) {
+                ⚡ ENCLOSING_SCOPE_COUNT: ENCLOSING_SCOPE_COUNT + 1;
+                ⚡ BWIDTH: BEND - BSTART;
+
+                IF (BEST_SET == 0) {
+                    ⚡ BEST_SET: 1;
+                    ⚡ BEST_SCOPE_ID: BID;
+                    ⚡ BEST_SCOPE_WIDTH: BWIDTH;
+                    ⚡ MINIMUM_WIDTH_TIED: 0;
+                }
+
+                IF (BEST_SET == 1) {
+                    IF (BWIDTH < BEST_SCOPE_WIDTH) {
+                        ⚡ BEST_SCOPE_ID: BID;
+                        ⚡ BEST_SCOPE_WIDTH: BWIDTH;
+                        ⚡ MINIMUM_WIDTH_TIED: 0;
+                    }
+                    IF (BWIDTH == BEST_SCOPE_WIDTH) {
+                        ⚡ SAME_BEST_ID: exact(BID, BEST_SCOPE_ID);
+                        IF (SAME_BEST_ID == 0) {
+                            ⚡ MINIMUM_WIDTH_TIED: 1;
+                        }
+                    }
+                }
+            }
+
+            ⚡ BI: BI + 1;
+        }
+    }
+
+    ⚡ SCOPE_BINDING_STATUS: "REFUSED";
+    ⚡ SELECTED_SCOPE_ID: "NONE";
+
+    IF (INPUT_ACCEPTED == 1) {
+        IF (ENCLOSING_SCOPE_COUNT == 0) {
+            ⚡ SCOPE_BINDING_STATUS: "NO_ENCLOSING_SCOPE";
+        }
+        IF (0 < ENCLOSING_SCOPE_COUNT) {
+            IF (MINIMUM_WIDTH_TIED == 1) {
+                ⚡ SCOPE_BINDING_STATUS: "AMBIGUOUS_SCOPE_BINDING";
+            }
+            IF (MINIMUM_WIDTH_TIED == 0) {
+                ⚡ SCOPE_BINDING_STATUS: "SELECTED_STRUCTURAL_SCOPE";
+                ⚡ SELECTED_SCOPE_ID: BEST_SCOPE_ID;
+            }
+        }
+    }
+
+    IF (INPUT_ACCEPTED == 0) {
+        IF (REFUSAL_REASON == "DEPENDENCY_BINDING_INVALID") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_DEPENDENCY_BINDING";
+        }
+        IF (REFUSAL_REASON == "INPUT_BOUND_EXCEEDED") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_INPUT_BOUND";
+        }
+        IF (REFUSAL_REASON == "OPERATOR_COUNT_INVALID") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_OPERATOR_COUNT";
+        }
+        IF (REFUSAL_REASON == "OPERATOR_RECORD_INVALID") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_INVALID_OPERATOR_RECORD";
+        }
+        IF (REFUSAL_REASON == "SCOPE_RECORD_INVALID") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_INVALID_SCOPE_RECORD";
+        }
+        IF (REFUSAL_REASON == "SCOPE_ID_COLLISION") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_SCOPE_ID_COLLISION";
+        }
+        IF (REFUSAL_REASON == "SCOPE_CAPACITY_EXCEEDED") {
+            ⚡ SCOPE_BINDING_STATUS: "REFUSED_SCOPE_CAPACITY";
+        }
+    }
+
+    ⚡ print("SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING");
+    ⚡ print("DEPENDENCY_BINDING_VALID", DEPENDENCY_BINDING_VALID);
+    ⚡ print("INPUT_ACCEPTED", INPUT_ACCEPTED);
+    ⚡ print("OPERATOR_COUNT", OPERATOR_COUNT);
+    ⚡ print("OPERATOR_RECORD_VALID", OPERATOR_RECORD_VALID);
+    ⚡ print("UNIQUE_SCOPE_COUNT", UNIQUE_SCOPE_COUNT);
+    ⚡ print("DUPLICATE_SCOPE_COUNT", DUPLICATE_SCOPE_COUNT);
+    ⚡ print("SCOPE_ID_COLLISION_COUNT", SCOPE_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_SCOPE_COUNT", INVALID_SCOPE_COUNT);
+    ⚡ print("SCOPE_CAPACITY", SCOPE_CAPACITY);
+    ⚡ print("SCOPE_CAPACITY_EXCEEDED", SCOPE_CAPACITY_EXCEEDED);
+    ⚡ print("ENCLOSING_SCOPE_COUNT", ENCLOSING_SCOPE_COUNT);
+    ⚡ print("MINIMUM_WIDTH_TIED", MINIMUM_WIDTH_TIED);
+    ⚡ print("SCOPE_BINDING_STATUS", SCOPE_BINDING_STATUS);
+    ⚡ print("SELECTED_SCOPE_ID", SELECTED_SCOPE_ID);
+    ⚡ print("SELECTED_SCOPE_WIDTH", BEST_SCOPE_WIDTH);
+    ⚡ print("SMALLEST_ENCLOSING_SCOPE_POLICY", "NATIVE_MINIMUM_WIDTH");
+    ⚡ print("SCOPE_ENCLOSURE_BOUNDARY", "INCLUSIVE");
+    ⚡ print("DUPLICATE_SCOPE_DOUBLE_COUNT", "NO");
+    ⚡ print("SCOPE_ID_COLLISION_MUTATES_STATE", "NO");
+    ⚡ print("CANDIDATE_ENCOUNTER_ORDER_IS_WINNER_POLICY", "NO");
+    ⚡ print("HOST_SCOPE_SELECTION", "NO");
+    ⚡ print("HOST_OPERATOR_INTERPRETATION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_POST_VM_TEST_ORACLE_ONLY", "YES");
+    ⚡ print("PERSISTENT_STATE", "NA");
+    ⚡ print("NUMERIC_TEXT_GENERAL_VALIDATION", "NOT_PROVEN");
+    ⚡ print("SURFACE_NEGATION_RECOGNITION", "NOT_PROVEN");
+    ⚡ print("LOGICAL_NEGATION", "NOT_PROVEN");
+    ⚡ print("PROPOSITION_TRUTH", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_SCOPE", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
