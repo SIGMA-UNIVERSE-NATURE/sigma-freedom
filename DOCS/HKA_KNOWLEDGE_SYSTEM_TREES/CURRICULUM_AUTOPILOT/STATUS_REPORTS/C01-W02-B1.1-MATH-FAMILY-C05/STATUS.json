@@ -3,34 +3,32 @@
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "READY",
+  "status": "IN_PROGRESS",
   "execution_branch": "hka-tree/c01-w02-math-c05",
   "input_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "c7a211f39f55063394044308bb7b832ccb776924",
-  "last_checkpoint_id": "CP02-DIRECTOR-RESUME-AFTER-NO-COMMIT",
+  "last_checkpoint_commit_sha": "17e387063eecbf3d4f75e6b7068d8d3e78d22aa1",
+  "last_checkpoint_id": "CP03-WORKER-BOOTSTRAP-SCOPE-LOCK",
   "scope_ids": ["B1.1-C05"],
   "completed_work": [
-    "Director independently accepted C03 at 7546ad74fb0e71ad2120c7091947993690bef82d after reading all 77 claims and auditing all 36 closure records.",
-    "Director discovered and durably corrected the C04/C05 execution dependency without changing stable IDs or ownership.",
-    "Created C05 execution branch from accepted C03.",
-    "Installed C05 Window Contract, GPT Execution Prompt and Director Open Order.",
-    "Control-plane activated C05 as READY and kept C04 locked until Director-accepted C05 PASS.",
-    "Created CP01-BOOTSTRAP-ACTIVATED.",
-    "A subsequent execution attempt reported no confirmed durable academic commit; Director verified the branch still contained no worker-authored academic commit beyond bootstrap/setup.",
-    "Director issued DIRECTOR_RESUME_ORDER_1.md and CP02-DIRECTOR-RESUME-AFTER-NO-COMMIT."
+    "Director accepted C03 at 7546ad74fb0e71ad2120c7091947993690bef82d and activated C05 before C04 under Dependency Amendment 1.",
+    "Prior execution attempt was durably classified INCOMPLETE/NO-CANDIDATE with no worker academic commit.",
+    "Replacement worker read DIRECTOR_RESUME_ORDER_1.md first, then DIRECTOR_OPEN_ORDER.md, WINDOW_CONTRACT.md and GPT_EXECUTION_PROMPT.md.",
+    "Control-plane revalidated C05 as the only active READY scope at CURRICULUM; C04 and all later stages remain gated.",
+    "Branch ancestry verified: accepted C03 is the merge base, C05 branch is ahead with setup/status commits and behind by zero.",
+    "Required B1 standards and exact Director-accepted C01/C02/C03 inputs were read without re-authoring predecessors.",
+    "CP03-WORKER-BOOTSTRAP-SCOPE-LOCK committed at 17e387063eecbf3d4f75e6b7068d8d3e78d22aa1."
   ],
   "remaining_work": [
-    "Author complete B1.1-C05 curriculum records for all ten canonical analysis topics.",
-    "Reuse accepted C01-C03 primitives without duplicate learning meaning.",
-    "Resolve T01/T02, T03/T06, T04/T07, T05/T10, T07/T09 and T08/T10 internal ownership overlaps.",
-    "Maintain C04 geometry as locked boundary/example only; do not author C04.",
-    "Create 100% Claim-to-Learning-Objective closure with zero locked-scope support Claim IDs.",
-    "Run source/version, semantic duplicate/ownership, prerequisite/sequence and stage-boundary audits from committed files.",
-    "Persist substantive academic work in bounded commits/checkpoints so a replacement window can resume without repeating completed work.",
-    "Create substantive academic-closure and pre-PASS checkpoints before any worker candidate PASS."
+    "Author and commit Block A T01-T05 curriculum records.",
+    "Read Block A back from GitHub and checkpoint it.",
+    "Author and commit Block B T06-T10 and finalize all seven academic JSONL files.",
+    "Resolve all six required internal overlap/ownership pairs and predecessor boundaries.",
+    "Create exactly one D1-D4 objective per node and 100% Claim-to-Learning-Objective closure with zero locked-scope support Claim IDs.",
+    "Read all committed academic files back from GitHub and run source/version, semantic duplicate/ownership, prerequisite/sequence, stage-boundary, ID, topic and closure audits.",
+    "Commit a pre-PASS audit checkpoint, RESULT.json, HANDOFF.md, terminal status/report/checkpoint, then read terminal state back before reporting candidate PASS."
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C05/WINDOW_CONTRACT.md",
@@ -40,29 +38,30 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/STATUS.json",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/REPORT.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP01-BOOTSTRAP-ACTIVATED.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP02-DIRECTOR-RESUME-AFTER-NO-COMMIT.json"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP02-DIRECTOR-RESUME-AFTER-NO-COMMIT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP03-WORKER-BOOTSTRAP-SCOPE-LOCK.json"
   ],
   "blocking_issues": [],
   "decisions_locked": [
     "Scope is B1.1-C05 only.",
     "Accepted predecessor is C03 commit 7546ad74fb0e71ad2120c7091947993690bef82d.",
-    "Execution Amendment 1 controls C05-before-C04 order; stable canonical ownership remains unchanged.",
-    "The no-commit execution attempt is INCOMPLETE/NO-CANDIDATE, not FAIL, and does not justify a new branch or reset.",
-    "C04 remains locked and cannot supply academic support claims.",
+    "Dependency Amendment 1 controls C05-before-C04 execution order without changing ownership.",
+    "C04 remains locked and is not to be opened or authored.",
+    "Accepted C01/C02/C03 IDs and learning meanings are referenced, not recreated.",
     "Claim-to-Learning-Objective closure is mandatory before candidate PASS.",
-    "D1-D4 remain independent of age.",
-    "No later pipeline stage artifact is allowed."
+    "D1-D4 remain epistemic depths independent of age.",
+    "No later pipeline-stage artifact is allowed."
   ],
   "do_not_repeat": [
     "Do not re-author accepted C01, C02 or C03.",
-    "Do not create a replacement C05 branch merely because the prior attempt stopped before committing academic work.",
+    "Do not create a replacement C05 branch.",
+    "Do not open or author C04.",
     "Do not renumber accepted IDs.",
-    "Do not author C04 geometry from this analysis window.",
-    "Do not use C06/C07/C09/C10 future claims as support.",
+    "Do not use C04/C06/C07/C09/C10 claims as support.",
     "Do not use chat history as project state.",
-    "Do not mark PASS from counts/schema alone without academic closure."
+    "Do not mark PASS before committed read-back and 100% audit."
   ],
-  "next_action": "Read DIRECTOR_RESUME_ORDER_1.md and resume the same C05 window from GitHub durable state; author B1.1-C05 only and persist bounded commits/checkpoints.",
+  "next_action": "Author and durably commit C05 academic Block A T01-T05, then read it back and checkpoint before T06-T10.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C05",
-  "updated_at": "2026-09-05T08:15:00+07:00"
+  "updated_at": "2026-09-05T08:30:00+07:00"
 }
