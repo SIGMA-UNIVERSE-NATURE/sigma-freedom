@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "checkpoint_id": "CP11-C10-POST-ACTIVATION-TREE-ALIGNMENT",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-C10",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "active_branch": "hka-tree/c01-w02-math-c10",
+  "accepted_predecessor": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "result": "TREE_ALIGNMENT_PASS",
+  "checks": {
+    "state_scope_window_branch": "PASS",
+    "registry_scope_window_branch": "PASS",
+    "continuity_snapshot_scope_window_branch": "PASS",
+    "active_child_status": "READY_PASS_ALIGNMENT",
+    "canonical_topics": "PASS_10_OF_10",
+    "frozen_academic_prerequisites": "PASS_C03_C05_C06_C07_C08",
+    "C09_continuity_only_not_academic_prerequisite": "PASS",
+    "amendment_5_active": "PASS",
+    "mandatory_risks": "PASS_R06_R13",
+    "B1_2_plus_locked": "PASS",
+    "post_CURRICULUM_stages_gated": "PASS"
+  },
+  "state_commit_sha": "2e4b28573ed7988f0d0334205aa8cdd62ef31595",
+  "registry_commit_sha": "43bd23c2dc6a28cbbf07916aa05ae59d1274345a",
+  "continuity_snapshot_commit_sha": "355b1821d44b2ba0fb0041c8d089e54f088287aa",
+  "C10_ready_status_commit_sha": "3d42117237b5021cce125bee7e2ebe58e6495bbd",
+  "authority_note": "Sentinel verifies alignment only; C10 academic work and later acceptance remain outside Sentinel authority.",
+  "created_at": "2026-09-05T19:22:00+07:00"
+}
