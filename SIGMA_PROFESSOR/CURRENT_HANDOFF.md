@@ -44,17 +44,19 @@ Production V2.4 source SHA256: `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d96
 - V2.8D.1 selected work -> deep re-learn: PASS — `a0b3dce9b784ef36e552f377ab2c808e7d80e9d9`.
 - V2.9R.1A structural revalidation: PASS — `b9dc75e37cf7a72e9851c0ccabd1b53a72c3d235`.
 - V2.10R.1 lifecycle: PASS — `220fa78bce0d9873533cb8acce102fc411107924`.
-- V2.11R.1 revisit execution + archive re-entry: PASS — source `88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e`, checkpoint `aa1bec9344510d95dbbee9312076df7ad9975256`.
-- V2.12R.1 cycle event controller: PASS — source `ec367a6c780011fc7fe06e7fafbdcfde27198527565bd9054c733e79ecc115be`, checkpoint `cf08b2faa4c17eb9bfa7a9c6870ea6a9e2138982`.
-- V2.13R.1 generation-aware revalidation + lifecycle: PASS.
-  - source `8984a0beaefddb6656158eaed47080bc09955f79e9dcb0b59edcd2e0b670f107`;
-  - runner `2f68d6dd04a23ecd528fe06ea130f8d65adae4e557c32b5848c0e21998fb6ba0`;
-  - generation-aware revalidation/lifecycle proven in tested structural scope;
-  - cycle `|` and `||` maintain distinct state;
-  - exact-cycle conflict and all four bounded refusals PASS;
-  - real survey SHA `de682a2d5a27e1985d2529106c5410f7e824dafbf5e7cb541485687166295d08` unchanged;
-  - admitted revisit evidence SHA `a166a82bdf244ec1245d0703ce5664f8e1d4ceda090f13881f8c41b463c194e9` unchanged;
-  - checkpoint `d464511977c85853d05c09419f3102d0fd0db88f`.
+- V2.11R.1 revisit execution + archive re-entry: PASS — `aa1bec9344510d95dbbee9312076df7ad9975256`.
+- V2.12R.1 cycle event controller: PASS — `cf08b2faa4c17eb9bfa7a9c6870ea6a9e2138982`.
+- V2.13R.1 generation-aware revalidation + lifecycle: PASS — `d464511977c85853d05c09419f3102d0fd0db88f`.
+- V2.14R.1 generation-aware closed-loop transition: PASS — checkpoint `40408a72286efe677d3cdf472c3d8f59b4bac457`.
+  - controller source SHA256 `1db8cd24432b85a5b4d6125e1f26e657df6bf47c429d763eb255c12ce201d972`;
+  - executor source SHA256 `d6bd5e41813a6f2fc13b7c6bfa6215e01fe4aa11c12c0111e7b51addb9a11210`;
+  - hardened runner SHA256 `da3c678089002e1fdb5694ed53eb9e1092462f20d2e1a0ff3fe390214556f226`;
+  - real selected-document transition proved `cycle | -> cycle || -> distinct cycle ||| event`;
+  - fresh-VM resume, deterministic replay, wrong-cycle refusal, inconsistent lifecycle/generation refusal, controller/executor bounded gates PASS;
+  - `AUTONOMOUS_STRUCTURAL_CYCLE_TRANSITION=PROVEN_IN_SELECTED_DOCUMENT_TWO_GENERATION_SCOPE`;
+  - real survey unchanged at `de682a2d5a27e1985d2529106c5410f7e824dafbf5e7cb541485687166295d08`;
+  - admitted V2.11 evidence unchanged at `a166a82bdf244ec1245d0703ce5664f8e1d4ceda090f13881f8c41b463c194e9`;
+  - user-provided tail did not include V2.14 bytecode SHA values; do not invent them.
 
 ## Important distinctions
 
@@ -65,92 +67,83 @@ Production V2.4 source SHA256: `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d96
 - `ARCHIVE_FOR_NOW != SEMANTICALLY_TRUE`;
 - `ARCHIVE_FOR_NOW != FORGET`.
 
-## Current frontier — V2.14R.1 generation-aware closed-loop transition — SOURCE READY
+## Current frontier — V2.15R.1 event-driven real next-work transition — SOURCE READY
 
-Hardened source-ready checkpoint: `b404c4ab3ff538babd207aafaf82cb1ae85870c9`.
+This is a composition/admission step; no new cognitive native source is introduced.
 
-### Native controller
+Runner:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V215R1_EVENT_DRIVEN_REAL_NEXT_WORK_TRANSITION_PREFLIGHT.sh`
 
-`SIGMA_GENERATION_AWARE_CLOSED_LOOP_CONTROLLER_V2_14C1.sigma`
+Runner SHA256:
+`3b54dc2fce2d408c9ffb9f4cedead91a2b82f69ec8a1688d6518837e9e02e687`
 
-SHA256: `1db8cd24432b85a5b4d6125e1f26e657df6bf47c429d763eb255c12ce201d972`
+Runner artifact commit:
+`b38d8def194c70669abe961cbaa9e3655b05a36c`
 
-Consumes V2.13 generation-aware lifecycle plus work-local revisit generation state.
+README commit:
+`bb8fa73ec87d791b010405c1096b0c1f7069a7ca`
 
-- `REVISIT` + generation == lifecycle cycle -> next-cycle `EXECUTE_REVISIT`;
-- `REVISIT` + generation == lifecycle cycle + `|` -> exact-cycle `REVALIDATE_REVISIT_GENERATION`;
-- `ARCHIVE_FOR_NOW` + matching generation -> `SELECT_NEXT_WORK`;
-- inconsistent lifecycle cycle/generation -> no event.
+Source-ready checkpoint:
+`ece60cb9f61603280e6b04e7cc88f22a34337aa5`
 
-### Native event-driven revisit executor
+### Capability contract
 
-`SIGMA_EVENT_DRIVEN_REVISIT_EXECUTOR_V2_14E1.sigma`
+Target composition:
 
-SHA256: `d6bd5e41813a6f2fc13b7c6bfa6215e01fe4aa11c12c0111e7b51addb9a11210`
+1. exact admitted V2.8R.1 selects and persists the first real work;
+2. admitted V2.13 receives a structural matching TEST fixture and itself decides `REOBSERVED -> ARCHIVE_FOR_NOW`;
+3. admitted V2.14C1 consumes that lifecycle and emits exact `SELECT_NEXT_WORK`;
+4. host mechanically routes only that exact event stage to V2.8R.1;
+5. V2.8R.1 selects a different second real work from the same frozen 56-document survey;
+6. admitted V2.8D.1 resolves the second real snapshot document and starts bounded learning;
+7. a fresh VM continuation must reuse persisted work/cursor state.
 
-Accepts only `WORK::CYCLE::EXECUTE_REVISIT`, requires `CYCLE == completed_generation + |`, commits exact-cycle evidence before cursor advance, and advances generation only after document completion.
+Expected deterministic selector sequence already observed in admitted V2.8R.1:
 
-### Hardened runner — REQUIRED identity
+- first: `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
+- second: `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`.
 
-`RUN_SIGMA_V214R1_GENERATION_AWARE_CLOSED_LOOP_PREFLIGHT.sh`
+### Required gates
 
-SHA256: `da3c678089002e1fdb5694ed53eb9e1092462f20d2e1a0ff3fe390214556f226`
+- first real work native selection;
+- V2.13 native `ARCHIVE_FOR_NOW` from structural test evidence;
+- V2.14 native `SELECT_NEXT_WORK` event;
+- second real work native selection;
+- second work differs from first;
+- second real document resolves;
+- native segment 0 learning starts on second work;
+- fresh VM uses persisted second-work cursor;
+- a native non-selection event does not invoke the selector;
+- deterministic first->second selector replay;
+- real survey and second document remain immutable.
 
-Earlier pre-hardening runner SHA `f1f4ff5fb571e4d4c56883860db9236073a1bc6dbd4c254b5471eec743ff2eec` is obsolete and must not be run.
+### Host boundary
 
-README: `SIGMA_V214R1_GENERATION_AWARE_CLOSED_LOOP_PREFLIGHT_README.txt`.
+- `HOST_WORK_SELECTION=NO`;
+- `HOST_STAGE_DECISION=NO`;
+- `HOST_ARCHIVE_DECISION=NO`;
+- `HOST_DOCUMENT_SELECTION=NO`;
+- `HOST_LEARNING=NO`;
+- mechanical event routing only.
 
-Static checks: controller/executor H-call arity PASS; no native `!=`; no `str_starts`; no direct `str()`; runner `bash -n` RC 0.
+### Claim limits
 
-### Real closed-loop target
+The archive-producing evidence is a test fixture. Therefore even after V2.15 PASS:
 
-Start:
+- `MULTI_DOCUMENT_AUTONOMOUS_CYCLE=NOT_PROVEN`;
+- `SECOND_WORK_COMPLETE_CYCLE=NOT_PROVEN`;
+- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION=NOT_PROVEN`;
+- `SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN`;
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
+- `BOUNDED_FILE_IO=NOT_PROVEN`;
+- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`.
 
-- selected work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
-- admitted V2.11 generation `|`;
-- V2.13 cycle `|` lifecycle `REVISIT`.
-
-Required event-driven transition:
-
-`CYCLE | REVISIT`
--> controller emits `work::||::EXECUTE_REVISIT`
--> mechanical host dispatcher routes exact event to native executor
--> segment 0 / segment 1 / completion across fresh VM
--> generation `||`
--> controller emits `work::||::REVALIDATE_REVISIT_GENERATION`
--> mechanical dispatcher routes exact event to V2.13
--> V2.13 creates `CYCLE=|| RESULT=NOT_REOBSERVED ACTION=REVISIT`
--> controller emits distinct `work::|||::EXECUTE_REVISIT`.
-
-Replay must reproduce exact controller/revalidation/lifecycle/evidence/generation hashes from an isolated mechanical clone of admitted V2.11 state.
-
-### Required bounded/negative gates
-
-- wrong-cycle executor refusal;
-- inconsistent lifecycle/generation refusal;
-- controller lifecycle over-limit refusal;
-- controller event-ledger over-limit refusal;
-- executor evidence over-limit refusal;
-- executor segment-cursor over-limit refusal;
-- admitted V2.11 evidence and real survey unchanged.
-
-### Claim target after PASS
-
-`AUTONOMOUS_STRUCTURAL_CYCLE_TRANSITION=PROVEN_IN_SELECTED_DOCUMENT_TWO_GENERATION_SCOPE`.
-
-Still NOT PROVEN:
-
-- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION`;
-- `MULTI_DOCUMENT_AUTONOMOUS_CYCLE`;
-- semantic truth validation;
-- semantic understanding;
-- bounded file I/O;
-- mid-append crash atomicity.
+A PASS may establish only real event-driven first->second work transition plus native learning start on the second real work.
 
 ## NEXT ACTION
 
 1. Keep V2.4 running unchanged.
-2. Install exact V2.14 controller/executor and hardened runner hashes above from repo root `~/SIGMA/sigma-freedom-write`.
-3. Run locked sigmac/VM and preserve runtime bytecode hashes for V2.12, V2.13, V2.14C1 and V2.14E1, every VM_RC, event transition and replay hash.
+2. Install exact V2.15 runner SHA above from repo root `~/SIGMA/sigma-freedom-write`; no new `.sigma` file is required.
+3. Preserve exact V2.13/V2.14 recompiled bytecode SHA values, selector/deep pinned bytecode checks, every VM_RC, selected IDs and state hashes.
 4. If a gate fails, preserve evidence and fix only the narrow failure.
-5. If PASS, checkpoint before multi-document autonomous cycle admission.
+5. If V2.15 PASS, checkpoint before building a complete real cycle on the second selected work.
