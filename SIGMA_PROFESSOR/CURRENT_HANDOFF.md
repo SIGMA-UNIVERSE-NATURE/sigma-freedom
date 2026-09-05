@@ -266,8 +266,11 @@ Still keep:
 Dedicated living checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_LANGUAGE_LANE_CURRENT.md`
 
-Current language chain:
+Admitted language chain:
 `LANG-01A -> LANG-01B -> LANG-01C -> LANG-01D -> LANG-01E -> LANG-01F -> LANG-01G`
+
+Current language frontier:
+`LANG-02A_NATIVE_OPERATOR_SCOPE_BINDING=SELECTED_SOURCE_READY_R1_NOT_ADMITTED`
 
 Current language status:
 
@@ -292,13 +295,36 @@ Current language status:
 - `LANG-01G_R3_BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_R3_TAIL` — do not infer from the historical R2 failed-run bytecode;
 - historical R2 `CASE_001_TIE` `VM_RC=22` / `SIGMA host: string required` remains failure evidence;
 - R3 repair was runner-only zero-length fresh-state fixture initialization; native source, cognition, persistence policy, and 20-case oracle were unchanged;
-- `LANG-02_NEGATION_AND_SCOPE_FOUNDATION=DEFERRED_NOT_REJECTED`;
-- next language capability must be reselected dependency-first/capability-first;
+- `LANG-02_NEGATION_AND_SCOPE_FOUNDATION=DECOMPOSED_NOT_ADMITTED`;
+- `LANG-02A_NATIVE_OPERATOR_SCOPE_BINDING=SELECTED_SOURCE_READY_R1`;
+- LANG-02A source `SIGMA_PROFESSOR/artifacts/SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_V1.sigma`;
+- LANG-02A source commit `32df3e826656f6c06ec6379b8bc3a378ce446bf4`;
+- LANG-02A source Git blob `226b06c337c09f3e0dc3f35a44c3ba22d73affaf`;
+- LANG-02A source SHA256 `7a40e92e11c7c89574d3b975bb3210a7a7a23690251951da68be9e7edbfe292b`;
+- LANG-02A runner `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_PREFLIGHT.sh`;
+- LANG-02A runner commit `685eba8fa2f6fbe74ccc5c0c4c1934f4cc5d7e06`;
+- LANG-02A runner Git blob `269b7cc0f44f2d442cabd9ae079f0bad97efd69a`;
+- LANG-02A runner SHA256 `720148bb4d22acb23e47118139095b4e73816491029ea2555448641779fc5bc4`;
+- `LANG-02A_PLANNED_VM_INVOCATIONS=20`;
+- `LANG-02A_SCOPE_CAPACITY=8`;
+- `LANG-02A_PERSISTENT_STATE=NA`;
+- `LANG-02A_LOCKED_SIGMAC_COMPILE=NOT_RUN`;
+- `LANG-02A_BYTECODE_SHA256=UNKNOWN`;
+- `LANG-02A_TOTAL_VM_INVOCATIONS=0`;
+- `LANG-02A_RUNTIME_PROOF=NOT_RUN`;
+- `LANG-02A_ADMISSION=NOT_RUN`;
 - `PREFERRED_ANTECEDENT_HYPOTHESIS != RESOLVED_REFERENT`;
+- `SURFACE_NEGATION_RECOGNITION=NOT_PROVEN`;
+- `LOGICAL_NEGATION=NOT_PROVEN`;
+- `PROPOSITION_TRUTH=NOT_PROVEN`;
+- `SEMANTIC_SCOPE=NOT_PROVEN`;
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
 - `COREFERENCE_RESOLUTION=NOT_PROVEN`;
 - `PRONOUN_SEMANTICS=NOT_PROVEN`;
 - `REAL_WORLD_ENTITY_IDENTITY=NOT_PROVEN`.
+
+Language next action:
+`RUN_LANG_02A_R1_ON_LOCKED_TERMUX_SIGMAC_AND_VM`
 
 This language lane does not change continual-learning/V4 production-promotion status.
 
