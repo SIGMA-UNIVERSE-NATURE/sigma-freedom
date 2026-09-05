@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-SUBSTANTIVE-ACADEMIC-OWNERSHIP-CLOSURE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "IN_PROGRESS",
+  "execution_branch": "hka-tree/c01-w02-math-c04",
+  "accepted_predecessor_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "academic_content_head_sha": "eca97081e45cc5b7f4b9ef432c4bc7b4f4c38c95",
+  "counts": {"canonical_topics":9,"nodes":9,"claims":83,"sources":6,"learning_objectives":36,"claim_to_learning_objective_closures":36,"cross_links":18,"sequence_intent_records":9},
+  "substantive_closure": {
+    "all_nine_topics_authored": true,
+    "T01_T04_ownership_split": "PASS",
+    "T02_measure_vs_C02_and_physical_metrology": "PASS",
+    "T03_function_calculus_boundaries": "PASS",
+    "T05_coordinate_algebra_calculus_boundaries": "PASS",
+    "T06_geometric_symmetry_vs_C03_groups": "PASS",
+    "T07_projective_ownership": "PASS",
+    "T08_uses_accepted_C05_and_C03_only": true,
+    "T08_C09_support_claims": 0,
+    "T09_consumes_C03_without_duplicate_ownership": true,
+    "T09_C09_support_claims": 0,
+    "closure_rows": "36/36 authored",
+    "future_or_locked_support_claims": 0
+  },
+  "locked_boundaries": ["B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10","ACADEMIC_LOCKED","LESSON_REGISTRY","PROMPTS","IMAGE_PRODUCTION","R2_STAGING","DELIVERY","WEBSITE_UPDATE"],
+  "next_action": "Read all committed C04 academic artifacts back from GitHub and run the mandatory pre-PASS audits."
+}
