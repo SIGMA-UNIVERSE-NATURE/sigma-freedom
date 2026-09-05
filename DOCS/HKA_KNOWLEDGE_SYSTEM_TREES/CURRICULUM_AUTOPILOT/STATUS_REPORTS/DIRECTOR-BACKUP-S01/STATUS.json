@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "status": "STANDBY_READY",
+  "execution_branch": "hka-tree/director-backup-sentinel",
+  "last_checkpoint_id": "CP01-BASELINE-C06-TREE-ALIGNMENT",
+  "last_checkpoint_commit_sha": "a221a57d5164fe8086306a3c8bb283ce2172a8c8",
+  "last_sentinel_status": "TREE_ALIGNMENT_PASS",
+  "current_stage": "CURRICULUM",
+  "active_scope": "B1.1-C06",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "active_branch": "hka-tree/c01-w02-math-c06",
+  "accepted_predecessor": "76077695c07b853ac37f058477177e211f740f17",
+  "authority": {
+    "academic_authoring": false,
+    "director_acceptance": false,
+    "successor_unlock": false,
+    "control_plane_mutation": false,
+    "own_status_checkpoint_writes": true
+  },
+  "continuity_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
+  "next_action": "On invocation, re-read current continuity snapshot and durable control plane, then return TREE_ALIGNMENT_PASS, TREE_ALIGNMENT_ALERT or RECOVERY_REQUIRED. Do not author or accept curriculum.",
+  "updated_at": "2026-09-05T10:42:00+07:00"
+}
