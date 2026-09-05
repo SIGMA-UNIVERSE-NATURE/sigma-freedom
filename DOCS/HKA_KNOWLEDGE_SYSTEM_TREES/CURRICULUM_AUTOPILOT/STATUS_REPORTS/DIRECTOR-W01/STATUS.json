@@ -1,12 +1,12 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "2.1",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
-  "last_checkpoint_commit_sha": "da790d8eec55c2eb5ddf9e4d61e3902fff62b0be",
-  "last_checkpoint_id": "CP07-C09-PREOPEN-TREE-ALIGNMENT",
+  "last_checkpoint_commit_sha": "9a073ffa6b714026af9395336309bd31fb446b82",
+  "last_checkpoint_id": "CP-20260905-C07-ACCEPTED-C09-ACTIVATED",
   "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09"],
   "completed_work": [
     "Director-accepted C01-C06/C08 remain canonical.",
@@ -17,7 +17,8 @@
     "Issued Dependency Amendment 4 clarifying C09 accepted prerequisites and topology/geometry/algebra ownership at 3ca222af9d6a3aa0326b738831daec86cce6521a.",
     "Backup Sentinel returned TREE_ALIGNMENT_PASS for C09 pre-open plan at da790d8eec55c2eb5ddf9e4d61e3902fff62b0be.",
     "Created hka-tree/c01-w02-math-c09 from accepted C07 and installed C09 contract, prompt, open order, checkpoint, READY status and report.",
-    "Updated machine state, registry and Continuity Snapshot to C09 READY."
+    "Updated machine state, registry and Continuity Snapshot to C09 READY.",
+    "Created Director activation checkpoint 9a073ffa6b714026af9395336309bd31fb446b82."
   ],
   "remaining_work": [
     "Run only C01-W02-B1.1-MATH-FAMILY-C09.",
