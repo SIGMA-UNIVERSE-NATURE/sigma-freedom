@@ -1,0 +1,322 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.NATIVE.HUMAN.OBSERVER.REPORTER][VERSION=4C3R2]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF count_suffix(dir_path, suffix) {
+    ⚡ ENTRIES:
+        H("listdir", dir_path, NULL, NULL);
+    ⚡ TOTAL:
+        H("list_len", ENTRIES, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ COUNT:
+        0;
+    WHILE (I < TOTAL) {
+        ⚡ NAME:
+            H("list_get", ENTRIES, I, NULL);
+        ⚡ MATCH:
+            H("str_ends", NAME, suffix, NULL);
+        IF (MATCH) {
+            ⚡ COUNT:
+                COUNT + 1;
+        }
+        ⚡ I:
+            I + 1;
+    }
+    RETURN COUNT;
+}
+
+DEF preview_words(text, max_words) {
+    ⚡ TOKENS:
+        H("str_split", text, " ", NULL);
+    ⚡ TOTAL:
+        H("list_len", TOKENS, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ TAKEN:
+        0;
+    ⚡ OUT:
+        "";
+
+    WHILE (I < TOTAL) {
+        IF (TAKEN < max_words) {
+            ⚡ TOKEN:
+                H("list_get", TOKENS, I, NULL);
+            IF (TOKEN != "") {
+                IF (OUT == "") {
+                    ⚡ OUT:
+                        TOKEN;
+                }
+                IF (OUT != "") {
+                    IF (OUT != TOKEN) {
+                        ⚡ OUT:
+                            OUT + " " + TOKEN;
+                    }
+                }
+                ⚡ TAKEN:
+                    TAKEN + 1;
+            }
+        }
+        ⚡ I:
+            I + 1;
+    }
+
+    IF (max_words < TOTAL) {
+        ⚡ OUT:
+            OUT + " ...";
+    }
+
+    RETURN OUT;
+}
+
+DEF extract_best_span(evidence) {
+    ⚡ PARTS:
+        H("str_split", evidence, " || BEST=", NULL);
+    ⚡ PART_COUNT:
+        H("list_len", PARTS, NULL, NULL);
+
+    IF (PART_COUNT < 2) {
+        RETURN "";
+    }
+
+    ⚡ TAIL:
+        H("list_get", PARTS, 1, NULL);
+    ⚡ TAIL_PARTS:
+        H("str_split", TAIL, " || ", NULL);
+    ⚡ TAIL_COUNT:
+        H("list_len", TAIL_PARTS, NULL, NULL);
+
+    IF (TAIL_COUNT < 1) {
+        RETURN "";
+    }
+
+    RETURN H("list_get", TAIL_PARTS, 0, NULL);
+}
+
+DEF plan_explanation(plan) {
+    ⚡ TEXT:
+        "Tiep tuc danh gia corpus theo trang thai native hien tai.";
+
+    IF (plan == "PLAN_RESUME_ACTIVE_DOCUMENT") {
+        ⚡ TEXT:
+            "Tiep tuc tai lieu dang hoc do van con cong viec chua xong.";
+    }
+    IF (plan == "PLAN_CONTINUE_NATIVE_PROFILE") {
+        ⚡ TEXT:
+            "Tiep tuc profile tai lieu moi hoac tai lieu chua duoc profile.";
+    }
+    IF (plan == "PLAN_CONTINUE_NATIVE_GLOBAL_PRIORITY") {
+        ⚡ TEXT:
+            "Danh gia toan corpus de chon tai lieu co uu tien cau truc tiep theo.";
+    }
+    IF (plan == "PLAN_REEVALUATE_CORPUS") {
+        ⚡ TEXT:
+            "Quet lai corpus de tim cong viec native con hop le.";
+    }
+    IF (plan == "PLAN_NATIVE_HOLD_RECOVERY_REQUIRED") {
+        ⚡ TEXT:
+            "Co tai lieu HOLD; can native recovery truoc khi tiep tuc binh thuong.";
+    }
+
+    RETURN TEXT;
+}
+
+⟡(Σ.V4_NATIVE_HUMAN_OBSERVER_REPORTER_4C3R2) {
+
+    ⚡ RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", NULL, NULL);
+    ⚡ STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", NULL, NULL);
+    ⚡ C2_PHASE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", NULL, NULL);
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+    ⚡ C2_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATUS.memory", NULL, NULL);
+
+    ⚡ CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+    ⚡ CONTEXT_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", NULL, NULL);
+    ⚡ B4_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", NULL, NULL);
+    ⚡ BEST_WIDTH_U:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", NULL, NULL);
+    ⚡ BEST_SUPPORT_U:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", NULL, NULL);
+    ⚡ LAST_EVIDENCE:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", NULL, NULL);
+
+    ⚡ C3_CYCLE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_CYCLE.memory", NULL, NULL);
+    ⚡ C3_PLAN:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PLAN.memory", NULL, NULL);
+    ⚡ C3_PAUSE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PAUSE_SECONDS.memory", NULL, NULL);
+    ⚡ C3_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_STATUS.memory", NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        1;
+    IF (RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (INPUT_VALID == 0) {
+        ⚡ print("SIGMA HUMAN REPORT REFUSED: native corpus paths are missing.");
+        ⚡ print("REPORTER_STATUS", "REFUSE_MISSING_NATIVE_CORPUS_PATHS");
+        ⚡ print("HOST_REPORT_SUMMARIZATION", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (INPUT_VALID) {
+
+        ⚡ DISCOVERED_DOCS:
+            count_suffix(RAW_DIR, ".document");
+        ⚡ PROFILE_DOCS:
+            count_suffix(STATE_DIR, ".profile");
+        ⚡ COMPLETE_DOCS:
+            count_suffix(STATE_DIR, ".complete");
+        ⚡ HOLD_DOCS:
+            count_suffix(STATE_DIR, ".hold");
+        ⚡ EVIDENCE_DOCS:
+            count_suffix(STATE_DIR, ".evidence");
+
+        ⚡ CYCLE_INDEX:
+            H("str_len", C3_CYCLE_U, NULL, NULL);
+        ⚡ WIDTH_COUNT:
+            H("str_len", BEST_WIDTH_U, NULL, NULL);
+        ⚡ SUPPORT_COUNT:
+            H("str_len", BEST_SUPPORT_U, NULL, NULL);
+        ⚡ PAUSE_SECONDS:
+            H("str_len", C3_PAUSE_U, NULL, NULL);
+
+        ⚡ TEXT_PREVIEW:
+            preview_words(CONTEXT_TEXT, 24);
+        ⚡ BEST_SPAN:
+            extract_best_span(LAST_EVIDENCE);
+        ⚡ PLAN_TEXT:
+            plan_explanation(C3_PLAN);
+
+        ⚡ ACTIVE_DOC_DISPLAY:
+            ACTIVE_DOC;
+        IF (ACTIVE_DOC_DISPLAY == "") {
+            ⚡ ACTIVE_DOC_DISPLAY:
+                "(khong co tai lieu active)";
+        }
+
+        ⚡ CONTEXT_DISPLAY:
+            CONTEXT_ID;
+        IF (CONTEXT_DISPLAY == "") {
+            ⚡ CONTEXT_DISPLAY:
+                "(khong co context active)";
+        }
+
+        IF (TEXT_PREVIEW == "") {
+            ⚡ TEXT_PREVIEW:
+                "(khong co text context de hien thi)";
+        }
+
+        IF (BEST_SPAN == "") {
+            ⚡ BEST_SPAN:
+                "(chua co structural span hop le trong evidence gan nhat)";
+        }
+
+        ⚡ SUPPORT_LEVEL:
+            "CHUA_CO_HO_TRO_LAP_LAI";
+        IF (SUPPORT_COUNT == 1) {
+            ⚡ SUPPORT_LEVEL:
+                "MOT_QUAN_SAT_TRONG_CUA_SO_HIEN_TAI";
+        }
+        IF (1 < SUPPORT_COUNT) {
+            ⚡ SUPPORT_LEVEL:
+                "DA_CO_LAP_LAI_CAU_TRUC";
+        }
+        IF (3 < SUPPORT_COUNT) {
+            ⚡ SUPPORT_LEVEL:
+                "LAP_LAI_CAU_TRUC_NHIEU_LAN";
+        }
+
+        ⚡ CORPUS_SUMMARY:
+            "Corpus van dang co cong viec chua hoan tat trong snapshot hien tai.";
+        IF (DISCOVERED_DOCS == 0) {
+            ⚡ CORPUS_SUMMARY:
+                "Chua co document nao duoc phat hien trong corpus hien tai.";
+        }
+        IF (0 < DISCOVERED_DOCS) {
+            IF (COMPLETE_DOCS == DISCOVERED_DOCS) {
+                ⚡ CORPUS_SUMMARY:
+                    "Tat ca document dang duoc phat hien trong snapshot nay deu da danh dau complete.";
+            }
+        }
+        IF (0 < HOLD_DOCS) {
+            ⚡ CORPUS_SUMMARY:
+                "Co document dang HOLD; day la van de can native recovery.";
+        }
+
+        ⚡ print("============================================================");
+        ⚡ print("SIGMA - BAO CAO TU DANH GIA DE CON NGUOI DOC");
+        ⚡ print("============================================================");
+        ⚡ print("Chu ky tu danh gia", CYCLE_INDEX);
+        ⚡ print("Trang thai reflection", C3_STATUS);
+        ⚡ print("");
+
+        ⚡ print("[1] SIGMA DANG LAM GI");
+        ⚡ print("Giai doan corpus", C2_PHASE);
+        ⚡ print("Tai lieu dang hoc", ACTIVE_DOC_DISPLAY);
+        ⚡ print("Context dang xu ly", CONTEXT_DISPLAY);
+        ⚡ print("Trang thai learner", B4_STATUS);
+        ⚡ print("Trang thai controller", C2_STATUS);
+        ⚡ print("");
+
+        ⚡ print("[2] SIGMA VUA DOC / VUA XU LY GI");
+        ⚡ print("Trich doan context", TEXT_PREVIEW);
+        ⚡ print("Structural span noi bat", BEST_SPAN);
+        ⚡ print("Do rong span - so token", WIDTH_COUNT);
+        ⚡ print("So lan structural support trong cua so", SUPPORT_COUNT);
+        ⚡ print("Danh gia muc lap lai", SUPPORT_LEVEL);
+        ⚡ print("");
+
+        ⚡ print("[3] TIEN DO CORPUS");
+        ⚡ print("Document da phat hien", DISCOVERED_DOCS);
+        ⚡ print("Document da profile", PROFILE_DOCS);
+        ⚡ print("Document da complete", COMPLETE_DOCS);
+        ⚡ print("Document dang HOLD", HOLD_DOCS);
+        ⚡ print("Document co evidence", EVIDENCE_DOCS);
+        ⚡ print("Tom tat corpus", CORPUS_SUMMARY);
+        ⚡ print("");
+
+        ⚡ print("[4] SIGMA TU DANH GIA");
+        ⚡ print("Danh gia hieu nghia", "CHUA_DUOC_CHUNG_MINH");
+        ⚡ print("Danh gia dung sai/noi dung that", "CHUA_DUOC_CHUNG_MINH");
+        ⚡ print("Phan tram hieu", "KHONG_TINH_KHI_CHUA_CO_MACHINE_EVIDENCE_HOP_LE");
+        ⚡ print("Luu y", "Structural support khong dong nghia voi semantic understanding hay truth confidence.");
+        ⚡ print("");
+
+        ⚡ print("[5] SIGMA TU CHON VIEC TIEP THEO");
+        ⚡ print("Ma ke hoach native", C3_PLAN);
+        ⚡ print("Giai thich de nguoi doc", PLAN_TEXT);
+        ⚡ print("");
+
+        ⚡ print("[6] KHOANG DUNG QUAN SAT");
+        ⚡ print("So giay pause native", PAUSE_SECONDS);
+        ⚡ print("Sau pause", "SIGMA tu quay lai learning eligibility theo native state.");
+        ⚡ print("");
+
+        ⚡ print("REPORT_SOURCE", "NATIVE_SIGMA_MACHINE_EVIDENCE_ONLY");
+        ⚡ print("HOST_REPORT_SUMMARIZATION", "NO");
+        ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+        ⚡ print("REPORTER_LEARNING", "NO");
+        ⚡ print("REPORTER_WORK_SELECTION", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+        ⚡ print("REPORTER_STATUS", "HUMAN_OBSERVER_REPORT_EMITTED");
+        ⚡ print("============================================================");
+    }
+}
