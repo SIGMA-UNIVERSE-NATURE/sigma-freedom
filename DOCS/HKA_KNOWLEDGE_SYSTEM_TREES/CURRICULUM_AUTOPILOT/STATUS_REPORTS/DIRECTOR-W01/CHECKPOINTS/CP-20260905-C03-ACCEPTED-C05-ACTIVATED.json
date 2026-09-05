@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C03-ACCEPTED-C05-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_window": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "accepted_scope_id": "B1.1-C03",
+  "accepted_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "director_audit": {
+    "claims_read": "77/77",
+    "sources": 6,
+    "learning_objectives": 36,
+    "claim_to_learning_objective_closure": "36/36 PASS",
+    "future_or_locked_scope_support_claims": 0,
+    "T04_T05_ownership_and_sequence": "PASS_T05_BEFORE_T04",
+    "T06_T09_hierarchy": "PASS",
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_sequence_DAG": "PASS",
+    "stage_boundary": "PASS",
+    "blocking_issues": 0
+  },
+  "dependency_correction": {
+    "status": "ACTIVE",
+    "amendment_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
+    "amendment_commit_sha": "87fca6786e0ccbf71f656c5d6648de2b7c237402",
+    "old_execution_problem": "C04-T08 differential geometry requires C05 derivative/multivariable calculus, but old sequence placed C04 before C05 while forbidding future-scope support.",
+    "corrected_execution_order": "C03 -> C05 -> C04",
+    "stable_ids_or_ownership_changed": false
+  },
+  "activated_window": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "activated_scope_id": "B1.1-C05",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "C05_setup": {
+    "contract_commit_sha": "97d1ce98adeff5d393325905126328bf4cd72ca9",
+    "execution_prompt_commit_sha": "2bd95626331da59b1c095b9117996ae07267f686",
+    "open_order_commit_sha": "c5919a45ea7c9abb5e5cdca00822b11586e70dcf",
+    "bootstrap_checkpoint_commit_sha": "f7d8d1903c5b6155dfd6ef9506b60cadd542d465",
+    "status_commit_sha": "ca146db3b9ca0c475f21a3eb4ba76cc488919998",
+    "report_commit_sha": "e602feb71dd6bdebedb72248dec70e4ec84e8a8e"
+  },
+  "control_plane": {
+    "state_commit_sha": "50426227c7b1b0aa8afbd341cda585ba2be2f9a1",
+    "registry_commit_sha": "56155b3b74418cfd80837bbbc805d370a56d2d6c",
+    "C05_status": "READY",
+    "C04_status": "LOCKED",
+    "later_pipeline_stages": "GATED"
+  },
+  "next_action": "Run C05 only; accept it independently before opening C04."
+}
