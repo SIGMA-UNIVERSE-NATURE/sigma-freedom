@@ -152,14 +152,31 @@ Failure checkpoint:
 
 DNA15=DEFERRED_BY_USER
 F174_DEPENDENCY_RUNTIME=NOT_EXECUTED
-DNA16_NATIVE_ADMISSION=BLOCKED_BY_DNA15_DEFER
-DNA20_NATIVE_ADMISSION=BLOCKED_BY_DNA15_DEFER_AND_UNADMITTED_15_TO_19
+
+Audited blocked priority candidates:
+- DNA-16: direct dependency requires DNA-15 F174 state/output.
+- DNA-20: canonical self-check requires DNA-01..19.
+- DNA-21: binds DNA-20 and canonical self-check requires DNA-01..20.
+- DNA-26: binds DNA-20 confidence and DNA-25 lineage; prior-gene chain crosses DNA-15.
+- DNA-27: binds DNA-26; prior-gene chain crosses DNA-15.
+- DNA-31: canonical self-check requires DNA-01..30.
+- DNA-32: canonical self-check requires DNA-01..31 and proof set includes DNA-16/DNA-31 evidence.
+- DNA-45: canonical self-check requires DNA-01..44.
+- DNA-40: direct dependency requires DNA-16 qualified experience.
+- DNA-36: canonical self-check requires DNA-01..35.
 
 Do not load or execute DNA-15/F174 unless the user explicitly reverses the defer.
 
 ## Current frontier
 
-DNA-14 is admitted. Select the next unblocked dependency-first capability by inspecting exact Canon/self-check dependencies. Do not default to DNA-15 because DNA-15/F174 remains deferred.
+NEXT_54_DNA_TARGET=BLOCKED_PENDING_EXPLICIT_DNA15_DEFER_REVERSAL_OR_NEW_CANON_DEPENDENCY_DECISION
+
+This is a governance/dependency blocker, not a VM/runtime failure.
+
+Checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_POST_DNA14_FRONTIER_BLOCKED_BY_DNA15_DEFER.md`
+
+No DNA-15/F174 execution was performed during the dependency audit.
 
 ## Global claim boundaries
 
