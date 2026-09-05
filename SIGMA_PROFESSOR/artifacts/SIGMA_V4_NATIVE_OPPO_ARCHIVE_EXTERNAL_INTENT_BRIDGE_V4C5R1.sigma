@@ -21,6 +21,14 @@ DEF H(op, a, b, c) {
     ⚡ EXTERNAL_REQUEST:
         H("read_text", ".sigma_exec/SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory", NULL, NULL);
 
+    ⚡ EXTERNAL_INTENT_PRESENT:
+        0;
+
+    IF (EXTERNAL_REQUEST != "") {
+        ⚡ EXTERNAL_INTENT_PRESENT:
+            1;
+    }
+
     ⚡ PAGE_LINES:
         H("str_split", CATALOG_PAGE, "\n", NULL);
 
@@ -78,7 +86,7 @@ DEF H(op, a, b, c) {
     ⚡ SELECTED_RECORD:
         "";
 
-    IF (EXTERNAL_REQUEST != "") {
+    IF (EXTERNAL_INTENT_PRESENT) {
         ⚡ ACTION:
             "DISPATCH_NATIVE_EXTERNAL_REQUEST";
         ⚡ SOURCE:
@@ -87,7 +95,7 @@ DEF H(op, a, b, c) {
             EXTERNAL_REQUEST;
     }
 
-    IF (EXTERNAL_REQUEST == "") {
+    IF (EXTERNAL_INTENT_PRESENT == 0) {
 
         IF (PAGE_LIMIT_EXCEEDED) {
             ⚡ ACTION:
@@ -180,23 +188,31 @@ DEF H(op, a, b, c) {
                                 0;
 
                             IF (ENTRY_VALUE != "") {
-                                ⚡ FIELD_VALID_COUNT:
-                                    FIELD_VALID_COUNT + 1;
+                                IF (ENTRY_FIELD == "ENTRY_ID=" + ENTRY_VALUE) {
+                                    ⚡ FIELD_VALID_COUNT:
+                                        FIELD_VALID_COUNT + 1;
+                                }
                             }
 
                             IF (PATH_VALUE != "") {
-                                ⚡ FIELD_VALID_COUNT:
-                                    FIELD_VALID_COUNT + 1;
+                                IF (PATH_FIELD == "PATH_B64=" + PATH_VALUE) {
+                                    ⚡ FIELD_VALID_COUNT:
+                                        FIELD_VALID_COUNT + 1;
+                                }
                             }
 
                             IF (SIZE_VALUE != "") {
-                                ⚡ FIELD_VALID_COUNT:
-                                    FIELD_VALID_COUNT + 1;
+                                IF (SIZE_FIELD == "SIZE=" + SIZE_VALUE) {
+                                    ⚡ FIELD_VALID_COUNT:
+                                        FIELD_VALID_COUNT + 1;
+                                }
                             }
 
                             IF (MTIME_VALUE != "") {
-                                ⚡ FIELD_VALID_COUNT:
-                                    FIELD_VALID_COUNT + 1;
+                                IF (MTIME_FIELD == "MTIME_NS=" + MTIME_VALUE) {
+                                    ⚡ FIELD_VALID_COUNT:
+                                        FIELD_VALID_COUNT + 1;
+                                }
                             }
 
                             IF (FIELD_VALID_COUNT == 4) {
@@ -262,7 +278,7 @@ DEF H(op, a, b, c) {
     ⚡ print("PAGE_CHANGED", PAGE_CHANGED);
     ⚡ print("CURSOR_INDEX", CURSOR_INDEX);
     ⚡ print("PAGE_LIMIT_EXCEEDED", PAGE_LIMIT_EXCEEDED);
-    ⚡ print("EXTERNAL_INTENT_PRESENT", EXTERNAL_REQUEST != "");
+    ⚡ print("EXTERNAL_INTENT_PRESENT", EXTERNAL_INTENT_PRESENT);
     ⚡ print("LOCAL_RECORD_VALID", LOCAL_RECORD_VALID);
     ⚡ print("ACTION", ACTION);
     ⚡ print("SOURCE", SOURCE);
