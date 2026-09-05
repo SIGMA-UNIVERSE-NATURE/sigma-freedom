@@ -1,0 +1,442 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA20.UNCERTAINTY.FIRST.CLASS.DATA.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF serialized_token_valid(value) {
+    IF (value == "") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF data_status_token_valid(value) {
+    IF (value == "IMPORTANT_CONCLUSION_DATA_INCOMPLETE") { RETURN 1.0; }
+    IF (value == "UNRESOLVED_UNCERTAINTY_PRESENT") { RETURN 1.0; }
+    IF (value == "NO_UNRESOLVED_UNCERTAINTY_DECLARED") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF data_status(supplied, complete, unresolved_count) {
+    IF (supplied < 0.5) { RETURN "NO_IMPORTANT_CONCLUSION_SUPPLIED"; }
+    IF (complete < 0.5) { RETURN "IMPORTANT_CONCLUSION_DATA_INCOMPLETE"; }
+    IF (unresolved_count > 0.0) { RETURN "UNRESOLVED_UNCERTAINTY_PRESENT"; }
+    RETURN "NO_UNRESOLVED_UNCERTAINTY_DECLARED";
+}
+
+DEF status_stage_1(dep_valid, present_token_valid, supplied, store_valid) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (present_token_valid < 0.5) { RETURN "IMPORTANT_CONCLUSION_PRESENT_TOKEN_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_IMPORTANT_CONCLUSION_SUPPLIED"; }
+    IF (store_valid < 0.5) { RETURN "UNCERTAINTY_STORE_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF status_stage_2(list_token_valid, confidence_out, coverage_out, capacity_available) {
+    IF (list_token_valid < 0.5) { RETURN "UNRESOLVED_LIST_PRESENT_TOKEN_INVALID"; }
+    IF (confidence_out > 0.5) { RETURN "CONFIDENCE_OUT_OF_RANGE"; }
+    IF (coverage_out > 0.5) { RETURN "EVIDENCE_COVERAGE_OUT_OF_RANGE"; }
+    IF (capacity_available < 0.5) { RETURN "UNCERTAINTY_STORE_CAPACITY_REACHED"; }
+    RETURN "CONTINUE";
+}
+
+DEF status_stage_3(complete, unresolved_count, retained, write_attempted) {
+    IF (retained < 0.5) {
+        IF (write_attempted > 0.5) { RETURN "PERSISTENCE_WRITE_READBACK_FAILED"; }
+        RETURN "UNCERTAINTY_RECORD_NOT_RETAINED";
+    }
+    IF (complete < 0.5) { RETURN "IMPORTANT_CONCLUSION_DATA_INCOMPLETE_RECORDED"; }
+    IF (unresolved_count > 0.0) { RETURN "UNRESOLVED_UNCERTAINTY_PRESENT_RECORDED"; }
+    RETURN "NO_UNRESOLVED_UNCERTAINTY_DECLARED_RECORDED";
+}
+
+DEF choose_status(stage_1, stage_2, stage_3) {
+    IF (stage_1 == "CONTINUE") {
+        IF (stage_2 == "CONTINUE") { RETURN stage_3; }
+        RETURN stage_2;
+    }
+    RETURN stage_1;
+}
+
+⟡(Σ.DNA20_UNCERTAINTY_FIRST_CLASS_DATA_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ IMPORTANT_CONCLUSION_PRESENT_TOKEN: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/important_conclusion_present.txt");
+
+    ⚡ CONCLUSION_ID: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/conclusion_id.txt");
+    ⚡ CONCLUSION: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/conclusion.txt");
+    ⚡ CONFIDENCE_TEXT: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/confidence.txt");
+    ⚡ EVIDENCE_COVERAGE_TEXT: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/evidence_coverage.txt");
+    ⚡ UNRESOLVED_LIST_PRESENT_TOKEN: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/unresolved_list_present.txt");
+    ⚡ UNCERTAINTY_1: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/uncertainty_1.txt");
+    ⚡ UNCERTAINTY_2: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/uncertainty_2.txt");
+    ⚡ UNCERTAINTY_3: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/uncertainty_3.txt");
+    ⚡ UNCERTAINTY_4: load_text(".sigma_exec/DNA20_NATIVE_ADMISSION_V1/input/uncertainty_4.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+
+    ⚡ IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID: bool_token_valid(IMPORTANT_CONCLUSION_PRESENT_TOKEN);
+    ⚡ IMPORTANT_CONCLUSION_SUPPLIED:
+        IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID
+        * bool_true(IMPORTANT_CONCLUSION_PRESENT_TOKEN);
+
+    ⚡ CONCLUSION_ID_PRESENT: present(CONCLUSION_ID);
+    ⚡ CONCLUSION_PRESENT: present(CONCLUSION);
+    ⚡ CONFIDENCE_PRESENT: present(CONFIDENCE_TEXT);
+    ⚡ EVIDENCE_COVERAGE_PRESENT: present(EVIDENCE_COVERAGE_TEXT);
+    ⚡ UNRESOLVED_LIST_PRESENT_TOKEN_VALID: bool_token_valid(UNRESOLVED_LIST_PRESENT_TOKEN);
+    ⚡ UNRESOLVED_LIST_DECLARED:
+        UNRESOLVED_LIST_PRESENT_TOKEN_VALID
+        * bool_true(UNRESOLVED_LIST_PRESENT_TOKEN);
+
+    ⚡ CONFIDENCE_VALUE: 0.0;
+    ⚡ CONFIDENCE_OUT_OF_RANGE: 0.0;
+    IF (CONFIDENCE_PRESENT > 0.5) {
+        ⚡ CONFIDENCE_VALUE: host("to_float", CONFIDENCE_TEXT, NULL, NULL);
+        IF (CONFIDENCE_VALUE < 0.0) { ⚡ CONFIDENCE_OUT_OF_RANGE: 1.0; }
+        IF (CONFIDENCE_VALUE > 1.0) { ⚡ CONFIDENCE_OUT_OF_RANGE: 1.0; }
+    }
+
+    ⚡ EVIDENCE_COVERAGE_VALUE: 0.0;
+    ⚡ EVIDENCE_COVERAGE_OUT_OF_RANGE: 0.0;
+    IF (EVIDENCE_COVERAGE_PRESENT > 0.5) {
+        ⚡ EVIDENCE_COVERAGE_VALUE: host("to_float", EVIDENCE_COVERAGE_TEXT, NULL, NULL);
+        IF (EVIDENCE_COVERAGE_VALUE < 0.0) { ⚡ EVIDENCE_COVERAGE_OUT_OF_RANGE: 1.0; }
+        IF (EVIDENCE_COVERAGE_VALUE > 1.0) { ⚡ EVIDENCE_COVERAGE_OUT_OF_RANGE: 1.0; }
+    }
+
+    ⚡ UNRESOLVED_UNCERTAINTY_COUNT:
+        present(UNCERTAINTY_1)
+        + present(UNCERTAINTY_2)
+        + present(UNCERTAINTY_3)
+        + present(UNCERTAINTY_4);
+
+    ⚡ REQUIRED_DATA_PRESENT:
+        CONCLUSION_ID_PRESENT
+        * CONCLUSION_PRESENT
+        * CONFIDENCE_PRESENT
+        * EVIDENCE_COVERAGE_PRESENT
+        * UNRESOLVED_LIST_DECLARED;
+
+    ⚡ IMPORTANT_CONCLUSION_COMPLETE:
+        IMPORTANT_CONCLUSION_SUPPLIED
+        * REQUIRED_DATA_PRESENT
+        * (1.0 - CONFIDENCE_OUT_OF_RANGE)
+        * (1.0 - EVIDENCE_COVERAGE_OUT_OF_RANGE);
+
+    ⚡ DATA_STATUS:
+        data_status(
+            IMPORTANT_CONCLUSION_SUPPLIED,
+            IMPORTANT_CONCLUSION_COMPLETE,
+            UNRESOLVED_UNCERTAINTY_COUNT
+        );
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA20_NATIVE_ADMISSION_V1/state/uncertainty_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA20_UNCERTAINTY_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_UNCERTAINTY_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (STORE_LINE_TOTAL > MAX_STORE_SPLIT_LINES) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ UNCERTAINTY_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ PRIOR_SAME_CONCLUSION_ID_COUNT: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 13) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCID: host("list_get", PARTS, 1, NULL);
+                ⚡ RCONCLUSION: host("list_get", PARTS, 2, NULL);
+                ⚡ RCONFIDENCE: host("list_get", PARTS, 3, NULL);
+                ⚡ RCOVERAGE: host("list_get", PARTS, 4, NULL);
+                ⚡ RLIST_DECLARED: host("list_get", PARTS, 5, NULL);
+                ⚡ RU1: host("list_get", PARTS, 6, NULL);
+                ⚡ RU2: host("list_get", PARTS, 7, NULL);
+                ⚡ RU3: host("list_get", PARTS, 8, NULL);
+                ⚡ RU4: host("list_get", PARTS, 9, NULL);
+                ⚡ RCOMPLETE: host("list_get", PARTS, 10, NULL);
+                ⚡ RSTATUS: host("list_get", PARTS, 11, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 12, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "UNCERTAINTY")
+                    * serialized_token_valid(RCID)
+                    * serialized_token_valid(RCONCLUSION)
+                    * serialized_token_valid(RCONFIDENCE)
+                    * serialized_token_valid(RCOVERAGE)
+                    * bool_token_valid(RLIST_DECLARED)
+                    * serialized_token_valid(RU1)
+                    * serialized_token_valid(RU2)
+                    * serialized_token_valid(RU3)
+                    * serialized_token_valid(RU4)
+                    * bool_token_valid(RCOMPLETE)
+                    * data_status_token_valid(RSTATUS)
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                ⚡ RCONFIDENCE_PRESENT: 1.0 - exact(RCONFIDENCE, "NONE");
+                ⚡ RCOVERAGE_PRESENT: 1.0 - exact(RCOVERAGE, "NONE");
+                ⚡ RCONFIDENCE_OUT: 0.0;
+                ⚡ RCOVERAGE_OUT: 0.0;
+
+                IF (RCONFIDENCE_PRESENT > 0.5) {
+                    ⚡ RCONFIDENCE_VALUE: host("to_float", RCONFIDENCE, NULL, NULL);
+                    IF (RCONFIDENCE_VALUE < 0.0) { ⚡ RCONFIDENCE_OUT: 1.0; }
+                    IF (RCONFIDENCE_VALUE > 1.0) { ⚡ RCONFIDENCE_OUT: 1.0; }
+                }
+                IF (RCOVERAGE_PRESENT > 0.5) {
+                    ⚡ RCOVERAGE_VALUE: host("to_float", RCOVERAGE, NULL, NULL);
+                    IF (RCOVERAGE_VALUE < 0.0) { ⚡ RCOVERAGE_OUT: 1.0; }
+                    IF (RCOVERAGE_VALUE > 1.0) { ⚡ RCOVERAGE_OUT: 1.0; }
+                }
+
+                IF (RCONFIDENCE_OUT > 0.5) { ⚡ RECORD_VALID: 0.0; }
+                IF (RCOVERAGE_OUT > 0.5) { ⚡ RECORD_VALID: 0.0; }
+
+                IF (RCOMPLETE == "1") {
+                    ⚡ RCOMPLETE_BINDING:
+                        present(RCID)
+                        * present(RCONCLUSION)
+                        * RCONFIDENCE_PRESENT
+                        * RCOVERAGE_PRESENT
+                        * bool_true(RLIST_DECLARED);
+                    IF (RCOMPLETE_BINDING < 0.5) { ⚡ RECORD_VALID: 0.0; }
+                }
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ UNCERTAINTY_RECORD_COUNT_BEFORE: UNCERTAINTY_RECORD_COUNT_BEFORE + 1.0;
+                    IF (CONCLUSION_ID_PRESENT > 0.5) {
+                        IF (RCID == CONCLUSION_ID) {
+                            ⚡ PRIOR_SAME_CONCLUSION_ID_COUNT: PRIOR_SAME_CONCLUSION_ID_COUNT + 1.0;
+                        }
+                    }
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (UNCERTAINTY_RECORD_COUNT_BEFORE < MAX_UNCERTAINTY_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ UNCERTAINTY_RECORD_RETENTION_ELIGIBLE:
+        DEPENDENCY_BINDING_VALID
+        * IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID
+        * IMPORTANT_CONCLUSION_SUPPLIED
+        * STORE_STATE_VALID
+        * UNRESOLVED_LIST_PRESENT_TOKEN_VALID
+        * (1.0 - CONFIDENCE_OUT_OF_RANGE)
+        * (1.0 - EVIDENCE_COVERAGE_OUT_OF_RANGE)
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ CID_ENCODED: CONCLUSION_ID;
+    IF (CONCLUSION_ID_PRESENT < 0.5) { ⚡ CID_ENCODED: "NONE"; }
+    ⚡ CONCLUSION_ENCODED: CONCLUSION;
+    IF (CONCLUSION_PRESENT < 0.5) { ⚡ CONCLUSION_ENCODED: "NONE"; }
+    ⚡ CONFIDENCE_ENCODED: CONFIDENCE_TEXT;
+    IF (CONFIDENCE_PRESENT < 0.5) { ⚡ CONFIDENCE_ENCODED: "NONE"; }
+    ⚡ COVERAGE_ENCODED: EVIDENCE_COVERAGE_TEXT;
+    IF (EVIDENCE_COVERAGE_PRESENT < 0.5) { ⚡ COVERAGE_ENCODED: "NONE"; }
+    ⚡ LIST_DECLARED_ENCODED: "0";
+    IF (UNRESOLVED_LIST_DECLARED > 0.5) { ⚡ LIST_DECLARED_ENCODED: "1"; }
+    ⚡ U1_ENCODED: UNCERTAINTY_1;
+    IF (present(UNCERTAINTY_1) < 0.5) { ⚡ U1_ENCODED: "NONE"; }
+    ⚡ U2_ENCODED: UNCERTAINTY_2;
+    IF (present(UNCERTAINTY_2) < 0.5) { ⚡ U2_ENCODED: "NONE"; }
+    ⚡ U3_ENCODED: UNCERTAINTY_3;
+    IF (present(UNCERTAINTY_3) < 0.5) { ⚡ U3_ENCODED: "NONE"; }
+    ⚡ U4_ENCODED: UNCERTAINTY_4;
+    IF (present(UNCERTAINTY_4) < 0.5) { ⚡ U4_ENCODED: "NONE"; }
+    ⚡ COMPLETE_ENCODED: "0";
+    IF (IMPORTANT_CONCLUSION_COMPLETE > 0.5) { ⚡ COMPLETE_ENCODED: "1"; }
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ UNCERTAINTY_RECORD_RETAINED: 0.0;
+
+    IF (UNCERTAINTY_RECORD_RETENTION_ELIGIBLE > 0.5) {
+        ⚡ NEW_RECORD:
+            "UNCERTAINTY||"
+            + CID_ENCODED + "||"
+            + CONCLUSION_ENCODED + "||"
+            + CONFIDENCE_ENCODED + "||"
+            + COVERAGE_ENCODED + "||"
+            + LIST_DECLARED_ENCODED + "||"
+            + U1_ENCODED + "||"
+            + U2_ENCODED + "||"
+            + U3_ENCODED + "||"
+            + U4_ENCODED + "||"
+            + COMPLETE_ENCODED + "||"
+            + DATA_STATUS + "||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) {
+            ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ UNCERTAINTY_RECORD_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ UNCERTAINTY_RECORD_COUNT_AFTER:
+        UNCERTAINTY_RECORD_COUNT_BEFORE + UNCERTAINTY_RECORD_RETAINED;
+    ⚡ STATE_MUTATED: UNCERTAINTY_RECORD_RETAINED;
+
+    ⚡ STATUS_STAGE_1:
+        status_stage_1(
+            DEPENDENCY_BINDING_VALID,
+            IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID,
+            IMPORTANT_CONCLUSION_SUPPLIED,
+            STORE_STATE_VALID
+        );
+    ⚡ STATUS_STAGE_2:
+        status_stage_2(
+            UNRESOLVED_LIST_PRESENT_TOKEN_VALID,
+            CONFIDENCE_OUT_OF_RANGE,
+            EVIDENCE_COVERAGE_OUT_OF_RANGE,
+            STATE_CAPACITY_AVAILABLE
+        );
+    ⚡ STATUS_STAGE_3:
+        status_stage_3(
+            IMPORTANT_CONCLUSION_COMPLETE,
+            UNRESOLVED_UNCERTAINTY_COUNT,
+            UNCERTAINTY_RECORD_RETAINED,
+            WRITE_ATTEMPTED
+        );
+    ⚡ DNA20_STATUS: choose_status(STATUS_STAGE_1, STATUS_STAGE_2, STATUS_STAGE_3);
+
+    ⚡ TRUTH_ESTABLISHED: 0.0;
+    ⚡ KNOWLEDGE_PROMOTED: 0.0;
+
+    ⚡ print("DNA20_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID");
+    ⚡ print(IMPORTANT_CONCLUSION_PRESENT_TOKEN_VALID);
+    ⚡ print("IMPORTANT_CONCLUSION_SUPPLIED");
+    ⚡ print(IMPORTANT_CONCLUSION_SUPPLIED);
+    ⚡ print("CONCLUSION_ID_PRESENT");
+    ⚡ print(CONCLUSION_ID_PRESENT);
+    ⚡ print("CONCLUSION_PRESENT");
+    ⚡ print(CONCLUSION_PRESENT);
+    ⚡ print("CONFIDENCE_PRESENT");
+    ⚡ print(CONFIDENCE_PRESENT);
+    ⚡ print("CONFIDENCE_TEXT");
+    ⚡ print(CONFIDENCE_TEXT);
+    ⚡ print("CONFIDENCE_OUT_OF_RANGE");
+    ⚡ print(CONFIDENCE_OUT_OF_RANGE);
+    ⚡ print("EVIDENCE_COVERAGE_PRESENT");
+    ⚡ print(EVIDENCE_COVERAGE_PRESENT);
+    ⚡ print("EVIDENCE_COVERAGE_TEXT");
+    ⚡ print(EVIDENCE_COVERAGE_TEXT);
+    ⚡ print("EVIDENCE_COVERAGE_OUT_OF_RANGE");
+    ⚡ print(EVIDENCE_COVERAGE_OUT_OF_RANGE);
+    ⚡ print("UNRESOLVED_LIST_PRESENT_TOKEN_VALID");
+    ⚡ print(UNRESOLVED_LIST_PRESENT_TOKEN_VALID);
+    ⚡ print("UNRESOLVED_LIST_DECLARED");
+    ⚡ print(UNRESOLVED_LIST_DECLARED);
+    ⚡ print("UNRESOLVED_UNCERTAINTY_COUNT");
+    ⚡ print(UNRESOLVED_UNCERTAINTY_COUNT);
+    ⚡ print("IMPORTANT_CONCLUSION_COMPLETE");
+    ⚡ print(IMPORTANT_CONCLUSION_COMPLETE);
+    ⚡ print("DATA_STATUS");
+    ⚡ print(DATA_STATUS);
+    ⚡ print("TRUTH_ESTABLISHED");
+    ⚡ print(TRUTH_ESTABLISHED);
+    ⚡ print("KNOWLEDGE_PROMOTED");
+    ⚡ print(KNOWLEDGE_PROMOTED);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("UNCERTAINTY_RECORD_COUNT_BEFORE");
+    ⚡ print(UNCERTAINTY_RECORD_COUNT_BEFORE);
+    ⚡ print("PRIOR_SAME_CONCLUSION_ID_COUNT");
+    ⚡ print(PRIOR_SAME_CONCLUSION_ID_COUNT);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("UNCERTAINTY_RECORD_RETENTION_ELIGIBLE");
+    ⚡ print(UNCERTAINTY_RECORD_RETENTION_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("UNCERTAINTY_RECORD_RETAINED");
+    ⚡ print(UNCERTAINTY_RECORD_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("UNCERTAINTY_RECORD_COUNT_AFTER");
+    ⚡ print(UNCERTAINTY_RECORD_COUNT_AFTER);
+    ⚡ print("MAX_UNCERTAINTY_RECORDS");
+    ⚡ print(MAX_UNCERTAINTY_RECORDS);
+    ⚡ print("DNA20_STATUS");
+    ⚡ print(DNA20_STATUS);
+}
