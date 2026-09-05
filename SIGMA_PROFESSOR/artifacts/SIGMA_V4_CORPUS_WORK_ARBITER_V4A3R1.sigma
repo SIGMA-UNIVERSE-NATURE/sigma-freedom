@@ -1,0 +1,227 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.CORPUS.WORK.ARBITER][VERSION=4A3R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF last_allowed(source) {
+    IF (source == "RECEIVED") {
+        RETURN 1;
+    }
+    IF (source == "RETRYABLE") {
+        RETURN 1;
+    }
+    IF (source == "CORPUS_READ") {
+        RETURN 1;
+    }
+    IF (source == "RECOVERED") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF pick_regular(last_source, received_ok, retryable_ok, read_ok) {
+
+    IF (last_source == "RECEIVED") {
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (read_ok) {
+            RETURN "CORPUS_READ";
+        }
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+    }
+
+    IF (last_source == "RETRYABLE") {
+        IF (read_ok) {
+            RETURN "CORPUS_READ";
+        }
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+    }
+
+    IF (last_source == "CORPUS_READ") {
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (read_ok) {
+            RETURN "CORPUS_READ";
+        }
+    }
+
+    IF (last_source == "RECOVERED") {
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (read_ok) {
+            RETURN "CORPUS_READ";
+        }
+    }
+
+    IF (received_ok) {
+        RETURN "RECEIVED";
+    }
+    IF (retryable_ok) {
+        RETURN "RETRYABLE";
+    }
+    IF (read_ok) {
+        RETURN "CORPUS_READ";
+    }
+
+    RETURN "";
+}
+
+⟡(Σ.V4_CORPUS_WORK_ARBITER_4A3R1) {
+
+    ⚡ RECOVERED_EVENT:
+        H("read_text", ".sigma_exec/SIGMA_V4A3_RECOVERED_EVENT.memory", NULL, NULL);
+
+    ⚡ RECEIVED_WORK:
+        H("read_text", ".sigma_exec/SIGMA_V4A3_RECEIVED_WORK.memory", NULL, NULL);
+
+    ⚡ RETRYABLE_WORK:
+        H("read_text", ".sigma_exec/SIGMA_V4A3_RETRYABLE_WORK.memory", NULL, NULL);
+
+    ⚡ CORPUS_READ_REQUEST:
+        H("read_text", ".sigma_exec/SIGMA_V4A3_CORPUS_READ_REQUEST.memory", NULL, NULL);
+
+    ⚡ LAST_SOURCE:
+        H("read_text", ".sigma_exec/SIGMA_V4A3_LAST_SOURCE.memory", NULL, NULL);
+
+    IF (last_allowed(LAST_SOURCE) == 0) {
+        ⚡ LAST_SOURCE:
+            "";
+    }
+
+    ⚡ RECOVERED_OK:
+        1;
+    IF (RECOVERED_EVENT == "") {
+        ⚡ RECOVERED_OK:
+            0;
+    }
+
+    ⚡ RECEIVED_OK:
+        1;
+    IF (RECEIVED_WORK == "") {
+        ⚡ RECEIVED_OK:
+            0;
+    }
+
+    ⚡ RETRYABLE_OK:
+        1;
+    IF (RETRYABLE_WORK == "") {
+        ⚡ RETRYABLE_OK:
+            0;
+    }
+
+    ⚡ READ_OK:
+        1;
+    IF (CORPUS_READ_REQUEST == "") {
+        ⚡ READ_OK:
+            0;
+    }
+
+    ⚡ SELECTED_SOURCE:
+        "";
+
+    IF (RECOVERED_OK) {
+        ⚡ SELECTED_SOURCE:
+            "RECOVERED";
+    }
+
+    IF (RECOVERED_OK == 0) {
+        ⚡ SELECTED_SOURCE:
+            pick_regular(LAST_SOURCE, RECEIVED_OK, RETRYABLE_OK, READ_OK);
+    }
+
+    ⚡ ACTION:
+        "WAIT_NO_ELIGIBLE_WORK";
+
+    ⚡ TARGET:
+        "";
+
+    IF (SELECTED_SOURCE == "RECOVERED") {
+        ⚡ ACTION:
+            "EXECUTE_RECOVERED_EVENT";
+        ⚡ TARGET:
+            RECOVERED_EVENT;
+    }
+
+    IF (SELECTED_SOURCE == "RECEIVED") {
+        ⚡ ACTION:
+            "LEARN_RECEIVED_CONTEXT";
+        ⚡ TARGET:
+            RECEIVED_WORK;
+    }
+
+    IF (SELECTED_SOURCE == "RETRYABLE") {
+        ⚡ ACTION:
+            "RESUME_RETRYABLE_CONTEXT";
+        ⚡ TARGET:
+            RETRYABLE_WORK;
+    }
+
+    IF (SELECTED_SOURCE == "CORPUS_READ") {
+        ⚡ ACTION:
+            "DISPATCH_NATIVE_CORPUS_READ_REQUEST";
+        ⚡ TARGET:
+            CORPUS_READ_REQUEST;
+    }
+
+    ⚡ HAS_SELECTED:
+        1;
+    IF (SELECTED_SOURCE == "") {
+        ⚡ HAS_SELECTED:
+            0;
+    }
+
+    ⚡ WRITE_LAST_SOURCE_RC:
+        0;
+
+    IF (HAS_SELECTED) {
+        ⚡ WRITE_LAST_SOURCE_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_LAST_SOURCE.memory", SELECTED_SOURCE, NULL);
+    }
+
+    ⚡ WRITE_ACTION_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4A3_ACTION.memory", ACTION, NULL);
+
+    ⚡ WRITE_TARGET_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4A3_TARGET.memory", TARGET, NULL);
+
+    ⚡ print("SIGMA_V4A3R1_CORPUS_WORK_ARBITER");
+    ⚡ print("RECOVERED_ELIGIBLE", RECOVERED_OK);
+    ⚡ print("RECEIVED_ELIGIBLE", RECEIVED_OK);
+    ⚡ print("RETRYABLE_ELIGIBLE", RETRYABLE_OK);
+    ⚡ print("CORPUS_READ_ELIGIBLE", READ_OK);
+    ⚡ print("LAST_SOURCE", LAST_SOURCE);
+    ⚡ print("SELECTED_SOURCE", SELECTED_SOURCE);
+    ⚡ print("ACTION", ACTION);
+    ⚡ print("TARGET", TARGET);
+    ⚡ print("WRITE_LAST_SOURCE_RC", WRITE_LAST_SOURCE_RC);
+    ⚡ print("WRITE_ACTION_RC", WRITE_ACTION_RC);
+    ⚡ print("WRITE_TARGET_RC", WRITE_TARGET_RC);
+    ⚡ print("ARBITER_STATE_POLICY", "SINGLE_COMPACT_LAST_SOURCE");
+    ⚡ print("CORPUS_SOURCE_ORDER", "RECEIVED_RETRYABLE_CORPUS_READ_ROUND_ROBIN_WITH_RECOVERED_FIRST");
+    ⚡ print("HOST_WORK_SELECTION", "NO");
+    ⚡ print("HOST_STAGE_DECISION", "NO");
+    ⚡ print("HOST_CORPUS_READ_SELECTION", "NO");
+    ⚡ print("HOST_RETRY_POLICY", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("EXTERNAL_FETCH_IN_THIS_REVISION", "NO");
+    ⚡ print("LOCAL_CURRICULUM_IN_THIS_REVISION", "NO");
+    ⚡ print("COMPUTATION_BOUNDED_PER_INVOCATION", "YES");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
