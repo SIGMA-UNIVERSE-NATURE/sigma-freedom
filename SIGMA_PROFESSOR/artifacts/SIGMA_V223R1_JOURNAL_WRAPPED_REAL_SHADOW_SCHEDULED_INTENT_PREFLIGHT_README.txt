@@ -53,8 +53,18 @@ Still NOT claimed:
 Next blocker after PASS:
 production-state migration + rollback admission while V2.4 remains running unchanged.
 
-Runner SHA256:
-e1fa233ff1111616ffd3e2d37a25a16338e618240aa38eedb7d8fe1518d8efef
+Canonical repository artifact:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V223R1_JOURNAL_WRAPPED_REAL_SHADOW_SCHEDULED_INTENT_PREFLIGHT.sh`
 
-Static:
-BASH_N_RC=0
+Canonical Git blob SHA:
+`c4d2c9790d505041ee71cfaafaf77365af790865`
+
+Important audit correction:
+The earlier source-ready draft recorded a local candidate SHA256 that was not byte-identical to the committed repository artifact. That local SHA is NONCANONICAL and must not be used for admission. The repository artifact above is canonical. Record its SHA256 from the Termux `sha256sum` transcript before runtime admission and then checkpoint that value.
+
+Static source review:
+- no host stage parsing branch was intentionally introduced;
+- host fault injection is mechanical only;
+- native V2.22 decides recovery validity.
+
+Runtime admission remains required.
