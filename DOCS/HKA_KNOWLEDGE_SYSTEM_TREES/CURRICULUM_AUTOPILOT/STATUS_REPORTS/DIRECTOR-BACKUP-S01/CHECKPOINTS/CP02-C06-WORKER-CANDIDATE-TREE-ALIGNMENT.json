@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-C06-WORKER-CANDIDATE-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "status": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "active_scope": "B1.1-C06",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "active_execution_branch": "hka-tree/c01-w02-math-c06",
+  "accepted_predecessor": "76077695c07b853ac37f058477177e211f740f17",
+  "worker_candidate_commit": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "checks": {
+    "continuity_snapshot_matches_control_plane": true,
+    "canonical_tree_commit_unchanged": true,
+    "scope_window_branch_match": true,
+    "candidate_descends_from_accepted_predecessor": true,
+    "candidate_diff_is_C06_curriculum_and_status_only": true,
+    "control_plane_mutated_by_worker": false,
+    "successor_opened_by_worker": false,
+    "later_pipeline_stage_artifacts_present": false,
+    "C07_C08_C09_C10_remain_locked_in_control_plane": true
+  },
+  "authority_note": "Sentinel performs alignment verification only. This checkpoint is not academic acceptance.",
+  "next_action": "Director independently audits C06 academic content and semantic closure."
+}
