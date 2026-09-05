@@ -4,27 +4,30 @@ Date: 2026-09-05 Asia/Ho_Chi_Minh
 
 ## Exact observed status
 
-`V4C3R1_REAL_180_SECOND_OBSERVE_PAUSE_PREFLIGHT=PASS`
+The previously truncated user paste has now been completed with the full final PASS tail.
 
-`LOCKED_SIGMAC_EXECUTION=PASS`
-
-`LOCKED_VM_EXECUTION=PASS`
-
-`HOST_REFLECTION=NO`
-
-`HOST_SELF_ASSESSMENT=NO`
-
-`HOST_NEXT_WORK_SELECTION=NO`
-
-`HOST_PERCENT_CALCULATION=NO`
-
-`HOST_PAUSE_SLEEP=NO`
-
-`HOST_OBSERVATION_POLL_SLEEP=YES_MECHANICAL_ONLY`
-
-`SEMANTIC_UNDERSTANDING=NOT_PROVEN`
-
-`REAL_C2R2_CONTINUOUS_INTEGRATION=NOT_YET_PROVEN`
+```text
+V4C3R1_REAL_180_SECOND_OBSERVE_PAUSE_PREFLIGHT=PASS
+LOCKED_SIGMAC_EXECUTION=PASS
+LOCKED_VM_EXECUTION=PASS
+NATIVE_REPORT_COMMITTED_BEFORE_PAUSE_COMPLETION=PASS_IN_OBSERVED_GATE_SCOPE
+REPORT_VISIBLE_TO_HUMAN_DURING_NATIVE_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE
+NATIVE_180_SECOND_OBSERVE_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE
+NATIVE_PLAN_PERSISTED_ACROSS_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE
+NATIVE_RESUME_AFTER_180_SECOND_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE
+HOST_REFLECTION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_PERCENT_CALCULATION=NO
+HOST_PAUSE_SLEEP=NO
+HOST_OBSERVATION_POLL_SLEEP=YES_MECHANICAL_ONLY
+UNDERSTANDING_PROXY_PERCENT=NOT_COMPUTABLE_FROM_CURRENT_MACHINE_EVIDENCE
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+REAL_C2R2_CONTINUOUS_INTEGRATION=NOT_YET_PROVEN
+NEXT_ACTION=INTEGRATE_V4C3R1_WITH_PERSISTENT_C2R2_CONTINUOUS_SHADOW
+V4C3R1_REAL_180_PROCESS_RC=0
+LOG=/data/data/com.termux/files/home/SIGMA/V4C3R1_REAL_180_FIRST_20260905_182510.log
+```
 
 `V4_PRODUCTION_PROMOTION_ALLOWED=NO`
 
@@ -52,9 +55,9 @@ Locked runtime:
 
 ## Observed native behavior
 
-The first VM invocation established the baseline.
+The first VM invocation established the C3 baseline.
 
-The second native invocation committed the reflection report and plan, then remained alive during the configured 180-second native `time_sleep` pause.
+The reflection invocation committed the native report and plan before pause completion, then the same locked VM remained alive during the configured native 180-second `time_sleep` pause.
 
 Observed while that same VM process was still running:
 
@@ -62,34 +65,83 @@ Observed while that same VM process was still running:
 
 `HUMAN_OBSERVER_CAN_READ_REPORT_DURING_NATIVE_PAUSE=YES_IN_THIS_GATE`
 
-The exact report contained machine-derived corpus counts, active native C2 state, compact B4 structural evidence fields, native next plan, and `COMMIT=YES`.
+Observed machine-derived report state included:
 
-Observed native plan:
+```text
+CYCLE_INDEX 1
+PROGRESS_COMMITS_THIS_CYCLE 1
+DISCOVERED_DOCUMENT_COUNT 3
+PROFILE_DOCUMENT_COUNT 2
+COMPLETE_DOCUMENT_COUNT 1
+HOLD_DOCUMENT_COUNT 0
+EVIDENCE_DOCUMENT_COUNT 2
+C2_PHASE LEARN
+ACTIVE_DOCUMENT doc_b
+B4_STATUS TOKEN_WINDOW_PROGRESS
+BEST_WIDTH_UNARY ||||
+BEST_SUPPORT_UNARY ||
+NEXT_NATIVE_PLAN PLAN_RESUME_ACTIVE_DOCUMENT
+UNDERSTANDING_PROXY_PERCENT NOT_COMPUTABLE_FROM_CURRENT_MACHINE_EVIDENCE
+REPORT_COMMIT YES
+PAUSE_SECONDS 180
+```
 
-`NEXT_NATIVE_PLAN=PLAN_RESUME_ACTIVE_DOCUMENT`
+Observed post-pause state:
 
-Observed pause value:
+```text
+V4C3R1_STATUS OBSERVE_PAUSE_COMPLETE_RESUME_LEARN
+PERSISTED_PLAN=PLAN_RESUME_ACTIVE_DOCUMENT
+PERSISTED_STATUS=OBSERVE_PAUSE_COMPLETE_RESUME_LEARN
+PERSISTED_PROGRESS_AFTER_180_PAUSE=
+```
 
-`PAUSE_SECONDS=180`
+The native plan was committed before the pause and persisted across it. The V4-C3 cycle progress counter was reset only after native pause completion.
 
-Observed post-pause status:
+## Host-substitution audit
 
-`V4C3R1_STATUS=OBSERVE_PAUSE_COMPLETE_RESUME_LEARN`
+```text
+HOST_REFLECTION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_PERCENT_CALCULATION=NO
+HOST_PAUSE_SLEEP=NO
+HOST_OBSERVATION_POLL_SLEEP=YES_MECHANICAL_ONLY
+```
 
-Persisted plan:
-
-`PERSISTED_PLAN=PLAN_RESUME_ACTIVE_DOCUMENT`
-
-Persisted progress after the pause was empty, showing the V4-C3 cycle progress counter was reset only after native pause completion.
+The one-second host polling sleep in the gate was observation-only. It did not implement the 180-second pause, reflection, self-assessment, plan selection, or resume decision.
 
 ## Claim boundary
 
-This gate proves, in the exact isolated fixture scope, that native SIGMA can commit a bounded report and next plan before a real 180-second native pause, expose that committed report for human observation while the VM remains paused, preserve the plan across the pause, validate native clock progress, and return to learning eligibility after the pause.
+Admitted only in this exact isolated observed gate scope:
 
-This does not prove semantic understanding, a numeric understanding percentage, one-hour wall-clock learning intervals, long-horizon reflective stability, real-corpus integration, or production readiness.
+`NATIVE_REPORT_COMMITTED_BEFORE_PAUSE_COMPLETION=PASS_IN_OBSERVED_GATE_SCOPE`
 
-The user-supplied transcript visibly included the overall PASS line and the major observed gate lines. The pasted tail ended after the beginning of a later summary line, so do not invent any unshown trailing summary fields.
+`REPORT_VISIBLE_TO_HUMAN_DURING_NATIVE_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE`
+
+`NATIVE_180_SECOND_OBSERVE_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE`
+
+`NATIVE_PLAN_PERSISTED_ACROSS_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE`
+
+`NATIVE_RESUME_AFTER_180_SECOND_PAUSE=PASS_IN_OBSERVED_GATE_SCOPE`
+
+Still not proven:
+
+`REAL_C2R2_CONTINUOUS_INTEGRATION=NOT_YET_PROVEN`
+
+`LONG_HORIZON_REFLECTION_STABILITY=NOT_PROVEN`
+
+`PERSISTENT_RESTART_RESUME_WITH_C3=NOT_PROVEN`
+
+`ONE_HOUR_WALL_CLOCK_LEARNING_INTERVAL=NOT_PROVEN`
+
+`UNDERSTANDING_PROXY_PERCENT=NOT_COMPUTABLE_FROM_CURRENT_MACHINE_EVIDENCE`
+
+`SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+
+`GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN`
+
+`V4_PRODUCTION_PROMOTION_ALLOWED=NO`
 
 ## Next action
 
-`NEXT_ACTION=INTEGRATE_V4C3R1_WITH_PERSISTENT_C2R2_CONTINUOUS_SHADOW_AND_PRESERVE_R2_NATIVE_STATE`
+`NEXT_ACTION=INTEGRATE_V4C3R1_WITH_PERSISTENT_C2R2_CONTINUOUS_SHADOW_AND_PRESERVE_EXISTING_R2_NATIVE_STATE`
