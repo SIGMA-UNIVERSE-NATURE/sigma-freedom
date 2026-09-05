@@ -1,0 +1,75 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.NATIVE.CLOCK.PERSISTENCE.PROBE][VERSION=4C3T1R2]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.V4_NATIVE_CLOCK_PERSISTENCE_PROBE_4C3T1R2) {
+
+    ⚡ PREV_PATH:
+        ".sigma_exec/SIGMA_V4C3T1R2_PREVIOUS_TIME_JSON.memory";
+
+    ⚡ STATUS_PATH:
+        ".sigma_exec/SIGMA_V4C3T1R2_STATUS.memory";
+
+    ⚡ PREVIOUS_TEXT:
+        H("read_text", PREV_PATH, NULL, NULL);
+
+    ⚡ NOW:
+        H("time_now", NULL, NULL, NULL);
+
+    ⚡ NOW_JSON:
+        H("json_encode", NOW, NULL, NULL);
+
+    ⚡ NOW_ROUNDTRIP:
+        H("json_decode", NOW_JSON, NULL, NULL);
+
+    ⚡ STATUS:
+        "CLOCK_FIRST_OBSERVATION";
+
+    ⚡ VALID:
+        1;
+
+    IF (NOW_ROUNDTRIP != NOW) {
+        ⚡ VALID:
+            0;
+        ⚡ STATUS:
+            "REFUSE_TIME_NATIVE_JSON_ROUNDTRIP";
+    }
+
+    IF (VALID) {
+        IF (PREVIOUS_TEXT != "") {
+
+            ⚡ PREVIOUS:
+                H("json_decode", PREVIOUS_TEXT, NULL, NULL);
+
+            IF (PREVIOUS < NOW) {
+                ⚡ STATUS:
+                    "CLOCK_PROGRESS_PROVEN";
+            }
+
+            IF (NOW == PREVIOUS) {
+                ⚡ STATUS:
+                    "CLOCK_NO_PROGRESS";
+            }
+
+            IF (NOW < PREVIOUS) {
+                ⚡ STATUS:
+                    "REFUSE_TIME_REGRESSION";
+            }
+        }
+
+        ⚡ WRITE_PREVIOUS_RC:
+            H("write_text", PREV_PATH, NOW_JSON, NULL);
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", STATUS_PATH, STATUS, NULL);
+
+    ⚡ print("TIME_NOW_JSON", NOW_JSON);
+    ⚡ print("PREVIOUS_TIME_JSON", PREVIOUS_TEXT);
+    ⚡ print("TIME_STATUS", STATUS);
+    ⚡ print("HOST_TIME_DECISION", "NO");
+    ⚡ print("NATIVE_TIME_NOW_USED", "YES");
+    ⚡ print("NATIVE_TIME_SERIALIZATION", "JSON_MECHANICAL_ONLY");
+}
