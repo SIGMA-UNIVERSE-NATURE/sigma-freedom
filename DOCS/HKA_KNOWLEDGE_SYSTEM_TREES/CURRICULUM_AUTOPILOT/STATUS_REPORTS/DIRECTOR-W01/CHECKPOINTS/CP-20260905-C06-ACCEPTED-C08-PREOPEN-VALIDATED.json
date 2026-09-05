@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C06-ACCEPTED-C08-PREOPEN-VALIDATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "decision": "DIRECTOR_ACCEPTED_PASS",
+  "scope_id": "B1.1-C06",
+  "worker_candidate_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "accepted_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "independent_audit": {
+    "canonical_topics": "8/8 PASS",
+    "claims_read": "102/102",
+    "sources_verified": "6/6",
+    "source_id_sha256_determinism": "6/6 PASS",
+    "learning_objectives_read": "32/32",
+    "semantic_claim_to_learning_objective_closure": "32/32 PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_sequence": "PASS_ACYCLIC",
+    "stage_boundary": "PASS",
+    "academic_repairs_required": 0,
+    "blocking_issues": 0
+  },
+  "risk_checks": {
+    "ODE_existence_uniqueness_local_global": "PASS",
+    "PDE_solvability_compatibility_regularity": "PASS",
+    "stability_linearization_nonhyperbolic_boundary": "PASS",
+    "periodic_orbit_vs_transient_oscillation": "PASS",
+    "bifurcation_spectral_transversality_nondegeneracy": "PASS",
+    "chaos_definition_diagnostic_limits": "PASS",
+    "model_math_vs_empirical_validation_boundary": "PASS"
+  },
+  "backup_sentinel": {
+    "worker_candidate_alignment_checkpoint": "6d8da53fbd77a860f134c3feb0040623f8df2123",
+    "planned_C08_preopen_alignment_checkpoint": "47ed7df744ac851b1c564e4e7b2869cf2f9dc350",
+    "status": "TREE_ALIGNMENT_PASS"
+  },
+  "dependency_correction": {
+    "amendment": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
+    "commit_sha": "4f3012c64f4f33bf0a33acaf26ba420a75a74864",
+    "corrected_order": "C06 -> C08 -> C07 -> C09 -> C10",
+    "stable_ids_or_ownership_changed": false
+  },
+  "next_scope": "B1.1-C08",
+  "next_window": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "next_status": "PREOPEN_VALIDATED",
+  "pipeline_note": "CURRICULUM only; ACADEMIC_LOCKED and all later stages remain gated."
+}
