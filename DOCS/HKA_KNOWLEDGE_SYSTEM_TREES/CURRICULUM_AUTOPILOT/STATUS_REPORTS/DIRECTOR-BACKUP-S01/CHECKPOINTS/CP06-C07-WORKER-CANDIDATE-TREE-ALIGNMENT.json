@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP06-C07-WORKER-CANDIDATE-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "result": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-C07",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "active_branch": "hka-tree/c01-w02-math-c07",
+  "accepted_predecessor": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "worker_candidate": "fa7c11c2df42490df099dd07c0c7e0f46949013e",
+  "checks": {
+    "canonical_tree_commit_unchanged": true,
+    "immutable_scope_map_anchor_present": true,
+    "machine_state_and_continuity_snapshot_match_C07": true,
+    "candidate_descends_from_accepted_predecessor": true,
+    "candidate_diff_is_C07_curriculum_window_status_only": true,
+    "C09_locked": true,
+    "C10_locked": true,
+    "post_CURRICULUM_stages_gated": true,
+    "successor_not_unlocked": true
+  },
+  "authority_note": "Sentinel does not perform academic acceptance or mutate curriculum-master.",
+  "updated_at": "2026-09-05T16:33:00+07:00"
+}
