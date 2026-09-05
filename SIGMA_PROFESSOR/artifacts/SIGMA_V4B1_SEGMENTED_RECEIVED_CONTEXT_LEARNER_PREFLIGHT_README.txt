@@ -18,6 +18,8 @@ Native behavior
 - append-only completion ledger;
 - fresh-VM resume;
 - evidence-only crash retry without duplicate segment evidence;
+- final-cursor / missing-completion recovery without empty-segment duplication;
+- syntactically valid out-of-range cursor refusal;
 - malformed/foreign cursor filtering;
 - bounded refusal for >65 context lines or >65 tokens in a selected line.
 
@@ -40,11 +42,11 @@ Still
 
 Native source SHA256
 --------------------
-751a6fc70853910b85440ae79cc5016ae4e319f89d8798c8d57689bfeb775390
+2edd2d4f36d3dd9c2d03dab4218ceff1f2ef290feee711a49ef18ff53b056ad4
 
 Runner SHA256
 -------------
-699145581fdcf32aa9f1d1e2abbe05b8e0b0fa28caa9090597ce434bfba28faf
+1ca13459579fb066d9c179f1befb1013a495a5cb2b4f4919bb7031465126e2f1
 
 Static
 ------
