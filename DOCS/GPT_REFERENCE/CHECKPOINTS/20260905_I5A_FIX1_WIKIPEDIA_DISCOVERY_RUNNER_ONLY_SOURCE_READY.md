@@ -1,0 +1,100 @@
+# SIGMA I5A Fix1 — Wikipedia discovery runner-only repair source ready
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: SOURCE_READY / RUNTIME_ADMISSION_NOT_RUN_AFTER_FIX1
+
+## Prior machine HOLD
+
+Checkpoint:
+`DOCS/GPT_REFERENCE/CHECKPOINTS/20260905_I5A_WIKIPEDIA_DISCOVERY_HOLD_JQ_DECODER_SYNTAX.md`
+
+Observed canonical progress before HOLD:
+
+```text
+C01_CANONICAL_PREPARE_VM_RC=0
+I5A_STATUS=DISCOVERY_REQUEST_READY
+NATIVE_QUERY_TO_CANONICAL_RAW_TOPIC_BYTE_BINDING=PASS
+CANONICAL_QUERY_BYTES=37
+CANONICAL_WIKIPEDIA_HTTP_RC=0
+CANONICAL_WIKIPEDIA_JSON_DECODE_RC=3
+HOLD=CANONICAL_WIKIPEDIA_JSON_DECODE_FAILED
+```
+
+## Root cause
+
+Mechanical jq projection contained invalid interpolation:
+
+```jq
+\(.value.timestamp // \"\")
+```
+
+Correct jq syntax:
+
+```jq
+\((.value.timestamp // ""))
+```
+
+The failure was reproduced outside the admission path with jq 1.7:
+
+```text
+OLD_EXPRESSION_JQ_COMPILE_RC=3
+FIXED_EXPRESSION_JQ_COMPILE_RC=0
+```
+
+## Fix1
+
+Fix1 changes the runner only and adds a pre-network mechanical jq self-test.
+
+The self-test:
+
+- projects one synthetic JSON search row;
+- equality-checks the candidate-set header;
+- equality-checks the projected candidate row;
+- performs no ranking/filtering/selection.
+
+## Exact identities
+
+```text
+FIX1_BUNDLE_SHA256=94c14c56ab7f6c439ce2df47217298522950a23ae0b5658ef762e43c9a2647d6
+FIX1_RUNNER_SHA256=f45c9975266a8da2cefe1b446fbbb5665d505f9524085f99ad5bf25c4937f72a
+I5A_SOURCE_SHA256=0d49e744c1d0395ca18dc87f40ea706da29d94474c42ac948ff2071980addd11
+I4_FIX3_SOURCE_SHA256=a13417668f1dc85e42d7f529306cdc09928ab45655d771d95c89d383b6fc7784
+I3C_SOURCE_SHA256=daa01d60e11afd64b763c6623bc14d0aa2d868cc03f686b26ad3026d6951284f
+I4_CATALOG_SHA256=7d650b53bae8b22fb6ab7613127e0a116bbe32d3bc032a31cdb44ad69ae7c224
+```
+
+Static QA:
+
+```text
+BASH_SYNTAX_QA=PASS
+JQ_PROJECTION_STATIC_QA=PASS
+INVALID_JQ_ESCAPED_EMPTY_STRING_COUNT=0
+NATIVE_I5A_SOURCE_CHANGED=NO
+RUNNER_ONLY_REPAIR=YES
+```
+
+## Cognitive boundaries unchanged
+
+```text
+HOST_QUERY_GENERATION=NO
+HOST_RESULT_RANKING=NO
+HOST_CANDIDATE_SELECTION=NO
+HOST_RELEVANCE_DECISION=NO
+HOST_RESOURCE_SELECTION=NO
+REMOTE_API_ORDER=PROVENANCE_ONLY
+RESOURCE_SELECTION=NOT_EXECUTED
+```
+
+## Admission state
+
+```text
+I5A_NATIVE_SOURCE_COMPILE_AFTER_FIX1=NOT_RUN_ON_USER_MACHINE
+I5A_RUNTIME_ADMISSION=NOT_RUN_AFTER_FIX1
+NATIVE_SOURCE_DISCOVERY_REQUEST=NOT_PROVEN_UNTIL_FULL_GATE_PASS
+WIKIPEDIA_DISCOVERY_TRANSPORT=NOT_PROVEN_UNTIL_FULL_GATE_PASS
+NATIVE_RESOURCE_SELECTION=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+```
+
+Run the unchanged admission gate with Fix1 from a clean isolated namespace. Preserve the first HOLD/FAIL or final `=== I5A ADMISSION SUMMARY ===` exactly.
