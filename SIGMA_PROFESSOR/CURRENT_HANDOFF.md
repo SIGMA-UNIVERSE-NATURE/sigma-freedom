@@ -12,8 +12,7 @@ Global invariants:
 - `HOST_LEARNING=NO`;
 - `HOST_SEMANTIC_INTERPRETATION=NO`;
 - `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`;
-- teach reusable capabilities, not precomputed answers;
-- runtime proof is required; compile/file existence alone is insufficient;
+- runtime proof required; compile/file existence alone is insufficient;
 - failures are evidence; never weaken an admission gate to force PASS;
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
 - `SEMANTIC_CURIOSITY=NOT_PROVEN`;
@@ -38,21 +37,35 @@ Keep V2.4 production learner running unless it emits a real VM failure.
 Production source SHA256:
 `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2`
 
-Do not upgrade V2.4 in place while the newer continual-learning chain is still under admission.
+Do not upgrade V2.4 in place while the new continual-learning chain is still under admission.
 
 ## Admitted continual-learning chain
 
 - V2.5B.2 frozen 56-document survey: PASS — checkpoint `dca66b408fba5c21d081983d6ba15ca510e63c2c`.
 - V2.6 persisted segment cursor restart: PASS — `81c8c72e66c30292e17c567d8c3824490dc00e7a`.
 - V2.6F full fixture traversal: PASS — `97b2e047211d6606b0772daf451b6a9c16359946`.
-- V2.7/P.1 structural grouping: PASS — runtime bytecode `ec5d6fe79c07e97817c717da9a8c9634f3c0caa6e2bec1c1dcaeca8f0ba9fc49`, checkpoint `3c98031845c42792c3bd58ba049e13013c60160b`.
+- V2.7/P.1 structural grouping: PASS — checkpoint `3c98031845c42792c3bd58ba049e13013c60160b`.
 - V2.8P.1 structural curriculum priority: PASS — `5e375d2ffa210852a042d833f061b6cc6c969ecf`.
-- V2.8R.1 real survey -> native selected frontier: PASS; source `8d4fee26c5d0768aaec99eaa960d0cd7f52251680d86391f3dd4c3de89d430e8`, bytecode `0244d7a6ea0888c95f7db97ee2df0e7f50bfcb7bae2a00fd9b48e2aa0dec1eb5`, checkpoint `ce7650b46026b6f4dc553618b198f48d1f1692d3`.
-- V2.8D.1 selected work -> deep re-learn: PASS; source `3da9195db5cf24fb3bc5094823ca13e52caa4335b6605c185e7921033079e8ce`, bytecode `e23fd92ed4a554195505cc490d5114531320e32ffbb481a421ded36e9c94e2ff`, deep evidence `9f2964422fdc34a1b3909a67900ef7902b719974b44081b14002c6b4f32ad28a`, checkpoint `a0b3dce9b784ef36e552f377ab2c808e7d80e9d9`.
-- V2.9R.1A structural revalidation: PASS; source `94b12091d0d0727f23f57b298ee9ed71d11a2085571273496138990ca56f920b`, bytecode `c4fc06df3a1eb8f928a31e22d9d55090fc2fd53524d7e7c2e7c8265833d6a1f8`, real baseline `of => the`, real result `NOT_REOBSERVED`, state `bb3fe964522fc68c716f0d3efc5d889acb637b473da4837df750d6db6c8305ac`, PASS checkpoint `b9dc75e37cf7a72e9851c0ccabd1b53a72c3d235`.
-- V2.10R.1 lifecycle decision: PASS; source `67fb7234c0cd9e84c602a6dadb55f6e1ced6265406745ba6b3b9a7a95e0c4993`, bytecode `527bf0513082af49343f39b5ae23fd63b5c25f4034e019e934ca1d425890ef87`, real `NOT_REOBSERVED -> REVISIT`, lifecycle state `f34678fd6c85394ee659b6a710920bed8cc5ea07f8cbba0414cbb3bc116c79fb`; synthetic `REOBSERVED -> ARCHIVE_FOR_NOW`; missing/conflicting -> WAIT; archive deletes no evidence — checkpoint `220fa78bce0d9873533cb8acce102fc411107924`.
+- V2.8R.1 real survey -> native selected frontier: PASS — source `8d4fee26c5d0768aaec99eaa960d0cd7f52251680d86391f3dd4c3de89d430e8`, bytecode `0244d7a6ea0888c95f7db97ee2df0e7f50bfcb7bae2a00fd9b48e2aa0dec1eb5`, checkpoint `ce7650b46026b6f4dc553618b198f48d1f1692d3`.
+- V2.8D.1 selected work -> deep re-learn: PASS — source `3da9195db5cf24fb3bc5094823ca13e52caa4335b6605c185e7921033079e8ce`, bytecode `e23fd92ed4a554195505cc490d5114531320e32ffbb481a421ded36e9c94e2ff`, deep evidence `9f2964422fdc34a1b3909a67900ef7902b719974b44081b14002c6b4f32ad28a`, checkpoint `a0b3dce9b784ef36e552f377ab2c808e7d80e9d9`.
+- V2.9R.1A structural revalidation: PASS — source `94b12091d0d0727f23f57b298ee9ed71d11a2085571273496138990ca56f920b`, bytecode `c4fc06df3a1eb8f928a31e22d9d55090fc2fd53524d7e7c2e7c8265833d6a1f8`, real baseline `of => the`, real result `NOT_REOBSERVED`, state `bb3fe964522fc68c716f0d3efc5d889acb637b473da4837df750d6db6c8305ac`, PASS checkpoint `b9dc75e37cf7a72e9851c0ccabd1b53a72c3d235`.
+- V2.10R.1 lifecycle decision: PASS — source `67fb7234c0cd9e84c602a6dadb55f6e1ced6265406745ba6b3b9a7a95e0c4993`, bytecode `527bf0513082af49343f39b5ae23fd63b5c25f4034e019e934ca1d425890ef87`, real `NOT_REOBSERVED -> REVISIT`, lifecycle state `f34678fd6c85394ee659b6a710920bed8cc5ea07f8cbba0414cbb3bc116c79fb`, checkpoint `220fa78bce0d9873533cb8acce102fc411107924`.
+- V2.11R.1 revisit execution + archive re-entry: PASS.
+  - native source SHA256 `88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e`;
+  - repaired runner SHA256 `31005526c5ec1a4c33ec1759965b9810e19198fae08235dc1ca16d8c5c739907`;
+  - real selected-document revisit generation executes segment 0 then fresh-VM segment 1 then fresh-VM completion;
+  - work-local generation/cursor/evidence state PASS;
+  - deterministic replay PASS;
+  - archive hold without deletion PASS;
+  - later committed REVISIT re-enters archive PASS;
+  - wait/no lifecycle PASS;
+  - lifecycle/evidence/generation-cursor/segment-cursor bounded refusal PASS;
+  - generation cursor 65 pipes -> split parts 66 -> refusal PASS;
+  - segment cursor 65 pipes -> split parts 66 -> refusal PASS;
+  - failure runner-fixture checkpoint `f05ca0b5029a8436e95a9caecdfb93fc4cb32b9e` preserved;
+  - PASS checkpoint `aa1bec9344510d95dbbee9312076df7ad9975256`.
 
-Important distinctions:
+## Important distinctions
 
 - `DISPATCHED != COMPLETE`;
 - `REOBSERVED != SEMANTICALLY_TRUE`;
@@ -61,99 +74,90 @@ Important distinctions:
 - `ARCHIVE_FOR_NOW != SEMANTICALLY_TRUE`;
 - `ARCHIVE_FOR_NOW != FORGET`.
 
-## Current frontier — V2.11R.1 revisit execution + archive re-entry
+## Current frontier — V2.12R.1 native cycle event controller — SOURCE READY
 
-Native source remains unchanged:
+Purpose: add a persistent native stage-decision layer and explicit cycle/event identity before claiming a general autonomous continual-learning loop.
 
-`SIGMA_REVISIT_EXECUTION_ARCHIVE_REENTRY_V2_11R1.sigma`
+Native source:
+`SIGMA_PROFESSOR/artifacts/SIGMA_AUTONOMOUS_CYCLE_EVENT_CONTROLLER_V2_12R1.sigma`
 
-SHA256:
-`88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e`
+Source SHA256:
+`ec367a6c780011fc7fe06e7fafbdcfde27198527565bd9054c733e79ecc115be`
 
-### Runtime evidence already observed
+Source artifact commit:
+`07cd0329e8a443e621a912473f64927c9ec61d6a`
 
-The first V2.11 run produced valid native evidence for:
+Runner:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V212R1_AUTONOMOUS_CYCLE_EVENT_CONTROLLER_PREFLIGHT.sh`
 
-- `ARCHIVE_FOR_NOW` hold with no deletion;
-- later committed `REVISIT` re-entering archived work;
-- fresh-VM archive-reentry completion;
-- no lifecycle action -> `WAIT_FOR_LIFECYCLE`;
-- lifecycle over-limit refusal;
-- evidence over-limit refusal.
+Runner SHA256:
+`02be167cd7d302c72735e384532310a347edbaf0d1827ec748f4b635a660910c`
 
-Host remained non-cognitive: `HOST_REVISIT_EXECUTION=NO`, `HOST_ARCHIVE_REENTRY_DECISION=NO`, `HOST_DOCUMENT_SELECTION=NO`, `HOST_SEGMENT_SELECTION=NO`, `HOST_LEARNING=NO`.
+Runner commit:
+`58b093f42abf7bb1d2eb6fab1780940476beb5bb`
 
-### Admission failure preserved
+README commit:
+`2946cd3e57eebc23acd81f2ff9d7f36ea456cc94`
 
-V2.11 did NOT PASS admission in that run.
+Source-ready checkpoint:
+`9af1145ee7f6bc2ccc77045e40f070e2dfc3ff3c`
 
-Failure checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V211R1_RUNNER_PRINTF_BOUND_SETUP_FAILURE.md`
+### Native stage policy under admission
 
-Failure commit:
-`f05ca0b5029a8436e95a9caecdfb93fc4cb32b9e`
+- no committed lifecycle -> `WAIT_FOR_LIFECYCLE`;
+- latest `ARCHIVE_FOR_NOW` -> `SELECT_NEXT_WORK`;
+- pending revisit generation -> `EXECUTE_REVISIT`;
+- completed revisit generation -> `REVALIDATE_REVISIT_GENERATION`;
+- completed generations greater than admitted revisit events -> `WAIT_STATE_INCONSISTENT`.
 
-Cause: the runner attempted to construct 65-pipe cursor fixtures with `printf '%0.s|' {1..65}`. Termux `printf` returned `invalid conversion specification`, so the intended generation-cursor limit fixture was not created. The native engine correctly treated the resulting ordinary cursor as executable work. This is a runner-fixture failure, not a native-logic failure.
+Explicit controller event identity:
+`EVENT_ID = WORK + "::" + CYCLE_TOKEN + "::" + NEXT_STAGE`.
 
-### Repaired runner — REQUIRED NEXT RUN
+Persistent event record:
+`WORK=<id> || CYCLE=<token> || NEXT=<stage> || EVENT=<event-id> || COMMIT=YES`.
 
-Use:
-`RUN_SIGMA_V211R1A_REVISIT_EXECUTION_ARCHIVE_REENTRY_PREFLIGHT.sh`
+### Real expected state
 
-SHA256:
-`31005526c5ec1a4c33ec1759965b9810e19198fae08235dc1ca16d8c5c739907`
+From admitted V2.11 persistent real state:
 
-Artifact commit:
-`81a280e5b4836ad431ecb1feedcfa92d79b98eac`
+- selected work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
+- V2.10 lifecycle action `REVISIT`;
+- V2.11 completed generation cursor `|`;
+- segment cursor empty.
 
-Repair-ready checkpoint:
-`3b285253abee2b0259682e3cca2551b71c7672dc`
+Expected native V2.12 event:
+`0ac783...66485b::|::REVALIDATE_REVISIT_GENERATION`.
 
-Repair is runner-only:
+### Admission gates prepared
 
-- native source unchanged;
-- admission criteria unchanged;
-- bad `%0.s` format removed;
-- generation-cursor bound fixture uses an explicit deterministic 65-iteration mechanical shell loop;
-- segment-cursor bound fixture uses the same deterministic construction;
-- `bash -n` RC = 0.
+- real persisted V2.11 state -> revalidation event;
+- fresh VM persistent event reuse/no duplicate append;
+- deterministic replay;
+- pending revisit -> `EXECUTE_REVISIT`;
+- cycle `|` and `||` produce distinct event IDs;
+- initial archive -> `SELECT_NEXT_WORK`;
+- no lifecycle -> WAIT/no event;
+- inconsistent generation state -> no event;
+- partial lifecycle filter;
+- lifecycle/controller/generation/segment bounded refusal.
 
-### Work-local revisit schema
+Static truth:
 
-For selected `<work>` inside a mechanical state directory:
+- `H_CALL_ARITY_AUDIT=PASS`;
+- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
+- `STR_STARTS_DEPENDENCY=NONE`;
+- `DIRECT_STR_DEPENDENCY=NONE`;
+- runner `bash -n` RC = 0.
 
-- `<work>.generation` — one `|` per completed revisit generation;
-- `<work>.cursor` — one `|` per committed segment in current generation;
-- `<work>.evidence` — `WORK + GEN + CURSOR + BEST_LOCAL_RELATION + COMMIT=YES`.
+### Claim limits
 
-Native policy:
-
-- pending committed `REVISIT` -> execute bounded revisit;
-- evidence commits before segment-cursor advance;
-- generation advances only after document completion;
-- latest `ARCHIVE_FOR_NOW` -> hold/no delete;
-- later committed `REVISIT` -> archive re-entry;
-- no committed lifecycle action -> wait.
-
-Current archive re-entry proof scope:
-
-- later committed `REVISIT` trigger: candidate/runtime partial evidence observed;
-- time-based re-entry: `NOT_PROVEN`;
-- semantic-novelty re-entry: `NOT_PROVEN`.
-
-Important schema limitation:
-
-V2.10 lifecycle records still lack unique event/epoch identity, so unrestricted repeated identical revisit epochs are NOT yet proven. Explicit event/generation identity remains a dependency for the autonomous cycle controller.
-
-Current V2.11 admission truth:
-
-- source compile/runtime partial evidence exists;
-- final admission = `NOT_PROVEN` until repaired runner completes;
-- generation-cursor bounded refusal = `NOT_PROVEN` for the failed run;
-- segment-cursor bounded refusal = `NOT_PROVEN` for the failed run;
-- semantic understanding = `NOT_PROVEN`;
-- bounded file I/O = `NOT_PROVEN`;
-- mid-append crash atomicity = `NOT_PROVEN`.
+- V2.12 runtime admission = `NOT_PROVEN` until actual locked-VM run;
+- `GENERATION_AWARE_REVALIDATION=NOT_PROVEN`;
+- `GENERATION_AWARE_LIFECYCLE=NOT_PROVEN`;
+- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION=NOT_PROVEN`;
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
+- `BOUNDED_FILE_IO=NOT_PROVEN`;
+- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`.
 
 ## Other lanes
 
@@ -168,8 +172,8 @@ Keep all 54 DNA; active cognition remains native `.sigma`; no Python cognition.
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unless it emits a real VM failure.
-2. From repo root `~/SIGMA/sigma-freedom-write`, keep the exact V2.11 native source SHA above.
-3. Replace only the runner with exact repaired V2.11R.1A runner SHA `31005526c5ec1a4c33ec1759965b9810e19198fae08235dc1ca16d8c5c739907`.
-4. Run locked compiler/VM and preserve all VM_RC, V2.11 bytecode SHA, revisit evidence hashes, generation/cursor hashes and final bounded-refusal outputs.
-5. If PASS, checkpoint before building autonomous cycle controller + explicit event/generation identity.
-6. Preserve all raw/done/log/history/failure/QA evidence.
+2. From repo root `~/SIGMA/sigma-freedom-write`, install exact V2.12 source + runner identities above.
+3. Run locked sigmac/VM; preserve V2.12 bytecode SHA, event state hash, selected event and all VM_RC outputs.
+4. If any gate fails, preserve evidence and repair only the narrow failure.
+5. If PASS, checkpoint V2.12 before building generation-aware revalidation + lifecycle keyed by V2.12 cycle/event identity.
+6. Do not claim a general autonomous cycle until generation-aware revalidation/lifecycle and dispatcher integration pass.
