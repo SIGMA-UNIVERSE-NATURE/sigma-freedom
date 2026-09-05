@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-SUBSTANTIVE-AUTHORING",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C09",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c09",
+  "accepted_predecessor_commit_sha": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "scope_id": "B1.1-C09",
+  "substantive_commit_sha": "b279a97da2566358b603ffe7508fe23b2e3fb753",
+  "canonical_topics": [
+    "B1.1-C09-T01",
+    "B1.1-C09-T02",
+    "B1.1-C09-T03",
+    "B1.1-C09-T04",
+    "B1.1-C09-T05",
+    "B1.1-C09-T06",
+    "B1.1-C09-T07"
+  ],
+  "substantive_counts": {
+    "nodes": 7,
+    "claims": 84,
+    "sources": 6,
+    "learning_objectives": 28,
+    "closure_records": 28,
+    "cross_links": 15,
+    "sequence_intents": 7
+  },
+  "precommit_machine_checks": {
+    "topic_coverage": "PASS_7_OF_7",
+    "claim_id_uniqueness": "PASS_84_OF_84",
+    "source_id_sha256_normalization": "PASS_6_OF_6",
+    "learning_objective_uniqueness": "PASS_28_OF_28",
+    "one_closure_row_per_learning_objective": "PASS_28_OF_28",
+    "semantic_claim_to_learning_objective_coverage": "PASS_84_OF_84",
+    "supporting_claim_id_resolution": "PASS",
+    "supporting_claims_current_window_only": "PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "internal_prerequisite_graph": "PASS_ACYCLIC",
+    "C03_reuse_explicit": true,
+    "C04_local_geometry_retained": true,
+    "C05_reuse_explicit": true,
+    "C10_locked": true
+  },
+  "boundary_state": {
+    "C03": "ACCEPTED_PREREQUISITE_OWNER",
+    "C04": "ACCEPTED_PREREQUISITE_OWNER",
+    "C05": "ACCEPTED_PREREQUISITE_OWNER",
+    "C10": "LOCKED_BOUNDARY_ONLY_ZERO_SUPPORT",
+    "academic_locked_created": false,
+    "lesson_registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false
+  },
+  "next_action": "Read all committed C09 academic files back from GitHub; run semantic Claim-to-Learning-Objective, source, theorem-hypothesis, duplicate/ownership, prerequisite-DAG, branch-diff and stage-boundary audits before any PASS candidate."
+}
