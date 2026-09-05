@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "role": "DIRECTOR_CONTINUITY_SNAPSHOT",
+  "purpose": "Compact recovery and Knowledge Tree alignment state for Director and Backup Sentinel windows. Chat memory is never authoritative.",
+  "source_of_truth": {
+    "repository": "SIGMA-UNIVERSE-NATURE/sigma-freedom",
+    "control_plane_branch": "hka-tree/curriculum-master",
+    "canonical_tree_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md",
+    "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+    "b1_architecture_accepted_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "scope_map_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/B1_SCOPE_MAP.jsonl",
+    "machine_state_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
+    "window_registry_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json"
+  },
+  "knowledge_tree_invariants": {
+    "human_roots": ["SELF", "OTHERS", "WORLD"],
+    "epistemic_roots_required": true,
+    "cognitive_trunk_required": true,
+    "hka_compass": ["Sự thật", "Sự sống", "Tính liên kết", "Phẩm giá", "Công bằng", "Hòa bình", "Trách nhiệm"],
+    "canonical_main_branches": [
+      "B1 QUY LUẬT — Quy luật & Thực tại",
+      "B2 SỰ SỐNG — Sự sống, Sức khỏe & Tâm trí",
+      "B3 KẾT NỐI — Hệ thống, Thiết kế & Kết nối",
+      "B4 THỜI GIAN — Thời gian, Nơi chốn & Tương lai",
+      "B5 BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa",
+      "B6 CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý"
+    ],
+    "main_branches_are_equal": true,
+    "academic_depths": ["D1", "D2", "D3", "D4"],
+    "academic_depth_independent_of_age": true,
+    "shared_nodes_preferred_over_semantic_duplication": true,
+    "typed_relation_edges_required": true,
+    "claim_certainty_and_epistemic_class_required": true
+  },
+  "pipeline_lock": {
+    "sequence": ["KNOWLEDGE", "CURRICULUM", "ACADEMIC_LOCKED", "LESSON_REGISTRY", "LESSON_REGISTRY_LOCKED", "PROMPTS", "PROMPT_LOCKED", "IMAGE_PRODUCTION", "R2_STAGING", "INDEPENDENT_QA", "VAULT", "WEB_OPTIMIZE", "DELIVERY", "WEBSITE_UPDATE"],
+    "current_stage": "CURRICULUM",
+    "forbid_stage_skipping": true,
+    "all_later_stages_gated": true
+  },
+  "current_execution": {
+    "active_branch_id": "B1",
+    "active_subbranch_id": "B1.1",
+    "active_scope_id": "B1.1-C06",
+    "active_window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+    "active_execution_branch": "hka-tree/c01-w02-math-c06",
+    "active_status": "READY",
+    "accepted_predecessor_commit": "76077695c07b853ac37f058477177e211f740f17",
+    "canonical_scope_name": "Phương trình vi phân và hệ động lực",
+    "canonical_topic_ids_and_names": [
+      ["B1.1-C06-T01", "Phương trình vi phân thường"],
+      ["B1.1-C06-T02", "Phương trình đạo hàm riêng"],
+      ["B1.1-C06-T03", "Hệ động lực"],
+      ["B1.1-C06-T04", "Ổn định"],
+      ["B1.1-C06-T05", "Dao động"],
+      ["B1.1-C06-T06", "Phân nhánh"],
+      ["B1.1-C06-T07", "Hỗn loạn"],
+      ["B1.1-C06-T08", "Mô hình biến đổi theo thời gian"]
+    ],
+    "required_accepted_foundations": ["B1.1-C01", "B1.1-C02", "B1.1-C03", "B1.1-C04", "B1.1-C05"],
+    "locked_or_boundary_only_scopes": ["B1.1-C07", "B1.1-C08", "B1.1-C09", "B1.1-C10", "B1.2+", "B2+"],
+    "successor_unlock_forbidden_until_director_acceptance": true
+  },
+  "accepted_scopes": {
+    "B1.1-C01": "5659288da80a239e2ded408da87348670c1410c2",
+    "B1.1-C02": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "B1.1-C03": "7546ad74fb0e71ad2120c7091947993690bef82d",
+    "B1.1-C04": "76077695c07b853ac37f058477177e211f740f17",
+    "B1.1-C05": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16"
+  },
+  "director_acceptance_invariants": [
+    "Worker PASS is candidate only.",
+    "Director must independently read/audit academic claims, sources, objectives and semantic closure before acceptance.",
+    "Exactly having a closure row is insufficient; each objective must be semantically supported by listed claims.",
+    "Future or locked scope claim IDs cannot supply support.",
+    "No semantic duplicate ownership transfer without explicit disposition.",
+    "Prerequisite graph must be acyclic and academically necessary.",
+    "Stage boundary must remain CURRICULUM-only.",
+    "Stable accepted IDs are append-only and never silently renumbered."
+  ],
+  "backup_sentinel_protocol": {
+    "backup_window_id": "DIRECTOR-BACKUP-S01",
+    "mode": "READ_VERIFY_REPORT_ONLY",
+    "must_not_author_curriculum": true,
+    "must_not_accept_or_unlock_successor": true,
+    "must_not_mutate_control_plane": true,
+    "validate_before_each_new_window_open": true,
+    "validate_after_each_worker_candidate": true,
+    "validation_result_enum": ["TREE_ALIGNMENT_PASS", "TREE_ALIGNMENT_ALERT", "RECOVERY_REQUIRED"],
+    "minimum_checks": [
+      "canonical tree commit unchanged",
+      "current stage equals expected stage",
+      "active scope exists in frozen scope map",
+      "window ID/branch/scope/topic set match",
+      "accepted predecessor matches control-plane",
+      "required predecessors are Director-accepted",
+      "locked scopes are not used as support",
+      "no successor is opened before Director acceptance",
+      "no later pipeline stage artifact appears"
+    ]
+  },
+  "continuity_update_rule": {
+    "snapshot_update_required_on_every_director_acceptance": true,
+    "snapshot_update_required_on_every_active_window_change": true,
+    "snapshot_update_required_on_dependency_amendment": true,
+    "replacement_director_bootstrap_order": [
+      "READ HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
+      "VERIFY canonical tree commit and scope map anchor",
+      "READ HKA_CURRICULUM_STATE.json",
+      "READ WINDOW_REGISTRY.json",
+      "READ Director latest checkpoint/status",
+      "VERIFY active child STATUS/contract/open order",
+      "CONTINUE only from durable next_action"
+    ]
+  },
+  "updated_at": "2026-09-05T10:42:00+07:00"
+}
