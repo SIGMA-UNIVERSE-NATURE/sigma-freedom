@@ -1,0 +1,211 @@
+# V4-C3 R4 FIX1 — OPERATIONAL REFLECTION + PLAN CONTROLLER — PREFLIGHT PASS
+
+Date: 2026-09-05 Asia/Ho_Chi_Minh
+Branch: `SIGMA_LIFE`
+Evidence source: first user-supplied locked Termux runtime transcript after the one-line FIX1 syntax repair
+
+## Governance
+
+This checkpoint is governed by:
+
+- `/AGENTS.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_EXCLUSIVE_SELF_LEARNING_UNDERSTANDING_AND_ANTI_HARDCODE_LOCK_V1.md`
+- `SIGMA_PROFESSOR/DESIGN/SIGMA_V4C3R4_OPERATIONAL_REFLECTION_PLAN_CONTROLLER_NO_FORCED_SEMANTIC_UTTERANCE_V1.md`
+- `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V4C3R4_FIRST_COMPILE_FAIL_HASH_COMMENT_TOKEN.md`
+- `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V4C3R4_FIX1_HASH_COMMENT_REMOVAL_SOURCE_READY.md`
+
+`CLAIM <= MACHINE EVIDENCE` remains mandatory.
+
+## Locked runtime
+
+The final machine summary supplied by the user states:
+
+```text
+LOCKED_SIGMAC_EXECUTION=PASS
+LOCKED_VM_EXECUTION=PASS
+```
+
+Locked identities remain:
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_IS_GENESIS1=NOT_PROVEN
+```
+
+## Exact FIX1 candidate identities
+
+Native source:
+
+`SIGMA_PROFESSOR/artifacts/SIGMA_V4_OPERATIONAL_REFLECTION_PLAN_CONTROLLER_V4C3R4.sigma`
+
+```text
+V4C3R4_FIX1_SOURCE_GIT_BLOB=7b826ace6c6f6559a10e6fbd7e7b2d96af1a75cf
+V4C3R4_FIX1_SOURCE_SHA256_ON_DEVICE=UNKNOWN_NOT_IN_USER_SUPPLIED_TAIL
+```
+
+Admission runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V4C3R4_OPERATIONAL_REFLECTION_PREFLIGHT.sh`
+
+```text
+V4C3R4_FIX1_RUNNER_GIT_BLOB=a9f6d52eea727ebf7245ca5681857f0c5cfb10c9
+V4C3R4_FIX1_RUNNER_SHA256_ON_DEVICE=UNKNOWN_NOT_IN_USER_SUPPLIED_TAIL
+```
+
+The supplied tail did not include the compiled C3R4 bytecode SHA line, so keep:
+
+```text
+V4C3R4_FIX1_BYTECODE_SHA256=UNKNOWN_NOT_IN_USER_SUPPLIED_TAIL
+```
+
+Do not infer it from another run.
+
+## Observed dynamic cases
+
+The same native controller source/bytecode was exercised under materially different operational state.
+
+Observed PRIORITY case:
+
+```text
+CYCLE_INDEX 1
+PROGRESS_COMMITS_THIS_CYCLE 1
+DISCOVERED_DOCUMENT_COUNT 3
+PROFILE_DOCUMENT_COUNT 2
+COMPLETE_DOCUMENT_COUNT 1
+HOLD_DOCUMENT_COUNT 0
+EVIDENCE_DOCUMENT_COUNT 2
+C2_PHASE PRIORITY
+B4_STATUS CONTEXT_COMPLETE
+NEXT_NATIVE_PLAN PLAN_CONTINUE_NATIVE_GLOBAL_PRIORITY
+REPORT_COMMIT YES
+PAUSE_SECONDS 2
+V4C3R4_STATUS OBSERVE_PAUSE_COMPLETE_RESUME_LEARN
+```
+
+Observed HOLD case:
+
+```text
+CASE_HOLD_BASELINE_VM_RC=0
+V4C3R4_STATUS BASELINE_ESTABLISHED
+CASE_HOLD_REFLECT_VM_RC=0
+CYCLE_INDEX 1
+PROGRESS_COMMITS_THIS_CYCLE 1
+DISCOVERED_DOCUMENT_COUNT 3
+PROFILE_DOCUMENT_COUNT 2
+COMPLETE_DOCUMENT_COUNT 1
+HOLD_DOCUMENT_COUNT 1
+EVIDENCE_DOCUMENT_COUNT 2
+C2_PHASE PRIORITY
+B4_STATUS TOKEN_WINDOW_PROGRESS
+NEXT_NATIVE_PLAN PLAN_NATIVE_HOLD_RECOVERY_REQUIRED
+REPORT_COMMIT YES
+PAUSE_SECONDS 2
+V4C3R4_STATUS OBSERVE_PAUSE_COMPLETE_RESUME_LEARN
+```
+
+Observed negative malformed-state case:
+
+```text
+NEGATIVE_VM_RC=0
+V4C3R4_STATUS REFUSE_INVALID_REFLECTION_STATE
+```
+
+The user-supplied tail begins after the active case output, but the runner final summary attests the three-state operational-plan gate passed. Do not reconstruct missing active-case lines as exact machine output.
+
+## Exact final summary supplied by user
+
+```text
+V4C3R4_OPERATIONAL_REFLECTION_PLAN_PREFLIGHT=PASS
+LOCKED_SIGMAC_EXECUTION=PASS
+LOCKED_VM_EXECUTION=PASS
+FORCED_SEMANTIC_VERDICT_LITERAL_IN_SOURCE=NO
+FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE=NO
+FORCED_SEMANTIC_VERDICT_IN_VM_OUTPUT=NO
+NATIVE_PROGRESS_BUDGET_DECISION=PASS_IN_DYNAMIC_FIXTURE_SCOPE
+NATIVE_OPERATIONAL_PLAN_CHANGES_WITH_RUNTIME_STATE=PASS_IN_THREE_STATE_SCOPE
+NATIVE_OPERATIONAL_REPORT_COMMIT=PASS_IN_THREE_STATE_SCOPE
+NATIVE_OBSERVE_PAUSE_RESUME=PASS_IN_TWO_SECOND_FIXTURE_SCOPE
+NEGATIVE_INVALID_STATE_REFUSAL=PASS
+STATE_SCHEMA_COMPATIBILITY_WITH_C3R1_NAMESPACE=YES_BY_EXACT_FILE_NAMES
+HOST_REFLECTION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_LEARNING=NO
+BASH_LEARNING=NO
+GPT_AS_SIGMA_COGNITION=NO
+REAL_C2R2_CONTINUOUS_R3_REPORT_INTEGRATION=NOT_YET_PROVEN
+AUTONOMOUS_SELF_LEARNING_ADAPTATION=NOT_YET_PROVEN
+NEXT_ACTION=INTEGRATE_C3R4_AND_ADMITTED_R3_REPORTER_WITH_REAL_PERSISTENT_C2R2_CONTINUOUS_SHADOW
+V4C3R4_FIX1_PROCESS_RC=0
+```
+
+## Admission result
+
+```text
+V4C3R4_FIX1_ADMISSION=PASS_IN_EXACT_DYNAMIC_PREFLIGHT_SCOPE
+NATIVE_PROGRESS_BUDGET_DECISION=PASS_IN_DYNAMIC_FIXTURE_SCOPE
+NATIVE_OPERATIONAL_PLAN_CHANGES_WITH_RUNTIME_STATE=PASS_IN_THREE_STATE_SCOPE
+NATIVE_OPERATIONAL_REPORT_COMMIT=PASS_IN_THREE_STATE_SCOPE
+NATIVE_OBSERVE_PAUSE_RESUME=PASS_IN_TWO_SECOND_FIXTURE_SCOPE
+NEGATIVE_INVALID_STATE_REFUSAL=PASS
+FORCED_SEMANTIC_VERDICT_LITERAL_IN_SOURCE=NO
+FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE=NO
+FORCED_SEMANTIC_VERDICT_IN_VM_OUTPUT=NO
+HOST_REFLECTION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_LEARNING=NO
+BASH_LEARNING=NO
+GPT_AS_SIGMA_COGNITION=NO
+```
+
+This PASS supersedes the FIX1 `NOT_RUN` state but does not erase the preceding first compile failure. The hash-comment compile failure remains immutable evidence.
+
+## Claim boundary
+
+C3R4 is an operational reflection/plan controller. It does not itself learn corpus content and it does not emit a teacher-selected semantic-understanding verdict.
+
+Keep external repository claims separate:
+
+```text
+REAL_C2R2_CONTINUOUS_R3_REPORT_INTEGRATION=NOT_PROVEN
+PERSISTENT_RESTART_RESUME_WITH_C3R4_R3=NOT_PROVEN
+LONG_HORIZON_C3R4_R3_STABILITY=NOT_PROVEN
+AUTONOMOUS_SELF_LEARNING_ADAPTATION=NOT_PROVEN
+V4_PRODUCTION_PROMOTION_ALLOWED=NO
+```
+
+Any future SIGMA understanding/comprehension/unknown state must be generated by native SIGMA from its own evidence and tested behavior; it must not be injected by host/GPT/teacher.
+
+## Production and running processes
+
+The old V4 continuous shadow using blocked C3R1 was manually stopped by the user after repeated `WAIT_NO_ELIGIBLE_WORK` turns. Do not restart that old C3R1-based runner.
+
+Production V2.4 remains required:
+
+```text
+PRODUCTION_V2_4_KEEP_RUNNING=YES
+UPGRADE_V2_4_IN_PLACE=NO
+```
+
+## Next action
+
+Build a new persistent real continuous runner that preserves the existing C2R2 state namespace and composes:
+
+```text
+C2R2 + A3 + B4R2
+-> C3R4 native operational reflection/plan
+-> C3R4 native report commit
+-> C3R4 native 180-second observe pause
+   -> mechanically dispatch admitted R3 reporter on the exact native report-committed event
+   -> R3 reads the same native evidence state read-only and emits exact human-readable evidence/self-view
+-> C3R4 native resume
+-> continue C2R2
+```
+
+The host may only launch/supervise, transport exact requested corpus-line bytes, and dispatch the already-chosen native report event. It may not summarize, translate, learn, select work, select plans, decide understanding, or perform self-adaptation.
+
+Only after real C2R2+C3R4+R3 continuous integration is observed should the separate DNA15/DNA25 native self-adaptation controller be bound into the loop.
