@@ -1,0 +1,335 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.LOCAL.FIRST.CURRICULUM.STAGE.CONTROLLER][VERSION=4C4R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF count_suffix(dir_path, suffix) {
+    ⚡ ENTRIES:
+        H("listdir", dir_path, NULL, NULL);
+    ⚡ TOTAL:
+        H("list_len", ENTRIES, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ COUNT:
+        0;
+    WHILE (I < TOTAL) {
+        ⚡ NAME:
+            H("list_get", ENTRIES, I, NULL);
+        ⚡ MATCH:
+            H("str_ends", NAME, suffix, NULL);
+        IF (MATCH) {
+            ⚡ COUNT:
+                COUNT + 1;
+        }
+        ⚡ I:
+            I + 1;
+    }
+    RETURN COUNT;
+}
+
+DEF reset_c2_selection() {
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PROFILE", NULL);
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+    ⚡ C3:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+    ⚡ C4:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", "", NULL);
+    ⚡ C5:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", "", NULL);
+    ⚡ C6:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", "", NULL);
+    ⚡ C7:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", "", NULL);
+    ⚡ C8:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", "", NULL);
+    ⚡ C9:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory", "", NULL);
+    ⚡ C10:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", "", NULL);
+    ⚡ C11:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_DOC.memory", "", NULL);
+    ⚡ C12:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_LINE.memory", "", NULL);
+    ⚡ C13:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_PURPOSE.memory", "", NULL);
+    ⚡ C14:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_ID.memory", "", NULL);
+    ⚡ C15:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_FOUND.memory", "", NULL);
+    ⚡ C16:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_TEXT.memory", "", NULL);
+    ⚡ C17:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", "", NULL);
+    ⚡ C18:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", "", NULL);
+    ⚡ C19:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", "", NULL);
+    ⚡ C20:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", "", NULL);
+    ⚡ C21:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", "", NULL);
+    ⚡ C22:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", "", NULL);
+    ⚡ C23:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", "", NULL);
+    ⚡ C24:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", "", NULL);
+    ⚡ C25:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_PAIR_OCCURRENCES.memory", "", NULL);
+    ⚡ C26:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_TRIPLE_OCCURRENCES.memory", "", NULL);
+    ⚡ C27:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_QUAD_OCCURRENCES.memory", "", NULL);
+    RETURN 1;
+}
+
+⟡(Σ.V4_LOCAL_FIRST_CURRICULUM_STAGE_CONTROLLER_4C4R1) {
+
+    ⚡ LOCAL_RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C4_LOCAL_RAW_DIR.memory", NULL, NULL);
+    ⚡ LOCAL_STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C4_LOCAL_STATE_DIR.memory", NULL, NULL);
+    ⚡ EXTERNAL_RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C4_EXTERNAL_RAW_DIR.memory", NULL, NULL);
+    ⚡ EXTERNAL_STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C4_EXTERNAL_STATE_DIR.memory", NULL, NULL);
+    ⚡ MODE:
+        H("read_text", ".sigma_exec/SIGMA_V4C4_MODE.memory", NULL, NULL);
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+    ⚡ B4_CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        1;
+    IF (LOCAL_RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (LOCAL_STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (EXTERNAL_RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (EXTERNAL_STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ MODE_VALID:
+        0;
+    IF (MODE == "") {
+        ⚡ MODE_VALID:
+            1;
+    }
+    IF (MODE == "LOCAL") {
+        ⚡ MODE_VALID:
+            1;
+    }
+    IF (MODE == "EXTERNAL") {
+        ⚡ MODE_VALID:
+            1;
+    }
+    IF (MODE_VALID == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ STATUS:
+        "CURRICULUM_STAGE_READY";
+    ⚡ ACTION:
+        "";
+    ⚡ DESIRED_MODE:
+        "LOCAL";
+
+    ⚡ LOCAL_DISCOVERED:
+        0;
+    ⚡ LOCAL_PROFILED:
+        0;
+    ⚡ LOCAL_COMPLETE:
+        0;
+    ⚡ LOCAL_HOLD:
+        0;
+    ⚡ LOCAL_EVIDENCE:
+        0;
+
+    IF (INPUT_VALID == 0) {
+        ⚡ STATUS:
+            "REFUSE_INVALID_CURRICULUM_STATE";
+        ⚡ ACTION:
+            "REFUSE_INVALID_CURRICULUM_STATE";
+    }
+
+    IF (INPUT_VALID) {
+        ⚡ LOCAL_DISCOVERED:
+            count_suffix(LOCAL_RAW_DIR, ".document");
+        ⚡ LOCAL_PROFILED:
+            count_suffix(LOCAL_STATE_DIR, ".profile");
+        ⚡ LOCAL_COMPLETE:
+            count_suffix(LOCAL_STATE_DIR, ".complete");
+        ⚡ LOCAL_HOLD:
+            count_suffix(LOCAL_STATE_DIR, ".hold");
+        ⚡ LOCAL_EVIDENCE:
+            count_suffix(LOCAL_STATE_DIR, ".evidence");
+
+        ⚡ COUNT_STATE_VALID:
+            1;
+        IF (LOCAL_DISCOVERED < LOCAL_PROFILED) {
+            ⚡ COUNT_STATE_VALID:
+                0;
+        }
+        IF (LOCAL_DISCOVERED < LOCAL_COMPLETE) {
+            ⚡ COUNT_STATE_VALID:
+                0;
+        }
+        IF (LOCAL_DISCOVERED < LOCAL_HOLD) {
+            ⚡ COUNT_STATE_VALID:
+                0;
+        }
+        IF (LOCAL_DISCOVERED < LOCAL_EVIDENCE) {
+            ⚡ COUNT_STATE_VALID:
+                0;
+        }
+
+        IF (COUNT_STATE_VALID == 0) {
+            ⚡ STATUS:
+                "REFUSE_LOCAL_COUNT_STATE";
+            ⚡ ACTION:
+                "REFUSE_LOCAL_COUNT_STATE";
+        }
+
+        IF (COUNT_STATE_VALID) {
+            IF (LOCAL_DISCOVERED == 0) {
+                ⚡ STATUS:
+                    "REFUSE_LOCAL_CORPUS_EMPTY";
+                ⚡ ACTION:
+                    "REFUSE_LOCAL_CORPUS_EMPTY";
+            }
+
+            IF (0 < LOCAL_DISCOVERED) {
+                IF (0 < LOCAL_HOLD) {
+                    ⚡ DESIRED_MODE:
+                        "LOCAL";
+                    ⚡ ACTION:
+                        "PLAN_LOCAL_NATIVE_HOLD_RECOVERY_REQUIRED";
+                }
+
+                IF (LOCAL_HOLD == 0) {
+                    ⚡ LOCAL_OPERATIONAL_PASS_COMPLETE:
+                        0;
+                    IF (LOCAL_PROFILED == LOCAL_DISCOVERED) {
+                        IF (LOCAL_COMPLETE == LOCAL_DISCOVERED) {
+                            ⚡ LOCAL_OPERATIONAL_PASS_COMPLETE:
+                                1;
+                        }
+                    }
+
+                    IF (LOCAL_OPERATIONAL_PASS_COMPLETE == 0) {
+                        ⚡ DESIRED_MODE:
+                            "LOCAL";
+                        ⚡ ACTION:
+                            "PLAN_CONTINUE_LOCAL_STORED_TEACHING_CORPUS";
+                    }
+
+                    IF (LOCAL_OPERATIONAL_PASS_COMPLETE) {
+                        ⚡ DESIRED_MODE:
+                            "EXTERNAL";
+                        ⚡ ACTION:
+                            "PLAN_ACTIVATE_EXISTING_NATIVE_EXTERNAL_FEED";
+                    }
+                }
+
+                ⚡ SAFE_BOUNDARY:
+                    0;
+                IF (ACTIVE_DOC == "") {
+                    IF (B4_CONTEXT_ID == "") {
+                        ⚡ SAFE_BOUNDARY:
+                            1;
+                    }
+                }
+
+                ⚡ MODE_SWITCH_NEEDED:
+                    0;
+                IF (MODE != DESIRED_MODE) {
+                    ⚡ MODE_SWITCH_NEEDED:
+                        1;
+                }
+
+                IF (MODE_SWITCH_NEEDED) {
+                    IF (SAFE_BOUNDARY) {
+                        IF (DESIRED_MODE == "LOCAL") {
+                            ⚡ BIND_LOCAL_RAW_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", LOCAL_RAW_DIR, NULL);
+                            ⚡ BIND_LOCAL_STATE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", LOCAL_STATE_DIR, NULL);
+                        }
+                        IF (DESIRED_MODE == "EXTERNAL") {
+                            ⚡ BIND_EXTERNAL_RAW_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", EXTERNAL_RAW_DIR, NULL);
+                            ⚡ BIND_EXTERNAL_STATE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", EXTERNAL_STATE_DIR, NULL);
+                        }
+                        ⚡ RESET_SELECTION_RC:
+                            reset_c2_selection();
+                        ⚡ WRITE_MODE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C4_MODE.memory", DESIRED_MODE, NULL);
+                        ⚡ MODE:
+                            DESIRED_MODE;
+                        ⚡ STATUS:
+                            "NATIVE_CURRICULUM_MODE_SWITCH_COMMITTED";
+                    }
+                    IF (SAFE_BOUNDARY == 0) {
+                        ⚡ STATUS:
+                            "NATIVE_CURRICULUM_MODE_SWITCH_PENDING_ACTIVE_CONTEXT";
+                    }
+                }
+
+                IF (MODE_SWITCH_NEEDED == 0) {
+                    IF (MODE == "LOCAL") {
+                        ⚡ KEEP_LOCAL_RAW_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", LOCAL_RAW_DIR, NULL);
+                        ⚡ KEEP_LOCAL_STATE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", LOCAL_STATE_DIR, NULL);
+                    }
+                    IF (MODE == "EXTERNAL") {
+                        ⚡ KEEP_EXTERNAL_RAW_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", EXTERNAL_RAW_DIR, NULL);
+                        ⚡ KEEP_EXTERNAL_STATE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", EXTERNAL_STATE_DIR, NULL);
+                    }
+                    IF (STATUS == "CURRICULUM_STAGE_READY") {
+                        ⚡ STATUS:
+                            "NATIVE_CURRICULUM_MODE_MAINTAINED";
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ WRITE_ACTION_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C4_ACTION.memory", ACTION, NULL);
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C4_STATUS.memory", STATUS, NULL);
+
+    ⚡ print("SIGMA_V4C4_NATIVE_LOCAL_FIRST_CURRICULUM_STAGE");
+    ⚡ print("LOCAL_DISCOVERED_DOCUMENT_COUNT", LOCAL_DISCOVERED);
+    ⚡ print("LOCAL_PROFILE_DOCUMENT_COUNT", LOCAL_PROFILED);
+    ⚡ print("LOCAL_COMPLETE_DOCUMENT_COUNT", LOCAL_COMPLETE);
+    ⚡ print("LOCAL_HOLD_DOCUMENT_COUNT", LOCAL_HOLD);
+    ⚡ print("LOCAL_EVIDENCE_DOCUMENT_COUNT", LOCAL_EVIDENCE);
+    ⚡ print("CURRENT_CURRICULUM_MODE", MODE);
+    ⚡ print("DESIRED_CURRICULUM_MODE", DESIRED_MODE);
+    ⚡ print("NATIVE_CURRICULUM_ACTION", ACTION);
+    ⚡ print("HOST_STAGE_DECISION", "NO");
+    ⚡ print("HOST_CURRICULUM_PRIORITY", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("V4C4_STATUS", STATUS);
+}
