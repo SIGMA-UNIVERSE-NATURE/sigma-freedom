@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP04-ACADEMIC-BLOCK-A-T01-T05",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "academic_block": {
+    "topic_ids": ["B1.1-C05-T01","B1.1-C05-T02","B1.1-C05-T03","B1.1-C05-T04","B1.1-C05-T05"],
+    "topic_names": ["Dãy và giới hạn","Tính liên tục","Đạo hàm","Tích phân","Chuỗi"],
+    "nodes": 5,
+    "claims": 43,
+    "sources": 1,
+    "learning_objectives": 20,
+    "closure_rows": 20,
+    "cross_links": 8,
+    "sequence_intent_records": 5
+  },
+  "durable_file_blobs_after_block": {
+    "NODES.jsonl": "8ebca3923801c9d2e28bcbe343e6ea7e8b7f7fc0",
+    "CLAIMS.jsonl": "7afe2aee204f3f3e355730346107188ba07e8b57",
+    "SOURCES.jsonl": "2f576eb2fc2ee7e1669d53b09510f3ea5ce95f26",
+    "LEARNING_OBJECTIVES.jsonl": "8d628d6aa6fee9e853efc6c7e4efe42eb44ccf9d",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "7705a0b04e7487621a9b1c8cf42be032710c67e5",
+    "CROSS_LINKS.jsonl": "45fd023dbea806609077630c28be02a5e1668b77",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "6d0ff91860f577d0ed87031c0c1ebe9a6a6163da"
+  },
+  "read_back_checks": {
+    "directory_re_read_from_GitHub": true,
+    "nodes_blob_re_read_from_GitHub": true,
+    "claims_blob_re_read_from_GitHub": true,
+    "C04_opened": false,
+    "locked_scope_support_claim_ids_observed": 0
+  },
+  "ownership_dispositions_committed": [
+    "T01/T02 sequence convergence versus continuity",
+    "T03/T06 one-variable versus multivariable derivative boundary",
+    "T04/T07 Riemann versus measure/Lebesgue integration boundary",
+    "T05/T10 generic series versus Fourier analysis boundary",
+    "C02 real/complex number-system prerequisite ownership",
+    "C03 generic/algebraic function prerequisite ownership",
+    "C04 differential-geometry and geometric-integral boundaries as locked non-support references only"
+  ],
+  "known_nonterminal_reconciliation": [
+    "HKA-B1-1-C05-N004-C010 (integration by parts) is committed and already supports the N004 D3 closure row, but N004.claim_ids and its duplicate_fingerprint claim_set currently end at C009. The full NODES.jsonl rewrite for Block B MUST add C010 before academic-closure checkpoint CP05."
+  ],
+  "pass_claimed": false,
+  "next_action": "Author T06-T10, update all seven academic files to full C05, reconcile N004-C010 metadata, then read all committed files back and run full audits."
+}
