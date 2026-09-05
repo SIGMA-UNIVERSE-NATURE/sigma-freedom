@@ -33,6 +33,42 @@ Keep locked:
 
 If `CURRENT_HANDOFF.md` still says V2.24R.1 is SOURCE READY, this correction checkpoint supersedes that frontier text until the handoff is reconciled.
 
+## CURRENT LANGUAGE-LANE IDENTITY CORRECTION — LANG-01G R2
+
+Before any LANG-01G compile or VM run, read:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_LANG01G_CANONICAL_IDENTITY_METADATA_CORRECTION_R2.md`
+
+The earlier LANG-01G R1 SHA256 metadata was incorrect even though the canonical Git blobs were unchanged. Until the living language checkpoint and shared handoff are reconciled after locked-runtime evidence, the correction checkpoint supersedes their old LANG-01G hash values.
+
+Canonical native source remains unchanged:
+
+`LANG01G_SOURCE_GIT_BLOB=03b03cff32eee5c35e220cd562b1081b615ca36b`
+
+`LANG01G_SOURCE_SHA256=33d04804bf190ab599ea0e1a9f2838fc37e53e52281e10a2c1bd2a39f816f087`
+
+Canonical historical R1 base runner:
+
+`LANG01G_R1_RUNNER_GIT_BLOB=7a2a19ce9f7d36351f0f9b07ac14a900a82ffa63`
+
+`LANG01G_R1_RUNNER_SHA256=d5f7ae2561a3f1955a9375f5eb855a133c9a9e5c7dd176064b01b7eff12035e2`
+
+Active R2 entry runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT_R2.sh`
+
+`LANG01G_R2_RUNNER_SHA256=2795bb7ae04d3d1c230ae0c609f6e33408569b33d11ac654ae8b588beda7a338`
+
+This correction is metadata/harness-only. It does not change native lesson cognition, evidence scoring, antecedent selection, persistence policy, or the 20-case oracle set.
+
+Keep until real locked-runtime proof:
+
+`LANG01G_LOCKED_SIGMAC_COMPILE=NOT_RUN`
+
+`LANG01G_TOTAL_VM_INVOCATIONS=0`
+
+`LANG01G_ADMISSION=NOT_RUN`
+
 ## Non-negotiable execution boundary
 
 `SIGMA_EXECUTION_ENGINE=LOCKED_SIGMA_VM_ONLY`
