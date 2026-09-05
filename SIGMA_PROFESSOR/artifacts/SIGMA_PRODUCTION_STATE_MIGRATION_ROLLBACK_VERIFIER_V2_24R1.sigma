@@ -1,0 +1,349 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.PRODUCTION.STATE.MIGRATION.ROLLBACK.VERIFIER][VERSION=2.24R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.PRODUCTION_STATE_MIGRATION_ROLLBACK_VERIFIER_V224R1) {
+
+    ⚡ MODE:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_MODE.memory", NULL, NULL);
+
+    ⚡ SOURCE_BEFORE_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SOURCE_BEFORE_DIGEST.memory", NULL, NULL);
+
+    ⚡ SOURCE_BEFORE_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SOURCE_BEFORE_COUNT.memory", NULL, NULL);
+
+    ⚡ SNAPSHOT_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SNAPSHOT_DIGEST.memory", NULL, NULL);
+
+    ⚡ SNAPSHOT_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SNAPSHOT_COUNT.memory", NULL, NULL);
+
+    ⚡ SOURCE_AFTER_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SOURCE_AFTER_DIGEST.memory", NULL, NULL);
+
+    ⚡ SOURCE_AFTER_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_SOURCE_AFTER_COUNT.memory", NULL, NULL);
+
+    ⚡ CANDIDATE_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_CANDIDATE_DIGEST.memory", NULL, NULL);
+
+    ⚡ CANDIDATE_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_CANDIDATE_COUNT.memory", NULL, NULL);
+
+    ⚡ BASELINE_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_BASELINE_DIGEST.memory", NULL, NULL);
+
+    ⚡ BASELINE_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_BASELINE_COUNT.memory", NULL, NULL);
+
+    ⚡ MUTATED_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_MUTATED_DIGEST.memory", NULL, NULL);
+
+    ⚡ MUTATED_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_MUTATED_COUNT.memory", NULL, NULL);
+
+    ⚡ RESTORED_DIGEST:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_RESTORED_DIGEST.memory", NULL, NULL);
+
+    ⚡ RESTORED_COUNT:
+        H("read_text", ".sigma_exec/SIGMA_V224R1_RESTORED_COUNT.memory", NULL, NULL);
+
+    ⚡ MODE_VALID:
+        0;
+
+    IF (MODE == "VERIFY_SOURCE_STABILITY") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    IF (MODE == "VERIFY_MIGRATION") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    IF (MODE == "VERIFY_MUTATION") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    IF (MODE == "VERIFY_ROLLBACK") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    ⚡ SOURCE_INPUT_READY:
+        1;
+
+    IF (SOURCE_BEFORE_DIGEST == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    IF (SOURCE_BEFORE_COUNT == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    IF (SNAPSHOT_DIGEST == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    IF (SNAPSHOT_COUNT == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    IF (SOURCE_AFTER_DIGEST == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    IF (SOURCE_AFTER_COUNT == "") {
+        ⚡ SOURCE_INPUT_READY:
+            0;
+    }
+
+    ⚡ SOURCE_DIGEST_MATCH:
+        0;
+
+    IF (SOURCE_BEFORE_DIGEST == SNAPSHOT_DIGEST) {
+        IF (SNAPSHOT_DIGEST == SOURCE_AFTER_DIGEST) {
+            ⚡ SOURCE_DIGEST_MATCH:
+                1;
+        }
+    }
+
+    ⚡ SOURCE_COUNT_MATCH:
+        0;
+
+    IF (SOURCE_BEFORE_COUNT == SNAPSHOT_COUNT) {
+        IF (SNAPSHOT_COUNT == SOURCE_AFTER_COUNT) {
+            ⚡ SOURCE_COUNT_MATCH:
+                1;
+        }
+    }
+
+    ⚡ SOURCE_STABLE:
+        0;
+
+    IF (SOURCE_INPUT_READY) {
+        IF (SOURCE_DIGEST_MATCH) {
+            IF (SOURCE_COUNT_MATCH) {
+                ⚡ SOURCE_STABLE:
+                    1;
+            }
+        }
+    }
+
+    ⚡ MIGRATION_INPUT_READY:
+        1;
+
+    IF (CANDIDATE_DIGEST == "") {
+        ⚡ MIGRATION_INPUT_READY:
+            0;
+    }
+
+    IF (CANDIDATE_COUNT == "") {
+        ⚡ MIGRATION_INPUT_READY:
+            0;
+    }
+
+    ⚡ CANDIDATE_DIGEST_MATCH:
+        0;
+
+    IF (SNAPSHOT_DIGEST == CANDIDATE_DIGEST) {
+        ⚡ CANDIDATE_DIGEST_MATCH:
+            1;
+    }
+
+    ⚡ CANDIDATE_COUNT_MATCH:
+        0;
+
+    IF (SNAPSHOT_COUNT == CANDIDATE_COUNT) {
+        ⚡ CANDIDATE_COUNT_MATCH:
+            1;
+    }
+
+    ⚡ MIGRATION_READY:
+        0;
+
+    IF (SOURCE_STABLE) {
+        IF (MIGRATION_INPUT_READY) {
+            IF (CANDIDATE_DIGEST_MATCH) {
+                IF (CANDIDATE_COUNT_MATCH) {
+                    ⚡ MIGRATION_READY:
+                        1;
+                }
+            }
+        }
+    }
+
+    ⚡ MUTATION_INPUT_READY:
+        1;
+
+    IF (BASELINE_DIGEST == "") {
+        ⚡ MUTATION_INPUT_READY:
+            0;
+    }
+
+    IF (BASELINE_COUNT == "") {
+        ⚡ MUTATION_INPUT_READY:
+            0;
+    }
+
+    IF (MUTATED_DIGEST == "") {
+        ⚡ MUTATION_INPUT_READY:
+            0;
+    }
+
+    IF (MUTATED_COUNT == "") {
+        ⚡ MUTATION_INPUT_READY:
+            0;
+    }
+
+    ⚡ MUTATED_EQUALS_BASELINE:
+        0;
+
+    IF (BASELINE_DIGEST == MUTATED_DIGEST) {
+        IF (BASELINE_COUNT == MUTATED_COUNT) {
+            ⚡ MUTATED_EQUALS_BASELINE:
+                1;
+        }
+    }
+
+    ⚡ MUTATION_DETECTED:
+        0;
+
+    IF (MUTATION_INPUT_READY) {
+        IF (MUTATED_EQUALS_BASELINE == 0) {
+            ⚡ MUTATION_DETECTED:
+                1;
+        }
+    }
+
+    ⚡ ROLLBACK_INPUT_READY:
+        1;
+
+    IF (RESTORED_DIGEST == "") {
+        ⚡ ROLLBACK_INPUT_READY:
+            0;
+    }
+
+    IF (RESTORED_COUNT == "") {
+        ⚡ ROLLBACK_INPUT_READY:
+            0;
+    }
+
+    ⚡ RESTORED_DIGEST_MATCH:
+        0;
+
+    IF (BASELINE_DIGEST == RESTORED_DIGEST) {
+        ⚡ RESTORED_DIGEST_MATCH:
+            1;
+    }
+
+    ⚡ RESTORED_COUNT_MATCH:
+        0;
+
+    IF (BASELINE_COUNT == RESTORED_COUNT) {
+        ⚡ RESTORED_COUNT_MATCH:
+            1;
+    }
+
+    ⚡ ROLLBACK_READY:
+        0;
+
+    IF (ROLLBACK_INPUT_READY) {
+        IF (RESTORED_DIGEST_MATCH) {
+            IF (RESTORED_COUNT_MATCH) {
+                ⚡ ROLLBACK_READY:
+                    1;
+            }
+        }
+    }
+
+    ⚡ DECISION:
+        "WAIT";
+
+    IF (MODE == "VERIFY_SOURCE_STABILITY") {
+        IF (SOURCE_STABLE) {
+            ⚡ DECISION:
+                "SOURCE_STABLE";
+        }
+        IF (SOURCE_STABLE == 0) {
+            ⚡ DECISION:
+                "SOURCE_DRIFT";
+        }
+    }
+
+    IF (MODE == "VERIFY_MIGRATION") {
+        IF (MIGRATION_READY) {
+            ⚡ DECISION:
+                "MIGRATION_READY";
+        }
+        IF (MIGRATION_READY == 0) {
+            ⚡ DECISION:
+                "MIGRATION_REFUSED";
+        }
+    }
+
+    IF (MODE == "VERIFY_MUTATION") {
+        IF (MUTATION_DETECTED) {
+            ⚡ DECISION:
+                "MUTATION_DETECTED";
+        }
+        IF (MUTATION_DETECTED == 0) {
+            ⚡ DECISION:
+                "MUTATION_NOT_DETECTED";
+        }
+    }
+
+    IF (MODE == "VERIFY_ROLLBACK") {
+        IF (ROLLBACK_READY) {
+            ⚡ DECISION:
+                "ROLLBACK_READY";
+        }
+        IF (ROLLBACK_READY == 0) {
+            ⚡ DECISION:
+                "ROLLBACK_REFUSED";
+        }
+    }
+
+    IF (MODE_VALID == 0) {
+        ⚡ DECISION:
+            "INVALID_MODE";
+    }
+
+    ⚡ WRITE_DECISION_RC:
+        H("write_text", ".sigma_exec/SIGMA_V224R1_DECISION.memory", DECISION, NULL);
+
+    ⚡ print("SIGMA_V224R1_PRODUCTION_STATE_MIGRATION_ROLLBACK_VERIFIER");
+    ⚡ print("MODE", MODE);
+    ⚡ print("MODE_VALID", MODE_VALID);
+    ⚡ print("SOURCE_INPUT_READY", SOURCE_INPUT_READY);
+    ⚡ print("SOURCE_DIGEST_MATCH", SOURCE_DIGEST_MATCH);
+    ⚡ print("SOURCE_COUNT_MATCH", SOURCE_COUNT_MATCH);
+    ⚡ print("SOURCE_STABLE", SOURCE_STABLE);
+    ⚡ print("MIGRATION_INPUT_READY", MIGRATION_INPUT_READY);
+    ⚡ print("CANDIDATE_DIGEST_MATCH", CANDIDATE_DIGEST_MATCH);
+    ⚡ print("CANDIDATE_COUNT_MATCH", CANDIDATE_COUNT_MATCH);
+    ⚡ print("MIGRATION_READY", MIGRATION_READY);
+    ⚡ print("MUTATION_INPUT_READY", MUTATION_INPUT_READY);
+    ⚡ print("MUTATED_EQUALS_BASELINE", MUTATED_EQUALS_BASELINE);
+    ⚡ print("MUTATION_DETECTED", MUTATION_DETECTED);
+    ⚡ print("ROLLBACK_INPUT_READY", ROLLBACK_INPUT_READY);
+    ⚡ print("RESTORED_DIGEST_MATCH", RESTORED_DIGEST_MATCH);
+    ⚡ print("RESTORED_COUNT_MATCH", RESTORED_COUNT_MATCH);
+    ⚡ print("ROLLBACK_READY", ROLLBACK_READY);
+    ⚡ print("DECISION", DECISION);
+    ⚡ print("WRITE_DECISION_RC", WRITE_DECISION_RC);
+    ⚡ print("MIGRATION_VERIFICATION_POLICY", "EXACT_CANONICAL_PACKAGE_DIGEST_AND_ENTRY_COUNT");
+    ⚡ print("HOST_MIGRATION_DECISION", "NO");
+    ⚡ print("HOST_ROLLBACK_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
