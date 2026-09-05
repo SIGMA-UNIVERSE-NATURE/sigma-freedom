@@ -75,7 +75,6 @@ DEF count_suffix(dir_path, suffix) {
     ⚡ B4_BEST_SUPPORT:
         H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", NULL, NULL);
 
-    # State-schema compatibility with the already persistent C3 shadow namespace.
     ⚡ INITIALIZED:
         H("read_text", ".sigma_exec/SIGMA_V4C3R1_INITIALIZED.memory", NULL, NULL);
     ⚡ LAST_SEEN_KEY:
