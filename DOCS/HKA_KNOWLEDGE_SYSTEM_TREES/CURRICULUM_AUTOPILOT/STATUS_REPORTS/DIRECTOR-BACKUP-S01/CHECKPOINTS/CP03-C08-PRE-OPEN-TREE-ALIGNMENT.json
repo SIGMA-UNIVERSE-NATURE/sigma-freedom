@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP03-C08-PRE-OPEN-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "status": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_anchor": {
+    "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "artifact": "B1_SCOPE_MAP",
+    "blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856"
+  },
+  "completed_candidate": {
+    "scope": "B1.1-C06",
+    "window": "C01-W02-B1.1-MATH-FAMILY-C06",
+    "candidate_commit": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+    "director_academic_audit": "PASS_102_CLAIMS_32_SEMANTIC_CLOSURES_6_SOURCES"
+  },
+  "planned_successor": {
+    "scope": "B1.1-C08",
+    "window": "C01-W02-B1.1-MATH-FAMILY-C08",
+    "canonical_name": "Toán rời rạc và tổ hợp",
+    "canonical_topics": [
+      "Kỹ thuật đếm",
+      "Hoán vị và tổ hợp",
+      "Quan hệ truy hồi",
+      "Lý thuyết đồ thị",
+      "Cây và mạng",
+      "Tối ưu tổ hợp",
+      "Mã sửa lỗi",
+      "Cấu trúc rời rạc"
+    ],
+    "registered_primary_owner": "C01-W02-B1.1-MATH-FAMILY-C08",
+    "required_risks": ["R05", "R02"]
+  },
+  "dependency_amendment": "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
+  "checks": {
+    "planned_scope_exists_in_frozen_scope_map": true,
+    "topic_set_matches_frozen_scope_map": true,
+    "stable_owner_matches": true,
+    "accepted_C01_C02_foundations_available": true,
+    "accepted_C03_supplemental_algebra_foundation_available": true,
+    "C07_delayed_to_avoid_graph_foundation_duplication": true,
+    "C07_C09_C10_remain_locked_during_C08": true,
+    "later_pipeline_stages_remain_gated": true
+  },
+  "authority_note": "Sentinel validates tree/dependency alignment only; Director acceptance and successor activation remain Director authority.",
+  "next_action": "Director may accept C06 and activate C08 only if control-plane and continuity snapshot are updated consistently."
+}
