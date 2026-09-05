@@ -1,41 +1,62 @@
 {
-  "schema_version":"1.0",
-  "window_id":"C01-W02-B1.1-MATH-FAMILY-C07",
-  "role":"ACADEMIC_WINDOW",
-  "stage":"CURRICULUM",
-  "status":"READY",
-  "execution_branch":"hka-tree/c01-w02-math-c07",
-  "input_commit_sha":"14729ce490289b057d5dca25767c3b5ea357e1ec",
-  "accepted_C08_commit_sha":"14729ce490289b057d5dca25767c3b5ea357e1ec",
-  "accepted_C06_commit_sha":"e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
-  "accepted_C05_commit_sha":"9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
-  "accepted_C04_commit_sha":"76077695c07b853ac37f058477177e211f740f17",
-  "accepted_C03_commit_sha":"7546ad74fb0e71ad2120c7091947993690bef82d",
-  "accepted_C02_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d",
-  "accepted_C01_commit_sha":"5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha":"0e2fab0e7b3bfd314106cfbb970b065fc8c64216",
-  "last_checkpoint_id":"CP01-BOOTSTRAP-ACTIVATED",
-  "scope_ids":["B1.1-C07"],
-  "completed_work":[
-    "Director accepted C08 after independent audit and two hypothesis repairs.",
-    "Dependency Amendment 3 activated C05 measure/analysis and C08 DAG foundations as supplemental prerequisites.",
-    "Installed C07 contract, execution prompt, Director open order and bootstrap checkpoint."
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS_CANDIDATE",
+  "worker_status": "PASS",
+  "disposition": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c07",
+  "input_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "accepted_C08_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "substantive_commit_sha": "0f96e42f780a6ddd5871f8603b8541b4616f9cf9",
+  "pre_pass_checkpoint_commit_sha": "1de42c3a21643c31a8373be5d572f864d32cbc28",
+  "last_checkpoint_commit_sha": "9fcfad0f38351fd1425d482a18f3263be67e0734",
+  "last_checkpoint_id": "CP04-WORKER-PASS-CANDIDATE",
+  "scope_ids": ["B1.1-C07"],
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 158,
+    "sources": 7,
+    "learning_objectives": 40,
+    "closure_records": 40,
+    "cross_links": 17,
+    "sequence_intents": 10
+  },
+  "completed_work": [
+    "Authored all ten canonical C07 topics as CURRICULUM nodes with 158 atomic claims and 7 stable academic sources.",
+    "Authored 40 D1-D4 learning objectives and 40 direct semantic Claim-to-Learning-Objective closure records.",
+    "Verified committed readback of 158 claims, 40 learning objectives and 40 closure rows with 100% supporting-claim resolution and future_or_locked_scope_claim_ids = 0.",
+    "Reused accepted C05 measure/integration foundations without generic measure-theory duplication.",
+    "Reused accepted C08 DAG/topological-order/reachability mathematics without generic graph/DAG duplication.",
+    "Applied R06 mathematics/statistics-vs-data/AI ownership boundaries and R13 AI secondary-cross-link control.",
+    "Verified theorem assumptions for LLN/CLT, Markov convergence, Cramer-Rao, regular MLE asymptotics and Wilks.",
+    "Verified that association/correlation/regression/prediction are never treated as causation without randomized design or explicit identification assumptions.",
+    "Verified prerequisite DAG acyclic and branch diff restricted to C07 curriculum/window/status artifacts.",
+    "Created no ACADEMIC_LOCKED, Lesson Registry, prompt, image, R2 or post-CURRICULUM artifact."
   ],
-  "remaining_work":[
-    "Author all ten canonical C07 topics.",
-    "Apply R06 mathematics-vs-data/AI and R13 AI secondary-link controls.",
-    "Reuse C05 measure/integration and C08 DAG foundations without duplicate learning meaning.",
-    "Create direct semantic Claim-to-Learning-Objective closure with zero future/locked support IDs.",
-    "Audit theorem/inferential/causal assumptions, sources, duplicates, prerequisites and stage boundary from committed files before candidate PASS."
+  "remaining_work": [
+    "Director review and acceptance of this C07 worker PASS candidate."
   ],
-  "blocking_issues":[],
-  "decisions_locked":[
+  "blocking_issues": [],
+  "decisions_locked": [
     "Scope is B1.1-C07 only.",
-    "Accepted predecessor is C08 terminal acceptance head 14729ce490289b057d5dca25767c3b5ea357e1ec.",
-    "C05 and C08 are supplemental academic prerequisites under Amendment 3.",
-    "C09/C10 remain locked.",
-    "No post-CURRICULUM artifact is authorized."
+    "Accepted predecessor is C08 commit 14729ce490289b057d5dca25767c3b5ea357e1ec.",
+    "C09 remains locked until Director-accepted C07 PASS.",
+    "C10 remains locked.",
+    "Future/locked scopes provide zero support Claim IDs.",
+    "No association-only or prediction-only causal conclusion is permitted.",
+    "No later pipeline stage artifact is authorized or created."
   ],
-  "next_action":"Execute C07 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C07 only.",
-  "successor_window":"C01-W02-B1.1-MATH-FAMILY-C07"
+  "director_acceptance_required": true,
+  "director_acceptance_claimed": false,
+  "successor_unlocked": false,
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C09 — GATED pending Director acceptance of C07",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C09"
 }
