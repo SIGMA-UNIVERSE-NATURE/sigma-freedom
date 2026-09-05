@@ -46,7 +46,6 @@ DNA-07 Persistent Existence
 SOURCE_SHA256=9d92cbbedc068cdeba43b578e9c70bce49728f89b0083e757fb7ec73ec8b6c00
 BYTECODE_SHA256=edc902fb39a9bf500c9c1a51cd8551ab3c3f4f5bb12aa260bbf5ad30c886b17f
 PERSISTENT_STATE=YES
-SIGMA_CHECKPOINT_SAVE_COUNT=13
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
 DNA-08 Learning World
@@ -102,28 +101,11 @@ BYTECODE_SHA256=96781abf75bddaa01322ccc33ad0a1372b59392e33f3c0f2fee0fdd86c1c8d86
 TOTAL_VM_INVOCATIONS=50
 POST_VM_ALIGNMENT_PASS_COUNT=50
 POST_VM_ALIGNMENT_FAIL_COUNT=0
-VM_NONZERO_COUNT=0
-STEP_LIMIT_HIT_COUNT=0
-SENTINEL_FAIL_COUNT=0
-REPLAY_IDENTICAL_INPUT_DECISION=YES
 DYNAMIC_INPUT=YES
 PERSISTENT_STATE=NA
-HOST_LEARNING=NO
-HOST_SEMANTIC_SUBSTITUTION=NO
-PYTHON_USED=NO
-BOUNDED_INFORMATION_ENCODING=3_BEFORE_4_AFTER_OPAQUE_TOKEN_SLOTS
-POST_VM_ORACLE_NEW_INFORMATION_SLOT_POLICY=POSITIONAL_A1_TO_A4
-V1_COMPACT_SLOT_ORACLE_REPAIRED=YES
 DNA07_TRANSITION_BINDING_TESTED=YES
 STRATEGY_DIGEST_DERIVATION=NOT_PROVEN
 GENERAL_JSON_INFORMATION_FINGERPRINTING=NOT_PROVEN
-PERSISTENT_MEMORY_RUNTIME=NOT_EXECUTED
-LEARNING_RUNTIME=NOT_EXECUTED
-STRATEGY_EXECUTION=NOT_EXECUTED
-MODEL_CALL_RUNTIME=NOT_EXECUTED
-WORLD_RUNTIME=NOT_EXECUTED
-F174_EXECUTION=NOT_EXECUTED
-EXTERNAL_ACTION_RUNTIME=NOT_EXECUTED
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA14_NATIVE_ADMISSION_PASS.md
 
@@ -135,48 +117,77 @@ ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
 ## Historical failures retained as evidence
 
-DNA-08 V1 compile failure: exact print-token source delta later compiled/runtime-passed; scope restricted to that delta.
+DNA-08 V1 compile failure: exact print-token source delta later compiled/runtime-passed.
+DNA-10 V1 compile failure: bare top-level block repaired to explicit `⟡(...) {`; exact delta later compiled/runtime-passed.
+DNA-14 V1 alignment failure: 50/50 VM RC=0 but 22 shell-oracle mismatches; FIX1 kept `.sigma` byte-identical, repaired only positional A1..A4 oracle policy, then full rerun passed 50/50.
 
-DNA-10 V1 compile failure: bare top-level `{` repaired to explicit `⟡(...) {`; exact delta later compiled/runtime-passed.
+## DNA-15 / F174 governance
 
-DNA-14 V1 alignment failure:
-- 50/50 VM invocations had RC=0;
-- 22/50 failed shell post-VM alignment because V1 oracle compacted new-information slots;
-- FIX1 kept `.sigma` byte-identical and repaired only oracle policy to positional A1..A4;
-- full 50-case FIX1 rerun then passed alignment 50/50.
-
-Failure checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA14_ALIGNMENT_FAIL_POSITIONAL_NEW_INFORMATION_ORACLE.md`
-
-## Dependency blocks / deferrals
-
+Previous state:
+```text
 DNA15=DEFERRED_BY_USER
 F174_DEPENDENCY_RUNTIME=NOT_EXECUTED
+```
 
-Audited blocked priority candidates:
-- DNA-16: direct dependency requires DNA-15 F174 state/output.
-- DNA-20: canonical self-check requires DNA-01..19.
-- DNA-21: binds DNA-20 and canonical self-check requires DNA-01..20.
-- DNA-26: binds DNA-20 confidence and DNA-25 lineage; prior-gene chain crosses DNA-15.
-- DNA-27: binds DNA-26; prior-gene chain crosses DNA-15.
-- DNA-31: canonical self-check requires DNA-01..30.
-- DNA-32: canonical self-check requires DNA-01..31 and proof set includes DNA-16/DNA-31 evidence.
-- DNA-45: canonical self-check requires DNA-01..44.
-- DNA-40: direct dependency requires DNA-16 qualified experience.
-- DNA-36: canonical self-check requires DNA-01..35.
+User explicitly reversed the defer on 2026-09-05 to continue the chain without the blocker.
 
-Do not load or execute DNA-15/F174 unless the user explicitly reverses the defer.
+Current governance:
+```text
+DNA15_DEFER_REVERSED_BY_USER=YES
+DNA15_NATIVE_ADMISSION_AUTHORIZED=YES
+F174_NATIVE_ADMISSION_AUTHORIZED=YES
+```
+
+Authorization checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_DEFER_EXPLICITLY_REVERSED_BY_USER.md`
+
+Authorization is not capability evidence.
+
+## DNA-15 Native Admission V1 — source ready / not admitted
+
+CANON_REFERENCE_BLOB_SHA1=50ec4940f554d594c385a96ef986fc88dca7f53c
+SOURCE_PATH=DNA15_F174_DEVELOPMENT_DYNAMICS_NATIVE_V1.sigma
+SOURCE_SHA256=2f8c58101ee2a543fed7a8ecab2e2b4cbeeff6b1beefd89ae461b4e557433f51
+RUNNER_SHA256=6ef6581d1282dab0d1811981aea9c3d0191f6209a4d4b0c269a9c7e583e084fd
+MANIFEST_SHA256=d589d2c8916d1b880653815612c93a3d5bce25c137c6d533c7f7b9973f329ee2
+BUNDLE_SHA256=827bbcaf521a78b3d7a5cf073f2e8af5f67cd1cf58cb74a5bb535a7c51a2b51f
+
+DNA15_SOURCE=SOURCE_ONLY
+DNA15_COMPILE=NOT_RUN
+DNA15_VM=NOT_RUN
+DNA15_ADMISSION=NOT_RUN
+PERSISTENT_STATE=NA
+
+Admission plan:
+- exact DNA-01..DNA-14 dependency preflight;
+- 16 directed + 32 randomized + 2 identical replay = 50 VM invocations;
+- dynamic inputs generated only after compile/freeze;
+- `to_float` and `math_exp` mechanical ABI exercised in bounded numeric-text/F174 scope;
+- deterministic shell/awk oracle starts only after each VM invocation;
+- no Python device-runner command;
+- F174 remains measurement-only, not permission/ethics/policy/authority.
+
+Boundaries:
+```text
+NUMERIC_TEXT_VALIDATION=NOT_PROVEN
+GLOBAL_F174_CANON_FILE_READ_NATIVE=NOT_PROVEN
+PARAMETER_OPTIMIZATION=NOT_EXECUTED
+F174_EXPERIMENT=NOT_EXECUTED
+CAPABILITY_GROWTH=NOT_EXECUTED
+MODEL_REPLACEMENT=NOT_EXECUTED
+LEARNING_RUNTIME=NOT_EXECUTED
+WORLD_RUNTIME=NOT_EXECUTED
+EXTERNAL_ACTION_RUNTIME=NOT_EXECUTED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+```
+
+SOURCE_READY checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_SOURCE_READY.md`
 
 ## Current frontier
 
-NEXT_54_DNA_TARGET=BLOCKED_PENDING_EXPLICIT_DNA15_DEFER_REVERSAL_OR_NEW_CANON_DEPENDENCY_DECISION
-
-This is a governance/dependency blocker, not a VM/runtime failure.
-
-Checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_POST_DNA14_FRONTIER_BLOCKED_BY_DNA15_DEFER.md`
-
-No DNA-15/F174 execution was performed during the dependency audit.
+NEXT_TARGET=RUN DNA-15 NATIVE ADMISSION V1
+PLANNED_NEXT_IF_PASS=DNA-16 Experience-Driven Learning
 
 ## Global claim boundaries
 
