@@ -1,0 +1,931 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.STRUCTURAL.REVALIDATION][VERSION=2.9R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.STRUCTURAL_REVALIDATION_V29R1) {
+
+    ⚡ SELECTED_WORK:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_SELECTED_WORK.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_SURVEY_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ EVIDENCE_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_EVIDENCE_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SNAPSHOT_DIR:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_SNAPSHOT_DIR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ ACTIVE_WORK_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_ACTIVE_WORK_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_CURSOR_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_TEXT:
+        H(
+            "read_text",
+            SURVEY_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ EVIDENCE_TEXT:
+        H(
+            "read_text",
+            EVIDENCE_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_STATE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V29R1_REVALIDATION_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ ACTIVE_WORK:
+        H(
+            "read_text",
+            ACTIVE_WORK_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ CURSOR_TEXT:
+        H(
+            "read_text",
+            CURSOR_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_LINES:
+        H(
+            "str_split",
+            SURVEY_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ EVIDENCE_LINES:
+        H(
+            "str_split",
+            EVIDENCE_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ STATE_LINES:
+        H(
+            "str_split",
+            OLD_STATE,
+            "\n",
+            NULL
+        );
+
+    ⚡ SURVEY_LINE_TOTAL:
+        H(
+            "list_len",
+            SURVEY_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ EVIDENCE_LINE_TOTAL:
+        H(
+            "list_len",
+            EVIDENCE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ STATE_LINE_TOTAL:
+        H(
+            "list_len",
+            STATE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_SURVEY_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_EVIDENCE_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_STATE_SPLIT_LINES:
+        65;
+
+    ⚡ SURVEY_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ EVIDENCE_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ STATE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_SURVEY_SPLIT_LINES < SURVEY_LINE_TOTAL) {
+        ⚡ SURVEY_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_EVIDENCE_SPLIT_LINES < EVIDENCE_LINE_TOTAL) {
+        ⚡ EVIDENCE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_STATE_SPLIT_LINES < STATE_LINE_TOTAL) {
+        ⚡ STATE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ SELECTED_WORK_VALID:
+        1;
+
+    IF (SELECTED_WORK == "") {
+        ⚡ SELECTED_WORK_VALID:
+            0;
+    }
+
+    ⚡ DOCUMENT_PATH:
+        "";
+
+    ⚡ DOCUMENT_EXISTS:
+        0;
+
+    IF (SELECTED_WORK_VALID) {
+
+        ⚡ DOCUMENT_PATH:
+            SNAPSHOT_DIR
+            + "/"
+            + SELECTED_WORK
+            + ".document";
+
+        ⚡ DOCUMENT_EXISTS_RAW:
+            H(
+                "file_exists",
+                DOCUMENT_PATH,
+                NULL,
+                NULL
+            );
+
+        IF (DOCUMENT_EXISTS_RAW) {
+            ⚡ DOCUMENT_EXISTS:
+                1;
+        }
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (SURVEY_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (EVIDENCE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SELECTED_WORK_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (DOCUMENT_EXISTS == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ print("SIGMA_V29R1_STRUCTURAL_REVALIDATION");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("SELECTED_WORK_VALID", SELECTED_WORK_VALID);
+        ⚡ print("DOCUMENT_EXISTS", DOCUMENT_EXISTS);
+        ⚡ print("SURVEY_LINE_TOTAL", SURVEY_LINE_TOTAL);
+        ⚡ print("EVIDENCE_LINE_TOTAL", EVIDENCE_LINE_TOTAL);
+        ⚡ print("STATE_LINE_TOTAL", STATE_LINE_TOTAL);
+        ⚡ print("SURVEY_LIMIT_EXCEEDED", SURVEY_LIMIT_EXCEEDED);
+        ⚡ print("EVIDENCE_LIMIT_EXCEEDED", EVIDENCE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_LIMIT_EXCEEDED", STATE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("HOST_REVALIDATION_DECISION", "NO");
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_TRUTH_VALIDATION", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ DOCUMENT_TEXT:
+            H(
+                "read_text",
+                DOCUMENT_PATH,
+                NULL,
+                NULL
+            );
+
+        ⚡ DOCUMENT_LINES:
+            H(
+                "str_split",
+                DOCUMENT_TEXT,
+                "\n",
+                NULL
+            );
+
+        ⚡ LINE_TOTAL:
+            H(
+                "list_len",
+                DOCUMENT_LINES,
+                NULL,
+                NULL
+            );
+
+        ⚡ CURSOR_PARTS:
+            H(
+                "str_split",
+                CURSOR_TEXT,
+                "|",
+                NULL
+            );
+
+        ⚡ CURSOR_PART_TOTAL:
+            H(
+                "list_len",
+                CURSOR_PARTS,
+                NULL,
+                NULL
+            );
+
+        ⚡ SEGMENT_INDEX:
+            CURSOR_PART_TOTAL - 1;
+
+        ⚡ SEGMENT_LINE_BUDGET:
+            8;
+
+        ⚡ SEGMENT_START_LINE:
+            0;
+
+        ⚡ C:
+            0;
+
+        WHILE (C < SEGMENT_INDEX) {
+
+            ⚡ SEGMENT_START_LINE:
+                SEGMENT_START_LINE + SEGMENT_LINE_BUDGET;
+
+            ⚡ C:
+                C + 1;
+        }
+
+        ⚡ DEEP_RELEARN_COMPLETE:
+            0;
+
+        IF (LINE_TOTAL < SEGMENT_START_LINE + 1) {
+            ⚡ DEEP_RELEARN_COMPLETE:
+                1;
+        }
+
+        ⚡ ACTIVE_WORK_MATCH:
+            0;
+
+        IF (ACTIVE_WORK == SELECTED_WORK) {
+            ⚡ ACTIVE_WORK_MATCH:
+                1;
+        }
+
+        ⚡ BASELINE_FOUND:
+            0;
+
+        ⚡ BASELINE_ANCHOR:
+            "";
+
+        ⚡ IGNORED_SURVEY_RECORD_COUNT:
+            0;
+
+        ⚡ S:
+            0;
+
+        WHILE (S < SURVEY_LINE_TOTAL) {
+
+            ⚡ SURVEY_LINE:
+                H(
+                    "list_get",
+                    SURVEY_LINES,
+                    S,
+                    NULL
+                );
+
+            ⚡ VALID_SURVEY_LINE:
+                1;
+
+            IF (SURVEY_LINE == "") {
+                ⚡ VALID_SURVEY_LINE:
+                    0;
+            }
+
+            IF (VALID_SURVEY_LINE) {
+
+                ⚡ SPARTS:
+                    H(
+                        "str_split",
+                        SURVEY_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ SPART_TOTAL:
+                    H(
+                        "list_len",
+                        SPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_SURVEY:
+                    0;
+
+                IF (3 < SPART_TOTAL) {
+
+                    ⚡ SSTATUS:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ SCOMMIT:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (SSTATUS == "SURVEY_STATUS=COMPLETE") {
+                        IF (SCOMMIT == "COMMIT=YES") {
+                            ⚡ COMMITTED_SURVEY:
+                                1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED_SURVEY) {
+
+                    ⚡ SDOC_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ SANCHOR_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ SDOC:
+                        H(
+                            "str_replace",
+                            SDOC_FIELD,
+                            "DOC=",
+                            ""
+                        );
+
+                    IF (SDOC == SELECTED_WORK) {
+
+                        IF (BASELINE_FOUND == 0) {
+
+                            ⚡ BASELINE_ANCHOR:
+                                H(
+                                    "str_replace",
+                                    SANCHOR_FIELD,
+                                    "BEST_LOCAL_RELATION=",
+                                    ""
+                                );
+
+                            ⚡ BASELINE_FOUND:
+                                1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED_SURVEY == 0) {
+                    ⚡ IGNORED_SURVEY_RECORD_COUNT:
+                        IGNORED_SURVEY_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ S:
+                S + 1;
+        }
+
+        ⚡ SEEN_EVIDENCE_CURSOR:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ SEEN_DEEP_ANCHOR:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ COMMITTED_DEEP_SEGMENT_COUNT:
+            0;
+
+        ⚡ MATCHING_BASELINE_SEGMENT_COUNT:
+            0;
+
+        ⚡ DISTINCT_DEEP_ANCHOR_COUNT:
+            0;
+
+        ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+            0;
+
+        ⚡ DUPLICATE_EVIDENCE_RECORD_COUNT:
+            0;
+
+        ⚡ E:
+            0;
+
+        WHILE (E < EVIDENCE_LINE_TOTAL) {
+
+            ⚡ EVIDENCE_LINE:
+                H(
+                    "list_get",
+                    EVIDENCE_LINES,
+                    E,
+                    NULL
+                );
+
+            ⚡ VALID_EVIDENCE_LINE:
+                1;
+
+            IF (EVIDENCE_LINE == "") {
+                ⚡ VALID_EVIDENCE_LINE:
+                    0;
+            }
+
+            IF (VALID_EVIDENCE_LINE) {
+
+                ⚡ EPARTS:
+                    H(
+                        "str_split",
+                        EVIDENCE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ EPART_TOTAL:
+                    H(
+                        "list_len",
+                        EPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_EVIDENCE:
+                    0;
+
+                IF (3 < EPART_TOTAL) {
+
+                    ⚡ ECOMMIT:
+                        H(
+                            "list_get",
+                            EPARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (ECOMMIT == "COMMIT=YES") {
+                        ⚡ COMMITTED_EVIDENCE:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_EVIDENCE) {
+
+                    ⚡ EWORK_FIELD:
+                        H(
+                            "list_get",
+                            EPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ ECURSOR_FIELD:
+                        H(
+                            "list_get",
+                            EPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ EANCHOR_FIELD:
+                        H(
+                            "list_get",
+                            EPARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ EWORK:
+                        H(
+                            "str_replace",
+                            EWORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ ECURSOR:
+                        H(
+                            "str_replace",
+                            ECURSOR_FIELD,
+                            "CURSOR=",
+                            ""
+                        );
+
+                    ⚡ EANCHOR:
+                        H(
+                            "str_replace",
+                            EANCHOR_FIELD,
+                            "BEST_LOCAL_RELATION=",
+                            ""
+                        );
+
+                    IF (EWORK == SELECTED_WORK) {
+
+                        ⚡ EVIDENCE_CURSOR_SEEN:
+                            H(
+                                "map_has",
+                                SEEN_EVIDENCE_CURSOR,
+                                ECURSOR,
+                                NULL
+                            );
+
+                        IF (EVIDENCE_CURSOR_SEEN == FALSE) {
+
+                            ⚡ MARK_EVIDENCE_CURSOR:
+                                H(
+                                    "map_set",
+                                    SEEN_EVIDENCE_CURSOR,
+                                    ECURSOR,
+                                    1
+                                );
+
+                            ⚡ COMMITTED_DEEP_SEGMENT_COUNT:
+                                COMMITTED_DEEP_SEGMENT_COUNT + 1;
+
+                            IF (EANCHOR == BASELINE_ANCHOR) {
+
+                                ⚡ MATCHING_BASELINE_SEGMENT_COUNT:
+                                    MATCHING_BASELINE_SEGMENT_COUNT + 1;
+                            }
+
+                            IF (EANCHOR == "") {
+                                ⚡ NOOP_EMPTY_ANCHOR:
+                                    0;
+                            }
+
+                            ⚡ EANCHOR_NONEMPTY:
+                                1;
+
+                            IF (EANCHOR == "") {
+                                ⚡ EANCHOR_NONEMPTY:
+                                    0;
+                            }
+
+                            IF (EANCHOR_NONEMPTY) {
+
+                                ⚡ DEEP_ANCHOR_SEEN:
+                                    H(
+                                        "map_has",
+                                        SEEN_DEEP_ANCHOR,
+                                        EANCHOR,
+                                        NULL
+                                    );
+
+                                IF (DEEP_ANCHOR_SEEN == FALSE) {
+
+                                    ⚡ MARK_DEEP_ANCHOR:
+                                        H(
+                                            "map_set",
+                                            SEEN_DEEP_ANCHOR,
+                                            EANCHOR,
+                                            1
+                                        );
+
+                                    ⚡ DISTINCT_DEEP_ANCHOR_COUNT:
+                                        DISTINCT_DEEP_ANCHOR_COUNT + 1;
+                                }
+                            }
+                        }
+
+                        IF (EVIDENCE_CURSOR_SEEN) {
+                            ⚡ DUPLICATE_EVIDENCE_RECORD_COUNT:
+                                DUPLICATE_EVIDENCE_RECORD_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED_EVIDENCE == 0) {
+                    ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+                        IGNORED_EVIDENCE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ E:
+                E + 1;
+        }
+
+        ⚡ REVALIDATION_READY:
+            1;
+
+        IF (DEEP_RELEARN_COMPLETE == 0) {
+            ⚡ REVALIDATION_READY:
+                0;
+        }
+
+        IF (ACTIVE_WORK_MATCH == 0) {
+            ⚡ REVALIDATION_READY:
+                0;
+        }
+
+        IF (BASELINE_FOUND == 0) {
+            ⚡ REVALIDATION_READY:
+                0;
+        }
+
+        IF (COMMITTED_DEEP_SEGMENT_COUNT == 0) {
+            ⚡ REVALIDATION_READY:
+                0;
+        }
+
+        ⚡ REVALIDATION_RESULT:
+            "PENDING";
+
+        IF (REVALIDATION_READY) {
+
+            ⚡ REVALIDATION_RESULT:
+                "NOT_REOBSERVED";
+
+            IF (0 < MATCHING_BASELINE_SEGMENT_COUNT) {
+
+                ⚡ REVALIDATION_RESULT:
+                    "REOBSERVED";
+            }
+        }
+
+        ⚡ REVALIDATION_ALREADY_COMMITTED:
+            0;
+
+        ⚡ IGNORED_STATE_RECORD_COUNT:
+            0;
+
+        ⚡ T:
+            0;
+
+        WHILE (T < STATE_LINE_TOTAL) {
+
+            ⚡ STATE_LINE:
+                H(
+                    "list_get",
+                    STATE_LINES,
+                    T,
+                    NULL
+                );
+
+            ⚡ VALID_STATE_LINE:
+                1;
+
+            IF (STATE_LINE == "") {
+                ⚡ VALID_STATE_LINE:
+                    0;
+            }
+
+            IF (VALID_STATE_LINE) {
+
+                ⚡ TPARTS:
+                    H(
+                        "str_split",
+                        STATE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ TPART_TOTAL:
+                    H(
+                        "list_len",
+                        TPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_STATE:
+                    0;
+
+                IF (3 < TPART_TOTAL) {
+
+                    ⚡ TCOMMIT:
+                        H(
+                            "list_get",
+                            TPARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (TCOMMIT == "COMMIT=YES") {
+                        ⚡ COMMITTED_STATE:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_STATE) {
+
+                    ⚡ TWORK_FIELD:
+                        H(
+                            "list_get",
+                            TPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ TRESULT_FIELD:
+                        H(
+                            "list_get",
+                            TPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ TBASELINE_FIELD:
+                        H(
+                            "list_get",
+                            TPARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ TWORK:
+                        H(
+                            "str_replace",
+                            TWORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ TRESULT:
+                        H(
+                            "str_replace",
+                            TRESULT_FIELD,
+                            "RESULT=",
+                            ""
+                        );
+
+                    ⚡ TBASELINE:
+                        H(
+                            "str_replace",
+                            TBASELINE_FIELD,
+                            "BASELINE=",
+                            ""
+                        );
+
+                    IF (TWORK == SELECTED_WORK) {
+                        IF (TRESULT == REVALIDATION_RESULT) {
+                            IF (TBASELINE == BASELINE_ANCHOR) {
+                                ⚡ REVALIDATION_ALREADY_COMMITTED:
+                                    1;
+                            }
+                        }
+                    }
+                }
+
+                IF (COMMITTED_STATE == 0) {
+                    ⚡ IGNORED_STATE_RECORD_COUNT:
+                        IGNORED_STATE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ T:
+                T + 1;
+        }
+
+        ⚡ REVALIDATION_APPEND_RC:
+            0;
+
+        IF (REVALIDATION_READY) {
+
+            IF (REVALIDATION_ALREADY_COMMITTED == 0) {
+
+                ⚡ REVALIDATION_RECORD:
+                    "\nWORK="
+                    + SELECTED_WORK
+                    + " || RESULT="
+                    + REVALIDATION_RESULT
+                    + " || BASELINE="
+                    + BASELINE_ANCHOR
+                    + " || COMMIT=YES";
+
+                ⚡ REVALIDATION_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V29R1_REVALIDATION_STATE.memory",
+                        REVALIDATION_RECORD,
+                        NULL
+                    );
+            }
+        }
+
+        ⚡ print("SIGMA_V29R1_STRUCTURAL_REVALIDATION");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("DOCUMENT_PATH", DOCUMENT_PATH);
+        ⚡ print("DOCUMENT_EXISTS", DOCUMENT_EXISTS);
+        ⚡ print("LINE_TOTAL", LINE_TOTAL);
+        ⚡ print("CURSOR_SEGMENT_INDEX", SEGMENT_INDEX);
+        ⚡ print("CURSOR_SEGMENT_START_LINE", SEGMENT_START_LINE);
+        ⚡ print("DEEP_RELEARN_COMPLETE", DEEP_RELEARN_COMPLETE);
+        ⚡ print("ACTIVE_WORK_MATCH", ACTIVE_WORK_MATCH);
+        ⚡ print("BASELINE_FOUND", BASELINE_FOUND);
+        ⚡ print("BASELINE_ANCHOR", BASELINE_ANCHOR);
+        ⚡ print("COMMITTED_DEEP_SEGMENT_COUNT", COMMITTED_DEEP_SEGMENT_COUNT);
+        ⚡ print("MATCHING_BASELINE_SEGMENT_COUNT", MATCHING_BASELINE_SEGMENT_COUNT);
+        ⚡ print("DISTINCT_DEEP_ANCHOR_COUNT", DISTINCT_DEEP_ANCHOR_COUNT);
+        ⚡ print("DUPLICATE_EVIDENCE_RECORD_COUNT", DUPLICATE_EVIDENCE_RECORD_COUNT);
+        ⚡ print("IGNORED_SURVEY_RECORD_COUNT", IGNORED_SURVEY_RECORD_COUNT);
+        ⚡ print("IGNORED_EVIDENCE_RECORD_COUNT", IGNORED_EVIDENCE_RECORD_COUNT);
+        ⚡ print("IGNORED_STATE_RECORD_COUNT", IGNORED_STATE_RECORD_COUNT);
+        ⚡ print("REVALIDATION_READY", REVALIDATION_READY);
+        ⚡ print("REVALIDATION_RESULT", REVALIDATION_RESULT);
+        ⚡ print("REVALIDATION_ALREADY_COMMITTED", REVALIDATION_ALREADY_COMMITTED);
+        ⚡ print("REVALIDATION_APPEND_RC", REVALIDATION_APPEND_RC);
+        ⚡ print("STRUCTURAL_REVALIDATION_POLICY", "BASELINE_SURVEY_ANCHOR_REOBSERVED_IN_COMMITTED_DEEP_SEGMENT_BEST_ANCHOR");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_SURVEY_SPLIT_LINES", MAX_SURVEY_SPLIT_LINES);
+        ⚡ print("MAX_EVIDENCE_SPLIT_LINES", MAX_EVIDENCE_SPLIT_LINES);
+        ⚡ print("MAX_STATE_SPLIT_LINES", MAX_STATE_SPLIT_LINES);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("HOST_REVALIDATION_DECISION", "NO");
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_REVALIDATION_ONLY", "YES");
+        ⚡ print("SEMANTIC_TRUTH_VALIDATION", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
