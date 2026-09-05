@@ -2,6 +2,46 @@
 
 Last updated: 2026-09-05 (Asia/Ho_Chi_Minh)
 
+## REPOSITORY-WIDE BOOTSTRAP STOP-GATE
+
+**Before any SIGMA work, every window/session/agent MUST read:**
+
+1. `/AGENTS.md`
+2. `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
+3. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+4. this `CURRENT_HANDOFF.md`
+5. latest relevant checkpoint
+
+Bootstrap commits installed:
+
+- native-execution directive: `a6a6856a4b233ef47378096f5909b9b084de9485`
+- root `AGENTS.md`: `c737721739e9e2fa368bac05fcf592f5146fd1b2`
+- `SIGMA_PROFESSOR/README.md` bootstrap update: `209f4c1192417937ed2c2e0974dfb99b3de2d4e2`
+
+### Non-negotiable execution boundary
+
+- `SIGMA_EXECUTION_ENGINE=LOCKED_SIGMA_VM_ONLY`
+- `ACTIVE_CAPABILITY_IMPLEMENTATION=NATIVE_SIGMA_ONLY`
+- `ACTIVE_COGNITION_NATIVE_SIGMA_ONLY=YES`
+- `HOST_OR_BASH_AS_SIGMA_EXECUTION_ENGINE=FORBIDDEN`
+- `HOST_OR_BASH_COGNITION=FORBIDDEN`
+- `HOST_OR_BASH_LEARNING=FORBIDDEN`
+- `HOST_OR_BASH_SEMANTIC_INTERPRETATION=FORBIDDEN`
+- `HOST_OR_BASH_STAGE_DECISION=FORBIDDEN`
+- `HOST_OR_BASH_WORK_SELECTION=FORBIDDEN`
+- `HOST_OR_BASH_REVISIT_PRIORITY=FORBIDDEN`
+- `HOST_OR_BASH_TRUTH_DECISION=FORBIDDEN`
+- `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`
+
+Bash/host is **not SIGMA**. It MUST NOT implement or substitute any SIGMA cognitive capability. It may only be an external mechanically transparent harness: invoke the locked compiler/VM, move exact bytes/files, print/compare hashes and return codes, create isolated fixtures/fault injections, supervise processes/transport bytes, or dispatch an **exact event/stage already emitted by native SIGMA** without choosing or rewriting it.
+
+- `BASH_MAY_LAUNCH_SIGMA=YES`
+- `BASH_MAY_IMPLEMENT_SIGMA_CAPABILITY=NO`
+- `HOST_MAY_DISPATCH_EXACT_NATIVE_EVENT=MECHANICAL_ONLY`
+- `HOST_MAY_CHOOSE_EVENT_OR_STAGE=NO`
+
+If an old artifact conflicts with this bootstrap flag, treat the old artifact as historical evidence/provenance only. Never weaken this STOP-GATE to preserve old behavior.
+
 ## Mandatory standard
 
 Read first: `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`.
@@ -198,8 +238,9 @@ This pointer does not change the V2.22 continual-learning frontier or production
 
 ## NEXT ACTION
 
-1. Keep V2.4 running unchanged.
-2. Install exact V2.22 source and runner hashes from repo root `~/SIGMA/sigma-freedom-write`.
-3. Run locked sigmac + VM v09 and preserve runtime hashes, V222 bytecode SHA, every VM_RC, recovered TX/payload, journal hashes and injected-fault outcomes.
-4. If any dependency or gate fails, preserve evidence and repair only the narrow failure.
-5. If V2.22 PASS, checkpoint it and integrate the journal around real shadow scheduled-intent persistence before any production migration/promotion.
+1. Re-read `/AGENTS.md` and the bootstrap directive before implementation.
+2. Keep V2.4 running unchanged.
+3. Install exact V2.22 source and runner hashes from repo root `~/SIGMA/sigma-freedom-write`.
+4. Run locked sigmac + VM v09 and preserve runtime hashes, V222 bytecode SHA, every VM_RC, recovered TX/payload, journal hashes and injected-fault outcomes.
+5. If any dependency or gate fails, preserve evidence and repair only the narrow native failure; do not substitute Bash/host cognition.
+6. If V2.22 PASS, checkpoint it and integrate the journal around real shadow scheduled-intent persistence before any production migration/promotion.
