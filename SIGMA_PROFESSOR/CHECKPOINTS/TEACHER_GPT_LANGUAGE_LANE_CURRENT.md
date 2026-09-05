@@ -177,26 +177,68 @@ Scoring, candidate competition, ambiguity policy, persistence policy, oracle PAS
 
 Claim scope: native bounded two-candidate structural antecedent competition with persistent ambiguity and conservative preference revision. This does not prove real-world entity identity, pronoun semantics, general coreference resolution, discourse semantics, semantic understanding, Unicode normalization, or production readiness.
 
-## CURRENT FRONTIER — POST LANG-01F PASS / NEXT CAPABILITY NOT YET IMPLEMENTED
+## CURRENT FRONTIER — LANG-01G SELECTED / NATIVE IMPLEMENTATION PENDING
 
-LANG-01A through LANG-01F are admitted in their exact tested structural scopes.
+Capability:
 
-Do NOT jump directly to a claim of resolved reference or semantic understanding.
+`LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION`
 
-Before implementing the next language lesson:
+Dependency/canon preflight result:
 
-1. re-read the latest Global Native Teaching Standard;
-2. re-read the latest `CURRENT_HANDOFF.md` because other lanes advance in parallel;
-3. re-read relevant DNA/canon for uncertainty, provenance, truth/verification, memory/discourse, representation, and contradiction as needed;
-4. search the repo for duplicate capability work;
-5. choose the smallest dependency-first next capability.
+- `NEXT_LANGUAGE_CAPABILITY=LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION`
+- `SELECTION_STATUS=LOCKED_BY_DEPENDENCY_PREFLIGHT`
+- `DEPENDENCY_PREFLIGHT=PASS_FOR_SOURCE_AUTHORING`
+- `DUPLICATE_CAPABILITY_SEARCH=NO_LANG_01G_IMPLEMENTATION_FOUND_IN_CURRENT_SIGMA_LIFE_TREE`
+- `LANG_02_NEGATION_AND_SCOPE_FOUNDATION=DEFERRED_NOT_REJECTED`
+- `ADMISSION=NOT_RUN`
 
-Current candidate directions after LANG-01F:
+Selection reason:
 
-- `LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION`
-- or `LANG-02_NEGATION_AND_SCOPE_FOUNDATION`
+LANG-01F already provides the immediate substrate required by LANG-01G: exactly two competing structural antecedent hypotheses, first-class ambiguity, persistence, and conservative preference revision. The Global Native Teaching Standard separately requires evidence comparison, uncertainty handling, provenance, dynamic counterexamples, persistence/replay, and native-only cognition. Evidence integration is therefore the smallest direct dependency-first extension. Negation/scope is an independent language foundation and is not required to integrate the already-admitted reference hypotheses, so LANG-02 remains queued rather than being pulled forward.
 
-Decision is intentionally `NOT_YET_LOCKED`. Do not implement either until the dependency/canon preflight above is complete.
+Teaching goal:
+
+Given a valid LANG-01F two-candidate reference state plus bounded new structural evidence observations, native SIGMA must integrate multiple independent evidence items by exact structural feature/value compatibility, preserve evidence identity/provenance, prevent duplicate evidence from double-counting, preserve ambiguity when aggregate evidence is tied or non-discriminating, and emit a preferred antecedent hypothesis only when the native aggregate evidence favors one candidate. Later counterevidence must be able to revise or remove a prior preference.
+
+Critical invariants:
+
+- `PREFERRED_ANTECEDENT_HYPOTHESIS != RESOLVED_REFERENT`
+- `HOST_EVIDENCE_SCORING=NO`
+- `HOST_ANTECEDENT_SELECTION=NO`
+- `EVIDENCE_RECORD_ORDER_NOT_WINNER_POLICY`
+- `DUPLICATE_EVIDENCE_ID_DOES_NOT_DOUBLE_COUNT`
+- exactly two antecedent candidates remain the bounded model;
+- no semantic role labels, pronoun meanings, real-world identity, or resolved referent are injected by the host;
+- rejected/withheld cognition must preserve the LANG-01F R1 output-state invariant: if commit is refused and no prior valid state exists, the next state is `NONE`.
+
+Planned admission requirements before any PASS claim:
+
+- locked sigmac and VM identity equality gates;
+- dynamic materially different evidence inputs;
+- aggregate tie / non-discriminating evidence -> ambiguity;
+- multi-item evidence favoring candidate A;
+- candidate-order permutation with same evidence -> same preferred identity;
+- counterevidence that removes or reverses preference;
+- duplicate evidence suppression;
+- one-candidate and three-candidate refusal;
+- evidence-capacity refusal;
+- corrupt-state refusal;
+- persistent-state material effect across fresh VM processes;
+- deterministic restart/replay;
+- host-substitution audit;
+- step-limit/boundedness gate;
+- production state unchanged.
+
+Implementation status at this checkpoint update:
+
+- `NATIVE_SOURCE_PATH=NOT_YET_WRITTEN`
+- `SOURCE_SHA256=UNKNOWN`
+- `BYTECODE_SHA256=UNKNOWN`
+- `RUNNER_SHA256=UNKNOWN`
+- `RUNTIME_PROOF=NOT_RUN`
+- `ADMISSION=NOT_RUN`
+
+Do NOT claim `COREFERENCE_RESOLUTION=PROVEN` from selection or source existence. LANG-01G, even if later admitted, is initially scoped only to bounded structural reference-evidence integration and conservative antecedent preference.
 
 ## CLAIM BOUNDARIES FOR THE LANGUAGE LANE
 
