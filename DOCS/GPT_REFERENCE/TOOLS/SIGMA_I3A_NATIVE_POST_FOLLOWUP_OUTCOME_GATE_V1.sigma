@@ -1,0 +1,440 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.INTERNET.I3A.POST_FOLLOWUP.OUTCOME_GATE][VERSION=I3A1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(v) {
+    IF (v == "") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(v, expected) {
+    IF (v == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF field(text, key) {
+    ⚡ LINES:
+        H("str_split", text, "\n", NULL);
+    ⚡ N:
+        H("list_len", LINES, NULL, NULL);
+    ⚡ I: 0;
+
+    WHILE (I < N) {
+        ⚡ LINE:
+            H("list_get", LINES, I, NULL);
+        ⚡ PARTS:
+            H("str_split", LINE, "=", NULL);
+        ⚡ C:
+            H("list_len", PARTS, NULL, NULL);
+
+        IF (C == 2) {
+            ⚡ K:
+                H("list_get", PARTS, 0, NULL);
+            IF (K == key) {
+                RETURN H("list_get", PARTS, 1, NULL);
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    RETURN "";
+}
+
+DEF numeric(v) {
+    IF (present(v) == 0) { RETURN -1; }
+    RETURN H("to_float", v, NULL, NULL);
+}
+
+DEF bool_yes(v) {
+    RETURN exact(v, "YES");
+}
+
+DEF fresh_integrity_ok(verify_text) {
+    ⚡ INDEP:
+        field(verify_text, "INDEPENDENT_VERIFY_RC");
+    ⚡ CONTROL:
+        field(verify_text, "CONTROL_PLANE");
+    ⚡ SOURCE_PLANE:
+        field(verify_text, "SOURCE_SELECTION_PLANE");
+    ⚡ COLLECTION_PLANE:
+        field(verify_text, "COLLECTION_DECISION_PLANE");
+    ⚡ SEARCH_BOUND:
+        field(verify_text, "ALL_SEARCH_REQUESTS_BOUND_TO_SIGMA_ACTION");
+    ⚡ SOURCE_BOUND:
+        field(verify_text, "ALL_SOURCE_SELECTIONS_BOUND_TO_SIGMA_ACTION");
+    ⚡ PROBE_BOUND:
+        field(verify_text, "ALL_SOURCE_PROBES_BOUND_TO_SIGMA_SELECTION_AND_FETCH");
+    ⚡ READER_BOUND:
+        field(verify_text, "ALL_READER_RUNS_BOUND_TO_SIGMA_ACTION");
+    ⚡ KEEP_BOUND:
+        field(verify_text, "ALL_KEEP_EVENTS_BOUND_TO_SIGMA_ACTION");
+    ⚡ COLLECTION_PASS:
+        field(verify_text, "SIGMA_NATIVE_MULTI_SOURCE_COLLECTION");
+
+    RETURN
+        exact(INDEP, "0")
+        * exact(CONTROL, "ONE_CONTINUOUS_SIGMA_NATIVE_VM")
+        * exact(SOURCE_PLANE, "SIGMA_NATIVE_VM")
+        * exact(COLLECTION_PLANE, "SIGMA_NATIVE_VM")
+        * bool_yes(SEARCH_BOUND)
+        * bool_yes(SOURCE_BOUND)
+        * bool_yes(PROBE_BOUND)
+        * bool_yes(READER_BOUND)
+        * bool_yes(KEEP_BOUND)
+        * exact(COLLECTION_PASS, "PASS_TESTED_SCOPE");
+}
+
+DEF action_for(prior_text, provenance_text, verify_text) {
+    ⚡ PRIOR_STATE:
+        field(prior_text, "ASSESSMENT_STATE");
+    ⚡ RUN_ID:
+        field(provenance_text, "RUN_ID");
+    ⚡ KEEP_EVENTS_TEXT:
+        field(verify_text, "KEEP_EVENTS");
+    ⚡ UNIQUE_LESSONS_TEXT:
+        field(verify_text, "UNIQUE_LESSONS");
+    ⚡ DUPLICATES_TEXT:
+        field(verify_text, "EXACT_DUPLICATE_KEEP_EVENTS");
+    ⚡ BUDGET_OVERRUN_TEXT:
+        field(verify_text, "RESOURCE_BUDGET_OVERRUN");
+
+    IF (present(PRIOR_STATE) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (PRIOR_STATE != "MORE_EVIDENCE") {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (present(RUN_ID) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (fresh_integrity_ok(verify_text) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (present(KEEP_EVENTS_TEXT) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (present(UNIQUE_LESSONS_TEXT) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (present(DUPLICATES_TEXT) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (present(BUDGET_OVERRUN_TEXT) == 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    ⚡ KEEP_EVENTS:
+        numeric(KEEP_EVENTS_TEXT);
+    ⚡ UNIQUE_LESSONS:
+        numeric(UNIQUE_LESSONS_TEXT);
+    ⚡ DUPLICATES:
+        numeric(DUPLICATES_TEXT);
+    ⚡ BUDGET_OVERRUN:
+        numeric(BUDGET_OVERRUN_TEXT);
+
+    IF (KEEP_EVENTS < 0) { RETURN "HOLD_UNKNOWN"; }
+    IF (UNIQUE_LESSONS < 0) { RETURN "HOLD_UNKNOWN"; }
+    IF (DUPLICATES < 0) { RETURN "HOLD_UNKNOWN"; }
+    IF (BUDGET_OVERRUN < 0) { RETURN "HOLD_UNKNOWN"; }
+
+    IF (BUDGET_OVERRUN > 0) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (UNIQUE_LESSONS > KEEP_EVENTS) {
+        RETURN "HOLD_UNKNOWN";
+    }
+
+    IF (UNIQUE_LESSONS > 0) {
+        IF (KEEP_EVENTS > 0) {
+            RETURN "ASSESS_FRESH_EVIDENCE";
+        }
+    }
+
+    RETURN "REPLAN_RESEARCH";
+}
+
+DEF record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ C:
+        H("list_len", P, NULL, NULL);
+
+    IF (C != 8) { RETURN 0; }
+
+    ⚡ R0: H("list_get", P, 0, NULL);
+    ⚡ R1: H("list_get", P, 1, NULL);
+    ⚡ R2: H("list_get", P, 2, NULL);
+    ⚡ R3: H("list_get", P, 3, NULL);
+    ⚡ R4: H("list_get", P, 4, NULL);
+    ⚡ R5: H("list_get", P, 5, NULL);
+    ⚡ R6: H("list_get", P, 6, NULL);
+    ⚡ R7: H("list_get", P, 7, NULL);
+
+    IF (R0 != "I3A") { RETURN 0; }
+    IF (present(R1) == 0) { RETURN 0; }
+    IF (present(R2) == 0) { RETURN 0; }
+    IF (present(R3) == 0) { RETURN 0; }
+    IF (present(R4) == 0) { RETURN 0; }
+    IF (present(R5) == 0) { RETURN 0; }
+    IF (R6 != "COMMIT") { RETURN 0; }
+    IF (R7 != "YES") { RETURN 0; }
+
+    RETURN 1;
+}
+
+⟡(Σ.I3A_POST_FOLLOWUP_OUTCOME_GATE) {
+    ⚡ BASE:
+        ".sigma_exec/SIGMA_I3A_POST_FOLLOWUP_OUTCOME_GATE";
+
+    ⚡ PRIOR_TEXT:
+        H("read_text", BASE + "/input/prior.control.union", NULL, NULL);
+    ⚡ PROVENANCE_TEXT:
+        H("read_text", BASE + "/input/fresh.provenance.state", NULL, NULL);
+    ⚡ VERIFY_TEXT:
+        H("read_text", BASE + "/input/fresh.verification.state", NULL, NULL);
+
+    ⚡ PRIOR_STATE:
+        field(PRIOR_TEXT, "ASSESSMENT_STATE");
+    ⚡ RUN_ID:
+        field(PROVENANCE_TEXT, "RUN_ID");
+    ⚡ KEEP_EVENTS_TEXT:
+        field(VERIFY_TEXT, "KEEP_EVENTS");
+    ⚡ UNIQUE_LESSONS_TEXT:
+        field(VERIFY_TEXT, "UNIQUE_LESSONS");
+    ⚡ DUPLICATES_TEXT:
+        field(VERIFY_TEXT, "EXACT_DUPLICATE_KEEP_EVENTS");
+    ⚡ BUDGET_OVERRUN_TEXT:
+        field(VERIFY_TEXT, "RESOURCE_BUDGET_OVERRUN");
+
+    ⚡ FRESH_INTEGRITY_OK:
+        fresh_integrity_ok(VERIFY_TEXT);
+
+    ⚡ NEXT_ACTION:
+        action_for(PRIOR_TEXT, PROVENANCE_TEXT, VERIFY_TEXT);
+
+    ⚡ MEMORY_PATH:
+        BASE + "/state/i3a.memory";
+    ⚡ EVENT_PATH:
+        BASE + "/state/i3a_event.txt";
+    ⚡ MEMORY_HEADER:
+        "STATE||SIGMA_I3A_POST_FOLLOWUP_OUTCOME_GATE_V1||COMMIT||YES";
+
+    ⚡ MEMORY_TEXT:
+        H("read_text", MEMORY_PATH, NULL, NULL);
+
+    ⚡ MEMORY_VALID: 1;
+    ⚡ RECORD_COUNT: 0;
+    ⚡ EXACT_ALREADY: 0;
+    ⚡ RUN_ID_CONFLICT: 0;
+
+    IF (MEMORY_TEXT != "") {
+        ⚡ ML:
+            H("str_split", MEMORY_TEXT, "\n", NULL);
+        ⚡ MC:
+            H("list_len", ML, NULL, NULL);
+
+        IF (MC < 1) {
+            ⚡ MEMORY_VALID: 0;
+        }
+
+        IF (MEMORY_VALID == 1) {
+            ⚡ MH:
+                H("list_get", ML, 0, NULL);
+            IF (MH != MEMORY_HEADER) {
+                ⚡ MEMORY_VALID: 0;
+            }
+        }
+
+        IF (MEMORY_VALID == 1) {
+            ⚡ I: 1;
+            WHILE (I < MC) {
+                ⚡ LINE:
+                    H("list_get", ML, I, NULL);
+                IF (record_valid(LINE) == 0) {
+                    ⚡ MEMORY_VALID: 0;
+                }
+
+                IF (record_valid(LINE) == 1) {
+                    ⚡ RP:
+                        H("str_split", LINE, "||", NULL);
+                    ⚡ RRUN:
+                        H("list_get", RP, 1, NULL);
+                    ⚡ RPRIOR:
+                        H("list_get", RP, 2, NULL);
+                    ⚡ RUNIQUE:
+                        H("list_get", RP, 3, NULL);
+                    ⚡ RKEEP:
+                        H("list_get", RP, 4, NULL);
+                    ⚡ RACTION:
+                        H("list_get", RP, 5, NULL);
+
+                    ⚡ RECORD_COUNT:
+                        RECORD_COUNT + 1;
+
+                    IF (RRUN == RUN_ID) {
+                        IF (RPRIOR == PRIOR_STATE) {
+                            IF (RUNIQUE == UNIQUE_LESSONS_TEXT) {
+                                IF (RKEEP == KEEP_EVENTS_TEXT) {
+                                    IF (RACTION == NEXT_ACTION) {
+                                        ⚡ EXACT_ALREADY: 1;
+                                    }
+                                }
+                            }
+                        }
+
+                        IF (EXACT_ALREADY == 0) {
+                            ⚡ RUN_ID_CONFLICT: 1;
+                        }
+                    }
+                }
+
+                ⚡ I: I + 1;
+            }
+        }
+    }
+
+    ⚡ STATUS: "HOLD_UNKNOWN";
+    ⚡ WRITE_ATTEMPTED: 0;
+    ⚡ WRITE_RC: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ STATE_MUTATED: 0;
+    ⚡ EVENT_EMITTED: 0;
+    ⚡ EVENT_WRITE_RC: 0;
+    ⚡ EVENT_READBACK_MATCH: 0;
+
+    IF (MEMORY_VALID == 0) {
+        ⚡ STATUS: "REFUSE_INVALID_MEMORY";
+        ⚡ NEXT_ACTION: "HOLD_UNKNOWN";
+    }
+
+    IF (MEMORY_VALID == 1) {
+        IF (RUN_ID_CONFLICT == 1) {
+            ⚡ STATUS: "REFUSE_RUN_ID_CONFLICT";
+            ⚡ NEXT_ACTION: "HOLD_UNKNOWN";
+        }
+    }
+
+    IF (MEMORY_VALID == 1) {
+        IF (RUN_ID_CONFLICT == 0) {
+            IF (EXACT_ALREADY == 1) {
+                ⚡ STATUS: "ALREADY_DECIDED_SAME_OUTCOME";
+            }
+        }
+    }
+
+    IF (MEMORY_VALID == 1) {
+        IF (RUN_ID_CONFLICT == 0) {
+            IF (EXACT_ALREADY == 0) {
+                IF (NEXT_ACTION == "ASSESS_FRESH_EVIDENCE") {
+                    ⚡ STATUS: "NATIVE_NEXT_ACTION_READY";
+                }
+
+                IF (NEXT_ACTION == "REPLAN_RESEARCH") {
+                    ⚡ STATUS: "NATIVE_NEXT_ACTION_READY";
+                }
+
+                IF (NEXT_ACTION == "HOLD_UNKNOWN") {
+                    ⚡ STATUS: "HOLD_UNKNOWN";
+                }
+            }
+        }
+    }
+
+    IF (STATUS == "NATIVE_NEXT_ACTION_READY") {
+        ⚡ NEW_RECORD:
+            "I3A||"
+            + RUN_ID + "||"
+            + PRIOR_STATE + "||"
+            + UNIQUE_LESSONS_TEXT + "||"
+            + KEEP_EVENTS_TEXT + "||"
+            + NEXT_ACTION + "||COMMIT||YES";
+
+        ⚡ PROPOSED:
+            MEMORY_HEADER + "\n" + NEW_RECORD;
+
+        IF (MEMORY_TEXT != "") {
+            ⚡ PROPOSED:
+                MEMORY_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1;
+        ⚡ WRITE_RC:
+            H("write_text", MEMORY_PATH, PROPOSED, NULL);
+        ⚡ READBACK:
+            H("read_text", MEMORY_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK, PROPOSED);
+
+        IF (WRITE_READBACK_MATCH == 1) {
+            ⚡ STATE_MUTATED: 1;
+
+            ⚡ EVENT_TEXT:
+                "I3A_EVENT||"
+                + RUN_ID + "||"
+                + NEXT_ACTION + "||COMMIT||YES";
+
+            ⚡ EVENT_WRITE_RC:
+                H("write_text", EVENT_PATH, EVENT_TEXT, NULL);
+            ⚡ EVENT_READBACK:
+                H("read_text", EVENT_PATH, NULL, NULL);
+            ⚡ EVENT_READBACK_MATCH:
+                exact(EVENT_READBACK, EVENT_TEXT);
+
+            IF (EVENT_READBACK_MATCH == 1) {
+                ⚡ EVENT_EMITTED: 1;
+                ⚡ STATUS: "DECISION_COMMITTED";
+            }
+
+            IF (EVENT_READBACK_MATCH == 0) {
+                ⚡ STATUS: "EVENT_WRITE_READBACK_FAILED";
+            }
+        }
+
+        IF (WRITE_READBACK_MATCH == 0) {
+            ⚡ STATUS: "MEMORY_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ print("I3A_NATIVE", "POST_FOLLOWUP_OUTCOME_GATE");
+    ⚡ print("PRIOR_STATE", PRIOR_STATE);
+    ⚡ print("RUN_ID", RUN_ID);
+    ⚡ print("FRESH_INTEGRITY_OK", FRESH_INTEGRITY_OK);
+    ⚡ print("KEEP_EVENTS", KEEP_EVENTS_TEXT);
+    ⚡ print("UNIQUE_LESSONS", UNIQUE_LESSONS_TEXT);
+    ⚡ print("EXACT_DUPLICATE_KEEP_EVENTS", DUPLICATES_TEXT);
+    ⚡ print("RESOURCE_BUDGET_OVERRUN", BUDGET_OVERRUN_TEXT);
+    ⚡ print("NEXT_RESEARCH_ACTION", NEXT_ACTION);
+    ⚡ print("I3A_STATUS", STATUS);
+    ⚡ print("MEMORY_VALID", MEMORY_VALID);
+    ⚡ print("EXACT_ALREADY", EXACT_ALREADY);
+    ⚡ print("RUN_ID_CONFLICT", RUN_ID_CONFLICT);
+    ⚡ print("WRITE_ATTEMPTED", WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC", WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("EVENT_EMITTED", EVENT_EMITTED);
+    ⚡ print("EVENT_WRITE_RC", EVENT_WRITE_RC);
+    ⚡ print("EVENT_READBACK_MATCH", EVENT_READBACK_MATCH);
+
+    ⚡ print("HOST_NEXT_ACTION_SELECTION", "NO");
+    ⚡ print("HOST_SEMANTIC_OUTCOME_CLASSIFICATION", "NO");
+    ⚡ print("HOST_UNDERSTANDING_CLASSIFICATION", "NO");
+    ⚡ print("HOST_QUERY_GENERATION", "NO");
+    ⚡ print("UNDERSTANDING_STATE_EMITTED_BY_I3A", "NO");
+    ⚡ print("TRUTH_DECISION", "NOT_EXECUTED");
+    ⚡ print("KNOWLEDGE_PROMOTION", "NOT_EXECUTED");
+    ⚡ print("STATIC_I3A_POLICY_LEARNED", "NOT_PROVEN");
+    ⚡ print("GENERAL_RESEARCH_POLICY_LEARNED", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
