@@ -14,9 +14,9 @@ Before continuing this lane, read:
 4. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
 5. `SIGMA_PROFESSOR/DIRECTIVES/TEACHER_GPT_GITHUB_PROGRESS_HANDOFF_POLICY_V1.md`
 6. this living handoff
-7. the latest immutable checkpoint named below
+7. latest immutable checkpoint named below
 
-Do not ask the user to restate the V4/V5 journey when these files provide the needed context.
+Do not ask the user to restate the V4/V5 journey when repository evidence supplies the needed context.
 
 ## Progress-update policy
 
@@ -56,17 +56,20 @@ CURRENT_CAPABILITY=WIKIPEDIA_ADAPTER
 V5K1_ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 V5K2_WIKIPEDIA_ADAPTER_UNLOCKED=YES
 V5K2_SOURCE_READY=YES
+V5K2_RUNTIME_PRECONDITION=HOLD_JQ_MISSING_MECHANICAL_DECODE_TOOL
 V5K2_RUNTIME_ADMISSION=NOT_RUN
-V5K3_ARXIV_ADAPTER_UNLOCKED=NO_PENDING_V5K2_RUNTIME_PASS
+V5K2_COMPILE=NOT_REACHED_IN_LATEST_RUN
+LIVE_WIKIPEDIA_RUNTIME=NOT_EXECUTED_IN_LATEST_RUN
+V5K3_ARXIV_ADAPTER_UNLOCKED=NO
 ```
 
-Latest admitted checkpoint:
+Latest immutable checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K2_WIKIPEDIA_ADAPTER_HOLD_JQ_MISSING.md`
+
+Previous admitted checkpoint:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K1_FIX1_EXTERNAL_ACQUISITION_PROTOCOL_PASS.md`
-
-Current V5-K2 source-ready checkpoint:
-
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K2_WIKIPEDIA_ADAPTER_SOURCE_READY.md`
 
 Latest machine-executed sample:
 
@@ -89,7 +92,7 @@ FINAL_ACQUISITION_RECORD_COUNT=18
 RESULT=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-V5-K1 failure/repair to remember:
+V5-K1 repair history:
 
 ```text
 V1_D02=REFUSE_PAYLOAD_MISSING
@@ -99,9 +102,7 @@ NATIVE_SOURCE_CHANGED=NO
 FIX1_FULL_RERUN=50_OF_50_PASS
 ```
 
-## V5-K2 — Wikipedia Adapter source-ready
-
-User-facing bundle:
+## V5-K2 — source-ready identity
 
 ```text
 BUNDLE_NAME=SIGMA_V5K2_NATIVE_ADMISSION_V1_WIKIPEDIA_ADAPTER_BUNDLE.zip
@@ -109,7 +110,7 @@ BUNDLE_SHA256=fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70
 SOURCE_SHA256=57a720f97004217e9f1602d7048316abf0bb711e005106ff092c65b7d19967aa
 RUNNER_SHA256=46492716ed275e5120b7eba6e5f0bc93920dd7ed92062830d010b78e0eeee0e9
 V5K1_DEPENDENCY_SOURCE_SHA256=29670c3eca4bcd02e875d2178407259af9e76ebbcbbd6e2ee7a31f979da26537
-BYTECODE_SHA256=UNKNOWN_NOT_RUN
+BYTECODE_SHA256=UNKNOWN_NOT_COMPILED_IN_LATEST_HOLD_RUN
 PLANNED_VM_INVOCATIONS=50
 DIRECTED_VM_INVOCATIONS=16
 DYNAMIC_MATRIX_VM_INVOCATIONS=32
@@ -124,9 +125,41 @@ curl=REQUIRED
 jq=REQUIRED
 ```
 
-If missing, HOLD; do not substitute cognition.
+Latest user machine evidence:
 
-V5-K2 official MediaWiki Action API shape checked 2026-09-05:
+```text
+ACTIVE_SIGMA_COGNITION=SIGMA_NATIVE_ONLY
+HOST_COGNITION=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
+HOST_JSON_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
+HOST_RESOURCE_SELECTION=NO_CLAIM_DYNAMIC_TITLE_INPUT_SUPPLIED
+RESEARCH_GOAL_SELECTION=NOT_EXECUTED
+CONTENT_TRUTH_DECISION=NOT_EXECUTED
+KNOWLEDGE_PROMOTION=NOT_EXECUTED
+HOST_SEMANTIC_SUBSTITUTION=NO
+HOST_POST_VM_TEST_ORACLE_ONLY=YES
+PYTHON_USED=NO
+DYNAMIC_INPUT_PRESENT_AT_COMPILE_TIME=NO
+LIVE_WIKIPEDIA_RESPONSE_PRESENT_AT_COMPILE_TIME=NO
+PERSISTENT_STORE_PRESENT_AT_COMPILE_TIME=NO
+HOLD=JQ_MISSING_MECHANICAL_DECODE_TOOL
+```
+
+Interpretation:
+
+```text
+HOLD_TYPE=MECHANICAL_PRECONDITION
+NATIVE_SIGMA_RUNTIME_FAILURE=NO
+SOURCE_REPAIR_REQUIRED=NO
+RUNNER_REPAIR_REQUIRED=NO
+ADMISSION_GATE_WEAKENED=NO
+```
+
+The runner correctly stopped rather than using host cognition to replace missing JSON decode tooling.
+
+## V5-K2 official protocol shape
 
 ```text
 action=query
@@ -149,7 +182,7 @@ en
 vi
 ```
 
-Planned native proof scope:
+Planned proof scope:
 
 - dynamic title request emission;
 - live English and Vietnamese Wikipedia transport;
@@ -162,27 +195,17 @@ Planned native proof scope:
 - persistent Wikipedia ledger idempotency;
 - replay/event determinism.
 
-Host role:
+Host boundary:
 
 ```text
 HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
 HOST_JSON_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
 HOST_RESOURCE_SELECTION=NO_CLAIM_DYNAMIC_TITLE_INPUT_SUPPLIED
-```
-
-Keep until real Termux proof:
-
-```text
-LIVE_WIKIPEDIA_RUNTIME=NOT_YET_EXECUTED
-V5K2_RUNTIME_ADMISSION=NOT_RUN
-WIKIPEDIA_ADAPTER_TESTED_SCOPE=NOT_PROVEN
-V5K3_ARXIV_ADAPTER_UNLOCKED=NO
 RESEARCH_GOAL_SELECTION=NOT_EXECUTED
 CONTENT_SEMANTIC_INTERPRETATION=NOT_EXECUTED
 CONTENT_TRUTH_DECISION=NOT_EXECUTED
 KNOWLEDGE_PROMOTION=NOT_EXECUTED
 SEMANTIC_UNDERSTANDING=NOT_PROVEN
-PRODUCTION_BINDING=NO
 ```
 
 ## Level 1 V4 status
@@ -199,16 +222,45 @@ V4-PK6_VERIFIED_EVOLUTION=PASS_IN_EXACT_TESTED_SCOPE
 
 ## Immediate next action
 
-Run V5-K2 on the locked Termux runtime.
+No source modification is required.
 
-1. Verify bundle SHA256 `fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70`.
-2. Clean-unzip the bundle.
-3. Run `sha256sum -c MANIFEST.sha256`.
-4. Ensure Termux has mechanical tools `curl` and `jq`; if runner reports either missing, install only those tools and rerun from clean state.
-5. Execute `bash run_SIGMA_V5K2_NATIVE_ADMISSION_V1.sh | tee V5K2_NATIVE_ADMISSION_V1.out`.
-6. Preserve the first failure or final summary exactly.
-7. On PASS: immutable V5-K2 checkpoint + living handoff update immediately, then unlock V5-K3 arXiv.
-8. On FAIL: failure checkpoint + living handoff update immediately, smallest repair, same gate rerun.
+On Termux install only the missing mechanical decode tool:
+
+```bash
+pkg install jq
+```
+
+Verify:
+
+```bash
+command -v jq
+jq --version
+```
+
+Then rerun the exact unchanged V5-K2 runner from the existing extracted bundle directory:
+
+```bash
+bash run_SIGMA_V5K2_NATIVE_ADMISSION_V1.sh \
+  | tee V5K2_NATIVE_ADMISSION_V1.out
+```
+
+The runner recreates its isolated runtime namespace at start. Preserve the first compile/runtime failure or the final 50-case summary exactly.
+
+If V5-K2 PASS:
+
+1. create immutable V5-K2 PASS checkpoint;
+2. update this living handoff immediately;
+3. add machine-executed V5-K2 sample;
+4. mark `V5K3_ARXIV_ADAPTER_UNLOCKED=YES`;
+5. then build V5-K3.
+
+If V5-K2 FAIL after jq is available:
+
+1. preserve exact identities, VM RC/error and mutation state;
+2. create immutable failure checkpoint;
+3. update this living handoff immediately;
+4. make the smallest repair;
+5. rerun the same gate without weakening it.
 
 ## Direction after V5-K2
 
