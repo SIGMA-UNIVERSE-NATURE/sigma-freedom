@@ -1,0 +1,36 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W02-B1.1-MATH-FAMILY-C08",
+  "checkpoint_id":"CP05-DIRECTOR-ACADEMIC-HYPOTHESIS-REPAIR",
+  "stage":"CURRICULUM",
+  "worker_candidate_commit_sha":"4f0493b4c7605e9d457810c9efe7ae822eeeab7a",
+  "director_claim_amendment_commit_sha":"e6167f0e68aa5d49f39b09ffabe686ca28960bad",
+  "audit":{
+    "sentinel_worker_candidate_alignment":"TREE_ALIGNMENT_PASS",
+    "claims_independently_read":"109/109",
+    "sources_verified":"7/7",
+    "source_id_hashes":"PASS_7_OF_7",
+    "learning_objectives_independently_read":"32/32",
+    "closure_rows_independently_read":"32/32",
+    "semantic_closure":"32/32 PASS",
+    "future_or_locked_support_claim_ids":0,
+    "R05":"PASS",
+    "R02":"PASS",
+    "prerequisite_and_sequence":"PASS_ACYCLIC",
+    "stage_boundary":"PASS"
+  },
+  "director_repairs":[
+    {
+      "claim_id":"HKA-B1-1-C08-N004-C006",
+      "repair":"Add explicit connected-nonisolated-vertices hypothesis to the Euler open-trail case."
+    },
+    {
+      "claim_id":"HKA-B1-1-C08-N007-C014",
+      "repair":"Add standard 1<=k<=n<=q hypothesis to the Reed-Solomon dimension/distance statement."
+    }
+  ],
+  "effective_claim_rule":"For matching claim_id, CLAIMS_DIRECTOR_AMENDMENT_1.jsonl supersedes the base candidate claim statement/scope limits.",
+  "academic_repairs_required":2,
+  "blocking_issues_after_repair":0,
+  "next_action":"Re-read the two effective amended claims, then Director may accept C08 if control-plane and Sentinel remain aligned."
+}
