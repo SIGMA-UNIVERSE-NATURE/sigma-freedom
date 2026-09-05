@@ -3,7 +3,8 @@
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "READY",
+  "status": "PASS_CANDIDATE",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
   "execution_branch": "hka-tree/c01-w02-math-c06",
   "input_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
   "accepted_C04_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
@@ -11,41 +12,63 @@
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "6eb206014bb06b5f524b2854a50fd7e4b1ec63ef",
-  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "last_checkpoint_commit_sha": "c01295257f97869cf95af248b480cd73defe2df6",
+  "last_checkpoint_id": "CP03-PRE-PASS-SELF-AUDIT",
+  "result_commit_sha": "ca73dbeccbb34e4cf9230eec06f22d461bdaa335",
+  "handoff_commit_sha": "2758186ed582164af69cb02d37f8524e5327d09d",
   "scope_ids": ["B1.1-C06"],
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 102,
+    "sources": 6,
+    "learning_objectives": 32,
+    "semantic_closure_supported": 32,
+    "cross_links": 17,
+    "sequence_intents": 8
+  },
   "completed_work": [
-    "Director independently accepted C04 after reading all 83 claims, verifying 6 sources and auditing all 36 objectives/closure rows.",
-    "Director repaired four semantic closure mappings before C04 acceptance without changing theorem claims or stable IDs.",
-    "Created C06 execution branch from Director-repaired accepted C04 head.",
-    "Installed C06 Window Contract, GPT Execution Prompt and Director Open Order.",
-    "Created CP01-BOOTSTRAP-ACTIVATED."
+    "Bootstrapped exclusively from GitHub durable state and verified Director authorization plus accepted-predecessor ancestry.",
+    "Authored exactly eight C06 canonical curriculum nodes with 102 atomic sourced claims and six deterministic sources.",
+    "Authored 32 age-independent D1-D4 Learning Objectives and directly semantically closed all 32 by Claim IDs.",
+    "Read back all 102 claims, all 32 Learning Objectives and all 32 closure rows from committed GitHub state.",
+    "Passed independent audits for existence/uniqueness, PDE solvability, stability/linearization, bifurcation hypotheses and chaos diagnostic limits.",
+    "Recorded CP03 pre-pass self-audit and emitted RESULT/HANDOFF as worker PASS candidate only."
   ],
   "remaining_work": [
-    "Author all eight canonical C06 topics.",
-    "Create atomic sourced claims with explicit theorem hypotheses.",
-    "Create 32 D1-D4 objectives and direct semantic Claim-to-Learning-Objective closure unless complete knowledge requires a justified different node structure consistent with the eight canonical topics.",
-    "Resolve ODE/PDE/dynamics/stability/oscillation/bifurcation/chaos/modeling ownership boundaries.",
-    "Keep C07/C08/C09/C10 and B1.2 domain sciences as locked/boundary-only support sources.",
-    "Run committed-file source, semantic closure, duplicate, prerequisite and stage-boundary audits before candidate PASS."
+    "Director review/acceptance, if authorized by the Director control plane."
   ],
   "blocking_issues": [],
+  "semantic_closure": {
+    "directly_supported": "32/32",
+    "rate": 1.0,
+    "future_or_locked_scope_support_claim_ids": 0,
+    "mechanical_row_presence_treated_as_sufficient": false
+  },
   "decisions_locked": [
-    "Scope is B1.1-C06 only.",
-    "Accepted predecessor is C04 Director-repaired head 76077695c07b853ac37f058477177e211f740f17.",
-    "Do not re-author accepted C01-C05 foundations.",
-    "Future/locked-scope support Claim IDs must remain zero.",
-    "D1-D4 are age-independent.",
-    "No later pipeline stage artifact is allowed."
+    "Scope remains B1.1-C06 only.",
+    "Accepted predecessor remains 76077695c07b853ac37f058477177e211f740f17.",
+    "C03/C05 primitives are referenced, not re-authored; C04 geometry is representation-only.",
+    "C07/C08/C09/C10 remain locked with zero support Claim IDs.",
+    "B1.2 remains boundary-only with zero support Claim IDs.",
+    "No later pipeline stage artifact is allowed or created."
   ],
+  "stage_boundary": {
+    "ACADEMIC_LOCKED_created": false,
+    "Lesson_Registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false,
+    "post_CURRICULUM_artifacts_created": false,
+    "successor_unlocked": false
+  },
   "do_not_repeat": [
-    "Do not create a replacement branch unless durable recovery requires it.",
-    "Do not use chat history as project state.",
-    "Do not mark PASS from count/schema checks without semantic objective closure.",
+    "Do not mark this worker candidate as Director acceptance.",
     "Do not open C07/C08/C09/C10.",
-    "Do not create Lesson Registry, prompts, images, R2, delivery or website artifacts."
+    "Do not create ACADEMIC_LOCKED, Lesson Registry, prompts, images, R2, delivery or website artifacts.",
+    "Do not use row existence as a substitute for semantic Claim-to-LO support."
   ],
-  "next_action": "Execute DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C06 only.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C06",
-  "updated_at": "2026-09-05T11:00:00+07:00"
+  "next_action": "Director review only. Keep successor and all post-CURRICULUM gates closed unless separately authorized by Director durable state.",
+  "successor_gate": "DIRECTOR_GATED",
+  "updated_at": "2026-09-05T11:23:00+07:00"
 }
