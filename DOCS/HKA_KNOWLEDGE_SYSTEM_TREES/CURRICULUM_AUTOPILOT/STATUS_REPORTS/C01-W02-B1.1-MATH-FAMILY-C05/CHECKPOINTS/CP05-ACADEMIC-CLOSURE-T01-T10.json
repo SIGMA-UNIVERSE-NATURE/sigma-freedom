@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP05-ACADEMIC-CLOSURE-T01-T10",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED_FOR_AUDIT",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "academic_counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 98,
+    "sources": 4,
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "cross_links": 17,
+    "sequence_intent_records": 10
+  },
+  "topic_coverage": {
+    "expected_topic_ids": ["B1.1-C05-T01","B1.1-C05-T02","B1.1-C05-T03","B1.1-C05-T04","B1.1-C05-T05","B1.1-C05-T06","B1.1-C05-T07","B1.1-C05-T08","B1.1-C05-T09","B1.1-C05-T10"],
+    "authored_topic_ids": ["B1.1-C05-T01","B1.1-C05-T02","B1.1-C05-T03","B1.1-C05-T04","B1.1-C05-T05","B1.1-C05-T06","B1.1-C05-T07","B1.1-C05-T08","B1.1-C05-T09","B1.1-C05-T10"],
+    "coverage_percent_pre_audit": 100
+  },
+  "source_ids": ["HKA-SRC-fa1f6614780a","HKA-SRC-685fd7e5267a","HKA-SRC-1f7129b0399c","HKA-SRC-094f2478025a"],
+  "academic_file_blobs": {
+    "NODES.jsonl": "7698d7fff318206e198961f1132b9aa290f4f2e9",
+    "CLAIMS.jsonl": "d3fdf6ed23e7d57e89f8a3e509b92b40fdf78522",
+    "SOURCES.jsonl": "bd81f71920a10f770a719235e87db3b191120316",
+    "LEARNING_OBJECTIVES.jsonl": "27a5ea2e0b08747b3a017183ff26bed5893e8ff8",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "715858ccedc60203d1770091a7ac098dad46f7a1",
+    "CROSS_LINKS.jsonl": "768eb73558c100838c8f2edeb94eeafb47a9998f",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "900b84b4715fc9a1c72766a512cb7bcd050f157f"
+  },
+  "mandatory_internal_overlap_dispositions": {
+    "T01_T02": "XL-C05-INT-T01-T02",
+    "T03_T06": "XL-C05-INT-T03-T06",
+    "T04_T07": "XL-C05-INT-T04-T07",
+    "T05_T10": "XL-C05-INT-T05-T10",
+    "T07_T09": "XL-C05-INT-T07-T09",
+    "T08_T10": "XL-C05-INT-T08-T10"
+  },
+  "reconciliations": {
+    "N004_C010_metadata": "RESOLVED_IN_NODES_BLOB_7698d7fff318206e198961f1132b9aa290f4f2e9",
+    "Block_A_future_internal_targets": "FINALIZED_TO_COMMITTED_N006_N007_N010_IDS"
+  },
+  "closure_pre_audit": {
+    "objectives": 40,
+    "supported_rows": 40,
+    "future_or_locked_scope_support_claim_ids": 0,
+    "percent": 100
+  },
+  "scope_guards": {
+    "C04_opened_or_authored": false,
+    "C01_C02_C03_reauthored": false,
+    "new_branch_created": false,
+    "later_pipeline_stage_artifacts_authored": false,
+    "worker_pass_claimed": false
+  },
+  "next_action": "Read all seven committed academic files back from GitHub and run the full ID, source, topic, claim-to-objective closure, duplicate/ownership, prerequisite/sequence and stage-boundary audits before any candidate PASS."
+}
