@@ -31,8 +31,7 @@ VM SHA256:
 
 ## Production
 
-Keep V2.4 production learner running unless it emits a real VM failure.
-Do not upgrade V2.4 in place while the newer chain remains under admission.
+Keep V2.4 production learner running unless it emits a real VM failure. Do not upgrade V2.4 in place while the newer chain remains under admission.
 
 Production V2.4 source SHA256:
 `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2`
@@ -44,22 +43,25 @@ Production V2.4 source SHA256:
 - V2.6F full fixture traversal: PASS — `97b2e047211d6606b0772daf451b6a9c16359946`.
 - V2.7/P.1 structural grouping: PASS — `3c98031845c42792c3bd58ba049e13013c60160b`.
 - V2.8P.1 structural curriculum priority: PASS — `5e375d2ffa210852a042d833f061b6cc6c969ecf`.
-- V2.8R.1 real survey -> native selected work: PASS — source `8d4fee26...430e8`, bytecode `0244d7a6...c1eb5`, checkpoint `ce7650b46026b6f4dc553618b198f48d1f1692d3`.
-- V2.8D.1 selected work -> deep re-learn: PASS — source `3da9195d...e8ce`, bytecode `e23fd92e...2ff`, checkpoint `a0b3dce9b784ef36e552f377ab2c808e7d80e9d9`.
-- V2.9R.1A structural revalidation: PASS — real baseline `of => the`, real result `NOT_REOBSERVED`, checkpoint `b9dc75e37cf7a72e9851c0ccabd1b53a72c3d235`.
+- V2.8R.1 real survey -> native selected work: PASS — `ce7650b46026b6f4dc553618b198f48d1f1692d3`.
+- V2.8D.1 selected work -> deep re-learn: PASS — `a0b3dce9b784ef36e552f377ab2c808e7d80e9d9`.
+- V2.9R.1A structural revalidation: PASS — `b9dc75e37cf7a72e9851c0ccabd1b53a72c3d235`.
 - V2.10R.1 lifecycle: PASS — real `NOT_REOBSERVED -> REVISIT`, checkpoint `220fa78bce0d9873533cb8acce102fc411107924`.
-- V2.11R.1 revisit execution + archive re-entry: PASS — source `88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e`, repaired runner `31005526c5ec1a4c33ec1759965b9810e19198fae08235dc1ca16d8c5c739907`, checkpoint `aa1bec9344510d95dbbee9312076df7ad9975256`.
-- V2.12R.1 native cycle event controller: PASS.
-  - source SHA256 `ec367a6c780011fc7fe06e7fafbdcfde27198527565bd9054c733e79ecc115be`;
-  - runner SHA256 `02be167cd7d302c72735e384532310a347edbaf0d1827ec748f4b635a660910c`;
-  - `NATIVE_STAGE_DECISION=PROVEN_IN_TESTED_STRUCTURAL_SCOPE`;
-  - explicit event identity `WORK + CYCLE + NEXT_STAGE` PASS;
-  - distinct revisit generations produce distinct event IDs PASS;
-  - persistent event reuse + deterministic replay PASS;
-  - archive/select-next, wait/no-lifecycle, inconsistent-state refusal, partial lifecycle filter PASS;
-  - lifecycle/controller/generation/segment bounded refusal PASS;
-  - user-provided tail did not include the V2.12 bytecode SHA, so do not invent it;
-  - checkpoint `cf08b2faa4c17eb9bfa7a9c6870ea6a9e2138982`.
+- V2.11R.1 revisit execution + archive re-entry: PASS — source `88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e`, checkpoint `aa1bec9344510d95dbbee9312076df7ad9975256`.
+- V2.12R.1 cycle event controller: PASS — source `ec367a6c780011fc7fe06e7fafbdcfde27198527565bd9054c733e79ecc115be`, explicit `WORK+CYCLE+NEXT_STAGE` event identity PASS, checkpoint `cf08b2faa4c17eb9bfa7a9c6870ea6a9e2138982`.
+- V2.13R.1 generation-aware revalidation + lifecycle: PASS.
+  - source SHA256 `8984a0beaefddb6656158eaed47080bc09955f79e9dcb0b59edcd2e0b670f107`;
+  - runner SHA256 `2f68d6dd04a23ecd528fe06ea130f8d65adae4e557c32b5848c0e21998fb6ba0`;
+  - `GENERATION_AWARE_REVALIDATION=PROVEN_IN_TESTED_STRUCTURAL_SCOPE`;
+  - `GENERATION_AWARE_LIFECYCLE=PROVEN_IN_TESTED_STRUCTURAL_SCOPE`;
+  - cycle `|` and cycle `||` maintain distinct revalidation/lifecycle state;
+  - synthetic cycle `||` `REOBSERVED -> ARCHIVE_FOR_NOW` PASS;
+  - exact-cycle conflict blocks mutation;
+  - survey/evidence/revalidation/lifecycle bounded refusal PASS;
+  - real survey unchanged SHA256 `de682a2d5a27e1985d2529106c5410f7e824dafbf5e7cb541485687166295d08`;
+  - real admitted revisit evidence unchanged SHA256 `a166a82bdf244ec1245d0703ce5664f8e1d4ceda090f13881f8c41b463c194e9`;
+  - V2.13 bytecode SHA was not visible in the provided retained final excerpt; do not invent it;
+  - checkpoint `d464511977c85853d05c09419f3102d0fd0db88f`.
 
 ## Important distinctions
 
@@ -70,92 +72,87 @@ Production V2.4 source SHA256:
 - `ARCHIVE_FOR_NOW != SEMANTICALLY_TRUE`;
 - `ARCHIVE_FOR_NOW != FORGET`.
 
-## Current frontier — V2.13R.1 generation-aware revalidation + lifecycle — SOURCE READY
-
-Canonical user-delivery source:
-`SIGMA_GENERATION_AWARE_REVALIDATION_LIFECYCLE_V2_13R1.sigma`
-
-Canonical source SHA256:
-`8984a0beaefddb6656158eaed47080bc09955f79e9dcb0b59edcd2e0b670f107`
-
-Runner:
-`RUN_SIGMA_V213R1_GENERATION_AWARE_REVALIDATION_LIFECYCLE_PREFLIGHT.sh`
-
-Runner SHA256:
-`2f68d6dd04a23ecd528fe06ea130f8d65adae4e557c32b5848c0e21998fb6ba0`
+## Current frontier — V2.14R.1 generation-aware closed-loop transition — SOURCE READY
 
 Source-ready checkpoint:
-`a3e2ae18ec17e8bd51056fd2709523d2f823a291`
+`8eec401409c1f62ad3e9710ac99947e2ee73316f`
 
-A temporary noncanonical compact rendering was removed in commit `ae3b9a4cae2844a7c430b371076f30e06aa9e3a3`; never use it as the candidate identity.
+### Native controller
 
-### Capability contract
+`SIGMA_GENERATION_AWARE_CLOSED_LOOP_CONTROLLER_V2_14C1.sigma`
 
-Controller input:
-`WORK::CYCLE::REVALIDATE_REVISIT_GENERATION`
+SHA256:
+`1db8cd24432b85a5b4d6125e1f26e657df6bf47c429d763eb255c12ce201d972`
 
-Exact-cycle revisit evidence:
-`WORK=<id> || GEN=<cycle> || CURSOR=<segment-cursor> || BEST_LOCAL_RELATION=<relation> || COMMIT=YES`
-
-Generation-aware revalidation state:
-`WORK=<id> || CYCLE=<cycle> || RESULT=<REOBSERVED|NOT_REOBSERVED> || BASELINE=<anchor> || COMMIT=YES`
-
-Generation-aware lifecycle state:
-`WORK=<id> || CYCLE=<cycle> || ACTION=<REVISIT|ARCHIVE_FOR_NOW> || FROM_RESULT=<result> || COMMIT=YES`
+Consumes V2.13 generation-aware lifecycle state and work-local revisit generation state.
 
 Policy:
 
-- compare survey baseline only against committed revisit evidence for the exact cycle;
-- exact-cycle recurrence -> `REOBSERVED`;
-- exact-cycle evidence without recurrence -> `NOT_REOBSERVED`;
-- `NOT_REOBSERVED -> REVISIT`;
-- `REOBSERVED -> ARCHIVE_FOR_NOW`.
+- latest cycle `REVISIT` + generation == lifecycle cycle -> emit next-cycle `EXECUTE_REVISIT`;
+- latest cycle `REVISIT` + generation == lifecycle cycle + `|` -> emit `REVALIDATE_REVISIT_GENERATION` for that completed generation;
+- `ARCHIVE_FOR_NOW` + matching generation -> `SELECT_NEXT_WORK`;
+- inconsistent lifecycle cycle / generation -> no event.
 
-### Real expected branch
+### Native event-driven revisit executor
 
-- selected work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
-- V2.12 regenerates event `work::|::REVALIDATE_REVISIT_GENERATION`;
-- cycle `|` evidence: `in => the`, `As => disagreements`;
-- survey baseline: `of => the`;
-- expected V2.13 result: `CYCLE=| -> NOT_REOBSERVED -> REVISIT`.
+`SIGMA_EVENT_DRIVEN_REVISIT_EXECUTOR_V2_14E1.sigma`
 
-### Admission gates
+SHA256:
+`d6bd5e41813a6f2fc13b7c6bfa6215e01fe4aa11c12c0111e7b51addb9a11210`
 
-- real V2.12 event regeneration;
-- real cycle `|` revalidation/lifecycle;
-- fresh VM reuse/no duplicate append;
-- deterministic replay;
-- cycle `||` coexists with seeded cycle `|` state;
-- synthetic cycle `||` `REOBSERVED -> ARCHIVE_FOR_NOW`;
-- partial/uncommitted matching evidence ignored;
-- wrong controller stage refuses mutation;
-- exact-cycle conflict blocks mutation;
-- survey/evidence/revalidation/lifecycle bounded refusal;
-- real survey and revisit evidence immutable.
+Accepts only `WORK::CYCLE::EXECUTE_REVISIT`, requires `CYCLE == completed_generation + |`, learns fixed 8-line segments, commits exact-cycle evidence before cursor advance, and advances generation only on document completion.
 
-Static checks:
+### Runner
 
-- `H_CALL_ARITY_AUDIT=PASS`;
-- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
-- `STR_STARTS_DEPENDENCY=NONE`;
-- `DIRECT_STR_DEPENDENCY=NONE`;
-- runner `bash -n` RC = 0.
+`RUN_SIGMA_V214R1_GENERATION_AWARE_CLOSED_LOOP_PREFLIGHT.sh`
 
-### Current claim limits
+SHA256:
+`f1f4ff5fb571e4d4c56883860db9236073a1bc6dbd4c254b5471eec743ff2eec`
 
-- V2.13 runtime admission = `NOT_PROVEN`;
-- `GENERATION_AWARE_REVALIDATION=NOT_PROVEN` until locked-VM PASS;
-- `GENERATION_AWARE_LIFECYCLE=NOT_PROVEN` until locked-VM PASS;
-- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION=NOT_PROVEN`;
-- `SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN`;
-- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
-- `BOUNDED_FILE_IO=NOT_PROVEN`;
-- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`.
+README:
+`SIGMA_V214R1_GENERATION_AWARE_CLOSED_LOOP_PREFLIGHT_README.txt`
+
+Static checks: controller/executor H-call arity PASS; no native `!=`; no `str_starts`; no direct `str()`; runner `bash -n` RC 0.
+
+### Real closed-loop target
+
+Starting state:
+
+- selected real work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
+- V2.11 completed generation `|`;
+- V2.13 cycle `|` lifecycle `REVISIT`.
+
+Required event-driven transition:
+
+`CYCLE | REVISIT`
+-> controller emits `work::||::EXECUTE_REVISIT`
+-> mechanical host dispatcher routes exact stage to native V2.14 executor
+-> segment 0 / segment 1 / completion across fresh VM
+-> generation becomes `||`
+-> controller emits `work::||::REVALIDATE_REVISIT_GENERATION`
+-> mechanical dispatcher routes exact event to admitted V2.13
+-> V2.13 creates `CYCLE=|| RESULT=NOT_REOBSERVED ACTION=REVISIT`
+-> controller emits distinct `work::|||::EXECUTE_REVISIT`.
+
+Replay must reproduce exact controller/revalidation/lifecycle/evidence/generation hashes from an isolated mechanical clone of admitted V2.11 work-local state. The admitted V2.11 evidence and real survey must remain unchanged.
+
+### Claim target after PASS
+
+`AUTONOMOUS_STRUCTURAL_CYCLE_TRANSITION=PROVEN_IN_SELECTED_DOCUMENT_TWO_GENERATION_SCOPE`
+
+Still NOT PROVEN:
+
+- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION`;
+- multi-document autonomous cycle;
+- semantic truth validation;
+- semantic understanding;
+- bounded file I/O;
+- mid-append crash atomicity.
 
 ## NEXT ACTION
 
-1. Keep V2.4 running.
-2. Install exact canonical V2.13 source/runner hashes above from repo root `~/SIGMA/sigma-freedom-write`.
-3. Run locked sigmac/VM and preserve V2.12 regenerated bytecode SHA, V2.13 bytecode SHA, all VM_RC and state hashes.
-4. If a gate fails, preserve evidence and fix only the narrow failure.
-5. If V2.13 PASS, checkpoint before upgrading the controller to consume generation-aware lifecycle records and proving the first closed recurrent cycle.
+1. Keep V2.4 running unchanged.
+2. Install exact V2.14 controller, executor and runner hashes above from repo root `~/SIGMA/sigma-freedom-write`.
+3. Run locked sigmac/VM and preserve all four runtime bytecode hashes (V2.12 regeneration, V2.13, V2.14C1, V2.14E1), VM_RC values, event transitions and replay hashes.
+4. If any gate fails, preserve evidence and repair only the narrow failure.
+5. If V2.14 PASS, checkpoint before building multi-document autonomous cycle admission.
