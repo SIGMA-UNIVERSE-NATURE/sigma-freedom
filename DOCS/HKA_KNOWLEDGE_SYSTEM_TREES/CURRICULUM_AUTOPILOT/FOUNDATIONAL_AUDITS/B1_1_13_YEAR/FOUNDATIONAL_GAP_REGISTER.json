@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "status": "GAPS_CONFIRMED_REPAIR_REQUIRED",
+  "foundational_gap_count": 8,
+  "principle": "Advanced coverage never compensates for a foundational gap; repair only at true owner scope with append-only IDs.",
+  "gaps": [
+    {
+      "gap_id": "F13-G01",
+      "title": "Counting, cardinality and base-ten place value",
+      "status": "GAP",
+      "benchmark_requirements": ["F13-R01"],
+      "true_owner_scope": "B1.1-C02",
+      "true_owner_node": "HKA-B1-1-C02-N001",
+      "current_state": "C02 begins with abstract classification of N/Z/fractions and fraction operations; no explicit counting-as-cardinality, numeral-quantity correspondence, base-ten positional value, partitioning or zero-as-placeholder progression is present.",
+      "required_repair_meanings": ["count sequence and cardinality","numeral↔quantity representation","base-ten positional notation and digit value","compose/decompose whole numbers by place value","compare/order using place-value reasoning","zero as number and positional placeholder"],
+      "no_duplicate_boundary": "Do not reauthor set/cardinality theory from C01; own only school-level number representation and numerical meaning."
+    },
+    {
+      "gap_id": "F13-G02",
+      "title": "Whole-number and decimal arithmetic fluency, strategies and written methods",
+      "status": "PARTIAL",
+      "benchmark_requirements": ["F13-R02","F13-R09"],
+      "true_owner_scope": "B1.1-C02",
+      "true_owner_node": "HKA-B1-1-C02-N003",
+      "current_state": "C02 has operation laws, order of operations and advanced arithmetic theorems, but not the foundational progression from addition/subtraction/multiplication/division meanings through mental strategies, fact fluency, place-value algorithms and reasonableness checking.",
+      "required_repair_meanings": ["addition/subtraction as combine/change/compare and inverse operations","multiplication as equal groups/arrays/scaling","division as sharing/grouping and inverse of multiplication","mental decomposition/compensation strategies","place-value-based written methods for multi-digit whole-number/decimal calculations","estimate and check reasonableness of results"],
+      "no_duplicate_boundary": "Algorithm implementation complexity remains future B1.5; C02 owns mathematical calculation methods and meanings."
+    },
+    {
+      "gap_id": "F13-G03",
+      "title": "Concrete-to-formal fractions and decimal place-value progression",
+      "status": "PARTIAL",
+      "benchmark_requirements": ["F13-R03"],
+      "true_owner_scope": "B1.1-C02",
+      "true_owner_nodes": ["HKA-B1-1-C02-N001","HKA-B1-1-C02-N002","HKA-B1-1-C02-N005"],
+      "current_state": "C02 formally defines fractions, rational numbers, decimal expansions and operations, but does not encode the school progression through unit fractions, part-whole/measure/operator meanings, number-line placement, improper/mixed forms, decimal place value, and explicit fraction-decimal-percent connections.",
+      "required_repair_meanings": ["unit fraction and equal-part meaning","fractions as numbers on a number line","part-whole, quotient, measure and operator interpretations","equivalent fractions through scaling visual/quantitative meaning","proper/improper/mixed-number relationships","decimal place value through tenths/hundredths/etc","fraction↔decimal↔percent representations and comparison"],
+      "no_duplicate_boundary": "Formal rational/real structure already accepted remains unchanged; foundational representations are added beneath it."
+    },
+    {
+      "gap_id": "F13-G04",
+      "title": "Patterns, equality, unknowns and early algebraic generalisation",
+      "status": "PARTIAL",
+      "benchmark_requirements": ["F13-R04"],
+      "true_owner_scope": "B1.1-C03",
+      "true_owner_nodes": ["HKA-B1-1-C03-N001","HKA-B1-1-C03-N003"],
+      "current_state": "C03 starts with formal expressions/equations and algebraic functions. It does not explicitly encode the earlier progression from repeating/growing patterns, equality as a relation, missing-number/unknown reasoning, and expressing arithmetic regularities before formal symbolic manipulation.",
+      "required_repair_meanings": ["recognise/continue/describe repeating and growing patterns","identify a rule or invariant in a sequence/context","equality means same value rather than an instruction to calculate","use a symbol/box/letter for an unknown quantity","form and solve simple number sentences from contexts","generalise arithmetic relationships and connect tables/graphs/formulas progressively"],
+      "no_duplicate_boundary": "C08 retains recurrence/combinatorial structures; C03 owns early algebraic meaning and symbolic generalisation."
+    },
+    {
+      "gap_id": "F13-G05",
+      "title": "Everyday measurement and unit reasoning",
+      "status": "GAP",
+      "benchmark_requirements": ["F13-R05"],
+      "true_owner_scope": "B1.1-C04",
+      "true_owner_node": "HKA-B1-1-C04-N002",
+      "supporting_owner_scope": "B1.1-C02",
+      "current_state": "C04 covers exact geometric length/area/volume and unit scaling, but the general-education measurement progression across length, mass, capacity/volume, time, money, temperature, reading scales and everyday unit conversions is not represented. Physical metrology must remain B1.2-owned.",
+      "required_repair_meanings": ["compare measurable attributes before formal units","iterate/read standard units and scales","length, mass, capacity/volume and time units and conversions","calendar/clock duration and timetable reasoning","money amount/change/unit-price calculations as arithmetic context","temperature as numerical scale context","choose appropriate unit and estimate magnitude","distinguish mathematical unit conversion from physical instrument calibration/uncertainty"],
+      "no_duplicate_boundary": "C04 owns mathematical measurement/units; B1.2-C01 retains physical measurement instruments, calibration and uncertainty."
+    },
+    {
+      "gap_id": "F13-G06",
+      "title": "Elementary 2-D/3-D shape and spatial reasoning",
+      "status": "PARTIAL",
+      "benchmark_requirements": ["F13-R06"],
+      "true_owner_scope": "B1.1-C04",
+      "true_owner_nodes": ["HKA-B1-1-C04-N001","HKA-B1-1-C04-N005","HKA-B1-1-C04-N006"],
+      "current_state": "C04 D1 begins with congruence/similarity/convexity/regularity and later formal geometry. Foundational recognition/composition of common 2-D/3-D shapes, sides/faces/edges/vertices, spatial vocabulary, turns, simple coordinates, nets/views and concrete symmetry/transformations are not fully explicit.",
+      "required_repair_meanings": ["recognise/name/compare common 2-D and 3-D shapes across size/orientation","describe sides/edges/faces/vertices and simple shape properties","compose/decompose shapes and relate 2-D faces to 3-D solids","position/direction/movement and whole/half/quarter turns","horizontal/vertical/parallel/perpendicular as spatial relations","simple grids/coordinates and translations/reflections","nets/plans/views of simple solids where developmentally appropriate"],
+      "no_duplicate_boundary": "Formal Euclidean/analytic/transformation theory remains in existing C04 topics; foundational spatial meaning precedes it."
+    },
+    {
+      "gap_id": "F13-G07",
+      "title": "Data collection, simple displays and graphical literacy",
+      "status": "PARTIAL",
+      "benchmark_requirements": ["F13-R07"],
+      "true_owner_scope": "B1.1-C07",
+      "true_owner_node": "HKA-B1-1-C07-N005",
+      "current_state": "C07 descriptive statistics already contains frequency, mean/median/spread/correlation and histogram semantics, but it skips the elementary progression through collecting/classifying data, tally/table/pictogram/bar/line/pie displays, reading scales, comparing categories and choosing a representation.",
+      "required_repair_meanings": ["pose a simple data question and define categories/variables","collect/classify/count observations","tally and frequency tables","pictograms/block/bar charts with scales","line/time graphs and pie charts when appropriate","read axes/scales/legends accurately","compare totals/categories and describe simple patterns","choose a display suited to data type and question","distinguish display choices from underlying data"],
+      "no_duplicate_boundary": "Future B1.5 owns software/data pipelines; C07 owns mathematical data representation and interpretation."
+    },
+    {
+      "gap_id": "F13-G08",
+      "title": "Chance language and experimental-to-formal probability progression",
+      "status": "GAP",
+      "benchmark_requirements": ["F13-R08"],
+      "true_owner_scope": "B1.1-C07",
+      "true_owner_nodes": ["HKA-B1-1-C07-N001","HKA-B1-1-C07-N003"],
+      "current_state": "C07 D1 starts at measure-theoretic probability spaces and formal distributions. It lacks the foundational progression from impossible/possible/certain and more/less likely, through repeated simple experiments and relative frequency, to equally-likely finite sample spaces and the 0-1 probability scale.",
+      "required_repair_meanings": ["use everyday chance language consistently","order events by likelihood without requiring a numerical model","record outcomes/frequencies from repeated simple experiments","interpret relative frequency as empirical evidence that may vary","represent probability on a 0-to-1 scale","construct simple finite sample spaces","calculate probability by favorable/total outcomes only under equally-likely assumptions","distinguish experimental frequency from theoretical probability"],
+      "no_duplicate_boundary": "Measure-theoretic probability remains the accepted advanced formal layer; foundational chance meaning is added below it."
+    }
+  ],
+  "confirmed_non_gaps": [
+    {"item":"rounding, numerical error, scale of magnitude","owner":"B1.1-C02","status":"FULL_OR_STRONG_PARTIAL_ALREADY_PRESENT"},
+    {"item":"ratio, rate and percent formal arithmetic","owner":"B1.1-C02","status":"FULL_OR_STRONG_PARTIAL_ALREADY_PRESENT"},
+    {"item":"geometric area/volume formulae and scaling","owner":"B1.1-C04","status":"FULL_ALREADY_PRESENT"},
+    {"item":"advanced descriptive statistics and inference","owner":"B1.1-C07","status":"FULL_ADVANCED_LAYER_PRESENT"},
+    {"item":"mathematical modelling / numerical / optimization / finance extensions","owner":"B1.1-C10","status":"FULL_ADVANCED_LAYER_PRESENT"}
+  ],
+  "repair_order": ["F13-G01","F13-G02","F13-G03","F13-G04","F13-G05","F13-G06","F13-G07","F13-G08"],
+  "B1_2_unlock": false
+}
