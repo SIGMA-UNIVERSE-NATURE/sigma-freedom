@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-FOUNDATIONAL-13-YEAR-GATE-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "decision": "FOUNDATIONAL_13_YEAR_COVERAGE_IS_HARD_GATE",
+  "active_scope": "B1.1-C10",
+  "principles": {
+    "D1_D4_age_independent": true,
+    "foundational_13_year_coverage_is_separate_axis": true,
+    "advanced_university_research_content_allowed_as_extension": true,
+    "advanced_content_cannot_substitute_for_foundational_content": true,
+    "common_future_lesson_path_must_not_be_compressed_university_program": true,
+    "foundational_gap_must_be_repaired_at_true_owner_scope": true
+  },
+  "durable_governance": {
+    "amendment_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
+    "gate_commit": "755d8cf626236e5746a93cc89f47f0da31f66a81",
+    "continuity_snapshot_commit": "90856883216f77544e2c4f312d30a82e678c5527",
+    "sentinel_index_commit": "a1b2925ae65efe2d231b615d166bad4853f5bf87",
+    "sentinel_prompt_commit": "5b36a55f92c55d8c8d23bf2bcec0f16c471d8e13",
+    "sentinel_checkpoint_commit": "af288da4b291cf9a43e1b6a79f655093455c5ad2",
+    "sentinel_status_commit": "3679781ba4dc249879942bb22c9725d78ac73123",
+    "c10_contract_commit": "7d5ddefa89b1a7af8e7065eb64a5b80ac3d3459c",
+    "c10_prompt_commit": "e70f7f0b7d6f3d7fd2db77ca1372325bb49b31c0",
+    "c10_open_order_commit": "f3e999ba19dacd5308eef01fed4ac0683b645fcd",
+    "c10_status_commit": "a8d639a97802e01f94e93fffe5d38b7aa63fc466"
+  },
+  "B1_1_rule": "After Director acceptance of C10, run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT across C01-C10 before any B1.1 completion or B1.2 successor decision.",
+  "B1_1_foundational_audit_status": "NOT_YET_RUN",
+  "B1_2": "LOCKED",
+  "post_curriculum_stages": "GATED",
+  "next_action": "Run C10 only. Then Director audit C10. Then run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT and repair gaps at their true owner scopes until FOUNDATIONAL_GAP_COUNT=0.",
+  "created_at": "2026-09-05T20:31:00+07:00"
+}
