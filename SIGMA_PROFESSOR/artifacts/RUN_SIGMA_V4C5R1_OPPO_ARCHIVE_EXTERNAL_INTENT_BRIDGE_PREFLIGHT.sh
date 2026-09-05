@@ -1,0 +1,283 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+set -o pipefail
+umask 077
+
+P=/data/data/com.termux/files/usr
+HOME_SIGMA=/data/data/com.termux/files/home/SIGMA
+REPO="$HOME_SIGMA/sigma-freedom-write"
+SIGMAC="$HOME_SIGMA/sigma_genesis1/native/sigmac"
+VM="$HOME_SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate"
+
+EXPECTED_SIGMAC=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+EXPECTED_VM=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+SRC_REL="SIGMA_PROFESSOR/artifacts/SIGMA_V4_NATIVE_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_V4C5R1.sigma"
+EXPECTED_SRC_BLOB=d40164a7e1ad560d6686549d7a3183e891fd2a61
+SRC_REPO="$REPO/$SRC_REL"
+
+BASE="$HOME_SIGMA/SIGMA_V4C5R1_OPPO_ARCHIVE_EXTERNAL_INTENT_PREFLIGHT"
+COMPILER="$BASE/compiler"
+SRC="$COMPILER/SIGMA_V4_NATIVE_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_V4C5R1.sigma"
+BC="$COMPILER/SIGMA_V4_NATIVE_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_V4C5R1.sigmab"
+
+hash1() { "$P/bin/sha256sum" "$1" | "$P/bin/awk" '{print $1}'; }
+blob1() { git -C "$REPO" hash-object "$1"; }
+
+SIGMAC_SHA=$(hash1 "$SIGMAC")
+VM_SHA=$(hash1 "$VM")
+
+printf 'SIGMA_PHASE=V4C5R1_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_PREFLIGHT\n'
+printf 'SIGMAC_SHA256=%s\n' "$SIGMAC_SHA"
+printf 'VM_SHA256=%s\n' "$VM_SHA"
+printf 'FIXTURE_ROLE=MECHANICAL_DYNAMIC_CATALOG_AND_UPSTREAM_NATIVE_INTENT_SIMULATION_ONLY\n'
+printf 'HOST_LOCAL_WORK_SELECTION=NO\n'
+printf 'HOST_EXTERNAL_RESEARCH_SELECTION=NO\n'
+printf 'HOST_QUERY_GENERATION=NO\n'
+printf 'HOST_LEARNING=NO\n'
+printf 'END_TO_END_EXTERNAL_INTENT_GENERATION_TESTED=NO\n'
+
+[ "$SIGMAC_SHA" = "$EXPECTED_SIGMAC" ] || { printf 'HOLD=SIGMAC_IDENTITY_MISMATCH\n'; exit 20; }
+[ "$VM_SHA" = "$EXPECTED_VM" ] || { printf 'HOLD=VM_IDENTITY_MISMATCH\n'; exit 21; }
+[ -f "$SRC_REPO" ] || { printf 'HOLD=C5R1_SOURCE_MISSING\n'; exit 22; }
+
+SRC_BLOB=$(blob1 "$SRC_REPO")
+SRC_SHA=$(hash1 "$SRC_REPO")
+printf 'C5R1_SOURCE_GIT_BLOB=%s\n' "$SRC_BLOB"
+printf 'C5R1_SOURCE_SHA256=%s\n' "$SRC_SHA"
+[ "$SRC_BLOB" = "$EXPECTED_SRC_BLOB" ] || { printf 'HOLD=C5R1_SOURCE_BLOB_MISMATCH\n'; exit 23; }
+
+FORCED_COUNT=0
+for TOKEN in 'SEMANTIC_UNDERSTANDING' 'UNDERSTANDING_PROXY' 'NOT_PROVEN' 'NOT_UNDERSTOOD' 'UNDERSTOOD' 'CHUA_DUOC_CHUNG_MINH'; do
+    C=$("$P/bin/grep" -F -c -- "$TOKEN" "$SRC_REPO" 2>/dev/null || true)
+    FORCED_COUNT=$((FORCED_COUNT + C))
+done
+printf 'FORCED_SEMANTIC_VERDICT_LITERAL_COUNT=%s\n' "$FORCED_COUNT"
+[ "$FORCED_COUNT" -eq 0 ] || { printf 'HOLD=FORCED_SEMANTIC_VERDICT_LITERAL_PRESENT\n'; exit 24; }
+
+rm -rf -- "$BASE"
+mkdir -p "$COMPILER"
+cp -- "$SRC_REPO" "$SRC" || exit 25
+INSTALLED_BLOB=$(blob1 "$SRC")
+printf 'C5R1_INSTALLED_GIT_BLOB=%s\n' "$INSTALLED_BLOB"
+[ "$INSTALLED_BLOB" = "$EXPECTED_SRC_BLOB" ] || { printf 'HOLD=INSTALLED_SOURCE_BLOB_MISMATCH\n'; exit 26; }
+
+rm -f -- "$BC.partial"
+"$SIGMAC" "$SRC" "$BC.partial"
+SIGMAC_RC=$?
+printf 'C5R1_SIGMAC_RC=%s\n' "$SIGMAC_RC"
+[ "$SIGMAC_RC" -eq 0 ] || { printf 'HOLD=C5R1_SIGMAC_FAILED\n'; exit 27; }
+[ -s "$BC.partial" ] || { printf 'HOLD=C5R1_BYTECODE_EMPTY\n'; exit 28; }
+mv -f -- "$BC.partial" "$BC" || exit 29
+chmod 0400 "$BC" || exit 30
+BC_SHA=$(hash1 "$BC")
+printf 'C5R1_BYTECODE_SHA256=%s\n' "$BC_SHA"
+
+FORCED_BC_COUNT=0
+for TOKEN in 'SEMANTIC_UNDERSTANDING' 'UNDERSTANDING_PROXY' 'NOT_PROVEN' 'NOT_UNDERSTOOD' 'UNDERSTOOD' 'CHUA_DUOC_CHUNG_MINH'; do
+    C=$("$P/bin/grep" -a -F -c -- "$TOKEN" "$BC" 2>/dev/null || true)
+    FORCED_BC_COUNT=$((FORCED_BC_COUNT + C))
+done
+printf 'FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE_COUNT=%s\n' "$FORCED_BC_COUNT"
+[ "$FORCED_BC_COUNT" -eq 0 ] || { printf 'HOLD=FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE\n'; exit 31; }
+
+TOKEN="$("$P/bin/date" +%s).$$.$RANDOM"
+printf 'DYNAMIC_FIXTURE_TOKEN=%s\n' "$TOKEN"
+
+make_case() {
+    NAME="$1"
+    ROOT="$BASE/$NAME"
+    BRAIN="$ROOT/BRAIN/EXTRA BRAIN_OPPO_24826"
+    E="$BRAIN/.sigma_exec"
+    mkdir -p "$E"
+    for F in \
+      SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory \
+      SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory \
+      SIGMA_V4C5R1_LOCAL_CURSOR.memory \
+      SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory \
+      SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory \
+      SIGMA_V4C5R1_ACTION.memory \
+      SIGMA_V4C5R1_SOURCE.memory \
+      SIGMA_V4C5R1_TARGET.memory
+    do
+        : > "$E/$F"
+    done
+    printf '%s|%s|%s\n' "$ROOT" "$BRAIN" "$E"
+}
+
+run_vm_case() {
+    NAME="$1"
+    BRAIN="$2"
+    LOGFILE="$BASE/$NAME.vm.log"
+    ( cd "$BRAIN" || exit 70; "$VM" "$BC" ) > "$LOGFILE" 2>&1
+    RC=$?
+    printf '%s_VM_RC=%s LOG=%s\n' "$NAME" "$RC" "$LOGFILE"
+    "$P/bin/cat" "$LOGFILE"
+    [ "$RC" -eq 0 ]
+}
+
+assert_file_eq() {
+    FILE="$1"
+    EXPECTED="$2"
+    LABEL="$3"
+    ACTUAL=$(cat "$FILE")
+    if [ "$ACTUAL" != "$EXPECTED" ]; then
+        printf 'ASSERT_FAIL=%s EXPECTED=%s ACTUAL=%s\n' "$LABEL" "$EXPECTED" "$ACTUAL"
+        return 1
+    fi
+    printf 'ASSERT_PASS=%s VALUE=%s\n' "$LABEL" "$ACTUAL"
+}
+
+A_INFO=$(make_case CASE_A_LOCAL_CURSOR_RESTART)
+IFS='|' read -r A_ROOT A_BRAIN A_E <<EOF
+$A_INFO
+EOF
+A_PAGE="PAGE_${TOKEN}_A"
+A1="ENTRY_ID=${TOKEN}.A1 || PATH_B64=L2R5bmFtaWMvYTE= || SIZE=11 || MTIME_NS=101"
+A2="ENTRY_ID=${TOKEN}.A2 || PATH_B64=L2R5bmFtaWMvYTI= || SIZE=22 || MTIME_NS=102"
+printf '%s' "$A_PAGE" > "$A_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+printf '%s\n%s' "$A1" "$A2" > "$A_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+run_vm_case CASE_A1_LOCAL_FIRST "$A_BRAIN" || { printf 'HOLD=CASE_A1_VM_FAILURE\n'; exit 40; }
+assert_file_eq "$A_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_LOCAL_ENTRY CASE_A1_ACTION || exit 41
+assert_file_eq "$A_E/SIGMA_V4C5R1_TARGET.memory" "$A1" CASE_A1_TARGET || exit 42
+assert_file_eq "$A_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '|' CASE_A1_CURSOR || exit 43
+assert_file_eq "$A_E/SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory" "$A_PAGE" CASE_A1_CURSOR_PAGE || exit 44
+
+run_vm_case CASE_A2_FRESH_VM_RESUME "$A_BRAIN" || { printf 'HOLD=CASE_A2_VM_FAILURE\n'; exit 45; }
+assert_file_eq "$A_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_LOCAL_ENTRY CASE_A2_ACTION || exit 46
+assert_file_eq "$A_E/SIGMA_V4C5R1_TARGET.memory" "$A2" CASE_A2_TARGET || exit 47
+assert_file_eq "$A_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '||' CASE_A2_CURSOR || exit 48
+
+run_vm_case CASE_A3_PAGE_EXHAUSTED "$A_BRAIN" || { printf 'HOLD=CASE_A3_VM_FAILURE\n'; exit 49; }
+assert_file_eq "$A_E/SIGMA_V4C5R1_ACTION.memory" REQUEST_NEXT_LOCAL_CATALOG_PAGE CASE_A3_ACTION || exit 50
+assert_file_eq "$A_E/SIGMA_V4C5R1_TARGET.memory" "$A_PAGE" CASE_A3_TARGET || exit 51
+assert_file_eq "$A_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '||' CASE_A3_CURSOR_UNCHANGED || exit 52
+
+B_INFO=$(make_case CASE_B_EXTERNAL_INTENT_WITH_LOCAL_PENDING)
+IFS='|' read -r B_ROOT B_BRAIN B_E <<EOF
+$B_INFO
+EOF
+B_PAGE="PAGE_${TOKEN}_B"
+B1="ENTRY_ID=${TOKEN}.B1 || PATH_B64=L2R5bmFtaWMvYjE= || SIZE=33 || MTIME_NS=201"
+REQ1="REQUEST_ID=${TOKEN}.R1 || SOURCE_FAMILY=WIKIPEDIA || QUERY_B64=YWxwaGE="
+REQ2="REQUEST_ID=${TOKEN}.R2 || SOURCE_FAMILY=WIKIPEDIA || QUERY_B64=YmV0YQ=="
+printf '%s' "$B_PAGE" > "$B_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+printf '%s' "$B1" > "$B_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+printf '%s' "$REQ1" > "$B_E/SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory"
+run_vm_case CASE_B1_EXTERNAL_INTENT "$B_BRAIN" || { printf 'HOLD=CASE_B1_VM_FAILURE\n'; exit 53; }
+assert_file_eq "$B_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_EXTERNAL_REQUEST CASE_B1_ACTION || exit 54
+assert_file_eq "$B_E/SIGMA_V4C5R1_TARGET.memory" "$REQ1" CASE_B1_EXACT_TARGET || exit 55
+assert_file_eq "$B_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '' CASE_B1_LOCAL_CURSOR_NOT_ADVANCED || exit 56
+
+printf '%s' "$REQ2" > "$B_E/SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory"
+run_vm_case CASE_B2_DYNAMIC_EXTERNAL_REQUEST "$B_BRAIN" || { printf 'HOLD=CASE_B2_VM_FAILURE\n'; exit 57; }
+assert_file_eq "$B_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_EXTERNAL_REQUEST CASE_B2_ACTION || exit 58
+assert_file_eq "$B_E/SIGMA_V4C5R1_TARGET.memory" "$REQ2" CASE_B2_EXACT_TARGET || exit 59
+assert_file_eq "$B_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '' CASE_B2_LOCAL_CURSOR_NOT_ADVANCED || exit 60
+
+C_INFO=$(make_case CASE_C_PAGE_CHANGE_RESETS_CURSOR)
+IFS='|' read -r C_ROOT C_BRAIN C_E <<EOF
+$C_INFO
+EOF
+C_OLD="PAGE_${TOKEN}_OLD"
+C_NEW="PAGE_${TOKEN}_NEW"
+C1="ENTRY_ID=${TOKEN}.C1 || PATH_B64=L2R5bmFtaWMvYzE= || SIZE=44 || MTIME_NS=301"
+printf '|||' > "$C_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory"
+printf '%s' "$C_OLD" > "$C_E/SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory"
+printf '%s' "$C_NEW" > "$C_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+printf '%s' "$C1" > "$C_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+run_vm_case CASE_C_PAGE_CHANGE_RESETS_CURSOR "$C_BRAIN" || { printf 'HOLD=CASE_C_VM_FAILURE\n'; exit 61; }
+assert_file_eq "$C_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_LOCAL_ENTRY CASE_C_ACTION || exit 62
+assert_file_eq "$C_E/SIGMA_V4C5R1_TARGET.memory" "$C1" CASE_C_TARGET || exit 63
+assert_file_eq "$C_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '|' CASE_C_CURSOR_RESET_ADVANCE || exit 64
+assert_file_eq "$C_E/SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory" "$C_NEW" CASE_C_CURSOR_PAGE_RESET || exit 65
+
+D_INFO=$(make_case CASE_D_MALFORMED_RECORD)
+IFS='|' read -r D_ROOT D_BRAIN D_E <<EOF
+$D_INFO
+EOF
+D_PAGE="PAGE_${TOKEN}_D"
+D_BAD="BROKEN_ID=${TOKEN}.D || PATH_B64=L2Jyb2tlbg== || SIZE=55 || MTIME_NS=401"
+printf '%s' "$D_PAGE" > "$D_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+printf '%s' "$D_BAD" > "$D_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+run_vm_case CASE_D_MALFORMED_RECORD "$D_BRAIN" || { printf 'HOLD=CASE_D_VM_FAILURE\n'; exit 66; }
+assert_file_eq "$D_E/SIGMA_V4C5R1_ACTION.memory" REFUSE_LOCAL_CATALOG_RECORD CASE_D_ACTION || exit 67
+assert_file_eq "$D_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '' CASE_D_CURSOR_UNCHANGED || exit 68
+
+E_INFO=$(make_case CASE_E_OVERSIZED_PAGE)
+IFS='|' read -r E_ROOT E_BRAIN E_E <<EOF
+$E_INFO
+EOF
+E_PAGE="PAGE_${TOKEN}_E"
+printf '%s' "$E_PAGE" > "$E_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+: > "$E_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+I=0
+while [ "$I" -lt 66 ]; do
+    [ "$I" -eq 0 ] || printf '\n' >> "$E_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+    printf 'ENTRY_ID=%s.E%s || PATH_B64=L2JvdW5kZWQ= || SIZE=%s || MTIME_NS=%s' "$TOKEN" "$I" "$I" "$I" >> "$E_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+    I=$((I + 1))
+done
+run_vm_case CASE_E_OVERSIZED_PAGE "$E_BRAIN" || { printf 'HOLD=CASE_E_VM_FAILURE\n'; exit 69; }
+assert_file_eq "$E_E/SIGMA_V4C5R1_ACTION.memory" REFUSE_CATALOG_PAGE_LIMIT CASE_E_ACTION || exit 71
+assert_file_eq "$E_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '' CASE_E_CURSOR_UNCHANGED || exit 72
+
+F_INFO=$(make_case CASE_F_EMPTY_PAGE_NEXT)
+IFS='|' read -r F_ROOT F_BRAIN F_E <<EOF
+$F_INFO
+EOF
+F_PAGE="PAGE_${TOKEN}_F"
+printf '%s' "$F_PAGE" > "$F_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+run_vm_case CASE_F_EMPTY_PAGE_NEXT "$F_BRAIN" || { printf 'HOLD=CASE_F_VM_FAILURE\n'; exit 73; }
+assert_file_eq "$F_E/SIGMA_V4C5R1_ACTION.memory" REQUEST_NEXT_LOCAL_CATALOG_PAGE CASE_F_ACTION || exit 74
+assert_file_eq "$F_E/SIGMA_V4C5R1_TARGET.memory" "$F_PAGE" CASE_F_TARGET || exit 75
+
+G_INFO=$(make_case CASE_G_EXTERNAL_NOT_BLOCKED_BY_LOCAL_PAGE_LIMIT)
+IFS='|' read -r G_ROOT G_BRAIN G_E <<EOF
+$G_INFO
+EOF
+G_PAGE="PAGE_${TOKEN}_G"
+G_REQ="REQUEST_ID=${TOKEN}.G || SOURCE_FAMILY=WIKIPEDIA || QUERY_B64=Z2FtbWE="
+printf '%s' "$G_PAGE" > "$G_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory"
+: > "$G_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+I=0
+while [ "$I" -lt 66 ]; do
+    [ "$I" -eq 0 ] || printf '\n' >> "$G_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+    printf 'ENTRY_ID=%s.G%s || PATH_B64=L2xvY2Fs || SIZE=%s || MTIME_NS=%s' "$TOKEN" "$I" "$I" "$I" >> "$G_E/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory"
+    I=$((I + 1))
+done
+printf '%s' "$G_REQ" > "$G_E/SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory"
+run_vm_case CASE_G_EXTERNAL_NOT_BLOCKED_BY_LOCAL_PAGE_LIMIT "$G_BRAIN" || { printf 'HOLD=CASE_G_VM_FAILURE\n'; exit 76; }
+assert_file_eq "$G_E/SIGMA_V4C5R1_ACTION.memory" DISPATCH_NATIVE_EXTERNAL_REQUEST CASE_G_ACTION || exit 77
+assert_file_eq "$G_E/SIGMA_V4C5R1_TARGET.memory" "$G_REQ" CASE_G_TARGET || exit 78
+assert_file_eq "$G_E/SIGMA_V4C5R1_LOCAL_CURSOR.memory" '' CASE_G_CURSOR_UNCHANGED || exit 79
+
+H_INFO=$(make_case CASE_H_NO_WORK)
+IFS='|' read -r H_ROOT H_BRAIN H_E <<EOF
+$H_INFO
+EOF
+run_vm_case CASE_H_NO_WORK "$H_BRAIN" || { printf 'HOLD=CASE_H_VM_FAILURE\n'; exit 80; }
+assert_file_eq "$H_E/SIGMA_V4C5R1_ACTION.memory" WAIT_NO_BRIDGE_WORK CASE_H_ACTION || exit 81
+assert_file_eq "$H_E/SIGMA_V4C5R1_TARGET.memory" '' CASE_H_TARGET || exit 82
+
+SRC_TOKEN_COUNT=$("$P/bin/grep" -F -c -- "$TOKEN" "$SRC_REPO" 2>/dev/null || true)
+BC_TOKEN_COUNT=$("$P/bin/grep" -a -F -c -- "$TOKEN" "$BC" 2>/dev/null || true)
+printf 'DYNAMIC_TOKEN_LEAK_SOURCE_COUNT=%s\n' "$SRC_TOKEN_COUNT"
+printf 'DYNAMIC_TOKEN_LEAK_BYTECODE_COUNT=%s\n' "$BC_TOKEN_COUNT"
+[ "$SRC_TOKEN_COUNT" -eq 0 ] || { printf 'HOLD=DYNAMIC_TOKEN_LEAK_SOURCE\n'; exit 83; }
+[ "$BC_TOKEN_COUNT" -eq 0 ] || { printf 'HOLD=DYNAMIC_TOKEN_LEAK_BYTECODE\n'; exit 84; }
+
+printf 'V4C5R1_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_PREFLIGHT=PASS\n'
+printf 'NATIVE_BOUNDED_LOCAL_CATALOG_SELECTION=PASS_IN_DYNAMIC_FIXTURE_SCOPE\n'
+printf 'NATIVE_LOCAL_CURSOR_RESTART_RESUME=PASS_IN_DYNAMIC_FIXTURE_SCOPE\n'
+printf 'EXACT_EXTERNAL_INTENT_DISPATCH=PASS_IN_UPSTREAM_INTENT_FIXTURE_SCOPE\n'
+printf 'EXTERNAL_INTENT_DOES_NOT_REQUIRE_LOCAL_EXHAUSTION=PASS_IN_CONTROLLER_FIXTURE_SCOPE\n'
+printf 'EXTERNAL_DISPATCH_DOES_NOT_ADVANCE_LOCAL_CURSOR=PASS\n'
+printf 'PAGE_CHANGE_NATIVE_CURSOR_RESET=PASS\n'
+printf 'MALFORMED_LOCAL_RECORD_REFUSAL=PASS\n'
+printf 'OVERSIZED_CATALOG_PAGE_REFUSAL=PASS\n'
+printf 'END_TO_END_NATIVE_EXTERNAL_INTENT_GENERATION=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'REAL_OPPO_ARCHIVE_CATALOG=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'REAL_OPPO_ARCHIVE_LEARNING=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'NETWORK_TRANSPORT=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'PRODUCTION_STATE_MUTATED=NO\n'
+printf 'PRODUCTION_BINDING=NO\n'
+printf 'V4C5R1_PROCESS_RC=0\n'
