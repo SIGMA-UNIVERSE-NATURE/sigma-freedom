@@ -307,6 +307,24 @@ DEF unary_add(token, count) {
     ⚡ SEGMENT_END_LINE:
         SEGMENT_START_LINE;
 
+    ⚡ CURSOR_OUT_OF_RANGE:
+        0;
+
+    IF (CONTEXT_LINE_TOTAL < SEGMENT_START_LINE) {
+        ⚡ CURSOR_OUT_OF_RANGE:
+            1;
+    }
+
+    ⚡ COMPLETION_RECOVERY_REQUIRED:
+        0;
+
+    IF (SEGMENT_START_LINE == CONTEXT_LINE_TOTAL) {
+        IF (CONTEXT_ALREADY_COMPLETE == 0) {
+            ⚡ COMPLETION_RECOVERY_REQUIRED:
+                1;
+        }
+    }
+
     ⚡ SEGMENT_KEY:
         LATEST_CURSOR;
 
@@ -481,6 +499,16 @@ DEF unary_add(token, count) {
             0;
     }
 
+    IF (CURSOR_OUT_OF_RANGE) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (COMPLETION_RECOVERY_REQUIRED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
     IF (PROCESS_ALLOWED) {
 
         ⚡ TARGET_END:
@@ -603,8 +631,33 @@ DEF unary_add(token, count) {
     ⚡ COMPLETION_APPEND_RC:
         0;
 
+    ⚡ COMPLETION_RECOVERY_ALLOWED:
+        0;
+
+    IF (COMPLETION_RECOVERY_REQUIRED) {
+        IF (INPUT_VALID) {
+            IF (CONTEXT_LIMIT_EXCEEDED == 0) {
+                IF (CURSOR_LIMIT_EXCEEDED == 0) {
+                    IF (EVIDENCE_LIMIT_EXCEEDED == 0) {
+                        IF (COMPLETION_LIMIT_EXCEEDED == 0) {
+                            IF (CURSOR_OUT_OF_RANGE == 0) {
+                                ⚡ COMPLETION_RECOVERY_ALLOWED:
+                                    1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     ⚡ MUTATION_ALLOWED:
         PROCESS_ALLOWED;
+
+    IF (COMPLETION_RECOVERY_ALLOWED) {
+        ⚡ MUTATION_ALLOWED:
+            1;
+    }
 
     ⚡ NEXT_CURSOR:
         LATEST_CURSOR;
@@ -655,6 +708,15 @@ DEF unary_add(token, count) {
         }
     }
 
+    IF (COMPLETION_RECOVERY_ALLOWED) {
+
+        ⚡ RECOVERY_COMPLETION_RECORD:
+            "CTX=" + CONTEXT_ID + " || COMPLETE=YES\n";
+
+        ⚡ COMPLETION_APPEND_RC:
+            H("append_text", ".sigma_exec/SIGMA_V4B1_COMPLETION_LEDGER.memory", RECOVERY_COMPLETION_RECORD, NULL);
+    }
+
     ⚡ CONTEXT_COMPLETE:
         0;
 
@@ -668,6 +730,11 @@ DEF unary_add(token, count) {
             ⚡ CONTEXT_COMPLETE:
                 1;
         }
+    }
+
+    IF (COMPLETION_RECOVERY_ALLOWED) {
+        ⚡ CONTEXT_COMPLETE:
+            1;
     }
 
     ⚡ STATUS:
@@ -701,6 +768,16 @@ DEF unary_add(token, count) {
     IF (TOKEN_LIMIT_EXCEEDED) {
         ⚡ STATUS:
             "REFUSE_TOKEN_LIMIT";
+    }
+
+    IF (CURSOR_OUT_OF_RANGE) {
+        ⚡ STATUS:
+            "REFUSE_CURSOR_OUT_OF_RANGE";
+    }
+
+    IF (COMPLETION_RECOVERY_ALLOWED) {
+        ⚡ STATUS:
+            "RECOVERED_COMPLETION";
     }
 
     IF (CONTEXT_ALREADY_COMPLETE) {
@@ -741,6 +818,9 @@ DEF unary_add(token, count) {
     ⚡ print("CURSOR_LIMIT_EXCEEDED", CURSOR_LIMIT_EXCEEDED);
     ⚡ print("EVIDENCE_LIMIT_EXCEEDED", EVIDENCE_LIMIT_EXCEEDED);
     ⚡ print("COMPLETION_LIMIT_EXCEEDED", COMPLETION_LIMIT_EXCEEDED);
+    ⚡ print("CURSOR_OUT_OF_RANGE", CURSOR_OUT_OF_RANGE);
+    ⚡ print("COMPLETION_RECOVERY_REQUIRED", COMPLETION_RECOVERY_REQUIRED);
+    ⚡ print("COMPLETION_RECOVERY_ALLOWED", COMPLETION_RECOVERY_ALLOWED);
     ⚡ print("MUTATION_ALLOWED", MUTATION_ALLOWED);
     ⚡ print("EVIDENCE_APPEND_RC", EVIDENCE_APPEND_RC);
     ⚡ print("CURSOR_APPEND_RC", CURSOR_APPEND_RC);
