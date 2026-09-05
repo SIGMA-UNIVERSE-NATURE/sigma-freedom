@@ -1,11 +1,11 @@
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "window_id": "DIRECTOR-BACKUP-S01",
   "role": "BACKUP_SENTINEL",
   "status": "STANDBY_READY",
   "execution_branch": "hka-tree/director-backup-sentinel",
-  "last_checkpoint_id": "CP11-C10-POST-ACTIVATION-TREE-ALIGNMENT",
-  "last_checkpoint_commit_sha": "ac6ef9ac5a79232f2ebbae9a82dc0cf541d61f91",
+  "last_checkpoint_id": "CP12-FOUNDATIONAL-13-YEAR-GATE-ACTIVATED",
+  "last_checkpoint_commit_sha": "af288da4b291cf9a43e1b6a79f655093455c5ad2",
   "last_sentinel_status": "TREE_ALIGNMENT_PASS",
   "current_stage": "CURRICULUM",
   "active_scope": "B1.1-C10",
@@ -14,6 +14,14 @@
   "accepted_predecessor": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
   "scope_map_anchor": {"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
   "active_dependency_amendments": [1,2,3,4,5],
+  "active_global_foundational_gate": {
+    "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
+    "status": "ACTIVE_REQUIRED",
+    "amendment_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
+    "gate_commit": "755d8cf626236e5746a93cc89f47f0da31f66a81",
+    "current_audit_status": "NOT_YET_RUN",
+    "blocking_rule": "No B1.1 completion or B1.2 unlock before PASS with FOUNDATIONAL_GAP_COUNT=0"
+  },
   "authority": {
     "academic_authoring": false,
     "director_acceptance": false,
@@ -22,6 +30,7 @@
     "own_status_checkpoint_writes": true
   },
   "continuity_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
-  "next_action": "On invocation, re-read current continuity snapshot, immutable scope-map anchor, state, registry and active child; return TREE_ALIGNMENT_PASS, TREE_ALIGNMENT_ALERT or RECOVERY_REQUIRED only.",
-  "updated_at": "2026-09-05T19:22:00+07:00"
+  "foundational_gate_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
+  "next_action": "On invocation, re-read current continuity snapshot, foundational 13-year gate, immutable scope-map anchor, state, registry and active child; return TREE_ALIGNMENT_PASS, TREE_ALIGNMENT_ALERT or RECOVERY_REQUIRED only.",
+  "updated_at": "2026-09-05T20:31:00+07:00"
 }
