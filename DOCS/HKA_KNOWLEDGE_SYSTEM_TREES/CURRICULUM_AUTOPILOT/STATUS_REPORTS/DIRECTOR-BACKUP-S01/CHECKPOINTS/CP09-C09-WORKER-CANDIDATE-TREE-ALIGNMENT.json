@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "checkpoint_id": "CP09-C09-WORKER-CANDIDATE-TREE-ALIGNMENT",
+  "stage": "CURRICULUM",
+  "candidate_window": "C01-W02-B1.1-MATH-FAMILY-C09",
+  "candidate_scope": "B1.1-C09",
+  "candidate_branch": "hka-tree/c01-w02-math-c09",
+  "candidate_head": "f7d8afaa92c4401abe97ca8d9623d79b8617d8ca",
+  "accepted_predecessor": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "result": "TREE_ALIGNMENT_PASS",
+  "checks": {
+    "canonical_tree_commit": "PASS",
+    "immutable_scope_map_anchor": "PASS",
+    "candidate_descends_from_accepted_predecessor": "PASS",
+    "branch_diff_C09_only": "PASS",
+    "active_scope_window_branch_match": "PASS",
+    "C10_still_locked": "PASS",
+    "future_locked_support_claim_ids": 0,
+    "post_CURRICULUM_stage_leakage": "NONE"
+  },
+  "authority_note": "Sentinel alignment only; academic acceptance remains Director authority.",
+  "created_at": "2026-09-05T19:22:00+07:00"
+}
