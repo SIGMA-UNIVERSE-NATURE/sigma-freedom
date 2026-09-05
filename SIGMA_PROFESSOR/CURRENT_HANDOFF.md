@@ -17,6 +17,8 @@ Bootstrap commits installed:
 - native-execution directive: `a6a6856a4b233ef47378096f5909b9b084de9485`
 - root `AGENTS.md`: `c737721739e9e2fa368bac05fcf592f5146fd1b2`
 - `SIGMA_PROFESSOR/README.md` bootstrap update: `209f4c1192417937ed2c2e0974dfb99b3de2d4e2`
+- handoff STOP-GATE install: `5cef391ad4d2514c624b5f76c68826d495aeadb3`
+- immutable bootstrap checkpoint: `1d12c5e7176a7d703156ccef53573ece87a03ce2`
 
 ### Non-negotiable execution boundary
 
@@ -33,7 +35,7 @@ Bootstrap commits installed:
 - `HOST_OR_BASH_TRUTH_DECISION=FORBIDDEN`
 - `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`
 
-Bash/host is **not SIGMA**. It MUST NOT implement or substitute any SIGMA cognitive capability. It may only be an external mechanically transparent harness: invoke the locked compiler/VM, move exact bytes/files, print/compare hashes and return codes, create isolated fixtures/fault injections, supervise processes/transport bytes, or dispatch an **exact event/stage already emitted by native SIGMA** without choosing or rewriting it.
+Bash/host is **not SIGMA**. It MUST NOT implement or substitute any SIGMA cognitive capability. It may only be an external mechanically transparent harness: invoke locked compiler/VM, move exact bytes/files, print/compare hashes and return codes, create isolated fixtures/fault injections, supervise processes/transport bytes, or dispatch an **exact event/stage already emitted by native SIGMA** without choosing or rewriting it.
 
 - `BASH_MAY_LAUNCH_SIGMA=YES`
 - `BASH_MAY_IMPLEMENT_SIGMA_CAPABILITY=NO`
@@ -42,16 +44,15 @@ Bash/host is **not SIGMA**. It MUST NOT implement or substitute any SIGMA cognit
 
 If an old artifact conflicts with this bootstrap flag, treat the old artifact as historical evidence/provenance only. Never weaken this STOP-GATE to preserve old behavior.
 
-## Mandatory standard
-
-Read first: `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`.
-
-Global invariants:
+## Global invariants
 
 - active cognition = native `.sigma` only;
 - `HOST_LEARNING=NO`;
 - `HOST_SEMANTIC_INTERPRETATION=NO`;
 - `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`;
+- `ANTI_HARDCODE=ADMISSION_CONTROL_NOT_TOOL_REMOVAL`;
+- `DO_NOT_LOAD_RESULTS=YES`;
+- `LOAD_CAPABILITIES=YES`;
 - runtime proof required;
 - failures are evidence; never weaken admission gates;
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
@@ -69,7 +70,7 @@ VM v09 candidate SHA256:
 
 `VM_IS_GENESIS1=NOT_PROVEN`.
 
-Every admission runner from V2.16 onward visibly prints and equality-gates both runtime identities.
+Admission transcripts must visibly print and equality-gate both identities.
 
 ## Production V2.4
 
@@ -78,7 +79,9 @@ Keep V2.4 running unchanged unless it emits a real VM failure.
 Source SHA256:
 `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2`
 
-Do NOT upgrade V2.4 in place before shadow-production promotion gates pass.
+`PRODUCTION_V2_4_KEEP_RUNNING=YES`
+
+`UPGRADE_V2_4_IN_PLACE=NO`
 
 ## Admitted continual-learning chain
 
@@ -101,6 +104,7 @@ Do NOT upgrade V2.4 in place before shadow-production promotion gates pass.
 - V2.19R.1 native revisit fairness queue — PASS `e44e84a37168cc193721d80a68cb58f331378280`.
 - V2.20R.1 fairness shadow integration — PASS `596a9620a7046d431f89ed5006332c1e1cfa4415`.
 - V2.21R.1 long-horizon shadow stability/recovery — PASS `cc2decc32d7aed2c5348333d9857623936a25b09`.
+- V2.22R.1 crash-consistent transaction journal — PASS `8b0a2e97e7918e2d99894fb6255192cd190524f2`.
 
 ## Key admitted claims
 
@@ -112,40 +116,9 @@ Do NOT upgrade V2.4 in place before shadow-production promotion gates pass.
 
 `LONG_HORIZON_SHADOW_STABILITY=PROVEN_IN_SIX_BOUNDARY_FOUR_REAL_WORK_SCOPE`
 
-V2.21 runtime evidence included:
+`CRASH_CONSISTENT_JOURNAL_RECOVERY=PROVEN_UNDER_INJECTED_TRUNCATED_TAIL_FAULTS`
 
-- 6 fairness scheduling boundaries;
-- at least 4 real works dispatched;
-- first-work defer/resume/redefer sequence PASS;
-- third real work complete cycle replay PASS;
-- first generation `||||` branch not hardcoded;
-- fourth real work initial cycle PASS;
-- fourth work branch not hardcoded;
-- fourth real result `REOBSERVED`;
-- fourth real lifecycle `ARCHIVE_FOR_NOW`;
-- persisted recovery at every extended boundary PASS;
-- fairness PENDING records = 3;
-- fairness RESUMED records = 3;
-- selector dispatch records = 4;
-- production V2.4 same PID before/after the test.
-
-Still NOT PROVEN generally:
-
-- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION`;
-- semantic truth validation;
-- semantic understanding;
-- bounded file I/O;
-- physical filesystem append atomicity.
-
-## Promotion status
-
-`PRODUCTION_PROMOTION_ALLOWED=NO`
-
-The remaining durability blocker is no longer long-horizon scheduler stability. It is crash consistency of critical persistent state when a host write/append is interrupted.
-
-`MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN` remains true and must not be overclaimed.
-
-## Current frontier — V2.22R.1 crash-consistent transaction journal — SOURCE READY
+## V2.22 admitted runtime evidence
 
 Native source:
 `SIGMA_PROFESSOR/artifacts/SIGMA_CRASH_CONSISTENT_TRANSACTION_JOURNAL_V2_22R1.sigma`
@@ -159,69 +132,63 @@ Runner:
 Runner SHA256:
 `6038ba6d2a6d4a16cc67c98386227c130fdc2f659c6dd850457b5c0ce4a4be9e`
 
-README:
-`SIGMA_PROFESSOR/artifacts/SIGMA_V222R1_CRASH_CONSISTENT_TRANSACTION_JOURNAL_PREFLIGHT_README.txt`
+PASS gates:
 
-Source-ready checkpoint:
-`244a13cd6423774f50b7b143531feec77059eb21`
-
-### Protocol
-
-Append-only PREPARE and COMMIT records both contain exact TX + PAYLOAD, unary TX/payload lengths, and exact phase end sentinels.
-
-Recovery accepts only complete matching PREPARE+COMMIT pairs with no conflicting valid prepare payload for the TX.
-
-Every append starts with a newline so a truncated prior tail can be delimited on retry and remain an ignored malformed line.
-
-Modes:
-
-- `RECOVER_ONLY`
-- `PREPARE_ONLY`
-- `COMMIT_TRANSACTION`
-
-### V2.22 required gates
-
-- clean commit + fresh-VM idempotency;
-- PREPARE_ONLY must not become visible as committed after restart;
-- prepared transaction can resume to commit after restart;
-- torn PREPARE tail ignored and retry recovers;
-- torn COMMIT tail ignored and retry recovers;
+- PREPARE_ONLY is not visible as committed;
+- prepared transaction resumes to COMMIT after restart;
+- torn PREPARE tail ignored + retry recovers;
+- torn COMMIT tail ignored + retry recovers;
 - garbage tail ignored;
-- conflicting prepare payloads block that transaction;
+- conflicting valid PREPARE payloads block that transaction;
+- fresh-VM idempotent commit;
 - deterministic journal replay;
 - invalid delimiter refusal;
-- journal bound refusal.
+- journal bound refusal;
+- `HOST_TRANSACTION_DECISION=NO`;
+- `HOST_RECOVERY_DECISION=NO`;
+- `HOST_LEARNING=NO`.
 
-Static readiness:
+The user-provided final runtime tail did not include the V2.22 bytecode SHA line. Do not invent it.
 
-- `H_CALL_ARITY_AUDIT=PASS`;
-- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
-- `STR_STARTS_DEPENDENCY=NONE`;
-- `DIRECT_STR_DEPENDENCY=NONE`;
-- runner `bash -n` RC = 0.
+## Durability claim boundary
 
-The candidate uses native `str_len` for unary self-validation. Locked-runtime V2.22 PASS must itself prove that dependency. Do not substitute host logic if it fails.
+V2.22 proves crash-consistent native journal recovery under the injected truncated-tail model. It does **not** prove physical filesystem atomicity.
 
-### Claim boundary
+Keep locked:
 
-A future V2.22 PASS may establish only:
+- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`
+- `PHYSICAL_FILESYSTEM_ATOMICITY=NOT_CLAIMED`
+- `BOUNDED_FILE_IO=NOT_PROVEN`
 
-`CRASH_CONSISTENT_JOURNAL_RECOVERY=PROVEN_UNDER_INJECTED_TRUNCATED_TAIL_FAULTS`
+## Promotion status
 
-It must NOT establish physical append atomicity. Keep:
+`PRODUCTION_PROMOTION_ALLOWED=NO`
 
-`MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`
+The next blocker is integration: real shadow scheduled intent has not yet been wrapped by the admitted V2.22 journal under injected torn PREPARE/COMMIT faults.
 
-`PHYSICAL_FILESYSTEM_ATOMICITY=NOT_CLAIMED`
+## Current frontier — journal-wrapped real shadow scheduled intent
+
+Next gate must integrate V2.22 with the real fairness/scheduler chain without moving any cognition to Bash/host.
+
+Required behavior:
+
+1. native fairness/controller produces an exact scheduled event;
+2. that exact event becomes the V2.22 transaction payload without reinterpretation;
+3. native V2.22 writes/recover-validates the event transaction;
+4. inject torn PREPARE and torn COMMIT faults around a real shadow defer/resume intent;
+5. fresh recovery must expose only the last fully committed exact native event;
+6. retry must commit/recover the intended event exactly;
+7. mechanical dispatcher may launch only the exact event recovered by native SIGMA;
+8. production V2.4 remains running and shadow state remains isolated.
+
+No host/Bash selection, recovery decision, stage decision, fairness decision, work selection, or learning is permitted.
 
 ## TEACHER_GPT language lane pointer
 
 Dedicated living checkpoint:
-
 `SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_LANGUAGE_LANE_CURRENT.md`
 
 Current admitted language chain:
-
 `LANG-01A -> LANG-01B -> LANG-01C -> LANG-01D -> LANG-01E -> LANG-01F`
 
 Current language status:
@@ -232,15 +199,15 @@ Current language status:
 - LANG-01F final runtime: `21/21` post-VM alignment PASS;
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
 - `COREFERENCE_RESOLUTION=NOT_PROVEN`;
-- next language capability is intentionally `NOT_YET_LOCKED`; re-read the dedicated checkpoint + latest canon before choosing between reference-resolution evidence integration and negation/scope foundation.
+- next language capability intentionally `NOT_YET_LOCKED`; re-read dedicated checkpoint + latest canon before choosing the next language capability.
 
-This pointer does not change the V2.22 continual-learning frontier or production-promotion status.
+This lane does not change the continual-learning production-promotion status.
 
 ## NEXT ACTION
 
-1. Re-read `/AGENTS.md` and the bootstrap directive before implementation.
+1. Re-read `/AGENTS.md` and bootstrap directive before implementation.
 2. Keep V2.4 running unchanged.
-3. Install exact V2.22 source and runner hashes from repo root `~/SIGMA/sigma-freedom-write`.
-4. Run locked sigmac + VM v09 and preserve runtime hashes, V222 bytecode SHA, every VM_RC, recovered TX/payload, journal hashes and injected-fault outcomes.
-5. If any dependency or gate fails, preserve evidence and repair only the narrow native failure; do not substitute Bash/host cognition.
-6. If V2.22 PASS, checkpoint it and integrate the journal around real shadow scheduled-intent persistence before any production migration/promotion.
+3. Build the next native-first admission gate wrapping real shadow scheduled intent in V2.22 transaction journal.
+4. Fault injection may be mechanical only; native SIGMA must decide validity/recovery.
+5. Preserve exact runtime identities, VM_RC, journal hashes, recovered exact events, and shadow/production isolation evidence.
+6. If any gate fails, preserve failure evidence and repair only the narrow native capability/integration issue.
