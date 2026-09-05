@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c08",
+  "input_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C04_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "last_checkpoint_commit_sha": "988f78602c1fc8b8f88c6b86651f10ea55c922a1",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "scope_ids": ["B1.1-C08"],
+  "completed_work": [
+    "Director independently accepted C06 at e0d6f667d38e937c7c6040b51fb14e34f0bb6345 after 102/102 claim and 32/32 semantic-closure audit.",
+    "Backup Sentinel returned TREE_ALIGNMENT_PASS for C06 candidate and C08 pre-open plan.",
+    "Dependency Amendment 2 changed execution dependency to C06 -> C08 -> C07 -> C09 -> C10 without changing stable IDs or ownership.",
+    "Created C08 branch from accepted C06 and installed contract, execution prompt, Director open order and bootstrap checkpoint."
+  ],
+  "remaining_work": [
+    "Author all eight canonical C08 topics.",
+    "Apply R05 mathematics-vs-algorithms overlap control.",
+    "Apply R02 error-correcting-code cross-link control.",
+    "Reuse C03 field/linear-algebra foundations and C01/C02 foundations without duplicate learning meaning.",
+    "Create direct semantic Claim-to-Learning-Objective closure with zero locked-scope support IDs.",
+    "Run committed-file source, duplicate, prerequisite and stage-boundary audits before candidate PASS."
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C08 only.",
+    "Accepted predecessor is C06 commit e0d6f667d38e937c7c6040b51fb14e34f0bb6345.",
+    "C07 remains locked until Director-accepted C08 PASS.",
+    "C09/C10 remain locked.",
+    "No later pipeline stage artifact is authorized."
+  ],
+  "next_action": "Execute C08 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C08 only.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C08"
+}
