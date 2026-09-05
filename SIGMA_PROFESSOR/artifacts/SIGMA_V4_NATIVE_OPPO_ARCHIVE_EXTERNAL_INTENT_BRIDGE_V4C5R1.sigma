@@ -1,0 +1,280 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.OPPO.ARCHIVE.EXTERNAL.INTENT.BRIDGE][VERSION=4C5R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.V4_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE_4C5R1) {
+
+    ⚡ CATALOG_PAGE:
+        H("read_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE.memory", NULL, NULL);
+
+    ⚡ PAGE_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CATALOG_PAGE_ID.memory", NULL, NULL);
+
+    ⚡ CURSOR_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CURSOR.memory", NULL, NULL);
+
+    ⚡ CURSOR_PAGE_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory", NULL, NULL);
+
+    ⚡ EXTERNAL_REQUEST:
+        H("read_text", ".sigma_exec/SIGMA_V4C5R1_NATIVE_EXTERNAL_REQUEST.memory", NULL, NULL);
+
+    ⚡ PAGE_LINES:
+        H("str_split", CATALOG_PAGE, "\n", NULL);
+
+    ⚡ PAGE_TOTAL:
+        H("list_len", PAGE_LINES, NULL, NULL);
+
+    ⚡ EFFECTIVE_CURSOR:
+        CURSOR_TEXT;
+
+    ⚡ PAGE_CHANGED:
+        0;
+
+    IF (CURSOR_PAGE_ID != PAGE_ID) {
+        ⚡ EFFECTIVE_CURSOR:
+            "";
+        ⚡ PAGE_CHANGED:
+            1;
+    }
+
+    ⚡ CURSOR_PARTS:
+        H("str_split", EFFECTIVE_CURSOR, "|", NULL);
+
+    ⚡ CURSOR_PART_TOTAL:
+        H("list_len", CURSOR_PARTS, NULL, NULL);
+
+    ⚡ CURSOR_INDEX:
+        CURSOR_PART_TOTAL - 1;
+
+    ⚡ MAX_PAGE_SPLIT_LINES:
+        65;
+
+    ⚡ PAGE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_PAGE_SPLIT_LINES < PAGE_TOTAL) {
+        ⚡ PAGE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ ACTION:
+        "WAIT_NO_BRIDGE_WORK";
+
+    ⚡ SOURCE:
+        "";
+
+    ⚡ TARGET:
+        "";
+
+    ⚡ LOCAL_CURSOR_ADVANCE:
+        0;
+
+    ⚡ LOCAL_RECORD_VALID:
+        0;
+
+    ⚡ SELECTED_RECORD:
+        "";
+
+    IF (EXTERNAL_REQUEST != "") {
+        ⚡ ACTION:
+            "DISPATCH_NATIVE_EXTERNAL_REQUEST";
+        ⚡ SOURCE:
+            "EXTERNAL_NATIVE_INTENT";
+        ⚡ TARGET:
+            EXTERNAL_REQUEST;
+    }
+
+    IF (EXTERNAL_REQUEST == "") {
+
+        IF (PAGE_LIMIT_EXCEEDED) {
+            ⚡ ACTION:
+                "REFUSE_CATALOG_PAGE_LIMIT";
+            ⚡ SOURCE:
+                "LOCAL_ARCHIVE";
+        }
+
+        IF (PAGE_LIMIT_EXCEEDED == 0) {
+
+            IF (CATALOG_PAGE == "") {
+                IF (PAGE_ID != "") {
+                    ⚡ ACTION:
+                        "REQUEST_NEXT_LOCAL_CATALOG_PAGE";
+                    ⚡ SOURCE:
+                        "LOCAL_ARCHIVE";
+                    ⚡ TARGET:
+                        PAGE_ID;
+                }
+            }
+
+            IF (CATALOG_PAGE != "") {
+
+                ⚡ RECORD_AVAILABLE:
+                    0;
+
+                IF (CURSOR_INDEX < PAGE_TOTAL) {
+                    ⚡ RECORD_AVAILABLE:
+                        1;
+                }
+
+                IF (RECORD_AVAILABLE == 0) {
+                    ⚡ ACTION:
+                        "REQUEST_NEXT_LOCAL_CATALOG_PAGE";
+                    ⚡ SOURCE:
+                        "LOCAL_ARCHIVE";
+                    ⚡ TARGET:
+                        PAGE_ID;
+                }
+
+                IF (RECORD_AVAILABLE) {
+
+                    ⚡ SELECTED_RECORD:
+                        H("list_get", PAGE_LINES, CURSOR_INDEX, NULL);
+
+                    IF (SELECTED_RECORD == "") {
+                        ⚡ ACTION:
+                            "REQUEST_NEXT_LOCAL_CATALOG_PAGE";
+                        ⚡ SOURCE:
+                            "LOCAL_ARCHIVE";
+                        ⚡ TARGET:
+                            PAGE_ID;
+                    }
+
+                    IF (SELECTED_RECORD != "") {
+
+                        ⚡ RECORD_PARTS:
+                            H("str_split", SELECTED_RECORD, " || ", NULL);
+
+                        ⚡ RECORD_PART_TOTAL:
+                            H("list_len", RECORD_PARTS, NULL, NULL);
+
+                        IF (3 < RECORD_PART_TOTAL) {
+
+                            ⚡ ENTRY_FIELD:
+                                H("list_get", RECORD_PARTS, 0, NULL);
+
+                            ⚡ PATH_FIELD:
+                                H("list_get", RECORD_PARTS, 1, NULL);
+
+                            ⚡ SIZE_FIELD:
+                                H("list_get", RECORD_PARTS, 2, NULL);
+
+                            ⚡ MTIME_FIELD:
+                                H("list_get", RECORD_PARTS, 3, NULL);
+
+                            ⚡ ENTRY_VALUE:
+                                H("str_replace", ENTRY_FIELD, "ENTRY_ID=", "");
+
+                            ⚡ PATH_VALUE:
+                                H("str_replace", PATH_FIELD, "PATH_B64=", "");
+
+                            ⚡ SIZE_VALUE:
+                                H("str_replace", SIZE_FIELD, "SIZE=", "");
+
+                            ⚡ MTIME_VALUE:
+                                H("str_replace", MTIME_FIELD, "MTIME_NS=", "");
+
+                            ⚡ FIELD_VALID_COUNT:
+                                0;
+
+                            IF (ENTRY_VALUE != "") {
+                                ⚡ FIELD_VALID_COUNT:
+                                    FIELD_VALID_COUNT + 1;
+                            }
+
+                            IF (PATH_VALUE != "") {
+                                ⚡ FIELD_VALID_COUNT:
+                                    FIELD_VALID_COUNT + 1;
+                            }
+
+                            IF (SIZE_VALUE != "") {
+                                ⚡ FIELD_VALID_COUNT:
+                                    FIELD_VALID_COUNT + 1;
+                            }
+
+                            IF (MTIME_VALUE != "") {
+                                ⚡ FIELD_VALID_COUNT:
+                                    FIELD_VALID_COUNT + 1;
+                            }
+
+                            IF (FIELD_VALID_COUNT == 4) {
+                                ⚡ LOCAL_RECORD_VALID:
+                                    1;
+                            }
+                        }
+
+                        IF (LOCAL_RECORD_VALID) {
+                            ⚡ ACTION:
+                                "DISPATCH_NATIVE_LOCAL_ENTRY";
+                            ⚡ SOURCE:
+                                "LOCAL_ARCHIVE";
+                            ⚡ TARGET:
+                                SELECTED_RECORD;
+                            ⚡ LOCAL_CURSOR_ADVANCE:
+                                1;
+                        }
+
+                        IF (LOCAL_RECORD_VALID == 0) {
+                            ⚡ ACTION:
+                                "REFUSE_LOCAL_CATALOG_RECORD";
+                            ⚡ SOURCE:
+                                "LOCAL_ARCHIVE";
+                            ⚡ TARGET:
+                                SELECTED_RECORD;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ WRITE_CURSOR_RC:
+        0;
+
+    ⚡ WRITE_CURSOR_PAGE_RC:
+        0;
+
+    IF (LOCAL_CURSOR_ADVANCE) {
+        ⚡ NEXT_CURSOR:
+            EFFECTIVE_CURSOR + "|";
+
+        ⚡ WRITE_CURSOR_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CURSOR.memory", NEXT_CURSOR, NULL);
+
+        ⚡ WRITE_CURSOR_PAGE_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4C5R1_LOCAL_CURSOR_PAGE_ID.memory", PAGE_ID, NULL);
+    }
+
+    ⚡ WRITE_ACTION_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C5R1_ACTION.memory", ACTION, NULL);
+
+    ⚡ WRITE_SOURCE_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C5R1_SOURCE.memory", SOURCE, NULL);
+
+    ⚡ WRITE_TARGET_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C5R1_TARGET.memory", TARGET, NULL);
+
+    ⚡ print("SIGMA_V4C5R1_OPPO_ARCHIVE_EXTERNAL_INTENT_BRIDGE");
+    ⚡ print("PAGE_ID", PAGE_ID);
+    ⚡ print("PAGE_TOTAL", PAGE_TOTAL);
+    ⚡ print("PAGE_CHANGED", PAGE_CHANGED);
+    ⚡ print("CURSOR_INDEX", CURSOR_INDEX);
+    ⚡ print("PAGE_LIMIT_EXCEEDED", PAGE_LIMIT_EXCEEDED);
+    ⚡ print("EXTERNAL_INTENT_PRESENT", EXTERNAL_REQUEST != "");
+    ⚡ print("LOCAL_RECORD_VALID", LOCAL_RECORD_VALID);
+    ⚡ print("ACTION", ACTION);
+    ⚡ print("SOURCE", SOURCE);
+    ⚡ print("TARGET", TARGET);
+    ⚡ print("LOCAL_CURSOR_ADVANCE", LOCAL_CURSOR_ADVANCE);
+    ⚡ print("WRITE_CURSOR_RC", WRITE_CURSOR_RC);
+    ⚡ print("WRITE_CURSOR_PAGE_RC", WRITE_CURSOR_PAGE_RC);
+    ⚡ print("WRITE_ACTION_RC", WRITE_ACTION_RC);
+    ⚡ print("WRITE_SOURCE_RC", WRITE_SOURCE_RC);
+    ⚡ print("WRITE_TARGET_RC", WRITE_TARGET_RC);
+    ⚡ print("HOST_WORK_SELECTION", "NO");
+    ⚡ print("HOST_EXTERNAL_REQUEST_GENERATION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("COMPUTATION_BOUNDED_PER_INVOCATION", "YES");
+}
