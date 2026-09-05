@@ -1,0 +1,69 @@
+# SIGMA I5B — Wikipedia Candidate Selector Native Admission PASS
+
+Date: 2026-09-06 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: PASS_IN_EXACT_TESTED_SCOPE
+
+## Machine evidence supplied by user
+
+```text
+TOTAL_VM_INVOCATIONS=16
+I5A_VERIFY_REPLAY_VM_INVOCATIONS=1
+I5B_VM_INVOCATIONS=15
+POST_VM_ALIGNMENT_PASS_COUNT=15
+POST_VM_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+I5A_RESULT_EVENT_ORIGIN=SIGMA_NATIVE_VM
+HOST_DISPATCHED_COMPLETE_CANDIDATE_SET=YES
+CANONICAL_EXPECTED_RESOURCE_PREWRITTEN_IN_RUNNER=NO
+SIGMA_NATIVE_CANONICAL_SELECTED_PAGE_ID=19378
+SIGMA_NATIVE_CANONICAL_SELECTED_TITLE=Mind
+CANONICAL_CANDIDATE_REORDER_INVARIANCE=PASS
+DYNAMIC_CANDIDATE_REORDER_INVARIANCE=PASS
+DYNAMIC_CANDIDATE_METRIC_CHANGE_AFFECTS_SELECTION=YES
+PERSISTENT_SELECTION_HISTORY_AFFECTS_SELECTION=YES
+PERSISTENT_SELECTION_LEDGER=TESTED
+IDEMPOTENCY=TESTED
+MEMORY_RECORD_BOUND=64_TESTED
+REPLAY_IDENTICAL_SELECTION=YES
+REPLAY_IDENTICAL_MEMORY=YES
+REPLAY_IDENTICAL_EVENT=YES
+REMOTE_API_ORDER_USED_FOR_SELECTION=NO
+HOST_RESULT_RANKING=NO
+HOST_CANDIDATE_SELECTION=NO
+HOST_RESOURCE_SELECTION=NO
+I5B_NATIVE_WIKIPEDIA_CANDIDATE_SELECTOR_V1=PASS
+NATIVE_RESOURCE_SELECTION=PASS_IN_EXACT_TESTED_SCOPE
+RESULT=PASS_IN_EXACT_TESTED_SCOPE
+V5K2_EXACT_FETCH_DISPATCH_FOR_SIGMA_SELECTED_WIKIPEDIA_RESOURCE_UNLOCKED=YES
+```
+
+## Exact admitted scope
+
+- native SIGMA selects one Wikipedia resource from the complete bounded I5A candidate set;
+- canonical resource was machine-selected as page id `19378`, title `Mind`;
+- canonical and dynamic candidate reorder invariance passed;
+- dynamic candidate metric changes affected native selection;
+- prior native selection history affected later selection;
+- persistent selection ledger, idempotency, bounded-memory refusal, and identical replay passed;
+- host did not rank candidates or select the resource;
+- remote API order was not used for selection.
+
+## Presentation rule for subsequent lane outputs
+
+Future concise terminal summaries and assistant-facing progress reports should omit repetitive negative-status lines such as `...=NOT_PROVEN` unless a failure/HOLD specifically depends on that status.
+
+```text
+OMISSION_DOES_NOT_WIDEN_CLAIM_SCOPE=YES
+CLAIM_SCOPE_REMAINS_GOVERNED_BY_REPOSITORY_DIRECTIVES=YES
+```
+
+## Next dependency
+
+```text
+NEXT_STAGE=EXACT_V5K2_FETCH_BINDING_FOR_SIGMA_SELECTED_WIKIPEDIA_RESOURCE
+SELECTED_PAGE_ID=19378
+SELECTED_TITLE=Mind
+HOST_MAY_DISPATCH_EXACT_NATIVE_RESOURCE_EVENT=MECHANICAL_ONLY
+```
