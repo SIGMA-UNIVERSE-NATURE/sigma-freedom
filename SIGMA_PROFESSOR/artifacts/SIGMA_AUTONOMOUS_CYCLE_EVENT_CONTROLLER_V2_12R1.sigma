@@ -1,0 +1,721 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.CYCLE.CONTROLLER][VERSION=2.12R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.CYCLE_EVENT_CONTROLLER_V212R1) {
+
+    ⚡ SELECTED_WORK:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V212R1_SELECTED_WORK.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ LIFECYCLE_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V212R1_LIFECYCLE_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ REVISIT_STATE_DIR:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V212R1_REVISIT_STATE_DIR.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ LIFECYCLE_TEXT:
+        H(
+            "read_text",
+            LIFECYCLE_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ CONTROLLER_STATE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V212R1_CONTROLLER_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ GENERATION_PATH:
+        "";
+
+    ⚡ SEGMENT_CURSOR_PATH:
+        "";
+
+    ⚡ GENERATION_CURSOR:
+        "";
+
+    ⚡ SEGMENT_CURSOR:
+        "";
+
+    ⚡ SELECTED_WORK_VALID:
+        1;
+
+    IF (SELECTED_WORK == "") {
+        ⚡ SELECTED_WORK_VALID:
+            0;
+    }
+
+    IF (SELECTED_WORK_VALID) {
+
+        ⚡ GENERATION_PATH:
+            REVISIT_STATE_DIR
+            + "/"
+            + SELECTED_WORK
+            + ".generation";
+
+        ⚡ SEGMENT_CURSOR_PATH:
+            REVISIT_STATE_DIR
+            + "/"
+            + SELECTED_WORK
+            + ".cursor";
+
+        ⚡ GEN_EXISTS:
+            H(
+                "file_exists",
+                GENERATION_PATH,
+                NULL,
+                NULL
+            );
+
+        IF (GEN_EXISTS) {
+
+            ⚡ GENERATION_CURSOR:
+                H(
+                    "read_text",
+                    GENERATION_PATH,
+                    NULL,
+                    NULL
+                );
+        }
+
+        ⚡ SEG_EXISTS:
+            H(
+                "file_exists",
+                SEGMENT_CURSOR_PATH,
+                NULL,
+                NULL
+            );
+
+        IF (SEG_EXISTS) {
+
+            ⚡ SEGMENT_CURSOR:
+                H(
+                    "read_text",
+                    SEGMENT_CURSOR_PATH,
+                    NULL,
+                    NULL
+                );
+        }
+    }
+
+    ⚡ LIFECYCLE_LINES:
+        H(
+            "str_split",
+            LIFECYCLE_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ CONTROLLER_LINES:
+        H(
+            "str_split",
+            CONTROLLER_STATE,
+            "\n",
+            NULL
+        );
+
+    ⚡ GENERATION_PARTS:
+        H(
+            "str_split",
+            GENERATION_CURSOR,
+            "|",
+            NULL
+        );
+
+    ⚡ SEGMENT_PARTS:
+        H(
+            "str_split",
+            SEGMENT_CURSOR,
+            "|",
+            NULL
+        );
+
+    ⚡ LIFECYCLE_LINE_TOTAL:
+        H(
+            "list_len",
+            LIFECYCLE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ CONTROLLER_LINE_TOTAL:
+        H(
+            "list_len",
+            CONTROLLER_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ GENERATION_PART_TOTAL:
+        H(
+            "list_len",
+            GENERATION_PARTS,
+            NULL,
+            NULL
+        );
+
+    ⚡ SEGMENT_PART_TOTAL:
+        H(
+            "list_len",
+            SEGMENT_PARTS,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_LIFECYCLE_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_CONTROLLER_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_CURSOR_PARTS:
+        65;
+
+    ⚡ LIFECYCLE_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ CONTROLLER_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ GENERATION_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ SEGMENT_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_LIFECYCLE_SPLIT_LINES < LIFECYCLE_LINE_TOTAL) {
+        ⚡ LIFECYCLE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_CONTROLLER_SPLIT_LINES < CONTROLLER_LINE_TOTAL) {
+        ⚡ CONTROLLER_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_CURSOR_PARTS < GENERATION_PART_TOTAL) {
+        ⚡ GENERATION_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_CURSOR_PARTS < SEGMENT_PART_TOTAL) {
+        ⚡ SEGMENT_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (SELECTED_WORK_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (LIFECYCLE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (CONTROLLER_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (GENERATION_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SEGMENT_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ CLEAR_EVENT_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V212R1_SELECTED_EVENT.memory",
+                "",
+                NULL
+            );
+
+        ⚡ print("SIGMA_V212R1_CYCLE_EVENT_CONTROLLER");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("SELECTED_WORK_VALID", SELECTED_WORK_VALID);
+        ⚡ print("LIFECYCLE_LINE_TOTAL", LIFECYCLE_LINE_TOTAL);
+        ⚡ print("CONTROLLER_LINE_TOTAL", CONTROLLER_LINE_TOTAL);
+        ⚡ print("GENERATION_PART_TOTAL", GENERATION_PART_TOTAL);
+        ⚡ print("SEGMENT_PART_TOTAL", SEGMENT_PART_TOTAL);
+        ⚡ print("LIFECYCLE_LIMIT_EXCEEDED", LIFECYCLE_LIMIT_EXCEEDED);
+        ⚡ print("CONTROLLER_LIMIT_EXCEEDED", CONTROLLER_LIMIT_EXCEEDED);
+        ⚡ print("GENERATION_LIMIT_EXCEEDED", GENERATION_LIMIT_EXCEEDED);
+        ⚡ print("SEGMENT_LIMIT_EXCEEDED", SEGMENT_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("CLEAR_EVENT_RC", CLEAR_EVENT_RC);
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("HOST_STAGE_DECISION", "NO");
+        ⚡ print("HOST_EVENT_IDENTITY", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ LATEST_ACTION:
+            "";
+
+        ⚡ LATEST_FROM_RESULT:
+            "";
+
+        ⚡ VALID_COMMITTED_LIFECYCLE_COUNT:
+            0;
+
+        ⚡ REVISIT_EVENT_COUNT:
+            0;
+
+        ⚡ ARCHIVE_EVENT_COUNT:
+            0;
+
+        ⚡ IGNORED_LIFECYCLE_RECORD_COUNT:
+            0;
+
+        ⚡ L:
+            0;
+
+        WHILE (L < LIFECYCLE_LINE_TOTAL) {
+
+            ⚡ LINE:
+                H(
+                    "list_get",
+                    LIFECYCLE_LINES,
+                    L,
+                    NULL
+                );
+
+            ⚡ VALID_LINE:
+                1;
+
+            IF (LINE == "") {
+                ⚡ VALID_LINE:
+                    0;
+            }
+
+            IF (VALID_LINE) {
+
+                ⚡ PARTS:
+                    H(
+                        "str_split",
+                        LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ PART_TOTAL:
+                    H(
+                        "list_len",
+                        PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED:
+                    0;
+
+                IF (3 < PART_TOTAL) {
+
+                    ⚡ COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (COMMIT_FIELD == "COMMIT=YES") {
+                        ⚡ COMMITTED:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED) {
+
+                    ⚡ WORK_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ ACTION_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ FROM_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ WORK_ID:
+                        H(
+                            "str_replace",
+                            WORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ ACTION:
+                        H(
+                            "str_replace",
+                            ACTION_FIELD,
+                            "ACTION=",
+                            ""
+                        );
+
+                    ⚡ FROM_RESULT:
+                        H(
+                            "str_replace",
+                            FROM_FIELD,
+                            "FROM_RESULT=",
+                            ""
+                        );
+
+                    IF (WORK_ID == SELECTED_WORK) {
+
+                        ⚡ VALID_ACTION:
+                            0;
+
+                        IF (ACTION == "REVISIT") {
+                            ⚡ VALID_ACTION:
+                                1;
+                        }
+
+                        IF (ACTION == "ARCHIVE_FOR_NOW") {
+                            ⚡ VALID_ACTION:
+                                1;
+                        }
+
+                        IF (VALID_ACTION) {
+
+                            ⚡ VALID_COMMITTED_LIFECYCLE_COUNT:
+                                VALID_COMMITTED_LIFECYCLE_COUNT + 1;
+
+                            ⚡ LATEST_ACTION:
+                                ACTION;
+
+                            ⚡ LATEST_FROM_RESULT:
+                                FROM_RESULT;
+
+                            IF (ACTION == "REVISIT") {
+                                ⚡ REVISIT_EVENT_COUNT:
+                                    REVISIT_EVENT_COUNT + 1;
+                            }
+
+                            IF (ACTION == "ARCHIVE_FOR_NOW") {
+                                ⚡ ARCHIVE_EVENT_COUNT:
+                                    ARCHIVE_EVENT_COUNT + 1;
+                            }
+                        }
+
+                        IF (VALID_ACTION == 0) {
+                            ⚡ IGNORED_LIFECYCLE_RECORD_COUNT:
+                                IGNORED_LIFECYCLE_RECORD_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED == 0) {
+                    ⚡ IGNORED_LIFECYCLE_RECORD_COUNT:
+                        IGNORED_LIFECYCLE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ COMPLETED_REVISIT_GENERATION_COUNT:
+            GENERATION_PART_TOTAL - 1;
+
+        ⚡ SEGMENT_CURSOR_COUNT:
+            SEGMENT_PART_TOTAL - 1;
+
+        ⚡ STATE_CONSISTENT:
+            1;
+
+        IF (REVISIT_EVENT_COUNT < COMPLETED_REVISIT_GENERATION_COUNT) {
+            ⚡ STATE_CONSISTENT:
+                0;
+        }
+
+        ⚡ NEXT_STAGE:
+            "WAIT_FOR_LIFECYCLE";
+
+        ⚡ CYCLE_TOKEN:
+            "";
+
+        ⚡ EVENT_READY:
+            0;
+
+        IF (STATE_CONSISTENT == 0) {
+
+            ⚡ NEXT_STAGE:
+                "WAIT_STATE_INCONSISTENT";
+        }
+
+        IF (STATE_CONSISTENT) {
+
+            IF (LATEST_ACTION == "ARCHIVE_FOR_NOW") {
+
+                ⚡ NEXT_STAGE:
+                    "SELECT_NEXT_WORK";
+
+                ⚡ CYCLE_TOKEN:
+                    GENERATION_CURSOR;
+
+                ⚡ EVENT_READY:
+                    1;
+            }
+
+            IF (LATEST_ACTION == "REVISIT") {
+
+                IF (COMPLETED_REVISIT_GENERATION_COUNT < REVISIT_EVENT_COUNT) {
+
+                    ⚡ NEXT_STAGE:
+                        "EXECUTE_REVISIT";
+
+                    ⚡ CYCLE_TOKEN:
+                        GENERATION_CURSOR + "|";
+
+                    ⚡ EVENT_READY:
+                        1;
+                }
+
+                IF (COMPLETED_REVISIT_GENERATION_COUNT == REVISIT_EVENT_COUNT) {
+
+                    ⚡ NEXT_STAGE:
+                        "REVALIDATE_REVISIT_GENERATION";
+
+                    ⚡ CYCLE_TOKEN:
+                        GENERATION_CURSOR;
+
+                    ⚡ EVENT_READY:
+                        1;
+                }
+            }
+        }
+
+        ⚡ EVENT_ID:
+            "";
+
+        IF (EVENT_READY) {
+
+            ⚡ EVENT_ID:
+                SELECTED_WORK
+                + "::"
+                + CYCLE_TOKEN
+                + "::"
+                + NEXT_STAGE;
+        }
+
+        ⚡ EVENT_ALREADY_COMMITTED:
+            0;
+
+        ⚡ IGNORED_CONTROLLER_RECORD_COUNT:
+            0;
+
+        ⚡ C:
+            0;
+
+        WHILE (C < CONTROLLER_LINE_TOTAL) {
+
+            ⚡ CLINE:
+                H(
+                    "list_get",
+                    CONTROLLER_LINES,
+                    C,
+                    NULL
+                );
+
+            ⚡ VALID_CLINE:
+                1;
+
+            IF (CLINE == "") {
+                ⚡ VALID_CLINE:
+                    0;
+            }
+
+            IF (VALID_CLINE) {
+
+                ⚡ CPARTS:
+                    H(
+                        "str_split",
+                        CLINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ CPART_TOTAL:
+                    H(
+                        "list_len",
+                        CPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_EVENT:
+                    0;
+
+                IF (4 < CPART_TOTAL) {
+
+                    ⚡ CCOMMIT:
+                        H(
+                            "list_get",
+                            CPARTS,
+                            4,
+                            NULL
+                        );
+
+                    IF (CCOMMIT == "COMMIT=YES") {
+                        ⚡ COMMITTED_EVENT:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_EVENT) {
+
+                    ⚡ CEVENT_FIELD:
+                        H(
+                            "list_get",
+                            CPARTS,
+                            3,
+                            NULL
+                        );
+
+                    ⚡ CEVENT:
+                        H(
+                            "str_replace",
+                            CEVENT_FIELD,
+                            "EVENT=",
+                            ""
+                        );
+
+                    IF (CEVENT == EVENT_ID) {
+                        ⚡ EVENT_ALREADY_COMMITTED:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_EVENT == 0) {
+                    ⚡ IGNORED_CONTROLLER_RECORD_COUNT:
+                        IGNORED_CONTROLLER_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ C:
+                C + 1;
+        }
+
+        ⚡ EVENT_APPEND_RC:
+            0;
+
+        IF (EVENT_READY) {
+
+            IF (EVENT_ALREADY_COMMITTED == 0) {
+
+                ⚡ EVENT_RECORD:
+                    "\nWORK="
+                    + SELECTED_WORK
+                    + " || CYCLE="
+                    + CYCLE_TOKEN
+                    + " || NEXT="
+                    + NEXT_STAGE
+                    + " || EVENT="
+                    + EVENT_ID
+                    + " || COMMIT=YES";
+
+                ⚡ EVENT_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V212R1_CONTROLLER_STATE.memory",
+                        EVENT_RECORD,
+                        NULL
+                    );
+            }
+        }
+
+        ⚡ SELECTED_EVENT_WRITE_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V212R1_SELECTED_EVENT.memory",
+                EVENT_ID,
+                NULL
+            );
+
+        ⚡ print("SIGMA_V212R1_CYCLE_EVENT_CONTROLLER");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("VALID_COMMITTED_LIFECYCLE_COUNT", VALID_COMMITTED_LIFECYCLE_COUNT);
+        ⚡ print("REVISIT_EVENT_COUNT", REVISIT_EVENT_COUNT);
+        ⚡ print("ARCHIVE_EVENT_COUNT", ARCHIVE_EVENT_COUNT);
+        ⚡ print("IGNORED_LIFECYCLE_RECORD_COUNT", IGNORED_LIFECYCLE_RECORD_COUNT);
+        ⚡ print("LATEST_ACTION", LATEST_ACTION);
+        ⚡ print("LATEST_FROM_RESULT", LATEST_FROM_RESULT);
+        ⚡ print("GENERATION_CURSOR", GENERATION_CURSOR);
+        ⚡ print("COMPLETED_REVISIT_GENERATION_COUNT", COMPLETED_REVISIT_GENERATION_COUNT);
+        ⚡ print("SEGMENT_CURSOR_COUNT", SEGMENT_CURSOR_COUNT);
+        ⚡ print("STATE_CONSISTENT", STATE_CONSISTENT);
+        ⚡ print("NEXT_STAGE", NEXT_STAGE);
+        ⚡ print("CYCLE_TOKEN", CYCLE_TOKEN);
+        ⚡ print("EVENT_READY", EVENT_READY);
+        ⚡ print("EVENT_ID", EVENT_ID);
+        ⚡ print("EVENT_ALREADY_COMMITTED", EVENT_ALREADY_COMMITTED);
+        ⚡ print("IGNORED_CONTROLLER_RECORD_COUNT", IGNORED_CONTROLLER_RECORD_COUNT);
+        ⚡ print("EVENT_APPEND_RC", EVENT_APPEND_RC);
+        ⚡ print("SELECTED_EVENT_WRITE_RC", SELECTED_EVENT_WRITE_RC);
+        ⚡ print("EVENT_IDENTITY_POLICY", "WORK_PLUS_REVISIT_GENERATION_PLUS_NEXT_STAGE");
+        ⚡ print("HOST_STAGE_DECISION", "NO");
+        ⚡ print("HOST_EVENT_IDENTITY", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("MECHANICAL_HOST_DISPATCH_ALLOWED", "YES");
+        ⚡ print("GENERAL_AUTONOMOUS_CYCLE_EXECUTION", "NOT_PROVEN");
+        ⚡ print("GENERATION_AWARE_REVALIDATION", "NOT_PROVEN");
+        ⚡ print("GENERATION_AWARE_LIFECYCLE", "NOT_PROVEN");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_LIFECYCLE_SPLIT_LINES", MAX_LIFECYCLE_SPLIT_LINES);
+        ⚡ print("MAX_CONTROLLER_SPLIT_LINES", MAX_CONTROLLER_SPLIT_LINES);
+        ⚡ print("MAX_CURSOR_PARTS", MAX_CURSOR_PARTS);
+        ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
