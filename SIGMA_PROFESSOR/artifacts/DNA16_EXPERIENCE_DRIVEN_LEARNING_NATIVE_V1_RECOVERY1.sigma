@@ -1,0 +1,330 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA16.EXPERIENCE.DRIVEN.LEARNING.NATIVE.RECOVERY1][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF different(a, b) {
+    IF (a == b) { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF qualification_status_1(dep_valid, candidate_complete, verification_complete, separated) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (candidate_complete < 0.5) { RETURN "CANDIDATE_FIELDS_INCOMPLETE"; }
+    IF (verification_complete < 0.5) { RETURN "VERIFICATION_FIELDS_INCOMPLETE"; }
+    IF (separated < 0.5) { RETURN "VERIFIER_SEPARATION_FAILED"; }
+    RETURN "CONTINUE";
+}
+
+DEF qualification_status_2(independent, binding_match, verifier_pass, store_valid) {
+    IF (independent < 0.5) { RETURN "VERIFIER_INDEPENDENCE_FAILED"; }
+    IF (binding_match < 0.5) { RETURN "CANDIDATE_BINDING_MISMATCH"; }
+    IF (verifier_pass < 0.5) { RETURN "VERIFIER_REJECTED"; }
+    IF (store_valid < 0.5) { RETURN "EXPERIENCE_STORE_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF retention_status(duplicate_found, capacity_available, retention_eligible, unit_retained) {
+    IF (duplicate_found > 0.5) { RETURN "QUALIFIED_DUPLICATE_NOT_RETAINED"; }
+    IF (capacity_available < 0.5) { RETURN "QUALIFIED_STATE_CAPACITY_REACHED"; }
+    IF (retention_eligible > 0.5) {
+        IF (unit_retained > 0.5) { RETURN "QUALIFIED_EXPERIENCE_RETAINED"; }
+        RETURN "PERSISTENCE_WRITE_READBACK_FAILED";
+    }
+    RETURN "QUALIFICATION_UNRESOLVED";
+}
+
+DEF choose_status(stage_1, stage_2, stage_3) {
+    IF (stage_1 == "CONTINUE") {
+        IF (stage_2 == "CONTINUE") { RETURN stage_3; }
+        RETURN stage_2;
+    }
+    RETURN stage_1;
+}
+
+⟡(Σ.DNA16_EXPERIENCE_DRIVEN_LEARNING_NATIVE_V1_RECOVERY1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/state_schema.txt");
+    ⚡ VERIFICATION_WALL_SCHEMA: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verification_wall_schema.txt");
+    ⚡ MEMORY_GENOME_SCHEMA: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/memory_genome_schema.txt");
+    ⚡ PERSISTENCE_ENGINE_SCHEMA: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/persistence_engine_schema.txt");
+    ⚡ DNA15_F174_SCHEMA: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/dna15_f174_schema.txt");
+    ⚡ DNA15_OUTPUT_PRESENT: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/dna15_output_present.txt");
+
+    ⚡ OBSERVATION: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/observation.txt");
+    ⚡ HYPOTHESIS: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis.txt");
+    ⚡ ACTION: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/action.txt");
+    ⚡ OUTCOME: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/outcome.txt");
+
+    ⚡ LEARNER_ID: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/learner_id.txt");
+    ⚡ VERIFIER_ID: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_id.txt");
+    ⚡ VERIFIER_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_independent.txt");
+    ⚡ INDEPENDENCE_BASIS: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/independence_basis.txt");
+    ⚡ VERIFICATION_METHOD: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verification_method.txt");
+    ⚡ VERIFICATION_SCOPE: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verification_scope.txt");
+    ⚡ VERIFICATION_EVIDENCE: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verification_evidence.txt");
+
+    ⚡ VERIFIED_OBSERVATION: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verified_observation.txt");
+    ⚡ VERIFIED_HYPOTHESIS: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verified_hypothesis.txt");
+    ⚡ VERIFIED_ACTION: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verified_action.txt");
+    ⚡ VERIFIED_OUTCOME: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verified_outcome.txt");
+    ⚡ VERIFIER_PASS_TOKEN: load_text(".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_pass.txt");
+
+    ⚡ DNA15_BOOL_OK: bool_token_valid(DNA15_OUTPUT_PRESENT);
+    ⚡ DEPENDENCY_BINDING_VALID: present(CASE_ID) * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1") * exact(VERIFICATION_WALL_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1") * exact(MEMORY_GENOME_SCHEMA, "SIGMA_MEMORY_GENOME_V1") * exact(PERSISTENCE_ENGINE_SCHEMA, "SIGMA_PERSISTENCE_ENGINE_V1") * exact(DNA15_F174_SCHEMA, "SIGMA_F174_DEVELOPMENT_DYNAMICS_V1") * DNA15_BOOL_OK * bool_true(DNA15_OUTPUT_PRESENT);
+
+    ⚡ CANDIDATE_COMPONENT_COMPLETE: present(OBSERVATION) * present(HYPOTHESIS) * present(ACTION) * present(OUTCOME);
+
+    ⚡ VERIFIER_INDEPENDENT_TOKEN_VALID: bool_token_valid(VERIFIER_INDEPENDENT_TOKEN);
+    ⚡ VERIFIER_PASS_TOKEN_VALID: bool_token_valid(VERIFIER_PASS_TOKEN);
+
+    ⚡ VERIFICATION_COMPONENT_COMPLETE: present(LEARNER_ID) * present(VERIFIER_ID) * VERIFIER_INDEPENDENT_TOKEN_VALID * present(INDEPENDENCE_BASIS) * present(VERIFICATION_METHOD) * present(VERIFICATION_SCOPE) * present(VERIFICATION_EVIDENCE) * present(VERIFIED_OBSERVATION) * present(VERIFIED_HYPOTHESIS) * present(VERIFIED_ACTION) * present(VERIFIED_OUTCOME) * VERIFIER_PASS_TOKEN_VALID;
+
+    ⚡ LEARNER_VERIFIER_SEPARATED: different(LEARNER_ID, VERIFIER_ID) * present(LEARNER_ID) * present(VERIFIER_ID);
+    ⚡ VERIFIER_INDEPENDENT: bool_true(VERIFIER_INDEPENDENT_TOKEN) * VERIFIER_INDEPENDENT_TOKEN_VALID;
+    ⚡ CANDIDATE_BINDING_MATCH: exact(OBSERVATION, VERIFIED_OBSERVATION) * exact(HYPOTHESIS, VERIFIED_HYPOTHESIS) * exact(ACTION, VERIFIED_ACTION) * exact(OUTCOME, VERIFIED_OUTCOME);
+    ⚡ VERIFIER_PASS: bool_true(VERIFIER_PASS_TOKEN) * VERIFIER_PASS_TOKEN_VALID;
+
+    ⚡ EXPERIENCE_QUALIFIED: DEPENDENCY_BINDING_VALID * CANDIDATE_COMPONENT_COMPLETE * VERIFICATION_COMPONENT_COMPLETE * LEARNER_VERIFIER_SEPARATED * VERIFIER_INDEPENDENT * CANDIDATE_BINDING_MATCH * VERIFIER_PASS;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA16_NATIVE_ADMISSION_V1_RECOVERY1/state/experience_store.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA16_EXPERIENCE_STORE_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_RETAINED_UNITS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) {
+        ⚡ STORE_HEADER_OK: 1.0;
+    }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ RETAINED_UNIT_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ DUPLICATE_FOUND: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 11) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ ROBS: host("list_get", PARTS, 1, NULL);
+                ⚡ RHYP: host("list_get", PARTS, 2, NULL);
+                ⚡ RACT: host("list_get", PARTS, 3, NULL);
+                ⚡ ROUT: host("list_get", PARTS, 4, NULL);
+                ⚡ RVERIFIER: host("list_get", PARTS, 5, NULL);
+                ⚡ RBASIS: host("list_get", PARTS, 6, NULL);
+                ⚡ RMETHOD: host("list_get", PARTS, 7, NULL);
+                ⚡ RSCOPE: host("list_get", PARTS, 8, NULL);
+                ⚡ REVIDENCE: host("list_get", PARTS, 9, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 10, NULL);
+
+                ⚡ RECORD_VALID: exact(RPREFIX, "UNIT") * present(ROBS) * present(RHYP) * present(RACT) * present(ROUT) * present(RVERIFIER) * present(RBASIS) * present(RMETHOD) * present(RSCOPE) * present(REVIDENCE) * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ RETAINED_UNIT_COUNT_BEFORE: RETAINED_UNIT_COUNT_BEFORE + 1.0;
+                    ⚡ SAME_UNIT: exact(ROBS, OBSERVATION) * exact(RHYP, HYPOTHESIS) * exact(RACT, ACTION) * exact(ROUT, OUTCOME);
+                    IF (SAME_UNIT > 0.5) {
+                        ⚡ DUPLICATE_FOUND: 1.0;
+                    }
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) {
+        ⚡ STORE_STATE_VALID: 0.0;
+    }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (RETAINED_UNIT_COUNT_BEFORE < MAX_RETAINED_UNITS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ RETENTION_ELIGIBLE: EXPERIENCE_QUALIFIED * STORE_STATE_VALID * (1.0 - DUPLICATE_FOUND) * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ UNIT_RETAINED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+
+    IF (RETENTION_ELIGIBLE > 0.5) {
+        ⚡ NEW_RECORD: "UNIT||" + OBSERVATION + "||" + HYPOTHESIS + "||" + ACTION + "||" + OUTCOME + "||" + VERIFIER_ID + "||" + INDEPENDENCE_BASIS + "||" + VERIFICATION_METHOD + "||" + VERIFICATION_SCOPE + "||" + VERIFICATION_EVIDENCE + "||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) {
+            ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ UNIT_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ RETAINED_UNIT_COUNT_AFTER: RETAINED_UNIT_COUNT_BEFORE + UNIT_RETAINED;
+    ⚡ STATE_MUTATED: UNIT_RETAINED;
+
+    ⚡ STATUS_STAGE_1: qualification_status_1(DEPENDENCY_BINDING_VALID, CANDIDATE_COMPONENT_COMPLETE, VERIFICATION_COMPONENT_COMPLETE, LEARNER_VERIFIER_SEPARATED);
+    ⚡ STATUS_STAGE_2: qualification_status_2(VERIFIER_INDEPENDENT, CANDIDATE_BINDING_MATCH, VERIFIER_PASS, STORE_STATE_VALID);
+    ⚡ STATUS_STAGE_3: retention_status(DUPLICATE_FOUND, STATE_CAPACITY_AVAILABLE, RETENTION_ELIGIBLE, UNIT_RETAINED);
+    ⚡ STATUS: choose_status(STATUS_STAGE_1, STATUS_STAGE_2, STATUS_STAGE_3);
+
+    ⚡ print("DNA16_NATIVE_ADMISSION_V1_RECOVERY1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+    ⚡ print("OBSERVATION");
+    ⚡ print(OBSERVATION);
+    ⚡ print("HYPOTHESIS");
+    ⚡ print(HYPOTHESIS);
+    ⚡ print("ACTION");
+    ⚡ print(ACTION);
+    ⚡ print("OUTCOME");
+    ⚡ print(OUTCOME);
+    ⚡ print("LEARNER_ID");
+    ⚡ print(LEARNER_ID);
+    ⚡ print("VERIFIER_ID");
+    ⚡ print(VERIFIER_ID);
+
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("VERIFICATION_WALL_SCHEMA_OK");
+    ⚡ print(exact(VERIFICATION_WALL_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1"));
+    ⚡ print("MEMORY_GENOME_SCHEMA_OK");
+    ⚡ print(exact(MEMORY_GENOME_SCHEMA, "SIGMA_MEMORY_GENOME_V1"));
+    ⚡ print("PERSISTENCE_ENGINE_SCHEMA_OK");
+    ⚡ print(exact(PERSISTENCE_ENGINE_SCHEMA, "SIGMA_PERSISTENCE_ENGINE_V1"));
+    ⚡ print("DNA15_F174_SCHEMA_OK");
+    ⚡ print(exact(DNA15_F174_SCHEMA, "SIGMA_F174_DEVELOPMENT_DYNAMICS_V1"));
+    ⚡ print("DNA15_OUTPUT_PRESENT");
+    ⚡ print(bool_true(DNA15_OUTPUT_PRESENT));
+
+    ⚡ print("CANDIDATE_COMPONENT_COMPLETE");
+    ⚡ print(CANDIDATE_COMPONENT_COMPLETE);
+    ⚡ print("VERIFICATION_COMPONENT_COMPLETE");
+    ⚡ print(VERIFICATION_COMPONENT_COMPLETE);
+    ⚡ print("LEARNER_VERIFIER_SEPARATED");
+    ⚡ print(LEARNER_VERIFIER_SEPARATED);
+    ⚡ print("VERIFIER_INDEPENDENT");
+    ⚡ print(VERIFIER_INDEPENDENT);
+    ⚡ print("CANDIDATE_BINDING_MATCH");
+    ⚡ print(CANDIDATE_BINDING_MATCH);
+    ⚡ print("VERIFIER_PASS");
+    ⚡ print(VERIFIER_PASS);
+    ⚡ print("EXPERIENCE_QUALIFIED");
+    ⚡ print(EXPERIENCE_QUALIFIED);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("RETAINED_UNIT_COUNT_BEFORE");
+    ⚡ print(RETAINED_UNIT_COUNT_BEFORE);
+    ⚡ print("DUPLICATE_FOUND");
+    ⚡ print(DUPLICATE_FOUND);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETENTION_ELIGIBLE");
+    ⚡ print(RETENTION_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("UNIT_RETAINED");
+    ⚡ print(UNIT_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("RETAINED_UNIT_COUNT_AFTER");
+    ⚡ print(RETAINED_UNIT_COUNT_AFTER);
+    ⚡ print("STATUS");
+    ⚡ print(STATUS);
+
+    ⚡ print("VERIFICATION_BINDING_MODE");
+    ⚡ print("EXACT_OPAQUE_COMPONENT_TUPLE");
+    ⚡ print("EXPERIENCE_UNIT_IDENTITY_MODE");
+    ⚡ print("EXACT_OBSERVATION_HYPOTHESIS_ACTION_OUTCOME_TUPLE");
+    ⚡ print("PERSISTENT_EXPERIENCE_STORE_USED");
+    ⚡ print(1.0);
+    ⚡ print("MAX_RETAINED_UNITS");
+    ⚡ print(MAX_RETAINED_UNITS);
+
+    ⚡ print("HOST_LEARNING");
+    ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION");
+    ⚡ print(0.0);
+    ⚡ print("CANDIDATE_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("UNIT_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("KNOWLEDGE_PROMOTION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("NEURAL_LEARNING_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("F174_EXPERIMENT_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("MODEL_CALL_RUNTIME_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_RUNTIME_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("GENERAL_LEARNING_RUNTIME_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("GENERAL_PERSISTENT_MEMORY_RUNTIME_PROVEN");
+    ⚡ print(0.0);
+}
