@@ -2,18 +2,41 @@
 
 Thư mục handoff/checkpoint dành riêng cho công việc phát triển **SIGMA native continuous learning**.
 
-## Mục đích
+## CỜ BOOTSTRAP BẮT BUỘC — ĐỌC TRƯỚC MỌI CÔNG VIỆC
 
-Nếu một cửa sổ/phiên làm việc bị đứng hoặc mất context, cửa sổ khác có thể bắt đầu từ đây thay vì đào lại toàn bộ repo.
+Mọi cửa sổ/phiên/agent mới phải đọc theo thứ tự:
+
+1. `/AGENTS.md`
+2. `DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
+3. `DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+4. `CURRENT_HANDOFF.md`
+5. checkpoint mới nhất liên quan trong `CHECKPOINTS/`
+
+Không bắt đầu implement/test/promotion trước khi đọc các cờ trên.
 
 ## Invariants bắt buộc
 
+- `SIGMA_EXECUTION_ENGINE=LOCKED_SIGMA_VM_ONLY`
+- `ACTIVE_CAPABILITY_IMPLEMENTATION=NATIVE_SIGMA_ONLY`
+- `ACTIVE_COGNITION_NATIVE_SIGMA_ONLY=YES`
 - `HARDCODED_LESSON=FORBIDDEN`
 - `HOST_LEARNING=NO`
-- Host chỉ được làm cơ học/runtime: file I/O, hash, transport bytes, protocol decode thuần cơ học, scheduling, invoke compiler/VM.
-- Host không được tạo lesson, candidate, semantic score, knowledge decision hoặc learning goal thay SIGMA.
-- Chỉ gọi capability là **PROVEN** khi có output thực nghiệm từ đúng SIGMA compiler/VM đã khóa identity.
-- Không suy đoán VM là Genesis1 chỉ từ path/name.
+- `HOST_SEMANTIC_INTERPRETATION=NO`
+- `HOST_SEMANTIC_SUBSTITUTION=FORBIDDEN`
+- `HOST_OR_BASH_AS_SIGMA_EXECUTION_ENGINE=FORBIDDEN`
+- `HOST_OR_BASH_COGNITION=FORBIDDEN`
+- `HOST_OR_BASH_STAGE_DECISION=FORBIDDEN`
+- `HOST_OR_BASH_WORK_SELECTION=FORBIDDEN`
+
+Bash/host không được implement capability của SIGMA và không được quyết định thay SIGMA. Bash/host chỉ được làm harness cơ học bên ngoài: gọi locked compiler/VM, copy bytes/files chính xác, hash/return-code, tạo fixture test, fault injection, supervision, transport bytes, hoặc dispatch **exact event/stage đã do native SIGMA phát ra** mà không chọn/đổi nghĩa event đó.
+
+`BASH_MAY_LAUNCH_SIGMA=YES`
+
+`BASH_MAY_IMPLEMENT_SIGMA_CAPABILITY=NO`
+
+Nếu một gate chỉ PASS vì host/Bash tính quyết định mà SIGMA đáng lẽ phải tính thì gate đó FAIL admission.
+
+Chỉ gọi capability là **PROVEN** khi có output thực nghiệm từ đúng SIGMA compiler/VM đã khóa identity. Compile/file/shell/Python success không phải capability proof.
 
 ## Toolchain identity đang khóa
 
@@ -25,23 +48,27 @@ Nếu một cửa sổ/phiên làm việc bị đứng hoặc mất context, c�
 
 ## Cách dùng handoff
 
-1. Đọc `CURRENT_HANDOFF.md` trước.
-2. Đọc checkpoint mới nhất trong `CHECKPOINTS/`.
-3. Dùng artifact trong `artifacts/` nếu cần tái tạo đúng source/runner đang được thử nghiệm.
-4. Sau mỗi milestone hoàn thành, cập nhật `CURRENT_HANDOFF.md`; với milestone lớn hoặc failure quan trọng, tạo thêm checkpoint bất biến trong `CHECKPOINTS/`.
+1. Đọc cờ bootstrap ở trên.
+2. Đọc `CURRENT_HANDOFF.md`.
+3. Đọc checkpoint mới nhất trong `CHECKPOINTS/`.
+4. Dùng artifact trong `artifacts/` nếu cần tái tạo đúng source/runner đang được thử nghiệm.
+5. Sau mỗi milestone hoàn thành, cập nhật `CURRENT_HANDOFF.md`; với milestone lớn hoặc failure quan trọng, tạo thêm checkpoint bất biến trong `CHECKPOINTS/`.
 
-## Trạng thái claim hiện tại
+## Production
 
-Đã có bằng chứng thực nghiệm cho:
+- `PRODUCTION_V2_4_KEEP_RUNNING=YES`
+- `STOP_ONLY_ON_REAL_VM_FAILURE=YES`
+- `UPGRADE_V2_4_IN_PLACE=NO`
 
-- native structural learning
-- persistent recurrence across experiences
-- native self-selection
-- cross-context support
-- autonomous structural fetch-request generation (V2.2)
+Không mutate production learner memory trong admission/shadow test.
 
-Chưa được phép claim:
+## Claim discipline
+
+Không được phép tự động claim:
 
 - `SEMANTIC_UNDERSTANDING=PROVEN`
 - `SEMANTIC_CURIOSITY=PROVEN`
+- `SEMANTIC_TRUTH_VALIDATION=PROVEN`
 - `GENERAL_AUTONOMOUS_REASONING=PROVEN`
+
+Bounded structural proof không được nâng thành semantic/general claim.
