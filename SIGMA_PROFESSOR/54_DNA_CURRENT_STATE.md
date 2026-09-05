@@ -119,9 +119,10 @@ ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
 DNA-08 V1 compile failure: exact print-token source delta later compiled/runtime-passed.
 DNA-10 V1 compile failure: bare top-level block repaired to explicit `⟡(...) {`; exact delta later compiled/runtime-passed.
-DNA-14 V1 alignment failure: 50/50 VM RC=0 but 22 shell-oracle mismatches; FIX1 kept `.sigma` byte-identical, repaired only positional A1..A4 oracle policy, then full rerun passed 50/50.
+DNA-14 V1 alignment failure: 50/50 VM RC=0 but 22 shell-oracle mismatches; FIX1 kept `.sigma` byte-identical, repaired positional A1..A4 oracle policy, then full rerun passed 50/50.
 
-DNA-15 V1 runtime admission failure:
+### DNA-15 V1 runtime failure
+
 ```text
 SOURCE_SHA256=2f8c58101ee2a543fed7a8ecab2e2b4cbeeff6b1beefd89ae461b4e557433f51
 BYTECODE_SHA256=4240280f7b352e22e18ea2c81ddc8f1135b77088124d15b4dfa8ee3bee33dca5
@@ -130,14 +131,38 @@ POST_VM_ALIGNMENT_PASS_COUNT=46
 POST_VM_ALIGNMENT_FAIL_COUNT=4
 POST_VM_NUMERIC_ALIGNMENT_PASS_COUNT=50
 POST_VM_NUMERIC_ALIGNMENT_FAIL_COUNT=0
+ADMISSION=FAIL
+```
+
+Checkpoint: `SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_V1_FAIL_46_OF_50_AND_HFREE_DERIVED_K_DIRECTIVE.md`
+
+### DNA-15 V2 H-free state-derived-k runtime failure
+
+```text
+SOURCE_SHA256=94f4684115d03116bff19348ce840457f5c066d2399c7f83dd3f5b9ecfd24f26
+BYTECODE_SHA256=c44a85358c4ab0fd7ca5fd71f328575859bf16b7dfdffca516f15620eeb26f76
+TOTAL_VM_INVOCATIONS=50
+POST_VM_ALIGNMENT_PASS_COUNT=45
+POST_VM_ALIGNMENT_FAIL_COUNT=5
+POST_VM_NUMERIC_ALIGNMENT_PASS_COUNT=48
+POST_VM_NUMERIC_ALIGNMENT_FAIL_COUNT=2
 VM_NONZERO_COUNT=0
 STEP_LIMIT_HIT_COUNT=0
+SENTINEL_FAIL_COUNT=0
 REPLAY_IDENTICAL_INPUT_DECISION=YES
+STALE_H_AND_CALLER_K_INDEPENDENCE_PASS_COUNT=1
+STALE_H_AND_CALLER_K_INDEPENDENCE_FAIL_COUNT=0
 ADMISSION=FAIL
 RESULT=FAIL_IN_TESTED_SCOPE
 ```
-Checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_V1_FAIL_46_OF_50_AND_HFREE_DERIVED_K_DIRECTIVE.md`
+
+Static diagnosis after failure identifies two repair candidates that exactly account for the 5 semantic / 2 numeric failure pattern:
+1. native `MEASUREMENT_COMPLETE` emitted dependency-bound input validity instead of required-field completeness (affecting the 3 dependency-invalid directed cases);
+2. post-VM oracle zeroed expected `TIME_OFFSET` whenever k-domain invalid, although native code preserves parsed `t-t0` for the A0-zero and observed-A-zero directed cases.
+
+Causal repair remains NOT_PROVEN until FIX1 full runtime passes.
+
+Failure checkpoint: `SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_V2_FAIL_45_OF_50_AND_FIX_SCOPE.md`
 
 ## DNA-15 / F174 governance
 
@@ -145,85 +170,46 @@ DNA15_DEFER_REVERSED_BY_USER=YES
 DNA15_NATIVE_ADMISSION_AUTHORIZED=YES
 F174_NATIVE_ADMISSION_AUTHORIZED=YES
 
-After V1 failure, user explicitly directed an H-free active calculation and state-derived k.
+User directive after V1: active calculation is H-free and caller-k-free; k is inferred from measured A-state where admitted.
+Historical Canon remains provenance; active operational extension does not use H as an input/ceiling/gate.
 
-Historical Canon remains provenance. The V2 operational extension candidate preserves the base equation but does not read H or caller-k as active inputs.
-
-## DNA-15 Native Admission V2 — H-free state-derived-k — source ready / not admitted
+## DNA-15 V2 FIX1 — H-free state-derived-k — source ready / not admitted
 
 CANON_REFERENCE_BLOB_SHA1=50ec4940f554d594c385a96ef986fc88dca7f53c
-ACTIVE_PROFILE=H_FREE_STATE_DERIVED_K_V2
+ACTIVE_PROFILE=H_FREE_STATE_DERIVED_K_V2_FIX1
 SOURCE_PATH=DNA15_F174_HFREE_STATE_DERIVED_K_NATIVE_V2.sigma
-SOURCE_SHA256=94f4684115d03116bff19348ce840457f5c066d2399c7f83dd3f5b9ecfd24f26
-RUNNER_SHA256=decb39240bd0cac6f8a851a03a2a0da3424efee09cc3d8dd7ea35fda3395dd18
-MANIFEST_SHA256=60a9cdd66bcb14d43f92b306e0670b5d8c65f91bd83cf6d3c96ce8e74157637e
-BUNDLE_SHA256=4c4c6d08f0017231153eceb24726cd5c52ccba91155cb0e28604aea372585086
+SOURCE_SHA256=e0ac36559b85a189152709238e176a99e48f325f3f1308aba8b360a768e74d8f
+RUNNER_PATH=run_DNA15_NATIVE_ADMISSION_V2_FIX1.sh
+RUNNER_SHA256=560d93d0d4b3c921f3874218104d85c329bfae7d8e8004d047a0374e0ffb17dc
+MANIFEST_SHA256=1d475b2111a654404c3300cbf0ed3fa0bcae79107063bcb3adf54a20eba42de9
+BUNDLE_SHA256=c668eecbf7e0e9b17106bba8caabe4881b765de862263b2895221a8379298071
 
-DNA15_V2_SOURCE=SOURCE_ONLY
-DNA15_V2_COMPILE=NOT_RUN
-DNA15_V2_VM=NOT_RUN
-DNA15_V2_ADMISSION=NOT_RUN
-PERSISTENT_STATE=NA
-
-Active candidate formula:
-`k=ln(A_t/A0)/(t-t0)^2`
-
-Domain:
-- `A0>0`;
-- observed `A_t>0`;
-- `t!=t0`.
-
-State binding under test:
-- increase -> positive k;
-- stable -> zero k;
-- decrease -> negative k.
-
-Static facts:
+Exact repair:
 ```text
+SOURCE_DIFF: 1 semantic emission line
+MEASUREMENT_COMPLETE=REQUIRED_FIELDS_PRESENT
+RUNNER_ORACLE: preserve parsed TIME_OFFSET for input-valid/domain-invalid cases
 H_INPUT_PATH_READ_COUNT=0
 CALLER_K_INPUT_PATH_READ_COUNT=0
-MATH_LOG_CALL_COUNT=1
-MATH_EXP_CALL_COUNT=1
-TO_FLOAT_CALL_COUNT=1
-RUNNER_PYTHON_COMMAND_COUNT=0
-BASH_SYNTAX=PASS
-MANIFEST=PASS
-ZIP_INTEGRITY=PASS
+K_FORMULA=ln(A_t/A0)/(t-t0)^2
 ```
 
-Admission plan:
-- exact DNA-01..DNA-14 dependency preflight;
-- 16 directed + 32 randomized + 2 replay = 50 VM invocations;
-- dynamic input generated after compile/freeze;
-- stale H/k independence pair requires changed shell input SHA but identical VM stdout SHA;
-- `math_log` must work in locked VM; no semantic fallback.
-
-Boundaries:
+State:
 ```text
-ACTIVE_H_INPUT=REMOVED_CANDIDATE_NOT_RUNTIME_PROVEN
-CALLER_K_INPUT=REMOVED_CANDIDATE_NOT_RUNTIME_PROVEN
-STATE_DERIVED_K=NOT_PROVEN_UNTIL_RUNTIME_PASS
-MATH_LOG_ABI=NOT_PROVEN_UNTIL_RUNTIME_PASS
+DNA15_V2_FIX1_SOURCE=SOURCE_ONLY
+DNA15_V2_FIX1_COMPILE=NOT_RUN
+DNA15_V2_FIX1_VM=NOT_RUN
+DNA15_V2_FIX1_ADMISSION=NOT_RUN
+STATE_DERIVED_K=NOT_ADMITTED
+MATH_LOG_ABI=NOT_ADMITTED
 K_TEMPORAL_CONSTANCY=NOT_PROVEN
-DERIVATIVE_FROM_DERIVED_K=NOT_EXECUTED
-NUMERIC_TEXT_VALIDATION=NOT_PROVEN
-GLOBAL_F174_CANON_FILE_READ_NATIVE=NOT_PROVEN
-PARAMETER_OPTIMIZATION=NOT_EXECUTED
-F174_EXPERIMENT=NOT_EXECUTED
-CAPABILITY_GROWTH=NOT_EXECUTED
-MODEL_REPLACEMENT=NOT_EXECUTED
-LEARNING_RUNTIME=NOT_EXECUTED
-WORLD_RUNTIME=NOT_EXECUTED
-EXTERNAL_ACTION_RUNTIME=NOT_EXECUTED
-SEMANTIC_UNDERSTANDING=NOT_PROVEN
 ```
 
-SOURCE_READY checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_NATIVE_ADMISSION_V2_HFREE_DERIVED_K_SOURCE_READY.md`
+Source-ready checkpoint: `SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_V2_FIX1_HFREE_DERIVED_K_SOURCE_READY.md`
 
 ## Current frontier
 
-NEXT_TARGET=RUN DNA-15 NATIVE ADMISSION V2 HFREE STATE-DERIVED-K
+NEXT_TARGET=RUN DNA-15 V2 FIX1 FULL 50-CASE SUITE
 PLANNED_NEXT_IF_PASS=DNA-16 Experience-Driven Learning
 
 ## Global claim boundaries
