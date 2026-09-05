@@ -1,0 +1,597 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.REVALIDATION.LIFECYCLE][VERSION=2.10R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.REVALIDATION_LIFECYCLE_V210R1) {
+
+    ⚡ SELECTED_WORK:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V210R1_SELECTED_WORK.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ REVALIDATION_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V210R1_REVALIDATION_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ REVALIDATION_TEXT:
+        H(
+            "read_text",
+            REVALIDATION_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ OLD_LIFECYCLE:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V210R1_LIFECYCLE_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ REVALIDATION_LINES:
+        H(
+            "str_split",
+            REVALIDATION_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ LIFECYCLE_LINES:
+        H(
+            "str_split",
+            OLD_LIFECYCLE,
+            "\n",
+            NULL
+        );
+
+    ⚡ REVALIDATION_LINE_TOTAL:
+        H(
+            "list_len",
+            REVALIDATION_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ LIFECYCLE_LINE_TOTAL:
+        H(
+            "list_len",
+            LIFECYCLE_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_REVALIDATION_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_LIFECYCLE_SPLIT_LINES:
+        65;
+
+    ⚡ REVALIDATION_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ LIFECYCLE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_REVALIDATION_SPLIT_LINES < REVALIDATION_LINE_TOTAL) {
+        ⚡ REVALIDATION_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_LIFECYCLE_SPLIT_LINES < LIFECYCLE_LINE_TOTAL) {
+        ⚡ LIFECYCLE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ SELECTED_WORK_VALID:
+        1;
+
+    IF (SELECTED_WORK == "") {
+        ⚡ SELECTED_WORK_VALID:
+            0;
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (REVALIDATION_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (LIFECYCLE_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SELECTED_WORK_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ print("SIGMA_V210R1_REVALIDATION_LIFECYCLE");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("SELECTED_WORK_VALID", SELECTED_WORK_VALID);
+        ⚡ print("REVALIDATION_LINE_TOTAL", REVALIDATION_LINE_TOTAL);
+        ⚡ print("LIFECYCLE_LINE_TOTAL", LIFECYCLE_LINE_TOTAL);
+        ⚡ print("REVALIDATION_LIMIT_EXCEEDED", REVALIDATION_LIMIT_EXCEEDED);
+        ⚡ print("LIFECYCLE_LIMIT_EXCEEDED", LIFECYCLE_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_REVALIDATION_SPLIT_LINES", MAX_REVALIDATION_SPLIT_LINES);
+        ⚡ print("MAX_LIFECYCLE_SPLIT_LINES", MAX_LIFECYCLE_SPLIT_LINES);
+        ⚡ print("HOST_LIFECYCLE_DECISION", "NO");
+        ⚡ print("HOST_REVISIT_DECISION", "NO");
+        ⚡ print("HOST_ARCHIVE_DECISION", "NO");
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_TRUTH_VALIDATION", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ REVALIDATION_FOUND:
+            0;
+
+        ⚡ REVALIDATION_CONFLICT:
+            0;
+
+        ⚡ REVALIDATION_RESULT:
+            "";
+
+        ⚡ VALID_COMMITTED_REVALIDATION_COUNT:
+            0;
+
+        ⚡ DUPLICATE_REVALIDATION_RECORD_COUNT:
+            0;
+
+        ⚡ IGNORED_REVALIDATION_RECORD_COUNT:
+            0;
+
+        ⚡ SEEN_REVALIDATION_KEY:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ R:
+            0;
+
+        WHILE (R < REVALIDATION_LINE_TOTAL) {
+
+            ⚡ LINE:
+                H(
+                    "list_get",
+                    REVALIDATION_LINES,
+                    R,
+                    NULL
+                );
+
+            ⚡ VALID_LINE:
+                1;
+
+            IF (LINE == "") {
+                ⚡ VALID_LINE:
+                    0;
+            }
+
+            IF (VALID_LINE) {
+
+                ⚡ PARTS:
+                    H(
+                        "str_split",
+                        LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ PART_TOTAL:
+                    H(
+                        "list_len",
+                        PARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED:
+                    0;
+
+                IF (3 < PART_TOTAL) {
+
+                    ⚡ COMMIT_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (COMMIT_FIELD == "COMMIT=YES") {
+                        ⚡ COMMITTED:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED) {
+
+                    ⚡ WORK_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ RESULT_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ BASELINE_FIELD:
+                        H(
+                            "list_get",
+                            PARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ WORK_ID:
+                        H(
+                            "str_replace",
+                            WORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ RESULT:
+                        H(
+                            "str_replace",
+                            RESULT_FIELD,
+                            "RESULT=",
+                            ""
+                        );
+
+                    ⚡ BASELINE:
+                        H(
+                            "str_replace",
+                            BASELINE_FIELD,
+                            "BASELINE=",
+                            ""
+                        );
+
+                    IF (WORK_ID == SELECTED_WORK) {
+
+                        ⚡ VALID_RESULT:
+                            0;
+
+                        IF (RESULT == "REOBSERVED") {
+                            ⚡ VALID_RESULT:
+                                1;
+                        }
+
+                        IF (RESULT == "NOT_REOBSERVED") {
+                            ⚡ VALID_RESULT:
+                                1;
+                        }
+
+                        IF (VALID_RESULT) {
+
+                            ⚡ REVALIDATION_KEY:
+                                WORK_ID
+                                + " || RESULT="
+                                + RESULT
+                                + " || BASELINE="
+                                + BASELINE;
+
+                            ⚡ KEY_SEEN:
+                                H(
+                                    "map_has",
+                                    SEEN_REVALIDATION_KEY,
+                                    REVALIDATION_KEY,
+                                    NULL
+                                );
+
+                            IF (KEY_SEEN == FALSE) {
+
+                                ⚡ MARK_KEY:
+                                    H(
+                                        "map_set",
+                                        SEEN_REVALIDATION_KEY,
+                                        REVALIDATION_KEY,
+                                        1
+                                    );
+
+                                ⚡ VALID_COMMITTED_REVALIDATION_COUNT:
+                                    VALID_COMMITTED_REVALIDATION_COUNT + 1;
+
+                                IF (REVALIDATION_FOUND == 0) {
+
+                                    ⚡ REVALIDATION_FOUND:
+                                        1;
+
+                                    ⚡ REVALIDATION_RESULT:
+                                        RESULT;
+                                }
+
+                                IF (REVALIDATION_FOUND) {
+
+                                    IF (RESULT == REVALIDATION_RESULT) {
+                                        ⚡ SAME_RESULT_NOOP:
+                                            0;
+                                    }
+
+                                    ⚡ DIFFERENT_RESULT:
+                                        1;
+
+                                    IF (RESULT == REVALIDATION_RESULT) {
+                                        ⚡ DIFFERENT_RESULT:
+                                            0;
+                                    }
+
+                                    IF (DIFFERENT_RESULT) {
+                                        ⚡ REVALIDATION_CONFLICT:
+                                            1;
+                                    }
+                                }
+                            }
+
+                            IF (KEY_SEEN) {
+                                ⚡ DUPLICATE_REVALIDATION_RECORD_COUNT:
+                                    DUPLICATE_REVALIDATION_RECORD_COUNT + 1;
+                            }
+                        }
+
+                        IF (VALID_RESULT == 0) {
+                            ⚡ IGNORED_REVALIDATION_RECORD_COUNT:
+                                IGNORED_REVALIDATION_RECORD_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (COMMITTED == 0) {
+                    ⚡ IGNORED_REVALIDATION_RECORD_COUNT:
+                        IGNORED_REVALIDATION_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ R:
+                R + 1;
+        }
+
+        ⚡ LIFECYCLE_ACTION:
+            "WAIT_FOR_REVALIDATION";
+
+        ⚡ LIFECYCLE_READY:
+            0;
+
+        IF (REVALIDATION_FOUND) {
+
+            IF (REVALIDATION_CONFLICT == 0) {
+
+                IF (REVALIDATION_RESULT == "NOT_REOBSERVED") {
+
+                    ⚡ LIFECYCLE_ACTION:
+                        "REVISIT";
+
+                    ⚡ LIFECYCLE_READY:
+                        1;
+                }
+
+                IF (REVALIDATION_RESULT == "REOBSERVED") {
+
+                    ⚡ LIFECYCLE_ACTION:
+                        "ARCHIVE_FOR_NOW";
+
+                    ⚡ LIFECYCLE_READY:
+                        1;
+                }
+            }
+        }
+
+        ⚡ LIFECYCLE_ALREADY_COMMITTED:
+            0;
+
+        ⚡ IGNORED_LIFECYCLE_RECORD_COUNT:
+            0;
+
+        ⚡ L:
+            0;
+
+        WHILE (L < LIFECYCLE_LINE_TOTAL) {
+
+            ⚡ STATE_LINE:
+                H(
+                    "list_get",
+                    LIFECYCLE_LINES,
+                    L,
+                    NULL
+                );
+
+            ⚡ VALID_STATE_LINE:
+                1;
+
+            IF (STATE_LINE == "") {
+                ⚡ VALID_STATE_LINE:
+                    0;
+            }
+
+            IF (VALID_STATE_LINE) {
+
+                ⚡ SPARTS:
+                    H(
+                        "str_split",
+                        STATE_LINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ SPART_TOTAL:
+                    H(
+                        "list_len",
+                        SPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ COMMITTED_STATE:
+                    0;
+
+                IF (3 < SPART_TOTAL) {
+
+                    ⚡ SCOMMIT:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (SCOMMIT == "COMMIT=YES") {
+                        ⚡ COMMITTED_STATE:
+                            1;
+                    }
+                }
+
+                IF (COMMITTED_STATE) {
+
+                    ⚡ SWORK_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ SACTION_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ SFROM_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ SWORK:
+                        H(
+                            "str_replace",
+                            SWORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ SACTION:
+                        H(
+                            "str_replace",
+                            SACTION_FIELD,
+                            "ACTION=",
+                            ""
+                        );
+
+                    ⚡ SFROM:
+                        H(
+                            "str_replace",
+                            SFROM_FIELD,
+                            "FROM_RESULT=",
+                            ""
+                        );
+
+                    IF (SWORK == SELECTED_WORK) {
+                        IF (SACTION == LIFECYCLE_ACTION) {
+                            IF (SFROM == REVALIDATION_RESULT) {
+                                ⚡ LIFECYCLE_ALREADY_COMMITTED:
+                                    1;
+                            }
+                        }
+                    }
+                }
+
+                IF (COMMITTED_STATE == 0) {
+                    ⚡ IGNORED_LIFECYCLE_RECORD_COUNT:
+                        IGNORED_LIFECYCLE_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ LIFECYCLE_APPEND_RC:
+            0;
+
+        IF (LIFECYCLE_READY) {
+
+            IF (LIFECYCLE_ALREADY_COMMITTED == 0) {
+
+                ⚡ RECORD:
+                    "\nWORK="
+                    + SELECTED_WORK
+                    + " || ACTION="
+                    + LIFECYCLE_ACTION
+                    + " || FROM_RESULT="
+                    + REVALIDATION_RESULT
+                    + " || COMMIT=YES";
+
+                ⚡ LIFECYCLE_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V210R1_LIFECYCLE_STATE.memory",
+                        RECORD,
+                        NULL
+                    );
+            }
+        }
+
+        ⚡ print("SIGMA_V210R1_REVALIDATION_LIFECYCLE");
+        ⚡ print("SELECTED_WORK", SELECTED_WORK);
+        ⚡ print("REVALIDATION_LINE_TOTAL", REVALIDATION_LINE_TOTAL);
+        ⚡ print("LIFECYCLE_LINE_TOTAL", LIFECYCLE_LINE_TOTAL);
+        ⚡ print("VALID_COMMITTED_REVALIDATION_COUNT", VALID_COMMITTED_REVALIDATION_COUNT);
+        ⚡ print("DUPLICATE_REVALIDATION_RECORD_COUNT", DUPLICATE_REVALIDATION_RECORD_COUNT);
+        ⚡ print("IGNORED_REVALIDATION_RECORD_COUNT", IGNORED_REVALIDATION_RECORD_COUNT);
+        ⚡ print("REVALIDATION_FOUND", REVALIDATION_FOUND);
+        ⚡ print("REVALIDATION_CONFLICT", REVALIDATION_CONFLICT);
+        ⚡ print("REVALIDATION_RESULT", REVALIDATION_RESULT);
+        ⚡ print("LIFECYCLE_READY", LIFECYCLE_READY);
+        ⚡ print("LIFECYCLE_ACTION", LIFECYCLE_ACTION);
+        ⚡ print("IGNORED_LIFECYCLE_RECORD_COUNT", IGNORED_LIFECYCLE_RECORD_COUNT);
+        ⚡ print("LIFECYCLE_ALREADY_COMMITTED", LIFECYCLE_ALREADY_COMMITTED);
+        ⚡ print("LIFECYCLE_APPEND_RC", LIFECYCLE_APPEND_RC);
+        ⚡ print("LIFECYCLE_POLICY", "NOT_REOBSERVED_TO_REVISIT_REOBSERVED_TO_ARCHIVE_FOR_NOW_CONFLICT_OR_MISSING_TO_WAIT");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_REVALIDATION_SPLIT_LINES", MAX_REVALIDATION_SPLIT_LINES);
+        ⚡ print("MAX_LIFECYCLE_SPLIT_LINES", MAX_LIFECYCLE_SPLIT_LINES);
+        ⚡ print("ARCHIVE_FOR_NOW_DELETES_EVIDENCE", "NO");
+        ⚡ print("HOST_LIFECYCLE_DECISION", "NO");
+        ⚡ print("HOST_REVISIT_DECISION", "NO");
+        ⚡ print("HOST_ARCHIVE_DECISION", "NO");
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_LIFECYCLE_ONLY", "YES");
+        ⚡ print("SEMANTIC_TRUTH_VALIDATION", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
