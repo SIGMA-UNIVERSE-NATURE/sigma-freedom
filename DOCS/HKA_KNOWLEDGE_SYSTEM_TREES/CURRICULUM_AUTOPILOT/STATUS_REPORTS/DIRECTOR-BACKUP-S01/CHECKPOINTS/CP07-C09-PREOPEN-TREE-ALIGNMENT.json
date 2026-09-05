@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP07-C09-PREOPEN-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "result": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "accepted_C07_head": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "planned_scope": "B1.1-C09",
+  "planned_window": "C01-W02-B1.1-MATH-FAMILY-C09",
+  "planned_branch": "hka-tree/c01-w02-math-c09",
+  "canonical_topics": [
+    "B1.1-C09-T01 — Không gian tô pô",
+    "B1.1-C09-T02 — Liên thông và compact",
+    "B1.1-C09-T03 — Đa tạp",
+    "B1.1-C09-T04 — Tô pô đại số",
+    "B1.1-C09-T05 — Tô pô vi phân",
+    "B1.1-C09-T06 — Lý thuyết nút",
+    "B1.1-C09-T07 — Hình học toàn cục"
+  ],
+  "checks": {
+    "canonical_tree_commit_unchanged": true,
+    "immutable_scope_map_anchor_present": true,
+    "C09_is_registered_successor_after_C07": true,
+    "C07_is_Director_accepted": true,
+    "C09_stable_topics_match_scope_map": true,
+    "C10_remains_locked": true,
+    "amendment_4_preserves_ids_and_ownership": true,
+    "post_CURRICULUM_stages_remain_gated": true
+  },
+  "ownership_note": "C09 may consume accepted C03/C05/C04 foundations but must not duplicate C04 local differential geometry, C05 analysis/calculus, or C03 algebra foundations.",
+  "updated_at": "2026-09-05T16:33:00+07:00"
+}
