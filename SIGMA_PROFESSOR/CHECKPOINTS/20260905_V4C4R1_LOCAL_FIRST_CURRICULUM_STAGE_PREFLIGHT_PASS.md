@@ -1,0 +1,126 @@
+# V4-C4 R1 — Local-First Curriculum Stage Controller — PREFLIGHT PASS
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: `PASS_IN_EXACT_DYNAMIC_FIXTURE_PREFLIGHT_SCOPE / PRODUCTION_BINDING_NO`
+
+## Locked runtime observed
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+LOCKED_SIGMAC_EXECUTION=PASS
+LOCKED_VM_EXECUTION=PASS
+```
+
+## Artifact identities observed
+
+```text
+SOURCE_PATH=SIGMA_PROFESSOR/artifacts/SIGMA_V4_LOCAL_FIRST_CURRICULUM_STAGE_CONTROLLER_V4C4R1.sigma
+SOURCE_GIT_BLOB=9c55b842b321feba5d755ef7021ba5a3067ff6e1
+SOURCE_SHA256_AFTER_DYNAMIC_TEST=82946a22df4f409ba9c3fab6a24f47ba4ee496693bfd1085a23c1905b26cf9f1
+BYTECODE_SHA256_AFTER_DYNAMIC_TEST=32dafa63db03bea0c6213d3c2fadb91e56c879b2d572836d2d82c871a9c18a76
+RUNNER_PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V4C4R1_LOCAL_FIRST_CURRICULUM_STAGE_PREFLIGHT.sh
+RUNNER_GIT_BLOB=561a77753a8fd84d507d39fd15da862b32516fe7
+DYNAMIC_FIXTURE_TOKEN=1788618027.25529.10611
+DYNAMIC_TOKEN_LEAK_SOURCE_COUNT=0
+DYNAMIC_TOKEN_LEAK_BYTECODE_COUNT=0
+```
+
+No runner SHA256 was included in the supplied final transcript. Do not infer it from the Git blob.
+
+## Dynamic machine evidence
+
+```text
+CASE_A_LOCAL_INCOMPLETE_VM_RC=0
+CASE_A_MODE=LOCAL
+CASE_A_ACTION=PLAN_CONTINUE_LOCAL_STORED_TEACHING_CORPUS
+
+CASE_B_LOCAL_PASS_COMPLETE_VM_RC=0
+CASE_B_MODE=EXTERNAL
+CASE_B_ACTION=PLAN_ACTIVATE_EXISTING_NATIVE_EXTERNAL_FEED
+
+CASE_C_NEW_LOCAL_PREEMPTS_EXTERNAL_VM_RC=0
+CASE_C_MODE=LOCAL
+CASE_C_ACTION=PLAN_CONTINUE_LOCAL_STORED_TEACHING_CORPUS
+
+CASE_D_SWITCH_WAITS_SAFE_BOUNDARY_VM_RC=0
+CASE_D_MODE_STAYS_EXTERNAL=EXTERNAL
+CASE_D_STATUS=NATIVE_CURRICULUM_MODE_SWITCH_PENDING_ACTIVE_CONTEXT
+
+CASE_E_LOCAL_HOLD_BLOCKS_EXTERNAL_VM_RC=0
+CASE_E_MODE=LOCAL
+CASE_E_ACTION=PLAN_LOCAL_NATIVE_HOLD_RECOVERY_REQUIRED
+
+CASE_F_INVALID_MODE_REFUSAL_VM_RC=0
+CASE_F_STATUS=REFUSE_INVALID_CURRICULUM_STATE
+CASE_F_ACTION=REFUSE_INVALID_CURRICULUM_STATE
+
+CASE_G_EMPTY_LOCAL_REFUSAL_VM_RC=0
+CASE_G_STATUS=REFUSE_LOCAL_CORPUS_EMPTY
+CASE_G_ACTION=REFUSE_LOCAL_CORPUS_EMPTY
+```
+
+Final supplied summary:
+
+```text
+V4C4R1_LOCAL_FIRST_CURRICULUM_STAGE_PREFLIGHT=PASS
+NATIVE_LOCAL_FIRST_MODE_SELECTION=PASS_IN_DYNAMIC_FIXTURE_SCOPE
+NATIVE_EXTERNAL_FEED_ACTIVATION_AFTER_LOCAL_OPERATIONAL_PASS=PASS_IN_FIXTURE_SCOPE
+NATIVE_NEW_LOCAL_DATA_PREEMPTS_EXTERNAL_AT_SAFE_BOUNDARY=PASS_IN_FIXTURE_SCOPE
+NATIVE_ACTIVE_CONTEXT_SAFE_BOUNDARY=PASS_IN_FIXTURE_SCOPE
+NATIVE_LOCAL_HOLD_BLOCKS_EXTERNAL=PASS_IN_FIXTURE_SCOPE
+NEGATIVE_INVALID_MODE_REFUSAL=PASS
+NEGATIVE_EMPTY_LOCAL_REFUSAL=PASS
+FORCED_SEMANTIC_VERDICT_LITERAL_IN_SOURCE=NO
+FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE=NO
+HOST_STAGE_DECISION=NO
+HOST_CURRICULUM_PRIORITY=NO
+HOST_LEARNING=NO
+BASH_LEARNING=NO
+GPT_AS_SIGMA_COGNITION=NO
+LOCAL_OPERATIONAL_PASS_IS_SEMANTIC_MASTERY_CLAIM=NO
+PRODUCTION_BINDING=NO
+V4C4R1_PROCESS_RC=0
+```
+
+## Exact admitted preflight scope
+
+This preflight establishes only that, under the supplied dynamic isolated directory/state fixtures, the native V4-C4 R1 controller:
+
+- keeps local corpus work active while local operational work remains;
+- switches the C2R2 corpus binding to the configured external corpus only after the local operational pass condition used by this controller is satisfied;
+- returns from external to local when new unfinished local material appears, but only at the tested safe context boundary;
+- refuses to bypass a local HOLD with external work;
+- refuses malformed mode state and empty local corpus;
+- does not contain the audited teacher-forced semantic verdict literals in source or bytecode;
+- leaves stage selection outside Bash/host/GPT cognition in this tested scope.
+
+## Claim boundary
+
+This transcript does **not** establish any of the following:
+
+```text
+REAL_REPOSITORY_LOCAL_CORPUS_STAGING=NOT_EXECUTED_BY_THIS_PREFLIGHT
+REAL_STORED_TEACHING_CORPUS_PROCESSING=NOT_EXECUTED_BY_THIS_PREFLIGHT
+REAL_LOCAL_TO_INTERNET_CONTINUOUS_INTEGRATION=NOT_EXECUTED_BY_THIS_PREFLIGHT
+LIVE_INTERNET_TRANSITION_FROM_V4C4=NOT_EXECUTED_BY_THIS_PREFLIGHT
+LOCAL_SEMANTIC_MASTERY=NOT_CLAIMED
+SEMANTIC_UNDERSTANDING_REPOSITORY_CLAIM=NOT_PROVEN
+PRODUCTION_BINDING=NO
+V4_PRODUCTION_PROMOTION_ALLOWED=NO
+PRODUCTION_V2_4_KEEP_RUNNING=YES
+```
+
+The repository claim-ledger line about semantic understanding is external engineering bookkeeping only. It is not a semantic utterance required from SIGMA.
+
+## Next dependency
+
+Build a versioned isolated continuous integration layer that:
+
+1. mechanically stages exact bytes of eligible repository-local stored/taught text into a local `*.document` corpus with path/content provenance, without host semantic ranking or lesson selection;
+2. keeps production V2.4 state read-only and running;
+3. invokes V4-C4 R1 natively to bind C2R2 to LOCAL or EXTERNAL;
+4. uses C2R2/B4R2/A3/C3R4/R3 for the selected corpus;
+5. reuses an existing admitted native external-acquisition path rather than inventing host research-goal selection;
+6. remains `SOURCE_READY / RUNTIME_NOT_RUN` until a locked-Termux integration transcript exists.
