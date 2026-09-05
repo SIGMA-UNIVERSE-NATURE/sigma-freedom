@@ -1,18 +1,19 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "window_id": "DIRECTOR-BACKUP-S01",
   "role": "BACKUP_SENTINEL",
   "status": "STANDBY_READY",
   "execution_branch": "hka-tree/director-backup-sentinel",
-  "last_checkpoint_id": "CP04-C08-ACTIVATED-TREE-ALIGNMENT",
-  "last_checkpoint_commit_sha": "23d95b7d5a0b42c75f54f437d112e3abc6a371a0",
+  "last_checkpoint_id": "CP05-C07-POST-ACTIVATION-TREE-ALIGNMENT",
+  "last_checkpoint_commit_sha": "fa82cd83dd6773fa2eddbff6e636f56d2a849f4e",
   "last_sentinel_status": "TREE_ALIGNMENT_PASS",
   "current_stage": "CURRICULUM",
-  "active_scope": "B1.1-C08",
-  "active_window": "C01-W02-B1.1-MATH-FAMILY-C08",
-  "active_branch": "hka-tree/c01-w02-math-c08",
-  "accepted_predecessor": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "active_scope": "B1.1-C07",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "active_branch": "hka-tree/c01-w02-math-c07",
+  "accepted_predecessor": "14729ce490289b057d5dca25767c3b5ea357e1ec",
   "scope_map_anchor": {"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
+  "active_dependency_amendments": [1,2,3],
   "authority": {
     "academic_authoring": false,
     "director_acceptance": false,
@@ -22,5 +23,5 @@
   },
   "continuity_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
   "next_action": "On invocation, re-read current continuity snapshot, immutable scope-map anchor, state, registry and active child; return TREE_ALIGNMENT_PASS, TREE_ALIGNMENT_ALERT or RECOVERY_REQUIRED only.",
-  "updated_at": "2026-09-05T11:50:00+07:00"
+  "updated_at": "2026-09-05T12:54:00+07:00"
 }
