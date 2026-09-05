@@ -58,6 +58,7 @@ printf 'HOST_LEARNING=NO\n'
 
 V24_PID_BEFORE=$("$P/bin/pgrep" -f 'RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh' | "$P/bin/head" -n1 || true)
 printf 'PRODUCTION_V24_PID_BEFORE=%s\n' "$V24_PID_BEFORE"
+[ -n "$V24_PID_BEFORE" ] || { printf 'HOLD=PRODUCTION_V24_NOT_RUNNING\n'; exit 21; }
 
 [ "$SIGMAC_SHA" = "$EXPECTED_SIGMAC" ] || { printf 'HOLD=SIGMAC_IDENTITY_MISMATCH\n'; exit 21; }
 [ "$VM_SHA" = "$EXPECTED_VM" ] || { printf 'HOLD=VM_IDENTITY_MISMATCH\n'; exit 22; }
