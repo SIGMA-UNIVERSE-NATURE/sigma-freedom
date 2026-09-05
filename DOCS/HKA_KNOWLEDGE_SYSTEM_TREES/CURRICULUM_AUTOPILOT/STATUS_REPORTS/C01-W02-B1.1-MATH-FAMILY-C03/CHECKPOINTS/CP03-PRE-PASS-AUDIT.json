@@ -1,0 +1,67 @@
+{
+  "checkpoint_id": "CP03-PRE-PASS-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "branch": "hka-tree/c01-w02-math-c03",
+  "status": "PASS",
+  "audited_commit_sha": "3f0e6eca861d0b9e665fa7e9c07c23e41da4960e",
+  "audit_basis": "Committed GitHub durable state only",
+  "counts": {
+    "canonical_topics": 9,
+    "nodes": 9,
+    "claims": 77,
+    "sources": 6,
+    "learning_objectives": 36,
+    "claim_to_learning_objective_closures": 36,
+    "cross_links": 14,
+    "sequence_intent_records": 9
+  },
+  "audits": {
+    "bootstrap_and_scope_gate": "PASS",
+    "canonical_topic_exactness_T01_T09": "PASS",
+    "node_claim_learning_objective_id_integrity": "PASS",
+    "atomic_claim_structure_and_scope_limits": "PASS",
+    "source_identity_sha256_determinism": "PASS",
+    "source_traceability_and_reference_resolution": "PASS",
+    "D1_D4_age_independent_objectives": "PASS",
+    "claim_to_learning_objective_closure_36_of_36": "PASS",
+    "all_C03_claims_represented_in_closure_graph": "PASS",
+    "accepted_C01_C02_support_identity": "PASS",
+    "future_or_locked_scope_support_claims_zero": "PASS",
+    "semantic_duplicate_and_ownership": "PASS",
+    "T04_T05_ownership_boundary": "PASS",
+    "T06_T09_prerequisite_specialization_hierarchy": "PASS",
+    "prerequisite_and_sequence_DAG": "PASS",
+    "stage_boundary_diff": "PASS",
+    "control_plane_unchanged": "PASS"
+  },
+  "source_hashes": {
+    "HKA-SRC-e446211d4950": "PASS",
+    "HKA-SRC-4911d04b07dc": "PASS",
+    "HKA-SRC-b4bc831945da": "PASS",
+    "HKA-SRC-b7cd86827a11": "PASS",
+    "HKA-SRC-e3dd348d6dad": "PASS",
+    "HKA-SRC-46d223402744": "PASS"
+  },
+  "sequence_rank_order": [
+    "HKA-B1-1-C03-N001",
+    "HKA-B1-1-C03-N002",
+    "HKA-B1-1-C03-N003",
+    "HKA-B1-1-C03-N005",
+    "HKA-B1-1-C03-N004",
+    "HKA-B1-1-C03-N006",
+    "HKA-B1-1-C03-N007",
+    "HKA-B1-1-C03-N008",
+    "HKA-B1-1-C03-N009"
+  ],
+  "stage_boundary_diff_from_commit": "0764720e10362e9267aa62373850ae6d05ea146f",
+  "stage_boundary_allowed_changes_only": true,
+  "control_plane_recheck": {
+    "active_window": "C01-W02-B1.1-MATH-FAMILY-C03",
+    "active_window_status": "READY",
+    "execution_branch": "hka-tree/c01-w02-math-c03",
+    "C04_and_later_locked": true
+  },
+  "worker_pass_candidate_ready": true,
+  "director_acceptance_required": true,
+  "next_action": "Publish C03 worker PASS candidate artifacts; C04 remains gated pending Director acceptance."
+}
