@@ -29,7 +29,7 @@ VM v09 candidate SHA256:
 
 `VM_IS_GENESIS1=NOT_PROVEN`.
 
-Every admission runner from V2.16 onward must visibly print and equality-gate both runtime identities.
+Every admission runner from V2.16 onward visibly prints and equality-gates both runtime identities.
 
 ## Production V2.4
 
@@ -57,17 +57,37 @@ Do NOT upgrade V2.4 in place before shadow-production promotion gates pass.
 - V2.15R.1 first -> second real-work transition — PASS `fd6f8019af60758c2575589a2af1016f8cff2fc1`.
 - V2.16R.1 second real-work complete cycle — PASS `04d786edfe832ef501949549d0560e70c8d8b27f`.
 - V2.17R.1 real multi-document cycle promotion — PASS `1897b22984ecd095b0475041e9ea0ececf794e2f`.
+- V2.18R.1 shadow starvation audit — PASS / production promotion blocked `1e07738afce2bd5f111eb7861ebcdcdf3ab4472c`.
+- V2.19R.1 native revisit fairness queue — PASS `e44e84a37168cc193721d80a68cb58f331378280`.
+- V2.20R.1 fairness shadow integration — PASS `596a9620a7046d431f89ed5006332c1e1cfa4415`.
+- V2.21R.1 long-horizon shadow stability/recovery — PASS `cc2decc32d7aed2c5348333d9857623936a25b09`.
 
-V2.17 bounded admitted claim:
+## Key admitted claims
 
-`MULTI_DOCUMENT_AUTONOMOUS_CYCLE=PROVEN_IN_BOUNDED_REAL_CORPUS_SECOND_THIRD_WORK_SCOPE`.
+`MULTI_DOCUMENT_AUTONOMOUS_CYCLE=PROVEN_IN_BOUNDED_REAL_CORPUS_SECOND_THIRD_WORK_SCOPE`
 
-Real selected chain reached:
+`NATIVE_REVISIT_FAIRNESS_QUEUE=PROVEN_IN_BOUNDED_TESTED_SCOPE`
 
-- first `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
-- second `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`;
-- third `3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc`;
-- fourth `5c97c10b8997fb0799282a3d15fc37d9c5fe6af3ccb1bd7dce37e2589ccf36ad`.
+`REAL_SHADOW_ANTI_STARVATION_INTEGRATION=PROVEN_IN_FIRST_SECOND_THIRD_WORK_SCOPE`
+
+`LONG_HORIZON_SHADOW_STABILITY=PROVEN_IN_SIX_BOUNDARY_FOUR_REAL_WORK_SCOPE`
+
+V2.21 runtime evidence included:
+
+- 6 fairness scheduling boundaries;
+- at least 4 real works dispatched;
+- first-work defer/resume/redefer sequence PASS;
+- third real work complete cycle replay PASS;
+- first generation `||||` branch not hardcoded;
+- fourth real work initial cycle PASS;
+- fourth work branch not hardcoded;
+- fourth real result `REOBSERVED`;
+- fourth real lifecycle `ARCHIVE_FOR_NOW`;
+- persisted recovery at every extended boundary PASS;
+- fairness PENDING records = 3;
+- fairness RESUMED records = 3;
+- selector dispatch records = 4;
+- production V2.4 same PID before/after the test.
 
 Still NOT PROVEN generally:
 
@@ -75,154 +95,89 @@ Still NOT PROVEN generally:
 - semantic truth validation;
 - semantic understanding;
 - bounded file I/O;
-- mid-append crash atomicity.
+- physical filesystem append atomicity.
 
-## V2.18R.1 shadow-production starvation audit — PASS / promotion blocked
+## Promotion status
 
-Checkpoint:
-`1e07738afce2bd5f111eb7861ebcdcdf3ab4472c`
+`PRODUCTION_PROMOTION_ALLOWED=NO`
 
-Observed first-work real shadow sequence:
+The remaining durability blocker is no longer long-horizon scheduler stability. It is crash consistency of critical persistent state when a host write/append is interrupted.
 
-`... -> generation || -> NOT_REOBSERVED -> REVISIT -> 0ac783...::|||::EXECUTE_REVISIT`
+`MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN` remains true and must not be overclaimed.
 
-Result:
-
-- audit PASS;
-- promotion BLOCKED;
-- blocker = immediate consecutive revisit starvation risk;
-- synthetic archive used = NO;
-- production V2.4 remained running;
-- shadow namespace isolation PASS.
-
-## V2.19R.1 native revisit fairness / anti-starvation scheduler — PASS
+## Current frontier — V2.22R.1 crash-consistent transaction journal — SOURCE READY
 
 Native source:
-`SIGMA_REVISIT_FAIRNESS_ANTI_STARVATION_SCHEDULER_V2_19R1.sigma`
+`SIGMA_PROFESSOR/artifacts/SIGMA_CRASH_CONSISTENT_TRANSACTION_JOURNAL_V2_22R1.sigma`
 
 Source SHA256:
-`e0734dbbdb6f0bad3d6577f9a9b20eb3a13dd9c3489caebd7f6f58bb15200ad0`
-
-Runner SHA256:
-`e390445d0fd7439043ea3fb75c90661d78fb0321245b2c81d959f508370dd8e1`
-
-PASS checkpoint:
-`e44e84a37168cc193721d80a68cb58f331378280`
-
-Admitted claim:
-
-`NATIVE_REVISIT_FAIRNESS_QUEUE=PROVEN_IN_BOUNDED_TESTED_SCOPE`
-
-Policy:
-
-- immediate revisit is deferred while undispatched work exists;
-- exact revisit event is persisted as PENDING;
-- pending event matures only after selector dispatch progress plus a turn from a different work;
-- oldest mature pending revisit resumes first;
-- current revisit is queued before older pending event resumes, enabling rotation;
-- no alternative work -> revisit executes rather than being lost;
-- revisit evidence is never deleted;
-- host decides neither fairness nor priority.
-
-Admission evidence includes real V2.18 starvation-event deferral, fresh-VM defer reuse, A/B/C rotation, deterministic ledger replay, selector/survey inconsistency refusal, partial commit filtering and bounded refusals.
-
-## V2.20R.1 fairness shadow-production integration — PASS
-
-PASS checkpoint:
-`596a9620a7046d431f89ed5006332c1e1cfa4415`
-
-Real integrated sequence:
-
-1. first real work reaches `|||::EXECUTE_REVISIT`;
-2. V2.19 defers exact event and schedules other work;
-3. real second work selected and completes real `REOBSERVED -> ARCHIVE_FOR_NOW` cycle;
-4. V2.19 resumes exact pending first `|||::EXECUTE_REVISIT`;
-5. clean fresh host process recovers persisted resume intent;
-6. generation `|||` executes completely;
-7. first work remains unresolved and emits `||||::EXECUTE_REVISIT`;
-8. V2.19 defers it again;
-9. real third work is selected.
-
-Admitted claim:
-
-`REAL_SHADOW_ANTI_STARVATION_INTEGRATION=PROVEN_IN_FIRST_SECOND_THIRD_WORK_SCOPE`
-
-Also PASS:
-
-- cycle identity preserved on resumed revisit;
-- clean supervisor restart recovers defer and resume intents from fully committed files;
-- shadow namespace isolation;
-- production V2.4 remained running with same observed PID during test;
-- host fairness/stage/work/revisit-priority decisions = NO.
-
-Promotion remains:
-
-`PRODUCTION_PROMOTION_ALLOWED=NO`
-
-because long-horizon stability and mid-append crash atomicity are not yet proven.
-
-## Current frontier — V2.21R.1 long-horizon shadow stability/recovery — SOURCE READY
+`643c6f534777193951d772e9653463b5d97ceebb7c35f14b21390a3308ef4c64`
 
 Runner:
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V221R1_LONG_HORIZON_SHADOW_STABILITY_RECOVERY_PREFLIGHT.sh`
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V222R1_CRASH_CONSISTENT_TRANSACTION_JOURNAL_PREFLIGHT.sh`
 
 Runner SHA256:
-`c6ab9129af4692c4e134c39b088917c047864ccbf977a5314c0dc0f9322b0f3d`
+`6038ba6d2a6d4a16cc67c98386227c130fdc2f659c6dd850457b5c0ce4a4be9e`
 
-Runner commit:
-`266575729ef2ef2fdcbf473341ced8b4b684932b`
-
-README commit:
-`ac7c0adcc306711dabb29b050853b56e1df74079`
+README:
+`SIGMA_PROFESSOR/artifacts/SIGMA_V222R1_CRASH_CONSISTENT_TRANSACTION_JOURNAL_PREFLIGHT_README.txt`
 
 Source-ready checkpoint:
-`826b87134ced237ac430cb1e2cafdb51fed786e1`
+`244a13cd6423774f50b7b143531feec77059eb21`
 
-### Admission target
+### Protocol
 
-Extend the admitted V2.20 real shadow chain through six fairness scheduling boundaries and at least four real works.
+Append-only PREPARE and COMMIT records both contain exact TX + PAYLOAD, unary TX/payload lengths, and exact phase end sentinels.
 
-Required sequence:
+Recovery accepts only complete matching PREPARE+COMMIT pairs with no conflicting valid prepare payload for the TX.
 
-- first starvation defer;
-- second real work complete cycle -> resume exact first `|||`;
-- first `|||` complete -> redefer `||||` -> third work;
-- admitted third real work `REOBSERVED -> ARCHIVE_FOR_NOW` -> resume first `||||`;
-- first `||||` completes; its new branch is NOT hardcoded, but fairness must result in `SELECT_NEXT_WORK` so fourth work is reached;
-- fourth real work completes initial deep/revalidation/lifecycle with NO branch oracle;
-- fourth terminal event passes through fairness and persists the next continuation intent.
+Every append starts with a newline so a truncated prior tail can be delimited on retry and remain an ignored malformed line.
 
-Fresh-host recovery is required at every extended persisted-event boundary.
+Modes:
 
-PASS requires at least:
+- `RECOVER_ONLY`
+- `PREPARE_ONLY`
+- `COMMIT_TRANSACTION`
 
-- 4 selector dispatch records;
-- 2 PENDING fairness records;
-- 2 RESUMED fairness records;
-- exact event identity preserved;
-- production V2.4 same runner PID before/after;
-- shadow namespace isolation.
+### V2.22 required gates
 
-Allowed claim after locked-runtime PASS only:
+- clean commit + fresh-VM idempotency;
+- PREPARE_ONLY must not become visible as committed after restart;
+- prepared transaction can resume to commit after restart;
+- torn PREPARE tail ignored and retry recovers;
+- torn COMMIT tail ignored and retry recovers;
+- garbage tail ignored;
+- conflicting prepare payloads block that transaction;
+- deterministic journal replay;
+- invalid delimiter refusal;
+- journal bound refusal.
 
-`LONG_HORIZON_SHADOW_STABILITY=PROVEN_IN_SIX_BOUNDARY_FOUR_REAL_WORK_SCOPE`
+Static readiness:
 
-### Promotion status after V2.21
+- `H_CALL_ARITY_AUDIT=PASS`;
+- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
+- `STR_STARTS_DEPENDENCY=NONE`;
+- `DIRECT_STR_DEPENDENCY=NONE`;
+- runner `bash -n` RC = 0.
 
-Even after PASS:
+The candidate uses native `str_len` for unary self-validation. Locked-runtime V2.22 PASS must itself prove that dependency. Do not substitute host logic if it fails.
 
-`PRODUCTION_PROMOTION_ALLOWED=NO`
+### Claim boundary
 
-Remaining blocker:
+A future V2.22 PASS may establish only:
+
+`CRASH_CONSISTENT_JOURNAL_RECOVERY=PROVEN_UNDER_INJECTED_TRUNCATED_TAIL_FAULTS`
+
+It must NOT establish physical append atomicity. Keep:
 
 `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`
 
-Current host `write_text` / `append_text` semantics are not proven crash-atomic.
+`PHYSICAL_FILESYSTEM_ATOMICITY=NOT_CLAIMED`
 
 ## NEXT ACTION
 
 1. Keep V2.4 running unchanged.
-2. Install exact V2.21 runner SHA from repo root `~/SIGMA/sigma-freedom-write`.
-3. Run locked sigmac + VM v09; preserve runtime identities, all VM_RC, first generation-|||| branch, fourth-work result/action, fairness ledger counts and persisted recovery events.
-4. If any gate fails, preserve evidence and repair only the narrow failure.
-5. If V2.21 PASS, checkpoint it and then teach/admit a crash-consistent transactional state protocol before any production promotion.
+2. Install exact V2.22 source and runner hashes from repo root `~/SIGMA/sigma-freedom-write`.
+3. Run locked sigmac + VM v09 and preserve runtime hashes, V222 bytecode SHA, every VM_RC, recovered TX/payload, journal hashes and injected-fault outcomes.
+4. If any dependency or gate fails, preserve evidence and repair only the narrow failure.
+5. If V2.22 PASS, checkpoint it and integrate the journal around real shadow scheduled-intent persistence before any production migration/promotion.
