@@ -1,6 +1,6 @@
 # C01-W02-B1.1-MATH-FAMILY-C09 — Durable Status Report
 
-Status: `PASS — WORKER_PASS_CANDIDATE`
+Status: `DIRECTOR_ACCEPTED_PASS`
 
 Stage: `CURRICULUM`
 
@@ -10,91 +10,70 @@ Execution branch: `hka-tree/c01-w02-math-c09`
 
 Accepted predecessor: `be10c01bf8df64a723e135524b75ce644947dcbd`
 
+Worker candidate: `f7d8afaa92c4401abe97ca8d9623d79b8617d8ca`
+
 Substantive curriculum commit: `b279a97da2566358b603ffe7508fe23b2e3fb753`
 
 Pre-PASS audit checkpoint: `5a3a43ee859f35bdba2fde7676f6c3a7fb38ba19`
 
-## Canonical topics completed
+Director acceptance checkpoint: `c4ba6f3fe785412cccbdfcfafa9ec7a1063e4f42`
 
-1. Không gian tô pô
-2. Liên thông và compact
-3. Đa tạp
-4. Tô pô đại số
-5. Tô pô vi phân
-6. Lý thuyết nút
-7. Hình học toàn cục
+## Canonical payload
 
-Coverage: `7/7 PASS`.
+- 7/7 canonical topics; 7 nodes.
+- 84 atomic claims.
+- 6 stable/version-pinned academic sources.
+- 28 Learning Objectives, exactly D1–D4 for every node.
+- 28/28 semantic Claim→Learning Objective closure.
+- 15 cross-links/boundary dispositions.
+- 7 sequence intents.
+- Future/locked support Claim IDs: `0`.
 
-## Durable curriculum payload
+## Director independent audit
 
-- Nodes: `7`
-- Atomic claims: `84`
-- Stable academic sources: `6`
-- Learning Objectives: `28` (`D1–D4` for every node)
-- Claim→Learning Objective closure rows: `28`
-- Cross-links/boundary dispositions: `15`
-- Curriculum sequence-intent rows: `7`
+Director independently read all `84/84` claims, `28/28` Learning Objectives and all `28/28` closure mappings, and independently recomputed all `6/6` SOURCE_ID hashes from their normalization bases.
 
-## Semantic closure
+No theorem-level correction, claim repair, stable-ID change or closure amendment was required.
 
-- Learning Objective semantic closure: `28/28 PASS`.
-- Claim coverage by Learning Objectives: `84/84 PASS`.
-- Supporting Claim IDs resolve: `100% PASS`.
-- Every support claim is a current C09 claim.
-- `future_or_locked_scope_claim_ids = 0` across every closure record.
+### Academic gates
 
-## Critical academic controls
+- Generic compactness vs sequential compactness: PASS. Equivalence is used only under metric-space hypotheses.
+- Connectedness/path-connectedness and local path-connectedness assumptions: PASS.
+- Manifold Hausdorff/second-countable/local-Euclidean convention: PASS.
+- Smooth/topological/Riemannian structure layers: PASS.
+- Covering-space classification hypotheses: PASS.
+- Fundamental-group basepoint dependence: PASS.
+- Homology/cohomology/Euler characteristic invariant limits: PASS.
+- Regular-value/preimage, transversality, Sard, degree and Morse hypotheses: PASS.
+- Tame/smooth knot, Reidemeister and knot-invariant limits: PASS.
+- Hopf–Rinow, Gauss–Bonnet, Bonnet–Myers and Cartan–Hadamard hypotheses: PASS.
 
-### Topology and compactness
+### Ownership gates
 
-PASS. Compactness is open-cover compactness. Sequential compactness is not identified with compactness in arbitrary topological spaces; the equivalence appears only under the metric-space hypothesis. Connectedness and path-connectedness are kept distinct and local-path-connectedness hypotheses are explicit where used.
+- C03 retains generic algebra/linear algebra ownership; C09 uses it by reference.
+- C05 retains analysis/calculus and analysis-specific convergence/compactness ownership; C09 uses it by reference.
+- C04 retains local differential geometry, curvature and geodesic calculations; C09 owns only abstract-manifold/differential-topology and genuinely global geometry consequences.
+- C10 remained locked throughout C09 authoring and supplied zero support claims.
+- Primary ownership transfer: none.
 
-### Manifolds
+### Structural gates
 
-PASS. The standard C09 topological-manifold convention explicitly requires Hausdorff, second-countable and locally Euclidean structure. Smooth structures, boundary models, embeddings/submersions and Riemannian structure are separated by layer. Boundary-sensitive theorems are not silently extended beyond their stated setting.
+- Semantic closure: `28/28 PASS`.
+- Claim coverage: `84/84 PASS`.
+- Supporting Claim-ID resolution: `100% PASS`.
+- Cross-links: `15/15 PASS`.
+- Sequence graph: `7/7 PASS_ACYCLIC`.
+- Branch diff: C09 curriculum/window/status only.
+- Stage boundary: PASS — no `ACADEMIC_LOCKED`, Lesson Registry, prompts, images, R2 or any post-CURRICULUM artifact.
 
-### Covering spaces and algebraic topology
+## Director disposition
 
-PASS. Classical connected covering-space classification requires path-connected, locally path-connected and semilocally simply connected base hypotheses. Fundamental-group basepoint dependence is retained. Homology/cohomology/Euler characteristic are treated as invariants without unjustified completeness claims.
+`DIRECTOR_ACCEPTED_PASS`
 
-### Differential topology
+Academic repairs required: `0`.
 
-PASS. Regular-value/preimage, transversality, Sard, degree, manifold inverse-function and Morse-theoretic claims carry their rank, smoothness, dimension, compactness, orientation and no-boundary hypotheses as applicable.
-
-### Knot theory
-
-PASS. Knot/link equivalence is smooth/tame ambient isotopy. Reidemeister theorem is restricted to the appropriate setting. Knot group, Alexander polynomial, linking number and Seifert genus are not overclaimed as complete classifiers; orientation/normalization conventions are stated.
-
-### Global geometry
-
-PASS. Hopf–Rinow, Gauss–Bonnet, Bonnet–Myers and Cartan–Hadamard carry their connectedness, completeness, compactness, orientation, dimension and curvature assumptions. C09 owns only the global consequences in T07.
-
-## Ownership controls
-
-- `C03`: accepted algebra prerequisite; generic vector-space/linear-map/rank/group algebra remains C03-owned.
-- `C05`: accepted analysis/calculus prerequisite; Euclidean continuity, sequence/completeness analysis and multivariable inverse/implicit-function primitives remain C05-owned.
-- `C04`: accepted geometry prerequisite; local regular-curve/surface tangent, metric, curvature and geodesic calculations remain C04-N008-owned. C09 does not duplicate or transfer that ownership.
-- `C10`: locked boundary only; zero supporting Claim IDs; no C10 authoring.
-- Primary ownership transferred: `false` on every cross-link record.
-
-## Structural audits
-
-- Source resolution: `84/84 PASS`.
-- Source-ID SHA-256 normalization: `6/6 PASS`.
-- Internal C09 prerequisite graph: `PASS_ACYCLIC`.
-- Duplicate/ownership dispositions: `PASS`.
-- Branch diff from C09 baseline: `PASS_C09_ONLY`.
-- Accepted-predecessor diff: C09 window activation/status plus C09 authoring only.
-
-## Stage boundary
-
-No `ACADEMIC_LOCKED`, Lesson Registry, prompts, images, R2, C10 authoring, or any stage after CURRICULUM was created.
-
-## Disposition
-
-This is a worker PASS candidate only. Director acceptance is still required. The child window does not unlock its successor.
+Blocking issues: `0`.
 
 ## Next action
 
-`C01-W02-B1.1-MATH-FAMILY-C10 — GATED pending Director acceptance of C09`
+`C01-W02-B1.1-MATH-FAMILY-C10 — GATED until Director completes successor pre-open alignment and control-plane activation.`
