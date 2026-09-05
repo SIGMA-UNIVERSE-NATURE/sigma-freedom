@@ -1,0 +1,88 @@
+# SIGMA I3C — I2R1 native replan dependency export — source ready
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: SOURCE_READY_MECHANICAL_CODE_EXPORT_ONLY
+
+## Dependency
+
+I3B Fix1 is admitted PASS in exact tested scope.
+
+```text
+I3B_NATIVE_ADMISSION_V1=PASS
+I3A_TO_NATIVE_FRESH_EVIDENCE_ASSESSMENT_DISPATCH=PASS_IN_EXACT_TESTED_SCOPE
+SIGMA_NATIVE_CANONICAL_ASSESSMENT_STATE=MORE_EVIDENCE
+I3C_NATIVE_CONTINUATION_FROM_ASSESSMENT_STATE_UNLOCKED=YES
+```
+
+I3C must not let host/GPT convert `MORE_EVIDENCE` into a next action.
+
+Primary reuse candidate: the already-proven I2R1 native collection-replan capability, which previously consumed the real `MORE_EVIDENCE` state plus a mechanical all-lesson union and emitted native `RESEARCH_MORE`.
+
+Known identities:
+
+```text
+I2R1_REPLAN_SOURCE_SHA256=1d6bdc235eaf8e0e3a94ca1ed62972e50babf7472ef7a6b948d2c3c30ec4976f
+I2R1_UNION_TOOL_SHA256=ce955606d434e2f15ab07608235c3700bddf76312f3583da71194a19b9a074f3
+I2R1_DIRECT_V11_RUNNER_SHA256=f8ef517aaa1143e7e1917e28378b634d3b7a1ca755186c6116c02196f1d4d15e
+I2R1_REPLAN_RUNNER_SHA256=6753cbe7fb34da03024548ba8c2955f3801e7d986c2cd8025094b977d3805572
+I2R1_RUNNER_SHA256=39247c41745ae62fb85f10656a3f1bdbc32b32745f1561f232c962fe58c2554c
+I2R1_VERIFIER_PY_SHA256=a39be9ffb6f5ef205400bfa7627ef08a78b1c38b678c0f44e6d5140867b73213
+I2R1_VERIFIER_SH_SHA256=dd04c58ba296b2e9f238a80d0b84640a3ee5e4df8361cb0ee7449e00c53921dd
+I2R1_WRAPPER_SHA256=971b1f0ad89cb1d9f909abcc56ba361291aacb9a722f5b7096fd2b536d7e9a78
+```
+
+## Mechanical export artifact
+
+```text
+BUNDLE_NAME=SIGMA_I3C_I2R1_REPLAN_DEPENDENCY_EXPORT_AND_AUDIT_V1_BUNDLE.zip
+BUNDLE_SHA256=363c974f65be8554dd93a448874ad2283594a4017147161fd8ea32f97d258c95
+RUNNER_SHA256=e74fc1fee616f7fe412e080908957034dd613a32fe0e93d02463a70a9d95c524
+```
+
+Audit invariants:
+
+```text
+SIGMA_VM_EXECUTED=NO
+LIVE_INTERNET_REQUEST_EXECUTED=NO
+LESSON_CONTENT_READ=NO
+SEMANTIC_REPLAN_EXECUTED=NO
+HOST_NEXT_ACTION_SELECTION=NO
+HOST_SEMANTIC_EVIDENCE_SELECTION=NO
+I2R1_RERUN=NO
+I3B_RERUN=NO
+```
+
+The tool recovers exact code identities and emits a code-only tarball for review under the newer exclusive-self-learning lock.
+
+## Next action
+
+Run the bundle on OPPO, then upload the generated:
+
+```text
+SIGMA_I3C_I2R1_REPLAN_DEPENDENCY_EXPORT.tar.gz
+```
+
+Do not send lesson content or rerun I2R1.
+
+After exact code review, either:
+
+```text
+MECHANICAL_HOST_ONLY -> reuse native I2R1 replan in I3C
+```
+
+or, if a host cognitive dependency is found:
+
+```text
+HOST_COGNITIVE_DEPENDENCY_FOUND -> repair native ownership before I3C runtime admission
+```
+
+Keep:
+
+```text
+I3C_RUNTIME_ADMISSION=NOT_RUN
+STATIC_MORE_EVIDENCE_REPLAN_POLICY_LEARNED=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+```
