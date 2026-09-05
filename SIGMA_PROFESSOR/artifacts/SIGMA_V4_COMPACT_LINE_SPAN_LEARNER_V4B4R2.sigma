@@ -1,0 +1,653 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.COMPACT.LINE.SPAN.LEARNER][VERSION=4B4R2]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF unary_make(count) {
+    ⚡ OUT:
+        "";
+    ⚡ I:
+        0;
+    WHILE (I < count) {
+        ⚡ OUT:
+            OUT + "|";
+        ⚡ I:
+            I + 1;
+    }
+    RETURN OUT;
+}
+
+⟡(Σ.V4_COMPACT_LINE_SPAN_LEARNER_4B4R2) {
+
+    ⚡ CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+
+    ⚡ CONTEXT_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", NULL, NULL);
+
+    ⚡ CURSOR_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", NULL, NULL);
+
+    ⚡ COMPLETION_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", NULL, NULL);
+
+    ⚡ TOKEN_WINDOW_BUDGET:
+        16;
+
+    ⚡ MAX_SELECTED_LINE_TOKENS_CURRENT_ABI:
+        4096;
+
+    ⚡ INPUT_VALID:
+        1;
+
+    IF (CONTEXT_ID == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (CONTEXT_TEXT == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ CURSOR_VALID:
+        unary_valid(CURSOR_TEXT);
+
+    ⚡ TOKENS:
+        H("str_split", CONTEXT_TEXT, " ", NULL);
+
+    ⚡ TOKEN_TOTAL:
+        H("list_len", TOKENS, NULL, NULL);
+
+    ⚡ TOKEN_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_SELECTED_LINE_TOKENS_CURRENT_ABI < TOKEN_TOTAL) {
+        ⚡ TOKEN_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ CURRENT_TOKEN_OFFSET:
+        H("str_len", CURSOR_TEXT, NULL, NULL);
+
+    ⚡ CURSOR_OUT_OF_RANGE:
+        0;
+
+    IF (TOKEN_TOTAL < CURRENT_TOKEN_OFFSET) {
+        ⚡ CURSOR_OUT_OF_RANGE:
+            1;
+    }
+
+    ⚡ EXPECTED_COMPLETION:
+        "CTX=" + CONTEXT_ID + " || COMPLETE=YES";
+
+    ⚡ ALREADY_COMPLETE:
+        0;
+
+    IF (COMPLETION_TEXT == EXPECTED_COMPLETION) {
+        ⚡ ALREADY_COMPLETE:
+            1;
+    }
+
+    ⚡ PROCESS_ALLOWED:
+        1;
+
+    IF (INPUT_VALID == 0) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (CURSOR_VALID == 0) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (TOKEN_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (CURSOR_OUT_OF_RANGE) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (ALREADY_COMPLETE) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    ⚡ WINDOW_START_TOKEN:
+        CURRENT_TOKEN_OFFSET;
+
+    ⚡ WINDOW_END_TOKEN:
+        CURRENT_TOKEN_OFFSET;
+
+    ⚡ NEXT_TOKEN_OFFSET:
+        CURRENT_TOKEN_OFFSET;
+
+    ⚡ PAIR_COUNTS:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ TRIPLE_COUNTS:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ QUAD_COUNTS:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ PAIR_ORDER:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ TRIPLE_ORDER:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ QUAD_ORDER:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ PAIR_OCCURRENCES:
+        0;
+
+    ⚡ TRIPLE_OCCURRENCES:
+        0;
+
+    ⚡ QUAD_OCCURRENCES:
+        0;
+
+    IF (PROCESS_ALLOWED) {
+
+        ⚡ TARGET_END:
+            CURRENT_TOKEN_OFFSET + TOKEN_WINDOW_BUDGET;
+
+        IF (TOKEN_TOTAL < TARGET_END) {
+            ⚡ TARGET_END:
+                TOKEN_TOTAL;
+        }
+
+        ⚡ WINDOW_END_TOKEN:
+            TARGET_END;
+
+        ⚡ RIGHT_INDEX:
+            CURRENT_TOKEN_OFFSET;
+
+        WHILE (RIGHT_INDEX < WINDOW_END_TOKEN) {
+
+            IF (0 < RIGHT_INDEX) {
+
+                ⚡ P0:
+                    H("list_get", TOKENS, RIGHT_INDEX - 1, NULL);
+
+                ⚡ P1:
+                    H("list_get", TOKENS, RIGHT_INDEX, NULL);
+
+                ⚡ PAIR_VALID:
+                    1;
+
+                IF (P0 == "") {
+                    ⚡ PAIR_VALID:
+                        0;
+                }
+
+                IF (P1 == "") {
+                    ⚡ PAIR_VALID:
+                        0;
+                }
+
+                IF (PAIR_VALID) {
+
+                    ⚡ PAIR:
+                        P0 + " " + P1;
+
+                    ⚡ PAIR_EXISTS:
+                        H("map_has", PAIR_COUNTS, PAIR, NULL);
+
+                    IF (PAIR_EXISTS) {
+                        ⚡ OLD_PAIR_COUNT:
+                            H("map_get", PAIR_COUNTS, PAIR, NULL);
+                        ⚡ SET_PAIR_COUNT:
+                            H("map_set", PAIR_COUNTS, PAIR, OLD_PAIR_COUNT + 1);
+                    }
+
+                    IF (PAIR_EXISTS == FALSE) {
+                        ⚡ SET_PAIR_FIRST:
+                            H("map_set", PAIR_COUNTS, PAIR, 1);
+                        ⚡ PUSH_PAIR:
+                            H("list_push", PAIR_ORDER, PAIR, NULL);
+                    }
+
+                    ⚡ PAIR_OCCURRENCES:
+                        PAIR_OCCURRENCES + 1;
+                }
+            }
+
+            IF (1 < RIGHT_INDEX) {
+
+                ⚡ T0:
+                    H("list_get", TOKENS, RIGHT_INDEX - 2, NULL);
+
+                ⚡ T1:
+                    H("list_get", TOKENS, RIGHT_INDEX - 1, NULL);
+
+                ⚡ T2:
+                    H("list_get", TOKENS, RIGHT_INDEX, NULL);
+
+                ⚡ TRIPLE_VALID:
+                    1;
+
+                IF (T0 == "") {
+                    ⚡ TRIPLE_VALID:
+                        0;
+                }
+                IF (T1 == "") {
+                    ⚡ TRIPLE_VALID:
+                        0;
+                }
+                IF (T2 == "") {
+                    ⚡ TRIPLE_VALID:
+                        0;
+                }
+
+                IF (TRIPLE_VALID) {
+
+                    ⚡ TRIPLE:
+                        T0 + " " + T1 + " " + T2;
+
+                    ⚡ TRIPLE_EXISTS:
+                        H("map_has", TRIPLE_COUNTS, TRIPLE, NULL);
+
+                    IF (TRIPLE_EXISTS) {
+                        ⚡ OLD_TRIPLE_COUNT:
+                            H("map_get", TRIPLE_COUNTS, TRIPLE, NULL);
+                        ⚡ SET_TRIPLE_COUNT:
+                            H("map_set", TRIPLE_COUNTS, TRIPLE, OLD_TRIPLE_COUNT + 1);
+                    }
+
+                    IF (TRIPLE_EXISTS == FALSE) {
+                        ⚡ SET_TRIPLE_FIRST:
+                            H("map_set", TRIPLE_COUNTS, TRIPLE, 1);
+                        ⚡ PUSH_TRIPLE:
+                            H("list_push", TRIPLE_ORDER, TRIPLE, NULL);
+                    }
+
+                    ⚡ TRIPLE_OCCURRENCES:
+                        TRIPLE_OCCURRENCES + 1;
+                }
+            }
+
+            IF (2 < RIGHT_INDEX) {
+
+                ⚡ Q0:
+                    H("list_get", TOKENS, RIGHT_INDEX - 3, NULL);
+
+                ⚡ Q1:
+                    H("list_get", TOKENS, RIGHT_INDEX - 2, NULL);
+
+                ⚡ Q2:
+                    H("list_get", TOKENS, RIGHT_INDEX - 1, NULL);
+
+                ⚡ Q3:
+                    H("list_get", TOKENS, RIGHT_INDEX, NULL);
+
+                ⚡ QUAD_VALID:
+                    1;
+
+                IF (Q0 == "") {
+                    ⚡ QUAD_VALID:
+                        0;
+                }
+                IF (Q1 == "") {
+                    ⚡ QUAD_VALID:
+                        0;
+                }
+                IF (Q2 == "") {
+                    ⚡ QUAD_VALID:
+                        0;
+                }
+                IF (Q3 == "") {
+                    ⚡ QUAD_VALID:
+                        0;
+                }
+
+                IF (QUAD_VALID) {
+
+                    ⚡ QUAD:
+                        Q0 + " " + Q1 + " " + Q2 + " " + Q3;
+
+                    ⚡ QUAD_EXISTS:
+                        H("map_has", QUAD_COUNTS, QUAD, NULL);
+
+                    IF (QUAD_EXISTS) {
+                        ⚡ OLD_QUAD_COUNT:
+                            H("map_get", QUAD_COUNTS, QUAD, NULL);
+                        ⚡ SET_QUAD_COUNT:
+                            H("map_set", QUAD_COUNTS, QUAD, OLD_QUAD_COUNT + 1);
+                    }
+
+                    IF (QUAD_EXISTS == FALSE) {
+                        ⚡ SET_QUAD_FIRST:
+                            H("map_set", QUAD_COUNTS, QUAD, 1);
+                        ⚡ PUSH_QUAD:
+                            H("list_push", QUAD_ORDER, QUAD, NULL);
+                    }
+
+                    ⚡ QUAD_OCCURRENCES:
+                        QUAD_OCCURRENCES + 1;
+                }
+            }
+
+            ⚡ RIGHT_INDEX:
+                RIGHT_INDEX + 1;
+        }
+
+        ⚡ NEXT_TOKEN_OFFSET:
+            WINDOW_END_TOKEN;
+    }
+
+    ⚡ BEST_PAIR:
+        "";
+    ⚡ BEST_PAIR_SUPPORT:
+        0;
+    ⚡ PAIR_TOTAL:
+        H("list_len", PAIR_ORDER, NULL, NULL);
+    ⚡ PI:
+        0;
+
+    WHILE (PI < PAIR_TOTAL) {
+        ⚡ PAIR_CANDIDATE:
+            H("list_get", PAIR_ORDER, PI, NULL);
+        ⚡ PAIR_SUPPORT:
+            H("map_get", PAIR_COUNTS, PAIR_CANDIDATE, NULL);
+        IF (BEST_PAIR_SUPPORT < PAIR_SUPPORT) {
+            ⚡ BEST_PAIR_SUPPORT:
+                PAIR_SUPPORT;
+            ⚡ BEST_PAIR:
+                PAIR_CANDIDATE;
+        }
+        ⚡ PI:
+            PI + 1;
+    }
+
+    ⚡ BEST_TRIPLE:
+        "";
+    ⚡ BEST_TRIPLE_SUPPORT:
+        0;
+    ⚡ TRIPLE_TOTAL:
+        H("list_len", TRIPLE_ORDER, NULL, NULL);
+    ⚡ TI:
+        0;
+
+    WHILE (TI < TRIPLE_TOTAL) {
+        ⚡ TRIPLE_CANDIDATE:
+            H("list_get", TRIPLE_ORDER, TI, NULL);
+        ⚡ TRIPLE_SUPPORT:
+            H("map_get", TRIPLE_COUNTS, TRIPLE_CANDIDATE, NULL);
+        IF (BEST_TRIPLE_SUPPORT < TRIPLE_SUPPORT) {
+            ⚡ BEST_TRIPLE_SUPPORT:
+                TRIPLE_SUPPORT;
+            ⚡ BEST_TRIPLE:
+                TRIPLE_CANDIDATE;
+        }
+        ⚡ TI:
+            TI + 1;
+    }
+
+    ⚡ BEST_QUAD:
+        "";
+    ⚡ BEST_QUAD_SUPPORT:
+        0;
+    ⚡ QUAD_TOTAL:
+        H("list_len", QUAD_ORDER, NULL, NULL);
+    ⚡ QI:
+        0;
+
+    WHILE (QI < QUAD_TOTAL) {
+        ⚡ QUAD_CANDIDATE:
+            H("list_get", QUAD_ORDER, QI, NULL);
+        ⚡ QUAD_SUPPORT:
+            H("map_get", QUAD_COUNTS, QUAD_CANDIDATE, NULL);
+        IF (BEST_QUAD_SUPPORT < QUAD_SUPPORT) {
+            ⚡ BEST_QUAD_SUPPORT:
+                QUAD_SUPPORT;
+            ⚡ BEST_QUAD:
+                QUAD_CANDIDATE;
+        }
+        ⚡ QI:
+            QI + 1;
+    }
+
+    ⚡ BEST_PATTERN:
+        "";
+    ⚡ BEST_PATTERN_SUPPORT:
+        0;
+    ⚡ BEST_PATTERN_WIDTH:
+        0;
+
+    IF (BEST_PAIR == "") {
+        ⚡ BEST_PATTERN_WIDTH:
+            0;
+    }
+
+    IF (BEST_PAIR == "") {
+        ⚡ BEST_PATTERN_SUPPORT:
+            0;
+    }
+
+    ⚡ PAIR_PRESENT:
+        1;
+    IF (BEST_PAIR == "") {
+        ⚡ PAIR_PRESENT:
+            0;
+    }
+
+    IF (PAIR_PRESENT) {
+        ⚡ BEST_PATTERN:
+            BEST_PAIR;
+        ⚡ BEST_PATTERN_SUPPORT:
+            BEST_PAIR_SUPPORT;
+        ⚡ BEST_PATTERN_WIDTH:
+            2;
+    }
+
+    ⚡ TRIPLE_PRESENT:
+        1;
+    IF (BEST_TRIPLE == "") {
+        ⚡ TRIPLE_PRESENT:
+            0;
+    }
+
+    IF (TRIPLE_PRESENT) {
+        ⚡ TAKE_TRIPLE:
+            0;
+        IF (BEST_PATTERN == "") {
+            ⚡ TAKE_TRIPLE:
+                1;
+        }
+        IF (BEST_PATTERN_SUPPORT < BEST_TRIPLE_SUPPORT) {
+            ⚡ TAKE_TRIPLE:
+                1;
+        }
+        IF (BEST_PATTERN_SUPPORT == BEST_TRIPLE_SUPPORT) {
+            IF (BEST_PATTERN_WIDTH < 3) {
+                ⚡ TAKE_TRIPLE:
+                    1;
+            }
+        }
+        IF (TAKE_TRIPLE) {
+            ⚡ BEST_PATTERN:
+                BEST_TRIPLE;
+            ⚡ BEST_PATTERN_SUPPORT:
+                BEST_TRIPLE_SUPPORT;
+            ⚡ BEST_PATTERN_WIDTH:
+                3;
+        }
+    }
+
+    ⚡ QUAD_PRESENT:
+        1;
+    IF (BEST_QUAD == "") {
+        ⚡ QUAD_PRESENT:
+            0;
+    }
+
+    IF (QUAD_PRESENT) {
+        ⚡ TAKE_QUAD:
+            0;
+        IF (BEST_PATTERN == "") {
+            ⚡ TAKE_QUAD:
+                1;
+        }
+        IF (BEST_PATTERN_SUPPORT < BEST_QUAD_SUPPORT) {
+            ⚡ TAKE_QUAD:
+                1;
+        }
+        IF (BEST_PATTERN_SUPPORT == BEST_QUAD_SUPPORT) {
+            IF (BEST_PATTERN_WIDTH < 4) {
+                ⚡ TAKE_QUAD:
+                    1;
+            }
+        }
+        IF (TAKE_QUAD) {
+            ⚡ BEST_PATTERN:
+                BEST_QUAD;
+            ⚡ BEST_PATTERN_SUPPORT:
+                BEST_QUAD_SUPPORT;
+            ⚡ BEST_PATTERN_WIDTH:
+                4;
+        }
+    }
+
+    ⚡ NEXT_CURSOR_U:
+        unary_make(NEXT_TOKEN_OFFSET);
+
+    ⚡ BEST_WIDTH_U:
+        unary_make(BEST_PATTERN_WIDTH);
+
+    ⚡ BEST_SUPPORT_U:
+        unary_make(BEST_PATTERN_SUPPORT);
+
+    ⚡ PAIR_OCC_U:
+        unary_make(PAIR_OCCURRENCES);
+
+    ⚡ TRIPLE_OCC_U:
+        unary_make(TRIPLE_OCCURRENCES);
+
+    ⚡ QUAD_OCC_U:
+        unary_make(QUAD_OCCURRENCES);
+
+    ⚡ STATUS:
+        "TOKEN_WINDOW_PROGRESS";
+
+    IF (INPUT_VALID == 0) {
+        ⚡ STATUS:
+            "REFUSE_INVALID_INPUT";
+    }
+    IF (CURSOR_VALID == 0) {
+        ⚡ STATUS:
+            "REFUSE_CURSOR_FORMAT";
+    }
+    IF (TOKEN_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_SELECTED_LINE_ABI_TOKEN_LIMIT";
+    }
+    IF (CURSOR_OUT_OF_RANGE) {
+        ⚡ STATUS:
+            "REFUSE_CURSOR_OUT_OF_RANGE";
+    }
+    IF (ALREADY_COMPLETE) {
+        ⚡ STATUS:
+            "ALREADY_COMPLETE";
+    }
+
+    IF (PROCESS_ALLOWED) {
+
+        ⚡ WRITE_CURSOR_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", NEXT_CURSOR_U, NULL);
+
+        ⚡ EVIDENCE_RECORD:
+            "CTX=" + CONTEXT_ID
+            + " || TOK=" + CURSOR_TEXT
+            + " || NEXTTOK=" + NEXT_CURSOR_U
+            + " || BEST2=" + BEST_PAIR
+            + " || BEST3=" + BEST_TRIPLE
+            + " || BEST4=" + BEST_QUAD
+            + " || BEST=" + BEST_PATTERN
+            + " || WIDTH=" + BEST_WIDTH_U
+            + " || SUPPORT=" + BEST_SUPPORT_U
+            + " || PAIR_OCC=" + PAIR_OCC_U
+            + " || TRIPLE_OCC=" + TRIPLE_OCC_U
+            + " || QUAD_OCC=" + QUAD_OCC_U
+            + " || COMMIT=YES";
+
+        ⚡ WRITE_EVIDENCE_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", EVIDENCE_RECORD, NULL);
+
+        ⚡ WRITE_WIDTH_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", BEST_WIDTH_U, NULL);
+
+        ⚡ WRITE_SUPPORT_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", BEST_SUPPORT_U, NULL);
+
+        ⚡ WRITE_PAIR_OCC_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_PAIR_OCCURRENCES.memory", PAIR_OCC_U, NULL);
+
+        ⚡ WRITE_TRIPLE_OCC_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_TRIPLE_OCCURRENCES.memory", TRIPLE_OCC_U, NULL);
+
+        ⚡ WRITE_QUAD_OCC_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4B4R2_QUAD_OCCURRENCES.memory", QUAD_OCC_U, NULL);
+
+        IF (NEXT_TOKEN_OFFSET == TOKEN_TOTAL) {
+            ⚡ COMPLETION_RECORD:
+                "CTX=" + CONTEXT_ID + " || COMPLETE=YES";
+            ⚡ WRITE_COMPLETION_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", COMPLETION_RECORD, NULL);
+            ⚡ STATUS:
+                "CONTEXT_COMPLETE";
+        }
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", STATUS, NULL);
+
+    ⚡ print("SIGMA_V4B4R2_COMPACT_LINE_SPAN_LEARNER");
+    ⚡ print("CONTEXT_ID", CONTEXT_ID);
+    ⚡ print("TOKEN_TOTAL", TOKEN_TOTAL);
+    ⚡ print("CURRENT_TOKEN_OFFSET", CURRENT_TOKEN_OFFSET);
+    ⚡ print("WINDOW_START_TOKEN", WINDOW_START_TOKEN);
+    ⚡ print("WINDOW_END_TOKEN", WINDOW_END_TOKEN);
+    ⚡ print("NEXT_TOKEN_OFFSET", NEXT_TOKEN_OFFSET);
+    ⚡ print("TOKEN_WINDOW_BUDGET", TOKEN_WINDOW_BUDGET);
+    ⚡ print("PAIR_OCCURRENCES", PAIR_OCCURRENCES);
+    ⚡ print("TRIPLE_OCCURRENCES", TRIPLE_OCCURRENCES);
+    ⚡ print("QUAD_OCCURRENCES", QUAD_OCCURRENCES);
+    ⚡ print("BEST_PAIR", BEST_PAIR);
+    ⚡ print("BEST_PAIR_SUPPORT", BEST_PAIR_SUPPORT);
+    ⚡ print("BEST_TRIPLE", BEST_TRIPLE);
+    ⚡ print("BEST_TRIPLE_SUPPORT", BEST_TRIPLE_SUPPORT);
+    ⚡ print("BEST_QUAD", BEST_QUAD);
+    ⚡ print("BEST_QUAD_SUPPORT", BEST_QUAD_SUPPORT);
+    ⚡ print("BEST_PATTERN", BEST_PATTERN);
+    ⚡ print("BEST_PATTERN_WIDTH", BEST_PATTERN_WIDTH);
+    ⚡ print("BEST_PATTERN_SUPPORT", BEST_PATTERN_SUPPORT);
+    ⚡ print("STATUS", STATUS);
+    ⚡ print("CURSOR_STATE_POLICY", "SINGLE_COMPACT_TOKEN_CURSOR_NO_GROWING_PROGRESS_LEDGER");
+    ⚡ print("SPAN_POLICY", "TWO_THREE_FOUR_TOKEN_STRUCTURAL_SPANS_LONGER_TIE_PREFERENCE");
+    ⚡ print("CROSS_WINDOW_SPAN_CONTINUITY", "ABSOLUTE_TOKEN_OFFSET_WITHIN_EXACT_TRANSPORTED_LINE");
+    ⚡ print("HOST_WINDOW_SELECTION", "NO");
+    ⚡ print("HOST_COMPLETION_DECISION", "NO");
+    ⚡ print("HOST_RETRY_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("STRUCTURAL_LEARNING_ONLY", "YES");
+    ⚡ print("COMPUTATION_WINDOW_BOUNDED", "YES");
+    ⚡ print("MAX_SELECTED_LINE_TOKENS_CURRENT_ABI", MAX_SELECTED_LINE_TOKENS_CURRENT_ABI);
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
