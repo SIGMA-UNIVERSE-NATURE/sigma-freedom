@@ -177,7 +177,7 @@ Scoring, candidate competition, ambiguity policy, persistence policy, oracle PAS
 
 Claim scope: native bounded two-candidate structural antecedent competition with persistent ambiguity and conservative preference revision. This does not prove real-world entity identity, pronoun semantics, general coreference resolution, discourse semantics, semantic understanding, Unicode normalization, or production readiness.
 
-## CURRENT FRONTIER — LANG-01G SELECTED / SOURCE READY / ADMISSION NOT RUN
+## CURRENT FRONTIER — LANG-01G SOURCE READY R1 / ADMISSION NOT RUN
 
 Capability:
 
@@ -229,17 +229,18 @@ Planned admission requirements before any PASS claim:
 - step-limit/boundedness gate;
 - production state unchanged.
 
-Source-ready implementation record:
+Active source-ready R1 implementation record:
 
 - `NATIVE_SOURCE_PATH=SIGMA_PROFESSOR/artifacts/SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_V1.sigma`
-- `SOURCE_SHA256=fc7097bc3411b36af409a7dcc6d7446e525793806dc73f8cb3afedfc4a304f3b`
-- `SOURCE_COMMIT=1d463b6a59a521886a8316d9e48063018e645f2e`
+- `SOURCE_SHA256=21219f66fc7970615d9a98647bfc63229780390bfa993730e2e326b3c493ee0e`
+- `SOURCE_COMMIT=411ba280fc3ead9f6002eaeacd44624a8b0ad065`
 - `RUNNER_PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT.sh`
-- `RUNNER_SHA256=b4def21af202b54a409b0fe9959304ad2252c4ea307b99c4e7dfd12c781f4a9e`
-- `RUNNER_COMMIT=46453a2fdfd83612aea4a9320ca557e3f94e6455`
+- `RUNNER_SHA256=19a075b7b4f86ae6d3df51c4d3e1ded55a1cc71bbd781f7446908fd202f2ce64`
+- `RUNNER_COMMIT=d04b35b31e8b40e8ff3848790bbce812bf70e835`
 - `PLANNED_VM_INVOCATIONS=20`
 - `EVIDENCE_CAPACITY=8`
 - `RUNNER_STATIC_SHELL_SYNTAX=PASS`
+- `NATIVE_SOURCE_OPERATOR_NOT_EQUAL_PRESENT=NO`
 - `FORBIDDEN_FUTURE_UTTERANCE_PRESENT_IN_NATIVE_SOURCE=NO`
 - `LOCKED_SIGMAC_COMPILE=NOT_RUN`
 - `BYTECODE_SHA256=UNKNOWN`
@@ -248,6 +249,25 @@ Source-ready implementation record:
 - `LOCKED_TERMUX_EXECUTION_FROM_CURRENT_WINDOW=UNAVAILABLE`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `ADMISSION=NOT_RUN`
+
+Historical source-ready R0 record preserved:
+
+- `HISTORICAL_SOURCE_READY_R0_SOURCE_SHA256=fc7097bc3411b36af409a7dcc6d7446e525793806dc73f8cb3afedfc4a304f3b`
+- `HISTORICAL_SOURCE_READY_R0_SOURCE_COMMIT=1d463b6a59a521886a8316d9e48063018e645f2e`
+- `HISTORICAL_SOURCE_READY_R0_RUNNER_SHA256=b4def21af202b54a409b0fe9959304ad2252c4ea307b99c4e7dfd12c781f4a9e`
+- `HISTORICAL_SOURCE_READY_R0_RUNNER_COMMIT=46453a2fdfd83612aea4a9320ca557e3f94e6455`
+
+Pre-runtime R1 native source repair:
+
+Static review found R0 used the `!=` operator while the current native artifacts inspected for this lane showed the active equality/comparison subset through `==`, `<`, `>`, exact/helper checks, and boolean results. Before any locked compiler invocation, R1 removed all `!=` uses and expressed the same conditions through `present(...)`, `exact(...)`, explicit equality, and boolean flags already evidenced in current native code. This was a conservative source-compatibility repair, not a runtime failure and not a change to the cognitive contract.
+
+- `REPAIR_CLASS=PRE_RUNTIME_NATIVE_SYNTAX_COMPATIBILITY`
+- `LOCKED_RUNTIME_FAILURE_OCCURRED=NO`
+- `SCORING_POLICY_CHANGED=NO`
+- `PERSISTENCE_POLICY_CHANGED=NO`
+- `ORACLE_CASES_CHANGED=NO`
+- `CLAIM_SCOPE_CHANGED=NO`
+- `RUNNER_REBOUND_TO_R1_SOURCE_HASH=YES`
 
 Native policy in this source-ready artifact:
 
