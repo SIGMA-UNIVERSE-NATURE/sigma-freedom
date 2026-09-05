@@ -1,0 +1,101 @@
+# V5-K2 Wikipedia Adapter — HOLD: jq missing mechanical decode tool
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+
+## Machine evidence supplied by user
+
+```text
+ACTIVE_SIGMA_COGNITION=SIGMA_NATIVE_ONLY
+HOST_COGNITION=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
+HOST_JSON_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
+HOST_RESOURCE_SELECTION=NO_CLAIM_DYNAMIC_TITLE_INPUT_SUPPLIED
+RESEARCH_GOAL_SELECTION=NOT_EXECUTED
+CONTENT_TRUTH_DECISION=NOT_EXECUTED
+KNOWLEDGE_PROMOTION=NOT_EXECUTED
+HOST_SEMANTIC_SUBSTITUTION=NO
+HOST_POST_VM_TEST_ORACLE_ONLY=YES
+PYTHON_USED=NO
+DYNAMIC_INPUT_PRESENT_AT_COMPILE_TIME=NO
+LIVE_WIKIPEDIA_RESPONSE_PRESENT_AT_COMPILE_TIME=NO
+PERSISTENT_STORE_PRESENT_AT_COMPILE_TIME=NO
+HOLD=JQ_MISSING_MECHANICAL_DECODE_TOOL
+```
+
+## Interpretation
+
+This is a mechanical admission precondition HOLD, not a native SIGMA runtime failure.
+
+The V5-K2 runner requires:
+
+```text
+curl=REQUIRED
+jq=REQUIRED
+```
+
+`jq` is missing on the user Termux environment. The runner correctly stopped instead of substituting semantic/cognitive host logic.
+
+No V5-K2 capability claim is admitted from this run.
+
+Keep:
+
+```text
+V5K2_RUNTIME_ADMISSION=NOT_RUN
+V5K2_COMPILE=NOT_REACHED_IN_THIS_RUN
+LIVE_WIKIPEDIA_RUNTIME=NOT_EXECUTED_IN_THIS_RUN
+WIKIPEDIA_ADAPTER_TESTED_SCOPE=NOT_PROVEN
+V5K3_ARXIV_ADAPTER_UNLOCKED=NO
+```
+
+## Canonical V5-K2 source-ready identities
+
+```text
+BUNDLE_SHA256=fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70
+SOURCE_SHA256=57a720f97004217e9f1602d7048316abf0bb711e005106ff092c65b7d19967aa
+RUNNER_SHA256=46492716ed275e5120b7eba6e5f0bc93920dd7ed92062830d010b78e0eeee0e9
+V5K1_DEPENDENCY_SOURCE_SHA256=29670c3eca4bcd02e875d2178407259af9e76ebbcbbd6e2ee7a31f979da26537
+BYTECODE_SHA256=UNKNOWN_NOT_COMPILED_IN_THIS_RUN
+```
+
+## Next action
+
+Install only the missing mechanical tool:
+
+```bash
+pkg install jq
+```
+
+Then verify:
+
+```bash
+command -v jq
+jq --version
+```
+
+Then rerun the exact unchanged admission runner:
+
+```bash
+bash run_SIGMA_V5K2_NATIVE_ADMISSION_V1.sh | tee V5K2_NATIVE_ADMISSION_V1.out
+```
+
+The runner recreates its isolated runtime namespace at start, so no source/runner repair is required for this HOLD.
+
+If the next run reaches compile/runtime, preserve the first compile/runtime failure or final 50-case summary exactly.
+
+## Boundaries
+
+```text
+HOST_COGNITION=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
+HOST_JSON_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
+CONTENT_TRUTH_DECISION=NOT_EXECUTED
+KNOWLEDGE_PROMOTION=NOT_EXECUTED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+PRODUCTION_BINDING=NO
+```
