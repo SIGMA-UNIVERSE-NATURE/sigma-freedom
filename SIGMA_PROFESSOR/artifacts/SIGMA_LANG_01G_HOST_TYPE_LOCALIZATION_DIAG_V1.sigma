@@ -1,0 +1,175 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.LANGUAGE.REFERENCE.EVIDENCE.INTEGRATION.DIAG][VERSION=LANG-01G-HOST-TYPE-DIAG-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.LANG_01G_HOST_TYPE_LOCALIZATION_DIAG_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_LANG_01G_HOST_TYPE_DIAG_V1";
+
+    ⚡ print("TRACE_001_BEGIN");
+
+    ⚡ print("TRACE_010_READ_CANDIDATES_BEFORE");
+    ⚡ CANDIDATE_TEXT:
+        H("read_text", BASE + "/input/candidates.memory", NULL, NULL);
+    ⚡ print("TRACE_011_READ_CANDIDATES_AFTER");
+
+    ⚡ print("TRACE_020_SPLIT_CANDIDATES_BEFORE");
+    ⚡ RAW_CANDIDATES:
+        H("str_split", CANDIDATE_TEXT, "\n", NULL);
+    ⚡ print("TRACE_021_SPLIT_CANDIDATES_AFTER");
+
+    ⚡ print("TRACE_030_LIST_LEN_CANDIDATES_BEFORE");
+    ⚡ RAW_CANDIDATE_COUNT:
+        H("list_len", RAW_CANDIDATES, NULL, NULL);
+    ⚡ print("TRACE_031_LIST_LEN_CANDIDATES_AFTER");
+
+    ⚡ print("TRACE_040_LIST_GET_CANDIDATE_BEFORE");
+    ⚡ CANDIDATE_A:
+        H("list_get", RAW_CANDIDATES, 0, NULL);
+    ⚡ CANDIDATE_B:
+        H("list_get", RAW_CANDIDATES, 1, NULL);
+    ⚡ print("TRACE_041_LIST_GET_CANDIDATE_AFTER");
+
+    ⚡ print("TRACE_050_READ_ABSENT_STATE_BEFORE");
+    ⚡ STATE_PATH:
+        BASE + "/state/reference_evidence_state.memory";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ print("TRACE_051_READ_ABSENT_STATE_AFTER");
+
+    ⚡ print("TRACE_060_SPLIT_ABSENT_STATE_BEFORE");
+    ⚡ STATE_LINES:
+        H("str_split", STATE_TEXT, "\n", NULL);
+    ⚡ print("TRACE_061_SPLIT_ABSENT_STATE_AFTER");
+
+    ⚡ print("TRACE_070_MAP_NEW_BEFORE");
+    ⚡ SEEN_EVIDENCE:
+        H("map_new", NULL, NULL, NULL);
+    ⚡ print("TRACE_071_MAP_NEW_AFTER");
+
+    ⚡ print("TRACE_080_LIST_NEW_BEFORE");
+    ⚡ PENDING_STATE_LINES:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ print("TRACE_081_LIST_NEW_AFTER");
+
+    ⚡ print("TRACE_090_READ_EVIDENCE_BEFORE");
+    ⚡ NEW_EVIDENCE_TEXT:
+        H("read_text", BASE + "/input/evidence.memory", NULL, NULL);
+    ⚡ print("TRACE_091_READ_EVIDENCE_AFTER");
+
+    ⚡ print("TRACE_100_SPLIT_EVIDENCE_LINES_BEFORE");
+    ⚡ NEW_LINES:
+        H("str_split", NEW_EVIDENCE_TEXT, "\n", NULL);
+    ⚡ print("TRACE_101_SPLIT_EVIDENCE_LINES_AFTER");
+
+    ⚡ print("TRACE_110_GET_FIRST_EVIDENCE_BEFORE");
+    ⚡ LINE_1:
+        H("list_get", NEW_LINES, 0, NULL);
+    ⚡ print("TRACE_111_GET_FIRST_EVIDENCE_AFTER");
+
+    ⚡ print("TRACE_120_SPLIT_FIRST_EVIDENCE_BEFORE");
+    ⚡ PARTS_1:
+        H("str_split", LINE_1, "||", NULL);
+    ⚡ print("TRACE_121_SPLIT_FIRST_EVIDENCE_AFTER");
+
+    ⚡ print("TRACE_130_GET_FIRST_PARTS_BEFORE");
+    ⚡ E1_ID: H("list_get", PARTS_1, 1, NULL);
+    ⚡ E1_FEATURE: H("list_get", PARTS_1, 2, NULL);
+    ⚡ E1_OBSERVED: H("list_get", PARTS_1, 3, NULL);
+    ⚡ E1_A_VALUE: H("list_get", PARTS_1, 4, NULL);
+    ⚡ E1_B_VALUE: H("list_get", PARTS_1, 5, NULL);
+    ⚡ E1_SOURCE: H("list_get", PARTS_1, 7, NULL);
+    ⚡ print("TRACE_131_GET_FIRST_PARTS_AFTER");
+
+    ⚡ print("TRACE_140_BUILD_FIRST_FINGERPRINT_BEFORE");
+    ⚡ FP_1:
+        E1_FEATURE + "||" + E1_OBSERVED + "||" + E1_A_VALUE + "||" + E1_B_VALUE + "||" + E1_SOURCE;
+    ⚡ print("TRACE_141_BUILD_FIRST_FINGERPRINT_AFTER");
+
+    ⚡ print("TRACE_150_MAP_HAS_FIRST_BEFORE");
+    ⚡ E1_EXISTS:
+        H("map_has", SEEN_EVIDENCE, E1_ID, NULL);
+    ⚡ print("TRACE_151_MAP_HAS_FIRST_AFTER");
+
+    ⚡ print("TRACE_160_MAP_SET_STRING_VALUE_BEFORE");
+    ⚡ MARK_E1:
+        H("map_set", SEEN_EVIDENCE, E1_ID, FP_1);
+    ⚡ print("TRACE_161_MAP_SET_STRING_VALUE_AFTER");
+
+    ⚡ print("TRACE_170_MAP_GET_STRING_VALUE_BEFORE");
+    ⚡ READ_FP_1:
+        H("map_get", SEEN_EVIDENCE, E1_ID, NULL);
+    ⚡ print("TRACE_171_MAP_GET_STRING_VALUE_AFTER");
+
+    ⚡ print("TRACE_180_BUILD_PENDING_LINE_BEFORE");
+    ⚡ PENDING_1:
+        LINE_1 + "||COMMIT||YES";
+    ⚡ print("TRACE_181_BUILD_PENDING_LINE_AFTER");
+
+    ⚡ print("TRACE_190_LIST_PUSH_PENDING_BEFORE");
+    ⚡ PUSH_PENDING_1:
+        H("list_push", PENDING_STATE_LINES, PENDING_1, NULL);
+    ⚡ print("TRACE_191_LIST_PUSH_PENDING_AFTER");
+
+    ⚡ print("TRACE_200_GET_SECOND_EVIDENCE_BEFORE");
+    ⚡ LINE_2:
+        H("list_get", NEW_LINES, 1, NULL);
+    ⚡ PARTS_2:
+        H("str_split", LINE_2, "||", NULL);
+    ⚡ E2_ID: H("list_get", PARTS_2, 1, NULL);
+    ⚡ E2_FEATURE: H("list_get", PARTS_2, 2, NULL);
+    ⚡ E2_OBSERVED: H("list_get", PARTS_2, 3, NULL);
+    ⚡ E2_A_VALUE: H("list_get", PARTS_2, 4, NULL);
+    ⚡ E2_B_VALUE: H("list_get", PARTS_2, 5, NULL);
+    ⚡ E2_SOURCE: H("list_get", PARTS_2, 7, NULL);
+    ⚡ FP_2:
+        E2_FEATURE + "||" + E2_OBSERVED + "||" + E2_A_VALUE + "||" + E2_B_VALUE + "||" + E2_SOURCE;
+    ⚡ print("TRACE_201_GET_SECOND_EVIDENCE_AFTER");
+
+    ⚡ print("TRACE_210_MAP_HAS_SECOND_BEFORE");
+    ⚡ E2_EXISTS:
+        H("map_has", SEEN_EVIDENCE, E2_ID, NULL);
+    ⚡ print("TRACE_211_MAP_HAS_SECOND_AFTER");
+
+    ⚡ print("TRACE_220_MAP_SET_SECOND_STRING_BEFORE");
+    ⚡ MARK_E2:
+        H("map_set", SEEN_EVIDENCE, E2_ID, FP_2);
+    ⚡ print("TRACE_221_MAP_SET_SECOND_STRING_AFTER");
+
+    ⚡ PENDING_2:
+        LINE_2 + "||COMMIT||YES";
+    ⚡ PUSH_PENDING_2:
+        H("list_push", PENDING_STATE_LINES, PENDING_2, NULL);
+
+    ⚡ print("TRACE_230_STR_JOIN_BEFORE");
+    ⚡ PENDING_TEXT:
+        H("str_join", PENDING_STATE_LINES, "\n", NULL);
+    ⚡ print("TRACE_231_STR_JOIN_AFTER");
+
+    ⚡ print("TRACE_240_BUILD_STATE_BEFORE");
+    ⚡ STATE_HEADER:
+        "STATE"
+        + "||SIGMA_LANG_01G_REFERENCE_EVIDENCE_STATE_V1"
+        + "||REFERENCE||REF-TIE"
+        + "||A||"
+        + CANDIDATE_A
+        + "||B||"
+        + CANDIDATE_B
+        + "||COMMIT||YES";
+    ⚡ PROPOSED_STATE:
+        STATE_HEADER + "\n" + PENDING_TEXT;
+    ⚡ print("TRACE_241_BUILD_STATE_AFTER");
+
+    ⚡ print("TRACE_250_WRITE_TEXT_BEFORE");
+    ⚡ WRITE_RC:
+        H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+    ⚡ print("TRACE_251_WRITE_TEXT_AFTER");
+
+    ⚡ print("TRACE_260_READBACK_BEFORE");
+    ⚡ READBACK:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ print("TRACE_261_READBACK_AFTER");
+
+    ⚡ print("TRACE_999_COMPLETE");
+}
