@@ -1,0 +1,768 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.SEGMENTED.RECEIVED.CONTEXT.LEARNER][VERSION=4B1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF field_value(field, prefix) {
+    ⚡ PARTS:
+        H("str_split", field, prefix, NULL);
+    ⚡ N:
+        H("list_len", PARTS, NULL, NULL);
+    IF (N == 2) {
+        ⚡ LEFT:
+            H("list_get", PARTS, 0, NULL);
+        IF (LEFT == "") {
+            RETURN H("list_get", PARTS, 1, NULL);
+        }
+    }
+    RETURN "__INVALID_FIELD__";
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF unary_add(token, count) {
+    ⚡ OUT:
+        token;
+    ⚡ I:
+        0;
+    WHILE (I < count) {
+        ⚡ OUT:
+            OUT + "|";
+        ⚡ I:
+            I + 1;
+    }
+    RETURN OUT;
+}
+
+⟡(Σ.V4_SEGMENTED_RECEIVED_CONTEXT_LEARNER_4B1) {
+
+    ⚡ CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B1_CONTEXT_ID.memory", NULL, NULL);
+
+    ⚡ CONTEXT_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B1_CONTEXT_TEXT.memory", NULL, NULL);
+
+    ⚡ CURSOR_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B1_CURSOR_LEDGER.memory", NULL, NULL);
+
+    ⚡ EVIDENCE_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B1_SEGMENT_EVIDENCE.memory", NULL, NULL);
+
+    ⚡ COMPLETION_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B1_COMPLETION_LEDGER.memory", NULL, NULL);
+
+    ⚡ MAX_CONTEXT_LINES:
+        65;
+
+    ⚡ MAX_CURSOR_LINES:
+        65;
+
+    ⚡ MAX_EVIDENCE_LINES:
+        65;
+
+    ⚡ MAX_COMPLETION_LINES:
+        65;
+
+    ⚡ MAX_TOKENS_PER_LINE:
+        65;
+
+    ⚡ SEGMENT_LINE_BUDGET:
+        2;
+
+    ⚡ CONTEXT_LINES:
+        H("str_split", CONTEXT_TEXT, "\n", NULL);
+
+    ⚡ CONTEXT_LINE_TOTAL:
+        H("list_len", CONTEXT_LINES, NULL, NULL);
+
+    ⚡ CURSOR_LINES:
+        H("str_split", CURSOR_TEXT, "\n", NULL);
+
+    ⚡ CURSOR_LINE_TOTAL:
+        H("list_len", CURSOR_LINES, NULL, NULL);
+
+    ⚡ EVIDENCE_LINES:
+        H("str_split", EVIDENCE_TEXT, "\n", NULL);
+
+    ⚡ EVIDENCE_LINE_TOTAL:
+        H("list_len", EVIDENCE_LINES, NULL, NULL);
+
+    ⚡ COMPLETION_LINES:
+        H("str_split", COMPLETION_TEXT, "\n", NULL);
+
+    ⚡ COMPLETION_LINE_TOTAL:
+        H("list_len", COMPLETION_LINES, NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        1;
+
+    IF (CONTEXT_ID == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (CONTEXT_TEXT == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ CONTEXT_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_CONTEXT_LINES < CONTEXT_LINE_TOTAL) {
+        ⚡ CONTEXT_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ CURSOR_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_CURSOR_LINES < CURSOR_LINE_TOTAL) {
+        ⚡ CURSOR_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ EVIDENCE_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_EVIDENCE_LINES < EVIDENCE_LINE_TOTAL) {
+        ⚡ EVIDENCE_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ COMPLETION_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_COMPLETION_LINES < COMPLETION_LINE_TOTAL) {
+        ⚡ COMPLETION_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ LATEST_CURSOR:
+        "";
+
+    ⚡ VALID_CURSOR_RECORD_COUNT:
+        0;
+
+    ⚡ IGNORED_CURSOR_RECORD_COUNT:
+        0;
+
+    ⚡ CI:
+        0;
+
+    WHILE (CI < CURSOR_LINE_TOTAL) {
+
+        ⚡ CLINE:
+            H("list_get", CURSOR_LINES, CI, NULL);
+
+        ⚡ CLINE_NONEMPTY:
+            1;
+
+        IF (CLINE == "") {
+            ⚡ CLINE_NONEMPTY:
+                0;
+        }
+
+        IF (CLINE_NONEMPTY) {
+
+            ⚡ CP:
+                H("str_split", CLINE, " || ", NULL);
+
+            ⚡ CPN:
+                H("list_len", CP, NULL, NULL);
+
+            ⚡ CREC_VALID:
+                0;
+
+            IF (CPN == 3) {
+
+                ⚡ CF0:
+                    H("list_get", CP, 0, NULL);
+
+                ⚡ CF1:
+                    H("list_get", CP, 1, NULL);
+
+                ⚡ CF2:
+                    H("list_get", CP, 2, NULL);
+
+                ⚡ CCTX:
+                    field_value(CF0, "CTX=");
+
+                ⚡ CNEXT:
+                    field_value(CF1, "NEXT=");
+
+                ⚡ CUNARY_OK:
+                    unary_valid(CNEXT);
+
+                IF (CCTX == CONTEXT_ID) {
+                    IF (CUNARY_OK) {
+                        IF (CF2 == "COMMIT=YES") {
+                            ⚡ CREC_VALID:
+                                1;
+                        }
+                    }
+                }
+            }
+
+            IF (CREC_VALID) {
+                ⚡ LATEST_CURSOR:
+                    CNEXT;
+                ⚡ VALID_CURSOR_RECORD_COUNT:
+                    VALID_CURSOR_RECORD_COUNT + 1;
+            }
+
+            IF (CREC_VALID == 0) {
+                ⚡ IGNORED_CURSOR_RECORD_COUNT:
+                    IGNORED_CURSOR_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ CI:
+            CI + 1;
+    }
+
+    ⚡ CONTEXT_ALREADY_COMPLETE:
+        0;
+
+    ⚡ VALID_COMPLETION_RECORD_COUNT:
+        0;
+
+    ⚡ IGNORED_COMPLETION_RECORD_COUNT:
+        0;
+
+    ⚡ XI:
+        0;
+
+    WHILE (XI < COMPLETION_LINE_TOTAL) {
+
+        ⚡ XLINE:
+            H("list_get", COMPLETION_LINES, XI, NULL);
+
+        ⚡ XNONEMPTY:
+            1;
+
+        IF (XLINE == "") {
+            ⚡ XNONEMPTY:
+                0;
+        }
+
+        IF (XNONEMPTY) {
+
+            ⚡ XP:
+                H("str_split", XLINE, " || ", NULL);
+
+            ⚡ XPN:
+                H("list_len", XP, NULL, NULL);
+
+            ⚡ XVALID:
+                0;
+
+            IF (XPN == 2) {
+
+                ⚡ XF0:
+                    H("list_get", XP, 0, NULL);
+
+                ⚡ XF1:
+                    H("list_get", XP, 1, NULL);
+
+                ⚡ XCTX:
+                    field_value(XF0, "CTX=");
+
+                IF (XCTX == CONTEXT_ID) {
+                    IF (XF1 == "COMPLETE=YES") {
+                        ⚡ XVALID:
+                            1;
+                    }
+                }
+            }
+
+            IF (XVALID) {
+                ⚡ CONTEXT_ALREADY_COMPLETE:
+                    1;
+                ⚡ VALID_COMPLETION_RECORD_COUNT:
+                    VALID_COMPLETION_RECORD_COUNT + 1;
+            }
+
+            IF (XVALID == 0) {
+                ⚡ IGNORED_COMPLETION_RECORD_COUNT:
+                    IGNORED_COMPLETION_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ XI:
+            XI + 1;
+    }
+
+    ⚡ SEGMENT_START_LINE:
+        H("str_len", LATEST_CURSOR, NULL, NULL);
+
+    ⚡ SEGMENT_END_LINE:
+        SEGMENT_START_LINE;
+
+    ⚡ SEGMENT_KEY:
+        LATEST_CURSOR;
+
+    IF (SEGMENT_KEY == "") {
+        ⚡ SEGMENT_KEY:
+            "ROOT";
+    }
+
+    ⚡ SEGMENT_ALREADY_COMMITTED:
+        0;
+
+    ⚡ VALID_EVIDENCE_RECORD_COUNT:
+        0;
+
+    ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+        0;
+
+    ⚡ EI:
+        0;
+
+    WHILE (EI < EVIDENCE_LINE_TOTAL) {
+
+        ⚡ ELINE:
+            H("list_get", EVIDENCE_LINES, EI, NULL);
+
+        ⚡ ENONEMPTY:
+            1;
+
+        IF (ELINE == "") {
+            ⚡ ENONEMPTY:
+                0;
+        }
+
+        IF (ENONEMPTY) {
+
+            ⚡ EP:
+                H("str_split", ELINE, " || ", NULL);
+
+            ⚡ EPN:
+                H("list_len", EP, NULL, NULL);
+
+            ⚡ EVALID:
+                0;
+
+            IF (EPN == 6) {
+
+                ⚡ EF0:
+                    H("list_get", EP, 0, NULL);
+
+                ⚡ EF1:
+                    H("list_get", EP, 1, NULL);
+
+                ⚡ EF2:
+                    H("list_get", EP, 2, NULL);
+
+                ⚡ EF3:
+                    H("list_get", EP, 3, NULL);
+
+                ⚡ EF4:
+                    H("list_get", EP, 4, NULL);
+
+                ⚡ EF5:
+                    H("list_get", EP, 5, NULL);
+
+                ⚡ ECTX:
+                    field_value(EF0, "CTX=");
+
+                ⚡ ESEG:
+                    field_value(EF1, "SEG=");
+
+                ⚡ EBEST:
+                    field_value(EF2, "BEST=");
+
+                ⚡ ESUPPORT:
+                    field_value(EF3, "SUPPORT=");
+
+                ⚡ EOCC:
+                    field_value(EF4, "OCC=");
+
+                ⚡ ESUPPORT_OK:
+                    unary_valid(ESUPPORT);
+
+                ⚡ EOCC_OK:
+                    unary_valid(EOCC);
+
+                ⚡ EBEST_OK:
+                    1;
+
+                IF (EBEST == "__INVALID_FIELD__") {
+                    ⚡ EBEST_OK:
+                        0;
+                }
+
+                IF (ECTX == CONTEXT_ID) {
+                    IF (ESEG == SEGMENT_KEY) {
+                        IF (EBEST_OK) {
+                            IF (ESUPPORT_OK) {
+                                IF (EOCC_OK) {
+                                    IF (EF5 == "COMMIT=YES") {
+                                        ⚡ EVALID:
+                                            1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (EVALID) {
+                ⚡ SEGMENT_ALREADY_COMMITTED:
+                    1;
+                ⚡ VALID_EVIDENCE_RECORD_COUNT:
+                    VALID_EVIDENCE_RECORD_COUNT + 1;
+            }
+
+            IF (EVALID == 0) {
+                ⚡ IGNORED_EVIDENCE_RECORD_COUNT:
+                    IGNORED_EVIDENCE_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ EI:
+            EI + 1;
+    }
+
+    ⚡ TOKEN_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ RELATIONS:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ RELATION_OCCURRENCES:
+        0;
+
+    ⚡ BEST_RELATION:
+        "";
+
+    ⚡ BEST_SUPPORT:
+        0;
+
+    ⚡ PROCESS_ALLOWED:
+        1;
+
+    IF (INPUT_VALID == 0) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (CONTEXT_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (CURSOR_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (EVIDENCE_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (COMPLETION_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (CONTEXT_ALREADY_COMPLETE) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    IF (PROCESS_ALLOWED) {
+
+        ⚡ TARGET_END:
+            SEGMENT_START_LINE + SEGMENT_LINE_BUDGET;
+
+        IF (CONTEXT_LINE_TOTAL < TARGET_END) {
+            ⚡ TARGET_END:
+                CONTEXT_LINE_TOTAL;
+        }
+
+        ⚡ SEGMENT_END_LINE:
+            TARGET_END;
+
+        ⚡ LI:
+            SEGMENT_START_LINE;
+
+        WHILE (LI < SEGMENT_END_LINE) {
+
+            ⚡ LINE:
+                H("list_get", CONTEXT_LINES, LI, NULL);
+
+            ⚡ TOKENS:
+                H("str_split", LINE, " ", NULL);
+
+            ⚡ TOKEN_TOTAL:
+                H("list_len", TOKENS, NULL, NULL);
+
+            IF (MAX_TOKENS_PER_LINE < TOKEN_TOTAL) {
+                ⚡ TOKEN_LIMIT_EXCEEDED:
+                    1;
+            }
+
+            IF (TOKEN_LIMIT_EXCEEDED == 0) {
+
+                ⚡ TI:
+                    0;
+
+                WHILE (TI + 1 < TOKEN_TOTAL) {
+
+                    ⚡ LEFT:
+                        H("list_get", TOKENS, TI, NULL);
+
+                    ⚡ RIGHT:
+                        H("list_get", TOKENS, TI + 1, NULL);
+
+                    ⚡ REL:
+                        LEFT + " => " + RIGHT;
+
+                    H("list_push", RELATIONS, REL, NULL);
+
+                    ⚡ RELATION_OCCURRENCES:
+                        RELATION_OCCURRENCES + 1;
+
+                    ⚡ TI:
+                        TI + 1;
+                }
+            }
+
+            ⚡ LI:
+                LI + 1;
+        }
+
+        IF (TOKEN_LIMIT_EXCEEDED == 0) {
+
+            ⚡ RN:
+                H("list_len", RELATIONS, NULL, NULL);
+
+            ⚡ RI:
+                0;
+
+            WHILE (RI < RN) {
+
+                ⚡ CANDIDATE:
+                    H("list_get", RELATIONS, RI, NULL);
+
+                ⚡ SUPPORT:
+                    0;
+
+                ⚡ RJ:
+                    0;
+
+                WHILE (RJ < RN) {
+
+                    ⚡ OTHER:
+                        H("list_get", RELATIONS, RJ, NULL);
+
+                    IF (OTHER == CANDIDATE) {
+                        ⚡ SUPPORT:
+                            SUPPORT + 1;
+                    }
+
+                    ⚡ RJ:
+                        RJ + 1;
+                }
+
+                IF (BEST_SUPPORT < SUPPORT) {
+                    ⚡ BEST_SUPPORT:
+                        SUPPORT;
+                    ⚡ BEST_RELATION:
+                        CANDIDATE;
+                }
+
+                ⚡ RI:
+                    RI + 1;
+            }
+        }
+    }
+
+    IF (TOKEN_LIMIT_EXCEEDED) {
+        ⚡ PROCESS_ALLOWED:
+            0;
+    }
+
+    ⚡ EVIDENCE_APPEND_RC:
+        0;
+
+    ⚡ CURSOR_APPEND_RC:
+        0;
+
+    ⚡ COMPLETION_APPEND_RC:
+        0;
+
+    ⚡ MUTATION_ALLOWED:
+        PROCESS_ALLOWED;
+
+    ⚡ NEXT_CURSOR:
+        LATEST_CURSOR;
+
+    IF (PROCESS_ALLOWED) {
+
+        ⚡ ADVANCE_COUNT:
+            SEGMENT_END_LINE - SEGMENT_START_LINE;
+
+        ⚡ NEXT_CURSOR:
+            unary_add(LATEST_CURSOR, ADVANCE_COUNT);
+
+        IF (SEGMENT_ALREADY_COMMITTED == 0) {
+
+            ⚡ SUPPORT_UNARY:
+                unary_add("", BEST_SUPPORT);
+
+            ⚡ OCC_UNARY:
+                unary_add("", RELATION_OCCURRENCES);
+
+            ⚡ EVIDENCE_RECORD:
+                "CTX=" + CONTEXT_ID
+                + " || SEG=" + SEGMENT_KEY
+                + " || BEST=" + BEST_RELATION
+                + " || SUPPORT=" + SUPPORT_UNARY
+                + " || OCC=" + OCC_UNARY
+                + " || COMMIT=YES\n";
+
+            ⚡ EVIDENCE_APPEND_RC:
+                H("append_text", ".sigma_exec/SIGMA_V4B1_SEGMENT_EVIDENCE.memory", EVIDENCE_RECORD, NULL);
+        }
+
+        ⚡ CURSOR_RECORD:
+            "CTX=" + CONTEXT_ID
+            + " || NEXT=" + NEXT_CURSOR
+            + " || COMMIT=YES\n";
+
+        ⚡ CURSOR_APPEND_RC:
+            H("append_text", ".sigma_exec/SIGMA_V4B1_CURSOR_LEDGER.memory", CURSOR_RECORD, NULL);
+
+        IF (SEGMENT_END_LINE == CONTEXT_LINE_TOTAL) {
+
+            ⚡ COMPLETION_RECORD:
+                "CTX=" + CONTEXT_ID + " || COMPLETE=YES\n";
+
+            ⚡ COMPLETION_APPEND_RC:
+                H("append_text", ".sigma_exec/SIGMA_V4B1_COMPLETION_LEDGER.memory", COMPLETION_RECORD, NULL);
+        }
+    }
+
+    ⚡ CONTEXT_COMPLETE:
+        0;
+
+    IF (CONTEXT_ALREADY_COMPLETE) {
+        ⚡ CONTEXT_COMPLETE:
+            1;
+    }
+
+    IF (PROCESS_ALLOWED) {
+        IF (SEGMENT_END_LINE == CONTEXT_LINE_TOTAL) {
+            ⚡ CONTEXT_COMPLETE:
+                1;
+        }
+    }
+
+    ⚡ STATUS:
+        "SEGMENT_PROGRESS";
+
+    IF (INPUT_VALID == 0) {
+        ⚡ STATUS:
+            "REFUSE_INVALID_INPUT";
+    }
+
+    IF (CONTEXT_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_CONTEXT_LINE_LIMIT";
+    }
+
+    IF (CURSOR_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_CURSOR_LEDGER_LIMIT";
+    }
+
+    IF (EVIDENCE_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_EVIDENCE_LEDGER_LIMIT";
+    }
+
+    IF (COMPLETION_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_COMPLETION_LEDGER_LIMIT";
+    }
+
+    IF (TOKEN_LIMIT_EXCEEDED) {
+        ⚡ STATUS:
+            "REFUSE_TOKEN_LIMIT";
+    }
+
+    IF (CONTEXT_ALREADY_COMPLETE) {
+        ⚡ STATUS:
+            "ALREADY_COMPLETE";
+    }
+
+    IF (PROCESS_ALLOWED) {
+        IF (CONTEXT_COMPLETE) {
+            ⚡ STATUS:
+                "CONTEXT_COMPLETE";
+        }
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4B1_STATUS.memory", STATUS, NULL);
+
+    ⚡ print("SIGMA_V4B1_SEGMENTED_RECEIVED_CONTEXT_LEARNER");
+    ⚡ print("CONTEXT_ID", CONTEXT_ID);
+    ⚡ print("CONTEXT_LINE_TOTAL", CONTEXT_LINE_TOTAL);
+    ⚡ print("LATEST_CURSOR", LATEST_CURSOR);
+    ⚡ print("SEGMENT_KEY", SEGMENT_KEY);
+    ⚡ print("SEGMENT_START_LINE", SEGMENT_START_LINE);
+    ⚡ print("SEGMENT_END_LINE", SEGMENT_END_LINE);
+    ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+    ⚡ print("RELATION_OCCURRENCES", RELATION_OCCURRENCES);
+    ⚡ print("BEST_RELATION", BEST_RELATION);
+    ⚡ print("BEST_SUPPORT", BEST_SUPPORT);
+    ⚡ print("SEGMENT_ALREADY_COMMITTED", SEGMENT_ALREADY_COMMITTED);
+    ⚡ print("VALID_CURSOR_RECORD_COUNT", VALID_CURSOR_RECORD_COUNT);
+    ⚡ print("IGNORED_CURSOR_RECORD_COUNT", IGNORED_CURSOR_RECORD_COUNT);
+    ⚡ print("VALID_EVIDENCE_RECORD_COUNT", VALID_EVIDENCE_RECORD_COUNT);
+    ⚡ print("IGNORED_EVIDENCE_RECORD_COUNT", IGNORED_EVIDENCE_RECORD_COUNT);
+    ⚡ print("VALID_COMPLETION_RECORD_COUNT", VALID_COMPLETION_RECORD_COUNT);
+    ⚡ print("IGNORED_COMPLETION_RECORD_COUNT", IGNORED_COMPLETION_RECORD_COUNT);
+    ⚡ print("CONTEXT_LIMIT_EXCEEDED", CONTEXT_LIMIT_EXCEEDED);
+    ⚡ print("TOKEN_LIMIT_EXCEEDED", TOKEN_LIMIT_EXCEEDED);
+    ⚡ print("CURSOR_LIMIT_EXCEEDED", CURSOR_LIMIT_EXCEEDED);
+    ⚡ print("EVIDENCE_LIMIT_EXCEEDED", EVIDENCE_LIMIT_EXCEEDED);
+    ⚡ print("COMPLETION_LIMIT_EXCEEDED", COMPLETION_LIMIT_EXCEEDED);
+    ⚡ print("MUTATION_ALLOWED", MUTATION_ALLOWED);
+    ⚡ print("EVIDENCE_APPEND_RC", EVIDENCE_APPEND_RC);
+    ⚡ print("CURSOR_APPEND_RC", CURSOR_APPEND_RC);
+    ⚡ print("COMPLETION_APPEND_RC", COMPLETION_APPEND_RC);
+    ⚡ print("CONTEXT_COMPLETE", CONTEXT_COMPLETE);
+    ⚡ print("STATUS", STATUS);
+    ⚡ print("WRITE_STATUS_RC", WRITE_STATUS_RC);
+    ⚡ print("SEGMENTED_LEARNING_POLICY", "TWO_LINES_PER_NATIVE_INVOCATION_PERSIST_CURSOR_AND_SEGMENT_PROFILE");
+    ⚡ print("FETCHED_EQUALS_LEARNED", "NO");
+    ⚡ print("LEARNED_ONLY_AFTER_ALL_SEGMENTS_COMPLETE", "YES");
+    ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+    ⚡ print("HOST_COMPLETION_DECISION", "NO");
+    ⚡ print("HOST_RETRY_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("STRUCTURAL_LEARNING_ONLY", "YES");
+    ⚡ print("COMPUTATION_BOUNDED", "YES");
+    ⚡ print("MAX_CONTEXT_LINES", MAX_CONTEXT_LINES);
+    ⚡ print("MAX_TOKENS_PER_LINE", MAX_TOKENS_PER_LINE);
+    ⚡ print("MAX_CURSOR_LINES", MAX_CURSOR_LINES);
+    ⚡ print("MAX_EVIDENCE_LINES", MAX_EVIDENCE_LINES);
+    ⚡ print("MAX_COMPLETION_LINES", MAX_COMPLETION_LINES);
+    ⚡ print("WHOLE_FILE_READ_CURRENT_ABI", "YES");
+    ⚡ print("BOUNDED_FILE_IO", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
