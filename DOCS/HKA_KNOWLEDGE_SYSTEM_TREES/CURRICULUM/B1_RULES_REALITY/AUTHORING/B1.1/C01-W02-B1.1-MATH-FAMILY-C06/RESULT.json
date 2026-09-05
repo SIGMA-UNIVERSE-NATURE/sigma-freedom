@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "scope_id": "B1.1-C06",
+  "scope_title": "Phương trình vi phân và hệ động lực",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c06",
+  "input_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "pre_pass_audit_checkpoint_commit_sha": "c01295257f97869cf95af248b480cd73defe2df6",
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 102,
+    "sources": 6,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_records": 32,
+    "cross_links": 17,
+    "curriculum_sequence_intents": 8
+  },
+  "canonical_topic_coverage": {
+    "covered": 8,
+    "required": 8,
+    "topic_ids": [
+      "B1.1-C06-T01",
+      "B1.1-C06-T02",
+      "B1.1-C06-T03",
+      "B1.1-C06-T04",
+      "B1.1-C06-T05",
+      "B1.1-C06-T06",
+      "B1.1-C06-T07",
+      "B1.1-C06-T08"
+    ]
+  },
+  "semantic_closure": {
+    "learning_objectives_total": 32,
+    "learning_objectives_directly_supported_by_claim_content": 32,
+    "direct_semantic_closure_rate": 1.0,
+    "mechanical_row_existence_used_as_sufficient_evidence": false,
+    "future_or_locked_scope_support_claim_ids": 0,
+    "requires_unlocked_scope_claims": 0
+  },
+  "academic_hypothesis_audits": {
+    "ode_existence_uniqueness_and_local_global_distinction": "PASS",
+    "pde_classification_solvability_compatibility_and_regularities": "PASS",
+    "stability_linearization_hyperbolic_nonhyperbolic_and_lyapunov_conditions": "PASS",
+    "periodic_orbit_and_oscillation_distinction": "PASS",
+    "bifurcation_spectral_transversality_nondegeneracy_and_locality": "PASS",
+    "chaos_definition_sensitivity_diagnostic_and_parameter_scope": "PASS"
+  },
+  "structural_audits": {
+    "committed_readback_of_all_102_claims": "PASS",
+    "committed_readback_of_all_32_learning_objectives": "PASS",
+    "committed_readback_of_all_32_closure_rows": "PASS",
+    "claim_id_resolution": "PASS",
+    "source_id_sha256_normalization": "PASS_6_OF_6",
+    "internal_prerequisite_graph_acyclic": "PASS",
+    "ownership_and_duplicate_dispositions": "PASS",
+    "branch_ancestry_from_accepted_predecessor": "PASS"
+  },
+  "overlap_dispositions": {
+    "C03": "REFERENCE_ONLY_FOR_EQUATION_MAP_AND_EIGEN_PRIMITIVES",
+    "C04": "REPRESENTATION_REFERENCE_ONLY_FOR_PHASE_SPACE_GEOMETRY",
+    "C05": "REFERENCE_ONLY_FOR_DERIVATIVE_JACOBIAN_CHAIN_RULE_IFT_AND_ANALYTIC_PRIMITIVES",
+    "C07": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C08": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C09": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C10": "LOCKED_NO_SUPPORT_CLAIMS",
+    "B1.2": "BOUNDARY_ONLY_NO_SUPPORT_CLAIMS"
+  },
+  "stage_boundary": {
+    "academic_locked_created": false,
+    "lesson_registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false,
+    "post_curriculum_stage_artifacts_created": false
+  },
+  "successor_gate": {
+    "state": "DIRECTOR_GATED",
+    "successor_unlocked_by_worker": false,
+    "C07_C08_C09_C10_opened": false
+  },
+  "worker_statement": "C06 CURRICULUM authoring is a worker PASS candidate after committed read-back and independent semantic/hypothesis audits. This record does not constitute Director acceptance and does not unlock any successor or later stage."
+}
