@@ -1,0 +1,39 @@
+{
+  "checkpoint_id": "CP03-DIRECTOR-ACCEPTANCE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "stage": "CURRICULUM",
+  "scope_id": "B1.1-C10",
+  "decision": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
+  "predecessor_commit": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "audited_payload_sequence_commit": "4d42510c549a3fdd3052cf3bd8fa2bc7f13bd7fc",
+  "director_audit_checkpoint": "48fc62d3b764d1502fd122e63bdd1326ad039b3f",
+  "result_commit": "4dd098b7eb6bbc166a23018465c2212476a16c40",
+  "handoff_commit": "9905d7d9e6862063c7fbbd8f801a49e304e0f79c",
+  "report_commit": "90319789bf21f94bf1f2955f9eb7845a2e1727e7",
+  "status_commit": "cc42b86b93c7b094768edebc130e264b8dfdfef7",
+  "audit_summary": {
+    "topics": "10/10 PASS",
+    "claims": "100/100 PASS",
+    "sources": "13/13 LOCAL SHA256 PASS + 2/2 ACCEPTED REUSED VERIFIED",
+    "learning_objectives": "40/40 PASS",
+    "semantic_closure": "40/40 PASS",
+    "claim_coverage": "100/100 PASS",
+    "cross_links": "25/25 PASS",
+    "sequence_intents": "10/10 PASS_ACYCLIC",
+    "future_or_locked_support_claim_ids": 0,
+    "R06": "PASS",
+    "R13": "PASS",
+    "branch_diff": "PASS_C10_ONLY",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "academic_repairs": 0
+  },
+  "provenance_lock": "Worker submitted partial substantive payload and did not claim PASS. Director completed only missing structural/read-back/terminal work and independently audited before acceptance.",
+  "foundational_13_year_gate": {
+    "status": "ACTIVE_REQUIRED",
+    "B1_1_subbranch_complete": false,
+    "foundational_audit_status": "NOT_YET_RUN",
+    "B1_2_unlock": false,
+    "required_next_action": "Run B1.1 Foundational 13-Year Coverage Audit and reach FOUNDATIONAL_GAP_COUNT=0."
+  },
+  "blocking_issues": []
+}
