@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c10",
+  "input_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "accepted_C09_continuity_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "accepted_C08_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "accepted_C07_commit_sha": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "last_checkpoint_commit_sha": "278832bd8436a70677237cc2849d0f60f3c98888",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "scope_ids": ["B1.1-C10"],
+  "canonical_topics": 10,
+  "frozen_academic_prerequisites": ["B1.1-C03", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08"],
+  "continuity_predecessor_not_added_as_academic_prerequisite": true,
+  "mandatory_risks": ["R06", "R13"],
+  "completed_work": [
+    "Director accepted C09 with zero academic repairs.",
+    "Sentinel returned TREE_ALIGNMENT_PASS for C10 pre-open plan.",
+    "Amendment 5 locked C10 applied-math, decision, optimization, domain-model and B1.5 boundaries.",
+    "Installed C10 contract, execution prompt, Director open order and bootstrap checkpoint."
+  ],
+  "remaining_work": [
+    "Author all ten canonical C10 topics.",
+    "Apply R06/R13 and preserve C03/C05/C06/C07/C08 ownership.",
+    "Create direct semantic Claim-to-Learning-Objective closure with zero future/locked support IDs.",
+    "Run source, theorem/model-assumption, duplicate, prerequisite and stage-boundary audits from committed files before candidate PASS."
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C10 only.",
+    "C10 is the final B1.1 authoring scope but does not itself complete B1 or CURRICULUM globally.",
+    "B1.2+ remain locked during C10 worker execution.",
+    "No post-CURRICULUM artifact is authorized."
+  ],
+  "next_action": "Execute C10 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C10 only.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C10"
+}
