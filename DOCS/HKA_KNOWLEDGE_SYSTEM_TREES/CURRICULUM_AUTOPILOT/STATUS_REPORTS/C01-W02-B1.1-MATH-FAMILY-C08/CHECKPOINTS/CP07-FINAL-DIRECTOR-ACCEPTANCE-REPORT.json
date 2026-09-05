@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W02-B1.1-MATH-FAMILY-C08",
+  "checkpoint_id":"CP07-FINAL-DIRECTOR-ACCEPTANCE-REPORT",
+  "stage":"CURRICULUM",
+  "director_accepted_parent_sha":"b4202c7eaa0cea462d882cf32cae635c90005c5c",
+  "acceptance_report_commit_sha":"99be6734df23d52f26241a646aa1143cd2771b4a",
+  "canonical_accepted_commit_sha":"99be6734df23d52f26241a646aa1143cd2771b4a",
+  "decision":"DIRECTOR_ACCEPTED_PASS_AFTER_TWO_HYPOTHESIS_REPAIRS",
+  "blocking_issues":[],
+  "next_action":"Director control-plane may activate C07 after Sentinel pre-open alignment."
+}
