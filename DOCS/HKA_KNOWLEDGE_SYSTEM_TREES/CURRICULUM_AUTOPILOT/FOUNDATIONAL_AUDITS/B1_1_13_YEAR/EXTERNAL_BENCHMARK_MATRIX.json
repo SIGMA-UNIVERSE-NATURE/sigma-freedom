@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "benchmark_type": "GENERAL_EDUCATION_NOT_UNIVERSITY",
+  "continents": 6,
+  "systems": [
+    {
+      "system_id": "ENG-NC-MATH",
+      "continent": "EUROPE",
+      "jurisdiction": "England",
+      "authority": "Department for Education / GOV.UK",
+      "progression": "Years 1-11, Key Stages 1-4",
+      "official_locator": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+      "foundational_signals": ["counting and place value","mental and written arithmetic fluency","fractions/decimals/percent/ratio","length/mass/capacity/time/money","2-D/3-D shape and position/direction","pictograms/tallies/tables/bar/line/pie/scatter representations","experimental and theoretical probability","algebra/functions/graphs and modelling"]
+    },
+    {
+      "system_id": "US-CCSS-MATH",
+      "continent": "NORTH_AMERICA",
+      "jurisdiction": "United States Common Core",
+      "authority": "Common Core State Standards Initiative",
+      "progression": "Kindergarten-Grade 8 plus high-school domains",
+      "official_locator": "https://www.thecorestandards.org/Math/Content/",
+      "foundational_signals": ["counting and cardinality","base-ten place value","operations and algebraic thinking","measurement and data","basic geometry/spatial relations","fractions as numbers before rational/real/complex extensions","statistics/probability and modelling"]
+    },
+    {
+      "system_id": "AUS-ACARA-MATH-V9",
+      "continent": "OCEANIA",
+      "jurisdiction": "Australia",
+      "authority": "Australian Curriculum, Assessment and Reporting Authority",
+      "progression": "Foundation-Year 10, then differentiated senior-secondary pathways",
+      "official_locator": "https://v9.australiancurriculum.edu.au/curriculum-information/understand-this-learning-area/mathematics",
+      "foundational_signals": ["Number","Algebra","Measurement","Space","Statistics","Probability","fluency/reasoning/problem solving","advanced study as later pathway/extension rather than common baseline"]
+    },
+    {
+      "system_id": "SG-MOE-MATH",
+      "continent": "ASIA",
+      "jurisdiction": "Singapore",
+      "authority": "Ministry of Education Singapore",
+      "progression": "Primary 1-6 and compulsory secondary mathematics, with advanced/elective differentiation",
+      "official_locator": "https://www.moe.gov.sg/-/media/files/primary/mathematics_syllabus_primary_1_to_6.ashx",
+      "foundational_signals": ["Number and Algebra","Measurement and Geometry","Statistics","place-value representations","patterns and number sequences","time/mass/volume/area/perimeter","bar graphs and scales","problem solving as central process"]
+    },
+    {
+      "system_id": "BR-BNCC-MATH",
+      "continent": "SOUTH_AMERICA",
+      "jurisdiction": "Brazil",
+      "authority": "Ministério da Educação / BNCC",
+      "progression": "Educação Básica, including Ensino Fundamental and Ensino Médio",
+      "official_locator": "https://basenacionalcomum.mec.gov.br/abase/",
+      "foundational_signals": ["Números","Álgebra","Geometria","Grandezas e Medidas","Probabilidade e Estatística","early spatial description","decimal numeration","patterns/sequences","measurement and everyday commercial/financial contexts","uncertainty and data"]
+    },
+    {
+      "system_id": "ZA-CAPS-MATH",
+      "continent": "AFRICA",
+      "jurisdiction": "South Africa",
+      "authority": "Department of Basic Education",
+      "progression": "Foundation R-3, Intermediate 4-6, Senior 7-9, FET 10-12",
+      "official_locator": "https://www.education.gov.za/Curriculum/NCSGradesR12/CAPS/tabid/420/Default.aspx",
+      "foundational_signals": ["Mathematics is explicitly maintained across Foundation/Intermediate/Senior/FET phases","Foundation Mathematics is a distinct official curriculum","later secondary/FET work builds on rather than replaces earlier phases"]
+    }
+  ],
+  "cross_system_requirements": [
+    {"requirement_id":"F13-R01","meaning":"counting/cardinality and place-value numeration before abstract number-system extension","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R02","meaning":"whole-number arithmetic meanings plus mental/written fluency and reasonableness checking","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R03","meaning":"fractions/decimals as quantities and representations before formal field properties","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R04","meaning":"patterns/equality/unknowns and early algebraic generalization before formal equation/function theory","recurrence":"HIGH"},
+    {"requirement_id":"F13-R05","meaning":"everyday measurement and unit reasoning including time/money/mass/capacity as general-education mathematics","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R06","meaning":"basic 2-D/3-D shapes, spatial language, position/direction and transformations before advanced geometry","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R07","meaning":"collect/classify/display/read data using simple tables/charts/graphs before advanced descriptive/inferential statistics","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R08","meaning":"chance language, simple experiments, frequencies/equally-likely models and 0-1 probability scale before measure-theoretic probability","recurrence":"HIGH"},
+    {"requirement_id":"F13-R09","meaning":"problem solving, estimation, modelling, representations and checking reasonableness recur across years","recurrence":"VERY_HIGH"},
+    {"requirement_id":"F13-R10","meaning":"advanced/specialist mathematics is layered after a common foundational spine, not substituted for it","recurrence":"HIGH"}
+  ],
+  "benchmark_decision": "SUFFICIENT_FOR_FOUNDATIONAL_GAP_DETECTION",
+  "university_only_sources_used_as_baseline": false
+}
