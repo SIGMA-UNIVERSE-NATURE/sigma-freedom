@@ -110,6 +110,25 @@ BYTECODE_SHA256=9afed5ab5bfc6652e9066c1420d2ce69fa9ee254ea55516a3ae5959fef419f10
 PERSISTENT_STATE=YES
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
+## Current source-ready / not admitted
+
+### DNA-11 Knowledge Graph
+CANON_REFERENCE_BLOB_SHA1=756416c46f85f31f0fb58a4e8ff33ec17ac1899e
+SOURCE_SHA256=199e428ebff1e43f2e40bba919a7eb7eecf9220e61810148b8e0c0cabce368e0
+RUNNER_SHA256=dcda0f49fbe72ff14a32041d32d80d70162f687ecadb1c66a80c44512b07be66
+BUNDLE_SHA256=7e89e7cda95f45ef77780ff0cdcb0dfd1f684f095095dce56def226f0a3cfe30
+DNA11_COMPILE=NOT_RUN
+DNA11_VM=NOT_RUN
+DNA11_ADMISSION=NOT_RUN
+PERSISTENT_STATE=NA
+PERSISTENT_KNOWLEDGE_RUNTIME=NOT_EXECUTED
+PERSISTENT_MEMORY_RUNTIME=NOT_EXECUTED
+KNOWLEDGE_PROMOTION_AUTHORITY=NO
+EXTERNAL_GRAPH_WRITE=NOT_EXECUTED
+NODE_DIGEST_DERIVATION=NOT_PROVEN
+GENERAL_FLOAT_CONFIDENCE_API=NOT_PROVEN
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA11_NATIVE_ADMISSION_SOURCE_READY.md
+
 ## Historical failures retained as evidence
 
 ### DNA-08 V1 compile failure
@@ -124,9 +143,9 @@ V1 source line 226 was a bare `{` opening the main body. FIX1 changed only that 
 
 ## Current dependency frontier
 
-NEXT_TARGET=DNA-11 Knowledge Graph
+NEXT_TARGET=RUN DNA-11 Knowledge Graph
 
-DNA-11 canonical dependencies and exact self-check must be read before native admission build. Numeric order is not the reason for selection; DNA-11 consumes DNA-10 Memory Genome.
+DNA-11 canonical self-check requires DNA-01 through DNA-10 bound/pass. V1 tests in-context graph construction only; it does not claim persistent Knowledge/Memory Runtime.
 
 ## Global claim boundaries
 
