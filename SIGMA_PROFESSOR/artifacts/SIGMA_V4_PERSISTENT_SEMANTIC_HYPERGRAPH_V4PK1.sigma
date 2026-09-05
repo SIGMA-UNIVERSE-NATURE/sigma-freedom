@@ -1,0 +1,595 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.PERSISTENT.SEMANTIC.HYPERGRAPH][VERSION=V4PK1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF token_safe(value) {
+    IF (present(value) == 0) { RETURN 0; }
+
+    ⚡ WITHOUT_FIELD_SEPARATOR:
+        H("str_replace", value, "||", "");
+    IF (WITHOUT_FIELD_SEPARATOR != value) { RETURN 0; }
+
+    ⚡ WITHOUT_NEWLINE:
+        H("str_replace", value, "\n", "");
+    IF (WITHOUT_NEWLINE != value) { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF optional_token_safe(value) {
+    IF (value == "NONE") { RETURN 1; }
+    RETURN token_safe(value);
+}
+
+DEF digits_only(value) {
+    IF (value == "") { RETURN 0; }
+
+    ⚡ REST: value;
+    ⚡ REST: H("str_replace", REST, "0", "");
+    ⚡ REST: H("str_replace", REST, "1", "");
+    ⚡ REST: H("str_replace", REST, "2", "");
+    ⚡ REST: H("str_replace", REST, "3", "");
+    ⚡ REST: H("str_replace", REST, "4", "");
+    ⚡ REST: H("str_replace", REST, "5", "");
+    ⚡ REST: H("str_replace", REST, "6", "");
+    ⚡ REST: H("str_replace", REST, "7", "");
+    ⚡ REST: H("str_replace", REST, "8", "");
+    ⚡ REST: H("str_replace", REST, "9", "");
+
+    IF (REST == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF members_packed_and_safe(m1, m2, m3, m4) {
+    IF (token_safe(m1) == 0) { RETURN 0; }
+    IF (token_safe(m2) == 0) { RETURN 0; }
+    IF (optional_token_safe(m3) == 0) { RETURN 0; }
+    IF (optional_token_safe(m4) == 0) { RETURN 0; }
+
+    IF (m3 == "NONE") {
+        IF (m4 != "NONE") { RETURN 0; }
+    }
+
+    RETURN 1;
+}
+
+DEF members_distinct(m1, m2, m3, m4) {
+    IF (m1 == m2) { RETURN 0; }
+
+    IF (m3 != "NONE") {
+        IF (m3 == m1) { RETURN 0; }
+        IF (m3 == m2) { RETURN 0; }
+    }
+
+    IF (m4 != "NONE") {
+        IF (m4 == m1) { RETURN 0; }
+        IF (m4 == m2) { RETURN 0; }
+        IF (m4 == m3) { RETURN 0; }
+    }
+
+    RETURN 1;
+}
+
+DEF member_count(m3, m4) {
+    ⚡ COUNT: 2;
+    IF (m3 != "NONE") { ⚡ COUNT: COUNT + 1; }
+    IF (m4 != "NONE") { ⚡ COUNT: COUNT + 1; }
+    RETURN COUNT;
+}
+
+DEF edge_fingerprint(relation, m1, m2, m3, m4, evidence_id, provenance_id, weight_bp, uncertainty_bp) {
+    RETURN relation
+        + "||" + m1
+        + "||" + m2
+        + "||" + m3
+        + "||" + m4
+        + "||" + evidence_id
+        + "||" + provenance_id
+        + "||" + weight_bp
+        + "||" + uncertainty_bp;
+}
+
+DEF member_matches(anchor, m1, m2, m3, m4) {
+    IF (anchor == m1) { RETURN 1; }
+    IF (anchor == m2) { RETURN 1; }
+    IF (m3 != "NONE") {
+        IF (anchor == m3) { RETURN 1; }
+    }
+    IF (m4 != "NONE") {
+        IF (anchor == m4) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+⟡(Σ.V4_PERSISTENT_SEMANTIC_HYPERGRAPH_V4PK1) {
+    ⚡ BASE:
+        ".sigma_exec/SIGMA_V4PK1_PERSISTENT_SEMANTIC_HYPERGRAPH";
+
+    ⚡ CASE_ID:
+        H("read_text", BASE + "/input/case_id.txt", NULL, NULL);
+    ⚡ EDGE_ID:
+        H("read_text", BASE + "/input/edge_id.txt", NULL, NULL);
+    ⚡ RELATION:
+        H("read_text", BASE + "/input/relation.txt", NULL, NULL);
+    ⚡ MEMBER_1:
+        H("read_text", BASE + "/input/member_1.txt", NULL, NULL);
+    ⚡ MEMBER_2:
+        H("read_text", BASE + "/input/member_2.txt", NULL, NULL);
+    ⚡ MEMBER_3:
+        H("read_text", BASE + "/input/member_3.txt", NULL, NULL);
+    ⚡ MEMBER_4:
+        H("read_text", BASE + "/input/member_4.txt", NULL, NULL);
+    ⚡ EVIDENCE_ID:
+        H("read_text", BASE + "/input/evidence_id.txt", NULL, NULL);
+    ⚡ PROVENANCE_ID:
+        H("read_text", BASE + "/input/provenance_id.txt", NULL, NULL);
+    ⚡ WEIGHT_BP_TEXT:
+        H("read_text", BASE + "/input/weight_bp.txt", NULL, NULL);
+    ⚡ UNCERTAINTY_BP_TEXT:
+        H("read_text", BASE + "/input/uncertainty_bp.txt", NULL, NULL);
+    ⚡ COMMIT_TOKEN:
+        H("read_text", BASE + "/input/commit_token.txt", NULL, NULL);
+
+    ⚡ STATE_PATH:
+        BASE + "/state/hypergraph.memory";
+    ⚡ STATE_HEADER:
+        "STATE||SIGMA_V4_PERSISTENT_SEMANTIC_HYPERGRAPH_V1||COMMIT||YES";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ STATE_EMPTY:
+        exact(STATE_TEXT, "");
+
+    ⚡ MAX_HYPEREDGE_RECORDS: 64;
+    ⚡ MAX_STATE_SPLIT_LINES: 65;
+    ⚡ MAX_WEIGHT_BP: 10000;
+    ⚡ MAX_UNCERTAINTY_BP: 10000;
+
+    ⚡ CASE_ID_VALID:
+        token_safe(CASE_ID);
+    ⚡ EDGE_ID_VALID:
+        token_safe(EDGE_ID);
+    ⚡ RELATION_VALID:
+        token_safe(RELATION);
+    ⚡ EVIDENCE_ID_VALID:
+        token_safe(EVIDENCE_ID);
+    ⚡ PROVENANCE_ID_VALID:
+        token_safe(PROVENANCE_ID);
+    ⚡ COMMIT_TOKEN_VALID:
+        exact(COMMIT_TOKEN, "YES");
+    ⚡ WEIGHT_TEXT_VALID:
+        digits_only(WEIGHT_BP_TEXT);
+    ⚡ UNCERTAINTY_TEXT_VALID:
+        digits_only(UNCERTAINTY_BP_TEXT);
+
+    ⚡ MEMBER_SHAPE_VALID:
+        members_packed_and_safe(MEMBER_1, MEMBER_2, MEMBER_3, MEMBER_4);
+    ⚡ MEMBERS_DISTINCT:
+        0;
+    IF (MEMBER_SHAPE_VALID == 1) {
+        ⚡ MEMBERS_DISTINCT:
+            members_distinct(MEMBER_1, MEMBER_2, MEMBER_3, MEMBER_4);
+    }
+
+    ⚡ MEMBER_COUNT:
+        0;
+    IF (MEMBER_SHAPE_VALID == 1) {
+        ⚡ MEMBER_COUNT:
+            member_count(MEMBER_3, MEMBER_4);
+    }
+
+    ⚡ WEIGHT_BP_VALUE: 0;
+    ⚡ WEIGHT_RANGE_VALID: 0;
+    IF (WEIGHT_TEXT_VALID == 1) {
+        ⚡ WEIGHT_BP_VALUE:
+            H("to_int", WEIGHT_BP_TEXT, NULL, NULL);
+        IF (0 <= WEIGHT_BP_VALUE) {
+            IF (WEIGHT_BP_VALUE <= MAX_WEIGHT_BP) {
+                ⚡ WEIGHT_RANGE_VALID: 1;
+            }
+        }
+    }
+
+    ⚡ UNCERTAINTY_BP_VALUE: 0;
+    ⚡ UNCERTAINTY_RANGE_VALID: 0;
+    IF (UNCERTAINTY_TEXT_VALID == 1) {
+        ⚡ UNCERTAINTY_BP_VALUE:
+            H("to_int", UNCERTAINTY_BP_TEXT, NULL, NULL);
+        IF (0 <= UNCERTAINTY_BP_VALUE) {
+            IF (UNCERTAINTY_BP_VALUE <= MAX_UNCERTAINTY_BP) {
+                ⚡ UNCERTAINTY_RANGE_VALID: 1;
+            }
+        }
+    }
+
+    ⚡ INPUT_TOKEN_VALID:
+        CASE_ID_VALID
+        * EDGE_ID_VALID
+        * RELATION_VALID
+        * EVIDENCE_ID_VALID
+        * PROVENANCE_ID_VALID
+        * COMMIT_TOKEN_VALID
+        * WEIGHT_TEXT_VALID
+        * UNCERTAINTY_TEXT_VALID;
+
+    ⚡ NEW_EDGE_VALID:
+        INPUT_TOKEN_VALID
+        * MEMBER_SHAPE_VALID
+        * MEMBERS_DISTINCT
+        * WEIGHT_RANGE_VALID
+        * UNCERTAINTY_RANGE_VALID;
+
+    ⚡ INPUT_FINGERPRINT:
+        edge_fingerprint(
+            RELATION,
+            MEMBER_1,
+            MEMBER_2,
+            MEMBER_3,
+            MEMBER_4,
+            EVIDENCE_ID,
+            PROVENANCE_ID,
+            WEIGHT_BP_TEXT,
+            UNCERTAINTY_BP_TEXT
+        );
+
+    ⚡ STATE_VALID: 1;
+    ⚡ STATE_LIMIT_EXCEEDED: 0;
+    ⚡ INVALID_STATE_RECORD_COUNT: 0;
+    ⚡ EDGE_COUNT_BEFORE: 0;
+    ⚡ EXACT_EDGE_ALREADY_PRESENT: 0;
+    ⚡ EDGE_ID_CONFLICT: 0;
+    ⚡ ANCHOR_INCIDENT_EDGE_COUNT_BEFORE: 0;
+    ⚡ ANCHOR_WEIGHT_SUM_BP_BEFORE: 0;
+
+    IF (STATE_EMPTY == 0) {
+        ⚡ STATE_LINES:
+            H("str_split", STATE_TEXT, "\n", NULL);
+        ⚡ STATE_LINE_COUNT:
+            H("list_len", STATE_LINES, NULL, NULL);
+
+        IF (MAX_STATE_SPLIT_LINES < STATE_LINE_COUNT) {
+            ⚡ STATE_LIMIT_EXCEEDED: 1;
+            ⚡ STATE_VALID: 0;
+        }
+
+        IF (STATE_LIMIT_EXCEEDED == 0) {
+            ⚡ FIRST_LINE:
+                H("list_get", STATE_LINES, 0, NULL);
+            IF (FIRST_LINE != STATE_HEADER) {
+                ⚡ STATE_VALID: 0;
+            }
+
+            ⚡ I: 1;
+            WHILE (I < STATE_LINE_COUNT) {
+                ⚡ LINE:
+                    H("list_get", STATE_LINES, I, NULL);
+                ⚡ PARTS:
+                    H("str_split", LINE, "||", NULL);
+                ⚡ PART_COUNT:
+                    H("list_len", PARTS, NULL, NULL);
+                ⚡ RECORD_VALID: 0;
+
+                IF (PART_COUNT == 13) {
+                    ⚡ R0: H("list_get", PARTS, 0, NULL);
+                    ⚡ R1: H("list_get", PARTS, 1, NULL);
+                    ⚡ R2: H("list_get", PARTS, 2, NULL);
+                    ⚡ R3: H("list_get", PARTS, 3, NULL);
+                    ⚡ R4: H("list_get", PARTS, 4, NULL);
+                    ⚡ R5: H("list_get", PARTS, 5, NULL);
+                    ⚡ R6: H("list_get", PARTS, 6, NULL);
+                    ⚡ R7: H("list_get", PARTS, 7, NULL);
+                    ⚡ R8: H("list_get", PARTS, 8, NULL);
+                    ⚡ R9: H("list_get", PARTS, 9, NULL);
+                    ⚡ R10: H("list_get", PARTS, 10, NULL);
+                    ⚡ R11: H("list_get", PARTS, 11, NULL);
+                    ⚡ R12: H("list_get", PARTS, 12, NULL);
+
+                    ⚡ RECORD_MEMBER_SHAPE_VALID:
+                        members_packed_and_safe(R3, R4, R5, R6);
+                    ⚡ RECORD_MEMBERS_DISTINCT: 0;
+                    IF (RECORD_MEMBER_SHAPE_VALID == 1) {
+                        ⚡ RECORD_MEMBERS_DISTINCT:
+                            members_distinct(R3, R4, R5, R6);
+                    }
+
+                    ⚡ RECORD_WEIGHT_TEXT_VALID:
+                        digits_only(R9);
+                    ⚡ RECORD_UNCERTAINTY_TEXT_VALID:
+                        digits_only(R10);
+
+                    ⚡ RECORD_VALID:
+                        exact(R0, "HYPEREDGE")
+                        * token_safe(R1)
+                        * token_safe(R2)
+                        * RECORD_MEMBER_SHAPE_VALID
+                        * RECORD_MEMBERS_DISTINCT
+                        * token_safe(R7)
+                        * token_safe(R8)
+                        * RECORD_WEIGHT_TEXT_VALID
+                        * RECORD_UNCERTAINTY_TEXT_VALID
+                        * exact(R11, "COMMIT")
+                        * exact(R12, "YES");
+
+                    ⚡ RECORD_WEIGHT_VALUE: 0;
+                    ⚡ RECORD_UNCERTAINTY_VALUE: 0;
+
+                    IF (RECORD_VALID == 1) {
+                        ⚡ RECORD_WEIGHT_VALUE:
+                            H("to_int", R9, NULL, NULL);
+                        ⚡ RECORD_UNCERTAINTY_VALUE:
+                            H("to_int", R10, NULL, NULL);
+
+                        IF (RECORD_WEIGHT_VALUE < 0) {
+                            ⚡ RECORD_VALID: 0;
+                        }
+                        IF (MAX_WEIGHT_BP < RECORD_WEIGHT_VALUE) {
+                            ⚡ RECORD_VALID: 0;
+                        }
+                        IF (RECORD_UNCERTAINTY_VALUE < 0) {
+                            ⚡ RECORD_VALID: 0;
+                        }
+                        IF (MAX_UNCERTAINTY_BP < RECORD_UNCERTAINTY_VALUE) {
+                            ⚡ RECORD_VALID: 0;
+                        }
+                    }
+
+                    IF (RECORD_VALID == 1) {
+                        ⚡ EDGE_COUNT_BEFORE:
+                            EDGE_COUNT_BEFORE + 1;
+
+                        IF (R1 == EDGE_ID) {
+                            ⚡ RECORD_FINGERPRINT:
+                                edge_fingerprint(
+                                    R2,
+                                    R3,
+                                    R4,
+                                    R5,
+                                    R6,
+                                    R7,
+                                    R8,
+                                    R9,
+                                    R10
+                                );
+
+                            IF (RECORD_FINGERPRINT == INPUT_FINGERPRINT) {
+                                ⚡ EXACT_EDGE_ALREADY_PRESENT: 1;
+                            }
+                            IF (RECORD_FINGERPRINT != INPUT_FINGERPRINT) {
+                                ⚡ EDGE_ID_CONFLICT: 1;
+                            }
+                        }
+
+                        IF (token_safe(MEMBER_1) == 1) {
+                            ⚡ INCIDENT:
+                                member_matches(MEMBER_1, R3, R4, R5, R6);
+                            IF (INCIDENT == 1) {
+                                ⚡ ANCHOR_INCIDENT_EDGE_COUNT_BEFORE:
+                                    ANCHOR_INCIDENT_EDGE_COUNT_BEFORE + 1;
+                                ⚡ ANCHOR_WEIGHT_SUM_BP_BEFORE:
+                                    ANCHOR_WEIGHT_SUM_BP_BEFORE + RECORD_WEIGHT_VALUE;
+                            }
+                        }
+                    }
+                }
+
+                IF (RECORD_VALID == 0) {
+                    ⚡ INVALID_STATE_RECORD_COUNT:
+                        INVALID_STATE_RECORD_COUNT + 1;
+                }
+
+                ⚡ I: I + 1;
+            }
+
+            IF (INVALID_STATE_RECORD_COUNT > 0) {
+                ⚡ STATE_VALID: 0;
+            }
+        }
+    }
+
+    IF (MAX_HYPEREDGE_RECORDS < EDGE_COUNT_BEFORE) {
+        ⚡ STATE_VALID: 0;
+    }
+
+    ⚡ CAPACITY_AVAILABLE: 0;
+    IF (EDGE_COUNT_BEFORE < MAX_HYPEREDGE_RECORDS) {
+        ⚡ CAPACITY_AVAILABLE: 1;
+    }
+
+    ⚡ WRITE_ELIGIBLE:
+        STATE_VALID
+        * NEW_EDGE_VALID
+        * CAPACITY_AVAILABLE
+        * (1 - EXACT_EDGE_ALREADY_PRESENT)
+        * (1 - EDGE_ID_CONFLICT);
+
+    ⚡ WRITE_ATTEMPTED: 0;
+    ⚡ WRITE_RC: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ EDGE_RETAINED: 0;
+
+    IF (WRITE_ELIGIBLE == 1) {
+        ⚡ NEW_RECORD:
+            "HYPEREDGE||"
+            + EDGE_ID + "||"
+            + RELATION + "||"
+            + MEMBER_1 + "||"
+            + MEMBER_2 + "||"
+            + MEMBER_3 + "||"
+            + MEMBER_4 + "||"
+            + EVIDENCE_ID + "||"
+            + PROVENANCE_ID + "||"
+            + WEIGHT_BP_TEXT + "||"
+            + UNCERTAINTY_BP_TEXT + "||COMMIT||YES";
+
+        ⚡ PROPOSED_STATE:
+            STATE_HEADER + "\n" + NEW_RECORD;
+        IF (STATE_EMPTY == 0) {
+            ⚡ PROPOSED_STATE:
+                STATE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1;
+        ⚡ WRITE_RC:
+            H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+        ⚡ READBACK_TEXT:
+            H("read_text", STATE_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK_TEXT, PROPOSED_STATE);
+        ⚡ EDGE_RETAINED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ STATE_MUTATED:
+        EDGE_RETAINED;
+    ⚡ EDGE_COUNT_AFTER:
+        EDGE_COUNT_BEFORE + EDGE_RETAINED;
+    ⚡ ANCHOR_INCIDENT_EDGE_COUNT_AFTER:
+        ANCHOR_INCIDENT_EDGE_COUNT_BEFORE + EDGE_RETAINED;
+    ⚡ ANCHOR_WEIGHT_SUM_BP_AFTER:
+        ANCHOR_WEIGHT_SUM_BP_BEFORE;
+    IF (EDGE_RETAINED == 1) {
+        ⚡ ANCHOR_WEIGHT_SUM_BP_AFTER:
+            ANCHOR_WEIGHT_SUM_BP_BEFORE + WEIGHT_BP_VALUE;
+    }
+
+    ⚡ STATUS: "NO_MUTATION";
+
+    IF (STATE_VALID == 0) {
+        ⚡ STATUS: "REFUSE_INVALID_STORE";
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (INPUT_TOKEN_VALID == 0) {
+            ⚡ STATUS: "REFUSE_INVALID_INPUT";
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (INPUT_TOKEN_VALID == 1) {
+            IF (MEMBER_SHAPE_VALID == 0) {
+                ⚡ STATUS: "REFUSE_INVALID_HYPEREDGE_SHAPE";
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (INPUT_TOKEN_VALID == 1) {
+            IF (MEMBER_SHAPE_VALID == 1) {
+                IF (MEMBERS_DISTINCT == 0) {
+                    ⚡ STATUS: "REFUSE_DUPLICATE_HYPEREDGE_MEMBER";
+                }
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (INPUT_TOKEN_VALID == 1) {
+            IF (MEMBER_SHAPE_VALID == 1) {
+                IF (MEMBERS_DISTINCT == 1) {
+                    IF (WEIGHT_RANGE_VALID == 0) {
+                        ⚡ STATUS: "REFUSE_WEIGHT_RANGE";
+                    }
+                }
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (INPUT_TOKEN_VALID == 1) {
+            IF (MEMBER_SHAPE_VALID == 1) {
+                IF (MEMBERS_DISTINCT == 1) {
+                    IF (WEIGHT_RANGE_VALID == 1) {
+                        IF (UNCERTAINTY_RANGE_VALID == 0) {
+                            ⚡ STATUS: "REFUSE_UNCERTAINTY_RANGE";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (NEW_EDGE_VALID == 1) {
+            IF (EXACT_EDGE_ALREADY_PRESENT == 1) {
+                ⚡ STATUS: "ALREADY_COMMITTED_SAME_EDGE";
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (NEW_EDGE_VALID == 1) {
+            IF (EXACT_EDGE_ALREADY_PRESENT == 0) {
+                IF (EDGE_ID_CONFLICT == 1) {
+                    ⚡ STATUS: "REFUSE_EDGE_ID_CONFLICT";
+                }
+            }
+        }
+    }
+
+    IF (STATE_VALID == 1) {
+        IF (NEW_EDGE_VALID == 1) {
+            IF (EXACT_EDGE_ALREADY_PRESENT == 0) {
+                IF (EDGE_ID_CONFLICT == 0) {
+                    IF (CAPACITY_AVAILABLE == 0) {
+                        ⚡ STATUS: "REFUSE_CAPACITY";
+                    }
+                }
+            }
+        }
+    }
+
+    IF (WRITE_ATTEMPTED == 1) {
+        IF (WRITE_READBACK_MATCH == 0) {
+            ⚡ STATUS: "PERSISTENCE_WRITE_READBACK_FAILED";
+        }
+        IF (WRITE_READBACK_MATCH == 1) {
+            ⚡ STATUS: "EDGE_COMMITTED";
+        }
+    }
+
+    ⚡ print("V4PK1_NATIVE PERSISTENT_SEMANTIC_HYPERGRAPH");
+    ⚡ print("INPUT_CASE_ID " + CASE_ID);
+    ⚡ print("STATE_VALID " + STATE_VALID);
+    ⚡ print("STATE_LIMIT_EXCEEDED " + STATE_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STATE_RECORD_COUNT " + INVALID_STATE_RECORD_COUNT);
+    ⚡ print("INPUT_TOKEN_VALID " + INPUT_TOKEN_VALID);
+    ⚡ print("MEMBER_SHAPE_VALID " + MEMBER_SHAPE_VALID);
+    ⚡ print("MEMBERS_DISTINCT " + MEMBERS_DISTINCT);
+    ⚡ print("MEMBER_COUNT " + MEMBER_COUNT);
+    ⚡ print("WEIGHT_TEXT_VALID " + WEIGHT_TEXT_VALID);
+    ⚡ print("WEIGHT_RANGE_VALID " + WEIGHT_RANGE_VALID);
+    ⚡ print("UNCERTAINTY_TEXT_VALID " + UNCERTAINTY_TEXT_VALID);
+    ⚡ print("UNCERTAINTY_RANGE_VALID " + UNCERTAINTY_RANGE_VALID);
+    ⚡ print("NEW_EDGE_VALID " + NEW_EDGE_VALID);
+    ⚡ print("EXACT_EDGE_ALREADY_PRESENT " + EXACT_EDGE_ALREADY_PRESENT);
+    ⚡ print("EDGE_ID_CONFLICT " + EDGE_ID_CONFLICT);
+    ⚡ print("CAPACITY_AVAILABLE " + CAPACITY_AVAILABLE);
+    ⚡ print("WRITE_ELIGIBLE " + WRITE_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED " + WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC " + WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH " + WRITE_READBACK_MATCH);
+    ⚡ print("EDGE_RETAINED " + EDGE_RETAINED);
+    ⚡ print("STATE_MUTATED " + STATE_MUTATED);
+    ⚡ print("EDGE_COUNT_BEFORE " + EDGE_COUNT_BEFORE);
+    ⚡ print("EDGE_COUNT_AFTER " + EDGE_COUNT_AFTER);
+    ⚡ print("ANCHOR_INCIDENT_EDGE_COUNT_BEFORE " + ANCHOR_INCIDENT_EDGE_COUNT_BEFORE);
+    ⚡ print("ANCHOR_INCIDENT_EDGE_COUNT_AFTER " + ANCHOR_INCIDENT_EDGE_COUNT_AFTER);
+    ⚡ print("ANCHOR_WEIGHT_SUM_BP_BEFORE " + ANCHOR_WEIGHT_SUM_BP_BEFORE);
+    ⚡ print("ANCHOR_WEIGHT_SUM_BP_AFTER " + ANCHOR_WEIGHT_SUM_BP_AFTER);
+    ⚡ print("MAX_HYPEREDGE_RECORDS " + MAX_HYPEREDGE_RECORDS);
+    ⚡ print("V4PK1_STATUS " + STATUS);
+    ⚡ print("SEMANTIC_UNDERSTANDING NOT_PROVEN");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION NO");
+}
