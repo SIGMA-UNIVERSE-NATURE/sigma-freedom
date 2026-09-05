@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP07-TERMINAL-WORKER-PASS-CANDIDATE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "WORKER_PASS_CANDIDATE_TERMINAL_CHECKPOINT",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "pre_pass_audit_checkpoint_commit_sha": "021770b1e06f2952cb49fa7488b599c1735a722f",
+  "result_commit_sha": "e4d5d0db535e1c3861ed2cf41b13a912070bfcf6",
+  "handoff_commit_sha": "892a3a60d5acb4091b00d67e325004d6d2683761",
+  "report_commit_sha": "13848d1bda287bb938d84d38bbb3a3502b012319",
+  "academic_counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 98,
+    "sources": 4,
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "cross_links": 17,
+    "sequence_intent_records": 10
+  },
+  "terminal_audit_summary": {
+    "topic_coverage_percent": 100,
+    "claim_to_learning_objective_closure_percent": 100,
+    "future_or_locked_scope_support_claim_ids": 0,
+    "mandatory_internal_overlap_dispositions_passed": 6,
+    "source_determinism_passed": 4,
+    "sequence_graph_acyclic": true,
+    "C04_opened_or_authored": false,
+    "post_CURRICULUM_artifacts_authored": false,
+    "committed_read_back_completed": true
+  },
+  "director_gate": {
+    "worker_result": "PASS_CANDIDATE",
+    "director_acceptance": "PENDING",
+    "next_window": "C01-W02-B1.1-MATH-FAMILY-C04",
+    "next_window_gate": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+    "required_director_state": "DIRECTOR_ACCEPTED_PASS",
+    "C04_unlocked_by_worker": false
+  },
+  "next_action": "Update STATUS.json to terminal worker PASS candidate state, then read STATUS/RESULT/HANDOFF/CP07 from GitHub and verify branch head equals the STATUS update commit before reporting PASS to the user."
+}
