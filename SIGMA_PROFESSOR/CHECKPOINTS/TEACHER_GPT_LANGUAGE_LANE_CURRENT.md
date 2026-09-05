@@ -219,27 +219,117 @@ Claim scope:
 
 Native bounded two-candidate structural reference-evidence integration with persisted provenance, aggregate ambiguity, conservative antecedent preference, duplicate suppression, collision refusal, counterevidence revision, persistence/restart/replay, and bounded capacity. This does **not** prove resolved referents, general coreference resolution, pronoun semantics, real-world entity identity, discourse semantics, or semantic understanding.
 
-## CURRENT LANGUAGE FRONTIER
+## CURRENT LANGUAGE FRONTIER — LANG-02A SOURCE READY R1 / ADMISSION NOT RUN
 
-`LANG-01A -> LANG-01B -> LANG-01C -> LANG-01D -> LANG-01E -> LANG-01F -> LANG-01G` are admitted in their exact tested structural scopes.
+Dependency/capability re-selection was run after LANG-01G admission. The broader `LANG-02_NEGATION_AND_SCOPE_FOUNDATION` is deliberately decomposed rather than admitted as one semantic jump.
 
-`LANG-02_NEGATION_AND_SCOPE_FOUNDATION=DEFERRED_NOT_REJECTED` remains queued. Do not begin it merely by numeric order; re-run dependency/capability selection under the Global Native Teaching Standard before selecting the next lesson.
+Selected smallest next capability:
+
+`LANG-02A_NATIVE_OPERATOR_SCOPE_BINDING`
+
+Selection rationale:
+
+- LANG-01A already supplies an admitted bounded structural event/frame-hypothesis substrate; LANG-01B..01G remain admitted but do not by themselves prove operator scope.
+- the locked runtime has a previously admitted `to_int` integer-text ABI in exact tested scope (DNA-11 substrate), sufficient for bounded structural coordinates without host scope scoring;
+- before any polarity/negation lesson can be taught, SIGMA needs a native structural rule for attaching an explicitly supplied operator record to candidate structural spans;
+- therefore the smallest missing capability is structural operator-to-scope binding, not natural-language negation recognition and not truth inversion.
+
+Teaching contract for R1:
+
+- scope record: `SCOPE||scope_id||start||end||SOURCE||source_id`
+- operator record: `OPERATOR||operator_id||position||CLASS||SCOPE_OPERATOR||SOURCE||source_id`
+- exactly one operator record;
+- inclusive enclosure: `start <= operator_position <= end`;
+- unique smallest enclosing width -> `SELECTED_STRUCTURAL_SCOPE`;
+- equal minimum width across distinct scope IDs -> `AMBIGUOUS_SCOPE_BINDING`;
+- no enclosing scope -> `NO_ENCLOSING_SCOPE`;
+- exact duplicate scope ID+fingerprint is idempotent;
+- same scope ID with different fingerprint is a collision/refusal;
+- capacity is 8 unique scopes;
+- candidate encounter order must not define the winner;
+- capability is pure in this preflight: `PERSISTENT_STATE=NA`;
+- host supplies fixtures only and performs exact post-VM oracle checks; host does not calculate scope width, enclosure, ambiguity, or winner.
+
+Canonical R1 native source:
+
+- `NATIVE_SOURCE_PATH=SIGMA_PROFESSOR/artifacts/SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_V1.sigma`
+- `SOURCE_COMMIT=32df3e826656f6c06ec6379b8bc3a378ce446bf4`
+- `SOURCE_GIT_BLOB=226b06c337c09f3e0dc3f35a44c3ba22d73affaf`
+- `SOURCE_SHA256=7a40e92e11c7c89574d3b975bb3210a7a7a23690251951da68be9e7edbfe292b`
+
+Locked-VM R1 runner:
+
+- `RUNNER_PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_PREFLIGHT.sh`
+- `RUNNER_COMMIT=685eba8fa2f6fbe74ccc5c0c4c1934f4cc5d7e06`
+- `RUNNER_GIT_BLOB=269b7cc0f44f2d442cabd9ae079f0bad97efd69a`
+- `RUNNER_SHA256=720148bb4d22acb23e47118139095b4e73816491029ea2555448641779fc5bc4`
+- `RUNNER_STATIC_SHELL_SYNTAX=PASS`
+- `PLANNED_VM_INVOCATIONS=20`
+- `SCOPE_CAPACITY=8`
+- `PERSISTENT_STATE=NA`
+- `NATIVE_SOURCE_OPERATOR_NOT_EQUAL_PRESENT=NO`
+- `FORBIDDEN_FUTURE_UTTERANCE_PRESENT_IN_NATIVE_SOURCE=NO`
+- `SURFACE_NEGATION_TOKEN_RECOGNITION_LOGIC_PRESENT=NO`
+- `FIXTURE_WINNER_ID_PRESENT_IN_NATIVE_SOURCE=NO`
+- `HOST_SCOPE_SELECTION=NO`
+- `HOST_OPERATOR_INTERPRETATION=NO`
+- `HOST_LEARNING=NO`
+- `HOST_SEMANTIC_INTERPRETATION=NO`
+- `HOST_POST_VM_TEST_ORACLE_ONLY=YES`
+
+Pre-runtime runner audit history:
+
+- an authoring-only static audit found CASE_001 accidentally called the mechanical `pass_case` counter twice;
+- this was repaired before any locked SIGMAC/VM execution by removing the duplicate call;
+- `NATIVE_SOURCE_CHANGED=NO`;
+- `COGNITIVE_POLICY_CHANGED=NO`;
+- `ORACLE_CASES_CHANGED=NO`;
+- this is not a runtime/admission failure because the locked runtime had not been invoked.
+
+R1 admission matrix covers 20 fresh-VM invocations: single/nested/three-level scopes; order permutation; disjoint scope; equal-minimum ambiguity; no-enclosing result; inclusive left/right boundaries; invalid range; exact duplicate; ID collision; multiple operator refusal; malformed scope/operator refusal; ninth-scope capacity refusal; opaque high-entropy IDs/dynamic coordinates; reordered dynamic evidence; and byte-identical fresh-VM replay.
+
+Current proof state:
+
+- `LOCKED_SIGMAC_COMPILE=NOT_RUN`
+- `BYTECODE_SHA256=UNKNOWN`
+- `TOTAL_VM_INVOCATIONS=0`
+- `RUNTIME_PROOF=NOT_RUN`
+- `LOCKED_TERMUX_EXECUTION_FROM_CURRENT_WINDOW=UNAVAILABLE`
+- `PRODUCTION_STATE_MUTATED=NO`
+- `ADMISSION=NOT_RUN`
+
+Claim boundary for LANG-02A R1 even if the preflight later passes:
+
+- `NUMERIC_TEXT_GENERAL_VALIDATION=NOT_PROVEN`
+- `SURFACE_NEGATION_RECOGNITION=NOT_PROVEN`
+- `LOGICAL_NEGATION=NOT_PROVEN`
+- `PROPOSITION_TRUTH=NOT_PROVEN`
+- `SEMANTIC_SCOPE=NOT_PROVEN`
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+- `PRODUCTION_BINDING=NO`
+- `PRODUCTION_READINESS=NOT_PROVEN`
+
+Broader frontier:
+
+- `LANG-02_NEGATION_AND_SCOPE_FOUNDATION=DECOMPOSED_NOT_ADMITTED`
+- `LANG-02A_NATIVE_OPERATOR_SCOPE_BINDING=SELECTED_SOURCE_READY_R1`
+- later polarity/negation attachment remains unselected until LANG-02A closes or is explicitly blocked/deferred based on locked-runtime evidence.
 
 Next language action:
 
-`NEXT_LANGUAGE_CAPABILITY=RESELECT_BY_DEPENDENCY_FIRST_NATIVE_PREFLIGHT`
-
-No production binding is implied by LANG-01G admission.
+`RUN_LANG_02A_R1_ON_LOCKED_TERMUX_SIGMAC_AND_VM`
 
 ## CLAIM BOUNDARIES FOR THE LANGUAGE LANE
 
-Even with LANG-01A..01G admitted:
+Even with LANG-01A..01G admitted and LANG-02A source-ready only:
 
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
 - `COREFERENCE_RESOLUTION=NOT_PROVEN`
 - `REAL_WORLD_ENTITY_IDENTITY=NOT_PROVEN`
 - `PRONOUN_SEMANTICS=NOT_PROVEN`
 - `DISCOURSE_SEMANTICS=NOT_PROVEN`
+- `LOGICAL_NEGATION=NOT_PROVEN`
+- `SEMANTIC_SCOPE=NOT_PROVEN`
 - `UNICODE_NORMALIZATION=NOT_PROVEN`
 - `BOUNDED_FILE_IO=NOT_PROVEN`
 - `PRODUCTION_READINESS=NOT_PROVEN`
