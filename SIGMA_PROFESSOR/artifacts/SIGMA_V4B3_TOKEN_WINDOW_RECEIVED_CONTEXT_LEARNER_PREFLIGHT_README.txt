@@ -50,9 +50,11 @@ Runner
 ------
 SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V4B3_TOKEN_WINDOW_RECEIVED_CONTEXT_LEARNER_PREFLIGHT.sh
 Git blob:
-c5738a9b2bee249dea3cce77263b6a721d21b7d8
+411d281dfcebd30a24c4c71234fad230936cb177
 Runner commit:
-1b5822463147ec6769f71808c1144c5f07300eee
+87bb51ea149c0be459cd415790ef9d15547ce8fa
+
+Runner additionally refuses preflight if production V2.4 is not running.
 
 Static
 ------
