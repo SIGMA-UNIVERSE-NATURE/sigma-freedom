@@ -1,0 +1,26 @@
+{
+  "checkpoint_id": "CP14-B1_1-FOUNDATIONAL-AUDIT-ACTIVATION-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "sentinel_status": "TREE_ALIGNMENT_PASS",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_blob": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "current_stage": "CURRICULUM",
+  "active_scope": "B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "active_window": "DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "active_branch": "hka-tree/curriculum-master",
+  "accepted_predecessor": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
+  "accepted_scopes": "B1.1-C01 THROUGH B1.1-C10",
+  "C10_acceptance": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
+  "foundational_gate": {
+    "status": "ACTIVE_REQUIRED",
+    "audit_status": "ACTIVE_NOT_YET_PASS",
+    "required_gap_count": 0,
+    "B1_2_unlock": false
+  },
+  "state_registry_snapshot_gate_match": "PASS",
+  "pipeline_boundary": "PASS_CURRICULUM_ONLY",
+  "B1_2_status": "LOCKED",
+  "post_curriculum_stages": "GATED",
+  "alerts": [],
+  "durable_next_action": "Run B1.1 Foundational 13-Year Coverage Audit across C01-C10 using full general-education progressions across at least five continents. Repair concrete gaps at true owner scopes until FOUNDATIONAL_GAP_COUNT=0."
+}
