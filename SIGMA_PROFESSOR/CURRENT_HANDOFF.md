@@ -82,97 +82,147 @@ Still NOT PROVEN generally:
 Checkpoint:
 `1e07738afce2bd5f111eb7861ebcdcdf3ab4472c`
 
-Observed real shadow chain on the first work:
+Observed first-work real shadow sequence:
 
-- generation `||` completed;
-- exact-cycle `||` result `NOT_REOBSERVED`;
-- lifecycle `REVISIT`;
-- next native event `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b::|||::EXECUTE_REVISIT`.
+`... -> generation || -> NOT_REOBSERVED -> REVISIT -> 0ac783...::|||::EXECUTE_REVISIT`
 
-Audit result:
+Result:
 
-- `V218R1_SHADOW_PRODUCTION_STARVATION_AUDIT=PASS`;
-- `SHADOW_PRODUCTION_PROMOTION=BLOCKED`;
-- `PROMOTION_BLOCKER=IMMEDIATE_CONSECUTIVE_REVISIT_STARVATION_RISK`;
+- audit PASS;
+- promotion BLOCKED;
+- blocker = immediate consecutive revisit starvation risk;
 - synthetic archive used = NO;
-- production V2.4 remained running = PASS;
-- shadow state namespace isolation = PASS;
-- `PRODUCTION_PROMOTION_ALLOWED=NO`.
+- production V2.4 remained running;
+- shadow namespace isolation PASS.
 
-This does not invalidate the bounded V2.17 multi-document claim. It blocks production promotion because revisit fairness governance is missing.
+## V2.19R.1 native revisit fairness / anti-starvation scheduler — PASS
 
-## Current frontier — V2.19R.1 native revisit fairness / anti-starvation scheduler — SOURCE READY
-
-New native source:
-`SIGMA_PROFESSOR/artifacts/SIGMA_REVISIT_FAIRNESS_ANTI_STARVATION_SCHEDULER_V2_19R1.sigma`
+Native source:
+`SIGMA_REVISIT_FAIRNESS_ANTI_STARVATION_SCHEDULER_V2_19R1.sigma`
 
 Source SHA256:
 `e0734dbbdb6f0bad3d6577f9a9b20eb3a13dd9c3489caebd7f6f58bb15200ad0`
 
-Source artifact commit:
-`a03ec1d456c2e75b1ac251fbfdf0c7c0f03f0823`
-
-User-delivery runner:
-`RUN_SIGMA_V219R1_REVISIT_FAIRNESS_ANTI_STARVATION_PREFLIGHT.sh`
-
 Runner SHA256:
 `e390445d0fd7439043ea3fb75c90661d78fb0321245b2c81d959f508370dd8e1`
 
-Source-ready checkpoint:
-`dd4f05712073d7f360ff02bd9ef6e211e70cc108`
+PASS checkpoint:
+`e44e84a37168cc193721d80a68cb58f331378280`
 
-### Capability contract
+Admitted claim:
 
-Persistent fairness ledger:
+`NATIVE_REVISIT_FAIRNESS_QUEUE=PROVEN_IN_BOUNDED_TESTED_SCOPE`
 
-`EVENT=<exact event> || STATUS=<PENDING|RESUMED> || AT=<dispatch-token> || COMMIT=YES`
+Policy:
 
-Policy is structural and does NOT use a hardcoded revisit-count quota:
-
-- if terminal stage is `EXECUTE_REVISIT` and committed survey work remains undispatched, persist the exact revisit event as PENDING and schedule `SELECT_NEXT_WORK`;
-- native dispatch token = one `|` per unique committed selector dispatch;
-- pending revisit matures only after selector dispatch progress plus a scheduling turn from a different work;
+- immediate revisit is deferred while undispatched work exists;
+- exact revisit event is persisted as PENDING;
+- pending event matures only after selector dispatch progress plus a turn from a different work;
 - oldest mature pending revisit resumes first;
-- if the different work also requests revisit, persist that current event before the older event resumes, allowing queue rotation;
-- if no undispatched alternative exists, revisit executes instead of being lost;
+- current revisit is queued before older pending event resumes, enabling rotation;
+- no alternative work -> revisit executes rather than being lost;
 - revisit evidence is never deleted;
-- host chooses neither fairness decision nor revisit priority.
+- host decides neither fairness nor priority.
 
-### Admission gates
+Admission evidence includes real V2.18 starvation-event deferral, fresh-VM defer reuse, A/B/C rotation, deterministic ledger replay, selector/survey inconsistency refusal, partial commit filtering and bounded refusals.
 
-- exact real V2.18 starvation event against real frozen 56-document survey -> defer to `SELECT_NEXT_WORK`;
-- fresh-VM same selector progress -> no duplicate pending record;
-- synthetic A/B/C oldest-pending rotation;
-- current revisit preserved while older pending revisit resumes;
-- deterministic full queue replay with exact fairness-ledger hash;
-- selector/survey inconsistency refusal with no fairness mutation;
-- no-alternative revisit execution;
-- `SELECT_NEXT_WORK` passthrough;
-- partial fairness commit filter;
-- invalid stage refusal;
-- survey/selector/fairness bounded refusals.
+## V2.20R.1 fairness shadow-production integration — PASS
 
-Static checks:
+PASS checkpoint:
+`596a9620a7046d431f89ed5006332c1e1cfa4415`
 
-- `H_CALL_ARITY_AUDIT=PASS`;
-- `NATIVE_NOT_EQUAL_DEPENDENCY=NONE`;
-- `STR_STARTS_DEPENDENCY=NONE`;
-- `DIRECT_STR_DEPENDENCY=NONE`;
-- runner `bash -n` RC = 0.
+Real integrated sequence:
 
-### Claim limits before runtime admission
+1. first real work reaches `|||::EXECUTE_REVISIT`;
+2. V2.19 defers exact event and schedules other work;
+3. real second work selected and completes real `REOBSERVED -> ARCHIVE_FOR_NOW` cycle;
+4. V2.19 resumes exact pending first `|||::EXECUTE_REVISIT`;
+5. clean fresh host process recovers persisted resume intent;
+6. generation `|||` executes completely;
+7. first work remains unresolved and emits `||||::EXECUTE_REVISIT`;
+8. V2.19 defers it again;
+9. real third work is selected.
 
-- `NATIVE_REVISIT_FAIRNESS_QUEUE=NOT_PROVEN`;
-- `REAL_SHADOW_ANTI_STARVATION_INTEGRATION=NOT_PROVEN`;
-- `PRODUCTION_PROMOTION_ALLOWED=NO`;
-- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
-- `BOUNDED_FILE_IO=NOT_PROVEN`;
-- `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`.
+Admitted claim:
+
+`REAL_SHADOW_ANTI_STARVATION_INTEGRATION=PROVEN_IN_FIRST_SECOND_THIRD_WORK_SCOPE`
+
+Also PASS:
+
+- cycle identity preserved on resumed revisit;
+- clean supervisor restart recovers defer and resume intents from fully committed files;
+- shadow namespace isolation;
+- production V2.4 remained running with same observed PID during test;
+- host fairness/stage/work/revisit-priority decisions = NO.
+
+Promotion remains:
+
+`PRODUCTION_PROMOTION_ALLOWED=NO`
+
+because long-horizon stability and mid-append crash atomicity are not yet proven.
+
+## Current frontier — V2.21R.1 long-horizon shadow stability/recovery — SOURCE READY
+
+Runner:
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V221R1_LONG_HORIZON_SHADOW_STABILITY_RECOVERY_PREFLIGHT.sh`
+
+Runner SHA256:
+`c6ab9129af4692c4e134c39b088917c047864ccbf977a5314c0dc0f9322b0f3d`
+
+Runner commit:
+`266575729ef2ef2fdcbf473341ced8b4b684932b`
+
+README commit:
+`ac7c0adcc306711dabb29b050853b56e1df74079`
+
+Source-ready checkpoint:
+`826b87134ced237ac430cb1e2cafdb51fed786e1`
+
+### Admission target
+
+Extend the admitted V2.20 real shadow chain through six fairness scheduling boundaries and at least four real works.
+
+Required sequence:
+
+- first starvation defer;
+- second real work complete cycle -> resume exact first `|||`;
+- first `|||` complete -> redefer `||||` -> third work;
+- admitted third real work `REOBSERVED -> ARCHIVE_FOR_NOW` -> resume first `||||`;
+- first `||||` completes; its new branch is NOT hardcoded, but fairness must result in `SELECT_NEXT_WORK` so fourth work is reached;
+- fourth real work completes initial deep/revalidation/lifecycle with NO branch oracle;
+- fourth terminal event passes through fairness and persists the next continuation intent.
+
+Fresh-host recovery is required at every extended persisted-event boundary.
+
+PASS requires at least:
+
+- 4 selector dispatch records;
+- 2 PENDING fairness records;
+- 2 RESUMED fairness records;
+- exact event identity preserved;
+- production V2.4 same runner PID before/after;
+- shadow namespace isolation.
+
+Allowed claim after locked-runtime PASS only:
+
+`LONG_HORIZON_SHADOW_STABILITY=PROVEN_IN_SIX_BOUNDARY_FOUR_REAL_WORK_SCOPE`
+
+### Promotion status after V2.21
+
+Even after PASS:
+
+`PRODUCTION_PROMOTION_ALLOWED=NO`
+
+Remaining blocker:
+
+`MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`
+
+Current host `write_text` / `append_text` semantics are not proven crash-atomic.
 
 ## NEXT ACTION
 
 1. Keep V2.4 running unchanged.
-2. Install exact V2.19 source SHA `e0734dbb...200ad0` and runner SHA `e390445d...dd8e1` from repo root `~/SIGMA/sigma-freedom-write`.
-3. Run locked sigmac + VM v09 and preserve printed runtime identities, bytecode SHA, every VM_RC, scheduled events and fairness-state hashes.
+2. Install exact V2.21 runner SHA from repo root `~/SIGMA/sigma-freedom-write`.
+3. Run locked sigmac + VM v09; preserve runtime identities, all VM_RC, first generation-|||| branch, fourth-work result/action, fairness ledger counts and persisted recovery events.
 4. If any gate fails, preserve evidence and repair only the narrow failure.
-5. If V2.19 PASS, checkpoint before integrating fairness into the real V2.18 shadow-production chain; production promotion remains blocked until that integration passes.
+5. If V2.21 PASS, checkpoint it and then teach/admit a crash-consistent transactional state protocol before any production promotion.
