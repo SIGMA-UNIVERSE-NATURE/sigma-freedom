@@ -1,0 +1,1480 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.STATE.CRASH.CONSISTENT.TRANSACTION.JOURNAL][VERSION=2.22R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.CRASH_CONSISTENT_TRANSACTION_JOURNAL_V222R1) {
+
+    ⚡ MODE:
+        H("read_text", ".sigma_exec/SIGMA_V222R1_MODE.memory", NULL, NULL);
+
+    ⚡ TX_ID:
+        H("read_text", ".sigma_exec/SIGMA_V222R1_TX_ID.memory", NULL, NULL);
+
+    ⚡ TX_PAYLOAD:
+        H("read_text", ".sigma_exec/SIGMA_V222R1_TX_PAYLOAD.memory", NULL, NULL);
+
+    ⚡ JOURNAL_PATH:
+        H("read_text", ".sigma_exec/SIGMA_V222R1_JOURNAL_PATH.memory", NULL, NULL);
+
+    ⚡ JOURNAL_TEXT:
+        H("read_text", JOURNAL_PATH, NULL, NULL);
+
+    ⚡ JOURNAL_LINES:
+        H("str_split", JOURNAL_TEXT, "\n", NULL);
+
+    ⚡ JOURNAL_LINE_TOTAL:
+        H("list_len", JOURNAL_LINES, NULL, NULL);
+
+    ⚡ MAX_JOURNAL_SPLIT_LINES:
+        65;
+
+    ⚡ JOURNAL_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_JOURNAL_SPLIT_LINES < JOURNAL_LINE_TOTAL) {
+        ⚡ JOURNAL_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ MODE_VALID:
+        0;
+
+    IF (MODE == "RECOVER_ONLY") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    IF (MODE == "PREPARE_ONLY") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    IF (MODE == "COMMIT_TRANSACTION") {
+        ⚡ MODE_VALID:
+            1;
+    }
+
+    ⚡ TX_INPUT_REQUIRED:
+        0;
+
+    IF (MODE == "PREPARE_ONLY") {
+        ⚡ TX_INPUT_REQUIRED:
+            1;
+    }
+
+    IF (MODE == "COMMIT_TRANSACTION") {
+        ⚡ TX_INPUT_REQUIRED:
+            1;
+    }
+
+    ⚡ TX_INPUT_VALID:
+        1;
+
+    IF (TX_INPUT_REQUIRED) {
+
+        IF (TX_ID == "") {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+
+        IF (TX_PAYLOAD == "") {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+
+        ⚡ TX_ID_NEWLINE_PARTS:
+            H("str_split", TX_ID, "\n", NULL);
+
+        ⚡ TX_ID_NEWLINE_TOTAL:
+            H("list_len", TX_ID_NEWLINE_PARTS, NULL, NULL);
+
+        ⚡ TX_ID_NEWLINE_OK:
+            0;
+
+        IF (TX_ID_NEWLINE_TOTAL == 1) {
+            ⚡ TX_ID_NEWLINE_OK:
+                1;
+        }
+
+        IF (TX_ID_NEWLINE_OK == 0) {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+
+        ⚡ TX_PAYLOAD_NEWLINE_PARTS:
+            H("str_split", TX_PAYLOAD, "\n", NULL);
+
+        ⚡ TX_PAYLOAD_NEWLINE_TOTAL:
+            H("list_len", TX_PAYLOAD_NEWLINE_PARTS, NULL, NULL);
+
+        ⚡ TX_PAYLOAD_NEWLINE_OK:
+            0;
+
+        IF (TX_PAYLOAD_NEWLINE_TOTAL == 1) {
+            ⚡ TX_PAYLOAD_NEWLINE_OK:
+                1;
+        }
+
+        IF (TX_PAYLOAD_NEWLINE_OK == 0) {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+
+        ⚡ TX_ID_DELIM_PARTS:
+            H("str_split", TX_ID, " || ", NULL);
+
+        ⚡ TX_ID_DELIM_TOTAL:
+            H("list_len", TX_ID_DELIM_PARTS, NULL, NULL);
+
+        ⚡ TX_ID_DELIM_OK:
+            0;
+
+        IF (TX_ID_DELIM_TOTAL == 1) {
+            ⚡ TX_ID_DELIM_OK:
+                1;
+        }
+
+        IF (TX_ID_DELIM_OK == 0) {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+
+        ⚡ TX_PAYLOAD_DELIM_PARTS:
+            H("str_split", TX_PAYLOAD, " || ", NULL);
+
+        ⚡ TX_PAYLOAD_DELIM_TOTAL:
+            H("list_len", TX_PAYLOAD_DELIM_PARTS, NULL, NULL);
+
+        ⚡ TX_PAYLOAD_DELIM_OK:
+            0;
+
+        IF (TX_PAYLOAD_DELIM_TOTAL == 1) {
+            ⚡ TX_PAYLOAD_DELIM_OK:
+                1;
+        }
+
+        IF (TX_PAYLOAD_DELIM_OK == 0) {
+            ⚡ TX_INPUT_VALID:
+                0;
+        }
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (MODE_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (JOURNAL_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (TX_INPUT_REQUIRED) {
+        IF (TX_INPUT_VALID == 0) {
+            ⚡ STATE_MUTATION_ALLOWED:
+                0;
+        }
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ CLEAR_RECOVERED_RC:
+            H("write_text", ".sigma_exec/SIGMA_V222R1_RECOVERED_PAYLOAD.memory", "", NULL);
+
+        ⚡ print("SIGMA_V222R1_CRASH_CONSISTENT_TRANSACTION_JOURNAL");
+        ⚡ print("MODE", MODE);
+        ⚡ print("MODE_VALID", MODE_VALID);
+        ⚡ print("TX_INPUT_REQUIRED", TX_INPUT_REQUIRED);
+        ⚡ print("TX_INPUT_VALID", TX_INPUT_VALID);
+        ⚡ print("JOURNAL_LINE_TOTAL", JOURNAL_LINE_TOTAL);
+        ⚡ print("JOURNAL_LIMIT_EXCEEDED", JOURNAL_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("CLEAR_RECOVERED_RC", CLEAR_RECOVERED_RC);
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_TRANSACTION_DECISION", "NO");
+        ⚡ print("HOST_RECOVERY_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ PREPARE_PAYLOAD_BY_TX:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ PREPARE_SEEN:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ PREPARE_CONFLICT:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ VALID_PREPARE_RECORD_COUNT:
+            0;
+
+        ⚡ DUPLICATE_PREPARE_RECORD_COUNT:
+            0;
+
+        ⚡ CONFLICTING_PREPARE_RECORD_COUNT:
+            0;
+
+        ⚡ VALID_COMMIT_RECORD_COUNT:
+            0;
+
+        ⚡ COMMIT_WITHOUT_VALID_PREPARE_COUNT:
+            0;
+
+        ⚡ COMMIT_PAYLOAD_MISMATCH_COUNT:
+            0;
+
+        ⚡ IGNORED_MALFORMED_RECORD_COUNT:
+            0;
+
+        ⚡ L:
+            0;
+
+        WHILE (L < JOURNAL_LINE_TOTAL) {
+
+            ⚡ LINE:
+                H("list_get", JOURNAL_LINES, L, NULL);
+
+            ⚡ VALID_LINE:
+                1;
+
+            IF (LINE == "") {
+                ⚡ VALID_LINE:
+                    0;
+            }
+
+            IF (VALID_LINE) {
+
+                ⚡ PARTS:
+                    H("str_split", LINE, " || ", NULL);
+
+                ⚡ PART_TOTAL:
+                    H("list_len", PARTS, NULL, NULL);
+
+                ⚡ RECORD_VALID:
+                    0;
+
+                ⚡ RECORD_PHASE:
+                    "";
+
+                ⚡ RECORD_TX:
+                    "";
+
+                ⚡ RECORD_PAYLOAD:
+                    "";
+
+                IF (PART_TOTAL == 6) {
+
+                    ⚡ F0:
+                        H("list_get", PARTS, 0, NULL);
+
+                    ⚡ F1:
+                        H("list_get", PARTS, 1, NULL);
+
+                    ⚡ F2:
+                        H("list_get", PARTS, 2, NULL);
+
+                    ⚡ F3:
+                        H("list_get", PARTS, 3, NULL);
+
+                    ⚡ F4:
+                        H("list_get", PARTS, 4, NULL);
+
+                    ⚡ F5:
+                        H("list_get", PARTS, 5, NULL);
+
+                    ⚡ TX_PREFIX_PARTS:
+                        H("str_split", F0, "TX=", NULL);
+
+                    ⚡ TX_PREFIX_TOTAL:
+                        H("list_len", TX_PREFIX_PARTS, NULL, NULL);
+
+                    ⚡ TX_PREFIX_OK:
+                        0;
+
+                    IF (TX_PREFIX_TOTAL == 2) {
+
+                        ⚡ TX_PREFIX_LEFT:
+                            H("list_get", TX_PREFIX_PARTS, 0, NULL);
+
+                        IF (TX_PREFIX_LEFT == "") {
+
+                            ⚡ RECORD_TX:
+                                H("list_get", TX_PREFIX_PARTS, 1, NULL);
+
+                            ⚡ TX_EMPTY:
+                                0;
+
+                            IF (RECORD_TX == "") {
+                                ⚡ TX_EMPTY:
+                                    1;
+                            }
+
+                            IF (TX_EMPTY == 0) {
+                                ⚡ TX_PREFIX_OK:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ PHASE_PREFIX_PARTS:
+                        H("str_split", F1, "PHASE=", NULL);
+
+                    ⚡ PHASE_PREFIX_TOTAL:
+                        H("list_len", PHASE_PREFIX_PARTS, NULL, NULL);
+
+                    ⚡ PHASE_PREFIX_OK:
+                        0;
+
+                    IF (PHASE_PREFIX_TOTAL == 2) {
+
+                        ⚡ PHASE_PREFIX_LEFT:
+                            H("list_get", PHASE_PREFIX_PARTS, 0, NULL);
+
+                        IF (PHASE_PREFIX_LEFT == "") {
+
+                            ⚡ RECORD_PHASE:
+                                H("list_get", PHASE_PREFIX_PARTS, 1, NULL);
+
+                            IF (RECORD_PHASE == "PREPARE") {
+                                ⚡ PHASE_PREFIX_OK:
+                                    1;
+                            }
+
+                            IF (RECORD_PHASE == "COMMIT") {
+                                ⚡ PHASE_PREFIX_OK:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ PAYLOAD_PREFIX_PARTS:
+                        H("str_split", F2, "PAYLOAD=", NULL);
+
+                    ⚡ PAYLOAD_PREFIX_TOTAL:
+                        H("list_len", PAYLOAD_PREFIX_PARTS, NULL, NULL);
+
+                    ⚡ PAYLOAD_PREFIX_OK:
+                        0;
+
+                    IF (PAYLOAD_PREFIX_TOTAL == 2) {
+
+                        ⚡ PAYLOAD_PREFIX_LEFT:
+                            H("list_get", PAYLOAD_PREFIX_PARTS, 0, NULL);
+
+                        IF (PAYLOAD_PREFIX_LEFT == "") {
+
+                            ⚡ RECORD_PAYLOAD:
+                                H("list_get", PAYLOAD_PREFIX_PARTS, 1, NULL);
+
+                            ⚡ PAYLOAD_EMPTY:
+                                0;
+
+                            IF (RECORD_PAYLOAD == "") {
+                                ⚡ PAYLOAD_EMPTY:
+                                    1;
+                            }
+
+                            IF (PAYLOAD_EMPTY == 0) {
+                                ⚡ PAYLOAD_PREFIX_OK:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ TXLEN_PREFIX_PARTS:
+                        H("str_split", F3, "TXLEN=", NULL);
+
+                    ⚡ TXLEN_PREFIX_TOTAL:
+                        H("list_len", TXLEN_PREFIX_PARTS, NULL, NULL);
+
+                    ⚡ TXLEN_PREFIX_OK:
+                        0;
+
+                    ⚡ RECORD_TXLEN:
+                        "";
+
+                    IF (TXLEN_PREFIX_TOTAL == 2) {
+
+                        ⚡ TXLEN_PREFIX_LEFT:
+                            H("list_get", TXLEN_PREFIX_PARTS, 0, NULL);
+
+                        IF (TXLEN_PREFIX_LEFT == "") {
+
+                            ⚡ RECORD_TXLEN:
+                                H("list_get", TXLEN_PREFIX_PARTS, 1, NULL);
+
+                            ⚡ TXLEN_PREFIX_OK:
+                                1;
+                        }
+                    }
+
+                    ⚡ PLEN_PREFIX_PARTS:
+                        H("str_split", F4, "PLEN=", NULL);
+
+                    ⚡ PLEN_PREFIX_TOTAL:
+                        H("list_len", PLEN_PREFIX_PARTS, NULL, NULL);
+
+                    ⚡ PLEN_PREFIX_OK:
+                        0;
+
+                    ⚡ RECORD_PLEN:
+                        "";
+
+                    IF (PLEN_PREFIX_TOTAL == 2) {
+
+                        ⚡ PLEN_PREFIX_LEFT:
+                            H("list_get", PLEN_PREFIX_PARTS, 0, NULL);
+
+                        IF (PLEN_PREFIX_LEFT == "") {
+
+                            ⚡ RECORD_PLEN:
+                                H("list_get", PLEN_PREFIX_PARTS, 1, NULL);
+
+                            ⚡ PLEN_PREFIX_OK:
+                                1;
+                        }
+                    }
+
+                    ⚡ TX_CHAR_COUNT:
+                        H("str_len", RECORD_TX, NULL, NULL);
+
+                    ⚡ PAYLOAD_CHAR_COUNT:
+                        H("str_len", RECORD_PAYLOAD, NULL, NULL);
+
+                    ⚡ EXPECTED_TXLEN:
+                        "";
+
+                    ⚡ TI:
+                        0;
+
+                    WHILE (TI < TX_CHAR_COUNT) {
+
+                        ⚡ EXPECTED_TXLEN:
+                            EXPECTED_TXLEN + "|";
+
+                        ⚡ TI:
+                            TI + 1;
+                    }
+
+                    ⚡ EXPECTED_PLEN:
+                        "";
+
+                    ⚡ PI:
+                        0;
+
+                    WHILE (PI < PAYLOAD_CHAR_COUNT) {
+
+                        ⚡ EXPECTED_PLEN:
+                            EXPECTED_PLEN + "|";
+
+                        ⚡ PI:
+                            PI + 1;
+                    }
+
+                    ⚡ TXLEN_MATCH:
+                        0;
+
+                    IF (RECORD_TXLEN == EXPECTED_TXLEN) {
+                        ⚡ TXLEN_MATCH:
+                            1;
+                    }
+
+                    ⚡ PLEN_MATCH:
+                        0;
+
+                    IF (RECORD_PLEN == EXPECTED_PLEN) {
+                        ⚡ PLEN_MATCH:
+                            1;
+                    }
+
+                    ⚡ END_MATCH:
+                        0;
+
+                    IF (RECORD_PHASE == "PREPARE") {
+                        IF (F5 == "END=PREPARE") {
+                            ⚡ END_MATCH:
+                                1;
+                        }
+                    }
+
+                    IF (RECORD_PHASE == "COMMIT") {
+                        IF (F5 == "END=COMMIT") {
+                            ⚡ END_MATCH:
+                                1;
+                        }
+                    }
+
+                    IF (TX_PREFIX_OK) {
+                        IF (PHASE_PREFIX_OK) {
+                            IF (PAYLOAD_PREFIX_OK) {
+                                IF (TXLEN_PREFIX_OK) {
+                                    IF (PLEN_PREFIX_OK) {
+                                        IF (TXLEN_MATCH) {
+                                            IF (PLEN_MATCH) {
+                                                IF (END_MATCH) {
+                                                    ⚡ RECORD_VALID:
+                                                        1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                IF (RECORD_VALID) {
+
+                    IF (RECORD_PHASE == "PREPARE") {
+
+                        ⚡ PREP_EXISTS:
+                            H("map_has", PREPARE_SEEN, RECORD_TX, NULL);
+
+                        IF (PREP_EXISTS == FALSE) {
+
+                            ⚡ MARK_PREPARE:
+                                H("map_set", PREPARE_SEEN, RECORD_TX, 1);
+
+                            ⚡ SET_PREPARE_PAYLOAD:
+                                H("map_set", PREPARE_PAYLOAD_BY_TX, RECORD_TX, RECORD_PAYLOAD);
+
+                            ⚡ VALID_PREPARE_RECORD_COUNT:
+                                VALID_PREPARE_RECORD_COUNT + 1;
+                        }
+
+                        IF (PREP_EXISTS) {
+
+                            ⚡ OLD_PREPARE_PAYLOAD:
+                                H("map_get", PREPARE_PAYLOAD_BY_TX, RECORD_TX, NULL);
+
+                            IF (OLD_PREPARE_PAYLOAD == RECORD_PAYLOAD) {
+
+                                ⚡ DUPLICATE_PREPARE_RECORD_COUNT:
+                                    DUPLICATE_PREPARE_RECORD_COUNT + 1;
+                            }
+
+                            ⚡ PREPARE_PAYLOAD_DIFFERENT:
+                                1;
+
+                            IF (OLD_PREPARE_PAYLOAD == RECORD_PAYLOAD) {
+                                ⚡ PREPARE_PAYLOAD_DIFFERENT:
+                                    0;
+                            }
+
+                            IF (PREPARE_PAYLOAD_DIFFERENT) {
+
+                                ⚡ SET_PREPARE_CONFLICT:
+                                    H("map_set", PREPARE_CONFLICT, RECORD_TX, 1);
+
+                                ⚡ CONFLICTING_PREPARE_RECORD_COUNT:
+                                    CONFLICTING_PREPARE_RECORD_COUNT + 1;
+                            }
+                        }
+                    }
+
+                    IF (RECORD_PHASE == "COMMIT") {
+                        ⚡ VALID_COMMIT_RECORD_COUNT:
+                            VALID_COMMIT_RECORD_COUNT + 1;
+                    }
+                }
+
+                IF (RECORD_VALID == 0) {
+                    ⚡ IGNORED_MALFORMED_RECORD_COUNT:
+                        IGNORED_MALFORMED_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ L:
+                L + 1;
+        }
+
+        ⚡ RECOVERED_TX:
+            "";
+
+        ⚡ RECOVERED_PAYLOAD:
+            "";
+
+        ⚡ RECOVERED_COMMIT_COUNT:
+            0;
+
+        ⚡ DUPLICATE_VALID_COMMIT_COUNT:
+            0;
+
+        ⚡ COMMITTED_TX_SEEN:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ COMMITTED_PAYLOAD_BY_TX:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ C:
+            0;
+
+        WHILE (C < JOURNAL_LINE_TOTAL) {
+
+            ⚡ CLINE:
+                H("list_get", JOURNAL_LINES, C, NULL);
+
+            ⚡ CVALID_LINE:
+                1;
+
+            IF (CLINE == "") {
+                ⚡ CVALID_LINE:
+                    0;
+            }
+
+            IF (CVALID_LINE) {
+
+                ⚡ CPARTS:
+                    H("str_split", CLINE, " || ", NULL);
+
+                ⚡ CPART_TOTAL:
+                    H("list_len", CPARTS, NULL, NULL);
+
+                ⚡ COMMIT_RECORD_VALID:
+                    0;
+
+                ⚡ COMMIT_TX:
+                    "";
+
+                ⚡ COMMIT_PAYLOAD:
+                    "";
+
+                IF (CPART_TOTAL == 6) {
+
+                    ⚡ CF0:
+                        H("list_get", CPARTS, 0, NULL);
+
+                    ⚡ CF1:
+                        H("list_get", CPARTS, 1, NULL);
+
+                    ⚡ CF2:
+                        H("list_get", CPARTS, 2, NULL);
+
+                    ⚡ CF3:
+                        H("list_get", CPARTS, 3, NULL);
+
+                    ⚡ CF4:
+                        H("list_get", CPARTS, 4, NULL);
+
+                    ⚡ CF5:
+                        H("list_get", CPARTS, 5, NULL);
+
+                    ⚡ CTX_PARTS:
+                        H("str_split", CF0, "TX=", NULL);
+
+                    ⚡ CTX_TOTAL:
+                        H("list_len", CTX_PARTS, NULL, NULL);
+
+                    ⚡ CTX_OK:
+                        0;
+
+                    IF (CTX_TOTAL == 2) {
+
+                        ⚡ CTX_LEFT:
+                            H("list_get", CTX_PARTS, 0, NULL);
+
+                        IF (CTX_LEFT == "") {
+
+                            ⚡ COMMIT_TX:
+                                H("list_get", CTX_PARTS, 1, NULL);
+
+                            ⚡ COMMIT_TX_EMPTY:
+                                0;
+
+                            IF (COMMIT_TX == "") {
+                                ⚡ COMMIT_TX_EMPTY:
+                                    1;
+                            }
+
+                            IF (COMMIT_TX_EMPTY == 0) {
+                                ⚡ CTX_OK:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ CPHASE_OK:
+                        0;
+
+                    IF (CF1 == "PHASE=COMMIT") {
+                        ⚡ CPHASE_OK:
+                            1;
+                    }
+
+                    ⚡ CPAYLOAD_PARTS:
+                        H("str_split", CF2, "PAYLOAD=", NULL);
+
+                    ⚡ CPAYLOAD_TOTAL:
+                        H("list_len", CPAYLOAD_PARTS, NULL, NULL);
+
+                    ⚡ CPAYLOAD_OK:
+                        0;
+
+                    IF (CPAYLOAD_TOTAL == 2) {
+
+                        ⚡ CPAYLOAD_LEFT:
+                            H("list_get", CPAYLOAD_PARTS, 0, NULL);
+
+                        IF (CPAYLOAD_LEFT == "") {
+
+                            ⚡ COMMIT_PAYLOAD:
+                                H("list_get", CPAYLOAD_PARTS, 1, NULL);
+
+                            ⚡ COMMIT_PAYLOAD_EMPTY:
+                                0;
+
+                            IF (COMMIT_PAYLOAD == "") {
+                                ⚡ COMMIT_PAYLOAD_EMPTY:
+                                    1;
+                            }
+
+                            IF (COMMIT_PAYLOAD_EMPTY == 0) {
+                                ⚡ CPAYLOAD_OK:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ CTXLEN_PARTS:
+                        H("str_split", CF3, "TXLEN=", NULL);
+
+                    ⚡ CTXLEN_TOTAL:
+                        H("list_len", CTXLEN_PARTS, NULL, NULL);
+
+                    ⚡ CTXLEN:
+                        "";
+
+                    ⚡ CTXLEN_OK:
+                        0;
+
+                    IF (CTXLEN_TOTAL == 2) {
+
+                        ⚡ CTXLEN_LEFT:
+                            H("list_get", CTXLEN_PARTS, 0, NULL);
+
+                        IF (CTXLEN_LEFT == "") {
+
+                            ⚡ CTXLEN:
+                                H("list_get", CTXLEN_PARTS, 1, NULL);
+
+                            ⚡ CTXLEN_OK:
+                                1;
+                        }
+                    }
+
+                    ⚡ CPLEN_PARTS:
+                        H("str_split", CF4, "PLEN=", NULL);
+
+                    ⚡ CPLEN_TOTAL:
+                        H("list_len", CPLEN_PARTS, NULL, NULL);
+
+                    ⚡ CPLEN:
+                        "";
+
+                    ⚡ CPLEN_OK:
+                        0;
+
+                    IF (CPLEN_TOTAL == 2) {
+
+                        ⚡ CPLEN_LEFT:
+                            H("list_get", CPLEN_PARTS, 0, NULL);
+
+                        IF (CPLEN_LEFT == "") {
+
+                            ⚡ CPLEN:
+                                H("list_get", CPLEN_PARTS, 1, NULL);
+
+                            ⚡ CPLEN_OK:
+                                1;
+                        }
+                    }
+
+                    ⚡ CTX_CHAR_COUNT:
+                        H("str_len", COMMIT_TX, NULL, NULL);
+
+                    ⚡ CPAYLOAD_CHAR_COUNT:
+                        H("str_len", COMMIT_PAYLOAD, NULL, NULL);
+
+                    ⚡ EXPECTED_CTXLEN:
+                        "";
+
+                    ⚡ CTI:
+                        0;
+
+                    WHILE (CTI < CTX_CHAR_COUNT) {
+
+                        ⚡ EXPECTED_CTXLEN:
+                            EXPECTED_CTXLEN + "|";
+
+                        ⚡ CTI:
+                            CTI + 1;
+                    }
+
+                    ⚡ EXPECTED_CPLEN:
+                        "";
+
+                    ⚡ CPI:
+                        0;
+
+                    WHILE (CPI < CPAYLOAD_CHAR_COUNT) {
+
+                        ⚡ EXPECTED_CPLEN:
+                            EXPECTED_CPLEN + "|";
+
+                        ⚡ CPI:
+                            CPI + 1;
+                    }
+
+                    ⚡ CTXLEN_MATCH:
+                        0;
+
+                    IF (CTXLEN == EXPECTED_CTXLEN) {
+                        ⚡ CTXLEN_MATCH:
+                            1;
+                    }
+
+                    ⚡ CPLEN_MATCH:
+                        0;
+
+                    IF (CPLEN == EXPECTED_CPLEN) {
+                        ⚡ CPLEN_MATCH:
+                            1;
+                    }
+
+                    ⚡ CEND_OK:
+                        0;
+
+                    IF (CF5 == "END=COMMIT") {
+                        ⚡ CEND_OK:
+                            1;
+                    }
+
+                    IF (CTX_OK) {
+                        IF (CPHASE_OK) {
+                            IF (CPAYLOAD_OK) {
+                                IF (CTXLEN_OK) {
+                                    IF (CPLEN_OK) {
+                                        IF (CTXLEN_MATCH) {
+                                            IF (CPLEN_MATCH) {
+                                                IF (CEND_OK) {
+                                                    ⚡ COMMIT_RECORD_VALID:
+                                                        1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                IF (COMMIT_RECORD_VALID) {
+
+                    ⚡ PREP_EXISTS_FOR_COMMIT:
+                        H("map_has", PREPARE_SEEN, COMMIT_TX, NULL);
+
+                    IF (PREP_EXISTS_FOR_COMMIT == FALSE) {
+
+                        ⚡ COMMIT_WITHOUT_VALID_PREPARE_COUNT:
+                            COMMIT_WITHOUT_VALID_PREPARE_COUNT + 1;
+                    }
+
+                    IF (PREP_EXISTS_FOR_COMMIT) {
+
+                        ⚡ PREP_CONFLICT_FOR_COMMIT:
+                            H("map_has", PREPARE_CONFLICT, COMMIT_TX, NULL);
+
+                        IF (PREP_CONFLICT_FOR_COMMIT == FALSE) {
+
+                            ⚡ PREP_PAYLOAD_FOR_COMMIT:
+                                H("map_get", PREPARE_PAYLOAD_BY_TX, COMMIT_TX, NULL);
+
+                            IF (PREP_PAYLOAD_FOR_COMMIT == COMMIT_PAYLOAD) {
+
+                                ⚡ ALREADY_COMMITTED_TX:
+                                    H("map_has", COMMITTED_TX_SEEN, COMMIT_TX, NULL);
+
+                                IF (ALREADY_COMMITTED_TX == FALSE) {
+
+                                    ⚡ MARK_COMMITTED_TX:
+                                        H("map_set", COMMITTED_TX_SEEN, COMMIT_TX, 1);
+
+                                    ⚡ SET_COMMITTED_PAYLOAD:
+                                        H("map_set", COMMITTED_PAYLOAD_BY_TX, COMMIT_TX, COMMIT_PAYLOAD);
+
+                                    ⚡ RECOVERED_TX:
+                                        COMMIT_TX;
+
+                                    ⚡ RECOVERED_PAYLOAD:
+                                        COMMIT_PAYLOAD;
+
+                                    ⚡ RECOVERED_COMMIT_COUNT:
+                                        RECOVERED_COMMIT_COUNT + 1;
+                                }
+
+                                IF (ALREADY_COMMITTED_TX) {
+
+                                    ⚡ OLD_COMMITTED_PAYLOAD:
+                                        H("map_get", COMMITTED_PAYLOAD_BY_TX, COMMIT_TX, NULL);
+
+                                    IF (OLD_COMMITTED_PAYLOAD == COMMIT_PAYLOAD) {
+
+                                        ⚡ DUPLICATE_VALID_COMMIT_COUNT:
+                                            DUPLICATE_VALID_COMMIT_COUNT + 1;
+                                    }
+                                }
+                            }
+
+                            ⚡ COMMIT_PAYLOAD_DIFFERENT:
+                                1;
+
+                            IF (PREP_PAYLOAD_FOR_COMMIT == COMMIT_PAYLOAD) {
+                                ⚡ COMMIT_PAYLOAD_DIFFERENT:
+                                    0;
+                            }
+
+                            IF (COMMIT_PAYLOAD_DIFFERENT) {
+
+                                ⚡ COMMIT_PAYLOAD_MISMATCH_COUNT:
+                                    COMMIT_PAYLOAD_MISMATCH_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            ⚡ C:
+                C + 1;
+        }
+
+        ⚡ INPUT_PREPARED:
+            0;
+
+        ⚡ INPUT_PREPARE_CONFLICT:
+            0;
+
+        ⚡ INPUT_ALREADY_COMMITTED:
+            0;
+
+        IF (TX_INPUT_REQUIRED) {
+
+            ⚡ INPUT_PREP_EXISTS:
+                H("map_has", PREPARE_SEEN, TX_ID, NULL);
+
+            IF (INPUT_PREP_EXISTS) {
+
+                ⚡ INPUT_PREP_PAYLOAD:
+                    H("map_get", PREPARE_PAYLOAD_BY_TX, TX_ID, NULL);
+
+                IF (INPUT_PREP_PAYLOAD == TX_PAYLOAD) {
+                    ⚡ INPUT_PREPARED:
+                        1;
+                }
+            }
+
+            ⚡ INPUT_PREP_CONFLICT_PRESENT:
+                H("map_has", PREPARE_CONFLICT, TX_ID, NULL);
+
+            IF (INPUT_PREP_CONFLICT_PRESENT) {
+                ⚡ INPUT_PREPARE_CONFLICT:
+                    1;
+            }
+
+            ⚡ INPUT_COMMITTED_PRESENT:
+                H("map_has", COMMITTED_TX_SEEN, TX_ID, NULL);
+
+            IF (INPUT_COMMITTED_PRESENT) {
+
+                ⚡ INPUT_COMMITTED_PAYLOAD:
+                    H("map_get", COMMITTED_PAYLOAD_BY_TX, TX_ID, NULL);
+
+                IF (INPUT_COMMITTED_PAYLOAD == TX_PAYLOAD) {
+                    ⚡ INPUT_ALREADY_COMMITTED:
+                        1;
+                }
+            }
+        }
+
+        ⚡ TX_CHAR_COUNT_INPUT:
+            H("str_len", TX_ID, NULL, NULL);
+
+        ⚡ PAYLOAD_CHAR_COUNT_INPUT:
+            H("str_len", TX_PAYLOAD, NULL, NULL);
+
+        ⚡ INPUT_TXLEN:
+            "";
+
+        ⚡ IT:
+            0;
+
+        WHILE (IT < TX_CHAR_COUNT_INPUT) {
+
+            ⚡ INPUT_TXLEN:
+                INPUT_TXLEN + "|";
+
+            ⚡ IT:
+                IT + 1;
+        }
+
+        ⚡ INPUT_PLEN:
+            "";
+
+        ⚡ IP:
+            0;
+
+        WHILE (IP < PAYLOAD_CHAR_COUNT_INPUT) {
+
+            ⚡ INPUT_PLEN:
+                INPUT_PLEN + "|";
+
+            ⚡ IP:
+                IP + 1;
+        }
+
+        ⚡ PREPARE_APPEND_RC:
+            0;
+
+        ⚡ COMMIT_APPEND_RC:
+            0;
+
+        ⚡ PREPARE_APPEND_PERFORMED:
+            0;
+
+        ⚡ COMMIT_APPEND_PERFORMED:
+            0;
+
+        IF (TX_INPUT_REQUIRED) {
+
+            IF (INPUT_PREPARE_CONFLICT == 0) {
+
+                IF (INPUT_ALREADY_COMMITTED == 0) {
+
+                    IF (INPUT_PREPARED == 0) {
+
+                        ⚡ PREPARE_RECORD:
+                            "\nTX="
+                            + TX_ID
+                            + " || PHASE=PREPARE || PAYLOAD="
+                            + TX_PAYLOAD
+                            + " || TXLEN="
+                            + INPUT_TXLEN
+                            + " || PLEN="
+                            + INPUT_PLEN
+                            + " || END=PREPARE";
+
+                        ⚡ PREPARE_APPEND_RC:
+                            H("append_text", JOURNAL_PATH, PREPARE_RECORD, NULL);
+
+                        IF (PREPARE_APPEND_RC == 0) {
+                            ⚡ PREPARE_APPEND_PERFORMED:
+                                1;
+                        }
+                    }
+
+                    ⚡ PREPARE_READY_FOR_COMMIT:
+                        0;
+
+                    IF (INPUT_PREPARED) {
+                        ⚡ PREPARE_READY_FOR_COMMIT:
+                            1;
+                    }
+
+                    IF (PREPARE_APPEND_PERFORMED) {
+                        ⚡ PREPARE_READY_FOR_COMMIT:
+                            1;
+                    }
+
+                    IF (MODE == "COMMIT_TRANSACTION") {
+
+                        IF (PREPARE_READY_FOR_COMMIT) {
+
+                            ⚡ COMMIT_RECORD:
+                                "\nTX="
+                                + TX_ID
+                                + " || PHASE=COMMIT || PAYLOAD="
+                                + TX_PAYLOAD
+                                + " || TXLEN="
+                                + INPUT_TXLEN
+                                + " || PLEN="
+                                + INPUT_PLEN
+                                + " || END=COMMIT";
+
+                            ⚡ COMMIT_APPEND_RC:
+                                H("append_text", JOURNAL_PATH, COMMIT_RECORD, NULL);
+
+                            IF (COMMIT_APPEND_RC == 0) {
+                                ⚡ COMMIT_APPEND_PERFORMED:
+                                    1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ⚡ FINAL_JOURNAL_TEXT:
+            H("read_text", JOURNAL_PATH, NULL, NULL);
+
+        ⚡ FINAL_JOURNAL_LINES:
+            H("str_split", FINAL_JOURNAL_TEXT, "\n", NULL);
+
+        ⚡ FINAL_LINE_TOTAL:
+            H("list_len", FINAL_JOURNAL_LINES, NULL, NULL);
+
+        ⚡ FINAL_RECOVERED_TX:
+            "";
+
+        ⚡ FINAL_RECOVERED_PAYLOAD:
+            "";
+
+        ⚡ FINAL_PREPARE_PAYLOAD_BY_TX:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ FINAL_PREPARE_CONFLICT:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ FINAL_PREPARE_SEEN:
+            H("map_new", NULL, NULL, NULL);
+
+        ⚡ FL:
+            0;
+
+        WHILE (FL < FINAL_LINE_TOTAL) {
+
+            ⚡ FLINE:
+                H("list_get", FINAL_JOURNAL_LINES, FL, NULL);
+
+            ⚡ FPARTS:
+                H("str_split", FLINE, " || ", NULL);
+
+            ⚡ FPART_TOTAL:
+                H("list_len", FPARTS, NULL, NULL);
+
+            IF (FPART_TOTAL == 6) {
+
+                ⚡ FF0:
+                    H("list_get", FPARTS, 0, NULL);
+
+                ⚡ FF1:
+                    H("list_get", FPARTS, 1, NULL);
+
+                ⚡ FF2:
+                    H("list_get", FPARTS, 2, NULL);
+
+                ⚡ FF3:
+                    H("list_get", FPARTS, 3, NULL);
+
+                ⚡ FF4:
+                    H("list_get", FPARTS, 4, NULL);
+
+                ⚡ FF5:
+                    H("list_get", FPARTS, 5, NULL);
+
+                ⚡ FTX_PARTS:
+                    H("str_split", FF0, "TX=", NULL);
+
+                ⚡ FTX_TOTAL:
+                    H("list_len", FTX_PARTS, NULL, NULL);
+
+                ⚡ FTX:
+                    "";
+
+                ⚡ FTX_OK:
+                    0;
+
+                IF (FTX_TOTAL == 2) {
+
+                    ⚡ FTX_LEFT:
+                        H("list_get", FTX_PARTS, 0, NULL);
+
+                    IF (FTX_LEFT == "") {
+
+                        ⚡ FTX:
+                            H("list_get", FTX_PARTS, 1, NULL);
+
+                        ⚡ FTX_EMPTY:
+                            0;
+
+                        IF (FTX == "") {
+                            ⚡ FTX_EMPTY:
+                                1;
+                        }
+
+                        IF (FTX_EMPTY == 0) {
+                            ⚡ FTX_OK:
+                                1;
+                        }
+                    }
+                }
+
+                ⚡ FPAY_PARTS:
+                    H("str_split", FF2, "PAYLOAD=", NULL);
+
+                ⚡ FPAY_TOTAL:
+                    H("list_len", FPAY_PARTS, NULL, NULL);
+
+                ⚡ FPAY:
+                    "";
+
+                ⚡ FPAY_OK:
+                    0;
+
+                IF (FPAY_TOTAL == 2) {
+
+                    ⚡ FPAY_LEFT:
+                        H("list_get", FPAY_PARTS, 0, NULL);
+
+                    IF (FPAY_LEFT == "") {
+
+                        ⚡ FPAY:
+                            H("list_get", FPAY_PARTS, 1, NULL);
+
+                        ⚡ FPAY_EMPTY:
+                            0;
+
+                        IF (FPAY == "") {
+                            ⚡ FPAY_EMPTY:
+                                1;
+                        }
+
+                        IF (FPAY_EMPTY == 0) {
+                            ⚡ FPAY_OK:
+                                1;
+                        }
+                    }
+                }
+
+                ⚡ FTXLEN_PARTS:
+                    H("str_split", FF3, "TXLEN=", NULL);
+
+                ⚡ FTXLEN_TOTAL:
+                    H("list_len", FTXLEN_PARTS, NULL, NULL);
+
+                ⚡ FTXLEN:
+                    "";
+
+                ⚡ FTXLEN_OK:
+                    0;
+
+                IF (FTXLEN_TOTAL == 2) {
+
+                    ⚡ FTXLEN_LEFT:
+                        H("list_get", FTXLEN_PARTS, 0, NULL);
+
+                    IF (FTXLEN_LEFT == "") {
+
+                        ⚡ FTXLEN:
+                            H("list_get", FTXLEN_PARTS, 1, NULL);
+
+                        ⚡ FTXLEN_OK:
+                            1;
+                    }
+                }
+
+                ⚡ FPLEN_PARTS:
+                    H("str_split", FF4, "PLEN=", NULL);
+
+                ⚡ FPLEN_TOTAL:
+                    H("list_len", FPLEN_PARTS, NULL, NULL);
+
+                ⚡ FPLEN:
+                    "";
+
+                ⚡ FPLEN_OK:
+                    0;
+
+                IF (FPLEN_TOTAL == 2) {
+
+                    ⚡ FPLEN_LEFT:
+                        H("list_get", FPLEN_PARTS, 0, NULL);
+
+                    IF (FPLEN_LEFT == "") {
+
+                        ⚡ FPLEN:
+                            H("list_get", FPLEN_PARTS, 1, NULL);
+
+                        ⚡ FPLEN_OK:
+                            1;
+                    }
+                }
+
+                ⚡ FTX_CHAR_COUNT:
+                    H("str_len", FTX, NULL, NULL);
+
+                ⚡ FPAY_CHAR_COUNT:
+                    H("str_len", FPAY, NULL, NULL);
+
+                ⚡ FEXPECTED_TXLEN:
+                    "";
+
+                ⚡ FTI:
+                    0;
+
+                WHILE (FTI < FTX_CHAR_COUNT) {
+
+                    ⚡ FEXPECTED_TXLEN:
+                        FEXPECTED_TXLEN + "|";
+
+                    ⚡ FTI:
+                        FTI + 1;
+                }
+
+                ⚡ FEXPECTED_PLEN:
+                    "";
+
+                ⚡ FPI:
+                    0;
+
+                WHILE (FPI < FPAY_CHAR_COUNT) {
+
+                    ⚡ FEXPECTED_PLEN:
+                        FEXPECTED_PLEN + "|";
+
+                    ⚡ FPI:
+                        FPI + 1;
+                }
+
+                ⚡ FLENGTHS_OK:
+                    0;
+
+                IF (FTXLEN == FEXPECTED_TXLEN) {
+                    IF (FPLEN == FEXPECTED_PLEN) {
+                        ⚡ FLENGTHS_OK:
+                            1;
+                    }
+                }
+
+                IF (FTX_OK) {
+                    IF (FPAY_OK) {
+                        IF (FTXLEN_OK) {
+                            IF (FPLEN_OK) {
+                                IF (FLENGTHS_OK) {
+
+                                    IF (FF1 == "PHASE=PREPARE") {
+                                        IF (FF5 == "END=PREPARE") {
+
+                                            ⚡ FPREP_EXISTS:
+                                                H("map_has", FINAL_PREPARE_SEEN, FTX, NULL);
+
+                                            IF (FPREP_EXISTS == FALSE) {
+
+                                                ⚡ FMARK_PREP:
+                                                    H("map_set", FINAL_PREPARE_SEEN, FTX, 1);
+
+                                                ⚡ FSET_PREP:
+                                                    H("map_set", FINAL_PREPARE_PAYLOAD_BY_TX, FTX, FPAY);
+                                            }
+
+                                            IF (FPREP_EXISTS) {
+
+                                                ⚡ FOLD_PREP:
+                                                    H("map_get", FINAL_PREPARE_PAYLOAD_BY_TX, FTX, NULL);
+
+                                                ⚡ FPREP_DIFFERENT:
+                                                    1;
+
+                                                IF (FOLD_PREP == FPAY) {
+                                                    ⚡ FPREP_DIFFERENT:
+                                                        0;
+                                                }
+
+                                                IF (FPREP_DIFFERENT) {
+
+                                                    ⚡ FMARK_CONFLICT:
+                                                        H("map_set", FINAL_PREPARE_CONFLICT, FTX, 1);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    IF (FF1 == "PHASE=COMMIT") {
+                                        IF (FF5 == "END=COMMIT") {
+
+                                            ⚡ FPREP_FOR_COMMIT:
+                                                H("map_has", FINAL_PREPARE_SEEN, FTX, NULL);
+
+                                            IF (FPREP_FOR_COMMIT) {
+
+                                                ⚡ FCONFLICT_FOR_COMMIT:
+                                                    H("map_has", FINAL_PREPARE_CONFLICT, FTX, NULL);
+
+                                                IF (FCONFLICT_FOR_COMMIT == FALSE) {
+
+                                                    ⚡ FPREP_PAY:
+                                                        H("map_get", FINAL_PREPARE_PAYLOAD_BY_TX, FTX, NULL);
+
+                                                    IF (FPREP_PAY == FPAY) {
+
+                                                        ⚡ FINAL_RECOVERED_TX:
+                                                            FTX;
+
+                                                        ⚡ FINAL_RECOVERED_PAYLOAD:
+                                                            FPAY;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            ⚡ FL:
+                FL + 1;
+        }
+
+        ⚡ WRITE_RECOVERED_RC:
+            H("write_text", ".sigma_exec/SIGMA_V222R1_RECOVERED_PAYLOAD.memory", FINAL_RECOVERED_PAYLOAD, NULL);
+
+        ⚡ print("SIGMA_V222R1_CRASH_CONSISTENT_TRANSACTION_JOURNAL");
+        ⚡ print("MODE", MODE);
+        ⚡ print("TX_ID", TX_ID);
+        ⚡ print("TX_PAYLOAD", TX_PAYLOAD);
+        ⚡ print("JOURNAL_LINE_TOTAL_BEFORE", JOURNAL_LINE_TOTAL);
+        ⚡ print("JOURNAL_LINE_TOTAL_AFTER", FINAL_LINE_TOTAL);
+        ⚡ print("VALID_PREPARE_RECORD_COUNT_BEFORE", VALID_PREPARE_RECORD_COUNT);
+        ⚡ print("VALID_COMMIT_RECORD_COUNT_BEFORE", VALID_COMMIT_RECORD_COUNT);
+        ⚡ print("DUPLICATE_PREPARE_RECORD_COUNT", DUPLICATE_PREPARE_RECORD_COUNT);
+        ⚡ print("CONFLICTING_PREPARE_RECORD_COUNT", CONFLICTING_PREPARE_RECORD_COUNT);
+        ⚡ print("COMMIT_WITHOUT_VALID_PREPARE_COUNT", COMMIT_WITHOUT_VALID_PREPARE_COUNT);
+        ⚡ print("COMMIT_PAYLOAD_MISMATCH_COUNT", COMMIT_PAYLOAD_MISMATCH_COUNT);
+        ⚡ print("IGNORED_MALFORMED_RECORD_COUNT", IGNORED_MALFORMED_RECORD_COUNT);
+        ⚡ print("RECOVERED_COMMIT_COUNT_BEFORE", RECOVERED_COMMIT_COUNT);
+        ⚡ print("DUPLICATE_VALID_COMMIT_COUNT", DUPLICATE_VALID_COMMIT_COUNT);
+        ⚡ print("INPUT_PREPARED", INPUT_PREPARED);
+        ⚡ print("INPUT_PREPARE_CONFLICT", INPUT_PREPARE_CONFLICT);
+        ⚡ print("INPUT_ALREADY_COMMITTED", INPUT_ALREADY_COMMITTED);
+        ⚡ print("PREPARE_APPEND_PERFORMED", PREPARE_APPEND_PERFORMED);
+        ⚡ print("PREPARE_APPEND_RC", PREPARE_APPEND_RC);
+        ⚡ print("COMMIT_APPEND_PERFORMED", COMMIT_APPEND_PERFORMED);
+        ⚡ print("COMMIT_APPEND_RC", COMMIT_APPEND_RC);
+        ⚡ print("FINAL_RECOVERED_TX", FINAL_RECOVERED_TX);
+        ⚡ print("FINAL_RECOVERED_PAYLOAD", FINAL_RECOVERED_PAYLOAD);
+        ⚡ print("WRITE_RECOVERED_RC", WRITE_RECOVERED_RC);
+        ⚡ print("TRANSACTION_POLICY", "APPEND_ONLY_PREPARE_PLUS_COMMIT_EXACT_TX_PAYLOAD_UNARY_LENGTH_END_SENTINEL");
+        ⚡ print("TORN_TAIL_POLICY", "IGNORE_MALFORMED_OR_UNPAIRED_RECORDS");
+        ⚡ print("HOST_TRANSACTION_DECISION", "NO");
+        ⚡ print("HOST_RECOVERY_DECISION", "NO");
+        ⚡ print("HOST_TRUTH_DECISION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("CRASH_CONSISTENT_JOURNAL_RECOVERY", "TESTED_NOT_PHYSICAL_ATOMICITY");
+        ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_JOURNAL_SPLIT_LINES", MAX_JOURNAL_SPLIT_LINES);
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
