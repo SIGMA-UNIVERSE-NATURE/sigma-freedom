@@ -1,0 +1,46 @@
+{
+  "checkpoint_id": "CP02-SUBSTANTIVE-ACADEMIC-OWNERSHIP-CLOSURE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "branch": "hka-tree/c01-w02-math-c03",
+  "status": "IN_PROGRESS",
+  "academic_commit_sha": "71101bef8765829130263e924753aaf06f6dca78",
+  "counts": {
+    "canonical_topics": 9,
+    "nodes": 9,
+    "claims": 77,
+    "sources": 6,
+    "learning_objectives": 36,
+    "claim_to_learning_objective_closures": 36,
+    "cross_links": 14,
+    "sequence_intent_records": 9
+  },
+  "scope_verification": {
+    "exact_topics_T01_through_T09": true,
+    "C04_and_later_locked": true,
+    "future_scope_support_claims": 0,
+    "lesson_registry_records_created": 0,
+    "academic_locked_mutated": false
+  },
+  "ownership_audit": {
+    "C01_generic_relation_function_preserved": "PASS",
+    "C02_arithmetic_order_ratio_congruence_preserved": "PASS",
+    "T04_linear_maps_systems_rank_eigen_owner": "PASS",
+    "T05_vector_spaces_basis_matrices_determinant_owner": "PASS",
+    "T06_to_T09_prerequisite_hierarchy_no_redefinition": "PASS",
+    "C04_algebraic_geometry_boundary_only": "PASS"
+  },
+  "closure_audit": {
+    "objectives_supported": 36,
+    "objectives_total": 36,
+    "coverage_percent": 100,
+    "future_or_locked_scope_supports": 0
+  },
+  "source_identity_audit": "PASS",
+  "prerequisite_sequence_dag_audit": "PASS",
+  "remaining_work": [
+    "Read back committed artifacts from GitHub durable state",
+    "Run pre-PASS integrity, duplicate, prerequisite, source and stage-boundary audit",
+    "Write RESULT/HANDOFF and terminal worker-candidate checkpoint only if all gates pass"
+  ],
+  "next_checkpoint": "CP03-PRE-PASS-AUDIT"
+}
