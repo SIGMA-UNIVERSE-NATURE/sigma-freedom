@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "role": "DIRECTOR_CONTINUITY_SNAPSHOT",
   "purpose": "Compact recovery and Knowledge Tree alignment state. Chat memory is never authoritative.",
   "source_of_truth": {
@@ -14,7 +14,9 @@
       "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c"
     },
     "machine_state_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
-    "window_registry_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json"
+    "window_registry_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
+    "foundational_13_year_gate_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
+    "foundational_13_year_amendment_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md"
   },
   "knowledge_tree_invariants": {
     "human_roots": ["SELF","OTHERS","WORLD"],
@@ -32,6 +34,8 @@
     "main_branches_are_equal": true,
     "academic_depths": ["D1","D2","D3","D4"],
     "academic_depth_independent_of_age": true,
+    "foundational_13_year_coverage_is_separate_axis": true,
+    "advanced_content_cannot_substitute_for_foundational_content": true,
     "shared_nodes_preferred_over_semantic_duplication": true,
     "typed_relation_edges_required": true,
     "claim_certainty_and_epistemic_class_required": true
@@ -47,7 +51,8 @@
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_3.md",
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_4.md",
-    "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md"
+    "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md",
+    "HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md"
   ],
   "current_execution": {
     "active_branch_id": "B1",
@@ -84,9 +89,16 @@
       "future B1.2 physical laws/measurement vs C10 mathematical physics",
       "future biology/health mechanisms/empirics vs C10 mathematical biology"
     ],
+    "foundational_13_year_controls": {
+      "gate_status": "ACTIVE_REQUIRED",
+      "current_audit_status": "NOT_YET_RUN",
+      "C10_foundational_meanings_before_advanced_extensions": true,
+      "repair_cross_scope_gaps_at_true_owner": true,
+      "worker_C10_pass_does_not_equal_foundational_audit_pass": true
+    },
     "locked_or_boundary_only_scopes": ["B1.2+","B1.5+","B2+"],
     "successor_unlock_forbidden_until_director_acceptance": true,
-    "after_C10_worker_pass": "B1.1 integration/successor decision remains Director-gated; no automatic B1.2 unlock"
+    "after_C10_worker_pass": "After Director acceptance, run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT; no B1.1 completion or B1.2 unlock until audit PASS with FOUNDATIONAL_GAP_COUNT=0"
   },
   "accepted_scopes": {
     "B1.1-C01": "5659288da80a239e2ded408da87348670c1410c2",
@@ -107,6 +119,9 @@
     "Future or locked scope Claim IDs cannot supply support.",
     "Semantic duplicate ownership requires explicit disposition.",
     "Prerequisite graph must be acyclic and academically necessary.",
+    "D1-D4 remain age-independent and cannot be used as school-grade labels.",
+    "Foundational 13-year general-education coverage is mandatory and advanced content cannot compensate for a foundational gap.",
+    "A foundational gap must be repaired at its true owner scope, not patched into the currently active scope.",
     "Stage boundary must remain CURRICULUM-only.",
     "Stable accepted IDs are append-only and never silently renumbered."
   ],
@@ -115,8 +130,13 @@
     "global_coverage_audit_required": true,
     "global_prerequisite_audit_required": true,
     "global_semantic_duplicate_audit_required": true,
+    "foundational_13_year_coverage_audit_required": true,
+    "foundational_gap_count_required": 0,
+    "current_foundational_13_year_audit_status": "NOT_YET_PASS",
     "multi_continent_education_benchmark_required": true,
     "minimum_continents": 5,
+    "full_general_education_progression_required": true,
+    "university_only_benchmark_forbidden": true,
     "vietnam_must_not_be_single_baseline": true,
     "external_curriculum_mapping_integration_required": true,
     "current_benchmark_status": "NOT_YET_PASS",
@@ -140,6 +160,8 @@
       "window ID/branch/scope/topic set match",
       "accepted predecessor matches control-plane",
       "required predecessors are Director-accepted",
+      "foundational 13-year gate exists and is ACTIVE_REQUIRED",
+      "no subbranch completion or successor unlock occurs before foundational audit PASS with gap count 0",
       "locked scopes are not used as support",
       "no successor is opened before Director acceptance",
       "no later pipeline stage artifact appears"
@@ -151,6 +173,7 @@
     "snapshot_update_required_on_dependency_amendment": true,
     "replacement_director_bootstrap_order": [
       "READ HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
+      "READ HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
       "VERIFY canonical tree commit and immutable scope-map blob anchor",
       "READ HKA_CURRICULUM_STATE.json",
       "READ WINDOW_REGISTRY.json",
@@ -160,5 +183,5 @@
       "CONTINUE only from durable next_action"
     ]
   },
-  "updated_at": "2026-09-05T19:22:00+07:00"
+  "updated_at": "2026-09-05T20:31:00+07:00"
 }
