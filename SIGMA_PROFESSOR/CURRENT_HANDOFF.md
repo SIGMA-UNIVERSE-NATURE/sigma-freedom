@@ -260,9 +260,16 @@ Current language status:
 - latest LANG-01F source SHA256 `1ab0081f904a844d456d7913b522577038cec1b7d62f4f37494bf29a79dc9a59`;
 - latest LANG-01F bytecode SHA256 `60edd9ace13f54b826adcd7e89362acddcfaea9a1649845006f52c99dce77a81`;
 - LANG-01F final runtime: `21/21` post-VM alignment PASS;
+- `LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION=SELECTED_SOURCE_READY_R1`;
+- LANG-01G native source SHA256 `21219f66fc7970615d9a98647bfc63229780390bfa993730e2e326b3c493ee0e`;
+- LANG-01G runner SHA256 `19a075b7b4f86ae6d3df51c4d3e1ded55a1cc71bbd781f7446908fd202f2ce64`;
+- LANG-01G checkpoint update commit `06633a63d6798164b9da91a0a0e2cc7f60d83116`;
+- `LANG-01G_LOCKED_SIGMAC_COMPILE=NOT_RUN`;
+- `LANG-01G_TOTAL_VM_INVOCATIONS=0`;
+- `LANG-01G_ADMISSION=NOT_RUN`;
+- `LANG-02_NEGATION_AND_SCOPE_FOUNDATION=DEFERRED_NOT_REJECTED`;
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
-- `COREFERENCE_RESOLUTION=NOT_PROVEN`;
-- next language capability intentionally `NOT_YET_LOCKED`; re-read dedicated checkpoint + latest canon before choosing the next language capability.
+- `COREFERENCE_RESOLUTION=NOT_PROVEN`.
 
 This lane does not change continual-learning production-promotion status.
 
