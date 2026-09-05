@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
@@ -19,25 +19,38 @@
   "frozen_academic_prerequisites": ["B1.1-C03", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08"],
   "continuity_predecessor_not_added_as_academic_prerequisite": true,
   "mandatory_risks": ["R06", "R13"],
+  "active_global_foundational_gate": {
+    "amendment": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
+    "gate_file": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
+    "D1_D4_age_independent": true,
+    "advanced_content_cannot_substitute_for_foundational_content": true,
+    "worker_must_preserve_C10_foundational_meanings_before_advanced_extensions": true,
+    "cross_scope_foundational_gap_repair_in_C10_forbidden": true
+  },
   "completed_work": [
     "Director accepted C09 with zero academic repairs.",
     "Sentinel returned TREE_ALIGNMENT_PASS for C10 pre-open plan.",
     "Amendment 5 locked C10 applied-math, decision, optimization, domain-model and B1.5 boundaries.",
-    "Installed C10 contract, execution prompt, Director open order and bootstrap checkpoint."
+    "Activated global Foundational 13-Year Coverage Amendment and gate.",
+    "Updated C10 contract, execution prompt and Director open order to preserve foundational meanings before advanced extensions."
   ],
   "remaining_work": [
     "Author all ten canonical C10 topics.",
     "Apply R06/R13 and preserve C03/C05/C06/C07/C08 ownership.",
+    "Preserve foundational applied-mathematics concepts inside C10 before advanced extensions.",
     "Create direct semantic Claim-to-Learning-Objective closure with zero future/locked support IDs.",
-    "Run source, theorem/model-assumption, duplicate, prerequisite and stage-boundary audits from committed files before candidate PASS."
+    "Run source, theorem/model-assumption, duplicate, prerequisite and stage-boundary audits from committed files before candidate PASS.",
+    "After Director acceptance of C10, run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT before any B1.2 decision."
   ],
   "blocking_issues": [],
   "decisions_locked": [
     "Scope is B1.1-C10 only.",
-    "C10 is the final B1.1 authoring scope but does not itself complete B1 or CURRICULUM globally.",
+    "C10 is the final B1.1 authoring scope but does not itself complete B1.1, B1 or CURRICULUM globally.",
     "B1.2+ remain locked during C10 worker execution.",
+    "D1-D4 are academic depth, not age/grade labels.",
+    "Advanced university/research content may extend but never substitute for the foundational 13-year spine.",
     "No post-CURRICULUM artifact is authorized."
   ],
-  "next_action": "Execute C10 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C10 only.",
+  "next_action": "Execute C10 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; after Director acceptance run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT before any successor decision.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C10"
 }
