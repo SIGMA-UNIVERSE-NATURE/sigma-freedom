@@ -1,0 +1,74 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.NATIVE.CLOCK.PERSISTENCE.PROBE][VERSION=4C3T1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.V4_NATIVE_CLOCK_PERSISTENCE_PROBE_4C3T1) {
+
+    ⚡ PREV_PATH:
+        ".sigma_exec/SIGMA_V4C3T1_PREVIOUS_TIME.memory";
+
+    ⚡ STATUS_PATH:
+        ".sigma_exec/SIGMA_V4C3T1_STATUS.memory";
+
+    ⚡ PREVIOUS_TEXT:
+        H("read_text", PREV_PATH, NULL, NULL);
+
+    ⚡ NOW:
+        H("time_now", NULL, NULL, NULL);
+
+    ⚡ NOW_TEXT:
+        "" + NOW;
+
+    ⚡ ROUNDTRIP:
+        H("to_int", NOW_TEXT, NULL, NULL);
+
+    ⚡ STATUS:
+        "CLOCK_FIRST_OBSERVATION";
+
+    ⚡ VALID:
+        1;
+
+    IF (ROUNDTRIP != NOW) {
+        ⚡ VALID:
+            0;
+        ⚡ STATUS:
+            "REFUSE_TIME_NATIVE_PERSISTENCE_ROUNDTRIP";
+    }
+
+    IF (VALID) {
+        IF (PREVIOUS_TEXT != "") {
+
+            ⚡ PREVIOUS:
+                H("to_int", PREVIOUS_TEXT, NULL, NULL);
+
+            IF (PREVIOUS < NOW) {
+                ⚡ STATUS:
+                    "CLOCK_PROGRESS_PROVEN";
+            }
+
+            IF (NOW == PREVIOUS) {
+                ⚡ STATUS:
+                    "CLOCK_NO_PROGRESS";
+            }
+
+            IF (NOW < PREVIOUS) {
+                ⚡ STATUS:
+                    "REFUSE_TIME_REGRESSION";
+            }
+        }
+
+        ⚡ WRITE_PREVIOUS_RC:
+            H("write_text", PREV_PATH, NOW_TEXT, NULL);
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", STATUS_PATH, STATUS, NULL);
+
+    ⚡ print("TIME_NOW", NOW_TEXT);
+    ⚡ print("PREVIOUS_TIME", PREVIOUS_TEXT);
+    ⚡ print("TIME_STATUS", STATUS);
+    ⚡ print("HOST_TIME_DECISION", "NO");
+    ⚡ print("NATIVE_TIME_NOW_USED", "YES");
+}
