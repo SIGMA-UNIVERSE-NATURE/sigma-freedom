@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP03-PRE-PASS-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c08",
+  "accepted_predecessor_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "substantive_commit_sha": "902d1affa847d0f5a3214887c76977a7e0f251b5",
+  "audits": {
+    "canonical_topic_coverage": "PASS_8_OF_8",
+    "node_count": 8,
+    "claim_count": 109,
+    "source_count": 7,
+    "learning_objective_count": 32,
+    "closure_record_count": 32,
+    "semantic_claim_to_learning_objective_closure": "PASS_32_OF_32",
+    "supporting_claim_resolution": "PASS_100_PERCENT",
+    "supporting_claims_current_C08_only": true,
+    "future_or_locked_scope_claim_ids": 0,
+    "source_resolution": "PASS_109_OF_109",
+    "source_id_sha256_normalization": "PASS_7_OF_7",
+    "prerequisite_dag": "PASS_ACYCLIC",
+    "duplicate_and_primary_ownership": "PASS",
+    "R05_mathematics_vs_algorithms": "PASS",
+    "R02_error_correcting_codes": "PASS",
+    "C03_finite_field_linear_algebra_reuse": "PASS",
+    "C07_future_DAG_foundation_only": "PASS_ZERO_SUPPORT",
+    "C09_locked_untouched": "PASS",
+    "C10_locked_boundary_only": "PASS_ZERO_SUPPORT",
+    "branch_diff_scope": "PASS_C08_ONLY",
+    "post_CURRICULUM_artifacts_created": false
+  },
+  "boundary_state": {
+    "C07": "LOCKED_FUTURE_PREREQUISITE_ONLY_ZERO_SUPPORT",
+    "C09": "LOCKED_UNTOUCHED",
+    "C10": "LOCKED_BOUNDARY_ONLY_ZERO_SUPPORT",
+    "B1.5": "FUTURE_OWNERSHIP_BOUNDARY_ZERO_SUPPORT"
+  },
+  "later_stage_artifacts": {
+    "ACADEMIC_LOCKED": false,
+    "Lesson_Registry": false,
+    "prompts": false,
+    "images": false,
+    "R2": false
+  },
+  "director_acceptance_required": true,
+  "successor_unlocked": false,
+  "next_action": "Write RESULT.json, HANDOFF.md, terminal checkpoint and PASS_CANDIDATE status/report; do not unlock successor."
+}
