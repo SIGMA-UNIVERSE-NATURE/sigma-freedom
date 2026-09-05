@@ -1,0 +1,128 @@
+# SIGMA INTERNET AUTONOMY — I3 FRESH-COLLECTION INTERFACE AUDIT SOURCE READY
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: SOURCE_READY_MECHANICAL_AUDIT_ONLY
+
+## Why this gate exists
+
+I2R1 is already a canonical live PASS and MUST NOT be rerun merely to obtain a different outcome.
+
+The current Internet-autonomy frontier is:
+
+```text
+CURRENT_STAGE=I3_SIGMA_NATIVE_POST_FOLLOWUP_OUTCOME_EVALUATION_AND_CONTINUATION
+```
+
+The canonical lane checkpoint requires that, before authoring I3, the teacher inspect only the top-level mechanical state/metric interface of the canonical fresh V5 collection. Lesson/query/topic/source/payload text must not be inspected or classified by GPT/host as runtime cognition.
+
+## Canonical prior evidence
+
+```text
+I2R1_BUILD_QA=PASS
+I2R1_LIVE_RUN=PASS_TESTED_SCOPE
+I2R1_FRESH_COLLECTION_BINDING_AUDIT=PASS_TESTED_SCOPE
+RERUN_I2R1_WITHOUT_NEW_ROOT_CAUSE=NO
+
+SOURCE_ASSESSMENT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/assessments/20260903T104621Z_6069_19041
+I2R1_RUN=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/collection_more_evidence_to_fresh_web_i2r1_runs/20260903T122751Z_18360_19557
+SOURCE_COLLECTION=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T104006Z_18344_20745
+FRESH_COLLECTION=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/HH_AUTO_INTERNET_LESSONS/runs/20260903T122823Z_19134_21003
+
+SOURCE_ASSESSMENT_STATE=MORE_EVIDENCE
+SIGMA_REPLAN_ACTION=RESEARCH_MORE
+FRESH_WEB_COLLECTION_CAUSED_BY_SIGMA_ACTION=PASS_TESTED_SCOPE
+SIGMA_NATIVE_COLLECTION_MORE_EVIDENCE_TO_FRESH_WEB_RESEARCH=PASS_TESTED_SCOPE
+```
+
+## Audit artifact
+
+Repository runner:
+
+`DOCS/GPT_REFERENCE/TOOLS/RUN_SIGMA_I3_FRESH_COLLECTION_INTERFACE_AUDIT_V1.sh`
+
+```text
+RUNNER_COMMIT=ecc4144dbce50ea933f1eec23a817aca08e575fa
+RUNNER_SHA256=c6730c69a318004580c38a90289e97ce8b9876a6843b505475c98386c92949c8
+USER_BUNDLE_NAME=SIGMA_I3_FRESH_COLLECTION_INTERFACE_AUDIT_V1_BUNDLE.zip
+USER_BUNDLE_SHA256=3d8d7065daf1cedbd48c6990029a58e50e766b8a9fa0336853ef79b3e6fef8ad
+```
+
+Static QA:
+
+```text
+BASH_SYNTAX_QA=PASS
+LESSON_TEXT_CAT_GUARD_QA=PASS
+QUERY_TOPIC_TEXT_CAT_GUARD_QA=PASS
+NO_SIGMA_VM_EXECUTION_QA=PASS
+NO_LIVE_INTERNET_EXECUTION_QA=PASS
+NO_SEMANTIC_OUTCOME_CLASSIFICATION_QA=PASS
+MECHANICAL_HASH_AND_CONTROL_METADATA_ONLY_QA=PASS
+```
+
+## Exact audit role
+
+The audit may:
+
+- verify locked compiler/VM identities by SHA256;
+- verify existence of canonical I2R1/fresh-collection paths;
+- list directory and file names mechanically;
+- compute byte sizes and SHA256 hashes mechanically;
+- print only small control-plane state/metric/status/path/hash files.
+
+The audit MUST NOT:
+
+```text
+RUN_SIGMA_COGNITION=NO
+RUN_LIVE_INTERNET=NO
+READ_LESSON_TEXT=NO
+READ_QUERY_OR_TOPIC_TEXT=NO
+READ_SOURCE_OR_PAYLOAD_TEXT=NO
+CLASSIFY_FRESH_COLLECTION_OUTCOME=NO
+CHOOSE_NEXT_RESEARCH_ACTION=NO
+CHOOSE_SOURCE_FAMILY=NO
+GENERATE_NEXT_QUERY=NO
+```
+
+## Required next machine action
+
+Run the exact audit artifact on the OPPO machine:
+
+```bash
+bash RUN_SIGMA_I3_FRESH_COLLECTION_INTERFACE_AUDIT_V1.sh \
+  | tee I3_FRESH_COLLECTION_INTERFACE_AUDIT_V1.out
+```
+
+This is NOT an I3 capability run. It is interface discovery evidence only.
+
+After the real interface output is available, author the smallest native `.sigma` I3 capability that consumes only mechanically exposed prior-state/fresh-outcome interfaces and makes the next research-action decision inside the locked SIGMA VM.
+
+## I3 admission contract — already fixed
+
+```text
+I3_REQUIRED=NO_GPT_HOST_SEMANTIC_OUTCOME_CLASSIFICATION
+I3_REQUIRED=NO_PREWRITTEN_NEXT_QUERY
+I3_REQUIRED=FRESH_COLLECTION_OUTCOME_MUST_BE_BOUND_TO_SIGMA_DECISION
+I3_REQUIRED=PRIOR_RESEARCH_STATE_AND_OUTCOME_MUST_REMAIN_AVAILABLE_TO_SIGMA
+I3_REQUIRED=UNKNOWN_REMAINS_UNKNOWN
+I3_REQUIRED=NO_FIXED_SEMANTIC_CYCLE_LIMIT
+HOST_GAP_DETECTION=FORBIDDEN
+HOST_RESEARCH_GOAL_SELECTION=FORBIDDEN
+HOST_SOURCE_SELECTION=FORBIDDEN
+HOST_TRUTH_DECISION=FORBIDDEN
+```
+
+## Claim boundary
+
+Keep false/unproven until a separately admitted locked-VM I3 runtime proves them:
+
+```text
+I3_NATIVE_POST_FOLLOWUP_OUTCOME_EVALUATION=NOT_PROVEN
+POST_FOLLOWUP_OUTCOME_CONDITIONED_CONTINUATION=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
+HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
+LESSON_TRUTH=NOT_ASSESSED
+DURABLE_KNOWLEDGE_STORE=NOT_PROVEN
+```
