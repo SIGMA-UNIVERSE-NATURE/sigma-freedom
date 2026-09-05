@@ -1,6 +1,8 @@
 # C01-W02-B1.1-MATH-FAMILY-C08 — Durable Status Report
 
-Status: `READY`
+Status: `PASS_CANDIDATE`
+
+Worker disposition: `PASS — WORKER_PASS_CANDIDATE`
 
 Stage: `CURRICULUM`
 
@@ -10,29 +12,62 @@ Execution branch: `hka-tree/c01-w02-math-c08`
 
 Accepted predecessor: `e0d6f667d38e937c7c6040b51fb14e34f0bb6345`
 
-## Canonical topics
+Substantive curriculum commit: `902d1affa847d0f5a3214887c76977a7e0f251b5`
 
-1. Kỹ thuật đếm
-2. Hoán vị và tổ hợp
-3. Quan hệ truy hồi
-4. Lý thuyết đồ thị
-5. Cây và mạng
-6. Tối ưu tổ hợp
-7. Mã sửa lỗi
-8. Cấu trúc rời rạc
+Pre-PASS audit checkpoint: `21b35ca6a10a6973acf851c900f3aedfb7732718`
 
-## Why C08 executes now
+PASS-candidate payload/checkpoint commit: `b47006ce0ecf59b707b02847e0c0ac723f15301f`
 
-Dependency Amendment 2 corrected execution order to `C06 → C08 → C07 → C09 → C10`. This prevents C07 causal inference from duplicating graph/DAG foundations and allows C08 coding structures to reuse already accepted C03 algebra/linear algebra.
+## Curriculum payload
+
+- 8/8 canonical topics represented by 8 nodes.
+- 109 atomic claims.
+- 7 version-pinned academic source records.
+- 32 learning objectives, D1–D4 for every node.
+- 32 direct Claim→Learning Objective semantic-closure records.
+- 17 ownership/prerequisite cross-links.
+- 8 curriculum sequence-intent records.
+
+## Audit result
+
+- Semantic Claim→Learning Objective closure: `32/32 PASS`.
+- Supporting Claim-ID resolution: `100% PASS`.
+- Source resolution: `109/109 PASS`.
+- Source-ID SHA-256 normalization: `7/7 PASS`.
+- Future/locked support Claim IDs: `0`.
+- Prerequisite graph: `PASS — ACYCLIC`.
+- Duplicate/primary-ownership review: `PASS`.
+- Branch diff from accepted C06 predecessor: `PASS — C08 window/status/CURRICULUM only`.
 
 ## Mandatory controls
 
-- R05: mathematical combinatorics/graphs remain C08; algorithms/data structures/complexity remain future B1.5-C03.
-- R02: mathematical error-correcting-code structures/proofs remain C08; channel/reliability coding remains future B1.5-C01.
-- T06 combinatorial optimization must not pre-author future C10 applied/numerical optimization or B1.5 implementation/complexity.
-- C07/C09/C10 remain locked and provide zero support Claim IDs.
-- Every objective must be semantically closed by actual Claim IDs, not by row existence or flags.
+### R05 — mathematics vs algorithms
 
-## Next action
+`PASS`. C08 owns recurrence mathematics, graph/digraph/tree/network structure, combinatorial feasible sets, min–max/integrality theorems and proof-oriented optimality. Dynamic programming procedures, graph/tree data structures, traversal, implementation, engineering and complexity remain future `B1.5-C03`. No future B1.5 claim supports a C08 objective.
 
-Execute `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md` for C08 only. Worker PASS is candidate only and cannot unlock C07.
+### R02 — error-correcting codes
+
+`PASS`. C08-T07 owns Hamming metric/minimum distance, detection/correction radius, classical bounds, linear-code subspaces, generator/parity-check/syndrome/dual structure, MDS/Reed–Solomon and cyclic-code algebra. Information transmission, channel reliability and coding-system objectives remain future `B1.5-C01-T05`. No future claim supports a C08 objective.
+
+### C03 reuse
+
+`PASS`. C08 reuses accepted C03 group-action, finite-field, linear-map/kernel/rank, vector-space/matrix/basis/dimension and ring/polynomial/ideal foundations. Those foundations are prerequisites/cross-links, not duplicated C08 primary claims.
+
+## Locked/future boundaries
+
+- C07: not opened for authoring; referenced only as a future consumer of C08 DAG/topological-order/reachability mathematics. C07 causal semantics/inference is not authored. Support Claim IDs from C07: `0`.
+- C09: locked and untouched.
+- C10: not opened for authoring; only a boundary for broader numerical/applied optimization. Support Claim IDs from C10: `0`.
+- B1.5: future ownership boundary only. Support Claim IDs from B1.5: `0`.
+
+## Stage boundary
+
+No `ACADEMIC_LOCKED`, Lesson Registry, prompts, images, R2, or any stage after CURRICULUM was created.
+
+## Director gate
+
+This is a worker PASS candidate only. Director acceptance is still required and no successor has been unlocked.
+
+`STATUS: PASS — WORKER_PASS_CANDIDATE`
+
+`NEXT_ACTION: C01-W02-B1.1-MATH-FAMILY-C07 — GATED pending Director acceptance of C08`
