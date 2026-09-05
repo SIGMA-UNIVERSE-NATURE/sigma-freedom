@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "scope_id": "B1.1-C10",
+  "stage": "CURRICULUM",
+  "result": "PASS",
+  "disposition": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
+  "provenance": {
+    "worker_submission": "PARTIAL_NOT_PASS_CANDIDATE",
+    "worker_authored_substantive_academic_payload": true,
+    "director_added_academic_claims": false,
+    "director_modified_academic_claims": false,
+    "director_added_sequence_intents": 10,
+    "director_completed_missing_readback_and_acceptance_audit": true,
+    "worker_pass_candidate_was_not_fabricated": true
+  },
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 100,
+    "local_sources": 13,
+    "accepted_reused_source_ids": 2,
+    "learning_objectives": 40,
+    "closure_records": 40,
+    "cross_links": 25,
+    "sequence_intents": 10
+  },
+  "audit": {
+    "claims": "100/100 PASS",
+    "source_ids": "13/13 LOCAL SHA256 PASS + 2 ACCEPTED REUSED SOURCE IDS VERIFIED",
+    "learning_objectives": "40/40 PASS",
+    "semantic_closure": "40/40 PASS",
+    "claim_coverage": "100/100 C10 CLAIMS PASS",
+    "future_or_locked_support_claim_ids": 0,
+    "ownership": "PASS",
+    "R06": "PASS",
+    "R13": "PASS",
+    "prerequisite_graph": "PASS_ACYCLIC",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "blocking_issues": 0
+  },
+  "foundational_13_year_gate": {
+    "status": "ACTIVE_REQUIRED",
+    "B1_1_foundational_audit_status": "NOT_YET_RUN",
+    "B1_1_completion": "GATED",
+    "B1_2_unlock": "GATED",
+    "required_next_gate": "B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT with FOUNDATIONAL_GAP_COUNT=0"
+  },
+  "next_action": "After durable Director acceptance of C10, run B1.1 Foundational 13-Year Coverage Audit across C01-C10. Repair concrete gaps at true owner scopes. Do not open B1.2 until audit PASS with gap count 0."
+}
