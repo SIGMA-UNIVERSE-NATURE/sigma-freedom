@@ -33,21 +33,21 @@ Keep locked:
 
 If `CURRENT_HANDOFF.md` still says V2.24R.1 is SOURCE READY, this correction checkpoint supersedes that frontier text until the handoff is reconciled.
 
-## CURRENT LANGUAGE-LANE FLAG — LANG-01G R3 ADMITTED
+## CURRENT LANGUAGE-LANE FLAG — LANG-01G ADMITTED / LANG-02A R1 SOURCE READY
 
 Read the living language checkpoint before any further language work:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_LANGUAGE_LANE_CURRENT.md`
 
-LANG-01G has now completed its original 20-case locked-VM admission gate after a runner-only fresh-state fixture repair.
+LANG-01G completed its original 20-case locked-VM admission gate after a runner-only fresh-state fixture repair.
 
-Canonical native source remains:
+Canonical LANG-01G native source remains:
 
 `LANG01G_SOURCE_GIT_BLOB=03b03cff32eee5c35e220cd562b1081b615ca36b`
 
 `LANG01G_SOURCE_SHA256=33d04804bf190ab599ea0e1a9f2838fc37e53e52281e10a2c1bd2a39f816f087`
 
-Final R3 entry runner:
+Final LANG-01G R3 entry runner:
 
 `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT_R3.sh`
 
@@ -55,7 +55,7 @@ Final R3 entry runner:
 
 `LANG01G_R3_RUNNER_SHA256=8d89cc504f36ce1190b7d364eac9cc76b0fe718824c54f484cf6b4da9561271c`
 
-Observed R3 final summary:
+Observed LANG-01G R3 final summary:
 
 `LANG01G_TOTAL_VM_INVOCATIONS=20`
 
@@ -75,15 +75,55 @@ Observed R3 final summary:
 
 `LANG01G_ADMISSION=PASS_IN_EXACT_TESTED_PREFLIGHT_SCOPE`
 
-The R3 user-supplied final tail did not include its bytecode SHA256 line. Keep:
+The LANG-01G R3 user-supplied final tail did not include its bytecode SHA256 line. Keep:
 
 `LANG01G_R3_BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_R3_TAIL`
 
 Do not infer it from the historical R2 failed run.
 
-Historical R2 failure remains evidence: first locked compile passed, then CASE_001 failed `VM_RC=22` / `SIGMA host: string required`. Native locked-VM diagnostic localized the failure to `str_split` receiving the result of `read_text` on an absent fresh-state file. R3 only initialized that fixture as a zero-length state file; it did not change native lesson cognition, evidence scoring, antecedent selection, persistence policy, or the 20-case oracle set.
+Historical LANG-01G R2 failure remains evidence: first locked compile passed, then CASE_001 failed `VM_RC=22` / `SIGMA host: string required`. Native locked-VM diagnostic localized the failure to `str_split` receiving the result of `read_text` on an absent fresh-state file. R3 only initialized that fixture as a zero-length state file; it did not change native lesson cognition, evidence scoring, antecedent selection, persistence policy, or the 20-case oracle set.
 
-Keep claim limits:
+Dependency-first/capability-first re-selection after LANG-01G chose the smallest next language capability:
+
+`LANG-02A_NATIVE_OPERATOR_SCOPE_BINDING=SELECTED_SOURCE_READY_R1`
+
+The broader `LANG-02_NEGATION_AND_SCOPE_FOUNDATION` is decomposed and is **not admitted**. LANG-02A is only structural operator-to-scope binding for an explicitly supplied operator record and bounded structural spans. It does not recognize natural-language negation and does not invert truth.
+
+LANG-02A native source:
+
+`SIGMA_PROFESSOR/artifacts/SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_V1.sigma`
+
+`LANG02A_SOURCE_COMMIT=32df3e826656f6c06ec6379b8bc3a378ce446bf4`
+
+`LANG02A_SOURCE_GIT_BLOB=226b06c337c09f3e0dc3f35a44c3ba22d73affaf`
+
+`LANG02A_SOURCE_SHA256=7a40e92e11c7c89574d3b975bb3210a7a7a23690251951da68be9e7edbfe292b`
+
+LANG-02A locked-VM runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_02A_NATIVE_OPERATOR_SCOPE_BINDING_PREFLIGHT.sh`
+
+`LANG02A_RUNNER_COMMIT=685eba8fa2f6fbe74ccc5c0c4c1934f4cc5d7e06`
+
+`LANG02A_RUNNER_GIT_BLOB=269b7cc0f44f2d442cabd9ae079f0bad97efd69a`
+
+`LANG02A_RUNNER_SHA256=720148bb4d22acb23e47118139095b4e73816491029ea2555448641779fc5bc4`
+
+Keep LANG-02A current proof state exact:
+
+`LANG02A_PLANNED_VM_INVOCATIONS=20`
+
+`LANG02A_LOCKED_SIGMAC_COMPILE=NOT_RUN`
+
+`LANG02A_BYTECODE_SHA256=UNKNOWN`
+
+`LANG02A_TOTAL_VM_INVOCATIONS=0`
+
+`LANG02A_RUNTIME_PROOF=NOT_RUN`
+
+`LANG02A_ADMISSION=NOT_RUN`
+
+Keep language claim limits:
 
 `PREFERRED_ANTECEDENT_HYPOTHESIS != RESOLVED_REFERENT`
 
@@ -93,9 +133,17 @@ Keep claim limits:
 
 `REAL_WORLD_ENTITY_IDENTITY=NOT_PROVEN`
 
+`SURFACE_NEGATION_RECOGNITION=NOT_PROVEN`
+
+`LOGICAL_NEGATION=NOT_PROVEN`
+
+`PROPOSITION_TRUTH=NOT_PROVEN`
+
+`SEMANTIC_SCOPE=NOT_PROVEN`
+
 `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
 
-No production binding is implied. The next language capability must be reselected dependency-first/capability-first; `LANG-02_NEGATION_AND_SCOPE_FOUNDATION` remains deferred, not rejected.
+No production binding is implied. The next language action is to run the exact LANG-02A R1 source/runner through the locked Termux SIGMAC/VM and preserve the first compile/runtime result as evidence.
 
 ## Non-negotiable execution boundary
 
