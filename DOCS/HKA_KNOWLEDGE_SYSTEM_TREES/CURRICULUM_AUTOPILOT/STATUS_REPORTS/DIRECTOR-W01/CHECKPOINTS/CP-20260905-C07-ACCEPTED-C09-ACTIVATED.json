@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C07-ACCEPTED-C09-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "stage": "CURRICULUM",
+  "decision": "C07_DIRECTOR_ACCEPTED_C09_ACTIVATED",
+  "C07": {
+    "worker_candidate_commit_sha": "fa7c11c2df42490df099dd07c0c7e0f46949013e",
+    "director_claim_amendment_commit_sha": "deb2740192eecdfe21d984ecddbc2073c70e8ae2",
+    "director_acceptance_checkpoint_commit_sha": "585f732a68fd2606cfad6fbdae100122ba6d695c",
+    "accepted_terminal_head": "be10c01bf8df64a723e135524b75ce644947dcbd",
+    "decision": "DIRECTOR_ACCEPTED_PASS_AFTER_ONE_SEMANTIC_REPAIR",
+    "claims": 158,
+    "sources": 7,
+    "learning_objectives": 40,
+    "semantic_closure": "40/40 PASS",
+    "future_or_locked_support_claim_ids": 0,
+    "blocking_issues": 0
+  },
+  "C09": {
+    "status": "READY",
+    "execution_branch": "hka-tree/c01-w02-math-c09",
+    "accepted_predecessor": "be10c01bf8df64a723e135524b75ce644947dcbd",
+    "canonical_topic_count": 7,
+    "dependency_amendment_4_commit": "3ca222af9d6a3aa0326b738831daec86cce6521a",
+    "contract_commit": "a5e78a742f1978d362d687f069c3f70b6d86110f",
+    "prompt_commit": "0a48e38d02fecca5b0083456915d24af30b2f243",
+    "open_order_commit": "906e7e44642881d48404cef4d420fe0f7eeb8f17",
+    "bootstrap_checkpoint_commit": "28d0b7612270d48a32ef5849ceb5929444f37bca",
+    "ready_status_commit": "cd65a5a54ccd1df358ca180894282486ae7a8c46"
+  },
+  "control_plane": {
+    "state_commit": "fb4bff2a16431ed32abd4955dd312ac6bafbf769",
+    "registry_commit": "1214ecadd3b9a6cfa354d2065232f88bcad5a2b4",
+    "continuity_snapshot_commit": "6cd3f6741f457a83cfbde8f3aa62cf698a1f03a6"
+  },
+  "sentinel_preopen_checkpoint": "da790d8eec55c2eb5ddf9e4d61e3902fff62b0be",
+  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C09 after post-activation Sentinel alignment PASS.",
+  "updated_at": "2026-09-05T16:33:00+07:00"
+}
