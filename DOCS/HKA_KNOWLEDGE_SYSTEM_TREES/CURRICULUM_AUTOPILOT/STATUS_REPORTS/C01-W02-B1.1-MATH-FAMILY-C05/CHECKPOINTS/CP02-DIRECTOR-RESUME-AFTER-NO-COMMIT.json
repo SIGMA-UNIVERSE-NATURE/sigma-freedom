@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-DIRECTOR-RESUME-AFTER-NO-COMMIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "observed_branch_head_before_resume_order": "e602feb71dd6bdebedb72248dec70e4ec84e8a8e",
+  "resume_order_commit_sha": "25fe6ea17bec3882b548be982624963bb7f2209d",
+  "director_finding": "Prior execution attempt produced no confirmed durable academic commit; treat as INCOMPLETE/NO-CANDIDATE, not FAIL.",
+  "control_plane_state": {
+    "active_scope_id": "B1.1-C05",
+    "active_window": "C01-W02-B1.1-MATH-FAMILY-C05",
+    "active_window_status": "READY",
+    "C04_locked": true,
+    "later_pipeline_stages_gated": true
+  },
+  "recovery_action": "Resume the same C05 window from GitHub durable state using DIRECTOR_RESUME_ORDER_1.md; do not create a new branch or repeat accepted predecessors.",
+  "next_action": "Execute C05 only and persist bounded academic commits/checkpoints before any terminal candidate result."
+}
