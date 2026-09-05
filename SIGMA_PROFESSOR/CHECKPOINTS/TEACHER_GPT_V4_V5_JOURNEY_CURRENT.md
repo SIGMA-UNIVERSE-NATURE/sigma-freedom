@@ -55,13 +55,18 @@ CURRENT_STAGE=V5-K2
 CURRENT_CAPABILITY=WIKIPEDIA_ADAPTER
 V5K1_ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 V5K2_WIKIPEDIA_ADAPTER_UNLOCKED=YES
-V5K2_SOURCE_READY=NO_IN_PROGRESS
+V5K2_SOURCE_READY=YES
 V5K2_RUNTIME_ADMISSION=NOT_RUN
+V5K3_ARXIV_ADAPTER_UNLOCKED=NO_PENDING_V5K2_RUNTIME_PASS
 ```
 
-Latest immutable checkpoint:
+Latest admitted checkpoint:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K1_FIX1_EXTERNAL_ACQUISITION_PROTOCOL_PASS.md`
+
+Current V5-K2 source-ready checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K2_WIKIPEDIA_ADAPTER_SOURCE_READY.md`
 
 Latest machine-executed sample:
 
@@ -75,55 +80,110 @@ FIX1_RUNNER_SHA256=8645a8c46ad09599fa29e5d0e30064d3d460d0799fe066773fcbb58a6956c
 FIX1_BUNDLE_SHA256=21b6203b63ba554b22ba53e27264ed4698b4d48faff5d1a8dae7e430592de77d
 BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_FINAL_SUMMARY
 TOTAL_VM_INVOCATIONS=50
-DIRECTED_VM_INVOCATIONS=16
-RANDOMIZED_VM_INVOCATIONS=32
-REPLAY_VM_INVOCATIONS=2
 POST_VM_ALIGNMENT_PASS_COUNT=50
 POST_VM_ALIGNMENT_FAIL_COUNT=0
 VM_NONZERO_COUNT=0
 STEP_LIMIT_HIT_COUNT=0
 FINAL_ACQUISITION_LEDGER_SHA256=9d403cb79e9e9ea820ee8520576296086f907968bc8ade516b510c67dfa3d220
 FINAL_ACQUISITION_RECORD_COUNT=18
-HOST_TRANSPORT_DISPATCH_COUNT=19
-HOST_TRANSPORT_NOT_FOUND_COUNT=1
-HOST_NO_EVENT_COUNT=3
-HOST_TRANSPORT_ERROR_COUNT=0
 RESULT=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-Admitted V5-K1 scope:
+V5-K1 failure/repair to remember:
 
-- native request emission;
-- exact response identity binding;
-- mechanical exact lookup transport in sandbox fixture scope;
-- transport-not-found visibility;
-- malformed-response refusal;
-- payload-missing refusal;
+```text
+V1_D02=REFUSE_PAYLOAD_MISSING
+ROOT_CAUSE=RUNNER_TRUNCATED_PAYLOAD_BEFORE_VERIFY
+FIX1=PREPARE_CLEARS_VERIFY_PRESERVES_EXACT_TRANSPORT_BYTES
+NATIVE_SOURCE_CHANGED=NO
+FIX1_FULL_RERUN=50_OF_50_PASS
+```
+
+## V5-K2 — Wikipedia Adapter source-ready
+
+User-facing bundle:
+
+```text
+BUNDLE_NAME=SIGMA_V5K2_NATIVE_ADMISSION_V1_WIKIPEDIA_ADAPTER_BUNDLE.zip
+BUNDLE_SHA256=fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70
+SOURCE_SHA256=57a720f97004217e9f1602d7048316abf0bb711e005106ff092c65b7d19967aa
+RUNNER_SHA256=46492716ed275e5120b7eba6e5f0bc93920dd7ed92062830d010b78e0eeee0e9
+V5K1_DEPENDENCY_SOURCE_SHA256=29670c3eca4bcd02e875d2178407259af9e76ebbcbbd6e2ee7a31f979da26537
+BYTECODE_SHA256=UNKNOWN_NOT_RUN
+PLANNED_VM_INVOCATIONS=50
+DIRECTED_VM_INVOCATIONS=16
+DYNAMIC_MATRIX_VM_INVOCATIONS=32
+REPLAY_VM_INVOCATIONS=2
+BASH_SYNTAX=PASS
+```
+
+Mechanical host tools required:
+
+```text
+curl=REQUIRED
+jq=REQUIRED
+```
+
+If missing, HOLD; do not substitute cognition.
+
+V5-K2 official MediaWiki Action API shape checked 2026-09-05:
+
+```text
+action=query
+prop=revisions|extracts
+titles=<dynamic title>
+rvprop=ids|timestamp
+rvlimit=1
+exintro=1
+explaintext=1
+exchars=600
+redirects=1
+format=json
+formatversion=2
+```
+
+Exact V1 language editions:
+
+```text
+en
+vi
+```
+
+Planned native proof scope:
+
+- dynamic title request emission;
+- live English and Vietnamese Wikipedia transport;
+- page ID, revision ID and revision timestamp provenance;
+- bounded plaintext intro payload request;
+- not-found visibility;
+- malformed response refusal;
+- missing payload refusal;
 - request-ID conflict refusal;
-- bounded acquisition ledger idempotency;
-- source-family/resource-ID/request-ID provenance binding;
-- identical input/prestate decision and event-byte replay in tested scope.
+- persistent Wikipedia ledger idempotency;
+- replay/event determinism.
 
-## V5-K1 failure + repair history
-
-V1 failed at D02 because the runner truncated the payload slot again before VERIFY:
+Host role:
 
 ```text
-SUCCESS_RESPONSE_MATCH=1
-PAYLOAD_PRESENT=0
-V5K1_STATUS=REFUSE_PAYLOAD_MISSING
-POST_VM_ALIGNMENT=FAIL
+HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
+HOST_JSON_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
+HOST_RESOURCE_SELECTION=NO_CLAIM_DYNAMIC_TITLE_INPUT_SUPPLIED
 ```
 
-Native SIGMA failed closed correctly. Fix1 changed only runner payload lifecycle:
+Keep until real Termux proof:
 
 ```text
-PREPARE -> clear destination payload slot
-TRANSPORT -> write exact payload bytes
-VERIFY -> preserve transport payload bytes
+LIVE_WIKIPEDIA_RUNTIME=NOT_YET_EXECUTED
+V5K2_RUNTIME_ADMISSION=NOT_RUN
+WIKIPEDIA_ADAPTER_TESTED_SCOPE=NOT_PROVEN
+V5K3_ARXIV_ADAPTER_UNLOCKED=NO
+RESEARCH_GOAL_SELECTION=NOT_EXECUTED
+CONTENT_SEMANTIC_INTERPRETATION=NOT_EXECUTED
+CONTENT_TRUTH_DECISION=NOT_EXECUTED
+KNOWLEDGE_PROMOTION=NOT_EXECUTED
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+PRODUCTION_BINDING=NO
 ```
-
-Native source remained unchanged. Full Fix1 rerun passed 50/50.
 
 ## Level 1 V4 status
 
@@ -137,53 +197,18 @@ V4-PK5_COGNITIVE_VM_BRIDGE=PASS_IN_EXACT_TESTED_SCOPE
 V4-PK6_VERIFIED_EVOLUTION=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-Important V4 claim limits remain:
-
-```text
-SEMANTIC_UNDERSTANDING=NOT_PROVEN
-SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN
-GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN
-GENERAL_SELF_IMPROVEMENT=NOT_PROVEN
-GENERAL_WORLD_ACTION=NOT_PROVEN
-```
-
-## V5-K2 design contract
-
-Goal: add the smallest Wikipedia-specific adapter on top of admitted V5-K1.
-
-Host may only perform exact HTTP/byte transport and exact protocol decoding required by the adapter. Host must not choose article relevance, truth, knowledge promotion, research goals, or semantic interpretation.
-
-V5-K2 must preserve at minimum:
-
-```text
-SOURCE_FAMILY=WIKIPEDIA
-LANGUAGE_EDITION
-REQUEST_ID
-RESOURCE_OR_PAGE_IDENTITY
-REVISION_OR_RESPONSE_PROVENANCE_WHEN_AVAILABLE
-TRANSPORT_STATUS
-RAW_OR_EXACT_DECODED_PAYLOAD_IDENTITY
-```
-
-Retrieval success must not imply:
-
-```text
-CONTENT_TRUTH_DECISION
-KNOWLEDGE_PROMOTION
-SEMANTIC_UNDERSTANDING
-```
-
-Initial V5-K2 scope should be bounded, source-specific, live-network admission with positive, not-found, malformed-response/fault, replay/provenance and host-substitution tests.
-
 ## Immediate next action
 
-1. Confirm current official Wikimedia/MediaWiki API transport shape from authoritative documentation.
-2. Build native V5-K2 source and deterministic admission harness on top of V5-K1 boundaries.
-3. Keep source-specific query/resource input dynamic.
-4. Compile with locked SIGMAC before dynamic test inputs where practical.
-5. Run locked-VM live-network admission on Termux.
-6. Preserve first failure or final summary exactly.
-7. On PASS, immediately create immutable V5-K2 checkpoint, update this living handoff, and unlock V5-K3 arXiv only then.
+Run V5-K2 on the locked Termux runtime.
+
+1. Verify bundle SHA256 `fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70`.
+2. Clean-unzip the bundle.
+3. Run `sha256sum -c MANIFEST.sha256`.
+4. Ensure Termux has mechanical tools `curl` and `jq`; if runner reports either missing, install only those tools and rerun from clean state.
+5. Execute `bash run_SIGMA_V5K2_NATIVE_ADMISSION_V1.sh | tee V5K2_NATIVE_ADMISSION_V1.out`.
+6. Preserve the first failure or final summary exactly.
+7. On PASS: immutable V5-K2 checkpoint + living handoff update immediately, then unlock V5-K3 arXiv.
+8. On FAIL: failure checkpoint + living handoff update immediately, smallest repair, same gate rerun.
 
 ## Direction after V5-K2
 
@@ -194,19 +219,6 @@ V5-K2 Wikipedia adapter
 -> V5-K5 Project Gutenberg adapter
 -> V5-K6 Provenance normalization
 -> V5-K7 Evidence Graph integration
-```
-
-## Current non-claims
-
-```text
-LIVE_WIKIPEDIA_RUNTIME=NOT_YET_EXECUTED
-ARXIV_ADAPTER=NOT_EXECUTED
-PUBMED_ADAPTER=NOT_EXECUTED
-GUTENBERG_ADAPTER=NOT_EXECUTED
-RESEARCH_GOAL_SELECTION=NOT_EXECUTED
-CONTENT_TRUTH_DECISION=NOT_EXECUTED
-KNOWLEDGE_PROMOTION=NOT_EXECUTED
-SEMANTIC_UNDERSTANDING=NOT_PROVEN
 ```
 
 ## Next-window instruction
