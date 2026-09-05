@@ -1,9 +1,13 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "READY",
+  "status": "PASS",
+  "disposition": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
+  "director_accepted": true,
+  "worker_submission_state": "PARTIAL_NOT_PASS_CANDIDATE",
+  "worker_pass_candidate_fabricated": false,
   "execution_branch": "hka-tree/c01-w02-math-c10",
   "input_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
   "accepted_C09_continuity_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
@@ -12,45 +16,59 @@
   "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
   "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
-  "last_checkpoint_commit_sha": "278832bd8436a70677237cc2849d0f60f3c98888",
-  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "last_checkpoint_id": "CP02-DIRECTOR-STRUCTURAL-COMPLETION-AND-AUDIT",
+  "last_checkpoint_commit_sha": "48fc62d3b764d1502fd122e63bdd1326ad039b3f",
   "scope_ids": ["B1.1-C10"],
-  "canonical_topics": 10,
-  "frozen_academic_prerequisites": ["B1.1-C03", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08"],
-  "continuity_predecessor_not_added_as_academic_prerequisite": true,
-  "mandatory_risks": ["R06", "R13"],
-  "active_global_foundational_gate": {
-    "amendment": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
-    "gate_file": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
-    "D1_D4_age_independent": true,
-    "advanced_content_cannot_substitute_for_foundational_content": true,
-    "worker_must_preserve_C10_foundational_meanings_before_advanced_extensions": true,
-    "cross_scope_foundational_gap_repair_in_C10_forbidden": true
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 100,
+    "local_sources": 13,
+    "accepted_reused_source_ids": 2,
+    "learning_objectives": 40,
+    "closure_records": 40,
+    "cross_links": 25,
+    "sequence_intents": 10
+  },
+  "director_audit": {
+    "claims_read": "100/100 PASS",
+    "local_source_id_sha256": "13/13 PASS",
+    "accepted_reused_sources": "2/2 VERIFIED",
+    "learning_objectives_read": "40/40 PASS",
+    "semantic_closure": "40/40 PASS",
+    "current_claim_coverage": "100/100 PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "cross_links": "25/25 PASS",
+    "R06": "PASS",
+    "R13": "PASS",
+    "prerequisite_DAG": "PASS_ACYCLIC",
+    "branch_diff": "PASS_C10_ONLY",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "theorem_level_repairs": 0,
+    "semantic_repairs": 0,
+    "director_structural_completion": ["CURRICULUM_SEQUENCE_INTENT.jsonl","read-back/audit","RESULT.json","HANDOFF.md","terminal status/report"]
+  },
+  "foundational_13_year_gate": {
+    "status": "ACTIVE_REQUIRED",
+    "B1_1_foundational_audit_status": "NOT_YET_RUN",
+    "foundational_gap_count": null,
+    "B1_1_completion": "GATED",
+    "B1_2_unlock": "GATED"
   },
   "completed_work": [
-    "Director accepted C09 with zero academic repairs.",
-    "Sentinel returned TREE_ALIGNMENT_PASS for C10 pre-open plan.",
-    "Amendment 5 locked C10 applied-math, decision, optimization, domain-model and B1.5 boundaries.",
-    "Activated global Foundational 13-Year Coverage Amendment and gate.",
-    "Updated C10 contract, execution prompt and Director open order to preserve foundational meanings before advanced extensions."
-  ],
-  "remaining_work": [
-    "Author all ten canonical C10 topics.",
-    "Apply R06/R13 and preserve C03/C05/C06/C07/C08 ownership.",
-    "Preserve foundational applied-mathematics concepts inside C10 before advanced extensions.",
-    "Create direct semantic Claim-to-Learning-Objective closure with zero future/locked support IDs.",
-    "Run source, theorem/model-assumption, duplicate, prerequisite and stage-boundary audits from committed files before candidate PASS.",
-    "After Director acceptance of C10, run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT before any B1.2 decision."
+    "Accepted all ten C10 topics after independent Director audit.",
+    "Preserved C03/C05/C06/C07/C08 ownership and zero future/locked support.",
+    "Completed missing sequence/read-back/terminal structural work without altering academic claims or Learning Objectives."
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope is B1.1-C10 only.",
-    "C10 is the final B1.1 authoring scope but does not itself complete B1.1, B1 or CURRICULUM globally.",
-    "B1.2+ remain locked during C10 worker execution.",
-    "D1-D4 are academic depth, not age/grade labels.",
-    "Advanced university/research content may extend but never substitute for the foundational 13-year spine.",
+    "C10 is academically accepted.",
+    "C10 acceptance completes B1.1 C01-C10 authoring only; it does not complete the B1.1 subbranch.",
+    "D1-D4 remain age-independent.",
+    "Advanced content cannot substitute for foundational 13-year coverage.",
+    "B1.2 remains locked until B1.1 Foundational 13-Year Coverage Audit PASS with gap count 0.",
     "No post-CURRICULUM artifact is authorized."
   ],
-  "next_action": "Execute C10 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; after Director acceptance run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT before any successor decision.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C10"
+  "next_action": "Run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION across C01-C10; repair concrete gaps at true owner scopes until FOUNDATIONAL_GAP_COUNT=0 before any B1.2 successor decision.",
+  "successor_window": "B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION — GATED"
 }
