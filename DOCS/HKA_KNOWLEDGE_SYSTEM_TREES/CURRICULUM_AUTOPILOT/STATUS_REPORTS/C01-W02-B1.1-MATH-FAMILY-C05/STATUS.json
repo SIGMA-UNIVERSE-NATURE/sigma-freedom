@@ -1,60 +1,65 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "IN_AUDIT",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE_TERMINAL_SYNC_BY_DIRECTOR",
   "execution_branch": "hka-tree/c01-w02-math-c05",
   "input_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "c2094a43ac7e8156778e3405b55478e094083b6c",
-  "last_checkpoint_id": "CP05-ACADEMIC-CLOSURE-T01-T10",
+  "last_checkpoint_commit_sha": "19538a8d6bfbfa18914f1bf4710e3144ac0304f1",
+  "last_checkpoint_id": "CP07-TERMINAL-WORKER-PASS-CANDIDATE",
   "scope_ids": ["B1.1-C05"],
+  "artifact_counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 98,
+    "sources": 4,
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "cross_links": 17,
+    "sequence_intent_records": 10
+  },
   "completed_work": [
-    "Bootstrap/scope lock and substantive Block A checkpoint completed.",
-    "All ten canonical C05 topics T01-T10 are now durably authored in the seven required curriculum JSONL files.",
-    "Current academic record set contains 10 nodes, 98 atomic claims, 4 immutable/persistent-edition sources, 40 D1-D4 objectives, 40 closure rows, 17 cross-links and 10 sequence-intent records.",
+    "All ten canonical C05 topics T01-T10 are durably authored.",
+    "Committed academic record set contains 10 nodes, 98 atomic sourced claims, 4 immutable/persistent-edition sources, 40 D1-D4 objectives, 40 closure rows, 17 cross-links and 10 sequence-intent records.",
+    "Committed-file read-back and CP06 pre-PASS audit passed all required gates.",
+    "Claim-to-Learning-Objective closure is 40/40 with zero future/locked-scope support Claim IDs.",
     "All six mandatory internal overlap/ownership pairs are explicitly dispositioned.",
-    "N004 integration-by-parts Claim C010 metadata discrepancy recorded at CP04 is resolved.",
-    "CP05-ACADEMIC-CLOSURE-T01-T10 committed at c2094a43ac7e8156778e3405b55478e094083b6c."
+    "C04 was not opened or authored and no post-CURRICULUM artifacts were created.",
+    "RESULT.json, HANDOFF.md, REPORT.md and CP07 terminal worker candidate checkpoint were committed.",
+    "Director independently read all 98 claims, verified 4 deterministic source IDs, audited closure/ownership/prerequisite/stage-boundary evidence, and synchronized this terminal STATUS after the worker stopped before its final status write."
   ],
-  "remaining_work": [
-    "Read all seven committed academic files back from GitHub rather than relying on in-memory authoring state.",
-    "Audit JSONL records, ID uniqueness/references, exact topic coverage, deterministic source IDs and source provenance.",
-    "Audit exactly one D1-D4 objective per node and exactly one supported closure row per objective with zero future/locked support Claim IDs.",
-    "Audit all six mandatory duplicate/ownership pairs plus C01-C03 predecessor references and C04/C06/C07/C09/C10 locked boundaries.",
-    "Audit prerequisite/sequence graph for acyclicity and absence of locked-scope prerequisites.",
-    "Compare branch to accepted C03 to verify no Lesson Registry/prompts/images/later-stage spill and no C04 authoring.",
-    "Commit pre-PASS audit checkpoint, RESULT.json, HANDOFF.md and terminal worker candidate status only if every audit passes."
-  ],
-  "output_paths": [
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/NODES.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CLAIMS.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/SOURCES.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/LEARNING_OBJECTIVES.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CROSS_LINKS.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CURRICULUM_SEQUENCE_INTENT.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP05-ACADEMIC-CLOSURE-T01-T10.json"
-  ],
+  "audit_summary": {
+    "topic_completeness": "PASS_10_OF_10",
+    "claim_director_read": "PASS_98_OF_98",
+    "source_identity_and_sha256_determinism": "PASS_4_OF_4",
+    "D1_D4_objectives": "PASS_40",
+    "claim_to_learning_objective_closure": "PASS_40_OF_40_100_PERCENT",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "semantic_duplicate_and_ownership": "PASS",
+    "mandatory_internal_overlap_dispositions": "PASS_6_OF_6",
+    "prerequisite_and_sequence": "PASS_ACYCLIC",
+    "stage_boundary": "PASS",
+    "C04_opened_or_authored": false,
+    "post_CURRICULUM_artifacts_authored": false
+  },
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope remains B1.1-C05 only on the existing branch.",
-    "C04 remains locked and unopened; no C04 claim ID supports C05.",
-    "Accepted C01/C02/C03 records are referenced, not re-authored.",
-    "C04/C06/C07/C09/C10 remain non-support boundaries.",
-    "No pipeline stage after CURRICULUM is authorized.",
-    "CP05 is an academic-closure checkpoint, not PASS."
+    "Scope is B1.1-C05 only.",
+    "Accepted predecessor is C03 commit 7546ad74fb0e71ad2120c7091947993690bef82d.",
+    "Execution Amendment 1 controls C05-before-C04 order; stable canonical ownership remains unchanged.",
+    "C04 remained locked throughout worker authoring and supplied no academic support claims.",
+    "Claim-to-Learning-Objective closure is mandatory and passed 40/40.",
+    "D1-D4 remain independent of age.",
+    "No later pipeline stage artifact was authored."
   ],
-  "do_not_repeat": [
-    "Do not re-author C01/C02/C03 or rebuild T01-T10 from chat memory.",
-    "Do not create another C05 branch.",
-    "Do not open or author C04.",
-    "Do not report PASS until committed read-back, 100% audit and terminal commit verification are complete."
-  ],
-  "next_action": "Perform committed-file read-back and full C05 audits from GitHub durable state.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C05",
-  "updated_at": "2026-09-05T09:10:00+07:00"
+  "director_acceptance_required": true,
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C04 — GATED pending durable Director acceptance of C05",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "successor_status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at": "2026-09-05T09:20:00+07:00"
 }
