@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP06-COMMITTED-PRE-PASS-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "AUDITED_CANDIDATE_READY",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "committed_academic_blobs": {
+    "NODES.jsonl": "7698d7fff318206e198961f1132b9aa290f4f2e9",
+    "CLAIMS.jsonl": "d3fdf6ed23e7d57e89f8a3e509b92b40fdf78522",
+    "SOURCES.jsonl": "bd81f71920a10f770a719235e87db3b191120316",
+    "LEARNING_OBJECTIVES.jsonl": "27a5ea2e0b08747b3a017183ff26bed5893e8ff8",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "715858ccedc60203d1770091a7ac098dad46f7a1",
+    "CROSS_LINKS.jsonl": "768eb73558c100838c8f2edeb94eeafb47a9998f",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "900b84b4715fc9a1c72766a512cb7bcd050f157f"
+  },
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 98,
+    "sources": 4,
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "cross_links": 17,
+    "sequence_intent_records": 10
+  },
+  "audit_results": {
+    "git_read_back_all_seven_academic_files": "PASS",
+    "jsonl_record_and_id_integrity": "PASS",
+    "node_claim_and_learning_objective_referential_integrity": "PASS",
+    "canonical_topic_coverage": "PASS_10_OF_10_100_PERCENT",
+    "source_version_and_locator_provenance": "PASS_4_OF_4",
+    "deterministic_source_ids_sha256_prefix": "PASS_4_OF_4",
+    "learning_depth_distribution": "PASS_EXACTLY_D1_D2_D3_D4_PER_NODE",
+    "claim_to_learning_objective_closure": "PASS_40_OF_40_100_PERCENT",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "mandatory_internal_overlap_dispositions": "PASS_6_OF_6",
+    "accepted_predecessor_ownership_boundaries": "PASS",
+    "locked_scope_ownership_boundaries": "PASS",
+    "prerequisite_sequence_graph": "PASS_ACYCLIC_RANKS_1_THROUGH_10",
+    "locked_scope_prerequisites": 0,
+    "branch_merge_base_is_accepted_C03": true,
+    "branch_behind_accepted_C03_by": 0,
+    "branch_diff_stage_boundary": "PASS",
+    "C04_opened_or_authored": false,
+    "post_CURRICULUM_artifacts_authored": false
+  },
+  "mandatory_internal_overlap_records": [
+    "XL-C05-INT-T01-T02",
+    "XL-C05-INT-T03-T06",
+    "XL-C05-INT-T04-T07",
+    "XL-C05-INT-T05-T10",
+    "XL-C05-INT-T07-T09",
+    "XL-C05-INT-T08-T10"
+  ],
+  "closure_proof": {
+    "objective_count": 40,
+    "closure_row_count": 40,
+    "supported_count": 40,
+    "unsupported_count": 0,
+    "duplicate_objective_closure_rows": 0,
+    "future_or_locked_support_claim_ids": 0,
+    "percent": 100
+  },
+  "stage_boundary_proof": {
+    "compare_base": "7546ad74fb0e71ad2120c7091947993690bef82d",
+    "compare_head": "hka-tree/c01-w02-math-c05",
+    "behind_by": 0,
+    "changed_file_categories": [
+      "C05 CURRICULUM academic authoring",
+      "C05 window instructions",
+      "C05 status/checkpoints"
+    ],
+    "C04_changed_files": 0,
+    "lesson_registry_changed_files": 0,
+    "prompt_or_image_stage_changed_files": 0,
+    "later_stage_changed_files": 0
+  },
+  "pass_claimed": false,
+  "next_action": "Commit RESULT.json and HANDOFF.md, create terminal checkpoint/status, read terminal artifacts back from GitHub, and verify branch-head terminal commit SHA before reporting worker candidate PASS."
+}
