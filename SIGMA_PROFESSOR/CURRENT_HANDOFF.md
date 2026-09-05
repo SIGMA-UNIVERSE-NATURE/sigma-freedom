@@ -328,6 +328,34 @@ Language next action:
 
 This language lane does not change continual-learning/V4 production-promotion status.
 
+## TEACHER_GPT 54-DNA native lane pointer
+
+Dedicated living checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_54_DNA_LANE_CURRENT.md`
+
+Stable build/admission workflow:
+`SIGMA_PROFESSOR/DIRECTIVES/NATIVE_54_DNA_BUILD_ADMISSION_WORKFLOW_V1.md`
+
+Rolling state:
+`SIGMA_PROFESSOR/54_DNA_CURRENT_STATE.md`
+
+Current 54-DNA status:
+- DNA-25 Self-Improvement is `ADMITTED_IN_EXACT_TESTED_SCOPE` with bytecode SHA256 `4b246df1fa99aa34298a36ebed8b8c1c3cc9125acfbeac1c418884904f954e5f`;
+- DNA-25 V1 did NOT execute an upgrade: `SELF_UPGRADE_APPLIED_BY_DNA25=NO` and `SELF_IMPROVEMENT_EXECUTION=NOT_EXECUTED_BY_DNA25_V1`;
+- DNA-26 Observability is `SOURCE_READY_RUNTIME_IN_PROGRESS_PARTIAL_EVIDENCE_ONLY`;
+- DNA-26 source SHA256 `8b078d5104b6fff392f63def1b16598778a732649bc3f6c57b5b3a6a2c866266`;
+- DNA-26 runner SHA256 `2d2c0046e32fe775d467dffc2a068c9d11388519e4b7a63b407174414fb5777b`;
+- partial device excerpt records CASE 05..12 all `POST_VM_ALIGNMENT=PASS`;
+- DNA-26 full admission is NOT yet proven from that excerpt.
+
+DNA-26 partial immutable checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA26_V1_RUNTIME_PARTIAL_CASE05_TO_CASE12_PASS.md`
+
+54-DNA next action:
+`COMPLETE_DNA26_NATIVE_ADMISSION_V1_FULL_50_CASE_SUITE_AND_CAPTURE_FINAL_SUMMARY_OR_FIRST_FAILURE`
+
+When DNA-26 completes, apply `CLAIM <= MACHINE EVIDENCE`, preserve exact runtime bytecode/final-ledger hashes, retain all source-ready non-claims, and recompute the dependency/capability frontier. Do not automatically choose DNA-27 by number.
+
 ## NEXT ACTION
 
 1. Keep V2.4 running unchanged.
