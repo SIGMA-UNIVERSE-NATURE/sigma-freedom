@@ -174,6 +174,28 @@ It must NOT establish physical append atomicity. Keep:
 
 `PHYSICAL_FILESYSTEM_ATOMICITY=NOT_CLAIMED`
 
+## TEACHER_GPT language lane pointer
+
+Dedicated living checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_LANGUAGE_LANE_CURRENT.md`
+
+Current admitted language chain:
+
+`LANG-01A -> LANG-01B -> LANG-01C -> LANG-01D -> LANG-01E -> LANG-01F`
+
+Current language status:
+
+- `LANG-01A..LANG-01F=ADMITTED_IN_EXACT_TESTED_STRUCTURAL_SCOPES`;
+- latest LANG-01F source SHA256 `1ab0081f904a844d456d7913b522577038cec1b7d62f4f37494bf29a79dc9a59`;
+- latest LANG-01F bytecode SHA256 `60edd9ace13f54b826adcd7e89362acddcfaea9a1649845006f52c99dce77a81`;
+- LANG-01F final runtime: `21/21` post-VM alignment PASS;
+- `SEMANTIC_UNDERSTANDING=NOT_PROVEN`;
+- `COREFERENCE_RESOLUTION=NOT_PROVEN`;
+- next language capability is intentionally `NOT_YET_LOCKED`; re-read the dedicated checkpoint + latest canon before choosing between reference-resolution evidence integration and negation/scope foundation.
+
+This pointer does not change the V2.22 continual-learning frontier or production-promotion status.
+
 ## NEXT ACTION
 
 1. Keep V2.4 running unchanged.
