@@ -1,11 +1,12 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "PASS_CANDIDATE",
+  "status": "PASS",
   "worker_status": "PASS",
-  "disposition": "WORKER_PASS_CANDIDATE",
+  "disposition": "DIRECTOR_ACCEPTED_PASS_AFTER_TWO_HYPOTHESIS_REPAIRS",
+  "director_accepted": true,
   "execution_branch": "hka-tree/c01-w02-math-c08",
   "input_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
   "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
@@ -14,10 +15,11 @@
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "substantive_commit_sha": "902d1affa847d0f5a3214887c76977a7e0f251b5",
-  "pre_pass_checkpoint_commit_sha": "21b35ca6a10a6973acf851c900f3aedfb7732718",
-  "last_checkpoint_commit_sha": "b47006ce0ecf59b707b02847e0c0ac723f15301f",
-  "last_checkpoint_id": "CP04-WORKER-PASS-CANDIDATE",
+  "worker_candidate_commit_sha": "4f0493b4c7605e9d457810c9efe7ae822eeeab7a",
+  "director_claim_amendment_commit_sha": "e6167f0e68aa5d49f39b09ffabe686ca28960bad",
+  "director_repair_checkpoint_commit_sha": "1659dd7fe408d0b95a59ead0f70694c701c15324",
+  "last_checkpoint_commit_sha": "b795d3e957b34cbb2f41e3c60c294b12ac0b0e44",
+  "last_checkpoint_id": "CP06-DIRECTOR-ACCEPTED-PASS",
   "scope_ids": ["B1.1-C08"],
   "counts": {
     "canonical_topics": 8,
@@ -29,31 +31,40 @@
     "cross_links": 17,
     "sequence_intents": 8
   },
+  "director_audit": {
+    "claims_independently_read": "109/109",
+    "sources_verified": "7/7",
+    "source_id_sha256": "7/7 PASS",
+    "learning_objectives": "32/32",
+    "semantic_closure": "32/32 PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "R05": "PASS",
+    "R02": "PASS",
+    "C03_reuse": "PASS",
+    "prerequisite_DAG": "PASS_ACYCLIC",
+    "stage_boundary": "PASS",
+    "academic_hypothesis_repairs": 2,
+    "blocking_issues_after_repair": 0
+  },
+  "effective_claim_rule": "For HKA-B1-1-C08-N004-C006 and HKA-B1-1-C08-N007-C014, CLAIMS_DIRECTOR_AMENDMENT_1.jsonl supersedes the base candidate statement and scope limits.",
   "completed_work": [
-    "Authored all eight canonical C08 topics as CURRICULUM nodes with 109 atomic claims and 7 version-pinned academic sources.",
-    "Authored 32 D1-D4 learning objectives and 32 direct semantic Claim-to-Learning-Objective closure records.",
-    "Verified 100% supporting-claim resolution with future_or_locked_scope_claim_ids = 0.",
-    "Applied R05 mathematics-vs-algorithms ownership boundaries across recurrence, graph/tree/network, combinatorial optimization and discrete structures.",
-    "Applied R02 error-correcting-code boundary: algebraic/combinatorial code mathematics remains C08; channel/reliability remains future B1.5-C01.",
-    "Reused accepted C03 group-action, finite-field, linear-map, vector-space/matrix and ring/polynomial/ideal foundations without duplicate primary ownership.",
-    "Verified prerequisite DAG acyclic and branch diff restricted to C08 curriculum/window/status artifacts.",
-    "Created no ACADEMIC_LOCKED, Lesson Registry, prompt, image, R2 or post-CURRICULUM artifact."
+    "Authored and audited all eight canonical C08 topics.",
+    "Director independently audited 109 claims, 7 sources, 32 objectives and 32 semantic closure rows.",
+    "Director repaired the missing Euler open-trail connectivity hypothesis and the missing Reed-Solomon 1<=k<=n hypothesis before acceptance.",
+    "R05 mathematics-vs-algorithms and R02 mathematical-coding-vs-channel-coding boundaries PASS.",
+    "Future/locked support Claim IDs remain zero and no post-CURRICULUM artifact was created."
   ],
-  "remaining_work": [
-    "Director review and acceptance of this C08 worker PASS candidate."
-  ],
+  "remaining_work": [],
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope is B1.1-C08 only.",
-    "Accepted predecessor is C06 commit e0d6f667d38e937c7c6040b51fb14e34f0bb6345.",
-    "C07 remains locked until Director-accepted C08 PASS.",
-    "C09/C10 remain locked.",
-    "Future/locked scopes provide zero support Claim IDs.",
-    "No later pipeline stage artifact is authorized or created."
+    "Scope B1.1-C08 is Director-accepted.",
+    "Accepted IDs remain stable and append-only.",
+    "C07 may consume C08 DAG/topological-order/reachability mathematics but owns causal meaning/inference.",
+    "B1.5-C03 retains algorithms/data structures/complexity; B1.5-C01 retains channel/reliability coding.",
+    "No later pipeline stage is authorized."
   ],
-  "director_acceptance_required": true,
-  "director_acceptance_claimed": false,
-  "successor_unlocked": false,
-  "next_action": "C01-W02-B1.1-MATH-FAMILY-C07 — GATED pending Director acceptance of C08",
+  "director_acceptance_required": false,
+  "successor_unlocked_by_child": false,
+  "next_action": "Control-plane Director may activate C01-W02-B1.1-MATH-FAMILY-C07 after Sentinel pre-open alignment.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C07"
 }
