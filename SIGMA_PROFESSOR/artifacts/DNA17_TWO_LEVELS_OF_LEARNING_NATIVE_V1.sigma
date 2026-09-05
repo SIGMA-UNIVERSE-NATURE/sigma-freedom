@@ -1,0 +1,463 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA17.TWO.LEVELS.OF.LEARNING.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF different(a, b) {
+    IF (a == b) { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF learning_level(cognitive_evidenced, neural_evidenced) {
+    IF (cognitive_evidenced > 0.5) {
+        IF (neural_evidenced > 0.5) { RETURN "COGNITIVE_AND_NEURAL"; }
+        RETURN "COGNITIVE";
+    }
+    IF (neural_evidenced > 0.5) { RETURN "NEURAL"; }
+    RETURN "NONE";
+}
+
+DEF neural_status_1(dep_valid, complete, changed, separated) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (complete < 0.5) { RETURN "PERSISTENT_CAPABILITY_CHANGE_FIELDS_INCOMPLETE"; }
+    IF (changed < 0.5) { RETURN "PERSISTENT_CAPABILITY_BEFORE_AFTER_UNCHANGED"; }
+    IF (separated < 0.5) { RETURN "LEARNER_VERIFIER_NOT_SEPARATED"; }
+    RETURN "CONTINUE";
+}
+
+DEF neural_status_2(independent, binding_match, verifier_pass, store_valid) {
+    IF (independent < 0.5) { RETURN "INDEPENDENT_VERIFIER_REQUIRED"; }
+    IF (binding_match < 0.5) { RETURN "VERIFICATION_NOT_BOUND_TO_CAPABILITY_CHANGE"; }
+    IF (verifier_pass < 0.5) { RETURN "VERIFIER_PASS_REQUIRED"; }
+    IF (store_valid < 0.5) { RETURN "NEURAL_EVIDENCE_STORE_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF neural_status_3(duplicate_found, capacity_available, qualified, retained) {
+    IF (duplicate_found > 0.5) { RETURN "NEURAL_EVIDENCE_DUPLICATE_NOT_RETAINED"; }
+    IF (capacity_available < 0.5) { RETURN "NEURAL_EVIDENCE_CAPACITY_REACHED"; }
+    IF (qualified > 0.5) {
+        IF (retained > 0.5) { RETURN "NEURAL_LEVEL_EVIDENCE_RECORDED"; }
+        RETURN "NEURAL_LEVEL_EVIDENCE_QUALIFIED_NOT_RETAINED";
+    }
+    RETURN "QUALIFICATION_UNRESOLVED";
+}
+
+DEF choose_neural_status(stage_1, stage_2, stage_3) {
+    IF (stage_1 == "CONTINUE") {
+        IF (stage_2 == "CONTINUE") { RETURN stage_3; }
+        RETURN stage_2;
+    }
+    RETURN stage_1;
+}
+
+⟡(Σ.DNA17_TWO_LEVELS_OF_LEARNING_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/case_id.txt");
+
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ VERIFICATION_WALL_SCHEMA: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verification_wall_schema.txt");
+    ⚡ MEMORY_GENOME_SCHEMA: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/memory_genome_schema.txt");
+    ⚡ PERSISTENCE_ENGINE_SCHEMA: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/persistence_engine_schema.txt");
+    ⚡ DNA16_OUTPUT_PRESENT: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/dna16_output_present.txt");
+
+    ⚡ MEMORY_BEFORE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/memory_before.txt");
+    ⚡ MEMORY_AFTER: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/memory_after.txt");
+    ⚡ STRATEGY_BEFORE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/strategy_before.txt");
+    ⚡ STRATEGY_AFTER: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/strategy_after.txt");
+    ⚡ STRATEGY_EVIDENCE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/strategy_evidence.txt");
+
+    ⚡ CAPABILITY_ID: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/capability_id.txt");
+    ⚡ CAPABILITY_BEFORE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/capability_before.txt");
+    ⚡ CAPABILITY_AFTER: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/capability_after.txt");
+    ⚡ PERSISTENCE_EVIDENCE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/persistence_evidence.txt");
+
+    ⚡ LEARNER_ID: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/learner_id.txt");
+    ⚡ VERIFIER_ID: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verifier_id.txt");
+    ⚡ VERIFIER_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verifier_independent.txt");
+    ⚡ INDEPENDENCE_BASIS: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/independence_basis.txt");
+    ⚡ VERIFICATION_METHOD: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verification_method.txt");
+    ⚡ VERIFICATION_SCOPE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verification_scope.txt");
+    ⚡ VERIFICATION_EVIDENCE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verification_evidence.txt");
+    ⚡ VERIFIER_PASS_TOKEN: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verifier_pass.txt");
+
+    ⚡ VERIFIED_CAPABILITY_ID: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verified_capability_id.txt");
+    ⚡ VERIFIED_CAPABILITY_BEFORE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verified_capability_before.txt");
+    ⚡ VERIFIED_CAPABILITY_AFTER: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verified_capability_after.txt");
+    ⚡ VERIFIED_PERSISTENCE_EVIDENCE: load_text(".sigma_exec/DNA17_NATIVE_ADMISSION_V1/input/verified_persistence_evidence.txt");
+
+    ⚡ DNA16_BOOL_OK: bool_token_valid(DNA16_OUTPUT_PRESENT);
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1")
+        * exact(VERIFICATION_WALL_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1")
+        * exact(MEMORY_GENOME_SCHEMA, "SIGMA_MEMORY_GENOME_V1")
+        * exact(PERSISTENCE_ENGINE_SCHEMA, "SIGMA_PERSISTENCE_ENGINE_V1")
+        * DNA16_BOOL_OK
+        * bool_true(DNA16_OUTPUT_PRESENT);
+
+    ⚡ MEMORY_COMPONENT_COMPLETE: present(MEMORY_BEFORE) * present(MEMORY_AFTER);
+    ⚡ MEMORY_CHANGE_DETECTED: MEMORY_COMPONENT_COMPLETE * different(MEMORY_BEFORE, MEMORY_AFTER);
+
+    ⚡ STRATEGY_COMPONENT_COMPLETE: present(STRATEGY_BEFORE) * present(STRATEGY_AFTER) * present(STRATEGY_EVIDENCE);
+    ⚡ STRATEGY_CHANGE_DETECTED: STRATEGY_COMPONENT_COMPLETE * different(STRATEGY_BEFORE, STRATEGY_AFTER);
+
+    ⚡ COGNITIVE_RAW_EVIDENCED: 0.0;
+    IF (MEMORY_CHANGE_DETECTED > 0.5) {
+        ⚡ COGNITIVE_RAW_EVIDENCED: 1.0;
+    }
+    IF (STRATEGY_CHANGE_DETECTED > 0.5) {
+        ⚡ COGNITIVE_RAW_EVIDENCED: 1.0;
+    }
+
+    ⚡ COGNITIVE_LEVEL_EVIDENCED: DEPENDENCY_BINDING_VALID * COGNITIVE_RAW_EVIDENCED;
+
+    ⚡ VERIFIER_INDEPENDENT_TOKEN_VALID: bool_token_valid(VERIFIER_INDEPENDENT_TOKEN);
+    ⚡ VERIFIER_PASS_TOKEN_VALID: bool_token_valid(VERIFIER_PASS_TOKEN);
+
+    ⚡ NEURAL_COMPONENT_COMPLETE:
+        present(CAPABILITY_ID)
+        * present(CAPABILITY_BEFORE)
+        * present(CAPABILITY_AFTER)
+        * present(PERSISTENCE_EVIDENCE)
+        * present(LEARNER_ID)
+        * present(VERIFIER_ID)
+        * VERIFIER_INDEPENDENT_TOKEN_VALID
+        * present(INDEPENDENCE_BASIS)
+        * present(VERIFICATION_METHOD)
+        * present(VERIFICATION_SCOPE)
+        * present(VERIFICATION_EVIDENCE)
+        * VERIFIER_PASS_TOKEN_VALID
+        * present(VERIFIED_CAPABILITY_ID)
+        * present(VERIFIED_CAPABILITY_BEFORE)
+        * present(VERIFIED_CAPABILITY_AFTER)
+        * present(VERIFIED_PERSISTENCE_EVIDENCE);
+
+    ⚡ CAPABILITY_BEFORE_AFTER_CHANGED:
+        present(CAPABILITY_BEFORE)
+        * present(CAPABILITY_AFTER)
+        * different(CAPABILITY_BEFORE, CAPABILITY_AFTER);
+
+    ⚡ LEARNER_VERIFIER_SEPARATED:
+        present(LEARNER_ID)
+        * present(VERIFIER_ID)
+        * different(LEARNER_ID, VERIFIER_ID);
+
+    ⚡ VERIFIER_INDEPENDENT:
+        VERIFIER_INDEPENDENT_TOKEN_VALID
+        * bool_true(VERIFIER_INDEPENDENT_TOKEN);
+
+    ⚡ CAPABILITY_BINDING_MATCH:
+        exact(CAPABILITY_ID, VERIFIED_CAPABILITY_ID)
+        * exact(CAPABILITY_BEFORE, VERIFIED_CAPABILITY_BEFORE)
+        * exact(CAPABILITY_AFTER, VERIFIED_CAPABILITY_AFTER)
+        * exact(PERSISTENCE_EVIDENCE, VERIFIED_PERSISTENCE_EVIDENCE);
+
+    ⚡ VERIFIER_PASS:
+        VERIFIER_PASS_TOKEN_VALID
+        * bool_true(VERIFIER_PASS_TOKEN);
+
+    ⚡ NEURAL_LEVEL_EVIDENCED:
+        DEPENDENCY_BINDING_VALID
+        * NEURAL_COMPONENT_COMPLETE
+        * CAPABILITY_BEFORE_AFTER_CHANGED
+        * LEARNER_VERIFIER_SEPARATED
+        * VERIFIER_INDEPENDENT
+        * CAPABILITY_BINDING_MATCH
+        * VERIFIER_PASS;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA17_NATIVE_ADMISSION_V1/state/neural_evidence_store.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA17_NEURAL_EVIDENCE_STORE_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_NEURAL_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) {
+        ⚡ STORE_HEADER_OK: 1.0;
+    }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ NEURAL_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ DUPLICATE_NEURAL_EVIDENCE_FOUND: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 11) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCAP: host("list_get", PARTS, 1, NULL);
+                ⚡ RBEFORE: host("list_get", PARTS, 2, NULL);
+                ⚡ RAFTER: host("list_get", PARTS, 3, NULL);
+                ⚡ RPERSIST: host("list_get", PARTS, 4, NULL);
+                ⚡ RVERIFIER: host("list_get", PARTS, 5, NULL);
+                ⚡ RBASIS: host("list_get", PARTS, 6, NULL);
+                ⚡ RMETHOD: host("list_get", PARTS, 7, NULL);
+                ⚡ RSCOPE: host("list_get", PARTS, 8, NULL);
+                ⚡ REVIDENCE: host("list_get", PARTS, 9, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 10, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "NEURAL")
+                    * present(RCAP)
+                    * present(RBEFORE)
+                    * present(RAFTER)
+                    * present(RPERSIST)
+                    * present(RVERIFIER)
+                    * present(RBASIS)
+                    * present(RMETHOD)
+                    * present(RSCOPE)
+                    * present(REVIDENCE)
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ NEURAL_RECORD_COUNT_BEFORE: NEURAL_RECORD_COUNT_BEFORE + 1.0;
+                    ⚡ SAME_NEURAL_EVIDENCE:
+                        exact(RCAP, CAPABILITY_ID)
+                        * exact(RBEFORE, CAPABILITY_BEFORE)
+                        * exact(RAFTER, CAPABILITY_AFTER)
+                        * exact(RPERSIST, PERSISTENCE_EVIDENCE);
+                    IF (SAME_NEURAL_EVIDENCE > 0.5) {
+                        ⚡ DUPLICATE_NEURAL_EVIDENCE_FOUND: 1.0;
+                    }
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) {
+        ⚡ STORE_STATE_VALID: 0.0;
+    }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (NEURAL_RECORD_COUNT_BEFORE < MAX_NEURAL_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ NEURAL_RECORD_RETENTION_ELIGIBLE:
+        NEURAL_LEVEL_EVIDENCED
+        * STORE_STATE_VALID
+        * (1.0 - DUPLICATE_NEURAL_EVIDENCE_FOUND)
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ NEURAL_RECORD_RETAINED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+
+    IF (NEURAL_RECORD_RETENTION_ELIGIBLE > 0.5) {
+        ⚡ NEW_RECORD:
+            "NEURAL||"
+            + CAPABILITY_ID + "||"
+            + CAPABILITY_BEFORE + "||"
+            + CAPABILITY_AFTER + "||"
+            + PERSISTENCE_EVIDENCE + "||"
+            + VERIFIER_ID + "||"
+            + INDEPENDENCE_BASIS + "||"
+            + VERIFICATION_METHOD + "||"
+            + VERIFICATION_SCOPE + "||"
+            + VERIFICATION_EVIDENCE + "||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) {
+            ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ NEURAL_RECORD_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ NEURAL_RECORD_COUNT_AFTER:
+        NEURAL_RECORD_COUNT_BEFORE + NEURAL_RECORD_RETAINED;
+
+    ⚡ STATE_MUTATED: NEURAL_RECORD_RETAINED;
+    ⚡ CLASSIFICATION:
+        learning_level(COGNITIVE_LEVEL_EVIDENCED, NEURAL_LEVEL_EVIDENCED);
+
+    ⚡ NEURAL_STATUS_STAGE_1:
+        neural_status_1(
+            DEPENDENCY_BINDING_VALID,
+            NEURAL_COMPONENT_COMPLETE,
+            CAPABILITY_BEFORE_AFTER_CHANGED,
+            LEARNER_VERIFIER_SEPARATED
+        );
+
+    ⚡ NEURAL_STATUS_STAGE_2:
+        neural_status_2(
+            VERIFIER_INDEPENDENT,
+            CAPABILITY_BINDING_MATCH,
+            VERIFIER_PASS,
+            STORE_STATE_VALID
+        );
+
+    ⚡ NEURAL_STATUS_STAGE_3:
+        neural_status_3(
+            DUPLICATE_NEURAL_EVIDENCE_FOUND,
+            STATE_CAPACITY_AVAILABLE,
+            NEURAL_LEVEL_EVIDENCED,
+            NEURAL_RECORD_RETAINED
+        );
+
+    ⚡ NEURAL_STATUS:
+        choose_neural_status(
+            NEURAL_STATUS_STAGE_1,
+            NEURAL_STATUS_STAGE_2,
+            NEURAL_STATUS_STAGE_3
+        );
+
+    ⚡ print("DNA17_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("VERIFICATION_WALL_SCHEMA_OK");
+    ⚡ print(exact(VERIFICATION_WALL_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1"));
+    ⚡ print("MEMORY_GENOME_SCHEMA_OK");
+    ⚡ print(exact(MEMORY_GENOME_SCHEMA, "SIGMA_MEMORY_GENOME_V1"));
+    ⚡ print("PERSISTENCE_ENGINE_SCHEMA_OK");
+    ⚡ print(exact(PERSISTENCE_ENGINE_SCHEMA, "SIGMA_PERSISTENCE_ENGINE_V1"));
+    ⚡ print("DNA16_OUTPUT_PRESENT");
+    ⚡ print(bool_true(DNA16_OUTPUT_PRESENT));
+
+    ⚡ print("MEMORY_CHANGE_DETECTED");
+    ⚡ print(MEMORY_CHANGE_DETECTED);
+    ⚡ print("STRATEGY_CHANGE_DETECTED");
+    ⚡ print(STRATEGY_CHANGE_DETECTED);
+    ⚡ print("COGNITIVE_LEVEL_EVIDENCED");
+    ⚡ print(COGNITIVE_LEVEL_EVIDENCED);
+
+    ⚡ print("NEURAL_COMPONENT_COMPLETE");
+    ⚡ print(NEURAL_COMPONENT_COMPLETE);
+    ⚡ print("CAPABILITY_BEFORE_AFTER_CHANGED");
+    ⚡ print(CAPABILITY_BEFORE_AFTER_CHANGED);
+    ⚡ print("LEARNER_VERIFIER_SEPARATED");
+    ⚡ print(LEARNER_VERIFIER_SEPARATED);
+    ⚡ print("VERIFIER_INDEPENDENT");
+    ⚡ print(VERIFIER_INDEPENDENT);
+    ⚡ print("CAPABILITY_BINDING_MATCH");
+    ⚡ print(CAPABILITY_BINDING_MATCH);
+    ⚡ print("VERIFIER_PASS");
+    ⚡ print(VERIFIER_PASS);
+    ⚡ print("NEURAL_LEVEL_EVIDENCED");
+    ⚡ print(NEURAL_LEVEL_EVIDENCED);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("NEURAL_RECORD_COUNT_BEFORE");
+    ⚡ print(NEURAL_RECORD_COUNT_BEFORE);
+    ⚡ print("DUPLICATE_NEURAL_EVIDENCE_FOUND");
+    ⚡ print(DUPLICATE_NEURAL_EVIDENCE_FOUND);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("NEURAL_RECORD_RETENTION_ELIGIBLE");
+    ⚡ print(NEURAL_RECORD_RETENTION_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("NEURAL_RECORD_RETAINED");
+    ⚡ print(NEURAL_RECORD_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("NEURAL_RECORD_COUNT_AFTER");
+    ⚡ print(NEURAL_RECORD_COUNT_AFTER);
+
+    ⚡ print("CLASSIFICATION");
+    ⚡ print(CLASSIFICATION);
+    ⚡ print("NEURAL_STATUS");
+    ⚡ print(NEURAL_STATUS);
+
+    ⚡ print("TWO_LEVELS_SCHEMA");
+    ⚡ print("SIGMA_TWO_LEVELS_OF_LEARNING_V1");
+    ⚡ print("COGNITIVE_DEFINITION");
+    ⚡ print("MEMORY_OR_STRATEGY_CHANGE");
+    ⚡ print("NEURAL_DEFINITION");
+    ⚡ print("PERSISTENT_CAPABILITY_CHANGE_EVIDENCE");
+    ⚡ print("VERIFICATION_BINDING_MODE");
+    ⚡ print("EXACT_OPAQUE_COMPONENT_TUPLE");
+    ⚡ print("MAX_NEURAL_RECORDS");
+    ⚡ print(MAX_NEURAL_RECORDS);
+
+    ⚡ print("HOST_LEARNING");
+    ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION");
+    ⚡ print(0.0);
+    ⚡ print("CANDIDATE_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("PERSISTENCE_EVIDENCE_SEMANTIC_VALIDATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_VERIFIER_INVOCATION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("NEURAL_LEARNING_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("PERSISTENT_CAPABILITY_MODIFIED_BY_DNA17");
+    ⚡ print(0.0);
+    ⚡ print("MODEL_OR_ADAPTER_PROMOTED");
+    ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN");
+    ⚡ print(0.0);
+}
