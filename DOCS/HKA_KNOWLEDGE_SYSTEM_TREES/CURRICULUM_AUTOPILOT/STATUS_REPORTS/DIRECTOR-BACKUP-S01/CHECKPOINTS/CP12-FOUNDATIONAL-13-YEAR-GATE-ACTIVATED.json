@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP12-FOUNDATIONAL-13-YEAR-GATE-ACTIVATED",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "stage": "CURRICULUM",
+  "sentinel_status": "TREE_ALIGNMENT_PASS",
+  "active_scope": "B1.1-C10",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "active_branch": "hka-tree/c01-w02-math-c10",
+  "accepted_predecessor": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "foundational_13_year_gate": {
+    "gate_status": "ACTIVE_REQUIRED",
+    "amendment_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
+    "gate_commit": "755d8cf626236e5746a93cc89f47f0da31f66a81",
+    "current_audit_status": "NOT_YET_RUN",
+    "current_state_is_valid": true,
+    "blocking_condition": "Any attempted B1.1 completion or B1.2 successor unlock before foundational audit PASS with gap count 0"
+  },
+  "c10_governance_commits": {
+    "contract": "7d5ddefa89b1a7af8e7065eb64a5b80ac3d3459c",
+    "execution_prompt": "e70f7f0b7d6f3d7fd2db77ca1372325bb49b31c0",
+    "open_order": "f3e999ba19dacd5308eef01fed4ac0683b645fcd",
+    "status": "a8d639a97802e01f94e93fffe5d38b7aa63fc466"
+  },
+  "checks": {
+    "D1_D4_age_independent": "PASS",
+    "advanced_not_substitute_for_foundational": "PASS_GOVERNANCE_LOCKED",
+    "C10_foundational_meanings_before_advanced_extensions": "PASS_GOVERNANCE_LOCKED",
+    "cross_scope_gap_repair_at_true_owner": "PASS_GOVERNANCE_LOCKED",
+    "B1_2_unlock": "LOCKED",
+    "post_curriculum_stages": "GATED"
+  },
+  "next_action": "Run C10 only. After Director acceptance, run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT before any successor decision.",
+  "created_at": "2026-09-05T20:31:00+07:00"
+}
