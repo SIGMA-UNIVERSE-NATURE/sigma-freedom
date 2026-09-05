@@ -6,17 +6,15 @@ Status: LIVING COORDINATION CHECKPOINT
 
 ## Mandatory continuation reads
 
-Before continuing this lane, read:
-
 1. `/AGENTS.md`
 2. `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
 3. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
 4. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
 5. `SIGMA_PROFESSOR/DIRECTIVES/TEACHER_GPT_GITHUB_PROGRESS_HANDOFF_POLICY_V1.md`
-6. this living handoff
+6. this file
 7. latest immutable checkpoint named below
 
-Do not ask the user to restate the V4/V5 journey when repository evidence supplies the needed context.
+Do not ask the user to restate V4/V5 history when repository evidence provides the needed context.
 
 ## Progress-update policy
 
@@ -55,32 +53,31 @@ CURRENT_STAGE=V5-K3
 CURRENT_CAPABILITY=ARXIV_ADAPTER
 V5K1_ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 V5K2_ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
-V5K3_ARXIV_ADAPTER_UNLOCKED=YES
 V5K3_SOURCE_READY=YES
 V5K3_RUNTIME_ADMISSION=NOT_RUN_PRECONDITION_HOLD
 V5K3_CURRENT_HOLD=XMLLINT_MISSING_MECHANICAL_DECODE_TOOL
-V5K3_SOURCE_REPAIR_REQUIRED=NO
+V5K3_NATIVE_SOURCE_REPAIR_REQUIRED=NO
 V5K3_RUNNER_REPAIR_REQUIRED=NO
+V5K3_MECHANICAL_DEPENDENCY_CORRECTION=INSTALL_LIBXML2_UTILS
 V5K4_PUBMED_ADAPTER_UNLOCKED=NO_PENDING_V5K3_RUNTIME_PASS
 ```
 
 Latest admitted checkpoint:
-
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K2_WIKIPEDIA_ADAPTER_NATIVE_ADMISSION_PASS.md`
 
-Current V5-K3 source-ready checkpoint:
-
+V5-K3 source-ready checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K3_ARXIV_ADAPTER_SOURCE_READY.md`
 
-Latest V5-K3 HOLD checkpoint:
-
+Original V5-K3 HOLD checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K3_ARXIV_ADAPTER_HOLD_XMLLINT_MISSING.md`
 
-Latest machine-executed sample:
+Current package-split correction checkpoint:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K3_ARXIV_ADAPTER_HOLD_XMLLINT_PACKAGE_SPLIT_CORRECTION.md`
 
+Latest machine sample:
 `SIGMA_PROFESSOR/artifacts/SAMPLES/V5K2_WIKIPEDIA_MACHINE_PASS_SAMPLE_V1.txt`
 
-## Level 1 V4 — complete in declared tested scopes
+## Level 1 V4 status
 
 ```text
 LEVEL1_V4_PERSISTENT_KNOWLEDGE_CHAIN_COMPLETE_IN_DECLARED_TESTED_SCOPES=YES
@@ -92,32 +89,28 @@ V4-PK5_COGNITIVE_VM_BRIDGE=PASS_IN_EXACT_TESTED_SCOPE
 V4-PK6_VERIFIED_EVOLUTION=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-Key Level-1 boundaries remain:
+Keep:
 
 ```text
 SEMANTIC_UNDERSTANDING=NOT_PROVEN
 SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN
 GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN
 GENERAL_SELF_IMPROVEMENT=NOT_PROVEN
-WORLD_ACTION_RUNTIME=NOT_EXECUTED_IN_THIS_CHAIN
 PRODUCTION_BINDING=NO
 ```
 
-## V5-K1 — External acquisition protocol — admitted PASS
+## V5-K1 — admitted PASS
 
 Immutable checkpoint:
-
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K1_FIX1_EXTERNAL_ACQUISITION_PROTOCOL_PASS.md`
 
 Machine sample:
-
 `SIGMA_PROFESSOR/artifacts/SAMPLES/V5K1_FIX1_EXTERNAL_ACQUISITION_MACHINE_PASS_SAMPLE_V1.txt`
 
 ```text
 SOURCE_SHA256=29670c3eca4bcd02e875d2178407259af9e76ebbcbbd6e2ee7a31f979da26537
 FIX1_RUNNER_SHA256=8645a8c46ad09599fa29e5d0e30064d3d460d0799fe066773fcbb58a6956cc28
 FIX1_BUNDLE_SHA256=21b6203b63ba554b22ba53e27264ed4698b4d48faff5d1a8dae7e430592de77d
-BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_FINAL_SUMMARY
 TOTAL_VM_INVOCATIONS=50
 POST_VM_ALIGNMENT_PASS_COUNT=50
 POST_VM_ALIGNMENT_FAIL_COUNT=0
@@ -138,23 +131,18 @@ NATIVE_SOURCE_CHANGED=NO
 FIX1_FULL_RERUN=50_OF_50_PASS
 ```
 
-V5-K1 proved only the bounded request/response transport+provenance protocol. It did not execute live source-specific Internet adapters.
-
 ## V5-K2 — Wikipedia Adapter — admitted PASS
 
 Immutable checkpoint:
-
 `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K2_WIKIPEDIA_ADAPTER_NATIVE_ADMISSION_PASS.md`
 
 Machine sample:
-
 `SIGMA_PROFESSOR/artifacts/SAMPLES/V5K2_WIKIPEDIA_MACHINE_PASS_SAMPLE_V1.txt`
 
 ```text
 SOURCE_SHA256=57a720f97004217e9f1602d7048316abf0bb711e005106ff092c65b7d19967aa
 RUNNER_SHA256=46492716ed275e5120b7eba6e5f0bc93920dd7ed92062830d010b78e0eeee0e9
 BUNDLE_SHA256=fa9ec0548f49125037e11146b0f1c210a3e39d91b8d0c48121ad08d75da28a70
-BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_FINAL_SUMMARY
 TOTAL_VM_INVOCATIONS=50
 DIRECTED_VM_INVOCATIONS=16
 DYNAMIC_MATRIX_VM_INVOCATIONS=32
@@ -166,38 +154,20 @@ STEP_LIMIT_HIT_COUNT=0
 LIVE_WIKIPEDIA_RUNTIME=TESTED_EN_AND_VI_SCOPE
 FINAL_WIKIPEDIA_LEDGER_SHA256=4bb8e500e0bb8d3ec780987435318c0b20f2113553a92b7717d76c3582e39e0b
 FINAL_WIKIPEDIA_RECORD_COUNT=6
-HOST_HTTP_DISPATCH_COUNT=8
-HOST_HTTP_NOT_FOUND_COUNT=5
-HOST_HTTP_TRANSPORT_ERROR_COUNT=0
-HOST_JSON_DECODE_ERROR_COUNT=0
-HOST_DISPATCH_ERROR_COUNT=0
 V5K2_NATIVE_ADMISSION_V1=PASS
 WIKIPEDIA_ADAPTER_TESTED_SCOPE=PASS
 RESULT=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-Admitted exact scope:
-
-- live Wikipedia en/vi Action API transport;
-- page ID, revision ID and revision timestamp provenance;
-- bounded plaintext intro transport request (`exchars=600`);
-- not-found visibility;
-- malformed-response and missing-payload refusal;
-- request-ID conflict refusal;
-- persistent Wikipedia ledger idempotency;
-- replay/event determinism.
-
-Prior mechanical HOLD:
+Prior HOLD:
 
 ```text
 HOLD=JQ_MISSING_MECHANICAL_DECODE_TOOL
 TYPE=PRECONDITION_HOLD_NOT_NATIVE_FAILURE
-SOURCE_REPAIR_REQUIRED=NO
-RUNNER_REPAIR_REQUIRED=NO
 UNCHANGED_RUNNER_AFTER_JQ_INSTALL=50_OF_50_PASS
 ```
 
-V5-K2 claim boundaries:
+V5-K2 boundaries:
 
 ```text
 HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
@@ -208,20 +178,11 @@ CONTENT_SEMANTIC_INTERPRETATION=NOT_EXECUTED
 CONTENT_TRUTH_DECISION=NOT_EXECUTED
 KNOWLEDGE_PROMOTION=NOT_EXECUTED
 SEMANTIC_UNDERSTANDING=NOT_PROVEN
-PRODUCTION_BINDING=NO
 ```
 
 ## V5-K3 — arXiv Adapter — source ready / PRECONDITION HOLD
 
-Source-ready checkpoint:
-
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K3_ARXIV_ADAPTER_SOURCE_READY.md`
-
-Current HOLD checkpoint:
-
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V5K3_ARXIV_ADAPTER_HOLD_XMLLINT_MISSING.md`
-
-User-facing artifact:
+Canonical identities:
 
 ```text
 BUNDLE_NAME=SIGMA_V5K3_NATIVE_ADMISSION_V1_ARXIV_ADAPTER_BUNDLE.zip
@@ -230,31 +191,18 @@ SOURCE_SHA256=d3ecd3c2683bdf88cc95ef83ec643235251cb2fbaa0d17bc8d8fb1f70c3c750b
 RUNNER_SHA256=82e3a543d16995c84b3cf1f17bc70c9964906b8ba2c9859f04d60b49962c794b
 V5K2_DEPENDENCY_SOURCE_SHA256=57a720f97004217e9f1602d7048316abf0bb711e005106ff092c65b7d19967aa
 BYTECODE_SHA256=UNKNOWN_NOT_COMPILED_IN_CURRENT_HOLD_RUN
-BASH_SYNTAX=PASS
 PLANNED_VM_INVOCATIONS=50
 DIRECTED_VM_INVOCATIONS=16
 DYNAMIC_MATRIX_VM_INVOCATIONS=32
 REPLAY_VM_INVOCATIONS=2
 ```
 
-Official API basis checked 2026-09-05:
-
-- `https://info.arxiv.org/help/api/user-manual.html`
-- `https://info.arxiv.org/help/api/tou.html`
-
-Exact V1 transport shape:
+Official arXiv V1 transport shape:
 
 ```text
 https://export.arxiv.org/api/query
 id_list=<dynamic supplied arXiv ID>
 max_results=1
-```
-
-Official API response is Atom 1.0 XML. Current arXiv API terms require no more than one legacy API request every three seconds and one connection at a time.
-
-Runner enforces:
-
-```text
 ARXIV_RATE_LIMIT_DELAY_SECONDS=3
 ARXIV_SINGLE_CONNECTION_TRANSPORT=YES
 ```
@@ -267,65 +215,51 @@ xmllint=REQUIRED
 sleep=REQUIRED
 ```
 
-### Current machine HOLD
-
-User machine output:
+Current user environment evidence:
 
 ```text
-ACTIVE_CAPABILITY_IMPLEMENTATION=NATIVE_SIGMA_ONLY
-ACTIVE_SIGMA_COGNITION=SIGMA_NATIVE_ONLY
-HOST_COGNITION=NO
-HOST_LEARNING=NO
-HOST_SEMANTIC_INTERPRETATION=NO
-HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
-HOST_XML_DECODE_ROLE=MECHANICAL_EXACT_PROTOCOL_DECODE_ONLY
-HOST_RESOURCE_SELECTION=NO_CLAIM_DYNAMIC_ARXIV_ID_INPUT_SUPPLIED
-RESEARCH_GOAL_SELECTION=NOT_EXECUTED
-CONTENT_TRUTH_DECISION=NOT_EXECUTED
-KNOWLEDGE_PROMOTION=NOT_EXECUTED
-HOST_SEMANTIC_SUBSTITUTION=NO
-HOST_POST_VM_TEST_ORACLE_ONLY=YES
-PYTHON_USED=NO
-ARXIV_RATE_LIMIT_DELAY_SECONDS=3
-ARXIV_SINGLE_CONNECTION_TRANSPORT=YES
-DYNAMIC_INPUT_PRESENT_AT_COMPILE_TIME=NO
-LIVE_ARXIV_RESPONSE_PRESENT_AT_COMPILE_TIME=NO
-PERSISTENT_STORE_PRESENT_AT_COMPILE_TIME=NO
-HOLD=XMLLINT_MISSING_MECHANICAL_DECODE_TOOL
+libxml2=INSTALLED_VERSION_2.15.3
+xmllint=MISSING
 ```
 
-Interpretation:
+Current Termux packaging correction:
 
 ```text
-TYPE=PRECONDITION_HOLD_NOT_NATIVE_FAILURE
-V5K3_COMPILE=NOT_REACHED_IN_THIS_RUN
-V5K3_RUNTIME_ADMISSION=NOT_RUN
-LIVE_ARXIV_RUNTIME=NOT_EXECUTED_IN_THIS_RUN
+xmllint_PACKAGE=libxml2-utils
+PREVIOUS_SUGGESTION_pkg_install_libxml2=INSUFFICIENT_FOR_CURRENT_PACKAGE_SPLIT
 SOURCE_REPAIR_REQUIRED=NO
 RUNNER_REPAIR_REQUIRED=NO
-V5K4_PUBMED_ADAPTER_UNLOCKED=NO
 ```
 
-Do not modify `.sigma`, runner, rate limit, or admission gates for this HOLD.
+## Immediate next action
 
-### Planned V5-K3 proof scope
+Install the actual current Termux package that provides `xmllint`:
 
-- dynamic supplied arXiv ID request;
-- live `id_list` API transport;
-- raw Atom XML payload;
-- canonical entry ID provenance;
-- published timestamp provenance;
-- updated timestamp provenance;
-- primary category provenance;
-- not-found visibility;
-- malformed response and missing payload refusal;
-- request-ID conflict refusal;
-- persistent arXiv ledger idempotency;
-- replay/event determinism.
+```bash
+pkg install libxml2-utils
+command -v xmllint
+xmllint --version
+```
 
-Keep until machine PASS:
+Then rerun the exact unchanged V5-K3 runner:
+
+```bash
+bash run_SIGMA_V5K3_NATIVE_ADMISSION_V1.sh \
+  | tee V5K3_NATIVE_ADMISSION_V1.out
+```
+
+Runner recreates its isolated runtime namespace at start; clean unzip is not required solely for this dependency HOLD.
+
+On next run:
+1. preserve first compile/runtime failure or final 50-case summary exactly;
+2. on PASS, create immutable V5-K3 PASS checkpoint, update this living handoff immediately, add machine sample, then unlock V5-K4 PubMed;
+3. on another HOLD, record it if diagnosis/frontier changes;
+4. on FAIL, preserve evidence and make the smallest justified repair.
+
+## V5-K3 claim boundaries until PASS
 
 ```text
+LIVE_ARXIV_RUNTIME=NOT_EXECUTED_IN_HOLD_RUN
 ARXIV_ADAPTER_TESTED_SCOPE=NOT_PROVEN
 V5K4_PUBMED_ADAPTER_UNLOCKED=NO
 HOST_HTTP_ROLE=MECHANICAL_EXACT_REQUEST_TRANSPORT_ONLY
@@ -339,7 +273,7 @@ SEMANTIC_UNDERSTANDING=NOT_PROVEN
 PRODUCTION_BINDING=NO
 ```
 
-## Important historical failures/HOLDs — preserve as evidence
+## Important historical failures/HOLDs
 
 ```text
 V4PK4_D16_CAPACITY_FIXTURE_FIELD_COUNT_FAILURE=RECORDED_AND_REPAIRED
@@ -347,39 +281,9 @@ V4PK4_COMPLETION_D09_INVALID_INPUT_LIFECYCLE_BUG=RECORDED_NATIVE_FIX1_PASS
 V4PK6_D01_MISSING_OPTIONAL_READ_TARGET_RC22=RECORDED_RUNNER_FIX1_PASS
 V5K1_D02_RUNNER_PAYLOAD_TRUNCATION=RECORDED_RUNNER_FIX1_PASS
 V5K2_JQ_MISSING=RECORDED_PRECONDITION_HOLD_THEN_UNCHANGED_RUNNER_PASS
-V5K3_XMLLINT_MISSING=RECORDED_PRECONDITION_HOLD_CURRENT
+V5K3_XMLLINT_MISSING=RECORDED_PRECONDITION_HOLD
+V5K3_XMLLINT_PACKAGE_SPLIT=CORRECTED_TO_LIBXML2_UTILS
 ```
-
-## Immediate next action
-
-Install only the missing Termux mechanical XML decoder package:
-
-```bash
-pkg install libxml2
-```
-
-Verify:
-
-```bash
-command -v xmllint
-xmllint --version
-```
-
-Then rerun the exact unchanged V5-K3 runner from the current extracted bundle:
-
-```bash
-bash run_SIGMA_V5K3_NATIVE_ADMISSION_V1.sh \
-  | tee V5K3_NATIVE_ADMISSION_V1.out
-```
-
-Runner recreates its isolated runtime namespace at start, so clean-unzip is not required solely for this dependency HOLD.
-
-On the next run:
-
-1. Preserve the first compile/runtime failure or final 50-case summary exactly.
-2. If PASS: create immutable V5-K3 PASS checkpoint, update this living handoff immediately, add machine sample, then unlock V5-K4 PubMed.
-3. If another HOLD: record it if it changes the environment/frontier; do not modify cognition or gates unless a real defect exists.
-4. If FAIL: preserve failure evidence, smallest justified repair, rerun the same gate.
 
 ## Direction after V5-K3
 
