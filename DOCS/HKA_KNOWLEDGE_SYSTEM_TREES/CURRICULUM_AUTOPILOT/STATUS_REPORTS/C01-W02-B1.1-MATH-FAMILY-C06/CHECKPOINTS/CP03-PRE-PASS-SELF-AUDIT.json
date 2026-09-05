@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "scope_id": "B1.1-C06",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "checkpoint_type": "PRE_PASS_SELF_AUDIT",
+  "execution_branch": "hka-tree/c01-w02-math-c06",
+  "audited_head_sha": "b0e4024805e16da7e27c373170e2aeb72b233ac1",
+  "accepted_predecessor_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "committed_readback_completed": true,
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 102,
+    "sources": 6,
+    "learning_objectives": 32,
+    "closure_rows": 32,
+    "cross_links": 17,
+    "sequence_intent_records": 8
+  },
+  "audits": {
+    "director_authorization": "PASS",
+    "branch_and_predecessor_ancestry": "PASS",
+    "exactly_eight_canonical_topics": "PASS",
+    "claim_id_uniqueness_and_resolution": "PASS",
+    "source_id_sha256_normalization": "PASS",
+    "learning_objectives_direct_semantic_claim_closure": "PASS_32_OF_32",
+    "closure_rows_supported_by_claim_content_not_row_existence": "PASS_32_OF_32",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "existence_uniqueness_hypotheses": "PASS",
+    "pde_solvability_hypotheses": "PASS",
+    "stability_linearization_hypotheses": "PASS",
+    "bifurcation_transversality_nondegeneracy": "PASS",
+    "chaos_definition_and_diagnostic_limits": "PASS",
+    "ownership_and_duplicate_disposition": "PASS",
+    "internal_prerequisite_graph_acyclic": "PASS",
+    "post_curriculum_artifacts_created": 0
+  },
+  "locked_boundaries": {
+    "C07": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C08": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C09": "LOCKED_NO_SUPPORT_CLAIMS",
+    "C10": "LOCKED_NO_SUPPORT_CLAIMS",
+    "B1.2": "BOUNDARY_ONLY_NO_SUPPORT_CLAIMS"
+  },
+  "next_action": "Emit only a CURRICULUM worker PASS candidate RESULT/HANDOFF and update this window status; do not unlock any successor or create any post-CURRICULUM artifact."
+}
