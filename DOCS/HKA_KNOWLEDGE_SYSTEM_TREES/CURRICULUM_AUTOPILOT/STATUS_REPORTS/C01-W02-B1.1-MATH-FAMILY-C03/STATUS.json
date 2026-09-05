@@ -3,12 +3,13 @@
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "IN_PROGRESS",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
   "execution_branch": "hka-tree/c01-w02-math-c03",
   "input_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "5f6a9b0c7d147a5abcd37e7ee51c4e627f594b56",
-  "last_checkpoint_id": "CP02-SUBSTANTIVE-ACADEMIC-OWNERSHIP-CLOSURE",
+  "last_checkpoint_commit_sha": "b9bfe9c7c03e19d2794015b78ec27552d7e21c9a",
+  "last_checkpoint_id": "CP04-TERMINAL-WORKER-PASS-CANDIDATE",
   "scope_ids": ["B1.1-C03"],
   "artifact_counts": {
     "nodes": 9,
@@ -22,17 +23,30 @@
   "completed_work": [
     "Bootstrap gate passed from curriculum-master durable state: C03 active and READY.",
     "Loaded accepted C01 and C02 from their Director-accepted commits and preserved their IDs/ownership.",
-    "Authored all nine canonical C03 nodes with 77 atomic sourced claims.",
-    "Authored 36 age-independent D1-D4 learning objectives and 36 explicit closure records.",
-    "Resolved C01/C02 overlap, T04/T05 ownership and T06-T09 prerequisite hierarchy.",
-    "Pinned six edition/DOI/ISBN academic sources with deterministic source IDs.",
-    "Created CP02 substantive academic/ownership closure checkpoint."
+    "Authored exactly T01-T09 as nine canonical C03 nodes with 77 atomic sourced claims.",
+    "Authored 36 age-independent D1-D4 learning objectives and 36 explicit Claim-to-Learning-Objective closure records.",
+    "Resolved C01/C02 overlap, T04/T05 ownership and T06-T09 prerequisite/specialization hierarchy.",
+    "Pinned six edition/DOI/ISBN academic sources with deterministic SHA-256 source IDs.",
+    "Read all committed claims and all closure records back from GitHub durable state.",
+    "Passed source, closure, duplicate/ownership, prerequisite/sequence and stage-boundary audits.",
+    "Published RESULT.json and HANDOFF.md as a worker PASS candidate.",
+    "Created CP04 terminal worker PASS candidate checkpoint."
   ],
+  "audit_summary": {
+    "topic_completeness": "PASS",
+    "id_integrity": "PASS",
+    "claim_atomicity_and_traceability": "PASS",
+    "source_identity_and_sha256_determinism": "PASS",
+    "D1_D4_objectives": "PASS",
+    "claim_to_learning_objective_closure": "36/36 PASS",
+    "future_or_locked_scope_support_claims": 0,
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "stage_boundary": "PASS",
+    "control_plane_non_mutation": "PASS"
+  },
   "remaining_work": [
-    "Read back all committed C03 artifacts from GitHub durable state.",
-    "Run pre-PASS ID, source, closure, duplicate, prerequisite/sequence and stage-boundary audits.",
-    "Write RESULT.json and HANDOFF.md only if committed-file audits pass.",
-    "Create terminal worker-candidate checkpoint; do not unlock C04."
+    "Director review and acceptance only. This worker must not open or execute C04."
   ],
   "blocking_issues": [],
   "decisions_locked": [
@@ -45,14 +59,13 @@
     "C04 and all later scopes are locked and cannot supply academic support."
   ],
   "do_not_repeat": [
-    "Do not re-author C01 or C02.",
+    "Do not re-author C01, C02 or C03 after Director acceptance without an explicit supersession window.",
     "Do not renumber accepted IDs.",
-    "Do not start or unlock C04.",
-    "Do not create Lesson Registry, prompts, images, R2, delivery, website or ACADEMIC_LOCKED artifacts.",
-    "Do not mark PASS until committed-file pre-PASS audit succeeds."
+    "Do not start or unlock C04 from this worker branch.",
+    "Do not create Lesson Registry, prompts, images, R2, delivery, website or ACADEMIC_LOCKED artifacts from this window."
   ],
-  "next_action": "Run committed-file pre-PASS audit for C03 only.",
+  "next_action": "C04 — GATED pending Director acceptance",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C04",
   "successor_status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
-  "updated_at": "2026-09-05T07:05:00+07:00"
+  "updated_at": "2026-09-05T07:09:15+07:00"
 }
