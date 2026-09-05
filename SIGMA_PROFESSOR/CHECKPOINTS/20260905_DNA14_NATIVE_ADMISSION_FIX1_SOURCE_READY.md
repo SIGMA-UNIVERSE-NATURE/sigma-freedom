@@ -1,0 +1,76 @@
+# DNA-14 Native Admission V1 FIX1 — SOURCE READY
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+
+## Status
+
+DNA_ID=DNA-14
+DNA14_FIX1_SOURCE=SOURCE_ONLY
+DNA14_FIX1_COMPILE=NOT_RUN
+DNA14_FIX1_VM=NOT_RUN
+DNA14_FIX1_ADMISSION=NOT_RUN
+
+## Canon
+
+CANON_REFERENCE_BLOB_SHA1=a424858875999ff5c71390bfb1e4dc19114cff6b
+
+## FIX1 artifacts
+
+SOURCE_PATH=DNA14_PERSISTENCE_ENGINE_NATIVE_V1.sigma
+SOURCE_SHA256=a18d240fd9b786b63babb01ee19fa687caaa860c43913f7fdbad6dcf41944b16
+SOURCE_UNCHANGED_FROM_V1=YES
+
+RUNNER_PATH=run_DNA14_NATIVE_ADMISSION_V1_FIX1.sh
+RUNNER_SHA256=18516ff000cf4b233aa78f74bbc0197d8e5019963257d67f58513802961f1b8e
+
+BUNDLE_SHA256=196be796e3072f4ed6435d07486cbfdf3714f4c9a8eef9106521a8268b431bae
+MANIFEST_SHA256=9a190d45219921438a73aebd5663cb9a2255b40fd2384b1431356d960d62796f
+README_SHA256=e24e15283a19bfd739841b268376552330bc17643952bb7bf53aa4d1161c8908
+
+## Exact FIX1
+
+V1 shell oracle compacted newly detected AFTER information into left-packed slots. Native source/VM semantics are positional:
+
+- NEW_INFORMATION_1 corresponds to A1 if A1 is new, otherwise NONE.
+- NEW_INFORMATION_2 corresponds to A2 if A2 is new, otherwise NONE.
+- NEW_INFORMATION_3 corresponds to A3 if A3 is new, otherwise NONE.
+- NEW_INFORMATION_4 corresponds to A4 if A4 is new, otherwise NONE.
+- NEW_INFORMATION_COUNT is the number of non-NONE positional new-information values.
+
+FIX1 changes only the post-VM shell oracle to this positional policy.
+
+POST_VM_ORACLE_NEW_INFORMATION_SLOT_POLICY=POSITIONAL_A1_TO_A4
+V1_COMPACT_SLOT_ORACLE_REPAIRED=YES
+SOURCE_SEMANTICS_CHANGED=NO
+
+Static spot checks:
+
+- before=[OLD], after=[OLD,NEW] -> 1|2|1|NONE|NEW|NONE|NONE
+- before=[B1,B2], after=[B1,B2,NEW3] -> 2|3|1|NONE|NONE|NEW3|NONE
+- duplicated AFTER new values count once and preserve the first positional slot.
+
+Static audit:
+
+BASH_SYNTAX=PASS
+MANIFEST=PASS
+ZIP_INTEGRITY=PASS
+SOURCE_UNCHANGED_FROM_V1=YES
+RUNNER_PYTHON_COMMAND_COUNT=0
+MIDFILE_HASH_COMMENT_COUNT=0
+GLOBAL_FOR_S_COUNT=0
+
+## Required rerun
+
+The complete 50-case admission suite must be rerun. Previous V1 result remains:
+
+TOTAL_VM_INVOCATIONS=50
+VM_NONZERO_COUNT=0
+POST_VM_ALIGNMENT_PASS_COUNT=28
+POST_VM_ALIGNMENT_FAIL_COUNT=22
+ADMISSION=FAIL
+
+No DNA-14 capability is admitted until FIX1 runtime evidence passes every admission gate.
+
+DNA15=DEFERRED_BY_USER
+F174_EXECUTION=NOT_EXECUTED
