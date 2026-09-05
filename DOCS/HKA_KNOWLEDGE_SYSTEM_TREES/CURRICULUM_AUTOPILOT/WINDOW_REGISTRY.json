@@ -1,8 +1,11 @@
 {
-  "schema_version": "2.4",
+  "schema_version": "2.5",
   "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
-  "rule": "Successor windows read GitHub state and predecessor artifacts; chat history is never a dependency.",
+  "rule": "Successor windows read GitHub state, active dependency amendments and predecessor artifacts; chat history is never a dependency.",
   "child_window_rule": "Large academic scopes are bounded window families. Each child writes RESULT.json plus a mandatory durable status folder. Only Director-accepted PASS unlocks successor work.",
+  "active_dependency_amendments": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md"
+  ],
   "stage_order": ["KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"],
   "stages": [
     {
@@ -26,9 +29,9 @@
           "children":[
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c01","accepted_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","topic_count":8,"claim_count":38,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","depends_on":[]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c02","accepted_predecessor_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","accepted_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d","topic_count":8,"claim_count":64,"source_count":7,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","cross_link_count":15,"depends_on":["Director-accepted PASS of B1.1-C01"]},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C03","scope_id":"B1.1-C03","scope":"Đại số và cấu trúc","status":"READY","execution_branch":"hka-tree/c01-w02-math-c03","accepted_predecessor_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d","topic_count":9,"depends_on":["B1.1-C01","B1.1-C02"]},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C02","B1.1-C03"]},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C05","scope_id":"B1.1-C05","scope":"Giải tích và biến đổi liên tục","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C02","B1.1-C03","B1.1-C04"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C03","scope_id":"B1.1-C03","scope":"Đại số và cấu trúc","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c03","accepted_predecessor_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d","accepted_commit_sha":"7546ad74fb0e71ad2120c7091947993690bef82d","topic_count":9,"claim_count":77,"source_count":6,"learning_objective_count":36,"claim_to_learning_objective_closure":"36/36 PASS","cross_link_count":14,"sequence_intent_count":9,"depends_on":["B1.1-C01","B1.1-C02"]},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"LOCKED","topic_count":9,"depends_on":["B1.1-C02","B1.1-C03","Director-accepted PASS of B1.1-C05"],"execution_note":"Dependency Amendment 1: C04-T08 differential geometry requires accepted C05 calculus primitives."},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C05","scope_id":"B1.1-C05","scope":"Giải tích và biến đổi liên tục","status":"READY","execution_branch":"hka-tree/c01-w02-math-c05","accepted_predecessor_commit_sha":"7546ad74fb0e71ad2120c7091947993690bef82d","topic_count":10,"depends_on":["B1.1-C02","B1.1-C03"],"execution_note":"Activated before C04 under Dependency Amendment 1; geometry ownership remains C04."},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C06","scope_id":"B1.1-C06","scope":"Phương trình vi phân và hệ động lực","status":"LOCKED","topic_count":8,"depends_on":["B1.1-C03","B1.1-C05"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C07","scope_id":"B1.1-C07","scope":"Xác suất, thống kê và suy luận","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C01","B1.1-C02","B1.1-C03"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C08","scope_id":"B1.1-C08","scope":"Toán rời rạc và tổ hợp","status":"LOCKED","topic_count":8,"depends_on":["B1.1-C01","B1.1-C02"]},
