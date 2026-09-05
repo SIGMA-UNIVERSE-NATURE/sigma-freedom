@@ -1,0 +1,534 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+set -o pipefail
+umask 077
+
+P=/data/data/com.termux/files/usr
+HOME_SIGMA=/data/data/com.termux/files/home/SIGMA
+REPO="$HOME_SIGMA/sigma-freedom-write"
+PROD_BRAIN="$REPO/BRAIN/EXTRA BRAIN_OPPO_24826"
+PROD_E="$PROD_BRAIN/.sigma_exec"
+
+SIGMAC="$HOME_SIGMA/sigma_genesis1/native/sigmac"
+VM="$HOME_SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate"
+
+EXPECTED_SIGMAC=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+EXPECTED_VM=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+EXPECTED_V24_SOURCE=6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d969e70bcfe3afb54c2
+
+REAL_SURVEY="$PROD_E/SIGMA_V25B2_DOCUMENT_SURVEY.memory"
+SNAPSHOT="$HOME_SIGMA/SIGMA_V25_FULL_CORPUS_SURVEY/corpus_snapshot"
+
+SHADOW="$HOME_SIGMA/SIGMA_V221R1_LONG_HORIZON_SHADOW_STABILITY"
+SHADOW_BRAIN="$SHADOW/BRAIN/EXTRA BRAIN_OPPO_24826"
+E="$SHADOW_BRAIN/.sigma_exec"
+LOG="$SHADOW/log"
+FIRST_REVISIT_DIR="$SHADOW/first_revisit_state"
+SECOND_REVISIT_DIR="$SHADOW/second_revisit_state"
+THIRD_REVISIT_DIR="$SHADOW/third_revisit_state"
+FOURTH_REVISIT_DIR="$SHADOW/fourth_revisit_state"
+LOCK="$SHADOW/integration.lock"
+
+SELECT_SRC_NAME=SIGMA_REAL_SURVEY_CURRICULUM_BRIDGE_V2_8R1.sigma
+DEEP_SRC_NAME=SIGMA_SELECTED_WORK_DEEP_RELEARN_V2_8D1.sigma
+V29_SRC_NAME=SIGMA_DEEP_RELEARN_STRUCTURAL_REVALIDATION_V2_9R1.sigma
+V210_SRC_NAME=SIGMA_REVALIDATION_TO_REVISIT_ARCHIVE_V2_10R1.sigma
+V211_SRC_NAME=SIGMA_REVISIT_EXECUTION_ARCHIVE_REENTRY_V2_11R1.sigma
+V212_SRC_NAME=SIGMA_AUTONOMOUS_CYCLE_EVENT_CONTROLLER_V2_12R1.sigma
+V213_SRC_NAME=SIGMA_GENERATION_AWARE_REVALIDATION_LIFECYCLE_V2_13R1.sigma
+V214C_SRC_NAME=SIGMA_GENERATION_AWARE_CLOSED_LOOP_CONTROLLER_V2_14C1.sigma
+V214E_SRC_NAME=SIGMA_EVENT_DRIVEN_REVISIT_EXECUTOR_V2_14E1.sigma
+V219_SRC_NAME=SIGMA_REVISIT_FAIRNESS_ANTI_STARVATION_SCHEDULER_V2_19R1.sigma
+
+EXPECTED_SELECT_SOURCE=8d4fee26c5d0768aaec99eaa960d0cd7f52251680d86391f3dd4c3de89d430e8
+EXPECTED_SELECT_BC=0244d7a6ea0888c95f7db97ee2df0e7f50bfcb7bae2a00fd9b48e2aa0dec1eb5
+EXPECTED_DEEP_SOURCE=3da9195db5cf24fb3bc5094823ca13e52caa4335b6605c185e7921033079e8ce
+EXPECTED_DEEP_BC=e23fd92ed4a554195505cc490d5114531320e32ffbb481a421ded36e9c94e2ff
+EXPECTED_V29_SOURCE=94b12091d0d0727f23f57b298ee9ed71d11a2085571273496138990ca56f920b
+EXPECTED_V29_BC=c4fc06df3a1eb8f928a31e22d9d55090fc2fd53524d7e7c2e7c8265833d6a1f8
+EXPECTED_V210_SOURCE=67fb7234c0cd9e84c602a6dadb55f6e1ced6265406745ba6b3b9a7a95e0c4993
+EXPECTED_V210_BC=527bf0513082af49343f39b5ae23fd63b5c25f4034e019e934ca1d425890ef87
+EXPECTED_V211_SOURCE=88568071e657cb94845d97d94237688ec62d88121f6ff90dc8cbc96cbe685d9e
+EXPECTED_V212_SOURCE=ec367a6c780011fc7fe06e7fafbdcfde27198527565bd9054c733e79ecc115be
+EXPECTED_V213_SOURCE=8984a0beaefddb6656158eaed47080bc09955f79e9dcb0b59edcd2e0b670f107
+EXPECTED_V213_BC=ef3ea3e54a9d9d4c1858c877fc9046f9a66227fb150bd5a3c0d9847246ce609d
+EXPECTED_V214C_SOURCE=1db8cd24432b85a5b4d6125e1f26e657df6bf47c429d763eb255c12ce201d972
+EXPECTED_V214C_BC=9d7b120c7f51939c6679d55629d46816f041679164ff5c4afa8feb5af278d4f5
+EXPECTED_V214E_SOURCE=d6bd5e41813a6f2fc13b7c6bfa6215e01fe4aa11c12c0111e7b51addb9a11210
+EXPECTED_V219_SOURCE=e0734dbbdb6f0bad3d6577f9a9b20eb3a13dd9c3489caebd7f6f58bb15200ad0
+
+EXPECTED_FIRST=0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b
+EXPECTED_SECOND=26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6
+EXPECTED_THIRD=3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc
+EXPECTED_FOURTH=5c97c10b8997fb0799282a3d15fc37d9c5fe6af3ccb1bd7dce37e2589ccf36ad
+
+mkdir -p "$E" "$LOG" "$FIRST_REVISIT_DIR" "$SECOND_REVISIT_DIR" "$THIRD_REVISIT_DIR" "$FOURTH_REVISIT_DIR"
+
+exec 9>"$LOCK"
+"$P/bin/flock" -n 9 || {
+    printf 'HOLD=V221R1_LONG_HORIZON_SHADOW_ALREADY_RUNNING\n'
+    exit 20
+}
+
+hash1() { "$P/bin/sha256sum" "$1" | "$P/bin/awk" '{print $1}'; }
+
+SIGMAC_SHA=$(hash1 "$SIGMAC")
+VM_SHA=$(hash1 "$VM")
+V24_SOURCE_SHA=$(hash1 "$PROD_E/SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sigma")
+
+printf 'SIGMA_PHASE=V221R1_LONG_HORIZON_SHADOW_STABILITY_RECOVERY_PREFLIGHT\n'
+printf 'SIGMAC_SHA256=%s\n' "$SIGMAC_SHA"
+printf 'VM_SHA256=%s\n' "$VM_SHA"
+printf 'PRODUCTION_V24_SOURCE_SHA256=%s\n' "$V24_SOURCE_SHA"
+printf 'PRODUCTION_BRAIN=%s\n' "$PROD_BRAIN"
+printf 'SHADOW_BRAIN=%s\n' "$SHADOW_BRAIN"
+printf 'HOST_FAIRNESS_DECISION=NO\n'
+printf 'HOST_STAGE_DECISION=NO\n'
+printf 'HOST_WORK_SELECTION=NO\n'
+printf 'HOST_REVISIT_PRIORITY=NO\n'
+printf 'HOST_LEARNING=NO\n'
+printf 'SHADOW_STATE_NAMESPACE_ISOLATED=YES\n'
+printf 'CLEAN_SUPERVISOR_RESTART_RECOVERY_TEST=YES\n'
+
+[ "$SIGMAC_SHA" = "$EXPECTED_SIGMAC" ] || exit 21
+[ "$VM_SHA" = "$EXPECTED_VM" ] || exit 22
+[ "$V24_SOURCE_SHA" = "$EXPECTED_V24_SOURCE" ] || exit 23
+[ "$SHADOW_BRAIN" != "$PROD_BRAIN" ] || exit 24
+[ -f "$REAL_SURVEY" ] || exit 25
+[ -d "$SNAPSHOT" ] || exit 26
+
+V24_PID=$("$P/bin/pgrep" -f 'RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh' | "$P/bin/head" -n1 || true)
+printf 'PRODUCTION_V24_PID_BEFORE=%s\n' "$V24_PID"
+[ -n "$V24_PID" ] || exit 27
+
+copy_source() {
+    NAME="$1"
+    EXPECTED="$2"
+    SRC="$PROD_E/$NAME"
+    DST="$E/$NAME"
+    [ -f "$SRC" ] || return 1
+    [ "$(hash1 "$SRC")" = "$EXPECTED" ] || return 2
+    "$P/bin/cp" -- "$SRC" "$DST" || return 3
+    [ "$(hash1 "$DST")" = "$EXPECTED" ] || return 4
+}
+
+copy_source "$SELECT_SRC_NAME" "$EXPECTED_SELECT_SOURCE" || exit 30
+copy_source "$DEEP_SRC_NAME" "$EXPECTED_DEEP_SOURCE" || exit 31
+copy_source "$V29_SRC_NAME" "$EXPECTED_V29_SOURCE" || exit 32
+copy_source "$V210_SRC_NAME" "$EXPECTED_V210_SOURCE" || exit 33
+copy_source "$V211_SRC_NAME" "$EXPECTED_V211_SOURCE" || exit 34
+copy_source "$V212_SRC_NAME" "$EXPECTED_V212_SOURCE" || exit 35
+copy_source "$V213_SRC_NAME" "$EXPECTED_V213_SOURCE" || exit 36
+copy_source "$V214C_SRC_NAME" "$EXPECTED_V214C_SOURCE" || exit 37
+copy_source "$V214E_SRC_NAME" "$EXPECTED_V214E_SOURCE" || exit 38
+copy_source "$V219_SRC_NAME" "$EXPECTED_V219_SOURCE" || exit 39
+
+SELECT_SRC="$E/$SELECT_SRC_NAME"; SELECT_BC="$E/${SELECT_SRC_NAME%.sigma}.sigmab"
+DEEP_SRC="$E/$DEEP_SRC_NAME"; DEEP_BC="$E/${DEEP_SRC_NAME%.sigma}.sigmab"
+V29_SRC="$E/$V29_SRC_NAME"; V29_BC="$E/${V29_SRC_NAME%.sigma}.sigmab"
+V210_SRC="$E/$V210_SRC_NAME"; V210_BC="$E/${V210_SRC_NAME%.sigma}.sigmab"
+V211_SRC="$E/$V211_SRC_NAME"; V211_BC="$E/${V211_SRC_NAME%.sigma}.sigmab"
+V212_SRC="$E/$V212_SRC_NAME"; V212_BC="$E/${V212_SRC_NAME%.sigma}.sigmab"
+V213_SRC="$E/$V213_SRC_NAME"; V213_BC="$E/${V213_SRC_NAME%.sigma}.sigmab"
+V214C_SRC="$E/$V214C_SRC_NAME"; V214C_BC="$E/${V214C_SRC_NAME%.sigma}.sigmab"
+V214E_SRC="$E/$V214E_SRC_NAME"; V214E_BC="$E/${V214E_SRC_NAME%.sigma}.sigmab"
+V219_SRC="$E/$V219_SRC_NAME"; V219_BC="$E/${V219_SRC_NAME%.sigma}.sigmab"
+
+compile_exact() {
+    SRC="$1"; BC="$2"; EXPECTED="$3"; LABEL="$4"
+    "$P/bin/rm" -f -- "$BC.partial"
+    "$SIGMAC" "$SRC" "$BC.partial"
+    RC=$?
+    printf '%s_SIGMAC_RC=%s\n' "$LABEL" "$RC"
+    [ "$RC" -eq 0 ] || return 1
+    SHA=$(hash1 "$BC.partial")
+    printf '%s_BYTECODE_SHA256=%s\n' "$LABEL" "$SHA"
+    [ "$SHA" = "$EXPECTED" ] || return 2
+    "$P/bin/mv" -f -- "$BC.partial" "$BC"
+    "$P/bin/chmod" 0400 "$BC"
+}
+
+compile_visible() {
+    SRC="$1"; BC="$2"; LABEL="$3"
+    "$P/bin/rm" -f -- "$BC.partial"
+    "$SIGMAC" "$SRC" "$BC.partial"
+    RC=$?
+    printf '%s_SIGMAC_RC=%s\n' "$LABEL" "$RC"
+    [ "$RC" -eq 0 ] || return 1
+    "$P/bin/mv" -f -- "$BC.partial" "$BC"
+    "$P/bin/chmod" 0400 "$BC"
+    printf '%s_BYTECODE_SHA256=%s\n' "$LABEL" "$(hash1 "$BC")"
+}
+
+compile_exact "$SELECT_SRC" "$SELECT_BC" "$EXPECTED_SELECT_BC" SELECTOR || exit 40
+compile_exact "$DEEP_SRC" "$DEEP_BC" "$EXPECTED_DEEP_BC" DEEP || exit 41
+compile_exact "$V29_SRC" "$V29_BC" "$EXPECTED_V29_BC" V29 || exit 42
+compile_exact "$V210_SRC" "$V210_BC" "$EXPECTED_V210_BC" V210 || exit 43
+compile_visible "$V211_SRC" "$V211_BC" V211 || exit 44
+compile_visible "$V212_SRC" "$V212_BC" V212 || exit 45
+compile_exact "$V213_SRC" "$V213_BC" "$EXPECTED_V213_BC" V213 || exit 46
+compile_exact "$V214C_SRC" "$V214C_BC" "$EXPECTED_V214C_BC" V214C || exit 47
+compile_visible "$V214E_SRC" "$V214E_BC" V214E || exit 48
+compile_visible "$V219_SRC" "$V219_BC" V219 || exit 49
+
+run_shadow() {
+    CASE_NAME="$1"; BC="$2"
+    RUNLOG="$LOG/$CASE_NAME.log"
+    (
+        cd "$SHADOW_BRAIN" || exit 60
+        "$VM" "$BC"
+    ) >"$RUNLOG" 2>&1
+    RC=$?
+    printf '\n=== %s ===\n' "$CASE_NAME"
+    printf 'VM_RC=%s\n' "$RC"
+    "$P/bin/cat" "$RUNLOG"
+    return "$RC"
+}
+
+SELECT_SURVEY_PATH="$E/SIGMA_V28R1_SURVEY_PATH.memory"
+SELECT_STATE="$E/SIGMA_V28R1_CURRICULUM_STATE.memory"
+SELECTED_WORK="$E/SIGMA_V28R1_SELECTED_WORK.memory"
+D1_SNAPSHOT_DIR="$E/SIGMA_V28D1_SNAPSHOT_DIR.memory"
+D1_ACTIVE_WORK="$E/SIGMA_V28D1_ACTIVE_WORK.memory"
+D1_CURSOR="$E/SIGMA_V28D1_CURSOR.memory"
+D1_EVIDENCE="$E/SIGMA_V28D1_DEEP_EVIDENCE.memory"
+V29_SELECTED="$E/SIGMA_V29R1_SELECTED_WORK.memory"
+V29_SURVEY_PATH="$E/SIGMA_V29R1_SURVEY_PATH.memory"
+V29_EVIDENCE_PATH="$E/SIGMA_V29R1_EVIDENCE_PATH.memory"
+V29_SNAPSHOT_DIR="$E/SIGMA_V29R1_SNAPSHOT_DIR.memory"
+V29_ACTIVE_WORK_PATH="$E/SIGMA_V29R1_ACTIVE_WORK_PATH.memory"
+V29_CURSOR_PATH="$E/SIGMA_V29R1_CURSOR_PATH.memory"
+V29_STATE="$E/SIGMA_V29R1_REVALIDATION_STATE.memory"
+V210_SELECTED="$E/SIGMA_V210R1_SELECTED_WORK.memory"
+V210_REVALIDATION_PATH="$E/SIGMA_V210R1_REVALIDATION_PATH.memory"
+V210_LIFE="$E/SIGMA_V210R1_LIFECYCLE_STATE.memory"
+V211_SELECTED="$E/SIGMA_V211R1_SELECTED_WORK.memory"
+V211_LIFECYCLE_PATH="$E/SIGMA_V211R1_LIFECYCLE_PATH.memory"
+V211_SNAPSHOT_DIR="$E/SIGMA_V211R1_SNAPSHOT_DIR.memory"
+V211_STATE_DIR="$E/SIGMA_V211R1_STATE_DIR.memory"
+V212_SELECTED="$E/SIGMA_V212R1_SELECTED_WORK.memory"
+V212_LIFECYCLE_PATH="$E/SIGMA_V212R1_LIFECYCLE_PATH.memory"
+V212_REVISIT_DIR="$E/SIGMA_V212R1_REVISIT_STATE_DIR.memory"
+V212_CTRL_STATE="$E/SIGMA_V212R1_CONTROLLER_STATE.memory"
+V212_EVENT="$E/SIGMA_V212R1_SELECTED_EVENT.memory"
+V213_EVENT="$E/SIGMA_V213R1_SELECTED_EVENT.memory"
+V213_SURVEY_PATH="$E/SIGMA_V213R1_SURVEY_PATH.memory"
+V213_EVID_PATH="$E/SIGMA_V213R1_REVISIT_EVIDENCE_PATH.memory"
+V213_REVAL="$E/SIGMA_V213R1_REVALIDATION_STATE.memory"
+V213_LIFE="$E/SIGMA_V213R1_LIFECYCLE_STATE.memory"
+V214_SELECTED="$E/SIGMA_V214C1_SELECTED_WORK.memory"
+V214_LIFECYCLE_PATH="$E/SIGMA_V214C1_LIFECYCLE_PATH.memory"
+V214_REVISIT_DIR="$E/SIGMA_V214C1_REVISIT_STATE_DIR.memory"
+V214_CTRL_STATE="$E/SIGMA_V214C1_CONTROLLER_STATE.memory"
+V214_EVENT="$E/SIGMA_V214C1_SELECTED_EVENT.memory"
+V214E_EVENT="$E/SIGMA_V214E1_SELECTED_EVENT.memory"
+V214E_SNAPSHOT="$E/SIGMA_V214E1_SNAPSHOT_DIR.memory"
+V214E_STATE_DIR="$E/SIGMA_V214E1_STATE_DIR.memory"
+V219_CURRENT="$E/SIGMA_V219R1_CURRENT_EVENT.memory"
+V219_SURVEY_PATH="$E/SIGMA_V219R1_SURVEY_PATH.memory"
+V219_SELECTOR_PATH="$E/SIGMA_V219R1_SELECTOR_STATE_PATH.memory"
+V219_FAIRNESS="$E/SIGMA_V219R1_FAIRNESS_STATE.memory"
+V219_SCHEDULED="$E/SIGMA_V219R1_SCHEDULED_EVENT.memory"
+
+deep_complete() {
+    LABEL="$1"
+    N=0
+    while [ "$N" -lt 16 ]; do
+        CASE="${LABEL}_DEEP_$N"
+        run_shadow "$CASE" "$DEEP_BC" || return 1
+        if "$P/bin/grep" -F 'DEEP_RELEARN_COMPLETE YES' "$LOG/$CASE.log" >/dev/null; then return 0; fi
+        N=$((N + 1))
+    done
+    return 2
+}
+
+revisit_v211_complete() {
+    LABEL="$1"
+    N=0
+    while [ "$N" -lt 16 ]; do
+        CASE="${LABEL}_REVISIT_$N"
+        run_shadow "$CASE" "$V211_BC" || return 1
+        if "$P/bin/grep" -F 'REVISIT_COMPLETE YES' "$LOG/$CASE.log" >/dev/null; then return 0; fi
+        N=$((N + 1))
+    done
+    return 2
+}
+
+revisit_v214e_complete() {
+    LABEL="$1"
+    N=0
+    while [ "$N" -lt 16 ]; do
+        CASE="${LABEL}_REVISIT_$N"
+        run_shadow "$CASE" "$V214E_BC" || return 1
+        if "$P/bin/grep" -F 'REVISIT_COMPLETE YES' "$LOG/$CASE.log" >/dev/null; then return 0; fi
+        N=$((N + 1))
+    done
+    return 2
+}
+
+: > "$SELECT_STATE"
+: > "$SELECTED_WORK"
+"$P/bin/printf" '%s' "$REAL_SURVEY" > "$SELECT_SURVEY_PATH"
+run_shadow SELECT_FIRST "$SELECT_BC" || exit 70
+FIRST=$("$P/bin/cat" "$SELECTED_WORK")
+[ "$FIRST" = "$EXPECTED_FIRST" ] || exit 71
+"$P/bin/printf" '%s' "$SNAPSHOT" > "$D1_SNAPSHOT_DIR"
+: > "$D1_ACTIVE_WORK"; : > "$D1_CURSOR"; : > "$D1_EVIDENCE"
+deep_complete FIRST || exit 72
+"$P/bin/printf" '%s' "$FIRST" > "$V29_SELECTED"
+"$P/bin/printf" '%s' "$REAL_SURVEY" > "$V29_SURVEY_PATH"
+"$P/bin/printf" '%s' "$D1_EVIDENCE" > "$V29_EVIDENCE_PATH"
+"$P/bin/printf" '%s' "$SNAPSHOT" > "$V29_SNAPSHOT_DIR"
+"$P/bin/printf" '%s' "$D1_ACTIVE_WORK" > "$V29_ACTIVE_WORK_PATH"
+"$P/bin/printf" '%s' "$D1_CURSOR" > "$V29_CURSOR_PATH"
+: > "$V29_STATE"
+run_shadow FIRST_INITIAL_REVALIDATION "$V29_BC" || exit 73
+[ "$("$P/bin/grep" '^REVALIDATION_RESULT ' "$LOG/FIRST_INITIAL_REVALIDATION.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'NOT_REOBSERVED' ] || exit 74
+"$P/bin/printf" '%s' "$FIRST" > "$V210_SELECTED"
+"$P/bin/printf" '%s' "$V29_STATE" > "$V210_REVALIDATION_PATH"
+: > "$V210_LIFE"
+run_shadow FIRST_INITIAL_LIFECYCLE "$V210_BC" || exit 75
+[ "$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FIRST_INITIAL_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'REVISIT' ] || exit 76
+"$P/bin/rm" -rf -- "$FIRST_REVISIT_DIR"; "$P/bin/mkdir" -p "$FIRST_REVISIT_DIR"
+"$P/bin/printf" '%s' "$FIRST" > "$V211_SELECTED"
+"$P/bin/printf" '%s' "$V210_LIFE" > "$V211_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$SNAPSHOT" > "$V211_SNAPSHOT_DIR"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V211_STATE_DIR"
+revisit_v211_complete FIRST_GEN1 || exit 77
+"$P/bin/printf" '%s' "$FIRST" > "$V212_SELECTED"
+"$P/bin/printf" '%s' "$V210_LIFE" > "$V212_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V212_REVISIT_DIR"
+: > "$V212_CTRL_STATE"; : > "$V212_EVENT"
+run_shadow FIRST_GEN1_EVENT "$V212_BC" || exit 78
+GEN1_EVENT=$("$P/bin/cat" "$V212_EVENT")
+[ "$GEN1_EVENT" = "$FIRST::|::REVALIDATE_REVISIT_GENERATION" ] || exit 79
+"$P/bin/printf" '%s' "$GEN1_EVENT" > "$V213_EVENT"
+"$P/bin/printf" '%s' "$REAL_SURVEY" > "$V213_SURVEY_PATH"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR/$FIRST.evidence" > "$V213_EVID_PATH"
+: > "$V213_REVAL"; : > "$V213_LIFE"
+run_shadow FIRST_GEN1_REVALIDATION_LIFECYCLE "$V213_BC" || exit 80
+[ "$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FIRST_GEN1_REVALIDATION_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'REVISIT' ] || exit 81
+"$P/bin/printf" '%s' "$FIRST" > "$V214_SELECTED"
+"$P/bin/printf" '%s' "$V213_LIFE" > "$V214_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V214_REVISIT_DIR"
+: > "$V214_CTRL_STATE"; : > "$V214_EVENT"
+run_shadow FIRST_AFTER_GEN1_CONTROLLER "$V214C_BC" || exit 82
+GEN2_EVENT=$("$P/bin/cat" "$V214_EVENT")
+[ "$GEN2_EVENT" = "$FIRST::||::EXECUTE_REVISIT" ] || exit 83
+"$P/bin/printf" '%s' "$GEN2_EVENT" > "$V214E_EVENT"
+"$P/bin/printf" '%s' "$SNAPSHOT" > "$V214E_SNAPSHOT"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V214E_STATE_DIR"
+revisit_v214e_complete FIRST_GEN2 || exit 84
+run_shadow FIRST_AFTER_GEN2_COMPLETION_CONTROLLER "$V214C_BC" || exit 85
+GEN2_REVAL_EVENT=$("$P/bin/cat" "$V214_EVENT")
+[ "$GEN2_REVAL_EVENT" = "$FIRST::||::REVALIDATE_REVISIT_GENERATION" ] || exit 86
+"$P/bin/printf" '%s' "$GEN2_REVAL_EVENT" > "$V213_EVENT"
+run_shadow FIRST_GEN2_REVALIDATION_LIFECYCLE "$V213_BC" || exit 87
+[ "$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FIRST_GEN2_REVALIDATION_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'REVISIT' ] || exit 88
+"$P/bin/printf" '%s' "$V213_LIFE" > "$V214_LIFECYCLE_PATH"
+run_shadow FIRST_STARVATION_EVENT "$V214C_BC" || exit 89
+STARVATION_EVENT=$("$P/bin/cat" "$V214_EVENT")
+[ "$STARVATION_EVENT" = "$FIRST::|||::EXECUTE_REVISIT" ] || exit 90
+"$P/bin/printf" '%s' "$STARVATION_EVENT" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$REAL_SURVEY" > "$V219_SURVEY_PATH"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_FAIRNESS"; : > "$V219_SCHEDULED"
+run_shadow FAIRNESS_DEFER_FIRST_STARVATION "$V219_BC" || exit 91
+DEFER_EVENT=$("$P/bin/cat" "$V219_SCHEDULED")
+[ "$DEFER_EVENT" = "$FIRST::|||::SELECT_NEXT_WORK" ] || exit 93
+RECOVERED_DEFER_EVENT=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_DEFER_EVENT" = "$DEFER_EVENT" ] || exit 95
+run_shadow SELECT_SECOND_AFTER_FAIRNESS "$SELECT_BC" || exit 97
+SECOND=$("$P/bin/cat" "$SELECTED_WORK")
+[ "$SECOND" = "$EXPECTED_SECOND" ] || exit 98
+: > "$D1_ACTIVE_WORK"; : > "$D1_CURSOR"; : > "$D1_EVIDENCE"
+deep_complete SECOND || exit 100
+"$P/bin/printf" '%s' "$SECOND" > "$V29_SELECTED"
+"$P/bin/printf" '%s' "$D1_EVIDENCE" > "$V29_EVIDENCE_PATH"
+"$P/bin/printf" '%s' "$D1_ACTIVE_WORK" > "$V29_ACTIVE_WORK_PATH"
+"$P/bin/printf" '%s' "$D1_CURSOR" > "$V29_CURSOR_PATH"
+: > "$V29_STATE"
+run_shadow SECOND_REVALIDATION "$V29_BC" || exit 101
+[ "$("$P/bin/grep" '^REVALIDATION_RESULT ' "$LOG/SECOND_REVALIDATION.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'REOBSERVED' ] || exit 102
+"$P/bin/printf" '%s' "$SECOND" > "$V210_SELECTED"
+"$P/bin/printf" '%s' "$V29_STATE" > "$V210_REVALIDATION_PATH"
+: > "$V210_LIFE"
+run_shadow SECOND_LIFECYCLE "$V210_BC" || exit 103
+[ "$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/SECOND_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'ARCHIVE_FOR_NOW' ] || exit 104
+"$P/bin/rm" -rf -- "$SECOND_REVISIT_DIR"; "$P/bin/mkdir" -p "$SECOND_REVISIT_DIR"
+"$P/bin/printf" '%s' "$SECOND" > "$V212_SELECTED"
+"$P/bin/printf" '%s' "$V210_LIFE" > "$V212_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$SECOND_REVISIT_DIR" > "$V212_REVISIT_DIR"
+: > "$V212_CTRL_STATE"; : > "$V212_EVENT"
+run_shadow SECOND_ARCHIVE_SCHEDULING_TURN "$V212_BC" || exit 105
+SECOND_TERMINAL_EVENT=$("$P/bin/cat" "$V212_EVENT")
+[ "$SECOND_TERMINAL_EVENT" = "$SECOND::::SELECT_NEXT_WORK" ] || exit 106
+"$P/bin/printf" '%s' "$SECOND_TERMINAL_EVENT" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_SCHEDULED"
+run_shadow FAIRNESS_RESUME_FIRST_ON_SECOND_TURN "$V219_BC" || exit 107
+RESUMED_EVENT=$("$P/bin/cat" "$V219_SCHEDULED")
+[ "$RESUMED_EVENT" = "$STARVATION_EVENT" ] || exit 110
+RECOVERED_RESUMED_EVENT=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_RESUMED_EVENT" = "$STARVATION_EVENT" ] || exit 112
+"$P/bin/printf" '%s' "$RECOVERED_RESUMED_EVENT" > "$V214E_EVENT"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V214E_STATE_DIR"
+revisit_v214e_complete FIRST_GEN3_RESUMED || exit 113
+run_shadow FIRST_AFTER_RESUMED_GEN3_CONTROLLER "$V214C_BC" || exit 115
+GEN3_REVAL_EVENT=$("$P/bin/cat" "$V214_EVENT")
+[ "$GEN3_REVAL_EVENT" = "$FIRST::|||::REVALIDATE_REVISIT_GENERATION" ] || exit 116
+"$P/bin/printf" '%s' "$GEN3_REVAL_EVENT" > "$V213_EVENT"
+run_shadow FIRST_GEN3_REVALIDATION_LIFECYCLE "$V213_BC" || exit 117
+[ "$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FIRST_GEN3_REVALIDATION_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')" = 'REVISIT' ] || exit 118
+"$P/bin/printf" '%s' "$V213_LIFE" > "$V214_LIFECYCLE_PATH"
+run_shadow FIRST_POST_RESUME_NEXT_REVISIT_EVENT "$V214C_BC" || exit 119
+NEXT_FIRST_REVISIT=$("$P/bin/cat" "$V214_EVENT")
+[ "$NEXT_FIRST_REVISIT" = "$FIRST::||||::EXECUTE_REVISIT" ] || exit 120
+"$P/bin/printf" '%s' "$NEXT_FIRST_REVISIT" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_SCHEDULED"
+run_shadow FAIRNESS_REDEFER_FIRST_AFTER_ONE_RESUMED_REVISIT "$V219_BC" || exit 121
+REDEFER_EVENT=$("$P/bin/cat" "$V219_SCHEDULED")
+[ "$REDEFER_EVENT" = "$FIRST::||||::SELECT_NEXT_WORK" ] || exit 123
+RECOVERED_REDEFER_EVENT=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_REDEFER_EVENT" = "$REDEFER_EVENT" ] || exit 125
+run_shadow SELECT_THIRD_AFTER_REDEFER "$SELECT_BC" || exit 127
+THIRD=$("$P/bin/cat" "$SELECTED_WORK")
+[ "$THIRD" = "$EXPECTED_THIRD" ] || exit 128
+: > "$D1_ACTIVE_WORK"; : > "$D1_CURSOR"; : > "$D1_EVIDENCE"
+deep_complete THIRD || exit 129
+"$P/bin/printf" '%s' "$THIRD" > "$V29_SELECTED"
+"$P/bin/printf" '%s' "$D1_EVIDENCE" > "$V29_EVIDENCE_PATH"
+"$P/bin/printf" '%s' "$D1_ACTIVE_WORK" > "$V29_ACTIVE_WORK_PATH"
+"$P/bin/printf" '%s' "$D1_CURSOR" > "$V29_CURSOR_PATH"
+: > "$V29_STATE"
+run_shadow THIRD_REVALIDATION "$V29_BC" || exit 130
+THIRD_RESULT=$("$P/bin/grep" '^REVALIDATION_RESULT ' "$LOG/THIRD_REVALIDATION.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+[ "$THIRD_RESULT" = 'REOBSERVED' ] || exit 131
+"$P/bin/printf" '%s' "$THIRD" > "$V210_SELECTED"
+"$P/bin/printf" '%s' "$V29_STATE" > "$V210_REVALIDATION_PATH"
+: > "$V210_LIFE"
+run_shadow THIRD_LIFECYCLE "$V210_BC" || exit 132
+THIRD_ACTION=$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/THIRD_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+[ "$THIRD_ACTION" = 'ARCHIVE_FOR_NOW' ] || exit 133
+"$P/bin/rm" -rf -- "$THIRD_REVISIT_DIR"; "$P/bin/mkdir" -p "$THIRD_REVISIT_DIR"
+"$P/bin/printf" '%s' "$THIRD" > "$V212_SELECTED"
+"$P/bin/printf" '%s' "$V210_LIFE" > "$V212_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$THIRD_REVISIT_DIR" > "$V212_REVISIT_DIR"
+: > "$V212_CTRL_STATE"; : > "$V212_EVENT"
+run_shadow THIRD_ARCHIVE_SCHEDULING_TURN "$V212_BC" || exit 134
+THIRD_TERMINAL_EVENT=$("$P/bin/cat" "$V212_EVENT")
+[ "$THIRD_TERMINAL_EVENT" = "$THIRD::::SELECT_NEXT_WORK" ] || exit 135
+"$P/bin/printf" '%s' "$THIRD_TERMINAL_EVENT" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_SCHEDULED"
+run_shadow FAIRNESS_RESUME_FIRST_ON_THIRD_TURN "$V219_BC" || exit 136
+RESUMED_GEN4_EVENT=$("$P/bin/cat" "$V219_SCHEDULED")
+[ "$RESUMED_GEN4_EVENT" = "$FIRST::||||::EXECUTE_REVISIT" ] || exit 138
+RECOVERED_GEN4_EVENT=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_GEN4_EVENT" = "$RESUMED_GEN4_EVENT" ] || exit 140
+"$P/bin/printf" '%s' "$RECOVERED_GEN4_EVENT" > "$V214E_EVENT"
+"$P/bin/printf" '%s' "$FIRST_REVISIT_DIR" > "$V214E_STATE_DIR"
+revisit_v214e_complete FIRST_GEN4_RESUMED || exit 141
+run_shadow FIRST_AFTER_RESUMED_GEN4_CONTROLLER "$V214C_BC" || exit 143
+GEN4_REVAL_EVENT=$("$P/bin/cat" "$V214_EVENT")
+[ "$GEN4_REVAL_EVENT" = "$FIRST::||||::REVALIDATE_REVISIT_GENERATION" ] || exit 144
+"$P/bin/printf" '%s' "$GEN4_REVAL_EVENT" > "$V213_EVENT"
+run_shadow FIRST_GEN4_REVALIDATION_LIFECYCLE "$V213_BC" || exit 145
+GEN4_RESULT=$("$P/bin/grep" '^REVALIDATION_RESULT ' "$LOG/FIRST_GEN4_REVALIDATION_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+GEN4_ACTION=$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FIRST_GEN4_REVALIDATION_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+case "$GEN4_RESULT" in REOBSERVED|NOT_REOBSERVED) ;; *) exit 146 ;; esac
+case "$GEN4_ACTION" in ARCHIVE_FOR_NOW|REVISIT) ;; *) exit 147 ;; esac
+if [ "$GEN4_RESULT" = 'REOBSERVED' ]; then [ "$GEN4_ACTION" = 'ARCHIVE_FOR_NOW' ] || exit 148; fi
+if [ "$GEN4_RESULT" = 'NOT_REOBSERVED' ]; then [ "$GEN4_ACTION" = 'REVISIT' ] || exit 149; fi
+printf 'FIRST_GEN4_NATIVE_RESULT=%s\n' "$GEN4_RESULT"
+printf 'FIRST_GEN4_NATIVE_ACTION=%s\n' "$GEN4_ACTION"
+"$P/bin/printf" '%s' "$V213_LIFE" > "$V214_LIFECYCLE_PATH"
+run_shadow FIRST_AFTER_GEN4_LIFECYCLE_CONTROLLER "$V214C_BC" || exit 150
+FIRST_AFTER_GEN4_TERMINAL=$("$P/bin/cat" "$V214_EVENT")
+FIRST_AFTER_GEN4_STAGE="${FIRST_AFTER_GEN4_TERMINAL##*::}"
+case "$FIRST_AFTER_GEN4_STAGE" in EXECUTE_REVISIT|SELECT_NEXT_WORK) ;; *) exit 151 ;; esac
+"$P/bin/printf" '%s' "$FIRST_AFTER_GEN4_TERMINAL" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_SCHEDULED"
+run_shadow FAIRNESS_AFTER_FIRST_GEN4 "$V219_BC" || exit 152
+AFTER_GEN4_SCHEDULED=$("$P/bin/cat" "$V219_SCHEDULED")
+[ "${AFTER_GEN4_SCHEDULED##*::}" = 'SELECT_NEXT_WORK' ] || exit 153
+RECOVERED_AFTER_GEN4=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_AFTER_GEN4" = "$AFTER_GEN4_SCHEDULED" ] || exit 154
+run_shadow SELECT_FOURTH_AFTER_LONG_HORIZON "$SELECT_BC" || exit 155
+FOURTH=$("$P/bin/cat" "$SELECTED_WORK")
+printf 'FOURTH_NATIVE_WORK=%s\n' "$FOURTH"
+[ "$FOURTH" = "$EXPECTED_FOURTH" ] || exit 156
+: > "$D1_ACTIVE_WORK"; : > "$D1_CURSOR"; : > "$D1_EVIDENCE"
+deep_complete FOURTH || exit 157
+"$P/bin/printf" '%s' "$FOURTH" > "$V29_SELECTED"
+"$P/bin/printf" '%s' "$D1_EVIDENCE" > "$V29_EVIDENCE_PATH"
+"$P/bin/printf" '%s' "$D1_ACTIVE_WORK" > "$V29_ACTIVE_WORK_PATH"
+"$P/bin/printf" '%s' "$D1_CURSOR" > "$V29_CURSOR_PATH"
+: > "$V29_STATE"
+run_shadow FOURTH_REVALIDATION "$V29_BC" || exit 158
+FOURTH_RESULT=$("$P/bin/grep" '^REVALIDATION_RESULT ' "$LOG/FOURTH_REVALIDATION.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+case "$FOURTH_RESULT" in REOBSERVED|NOT_REOBSERVED) ;; *) exit 159 ;; esac
+"$P/bin/printf" '%s' "$FOURTH" > "$V210_SELECTED"
+"$P/bin/printf" '%s' "$V29_STATE" > "$V210_REVALIDATION_PATH"
+: > "$V210_LIFE"
+run_shadow FOURTH_LIFECYCLE "$V210_BC" || exit 160
+FOURTH_ACTION=$("$P/bin/grep" '^LIFECYCLE_ACTION ' "$LOG/FOURTH_LIFECYCLE.log" | "$P/bin/head" -n1 | "$P/bin/awk" '{print $2}')
+case "$FOURTH_ACTION" in ARCHIVE_FOR_NOW|REVISIT) ;; *) exit 161 ;; esac
+if [ "$FOURTH_RESULT" = 'REOBSERVED' ]; then [ "$FOURTH_ACTION" = 'ARCHIVE_FOR_NOW' ] || exit 162; fi
+if [ "$FOURTH_RESULT" = 'NOT_REOBSERVED' ]; then [ "$FOURTH_ACTION" = 'REVISIT' ] || exit 163; fi
+printf 'FOURTH_NATIVE_REVALIDATION_RESULT=%s\n' "$FOURTH_RESULT"
+printf 'FOURTH_NATIVE_LIFECYCLE_ACTION=%s\n' "$FOURTH_ACTION"
+"$P/bin/rm" -rf -- "$FOURTH_REVISIT_DIR"; "$P/bin/mkdir" -p "$FOURTH_REVISIT_DIR"
+"$P/bin/printf" '%s' "$FOURTH" > "$V212_SELECTED"
+"$P/bin/printf" '%s' "$V210_LIFE" > "$V212_LIFECYCLE_PATH"
+"$P/bin/printf" '%s' "$FOURTH_REVISIT_DIR" > "$V212_REVISIT_DIR"
+: > "$V212_CTRL_STATE"; : > "$V212_EVENT"
+run_shadow FOURTH_TERMINAL_CONTROLLER "$V212_BC" || exit 164
+FOURTH_TERMINAL_EVENT=$("$P/bin/cat" "$V212_EVENT")
+case "${FOURTH_TERMINAL_EVENT##*::}" in EXECUTE_REVISIT|SELECT_NEXT_WORK) ;; *) exit 165 ;; esac
+"$P/bin/printf" '%s' "$FOURTH_TERMINAL_EVENT" > "$V219_CURRENT"
+"$P/bin/printf" '%s' "$SELECT_STATE" > "$V219_SELECTOR_PATH"
+: > "$V219_SCHEDULED"
+run_shadow FAIRNESS_FOURTH_TERMINAL_BOUNDARY "$V219_BC" || exit 166
+LONG_HORIZON_NEXT_EVENT=$("$P/bin/cat" "$V219_SCHEDULED")
+[ -n "$LONG_HORIZON_NEXT_EVENT" ] || exit 167
+printf 'LONG_HORIZON_NEXT_EVENT=%s\n' "$LONG_HORIZON_NEXT_EVENT"
+RECOVERED_LONG_HORIZON_NEXT=$("$P/bin/bash" -c 'cat "$1"' _ "$V219_SCHEDULED")
+[ "$RECOVERED_LONG_HORIZON_NEXT" = "$LONG_HORIZON_NEXT_EVENT" ] || exit 168
+FAIRNESS_PENDING_COUNT=$("$P/bin/grep" -c 'STATUS=PENDING' "$V219_FAIRNESS" || true)
+FAIRNESS_RESUMED_COUNT=$("$P/bin/grep" -c 'STATUS=RESUMED' "$V219_FAIRNESS" || true)
+SELECTOR_DISPATCH_COUNT=$("$P/bin/grep" -c 'DISPATCHED=YES || COMMIT=YES' "$SELECT_STATE" || true)
+[ "$FAIRNESS_PENDING_COUNT" -ge 2 ] || exit 169
+[ "$FAIRNESS_RESUMED_COUNT" -ge 2 ] || exit 170
+[ "$SELECTOR_DISPATCH_COUNT" -ge 4 ] || exit 171
+V24_PID_AFTER=$("$P/bin/pgrep" -f 'RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh' | "$P/bin/head" -n1 || true)
+printf 'PRODUCTION_V24_PID_AFTER=%s\n' "$V24_PID_AFTER"
+[ "$V24_PID_AFTER" = "$V24_PID" ] || exit 172
+
+printf '\nV221R1_LONG_HORIZON_SHADOW_STABILITY_RECOVERY_PREFLIGHT=PASS\n'
+printf 'FAIRNESS_SCHEDULING_BOUNDARIES_COMPLETED=6\n'
+printf 'REAL_WORKS_DISPATCHED_AT_LEAST_4=PASS\n'
+printf 'REAL_FIRST_REVISIT_DEFER_RESUME_REDEFER_SEQUENCE=PASS\n'
+printf 'REAL_THIRD_WORK_COMPLETE_CYCLE_REPLAY=PASS\n'
+printf 'FIRST_GEN4_BRANCH_NOT_HARDCODED=PASS\n'
+printf 'REAL_FOURTH_WORK_COMPLETE_INITIAL_CYCLE=PASS\n'
+printf 'FOURTH_WORK_BRANCH_NOT_HARDCODED=PASS\n'
+printf 'PERSISTED_EVENT_RECOVERY_EVERY_EXTENDED_BOUNDARY=PASS\n'
+printf 'PENDING_REVISIT_NOT_LOST=PASS\n'
+printf 'MULTIPLE_PENDING_AND_RESUMED_LEDGER_RECORDS=PASS\n'
+printf 'SHADOW_STATE_NAMESPACE_ISOLATION=PASS\n'
+printf 'PRODUCTION_V24_REMAINED_RUNNING_SAME_PID=PASS\n'
+printf 'HOST_FAIRNESS_DECISION=NO\n'
+printf 'HOST_STAGE_DECISION=NO\n'
+printf 'HOST_WORK_SELECTION=NO\n'
+printf 'HOST_REVISIT_PRIORITY=NO\n'
+printf 'HOST_LEARNING=NO\n'
+printf 'LONG_HORIZON_SHADOW_STABILITY=PROVEN_IN_SIX_BOUNDARY_FOUR_REAL_WORK_SCOPE\n'
+printf 'PRODUCTION_PROMOTION_ALLOWED=NO\n'
+printf 'PROMOTION_BLOCKER=MID_APPEND_CRASH_ATOMICITY_NOT_PROVEN\n'
+printf 'MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN\n'
+printf 'BOUNDED_FILE_IO=NOT_PROVEN\n'
+printf 'SEMANTIC_UNDERSTANDING=NOT_PROVEN\n'
+printf 'NEXT_ACTION=CHECKPOINT_V221R1_THEN_TEACH_CRASH_CONSISTENT_TRANSACTIONAL_STATE_PROTOCOL\n'
