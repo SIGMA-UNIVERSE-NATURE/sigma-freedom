@@ -3,30 +3,31 @@
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "CHECKPOINTED",
+  "status": "IN_AUDIT",
   "execution_branch": "hka-tree/c01-w02-math-c05",
   "input_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
   "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "669ea1a9094e67ae07142825b636024dcfdd9f35",
-  "last_checkpoint_id": "CP04-ACADEMIC-BLOCK-A-T01-T05",
+  "last_checkpoint_commit_sha": "c2094a43ac7e8156778e3405b55478e094083b6c",
+  "last_checkpoint_id": "CP05-ACADEMIC-CLOSURE-T01-T10",
   "scope_ids": ["B1.1-C05"],
   "completed_work": [
-    "Bootstrap/scope lock completed and committed at CP03.",
-    "Academic Block A T01-T05 committed: 5 nodes, 43 atomic claims, 1 immutable-edition source, 20 D1-D4 objectives, 20 closure rows, 8 ownership/cross-link records and 5 sequence-intent records.",
-    "Block A directory, NODES blob and CLAIMS blob were read back from GitHub after commit.",
-    "Required internal ownership boundaries T01/T02, T03/T06, T04/T07 and T05/T10 are durably recorded; C04 is represented only by contract-supplied locked boundary IDs and was not opened.",
-    "CP04-ACADEMIC-BLOCK-A-T01-T05 committed at 669ea1a9094e67ae07142825b636024dcfdd9f35."
+    "Bootstrap/scope lock and substantive Block A checkpoint completed.",
+    "All ten canonical C05 topics T01-T10 are now durably authored in the seven required curriculum JSONL files.",
+    "Current academic record set contains 10 nodes, 98 atomic claims, 4 immutable/persistent-edition sources, 40 D1-D4 objectives, 40 closure rows, 17 cross-links and 10 sequence-intent records.",
+    "All six mandatory internal overlap/ownership pairs are explicitly dispositioned.",
+    "N004 integration-by-parts Claim C010 metadata discrepancy recorded at CP04 is resolved.",
+    "CP05-ACADEMIC-CLOSURE-T01-T10 committed at c2094a43ac7e8156778e3405b55478e094083b6c."
   ],
   "remaining_work": [
-    "Author T06 multivariable analysis, T07 real analysis, T08 complex analysis, T09 functional analysis and T10 harmonic analysis.",
-    "Update SOURCES with immutable Axler/Ahlfors/Stein-Shakarchi source identities.",
-    "Finalize T07/T09 and T08/T10 internal overlap dispositions plus C03 and locked C07/C09/C10 boundaries.",
-    "Reconcile N004 claim_ids/duplicate_fingerprint to include committed integration-by-parts Claim C010.",
-    "Update all academic files to full C05 and create academic-closure checkpoint.",
-    "Read all committed files back and audit 100% topic coverage, IDs, source identity/determinism, semantic duplicates/ownership, prerequisites/sequence, Claim-to-LO closure and stage boundary.",
-    "Commit pre-PASS checkpoint, RESULT.json, HANDOFF.md and terminal PASS status only if every audit passes."
+    "Read all seven committed academic files back from GitHub rather than relying on in-memory authoring state.",
+    "Audit JSONL records, ID uniqueness/references, exact topic coverage, deterministic source IDs and source provenance.",
+    "Audit exactly one D1-D4 objective per node and exactly one supported closure row per objective with zero future/locked support Claim IDs.",
+    "Audit all six mandatory duplicate/ownership pairs plus C01-C03 predecessor references and C04/C06/C07/C09/C10 locked boundaries.",
+    "Audit prerequisite/sequence graph for acyclicity and absence of locked-scope prerequisites.",
+    "Compare branch to accepted C03 to verify no Lesson Registry/prompts/images/later-stage spill and no C04 authoring.",
+    "Commit pre-PASS audit checkpoint, RESULT.json, HANDOFF.md and terminal worker candidate status only if every audit passes."
   ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/NODES.jsonl",
@@ -36,28 +37,24 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CROSS_LINKS.jsonl",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C05/CURRICULUM_SEQUENCE_INTENT.jsonl",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/STATUS.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/REPORT.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP03-WORKER-BOOTSTRAP-SCOPE-LOCK.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP04-ACADEMIC-BLOCK-A-T01-T05.json"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP05-ACADEMIC-CLOSURE-T01-T10.json"
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "Scope remains B1.1-C05 only; no new branch.",
-    "C04 remains locked and unopened.",
-    "Accepted C01/C02/C03 IDs and meanings remain prerequisites/references only.",
-    "No locked/future claim ID may support a C05 learning objective.",
-    "No later pipeline-stage artifact is allowed.",
-    "CP04 is a substantive nonterminal checkpoint, not PASS."
+    "Scope remains B1.1-C05 only on the existing branch.",
+    "C04 remains locked and unopened; no C04 claim ID supports C05.",
+    "Accepted C01/C02/C03 records are referenced, not re-authored.",
+    "C04/C06/C07/C09/C10 remain non-support boundaries.",
+    "No pipeline stage after CURRICULUM is authorized.",
+    "CP05 is an academic-closure checkpoint, not PASS."
   ],
   "do_not_repeat": [
-    "Do not re-author C01/C02/C03.",
-    "Do not re-author T01-T05 from scratch; extend the committed files from CP04.",
+    "Do not re-author C01/C02/C03 or rebuild T01-T10 from chat memory.",
     "Do not create another C05 branch.",
     "Do not open or author C04.",
-    "Do not report PASS before full committed read-back and audit."
+    "Do not report PASS until committed read-back, 100% audit and terminal commit verification are complete."
   ],
-  "next_action": "Extend committed C05 academic files with T06-T10, reconcile the one recorded N004 metadata issue, then checkpoint complete academic closure.",
+  "next_action": "Perform committed-file read-back and full C05 audits from GitHub durable state.",
   "successor_window": "C01-W02-B1.1-MATH-FAMILY-C05",
-  "updated_at": "2026-09-05T08:45:00+07:00"
+  "updated_at": "2026-09-05T09:10:00+07:00"
 }
