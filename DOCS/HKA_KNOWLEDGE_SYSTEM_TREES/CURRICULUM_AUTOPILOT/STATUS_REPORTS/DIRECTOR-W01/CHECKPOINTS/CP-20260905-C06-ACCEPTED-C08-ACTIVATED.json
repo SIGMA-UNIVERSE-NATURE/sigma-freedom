@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C06-ACCEPTED-C08-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_scope": {
+    "scope_id": "B1.1-C06",
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+    "commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+    "decision": "DIRECTOR_ACCEPTED_PASS",
+    "counts": {"topics":8,"nodes":8,"claims":102,"sources":6,"learning_objectives":32,"semantic_closure":"32/32","cross_links":17,"sequence_intents":8},
+    "repairs_required": 0
+  },
+  "sentinel_checks": {
+    "C06_worker_candidate_alignment": "TREE_ALIGNMENT_PASS",
+    "C08_preopen_alignment": "TREE_ALIGNMENT_PASS",
+    "C06_candidate_checkpoint": "6d8da53fbd77a860f134c3feb0040623f8df2123",
+    "C08_preopen_checkpoint": "47ed7df744ac851b1c564e4e7b2869cf2f9dc350"
+  },
+  "dependency_amendment_2": {
+    "commit_sha": "4f3012c64f4f33bf0a33acaf26ba420a75a74864",
+    "execution_order": "C06 -> C08 -> C07 -> C09 -> C10",
+    "reason": "C07 causal inference needs graph/DAG foundations; C08 graph theory must be accepted first to avoid duplication or under-authoring.",
+    "stable_ids_changed": false,
+    "primary_ownership_changed": false
+  },
+  "activated_scope": {
+    "scope_id": "B1.1-C08",
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+    "execution_branch": "hka-tree/c01-w02-math-c08",
+    "status": "READY",
+    "accepted_predecessor": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+    "canonical_topics": ["B1.1-C08-T01","B1.1-C08-T02","B1.1-C08-T03","B1.1-C08-T04","B1.1-C08-T05","B1.1-C08-T06","B1.1-C08-T07","B1.1-C08-T08"],
+    "mandatory_risks": ["R05","R02"]
+  },
+  "continuity_hardening": {
+    "scope_map_anchor_fixed_to_immutable_blob": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+    "multi_continent_benchmark_gate_added": true,
+    "external_curriculum_mapping_gate_added": true,
+    "academic_locked_still_forbidden": true
+  },
+  "control_plane_commits": {
+    "state": "c984ed52d0efbdba33743ecdeb4dbb5243ee0009",
+    "registry": "6ff3195613d51a4089665a8afb832e04827af549",
+    "continuity_snapshot": "1f12602786c76bd1bca676d9f0ee334c1aef73b8"
+  },
+  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C08. C07/C09/C10 remain locked."
+}
