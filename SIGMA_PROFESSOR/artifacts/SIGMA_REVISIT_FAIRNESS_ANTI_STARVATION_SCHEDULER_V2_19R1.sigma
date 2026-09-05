@@ -1,0 +1,1302 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.CURRICULUM.REVISIT.FAIRNESS.ANTI.STARVATION][VERSION=2.19R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.REVISIT_FAIRNESS_SCHEDULER_V219R1) {
+
+    ⚡ CURRENT_EVENT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V219R1_CURRENT_EVENT.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V219R1_SURVEY_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SELECTOR_STATE_PATH:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V219R1_SELECTOR_STATE_PATH.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_TEXT:
+        H(
+            "read_text",
+            SURVEY_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ SELECTOR_STATE_TEXT:
+        H(
+            "read_text",
+            SELECTOR_STATE_PATH,
+            NULL,
+            NULL
+        );
+
+    ⚡ FAIRNESS_TEXT:
+        H(
+            "read_text",
+            ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+            NULL,
+            NULL
+        );
+
+    ⚡ EVENT_PARTS:
+        H(
+            "str_split",
+            CURRENT_EVENT,
+            "::",
+            NULL
+        );
+
+    ⚡ SURVEY_LINES:
+        H(
+            "str_split",
+            SURVEY_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ SELECTOR_LINES:
+        H(
+            "str_split",
+            SELECTOR_STATE_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ FAIRNESS_LINES:
+        H(
+            "str_split",
+            FAIRNESS_TEXT,
+            "\n",
+            NULL
+        );
+
+    ⚡ EVENT_PART_TOTAL:
+        H(
+            "list_len",
+            EVENT_PARTS,
+            NULL,
+            NULL
+        );
+
+    ⚡ SURVEY_LINE_TOTAL:
+        H(
+            "list_len",
+            SURVEY_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ SELECTOR_LINE_TOTAL:
+        H(
+            "list_len",
+            SELECTOR_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ FAIRNESS_LINE_TOTAL:
+        H(
+            "list_len",
+            FAIRNESS_LINES,
+            NULL,
+            NULL
+        );
+
+    ⚡ MAX_SURVEY_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_SELECTOR_SPLIT_LINES:
+        65;
+
+    ⚡ MAX_FAIRNESS_SPLIT_LINES:
+        65;
+
+    ⚡ EVENT_VALID:
+        0;
+
+    ⚡ CURRENT_WORK:
+        "";
+
+    ⚡ CURRENT_CYCLE:
+        "";
+
+    ⚡ CURRENT_STAGE:
+        "";
+
+    IF (EVENT_PART_TOTAL == 3) {
+
+        ⚡ CURRENT_WORK:
+            H(
+                "list_get",
+                EVENT_PARTS,
+                0,
+                NULL
+            );
+
+        ⚡ CURRENT_CYCLE:
+            H(
+                "list_get",
+                EVENT_PARTS,
+                1,
+                NULL
+            );
+
+        ⚡ CURRENT_STAGE:
+            H(
+                "list_get",
+                EVENT_PARTS,
+                2,
+                NULL
+            );
+
+        ⚡ WORK_VALID:
+            1;
+
+        IF (CURRENT_WORK == "") {
+            ⚡ WORK_VALID:
+                0;
+        }
+
+        ⚡ STAGE_VALID:
+            0;
+
+        IF (CURRENT_STAGE == "EXECUTE_REVISIT") {
+            ⚡ STAGE_VALID:
+                1;
+        }
+
+        IF (CURRENT_STAGE == "SELECT_NEXT_WORK") {
+            ⚡ STAGE_VALID:
+                1;
+        }
+
+        IF (WORK_VALID) {
+            IF (STAGE_VALID) {
+                ⚡ EVENT_VALID:
+                    1;
+            }
+        }
+    }
+
+    ⚡ SURVEY_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ SELECTOR_LIMIT_EXCEEDED:
+        0;
+
+    ⚡ FAIRNESS_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_SURVEY_SPLIT_LINES < SURVEY_LINE_TOTAL) {
+        ⚡ SURVEY_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_SELECTOR_SPLIT_LINES < SELECTOR_LINE_TOTAL) {
+        ⚡ SELECTOR_LIMIT_EXCEEDED:
+            1;
+    }
+
+    IF (MAX_FAIRNESS_SPLIT_LINES < FAIRNESS_LINE_TOTAL) {
+        ⚡ FAIRNESS_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ STATE_MUTATION_ALLOWED:
+        1;
+
+    IF (EVENT_VALID == 0) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SURVEY_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (SELECTOR_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (FAIRNESS_LIMIT_EXCEEDED) {
+        ⚡ STATE_MUTATION_ALLOWED:
+            0;
+    }
+
+    IF (STATE_MUTATION_ALLOWED == 0) {
+
+        ⚡ CLEAR_SCHEDULED_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V219R1_SCHEDULED_EVENT.memory",
+                "",
+                NULL
+            );
+
+        ⚡ print("SIGMA_V219R1_REVISIT_FAIRNESS_SCHEDULER");
+        ⚡ print("CURRENT_EVENT", CURRENT_EVENT);
+        ⚡ print("EVENT_VALID", EVENT_VALID);
+        ⚡ print("SURVEY_LINE_TOTAL", SURVEY_LINE_TOTAL);
+        ⚡ print("SELECTOR_LINE_TOTAL", SELECTOR_LINE_TOTAL);
+        ⚡ print("FAIRNESS_LINE_TOTAL", FAIRNESS_LINE_TOTAL);
+        ⚡ print("SURVEY_LIMIT_EXCEEDED", SURVEY_LIMIT_EXCEEDED);
+        ⚡ print("SELECTOR_LIMIT_EXCEEDED", SELECTOR_LIMIT_EXCEEDED);
+        ⚡ print("FAIRNESS_LIMIT_EXCEEDED", FAIRNESS_LIMIT_EXCEEDED);
+        ⚡ print("STATE_MUTATION_ALLOWED", "NO");
+        ⚡ print("CLEAR_SCHEDULED_RC", CLEAR_SCHEDULED_RC);
+        ⚡ print("HOST_FAIRNESS_DECISION", "NO");
+        ⚡ print("HOST_REVISIT_PRIORITY", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+
+    IF (STATE_MUTATION_ALLOWED) {
+
+        ⚡ SURVEY_DOCS:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ REAL_SURVEY_COMMITTED_DOC_COUNT:
+            0;
+
+        ⚡ DUPLICATE_SURVEY_DOC_COUNT:
+            0;
+
+        ⚡ IGNORED_SURVEY_RECORD_COUNT:
+            0;
+
+        ⚡ S:
+            0;
+
+        WHILE (S < SURVEY_LINE_TOTAL) {
+
+            ⚡ SLINE:
+                H(
+                    "list_get",
+                    SURVEY_LINES,
+                    S,
+                    NULL
+                );
+
+            ⚡ VALID_SLINE:
+                1;
+
+            IF (SLINE == "") {
+                ⚡ VALID_SLINE:
+                    0;
+            }
+
+            IF (VALID_SLINE) {
+
+                ⚡ SPARTS:
+                    H(
+                        "str_split",
+                        SLINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ SPART_TOTAL:
+                    H(
+                        "list_len",
+                        SPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ VALID_SURVEY:
+                    0;
+
+                IF (3 < SPART_TOTAL) {
+
+                    ⚡ SDOC_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ SSTATUS_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ SCOMMIT_FIELD:
+                        H(
+                            "list_get",
+                            SPARTS,
+                            3,
+                            NULL
+                        );
+
+                    IF (SSTATUS_FIELD == "SURVEY_STATUS=COMPLETE") {
+                        IF (SCOMMIT_FIELD == "COMMIT=YES") {
+                            ⚡ VALID_SURVEY:
+                                1;
+                        }
+                    }
+                }
+
+                IF (VALID_SURVEY) {
+
+                    ⚡ SDOC:
+                        H(
+                            "str_replace",
+                            SDOC_FIELD,
+                            "DOC=",
+                            ""
+                        );
+
+                    ⚡ DOC_NONEMPTY:
+                        1;
+
+                    IF (SDOC == "") {
+                        ⚡ DOC_NONEMPTY:
+                            0;
+                    }
+
+                    IF (DOC_NONEMPTY) {
+
+                        ⚡ DOC_SEEN:
+                            H(
+                                "map_has",
+                                SURVEY_DOCS,
+                                SDOC,
+                                NULL
+                            );
+
+                        IF (DOC_SEEN == FALSE) {
+
+                            ⚡ MARK_DOC:
+                                H(
+                                    "map_set",
+                                    SURVEY_DOCS,
+                                    SDOC,
+                                    1
+                                );
+
+                            ⚡ REAL_SURVEY_COMMITTED_DOC_COUNT:
+                                REAL_SURVEY_COMMITTED_DOC_COUNT + 1;
+                        }
+
+                        IF (DOC_SEEN) {
+                            ⚡ DUPLICATE_SURVEY_DOC_COUNT:
+                                DUPLICATE_SURVEY_DOC_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (VALID_SURVEY == 0) {
+                    ⚡ IGNORED_SURVEY_RECORD_COUNT:
+                        IGNORED_SURVEY_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ S:
+                S + 1;
+        }
+
+        ⚡ DISPATCHED:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ PERSISTED_DISPATCH_COUNT:
+            0;
+
+        ⚡ IGNORED_SELECTOR_RECORD_COUNT:
+            0;
+
+        ⚡ D:
+            0;
+
+        WHILE (D < SELECTOR_LINE_TOTAL) {
+
+            ⚡ DLINE:
+                H(
+                    "list_get",
+                    SELECTOR_LINES,
+                    D,
+                    NULL
+                );
+
+            ⚡ VALID_DLINE:
+                1;
+
+            IF (DLINE == "") {
+                ⚡ VALID_DLINE:
+                    0;
+            }
+
+            IF (VALID_DLINE) {
+
+                ⚡ DPARTS:
+                    H(
+                        "str_split",
+                        DLINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ DPART_TOTAL:
+                    H(
+                        "list_len",
+                        DPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ VALID_DISPATCH:
+                    0;
+
+                IF (2 < DPART_TOTAL) {
+
+                    ⚡ DWORK_FIELD:
+                        H(
+                            "list_get",
+                            DPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ DSTATUS_FIELD:
+                        H(
+                            "list_get",
+                            DPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ DCOMMIT_FIELD:
+                        H(
+                            "list_get",
+                            DPARTS,
+                            2,
+                            NULL
+                        );
+
+                    IF (DSTATUS_FIELD == "DISPATCHED=YES") {
+                        IF (DCOMMIT_FIELD == "COMMIT=YES") {
+                            ⚡ VALID_DISPATCH:
+                                1;
+                        }
+                    }
+                }
+
+                IF (VALID_DISPATCH) {
+
+                    ⚡ DWORK:
+                        H(
+                            "str_replace",
+                            DWORK_FIELD,
+                            "WORK=",
+                            ""
+                        );
+
+                    ⚡ DISPATCH_SEEN:
+                        H(
+                            "map_has",
+                            DISPATCHED,
+                            DWORK,
+                            NULL
+                        );
+
+                    IF (DISPATCH_SEEN == FALSE) {
+
+                        ⚡ MARK_DISPATCH:
+                            H(
+                                "map_set",
+                                DISPATCHED,
+                                DWORK,
+                                1
+                            );
+
+                        ⚡ PERSISTED_DISPATCH_COUNT:
+                            PERSISTED_DISPATCH_COUNT + 1;
+                    }
+                }
+
+                IF (VALID_DISPATCH == 0) {
+                    ⚡ IGNORED_SELECTOR_RECORD_COUNT:
+                        IGNORED_SELECTOR_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ D:
+                D + 1;
+        }
+
+        ⚡ STATE_CONSISTENT:
+            1;
+
+        IF (REAL_SURVEY_COMMITTED_DOC_COUNT < PERSISTED_DISPATCH_COUNT) {
+            ⚡ STATE_CONSISTENT:
+                0;
+        }
+
+        ⚡ ELIGIBLE_UNDISPATCHED_COUNT:
+            REAL_SURVEY_COMMITTED_DOC_COUNT - PERSISTED_DISPATCH_COUNT;
+
+        ⚡ DISPATCH_TOKEN:
+            "";
+
+        ⚡ T:
+            0;
+
+        WHILE (T < PERSISTED_DISPATCH_COUNT) {
+
+            ⚡ DISPATCH_TOKEN:
+                DISPATCH_TOKEN + "|";
+
+            ⚡ T:
+                T + 1;
+        }
+
+        ⚡ FAIR_EVENT_ORDER:
+            H(
+                "list_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ FAIR_EVENT_SEEN:
+            H(
+                "map_new",
+                NULL,
+                NULL,
+                NULL
+            );
+
+        ⚡ IGNORED_FAIRNESS_RECORD_COUNT:
+            0;
+
+        ⚡ F:
+            0;
+
+        WHILE (F < FAIRNESS_LINE_TOTAL) {
+
+            ⚡ FLINE:
+                H(
+                    "list_get",
+                    FAIRNESS_LINES,
+                    F,
+                    NULL
+                );
+
+            ⚡ VALID_FLINE:
+                1;
+
+            IF (FLINE == "") {
+                ⚡ VALID_FLINE:
+                    0;
+            }
+
+            IF (VALID_FLINE) {
+
+                ⚡ FPARTS:
+                    H(
+                        "str_split",
+                        FLINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ FPART_TOTAL:
+                    H(
+                        "list_len",
+                        FPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                ⚡ VALID_FAIR:
+                    0;
+
+                IF (3 < FPART_TOTAL) {
+
+                    ⚡ FEVENT_FIELD:
+                        H(
+                            "list_get",
+                            FPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ FSTATUS_FIELD:
+                        H(
+                            "list_get",
+                            FPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ FAT_FIELD:
+                        H(
+                            "list_get",
+                            FPARTS,
+                            2,
+                            NULL
+                        );
+
+                    ⚡ FCOMMIT_FIELD:
+                        H(
+                            "list_get",
+                            FPARTS,
+                            3,
+                            NULL
+                        );
+
+                    ⚡ STATUS_VALID:
+                        0;
+
+                    IF (FSTATUS_FIELD == "STATUS=PENDING") {
+                        ⚡ STATUS_VALID:
+                            1;
+                    }
+
+                    IF (FSTATUS_FIELD == "STATUS=RESUMED") {
+                        ⚡ STATUS_VALID:
+                            1;
+                    }
+
+                    IF (STATUS_VALID) {
+                        IF (FCOMMIT_FIELD == "COMMIT=YES") {
+                            ⚡ VALID_FAIR:
+                                1;
+                        }
+                    }
+                }
+
+                IF (VALID_FAIR) {
+
+                    ⚡ FEVENT:
+                        H(
+                            "str_replace",
+                            FEVENT_FIELD,
+                            "EVENT=",
+                            ""
+                        );
+
+                    ⚡ FEVENT_SEEN:
+                        H(
+                            "map_has",
+                            FAIR_EVENT_SEEN,
+                            FEVENT,
+                            NULL
+                        );
+
+                    IF (FEVENT_SEEN == FALSE) {
+
+                        ⚡ MARK_FAIR_EVENT:
+                            H(
+                                "map_set",
+                                FAIR_EVENT_SEEN,
+                                FEVENT,
+                                1
+                            );
+
+                        ⚡ PUSH_FAIR_EVENT:
+                            H(
+                                "list_push",
+                                FAIR_EVENT_ORDER,
+                                FEVENT,
+                                NULL
+                            );
+                    }
+                }
+
+                IF (VALID_FAIR == 0) {
+                    ⚡ IGNORED_FAIRNESS_RECORD_COUNT:
+                        IGNORED_FAIRNESS_RECORD_COUNT + 1;
+                }
+            }
+
+            ⚡ F:
+                F + 1;
+        }
+
+        ⚡ FAIR_EVENT_TOTAL:
+            H(
+                "list_len",
+                FAIR_EVENT_ORDER,
+                NULL,
+                NULL
+            );
+
+        ⚡ PENDING_EVENT:
+            "";
+
+        ⚡ PENDING_AT:
+            "";
+
+        ⚡ PENDING_FOUND:
+            0;
+
+        ⚡ O:
+            0;
+
+        WHILE (O < FAIR_EVENT_TOTAL) {
+
+            ⚡ OEVENT:
+                H(
+                    "list_get",
+                    FAIR_EVENT_ORDER,
+                    O,
+                    NULL
+                );
+
+            ⚡ LATEST_STATUS:
+                "";
+
+            ⚡ LATEST_AT:
+                "";
+
+            ⚡ R:
+                0;
+
+            WHILE (R < FAIRNESS_LINE_TOTAL) {
+
+                ⚡ RLINE:
+                    H(
+                        "list_get",
+                        FAIRNESS_LINES,
+                        R,
+                        NULL
+                    );
+
+                ⚡ RVALID:
+                    1;
+
+                IF (RLINE == "") {
+                    ⚡ RVALID:
+                        0;
+                }
+
+                IF (RVALID) {
+
+                    ⚡ RPARTS:
+                        H(
+                            "str_split",
+                            RLINE,
+                            " || ",
+                            NULL
+                        );
+
+                    ⚡ RPART_TOTAL:
+                        H(
+                            "list_len",
+                            RPARTS,
+                            NULL,
+                            NULL
+                        );
+
+                    IF (3 < RPART_TOTAL) {
+
+                        ⚡ REVENT_FIELD:
+                            H(
+                                "list_get",
+                                RPARTS,
+                                0,
+                                NULL
+                            );
+
+                        ⚡ RSTATUS_FIELD:
+                            H(
+                                "list_get",
+                                RPARTS,
+                                1,
+                                NULL
+                            );
+
+                        ⚡ RAT_FIELD:
+                            H(
+                                "list_get",
+                                RPARTS,
+                                2,
+                                NULL
+                            );
+
+                        ⚡ RCOMMIT_FIELD:
+                            H(
+                                "list_get",
+                                RPARTS,
+                                3,
+                                NULL
+                            );
+
+                        ⚡ REVENT:
+                            H(
+                                "str_replace",
+                                REVENT_FIELD,
+                                "EVENT=",
+                                ""
+                            );
+
+                        IF (REVENT == OEVENT) {
+                            IF (RCOMMIT_FIELD == "COMMIT=YES") {
+
+                                IF (RSTATUS_FIELD == "STATUS=PENDING") {
+
+                                    ⚡ LATEST_STATUS:
+                                        "PENDING";
+
+                                    ⚡ LATEST_AT:
+                                        H(
+                                            "str_replace",
+                                            RAT_FIELD,
+                                            "AT=",
+                                            ""
+                                        );
+                                }
+
+                                IF (RSTATUS_FIELD == "STATUS=RESUMED") {
+
+                                    ⚡ LATEST_STATUS:
+                                        "RESUMED";
+
+                                    ⚡ LATEST_AT:
+                                        H(
+                                            "str_replace",
+                                            RAT_FIELD,
+                                            "AT=",
+                                            ""
+                                        );
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ⚡ R:
+                    R + 1;
+            }
+
+            IF (PENDING_FOUND == 0) {
+
+                IF (LATEST_STATUS == "PENDING") {
+
+                    ⚡ PENDING_EVENT:
+                        OEVENT;
+
+                    ⚡ PENDING_AT:
+                        LATEST_AT;
+
+                    ⚡ PENDING_FOUND:
+                        1;
+                }
+            }
+
+            ⚡ O:
+                O + 1;
+        }
+
+        ⚡ CURRENT_EVENT_LATEST_STATUS:
+            "";
+
+        ⚡ CE:
+            0;
+
+        WHILE (CE < FAIRNESS_LINE_TOTAL) {
+
+            ⚡ CELINE:
+                H(
+                    "list_get",
+                    FAIRNESS_LINES,
+                    CE,
+                    NULL
+                );
+
+            ⚡ CEVALID:
+                1;
+
+            IF (CELINE == "") {
+                ⚡ CEVALID:
+                    0;
+            }
+
+            IF (CEVALID) {
+
+                ⚡ CEPARTS:
+                    H(
+                        "str_split",
+                        CELINE,
+                        " || ",
+                        NULL
+                    );
+
+                ⚡ CEPART_TOTAL:
+                    H(
+                        "list_len",
+                        CEPARTS,
+                        NULL,
+                        NULL
+                    );
+
+                IF (3 < CEPART_TOTAL) {
+
+                    ⚡ CEEVENT_FIELD:
+                        H(
+                            "list_get",
+                            CEPARTS,
+                            0,
+                            NULL
+                        );
+
+                    ⚡ CESTATUS_FIELD:
+                        H(
+                            "list_get",
+                            CEPARTS,
+                            1,
+                            NULL
+                        );
+
+                    ⚡ CECOMMIT_FIELD:
+                        H(
+                            "list_get",
+                            CEPARTS,
+                            3,
+                            NULL
+                        );
+
+                    ⚡ CEEVENT:
+                        H(
+                            "str_replace",
+                            CEEVENT_FIELD,
+                            "EVENT=",
+                            ""
+                        );
+
+                    IF (CEEVENT == CURRENT_EVENT) {
+                        IF (CECOMMIT_FIELD == "COMMIT=YES") {
+
+                            IF (CESTATUS_FIELD == "STATUS=PENDING") {
+                                ⚡ CURRENT_EVENT_LATEST_STATUS:
+                                    "PENDING";
+                            }
+
+                            IF (CESTATUS_FIELD == "STATUS=RESUMED") {
+                                ⚡ CURRENT_EVENT_LATEST_STATUS:
+                                    "RESUMED";
+                            }
+                        }
+                    }
+                }
+            }
+
+            ⚡ CE:
+                CE + 1;
+        }
+
+        ⚡ PENDING_WORK:
+            "";
+
+        IF (PENDING_FOUND) {
+
+            ⚡ PENDING_PARTS:
+                H(
+                    "str_split",
+                    PENDING_EVENT,
+                    "::",
+                    NULL
+                );
+
+            ⚡ PENDING_PART_TOTAL:
+                H(
+                    "list_len",
+                    PENDING_PARTS,
+                    NULL,
+                    NULL
+                );
+
+            IF (PENDING_PART_TOTAL == 3) {
+
+                ⚡ PENDING_WORK:
+                    H(
+                        "list_get",
+                        PENDING_PARTS,
+                        0,
+                        NULL
+                    );
+            }
+        }
+
+        ⚡ PENDING_MATURE:
+            0;
+
+        IF (PENDING_FOUND) {
+
+            ⚡ DISPATCH_PROGRESS:
+                1;
+
+            IF (DISPATCH_TOKEN == PENDING_AT) {
+                ⚡ DISPATCH_PROGRESS:
+                    0;
+            }
+
+            ⚡ DIFFERENT_WORK_TURN:
+                1;
+
+            IF (CURRENT_WORK == PENDING_WORK) {
+                ⚡ DIFFERENT_WORK_TURN:
+                    0;
+            }
+
+            IF (DISPATCH_PROGRESS) {
+                IF (DIFFERENT_WORK_TURN) {
+                    ⚡ PENDING_MATURE:
+                        1;
+                }
+            }
+        }
+
+        ⚡ SCHEDULED_EVENT:
+            "";
+
+        ⚡ FAIRNESS_DECISION:
+            "WAIT_STATE_INCONSISTENT";
+
+        ⚡ FAIRNESS_APPEND_RC:
+            0;
+
+        ⚡ SECOND_APPEND_RC:
+            0;
+
+        IF (STATE_CONSISTENT) {
+
+            ⚡ FAIRNESS_DECISION:
+                "PASS_CURRENT_EVENT";
+
+            ⚡ SCHEDULED_EVENT:
+                CURRENT_EVENT;
+
+            IF (PENDING_MATURE) {
+
+                IF (CURRENT_STAGE == "EXECUTE_REVISIT") {
+
+                    IF (CURRENT_EVENT_LATEST_STATUS == "") {
+
+                        ⚡ CURRENT_PENDING_RECORD:
+                            "\nEVENT="
+                            + CURRENT_EVENT
+                            + " || STATUS=PENDING || AT="
+                            + DISPATCH_TOKEN
+                            + " || COMMIT=YES";
+
+                        ⚡ FAIRNESS_APPEND_RC:
+                            H(
+                                "append_text",
+                                ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                                CURRENT_PENDING_RECORD,
+                                NULL
+                            );
+                    }
+
+                    IF (CURRENT_EVENT_LATEST_STATUS == "RESUMED") {
+
+                        ⚡ CURRENT_PENDING_RECORD2:
+                            "\nEVENT="
+                            + CURRENT_EVENT
+                            + " || STATUS=PENDING || AT="
+                            + DISPATCH_TOKEN
+                            + " || COMMIT=YES";
+
+                        ⚡ FAIRNESS_APPEND_RC:
+                            H(
+                                "append_text",
+                                ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                                CURRENT_PENDING_RECORD2,
+                                NULL
+                            );
+                    }
+                }
+
+                ⚡ RESUME_RECORD:
+                    "\nEVENT="
+                    + PENDING_EVENT
+                    + " || STATUS=RESUMED || AT="
+                    + DISPATCH_TOKEN
+                    + " || COMMIT=YES";
+
+                ⚡ SECOND_APPEND_RC:
+                    H(
+                        "append_text",
+                        ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                        RESUME_RECORD,
+                        NULL
+                    );
+
+                ⚡ SCHEDULED_EVENT:
+                    PENDING_EVENT;
+
+                ⚡ FAIRNESS_DECISION:
+                    "RESUME_OLDEST_MATURE_DEFERRED_REVISIT";
+            }
+
+            IF (PENDING_MATURE == 0) {
+
+                IF (CURRENT_STAGE == "EXECUTE_REVISIT") {
+
+                    IF (0 < ELIGIBLE_UNDISPATCHED_COUNT) {
+
+                        IF (CURRENT_EVENT_LATEST_STATUS == "") {
+
+                            ⚡ PENDING_RECORD:
+                                "\nEVENT="
+                                + CURRENT_EVENT
+                                + " || STATUS=PENDING || AT="
+                                + DISPATCH_TOKEN
+                                + " || COMMIT=YES";
+
+                            ⚡ FAIRNESS_APPEND_RC:
+                                H(
+                                    "append_text",
+                                    ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                                    PENDING_RECORD,
+                                    NULL
+                                );
+                        }
+
+                        IF (CURRENT_EVENT_LATEST_STATUS == "RESUMED") {
+
+                            ⚡ PENDING_RECORD2:
+                                "\nEVENT="
+                                + CURRENT_EVENT
+                                + " || STATUS=PENDING || AT="
+                                + DISPATCH_TOKEN
+                                + " || COMMIT=YES";
+
+                            ⚡ FAIRNESS_APPEND_RC:
+                                H(
+                                    "append_text",
+                                    ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                                    PENDING_RECORD2,
+                                    NULL
+                                );
+                        }
+
+                        ⚡ SCHEDULED_EVENT:
+                            CURRENT_WORK
+                            + "::"
+                            + CURRENT_CYCLE
+                            + "::SELECT_NEXT_WORK";
+
+                        ⚡ FAIRNESS_DECISION:
+                            "DEFER_REVISIT_SELECT_OTHER_WORK";
+                    }
+
+                    IF (ELIGIBLE_UNDISPATCHED_COUNT == 0) {
+
+                        IF (CURRENT_EVENT_LATEST_STATUS == "PENDING") {
+
+                            ⚡ FORCED_RESUME_RECORD:
+                                "\nEVENT="
+                                + CURRENT_EVENT
+                                + " || STATUS=RESUMED || AT="
+                                + DISPATCH_TOKEN
+                                + " || COMMIT=YES";
+
+                            ⚡ FAIRNESS_APPEND_RC:
+                                H(
+                                    "append_text",
+                                    ".sigma_exec/SIGMA_V219R1_FAIRNESS_STATE.memory",
+                                    FORCED_RESUME_RECORD,
+                                    NULL
+                                );
+                        }
+
+                        ⚡ SCHEDULED_EVENT:
+                            CURRENT_EVENT;
+
+                        ⚡ FAIRNESS_DECISION:
+                            "EXECUTE_REVISIT_NO_UNDISPATCHED_ALTERNATIVE";
+                    }
+                }
+
+                IF (CURRENT_STAGE == "SELECT_NEXT_WORK") {
+
+                    ⚡ SCHEDULED_EVENT:
+                        CURRENT_EVENT;
+
+                    ⚡ FAIRNESS_DECISION:
+                        "PASS_SELECT_NEXT_WORK";
+                }
+            }
+        }
+
+        ⚡ WRITE_SCHEDULED_RC:
+            H(
+                "write_text",
+                ".sigma_exec/SIGMA_V219R1_SCHEDULED_EVENT.memory",
+                SCHEDULED_EVENT,
+                NULL
+            );
+
+        ⚡ print("SIGMA_V219R1_REVISIT_FAIRNESS_SCHEDULER");
+        ⚡ print("CURRENT_EVENT", CURRENT_EVENT);
+        ⚡ print("CURRENT_WORK", CURRENT_WORK);
+        ⚡ print("CURRENT_CYCLE", CURRENT_CYCLE);
+        ⚡ print("CURRENT_STAGE", CURRENT_STAGE);
+        ⚡ print("REAL_SURVEY_COMMITTED_DOC_COUNT", REAL_SURVEY_COMMITTED_DOC_COUNT);
+        ⚡ print("PERSISTED_DISPATCH_COUNT", PERSISTED_DISPATCH_COUNT);
+        ⚡ print("ELIGIBLE_UNDISPATCHED_COUNT", ELIGIBLE_UNDISPATCHED_COUNT);
+        ⚡ print("DISPATCH_TOKEN", DISPATCH_TOKEN);
+        ⚡ print("DUPLICATE_SURVEY_DOC_COUNT", DUPLICATE_SURVEY_DOC_COUNT);
+        ⚡ print("IGNORED_SURVEY_RECORD_COUNT", IGNORED_SURVEY_RECORD_COUNT);
+        ⚡ print("IGNORED_SELECTOR_RECORD_COUNT", IGNORED_SELECTOR_RECORD_COUNT);
+        ⚡ print("IGNORED_FAIRNESS_RECORD_COUNT", IGNORED_FAIRNESS_RECORD_COUNT);
+        ⚡ print("STATE_CONSISTENT", STATE_CONSISTENT);
+        ⚡ print("PENDING_FOUND", PENDING_FOUND);
+        ⚡ print("PENDING_EVENT", PENDING_EVENT);
+        ⚡ print("PENDING_AT", PENDING_AT);
+        ⚡ print("PENDING_WORK", PENDING_WORK);
+        ⚡ print("PENDING_MATURE", PENDING_MATURE);
+        ⚡ print("CURRENT_EVENT_LATEST_STATUS", CURRENT_EVENT_LATEST_STATUS);
+        ⚡ print("FAIRNESS_DECISION", FAIRNESS_DECISION);
+        ⚡ print("SCHEDULED_EVENT", SCHEDULED_EVENT);
+        ⚡ print("FAIRNESS_APPEND_RC", FAIRNESS_APPEND_RC);
+        ⚡ print("SECOND_APPEND_RC", SECOND_APPEND_RC);
+        ⚡ print("WRITE_SCHEDULED_RC", WRITE_SCHEDULED_RC);
+        ⚡ print("FAIRNESS_POLICY", "DEFER_IMMEDIATE_REVISIT_WHILE_UNDISPATCHED_WORK_EXISTS_RESUME_OLDEST_PENDING_AFTER_DIFFERENT_WORK_DISPATCH_PROGRESS");
+        ⚡ print("REVISIT_EVIDENCE_DELETED", "NO");
+        ⚡ print("HOST_FAIRNESS_DECISION", "NO");
+        ⚡ print("HOST_REVISIT_PRIORITY", "NO");
+        ⚡ print("HOST_WORK_SELECTION", "NO");
+        ⚡ print("HOST_LEARNING", "NO");
+        ⚡ print("STRUCTURAL_FAIRNESS_ONLY", "YES");
+        ⚡ print("COMPUTATION_BOUNDED", "YES");
+        ⚡ print("MAX_SURVEY_SPLIT_LINES", MAX_SURVEY_SPLIT_LINES);
+        ⚡ print("MAX_SELECTOR_SPLIT_LINES", MAX_SELECTOR_SPLIT_LINES);
+        ⚡ print("MAX_FAIRNESS_SPLIT_LINES", MAX_FAIRNESS_SPLIT_LINES);
+        ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    }
+}
