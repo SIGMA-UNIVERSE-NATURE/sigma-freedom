@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "canonical_tree_commit_sha": "fc799bf1104ab6352710e1801777a971b5179995",
+  "dependency_amendment": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
+  "control_plane_state_commit_sha": "50426227c7b1b0aa8afbd341cda585ba2be2f9a1",
+  "control_plane_registry_commit_sha": "56155b3b74418cfd80837bbbc805d370a56d2d6c",
+  "window_setup_commits": {
+    "contract": "97d1ce98adeff5d393325905126328bf4cd72ca9",
+    "execution_prompt": "2bd95626331da59b1c095b9117996ae07267f686",
+    "director_open_order": "c5919a45ea7c9abb5e5cdca00822b11586e70dcf"
+  },
+  "scope_ids": ["B1.1-C05"],
+  "canonical_topic_ids": ["B1.1-C05-T01","B1.1-C05-T02","B1.1-C05-T03","B1.1-C05-T04","B1.1-C05-T05","B1.1-C05-T06","B1.1-C05-T07","B1.1-C05-T08","B1.1-C05-T09","B1.1-C05-T10"],
+  "bootstrap_checks": {
+    "C03_director_accepted": true,
+    "C05_active_READY_on_control_plane": true,
+    "C04_locked": true,
+    "dependency_amendment_active": true,
+    "later_pipeline_stages_gated": true
+  },
+  "next_action": "Execute DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md for B1.1-C05 only."
+}
