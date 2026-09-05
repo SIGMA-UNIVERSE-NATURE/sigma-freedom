@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED_READY",
+  "execution_branch": "hka-tree/c01-w02-math-c04",
+  "accepted_predecessor_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "dependency_amendment": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
+  "setup_commits": {
+    "window_contract": "c08a184cc3fd74a0cb9a1bdd0e5d0a26ff0722dc",
+    "gpt_execution_prompt": "55bc74feda9a7773c674373c0518000ac3b51b76",
+    "director_open_order": "28a88aedb74bcb9c27841edf8c8201e8caddc3f2"
+  },
+  "scope_ids": ["B1.1-C04"],
+  "canonical_topic_ids": [
+    "B1.1-C04-T01","B1.1-C04-T02","B1.1-C04-T03","B1.1-C04-T04","B1.1-C04-T05","B1.1-C04-T06","B1.1-C04-T07","B1.1-C04-T08","B1.1-C04-T09"
+  ],
+  "bootstrap_decisions": [
+    "C04 executes only after Director-accepted C05 under Dependency Amendment 1.",
+    "C04-T08 may use accepted C05 calculus but cannot use locked C09 topology/manifold claims as support.",
+    "C04-T09 may use accepted C03 commutative algebra and C04 projective geometry but cannot duplicate C03 ownership or use locked C09 support.",
+    "All later pipeline stages remain gated."
+  ],
+  "next_action": "Read DIRECTOR_OPEN_ORDER.md, WINDOW_CONTRACT.md and GPT_EXECUTION_PROMPT.md, verify curriculum-master activates C04 READY, then author B1.1-C04 only."
+}
