@@ -33,41 +33,69 @@ Keep locked:
 
 If `CURRENT_HANDOFF.md` still says V2.24R.1 is SOURCE READY, this correction checkpoint supersedes that frontier text until the handoff is reconciled.
 
-## CURRENT LANGUAGE-LANE IDENTITY CORRECTION — LANG-01G R2
+## CURRENT LANGUAGE-LANE FLAG — LANG-01G R3 ADMITTED
 
-Before any LANG-01G compile or VM run, read:
+Read the living language checkpoint before any further language work:
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260905_LANG01G_CANONICAL_IDENTITY_METADATA_CORRECTION_R2.md`
+`SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_LANGUAGE_LANE_CURRENT.md`
 
-The earlier LANG-01G R1 SHA256 metadata was incorrect even though the canonical Git blobs were unchanged. Until the living language checkpoint and shared handoff are reconciled after locked-runtime evidence, the correction checkpoint supersedes their old LANG-01G hash values.
+LANG-01G has now completed its original 20-case locked-VM admission gate after a runner-only fresh-state fixture repair.
 
-Canonical native source remains unchanged:
+Canonical native source remains:
 
 `LANG01G_SOURCE_GIT_BLOB=03b03cff32eee5c35e220cd562b1081b615ca36b`
 
 `LANG01G_SOURCE_SHA256=33d04804bf190ab599ea0e1a9f2838fc37e53e52281e10a2c1bd2a39f816f087`
 
-Canonical historical R1 base runner:
+Final R3 entry runner:
 
-`LANG01G_R1_RUNNER_GIT_BLOB=7a2a19ce9f7d36351f0f9b07ac14a900a82ffa63`
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT_R3.sh`
 
-`LANG01G_R1_RUNNER_SHA256=d5f7ae2561a3f1955a9375f5eb855a133c9a9e5c7dd176064b01b7eff12035e2`
+`LANG01G_R3_RUNNER_GIT_BLOB=6b51762246b348935d15816aa2a0c054e766432f`
 
-Active R2 entry runner:
+`LANG01G_R3_RUNNER_SHA256=8d89cc504f36ce1190b7d364eac9cc76b0fe718824c54f484cf6b4da9561271c`
 
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT_R2.sh`
+Observed R3 final summary:
 
-`LANG01G_R2_RUNNER_SHA256=2795bb7ae04d3d1c230ae0c609f6e33408569b33d11ac654ae8b588beda7a338`
+`LANG01G_TOTAL_VM_INVOCATIONS=20`
 
-This correction is metadata/harness-only. It does not change native lesson cognition, evidence scoring, antecedent selection, persistence policy, or the 20-case oracle set.
+`LANG01G_POST_VM_ALIGNMENT_PASS_COUNT=20`
 
-Keep until real locked-runtime proof:
+`LANG01G_POST_VM_ALIGNMENT_FAIL_COUNT=0`
 
-`LANG01G_LOCKED_SIGMAC_COMPILE=NOT_RUN`
+`LANG01G_VM_NONZERO_COUNT=0`
 
-`LANG01G_TOTAL_VM_INVOCATIONS=0`
+`LANG01G_STEP_LIMIT_HIT_COUNT=0`
 
-`LANG01G_ADMISSION=NOT_RUN`
+`LANG01G_NEGATIVE_TEST=PASS`
+
+`LANG01G_PERSISTENT_STATE_TEST=PASS`
+
+`LANG01G_RESTART_REPLAY_TEST=PASS`
+
+`LANG01G_ADMISSION=PASS_IN_EXACT_TESTED_PREFLIGHT_SCOPE`
+
+The R3 user-supplied final tail did not include its bytecode SHA256 line. Keep:
+
+`LANG01G_R3_BYTECODE_SHA256=UNKNOWN_NOT_IN_SUPPLIED_R3_TAIL`
+
+Do not infer it from the historical R2 failed run.
+
+Historical R2 failure remains evidence: first locked compile passed, then CASE_001 failed `VM_RC=22` / `SIGMA host: string required`. Native locked-VM diagnostic localized the failure to `str_split` receiving the result of `read_text` on an absent fresh-state file. R3 only initialized that fixture as a zero-length state file; it did not change native lesson cognition, evidence scoring, antecedent selection, persistence policy, or the 20-case oracle set.
+
+Keep claim limits:
+
+`PREFERRED_ANTECEDENT_HYPOTHESIS != RESOLVED_REFERENT`
+
+`COREFERENCE_RESOLUTION=NOT_PROVEN`
+
+`PRONOUN_SEMANTICS=NOT_PROVEN`
+
+`REAL_WORLD_ENTITY_IDENTITY=NOT_PROVEN`
+
+`SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+
+No production binding is implied. The next language capability must be reselected dependency-first/capability-first; `LANG-02_NEGATION_AND_SCOPE_FOUNDATION` remains deferred, not rejected.
 
 ## Non-negotiable execution boundary
 
