@@ -27,7 +27,7 @@ VM v09 candidate SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414
 
 `VM_IS_GENESIS1=NOT_PROVEN`.
 
-From V2.16 onward, every admission runner must print both `SIGMAC_SHA256` and `VM_SHA256` explicitly near the start of the transcript, in addition to equality-gating them.
+From V2.16 onward, every admission runner must print both runtime SHA values explicitly near the start of the transcript and equality-gate them.
 
 ## Production
 
@@ -54,19 +54,26 @@ Production V2.4 source SHA256: `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d96
   - executor source `d6bd5e41813a6f2fc13b7c6bfa6215e01fe4aa11c12c0111e7b51addb9a11210`;
   - hardened runner `da3c678089002e1fdb5694ed53eb9e1092462f20d2e1a0ff3fe390214556f226`;
   - `AUTONOMOUS_STRUCTURAL_CYCLE_TRANSITION=PROVEN_IN_SELECTED_DOCUMENT_TWO_GENERATION_SCOPE`.
-- V2.15R.1 event-driven real first -> second work transition: PASS — checkpoint `fd6f8019af60758c2575589a2af1016f8cff2fc1`.
-  - runner SHA256 `3b54dc2fce2d408c9ffb9f4cedead91a2b82f69ec8a1688d6518837e9e02e687`;
-  - first native work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
-  - second native work `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`;
-  - first selector-state SHA `3225092993410c1b7ed77c5a668439e7d9fc78b0e572b394d0ece8a51417279e`;
-  - second selector-state SHA `16134eff08cd5fe385897f2ec689febab4e719f224470d296ebccc3ad118037d`;
-  - second real document has 8 lines;
-  - second segment-0 best relation `of => the`, support 3;
-  - second deep evidence SHA `8cbd66050013d4061086f2d774b60a632fe98e3263427592f8806fa25c56d2b5`;
-  - fresh VM reached second-work completion at segment index 1;
-  - selector replay PASS; real survey and second document immutable;
-  - observed V2.13 bytecode `ef3ea3e54a9d9d4c1858c877fc9046f9a66227fb150bd5a3c0d9847246ce609d`;
-  - observed V2.14C1 bytecode `9d7b120c7f51939c6679d55629d46816f041679164ff5c4afa8feb5af278d4f5`.
+- V2.15R.1 event-driven real first -> second work transition: PASS — `fd6f8019af60758c2575589a2af1016f8cff2fc1`.
+  - first work `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
+  - second work `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`;
+  - second document 8 lines;
+  - second initial best relation `of => the`, support 3;
+  - second initial evidence SHA `8cbd66050013d4061086f2d774b60a632fe98e3263427592f8806fa25c56d2b5`;
+  - selector replay PASS.
+- V2.16R.1 second real work complete cycle: PASS — `04d786edfe832ef501949549d0560e70c8d8b27f`.
+  - locked sigmac + VM v09 identity visibility PASS;
+  - second real work initial deep completion PASS;
+  - native second revalidation PASS;
+  - native second lifecycle PASS;
+  - branch was not hardcoded;
+  - real runtime branch = `REOBSERVED -> ARCHIVE_FOR_NOW`;
+  - native selector then selected third real work `3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc`;
+  - persistent revalidation/lifecycle fresh-VM reuse PASS;
+  - deterministic second revalidation/lifecycle replay PASS;
+  - `SECOND_WORK_COMPLETE_CYCLE=PROVEN_IN_REAL_SELECTED_DOCUMENT_SCOPE`;
+  - `REAL_SECOND_TO_THIRD_WORK_TRANSITION=PROVEN_IN_FROZEN_56_DOCUMENT_SURVEY_SCOPE`;
+  - real survey/second document/second initial evidence immutable.
 
 ## Important distinctions
 
@@ -77,77 +84,56 @@ Production V2.4 source SHA256: `6c3764dd9903ab6c9bc1ffe755d4d2784e3a5fe4a4594d96
 - `ARCHIVE_FOR_NOW != SEMANTICALLY_TRUE`;
 - `ARCHIVE_FOR_NOW != FORGET`.
 
-## Current frontier — V2.16R.1 second real work complete cycle — SOURCE READY
+## Current frontier — V2.17R.1 real multi-document cycle promotion — SOURCE READY
 
-No new cognitive native source is introduced. This is a composition/admission gate over admitted native components.
+No new cognitive native source is introduced. This is a promotion/admission composition gate over already-admitted native capabilities.
 
 Runner:
-`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V216R1_SECOND_REAL_WORK_COMPLETE_CYCLE_PREFLIGHT.sh`
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V217R1_REAL_MULTI_DOCUMENT_CYCLE_PROMOTION_PREFLIGHT.sh`
 
 Runner SHA256:
-`5e76462247a745145bc49c1fd1e8727741e1efa348047856973356677c84a6f7`
+`df6d423c7d1ff10cea9f374fb94cda07769f6c8ed9945f5b1d71db582516414d`
 
 Runner commit:
-`e2bce5924fe7934d14896be7cbb19dc9403cfdf4`
+`a7eed505cd133074e8e36f21fba410fa28e39f97`
 
 README commit:
-`5084dec0da8f0ace9fd0c91a4ba821f46d4acfa4`
+`0500ea0f592be4d1bb74b9db2cfa9d2d78223686`
 
 Source-ready checkpoint:
-`35f38d9009e8f95845bbda325a921a1d28a3492f`
+`384aea5de582443b764923d1f61d6fb80e23c9cc`
 
-### Core anti-hardcode contract
+### Promotion contract
 
-V2.16 does NOT predeclare whether the second real work must yield `REOBSERVED` or `NOT_REOBSERVED`.
+The V2.17 gate replays the admitted real second-work branch and second -> third transition, then completes a real cycle on the third selected work.
 
-It regenerates the real second work and its real deep evidence, then lets:
+Real chain entering the gate:
 
-1. V2.9 decide structural revalidation;
-2. V2.10 decide lifecycle;
-3. host mechanically route the exact native lifecycle branch.
+- first: `0ac783c25e93ee81fe130c55026323e74191fc82a7782974ed64614aed66485b`;
+- second: `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`;
+- third: `3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc`.
 
-Mapping consistency is checked only after native output:
+Runner requirements:
 
-- `REOBSERVED -> ARCHIVE_FOR_NOW`;
-- `NOT_REOBSERVED -> REVISIT`.
+1. visibly print + equality-gate locked sigmac and VM v09 hashes;
+2. replay second real complete cycle and require its admitted `REOBSERVED -> ARCHIVE_FOR_NOW` branch;
+3. replay native second -> third work selection;
+4. complete third initial deep learning across bounded fresh-VM invocations, max 64;
+5. let native V2.9/V2.10 decide third revalidation/lifecycle without oracle hardcoding;
+6. require third fresh-VM revalidation/lifecycle reuse and deterministic replay;
+7. mechanically dispatch the native third branch:
+   - `ARCHIVE_FOR_NOW` -> `SELECT_NEXT_WORK` -> fourth real work;
+   - `REVISIT` -> complete real revisit generation -> V2.13 exact-cycle revalidation/lifecycle -> V2.14 next event;
+8. real survey, second document, third document and third initial evidence must remain immutable.
 
-### Branch A — native ARCHIVE_FOR_NOW
+### Promotion claim allowed only after runtime PASS
 
-- V2.12 must emit `SELECT_NEXT_WORK`;
-- the already-admitted selector must choose a third real work distinct from first and second;
-- if successful, admit conditional real second -> third transition proof.
+`MULTI_DOCUMENT_AUTONOMOUS_CYCLE=PROVEN_IN_BOUNDED_REAL_CORPUS_SECOND_THIRD_WORK_SCOPE`.
 
-### Branch B — native REVISIT
-
-- V2.11 executes a complete revisit generation on the 8-line second document;
-- V2.12 emits exact-cycle revalidation event;
-- V2.13 performs generation-aware revalidation/lifecycle;
-- V2.14 emits the exact next stage;
-- if next stage is `SELECT_NEXT_WORK`, select a third real work;
-- if next stage is `EXECUTE_REVISIT`, preserve that event as the next native action.
-
-### Admission gates
-
-- runtime hashes visible in transcript and equality-gated;
-- deterministic first -> second real selection;
-- second real initial deep completion;
-- native second-work revalidation/lifecycle without result hardcoding;
-- fresh-VM revalidation/lifecycle state reuse;
-- deterministic revalidation/lifecycle replay;
-- branch-specific event routing;
-- survey/document/real second initial evidence immutability.
-
-### Target claim
-
-On PASS:
-`SECOND_WORK_COMPLETE_CYCLE=PROVEN_IN_REAL_SELECTED_DOCUMENT_SCOPE`.
-
-Conditional additional claim if a distinct third work is selected:
-`REAL_SECOND_TO_THIRD_WORK_TRANSITION=PROVEN_IN_FROZEN_56_DOCUMENT_SURVEY_SCOPE`.
+This is a bounded structural claim only.
 
 Still NOT PROVEN automatically:
 
-- `MULTI_DOCUMENT_AUTONOMOUS_CYCLE`;
 - `GENERAL_AUTONOMOUS_CYCLE_EXECUTION`;
 - semantic truth validation;
 - semantic understanding;
@@ -157,7 +143,7 @@ Still NOT PROVEN automatically:
 ## NEXT ACTION
 
 1. Keep V2.4 production learner running unchanged.
-2. Install exact V2.16 runner SHA above from repo root `~/SIGMA/sigma-freedom-write`; no new `.sigma` source is required.
-3. Run locked sigmac/VM and preserve all printed runtime SHA values, bytecode SHA values, every VM_RC, native result/action/event, and state hashes.
-4. If a gate fails, preserve evidence and fix only the narrow failure.
-5. If V2.16 PASS, checkpoint before the real multi-document cycle promotion gate.
+2. Install exact V2.17 runner SHA above from repo root `~/SIGMA/sigma-freedom-write`; no new `.sigma` source is required.
+3. Run locked sigmac/VM and preserve printed runtime identities, bytecode hashes, every VM_RC, third result/action/event, selector IDs and state hashes.
+4. If any gate fails, preserve evidence and repair only the narrow failure.
+5. If V2.17 PASS, checkpoint before building a shadow-production promotion preflight; do not upgrade V2.4 in place yet.
