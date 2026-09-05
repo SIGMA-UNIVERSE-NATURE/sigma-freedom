@@ -1,56 +1,36 @@
 # C01-W02-B1.1-MATH-FAMILY-C05 — Durable Status Report
 
-Status: `READY`
+Status: `IN_PROGRESS`
 Stage: `CURRICULUM`
 Scope: `B1.1-C05 — Giải tích và biến đổi liên tục`
 Execution branch: `hka-tree/c01-w02-math-c05`
 
-## Why C05 is active before C04
+## Assigned job
 
-Director audit after C03 found an execution-order contradiction: `B1.1-C04-T08 — Hình học vi phân` requires derivative and multivariable-calculus primitives owned by C05, while the old sequence attempted C04 before C05 and forbade future-scope support.
+Author the complete C05 curriculum for the ten canonical analysis topics only. Dependency Amendment 1 controls execution order `C03 → C05 → C04`; stable IDs and primary ownership do not change.
 
-The durable amendment `B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md` therefore changes execution order only:
+## Definitely finished
 
-`C03 → C05 → C04`
+- Read `DIRECTOR_RESUME_ORDER_1.md` first, then the Director open order, window contract and execution prompt.
+- Revalidated control-plane: C05 is the only active READY scope at `CURRICULUM`; C04 remains locked and later stages remain gated.
+- Verified branch ancestry contains accepted C03 `7546ad74fb0e71ad2120c7091947993690bef82d` as merge base with zero commits behind.
+- Read the required B1 scope/ID/sequence/duplicate standards and status-report standard.
+- Read exact Director-accepted C01/C02/C03 durable records sufficiently to preserve their ownership and ID meanings rather than re-authoring them.
+- Committed worker bootstrap/scope-lock checkpoint `CP03-WORKER-BOOTSTRAP-SCOPE-LOCK` at `17e387063eecbf3d4f75e6b7068d8d3e78d22aa1`.
 
-No stable topic ID, name or primary ownership changed.
+## Not finished
 
-## Accepted inputs
+No C05 academic record set is yet complete. Block A T01-T05 is the next bounded academic unit; T06-T10, final closure, audits, RESULT/HANDOFF and terminal worker status remain outstanding.
 
-- C03: `7546ad74fb0e71ad2120c7091947993690bef82d`
-- C02: `cfd9746e2296280705e2e2e67b2c5980d440f02d`
-- C01: `5659288da80a239e2ded408da87348670c1410c2`
-- Canonical tree: `fc799bf1104ab6352710e1801777a971b5179995`
+## Locked decisions
 
-## Assigned scope
+- Author C05 T01-T10 only.
+- Do not open or author C04.
+- C04/C06/C07/C09/C10 may not supply support Claim IDs.
+- C01-C03 primitives are prerequisites/references, not duplicate curriculum.
+- Exactly one D1-D4 objective per C05 node is the working design, with exactly one closure row per objective.
+- No Lesson Registry, prompts, images, R2, ACADEMIC_LOCKED, delivery or website artifact may be created.
 
-Ten canonical topics T01–T10: limits, continuity, derivative, integral, series, multivariable analysis, real analysis, complex analysis, functional analysis and harmonic analysis.
+## Recovery / next action
 
-## Mandatory gates
-
-- Complete knowledge, minimum redundancy.
-- 100% Claim → Learning Objective closure.
-- Zero locked-scope support claims.
-- Source identity/version audit.
-- Semantic duplicate and ownership audit against accepted C01–C03.
-- Acyclic prerequisite/sequence graph.
-- Clean stage boundary.
-
-C04 geometry is locked and may be referenced only as non-support boundary/example. C06, C07, C09 and C10 are also locked.
-
-## Durable recovery
-
-Read in this order:
-
-1. canonical pipeline;
-2. curriculum state from `hka-tree/curriculum-master`;
-3. active dependency amendment;
-4. this window contract/open order/execution prompt;
-5. this STATUS/REPORT and latest checkpoint;
-6. exact accepted C01–C03 inputs.
-
-## Next action
-
-Execute `DIRECTOR_OPEN_ORDER.md`, then the locked `GPT_EXECUTION_PROMPT.md`, and author only B1.1-C05.
-
-On worker candidate PASS, C04 remains gated until independent Director acceptance of C05.
+Read `STATUS.json`, then CP03. Author and commit substantive academic Block A T01-T05 and read it back from GitHub before proceeding to T06-T10. Do not infer any uncommitted academic work from chat history.
