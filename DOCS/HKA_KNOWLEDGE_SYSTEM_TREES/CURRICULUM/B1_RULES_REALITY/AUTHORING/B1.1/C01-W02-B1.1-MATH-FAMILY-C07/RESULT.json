@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "scope_id": "B1.1-C07",
+  "scope_title": "Xác suất, thống kê và suy luận",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c07",
+  "input_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "substantive_commit_sha": "0f96e42f780a6ddd5871f8603b8541b4616f9cf9",
+  "pre_pass_audit_checkpoint_commit_sha": "1de42c3a21643c31a8373be5d572f864d32cbc28",
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 158,
+    "sources": 7,
+    "learning_objectives": 40,
+    "claim_to_learning_objective_closure_records": 40,
+    "cross_links": 17,
+    "curriculum_sequence_intents": 10
+  },
+  "canonical_topic_coverage": {
+    "covered": 10,
+    "required": 10,
+    "topic_ids": [
+      "B1.1-C07-T01",
+      "B1.1-C07-T02",
+      "B1.1-C07-T03",
+      "B1.1-C07-T04",
+      "B1.1-C07-T05",
+      "B1.1-C07-T06",
+      "B1.1-C07-T07",
+      "B1.1-C07-T08",
+      "B1.1-C07-T09",
+      "B1.1-C07-T10"
+    ]
+  },
+  "semantic_closure": {
+    "learning_objectives_total": 40,
+    "learning_objectives_directly_supported_by_claim_content": 40,
+    "direct_semantic_closure_rate": 1.0,
+    "mechanical_row_existence_used_as_sufficient_evidence": false,
+    "future_or_locked_scope_support_claim_ids": 0,
+    "requires_unlocked_scope_claims": 0,
+    "support_claims_current_C07_only": true
+  },
+  "academic_hypothesis_audits": {
+    "measure_theory_reuse_from_C05": "PASS_REFERENCE_ONLY",
+    "DAG_graph_reuse_from_C08": "PASS_REFERENCE_ONLY",
+    "LLN_CLT_assumptions": "PASS",
+    "finite_Markov_convergence_assumptions": "PASS",
+    "Cramer_Rao_regular_conditions": "PASS",
+    "MLE_asymptotic_regular_conditions": "PASS",
+    "Wilks_regular_conditions": "PASS",
+    "frequentist_vs_bayesian_semantics": "PASS_DISTINCT",
+    "descriptive_vs_inferential_semantics": "PASS_DISTINCT",
+    "experimental_design_vs_observational_adjustment": "PASS_DISTINCT",
+    "association_regression_prediction_vs_causation": "PASS_NOT_CAUSAL_WITHOUT_IDENTIFICATION",
+    "causal_identification_randomization_or_assumptions": "PASS",
+    "causal_DAG_requires_causal_semantics_not_graph_shape_alone": "PASS"
+  },
+  "structural_audits": {
+    "committed_readback_of_all_158_claims": "PASS",
+    "committed_readback_of_all_40_learning_objectives": "PASS",
+    "committed_readback_of_all_40_closure_rows": "PASS",
+    "claim_id_resolution": "PASS",
+    "source_resolution": "PASS_158_OF_158",
+    "source_id_sha256_normalization": "PASS_7_OF_7",
+    "internal_prerequisite_graph_acyclic": "PASS",
+    "ownership_and_duplicate_dispositions": "PASS",
+    "branch_ancestry_from_accepted_predecessor": "PASS"
+  },
+  "risk_and_boundary_dispositions": {
+    "R06": "PASS_MATHEMATICS_STATISTICS_PRIMARY_C07_DATA_AI_COMPUTATION_FUTURE_B1.5",
+    "R13": "PASS_AI_SECONDARY_CROSS_LINK_ONLY_B1.5-C10_PRIMARY",
+    "C05": "REFERENCE_ONLY_FOR_MEASURE_SIGMA_ALGEBRA_MEASURABILITY_LEBESGUE_INTEGRATION",
+    "C08": "REFERENCE_ONLY_FOR_GENERIC_DAG_TOPOLOGICAL_ORDER_REACHABILITY",
+    "C09": "LOCKED_UNTOUCHED",
+    "C10": "LOCKED_BOUNDARY_ONLY_ZERO_SUPPORT",
+    "B1.5": "FUTURE_OWNERSHIP_BOUNDARY_ZERO_SUPPORT"
+  },
+  "stage_boundary": {
+    "academic_locked_created": false,
+    "lesson_registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false,
+    "post_curriculum_stage_artifacts_created": false
+  },
+  "successor_gate": {
+    "state": "DIRECTOR_GATED",
+    "successor_unlocked_by_worker": false,
+    "C09_C10_opened": false
+  },
+  "worker_statement": "C07 CURRICULUM authoring is a worker PASS candidate after committed read-back and semantic/theorem/causal-identification audits. This record does not constitute Director acceptance and does not unlock any successor or later stage.",
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C09 — GATED pending Director acceptance of C07"
+}
