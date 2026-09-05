@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "input_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "last_checkpoint_commit_sha": "f7d8d1903c5b6155dfd6ef9506b60cadd542d465",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "scope_ids": ["B1.1-C05"],
+  "completed_work": [
+    "Director independently accepted C03 at 7546ad74fb0e71ad2120c7091947993690bef82d after reading all 77 claims and auditing all 36 closure records.",
+    "Director discovered and durably corrected the C04/C05 execution dependency without changing stable IDs or ownership.",
+    "Created C05 execution branch from accepted C03.",
+    "Installed C05 Window Contract, GPT Execution Prompt and Director Open Order.",
+    "Control-plane activated C05 as READY and kept C04 locked until Director-accepted C05 PASS.",
+    "Created CP01-BOOTSTRAP-ACTIVATED."
+  ],
+  "remaining_work": [
+    "Author complete B1.1-C05 curriculum records for all ten canonical analysis topics.",
+    "Reuse accepted C01-C03 primitives without duplicate learning meaning.",
+    "Resolve T01/T02, T03/T06, T04/T07, T05/T10, T07/T09 and T08/T10 internal ownership overlaps.",
+    "Maintain C04 geometry as locked boundary/example only; do not author C04.",
+    "Create 100% Claim-to-Learning-Objective closure with zero locked-scope support Claim IDs.",
+    "Run source/version, semantic duplicate/ownership, prerequisite/sequence and stage-boundary audits from committed files.",
+    "Create substantive academic-closure and pre-PASS checkpoints before any worker candidate PASS."
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C05/WINDOW_CONTRACT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C05/GPT_EXECUTION_PROMPT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C05/DIRECTOR_OPEN_ORDER.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/STATUS.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/REPORT.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C05/CHECKPOINTS/CP01-BOOTSTRAP-ACTIVATED.json"
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C05 only.",
+    "Accepted predecessor is C03 commit 7546ad74fb0e71ad2120c7091947993690bef82d.",
+    "Execution Amendment 1 controls C05-before-C04 order; stable canonical ownership remains unchanged.",
+    "C04 remains locked and cannot supply academic support claims.",
+    "Claim-to-Learning-Objective closure is mandatory before candidate PASS.",
+    "D1-D4 remain independent of age.",
+    "No later pipeline stage artifact is allowed."
+  ],
+  "do_not_repeat": [
+    "Do not re-author accepted C01, C02 or C03.",
+    "Do not renumber accepted IDs.",
+    "Do not author C04 geometry from this analysis window.",
+    "Do not use C06/C07/C09/C10 future claims as support.",
+    "Do not use chat history as project state.",
+    "Do not mark PASS from counts/schema alone without academic closure."
+  ],
+  "next_action": "Execute the locked C05 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C05 only.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "updated_at": "2026-09-05T08:00:00+07:00"
+}
