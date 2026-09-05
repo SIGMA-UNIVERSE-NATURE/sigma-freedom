@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP08-C09-POST-ACTIVATION-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "result": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-C09",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C09",
+  "active_branch": "hka-tree/c01-w02-math-c09",
+  "accepted_predecessor": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "active_dependency_amendments": [1,2,3,4],
+  "checks": {
+    "state_matches_C09": true,
+    "registry_matches_C09": true,
+    "continuity_snapshot_matches_C09": true,
+    "child_status_matches_C09": true,
+    "canonical_seven_topics_match_frozen_scope_map": true,
+    "accepted_predecessor_consistent_across_sources": true,
+    "C10_locked": true,
+    "post_CURRICULUM_stages_gated": true,
+    "no_split_brain": true
+  },
+  "authority_note": "Sentinel only verifies alignment and does not author, accept or mutate curriculum-master.",
+  "updated_at": "2026-09-05T16:33:00+07:00"
+}
