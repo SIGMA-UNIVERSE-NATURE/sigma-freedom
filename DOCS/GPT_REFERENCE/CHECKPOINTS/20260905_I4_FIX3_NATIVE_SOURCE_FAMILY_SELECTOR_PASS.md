@@ -1,0 +1,152 @@
+# SIGMA I4 Fix3 — Native source-family selector admission PASS
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Status: PASS_IN_EXACT_TESTED_SCOPE
+
+## Dependency
+
+I3C remains admitted PASS in exact tested scope and canonical native continuation is:
+
+```text
+SIGMA_NATIVE_CANONICAL_CONTINUATION_ACTION=DIVERSIFY_EVIDENCE_SOURCE
+SIGMA_NATIVE_CANONICAL_CONTINUATION_STRATEGY=SOURCE_DIVERSITY
+```
+
+I4 Fix3 recompiled exact admitted I3C source and performed one canonical replay only to obtain a fresh native I3C event.
+
+## Fix3 identities
+
+```text
+FIX3_BUNDLE_SHA256=eb482787d996d20d68dbb90c0195c6cc762f325f32f5cc9469fe92521b3d9f1c
+FIX3_I4_SOURCE_SHA256=a13417668f1dc85e42d7f529306cdc09928ab45655d771d95c89d383b6fc7784
+FIX3_RUNNER_SHA256=a6b317e92e097e69252564c46f038b6023bf3d8dd3f1e2716616f468bae9fec4
+I3C_SOURCE_SHA256=daa01d60e11afd64b763c6623bc14d0aa2d868cc03f686b26ad3026d6951284f
+CATALOG_SHA256=7d650b53bae8b22fb6ab7613127e0a116bbe32d3bc032a31cdb44ad69ae7c224
+I4_BYTECODE_SHA256=UNKNOWN_NOT_IN_USER_SUPPLIED_FINAL_SUMMARY
+```
+
+## Repair history preserved
+
+V1 compile failure:
+
+```text
+ROOT_CAUSE=MID_SOURCE_HASH_COMMENT_UNSUPPORTED
+I4_RUNTIME_EXECUTED=NO
+```
+
+Fix1 runtime failure:
+
+```text
+I4_COMPILE_RC=0
+I4_BYTECODE_SHA256=40e55ebe56210482e8ef16c6bec0f17c6101a2f97a385f17d527db4c5f60b8d3
+C01_CANONICAL_VM_RC=6
+ROOT_CAUSE_CONFIRMED_BY_FIX2_PROGRESS=NUMERIC_VALUES_SERIALIZED_DIRECTLY_IN_STRING_PROTOCOL
+```
+
+Fix2 progressed through D10 and exposed D11 control-flow contract defect:
+
+```text
+D11_WRONG_ACTION_VM_RC=0
+I4_STATUS=HOLD_NOT_DISPATCHED
+STATE_MUTATED=0
+EVENT_EMITTED=0
+SELECTED_SOURCE_FAMILY=NONEMPTY_UNDER_WRONG_ACTION
+ROOT_CAUSE=SELECTION_EVALUATED_BEFORE_ACTION_STRATEGY_GATE
+```
+
+Fix3 gated `select_family()` itself behind exact I3C action/strategy + catalog-valid conditions. The D11 oracle was not weakened.
+
+## User machine PASS
+
+```text
+TOTAL_VM_INVOCATIONS=14
+I3C_CANONICAL_REPLAY_VM_INVOCATIONS=1
+I4_VM_INVOCATIONS=13
+POST_VM_ALIGNMENT_PASS_COUNT=13
+POST_VM_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+I3C_EVENT_ORIGIN=SIGMA_NATIVE_VM
+HOST_DISPATCHED_EXACT_I3C_EVENT=YES
+CANONICAL_EXPECTED_SOURCE_FAMILY_PREWRITTEN_IN_RUNNER=NO
+SIGMA_NATIVE_CANONICAL_SOURCE_FAMILY=WIKIPEDIA
+SIGMA_NATIVE_CANONICAL_SOURCE_FAMILY_ID=10
+CATALOG_REORDER_INVARIANCE=TESTED
+PRIOR_SELECTION_COUNT_AFFECTS_NATIVE_SELECTION=YES
+CAPABILITY_READINESS_AFFECTS_NATIVE_SELECTION=YES
+AVAILABILITY_AFFECTS_NATIVE_SELECTION=YES
+STABLE_REGISTRY_ID_TIEBREAK=NATIVE_TESTED
+NO_AVAILABLE_FAMILY_HOLD=TESTED
+MALFORMED_CATALOG_REFUSAL=TESTED
+DUPLICATE_ID_REFUSAL=TESTED
+PERSISTENT_SELECTION_LEDGER=TESTED
+IDEMPOTENCY=TESTED
+REPLAY_IDENTICAL_SELECTION=YES
+REPLAY_IDENTICAL_MEMORY=YES
+REPLAY_IDENTICAL_EVENT=YES
+HOST_SOURCE_SELECTION=NO
+HOST_CATALOG_RANKING=NO
+HOST_RESOURCE_SELECTION=NO
+UNDERSTANDING_STATE_EMITTED_BY_I4=NO
+TRUTH_DECISION=NOT_EXECUTED
+KNOWLEDGE_PROMOTION=NOT_EXECUTED
+STATIC_SOURCE_FAMILY_SELECTION_POLICY_LEARNED=NOT_PROVEN
+SEMANTIC_SOURCE_SUITABILITY=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
+I4_NATIVE_SOURCE_FAMILY_SELECTOR_V1=PASS
+NATIVE_SOURCE_FAMILY_SELECTION=PASS_IN_EXACT_TESTED_SCOPE
+RESULT=PASS_IN_EXACT_TESTED_SCOPE
+NEXT_STAGE=BUILD_DISCOVERY_ADAPTER_FOR_SIGMA_SELECTED_SOURCE_FAMILY
+DIRECT_I4_TO_V5_RUNTIME_INTEGRATION=NOT_PROVEN
+NATIVE_RESOURCE_SELECTION=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+```
+
+## Exact admitted scope
+
+Admitted only in the bounded tested source-family planning scope:
+
+- exact native consumption of a fresh I3C source-diversity event;
+- bounded structural/mechanical capability catalog;
+- native selection conditioned on availability, prior-selection count, capability readiness, and stable numeric registry-id tie break;
+- catalog row reorder invariance;
+- dynamic high-entropy family tokens;
+- malformed/duplicate/no-available refusal paths;
+- persistent selection ledger, idempotency, and identical replay;
+- no concrete canonical family token embedded in native source/bytecode according to admission gate;
+- no canonical expected family prewritten in runner.
+
+## Claim boundary
+
+`WIKIPEDIA` is the exact SIGMA-native selection outcome in this tested catalog/state. It does not establish semantic source suitability or truth.
+
+Keep:
+
+```text
+STATIC_SOURCE_FAMILY_SELECTION_POLICY_LEARNED=NOT_PROVEN
+SEMANTIC_SOURCE_SUITABILITY=NOT_PROVEN
+GENERAL_RESEARCH_POLICY_LEARNED=NOT_PROVEN
+HOST_SOURCE_SELECTION=NO
+HOST_CATALOG_RANKING=NO
+HOST_RESOURCE_SELECTION=NO
+NATIVE_RESOURCE_SELECTION=NOT_PROVEN
+DIRECT_I4_TO_V5_RUNTIME_INTEGRATION=NOT_PROVEN
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+CLOSED_AUTONOMOUS_NATURAL_LANGUAGE_WEB_LEARNING_LOOP=NOT_PROVEN
+```
+
+## Next dependency
+
+Because the canonical native family is `WIKIPEDIA`, the next capability must be the Wikipedia discovery path. Do not substitute another source family for convenience.
+
+Required order:
+
+```text
+I4 native WIKIPEDIA selection
+-> Wikipedia source-discovery request/transport adapter
+-> native discovery-candidate selector
+-> exact admitted V5-K2 Wikipedia fetch adapter
+-> provenance normalization
+-> evidence graph integration
+```
