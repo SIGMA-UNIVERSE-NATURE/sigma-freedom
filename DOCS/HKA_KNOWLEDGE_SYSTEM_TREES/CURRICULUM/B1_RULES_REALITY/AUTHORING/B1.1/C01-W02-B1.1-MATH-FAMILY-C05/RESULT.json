@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "scope_id": "B1.1-C05",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c05",
+  "input_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "pre_pass_audit_checkpoint_commit_sha": "021770b1e06f2952cb49fa7488b599c1735a722f",
+  "counts": {
+    "canonical_topics": 10,
+    "nodes": 10,
+    "claims": 98,
+    "sources": 4,
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "cross_links": 17,
+    "sequence_intent_records": 10
+  },
+  "topic_coverage": {
+    "expected": 10,
+    "covered": 10,
+    "percent": 100,
+    "topic_ids": ["B1.1-C05-T01","B1.1-C05-T02","B1.1-C05-T03","B1.1-C05-T04","B1.1-C05-T05","B1.1-C05-T06","B1.1-C05-T07","B1.1-C05-T08","B1.1-C05-T09","B1.1-C05-T10"]
+  },
+  "closure": {
+    "supported_objectives": 40,
+    "total_objectives": 40,
+    "unsupported_objectives": 0,
+    "duplicate_objective_closure_rows": 0,
+    "future_or_locked_support_claim_ids": 0,
+    "percent": 100
+  },
+  "audits": {
+    "committed_github_read_back": "PASS",
+    "jsonl_and_id_integrity": "PASS",
+    "referential_integrity": "PASS",
+    "source_version_provenance": "PASS",
+    "source_id_determinism": "PASS",
+    "learning_depths_D1_D4": "PASS",
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "claim_to_learning_objective_closure": "PASS",
+    "stage_boundary": "PASS"
+  },
+  "required_internal_overlap_dispositions": {
+    "T01_T02": "XL-C05-INT-T01-T02",
+    "T03_T06": "XL-C05-INT-T03-T06",
+    "T04_T07": "XL-C05-INT-T04-T07",
+    "T05_T10": "XL-C05-INT-T05-T10",
+    "T07_T09": "XL-C05-INT-T07-T09",
+    "T08_T10": "XL-C05-INT-T08-T10"
+  },
+  "locked_boundaries": {
+    "C04_opened": false,
+    "C04_authored": false,
+    "C04_support_claim_ids": 0,
+    "C06_support_claim_ids": 0,
+    "C07_support_claim_ids": 0,
+    "C09_support_claim_ids": 0,
+    "C10_support_claim_ids": 0,
+    "later_pipeline_stage_artifacts_authored": false
+  },
+  "successor_gate": {
+    "next_window": "C01-W02-B1.1-MATH-FAMILY-C04",
+    "status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+    "worker_unlocked_C04": false,
+    "required_director_state": "DIRECTOR_ACCEPTED_PASS"
+  },
+  "worker_statement": "C05 is a worker PASS candidate after committed read-back and 100% audit. This does not constitute Director acceptance. C04 remains locked until DIRECTOR_ACCEPTED_PASS."
+}
