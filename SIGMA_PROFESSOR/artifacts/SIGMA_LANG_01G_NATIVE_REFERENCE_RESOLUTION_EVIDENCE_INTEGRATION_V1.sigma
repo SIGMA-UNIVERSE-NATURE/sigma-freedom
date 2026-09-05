@@ -84,7 +84,9 @@ DEF preferred_candidate(a_support, b_support, candidate_a, candidate_b) {
     WHILE (CI < RAW_CANDIDATE_COUNT) {
         ⚡ CANDIDATE_ITEM:
             H("list_get", RAW_CANDIDATES, CI, NULL);
-        IF (CANDIDATE_ITEM != "") {
+        ⚡ CANDIDATE_ITEM_PRESENT:
+            present(CANDIDATE_ITEM);
+        IF (CANDIDATE_ITEM_PRESENT == 1) {
             ⚡ PUSH_CANDIDATE:
                 H("list_push", CANDIDATES, CANDIDATE_ITEM, NULL);
         }
@@ -102,7 +104,9 @@ DEF preferred_candidate(a_support, b_support, candidate_a, candidate_b) {
             H("list_get", CANDIDATES, 0, NULL);
         ⚡ CANDIDATE_B:
             H("list_get", CANDIDATES, 1, NULL);
-        IF (CANDIDATE_A != CANDIDATE_B) {
+        ⚡ CANDIDATES_SAME:
+            exact(CANDIDATE_A, CANDIDATE_B);
+        IF (CANDIDATES_SAME == 0) {
             ⚡ CANDIDATES_DISTINCT: 1;
         }
     }
@@ -338,7 +342,9 @@ DEF preferred_candidate(a_support, b_support, candidate_a, candidate_b) {
         ⚡ NEW_LINE:
             H("list_get", NEW_LINES, NI, NULL);
 
-        IF (NEW_LINE != "") {
+        ⚡ NEW_LINE_PRESENT:
+            present(NEW_LINE);
+        IF (NEW_LINE_PRESENT == 1) {
             ⚡ NEW_EVIDENCE_LINE_COUNT:
                 NEW_EVIDENCE_LINE_COUNT + 1;
 
@@ -382,7 +388,9 @@ DEF preferred_candidate(a_support, b_support, candidate_a, candidate_b) {
                             ⚡ DUPLICATE_EVIDENCE_COUNT:
                                 DUPLICATE_EVIDENCE_COUNT + 1;
                         }
-                        IF (EXISTING_FINGERPRINT != NEW_FINGERPRINT) {
+                        ⚡ FINGERPRINT_SAME:
+                            exact(EXISTING_FINGERPRINT, NEW_FINGERPRINT);
+                        IF (FINGERPRINT_SAME == 0) {
                             ⚡ EVIDENCE_ID_COLLISION_COUNT:
                                 EVIDENCE_ID_COLLISION_COUNT + 1;
                         }
@@ -525,7 +533,11 @@ DEF preferred_candidate(a_support, b_support, candidate_a, candidate_b) {
     IF (REFERENCE_ID_VALID == 0) {
         ⚡ LEARNING_STATUS: "REFERENCE_ID_MISSING";
     }
-    IF (CANDIDATE_COUNT != 2) {
+    ⚡ CANDIDATE_COUNT_EXACT_TWO: 0;
+    IF (CANDIDATE_COUNT == 2) {
+        ⚡ CANDIDATE_COUNT_EXACT_TWO: 1;
+    }
+    IF (CANDIDATE_COUNT_EXACT_TWO == 0) {
         ⚡ LEARNING_STATUS: "CANDIDATE_COUNT_OUT_OF_SCOPE";
     }
     IF (CANDIDATE_COUNT == 2) {
