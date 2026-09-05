@@ -13,6 +13,26 @@ Before inspecting, modifying, testing, teaching, integrating, or promoting SIGMA
 
 Do not begin implementation before those files are understood.
 
+## CURRENT CRITICAL OVERRIDE — V2.24R.1 HOST-ASSISTED DRAFT BLOCKED
+
+Read this correction before doing any V2.24 work:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260905_V224R1_HOST_ASSISTED_MIGRATION_BLOCKED_NATIVE_ONLY_CORRECTION.md`
+
+The previously prepared V2.24R.1 production-state migration/rollback runner is **DRAFT/BLOCKED** because Bash/host still performs material migration/rollback mechanics. It MUST NOT be run or admitted as a native SIGMA migration capability.
+
+Keep locked:
+
+`V224R1_PRODUCTION_STATE_MIGRATION_ROLLBACK_PREFLIGHT=NOT_ADMITTED`
+
+`NATIVE_PRODUCTION_STATE_MIGRATION=NOT_PROVEN`
+
+`NATIVE_PRODUCTION_STATE_ROLLBACK=NOT_PROVEN`
+
+`PRODUCTION_PROMOTION_ALLOWED=NO`
+
+If `CURRENT_HANDOFF.md` still says V2.24R.1 is SOURCE READY, this correction checkpoint supersedes that frontier text until the handoff is reconciled.
+
 ## Non-negotiable execution boundary
 
 `SIGMA_EXECUTION_ENGINE=LOCKED_SIGMA_VM_ONLY`
@@ -81,4 +101,4 @@ Unless separately admitted by locked-runtime proof, keep:
 
 `GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN`
 
-When any historical artifact conflicts with this file or the bootstrap directive, treat the historical artifact as provenance only and follow the current bootstrap directive.
+When any historical artifact conflicts with this file, a newer correction checkpoint, or the bootstrap directive, treat the historical artifact as provenance only and follow the stricter current rule.
