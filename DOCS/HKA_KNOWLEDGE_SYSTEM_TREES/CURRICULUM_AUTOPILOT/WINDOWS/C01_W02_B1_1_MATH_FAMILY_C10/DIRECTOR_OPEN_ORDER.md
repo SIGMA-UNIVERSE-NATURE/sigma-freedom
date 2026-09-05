@@ -20,6 +20,11 @@ Author B1.1-C10 only, exactly the ten canonical topics in `WINDOW_CONTRACT.md`.
 
 - Preserve all accepted C01–C09 IDs and learning meanings.
 - Amendment 5 is active.
+- `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md` is active.
+- Read `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json` before authoring.
+- D1–D4 remain age-independent; do not treat advanced D3/D4 as the baseline school curriculum.
+- Within C10, preserve foundational applied-math meanings before advanced extensions; advanced results may not substitute for foundational concepts.
+- Do not patch foundational gaps belonging to C01–C09 inside C10; preserve ownership for the post-C10 B1.1 foundational audit.
 - Frozen academic prerequisites are C03/C05/C06/C07/C08. C09 is continuity predecessor only, not automatically a new academic prerequisite.
 - R06 and R13 are mandatory.
 - C07 retains statistical/Bayesian inference and accepted Bayes-action specialization.
@@ -39,9 +44,9 @@ If fully committed and independently self-audited from GitHub read-back:
 
 `STATUS: PASS — WORKER_PASS_CANDIDATE`
 
-`NEXT_ACTION: B1.1 INTEGRATION / SUCCESSOR DECISION — GATED pending Director acceptance of C10`
+`NEXT_ACTION: B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION — GATED pending Director acceptance of C10`
 
-Do not unlock B1.2 or claim B1 completion.
+Do not unlock B1.2 or claim B1/B1.1 completion.
 
 If any theorem/model/source/ownership/semantic-closure uncertainty remains:
 
