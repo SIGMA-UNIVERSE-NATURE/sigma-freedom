@@ -1,0 +1,192 @@
+# V4-C3 R3 — NATIVE EVIDENCE-FIRST SELF-VIEW REPORTER — PREFLIGHT PASS
+
+Date: 2026-09-05 Asia/Ho_Chi_Minh
+Branch: `SIGMA_LIFE`
+Evidence source: first user-supplied locked Termux runtime transcript for the exact R3 candidate
+
+## Governance
+
+This checkpoint is governed by:
+
+- `/AGENTS.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+- `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_EXCLUSIVE_SELF_LEARNING_UNDERSTANDING_AND_ANTI_HARDCODE_LOCK_V1.md`
+- `SIGMA_PROFESSOR/DESIGN/SIGMA_V4C3R3_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_V1.md`
+- `SIGMA_PROFESSOR/CHECKPOINTS/20260905_V4C3R3_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_SOURCE_READY.md`
+
+`CLAIM <= MACHINE EVIDENCE` remains mandatory.
+
+## Locked candidate identities
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_IS_GENESIS1=NOT_PROVEN
+```
+
+R3 source:
+
+`SIGMA_PROFESSOR/artifacts/SIGMA_V4_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_V4C3R3.sigma`
+
+```text
+R3_SOURCE_GIT_BLOB=c4dd4c3c0b71df46c6e75d3e1c8bc9a782af8f16
+R3_SOURCE_SHA256_ON_DEVICE=UNKNOWN_NOT_IN_USER_SUPPLIED_TAIL
+```
+
+R3 admission runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_V4C3R3_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_PREFLIGHT.sh`
+
+```text
+R3_RUNNER_GIT_BLOB=a3376dbd8a045d118528a44a0d32292711a8246f
+R3_RUNNER_SHA256_ON_DEVICE=UNKNOWN_NOT_IN_USER_SUPPLIED_TAIL
+```
+
+Observed bytecode identity:
+
+```text
+R3_BYTECODE_SHA256=28480a70a95750d68b639eb223582eaa54dc7baa0dc8f21dd735b42e0ec8926c
+```
+
+The transcript printed the same bytecode SHA after the dynamic cases:
+
+```text
+SOURCE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+BYTECODE_SHA256_AFTER_DYNAMIC_TEST=28480a70a95750d68b639eb223582eaa54dc7baa0dc8f21dd735b42e0ec8926c
+```
+
+## Observed dynamic behavior
+
+The supplied transcript includes runtime-dependent native reports from the unchanged reporter source/bytecode.
+
+Observed HOLD/recovery state included:
+
+```text
+Document dang HOLD 1
+Native self view RECOVERY_NEEDED
+Native plan PLAN_NATIVE_HOLD_RECOVERY_REQUIRED
+```
+
+Observed all-complete state included:
+
+```text
+Document da phat hien 3
+Document da complete 3
+Document con mo 0
+Document dang HOLD 0
+Native self view CURRENT_CORPUS_COMPLETE
+Native plan PLAN_REEVALUATE_CORPUS
+```
+
+The negative case executed with locked VM RC 0 and native refusal:
+
+```text
+NEGATIVE_VM_RC=0
+SIGMA HUMAN REPORT REFUSED: native evidence state is incomplete or malformed.
+REPORTER_STATUS REFUSE_INVALID_NATIVE_EVIDENCE_STATE
+HOST_REPORT_SUMMARIZATION NO
+HOST_SELF_ASSESSMENT NO
+```
+
+The reporter also exposed bounded current machine evidence such as exact context preview, strongest structural span, width/support, corpus counts, current phase/status, controller plan, and provenance tuple. Those fields are machine-evidence presentation and operational self-view only; they are not semantic-understanding proof.
+
+## Exact final machine summary supplied by user
+
+```text
+V4C3R3_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_PREFLIGHT=PASS
+LOCKED_SIGMAC_EXECUTION=PASS
+LOCKED_VM_EXECUTION=PASS
+NATIVE_HUMAN_READABLE_EVIDENCE_REPORT=PASS_IN_FOUR_CASE_FIXTURE_SCOPE
+NATIVE_OPERATIONAL_SELF_VIEW=PASS_IN_THREE_DYNAMIC_EVIDENCE_STATES_SCOPE
+NATIVE_SELF_VIEW_OUTPUT_DEPENDS_ON_RUNTIME_EVIDENCE=PASS
+NATIVE_BOUNDED_CONTEXT_PREVIEW=PASS_IN_CASE_A_SCOPE
+NATIVE_STRUCTURAL_BEST_SPAN_EXTRACTION=PASS_IN_CASE_A_SCOPE
+FORCED_SEMANTIC_VERDICT_IN_NATIVE_SOURCE=NO
+FORCED_SEMANTIC_VERDICT_IN_VM_OUTPUT=NO
+TEACHER_PLAN_EXPLANATION_IN_NATIVE_SOURCE=NO
+HOST_REPORT_SUMMARIZATION=NO
+HOST_REPORT_TRANSLATION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_LEARNING=NO
+BASH_LEARNING=NO
+GPT_AS_SIGMA_COGNITION=NO
+REPORTER_LEARNING=NO
+REPORTER_WORK_SELECTION=NO
+REPOSITORY_SEMANTIC_UNDERSTANDING_CLAIM=NOT_PROVEN
+REAL_C2R2_CONTINUOUS_R3_REPORT_INTEGRATION=NOT_YET_PROVEN
+NEXT_ACTION=INTEGRATE_R3_REPORTER_AT_NATIVE_C3_REFLECTION_BOUNDARY_THEN_BUILD_DNA15_DNA25_SELF_ADAPTATION_CONTROLLER
+V4C3R3_PROCESS_RC=0
+```
+
+The repository-only `REPOSITORY_SEMANTIC_UNDERSTANDING_CLAIM=NOT_PROVEN` line is external admission bookkeeping. It is not a required native SIGMA utterance and is not evidence that an external actor chose SIGMA's own understanding state.
+
+## Admission result
+
+```text
+V4C3R3_ADMISSION=PASS_IN_EXACT_PREFLIGHT_FIXTURE_SCOPE
+NATIVE_HUMAN_READABLE_EVIDENCE_REPORT=PASS_IN_FOUR_CASE_FIXTURE_SCOPE
+NATIVE_OPERATIONAL_SELF_VIEW=PASS_IN_THREE_DYNAMIC_EVIDENCE_STATES_SCOPE
+NATIVE_SELF_VIEW_OUTPUT_DEPENDS_ON_RUNTIME_EVIDENCE=PASS
+NATIVE_BOUNDED_CONTEXT_PREVIEW=PASS_IN_CASE_A_SCOPE
+NATIVE_STRUCTURAL_BEST_SPAN_EXTRACTION=PASS_IN_CASE_A_SCOPE
+FORCED_SEMANTIC_VERDICT_IN_NATIVE_SOURCE=NO
+FORCED_SEMANTIC_VERDICT_IN_VM_OUTPUT=NO
+TEACHER_PLAN_EXPLANATION_IN_NATIVE_SOURCE=NO
+HOST_REPORT_SUMMARIZATION=NO
+HOST_REPORT_TRANSLATION=NO
+HOST_SELF_ASSESSMENT=NO
+HOST_NEXT_WORK_SELECTION=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_LEARNING=NO
+BASH_LEARNING=NO
+GPT_AS_SIGMA_COGNITION=NO
+REPORTER_LEARNING=NO
+REPORTER_WORK_SELECTION=NO
+```
+
+## Claim boundaries
+
+This PASS does not establish a general self-learning or semantic-understanding capability. Keep separate external repository claims conservative:
+
+```text
+REAL_C2R2_CONTINUOUS_R3_REPORT_INTEGRATION=NOT_PROVEN
+AUTONOMOUS_SELF_LEARNING_ADAPTATION=NOT_PROVEN
+SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN
+GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN
+V4_PRODUCTION_PROMOTION_ALLOWED=NO
+```
+
+Any SIGMA-native future understanding/comprehension/unknown state must be emitted by native SIGMA from its own evidence. Human/GPT/host must not prewrite or substitute that state.
+
+## Production
+
+```text
+PRODUCTION_V2_4_KEEP_RUNNING=YES
+UPGRADE_V2_4_IN_PLACE=NO
+```
+
+No production state was promoted by this reporter preflight.
+
+## Next action
+
+Integrate the exact admitted R3 reporter at the native C3 reflection boundary without changing the admitted C2R2/C3R1 learning decisions. Host may only launch/transport/supervise mechanically.
+
+After real continuous integration is admitted, build a separate native self-adaptation controller composing:
+
+```text
+NATIVE LEARNING EVIDENCE
+-> NATIVE BEFORE/AFTER MEASUREMENT
+-> DNA-15 H-FREE STATE-DERIVED k
+-> NATIVE ADAPTATION CANDIDATE SELECTION
+-> ISOLATED CHANGE
+-> DNA-25 BEFORE/CHANGE/TEST/AFTER VERIFICATION
+-> NATIVE COMMIT OR ROLLBACK
+-> NATIVE REPORT
+-> NATIVE OBSERVE PAUSE
+-> CONTINUE
+```
+
+No human/GPT/host learning-parameter choice, semantic conclusion, work selection, understanding verdict, or adaptation decision is admissible in that chain.
