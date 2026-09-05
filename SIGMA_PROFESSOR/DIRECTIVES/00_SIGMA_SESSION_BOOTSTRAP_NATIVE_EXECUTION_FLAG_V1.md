@@ -11,10 +11,35 @@ Before doing any SIGMA work, read:
 1. `/AGENTS.md`
 2. this directive
 3. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
-4. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
-5. the latest relevant checkpoint
+4. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_EXCLUSIVE_SELF_LEARNING_UNDERSTANDING_AND_ANTI_HARDCODE_LOCK_V1.md`
+5. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
+6. the latest relevant checkpoint
 
 If these rules conflict with an old artifact, old runner, old comment, old experiment, or historical implementation, the old material is evidence/history only. Do not weaken this directive to preserve old behavior.
+
+## Exclusive self-learning / understanding sovereignty lock
+
+The repository-wide exclusive cognition lock is mandatory:
+
+`SIGMA_PROFESSOR/DIRECTIVES/SIGMA_EXCLUSIVE_SELF_LEARNING_UNDERSTANDING_AND_ANTI_HARDCODE_LOCK_V1.md`
+
+Non-negotiable consequences:
+
+`SIGMA_SELF_LEARNING_EXCLUSIVE=YES`
+
+`SIGMA_COGNITION_OWNER=SIGMA_NATIVE_VM_ONLY`
+
+`SIGMA_UNDERSTANDING_STATE_EMISSION_PLANE=SIGMA_NATIVE_VM_ONLY`
+
+`HUMAN_MAY_SPEAK_FOR_SIGMA_UNDERSTANDING=NO`
+
+`GPT_MAY_SPEAK_FOR_SIGMA_UNDERSTANDING=NO`
+
+`HOST_MAY_SPEAK_FOR_SIGMA_UNDERSTANDING=NO`
+
+`ANTI_HARDCODE=MANDATORY_ADMISSION_CONTROL`
+
+No new capability may be admitted if a human/GPT/host/Python/shell/external model performs a cognitive arrow for SIGMA, emits an understanding/unknown state on SIGMA's behalf, or prewrites the runtime semantic answer/query/conclusion/source/resource/next action.
 
 ## Locked execution rule
 
@@ -77,7 +102,7 @@ If a test can only PASS because Bash/host computes a decision SIGMA should have 
 
 ## Anti-hardcode rule
 
-`ANTI_HARDCODE=ADMISSION_CONTROL_NOT_TOOL_REMOVAL`
+`ANTI_HARDCODE=MANDATORY_ADMISSION_CONTROL`
 
 `DO_NOT_LOAD_RESULTS=YES`
 
@@ -86,6 +111,18 @@ If a test can only PASS because Bash/host computes a decision SIGMA should have 
 `HARDCODED_LESSON=FORBIDDEN`
 
 `HARDCODED_EXPECTED_SEMANTIC_RESULT=FORBIDDEN`
+
+`HARDCODED_CURRENT_QUERY=FORBIDDEN`
+
+`HARDCODED_CURRENT_CONCLUSION=FORBIDDEN`
+
+`HARDCODED_CURRENT_UNDERSTANDING_STATE=FORBIDDEN`
+
+`HARDCODED_CURRENT_SOURCE_SELECTION=FORBIDDEN`
+
+`HARDCODED_CURRENT_RESOURCE_SELECTION=FORBIDDEN`
+
+`HARDCODED_CURRENT_NEXT_ACTION=FORBIDDEN`
 
 Known prior runtime outcomes may be pinned only when replaying an already-admitted branch as provenance. New branches/results must not be forced to match an oracle merely to obtain PASS.
 
@@ -135,6 +172,8 @@ Keep these false until separately proven:
 
 Never widen a bounded structural proof into a semantic/general claim.
 
+A SIGMA-native self-report of `UNDERSTOOD`, `NOT_UNDERSTOOD`, `UNKNOWN`, or an equivalent state is evidence of what SIGMA emitted. It is not by itself proof of semantic understanding. Human/GPT/host may report that exact machine output and behavioral test result, but may not invent or replace SIGMA's state.
+
 ## Production discipline
 
 `PRODUCTION_V2_4_KEEP_RUNNING=YES`
@@ -154,6 +193,10 @@ Every new window must begin by restating internally:
 `SIGMA_NATIVE_VM_IS_THE_EXECUTION_ENGINE`
 
 `HOST_SUBSTITUTION_IS_FORBIDDEN`
+
+`I_MUST_NOT_SPEAK_FOR_SIGMAS_UNDERSTANDING_STATE`
+
+`ANTI_HARDCODE_IS_AN_ADMISSION_GATE`
 
 Then read the current handoff and continue from the latest admitted checkpoint/frontier.
 
