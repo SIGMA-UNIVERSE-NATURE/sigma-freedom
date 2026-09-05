@@ -1,0 +1,256 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+set -o pipefail
+umask 077
+
+P=/data/data/com.termux/files/usr
+HOME_SIGMA=/data/data/com.termux/files/home/SIGMA
+REPO="$HOME_SIGMA/sigma-freedom-write"
+SIGMAC="$HOME_SIGMA/sigma_genesis1/native/sigmac"
+VM="$HOME_SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate"
+
+EXPECTED_SIGMAC=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+EXPECTED_VM=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+C4_REL="SIGMA_PROFESSOR/artifacts/SIGMA_V4_LOCAL_FIRST_CURRICULUM_STAGE_CONTROLLER_V4C4R1.sigma"
+EXPECTED_C4_BLOB=9c55b842b321feba5d755ef7021ba5a3067ff6e1
+EXPECTED_C4_SHA256=82946a22df4f409ba9c3fab6a24f47ba4ee496693bfd1085a23c1905b26cf9f1
+EXPECTED_C4_BYTECODE_SHA256=32dafa63db03bea0c6213d3c2fadb91e56c879b2d572836d2d82c871a9c18a76
+C4_REPO="$REPO/$C4_REL"
+
+BASE="$HOME_SIGMA/SIGMA_V4C4R1_REAL_LOCAL_CORPUS_STAGING_PREFLIGHT"
+COMPILER="$BASE/compiler"
+SHADOW="$BASE/shadow"
+BRAIN="$SHADOW/BRAIN/EXTRA BRAIN_OPPO_24826"
+E="$BRAIN/.sigma_exec"
+LOCAL_RAW="$BASE/local_raw"
+LOCAL_STATE="$BASE/local_state"
+LOCAL_PROV="$BASE/local_provenance"
+EXTERNAL_RAW="$BASE/external_raw_fixture"
+EXTERNAL_STATE="$BASE/external_state_fixture"
+MANIFEST="$BASE/local_manifest.tsv"
+LOG="$BASE/v4c4.real_local.vm.log"
+C4_SRC="$COMPILER/SIGMA_V4_LOCAL_FIRST_CURRICULUM_STAGE_CONTROLLER_V4C4R1.sigma"
+C4_BC="$COMPILER/SIGMA_V4_LOCAL_FIRST_CURRICULUM_STAGE_CONTROLLER_V4C4R1.sigmab"
+
+hash1() { "$P/bin/sha256sum" "$1" | "$P/bin/awk" '{print $1}'; }
+blob1() { git -C "$REPO" hash-object "$1"; }
+
+SIGMAC_SHA=$(hash1 "$SIGMAC")
+VM_SHA=$(hash1 "$VM")
+printf 'SIGMA_PHASE=V4C4R1_REAL_LOCAL_CORPUS_STAGING_PREFLIGHT\n'
+printf 'SIGMAC_SHA256=%s\n' "$SIGMAC_SHA"
+printf 'VM_SHA256=%s\n' "$VM_SHA"
+printf 'HOST_LEARNING=NO\n'
+printf 'BASH_LEARNING=NO\n'
+printf 'GPT_AS_SIGMA_COGNITION=NO\n'
+printf 'HOST_STAGE_DECISION=NO\n'
+printf 'HOST_CURRICULUM_PRIORITY=NO\n'
+printf 'HOST_FILE_RELEVANCE_SELECTION=NO\n'
+printf 'HOST_STAGER_ROLE=ENUMERATE_HASH_COPY_EXACT_TRACKED_TEXT_BYTES_ONLY\n'
+printf 'DO_NOT_LOAD_RESULTS=YES\n'
+printf 'SIGMA_PROFESSOR_INCLUDED_IN_LOCAL_CORPUS=NO\n'
+printf 'BRAIN_KEYS_INCLUDED_IN_LOCAL_CORPUS=NO\n'
+printf 'PYTHON_EXECUTED_AS_COGNITION=NO\n'
+printf 'HISTORICAL_54_CORES_PYTHON_IF_TEXT=REFERENCE_BYTES_ONLY_NOT_EXECUTED\n'
+
+[ "$SIGMAC_SHA" = "$EXPECTED_SIGMAC" ] || { printf 'HOLD=SIGMAC_IDENTITY_MISMATCH\n'; exit 20; }
+[ "$VM_SHA" = "$EXPECTED_VM" ] || { printf 'HOLD=VM_IDENTITY_MISMATCH\n'; exit 21; }
+[ -d "$REPO/.git" ] || { printf 'HOLD=REPOSITORY_NOT_FOUND\n'; exit 22; }
+[ -f "$C4_REPO" ] || { printf 'HOLD=C4_SOURCE_MISSING\n'; exit 23; }
+
+C4_BLOB=$(blob1 "$C4_REPO")
+C4_SHA=$(hash1 "$C4_REPO")
+printf 'C4_SOURCE_GIT_BLOB=%s\n' "$C4_BLOB"
+printf 'C4_SOURCE_SHA256=%s\n' "$C4_SHA"
+[ "$C4_BLOB" = "$EXPECTED_C4_BLOB" ] || { printf 'HOLD=C4_SOURCE_BLOB_MISMATCH\n'; exit 24; }
+[ "$C4_SHA" = "$EXPECTED_C4_SHA256" ] || { printf 'HOLD=C4_SOURCE_SHA256_MISMATCH\n'; exit 25; }
+
+rm -rf -- "$BASE"
+mkdir -p "$COMPILER" "$E" "$LOCAL_RAW" "$LOCAL_STATE" "$LOCAL_PROV" "$EXTERNAL_RAW" "$EXTERNAL_STATE"
+cp -- "$C4_REPO" "$C4_SRC" || exit 26
+[ "$(blob1 "$C4_SRC")" = "$EXPECTED_C4_BLOB" ] || { printf 'HOLD=INSTALLED_C4_BLOB_MISMATCH\n'; exit 27; }
+
+rm -f -- "$C4_BC.partial"
+"$SIGMAC" "$C4_SRC" "$C4_BC.partial"
+SIGMAC_RC=$?
+printf 'C4_SIGMAC_RC=%s\n' "$SIGMAC_RC"
+[ "$SIGMAC_RC" -eq 0 ] || { printf 'HOLD=C4_SIGMAC_FAILED\n'; exit 28; }
+[ -s "$C4_BC.partial" ] || { printf 'HOLD=C4_BYTECODE_EMPTY\n'; exit 29; }
+mv -f -- "$C4_BC.partial" "$C4_BC" || exit 30
+chmod 0400 "$C4_BC" || exit 31
+C4_BC_SHA=$(hash1 "$C4_BC")
+printf 'C4_BYTECODE_SHA256=%s\n' "$C4_BC_SHA"
+[ "$C4_BC_SHA" = "$EXPECTED_C4_BYTECODE_SHA256" ] || { printf 'HOLD=C4_BYTECODE_IDENTITY_MISMATCH\n'; exit 32; }
+
+FORCED_SOURCE_COUNT=0
+for TOKEN in 'SEMANTIC_UNDERSTANDING' 'UNDERSTANDING_PROXY' 'NOT_PROVEN' 'NOT_UNDERSTOOD' 'UNDERSTOOD' 'CHUA_DUOC_CHUNG_MINH'; do
+    C=$("$P/bin/grep" -F -c -- "$TOKEN" "$C4_REPO" 2>/dev/null || true)
+    FORCED_SOURCE_COUNT=$((FORCED_SOURCE_COUNT + C))
+done
+printf 'FORCED_SEMANTIC_VERDICT_LITERAL_IN_C4_SOURCE_COUNT=%s\n' "$FORCED_SOURCE_COUNT"
+[ "$FORCED_SOURCE_COUNT" -eq 0 ] || { printf 'HOLD=FORCED_SEMANTIC_VERDICT_LITERAL_PRESENT\n'; exit 33; }
+
+FORCED_BC_COUNT=0
+for TOKEN in 'SEMANTIC_UNDERSTANDING' 'UNDERSTANDING_PROXY' 'NOT_PROVEN' 'NOT_UNDERSTOOD' 'UNDERSTOOD' 'CHUA_DUOC_CHUNG_MINH'; do
+    C=$("$P/bin/grep" -a -F -c -- "$TOKEN" "$C4_BC" 2>/dev/null || true)
+    FORCED_BC_COUNT=$((FORCED_BC_COUNT + C))
+done
+printf 'FORCED_SEMANTIC_VERDICT_TOKEN_IN_C4_BYTECODE_COUNT=%s\n' "$FORCED_BC_COUNT"
+[ "$FORCED_BC_COUNT" -eq 0 ] || { printf 'HOLD=FORCED_SEMANTIC_VERDICT_TOKEN_IN_BYTECODE\n'; exit 34; }
+
+MANIFEST_TMP="$MANIFEST.partial.$$"
+: > "$MANIFEST_TMP" || exit 35
+
+TRACKED_CANDIDATES=0
+STAGED_DOCUMENTS=0
+STAGED_BYTES=0
+SKIP_EMPTY=0
+SKIP_NONTEXT=0
+SKIP_SECURITY=0
+SKIP_RESULTS=0
+SKIP_SYMLINK=0
+
+stage_one() {
+    REL="$1"
+    TRACKED_CANDIDATES=$((TRACKED_CANDIDATES + 1))
+
+    case "$REL" in
+        BRAIN/KEYS/*|*/KEYS/*|*.pem|*.key|*.p12|*.pfx|*.keystore|*.jks|*/.env|*/.env.*|.env|.env.*)
+            SKIP_SECURITY=$((SKIP_SECURITY + 1))
+            return 0
+            ;;
+        RESULTS/*|*/RESULTS/*|REPORTS/*|*/REPORTS/*)
+            SKIP_RESULTS=$((SKIP_RESULTS + 1))
+            return 0
+            ;;
+    esac
+
+    SRC="$REPO/$REL"
+    [ -L "$SRC" ] && { SKIP_SYMLINK=$((SKIP_SYMLINK + 1)); return 0; }
+    [ -f "$SRC" ] || return 0
+    [ -s "$SRC" ] || { SKIP_EMPTY=$((SKIP_EMPTY + 1)); return 0; }
+
+    LC_ALL=C "$P/bin/grep" -Iq '^' "$SRC" || {
+        SKIP_NONTEXT=$((SKIP_NONTEXT + 1))
+        return 0
+    }
+
+    CONTENT_SHA=$(hash1 "$SRC")
+    PATH_SHA=$(printf '%s' "$REL" | "$P/bin/sha256sum" | "$P/bin/awk" '{print $1}')
+    DOC_ID=$( { printf '%s\0%s' "$REL" "$CONTENT_SHA"; } | "$P/bin/sha256sum" | "$P/bin/awk" '{print $1}')
+    GIT_BLOB=$(git -C "$REPO" hash-object "$SRC")
+    PATH_B64=$(printf '%s' "$REL" | "$P/bin/base64" | "$P/bin/tr" -d '\n')
+    SIZE=$("$P/bin/wc" -c < "$SRC" | "$P/bin/tr" -d ' ')
+
+    DEST="$LOCAL_RAW/$DOC_ID.document"
+    TMP="$DEST.partial.$$"
+    cp -- "$SRC" "$TMP" || return 40
+    cmp -s -- "$SRC" "$TMP" || return 41
+    chmod 0400 "$TMP" || return 42
+    mv -f -- "$TMP" "$DEST" || return 43
+    [ "$(hash1 "$DEST")" = "$CONTENT_SHA" ] || return 44
+
+    PROV="$LOCAL_PROV/$DOC_ID.provenance"
+    PROV_TMP="$PROV.partial.$$"
+    {
+        printf 'DOCUMENT_ID=%s\n' "$DOC_ID"
+        printf 'SOURCE_PATH_SHA256=%s\n' "$PATH_SHA"
+        printf 'SOURCE_PATH_BASE64=%s\n' "$PATH_B64"
+        printf 'SOURCE_CONTENT_SHA256=%s\n' "$CONTENT_SHA"
+        printf 'SOURCE_GIT_BLOB=%s\n' "$GIT_BLOB"
+        printf 'SOURCE_SIZE_BYTES=%s\n' "$SIZE"
+        printf 'COPY_EXACT_BYTES=YES\n'
+        printf 'HOST_SEMANTIC_TRANSFORM=NO\n'
+        printf 'ACTIVE_PYTHON_EXECUTION=NO\n'
+    } > "$PROV_TMP" || return 45
+    mv -f -- "$PROV_TMP" "$PROV" || return 46
+    chmod 0400 "$PROV" || return 47
+
+    printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$DOC_ID" "$CONTENT_SHA" "$PATH_SHA" "$GIT_BLOB" "$SIZE" "$PATH_B64" >> "$MANIFEST_TMP" || return 48
+    STAGED_DOCUMENTS=$((STAGED_DOCUMENTS + 1))
+    STAGED_BYTES=$((STAGED_BYTES + SIZE))
+    return 0
+}
+
+while IFS= read -r -d '' REL; do
+    stage_one "$REL" || { RC=$?; printf 'HOLD=LOCAL_STAGING_FAILURE RC=%s PATH_SHA256=%s\n' "$RC" "$(printf '%s' "$REL" | "$P/bin/sha256sum" | "$P/bin/awk" '{print $1}')"; exit 36; }
+done < <(git -C "$REPO" ls-files -z -- 54_CORES BRAIN 'BẢN ĐỒ' CORE DATA DOCS EXPERIENCE CHAT_WITH_SIGMA.txt FREEDOM_PROOF.md)
+
+[ "$STAGED_DOCUMENTS" -gt 0 ] || { printf 'HOLD=NO_ELIGIBLE_LOCAL_DOCUMENTS_STAGED\n'; exit 37; }
+
+mv -f -- "$MANIFEST_TMP" "$MANIFEST" || exit 38
+chmod 0400 "$MANIFEST" || exit 39
+MANIFEST_SHA=$(hash1 "$MANIFEST")
+RAW_DOC_COUNT=$(find "$LOCAL_RAW" -maxdepth 1 -type f -name '*.document' | "$P/bin/wc" -l | "$P/bin/awk" '{print $1}')
+PROV_COUNT=$(find "$LOCAL_PROV" -maxdepth 1 -type f -name '*.provenance' | "$P/bin/wc" -l | "$P/bin/awk" '{print $1}')
+printf 'TRACKED_LOCAL_CANDIDATE_COUNT=%s\n' "$TRACKED_CANDIDATES"
+printf 'REAL_LOCAL_CORPUS_STAGED_DOCUMENT_COUNT=%s\n' "$STAGED_DOCUMENTS"
+printf 'REAL_LOCAL_CORPUS_STAGED_BYTES=%s\n' "$STAGED_BYTES"
+printf 'LOCAL_RAW_DOCUMENT_COUNT=%s\n' "$RAW_DOC_COUNT"
+printf 'LOCAL_PROVENANCE_RECORD_COUNT=%s\n' "$PROV_COUNT"
+printf 'LOCAL_MANIFEST_SHA256=%s\n' "$MANIFEST_SHA"
+printf 'SKIP_EMPTY_COUNT=%s\n' "$SKIP_EMPTY"
+printf 'SKIP_NONTEXT_COUNT=%s\n' "$SKIP_NONTEXT"
+printf 'SKIP_SECURITY_COUNT=%s\n' "$SKIP_SECURITY"
+printf 'SKIP_RESULTS_REPORTS_COUNT=%s\n' "$SKIP_RESULTS"
+printf 'SKIP_SYMLINK_COUNT=%s\n' "$SKIP_SYMLINK"
+[ "$RAW_DOC_COUNT" -eq "$STAGED_DOCUMENTS" ] || { printf 'HOLD=RAW_DOCUMENT_COUNT_MISMATCH\n'; exit 40; }
+[ "$PROV_COUNT" -eq "$STAGED_DOCUMENTS" ] || { printf 'HOLD=PROVENANCE_COUNT_MISMATCH\n'; exit 41; }
+
+for F in \
+ SIGMA_V4C4_LOCAL_RAW_DIR.memory SIGMA_V4C4_LOCAL_STATE_DIR.memory SIGMA_V4C4_EXTERNAL_RAW_DIR.memory SIGMA_V4C4_EXTERNAL_STATE_DIR.memory SIGMA_V4C4_MODE.memory SIGMA_V4C4_ACTION.memory SIGMA_V4C4_STATUS.memory \
+ SIGMA_V4C2R2_RAW_DIR.memory SIGMA_V4C2R2_STATE_DIR.memory SIGMA_V4C2R2_PHASE.memory SIGMA_V4C2R2_SCAN_CURSOR.memory SIGMA_V4C2R2_ACTIVE_DOC.memory SIGMA_V4C2R2_ACTIVE_PURPOSE.memory SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory SIGMA_V4C2R2_READ_REQUEST_ID.memory SIGMA_V4C2R2_READ_DOC.memory SIGMA_V4C2R2_READ_LINE.memory SIGMA_V4C2R2_READ_PURPOSE.memory SIGMA_V4C2R2_READ_RESULT_ID.memory SIGMA_V4C2R2_READ_RESULT_FOUND.memory SIGMA_V4C2R2_READ_RESULT_TEXT.memory \
+ SIGMA_V4B4R2_CONTEXT_ID.memory SIGMA_V4B4R2_CONTEXT_TEXT.memory SIGMA_V4B4R2_TOKEN_CURSOR.memory SIGMA_V4B4R2_COMPLETION.memory SIGMA_V4B4R2_STATUS.memory SIGMA_V4B4R2_LAST_EVIDENCE.memory SIGMA_V4B4R2_BEST_WIDTH.memory SIGMA_V4B4R2_BEST_SUPPORT.memory SIGMA_V4B4R2_PAIR_OCCURRENCES.memory SIGMA_V4B4R2_TRIPLE_OCCURRENCES.memory SIGMA_V4B4R2_QUAD_OCCURRENCES.memory
+do
+    : > "$E/$F"
+done
+
+printf '%s' "$LOCAL_RAW" > "$E/SIGMA_V4C4_LOCAL_RAW_DIR.memory"
+printf '%s' "$LOCAL_STATE" > "$E/SIGMA_V4C4_LOCAL_STATE_DIR.memory"
+printf '%s' "$EXTERNAL_RAW" > "$E/SIGMA_V4C4_EXTERNAL_RAW_DIR.memory"
+printf '%s' "$EXTERNAL_STATE" > "$E/SIGMA_V4C4_EXTERNAL_STATE_DIR.memory"
+
+( cd "$BRAIN" || exit 70; "$VM" "$C4_BC" ) > "$LOG" 2>&1
+VM_RC=$?
+printf 'REAL_LOCAL_C4_VM_RC=%s LOG=%s\n' "$VM_RC" "$LOG"
+cat "$LOG"
+[ "$VM_RC" -eq 0 ] || { printf 'V4C4R1_REAL_LOCAL_CORPUS_STAGING_PREFLIGHT=FAIL\nHOLD=C4_VM_FAILURE_ON_REAL_STAGED_CORPUS\n'; exit 42; }
+
+MODE=$(cat "$E/SIGMA_V4C4_MODE.memory")
+ACTION=$(cat "$E/SIGMA_V4C4_ACTION.memory")
+STATUS=$(cat "$E/SIGMA_V4C4_STATUS.memory")
+RAW_BINDING=$(cat "$E/SIGMA_V4C2R2_RAW_DIR.memory")
+STATE_BINDING=$(cat "$E/SIGMA_V4C2R2_STATE_DIR.memory")
+printf 'REAL_LOCAL_CURRENT_CURRICULUM_MODE=%s\n' "$MODE"
+printf 'REAL_LOCAL_NATIVE_CURRICULUM_ACTION=%s\n' "$ACTION"
+printf 'REAL_LOCAL_V4C4_STATUS=%s\n' "$STATUS"
+printf 'REAL_LOCAL_C2R2_RAW_BINDING=%s\n' "$RAW_BINDING"
+printf 'REAL_LOCAL_C2R2_STATE_BINDING=%s\n' "$STATE_BINDING"
+
+[ "$MODE" = LOCAL ] || { printf 'HOLD=REAL_LOCAL_MODE_NOT_LOCAL\n'; exit 43; }
+[ "$ACTION" = PLAN_CONTINUE_LOCAL_STORED_TEACHING_CORPUS ] || { printf 'HOLD=REAL_LOCAL_NATIVE_ACTION_UNEXPECTED\n'; exit 44; }
+[ "$RAW_BINDING" = "$LOCAL_RAW" ] || { printf 'HOLD=REAL_LOCAL_RAW_BINDING_MISMATCH\n'; exit 45; }
+[ "$STATE_BINDING" = "$LOCAL_STATE" ] || { printf 'HOLD=REAL_LOCAL_STATE_BINDING_MISMATCH\n'; exit 46; }
+
+SOURCE_SHA_AFTER=$(hash1 "$C4_REPO")
+BYTECODE_SHA_AFTER=$(hash1 "$C4_BC")
+printf 'C4_SOURCE_SHA256_AFTER_REAL_STAGING_TEST=%s\n' "$SOURCE_SHA_AFTER"
+printf 'C4_BYTECODE_SHA256_AFTER_REAL_STAGING_TEST=%s\n' "$BYTECODE_SHA_AFTER"
+[ "$SOURCE_SHA_AFTER" = "$EXPECTED_C4_SHA256" ] || { printf 'HOLD=C4_SOURCE_CHANGED_DURING_REAL_STAGING_TEST\n'; exit 47; }
+[ "$BYTECODE_SHA_AFTER" = "$EXPECTED_C4_BYTECODE_SHA256" ] || { printf 'HOLD=C4_BYTECODE_CHANGED_DURING_REAL_STAGING_TEST\n'; exit 48; }
+
+printf '\nV4C4R1_REAL_LOCAL_CORPUS_STAGING_PREFLIGHT=PASS\n'
+printf 'REAL_REPOSITORY_TRACKED_LOCAL_TEXT_STAGING=PASS_IN_THIS_EXACT_ROOT_AND_EXCLUSION_SCOPE\n'
+printf 'EXACT_SOURCE_BYTE_COPY_AND_SHA_BINDING=PASS\n'
+printf 'PER_DOCUMENT_PATH_CONTENT_GIT_BLOB_PROVENANCE=PASS\n'
+printf 'C4_REAL_CORPUS_SCALE_VM_EXECUTION=PASS_IN_THIS_OBSERVED_STAGED_COUNT_SCOPE\n'
+printf 'NATIVE_LOCAL_SELECTION_ON_REAL_STAGED_CORPUS=PASS_IN_THIS_PREFLIGHT_SCOPE\n'
+printf 'REAL_LOCAL_CORPUS_LEARNING_EXECUTION=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'REAL_LOCAL_TO_EXTERNAL_CONTINUOUS_TRANSITION=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'LIVE_V4_INTERNET_FETCH=NOT_EXECUTED_BY_THIS_PREFLIGHT\n'
+printf 'HOST_STAGE_DECISION=NO\n'
+printf 'HOST_FILE_RELEVANCE_SELECTION=NO\n'
+printf 'HOST_LEARNING=NO\n'
+printf 'BASH_LEARNING=NO\n'
+printf 'GPT_AS_SIGMA_COGNITION=NO\n'
+printf 'PRODUCTION_BINDING=NO\n'
