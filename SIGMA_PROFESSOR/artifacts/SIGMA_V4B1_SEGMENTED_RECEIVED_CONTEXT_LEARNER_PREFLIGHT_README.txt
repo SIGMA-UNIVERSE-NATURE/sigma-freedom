@@ -44,9 +44,21 @@ Native source SHA256
 --------------------
 2edd2d4f36d3dd9c2d03dab4218ceff1f2ef290feee711a49ef18ff53b056ad4
 
-Runner SHA256
--------------
-1ca13459579fb066d9c179f1befb1013a495a5cb2b4f4919bb7031465126e2f1
+Runner Git blob
+---------------
+4faf37671c591f7201c930bc5f000a542d377d8a
+
+Runner SHA256 — canonical Termux observation for exact Git blob above
+--------------------------------------------------------------------
+3e601c8a6fae5d1e5b93909d150f90e7918e4cd72936176e05b6de908e512f03
+
+Correction evidence
+-------------------
+The earlier README value
+`1ca13459579fb066d9c179f1befb1013a495a5cb2b4f4919bb7031465126e2f1`
+was stale/incorrect metadata. User installation proved exact Git blob identity
+`4faf37671c591f7201c930bc5f000a542d377d8a`, and Termux then computed the
+canonical SHA256 shown above. No source/runner content change is required.
 
 Static
 ------
