@@ -1,48 +1,48 @@
 {
-  "schema_version": "1.8",
+  "schema_version": "1.9",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
-  "last_checkpoint_commit_sha": "9dce790c6d15d4dc9b46a36ebd41240452810ee0",
-  "last_checkpoint_id": "CP-20260905-C06-ACCEPTED-C08-ACTIVATED",
-  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C08"],
+  "last_checkpoint_commit_sha": "ace6f9eb1ef1a16b2c1b6f280e94078786e51168",
+  "last_checkpoint_id": "CP-20260905-C08-ACCEPTED-C07-ACTIVATED",
+  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C08","B1.1-C07"],
   "completed_work": [
-    "Director-accepted C01-C05 remain canonical.",
-    "Independently audited C06 candidate e0d6f667d38e937c7c6040b51fb14e34f0bb6345: 102/102 claims, 6/6 sources, 32/32 Learning Objectives and 32/32 semantic closure mappings.",
-    "Verified ODE existence/uniqueness/local-global hypotheses, PDE solvability/compatibility/regularity, stability/nonhyperbolic boundaries, periodic-orbit distinctions, bifurcation hypotheses, chaos diagnostic limits and model/empirical-validation boundary.",
-    "Verified source-ID determinism 6/6, semantic ownership, acyclic prerequisites, zero locked-scope support Claim IDs and clean CURRICULUM stage boundary.",
-    "Backup Sentinel returned TREE_ALIGNMENT_PASS for the C06 candidate.",
-    "Accepted C06 as DIRECTOR_ACCEPTED_PASS at e0d6f667d38e937c7c6040b51fb14e34f0bb6345 with zero academic repairs.",
-    "Detected pre-successor dependency risk: C07 causal inference needs graph/DAG foundations; issued Dependency Amendment 2 to execute C08 before C07 without changing IDs/ownership.",
-    "Backup Sentinel returned TREE_ALIGNMENT_PASS for the C08 pre-open plan against immutable B1_SCOPE_MAP blob bedef47958a728e3f0d56d412f7bdea3ec465856.",
-    "Created hka-tree/c01-w02-math-c08 from accepted C06 and installed C08 contract, prompt, open order, checkpoint, READY status and report.",
-    "Updated state, registry and Continuity Snapshot to C08 READY; fixed scope-map anchor and added multi-continent benchmark/external-curriculum-mapping gates before ACADEMIC_LOCKED."
+    "Director-accepted C01-C06 remain canonical.",
+    "Independently audited C08 worker candidate 4f0493b4c7605e9d457810c9efe7ae822eeeab7a: 109/109 claims, 7/7 sources, 32/32 Learning Objectives and 32/32 semantic closure mappings.",
+    "Verified source-ID determinism 7/7, R05, R02, C03 algebra reuse, acyclic prerequisites, zero future/locked support Claim IDs and clean CURRICULUM stage boundary.",
+    "Repaired two hypothesis omissions before acceptance: Euler open-trail connectivity and Reed-Solomon 1<=k<=n.",
+    "Accepted C08 at terminal acceptance chain head 14729ce490289b057d5dca25767c3b5ea357e1ec.",
+    "Issued Dependency Amendment 3 requiring C07 to reuse accepted C05 measure/analysis foundations and C08 DAG foundations.",
+    "Sentinel pre-open alignment for C07 PASS.",
+    "Created hka-tree/c01-w02-math-c07 and installed contract, prompt, open order, bootstrap checkpoint, READY status and report.",
+    "Updated state, registry and Continuity Snapshot to C07 READY."
   ],
   "remaining_work": [
-    "Run only C01-W02-B1.1-MATH-FAMILY-C08.",
-    "Independently audit C08 mathematical/discrete claims, R05 and R02 boundaries, semantic closure, sources and prerequisites before acceptance.",
-    "Keep C07/C09/C10 and all post-CURRICULUM stages locked until later Director decisions."
+    "Run only C01-W02-B1.1-MATH-FAMILY-C07.",
+    "Independently audit probability/statistics/causal claims, sources, semantic closure, R06/R13 and prerequisites before acceptance.",
+    "Keep C09/C10 and all post-CURRICULUM stages locked."
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "C06 accepted: e0d6f667d38e937c7c6040b51fb14e34f0bb6345.",
-    "Dependency Amendment 2 is ACTIVE: execution order C06 -> C08 -> C07 -> C09 -> C10; stable IDs and ownership unchanged.",
-    "C08 is active READY on hka-tree/c01-w02-math-c08.",
-    "C07 remains locked until Director-accepted C08 PASS.",
-    "Continuity Snapshot must use immutable B1_SCOPE_MAP blob anchor, not the obsolete invalid path.",
-    "ACADEMIC_LOCKED is forbidden until all six branches, global audits, multi-continent benchmark and external curriculum mapping integration PASS.",
+    "C08 accepted terminal head: 14729ce490289b057d5dca25767c3b5ea357e1ec.",
+    "Dependency Amendments 1, 2 and 3 are ACTIVE.",
+    "Execution order remains C06 -> C08 -> C07 -> C09 -> C10.",
+    "C07 is active READY on hka-tree/c01-w02-math-c07.",
+    "C05 measure theory and C08 DAG mathematics are supplemental accepted prerequisites for C07.",
+    "R06 and R13 are mandatory C07 controls.",
+    "ACADEMIC_LOCKED remains forbidden until all six branches, global audits, multi-continent benchmark and external curriculum mapping integration PASS.",
     "Pipeline remains CURRICULUM."
   ],
   "do_not_repeat": [
-    "Do not reopen accepted C01-C06 without a concrete contradiction found by later integration/global audit.",
+    "Do not reopen accepted C01-C06/C08 without a concrete contradiction found by later integration/global audit.",
     "Do not renumber accepted IDs.",
-    "Do not open C07 before C08 receives Director-accepted PASS.",
-    "Do not duplicate C08 graph/combinatorial foundations as algorithms or information-channel coding.",
+    "Do not let C07 re-author C05 measure theory or C08 graph theory.",
+    "Do not interpret association or DAG shape alone as causation.",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during CURRICULUM."
   ],
-  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C08 from hka-tree/c01-w02-math-c08 using DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C08",
-  "updated_at": "2026-09-05T11:50:00+07:00"
+  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C07 from hka-tree/c01-w02-math-c07 using DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "updated_at": "2026-09-05T12:54:00+07:00"
 }
