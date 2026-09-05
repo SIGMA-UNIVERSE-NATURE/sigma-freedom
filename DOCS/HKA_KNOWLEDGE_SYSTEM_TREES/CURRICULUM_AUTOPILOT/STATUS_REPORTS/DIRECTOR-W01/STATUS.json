@@ -1,60 +1,48 @@
 {
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
   "status": "CHECKPOINTED",
   "execution_branch": "hka-tree/curriculum-master",
   "input_commit_sha": "825f76a7f25c02b132d87bde816b2dced2c6ed0d",
-  "last_checkpoint_commit_sha": "bb34e000cc1b1a7538cb740a6e8ae2ee382a31ae",
-  "last_checkpoint_id": "CP-20260905-C05-ACCEPTED-C04-ACTIVATED",
-  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C05","B1.1-C04"],
+  "last_checkpoint_commit_sha": "b50bf59eddd59bb9d3b216f6288272401c69345a",
+  "last_checkpoint_id": "CP-20260905-C04-ACCEPTED-C06-ACTIVATED",
+  "scope_ids": ["HKA-GOVERNANCE","RECOVERY","STATUS-REPORTING","B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06"],
   "completed_work": [
-    "Accepted C01, C02 and C03 after independent academic/source/closure audits.",
-    "Activated C05 before C04 under Dependency Amendment 1 because C04-T08 differential geometry requires accepted calculus primitives.",
-    "Independently audited C05 durable candidate: read 98/98 claims, verified 4/4 deterministic source IDs, reviewed 40 D1-D4 objectives and 40/40 closure records.",
-    "Verified C05 exact 10/10 topic coverage, six mandatory internal overlap dispositions, zero future/locked support Claim IDs, acyclic prerequisite/sequence graph and clean CURRICULUM-only stage boundary.",
-    "Detected that the worker-reported terminal SHA a57f53b883075edb825f80338b8c84ed2c22b1cc did not exist on GitHub; canonical worker terminal checkpoint was 19538a8d6bfbfa18914f1bf4710e3144ac0304f1 and STATUS was still IN_AUDIT.",
-    "Completed the omitted terminal STATUS synchronization on the C05 branch at 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16 without changing academic content.",
-    "Accepted C05 as DIRECTOR_ACCEPTED_PASS at 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16.",
-    "Confirmed Dependency Amendment 1 is satisfied and created hka-tree/c01-w02-math-c04 from accepted C05.",
-    "Installed C04 contract, execution prompt, Director open order, bootstrap checkpoint, READY status and report with explicit differential-geometry/topology and algebraic-geometry/commutative-algebra boundaries.",
-    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json so C04 is the only active READY scope while all later stages remain gated."
+    "Accepted C01/C02/C03 after independent academic/source/closure audits.",
+    "Accepted C05 at 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16 after independent audit and terminal-state correction.",
+    "Independently audited C04 worker candidate add8e0732da7d69ea5e641654acb8f948ff8b265: read 83/83 claims, 6/6 sources, 36/36 Learning Objectives, 36/36 base closure rows, 18 cross-links and 9 sequence records.",
+    "Found four semantic closure-map omissions despite mechanical 36/36 PASS: N001-D1 diameter, N002-D1 perimeter/surface-area/volume support, N005-D1 distance/midpoint, N007-D2 point-at-infinity.",
+    "Repaired those four mappings in CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE_DIRECTOR_AMENDMENT_1.jsonl at 3b3f15c778a0ea33ba58a405007ea1311f877cef; no theorem claim or stable ID changed.",
+    "Verified effective C04 closure 36/36 PASS, 0 future/locked support Claim IDs, T08 uses 0 C09 support claims, T09 uses 0 C09 support claims, source hashes 6/6 PASS, prerequisite DAG acyclic and stage boundary clean.",
+    "Accepted C04 as DIRECTOR_ACCEPTED_PASS at 76077695c07b853ac37f058477177e211f740f17.",
+    "Created hka-tree/c01-w02-math-c06 from accepted C04 and installed C06 contract, execution prompt, Director open order, bootstrap checkpoint, READY status and report.",
+    "Updated HKA_CURRICULUM_STATE.json and WINDOW_REGISTRY.json so C06 is the only active READY scope."
   ],
   "remaining_work": [
-    "Run only C01-W02-B1.1-MATH-FAMILY-C04.",
-    "Independently audit C04 candidate claims, sources, Claim-to-Learning-Objective closure, geometry/measurement ownership boundaries, prerequisites and stage boundary before accepting it.",
-    "Do not unlock any successor or later pipeline stage until the corresponding Director gate passes."
-  ],
-  "output_paths": [
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_CURRICULUM_STATE.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-W01/CHECKPOINTS/CP-20260905-C05-ACCEPTED-C04-ACTIVATED.json",
-    "hka-tree/c01-w02-math-c04:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C04/WINDOW_CONTRACT.md",
-    "hka-tree/c01-w02-math-c04:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C04/GPT_EXECUTION_PROMPT.md",
-    "hka-tree/c01-w02-math-c04:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/C01_W02_B1_1_MATH_FAMILY_C04/DIRECTOR_OPEN_ORDER.md",
-    "hka-tree/c01-w02-math-c04:DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W02-B1.1-MATH-FAMILY-C04/STATUS.json"
+    "Run only C01-W02-B1.1-MATH-FAMILY-C06.",
+    "Independently audit C06 claims, sources, semantic Claim-to-Learning-Objective closure, ODE/PDE/dynamics ownership, prerequisite DAG and stage boundary before accepting it.",
+    "Keep C07/C08/C09/C10 and all post-CURRICULUM stages locked until later Director decisions."
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "C01 accepted commit: 5659288da80a239e2ded408da87348670c1410c2.",
-    "C02 accepted commit: cfd9746e2296280705e2e2e67b2c5980d440f02d.",
-    "C03 accepted commit: 7546ad74fb0e71ad2120c7091947993690bef82d.",
-    "C05 accepted commit: 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16.",
-    "Dependency Amendment 1 is satisfied; C04 is now the active geometry/measurement scope.",
-    "C04-T08 may consume accepted C05 calculus but locked C09 topology/manifold claims cannot support C04.",
-    "Claim-to-Learning-Objective closure and zero-unlocked-support rules remain mandatory.",
+    "C01 accepted: 5659288da80a239e2ded408da87348670c1410c2.",
+    "C02 accepted: cfd9746e2296280705e2e2e67b2c5980d440f02d.",
+    "C03 accepted: 7546ad74fb0e71ad2120c7091947993690bef82d.",
+    "C05 accepted: 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16.",
+    "C04 accepted: 76077695c07b853ac37f058477177e211f740f17, with four Director closure amendments superseding the matching base closure rows.",
+    "C06 is active READY; C07/C08/C09/C10 remain locked.",
     "Pipeline remains CURRICULUM; ACADEMIC_LOCKED and all later stages remain gated."
   ],
   "do_not_repeat": [
-    "Do not reopen accepted C01/C02/C03/C05 without a concrete contradiction found by later integration/global audit.",
-    "Do not use the non-resolving worker-reported C05 SHA a57f53b883075edb825f80338b8c84ed2c22b1cc as canonical state.",
+    "Do not reopen accepted C01-C05 without a concrete contradiction found by later integration/global audit.",
     "Do not renumber accepted IDs.",
-    "Do not let C04 import locked C09 topology/manifold claims or B1.2 physical-metrology ownership.",
+    "Do not treat mechanically present closure rows as sufficient without semantic concept/action coverage.",
+    "Do not use locked C07/C08/C09/C10 or B1.2 domain-science claims as C06 support.",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during CURRICULUM."
   ],
-  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C04 from hka-tree/c01-w02-math-c04 using its DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C04",
-  "updated_at": "2026-09-05T09:35:00+07:00"
+  "next_action": "Run C01-W02-B1.1-MATH-FAMILY-C06 from hka-tree/c01-w02-math-c06 using its DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "updated_at": "2026-09-05T11:05:00+07:00"
 }
