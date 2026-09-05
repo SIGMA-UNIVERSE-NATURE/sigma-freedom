@@ -16,115 +16,141 @@ No later pipeline stage is unlocked.
 - `B1.1-C06` @ `e0d6f667d38e937c7c6040b51fb14e34f0bb6345`
 - `B1.1-C07` @ `be10c01bf8df64a723e135524b75ce644947dcbd`
 - `B1.1-C08` @ `14729ce490289b057d5dca25767c3b5ea357e1ec`
+- `B1.1-C09` @ `9f17cee504c51830f0f4fbfbe429ffa8759ea793`
 
-## C07 Director acceptance
+## C09 Director acceptance
 
-Worker candidate: `fa7c11c2df42490df099dd07c0c7e0f46949013e`.
+Worker candidate: `f7d8afaa92c4401abe97ca8d9623d79b8617d8ca`.
 
-Independent audit completed:
+Director independently audited:
 
-- 10/10 canonical topics, 10 nodes;
-- 158/158 claims read;
-- 7/7 stable source records and deterministic SOURCE_ID hashes verified;
-- 40/40 D1–D4 Learning Objectives read;
-- 40/40 Claim → Learning Objective mappings semantically verified against actual propositions;
+- 7/7 canonical topics and 7 nodes;
+- 84/84 atomic claims;
+- 6/6 stable/version-pinned sources and deterministic SOURCE_ID hashes;
+- 28/28 D1–D4 Learning Objectives;
+- 28/28 direct semantic Claim → Learning Objective mappings;
+- 15/15 cross-link / ownership dispositions;
+- 7/7 sequence intents with an acyclic prerequisite graph;
 - future/locked support Claim IDs = 0;
-- C05 measure/Lebesgue foundations reused by reference only;
-- C08 DAG/topological-order/reachability mathematics reused by reference only;
-- WLLN/SLLN/CLT, finite Markov convergence, Cramér–Rao, regular-MLE asymptotic normality and Wilks hypotheses PASS;
-- frequentist/Bayesian/descriptive/design/causal semantics kept distinct;
-- R06 mathematics/statistics-vs-data/AI PASS;
-- R13 AI secondary-cross-link-only PASS;
-- causal association/prediction/identification boundary PASS;
-- prerequisite DAG PASS / acyclic;
-- CURRICULUM-only stage boundary PASS.
+- CURRICULUM-only stage boundary.
 
-One semantic overconstraint was repaired before acceptance:
+Critical theorem/semantic gates all PASS:
 
-`HKA-B1-1-C07-N008-C005` originally required every `(1-α)` Bayesian credible set to have posterior mass exactly `1-α`. For discrete posteriors an exact non-randomized set may not exist. The effective claim now allows posterior mass `≥1-α`, with exact equality when the posterior/construction permits it.
+- compactness is not equated with sequential compactness in arbitrary topological spaces; metric-space equivalence only;
+- connectedness/path-connectedness/local-path-connectedness distinctions preserved;
+- Hausdorff, second-countable and local-Euclidean manifold convention preserved;
+- covering-space classification hypotheses preserved;
+- fundamental-group basepoint dependence preserved;
+- homology/cohomology/Euler characteristic not overclaimed as complete invariants;
+- regular-value/preimage, transversality, Sard, degree and Morse hypotheses preserved;
+- tame/smooth knot, Reidemeister and knot-invariant limits preserved;
+- Hopf–Rinow, Gauss–Bonnet, Bonnet–Myers and Cartan–Hadamard hypotheses preserved.
 
-Director amendment commit: `deb2740192eecdfe21d984ecddbc2073c70e8ae2`.
+Ownership gates PASS:
 
-No stable Claim/Node/LO ID changed and the existing N008-D2 semantic closure remains valid.
+- C03 retains generic algebra/linear algebra;
+- C05 retains generic analysis/calculus and analysis-specific convergence/compactness;
+- C04 retains local differential geometry, curvature and geodesic calculations;
+- C09 owns generic topology/manifolds/algebraic topology/differential topology/knot theory and genuinely global geometry only;
+- C10 remained locked and supplied zero support claims during C09 authoring.
 
-Decision: `DIRECTOR_ACCEPTED_PASS_AFTER_ONE_SEMANTIC_REPAIR`.
+No Director repair was required.
 
-Canonical C07 terminal head: `be10c01bf8df64a723e135524b75ce644947dcbd`.
+Decision: `DIRECTOR_ACCEPTED_PASS`.
 
-## Dependency Amendment 4
+Canonical C09 terminal head:
 
-Before opening C09, Director + Backup Sentinel checked the frozen B1 scope map and existing C03/C04/C05 ownership.
+`9f17cee504c51830f0f4fbfbe429ffa8759ea793`
 
-Amendment 4 preserves all stable C09 IDs and clarifies prerequisites/ownership:
+Director C09 acceptance checkpoint:
 
-- frozen prerequisites C01 and C04 remain valid;
-- C09 may additionally consume accepted C03 algebra and C05 calculus/analysis primitives;
-- C09 owns generic topology, connectedness/compactness, abstract manifolds, algebraic topology, differential topology, knot theory and genuinely global manifold/geometric structure;
-- C04 retains accepted local Euclidean/analytic/projective/differential/algebraic geometry meanings;
-- C05 retains analysis/calculus and analysis-specific metric/open/closed/compact/complete meanings;
-- C03 retains algebra foundations;
-- C10 remains locked.
+`c4ba6f3fe785412cccbdfcfafa9ec7a1063e4f42`
 
-Amendment 4 commit: `3ca222af9d6a3aa0326b738831daec86cce6521a`.
+Sentinel candidate-alignment checkpoint:
 
-C09 pre-open Sentinel checkpoint: `da790d8eec55c2eb5ddf9e4d61e3902fff62b0be` — `TREE_ALIGNMENT_PASS`.
+`6866e2d8379f3012e036051e856a7bb6b7f023c1` — `TREE_ALIGNMENT_PASS`.
+
+## Amendment 5 — C10 ownership lock
+
+C10 is the final B1.1 authoring scope. Frozen canonical topics:
+
+1. Mô hình toán
+2. Phân tích số
+3. Tối ưu tuyến tính và phi tuyến
+4. Tối ưu lồi
+5. Vận trù học
+6. Lý thuyết quyết định
+7. Toán tài chính
+8. Toán sinh học
+9. Toán vật lý
+10. Mô phỏng
+
+Frozen academic prerequisites remain exactly:
+
+`C03 + C05 + C06 + C07 + C08`
+
+C09 is the accepted continuity predecessor only and is **not** silently added as a mandatory academic prerequisite.
+
+Amendment 5 commit:
+
+`397ef6ed7f508c6c6d257742c92896153d72d5a7`
+
+Mandatory C10 risks:
+
+- `R06` mathematics-vs-data/AI;
+- `R13` AI secondary cross-domain node.
+
+Major ownership boundaries:
+
+- C06 retains differential-equation/dynamical-system theorem meaning; C10 T01 owns mathematical modeling structure.
+- C05 retains analytic theorem foundations; C10 T02 owns numerical-analysis mathematics.
+- C08 retains combinatorial optimization; C10 T03/T04 own general continuous/linear/nonlinear/convex optimization.
+- C07 retains probability/statistical/Bayesian inference and accepted Bayes-action specialization; C10 T06 owns general mathematical decision theory.
+- Future B1.5 owns algorithm/software/data/AI pipeline implementation and complexity.
+- Future B1.2 owns physical laws/measurement/empirics; C10 T09 owns mathematical structures only.
+- Future biology/health branches own biological mechanisms/empirics; C10 T08 owns mathematical structures only.
+
+C10 pre-open Sentinel checkpoint:
+
+`556d6299f93a2d4b32187359a7abe78350111810` — `TREE_ALIGNMENT_PASS`.
 
 ## Active work
 
 Only active child:
 
-`C01-W02-B1.1-MATH-FAMILY-C09`
+`C01-W02-B1.1-MATH-FAMILY-C10`
 
 Scope:
 
-`B1.1-C09 — Tô pô và hình học hiện đại`
+`B1.1-C10 — Toán ứng dụng và tính toán`
 
 Branch:
 
-`hka-tree/c01-w02-math-c09`
+`hka-tree/c01-w02-math-c10`
 
-Accepted predecessor:
+Accepted continuity predecessor:
 
-`be10c01bf8df64a723e135524b75ce644947dcbd`
+`9f17cee504c51830f0f4fbfbe429ffa8759ea793`
 
-Canonical topics:
+C10 is the final B1.1 authoring scope, but worker completion of C10 does **not** authorize B1.2, B1 completion or any later pipeline stage. After C10 candidate PASS, Director must perform B1.1 integration / successor decision.
 
-1. Không gian tô pô
-2. Liên thông và compact
-3. Đa tạp
-4. Tô pô đại số
-5. Tô pô vi phân
-6. Lý thuyết nút
-7. Hình học toàn cục
+## Durable C10 activation
 
-## C09 critical controls
-
-- Do not equate compactness and sequential compactness in arbitrary topological spaces.
-- Distinguish connected/path-connected and local/global properties.
-- State Hausdorff/second-countable/local-Euclidean/smooth-atlas conventions for manifolds.
-- Do not re-author C03 algebra inside algebraic topology.
-- State hypotheses for covering-space, regular-value, Sard/transversality, orientation/degree, knot-invariant and global-geometry results.
-- C04 retains local differential geometry; C09 global geometry must be genuinely global rather than renamed local curvature content.
-- C05 retains generic analysis/calculus foundations.
-- C10 supplies zero support Claim IDs and remains locked.
-- Every Learning Objective must have direct semantic Claim support; closure-row existence alone is insufficient.
-
-## Durable C09 activation
-
-- C09 contract: `a5e78a742f1978d362d687f069c3f70b6d86110f`
-- C09 prompt: `0a48e38d02fecca5b0083456915d24af30b2f243`
-- C09 open order: `906e7e44642881d48404cef4d420fe0f7eeb8f17`
-- C09 bootstrap checkpoint: `28d0b7612270d48a32ef5849ceb5929444f37bca`
-- C09 READY status: `cd65a5a54ccd1df358ca180894282486ae7a8c46`
-- C09 READY report: `f02aa974b94e87ed2f91221a5eb5e31923238d60`
-- Machine state transition: `fb4bff2a16431ed32abd4955dd312ac6bafbf769`
-- Window registry transition: `1214ecadd3b9a6cfa354d2065232f88bcad5a2b4`
-- Continuity Snapshot transition: `6cd3f6741f457a83cfbde8f3aa62cf698a1f03a6`
+- C10 contract: `c4e7201c4622093d758f41a8bdfac01b28e1d458`
+- C10 execution prompt: `cfa97d8cae841143cd4b5789de09d185805e9977`
+- C10 Director open order: `a4571c29c6c0c3c9387caeb29d836cb7bd0e8a27`
+- C10 bootstrap checkpoint: `278832bd8436a70677237cc2849d0f60f3c98888`
+- C10 READY status: `3d42117237b5021cce125bee7e2ebe58e6495bbd`
+- C10 READY report: `0021e1f62aaf7164df245051a0098316088a3995`
+- Machine state transition: `2e4b28573ed7988f0d0334205aa8cdd62ef31595`
+- Window registry transition: `43bd23c2dc6a28cbbf07916aa05ae59d1274345a`
+- Continuity Snapshot transition: `355b1821d44b2ba0fb0041c8d089e54f088287aa`
+- Director activation checkpoint: `7cccb143c57f1f247696f8a7bc913d0586d6058b`
 
 ## Global gates
 
-`ACADEMIC_LOCKED` remains forbidden until all six branches, global coverage/prerequisite/semantic-duplicate audits, multi-continent benchmark across at least five continents, and external curriculum mapping integration all PASS.
+`ACADEMIC_LOCKED` remains forbidden until all six branches, global coverage/prerequisite/semantic-duplicate audits, multi-continent education benchmark across at least five continents, and external curriculum mapping integration all PASS.
 
 ## Next action
 
-Run only `C01-W02-B1.1-MATH-FAMILY-C09` from its `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md`.
+Run only `C01-W02-B1.1-MATH-FAMILY-C10` from its `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md`.
