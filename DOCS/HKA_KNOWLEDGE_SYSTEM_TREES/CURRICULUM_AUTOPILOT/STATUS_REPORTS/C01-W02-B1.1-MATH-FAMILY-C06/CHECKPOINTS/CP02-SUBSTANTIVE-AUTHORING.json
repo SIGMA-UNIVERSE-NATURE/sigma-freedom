@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "scope_id": "B1.1-C06",
+  "stage": "CURRICULUM",
+  "status": "AUTHORING_COMPLETE_PENDING_COMMITTED_READBACK",
+  "execution_branch": "hka-tree/c01-w02-math-c06",
+  "accepted_predecessor_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "checkpoint_type": "SUBSTANTIVE_AUTHORING",
+  "artifacts_authored": [
+    "NODES.jsonl",
+    "CLAIMS.jsonl",
+    "SOURCES.jsonl",
+    "LEARNING_OBJECTIVES.jsonl",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "CROSS_LINKS.jsonl",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl"
+  ],
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 102,
+    "sources": 6,
+    "learning_objectives": 32,
+    "closure_rows": 32,
+    "cross_links": 17,
+    "sequence_intent_records": 8
+  },
+  "academic_guards": {
+    "existence_uniqueness_hypotheses_explicit": true,
+    "pde_solvability_hypotheses_explicit": true,
+    "stability_linearization_hypotheses_explicit": true,
+    "bifurcation_transversality_nondegeneracy_explicit": true,
+    "chaos_definition_and_diagnostic_limits_explicit": true,
+    "semantic_claim_to_objective_closure_designed_directly": true,
+    "future_or_locked_support_claim_ids": 0
+  },
+  "stage_boundary": {
+    "C07_C08_C09_C10_opened": false,
+    "post_curriculum_artifacts_authored": false,
+    "academic_locked_created": false,
+    "lesson_registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false
+  },
+  "next_action": "Perform committed GitHub read-back of every authored Claim, Learning Objective and closure row; run independent self-audit before emitting any worker PASS candidate."
+}
