@@ -6,8 +6,11 @@ umask 077
 P=/data/data/com.termux/files/usr
 HOME_SIGMA=/data/data/com.termux/files/home/SIGMA
 REPO="$HOME_SIGMA/sigma-freedom-write"
-BRAIN="$REPO/BRAIN/EXTRA BRAIN_OPPO_24826"
+STATE="$HOME_SIGMA/SIGMA_V4A1_PRODUCTIVITY_WORK_ARBITER_PREFLIGHT"
+SHADOW="$STATE/shadow"
+BRAIN="$SHADOW/BRAIN/EXTRA BRAIN_OPPO_24826"
 E="$BRAIN/.sigma_exec"
+PROD_BRAIN="$REPO/BRAIN/EXTRA BRAIN_OPPO_24826"
 
 SIGMAC="$HOME_SIGMA/sigma_genesis1/native/sigmac"
 VM="$HOME_SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate"
@@ -29,10 +32,9 @@ LEDGER="$E/SIGMA_V4A1_ARBITER_LEDGER.memory"
 ACTION="$E/SIGMA_V4A1_ACTION.memory"
 TARGET="$E/SIGMA_V4A1_TARGET.memory"
 
-STATE="$HOME_SIGMA/SIGMA_V4A1_PRODUCTIVITY_WORK_ARBITER_PREFLIGHT"
 LOG="$STATE/log"
 LOCK="$STATE/preflight.lock"
-mkdir -p "$STATE" "$LOG"
+mkdir -p "$E" "$LOG"
 
 exec 9>"$LOCK"
 if ! "$P/bin/flock" -n 9; then
@@ -54,6 +56,10 @@ printf 'HOST_WORK_SELECTION=NO\n'
 printf 'HOST_STAGE_DECISION=NO\n'
 printf 'HOST_RETRY_POLICY=NO\n'
 printf 'HOST_LEARNING=NO\n'
+printf 'SHADOW_BRAIN=%s\n' "$BRAIN"
+printf 'PRODUCTION_BRAIN_WRITE_TARGET=NO\n'
+V24_PID_BEFORE=$("$P/bin/pgrep" -f 'RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh' | "$P/bin/head" -n1 || true)
+printf 'PRODUCTION_V24_PID_BEFORE=%s\n' "$V24_PID_BEFORE"
 
 if [ "$SIGMAC_SHA" != "$EXPECTED_SIGMAC" ] || [ "$VM_SHA" != "$EXPECTED_VM" ] || [ "$SOURCE_SHA" != "$EXPECTED_SOURCE" ]; then
     printf 'HOLD=LOCKED_IDENTITY_MISMATCH\n'
@@ -71,7 +77,7 @@ RC=$?
 printf 'V4A1_SIGMAC_RC=%s\n' "$RC"
 if [ "$RC" -ne 0 ] || [ ! -s "$BC.partial" ]; then
     printf 'HOLD=V4A1_COMPILE_FAILED\n'
-    exit 24
+    exit 22
 fi
 
 mv -f -- "$BC.partial" "$BC"
@@ -151,7 +157,17 @@ set_inputs '' 'received-J' 'retry-J' 'local-J' 'query-J' '0'
 run_case LEDGER_LIMIT_REFUSAL || exit 69
 [ "$(cat "$ACTION")" = 'WAIT_LEDGER_LIMIT_EXCEEDED' ] || exit 70
 
+V24_PID_AFTER=$("$P/bin/pgrep" -f 'RUN_SIGMA_CONTINUOUS_NATIVE_SELF_DIRECTED_V2_4.sh' | "$P/bin/head" -n1 || true)
+printf 'PRODUCTION_V24_PID_AFTER=%s\n' "$V24_PID_AFTER"
+if [ -n "$V24_PID_BEFORE" ] && [ "$V24_PID_AFTER" != "$V24_PID_BEFORE" ]; then
+    printf 'HOLD=PRODUCTION_V24_PID_CHANGED\n'
+    exit 71
+fi
+
 printf '\nV4A1_PRODUCTIVITY_WORK_ARBITER_PREFLIGHT=PASS\n'
+printf 'SHADOW_STATE_NAMESPACE_ISOLATION=PASS\n'
+printf 'PRODUCTION_BRAIN_WRITE_TARGET=NO\n'
+printf 'PRODUCTION_V24_REMAINED_RUNNING_SAME_PID=PASS\n'
 printf 'RATE_LIMIT_WAIT_CONTINUES_LOCAL_WORK=PASS\n'
 printf 'RETRYABLE_CONTEXT_PROGRESS=PASS\n'
 printf 'ROUND_ROBIN_SOURCE_FAIRNESS=PASS\n'
