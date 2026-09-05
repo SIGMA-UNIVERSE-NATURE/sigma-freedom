@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-W01",
+  "checkpoint_id": "CP-20260905-C09-ACCEPTED-C10-ACTIVATED",
+  "stage": "CURRICULUM",
+  "decision": "C09_DIRECTOR_ACCEPTED_PASS_AND_C10_ACTIVATED",
+  "C09": {
+    "scope_id": "B1.1-C09",
+    "worker_candidate_commit_sha": "f7d8afaa92c4401abe97ca8d9623d79b8617d8ca",
+    "accepted_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+    "director_acceptance_checkpoint_sha": "c4ba6f3fe785412cccbdfcfafa9ec7a1063e4f42",
+    "claims": "84/84 independent audit",
+    "sources": "6/6 deterministic verification",
+    "learning_objectives": "28/28 independent audit",
+    "semantic_closure": "28/28 PASS",
+    "cross_links": "15/15 PASS",
+    "sequence_intents": "7/7 PASS_ACYCLIC",
+    "future_or_locked_support_claim_ids": 0,
+    "academic_repairs_required": 0
+  },
+  "C10": {
+    "scope_id": "B1.1-C10",
+    "execution_branch": "hka-tree/c01-w02-math-c10",
+    "status": "READY",
+    "continuity_predecessor_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+    "frozen_academic_prerequisites": ["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"],
+    "canonical_topics": 10,
+    "mandatory_risks": ["R06","R13"],
+    "amendment_5_commit_sha": "397ef6ed7f508c6c6d257742c92896153d72d5a7",
+    "preopen_sentinel_checkpoint_sha": "556d6299f93a2d4b32187359a7abe78350111810"
+  },
+  "control_plane": {
+    "state_commit_sha": "2e4b28573ed7988f0d0334205aa8cdd62ef31595",
+    "registry_commit_sha": "43bd23c2dc6a28cbbf07916aa05ae59d1274345a",
+    "continuity_snapshot_commit_sha": "355b1821d44b2ba0fb0041c8d089e54f088287aa"
+  },
+  "stage_lock": "CURRICULUM_ONLY",
+  "B1_2_unlock": false,
+  "post_CURRICULUM_unlock": false,
+  "created_at": "2026-09-05T19:22:00+07:00"
+}
