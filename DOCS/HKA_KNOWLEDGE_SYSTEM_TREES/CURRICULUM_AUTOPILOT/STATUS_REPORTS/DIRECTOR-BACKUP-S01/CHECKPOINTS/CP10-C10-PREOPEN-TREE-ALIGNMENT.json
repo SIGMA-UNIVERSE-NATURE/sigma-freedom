@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "checkpoint_id": "CP10-C10-PREOPEN-TREE-ALIGNMENT",
+  "stage": "CURRICULUM",
+  "proposed_window": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "proposed_scope": "B1.1-C10",
+  "proposed_branch": "hka-tree/c01-w02-math-c10",
+  "accepted_continuity_predecessor": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "frozen_scope_map_blob": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "result": "TREE_ALIGNMENT_PASS",
+  "canonical_topics": [
+    ["B1.1-C10-T01", "Mô hình toán"],
+    ["B1.1-C10-T02", "Phân tích số"],
+    ["B1.1-C10-T03", "Tối ưu tuyến tính và phi tuyến"],
+    ["B1.1-C10-T04", "Tối ưu lồi"],
+    ["B1.1-C10-T05", "Vận trù học"],
+    ["B1.1-C10-T06", "Lý thuyết quyết định"],
+    ["B1.1-C10-T07", "Toán tài chính"],
+    ["B1.1-C10-T08", "Toán sinh học"],
+    ["B1.1-C10-T09", "Toán vật lý"],
+    ["B1.1-C10-T10", "Mô phỏng"]
+  ],
+  "frozen_academic_prerequisites": ["B1.1-C03", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08"],
+  "continuity_predecessor_is_not_added_academic_prerequisite": true,
+  "mandatory_risks": ["R06", "R13"],
+  "shared_nodes": ["X02", "X07"],
+  "active_boundary_amendment": "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md@397ef6ed7f508c6c6d257742c92896153d72d5a7",
+  "checks": {
+    "scope_exists_in_frozen_map": "PASS",
+    "topic_set_exact": "PASS_10_OF_10",
+    "frozen_prerequisites_all_director_accepted": "PASS",
+    "C09_continuity_predecessor_director_accepted": "PASS",
+    "successor_is_final_B1_1_scope": true,
+    "post_CURRICULUM_stage_authorization": "NONE"
+  },
+  "created_at": "2026-09-05T19:22:00+07:00"
+}
