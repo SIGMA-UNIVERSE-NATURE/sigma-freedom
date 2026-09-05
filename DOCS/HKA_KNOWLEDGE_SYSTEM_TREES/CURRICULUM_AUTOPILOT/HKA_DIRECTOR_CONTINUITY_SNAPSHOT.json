@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "role": "DIRECTOR_CONTINUITY_SNAPSHOT",
   "purpose": "Compact recovery and Knowledge Tree alignment state. Chat memory is never authoritative.",
   "source_of_truth": {
@@ -46,39 +46,47 @@
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
     "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_3.md",
-    "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_4.md"
+    "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_4.md",
+    "B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md"
   ],
   "current_execution": {
     "active_branch_id": "B1",
     "active_subbranch_id": "B1.1",
-    "active_scope_id": "B1.1-C09",
-    "active_window_id": "C01-W02-B1.1-MATH-FAMILY-C09",
-    "active_execution_branch": "hka-tree/c01-w02-math-c09",
+    "active_scope_id": "B1.1-C10",
+    "active_window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+    "active_execution_branch": "hka-tree/c01-w02-math-c10",
     "active_status": "READY",
-    "accepted_predecessor_commit": "be10c01bf8df64a723e135524b75ce644947dcbd",
-    "canonical_scope_name": "Tô pô và hình học hiện đại",
+    "accepted_predecessor_commit": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+    "accepted_continuity_predecessor": "B1.1-C09",
+    "continuity_predecessor_not_added_as_academic_prerequisite": true,
+    "canonical_scope_name": "Toán ứng dụng và tính toán",
     "canonical_topic_ids_and_names": [
-      ["B1.1-C09-T01","Không gian tô pô"],
-      ["B1.1-C09-T02","Liên thông và compact"],
-      ["B1.1-C09-T03","Đa tạp"],
-      ["B1.1-C09-T04","Tô pô đại số"],
-      ["B1.1-C09-T05","Tô pô vi phân"],
-      ["B1.1-C09-T06","Lý thuyết nút"],
-      ["B1.1-C09-T07","Hình học toàn cục"]
+      ["B1.1-C10-T01","Mô hình toán"],
+      ["B1.1-C10-T02","Phân tích số"],
+      ["B1.1-C10-T03","Tối ưu tuyến tính và phi tuyến"],
+      ["B1.1-C10-T04","Tối ưu lồi"],
+      ["B1.1-C10-T05","Vận trù học"],
+      ["B1.1-C10-T06","Lý thuyết quyết định"],
+      ["B1.1-C10-T07","Toán tài chính"],
+      ["B1.1-C10-T08","Toán sinh học"],
+      ["B1.1-C10-T09","Toán vật lý"],
+      ["B1.1-C10-T10","Mô phỏng"]
     ],
-    "required_accepted_foundations": ["B1.1-C01","B1.1-C03","B1.1-C04","B1.1-C05"],
-    "accepted_continuity_predecessor": "B1.1-C07",
+    "required_accepted_foundations": ["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"],
+    "mandatory_risk_controls": ["R06","R13"],
+    "secondary_shared_nodes": ["X02","X07"],
     "mandatory_ownership_controls": [
-      "C05 analysis vs C09 generic topology",
-      "C04 local geometry vs C09 manifolds/differential topology/global geometry",
-      "C03 algebra vs C09 algebraic topology",
-      "T01 vs T02",
-      "T03 vs T05",
-      "T04 vs T06",
-      "T03/T05 vs T07"
+      "C06 differential-equation/dynamics theorem ownership vs C10 modeling",
+      "C05 analysis/calculus vs C10 numerical analysis",
+      "C08 combinatorial optimization vs C10 continuous/general optimization",
+      "C07 statistical/Bayesian inference and Bayes-action specialization vs C10 general decision theory",
+      "future B1.5 algorithms/software/data/AI implementation vs C10 mathematical methods",
+      "future B1.2 physical laws/measurement vs C10 mathematical physics",
+      "future biology/health mechanisms/empirics vs C10 mathematical biology"
     ],
-    "locked_or_boundary_only_scopes": ["B1.1-C10","B1.2+","B2+"],
-    "successor_unlock_forbidden_until_director_acceptance": true
+    "locked_or_boundary_only_scopes": ["B1.2+","B1.5+","B2+"],
+    "successor_unlock_forbidden_until_director_acceptance": true,
+    "after_C10_worker_pass": "B1.1 integration/successor decision remains Director-gated; no automatic B1.2 unlock"
   },
   "accepted_scopes": {
     "B1.1-C01": "5659288da80a239e2ded408da87348670c1410c2",
@@ -88,7 +96,8 @@
     "B1.1-C05": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
     "B1.1-C06": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
     "B1.1-C07": "be10c01bf8df64a723e135524b75ce644947dcbd",
-    "B1.1-C08": "14729ce490289b057d5dca25767c3b5ea357e1ec"
+    "B1.1-C08": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+    "B1.1-C09": "9f17cee504c51830f0f4fbfbe429ffa8759ea793"
   },
   "execution_order_override": "C06 -> C08 -> C07 -> C09 -> C10",
   "director_acceptance_invariants": [
@@ -151,5 +160,5 @@
       "CONTINUE only from durable next_action"
     ]
   },
-  "updated_at": "2026-09-05T16:33:00+07:00"
+  "updated_at": "2026-09-05T19:22:00+07:00"
 }
