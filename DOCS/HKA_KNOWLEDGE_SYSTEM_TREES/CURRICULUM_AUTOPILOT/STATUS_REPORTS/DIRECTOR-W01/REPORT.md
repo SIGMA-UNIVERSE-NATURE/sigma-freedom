@@ -8,86 +8,94 @@ No later pipeline stage is unlocked.
 
 ## Director-accepted academic scopes
 
-### B1.1-C01 — Logic, tập hợp và chứng minh
+- `B1.1-C01 — Logic, tập hợp và chứng minh` @ `5659288da80a239e2ded408da87348670c1410c2`
+- `B1.1-C02 — Số học và lý thuyết số` @ `cfd9746e2296280705e2e2e67b2c5980d440f02d`
+- `B1.1-C03 — Đại số và cấu trúc` @ `7546ad74fb0e71ad2120c7091947993690bef82d`
 
-Accepted commit:
-`5659288da80a239e2ded408da87348670c1410c2`
+C03 independent Director audit confirmed:
 
-C01 was repaired before acceptance and remains the canonical prerequisite for generic logic, set, relation/function and proof foundations.
+- 9/9 canonical topics and 9 nodes;
+- 77/77 claims reviewed;
+- 6 versioned/persistent sources reviewed;
+- 36/36 Claim → Learning Objective closure;
+- zero future/locked-scope support claims;
+- T04/T05 ownership split PASS, with T05 sequenced before T04;
+- T06–T09 prerequisite/specialization hierarchy PASS;
+- semantic duplicate/ownership audit PASS;
+- prerequisite/sequence DAG PASS;
+- stage boundary PASS.
 
-### B1.1-C02 — Số học và lý thuyết số
+C03 is `DIRECTOR_ACCEPTED_PASS`.
 
-Director-accepted commit:
-`cfd9746e2296280705e2e2e67b2c5980d440f02d`
+## Execution dependency correction
 
-Independent Director audit confirmed:
+Before opening C04, Director found an academic dependency contradiction:
 
-- 8/8 canonical topics, 8 nodes;
-- 64/64 claims reviewed;
-- 7/7 persistent/versioned sources reviewed and deterministic IDs verified;
-- 32/32 Learning Objectives have explicit supporting Claim IDs;
-- zero future/unlocked support claims;
-- 15 cross-links with no primary ownership transfer;
-- prerequisite/sequence graph PASS;
-- stage boundary PASS;
-- NIST SP 811 round-to-even claim verified;
-- the `a!=0` divisibility definition was rechecked and treated as an explicitly declared convention difference, not a blocker.
+`B1.1-C04-T08 — Hình học vi phân` requires derivative and multivariable-calculus primitives owned by `B1.1-C05`, while the older execution order attempted C04 before C05 and forbade future-scope support.
 
-C02 is `DIRECTOR_ACCEPTED_PASS` and must not be re-authored casually.
+Active amendment:
+
+`DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md`
+
+Corrected execution order:
+
+`C03 → C05 → C04`
+
+This changes execution dependency only. Stable scope/topic IDs, names and primary ownership are unchanged.
 
 ## Active work
 
 Only active child:
-`C01-W02-B1.1-MATH-FAMILY-C03`
+
+`C01-W02-B1.1-MATH-FAMILY-C05`
 
 Scope:
-`B1.1-C03 — Đại số và cấu trúc`
+
+`B1.1-C05 — Giải tích và biến đổi liên tục`
 
 Execution branch:
-`hka-tree/c01-w02-math-c03`
 
-Pinned predecessor:
-`cfd9746e2296280705e2e2e67b2c5980d440f02d`
+`hka-tree/c01-w02-math-c05`
+
+Pinned accepted predecessor:
+
+`7546ad74fb0e71ad2120c7091947993690bef82d`
 
 Canonical topics:
 
-1. Biểu thức và phương trình
-2. Bất phương trình
-3. Hàm và quan hệ
-4. Đại số tuyến tính
-5. Ma trận và không gian vectơ
-6. Nhóm
-7. Vành và trường
-8. Đại số giao hoán
-9. Lý thuyết biểu diễn
+1. Dãy và giới hạn
+2. Tính liên tục
+3. Đạo hàm
+4. Tích phân
+5. Chuỗi
+6. Giải tích nhiều biến
+7. Giải tích thực
+8. Giải tích phức
+9. Giải tích hàm
+10. Giải tích điều hòa
 
-## Mandatory C03 risk controls
+## Locked boundaries
 
-- C03 T03 must not duplicate C01 generic relation/function foundations.
-- C03 T01/T02 must not duplicate C02 arithmetic/order foundations.
-- T04/T05 must establish one primary owner per linear-algebra/matrix/vector-space proposition and objective, especially systems, vector spaces, span/independence, basis/dimension, matrices, linear maps, rank/nullity, determinants and eigen concepts.
-- T06/T07/T08/T09 must form a prerequisite/specialization hierarchy rather than repeat shared algebraic-structure content.
-- 100% Claim → Learning Objective closure remains mandatory.
-- Future locked scopes may be boundary references only, never support claims.
+- C04 remains `LOCKED` until Director-accepted C05 PASS.
+- C05 supplies analysis/calculus primitives later consumable by differential geometry but does not take geometry ownership.
+- C06 differential equations, C07 probability/statistics, C09 topology and C10 applied/computational mathematics remain locked and may not supply support claims.
+- 100% Claim → Learning Objective closure and zero unlocked-scope support remain mandatory.
+- Worker PASS remains candidate only.
+- No Lesson Registry, prompts, images, R2, delivery, website or `ACADEMIC_LOCKED` artifacts are allowed during CURRICULUM.
 
 ## Durable activation
 
-- Control-plane state activation: `54e9f7867e44dbcbef4744dfc6a8246f38566048`
-- Window registry activation: `09d379c8747bce087dbbe0944bb7c096b220b39a`
-- C03 contract: `2aee98b0bf17eb23fa0af5969d816c6408c03d5e`
-- C03 execution prompt: `0037ccf9f1c0ad8ea9de5a53570962214cd92b83`
-- C03 Director open order: `55034606c0c182a3082b082b7018836ca5efc029`
-- C03 bootstrap checkpoint: `a5ac5945ccdc4db8ee2647a15399d1fbfb734877`
-- Director checkpoint: `12b33ee81fb84e1c7bca7cc48c0ae4c189cc349a`
-
-## Locked rules
-
-- `NO STATUS FOLDER = NO ACCEPTED COMPLETION`.
-- Chat memory is not project state.
-- Worker PASS is only a candidate until independent Director acceptance.
-- C04 and later scopes remain locked until C03 is accepted.
-- No Lesson Registry, prompts, images, R2, delivery, website or `ACADEMIC_LOCKED` artifacts during CURRICULUM.
+- Dependency amendment: `87fca6786e0ccbf71f656c5d6648de2b7c237402`
+- Control-plane state: `50426227c7b1b0aa8afbd341cda585ba2be2f9a1`
+- Window registry: `56155b3b74418cfd80837bbbc805d370a56d2d6c`
+- C05 contract: `97d1ce98adeff5d393325905126328bf4cd72ca9`
+- C05 execution prompt: `2bd95626331da59b1c095b9117996ae07267f686`
+- C05 Director open order: `c5919a45ea7c9abb5e5cdca00822b11586e70dcf`
+- C05 bootstrap checkpoint: `f7d8d1903c5b6155dfd6ef9506b60cadd542d465`
+- Director checkpoint: `39efeb2aac3419a4beda51849b0435752e00adee`
 
 ## Next action
 
-Run only `C01-W02-B1.1-MATH-FAMILY-C03` from `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md` on `hka-tree/c01-w02-math-c03`.
+Run only `C01-W02-B1.1-MATH-FAMILY-C05` from its `DIRECTOR_OPEN_ORDER.md` and `GPT_EXECUTION_PROMPT.md` on `hka-tree/c01-w02-math-c05`.
+
+After C05 returns a worker candidate PASS, Director must independently audit it before C04 is opened.
