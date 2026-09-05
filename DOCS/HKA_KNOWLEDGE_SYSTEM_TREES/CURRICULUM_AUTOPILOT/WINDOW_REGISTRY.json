@@ -1,41 +1,37 @@
 {
-  "schema_version": "2.8",
+  "schema_version": "2.9",
   "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule": "Successor windows read GitHub state, immutable architecture anchors, active dependency amendments and predecessor artifacts; chat history is never a dependency.",
   "child_window_rule": "Each child writes RESULT.json plus mandatory durable status. Only Director-accepted PASS unlocks successor work.",
   "scope_map_anchor": {"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
   "active_dependency_amendments": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_3.md"
   ],
   "stage_order": ["KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"],
   "stages": [
-    {
-      "stage_id":"KNOWLEDGE",
-      "status":"LOCKED_INPUT",
-      "artifacts":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md@fc799bf1104ab6352710e1801777a971b5179995"]
-    },
+    {"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT","artifacts":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md@fc799bf1104ab6352710e1801777a971b5179995"]},
     {
       "stage_id":"CURRICULUM",
       "status":"IN_PROGRESS",
       "entry_gate":"KNOWLEDGE=LOCKED_INPUT",
       "exit_gate":"all six branches complete + global coverage/prerequisite/semantic-duplicate audits PASS + multi-continent curriculum benchmark integrated",
       "windows":[
-        {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c","depends_on":[]},
+        {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
         {
           "window_id":"C01-W02-B1.1-MATH-FAMILY",
           "scope":"B1.1 bounded authoring family",
           "status":"IN_PROGRESS",
-          "depends_on":["C01-W01-B1-ARCHITECTURE"],
           "children":[
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c01","accepted_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","topic_count":8,"claim_count":38,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS"},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c02","accepted_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d","topic_count":8,"claim_count":64,"source_count":7,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","cross_link_count":15},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C03","scope_id":"B1.1-C03","scope":"Đại số và cấu trúc","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c03","accepted_commit_sha":"7546ad74fb0e71ad2120c7091947993690bef82d","topic_count":9,"claim_count":77,"source_count":6,"learning_objective_count":36,"claim_to_learning_objective_closure":"36/36 PASS","cross_link_count":14},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c04","worker_candidate_commit_sha":"add8e0732da7d69ea5e641654acb8f948ff8b265","director_closure_amendment_commit_sha":"3b3f15c778a0ea33ba58a405007ea1311f877cef","accepted_commit_sha":"76077695c07b853ac37f058477177e211f740f17","topic_count":9,"claim_count":83,"source_count":6,"learning_objective_count":36,"claim_to_learning_objective_closure":"36/36 PASS EFFECTIVE_AFTER_DIRECTOR_AMENDMENT_1","cross_link_count":18},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C04","scope_id":"B1.1-C04","scope":"Hình học và đo lường","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c04","accepted_commit_sha":"76077695c07b853ac37f058477177e211f740f17","topic_count":9,"claim_count":83,"source_count":6,"learning_objective_count":36,"claim_to_learning_objective_closure":"36/36 PASS EFFECTIVE_AFTER_DIRECTOR_AMENDMENT_1","cross_link_count":18},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C05","scope_id":"B1.1-C05","scope":"Giải tích và biến đổi liên tục","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c05","accepted_commit_sha":"9c743ab4d5b5ad2ed18000af6a3b80bdace81e16","topic_count":10,"claim_count":98,"source_count":4,"learning_objective_count":40,"claim_to_learning_objective_closure":"40/40 PASS","cross_link_count":17},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C06","scope_id":"B1.1-C06","scope":"Phương trình vi phân và hệ động lực","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c06","accepted_predecessor_commit_sha":"76077695c07b853ac37f058477177e211f740f17","accepted_commit_sha":"e0d6f667d38e937c7c6040b51fb14e34f0bb6345","topic_count":8,"claim_count":102,"source_count":6,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 SEMANTIC PASS","cross_link_count":17,"sequence_intent_count":8,"execution_note":"Director independently audited 102 claims and 32 semantic closure mappings; no academic repair required."},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C07","scope_id":"B1.1-C07","scope":"Xác suất, thống kê và suy luận","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C01","B1.1-C02","B1.1-C03"],"execution_gate":"Director-accepted PASS of B1.1-C08 under Dependency Amendment 2","execution_note":"C07 delayed until C08 graph/discrete foundations are accepted; C07 must reuse C05 measure theory and C08 causal-DAG graph foundations."},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C08","scope_id":"B1.1-C08","scope":"Toán rời rạc và tổ hợp","status":"READY","execution_branch":"hka-tree/c01-w02-math-c08","accepted_predecessor_commit_sha":"e0d6f667d38e937c7c6040b51fb14e34f0bb6345","topic_count":8,"depends_on":["B1.1-C01","B1.1-C02"],"supplemental_accepted_foundations":["B1.1-C03"],"mandatory_risks":["R05","R02"],"execution_note":"Activated before C07 under Dependency Amendment 2. Mathematical combinatorics/graphs/coding only; algorithms and information-channel coding remain later boundaries."},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C06","scope_id":"B1.1-C06","scope":"Phương trình vi phân và hệ động lực","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c06","accepted_commit_sha":"e0d6f667d38e937c7c6040b51fb14e34f0bb6345","topic_count":8,"claim_count":102,"source_count":6,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 SEMANTIC PASS","cross_link_count":17,"sequence_intent_count":8},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C07","scope_id":"B1.1-C07","scope":"Xác suất, thống kê và suy luận","status":"READY","execution_branch":"hka-tree/c01-w02-math-c07","accepted_predecessor_commit_sha":"14729ce490289b057d5dca25767c3b5ea357e1ec","topic_count":10,"depends_on":["B1.1-C01","B1.1-C02","B1.1-C03"],"supplemental_accepted_foundations":["B1.1-C05","B1.1-C08"],"mandatory_risks":["R06","R13"],"execution_note":"Activated after Director-accepted C08. C07 must reuse C05 measure theory and C08 DAG foundations; causal semantics/inference remain C07 ownership."},
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C08","scope_id":"B1.1-C08","scope":"Toán rời rạc và tổ hợp","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c08","worker_candidate_commit_sha":"4f0493b4c7605e9d457810c9efe7ae822eeeab7a","director_claim_amendment_commit_sha":"e6167f0e68aa5d49f39b09ffabe686ca28960bad","accepted_commit_sha":"14729ce490289b057d5dca25767c3b5ea357e1ec","topic_count":8,"claim_count":109,"source_count":7,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 SEMANTIC PASS","cross_link_count":17,"sequence_intent_count":8,"mandatory_risks":["R05","R02"],"execution_note":"Accepted after Director independently audited 109 claims/32 closures and repaired Euler open-trail connectivity plus Reed-Solomon 1<=k<=n hypotheses."},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C09","scope_id":"B1.1-C09","scope":"Tô pô và hình học hiện đại","status":"LOCKED","topic_count":7,"depends_on":["B1.1-C01","B1.1-C04"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C10","scope_id":"B1.1-C10","scope":"Toán ứng dụng và tính toán","status":"LOCKED","topic_count":10,"depends_on":["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"]}
           ]
