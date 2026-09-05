@@ -13,20 +13,39 @@ Native policy:
 
 This module does not perform semantic ranking.
 
-Observed pre-runtime admission failure:
-- `SIGMAC_SHA256` matched locked compiler;
-- `VM_SHA256` matched locked VM;
+Observed pre-runtime admission failures
+
+1. SOURCE identity before install
+- locked SIGMAC hash matched;
+- locked VM hash matched;
 - `SOURCE_SHA256` was empty;
 - `HOLD=LOCKED_IDENTITY_MISMATCH`;
-- root cause: the first runner revision hashed `$BRAIN/.sigma_exec/SIGMA_V4_PRODUCTIVITY_WORK_ARBITER_V4A1.sigma` before mechanically installing the pinned repository artifact there.
+- root cause: first runner revision hashed `$BRAIN/.sigma_exec/...V4A1.sigma` before installing the pinned repository source.
 
-Correction:
-- hash/equality-gate the pinned repo artifact first;
-- copy exact source bytes mechanically into `.sigma_exec` only after equality passes;
-- hash/equality-gate the installed copy;
-- only then invoke locked `sigmac` and locked VM.
+2. Production namespace audit correction
+- before rerunning the corrected source-install revision, audit found its `BRAIN` still pointed at production `BRAIN/EXTRA BRAIN_OPPO_24826`;
+- the observed HOLD happened before any source copy or test-state mutation, so that failed run did not mutate production memory;
+- nevertheless, any V4-A admission runner that writes fixtures/ledger/action/bytecode into production BRAIN is forbidden;
+- runner was therefore corrected again before runtime admission.
 
-This failure is harness/setup evidence only. It does not prove or disprove V4-A runtime capability because the VM was not reached.
+Current correction
+- source artifact is hashed/equality-gated from the repository first;
+- source bytes are copied mechanically only into an isolated shadow BRAIN;
+- all V4-A fixture memory, ledger, action, target, source copy and bytecode live under:
+  `$HOME/SIGMA/SIGMA_V4A1_PRODUCTIVITY_WORK_ARBITER_PREFLIGHT/shadow/BRAIN/EXTRA BRAIN_OPPO_24826/.sigma_exec`;
+- production BRAIN is not a write target;
+- production V2.4 PID is observed before/after as isolation evidence;
+- only locked sigmac + locked VM execute the native capability.
+
+Current runner Git blob:
+`c71f1248b2f2c33a7918488913661c8e5f371530`
+
+Current runner commit:
+`381f6168a32ead9af7b529706d5b9cb19901aca0`
+
+Do not use prior runner blobs `4eb9286d...` or `6afbc9ed...` for admission.
+
+This failure history is harness/setup evidence only. V4-A native runtime capability remains NOT PROVEN until a locked-VM PASS transcript is obtained.
 
 Claim after PASS:
 `NATIVE_PRODUCTIVITY_WORK_ARBITRATION=PROVEN_IN_BOUNDED_TESTED_SCOPE`
@@ -37,24 +56,16 @@ Still:
 `BOUNDED_FILE_IO=NOT_PROVEN`
 `MID_APPEND_CRASH_ATOMICITY=NOT_PROVEN`
 
-Next:
+Next after PASS:
 V4-B segmented received-context learner so fetched material can resume across bounded segments instead of becoming permanent HOLD after whole-context rc=9 pressure.
 
 Source SHA256:
-12c32f07d39bacedf8dd1a2371f9b33801106d256d6166fed03fbaa224416ed2
+`12c32f07d39bacedf8dd1a2371f9b33801106d256d6166fed03fbaa224416ed2`
 
-Corrected runner SHA256:
-9cd9a4e735c49f8124b1d78ced2ab2c8d689421e9a5ce6b5b57d9329fb494626
-
-Corrected runner Git blob:
-6afbc9ed91a25f5ee2a27353286abbd23d20c8d1
-
-Corrected runner commit:
-e24210e60cb3a6721dfcf80a9a14cfe8a868403e
-
-Static after correction:
+Static source audits:
 H_CALL_ARITY_AUDIT=PASS
 NATIVE_NOT_EQUAL_DEPENDENCY=NONE
 STR_STARTS_DEPENDENCY=NONE
 DIRECT_STR_DEPENDENCY=NONE
-BASH_N_RC=0
+
+Current runner `bash -n` was checked before commit and passed.
