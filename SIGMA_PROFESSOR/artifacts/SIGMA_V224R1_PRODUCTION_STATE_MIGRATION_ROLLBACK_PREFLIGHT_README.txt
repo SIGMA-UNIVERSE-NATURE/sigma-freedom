@@ -1,3 +1,20 @@
+STATUS: BLOCKED / DRAFT ONLY / DO NOT ADMIT AS NATIVE SIGMA MIGRATION CAPABILITY
+
+Correction checkpoint:
+SIGMA_PROFESSOR/CHECKPOINTS/20260905_V224R1_HOST_ASSISTED_MIGRATION_BLOCKED_NATIVE_ONLY_CORRECTION.md
+
+Reason:
+This draft uses native `.sigma` to verify equality/stability decisions, but Bash/host still performs the actual production-state capture, packaging, candidate population, deletion/restore and migration mechanics. Under the repository-wide native-only STOP-GATE, those actions may exist only as external fixture mechanics; they are insufficient to prove that SIGMA itself owns production-state migration/rollback.
+
+Therefore keep:
+`V224R1_PRODUCTION_STATE_MIGRATION_ROLLBACK_PREFLIGHT=NOT_ADMITTED`
+`V224R1_HOST_ASSISTED_BYTE_MIGRATION=DRAFT_ONLY`
+`NATIVE_PRODUCTION_STATE_MIGRATION=NOT_PROVEN`
+`NATIVE_PRODUCTION_STATE_ROLLBACK=NOT_PROVEN`
+`PRODUCTION_PROMOTION_ALLOWED=NO`
+
+Historical draft details follow for provenance only.
+
 SIGMA V2.24R.1 — PRODUCTION STATE MIGRATION + ROLLBACK PREFLIGHT
 
 Purpose:
@@ -38,7 +55,7 @@ Rollback:
 
 This R1 gate does NOT claim that the new continual-learning candidate can already start from migrated V2.4 state. That is the next gate.
 
-Claims after PASS:
+Claims after PASS (historical draft intent only; superseded by BLOCKED status above):
 `LIVE_PRODUCTION_STATE_SNAPSHOT=PROVEN_IN_DECLARED_PACKAGE_SCOPE`
 `SHADOW_STATE_MIGRATION_BYTE_IDENTITY=PROVEN_IN_DECLARED_PACKAGE_SCOPE`
 `SHADOW_ROLLBACK_BYTE_IDENTITY=PROVEN_AFTER_INJECTED_CANDIDATE_FAULT`
