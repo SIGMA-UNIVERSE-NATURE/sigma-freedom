@@ -1,0 +1,105 @@
+SIGMA V4-PK6 VERIFIED EVOLUTION — MACHINE-EXECUTED SAMPLE V1
+================================================================
+
+SAMPLE_KIND=DETERMINISTIC_CASE_DEFINITION_FROM_ADMITTED_RUNNER_PLUS_FINAL_MACHINE_PASS_SUMMARY
+EXACT_CAPTURED_FULL_VM_STDOUT=NO
+CASE_EXECUTION_CONFIRMED_BY_FINAL_50_OF_50_ALIGNMENT_PASS=YES
+
+This file is not a fabricated transcript. It records one deterministic scenario
+from the admitted V4-PK6 Fix1 runner. The user supplied the final machine summary
+showing 50/50 post-VM alignment PASS, including:
+
+BEFORE_SNAPSHOT_NATIVE=TESTED
+STAGE_EVENT_NATIVE=TESTED
+TRIAL_TEST_NATIVE=TESTED
+COMMIT_EVENT_NATIVE=TESTED
+AFTER_VERIFICATION_NATIVE=TESTED
+EVOLUTION_APPLIED_LEDGER=TESTED
+EVOLUTION_ROLLED_BACK_LEDGER=TESTED
+
+LOCKED RUNTIME
+--------------
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+
+NATIVE SOURCE
+-------------
+V4PK6_SOURCE_SHA256=49d1490c34e89f4d9108c7d6e3efcb18bfb1d44668a56c9a63280dc84621fe85
+V4PK6_FIX1_RUNNER_SHA256=ffff7c0282c8cf4036b9672d7f0f4b73cf4dda7b5b986039c0d71b07a5302429
+
+SAMPLE SUCCESSFUL EVOLUTION CASE
+--------------------------------
+Transaction:
+TXN_ID=txn-a
+AUTHORIZATION_TOKEN=AUTHORIZED
+SUPPORT_CANDIDATE_LATEST_STATE=SUPPORTED_INFERENCE
+
+BEFORE artifact:
+PROFILE||profile-main||MODE_CONSERVATIVE||40||GUARD_LOCKED||REV_A||COMMIT||YES
+
+CANDIDATE artifact:
+PROFILE||profile-main||MODE_EXPERIMENTAL||60||GUARD_LOCKED||REV_B||COMMIT||YES
+
+Native sequence exercised by the admitted runner:
+
+1. PLAN
+   - SIGMA validates authorization.
+   - SIGMA separately validates the latest support candidate state.
+   - SIGMA validates profile schema/invariants.
+   - SIGMA snapshots BEFORE.
+   - SIGMA persists PLAN_READY transaction state.
+   - SIGMA emits STAGE event.
+
+2. MECHANICAL HOST DISPATCH
+   - exact event only;
+   - candidate bytes copied to trial bytes;
+   - no host evolution/test/commit decision.
+
+3. VERIFY_TRIAL
+   - SIGMA reads trial bytes.
+   - SIGMA evaluates the native trial invariant/test gate.
+   - on PASS, SIGMA persists TEST_PASS.
+   - SIGMA emits COMMIT_CHANGE.
+
+4. MECHANICAL HOST DISPATCH
+   - exact trial bytes copied to after bytes.
+
+5. FINALIZE
+   - SIGMA verifies AFTER equals the tested candidate artifact.
+   - SIGMA persists APPLIED evolution record.
+
+Expected final artifact for this deterministic admitted case:
+PROFILE||profile-main||MODE_EXPERIMENTAL||60||GUARD_LOCKED||REV_B||COMMIT||YES
+
+SAMPLE FAILURE/ROLLBACK SHAPE ALSO TESTED
+-----------------------------------------
+The same admitted suite also tested an injected BROKEN_TRIAL branch:
+
+BEFORE -> STAGE -> BROKEN_TRIAL -> native TEST_FAIL -> native ROLLBACK event
+-> mechanical restore of BEFORE -> native AFTER verification -> ROLLED_BACK ledger
+
+FINAL MACHINE SUMMARY WITNESS
+-----------------------------
+TOTAL_VM_INVOCATIONS=50
+POST_VM_ALIGNMENT_PASS_COUNT=50
+POST_VM_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+FINAL_EVOLUTION_LEDGER_SHA256=4f592a4fcc9bd1d28393b3eab05c57011b90cb89a63c8daad0ce346ef4e94f06
+FINAL_EVOLUTION_RECORD_COUNT=10
+V4PK6_NATIVE_ADMISSION_V1_FIX1=PASS
+VERIFIED_EVOLUTION_SANDBOX_PROFILE_TESTED_SCOPE=PASS
+RESULT=PASS_IN_EXACT_TESTED_SCOPE
+
+BOUNDARIES
+----------
+AUTHORIZATION_EQUALS_EVIDENCE=NO
+HOST_EVOLUTION_DECISION=NO
+HOST_TEST_DECISION=NO
+HOST_COMMIT_ROLLBACK_DECISION=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+COMPILER_VM_SELF_MODIFICATION=NOT_EXECUTED
+PRODUCTION_CODE_SELF_MODIFICATION=NOT_EXECUTED
+GENERAL_SELF_IMPROVEMENT=NOT_PROVEN
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+PRODUCTION_BINDING=NO
