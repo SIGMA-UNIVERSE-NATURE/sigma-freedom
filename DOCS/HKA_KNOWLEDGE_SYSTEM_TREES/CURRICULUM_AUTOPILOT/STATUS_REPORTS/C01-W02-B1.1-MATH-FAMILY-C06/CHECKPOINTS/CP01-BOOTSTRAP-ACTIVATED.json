@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c06",
+  "accepted_predecessor_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "c04_worker_candidate_sha": "add8e0732da7d69ea5e641654acb8f948ff8b265",
+  "c04_director_closure_amendment_sha": "3b3f15c778a0ea33ba58a405007ea1311f877cef",
+  "c04_director_repair_checkpoint_sha": "92819da02a633c8a11014c01a75252cce235df90",
+  "c04_director_repaired_head_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "window_contract_commit_sha": "888ede187b631211e2f32cad3d3088ef660883c8",
+  "execution_prompt_commit_sha": "71ef87c77b704bdbde7ae1ae835302e678705c9c",
+  "director_open_order_commit_sha": "82e055c6d54eacc31625f95f8485071fb70316d6",
+  "scope_ids": ["B1.1-C06"],
+  "canonical_topic_count": 8,
+  "locked_successor_scopes": ["B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10"],
+  "later_pipeline_stages": "GATED",
+  "next_action": "Author B1.1-C06 only under the locked execution prompt."
+}
