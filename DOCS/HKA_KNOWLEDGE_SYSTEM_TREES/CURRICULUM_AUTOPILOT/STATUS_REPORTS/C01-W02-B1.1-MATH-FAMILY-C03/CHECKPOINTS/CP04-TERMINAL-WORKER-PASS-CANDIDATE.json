@@ -1,0 +1,32 @@
+{
+  "checkpoint_id": "CP04-TERMINAL-WORKER-PASS-CANDIDATE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "branch": "hka-tree/c01-w02-math-c03",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
+  "pre_pass_checkpoint_id": "CP03-PRE-PASS-AUDIT",
+  "pre_pass_checkpoint_commit_sha": "6f1150fc9a7e74c9816b28693d13c790b50a2d0e",
+  "result_commit_sha": "728d48fcd0b0aec34469bb4195eb7b2284e6e7e7",
+  "handoff_commit_sha": "7ddba855d843c163d230e74bad06eed7225d86b6",
+  "counts": {
+    "canonical_topics": 9,
+    "nodes": 9,
+    "claims": 77,
+    "sources": 6,
+    "learning_objectives": 36,
+    "claim_to_learning_objective_closures": 36,
+    "cross_links": 14,
+    "sequence_intent_records": 9
+  },
+  "all_required_worker_artifacts_present": true,
+  "all_pre_pass_gates": "PASS",
+  "future_or_locked_scope_support_claims": 0,
+  "stage_boundary": "PASS",
+  "control_plane_mutated_by_worker": false,
+  "director_acceptance_required": true,
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "successor_status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "C04_and_later_scopes": "LOCKED",
+  "next_action": "C04 — GATED pending Director acceptance"
+}
