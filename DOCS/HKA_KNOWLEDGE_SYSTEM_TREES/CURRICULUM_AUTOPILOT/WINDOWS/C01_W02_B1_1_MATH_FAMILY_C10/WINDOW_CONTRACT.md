@@ -35,9 +35,11 @@ C09 is the continuity predecessor only; it is not silently added as a mandatory 
 
 ## 3. Active Director controls
 
-Read and obey all active dependency amendments, especially:
+Read and obey:
 
-`B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md`
+- `B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md`
+- `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md`
+- `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json`
 
 Mandatory risks:
 
@@ -51,7 +53,17 @@ Shared-node links allowed only as secondary:
 
 They do not transfer primary ownership.
 
-## 4. Academic authoring standard
+## 4. Foundational 13-year rule
+
+C10 is an applied-mathematics scope and must not become a university-only treatment.
+
+- D1–D4 remain age-independent academic depth; they are not grade labels.
+- Preserve school-accessible foundational meanings where they genuinely belong to C10: modeling from quantities/relationships, approximation/error, optimization as constrained choice, decision under uncertainty, simple financial growth/discount structures, and simulation as model-based experimentation.
+- Advanced theorems may extend these meanings but cannot replace the foundational concept chain.
+- Do **not** import missing arithmetic/algebra/geometry/statistics foundations from other owners into C10. Such gaps must be detected later by the B1.1 foundational audit and repaired at the true owner scope.
+- After C10 Director acceptance, `B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT` is mandatory before any B1.1-complete or B1.2 successor decision.
+
+## 5. Academic authoring standard
 
 For each of 10 nodes author complete knowledge with minimum redundancy:
 
@@ -65,7 +77,7 @@ For each of 10 nodes author complete knowledge with minimum redundancy:
 
 No target claim count exists. Correct coverage determines count.
 
-## 5. Non-negotiable ownership boundaries
+## 6. Non-negotiable ownership boundaries
 
 ### T01 — Mô hình toán
 
@@ -103,7 +115,7 @@ Own mathematical structures/formulations used in physics. Future B1.2 retains ph
 
 Own mathematical simulation methodology, approximation/sampling logic and validation/error reasoning. Future B1.5 retains software, HPC and systems implementation.
 
-## 6. Closure and prerequisite gates
+## 7. Closure and prerequisite gates
 
 - Every objective must be semantically supported by its listed Claim IDs, not merely have a closure row.
 - `future_or_locked_scope_claim_ids = 0` in every closure record.
@@ -111,7 +123,7 @@ Own mathematical simulation methodology, approximation/sampling logic and valida
 - Accepted prerequisite references must preserve their primary ownership.
 - Internal prerequisite graph must be acyclic.
 
-## 7. Stage lock
+## 8. Stage lock
 
 C10 is the final B1.1 authoring scope, but completion of C10 does **not** complete B1 or CURRICULUM globally.
 
@@ -125,7 +137,7 @@ Forbidden:
 - B1.2+ authoring
 - control-plane mutation by worker
 
-## 8. Terminal rule
+## 9. Terminal rule
 
 Worker may produce only:
 
