@@ -1,38 +1,50 @@
 # C01-W02-B1.1-MATH-FAMILY-C05 — Durable Status Report
 
-Status: `IN_AUDIT`
+Status: `WORKER_PASS_CANDIDATE_AUDITED`
 Stage: `CURRICULUM`
 Scope: `B1.1-C05 — Giải tích và biến đổi liên tục`
 Execution branch: `hka-tree/c01-w02-math-c05`
+Director acceptance: `PENDING`
 
-## Definitely finished
+## Completed durable state
 
-- Bootstrap/scope lock is durable at CP03.
-- Academic Block A T01–T05 is durable at CP04.
-- Complete academic closure T01–T10 is durable at CP05 commit `c2094a43ac7e8156778e3405b55478e094083b6c`.
-- The current C05 academic set has 10 nodes, 98 atomic claims, 4 stable edition/persistent-locator sources, 40 D1–D4 learning objectives, 40 claim-to-objective closure rows, 17 cross-links and 10 sequence-intent records.
-- All six mandatory internal ownership pairs are dispositioned: T01/T02, T03/T06, T04/T07, T05/T10, T07/T09 and T08/T10.
-- The CP04 N004-C010 claim-list discrepancy is repaired in the current NODES file.
-- C04 was not opened or authored; C04/C06/C07/C09/C10 appear only as locked non-support boundaries where needed.
+- Bootstrap/scope lock: CP03.
+- Substantive academic Block A T01–T05: CP04.
+- Complete academic closure T01–T10: CP05 commit `c2094a43ac7e8156778e3405b55478e094083b6c`.
+- Committed-state 100% pre-PASS audit: CP06 commit `021770b1e06f2952cb49fa7488b599c1735a722f`.
+- Worker candidate result: `RESULT.json` commit `e4d5d0db535e1c3861ed2cf41b13a912070bfcf6`.
+- Director handoff: `HANDOFF.md` commit `892a3a60d5acb4091b00d67e325004d6d2683761`.
 
-## Current phase
+## Audited academic counts
 
-Committed-state audit only. Do not treat authored counts as accepted until the seven academic files are read back from GitHub and every ID/reference, source, closure, ownership, prerequisite and stage-boundary check passes.
+- canonical topics: 10/10;
+- nodes: 10;
+- atomic claims: 98;
+- immutable/persistent-locator sources: 4;
+- D1–D4 learning objectives: 40, exactly four per node;
+- Claim-to-Learning-Objective closure rows: 40/40 `SUPPORTED` = 100%;
+- future/locked-scope support Claim IDs: 0;
+- cross-links/ownership dispositions: 17;
+- curriculum-sequence records: 10.
 
-## Still required before worker candidate PASS
+All seven academic JSONL files were read back from GitHub after commit. Source/version and deterministic source-ID checks passed 4/4. ID/referential integrity, semantic duplicate/ownership control, prerequisite/sequence acyclicity, and stage-boundary audits all passed.
 
-1. Read all seven academic JSONL files back from the branch.
-2. Verify exact T01–T10 coverage, JSONL/ID uniqueness and referential integrity.
-3. Verify deterministic source IDs and source/version provenance.
-4. Verify 40 objectives = exactly D1–D4 per node and 40/40 supported closure rows with zero locked-scope support claims.
-5. Verify all six internal overlap dispositions and predecessor/locked-scope ownership boundaries.
-6. Verify sequence ranks/prerequisites are acyclic and do not depend on locked scopes.
-7. Compare branch changes with accepted C03 to prove there is no C04 authoring or post-CURRICULUM artifact.
-8. Commit pre-PASS audit checkpoint, RESULT, HANDOFF and terminal worker status, then read terminal state back and verify branch-head SHA.
+## Required internal overlap dispositions
 
-## Locked decisions
+All six required pairs are durably resolved: T01/T02, T03/T06, T04/T07, T05/T10, T07/T09 and T08/T10.
 
-- Same branch only; no replacement branch.
-- C01/C02/C03 remain accepted prerequisites/references and are not re-authored.
-- C04 remains locked until Director accepts a C05 worker PASS candidate.
-- No Lesson Registry, prompt, image, delivery or later-stage artifact is authorized.
+## Stage and ownership boundary
+
+- Accepted C01/C02/C03 are referenced but not re-authored.
+- Branch remains behind accepted C03 by zero commits and uses accepted C03 as merge base.
+- C04 was not opened or authored.
+- C04/C06/C07/C09/C10 provide zero support Claim IDs to C05.
+- Branch diff contains no Lesson Registry, prompts, images or any artifact after `CURRICULUM`.
+
+## Successor gate
+
+C05 is a worker PASS candidate only. The next nominal window `C01-W02-B1.1-MATH-FAMILY-C04` remains `GATED_PENDING_DIRECTOR_ACCEPTANCE`; it must not be opened until control plane records `DIRECTOR_ACCEPTED_PASS` for C05.
+
+## Terminalization remaining
+
+Create the terminal worker checkpoint, update `STATUS.json` to the worker PASS candidate state, then read `RESULT.json`, `HANDOFF.md`, terminal checkpoint and `STATUS.json` back from GitHub and verify the branch-head SHA. No further academic authoring is required.
