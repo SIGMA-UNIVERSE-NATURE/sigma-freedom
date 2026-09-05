@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "backup_window_id": "DIRECTOR-BACKUP-S01",
   "role": "BACKUP_SENTINEL",
   "branch": "hka-tree/director-backup-sentinel",
@@ -9,6 +9,8 @@
   "open_order_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/DIRECTOR_BACKUP_S01/DIRECTOR_OPEN_ORDER.md",
   "status_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-BACKUP-S01/STATUS.json",
   "continuity_snapshot_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
+  "foundational_13_year_gate_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
+  "foundational_13_year_amendment_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "protocol_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_CONTINUITY_PROTOCOL.md",
   "baseline_sentinel_status": "TREE_ALIGNMENT_PASS",
   "baseline_active_scope": "B1.1-C06",
@@ -23,6 +25,7 @@
     "before_new_window_open",
     "after_worker_candidate_received",
     "on_director_context_loss",
-    "on_any_state_registry_snapshot_mismatch"
+    "on_any_state_registry_snapshot_mismatch",
+    "before_subbranch_completion_or_successor_decision_verify_foundational_13_year_gate"
   ]
 }
