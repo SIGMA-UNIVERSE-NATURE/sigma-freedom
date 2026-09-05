@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-SUBSTANTIVE-AUTHORING",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c07",
+  "accepted_predecessor_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "design_counts": {
+    "topics": 10,
+    "nodes": 10,
+    "claims": 158,
+    "sources": 7,
+    "learning_objectives": 40,
+    "closures": 40,
+    "cross_links": 17,
+    "sequence_intents": 10
+  },
+  "academic_design": {
+    "canonical_topics": "10_OF_10",
+    "measure_integration_reuse": "C05-N007 prerequisite/reference only; no generic measure-theory reauthoring",
+    "dag_graph_reuse": "C08-N004 C014-C016 prerequisite/reference only; no generic graph/DAG reauthoring",
+    "R06": "explicit ownership boundaries to future B1.5 data/AI computational scopes",
+    "R13": "explicit AI secondary cross-link; B1.5-C10 remains primary AI computation owner",
+    "causal_identification_gate": "association/regression/correlation/prediction never sufficient; causal claims state randomization or identification assumptions",
+    "theorem_assumption_gate": "LLN/CLT, Markov convergence, Cramer-Rao, MLE asymptotics, Wilks, randomization and causal identification claims state scope assumptions"
+  },
+  "precommit_validations": {
+    "claim_ids_unique": true,
+    "source_ids_resolve": true,
+    "source_id_sha256_normalization": "PASS_7_OF_7",
+    "learning_objectives": 40,
+    "closure_rows": 40,
+    "closure_claim_ids_resolve": true,
+    "future_or_locked_scope_claim_ids": 0,
+    "support_claims_current_C07_only": true,
+    "internal_prerequisite_dag": "PASS_ACYCLIC"
+  },
+  "locked_boundaries": [
+    "B1.1-C09",
+    "B1.1-C10",
+    "B1.5+ computational/application scopes",
+    "B2+ domain sciences"
+  ],
+  "post_curriculum_artifacts_created": false,
+  "next_action": "Commit substantive C07 curriculum payload, then read all committed claims/LOs/closure rows back and run semantic/source/duplicate/prerequisite/stage audit."
+}
