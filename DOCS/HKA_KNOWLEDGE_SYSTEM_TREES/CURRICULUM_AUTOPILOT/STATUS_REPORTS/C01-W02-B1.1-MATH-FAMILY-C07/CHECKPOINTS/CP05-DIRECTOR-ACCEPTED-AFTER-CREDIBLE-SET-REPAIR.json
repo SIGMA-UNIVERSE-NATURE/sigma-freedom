@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP05-DIRECTOR-ACCEPTED-AFTER-CREDIBLE-SET-REPAIR",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C07",
+  "stage": "CURRICULUM",
+  "decision": "DIRECTOR_ACCEPTED_PASS_AFTER_ONE_SEMANTIC_REPAIR",
+  "worker_candidate_commit_sha": "fa7c11c2df42490df099dd07c0c7e0f46949013e",
+  "director_claim_amendment_commit_sha": "deb2740192eecdfe21d984ecddbc2073c70e8ae2",
+  "director_audit": {
+    "canonical_topics": "10/10",
+    "claims_independently_read": "158/158",
+    "sources_verified": "7/7",
+    "source_id_hashes": "PASS_7_OF_7",
+    "learning_objectives_independently_read": "40/40",
+    "semantic_claim_to_learning_objective_closure": "40/40 PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "C05_measure_reuse": "PASS_REFERENCE_ONLY",
+    "C08_DAG_reuse": "PASS_REFERENCE_ONLY",
+    "R06": "PASS",
+    "R13": "PASS_SECONDARY_CROSS_LINK_ONLY",
+    "prerequisite_and_sequence": "PASS_ACYCLIC",
+    "stage_boundary": "PASS",
+    "academic_repairs": ["HKA-B1-1-C07-N008-C005"],
+    "blocking_issues_after_repair": 0
+  },
+  "repair_note": "Credible-set claim was tightened so posterior mass may be >=1-alpha when a discrete posterior does not permit exact non-randomized mass; exact equality remains valid when construction permits.",
+  "successor_gate": "B1.1-C09 may be opened only by Director after control-plane and Sentinel pre-open alignment.",
+  "updated_at": "2026-09-05T16:33:00+07:00"
+}
