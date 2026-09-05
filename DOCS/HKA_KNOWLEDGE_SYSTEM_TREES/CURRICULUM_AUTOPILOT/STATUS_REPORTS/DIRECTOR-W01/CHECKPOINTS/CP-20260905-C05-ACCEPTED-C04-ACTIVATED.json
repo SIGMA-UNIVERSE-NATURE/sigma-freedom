@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260905-C05-ACCEPTED-C04-ACTIVATED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "accepted_scope": "B1.1-C05",
+  "accepted_window": "C01-W02-B1.1-MATH-FAMILY-C05",
+  "accepted_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "worker_terminal_checkpoint_sha": "19538a8d6bfbfa18914f1bf4710e3144ac0304f1",
+  "worker_reported_noncanonical_sha": "a57f53b883075edb825f80338b8c84ed2c22b1cc",
+  "director_audit": {
+    "claims_read": "98/98",
+    "sources_verified": "4/4",
+    "source_id_determinism": "PASS_4_OF_4",
+    "learning_objectives": 40,
+    "closure": "40/40 PASS",
+    "future_or_locked_support_claim_ids": 0,
+    "mandatory_internal_overlap_dispositions": "PASS_6_OF_6",
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_sequence": "PASS_ACYCLIC",
+    "stage_boundary": "PASS",
+    "blocking_issues": 0
+  },
+  "director_actions": {
+    "terminal_status_sync_commit": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+    "C04_branch": "hka-tree/c01-w02-math-c04",
+    "C04_contract_commit": "c08a184cc3fd74a0cb9a1bdd0e5d0a26ff0722dc",
+    "C04_prompt_commit": "55bc74feda9a7773c674373c0518000ac3b51b76",
+    "C04_open_order_commit": "28a88aedb74bcb9c27841edf8c8201e8caddc3f2",
+    "C04_bootstrap_checkpoint_commit": "bc4ac5d54105136b64f629c4fa1284b4756c696b",
+    "C04_status_commit": "33852588b9b0f0da0476ce20bcc9c3b1f43c971c",
+    "C04_report_commit": "100e1b21e195a0983368b0c968ce5dfbe093731b",
+    "control_plane_state_commit": "6e0dfbdb8bb7b64cf37b2d138c67e21a2ff3f299",
+    "window_registry_commit": "fb6975501ad95cc6605b5bb071ac1ba9da4d083d"
+  },
+  "dependency_amendment_1": "SATISFIED",
+  "active_successor": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "successor_status": "READY",
+  "later_stages": "GATED",
+  "next_action": "Run only C04 from its Director open order and execution prompt."
+}
