@@ -1,51 +1,44 @@
 {
-  "schema_version": "1.0",
-  "window_id": "C01-W02-B1.1-MATH-FAMILY-C04",
-  "role": "ACADEMIC_WINDOW",
-  "stage": "CURRICULUM",
-  "status": "READY",
-  "execution_branch": "hka-tree/c01-w02-math-c04",
-  "input_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
-  "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
-  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
-  "accepted_C02_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
-  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
-  "last_checkpoint_commit_sha": "bc4ac5d54105136b64f629c4fa1284b4756c696b",
-  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
-  "scope_ids": ["B1.1-C04"],
-  "completed_work": [
-    "Director independently accepted C05 after reading all 98 claims, verifying 4 source IDs, auditing 40/40 closure, ownership, prerequisite sequence and stage boundary.",
-    "Director synchronized the worker's omitted terminal STATUS on C05 at 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16.",
-    "Created C04 execution branch from accepted C05.",
-    "Installed C04 Window Contract, GPT Execution Prompt and Director Open Order.",
-    "Created CP01-BOOTSTRAP-ACTIVATED with dependency-amendment constraints."
+  "schema_version":"1.0",
+  "window_id":"C01-W02-B1.1-MATH-FAMILY-C04",
+  "role":"ACADEMIC_WINDOW",
+  "stage":"CURRICULUM",
+  "status":"IN_PROGRESS",
+  "execution_branch":"hka-tree/c01-w02-math-c04",
+  "input_commit_sha":"9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C05_commit_sha":"9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C03_commit_sha":"7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C02_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "accepted_C01_commit_sha":"5659288da80a239e2ded408da87348670c1410c2",
+  "last_checkpoint_commit_sha":"ed099121b50944290563c0300b0cebe0351219ad",
+  "last_checkpoint_id":"CP02-SUBSTANTIVE-ACADEMIC-OWNERSHIP-CLOSURE",
+  "scope_ids":["B1.1-C04"],
+  "artifact_counts":{"nodes":9,"claims":83,"sources":6,"learning_objectives":36,"claim_to_learning_objective_closures":36,"cross_links":18,"sequence_intent_records":9},
+  "completed_work":[
+    "Bootstrap gate passed from curriculum-master durable state: C04 active and READY.",
+    "Loaded Director-accepted C01/C02/C03/C05 and preserved accepted ownership/IDs.",
+    "Authored all nine canonical C04 topics as 9 nodes with 83 atomic sourced claims.",
+    "Authored 36 age-independent D1-D4 learning objectives and 36 explicit closure rows.",
+    "Recorded 18 semantic duplicate/ownership/boundary cross-links and 9 prerequisite-aware sequence records.",
+    "T08 uses accepted C05 calculus and C03 linear algebra only; locked C09 supplies zero support claims.",
+    "T09 consumes accepted C03 ring/commutative-algebra primitives without duplicating their primary ownership; locked C09 supplies zero support claims.",
+    "Created CP02 substantive academic/ownership closure checkpoint."
   ],
-  "remaining_work": [
-    "Author complete B1.1-C04 curriculum records for all nine canonical geometry/measurement topics.",
-    "Reuse accepted C01/C02/C03/C05 primitives without duplicate learning meaning.",
-    "Resolve all mandatory geometry, measurement, transformation, differential-geometry and algebraic-geometry ownership boundaries.",
-    "Keep C09 topology/manifold foundations locked and non-support; keep B1.2 physical metrology as boundary only.",
-    "Create 100% Claim-to-Learning-Objective closure with zero locked/future support Claim IDs.",
-    "Run source/version, semantic duplicate/ownership, prerequisite/sequence and stage-boundary audits from committed files.",
-    "Create substantive academic-closure and pre-PASS checkpoints before any worker candidate PASS."
+  "remaining_work":[
+    "Read every committed C04 academic artifact back from GitHub durable state.",
+    "Run source identity/hash, claim/ID, 36/36 closure, duplicate/ownership, prerequisite DAG and stage-boundary audits from committed files.",
+    "Write RESULT.json and HANDOFF.md only if all committed-file audits pass.",
+    "Create pre-PASS and terminal worker-candidate checkpoints; do not unlock or execute C06."
   ],
-  "blocking_issues": [],
-  "decisions_locked": [
+  "blocking_issues":[],
+  "decisions_locked":[
     "Scope is B1.1-C04 only.",
-    "Accepted predecessor is C05 terminal commit 9c743ab4d5b5ad2ed18000af6a3b80bdace81e16.",
-    "Dependency Amendment 1 has been satisfied: accepted C05 calculus primitives are now available to C04-T08.",
-    "Generic topology/manifold foundations in B1.1-C09 remain locked and cannot supply support claims.",
-    "No post-CURRICULUM stage artifact is allowed."
+    "T08 is local calculus-based differential geometry using accepted C05/C03; C09 topology/manifold claims are boundary-only.",
+    "T09 owns geometric algebraic-set/variety meanings while C03 retains ring/ideal/quotient/prime/Spec/Zariski primary ownership.",
+    "C06/C07/C08/C09/C10 and all post-CURRICULUM stages remain locked."
   ],
-  "do_not_repeat": [
-    "Do not re-author accepted C01/C02/C03/C05.",
-    "Do not renumber accepted IDs.",
-    "Do not use C09 future topology/manifold claims as support for differential geometry.",
-    "Do not turn geometric measurement into B1.2 physical metrology.",
-    "Do not mutate curriculum-master from this worker.",
-    "Do not mark PASS from counts/schema alone without academic closure."
-  ],
-  "next_action": "Execute the locked C04 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C04 only.",
-  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C04",
-  "updated_at": "2026-09-05T09:30:00+07:00"
+  "next_action":"Run committed-file pre-PASS audit for C04 only.",
+  "successor_window":"C01-W02-B1.1-MATH-FAMILY-C06",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at":"2026-09-05T10:18:00+07:00"
 }
