@@ -117,6 +117,22 @@ BYTECODE_SHA256=9afed5ab5bfc6652e9066c1420d2ce69fa9ee254ea55516a3ae5959fef419f10
 PERSISTENT_STATE=YES
 ADMISSION=PASS_IN_EXACT_TESTED_SCOPE
 
+## Source-ready / not admitted
+
+### DNA-12 Tool Intelligence
+CANON_REFERENCE_BLOB_SHA1=eda8a57900cd9ee88970120bc8b89eec5fd4aad3
+SOURCE_SHA256=336152fca9e1112e9646249b5109c54835d52d9d0b5948d6bbf6703bf328920c
+RUNNER_SHA256=1ccd798333134e1b2e3486dd33ef6a2ffa9d44bf563446484bf790a3a73fea1a
+BUNDLE_SHA256=a010a4671c9f110f1780f43c1b8674243dddadbcd3762f734463e306beaa873a
+DNA12_COMPILE=NOT_RUN
+DNA12_VM=NOT_RUN
+DNA12_ADMISSION=NOT_RUN
+PERSISTENT_STATE=NA
+HOST_LEARNING=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+PYTHON_USED_BY_DEVICE_RUNNER=NO
+CHECKPOINT=SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA12_NATIVE_ADMISSION_SOURCE_READY.md
+
 ## Historical failures retained as evidence
 
 ### DNA-08 V1 compile failure
@@ -127,7 +143,7 @@ Dependency preflight through DNA-09 passed. `COMPILE_RC=4` with `top-level item 
 
 ## Current dependency frontier
 
-NEXT_TARGET=DNA-12 Tool Intelligence
+NEXT_TARGET=RUN DNA-12 Tool Intelligence
 CANON_REFERENCE_BLOB_SHA1=eda8a57900cd9ee88970120bc8b89eec5fd4aad3
 
 Reason for selection: DNA-12 directly consumes DNA-11 Knowledge Graph and is a known dependency of later DNA-26 Observability. This is dependency-first selection, not numeric-order selection.
