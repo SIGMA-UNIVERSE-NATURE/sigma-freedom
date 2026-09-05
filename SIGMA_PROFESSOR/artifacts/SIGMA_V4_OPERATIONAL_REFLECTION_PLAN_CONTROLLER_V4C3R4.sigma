@@ -1,0 +1,312 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.OPERATIONAL.REFLECTION.PLAN.CONTROLLER][VERSION=4C3R4]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF unary_make(count) {
+    ⚡ OUT:
+        "";
+    ⚡ I:
+        0;
+    WHILE (I < count) {
+        ⚡ OUT:
+            OUT + "|";
+        ⚡ I:
+            I + 1;
+    }
+    RETURN OUT;
+}
+
+DEF count_suffix(dir_path, suffix) {
+    ⚡ ENTRIES:
+        H("listdir", dir_path, NULL, NULL);
+    ⚡ TOTAL:
+        H("list_len", ENTRIES, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ COUNT:
+        0;
+    WHILE (I < TOTAL) {
+        ⚡ NAME:
+            H("list_get", ENTRIES, I, NULL);
+        ⚡ MATCH:
+            H("str_ends", NAME, suffix, NULL);
+        IF (MATCH) {
+            ⚡ COUNT:
+                COUNT + 1;
+        }
+        ⚡ I:
+            I + 1;
+    }
+    RETURN COUNT;
+}
+
+⟡(Σ.V4_OPERATIONAL_REFLECTION_PLAN_CONTROLLER_4C3R4) {
+
+    ⚡ RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", NULL, NULL);
+    ⚡ STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", NULL, NULL);
+    ⚡ C2_PHASE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", NULL, NULL);
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+    ⚡ C2_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATUS.memory", NULL, NULL);
+
+    ⚡ B4_CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+    ⚡ B4_TOKEN_CURSOR:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", NULL, NULL);
+    ⚡ B4_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", NULL, NULL);
+    ⚡ B4_BEST_WIDTH:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", NULL, NULL);
+    ⚡ B4_BEST_SUPPORT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", NULL, NULL);
+
+    # State-schema compatibility with the already persistent C3 shadow namespace.
+    ⚡ INITIALIZED:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_INITIALIZED.memory", NULL, NULL);
+    ⚡ LAST_SEEN_KEY:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_LAST_SEEN_PROGRESS_KEY.memory", NULL, NULL);
+    ⚡ PROGRESS_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PROGRESS.memory", NULL, NULL);
+    ⚡ CYCLE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_CYCLE.memory", NULL, NULL);
+    ⚡ BUDGET_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PROGRESS_BUDGET.memory", NULL, NULL);
+    ⚡ PAUSE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PAUSE_SECONDS.memory", NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        1;
+    IF (RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(PROGRESS_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(CYCLE_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(BUDGET_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(PAUSE_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (BUDGET_U == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ CURRENT_KEY:
+        B4_CONTEXT_ID + "@" + B4_TOKEN_CURSOR;
+
+    ⚡ STATUS:
+        "LEARN_PROGRESS_ACCUMULATING";
+
+    IF (INPUT_VALID == 0) {
+        ⚡ STATUS:
+            "REFUSE_INVALID_REFLECTION_STATE";
+    }
+
+    IF (INPUT_VALID) {
+        IF (INITIALIZED == "") {
+            ⚡ INIT_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_INITIALIZED.memory", "YES", NULL);
+            ⚡ INIT_KEY_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_LAST_SEEN_PROGRESS_KEY.memory", CURRENT_KEY, NULL);
+            ⚡ LAST_SEEN_KEY:
+                CURRENT_KEY;
+            ⚡ STATUS:
+                "BASELINE_ESTABLISHED";
+        }
+
+        IF (INITIALIZED != "") {
+            ⚡ LEARNER_COMMIT_EVENT:
+                0;
+            IF (B4_STATUS == "TOKEN_WINDOW_PROGRESS") {
+                ⚡ LEARNER_COMMIT_EVENT:
+                    1;
+            }
+            IF (B4_STATUS == "CONTEXT_COMPLETE") {
+                ⚡ LEARNER_COMMIT_EVENT:
+                    1;
+            }
+
+            IF (LEARNER_COMMIT_EVENT) {
+                IF (CURRENT_KEY != LAST_SEEN_KEY) {
+                    ⚡ PROGRESS_U:
+                        PROGRESS_U + "|";
+                    ⚡ WRITE_PROGRESS_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C3R1_PROGRESS.memory", PROGRESS_U, NULL);
+                    ⚡ WRITE_KEY_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C3R1_LAST_SEEN_PROGRESS_KEY.memory", CURRENT_KEY, NULL);
+                }
+            }
+        }
+
+        ⚡ PROGRESS_COUNT:
+            H("str_len", PROGRESS_U, NULL, NULL);
+        ⚡ BUDGET_COUNT:
+            H("str_len", BUDGET_U, NULL, NULL);
+
+        IF (BUDGET_COUNT <= PROGRESS_COUNT) {
+
+            ⚡ DISCOVERED_DOCS:
+                count_suffix(RAW_DIR, ".document");
+            ⚡ PROFILE_DOCS:
+                count_suffix(STATE_DIR, ".profile");
+            ⚡ COMPLETE_DOCS:
+                count_suffix(STATE_DIR, ".complete");
+            ⚡ HOLD_DOCS:
+                count_suffix(STATE_DIR, ".hold");
+            ⚡ EVIDENCE_DOCS:
+                count_suffix(STATE_DIR, ".evidence");
+
+            ⚡ DISCOVERED_U:
+                unary_make(DISCOVERED_DOCS);
+            ⚡ PROFILE_U:
+                unary_make(PROFILE_DOCS);
+            ⚡ COMPLETE_U:
+                unary_make(COMPLETE_DOCS);
+            ⚡ HOLD_U:
+                unary_make(HOLD_DOCS);
+            ⚡ EVIDENCE_U:
+                unary_make(EVIDENCE_DOCS);
+
+            ⚡ NEXT_PLAN:
+                "PLAN_CONTINUE_NATIVE_CORPUS_EVALUATION";
+
+            IF (0 < HOLD_DOCS) {
+                ⚡ NEXT_PLAN:
+                    "PLAN_NATIVE_HOLD_RECOVERY_REQUIRED";
+            }
+
+            IF (HOLD_DOCS == 0) {
+                IF (C2_PHASE == "PROFILE") {
+                    ⚡ NEXT_PLAN:
+                        "PLAN_CONTINUE_NATIVE_PROFILE";
+                }
+                IF (C2_PHASE == "PRIORITY") {
+                    ⚡ NEXT_PLAN:
+                        "PLAN_CONTINUE_NATIVE_GLOBAL_PRIORITY";
+                }
+                IF (C2_PHASE == "LEARN") {
+                    IF (ACTIVE_DOC == "") {
+                        ⚡ NEXT_PLAN:
+                            "PLAN_REEVALUATE_CORPUS";
+                    }
+                    IF (ACTIVE_DOC != "") {
+                        ⚡ NEXT_PLAN:
+                            "PLAN_RESUME_ACTIVE_DOCUMENT";
+                    }
+                }
+            }
+
+            ⚡ NEXT_CYCLE_U:
+                CYCLE_U + "|";
+
+            ⚡ REPORT_TEXT:
+                "CYCLE_U=" + NEXT_CYCLE_U
+                + " || PROGRESS_U=" + PROGRESS_U
+                + " || DISCOVERED_DOCUMENTS_U=" + DISCOVERED_U
+                + " || PROFILE_DOCUMENTS_U=" + PROFILE_U
+                + " || COMPLETE_DOCUMENTS_U=" + COMPLETE_U
+                + " || HOLD_DOCUMENTS_U=" + HOLD_U
+                + " || EVIDENCE_DOCUMENTS_U=" + EVIDENCE_U
+                + " || C2_PHASE=" + C2_PHASE
+                + " || ACTIVE_DOCUMENT=" + ACTIVE_DOC
+                + " || C2_STATUS=" + C2_STATUS
+                + " || B4_STATUS=" + B4_STATUS
+                + " || BEST_WIDTH_U=" + B4_BEST_WIDTH
+                + " || BEST_SUPPORT_U=" + B4_BEST_SUPPORT
+                + " || NEXT_PLAN=" + NEXT_PLAN
+                + " || COMMIT=YES";
+
+            ⚡ REPORT_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_LAST_REPORT.memory", REPORT_TEXT, NULL);
+            ⚡ PLAN_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_PLAN.memory", NEXT_PLAN, NULL);
+            ⚡ CYCLE_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_CYCLE.memory", NEXT_CYCLE_U, NULL);
+
+            ⚡ STATUS:
+                "REPORT_AND_PLAN_COMMITTED_BEFORE_PAUSE";
+            ⚡ STATUS_PREPAUSE_RC:
+                H("write_text", ".sigma_exec/SIGMA_V4C3R1_STATUS.memory", STATUS, NULL);
+
+            ⚡ PAUSE_SECONDS:
+                H("str_len", PAUSE_U, NULL, NULL);
+            ⚡ START_TIME:
+                H("time_now", NULL, NULL, NULL);
+            ⚡ TARGET_TIME:
+                START_TIME + PAUSE_SECONDS;
+
+            ⚡ SLEEP_RC:
+                H("time_sleep", PAUSE_SECONDS, NULL, NULL);
+
+            ⚡ END_TIME:
+                H("time_now", NULL, NULL, NULL);
+
+            IF (TARGET_TIME <= END_TIME) {
+                ⚡ RESET_PROGRESS_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C3R1_PROGRESS.memory", "", NULL);
+                ⚡ STATUS:
+                    "OBSERVE_PAUSE_COMPLETE_RESUME_LEARN";
+            }
+
+            IF (END_TIME < TARGET_TIME) {
+                ⚡ STATUS:
+                    "REFUSE_OBSERVE_PAUSE_PROGRESS_INSUFFICIENT";
+            }
+
+            ⚡ print("SIGMA_V4C3R4_NATIVE_OPERATIONAL_REFLECTION_PLAN");
+            ⚡ print("CYCLE_INDEX", H("str_len", NEXT_CYCLE_U, NULL, NULL));
+            ⚡ print("PROGRESS_COMMITS_THIS_CYCLE", PROGRESS_COUNT);
+            ⚡ print("DISCOVERED_DOCUMENT_COUNT", DISCOVERED_DOCS);
+            ⚡ print("PROFILE_DOCUMENT_COUNT", PROFILE_DOCS);
+            ⚡ print("COMPLETE_DOCUMENT_COUNT", COMPLETE_DOCS);
+            ⚡ print("HOLD_DOCUMENT_COUNT", HOLD_DOCS);
+            ⚡ print("EVIDENCE_DOCUMENT_COUNT", EVIDENCE_DOCS);
+            ⚡ print("C2_PHASE", C2_PHASE);
+            ⚡ print("ACTIVE_DOCUMENT", ACTIVE_DOC);
+            ⚡ print("B4_STATUS", B4_STATUS);
+            ⚡ print("BEST_WIDTH_UNARY", B4_BEST_WIDTH);
+            ⚡ print("BEST_SUPPORT_UNARY", B4_BEST_SUPPORT);
+            ⚡ print("NEXT_NATIVE_PLAN", NEXT_PLAN);
+            ⚡ print("REPORT_COMMIT", "YES");
+            ⚡ print("PAUSE_SECONDS", PAUSE_SECONDS);
+            ⚡ print("HOST_REFLECTION", "NO");
+            ⚡ print("HOST_SELF_ASSESSMENT", "NO");
+            ⚡ print("HOST_NEXT_WORK_SELECTION", "NO");
+            ⚡ print("HOST_SLEEP", "NO");
+        }
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C3R1_STATUS.memory", STATUS, NULL);
+
+    ⚡ print("V4C3R4_STATUS", STATUS);
+}
