@@ -13,6 +13,21 @@ Native policy:
 
 This module does not perform semantic ranking.
 
+Observed pre-runtime admission failure:
+- `SIGMAC_SHA256` matched locked compiler;
+- `VM_SHA256` matched locked VM;
+- `SOURCE_SHA256` was empty;
+- `HOLD=LOCKED_IDENTITY_MISMATCH`;
+- root cause: the first runner revision hashed `$BRAIN/.sigma_exec/SIGMA_V4_PRODUCTIVITY_WORK_ARBITER_V4A1.sigma` before mechanically installing the pinned repository artifact there.
+
+Correction:
+- hash/equality-gate the pinned repo artifact first;
+- copy exact source bytes mechanically into `.sigma_exec` only after equality passes;
+- hash/equality-gate the installed copy;
+- only then invoke locked `sigmac` and locked VM.
+
+This failure is harness/setup evidence only. It does not prove or disprove V4-A runtime capability because the VM was not reached.
+
 Claim after PASS:
 `NATIVE_PRODUCTIVITY_WORK_ARBITRATION=PROVEN_IN_BOUNDED_TESTED_SCOPE`
 
@@ -28,10 +43,16 @@ V4-B segmented received-context learner so fetched material can resume across bo
 Source SHA256:
 12c32f07d39bacedf8dd1a2371f9b33801106d256d6166fed03fbaa224416ed2
 
-Runner SHA256:
-58387b5843f8b58b3321564a4e9356478eba19f1ae9553baa4c33bf2c8aefcbb
+Corrected runner SHA256:
+9cd9a4e735c49f8124b1d78ced2ab2c8d689421e9a5ce6b5b57d9329fb494626
 
-Static:
+Corrected runner Git blob:
+6afbc9ed91a25f5ee2a27353286abbd23d20c8d1
+
+Corrected runner commit:
+e24210e60cb3a6721dfcf80a9a14cfe8a868403e
+
+Static after correction:
 H_CALL_ARITY_AUDIT=PASS
 NATIVE_NOT_EQUAL_DEPENDENCY=NONE
 STR_STARTS_DEPENDENCY=NONE
