@@ -18,9 +18,10 @@ Before authoring, read:
 2. `DIRECTOR_OPEN_ORDER.md`
 3. current `HKA_CURRICULUM_STATE.json`
 4. current `WINDOW_REGISTRY.json`
-5. all active Director dependency amendments, especially Amendment 5
-6. accepted predecessor/foundation artifacts required by the contract
-7. B1 duplicate-control/risk register and ID/record standard
+5. all active Director amendments, including Amendment 5 and `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md`
+6. `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json`
+7. accepted predecessor/foundation artifacts required by the contract
+8. B1 duplicate-control/risk register and ID/record standard
 
 If durable state conflicts with this prompt, stop with `REVIEW_REQUIRED` unless a higher-authority active amendment resolves it.
 
@@ -52,6 +53,24 @@ For every topic:
 - create curriculum sequence intent.
 
 Use complete knowledge, minimum redundancy. Do not chase a claim-count target.
+
+## Foundational 13-year priority
+
+HKA must not become a university-heavy program that skips the small prerequisite understandings accumulated across the learner's full 13-year general-education journey.
+
+For C10 specifically:
+
+- D1–D4 remain age-independent academic depth and are not school-grade labels;
+- include the foundational C10 meanings before their advanced formalizations: model quantities/relationships/assumptions, approximation and error, constrained choice/optimization, decision under uncertainty, basic financial growth/discount structures where mathematically appropriate, and simulation as model-based experimentation;
+- advanced university/research results may extend these ideas but must not replace their foundational concept chain;
+- do not repair missing C02/C03/C04/C05/C07 foundations inside C10 merely to satisfy this rule. Preserve ownership and leave cross-scope gaps for the Director's post-C10 B1.1 foundational audit;
+- worker PASS does not mean B1.1 foundational coverage PASS.
+
+After Director acceptance of C10, the mandatory next governance step is:
+
+`B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT`
+
+before any B1.1 completion or B1.2 successor decision.
 
 ## Mandatory prerequisite reuse
 
@@ -137,6 +156,7 @@ Before declaring worker PASS candidate, re-read committed GitHub files and verif
 - `future_or_locked_scope_claim_ids = 0`;
 - R06/R13 PASS;
 - C07/C08/C06/C05/C03 ownership preserved;
+- foundational meanings within C10 are not skipped in favor of advanced-only treatments;
 - prerequisite graph acyclic;
 - branch diff contains C10 CURRICULUM/window/status work only;
 - no stage after CURRICULUM appears.
@@ -149,9 +169,9 @@ If all gates pass:
 
 `STATUS: PASS — WORKER_PASS_CANDIDATE`
 
-`NEXT_ACTION: B1.1 INTEGRATION / SUCCESSOR DECISION — GATED pending Director acceptance of C10`
+`NEXT_ACTION: B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION — GATED pending Director acceptance of C10`
 
-Do **not** open B1.2, do not claim B1 complete, and do not create ACADEMIC_LOCKED or any later-stage artifact.
+Do **not** open B1.2, do not claim B1 or B1.1 complete, and do not create ACADEMIC_LOCKED or any later-stage artifact.
 
 If any theorem/model/source/ownership/closure uncertainty remains:
 
