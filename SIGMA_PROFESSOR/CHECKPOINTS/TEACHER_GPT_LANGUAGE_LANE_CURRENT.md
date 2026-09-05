@@ -177,7 +177,7 @@ Scoring, candidate competition, ambiguity policy, persistence policy, oracle PAS
 
 Claim scope: native bounded two-candidate structural antecedent competition with persistent ambiguity and conservative preference revision. This does not prove real-world entity identity, pronoun semantics, general coreference resolution, discourse semantics, semantic understanding, Unicode normalization, or production readiness.
 
-## CURRENT FRONTIER — LANG-01G SELECTED / NATIVE IMPLEMENTATION PENDING
+## CURRENT FRONTIER — LANG-01G SELECTED / SOURCE READY / ADMISSION NOT RUN
 
 Capability:
 
@@ -229,14 +229,35 @@ Planned admission requirements before any PASS claim:
 - step-limit/boundedness gate;
 - production state unchanged.
 
-Implementation status at this checkpoint update:
+Source-ready implementation record:
 
-- `NATIVE_SOURCE_PATH=NOT_YET_WRITTEN`
-- `SOURCE_SHA256=UNKNOWN`
+- `NATIVE_SOURCE_PATH=SIGMA_PROFESSOR/artifacts/SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_V1.sigma`
+- `SOURCE_SHA256=fc7097bc3411b36af409a7dcc6d7446e525793806dc73f8cb3afedfc4a304f3b`
+- `SOURCE_COMMIT=1d463b6a59a521886a8316d9e48063018e645f2e`
+- `RUNNER_PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_LANG_01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_PREFLIGHT.sh`
+- `RUNNER_SHA256=b4def21af202b54a409b0fe9959304ad2252c4ea307b99c4e7dfd12c781f4a9e`
+- `RUNNER_COMMIT=46453a2fdfd83612aea4a9320ca557e3f94e6455`
+- `PLANNED_VM_INVOCATIONS=20`
+- `EVIDENCE_CAPACITY=8`
+- `RUNNER_STATIC_SHELL_SYNTAX=PASS`
+- `FORBIDDEN_FUTURE_UTTERANCE_PRESENT_IN_NATIVE_SOURCE=NO`
+- `LOCKED_SIGMAC_COMPILE=NOT_RUN`
 - `BYTECODE_SHA256=UNKNOWN`
-- `RUNNER_SHA256=UNKNOWN`
+- `TOTAL_VM_INVOCATIONS=0`
 - `RUNTIME_PROOF=NOT_RUN`
+- `LOCKED_TERMUX_EXECUTION_FROM_CURRENT_WINDOW=UNAVAILABLE`
+- `PRODUCTION_STATE_MUTATED=NO`
 - `ADMISSION=NOT_RUN`
+
+Native policy in this source-ready artifact:
+
+`EVIDENCE || evidence_id || feature_id || observed_value || candidate_A_value || candidate_B_value || SOURCE || source_id`
+
+SIGMA itself compares the opaque structural values and classifies each evidence item as supporting candidate A, supporting candidate B, matching both, or matching neither. The host supplies no score and no winner. Accepted evidence is persisted with evidence/source identity; duplicate evidence IDs with identical bytes do not double-count, while evidence-ID collisions with different bytes block mutation. Aggregate ties remain `UNRESOLVED_REFERENCE_AMBIGUITY`; a strict aggregate support advantage yields only `PREFERRED_ANTECEDENT_HYPOTHESIS`. Fresh counterevidence can remove a preference by restoring a tie or reverse it by changing the aggregate advantage.
+
+The 20-case runner is designed to test tie, positive preference, candidate-order permutation, non-discriminating evidence, unsupported evidence, inherited LANG-01F preferred status with no new evidence, persistent preference -> tie -> opposite preference, persistent-state material effect, duplicate suppression, evidence-ID collision, one/three-candidate refusal, evidence capacity, malformed evidence, corrupt state, byte-identical replay, and inconsistent dependency-preference refusal.
+
+No runtime claim has been made from source existence or shell static review. GitHub-hosted workflows inspected in this repo are not a substitute for the locked Termux compiler/VM runtime; locked compile and all 20 VM invocations remain required before admission can become PASS or FAIL.
 
 Do NOT claim `COREFERENCE_RESOLUTION=PROVEN` from selection or source existence. LANG-01G, even if later admitted, is initially scoped only to bounded structural reference-evidence integration and conservative antecedent preference.
 
