@@ -1,11 +1,14 @@
 {
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "program": "HKA World Tree 1.0",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
   "pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "status_report_standard": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORT_STANDARD.md",
   "status_report_root": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS",
+  "active_dependency_amendments": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md"
+  ],
   "pipeline_sequence": [
     "KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"
   ],
@@ -29,42 +32,46 @@
   },
   "active_branch": "B1",
   "active_subbranch": "B1.1",
-  "active_scope_id": "B1.1-C03",
-  "active_window": "C01-W02-B1.1-MATH-FAMILY-C03",
+  "active_scope_id": "B1.1-C05",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C05",
   "active_window_status": "READY",
-  "window_execution_branch": "hka-tree/c01-w02-math-c03",
-  "accepted_predecessor_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+  "window_execution_branch": "hka-tree/c01-w02-math-c05",
+  "accepted_predecessor_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
   "last_accepted_work_checkpoint": {
-    "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
-    "scope_id": "B1.1-C02",
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+    "scope_id": "B1.1-C03",
     "status": "DIRECTOR_ACCEPTED_PASS",
-    "commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
     "candidate_status": "PASS",
-    "canonical_topics": 8,
-    "claims": 64,
-    "sources": 7,
-    "learning_objectives": 32,
-    "claim_to_learning_objective_closure": "32/32 PASS",
-    "cross_links": 15,
-    "sequence_intents": 8
+    "canonical_topics": 9,
+    "nodes": 9,
+    "claims": 77,
+    "sources": 6,
+    "learning_objectives": 36,
+    "claim_to_learning_objective_closure": "36/36 PASS",
+    "cross_links": 14,
+    "sequence_intents": 9
   },
   "director_review": {
-    "window_id": "C01-W02-B1.1-MATH-FAMILY-C02",
-    "candidate_commit_sha": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "window_id": "C01-W02-B1.1-MATH-FAMILY-C03",
+    "candidate_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
     "decision": "ACCEPTED_PASS",
-    "claims_independently_read": "64/64",
-    "claim_to_learning_objective_closure": "32/32",
+    "claims_independently_read": "77/77",
+    "claim_to_learning_objective_closure": "36/36",
     "source_identity_and_traceability": "PASS",
     "source_id_hashes": "PASS",
     "semantic_duplicate_and_ownership": "PASS",
+    "T04_T05_ownership_split": "PASS",
+    "T06_T09_hierarchy": "PASS",
     "prerequisite_and_sequence": "PASS",
     "stage_boundary": "PASS",
-    "divisibility_zero_divisor_convention": "DOCUMENTED_CONVENTION_NOT_BLOCKER",
-    "NIST_round_to_even": "VERIFIED",
+    "future_or_locked_scope_support_claims": 0,
     "blocking_issues": 0,
-    "successor_unlocked": true
+    "successor_execution_amended": true,
+    "execution_dependency_reason": "B1.1-C04-T08 differential geometry requires derivative and multivariable-calculus primitives owned by B1.1-C05; executing C04 before C05 would force future-scope support or duplicate calculus.",
+    "successor_unlocked": "B1.1-C05"
   },
-  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C03 on hka-tree/c01-w02-math-c03 from its locked DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md. Scope B1.1-C03 only; C04 remains locked until Director-accepted C03 PASS.",
+  "next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C05 on hka-tree/c01-w02-math-c05 from its locked DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md. C04 remains locked until Director-accepted C05 PASS; stable C04/C05 IDs and ownership are unchanged.",
   "branches": [
     {
       "branch_id": "B1",
@@ -73,7 +80,7 @@
       "architecture_status": "PASS",
       "architecture_accepted_commit_sha": "265bb584b5d7e36e11091289d58558408880118c",
       "subbranches": [
-        {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"IN_PROGRESS","active_scope":"B1.1-C03","accepted_scopes":["B1.1-C01","B1.1-C02"]},
+        {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"IN_PROGRESS","active_scope":"B1.1-C05","accepted_scopes":["B1.1-C01","B1.1-C02","B1.1-C03"],"execution_note":"Dependency Amendment 1: execute C05 before C04; C04 stays locked until C05 accepted."},
         {"id":"B1.2","name":"Vật chất & Năng lượng","status":"NOT_STARTED"},
         {"id":"B1.3","name":"Chất & Biến đổi","status":"NOT_STARTED"},
         {"id":"B1.4","name":"Trái Đất & Vũ trụ","status":"NOT_STARTED"},
@@ -105,12 +112,12 @@
     "required_files": ["STATUS.json","REPORT.md"],
     "checkpoint_directory": "CHECKPOINTS",
     "acceptance_rule": "NO STATUS FOLDER = NO ACCEPTED COMPLETION",
-    "bootstrap_rule": "Replacement reads state, status folder, latest checkpoint and exact committed outputs before resuming."
+    "bootstrap_rule": "Replacement reads state, active dependency amendments, status folder, latest checkpoint and exact committed outputs before resuming."
   },
   "recovery": {
     "source_of_truth": "GitHub accepted commits plus machine-readable state and mandatory status folders; Cloudflare becomes runtime source of truth from IMAGE_PRODUCTION onward",
     "chat_memory_authoritative": false,
-    "resume_policy": "Resume from last accepted checkpoint; never infer completion from chat history.",
+    "resume_policy": "Resume from last accepted checkpoint and active dependency amendment; never infer completion from chat history.",
     "incomplete_window_policy": "Worker PASS remains incomplete for successor unlock until Director acceptance is durably recorded.",
     "stable_id_policy": "Never silently recreate or renumber accepted NODE_ID, CLAIM_ID, LESSON_ID or ASSET_ID."
   }
