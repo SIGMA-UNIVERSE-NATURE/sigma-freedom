@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP05-DIRECTOR-CLOSURE-REPAIR",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C04",
+  "stage": "CURRICULUM",
+  "candidate_input_commit_sha": "add8e0732da7d69ea5e641654acb8f948ff8b265",
+  "director_closure_amendment_commit_sha": "3b3f15c778a0ea33ba58a405007ea1311f877cef",
+  "director_closure_amendment_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C04/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE_DIRECTOR_AMENDMENT_1.jsonl",
+  "independent_audit": {
+    "claims_read": "83/83",
+    "sources_verified": "6/6",
+    "source_id_sha256_determinism": "PASS_6_OF_6",
+    "learning_objectives_read": "36/36",
+    "base_closure_rows_read": "36/36",
+    "semantic_closure_gaps_found": 4,
+    "semantic_closure_gaps_repaired": 4,
+    "effective_claim_to_learning_objective_closure": "36/36 PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "T08_C09_support_claim_ids": 0,
+    "T09_C09_support_claim_ids": 0,
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_sequence": "PASS_ACYCLIC",
+    "stage_boundary": "PASS"
+  },
+  "repaired_learning_objectives": [
+    "HKA-B1-1-C04-N001-LO-D1-001",
+    "HKA-B1-1-C04-N002-LO-D1-001",
+    "HKA-B1-1-C04-N005-LO-D1-001",
+    "HKA-B1-1-C04-N007-LO-D2-001"
+  ],
+  "academic_theorem_corrections_required": 0,
+  "blocking_issues_after_repair": [],
+  "director_decision_state": "READY_FOR_ACCEPTANCE_RECORDING",
+  "successor_unlocked": false,
+  "next_action": "Record Director acceptance on curriculum-master before opening C06."
+}
