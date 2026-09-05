@@ -48,23 +48,23 @@ Teaches native bounded induction from multiple raw same-width utterances:
 
 `RAW UTTERANCES -> lexical stability comparison -> EVENT_ANCHOR_HYPOTHESIS -> PARTICIPANT_SLOT_HYPOTHESES`
 
-Important claim limit: structural substrate only; no semantic role labels or semantic understanding.
-
 - `SOURCE_SHA256=a47142af96dcbc47f0181f38952d29a5fa6fffeeb6c24b466b6b3a5acc759310`
 - `BYTECODE_SHA256=bb584206f8db16d832e2c20a027c4673e34ab9484ad062cd0f7bbe01206eafc9`
 - `TOTAL_VM_INVOCATIONS=10`
 - `POST_VM_ALIGNMENT_PASS_COUNT=10`
 - persistence/restart/negative/bounded input refusal PASS.
 
-Historical failures preserved conceptually:
+Historical failures preserved:
 
 - first runner output parser did not understand locked-VM `KEY VALUE` print shape;
 - R1 exposed one native boundedness dominance bug;
 - R2 fixed native policy so `LIMIT_BLOCKED` prevents query interpretation.
 
+Claim limit: structural substrate only; no semantic role labels or semantic understanding.
+
 ### LANG-01B — Native Role Hypothesis Contrast and Frame Revision — ADMITTED
 
-Teaches SIGMA that absolute word position is not role identity and allows native representation revision when anchor position varies but anchor-relative slots remain stable.
+Teaches that absolute position is not role identity and permits native representation revision when anchor position varies but anchor-relative slots remain stable.
 
 `ABSOLUTE_POSITION -> evidence contrast -> ANCHOR_RELATIVE`
 
@@ -80,7 +80,7 @@ Historical harness failure: initial LANG-01B runner pinned LANG-01A source hash 
 
 ### LANG-01C — Native Participant Identity and Cross-Utterance Role Binding — ADMITTED
 
-Core invariant taught:
+Core invariant:
 
 `PARTICIPANT_IDENTITY_HYPOTHESIS != EVENT_ROLE`
 
@@ -119,117 +119,88 @@ SIGMA forms and persists an ordered discourse reference-chain hypothesis from ad
 - `TOTAL_VM_INVOCATIONS=24`
 - `POST_VM_ALIGNMENT_PASS_COUNT=24`
 - reference-chain capacity `8`;
-- persistence/restart/negative/bounded gates PASS.
+- persistence/restart/negative/bounded gates PASS;
 - dependency equivalence conflict is explicitly preserved as uncertainty.
 
 Still not proven: general coreference resolution, pronoun semantics, discourse semantics, semantic understanding.
 
-## CURRENT FRONTIER — LANG-01F R1 — RUNTIME RERUN PENDING
-
-Capability:
-
-`LANG-01F_NATIVE_COMPETING_ANTECEDENT_HYPOTHESES_AND_REFERENCE_AMBIGUITY`
+### LANG-01F — Native Competing Antecedent Hypotheses and Reference Ambiguity — ADMITTED
 
 Teaching goal:
 
-Given an admitted discourse reference form and exactly two structural antecedent candidates, SIGMA must maintain competing antecedent hypotheses, persist first-class ambiguity under tied contextual evidence, and revise ambiguity to a preferred antecedent hypothesis only when later raw-context evidence discriminates between the candidates.
+Given an admitted LANG-01E discourse reference form and exactly two structural antecedent candidates, SIGMA maintains competing antecedent hypotheses, persists first-class ambiguity under tied contextual evidence, and revises ambiguity to a preferred antecedent hypothesis only when later raw-context evidence discriminates between candidates.
 
 Critical invariant:
 
 `PREFERRED_ANTECEDENT_HYPOTHESIS != RESOLVED_REFERENT`
 
-Scope intentionally limited to two competing candidates. Three candidates must be withheld rather than forced into the two-candidate model.
+Scope intentionally limited to two candidates. Three candidates are withheld instead of being forced into the two-candidate model.
 
-### Original LANG-01F runtime evidence — FAIL preserved
+Final admitted R1 identities/evidence:
 
-- `TOTAL_VM_INVOCATIONS=21`
-- `POST_VM_ALIGNMENT_PASS_COUNT=19`
-- `POST_VM_ALIGNMENT_FAIL_COUNT=2`
-- `VM_NONZERO_COUNT=0`
-- `STEP_LIMIT_HIT_COUNT=0`
-- persistence PASS;
-- restart/replay PASS;
-- ambiguity-to-preference revision PASS;
-- candidate encounter order is not winner policy PASS;
-- bounded evidence capacity PASS.
-
-The two failing cases were identified exactly:
-
-- CASE 011 `THREE_CANDIDATES`
-- CASE 012 `NO_CONTEXTUAL_SUPPORT`
-
-In both cases native cognition correctly withheld:
-
-- correct `LEARNING_STATUS`;
-- correct `QUERY_STATUS`;
-- `STATE_COMMIT_ALLOWED=0`;
-- no VM crash;
-- no state mutation.
-
-Failure classification:
-
-`NATIVE_OUTPUT_STATE_PROTOCOL`
-
-Problem: with `STATE_COMMIT_ALLOWED=0` and no prior valid state, native output still emitted a non-`NONE` `NEXT_STATE_STATUS`, making rejected/withheld reasoning look like a persistable next state.
-
-### LANG-01F R1 repair
-
-Smallest native output-contract repair:
-
-`IF STATE_COMMIT_ALLOWED=0 AND PREVIOUS_STATE_VALID=0 -> NEXT_STATE_STATUS=NONE`
-
-Learning/query reason remains visible. Scoring, candidate competition, ambiguity policy, persistence policy, oracle PASS definition, and host boundary are unchanged.
-
-R1 identities known before locked-runtime rerun:
-
-- `R1_SOURCE_SHA256=1ab0081f904a844d456d7913b522577038cec1b7d62f4f37494bf29a79dc9a59`
-- `R1_RUNNER_SHA256=db2673642ab471c23e1f7a067a1a16eb96b993ec75b9e6f345acb65e3ca3abd4`
-- `R1_BUNDLE_SHA256=288d1b9254685310aa4b2ab79ebf18e93746ea18205e10fac81d735b94cafa2e`
-- user verified R1 bundle SHA matches exactly.
-- `R1_BYTECODE_SHA256=UNKNOWN` until rerun with locked sigmac.
-- `R1_ADMISSION=NOT_YET_RERUN`
-
-### EXACT NEXT ACTION
-
-On the Termux device, run the already integrity-verified LANG-01F R1 bundle:
-
-```bash
-cp SIGMA_LANG_01F_NATIVE_COMPETING_ANTECEDENT_HYPOTHESES_AND_REFERENCE_AMBIGUITY_V1_R1_BUNDLE.zip \
-   "$HOME/SIGMA/sigma_genesis1/"
-
-cd "$HOME/SIGMA/sigma_genesis1" || exit 1
-
-unzip -oq \
-SIGMA_LANG_01F_NATIVE_COMPETING_ANTECEDENT_HYPOTHESES_AND_REFERENCE_AMBIGUITY_V1_R1_BUNDLE.zip
-
-cd SIGMA_LANG_01F_NATIVE_COMPETING_ANTECEDENT_HYPOTHESES_AND_REFERENCE_AMBIGUITY_V1 || exit 1
-
-bash run_SIGMA_LANG_01F_NATIVE_ADMISSION_V1.sh
-```
-
-Required success target:
-
+- `SOURCE_SHA256=1ab0081f904a844d456d7913b522577038cec1b7d62f4f37494bf29a79dc9a59`
+- `BYTECODE_SHA256=60edd9ace13f54b826adcd7e89362acddcfaea9a1649845006f52c99dce77a81`
+- `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 - `TOTAL_VM_INVOCATIONS=21`
 - `POST_VM_ALIGNMENT_PASS_COUNT=21`
 - `POST_VM_ALIGNMENT_FAIL_COUNT=0`
 - `NEGATIVE_TEST=PASS`
-- persistence/restart/replay remain PASS;
-- CASE 011 and CASE 012 preserve their real withholding reasons while `NEXT_STATE_STATUS=NONE` when commit is refused and no prior valid state exists;
-- `ADMISSION=PASS` only if all original gates remain intact.
+- `PERSISTENT_STATE_TEST=PASS`
+- `PERSISTENT_STATE_MATERIAL_EFFECT=YES`
+- `RESTART_REPLAY_TEST=PASS`
+- `IDENTICAL_INPUT_AND_STATE_REPLAY=YES`
+- `REFERENCE_AMBIGUITY_FIRST_CLASS=YES`
+- `TIED_CONTEXT_EVIDENCE_WITHHELD_AS_AMBIGUITY=YES`
+- `AMBIGUITY_TO_PREFERENCE_REVISION=YES`
+- `CANDIDATE_ENCOUNTER_ORDER_NOT_WINNER_POLICY=YES`
+- `PREFERRED_ANTECEDENT_IS_RESOLVED_REFERENT=NO`
+- evidence capacity `8`;
+- single candidate withheld;
+- three candidates withheld;
+- no contextual support withheld;
+- query mention ambiguity/absence withheld;
+- duplicate/corrupt/bounded negatives PASS;
+- `VM_NONZERO_COUNT=0`;
+- `STEP_LIMIT_HIT_COUNT=0`;
+- `PRODUCTION_STATE_MUTATED=NO`.
 
-If FAIL, preserve exact first failure and repair only the narrow blocker. Do not proceed to LANG-01G until LANG-01F admission closes.
+Historical LANG-01F failure preserved:
 
-## PLANNED NEXT CAPABILITY AFTER LANG-01F PASS
+Original runtime had `19/21` oracle alignment. CASE 011 `THREE_CANDIDATES` and CASE 012 `NO_CONTEXTUAL_SUPPORT` correctly withheld cognition and committed nothing, but emitted a non-`NONE` `NEXT_STATE_STATUS` while no prior valid state existed. Failure class: `NATIVE_OUTPUT_STATE_PROTOCOL`.
 
-Current intended dependency-first direction:
+R1 smallest native output-contract repair:
 
-`LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION_OR_NEGATION_SCOPE_FOUNDATION`
+`IF STATE_COMMIT_ALLOWED=0 AND PREVIOUS_STATE_VALID=0 -> NEXT_STATE_STATUS=NONE`
 
-Do not implement until LANG-01F is admitted and the latest global handoff/canon files are re-read.
+Scoring, candidate competition, ambiguity policy, persistence policy, oracle PASS definition, and host boundary remained unchanged. R1 rerun then passed all original 21 gates.
+
+Claim scope: native bounded two-candidate structural antecedent competition with persistent ambiguity and conservative preference revision. This does not prove real-world entity identity, pronoun semantics, general coreference resolution, discourse semantics, semantic understanding, Unicode normalization, or production readiness.
+
+## CURRENT FRONTIER — POST LANG-01F PASS / NEXT CAPABILITY NOT YET IMPLEMENTED
+
+LANG-01A through LANG-01F are admitted in their exact tested structural scopes.
+
+Do NOT jump directly to a claim of resolved reference or semantic understanding.
+
+Before implementing the next language lesson:
+
+1. re-read the latest Global Native Teaching Standard;
+2. re-read the latest `CURRENT_HANDOFF.md` because other lanes advance in parallel;
+3. re-read relevant DNA/canon for uncertainty, provenance, truth/verification, memory/discourse, representation, and contradiction as needed;
+4. search the repo for duplicate capability work;
+5. choose the smallest dependency-first next capability.
+
+Current candidate directions after LANG-01F:
+
+- `LANG-01G_NATIVE_REFERENCE_RESOLUTION_EVIDENCE_INTEGRATION`
+- or `LANG-02_NEGATION_AND_SCOPE_FOUNDATION`
+
+Decision is intentionally `NOT_YET_LOCKED`. Do not implement either until the dependency/canon preflight above is complete.
 
 ## CLAIM BOUNDARIES FOR THE LANGUAGE LANE
 
-Even with LANG-01A..01E admitted:
+Even with LANG-01A..01F admitted:
 
 - `SEMANTIC_UNDERSTANDING=NOT_PROVEN`
 - `COREFERENCE_RESOLUTION=NOT_PROVEN`
