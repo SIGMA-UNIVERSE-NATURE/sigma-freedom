@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "scope_id": "B1.1-C08",
+  "scope_name": "Toán rời rạc và tổ hợp",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "disposition": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c08",
+  "accepted_predecessor_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "substantive_commit_sha": "902d1affa847d0f5a3214887c76977a7e0f251b5",
+  "pre_pass_checkpoint_commit_sha": "21b35ca6a10a6973acf851c900f3aedfb7732718",
+  "counts": {
+    "canonical_topics": 8,
+    "nodes": 8,
+    "claims": 109,
+    "sources": 7,
+    "learning_objectives": 32,
+    "claim_to_learning_objective_closure_records": 32,
+    "cross_links": 17,
+    "sequence_intents": 8
+  },
+  "audits": {
+    "canonical_topic_coverage": "PASS_8_OF_8",
+    "semantic_claim_to_learning_objective_closure": "PASS_32_OF_32",
+    "supporting_claim_resolution": "PASS_100_PERCENT",
+    "future_or_locked_support_claim_ids": 0,
+    "source_resolution": "PASS_109_OF_109",
+    "source_id_sha256_normalization": "PASS_7_OF_7",
+    "prerequisite_dag": "PASS_ACYCLIC",
+    "duplicate_and_primary_ownership": "PASS",
+    "R05_mathematics_vs_algorithms": "PASS",
+    "R02_error_correcting_codes": "PASS",
+    "C03_finite_field_linear_algebra_reuse": "PASS",
+    "branch_diff_scope": "PASS_C08_ONLY",
+    "later_pipeline_stage_artifacts": "PASS_NONE_CREATED"
+  },
+  "boundary_dispositions": {
+    "C07": "LOCKED_FUTURE_PREREQUISITE_ONLY_ZERO_SUPPORT",
+    "C09": "LOCKED_UNTOUCHED",
+    "C10": "LOCKED_BOUNDARY_ONLY_ZERO_SUPPORT",
+    "B1.5": "FUTURE_OWNERSHIP_BOUNDARY_ZERO_SUPPORT"
+  },
+  "prohibited_artifacts_created": {
+    "ACADEMIC_LOCKED": false,
+    "Lesson_Registry": false,
+    "prompts": false,
+    "images": false,
+    "R2": false
+  },
+  "director_acceptance_required": true,
+  "successor_unlocked": false,
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C07 — GATED pending Director acceptance of C08"
+}

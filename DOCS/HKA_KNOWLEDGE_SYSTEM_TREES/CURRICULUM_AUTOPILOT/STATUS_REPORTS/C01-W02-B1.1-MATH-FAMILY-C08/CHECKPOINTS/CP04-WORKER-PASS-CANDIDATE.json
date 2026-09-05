@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP04-WORKER-PASS-CANDIDATE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "PASS_CANDIDATE",
+  "worker_status": "PASS",
+  "disposition": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w02-math-c08",
+  "accepted_predecessor_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "substantive_commit_sha": "902d1affa847d0f5a3214887c76977a7e0f251b5",
+  "pre_pass_checkpoint_commit_sha": "21b35ca6a10a6973acf851c900f3aedfb7732718",
+  "result_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C08/RESULT.json",
+  "handoff_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.1/C01-W02-B1.1-MATH-FAMILY-C08/HANDOFF.md",
+  "terminal_audits": {
+    "topics": "PASS_8_OF_8",
+    "claims": "PASS_109",
+    "learning_objectives": "PASS_32",
+    "semantic_closure": "PASS_32_OF_32",
+    "future_or_locked_support_claim_ids": 0,
+    "R05": "PASS",
+    "R02": "PASS",
+    "C03_reuse": "PASS",
+    "prerequisite_dag": "PASS_ACYCLIC",
+    "branch_diff_scope": "PASS_C08_ONLY",
+    "later_stage_artifacts": "NONE_CREATED"
+  },
+  "director_acceptance_required": true,
+  "director_acceptance_claimed": false,
+  "successor_unlocked": false,
+  "next_action": "C01-W02-B1.1-MATH-FAMILY-C07 — GATED pending Director acceptance of C08"
+}
