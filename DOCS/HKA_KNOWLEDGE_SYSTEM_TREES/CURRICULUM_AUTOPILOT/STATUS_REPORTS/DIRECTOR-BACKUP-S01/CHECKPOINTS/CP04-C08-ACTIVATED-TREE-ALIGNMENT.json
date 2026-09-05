@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP04-C08-ACTIVATED-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "status": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_anchor": {
+    "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "artifact": "B1_SCOPE_MAP",
+    "blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856"
+  },
+  "active_scope": "B1.1-C08",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "active_branch": "hka-tree/c01-w02-math-c08",
+  "accepted_predecessor": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "checks": {
+    "continuity_snapshot_matches_state": true,
+    "registry_matches_state": true,
+    "child_status_matches_state": true,
+    "scope_map_anchor_resolves": true,
+    "C08_scope_and_eight_topics_match_frozen_tree": true,
+    "C06_is_director_accepted_predecessor": true,
+    "dependency_amendment_2_is_active": true,
+    "C07_locked_until_C08_director_acceptance": true,
+    "C09_C10_locked": true,
+    "later_pipeline_stages_gated": true,
+    "multi_continent_benchmark_gate_present": true,
+    "external_curriculum_mapping_gate_present": true
+  },
+  "authority_note": "Sentinel verifies alignment only; it does not author or accept curriculum.",
+  "next_action": "C08 may execute from its locked Director open order."
+}
