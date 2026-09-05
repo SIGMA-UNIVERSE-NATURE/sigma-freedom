@@ -21,7 +21,12 @@ DEF H(op, a, b, c) {
     ⚡ STATUS:
         "REFUSE_NATIVE_SLEEP_PROGRESS_NOT_PROVEN";
 
-    IF (TARGET_TIME <= END_TIME) {
+    IF (TARGET_TIME < END_TIME) {
+        ⚡ STATUS:
+            "NATIVE_SLEEP_CLOCK_PROGRESS_PROVEN";
+    }
+
+    IF (TARGET_TIME == END_TIME) {
         ⚡ STATUS:
             "NATIVE_SLEEP_CLOCK_PROGRESS_PROVEN";
     }
