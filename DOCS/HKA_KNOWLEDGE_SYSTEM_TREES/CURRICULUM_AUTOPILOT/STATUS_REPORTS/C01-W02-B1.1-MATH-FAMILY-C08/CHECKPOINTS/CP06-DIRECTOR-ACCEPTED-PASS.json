@@ -1,0 +1,30 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W02-B1.1-MATH-FAMILY-C08",
+  "checkpoint_id":"CP06-DIRECTOR-ACCEPTED-PASS",
+  "stage":"CURRICULUM",
+  "worker_candidate_commit_sha":"4f0493b4c7605e9d457810c9efe7ae822eeeab7a",
+  "director_claim_amendment_commit_sha":"e6167f0e68aa5d49f39b09ffabe686ca28960bad",
+  "director_repair_checkpoint_sha":"1659dd7fe408d0b95a59ead0f70694c701c15324",
+  "decision":"DIRECTOR_ACCEPTED_PASS_AFTER_TWO_HYPOTHESIS_REPAIRS",
+  "audit":{
+    "sentinel_alignment":"TREE_ALIGNMENT_PASS",
+    "canonical_topics":"8/8",
+    "claims_independently_read":"109/109",
+    "sources_verified":"7/7",
+    "source_id_hashes":"PASS_7_OF_7",
+    "learning_objectives":"32/32",
+    "semantic_claim_to_learning_objective_closure":"32/32 PASS",
+    "future_or_locked_scope_support_claim_ids":0,
+    "R05":"PASS",
+    "R02":"PASS",
+    "C03_reuse":"PASS",
+    "prerequisite_DAG":"PASS_ACYCLIC",
+    "stage_boundary":"PASS"
+  },
+  "effective_claim_repairs":["HKA-B1-1-C08-N004-C006","HKA-B1-1-C08-N007-C014"],
+  "effective_claim_rule":"For matching claim_id, CLAIMS_DIRECTOR_AMENDMENT_1.jsonl supersedes the base candidate statement and scope limits.",
+  "blocking_issues":[],
+  "successor":"C01-W02-B1.1-MATH-FAMILY-C07",
+  "successor_gate":"May be activated only after control-plane acceptance records C08 and Sentinel pre-open alignment passes."
+}
