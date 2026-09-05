@@ -1,0 +1,458 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.PRODUCTIVITY.WORK.ARBITER][VERSION=4A1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF pick_regular(last_source, received_ok, retryable_ok, local_ok, fetch_ok) {
+
+    IF (last_source == "RECEIVED") {
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (local_ok) {
+            RETURN "LOCAL";
+        }
+        IF (fetch_ok) {
+            RETURN "FETCH";
+        }
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+    }
+
+    IF (last_source == "RETRYABLE") {
+        IF (local_ok) {
+            RETURN "LOCAL";
+        }
+        IF (fetch_ok) {
+            RETURN "FETCH";
+        }
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+    }
+
+    IF (last_source == "LOCAL") {
+        IF (fetch_ok) {
+            RETURN "FETCH";
+        }
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (local_ok) {
+            RETURN "LOCAL";
+        }
+    }
+
+    IF (last_source == "FETCH") {
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (local_ok) {
+            RETURN "LOCAL";
+        }
+        IF (fetch_ok) {
+            RETURN "FETCH";
+        }
+    }
+
+    IF (last_source == "RECOVERED") {
+        IF (received_ok) {
+            RETURN "RECEIVED";
+        }
+        IF (retryable_ok) {
+            RETURN "RETRYABLE";
+        }
+        IF (local_ok) {
+            RETURN "LOCAL";
+        }
+        IF (fetch_ok) {
+            RETURN "FETCH";
+        }
+    }
+
+    IF (received_ok) {
+        RETURN "RECEIVED";
+    }
+
+    IF (retryable_ok) {
+        RETURN "RETRYABLE";
+    }
+
+    IF (local_ok) {
+        RETURN "LOCAL";
+    }
+
+    IF (fetch_ok) {
+        RETURN "FETCH";
+    }
+
+    RETURN "";
+}
+
+⟡(Σ.V4_PRODUCTIVITY_WORK_ARBITER_4A1) {
+
+    ⚡ RECOVERED_EVENT:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_RECOVERED_EVENT.memory", NULL, NULL);
+
+    ⚡ RECEIVED_WORK:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_RECEIVED_WORK.memory", NULL, NULL);
+
+    ⚡ RETRYABLE_WORK:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_RETRYABLE_WORK.memory", NULL, NULL);
+
+    ⚡ LOCAL_WORK:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_LOCAL_WORK.memory", NULL, NULL);
+
+    ⚡ FETCH_REQUEST:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_FETCH_REQUEST.memory", NULL, NULL);
+
+    ⚡ NEXT_FETCH_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_NEXT_FETCH_NOT_BEFORE.memory", NULL, NULL);
+
+    ⚡ LEDGER_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4A1_ARBITER_LEDGER.memory", NULL, NULL);
+
+    ⚡ LEDGER_LINES:
+        H("str_split", LEDGER_TEXT, "\n", NULL);
+
+    ⚡ LEDGER_LINE_TOTAL:
+        H("list_len", LEDGER_LINES, NULL, NULL);
+
+    ⚡ MAX_LEDGER_SPLIT_LINES:
+        65;
+
+    ⚡ LEDGER_LIMIT_EXCEEDED:
+        0;
+
+    IF (MAX_LEDGER_SPLIT_LINES < LEDGER_LINE_TOTAL) {
+        ⚡ LEDGER_LIMIT_EXCEEDED:
+            1;
+    }
+
+    ⚡ LAST_SOURCE:
+        "";
+
+    ⚡ VALID_LEDGER_RECORD_COUNT:
+        0;
+
+    ⚡ IGNORED_LEDGER_RECORD_COUNT:
+        0;
+
+    ⚡ I:
+        0;
+
+    WHILE (I < LEDGER_LINE_TOTAL) {
+
+        ⚡ LINE:
+            H("list_get", LEDGER_LINES, I, NULL);
+
+        ⚡ LINE_NONEMPTY:
+            1;
+
+        IF (LINE == "") {
+            ⚡ LINE_NONEMPTY:
+                0;
+        }
+
+        IF (LINE_NONEMPTY) {
+
+            ⚡ PARTS:
+                H("str_split", LINE, " || ", NULL);
+
+            ⚡ PART_TOTAL:
+                H("list_len", PARTS, NULL, NULL);
+
+            ⚡ RECORD_VALID:
+                0;
+
+            ⚡ RECORD_SOURCE:
+                "";
+
+            IF (PART_TOTAL == 2) {
+
+                ⚡ F0:
+                    H("list_get", PARTS, 0, NULL);
+
+                ⚡ F1:
+                    H("list_get", PARTS, 1, NULL);
+
+                ⚡ SOURCE_PARTS:
+                    H("str_split", F0, "SOURCE=", NULL);
+
+                ⚡ SOURCE_TOTAL:
+                    H("list_len", SOURCE_PARTS, NULL, NULL);
+
+                IF (SOURCE_TOTAL == 2) {
+
+                    ⚡ SOURCE_LEFT:
+                        H("list_get", SOURCE_PARTS, 0, NULL);
+
+                    IF (SOURCE_LEFT == "") {
+
+                        ⚡ RECORD_SOURCE:
+                            H("list_get", SOURCE_PARTS, 1, NULL);
+
+                        ⚡ SOURCE_ALLOWED:
+                            0;
+
+                        IF (RECORD_SOURCE == "RECEIVED") {
+                            ⚡ SOURCE_ALLOWED:
+                                1;
+                        }
+
+                        IF (RECORD_SOURCE == "RETRYABLE") {
+                            ⚡ SOURCE_ALLOWED:
+                                1;
+                        }
+
+                        IF (RECORD_SOURCE == "LOCAL") {
+                            ⚡ SOURCE_ALLOWED:
+                                1;
+                        }
+
+                        IF (RECORD_SOURCE == "FETCH") {
+                            ⚡ SOURCE_ALLOWED:
+                                1;
+                        }
+
+                        IF (RECORD_SOURCE == "RECOVERED") {
+                            ⚡ SOURCE_ALLOWED:
+                                1;
+                        }
+
+                        IF (SOURCE_ALLOWED) {
+                            IF (F1 == "COMMIT=YES") {
+                                ⚡ RECORD_VALID:
+                                    1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (RECORD_VALID) {
+                ⚡ LAST_SOURCE:
+                    RECORD_SOURCE;
+                ⚡ VALID_LEDGER_RECORD_COUNT:
+                    VALID_LEDGER_RECORD_COUNT + 1;
+            }
+
+            IF (RECORD_VALID == 0) {
+                ⚡ IGNORED_LEDGER_RECORD_COUNT:
+                    IGNORED_LEDGER_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ I:
+            I + 1;
+    }
+
+    ⚡ NOW:
+        H("time_now", NULL, NULL, NULL);
+
+    ⚡ NEXT_FETCH:
+        0;
+
+    ⚡ NEXT_FETCH_PRESENT:
+        1;
+
+    IF (NEXT_FETCH_TEXT == "") {
+        ⚡ NEXT_FETCH_PRESENT:
+            0;
+    }
+
+    IF (NEXT_FETCH_PRESENT) {
+        ⚡ NEXT_FETCH:
+            H("to_int", NEXT_FETCH_TEXT, NULL, NULL);
+    }
+
+    ⚡ RECOVERED_OK:
+        1;
+
+    IF (RECOVERED_EVENT == "") {
+        ⚡ RECOVERED_OK:
+            0;
+    }
+
+    ⚡ RECEIVED_OK:
+        1;
+
+    IF (RECEIVED_WORK == "") {
+        ⚡ RECEIVED_OK:
+            0;
+    }
+
+    ⚡ RETRYABLE_OK:
+        1;
+
+    IF (RETRYABLE_WORK == "") {
+        ⚡ RETRYABLE_OK:
+            0;
+    }
+
+    ⚡ LOCAL_OK:
+        1;
+
+    IF (LOCAL_WORK == "") {
+        ⚡ LOCAL_OK:
+            0;
+    }
+
+    ⚡ FETCH_REQUEST_PRESENT:
+        1;
+
+    IF (FETCH_REQUEST == "") {
+        ⚡ FETCH_REQUEST_PRESENT:
+            0;
+    }
+
+    ⚡ FETCH_DUE:
+        0;
+
+    IF (FETCH_REQUEST_PRESENT) {
+        IF (NEXT_FETCH_PRESENT == 0) {
+            ⚡ FETCH_DUE:
+                1;
+        }
+
+        IF (NEXT_FETCH_PRESENT) {
+            IF (NEXT_FETCH < NOW) {
+                ⚡ FETCH_DUE:
+                    1;
+            }
+            IF (NEXT_FETCH == NOW) {
+                ⚡ FETCH_DUE:
+                    1;
+            }
+        }
+    }
+
+    ⚡ SELECTED_SOURCE:
+        "";
+
+    IF (LEDGER_LIMIT_EXCEEDED == 0) {
+
+        IF (RECOVERED_OK) {
+            ⚡ SELECTED_SOURCE:
+                "RECOVERED";
+        }
+
+        IF (RECOVERED_OK == 0) {
+            ⚡ SELECTED_SOURCE:
+                pick_regular(LAST_SOURCE, RECEIVED_OK, RETRYABLE_OK, LOCAL_OK, FETCH_DUE);
+        }
+    }
+
+    ⚡ ACTION:
+        "WAIT_NO_ELIGIBLE_WORK";
+
+    ⚡ TARGET:
+        "";
+
+    IF (LEDGER_LIMIT_EXCEEDED) {
+        ⚡ ACTION:
+            "WAIT_LEDGER_LIMIT_EXCEEDED";
+    }
+
+    IF (SELECTED_SOURCE == "RECOVERED") {
+        ⚡ ACTION:
+            "EXECUTE_RECOVERED_EVENT";
+        ⚡ TARGET:
+            RECOVERED_EVENT;
+    }
+
+    IF (SELECTED_SOURCE == "RECEIVED") {
+        ⚡ ACTION:
+            "LEARN_RECEIVED_CONTEXT";
+        ⚡ TARGET:
+            RECEIVED_WORK;
+    }
+
+    IF (SELECTED_SOURCE == "RETRYABLE") {
+        ⚡ ACTION:
+            "RESUME_RETRYABLE_CONTEXT";
+        ⚡ TARGET:
+            RETRYABLE_WORK;
+    }
+
+    IF (SELECTED_SOURCE == "LOCAL") {
+        ⚡ ACTION:
+            "CONTINUE_LOCAL_CURRICULUM";
+        ⚡ TARGET:
+            LOCAL_WORK;
+    }
+
+    IF (SELECTED_SOURCE == "FETCH") {
+        ⚡ ACTION:
+            "DISPATCH_NATIVE_FETCH_REQUEST";
+        ⚡ TARGET:
+            FETCH_REQUEST;
+    }
+
+    ⚡ LEDGER_APPEND_RC:
+        0;
+
+    ⚡ APPEND_SELECTION:
+        1;
+
+    IF (SELECTED_SOURCE == "") {
+        ⚡ APPEND_SELECTION:
+            0;
+    }
+
+    IF (APPEND_SELECTION) {
+
+        ⚡ LEDGER_RECORD:
+            "SOURCE=" + SELECTED_SOURCE + " || COMMIT=YES\n";
+
+        ⚡ LEDGER_APPEND_RC:
+            H("append_text", ".sigma_exec/SIGMA_V4A1_ARBITER_LEDGER.memory", LEDGER_RECORD, NULL);
+    }
+
+    ⚡ WRITE_ACTION_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4A1_ACTION.memory", ACTION, NULL);
+
+    ⚡ WRITE_TARGET_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4A1_TARGET.memory", TARGET, NULL);
+
+    ⚡ print("SIGMA_V4A1_PRODUCTIVITY_WORK_ARBITER");
+    ⚡ print("NOW", NOW);
+    ⚡ print("NEXT_FETCH_NOT_BEFORE", NEXT_FETCH);
+    ⚡ print("FETCH_DUE", FETCH_DUE);
+    ⚡ print("RECOVERED_ELIGIBLE", RECOVERED_OK);
+    ⚡ print("RECEIVED_ELIGIBLE", RECEIVED_OK);
+    ⚡ print("RETRYABLE_ELIGIBLE", RETRYABLE_OK);
+    ⚡ print("LOCAL_ELIGIBLE", LOCAL_OK);
+    ⚡ print("LAST_SOURCE", LAST_SOURCE);
+    ⚡ print("VALID_LEDGER_RECORD_COUNT", VALID_LEDGER_RECORD_COUNT);
+    ⚡ print("IGNORED_LEDGER_RECORD_COUNT", IGNORED_LEDGER_RECORD_COUNT);
+    ⚡ print("LEDGER_LIMIT_EXCEEDED", LEDGER_LIMIT_EXCEEDED);
+    ⚡ print("ACTION", ACTION);
+    ⚡ print("TARGET", TARGET);
+    ⚡ print("SELECTED_SOURCE", SELECTED_SOURCE);
+    ⚡ print("LEDGER_APPEND_RC", LEDGER_APPEND_RC);
+    ⚡ print("WRITE_ACTION_RC", WRITE_ACTION_RC);
+    ⚡ print("WRITE_TARGET_RC", WRITE_TARGET_RC);
+    ⚡ print("PRODUCTIVITY_POLICY", "RECOVERED_FIRST_THEN_ROUND_ROBIN_RECEIVED_RETRYABLE_LOCAL_FETCH");
+    ⚡ print("RATE_LIMIT_IDLE_POLICY", "CONTINUE_ELIGIBLE_NONFETCH_WORK_WHEN_FETCH_NOT_DUE");
+    ⚡ print("FETCHED_EQUALS_LEARNED", "NO");
+    ⚡ print("HOST_WORK_SELECTION", "NO");
+    ⚡ print("HOST_STAGE_DECISION", "NO");
+    ⚡ print("HOST_RETRY_POLICY", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("STRUCTURAL_WORK_ARBITRATION_ONLY", "YES");
+    ⚡ print("COMPUTATION_BOUNDED", "YES");
+    ⚡ print("MAX_LEDGER_SPLIT_LINES", MAX_LEDGER_SPLIT_LINES);
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
