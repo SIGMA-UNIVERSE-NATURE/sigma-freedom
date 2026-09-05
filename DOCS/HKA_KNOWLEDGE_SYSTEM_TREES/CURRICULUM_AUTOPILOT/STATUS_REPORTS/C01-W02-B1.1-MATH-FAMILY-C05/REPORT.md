@@ -1,36 +1,33 @@
 # C01-W02-B1.1-MATH-FAMILY-C05 — Durable Status Report
 
-Status: `IN_PROGRESS`
+Status: `CHECKPOINTED`
 Stage: `CURRICULUM`
 Scope: `B1.1-C05 — Giải tích và biến đổi liên tục`
 Execution branch: `hka-tree/c01-w02-math-c05`
 
-## Assigned job
-
-Author the complete C05 curriculum for the ten canonical analysis topics only. Dependency Amendment 1 controls execution order `C03 → C05 → C04`; stable IDs and primary ownership do not change.
-
 ## Definitely finished
 
-- Read `DIRECTOR_RESUME_ORDER_1.md` first, then the Director open order, window contract and execution prompt.
-- Revalidated control-plane: C05 is the only active READY scope at `CURRICULUM`; C04 remains locked and later stages remain gated.
-- Verified branch ancestry contains accepted C03 `7546ad74fb0e71ad2120c7091947993690bef82d` as merge base with zero commits behind.
-- Read the required B1 scope/ID/sequence/duplicate standards and status-report standard.
-- Read exact Director-accepted C01/C02/C03 durable records sufficiently to preserve their ownership and ID meanings rather than re-authoring them.
-- Committed worker bootstrap/scope-lock checkpoint `CP03-WORKER-BOOTSTRAP-SCOPE-LOCK` at `17e387063eecbf3d4f75e6b7068d8d3e78d22aa1`.
+- Bootstrap/scope lock is durable at CP03.
+- Academic Block A T01–T05 is durable at CP04 commit `669ea1a9094e67ae07142825b636024dcfdd9f35`.
+- Block A contains 5 nodes, 43 claims, 1 immutable-edition source, 20 D1–D4 objectives, 20 closure rows, 8 ownership/cross-link records and 5 sequence-intent records.
+- The Block A directory and the committed NODES/CLAIMS blobs were read back from GitHub.
+- Ownership boundaries T01/T02, T03/T06, T04/T07 and T05/T10 are explicitly recorded. C04 was not opened; its identifiers appear only as locked non-support boundaries supplied by the contract/amendment.
+
+## Known nonterminal reconciliation
+
+Claim `HKA-B1-1-C05-N004-C010` (integration by parts) is committed and used in the N004 D3 objective/closure, but the current N004 `claim_ids` and duplicate fingerprint still end at C009. This exact metadata repair is recorded in CP04 and must be made in the full NODES rewrite before the academic-closure checkpoint.
 
 ## Not finished
 
-No C05 academic record set is yet complete. Block A T01-T05 is the next bounded academic unit; T06-T10, final closure, audits, RESULT/HANDOFF and terminal worker status remain outstanding.
+T06–T10, final source set, T07/T09 and T08/T10 overlap dispositions, complete-file read-back, full audits, RESULT/HANDOFF and terminal worker status remain outstanding.
 
 ## Locked decisions
 
-- Author C05 T01-T10 only.
+- Continue the same branch; do not re-author T01–T05 from scratch.
 - Do not open or author C04.
-- C04/C06/C07/C09/C10 may not supply support Claim IDs.
-- C01-C03 primitives are prerequisites/references, not duplicate curriculum.
-- Exactly one D1-D4 objective per C05 node is the working design, with exactly one closure row per objective.
-- No Lesson Registry, prompts, images, R2, ACADEMIC_LOCKED, delivery or website artifact may be created.
+- Do not use claims from C04/C06/C07/C09/C10 or other locked scopes as support.
+- No artifact after `CURRICULUM` is authorized.
 
-## Recovery / next action
+## Next action
 
-Read `STATUS.json`, then CP03. Author and commit substantive academic Block A T01-T05 and read it back from GitHub before proceeding to T06-T10. Do not infer any uncommitted academic work from chat history.
+Extend the committed seven academic files with T06–T10, repair the recorded N004 claim-list metadata, then checkpoint complete academic closure and begin committed-file audits.
