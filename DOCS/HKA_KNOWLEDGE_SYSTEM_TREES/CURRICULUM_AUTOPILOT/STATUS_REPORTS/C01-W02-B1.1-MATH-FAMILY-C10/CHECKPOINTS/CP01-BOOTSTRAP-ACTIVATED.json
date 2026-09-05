@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "stage": "CURRICULUM",
+  "scope_id": "B1.1-C10",
+  "execution_branch": "hka-tree/c01-w02-math-c10",
+  "input_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "director_preopen_sentinel_checkpoint_sha": "556d6299f93a2d4b32187359a7abe78350111810",
+  "active_amendment_5_commit_sha": "397ef6ed7f508c6c6d257742c92896153d72d5a7",
+  "canonical_topics": 10,
+  "frozen_academic_prerequisites": ["B1.1-C03", "B1.1-C05", "B1.1-C06", "B1.1-C07", "B1.1-C08"],
+  "mandatory_risks": ["R06", "R13"],
+  "status": "BOOTSTRAP_ACTIVATED",
+  "next_action": "Execute DIRECTOR_OPEN_ORDER.md then GPT_EXECUTION_PROMPT.md for B1.1-C10 only.",
+  "created_at": "2026-09-05T19:22:00+07:00"
+}
