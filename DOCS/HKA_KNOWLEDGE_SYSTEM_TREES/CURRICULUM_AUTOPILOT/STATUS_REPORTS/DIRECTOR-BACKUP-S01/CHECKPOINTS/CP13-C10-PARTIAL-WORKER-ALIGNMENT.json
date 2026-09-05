@@ -1,0 +1,21 @@
+{
+  "checkpoint_id": "CP13-C10-PARTIAL-WORKER-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "sentinel_status": "TREE_ALIGNMENT_PASS",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-C10",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "active_branch": "hka-tree/c01-w02-math-c10",
+  "observed_branch_head": "a8d639a97802e01f94e93fffe5d38b7aa63fc466",
+  "accepted_predecessor": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+  "scope_topic_match": "PASS_10_OF_10",
+  "dependency_match": "PASS_C03_C05_C06_C07_C08",
+  "foundational_13_year_gate": "ACTIVE_REQUIRED_NOT_YET_RUN_AS_EXPECTED_DURING_C10_AUTHORING",
+  "pipeline_boundary": "PASS_CURRICULUM_ONLY",
+  "locked_scope_support": 0,
+  "control_plane_mutation_by_child": false,
+  "worker_terminal_status": "NOT_YET_PASS_CANDIDATE",
+  "alerts": [],
+  "durable_next_action": "Complete and audit C10 only; after Director acceptance run B1.1 Foundational 13-Year Coverage Audit before any B1.2 decision.",
+  "authority": "READ_VERIFY_REPORT_ONLY"
+}
