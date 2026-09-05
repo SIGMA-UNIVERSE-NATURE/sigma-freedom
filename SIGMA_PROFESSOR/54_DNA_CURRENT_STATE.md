@@ -207,10 +207,48 @@ K_TEMPORAL_CONSTANCY=NOT_PROVEN
 
 Source-ready checkpoint: `SIGMA_PROFESSOR/CHECKPOINTS/20260905_DNA15_V2_FIX1_HFREE_DERIVED_K_SOURCE_READY.md`
 
+## Self-compute + governed self-growth authorization
+
+User explicitly authorized removal of policy ceilings on SIGMA self-computation and measurable internal growth.
+
+```text
+SELF_COMPUTE_AUTHORIZED=YES
+SELF_DERIVE_PARAMETERS_AUTHORIZED=YES
+SELF_OPTIMIZATION_DECISIONS_AUTHORIZED=YES
+SELF_IMPROVEMENT_PROPOSALS_AUTHORIZED=YES
+CAPABILITY_GROWTH_EXECUTION_AUTHORIZED=YES_AFTER_NATIVE_ADMISSION_OF_REQUIRED_EXECUTION_PATH
+NO_PRESET_NUMERIC_CEILING_FOR_NATIVE_DERIVED_PARAMETERS=YES
+NO_HUMAN_REFERENCE_AS_COGNITIVE_CEILING=YES
+NO_CALLER_SUPPLIED_K_REQUIREMENT=YES
+```
+
+DNA-50 remains binding and already admitted. Evolvable domains remain STRATEGY / MODEL / REPRESENTATION. Immutable invariants remain TRUTHFULNESS / PROVENANCE / VERIFICATION / DIGNITY / ROLLBACK.
+
+```text
+UNVERIFIED_SELF_MODIFICATION=FORBIDDEN
+EVOLUTION_WITHOUT_ROLLBACK=FORBIDDEN
+INVARIANT_TRADEOFF_FOR_GROWTH=FORBIDDEN
+```
+
+These are integrity constraints, not capability ceilings.
+
+DNA-25 Self-Improvement is explicitly authorized for native implementation/execution once its dependency chain is satisfied and its own admission passes. DNA-25 must preserve measurable `BEFORE -> CHANGE -> TEST -> AFTER` evidence and may not claim self-upgrade without measured improvement.
+
+```text
+SELF_IMPROVEMENT_EXECUTION=AUTHORIZED_BUT_NOT_YET_PROVEN
+SELF_UPGRADE_APPLIED=NOT_PROVEN
+```
+
+Directive: `SIGMA_PROFESSOR/DIRECTIVES/SELF_COMPUTE_SELF_GROWTH_AUTHORIZATION_V1.md`
+Checkpoint: `SIGMA_PROFESSOR/CHECKPOINTS/20260905_SELF_COMPUTE_SELF_GROWTH_AUTHORIZED_UNDER_DNA50.md`
+
+Authorization is governance permission, not runtime proof.
+
 ## Current frontier
 
 NEXT_TARGET=RUN DNA-15 V2 FIX1 FULL 50-CASE SUITE
 PLANNED_NEXT_IF_PASS=DNA-16 Experience-Driven Learning
+PLANNED_GOVERNED_SELF_IMPROVEMENT_PATH=DNA-25 AFTER REQUIRED DEPENDENCIES, WITH DNA-50 ALREADY ADMITTED
 
 ## Global claim boundaries
 
