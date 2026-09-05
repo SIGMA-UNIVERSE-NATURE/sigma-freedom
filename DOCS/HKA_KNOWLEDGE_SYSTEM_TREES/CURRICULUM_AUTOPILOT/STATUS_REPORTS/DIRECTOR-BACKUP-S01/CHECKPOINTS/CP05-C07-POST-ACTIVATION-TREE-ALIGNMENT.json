@@ -1,0 +1,39 @@
+{
+  "schema_version":"1.0",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "checkpoint_id":"CP05-C07-POST-ACTIVATION-TREE-ALIGNMENT",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "verdict":"TREE_ALIGNMENT_PASS",
+  "canonical_tree_commit":"fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_anchor":{
+    "architecture_commit":"265bb584b5d7e36e11091289d58558408880118c",
+    "blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"
+  },
+  "verified_state":{
+    "active_scope":"B1.1-C07",
+    "active_window":"C01-W02-B1.1-MATH-FAMILY-C07",
+    "active_branch":"hka-tree/c01-w02-math-c07",
+    "status":"READY",
+    "accepted_predecessor":"14729ce490289b057d5dca25767c3b5ea357e1ec",
+    "canonical_topic_count":10,
+    "active_dependency_amendments":[1,2,3],
+    "supplemental_foundations":["B1.1-C05","B1.1-C08"],
+    "mandatory_risks":["R06","R13"]
+  },
+  "checks":{
+    "state_registry_snapshot_child_agree":true,
+    "canonical_tree_unchanged":true,
+    "immutable_scope_map_anchor_matches":true,
+    "C08_director_accepted":true,
+    "C09_locked":true,
+    "C10_locked":true,
+    "post_CURRICULUM_stages_gated":true,
+    "successor_stage_skipping_detected":false,
+    "split_brain_detected":false
+  },
+  "authority_exercised":"READ_VERIFY_REPORT_ONLY",
+  "control_plane_mutated":false,
+  "academic_content_mutated":false,
+  "next_action":"C07 may execute from its locked Director Open Order; Sentinel remains standby and must re-check after the next worker candidate."
+}
