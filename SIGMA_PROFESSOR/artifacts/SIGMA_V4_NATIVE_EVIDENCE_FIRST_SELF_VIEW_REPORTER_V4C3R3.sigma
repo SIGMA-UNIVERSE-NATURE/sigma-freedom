@@ -1,0 +1,362 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.NATIVE.EVIDENCE.FIRST.SELF.VIEW.REPORTER][VERSION=4C3R3]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF count_suffix(dir_path, suffix) {
+    ⚡ ENTRIES:
+        H("listdir", dir_path, NULL, NULL);
+    ⚡ TOTAL:
+        H("list_len", ENTRIES, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ COUNT:
+        0;
+    WHILE (I < TOTAL) {
+        ⚡ NAME:
+            H("list_get", ENTRIES, I, NULL);
+        ⚡ MATCH:
+            H("str_ends", NAME, suffix, NULL);
+        IF (MATCH) {
+            ⚡ COUNT:
+                COUNT + 1;
+        }
+        ⚡ I:
+            I + 1;
+    }
+    RETURN COUNT;
+}
+
+DEF preview_words(text, max_words) {
+    ⚡ TOKENS:
+        H("str_split", text, " ", NULL);
+    ⚡ TOTAL:
+        H("list_len", TOKENS, NULL, NULL);
+    ⚡ I:
+        0;
+    ⚡ TAKEN:
+        0;
+    ⚡ OUT:
+        "";
+
+    WHILE (I < TOTAL) {
+        IF (TAKEN < max_words) {
+            ⚡ TOKEN:
+                H("list_get", TOKENS, I, NULL);
+            IF (TOKEN != "") {
+                IF (TAKEN == 0) {
+                    ⚡ OUT:
+                        TOKEN;
+                }
+                IF (0 < TAKEN) {
+                    ⚡ OUT:
+                        OUT + " " + TOKEN;
+                }
+                ⚡ TAKEN:
+                    TAKEN + 1;
+            }
+        }
+        IF (max_words <= TAKEN) {
+            ⚡ I:
+                TOTAL;
+        }
+        IF (I < TOTAL) {
+            ⚡ I:
+                I + 1;
+        }
+    }
+
+    IF (max_words < TOTAL) {
+        ⚡ OUT:
+            OUT + " ...";
+    }
+
+    RETURN OUT;
+}
+
+DEF extract_best_span(evidence) {
+    ⚡ PARTS:
+        H("str_split", evidence, " || BEST=", NULL);
+    ⚡ PART_COUNT:
+        H("list_len", PARTS, NULL, NULL);
+
+    IF (PART_COUNT < 2) {
+        RETURN "";
+    }
+
+    ⚡ TAIL:
+        H("list_get", PARTS, 1, NULL);
+    ⚡ TAIL_PARTS:
+        H("str_split", TAIL, " || ", NULL);
+    ⚡ TAIL_COUNT:
+        H("list_len", TAIL_PARTS, NULL, NULL);
+
+    IF (TAIL_COUNT < 1) {
+        RETURN "";
+    }
+
+    RETURN H("list_get", TAIL_PARTS, 0, NULL);
+}
+
+⟡(Σ.V4_NATIVE_EVIDENCE_FIRST_SELF_VIEW_REPORTER_4C3R3) {
+
+    ⚡ RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", NULL, NULL);
+    ⚡ STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", NULL, NULL);
+    ⚡ C2_PHASE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", NULL, NULL);
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+    ⚡ C2_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATUS.memory", NULL, NULL);
+
+    ⚡ CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+    ⚡ CONTEXT_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", NULL, NULL);
+    ⚡ B4_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", NULL, NULL);
+    ⚡ BEST_WIDTH_U:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", NULL, NULL);
+    ⚡ BEST_SUPPORT_U:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", NULL, NULL);
+    ⚡ LAST_EVIDENCE:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", NULL, NULL);
+
+    ⚡ C3_CYCLE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_CYCLE.memory", NULL, NULL);
+    ⚡ C3_PLAN:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PLAN.memory", NULL, NULL);
+    ⚡ C3_PAUSE_U:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_PAUSE_SECONDS.memory", NULL, NULL);
+    ⚡ C3_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4C3R1_STATUS.memory", NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        1;
+    IF (RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(BEST_WIDTH_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(BEST_SUPPORT_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(C3_CYCLE_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+    IF (unary_valid(C3_PAUSE_U) == 0) {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (INPUT_VALID == 0) {
+        ⚡ print("SIGMA HUMAN REPORT REFUSED: native evidence state is incomplete or malformed.");
+        ⚡ print("REPORTER_STATUS", "REFUSE_INVALID_NATIVE_EVIDENCE_STATE");
+        ⚡ print("HOST_REPORT_SUMMARIZATION", "NO");
+        ⚡ print("HOST_SELF_ASSESSMENT", "NO");
+    }
+
+    IF (INPUT_VALID) {
+
+        ⚡ DISCOVERED_DOCS:
+            count_suffix(RAW_DIR, ".document");
+        ⚡ PROFILE_DOCS:
+            count_suffix(STATE_DIR, ".profile");
+        ⚡ COMPLETE_DOCS:
+            count_suffix(STATE_DIR, ".complete");
+        ⚡ HOLD_DOCS:
+            count_suffix(STATE_DIR, ".hold");
+        ⚡ EVIDENCE_DOCS:
+            count_suffix(STATE_DIR, ".evidence");
+
+        ⚡ OPEN_DOCS:
+            0;
+        IF (COMPLETE_DOCS < DISCOVERED_DOCS) {
+            ⚡ OPEN_DOCS:
+                DISCOVERED_DOCS - COMPLETE_DOCS;
+        }
+
+        ⚡ CYCLE_INDEX:
+            H("str_len", C3_CYCLE_U, NULL, NULL);
+        ⚡ WIDTH_COUNT:
+            H("str_len", BEST_WIDTH_U, NULL, NULL);
+        ⚡ SUPPORT_COUNT:
+            H("str_len", BEST_SUPPORT_U, NULL, NULL);
+        ⚡ PAUSE_SECONDS:
+            H("str_len", C3_PAUSE_U, NULL, NULL);
+
+        ⚡ TEXT_PREVIEW:
+            preview_words(CONTEXT_TEXT, 24);
+        ⚡ BEST_SPAN:
+            extract_best_span(LAST_EVIDENCE);
+
+        ⚡ ACTIVE_DOC_DISPLAY:
+            ACTIVE_DOC;
+        IF (ACTIVE_DOC_DISPLAY == "") {
+            ⚡ ACTIVE_DOC_DISPLAY:
+                "(none)";
+        }
+
+        ⚡ CONTEXT_DISPLAY:
+            CONTEXT_ID;
+        IF (CONTEXT_DISPLAY == "") {
+            ⚡ CONTEXT_DISPLAY:
+                "(none)";
+        }
+
+        IF (TEXT_PREVIEW == "") {
+            ⚡ TEXT_PREVIEW:
+                "(none)";
+        }
+
+        IF (BEST_SPAN == "") {
+            ⚡ BEST_SPAN:
+                "(none)";
+        }
+
+        ⚡ EVIDENCE_STATE:
+            "NO_EVIDENCE_DOCUMENTS";
+        IF (0 < EVIDENCE_DOCS) {
+            ⚡ EVIDENCE_STATE:
+                "EVIDENCE_PRESENT";
+        }
+
+        ⚡ STRUCTURAL_STATE:
+            "NO_STRUCTURAL_SIGNAL";
+        IF (SUPPORT_COUNT == 1) {
+            ⚡ STRUCTURAL_STATE:
+                "SINGLE_STRUCTURAL_SIGNAL";
+        }
+        IF (1 < SUPPORT_COUNT) {
+            ⚡ STRUCTURAL_STATE:
+                "REPEATED_STRUCTURAL_SIGNAL";
+        }
+
+        ⚡ SELF_VIEW:
+            "CORPUS_REEVALUATION_IN_PROGRESS";
+
+        IF (C2_PHASE == "PROFILE") {
+            ⚡ SELF_VIEW:
+                "DISCOVERY_PROFILE_IN_PROGRESS";
+        }
+        IF (C2_PHASE == "PRIORITY") {
+            ⚡ SELF_VIEW:
+                "GLOBAL_PRIORITY_EVALUATION_IN_PROGRESS";
+        }
+
+        ⚡ ACTIVE_LEARNER_STATE:
+            0;
+        IF (B4_STATUS == "TOKEN_WINDOW_PROGRESS") {
+            ⚡ ACTIVE_LEARNER_STATE:
+                1;
+        }
+        IF (B4_STATUS == "CONTEXT_COMPLETE") {
+            ⚡ ACTIVE_LEARNER_STATE:
+                1;
+        }
+
+        IF (ACTIVE_DOC != "") {
+            IF (ACTIVE_LEARNER_STATE) {
+                ⚡ SELF_VIEW:
+                    "ACTIVE_LEARNING_CONTINUES";
+            }
+        }
+
+        IF (0 < DISCOVERED_DOCS) {
+            IF (COMPLETE_DOCS == DISCOVERED_DOCS) {
+                ⚡ SELF_VIEW:
+                    "CURRENT_CORPUS_COMPLETE";
+            }
+        }
+
+        IF (0 < HOLD_DOCS) {
+            ⚡ SELF_VIEW:
+                "RECOVERY_NEEDED";
+        }
+
+        ⚡ SELF_VIEW_PROVENANCE:
+            "C2_PHASE=" + C2_PHASE
+            + " || ACTIVE_DOCUMENT=" + ACTIVE_DOC
+            + " || B4_STATUS=" + B4_STATUS
+            + " || C2_STATUS=" + C2_STATUS
+            + " || PLAN=" + C3_PLAN;
+
+        ⚡ print("============================================================");
+        ⚡ print("SIGMA - BAO CAO BANG CHUNG VA TU QUAN SAT NATIVE");
+        ⚡ print("============================================================");
+        ⚡ print("Chu ky", CYCLE_INDEX);
+        ⚡ print("Trang thai reflection", C3_STATUS);
+        ⚡ print("");
+
+        ⚡ print("[1] TRANG THAI DANG HOAT DONG");
+        ⚡ print("Giai doan corpus", C2_PHASE);
+        ⚡ print("Tai lieu dang xu ly", ACTIVE_DOC_DISPLAY);
+        ⚡ print("Context dang xu ly", CONTEXT_DISPLAY);
+        ⚡ print("Trang thai learner", B4_STATUS);
+        ⚡ print("Trang thai controller", C2_STATUS);
+        ⚡ print("");
+
+        ⚡ print("[2] BANG CHUNG VUA XU LY");
+        ⚡ print("Trich doan context", TEXT_PREVIEW);
+        ⚡ print("Structural span", BEST_SPAN);
+        ⚡ print("Do rong span", WIDTH_COUNT);
+        ⚡ print("Structural support", SUPPORT_COUNT);
+        ⚡ print("Trang thai structural signal", STRUCTURAL_STATE);
+        ⚡ print("");
+
+        ⚡ print("[3] TRANG THAI CORPUS");
+        ⚡ print("Document da phat hien", DISCOVERED_DOCS);
+        ⚡ print("Document da profile", PROFILE_DOCS);
+        ⚡ print("Document da complete", COMPLETE_DOCS);
+        ⚡ print("Document con mo", OPEN_DOCS);
+        ⚡ print("Document dang HOLD", HOLD_DOCS);
+        ⚡ print("Document co evidence", EVIDENCE_DOCS);
+        ⚡ print("Trang thai evidence", EVIDENCE_STATE);
+        ⚡ print("");
+
+        ⚡ print("[4] TU QUAN SAT NATIVE TU BANG CHUNG HIEN TAI");
+        ⚡ print("Native self view", SELF_VIEW);
+        ⚡ print("Co so tu quan sat", SELF_VIEW_PROVENANCE);
+        ⚡ print("");
+
+        ⚡ print("[5] KE HOACH NATIVE DA DUOC CONTROLLER CHON");
+        ⚡ print("Native plan", C3_PLAN);
+        ⚡ print("");
+
+        ⚡ print("[6] KHOANG DUNG QUAN SAT");
+        ⚡ print("Pause seconds", PAUSE_SECONDS);
+        ⚡ print("");
+
+        ⚡ print("REPORT_SOURCE", "NATIVE_SIGMA_MACHINE_EVIDENCE_ONLY");
+        ⚡ print("HOST_REPORT_SUMMARIZATION", "NO");
+        ⚡ print("HOST_REPORT_TRANSLATION", "NO");
+        ⚡ print("HOST_SELF_ASSESSMENT", "NO");
+        ⚡ print("HOST_NEXT_WORK_SELECTION", "NO");
+        ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+        ⚡ print("REPORTER_LEARNING", "NO");
+        ⚡ print("REPORTER_WORK_SELECTION", "NO");
+        ⚡ print("REPORTER_STATUS", "EVIDENCE_FIRST_SELF_VIEW_REPORT_EMITTED");
+        ⚡ print("============================================================");
+    }
+}
