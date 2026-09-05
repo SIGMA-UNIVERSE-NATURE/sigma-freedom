@@ -14,6 +14,7 @@ VM="$HOME_SIGMA/sigma_genesis1/native/sigma-vm.v09_candidate"
 EXPECTED_SIGMAC=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 EXPECTED_VM=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 
+SRC_REPO="$REPO/SIGMA_PROFESSOR/artifacts/SIGMA_V4_PRODUCTIVITY_WORK_ARBITER_V4A1.sigma"
 SRC="$E/SIGMA_V4_PRODUCTIVITY_WORK_ARBITER_V4A1.sigma"
 BC="$E/SIGMA_V4_PRODUCTIVITY_WORK_ARBITER_V4A1.sigmab"
 EXPECTED_SOURCE=12c32f07d39bacedf8dd1a2371f9b33801106d256d6166fed03fbaa224416ed2
@@ -43,7 +44,7 @@ hash1() { "$P/bin/sha256sum" "$1" | "$P/bin/awk" '{print $1}'; }
 
 SIGMAC_SHA=$(hash1 "$SIGMAC")
 VM_SHA=$(hash1 "$VM")
-SOURCE_SHA=$(hash1 "$SRC")
+SOURCE_SHA=$(hash1 "$SRC_REPO")
 
 printf 'SIGMA_PHASE=V4A1_PRODUCTIVITY_WORK_ARBITER_PREFLIGHT\n'
 printf 'SIGMAC_SHA256=%s\n' "$SIGMAC_SHA"
@@ -59,13 +60,18 @@ if [ "$SIGMAC_SHA" != "$EXPECTED_SIGMAC" ] || [ "$VM_SHA" != "$EXPECTED_VM" ] ||
     exit 21
 fi
 
+cp -- "$SRC_REPO" "$SRC" || { printf 'HOLD=SOURCE_INSTALL_FAILED\n'; exit 22; }
+INSTALLED_SOURCE_SHA=$(hash1 "$SRC")
+printf 'INSTALLED_SOURCE_SHA256=%s\n' "$INSTALLED_SOURCE_SHA"
+[ "$INSTALLED_SOURCE_SHA" = "$EXPECTED_SOURCE" ] || { printf 'HOLD=INSTALLED_SOURCE_IDENTITY_MISMATCH\n'; exit 23; }
+
 rm -f -- "$BC.partial"
 "$SIGMAC" "$SRC" "$BC.partial"
 RC=$?
 printf 'V4A1_SIGMAC_RC=%s\n' "$RC"
 if [ "$RC" -ne 0 ] || [ ! -s "$BC.partial" ]; then
     printf 'HOLD=V4A1_COMPILE_FAILED\n'
-    exit 22
+    exit 24
 fi
 
 mv -f -- "$BC.partial" "$BC"
