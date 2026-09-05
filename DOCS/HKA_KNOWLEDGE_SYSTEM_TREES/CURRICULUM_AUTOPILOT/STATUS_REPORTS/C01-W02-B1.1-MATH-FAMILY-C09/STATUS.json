@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C09",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "READY",
+  "execution_branch": "hka-tree/c01-w02-math-c09",
+  "input_commit_sha": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "accepted_C07_commit_sha": "be10c01bf8df64a723e135524b75ce644947dcbd",
+  "accepted_C08_commit_sha": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+  "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+  "accepted_C04_commit_sha": "76077695c07b853ac37f058477177e211f740f17",
+  "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
+  "accepted_C01_commit_sha": "5659288da80a239e2ded408da87348670c1410c2",
+  "last_checkpoint_commit_sha": "28d0b7612270d48a32ef5849ceb5929444f37bca",
+  "last_checkpoint_id": "CP01-BOOTSTRAP-ACTIVATED",
+  "scope_ids": ["B1.1-C09"],
+  "completed_work": [
+    "Director accepted C07 after full audit and one Bayesian credible-set semantic repair.",
+    "Backup Sentinel returned TREE_ALIGNMENT_PASS for C09 pre-open plan.",
+    "Dependency Amendment 4 clarified C03/C05/C04 accepted prerequisites and C09 ownership boundaries.",
+    "Installed C09 contract, GPT execution prompt, Director open order and bootstrap checkpoint."
+  ],
+  "remaining_work": [
+    "Author all seven canonical C09 topics.",
+    "Audit topology theorem hypotheses including compactness/sequential compactness and manifold countability/separation conventions.",
+    "Keep C04 local geometry, C05 analysis and C03 algebra ownership intact by reference.",
+    "Create direct semantic Claim-to-Learning-Objective closure with zero future/locked support IDs.",
+    "Audit algebraic topology, differential topology, knot and global-geometry theorem hypotheses from committed read-back.",
+    "Verify prerequisite DAG, sources, duplicate boundaries and CURRICULUM stage boundary before candidate PASS."
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "Scope is B1.1-C09 only.",
+    "Accepted predecessor is C07 terminal head be10c01bf8df64a723e135524b75ce644947dcbd.",
+    "C03/C05/C04 are accepted prerequisites under Amendment 4; ownership is not transferred.",
+    "C10 remains locked and supplies zero support Claim IDs.",
+    "No post-CURRICULUM artifact is authorized."
+  ],
+  "next_action": "Execute C09 DIRECTOR_OPEN_ORDER.md and GPT_EXECUTION_PROMPT.md; author B1.1-C09 only.",
+  "successor_window": "C01-W02-B1.1-MATH-FAMILY-C09"
+}
