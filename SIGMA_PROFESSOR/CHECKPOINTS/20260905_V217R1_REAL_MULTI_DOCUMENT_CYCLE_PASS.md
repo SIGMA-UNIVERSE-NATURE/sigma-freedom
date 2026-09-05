@@ -1,0 +1,82 @@
+# V2.17R.1 REAL MULTI-DOCUMENT CYCLE PROMOTION — PASS
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+
+## Locked runtime
+
+- SIGMAC SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- VM v09 candidate SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+
+Runtime transcript explicitly reported:
+
+- `LOCKED_SIGMAC_RUNTIME_IDENTITY_VISIBLE=PASS`
+- `LOCKED_VM_V09_RUNTIME_IDENTITY_VISIBLE=PASS`
+
+## Real work chain
+
+- second work: `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`
+- third work: `3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc`
+- fourth work selected after third archive: `5c97c10b8997fb0799282a3d15fc37d9c5fe6af3ccb1bd7dce37e2589ccf36ad`
+
+Third real document runtime evidence:
+
+- line total: 14
+- deep completion: PASS across bounded fresh-VM traversal
+- baseline anchor: `of => the`
+- committed deep segment count: 2
+- matching baseline segment count: 1
+- revalidation result: `REOBSERVED`
+- lifecycle action: `ARCHIVE_FOR_NOW`
+- deterministic revalidation replay: PASS
+- deterministic lifecycle replay: PASS
+- persistent revalidation reuse: PASS
+- persistent lifecycle reuse: PASS
+
+Native third archive produced `SELECT_NEXT_WORK`; exact real selector then selected the fourth work above.
+
+## Immutable evidence
+
+- real survey SHA256 after: `de682a2d5a27e1985d2529106c5410f7e824dafbf5e7cb541485687166295d08`
+- second document SHA256 after: `26d19552540508d564f76543e43858724c6e479d0544b50f23bf47b276c9d0f6`
+- third document SHA256 after: `3b137f0203e0a54dec145abd721e7fb709c305d47e7eaef3aa21a63305f7d0bc`
+- third initial evidence SHA256 after: `413bc25ca396238067c6210725afc4d8ba2865f0419a13b59089067eb2132375`
+
+## Admission result
+
+`V217R1_REAL_MULTI_DOCUMENT_CYCLE_PROMOTION_PREFLIGHT=PASS`
+
+Proven in tested scope:
+
+- `REAL_SECOND_COMPLETE_CYCLE_REPLAY=PASS`
+- `REAL_SECOND_TO_THIRD_WORK_TRANSITION_REPLAY=PASS`
+- `THIRD_REAL_WORK_INITIAL_DEEP_COMPLETION=PASS`
+- `THIRD_REAL_WORK_NATIVE_REVALIDATION=PASS`
+- `THIRD_REAL_WORK_NATIVE_LIFECYCLE=PASS`
+- `THIRD_REAL_WORK_NATIVE_BRANCH_NOT_HARDCODED=PASS`
+- `PERSISTENT_THIRD_REVALIDATION_STATE_REUSE=PASS`
+- `PERSISTENT_THIRD_LIFECYCLE_STATE_REUSE=PASS`
+- `DETERMINISTIC_THIRD_REVALIDATION_LIFECYCLE_REPLAY=PASS`
+- `THIRD_WORK_COMPLETE_CYCLE=PROVEN_IN_REAL_SELECTED_DOCUMENT_SCOPE`
+- `MULTI_DOCUMENT_AUTONOMOUS_CYCLE=PROVEN_IN_BOUNDED_REAL_CORPUS_SECOND_THIRD_WORK_SCOPE`
+- `REAL_THIRD_TO_FOURTH_WORK_TRANSITION=PROVEN_IN_FROZEN_56_DOCUMENT_SURVEY_SCOPE`
+
+Host boundary remained:
+
+- `HOST_REVALIDATION_DECISION=NO`
+- `HOST_LIFECYCLE_DECISION=NO`
+- `HOST_STAGE_DECISION=NO`
+- `HOST_WORK_SELECTION=NO`
+- `HOST_DOCUMENT_SELECTION=NO`
+- `HOST_REVISIT_EXECUTION=NO`
+- `HOST_LEARNING=NO`
+- `MECHANICAL_HOST_BRANCH_DISPATCH=YES`
+
+Still NOT PROVEN:
+
+- `GENERAL_AUTONOMOUS_CYCLE_EXECUTION`
+- `SEMANTIC_TRUTH_VALIDATION`
+- `SEMANTIC_UNDERSTANDING`
+- `BOUNDED_FILE_IO`
+- `MID_APPEND_CRASH_ATOMICITY`
+
+Production V2.4 remains separate and must continue running unchanged until a shadow-production promotion gate passes.
