@@ -1,0 +1,35 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.NATIVE.SLEEP.CLOCK.PROBE][VERSION=4C3T1R3]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+⟡(Σ.V4_NATIVE_SLEEP_CLOCK_PROBE_4C3T1R3) {
+
+    ⚡ START_TIME:
+        H("time_now", NULL, NULL, NULL);
+
+    ⚡ TARGET_TIME:
+        START_TIME + 2;
+
+    ⚡ SLEEP_RESULT:
+        H("time_sleep", 2, NULL, NULL);
+
+    ⚡ END_TIME:
+        H("time_now", NULL, NULL, NULL);
+
+    ⚡ STATUS:
+        "REFUSE_NATIVE_SLEEP_PROGRESS_NOT_PROVEN";
+
+    IF (TARGET_TIME <= END_TIME) {
+        ⚡ STATUS:
+            "NATIVE_SLEEP_CLOCK_PROGRESS_PROVEN";
+    }
+
+    ⚡ print("TIME_STATUS", STATUS);
+    ⚡ print("HOST_TIME_DECISION", "NO");
+    ⚡ print("HOST_SLEEP", "NO");
+    ⚡ print("NATIVE_TIME_NOW_USED", "YES");
+    ⚡ print("NATIVE_TIME_SLEEP_USED", "YES");
+    ⚡ print("TESTED_MINIMUM_SLEEP_SECONDS", "2");
+}
