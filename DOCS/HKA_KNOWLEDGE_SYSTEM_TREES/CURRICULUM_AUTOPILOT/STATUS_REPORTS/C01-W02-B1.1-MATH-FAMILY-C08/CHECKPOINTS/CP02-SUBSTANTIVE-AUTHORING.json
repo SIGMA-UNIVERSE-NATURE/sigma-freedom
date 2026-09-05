@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP02-SUBSTANTIVE-AUTHORING",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C08",
+  "role": "ACADEMIC_WINDOW",
+  "stage": "CURRICULUM",
+  "status": "CHECKPOINTED",
+  "execution_branch": "hka-tree/c01-w02-math-c08",
+  "accepted_predecessor_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+  "scope_id": "B1.1-C08",
+  "canonical_topics": [
+    "B1.1-C08-T01",
+    "B1.1-C08-T02",
+    "B1.1-C08-T03",
+    "B1.1-C08-T04",
+    "B1.1-C08-T05",
+    "B1.1-C08-T06",
+    "B1.1-C08-T07",
+    "B1.1-C08-T08"
+  ],
+  "substantive_counts": {
+    "nodes": 8,
+    "claims": 109,
+    "sources": 7,
+    "learning_objectives": 32,
+    "closure_records": 32,
+    "cross_links": 17,
+    "sequence_intents": 8
+  },
+  "precommit_machine_checks": {
+    "topic_coverage": "PASS_8_OF_8",
+    "claim_id_uniqueness": "PASS_109_OF_109",
+    "source_id_sha256_normalization": "PASS_7_OF_7",
+    "learning_objective_uniqueness": "PASS_32_OF_32",
+    "one_closure_row_per_learning_objective": "PASS_32_OF_32",
+    "supporting_claim_id_resolution": "PASS",
+    "supporting_claims_current_window_only": "PASS",
+    "future_or_locked_scope_support_claim_ids": 0,
+    "internal_prerequisite_graph": "PASS_ACYCLIC",
+    "R05_disposition_present": true,
+    "R02_disposition_present": true,
+    "C03_reuse_explicit": true
+  },
+  "boundary_state": {
+    "C07": "LOCKED_BOUNDARY_ONLY",
+    "C09": "LOCKED",
+    "C10": "LOCKED_BOUNDARY_ONLY",
+    "B1.5": "FUTURE_BOUNDARY_ONLY",
+    "academic_locked_created": false,
+    "lesson_registry_created": false,
+    "prompts_created": false,
+    "images_created": false,
+    "R2_created": false
+  },
+  "next_action": "Read all committed C08 academic files back from GitHub; run semantic Claim→Learning-Objective, source, duplicate/ownership, prerequisite-DAG, branch-diff and stage-boundary audits before any PASS candidate."
+}
