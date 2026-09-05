@@ -1,0 +1,53 @@
+{
+  "checkpoint_id": "CP02-DIRECTOR-STRUCTURAL-COMPLETION-AND-AUDIT",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "stage": "CURRICULUM",
+  "scope_id": "B1.1-C10",
+  "worker_submission_state": "PARTIAL_NOT_PASS_CANDIDATE",
+  "worker_substantive_payload": {
+    "topics": 10,
+    "nodes": 10,
+    "claims": 100,
+    "local_sources": 13,
+    "learning_objectives": 40,
+    "closure_records": 40,
+    "cross_links": 25,
+    "sequence_intents_at_worker_handoff": 0
+  },
+  "director_structural_completion": {
+    "sequence_intents_added": 10,
+    "sequence_commit": "4d42510c549a3fdd3052cf3bd8fa2bc7f13bd7fc",
+    "worker_pass_status_fabricated": false
+  },
+  "director_independent_audit": {
+    "claims_read": "100/100 PASS",
+    "local_sources_sha256_recomputed": "13/13 PASS",
+    "accepted_external_source_ids_verified": ["HKA-SRC-555e4c36a9d5","HKA-SRC-c74a967c16ec"],
+    "learning_objectives_read": "40/40 PASS",
+    "semantic_closure": "40/40 PASS",
+    "current_C10_claim_coverage": "100/100 PASS",
+    "accepted_support_claims": "C07/C08 ONLY",
+    "future_or_locked_support_claim_ids": 0,
+    "cross_links": "25/25 PASS",
+    "R06": "PASS",
+    "R13": "PASS",
+    "C07_Bayes_action_ownership": "PASS_REFERENCE_ONLY",
+    "C08_combinatorial_optimization_ownership": "PASS_REFERENCE_ONLY",
+    "B1_5_implementation_boundary": "PASS_ZERO_SUPPORT",
+    "B1_2_physics_boundary": "PASS_ZERO_SUPPORT",
+    "future_biology_health_boundary": "PASS_ZERO_SUPPORT",
+    "sequence_intents": "10/10 PASS_ACYCLIC",
+    "branch_diff": "PASS_C10_ONLY",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "theorem_level_repairs_required": 0,
+    "semantic_repairs_required": 0
+  },
+  "foundational_13_year_gate": {
+    "status": "ACTIVE_REQUIRED",
+    "C10_worker_pass_does_not_equal_foundational_audit_pass": true,
+    "B1_1_foundational_audit_status": "NOT_YET_RUN",
+    "B1_2_unlock_forbidden": true
+  },
+  "decision": "DIRECTOR_AUDIT_PASS_READY_FOR_ACCEPTANCE_AFTER_STRUCTURAL_COMPLETION",
+  "blocking_issues": []
+}
