@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-BASELINE-C06-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "sentinel_status": "TREE_ALIGNMENT_PASS",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "continuity_snapshot_commit": "dab09e5d9a14c8f6433ab0f43cad8449b9595e62",
+  "current_stage": "CURRICULUM",
+  "active_scope": "B1.1-C06",
+  "active_window": "C01-W02-B1.1-MATH-FAMILY-C06",
+  "active_branch": "hka-tree/c01-w02-math-c06",
+  "accepted_predecessor": "76077695c07b853ac37f058477177e211f740f17",
+  "checks": {
+    "state_scope_window_branch_match": "PASS",
+    "registry_scope_window_branch_match": "PASS",
+    "child_open_order_match": "PASS",
+    "child_contract_topic_set_match": "PASS_8_OF_8",
+    "accepted_predecessor_match": "PASS",
+    "pipeline_stage_match": "PASS",
+    "later_stages_gated": "PASS",
+    "locked_successors": "PASS_C07_C08_C09_C10_LOCKED",
+    "child_control_plane_write_authority": "FORBIDDEN_BY_CONTRACT",
+    "backup_authoring_authority": "NONE"
+  },
+  "canonical_topics": [
+    "B1.1-C06-T01 Phương trình vi phân thường",
+    "B1.1-C06-T02 Phương trình đạo hàm riêng",
+    "B1.1-C06-T03 Hệ động lực",
+    "B1.1-C06-T04 Ổn định",
+    "B1.1-C06-T05 Dao động",
+    "B1.1-C06-T06 Phân nhánh",
+    "B1.1-C06-T07 Hỗn loạn",
+    "B1.1-C06-T08 Mô hình biến đổi theo thời gian"
+  ],
+  "alerts": [],
+  "durable_next_action": "Run only C01-W02-B1.1-MATH-FAMILY-C06 on hka-tree/c01-w02-math-c06. Director independently audits any worker candidate before any successor unlock.",
+  "updated_at": "2026-09-05T10:42:00+07:00"
+}
