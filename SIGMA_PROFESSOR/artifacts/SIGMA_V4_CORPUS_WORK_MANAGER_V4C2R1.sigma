@@ -1,0 +1,1102 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.CORPUS.WORK.MANAGER][VERSION=4C2R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF clear_b4_active() {
+
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_ID.memory", "", NULL);
+
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_TEXT.memory", "", NULL);
+
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_CURSOR.memory", "", NULL);
+
+    ⚡ C3:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_COMPLETION.memory", "", NULL);
+
+    ⚡ C4:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_STATUS.memory", "", NULL);
+
+    ⚡ C5:
+        H("write_text", ".sigma_exec/SIGMA_V4B4_LAST_EVIDENCE.memory", "", NULL);
+
+    RETURN 1;
+}
+
+DEF clear_a2_corpus_slots() {
+
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4A2_RECEIVED_WORK.memory", "", NULL);
+
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4A2_RETRYABLE_WORK.memory", "", NULL);
+
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4A2_LOCAL_WORK.memory", "", NULL);
+
+    ⚡ C3:
+        H("write_text", ".sigma_exec/SIGMA_V4A2_FETCH_REQUEST.memory", "", NULL);
+
+    RETURN 1;
+}
+
+DEF b4_refusal(status) {
+    IF (status == "REFUSE_INVALID_INPUT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_CONTEXT_LINE_LIMIT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_CURSOR_FORMAT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_SELECTED_LINE_ABI_TOKEN_LIMIT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_CURSOR_OUT_OF_RANGE") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+⟡(Σ.V4_CORPUS_WORK_MANAGER_4C2R1) {
+
+    ⚡ RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2_RAW_DIR.memory", NULL, NULL);
+
+    ⚡ STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2_STATE_DIR.memory", NULL, NULL);
+
+    ⚡ CORPUS_CURSOR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2_CORPUS_CURSOR.memory", NULL, NULL);
+
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", NULL, NULL);
+
+    ⚡ B4_CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_ID.memory", NULL, NULL);
+
+    ⚡ B4_CURSOR:
+        H("read_text", ".sigma_exec/SIGMA_V4B4_CURSOR.memory", NULL, NULL);
+
+    ⚡ B4_COMPLETION:
+        H("read_text", ".sigma_exec/SIGMA_V4B4_COMPLETION.memory", NULL, NULL);
+
+    ⚡ B4_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4B4_STATUS.memory", NULL, NULL);
+
+    ⚡ B4_LAST_EVIDENCE:
+        H("read_text", ".sigma_exec/SIGMA_V4B4_LAST_EVIDENCE.memory", NULL, NULL);
+
+    ⚡ MAX_DIRECTORY_SCAN_PER_INVOCATION:
+        32;
+
+    ⚡ SEGMENT_LINE_BUDGET:
+        4;
+
+    ⚡ INPUT_VALID:
+        1;
+
+    IF (RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ CORPUS_CURSOR_VALID:
+        unary_valid(CORPUS_CURSOR);
+
+    ⚡ STATUS:
+        "MANAGER_READY";
+
+    ⚡ ARCHIVED_EVIDENCE:
+        0;
+
+    ⚡ SEGMENT_ADVANCED:
+        0;
+
+    ⚡ DOCUMENT_COMPLETED:
+        0;
+
+    ⚡ DOCUMENT_HELD:
+        0;
+
+    ⚡ SELECTED_NEW_DOCUMENT:
+        0;
+
+    ⚡ SCAN_REACHED_END:
+        0;
+
+    ⚡ SCAN_CONTINUATION_REQUIRED:
+        0;
+
+    ⚡ ACTIVE_PRESENT:
+        1;
+
+    IF (ACTIVE_DOC == "") {
+        ⚡ ACTIVE_PRESENT:
+            0;
+    }
+
+    IF (INPUT_VALID == 0) {
+
+        ⚡ CLEAR_SLOTS_INVALID:
+            clear_a2_corpus_slots();
+
+        ⚡ STATUS:
+            "REFUSE_MANAGER_INPUT";
+    }
+
+    IF (CORPUS_CURSOR_VALID == 0) {
+
+        ⚡ CLEAR_SLOTS_CURSOR:
+            clear_a2_corpus_slots();
+
+        ⚡ STATUS:
+            "REFUSE_CORPUS_CURSOR_FORMAT";
+    }
+
+    IF (INPUT_VALID) {
+        IF (CORPUS_CURSOR_VALID) {
+
+            IF (ACTIVE_PRESENT) {
+
+                ⚡ ACTIVE_EVIDENCE_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".evidence";
+
+                ⚡ EVIDENCE_PRESENT:
+                    1;
+
+                IF (B4_LAST_EVIDENCE == "") {
+                    ⚡ EVIDENCE_PRESENT:
+                        0;
+                }
+
+                IF (EVIDENCE_PRESENT) {
+
+                    ⚡ ARCHIVE_RC:
+                        H("append_text", ACTIVE_EVIDENCE_PATH, B4_LAST_EVIDENCE + "\n", NULL);
+
+                    ⚡ CLEAR_LAST_EVIDENCE_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4B4_LAST_EVIDENCE.memory", "", NULL);
+
+                    ⚡ ARCHIVED_EVIDENCE:
+                        1;
+                }
+
+                IF (b4_refusal(B4_STATUS)) {
+
+                    ⚡ HOLD_PATH:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                    ⚡ HOLD_RECORD:
+                        "DOC=" + ACTIVE_DOC
+                        + " || HOLD=" + B4_STATUS
+                        + " || LEARNER=V4B4R1"
+                        + " || COMMIT=YES";
+
+                    ⚡ WRITE_HOLD_RC:
+                        H("write_text", HOLD_PATH, HOLD_RECORD, NULL);
+
+                    ⚡ CLEAR_ACTIVE_HOLD_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                    ⚡ CLEAR_B4_HOLD_RC:
+                        clear_b4_active();
+
+                    ⚡ CLEAR_SLOTS_HOLD_RC:
+                        clear_a2_corpus_slots();
+
+                    ⚡ ACTIVE_DOC:
+                        "";
+
+                    ⚡ ACTIVE_PRESENT:
+                        0;
+
+                    ⚡ DOCUMENT_HELD:
+                        1;
+
+                    ⚡ STATUS:
+                        "ACTIVE_DOCUMENT_HELD_AFTER_NATIVE_LEARNER_REFUSAL";
+                }
+            }
+
+            IF (ACTIVE_PRESENT) {
+
+                ⚡ ACTIVE_DOC_PATH:
+                    RAW_DIR + "/" + ACTIVE_DOC + ".document";
+
+                ⚡ ACTIVE_DOC_EXISTS:
+                    H("file_exists", ACTIVE_DOC_PATH, NULL, NULL);
+
+                IF (ACTIVE_DOC_EXISTS == FALSE) {
+
+                    ⚡ MISSING_HOLD_PATH:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                    ⚡ MISSING_HOLD_RECORD:
+                        "DOC=" + ACTIVE_DOC
+                        + " || HOLD=MISSING_DOCUMENT"
+                        + " || LEARNER=V4B4R1"
+                        + " || COMMIT=YES";
+
+                    ⚡ WRITE_MISSING_HOLD_RC:
+                        H("write_text", MISSING_HOLD_PATH, MISSING_HOLD_RECORD, NULL);
+
+                    ⚡ CLEAR_ACTIVE_MISSING_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                    ⚡ CLEAR_B4_MISSING_RC:
+                        clear_b4_active();
+
+                    ⚡ CLEAR_SLOTS_MISSING_RC:
+                        clear_a2_corpus_slots();
+
+                    ⚡ ACTIVE_DOC:
+                        "";
+
+                    ⚡ ACTIVE_PRESENT:
+                        0;
+
+                    ⚡ DOCUMENT_HELD:
+                        1;
+
+                    ⚡ STATUS:
+                        "ACTIVE_DOCUMENT_MISSING_HELD";
+                }
+            }
+
+            IF (ACTIVE_PRESENT) {
+
+                ⚡ SEG_CURSOR_PATH_FOR_COMPLETION:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".segment_cursor";
+
+                ⚡ SEG_CURSOR_FOR_COMPLETION:
+                    H("read_text", SEG_CURSOR_PATH_FOR_COMPLETION, NULL, NULL);
+
+                ⚡ SEG_CURSOR_VALID_FOR_COMPLETION:
+                    unary_valid(SEG_CURSOR_FOR_COMPLETION);
+
+                IF (SEG_CURSOR_VALID_FOR_COMPLETION == 0) {
+
+                    ⚡ BAD_CURSOR_HOLD_PATH:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                    ⚡ BAD_CURSOR_HOLD_RECORD:
+                        "DOC=" + ACTIVE_DOC
+                        + " || HOLD=INVALID_SEGMENT_CURSOR"
+                        + " || LEARNER=V4B4R1"
+                        + " || COMMIT=YES";
+
+                    ⚡ WRITE_BAD_CURSOR_HOLD_RC:
+                        H("write_text", BAD_CURSOR_HOLD_PATH, BAD_CURSOR_HOLD_RECORD, NULL);
+
+                    ⚡ CLEAR_ACTIVE_BAD_CURSOR_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                    ⚡ CLEAR_B4_BAD_CURSOR_RC:
+                        clear_b4_active();
+
+                    ⚡ CLEAR_SLOTS_BAD_CURSOR_RC:
+                        clear_a2_corpus_slots();
+
+                    ⚡ ACTIVE_DOC:
+                        "";
+
+                    ⚡ ACTIVE_PRESENT:
+                        0;
+
+                    ⚡ DOCUMENT_HELD:
+                        1;
+
+                    ⚡ STATUS:
+                        "ACTIVE_DOCUMENT_INVALID_SEGMENT_CURSOR_HELD";
+                }
+
+                IF (SEG_CURSOR_VALID_FOR_COMPLETION) {
+
+                    ⚡ EXPECTED_ACTIVE_CONTEXT_ID:
+                        ACTIVE_DOC + "::SEG=" + SEG_CURSOR_FOR_COMPLETION;
+
+                    ⚡ EXPECTED_COMPLETION:
+                        "CTX=" + EXPECTED_ACTIVE_CONTEXT_ID + " || COMPLETE=YES";
+
+                    ⚡ SEGMENT_COMPLETE:
+                        0;
+
+                    IF (B4_COMPLETION == EXPECTED_COMPLETION) {
+                        ⚡ SEGMENT_COMPLETE:
+                            1;
+                    }
+
+                    IF (SEGMENT_COMPLETE) {
+
+                        ⚡ ACTIVE_EVIDENCE_PATH2:
+                            STATE_DIR + "/" + ACTIVE_DOC + ".evidence";
+
+                        ⚡ SEGMENT_BOUNDARY_RECORD:
+                            "DOC=" + ACTIVE_DOC
+                            + " || CTX=" + EXPECTED_ACTIVE_CONTEXT_ID
+                            + " || SEGMENT_COMPLETE=YES"
+                            + " || COMMIT=YES\n";
+
+                        ⚡ APPEND_SEGMENT_BOUNDARY_RC:
+                            H("append_text", ACTIVE_EVIDENCE_PATH2, SEGMENT_BOUNDARY_RECORD, NULL);
+
+                        ⚡ ADVANCE_SEGMENT_CURSOR_RC:
+                            H("append_text", SEG_CURSOR_PATH_FOR_COMPLETION, "|", NULL);
+
+                        ⚡ CLEAR_B4_COMPLETE_RC:
+                            clear_b4_active();
+
+                        ⚡ SEGMENT_ADVANCED:
+                            1;
+
+                        ⚡ STATUS:
+                            "SEGMENT_COMPLETION_COMPACTED";
+                    }
+                }
+            }
+
+            ⚡ ACTIVE_PRESENT_AFTER_COMPLETION:
+                1;
+
+            IF (ACTIVE_DOC == "") {
+                ⚡ ACTIVE_PRESENT_AFTER_COMPLETION:
+                    0;
+            }
+
+            IF (ACTIVE_PRESENT_AFTER_COMPLETION) {
+
+                ⚡ ACTIVE_DOC_PATH2:
+                    RAW_DIR + "/" + ACTIVE_DOC + ".document";
+
+                ⚡ ACTIVE_TEXT:
+                    H("read_text", ACTIVE_DOC_PATH2, NULL, NULL);
+
+                ⚡ ACTIVE_LINES:
+                    H("str_split", ACTIVE_TEXT, "\n", NULL);
+
+                ⚡ ACTIVE_LINE_TOTAL:
+                    H("list_len", ACTIVE_LINES, NULL, NULL);
+
+                ⚡ SEG_CURSOR_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".segment_cursor";
+
+                ⚡ SEG_CURSOR:
+                    H("read_text", SEG_CURSOR_PATH, NULL, NULL);
+
+                ⚡ SEG_CURSOR_VALID:
+                    unary_valid(SEG_CURSOR);
+
+                IF (SEG_CURSOR_VALID == 0) {
+
+                    ⚡ PREP_HOLD_PATH:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                    ⚡ PREP_HOLD_RECORD:
+                        "DOC=" + ACTIVE_DOC
+                        + " || HOLD=INVALID_SEGMENT_CURSOR"
+                        + " || LEARNER=V4B4R1"
+                        + " || COMMIT=YES";
+
+                    ⚡ WRITE_PREP_HOLD_RC:
+                        H("write_text", PREP_HOLD_PATH, PREP_HOLD_RECORD, NULL);
+
+                    ⚡ CLEAR_ACTIVE_PREP_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                    ⚡ CLEAR_B4_PREP_RC:
+                        clear_b4_active();
+
+                    ⚡ CLEAR_SLOTS_PREP_RC:
+                        clear_a2_corpus_slots();
+
+                    ⚡ ACTIVE_DOC:
+                        "";
+
+                    ⚡ ACTIVE_PRESENT_AFTER_COMPLETION:
+                        0;
+
+                    ⚡ DOCUMENT_HELD:
+                        1;
+
+                    ⚡ STATUS:
+                        "ACTIVE_DOCUMENT_INVALID_SEGMENT_CURSOR_HELD";
+                }
+
+                IF (SEG_CURSOR_VALID) {
+
+                    ⚡ SEGMENT_INDEX:
+                        H("str_len", SEG_CURSOR, NULL, NULL);
+
+                    ⚡ SEGMENT_START_LINE:
+                        0;
+
+                    ⚡ SC:
+                        0;
+
+                    WHILE (SC < SEGMENT_INDEX) {
+
+                        ⚡ SEGMENT_START_LINE:
+                            SEGMENT_START_LINE + SEGMENT_LINE_BUDGET;
+
+                        ⚡ SC:
+                            SC + 1;
+                    }
+
+                    ⚡ ACTIVE_EMPTY:
+                        0;
+
+                    IF (ACTIVE_TEXT == "") {
+                        ⚡ ACTIVE_EMPTY:
+                            1;
+                    }
+
+                    ⚡ DOCUMENT_DONE:
+                        0;
+
+                    IF (ACTIVE_EMPTY) {
+                        ⚡ DOCUMENT_DONE:
+                            1;
+                    }
+
+                    IF (ACTIVE_LINE_TOTAL < SEGMENT_START_LINE + 1) {
+                        ⚡ DOCUMENT_DONE:
+                            1;
+                    }
+
+                    IF (DOCUMENT_DONE) {
+
+                        ⚡ COMPLETE_PATH:
+                            STATE_DIR + "/" + ACTIVE_DOC + ".complete";
+
+                        ⚡ COMPLETE_RECORD:
+                            "DOC=" + ACTIVE_DOC
+                            + " || COMPLETE=YES"
+                            + " || LEARNER=V4B4R1"
+                            + " || COMMIT=YES";
+
+                        ⚡ WRITE_DOCUMENT_COMPLETE_RC:
+                            H("write_text", COMPLETE_PATH, COMPLETE_RECORD, NULL);
+
+                        ⚡ CLEAR_ACTIVE_COMPLETE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                        ⚡ CLEAR_B4_DOCUMENT_COMPLETE_RC:
+                            clear_b4_active();
+
+                        ⚡ CLEAR_SLOTS_DOCUMENT_COMPLETE_RC:
+                            clear_a2_corpus_slots();
+
+                        ⚡ ACTIVE_DOC:
+                            "";
+
+                        ⚡ ACTIVE_PRESENT_AFTER_COMPLETION:
+                            0;
+
+                        ⚡ DOCUMENT_COMPLETED:
+                            1;
+
+                        ⚡ STATUS:
+                            "DOCUMENT_COMPLETE_COMPACTED";
+                    }
+
+                    IF (DOCUMENT_DONE == 0) {
+
+                        ⚡ SEGMENT_END_LINE:
+                            SEGMENT_START_LINE + SEGMENT_LINE_BUDGET;
+
+                        IF (ACTIVE_LINE_TOTAL < SEGMENT_END_LINE) {
+                            ⚡ SEGMENT_END_LINE:
+                                ACTIVE_LINE_TOTAL;
+                        }
+
+                        ⚡ SEGMENT_TEXT:
+                            "";
+
+                        ⚡ SEGMENT_HAS_LINE:
+                            0;
+
+                        ⚡ SL:
+                            SEGMENT_START_LINE;
+
+                        WHILE (SL < SEGMENT_END_LINE) {
+
+                            ⚡ SEGMENT_LINE:
+                                H("list_get", ACTIVE_LINES, SL, NULL);
+
+                            ⚡ SEGMENT_FIRST_INSERT:
+                                0;
+
+                            IF (SEGMENT_HAS_LINE == 0) {
+                                ⚡ SEGMENT_TEXT:
+                                    SEGMENT_LINE;
+                                ⚡ SEGMENT_HAS_LINE:
+                                    1;
+                                ⚡ SEGMENT_FIRST_INSERT:
+                                    1;
+                            }
+
+                            IF (SEGMENT_FIRST_INSERT == 0) {
+                                ⚡ SEGMENT_TEXT:
+                                    SEGMENT_TEXT + SEGMENT_LINE;
+                            }
+
+                            IF (SL < SEGMENT_END_LINE - 1) {
+                                ⚡ SEGMENT_TEXT:
+                                    SEGMENT_TEXT + "\n";
+                            }
+
+                            ⚡ SL:
+                                SL + 1;
+                        }
+
+                        ⚡ EMPTY_SEGMENT:
+                            0;
+
+                        IF (SEGMENT_TEXT == "") {
+                            ⚡ EMPTY_SEGMENT:
+                                1;
+                        }
+
+                        IF (EMPTY_SEGMENT) {
+
+                            ⚡ SKIP_EMPTY_SEGMENT_RC:
+                                H("append_text", SEG_CURSOR_PATH, "|", NULL);
+
+                            ⚡ CLEAR_B4_EMPTY_SEGMENT_RC:
+                                clear_b4_active();
+
+                            ⚡ CLEAR_SLOTS_EMPTY_SEGMENT_RC:
+                                clear_a2_corpus_slots();
+
+                            ⚡ SEGMENT_ADVANCED:
+                                1;
+
+                            ⚡ STATUS:
+                                "EMPTY_SEGMENT_SKIPPED_NATIVELY";
+                        }
+
+                        IF (EMPTY_SEGMENT == 0) {
+
+                            ⚡ DESIRED_CONTEXT_ID:
+                                ACTIVE_DOC + "::SEG=" + SEG_CURSOR;
+
+                            ⚡ CURRENT_B4_CONTEXT_ID:
+                                H("read_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_ID.memory", NULL, NULL);
+
+                            ⚡ CONTEXT_MATCH:
+                                0;
+
+                            IF (CURRENT_B4_CONTEXT_ID == DESIRED_CONTEXT_ID) {
+                                ⚡ CONTEXT_MATCH:
+                                    1;
+                            }
+
+                            IF (CONTEXT_MATCH == 0) {
+
+                                ⚡ INSTALL_CONTEXT_ID_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_ID.memory", DESIRED_CONTEXT_ID, NULL);
+
+                                ⚡ INSTALL_CONTEXT_TEXT_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_TEXT.memory", SEGMENT_TEXT, NULL);
+
+                                ⚡ RESET_B4_CURSOR_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_CURSOR.memory", "", NULL);
+
+                                ⚡ RESET_B4_COMPLETION_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_COMPLETION.memory", "", NULL);
+
+                                ⚡ RESET_B4_STATUS_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_STATUS.memory", "", NULL);
+
+                                ⚡ RESET_B4_EVIDENCE_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4B4_LAST_EVIDENCE.memory", "", NULL);
+                            }
+
+                            ⚡ CURRENT_B4_CURSOR:
+                                H("read_text", ".sigma_exec/SIGMA_V4B4_CURSOR.memory", NULL, NULL);
+
+                            ⚡ RETRYABLE:
+                                1;
+
+                            IF (CURRENT_B4_CURSOR == "") {
+                                ⚡ RETRYABLE:
+                                    0;
+                            }
+
+                            IF (RETRYABLE) {
+
+                                ⚡ CLEAR_RECEIVED_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4A2_RECEIVED_WORK.memory", "", NULL);
+
+                                ⚡ WRITE_RETRYABLE_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4A2_RETRYABLE_WORK.memory", DESIRED_CONTEXT_ID, NULL);
+
+                                ⚡ STATUS:
+                                    "ACTIVE_CORPUS_SEGMENT_RETRYABLE";
+                            }
+
+                            IF (RETRYABLE == 0) {
+
+                                ⚡ WRITE_RECEIVED_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4A2_RECEIVED_WORK.memory", DESIRED_CONTEXT_ID, NULL);
+
+                                ⚡ CLEAR_RETRYABLE_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4A2_RETRYABLE_WORK.memory", "", NULL);
+
+                                ⚡ STATUS:
+                                    "ACTIVE_CORPUS_SEGMENT_RECEIVED";
+                            }
+
+                            ⚡ CLEAR_LOCAL_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4A2_LOCAL_WORK.memory", "", NULL);
+
+                            ⚡ CLEAR_FETCH_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4A2_FETCH_REQUEST.memory", "", NULL);
+                        }
+                    }
+                }
+            }
+
+            ⚡ NEED_SCAN:
+                0;
+
+            IF (ACTIVE_DOC == "") {
+                ⚡ NEED_SCAN:
+                    1;
+            }
+
+            IF (NEED_SCAN) {
+
+                ⚡ FILES:
+                    H("listdir", RAW_DIR, NULL, NULL);
+
+                ⚡ SORTED:
+                    H("list_sort", FILES, NULL, NULL);
+
+                ⚡ FILE_TOTAL:
+                    H("list_len", FILES, NULL, NULL);
+
+                ⚡ SCAN_POSITION:
+                    H("str_len", CORPUS_CURSOR, NULL, NULL);
+
+                IF (FILE_TOTAL < SCAN_POSITION) {
+
+                    ⚡ RESET_OUT_OF_RANGE_CURSOR_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_CORPUS_CURSOR.memory", "", NULL);
+
+                    ⚡ CORPUS_CURSOR:
+                        "";
+
+                    ⚡ SCAN_POSITION:
+                        0;
+                }
+
+                ⚡ NEXT_CORPUS_CURSOR:
+                    CORPUS_CURSOR;
+
+                ⚡ SCAN_INDEX:
+                    SCAN_POSITION;
+
+                ⚡ SCAN_COUNT:
+                    0;
+
+                ⚡ SELECTED_SET:
+                    0;
+
+                ⚡ SELECTED_DOC:
+                    "";
+
+                WHILE (SCAN_COUNT < MAX_DIRECTORY_SCAN_PER_INVOCATION) {
+
+                    IF (SELECTED_SET == 0) {
+
+                        IF (SCAN_INDEX < FILE_TOTAL) {
+
+                            ⚡ NAME:
+                                H("list_get", FILES, SCAN_INDEX, NULL);
+
+                            ⚡ NEXT_CORPUS_CURSOR:
+                                NEXT_CORPUS_CURSOR + "|";
+
+                            ⚡ SCAN_INDEX:
+                                SCAN_INDEX + 1;
+
+                            ⚡ IS_DOCUMENT:
+                                H("str_ends", NAME, ".document", NULL);
+
+                            IF (IS_DOCUMENT) {
+
+                                ⚡ DOC_ID:
+                                    H("str_replace", NAME, ".document", "");
+
+                                ⚡ COMPLETE_PATH_SCAN:
+                                    STATE_DIR + "/" + DOC_ID + ".complete";
+
+                                ⚡ HOLD_PATH_SCAN:
+                                    STATE_DIR + "/" + DOC_ID + ".hold";
+
+                                ⚡ DOC_COMPLETE:
+                                    H("file_exists", COMPLETE_PATH_SCAN, NULL, NULL);
+
+                                ⚡ DOC_HELD:
+                                    H("file_exists", HOLD_PATH_SCAN, NULL, NULL);
+
+                                ⚡ DOC_ELIGIBLE:
+                                    1;
+
+                                IF (DOC_COMPLETE) {
+                                    ⚡ DOC_ELIGIBLE:
+                                        0;
+                                }
+
+                                IF (DOC_HELD) {
+                                    ⚡ DOC_ELIGIBLE:
+                                        0;
+                                }
+
+                                IF (DOC_ELIGIBLE) {
+
+                                    ⚡ SELECTED_SET:
+                                        1;
+
+                                    ⚡ SELECTED_DOC:
+                                        DOC_ID;
+                                }
+                            }
+                        }
+
+                        IF (FILE_TOTAL < SCAN_INDEX + 1) {
+                            IF (SCAN_INDEX == FILE_TOTAL) {
+                                ⚡ SCAN_REACHED_END:
+                                    1;
+                            }
+                        }
+                    }
+
+                    ⚡ SCAN_COUNT:
+                        SCAN_COUNT + 1;
+                }
+
+                IF (SELECTED_SET) {
+
+                    ⚡ WRITE_CORPUS_CURSOR_SELECTED_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_CORPUS_CURSOR.memory", NEXT_CORPUS_CURSOR, NULL);
+
+                    ⚡ WRITE_ACTIVE_SELECTED_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", SELECTED_DOC, NULL);
+
+                    ⚡ ACTIVE_DOC:
+                        SELECTED_DOC;
+
+                    ⚡ SELECTED_NEW_DOCUMENT:
+                        1;
+
+                    ⚡ STATUS:
+                        "NEW_DOCUMENT_SELECTED_FROM_EXISTING_CORPUS";
+                }
+
+                IF (SELECTED_SET == 0) {
+
+                    IF (SCAN_REACHED_END) {
+
+                        ⚡ RESET_CORPUS_PASS_CURSOR_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2_CORPUS_CURSOR.memory", "", NULL);
+
+                        ⚡ CLEAR_SLOTS_PASS_END_RC:
+                            clear_a2_corpus_slots();
+
+                        ⚡ STATUS:
+                            "CORPUS_PASS_COMPLETE_NO_ELIGIBLE_DOCUMENT";
+                    }
+
+                    IF (SCAN_REACHED_END == 0) {
+
+                        ⚡ WRITE_CORPUS_CURSOR_CONTINUE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2_CORPUS_CURSOR.memory", NEXT_CORPUS_CURSOR, NULL);
+
+                        ⚡ CLEAR_SLOTS_SCAN_CONTINUE_RC:
+                            clear_a2_corpus_slots();
+
+                        ⚡ SCAN_CONTINUATION_REQUIRED:
+                            1;
+
+                        ⚡ STATUS:
+                            "CORPUS_SCAN_CONTINUATION";
+                    }
+                }
+            }
+
+            IF (SELECTED_NEW_DOCUMENT) {
+
+                ⚡ NEW_SEG_CURSOR_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".segment_cursor";
+
+                ⚡ NEW_SEG_CURSOR_EXISTS:
+                    H("file_exists", NEW_SEG_CURSOR_PATH, NULL, NULL);
+
+                IF (NEW_SEG_CURSOR_EXISTS == FALSE) {
+                    ⚡ INIT_NEW_SEG_CURSOR_RC:
+                        H("write_text", NEW_SEG_CURSOR_PATH, "", NULL);
+                }
+            }
+
+            IF (SELECTED_NEW_DOCUMENT) {
+
+                ⚡ SELECTED_DOC_PATH:
+                    RAW_DIR + "/" + ACTIVE_DOC + ".document";
+
+                ⚡ SELECTED_TEXT:
+                    H("read_text", SELECTED_DOC_PATH, NULL, NULL);
+
+                ⚡ SELECTED_LINES:
+                    H("str_split", SELECTED_TEXT, "\n", NULL);
+
+                ⚡ SELECTED_LINE_TOTAL:
+                    H("list_len", SELECTED_LINES, NULL, NULL);
+
+                ⚡ SELECTED_SEG_CURSOR_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".segment_cursor";
+
+                ⚡ SELECTED_SEG_CURSOR:
+                    H("read_text", SELECTED_SEG_CURSOR_PATH, NULL, NULL);
+
+                ⚡ SELECTED_SEGMENT_INDEX:
+                    H("str_len", SELECTED_SEG_CURSOR, NULL, NULL);
+
+                ⚡ SELECTED_START_LINE:
+                    0;
+
+                ⚡ SSC:
+                    0;
+
+                WHILE (SSC < SELECTED_SEGMENT_INDEX) {
+
+                    ⚡ SELECTED_START_LINE:
+                        SELECTED_START_LINE + SEGMENT_LINE_BUDGET;
+
+                    ⚡ SSC:
+                        SSC + 1;
+                }
+
+                ⚡ SELECTED_DOCUMENT_DONE:
+                    0;
+
+                IF (SELECTED_TEXT == "") {
+                    ⚡ SELECTED_DOCUMENT_DONE:
+                        1;
+                }
+
+                IF (SELECTED_LINE_TOTAL < SELECTED_START_LINE + 1) {
+                    ⚡ SELECTED_DOCUMENT_DONE:
+                        1;
+                }
+
+                IF (SELECTED_DOCUMENT_DONE) {
+
+                    ⚡ SELECTED_COMPLETE_PATH:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".complete";
+
+                    ⚡ SELECTED_COMPLETE_RECORD:
+                        "DOC=" + ACTIVE_DOC
+                        + " || COMPLETE=YES"
+                        + " || LEARNER=V4B4R1"
+                        + " || COMMIT=YES";
+
+                    ⚡ WRITE_SELECTED_COMPLETE_RC:
+                        H("write_text", SELECTED_COMPLETE_PATH, SELECTED_COMPLETE_RECORD, NULL);
+
+                    ⚡ CLEAR_SELECTED_ACTIVE_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", "", NULL);
+
+                    ⚡ CLEAR_SELECTED_B4_RC:
+                        clear_b4_active();
+
+                    ⚡ CLEAR_SELECTED_SLOTS_RC:
+                        clear_a2_corpus_slots();
+
+                    ⚡ DOCUMENT_COMPLETED:
+                        1;
+
+                    ⚡ STATUS:
+                        "SELECTED_DOCUMENT_ALREADY_COMPLETE_OR_EMPTY";
+                }
+
+                IF (SELECTED_DOCUMENT_DONE == 0) {
+
+                    ⚡ SELECTED_END_LINE:
+                        SELECTED_START_LINE + SEGMENT_LINE_BUDGET;
+
+                    IF (SELECTED_LINE_TOTAL < SELECTED_END_LINE) {
+                        ⚡ SELECTED_END_LINE:
+                            SELECTED_LINE_TOTAL;
+                    }
+
+                    ⚡ SELECTED_SEGMENT_TEXT:
+                        "";
+
+                    ⚡ SELECTED_SEGMENT_HAS_LINE:
+                        0;
+
+                    ⚡ SSL:
+                        SELECTED_START_LINE;
+
+                    WHILE (SSL < SELECTED_END_LINE) {
+
+                        ⚡ SELECTED_SEGMENT_LINE:
+                            H("list_get", SELECTED_LINES, SSL, NULL);
+
+                        ⚡ SELECTED_FIRST_INSERT:
+                            0;
+
+                        IF (SELECTED_SEGMENT_HAS_LINE == 0) {
+                            ⚡ SELECTED_SEGMENT_TEXT:
+                                SELECTED_SEGMENT_LINE;
+                            ⚡ SELECTED_SEGMENT_HAS_LINE:
+                                1;
+                            ⚡ SELECTED_FIRST_INSERT:
+                                1;
+                        }
+
+                        IF (SELECTED_FIRST_INSERT == 0) {
+                            ⚡ SELECTED_SEGMENT_TEXT:
+                                SELECTED_SEGMENT_TEXT + SELECTED_SEGMENT_LINE;
+                        }
+
+                        IF (SSL < SELECTED_END_LINE - 1) {
+                            ⚡ SELECTED_SEGMENT_TEXT:
+                                SELECTED_SEGMENT_TEXT + "\n";
+                        }
+
+                        ⚡ SSL:
+                            SSL + 1;
+                    }
+
+                    IF (SELECTED_SEGMENT_TEXT == "") {
+
+                        ⚡ SKIP_SELECTED_EMPTY_RC:
+                            H("append_text", SELECTED_SEG_CURSOR_PATH, "|", NULL);
+
+                        ⚡ CLEAR_SELECTED_EMPTY_B4_RC:
+                            clear_b4_active();
+
+                        ⚡ CLEAR_SELECTED_EMPTY_SLOTS_RC:
+                            clear_a2_corpus_slots();
+
+                        ⚡ SEGMENT_ADVANCED:
+                            1;
+
+                        ⚡ STATUS:
+                            "SELECTED_EMPTY_SEGMENT_SKIPPED_NATIVELY";
+                    }
+
+                    ⚡ SELECTED_SEGMENT_NONEMPTY:
+                        1;
+
+                    IF (SELECTED_SEGMENT_TEXT == "") {
+                        ⚡ SELECTED_SEGMENT_NONEMPTY:
+                            0;
+                    }
+
+                    IF (SELECTED_SEGMENT_NONEMPTY) {
+
+                        ⚡ SELECTED_CONTEXT_ID:
+                            ACTIVE_DOC + "::SEG=" + SELECTED_SEG_CURSOR;
+
+                        ⚡ INSTALL_SELECTED_CONTEXT_ID_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_ID.memory", SELECTED_CONTEXT_ID, NULL);
+
+                        ⚡ INSTALL_SELECTED_CONTEXT_TEXT_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_CONTEXT_TEXT.memory", SELECTED_SEGMENT_TEXT, NULL);
+
+                        ⚡ RESET_SELECTED_CURSOR_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_CURSOR.memory", "", NULL);
+
+                        ⚡ RESET_SELECTED_COMPLETION_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_COMPLETION.memory", "", NULL);
+
+                        ⚡ RESET_SELECTED_STATUS_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_STATUS.memory", "", NULL);
+
+                        ⚡ RESET_SELECTED_EVIDENCE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4B4_LAST_EVIDENCE.memory", "", NULL);
+
+                        ⚡ WRITE_SELECTED_RECEIVED_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4A2_RECEIVED_WORK.memory", SELECTED_CONTEXT_ID, NULL);
+
+                        ⚡ CLEAR_SELECTED_RETRYABLE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4A2_RETRYABLE_WORK.memory", "", NULL);
+
+                        ⚡ CLEAR_SELECTED_LOCAL_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4A2_LOCAL_WORK.memory", "", NULL);
+
+                        ⚡ CLEAR_SELECTED_FETCH_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4A2_FETCH_REQUEST.memory", "", NULL);
+
+                        ⚡ STATUS:
+                            "SELECTED_EXISTING_CORPUS_SEGMENT_RECEIVED";
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ WRITE_MANAGER_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C2_STATUS.memory", STATUS, NULL);
+
+    ⚡ FINAL_ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2_ACTIVE_DOC.memory", NULL, NULL);
+
+    ⚡ FINAL_RECEIVED:
+        H("read_text", ".sigma_exec/SIGMA_V4A2_RECEIVED_WORK.memory", NULL, NULL);
+
+    ⚡ FINAL_RETRYABLE:
+        H("read_text", ".sigma_exec/SIGMA_V4A2_RETRYABLE_WORK.memory", NULL, NULL);
+
+    ⚡ print("SIGMA_V4C2_CORPUS_WORK_MANAGER");
+    ⚡ print("STATUS", STATUS);
+    ⚡ print("ACTIVE_DOC", FINAL_ACTIVE_DOC);
+    ⚡ print("RECEIVED_WORK", FINAL_RECEIVED);
+    ⚡ print("RETRYABLE_WORK", FINAL_RETRYABLE);
+    ⚡ print("ARCHIVED_EVIDENCE", ARCHIVED_EVIDENCE);
+    ⚡ print("SEGMENT_ADVANCED", SEGMENT_ADVANCED);
+    ⚡ print("DOCUMENT_COMPLETED", DOCUMENT_COMPLETED);
+    ⚡ print("DOCUMENT_HELD", DOCUMENT_HELD);
+    ⚡ print("SELECTED_NEW_DOCUMENT", SELECTED_NEW_DOCUMENT);
+    ⚡ print("SCAN_REACHED_END", SCAN_REACHED_END);
+    ⚡ print("SCAN_CONTINUATION_REQUIRED", SCAN_CONTINUATION_REQUIRED);
+    ⚡ print("MAX_DIRECTORY_SCAN_PER_INVOCATION", MAX_DIRECTORY_SCAN_PER_INVOCATION);
+    ⚡ print("SEGMENT_LINE_BUDGET", SEGMENT_LINE_BUDGET);
+    ⚡ print("CORPUS_SOURCE_POLICY", "EXISTING_STORED_DOCUMENTS_FIRST");
+    ⚡ print("DOCUMENT_SELECTION_POLICY", "NATIVE_SORTED_CORPUS_CURSOR_FIRST_ELIGIBLE_NOT_COMPLETE_NOT_HELD");
+    ⚡ print("SEGMENT_SELECTION_POLICY", "NATIVE_PER_DOCUMENT_PERSISTED_SEGMENT_CURSOR");
+    ⚡ print("RETRY_CLASSIFICATION_POLICY", "NATIVE_B4_COMPACT_CURSOR_PRESENT");
+    ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+    ⚡ print("HOST_SEGMENT_SELECTION", "NO");
+    ⚡ print("HOST_RETRY_DECISION", "NO");
+    ⚡ print("HOST_COMPLETION_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("EXTERNAL_FETCH_ENABLED_IN_THIS_VERSION", "NO");
+    ⚡ print("MID_APPEND_CRASH_ATOMICITY", "NOT_PROVEN");
+    ⚡ print("DIRECTORY_SCALE_STEP_LIMIT", "NOT_PROVEN_UNTIL_REAL_CORPUS_RUNTIME");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
