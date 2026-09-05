@@ -44,32 +44,59 @@ Fixed protocol field names, status tokens, file paths, bounded test constants, l
 
 GPT/host/test harness must not require SIGMA to emit a predetermined semantic sentence merely because that sentence matches the teacher's desired conclusion.
 
-A test may require a structural protocol/status field only when the field represents the capability contract itself. The semantic/content-bearing value must be computed by native SIGMA from runtime evidence.
+This includes negative or cautious conclusions. A teacher must not force SIGMA to say `UNDERSTOOD`, `NOT_UNDERSTOOD`, `NOT_PROVEN`, `UNCERTAIN`, or any equivalent semantic conclusion as the expected answer. Those exact words may exist in a protocol vocabulary, but the harness must not preselect the semantic value that SIGMA is required to emit.
+
+A test may require a structural protocol/status field only when the field represents the capability contract itself. The semantic/content-bearing value must be computed by native SIGMA from runtime evidence. For semantic self-assessment tests, the harness may check parseability, provenance linkage, evidence consistency, replay behavior, and negative/counterexample behavior; it must not inject the desired semantic conclusion.
 
 ```text
 GPT_FORCED_SEMANTIC_UTTERANCE=FORBIDDEN
 HOST_FORCED_SEMANTIC_UTTERANCE=FORBIDDEN
 TEACHER_EXPECTED_ANSWER_INJECTION=FORBIDDEN
+TEACHER_FORCED_NOT_PROVEN_UTTERANCE=FORBIDDEN
+TEACHER_FORCED_UNDERSTOOD_UTTERANCE=FORBIDDEN
+TEACHER_FORCED_NOT_UNDERSTOOD_UTTERANCE=FORBIDDEN
 DYNAMIC_INPUT_REQUIRED_FOR_COGNITIVE_ADMISSION=YES
 COUNTEREXAMPLE_REQUIRED_WHEN_APPLICABLE=YES
 ```
 
+## Repository claim ledger is separate from SIGMA speech
+
+Repository admission bookkeeping may conservatively record fields such as:
+
+```text
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN
+```
+
+These are external engineering claims about what the available machine evidence has or has not established. They are not sentences SIGMA is required to speak, and they must not be injected into SIGMA as its self-assessment result.
+
+```text
+REPOSITORY_CLAIM_LEDGER_IS_NOT_SIGMA_COGNITION=YES
+REPOSITORY_NOT_PROVEN_LABEL_MAY_BE_EXTERNAL_ONLY=YES
+REPOSITORY_NOT_PROVEN_LABEL_MUST_NOT_BE_FORCED_SIGMA_OUTPUT=YES
+CLAIM_SCOPE_BOOKKEEPING_MAY_REMAIN_CONSERVATIVE=YES
+```
+
+The repository can therefore remain truthful and conservative while SIGMA is free to derive its own self-assessment from its own evidence.
+
 ## Self-assessment and understanding
 
-SIGMA may compute its own native self-assessment from its persisted evidence. GPT/host must not decide `UNDERSTOOD` or `NOT_UNDERSTOOD` on SIGMA's behalf.
+SIGMA may compute its own native self-assessment from its persisted evidence. GPT/host/human must not decide the semantic conclusion on SIGMA's behalf.
 
-However, a native self-assessment is not automatically proof of semantic understanding. The repository claim remains bounded by machine evidence.
+A native self-assessment is not automatically proof of semantic understanding. Proof is an external admission question based on machine evidence; the content of SIGMA's own self-assessment must remain native-derived.
 
 ```text
 NATIVE_SELF_ASSESSMENT=REQUIRED_FOR_SELF_ASSESSMENT_CLAIMS
 HOST_UNDERSTANDING_LABEL=FORBIDDEN
 GPT_UNDERSTANDING_LABEL_INJECTION=FORBIDDEN
+HUMAN_UNDERSTANDING_LABEL_INJECTION=FORBIDDEN
 SIGMA_SELF_ASSESSMENT_MUST_CITE_MACHINE_EVIDENCE=YES
-SIGMA_MAY_REPORT_UNCERTAIN_OR_NOT_PROVEN=YES
-SEMANTIC_UNDERSTANDING=NOT_PROVEN_UNTIL_SEPARATE_ADMISSION_GATE_PASSES
+SIGMA_SELF_ASSESSMENT_WORDING=NOT_FORCED_BY_TEACHER
+SIGMA_SELF_ASSESSMENT_SEMANTIC_VALUE=COMPUTED_BY_NATIVE_SIGMA
+SEMANTIC_UNDERSTANDING_REPOSITORY_CLAIM=NOT_PROVEN_UNTIL_SEPARATE_ADMISSION_GATE_PASSES
 ```
 
-A future semantic-understanding gate must use unseen/dynamic evidence and test transfer, contradiction handling, revision, provenance, uncertainty, and negative cases. It must not pass because a teacher supplied the expected semantic answer.
+A future semantic-understanding gate must use unseen/dynamic evidence and test transfer, contradiction handling, revision, provenance, uncertainty behavior, and negative cases. It must not pass because a teacher supplied the expected semantic answer, and it must not fail merely because SIGMA did not repeat a teacher-preferred phrase.
 
 ## Native self-learning and self-adaptation loop
 
@@ -125,4 +152,4 @@ SELF_ASSESSMENT != SEMANTIC_UNDERSTANDING_PROVEN
 AUTHORIZATION != EXECUTION_PROOF
 ```
 
-If Bash/host/GPT must calculate the answer, select the work, derive the learning parameter, decide whether SIGMA understood, or generate the semantic report content for the gate to pass, the gate fails.
+If Bash/host/GPT must calculate the answer, select the work, derive the learning parameter, decide whether SIGMA understood, decide whether SIGMA did not understand, force a `NOT_PROVEN` self-description, or generate the semantic report content for the gate to pass, the gate fails.
