@@ -1,65 +1,47 @@
 # C01-W02-B1.1-MATH-FAMILY-C04 — Durable Status Report
 
-Status: `READY`  
+Status: `IN_PROGRESS`  
 Stage: `CURRICULUM`  
 Scope: `B1.1-C04 — Hình học và đo lường`  
 Execution branch: `hka-tree/c01-w02-math-c04`
 
-## Accepted predecessor
+## Authoritative inputs
 
-C05 was independently Director-audited and accepted at:
+- Director-accepted C05 predecessor: `9c743ab4d5b5ad2ed18000af6a3b80bdace81e16`
+- Director-accepted C03: `7546ad74fb0e71ad2120c7091947993690bef82d`
+- Director-accepted C02: `cfd9746e2296280705e2e2e67b2c5980d440f02d`
+- Director-accepted C01: `5659288da80a239e2ded408da87348670c1410c2`
+- CP02 substantive checkpoint: `ed099121b50944290563c0300b0cebe0351219ad`
+- Academic content head before status update: `eca97081e45cc5b7f4b9ef432c4bc7b4f4c38c95`
 
-`9c743ab4d5b5ad2ed18000af6a3b80bdace81e16`
+## Authored bounded scope
 
-That accepted predecessor supplies calculus and multivariable-analysis primitives required by differential geometry under Dependency Amendment 1.
+All nine canonical C04 topics are authored. Current committed academic counts: **9 nodes, 83 atomic claims, 6 versioned/persistent sources, 36 D1–D4 learning objectives, 36 Claim→Learning-Objective closure rows, 18 cross-links and 9 sequence-intent records**.
 
-## Canonical topics
+## Critical ownership closure
 
-1. Hình dạng và kích thước
-2. Độ dài, diện tích và thể tích
-3. Góc và lượng giác
-4. Hình học Euclid
-5. Hình học giải tích
-6. Phép biến hình và đối xứng
-7. Hình học xạ ảnh
-8. Hình học vi phân
-9. Hình học đại số
+- T01 owns bounded shape/size descriptors; T04 owns Euclidean axiomatic theorem/proof structure.
+- T02 owns exact geometric measure and unit scaling; C02 retains numerical approximation and B1.2-C01 physical metrology is boundary-only.
+- T03 owns geometric angle/radian/trigonometric meanings; C03 retains generic functions and C05 retains calculus.
+- T05 owns coordinate/analytic geometry; C03 retains algebraic equation/function primitives.
+- T06 owns geometric transformations/symmetry while consuming C03 group and linear-map primitives.
+- T07 owns projective incidence, homogeneous coordinates, projectivities and projective invariants.
+- **T08 uses only accepted C05 derivative/multivariable calculus plus accepted C03 linear algebra and current C04 geometry. Locked C09 topology/manifold/differential-topology supplies zero support claims.**
+- **T09 uses accepted C03 ring/commutative-algebra primitives and current T07 projective geometry without re-authoring C03 ring/ideal/quotient/prime/Spec/Zariski ownership. Locked C09 supplies zero support claims.**
 
-## Critical academic controls
+## Closure state
 
-- T01/T04: separate primitive shape/size meaning from Euclidean axiomatic theorem/proof ownership.
-- T02: keep geometric measure separate from C02 arithmetic approximation and B1.2 physical metrology.
-- T03: trigonometry owns geometric angle/ratio/identity meaning; generic functions remain C03 and calculus remains C05.
-- T05: coordinate/analytic geometry consumes algebra and calculus without duplicating them.
-- T06: geometric transformations/symmetry consume C03 group primitives without re-authoring abstract group theory.
-- T07: projective geometry owns incidence/homogeneous/projective structure without duplicating analytic geometry.
-- T08: may use accepted C05 derivative/multivariable calculus and C03 linear algebra. Locked C09 topology/manifold/differential-topology claims are forbidden as support.
-- T09: may use accepted C03 commutative algebra and C04 projective geometry. Generic C03 algebra definitions and locked C09 topology are not duplicate/support targets.
+- Learning objectives: 36.
+- Closure rows: 36.
+- `SUPPORTED_BY_CLAIMS=true`: 36/36.
+- `requires_unlocked_scope_claims=false`: 36/36.
+- Future/locked support Claim IDs: 0.
+- C09 appears only in explicit boundary-reference fields where relevant.
 
-## Mandatory gates
+## Stage boundary
 
-- complete knowledge, minimum redundancy;
-- atomic sourced scoped claims with epistemic class/certainty;
-- D1–D4 independent of age;
-- exactly one closure row per Learning Objective and 100% Claim→Objective closure;
-- zero locked/future support Claim IDs;
-- explicit duplicate/ownership dispositions;
-- acyclic prerequisite/sequence graph;
-- immutable/versioned source identities where practicable;
-- clean CURRICULUM-only stage boundary.
-
-## Durable bootstrap
-
-- Contract: `c08a184cc3fd74a0cb9a1bdd0e5d0a26ff0722dc`
-- GPT execution prompt: `55bc74feda9a7773c674373c0518000ac3b51b76`
-- Director open order: `28a88aedb74bcb9c27841edf8c8201e8caddc3f2`
-- CP01 bootstrap: `bc4ac5d54105136b64f629c4fa1284b4756c696b`
-- STATUS initialization: `33852588b9b0f0da0476ce20bcc9c3b1f43c971c`
-
-## Stage lock
-
-No C06+, ACADEMIC_LOCKED, Lesson Registry, prompt, image, R2, delivery or website output is authorized.
+No C06/C07/C08/C09/C10 curriculum has been authored. No `ACADEMIC_LOCKED`, Lesson Registry, prompts, images, R2, delivery, website or other post-CURRICULUM artifact has been created. The worker has not mutated curriculum-master.
 
 ## Next action
 
-Read `DIRECTOR_OPEN_ORDER.md` and execute `GPT_EXECUTION_PROMPT.md` on this branch after confirming curriculum-master names C04 as the only active READY scope.
+Read all committed academic files back from GitHub and run the source/claim/closure/duplicate/prerequisite/stage-boundary pre-PASS audits. A worker PASS may be published only if those committed-file audits pass; C06 remains gated pending independent Director acceptance of C04.
