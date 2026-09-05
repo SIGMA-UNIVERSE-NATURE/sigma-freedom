@@ -1,0 +1,1571 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.V4.FULL.CORPUS.EVALUATION.CONTROLLER][VERSION=4C2R2]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF unary_valid(token) {
+    ⚡ REST:
+        H("str_replace", token, "|", "");
+    IF (REST == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF field_value(field, prefix) {
+    ⚡ PARTS:
+        H("str_split", field, prefix, NULL);
+    ⚡ N:
+        H("list_len", PARTS, NULL, NULL);
+    IF (N == 2) {
+        ⚡ LEFT:
+            H("list_get", PARTS, 0, NULL);
+        IF (LEFT == "") {
+            RETURN H("list_get", PARTS, 1, NULL);
+        }
+    }
+    RETURN "__INVALID_FIELD__";
+}
+
+DEF clear_b4() {
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", "", NULL);
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", "", NULL);
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", "", NULL);
+    ⚡ C3:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", "", NULL);
+    ⚡ C4:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", "", NULL);
+    ⚡ C5:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", "", NULL);
+    ⚡ C6:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", "", NULL);
+    ⚡ C7:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", "", NULL);
+    ⚡ C8:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_PAIR_OCCURRENCES.memory", "", NULL);
+    ⚡ C9:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_TRIPLE_OCCURRENCES.memory", "", NULL);
+    ⚡ C10:
+        H("write_text", ".sigma_exec/SIGMA_V4B4R2_QUAD_OCCURRENCES.memory", "", NULL);
+    RETURN 1;
+}
+
+DEF clear_read_request() {
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", "", NULL);
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_DOC.memory", "", NULL);
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_LINE.memory", "", NULL);
+    ⚡ C3:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_PURPOSE.memory", "", NULL);
+    RETURN 1;
+}
+
+DEF clear_read_result() {
+    ⚡ C0:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_ID.memory", "", NULL);
+    ⚡ C1:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_FOUND.memory", "", NULL);
+    ⚡ C2:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_TEXT.memory", "", NULL);
+    RETURN 1;
+}
+
+DEF learner_refusal(status) {
+    IF (status == "REFUSE_INVALID_INPUT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_CURSOR_FORMAT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_SELECTED_LINE_ABI_TOKEN_LIMIT") {
+        RETURN 1;
+    }
+    IF (status == "REFUSE_CURSOR_OUT_OF_RANGE") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+⟡(Σ.V4_FULL_CORPUS_EVALUATION_CONTROLLER_4C2R2) {
+
+    ⚡ RAW_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_RAW_DIR.memory", NULL, NULL);
+
+    ⚡ STATE_DIR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_STATE_DIR.memory", NULL, NULL);
+
+    ⚡ PHASE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", NULL, NULL);
+
+    ⚡ SCAN_CURSOR:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", NULL, NULL);
+
+    ⚡ ACTIVE_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+
+    ⚡ ACTIVE_PURPOSE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", NULL, NULL);
+
+    ⚡ ACTIVE_BEST_WIDTH:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", NULL, NULL);
+
+    ⚡ ACTIVE_BEST_SUPPORT:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", NULL, NULL);
+
+    ⚡ PRIORITY_BEST_DOC:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", NULL, NULL);
+
+    ⚡ PRIORITY_BEST_WIDTH:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", NULL, NULL);
+
+    ⚡ PRIORITY_BEST_SUPPORT:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", NULL, NULL);
+
+    ⚡ PRIORITY_UNPROFILED:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory", NULL, NULL);
+
+    ⚡ READ_REQUEST_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", NULL, NULL);
+
+    ⚡ READ_RESULT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_ID.memory", NULL, NULL);
+
+    ⚡ READ_RESULT_FOUND:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_FOUND.memory", NULL, NULL);
+
+    ⚡ READ_RESULT_TEXT:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_TEXT.memory", NULL, NULL);
+
+    ⚡ B4_CONTEXT_ID:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+
+    ⚡ B4_CURSOR:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", NULL, NULL);
+
+    ⚡ B4_COMPLETION:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", NULL, NULL);
+
+    ⚡ B4_STATUS:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", NULL, NULL);
+
+    ⚡ B4_LAST_EVIDENCE:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", NULL, NULL);
+
+    ⚡ B4_BEST_WIDTH:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", NULL, NULL);
+
+    ⚡ B4_BEST_SUPPORT:
+        H("read_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", NULL, NULL);
+
+    ⚡ MAX_DIRECTORY_SCAN_PER_INVOCATION:
+        32;
+
+    ⚡ STATUS:
+        "MANAGER_READY";
+
+    ⚡ PROFILE_COMMITTED:
+        0;
+
+    ⚡ PRIORITY_SELECTED:
+        0;
+
+    ⚡ DOCUMENT_COMPLETED:
+        0;
+
+    ⚡ DOCUMENT_HELD:
+        0;
+
+    ⚡ READ_REQUEST_EMITTED:
+        0;
+
+    ⚡ READ_RESULT_CONSUMED:
+        0;
+
+    ⚡ LEARNER_EVIDENCE_ARCHIVED:
+        0;
+
+    ⚡ INPUT_VALID:
+        1;
+
+    IF (RAW_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    IF (STATE_DIR == "") {
+        ⚡ INPUT_VALID:
+            0;
+    }
+
+    ⚡ PHASE_VALID:
+        0;
+
+    IF (PHASE == "PROFILE") {
+        ⚡ PHASE_VALID:
+            1;
+    }
+    IF (PHASE == "PRIORITY") {
+        ⚡ PHASE_VALID:
+            1;
+    }
+    IF (PHASE == "LEARN") {
+        ⚡ PHASE_VALID:
+            1;
+    }
+    IF (PHASE == "") {
+        ⚡ PHASE:
+            "PROFILE";
+        ⚡ PHASE_VALID:
+            1;
+        ⚡ INIT_PHASE_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", PHASE, NULL);
+    }
+
+    ⚡ SCAN_CURSOR_VALID:
+        unary_valid(SCAN_CURSOR);
+
+    ⚡ ACTIVE_BEST_VALID:
+        1;
+    IF (unary_valid(ACTIVE_BEST_WIDTH) == 0) {
+        ⚡ ACTIVE_BEST_VALID:
+            0;
+    }
+    IF (unary_valid(ACTIVE_BEST_SUPPORT) == 0) {
+        ⚡ ACTIVE_BEST_VALID:
+            0;
+    }
+
+    ⚡ PRIORITY_BEST_VALID:
+        1;
+    IF (unary_valid(PRIORITY_BEST_WIDTH) == 0) {
+        ⚡ PRIORITY_BEST_VALID:
+            0;
+    }
+    IF (unary_valid(PRIORITY_BEST_SUPPORT) == 0) {
+        ⚡ PRIORITY_BEST_VALID:
+            0;
+    }
+
+    ⚡ STATE_ALLOWED:
+        1;
+
+    IF (INPUT_VALID == 0) {
+        ⚡ STATE_ALLOWED:
+            0;
+        ⚡ STATUS:
+            "REFUSE_MANAGER_INPUT";
+    }
+    IF (PHASE_VALID == 0) {
+        ⚡ STATE_ALLOWED:
+            0;
+        ⚡ STATUS:
+            "REFUSE_PHASE";
+    }
+    IF (SCAN_CURSOR_VALID == 0) {
+        ⚡ STATE_ALLOWED:
+            0;
+        ⚡ STATUS:
+            "REFUSE_SCAN_CURSOR";
+    }
+    IF (ACTIVE_BEST_VALID == 0) {
+        ⚡ STATE_ALLOWED:
+            0;
+        ⚡ STATUS:
+            "REFUSE_ACTIVE_PROFILE_STATE";
+    }
+    IF (PRIORITY_BEST_VALID == 0) {
+        ⚡ STATE_ALLOWED:
+            0;
+        ⚡ STATUS:
+            "REFUSE_PRIORITY_STATE";
+    }
+
+    IF (STATE_ALLOWED) {
+
+        ⚡ ACTIVE_PRESENT:
+            1;
+        IF (ACTIVE_DOC == "") {
+            ⚡ ACTIVE_PRESENT:
+                0;
+        }
+
+        IF (ACTIVE_PRESENT) {
+
+            ⚡ LINE_CURSOR_PATH0:
+                STATE_DIR + "/" + ACTIVE_DOC + ".line_cursor";
+
+            ⚡ LINE_CURSOR_EXISTS0:
+                H("file_exists", LINE_CURSOR_PATH0, NULL, NULL);
+
+            IF (LINE_CURSOR_EXISTS0 == FALSE) {
+                ⚡ INIT_LINE_CURSOR_RC:
+                    H("write_text", LINE_CURSOR_PATH0, "", NULL);
+            }
+        }
+
+        IF (ACTIVE_PRESENT) {
+            IF (B4_LAST_EVIDENCE == "") {
+                ⚡ LEARNER_EVIDENCE_ARCHIVED:
+                    0;
+            }
+        }
+
+        IF (ACTIVE_PRESENT) {
+
+            ⚡ EVIDENCE_PRESENT:
+                1;
+            IF (B4_LAST_EVIDENCE == "") {
+                ⚡ EVIDENCE_PRESENT:
+                    0;
+            }
+
+            IF (EVIDENCE_PRESENT) {
+
+                ⚡ EVIDENCE_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".evidence";
+
+                ⚡ APPEND_EVIDENCE_RC:
+                    H("append_text", EVIDENCE_PATH, B4_LAST_EVIDENCE + "\n", NULL);
+
+                ⚡ WIDTH_VALID:
+                    unary_valid(B4_BEST_WIDTH);
+
+                ⚡ SUPPORT_VALID:
+                    unary_valid(B4_BEST_SUPPORT);
+
+                IF (WIDTH_VALID) {
+                    IF (SUPPORT_VALID) {
+
+                        ⚡ OLD_WIDTH_N:
+                            H("str_len", ACTIVE_BEST_WIDTH, NULL, NULL);
+                        ⚡ OLD_SUPPORT_N:
+                            H("str_len", ACTIVE_BEST_SUPPORT, NULL, NULL);
+                        ⚡ NEW_WIDTH_N:
+                            H("str_len", B4_BEST_WIDTH, NULL, NULL);
+                        ⚡ NEW_SUPPORT_N:
+                            H("str_len", B4_BEST_SUPPORT, NULL, NULL);
+
+                        ⚡ TAKE_NEW_ACTIVE_BEST:
+                            0;
+
+                        IF (OLD_WIDTH_N < NEW_WIDTH_N) {
+                            ⚡ TAKE_NEW_ACTIVE_BEST:
+                                1;
+                        }
+                        IF (OLD_WIDTH_N == NEW_WIDTH_N) {
+                            IF (OLD_SUPPORT_N < NEW_SUPPORT_N) {
+                                ⚡ TAKE_NEW_ACTIVE_BEST:
+                                    1;
+                            }
+                        }
+
+                        IF (TAKE_NEW_ACTIVE_BEST) {
+                            ⚡ WRITE_ACTIVE_WIDTH_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", B4_BEST_WIDTH, NULL);
+                            ⚡ WRITE_ACTIVE_SUPPORT_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", B4_BEST_SUPPORT, NULL);
+                            ⚡ ACTIVE_BEST_WIDTH:
+                                B4_BEST_WIDTH;
+                            ⚡ ACTIVE_BEST_SUPPORT:
+                                B4_BEST_SUPPORT;
+                        }
+                    }
+                }
+
+                ⚡ CLEAR_EVIDENCE_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", "", NULL);
+
+                ⚡ LEARNER_EVIDENCE_ARCHIVED:
+                    1;
+            }
+        }
+
+        IF (ACTIVE_PRESENT) {
+            IF (learner_refusal(B4_STATUS)) {
+
+                ⚡ HOLD_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                ⚡ HOLD_RECORD:
+                    "DOC=" + ACTIVE_DOC
+                    + " || HOLD=" + B4_STATUS
+                    + " || LEARNER=V4B4R2"
+                    + " || COMMIT=YES";
+
+                ⚡ WRITE_HOLD_RC:
+                    H("write_text", HOLD_PATH, HOLD_RECORD, NULL);
+
+                ⚡ CLEAR_ACTIVE_DOC_HOLD_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+                ⚡ CLEAR_ACTIVE_PURPOSE_HOLD_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+                ⚡ CLEAR_ACTIVE_WIDTH_HOLD_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", "", NULL);
+                ⚡ CLEAR_ACTIVE_SUPPORT_HOLD_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", "", NULL);
+                ⚡ CLEAR_B4_HOLD_RC:
+                    clear_b4();
+                ⚡ CLEAR_REQ_HOLD_RC:
+                    clear_read_request();
+                ⚡ CLEAR_RES_HOLD_RC:
+                    clear_read_result();
+
+                IF (ACTIVE_PURPOSE == "LEARN") {
+                    ⚡ WRITE_PRIORITY_AFTER_HOLD_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PRIORITY", NULL);
+                    ⚡ PHASE:
+                        "PRIORITY";
+                    ⚡ RESET_SCAN_AFTER_HOLD_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                }
+
+                ⚡ ACTIVE_DOC:
+                    "";
+                ⚡ ACTIVE_PURPOSE:
+                    "";
+                ⚡ B4_CONTEXT_ID:
+                    "";
+                ⚡ READ_REQUEST_ID:
+                    "";
+                ⚡ READ_RESULT_ID:
+                    "";
+                ⚡ DOCUMENT_HELD:
+                    1;
+                ⚡ STATUS:
+                    "ACTIVE_DOCUMENT_HELD_AFTER_NATIVE_LEARNER_REFUSAL";
+            }
+        }
+
+        ⚡ ACTIVE_PRESENT2:
+            1;
+        IF (ACTIVE_DOC == "") {
+            ⚡ ACTIVE_PRESENT2:
+                0;
+        }
+
+        IF (ACTIVE_PRESENT2) {
+
+            ⚡ LINE_CURSOR_PATH1:
+                STATE_DIR + "/" + ACTIVE_DOC + ".line_cursor";
+
+            ⚡ LINE_CURSOR1:
+                H("read_text", LINE_CURSOR_PATH1, NULL, NULL);
+
+            ⚡ LINE_CURSOR_VALID1:
+                unary_valid(LINE_CURSOR1);
+
+            IF (LINE_CURSOR_VALID1 == 0) {
+
+                ⚡ HOLD_CURSOR_PATH:
+                    STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+
+                ⚡ HOLD_CURSOR_RECORD:
+                    "DOC=" + ACTIVE_DOC
+                    + " || HOLD=INVALID_LINE_CURSOR"
+                    + " || LEARNER=V4B4R2"
+                    + " || COMMIT=YES";
+
+                ⚡ WRITE_CURSOR_HOLD_RC:
+                    H("write_text", HOLD_CURSOR_PATH, HOLD_CURSOR_RECORD, NULL);
+
+                ⚡ CLEAR_ACTIVE_CURSOR_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+                ⚡ CLEAR_PURPOSE_CURSOR_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+                ⚡ CLEAR_B4_CURSOR_RC:
+                    clear_b4();
+                ⚡ CLEAR_REQ_CURSOR_RC:
+                    clear_read_request();
+                ⚡ CLEAR_RES_CURSOR_RC:
+                    clear_read_result();
+
+                ⚡ ACTIVE_DOC:
+                    "";
+                ⚡ ACTIVE_PURPOSE:
+                    "";
+                ⚡ B4_CONTEXT_ID:
+                    "";
+                ⚡ DOCUMENT_HELD:
+                    1;
+                ⚡ STATUS:
+                    "ACTIVE_DOCUMENT_INVALID_LINE_CURSOR_HELD";
+            }
+
+            IF (LINE_CURSOR_VALID1) {
+
+                ⚡ EXPECTED_CONTEXT_ID:
+                    ACTIVE_DOC + "::LINE=" + LINE_CURSOR1;
+
+                ⚡ EXPECTED_COMPLETION:
+                    "CTX=" + EXPECTED_CONTEXT_ID + " || COMPLETE=YES";
+
+                ⚡ LINE_COMPLETE:
+                    0;
+
+                IF (B4_COMPLETION == EXPECTED_COMPLETION) {
+                    ⚡ LINE_COMPLETE:
+                        1;
+                }
+
+                IF (LINE_COMPLETE) {
+
+                    ⚡ PROFILE_PATH_COMMIT:
+                        STATE_DIR + "/" + ACTIVE_DOC + ".profile";
+
+                    ⚡ PROFILE_EXISTS_COMMIT:
+                        H("file_exists", PROFILE_PATH_COMMIT, NULL, NULL);
+
+                    ⚡ PROFILE_WIDTH_OLD:
+                        "";
+                    ⚡ PROFILE_SUPPORT_OLD:
+                        "";
+                    ⚡ PROFILE_OLD_VALID:
+                        1;
+
+                    IF (PROFILE_EXISTS_COMMIT) {
+
+                        ⚡ PROFILE_TEXT_OLD:
+                            H("read_text", PROFILE_PATH_COMMIT, NULL, NULL);
+
+                        ⚡ PROFILE_PARTS_OLD:
+                            H("str_split", PROFILE_TEXT_OLD, " || ", NULL);
+
+                        ⚡ PROFILE_PART_TOTAL_OLD:
+                            H("list_len", PROFILE_PARTS_OLD, NULL, NULL);
+
+                        IF (PROFILE_PART_TOTAL_OLD == 3) {
+                            ⚡ P0_OLD:
+                                H("list_get", PROFILE_PARTS_OLD, 0, NULL);
+                            ⚡ P1_OLD:
+                                H("list_get", PROFILE_PARTS_OLD, 1, NULL);
+                            ⚡ P2_OLD:
+                                H("list_get", PROFILE_PARTS_OLD, 2, NULL);
+                            ⚡ PROFILE_WIDTH_OLD:
+                                field_value(P0_OLD, "WIDTH=");
+                            ⚡ PROFILE_SUPPORT_OLD:
+                                field_value(P1_OLD, "SUPPORT=");
+                            IF (P2_OLD == "PROFILE=YES") {
+                                ⚡ PROFILE_OLD_VALID:
+                                    1;
+                            }
+                            IF (P2_OLD == "PROFILE=YES") {
+                                ⚡ PROFILE_OLD_VALID:
+                                    PROFILE_OLD_VALID;
+                            }
+                            IF (P2_OLD == "PROFILE=YES") {
+                                ⚡ PROFILE_OLD_VALID:
+                                    PROFILE_OLD_VALID;
+                            }
+                            ⚡ WIDTH_OLD_UNARY_VALID:
+                                unary_valid(PROFILE_WIDTH_OLD);
+                            ⚡ SUPPORT_OLD_UNARY_VALID:
+                                unary_valid(PROFILE_SUPPORT_OLD);
+                            IF (WIDTH_OLD_UNARY_VALID == 0) {
+                                ⚡ PROFILE_OLD_VALID:
+                                    0;
+                            }
+                            IF (SUPPORT_OLD_UNARY_VALID == 0) {
+                                ⚡ PROFILE_OLD_VALID:
+                                    0;
+                            }
+                        }
+
+                        IF (PROFILE_PART_TOTAL_OLD < 3) {
+                            ⚡ PROFILE_OLD_VALID:
+                                0;
+                        }
+                        IF (3 < PROFILE_PART_TOTAL_OLD) {
+                            ⚡ PROFILE_OLD_VALID:
+                                0;
+                        }
+                    }
+
+                    IF (PROFILE_OLD_VALID) {
+
+                        ⚡ FINAL_PROFILE_WIDTH:
+                            PROFILE_WIDTH_OLD;
+                        ⚡ FINAL_PROFILE_SUPPORT:
+                            PROFILE_SUPPORT_OLD;
+
+                        ⚡ OLD_WN:
+                            H("str_len", FINAL_PROFILE_WIDTH, NULL, NULL);
+                        ⚡ OLD_SN:
+                            H("str_len", FINAL_PROFILE_SUPPORT, NULL, NULL);
+                        ⚡ ACTIVE_WN:
+                            H("str_len", ACTIVE_BEST_WIDTH, NULL, NULL);
+                        ⚡ ACTIVE_SN:
+                            H("str_len", ACTIVE_BEST_SUPPORT, NULL, NULL);
+
+                        ⚡ TAKE_ACTIVE_PROFILE:
+                            0;
+
+                        IF (OLD_WN < ACTIVE_WN) {
+                            ⚡ TAKE_ACTIVE_PROFILE:
+                                1;
+                        }
+                        IF (OLD_WN == ACTIVE_WN) {
+                            IF (OLD_SN < ACTIVE_SN) {
+                                ⚡ TAKE_ACTIVE_PROFILE:
+                                    1;
+                            }
+                        }
+
+                        IF (PROFILE_EXISTS_COMMIT == FALSE) {
+                            ⚡ TAKE_ACTIVE_PROFILE:
+                                1;
+                        }
+
+                        IF (TAKE_ACTIVE_PROFILE) {
+                            ⚡ FINAL_PROFILE_WIDTH:
+                                ACTIVE_BEST_WIDTH;
+                            ⚡ FINAL_PROFILE_SUPPORT:
+                                ACTIVE_BEST_SUPPORT;
+                        }
+
+                        ⚡ PROFILE_RECORD:
+                            "WIDTH=" + FINAL_PROFILE_WIDTH
+                            + " || SUPPORT=" + FINAL_PROFILE_SUPPORT
+                            + " || PROFILE=YES";
+
+                        ⚡ WRITE_PROFILE_RC:
+                            H("write_text", PROFILE_PATH_COMMIT, PROFILE_RECORD, NULL);
+
+                        ⚡ PROFILE_COMMITTED:
+                            1;
+
+                        ⚡ ADVANCE_LINE_CURSOR_RC:
+                            H("append_text", LINE_CURSOR_PATH1, "|", NULL);
+
+                        ⚡ CLEAR_B4_LINE_COMPLETE_RC:
+                            clear_b4();
+                        ⚡ CLEAR_ACTIVE_WIDTH_LINE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", "", NULL);
+                        ⚡ CLEAR_ACTIVE_SUPPORT_LINE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", "", NULL);
+                        ⚡ CLEAR_REQ_LINE_RC:
+                            clear_read_request();
+                        ⚡ CLEAR_RES_LINE_RC:
+                            clear_read_result();
+
+                        ⚡ B4_CONTEXT_ID:
+                            "";
+                        ⚡ READ_REQUEST_ID:
+                            "";
+                        ⚡ READ_RESULT_ID:
+                            "";
+                        ⚡ ACTIVE_BEST_WIDTH:
+                            "";
+                        ⚡ ACTIVE_BEST_SUPPORT:
+                            "";
+
+                        IF (ACTIVE_PURPOSE == "PROFILE") {
+                            ⚡ CLEAR_ACTIVE_PROFILE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+                            ⚡ CLEAR_PURPOSE_PROFILE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+                            ⚡ ACTIVE_DOC:
+                                "";
+                            ⚡ ACTIVE_PURPOSE:
+                                "";
+                            ⚡ STATUS:
+                                "DOCUMENT_PROFILE_COMMITTED";
+                        }
+
+                        IF (ACTIVE_PURPOSE == "LEARN") {
+                            ⚡ STATUS:
+                                "LEARN_LINE_COMMITTED_CONTINUE_DOCUMENT";
+                        }
+                    }
+
+                    IF (PROFILE_OLD_VALID == 0) {
+                        ⚡ BAD_PROFILE_HOLD_PATH:
+                            STATE_DIR + "/" + ACTIVE_DOC + ".hold";
+                        ⚡ BAD_PROFILE_HOLD_RECORD:
+                            "DOC=" + ACTIVE_DOC
+                            + " || HOLD=INVALID_PROFILE_STATE"
+                            + " || LEARNER=V4B4R2"
+                            + " || COMMIT=YES";
+                        ⚡ WRITE_BAD_PROFILE_HOLD_RC:
+                            H("write_text", BAD_PROFILE_HOLD_PATH, BAD_PROFILE_HOLD_RECORD, NULL);
+                        ⚡ CLEAR_BAD_PROFILE_ACTIVE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+                        ⚡ CLEAR_BAD_PROFILE_PURPOSE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+                        ⚡ CLEAR_BAD_PROFILE_B4_RC:
+                            clear_b4();
+                        ⚡ ACTIVE_DOC:
+                            "";
+                        ⚡ ACTIVE_PURPOSE:
+                            "";
+                        ⚡ DOCUMENT_HELD:
+                            1;
+                        ⚡ STATUS:
+                            "INVALID_PROFILE_STATE_HELD";
+                    }
+                }
+            }
+        }
+
+        ⚡ ACTIVE_PRESENT3:
+            1;
+        IF (ACTIVE_DOC == "") {
+            ⚡ ACTIVE_PRESENT3:
+                0;
+        }
+
+        IF (ACTIVE_PRESENT3) {
+
+            ⚡ B4_ACTIVE_NOW:
+                H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+
+            ⚡ B4_ACTIVE_PRESENT:
+                1;
+            IF (B4_ACTIVE_NOW == "") {
+                ⚡ B4_ACTIVE_PRESENT:
+                    0;
+            }
+
+            IF (B4_ACTIVE_PRESENT == 0) {
+
+                ⚡ RESULT_PRESENT:
+                    1;
+                IF (READ_RESULT_ID == "") {
+                    ⚡ RESULT_PRESENT:
+                        0;
+                }
+
+                IF (RESULT_PRESENT) {
+
+                    ⚡ RESULT_MATCH:
+                        0;
+                    IF (READ_RESULT_ID == READ_REQUEST_ID) {
+                        ⚡ RESULT_MATCH:
+                            1;
+                    }
+
+                    ⚡ FOUND_VALID:
+                        0;
+                    IF (READ_RESULT_FOUND == "YES") {
+                        ⚡ FOUND_VALID:
+                            1;
+                    }
+                    IF (READ_RESULT_FOUND == "NO") {
+                        ⚡ FOUND_VALID:
+                            1;
+                    }
+
+                    IF (RESULT_MATCH == 0) {
+                        ⚡ STATUS:
+                            "REFUSE_READ_RESULT_ID_MISMATCH";
+                        ⚡ STATE_ALLOWED:
+                            0;
+                    }
+
+                    IF (FOUND_VALID == 0) {
+                        ⚡ STATUS:
+                            "REFUSE_READ_RESULT_FORMAT";
+                        ⚡ STATE_ALLOWED:
+                            0;
+                    }
+
+                    IF (RESULT_MATCH) {
+                        IF (FOUND_VALID) {
+
+                            ⚡ READ_RESULT_CONSUMED:
+                                1;
+
+                            ⚡ LINE_CURSOR_PATH2:
+                                STATE_DIR + "/" + ACTIVE_DOC + ".line_cursor";
+
+                            ⚡ LINE_CURSOR2:
+                                H("read_text", LINE_CURSOR_PATH2, NULL, NULL);
+
+                            IF (READ_RESULT_FOUND == "NO") {
+
+                                ⚡ PROFILE_PATH_EOF:
+                                    STATE_DIR + "/" + ACTIVE_DOC + ".profile";
+
+                                ⚡ PROFILE_EXISTS_EOF:
+                                    H("file_exists", PROFILE_PATH_EOF, NULL, NULL);
+
+                                IF (PROFILE_EXISTS_EOF == FALSE) {
+                                    ⚡ EMPTY_PROFILE_RECORD:
+                                        "WIDTH= || SUPPORT= || PROFILE=YES";
+                                    ⚡ WRITE_EMPTY_PROFILE_RC:
+                                        H("write_text", PROFILE_PATH_EOF, EMPTY_PROFILE_RECORD, NULL);
+                                    ⚡ PROFILE_COMMITTED:
+                                        1;
+                                }
+
+                                ⚡ COMPLETE_PATH_EOF:
+                                    STATE_DIR + "/" + ACTIVE_DOC + ".complete";
+
+                                ⚡ COMPLETE_RECORD_EOF:
+                                    "DOC=" + ACTIVE_DOC
+                                    + " || COMPLETE=YES"
+                                    + " || LEARNER=V4B4R2"
+                                    + " || COMMIT=YES";
+
+                                ⚡ WRITE_COMPLETE_EOF_RC:
+                                    H("write_text", COMPLETE_PATH_EOF, COMPLETE_RECORD_EOF, NULL);
+
+                                ⚡ CLEAR_ACTIVE_EOF_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", "", NULL);
+                                ⚡ CLEAR_PURPOSE_EOF_RC:
+                                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "", NULL);
+                                ⚡ CLEAR_REQ_EOF_RC:
+                                    clear_read_request();
+                                ⚡ CLEAR_RES_EOF_RC:
+                                    clear_read_result();
+                                ⚡ CLEAR_B4_EOF_RC:
+                                    clear_b4();
+
+                                IF (ACTIVE_PURPOSE == "LEARN") {
+                                    ⚡ WRITE_PHASE_PRIORITY_EOF_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PRIORITY", NULL);
+                                    ⚡ PHASE:
+                                        "PRIORITY";
+                                    ⚡ RESET_SCAN_EOF_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                                }
+
+                                ⚡ ACTIVE_DOC:
+                                    "";
+                                ⚡ ACTIVE_PURPOSE:
+                                    "";
+                                ⚡ READ_REQUEST_ID:
+                                    "";
+                                ⚡ READ_RESULT_ID:
+                                    "";
+                                ⚡ DOCUMENT_COMPLETED:
+                                    1;
+                                ⚡ STATUS:
+                                    "DOCUMENT_COMPLETE_AT_NATIVE_REQUESTED_EOF";
+                            }
+
+                            IF (READ_RESULT_FOUND == "YES") {
+
+                                ⚡ BLANK_LINE:
+                                    0;
+                                IF (READ_RESULT_TEXT == "") {
+                                    ⚡ BLANK_LINE:
+                                        1;
+                                }
+
+                                IF (BLANK_LINE) {
+                                    ⚡ SKIP_BLANK_RC:
+                                        H("append_text", LINE_CURSOR_PATH2, "|", NULL);
+                                    ⚡ CLEAR_REQ_BLANK_RC:
+                                        clear_read_request();
+                                    ⚡ CLEAR_RES_BLANK_RC:
+                                        clear_read_result();
+                                    ⚡ READ_REQUEST_ID:
+                                        "";
+                                    ⚡ READ_RESULT_ID:
+                                        "";
+                                    ⚡ STATUS:
+                                        "BLANK_LINE_SKIPPED_BY_NATIVE_CURSOR";
+                                }
+
+                                IF (BLANK_LINE == 0) {
+
+                                    ⚡ CONTEXT_ID_NEW:
+                                        ACTIVE_DOC + "::LINE=" + LINE_CURSOR2;
+
+                                    ⚡ INSTALL_CONTEXT_ID_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", CONTEXT_ID_NEW, NULL);
+                                    ⚡ INSTALL_CONTEXT_TEXT_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_TEXT.memory", READ_RESULT_TEXT, NULL);
+                                    ⚡ RESET_B4_CURSOR_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", "", NULL);
+                                    ⚡ RESET_B4_COMPLETION_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_COMPLETION.memory", "", NULL);
+                                    ⚡ RESET_B4_STATUS_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_STATUS.memory", "", NULL);
+                                    ⚡ RESET_B4_EVIDENCE_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_LAST_EVIDENCE.memory", "", NULL);
+                                    ⚡ RESET_B4_WIDTH_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_WIDTH.memory", "", NULL);
+                                    ⚡ RESET_B4_SUPPORT_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4B4R2_BEST_SUPPORT.memory", "", NULL);
+                                    ⚡ RESET_ACTIVE_WIDTH_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_WIDTH.memory", "", NULL);
+                                    ⚡ RESET_ACTIVE_SUPPORT_NEW_RC:
+                                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_BEST_SUPPORT.memory", "", NULL);
+                                    ⚡ CLEAR_REQ_INSTALL_RC:
+                                        clear_read_request();
+                                    ⚡ CLEAR_RES_INSTALL_RC:
+                                        clear_read_result();
+
+                                    ⚡ B4_CONTEXT_ID:
+                                        CONTEXT_ID_NEW;
+                                    ⚡ B4_CURSOR:
+                                        "";
+                                    ⚡ READ_REQUEST_ID:
+                                        "";
+                                    ⚡ READ_RESULT_ID:
+                                        "";
+                                    ⚡ STATUS:
+                                        "EXACT_NATIVE_SELECTED_CORPUS_LINE_INSTALLED";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ⚡ ACTIVE_PRESENT4:
+            1;
+        IF (ACTIVE_DOC == "") {
+            ⚡ ACTIVE_PRESENT4:
+                0;
+        }
+
+        IF (ACTIVE_PRESENT4 == 0) {
+
+            IF (PHASE == "PROFILE") {
+
+                ⚡ FILES_PROFILE:
+                    H("listdir", RAW_DIR, NULL, NULL);
+
+                ⚡ SORTED_PROFILE:
+                    H("list_sort", FILES_PROFILE, NULL, NULL);
+
+                ⚡ FILE_TOTAL_PROFILE:
+                    H("list_len", FILES_PROFILE, NULL, NULL);
+
+                ⚡ SCAN_POSITION_PROFILE:
+                    H("str_len", SCAN_CURSOR, NULL, NULL);
+
+                IF (FILE_TOTAL_PROFILE < SCAN_POSITION_PROFILE) {
+                    ⚡ SCAN_CURSOR:
+                        "";
+                    ⚡ SCAN_POSITION_PROFILE:
+                        0;
+                    ⚡ RESET_PROFILE_SCAN_OOR_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                }
+
+                ⚡ NEXT_SCAN_CURSOR_PROFILE:
+                    SCAN_CURSOR;
+
+                ⚡ SCAN_INDEX_PROFILE:
+                    SCAN_POSITION_PROFILE;
+
+                ⚡ SCAN_COUNT_PROFILE:
+                    0;
+
+                ⚡ SELECTED_PROFILE_DOC:
+                    "";
+
+                ⚡ SELECTED_PROFILE_SET:
+                    0;
+
+                WHILE (SCAN_COUNT_PROFILE < MAX_DIRECTORY_SCAN_PER_INVOCATION) {
+
+                    IF (SELECTED_PROFILE_SET == 0) {
+                        IF (SCAN_INDEX_PROFILE < FILE_TOTAL_PROFILE) {
+
+                            ⚡ NAME_PROFILE:
+                                H("list_get", FILES_PROFILE, SCAN_INDEX_PROFILE, NULL);
+
+                            ⚡ NEXT_SCAN_CURSOR_PROFILE:
+                                NEXT_SCAN_CURSOR_PROFILE + "|";
+
+                            ⚡ SCAN_INDEX_PROFILE:
+                                SCAN_INDEX_PROFILE + 1;
+
+                            ⚡ IS_DOCUMENT_PROFILE:
+                                H("str_ends", NAME_PROFILE, ".document", NULL);
+
+                            IF (IS_DOCUMENT_PROFILE) {
+
+                                ⚡ DOC_ID_PROFILE:
+                                    H("str_replace", NAME_PROFILE, ".document", "");
+
+                                ⚡ PROFILE_PATH_SCAN:
+                                    STATE_DIR + "/" + DOC_ID_PROFILE + ".profile";
+                                ⚡ COMPLETE_PATH_SCAN_PROFILE:
+                                    STATE_DIR + "/" + DOC_ID_PROFILE + ".complete";
+                                ⚡ HOLD_PATH_SCAN_PROFILE:
+                                    STATE_DIR + "/" + DOC_ID_PROFILE + ".hold";
+
+                                ⚡ HAS_PROFILE_SCAN:
+                                    H("file_exists", PROFILE_PATH_SCAN, NULL, NULL);
+                                ⚡ HAS_COMPLETE_SCAN_PROFILE:
+                                    H("file_exists", COMPLETE_PATH_SCAN_PROFILE, NULL, NULL);
+                                ⚡ HAS_HOLD_SCAN_PROFILE:
+                                    H("file_exists", HOLD_PATH_SCAN_PROFILE, NULL, NULL);
+
+                                ⚡ PROFILE_ELIGIBLE:
+                                    1;
+
+                                IF (HAS_PROFILE_SCAN) {
+                                    ⚡ PROFILE_ELIGIBLE:
+                                        0;
+                                }
+                                IF (HAS_COMPLETE_SCAN_PROFILE) {
+                                    ⚡ PROFILE_ELIGIBLE:
+                                        0;
+                                }
+                                IF (HAS_HOLD_SCAN_PROFILE) {
+                                    ⚡ PROFILE_ELIGIBLE:
+                                        0;
+                                }
+
+                                IF (PROFILE_ELIGIBLE) {
+                                    ⚡ SELECTED_PROFILE_DOC:
+                                        DOC_ID_PROFILE;
+                                    ⚡ SELECTED_PROFILE_SET:
+                                        1;
+                                }
+                            }
+                        }
+                    }
+
+                    ⚡ SCAN_COUNT_PROFILE:
+                        SCAN_COUNT_PROFILE + 1;
+                }
+
+                ⚡ PROFILE_REACHED_END:
+                    0;
+                IF (SCAN_INDEX_PROFILE == FILE_TOTAL_PROFILE) {
+                    ⚡ PROFILE_REACHED_END:
+                        1;
+                }
+
+                IF (SELECTED_PROFILE_SET) {
+                    ⚡ WRITE_PROFILE_SCAN_CURSOR_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", NEXT_SCAN_CURSOR_PROFILE, NULL);
+                    ⚡ WRITE_PROFILE_ACTIVE_DOC_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", SELECTED_PROFILE_DOC, NULL);
+                    ⚡ WRITE_PROFILE_PURPOSE_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "PROFILE", NULL);
+
+                    ⚡ PROFILE_LINE_CURSOR_PATH_NEW:
+                        STATE_DIR + "/" + SELECTED_PROFILE_DOC + ".line_cursor";
+                    ⚡ PROFILE_LINE_CURSOR_EXISTS_NEW:
+                        H("file_exists", PROFILE_LINE_CURSOR_PATH_NEW, NULL, NULL);
+                    IF (PROFILE_LINE_CURSOR_EXISTS_NEW == FALSE) {
+                        ⚡ INIT_PROFILE_LINE_CURSOR_NEW_RC:
+                            H("write_text", PROFILE_LINE_CURSOR_PATH_NEW, "", NULL);
+                    }
+
+                    ⚡ ACTIVE_DOC:
+                        SELECTED_PROFILE_DOC;
+                    ⚡ ACTIVE_PURPOSE:
+                        "PROFILE";
+                    ⚡ SCAN_CURSOR:
+                        NEXT_SCAN_CURSOR_PROFILE;
+                    ⚡ STATUS:
+                        "NATIVE_PROFILE_DOCUMENT_SELECTED";
+                }
+
+                IF (SELECTED_PROFILE_SET == 0) {
+                    IF (PROFILE_REACHED_END) {
+                        ⚡ RESET_PROFILE_SCAN_END_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                        ⚡ WRITE_PRIORITY_PHASE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PRIORITY", NULL);
+                        ⚡ CLEAR_PRIORITY_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", "", NULL);
+                        ⚡ CLEAR_PRIORITY_WIDTH_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", "", NULL);
+                        ⚡ CLEAR_PRIORITY_SUPPORT_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", "", NULL);
+                        ⚡ CLEAR_PRIORITY_UNPROFILED_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory", "", NULL);
+                        ⚡ PHASE:
+                            "PRIORITY";
+                        ⚡ SCAN_CURSOR:
+                            "";
+                        ⚡ STATUS:
+                            "FULL_PROFILE_PASS_COMPLETE_TRANSITION_PRIORITY";
+                    }
+                    IF (PROFILE_REACHED_END == 0) {
+                        ⚡ WRITE_PROFILE_SCAN_CONTINUE_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", NEXT_SCAN_CURSOR_PROFILE, NULL);
+                        ⚡ SCAN_CURSOR:
+                            NEXT_SCAN_CURSOR_PROFILE;
+                        ⚡ STATUS:
+                            "PROFILE_SCAN_CONTINUATION";
+                    }
+                }
+            }
+
+            IF (PHASE == "PRIORITY") {
+
+                ⚡ FILES_PRIORITY:
+                    H("listdir", RAW_DIR, NULL, NULL);
+                ⚡ SORTED_PRIORITY:
+                    H("list_sort", FILES_PRIORITY, NULL, NULL);
+                ⚡ FILE_TOTAL_PRIORITY:
+                    H("list_len", FILES_PRIORITY, NULL, NULL);
+                ⚡ SCAN_POSITION_PRIORITY:
+                    H("str_len", SCAN_CURSOR, NULL, NULL);
+
+                IF (FILE_TOTAL_PRIORITY < SCAN_POSITION_PRIORITY) {
+                    ⚡ SCAN_CURSOR:
+                        "";
+                    ⚡ SCAN_POSITION_PRIORITY:
+                        0;
+                    ⚡ RESET_PRIORITY_SCAN_OOR_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                }
+
+                ⚡ NEXT_SCAN_CURSOR_PRIORITY:
+                    SCAN_CURSOR;
+                ⚡ SCAN_INDEX_PRIORITY:
+                    SCAN_POSITION_PRIORITY;
+                ⚡ SCAN_COUNT_PRIORITY:
+                    0;
+
+                WHILE (SCAN_COUNT_PRIORITY < MAX_DIRECTORY_SCAN_PER_INVOCATION) {
+
+                    IF (SCAN_INDEX_PRIORITY < FILE_TOTAL_PRIORITY) {
+
+                        ⚡ NAME_PRIORITY:
+                            H("list_get", FILES_PRIORITY, SCAN_INDEX_PRIORITY, NULL);
+
+                        ⚡ NEXT_SCAN_CURSOR_PRIORITY:
+                            NEXT_SCAN_CURSOR_PRIORITY + "|";
+
+                        ⚡ SCAN_INDEX_PRIORITY:
+                            SCAN_INDEX_PRIORITY + 1;
+
+                        ⚡ IS_DOCUMENT_PRIORITY:
+                            H("str_ends", NAME_PRIORITY, ".document", NULL);
+
+                        IF (IS_DOCUMENT_PRIORITY) {
+
+                            ⚡ DOC_ID_PRIORITY:
+                                H("str_replace", NAME_PRIORITY, ".document", "");
+
+                            ⚡ COMPLETE_PATH_PRIORITY:
+                                STATE_DIR + "/" + DOC_ID_PRIORITY + ".complete";
+                            ⚡ HOLD_PATH_PRIORITY:
+                                STATE_DIR + "/" + DOC_ID_PRIORITY + ".hold";
+                            ⚡ PROFILE_PATH_PRIORITY:
+                                STATE_DIR + "/" + DOC_ID_PRIORITY + ".profile";
+
+                            ⚡ DOC_COMPLETE_PRIORITY:
+                                H("file_exists", COMPLETE_PATH_PRIORITY, NULL, NULL);
+                            ⚡ DOC_HOLD_PRIORITY:
+                                H("file_exists", HOLD_PATH_PRIORITY, NULL, NULL);
+
+                            ⚡ DOC_ELIGIBLE_PRIORITY:
+                                1;
+                            IF (DOC_COMPLETE_PRIORITY) {
+                                ⚡ DOC_ELIGIBLE_PRIORITY:
+                                    0;
+                            }
+                            IF (DOC_HOLD_PRIORITY) {
+                                ⚡ DOC_ELIGIBLE_PRIORITY:
+                                    0;
+                            }
+
+                            IF (DOC_ELIGIBLE_PRIORITY) {
+
+                                ⚡ PROFILE_EXISTS_PRIORITY:
+                                    H("file_exists", PROFILE_PATH_PRIORITY, NULL, NULL);
+
+                                IF (PROFILE_EXISTS_PRIORITY == FALSE) {
+                                    ⚡ PRIORITY_UNPROFILED:
+                                        "YES";
+                                }
+
+                                IF (PROFILE_EXISTS_PRIORITY) {
+
+                                    ⚡ PROFILE_TEXT_PRIORITY:
+                                        H("read_text", PROFILE_PATH_PRIORITY, NULL, NULL);
+                                    ⚡ PROFILE_PARTS_PRIORITY:
+                                        H("str_split", PROFILE_TEXT_PRIORITY, " || ", NULL);
+                                    ⚡ PROFILE_PART_TOTAL_PRIORITY:
+                                        H("list_len", PROFILE_PARTS_PRIORITY, NULL, NULL);
+
+                                    ⚡ PROFILE_VALID_PRIORITY:
+                                        0;
+                                    ⚡ CANDIDATE_WIDTH:
+                                        "";
+                                    ⚡ CANDIDATE_SUPPORT:
+                                        "";
+
+                                    IF (PROFILE_PART_TOTAL_PRIORITY == 3) {
+                                        ⚡ PP0:
+                                            H("list_get", PROFILE_PARTS_PRIORITY, 0, NULL);
+                                        ⚡ PP1:
+                                            H("list_get", PROFILE_PARTS_PRIORITY, 1, NULL);
+                                        ⚡ PP2:
+                                            H("list_get", PROFILE_PARTS_PRIORITY, 2, NULL);
+                                        ⚡ CANDIDATE_WIDTH:
+                                            field_value(PP0, "WIDTH=");
+                                        ⚡ CANDIDATE_SUPPORT:
+                                            field_value(PP1, "SUPPORT=");
+                                        IF (PP2 == "PROFILE=YES") {
+                                            IF (unary_valid(CANDIDATE_WIDTH)) {
+                                                IF (unary_valid(CANDIDATE_SUPPORT)) {
+                                                    ⚡ PROFILE_VALID_PRIORITY:
+                                                        1;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    IF (PROFILE_VALID_PRIORITY) {
+
+                                        ⚡ BEST_SET_PRIORITY:
+                                            1;
+                                        IF (PRIORITY_BEST_DOC == "") {
+                                            ⚡ BEST_SET_PRIORITY:
+                                                0;
+                                        }
+
+                                        ⚡ TAKE_PRIORITY_CANDIDATE:
+                                            0;
+
+                                        IF (BEST_SET_PRIORITY == 0) {
+                                            ⚡ TAKE_PRIORITY_CANDIDATE:
+                                                1;
+                                        }
+
+                                        IF (BEST_SET_PRIORITY) {
+                                            ⚡ CW:
+                                                H("str_len", CANDIDATE_WIDTH, NULL, NULL);
+                                            ⚡ CS:
+                                                H("str_len", CANDIDATE_SUPPORT, NULL, NULL);
+                                            ⚡ BW:
+                                                H("str_len", PRIORITY_BEST_WIDTH, NULL, NULL);
+                                            ⚡ BS:
+                                                H("str_len", PRIORITY_BEST_SUPPORT, NULL, NULL);
+
+                                            IF (BW < CW) {
+                                                ⚡ TAKE_PRIORITY_CANDIDATE:
+                                                    1;
+                                            }
+                                            IF (BW == CW) {
+                                                IF (BS < CS) {
+                                                    ⚡ TAKE_PRIORITY_CANDIDATE:
+                                                        1;
+                                                }
+                                            }
+                                        }
+
+                                        IF (TAKE_PRIORITY_CANDIDATE) {
+                                            ⚡ PRIORITY_BEST_DOC:
+                                                DOC_ID_PRIORITY;
+                                            ⚡ PRIORITY_BEST_WIDTH:
+                                                CANDIDATE_WIDTH;
+                                            ⚡ PRIORITY_BEST_SUPPORT:
+                                                CANDIDATE_SUPPORT;
+                                        }
+                                    }
+
+                                    IF (PROFILE_VALID_PRIORITY == 0) {
+                                        ⚡ INVALID_PROFILE_HOLD_PATH_PRIORITY:
+                                            STATE_DIR + "/" + DOC_ID_PRIORITY + ".hold";
+                                        ⚡ INVALID_PROFILE_HOLD_RECORD_PRIORITY:
+                                            "DOC=" + DOC_ID_PRIORITY
+                                            + " || HOLD=INVALID_PROFILE_STATE"
+                                            + " || LEARNER=V4B4R2"
+                                            + " || COMMIT=YES";
+                                        ⚡ WRITE_INVALID_PROFILE_HOLD_PRIORITY_RC:
+                                            H("write_text", INVALID_PROFILE_HOLD_PATH_PRIORITY, INVALID_PROFILE_HOLD_RECORD_PRIORITY, NULL);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    ⚡ SCAN_COUNT_PRIORITY:
+                        SCAN_COUNT_PRIORITY + 1;
+                }
+
+                ⚡ PRIORITY_REACHED_END:
+                    0;
+                IF (SCAN_INDEX_PRIORITY == FILE_TOTAL_PRIORITY) {
+                    ⚡ PRIORITY_REACHED_END:
+                        1;
+                }
+
+                ⚡ WRITE_PRIORITY_DOC_STATE_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", PRIORITY_BEST_DOC, NULL);
+                ⚡ WRITE_PRIORITY_WIDTH_STATE_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", PRIORITY_BEST_WIDTH, NULL);
+                ⚡ WRITE_PRIORITY_SUPPORT_STATE_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", PRIORITY_BEST_SUPPORT, NULL);
+                ⚡ WRITE_PRIORITY_UNPROFILED_STATE_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory", PRIORITY_UNPROFILED, NULL);
+
+                IF (PRIORITY_REACHED_END == 0) {
+                    ⚡ WRITE_PRIORITY_SCAN_CONTINUE_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", NEXT_SCAN_CURSOR_PRIORITY, NULL);
+                    ⚡ SCAN_CURSOR:
+                        NEXT_SCAN_CURSOR_PRIORITY;
+                    ⚡ STATUS:
+                        "PRIORITY_TOURNAMENT_CONTINUATION";
+                }
+
+                IF (PRIORITY_REACHED_END) {
+
+                    ⚡ RESET_PRIORITY_SCAN_END_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4C2R2_SCAN_CURSOR.memory", "", NULL);
+                    ⚡ SCAN_CURSOR:
+                        "";
+
+                    IF (PRIORITY_UNPROFILED == "YES") {
+                        ⚡ WRITE_PROFILE_PHASE_NEW_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PROFILE", NULL);
+                        ⚡ CLEAR_BEST_DOC_NEW_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", "", NULL);
+                        ⚡ CLEAR_BEST_WIDTH_NEW_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", "", NULL);
+                        ⚡ CLEAR_BEST_SUPPORT_NEW_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", "", NULL);
+                        ⚡ CLEAR_UNPROFILED_NEW_DOC_RC:
+                            H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_UNPROFILED.memory", "", NULL);
+                        ⚡ PHASE:
+                            "PROFILE";
+                        ⚡ STATUS:
+                            "NEW_UNPROFILED_DOCUMENT_DETECTED_RETURN_PROFILE";
+                    }
+
+                    IF (PRIORITY_UNPROFILED == "") {
+
+                        ⚡ BEST_DOC_PRESENT_END:
+                            1;
+                        IF (PRIORITY_BEST_DOC == "") {
+                            ⚡ BEST_DOC_PRESENT_END:
+                                0;
+                        }
+
+                        IF (BEST_DOC_PRESENT_END) {
+                            ⚡ WRITE_LEARN_ACTIVE_DOC_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", PRIORITY_BEST_DOC, NULL);
+                            ⚡ WRITE_LEARN_PURPOSE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", "LEARN", NULL);
+                            ⚡ WRITE_LEARN_PHASE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "LEARN", NULL);
+                            ⚡ CLEAR_BEST_DOC_SELECTED_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_DOC.memory", "", NULL);
+                            ⚡ CLEAR_BEST_WIDTH_SELECTED_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_WIDTH.memory", "", NULL);
+                            ⚡ CLEAR_BEST_SUPPORT_SELECTED_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_PRIORITY_BEST_SUPPORT.memory", "", NULL);
+                            ⚡ ACTIVE_DOC:
+                                PRIORITY_BEST_DOC;
+                            ⚡ ACTIVE_PURPOSE:
+                                "LEARN";
+                            ⚡ PHASE:
+                                "LEARN";
+                            ⚡ PRIORITY_SELECTED:
+                                1;
+                            ⚡ STATUS:
+                                "NATIVE_GLOBAL_PRIORITY_DOCUMENT_SELECTED";
+                        }
+
+                        IF (BEST_DOC_PRESENT_END == 0) {
+                            ⚡ WRITE_PROFILE_RECHECK_IDLE_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", "PROFILE", NULL);
+                            ⚡ PHASE:
+                                "PROFILE";
+                            ⚡ STATUS:
+                                "CORPUS_PASS_COMPLETE_NO_ELIGIBLE_DOCUMENT_RECHECK_PROFILE";
+                        }
+                    }
+                }
+            }
+        }
+
+        ⚡ ACTIVE_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+
+        ⚡ PURPOSE_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", NULL, NULL);
+
+        ⚡ B4_CONTEXT_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4B4R2_CONTEXT_ID.memory", NULL, NULL);
+
+        ⚡ B4_CURSOR_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4B4R2_TOKEN_CURSOR.memory", NULL, NULL);
+
+        ⚡ REQUEST_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", NULL, NULL);
+
+        ⚡ RESULT_FINAL:
+            H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_RESULT_ID.memory", NULL, NULL);
+
+        ⚡ CLEAR_A3_RECEIVED_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_RECEIVED_WORK.memory", "", NULL);
+        ⚡ CLEAR_A3_RETRYABLE_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_RETRYABLE_WORK.memory", "", NULL);
+        ⚡ CLEAR_A3_CORPUS_READ_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_CORPUS_READ_REQUEST.memory", "", NULL);
+        ⚡ CLEAR_A3_LOCAL_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_LOCAL_WORK.memory", "", NULL);
+        ⚡ CLEAR_A3_FETCH_RC:
+            H("write_text", ".sigma_exec/SIGMA_V4A3_FETCH_REQUEST.memory", "", NULL);
+
+        ⚡ B4_FINAL_PRESENT:
+            1;
+        IF (B4_CONTEXT_FINAL == "") {
+            ⚡ B4_FINAL_PRESENT:
+                0;
+        }
+
+        IF (B4_FINAL_PRESENT) {
+            ⚡ B4_CURSOR_PRESENT_FINAL:
+                1;
+            IF (B4_CURSOR_FINAL == "") {
+                ⚡ B4_CURSOR_PRESENT_FINAL:
+                    0;
+            }
+            IF (B4_CURSOR_PRESENT_FINAL) {
+                ⚡ WRITE_A3_RETRYABLE_FINAL_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4A3_RETRYABLE_WORK.memory", B4_CONTEXT_FINAL, NULL);
+                ⚡ STATUS:
+                    "ACTIVE_LINE_RETRYABLE";
+            }
+            IF (B4_CURSOR_PRESENT_FINAL == 0) {
+                ⚡ WRITE_A3_RECEIVED_FINAL_RC:
+                    H("write_text", ".sigma_exec/SIGMA_V4A3_RECEIVED_WORK.memory", B4_CONTEXT_FINAL, NULL);
+                ⚡ STATUS:
+                    "ACTIVE_LINE_RECEIVED";
+            }
+        }
+
+        IF (B4_FINAL_PRESENT == 0) {
+
+            ⚡ RESULT_PENDING_FINAL:
+                1;
+            IF (RESULT_FINAL == "") {
+                ⚡ RESULT_PENDING_FINAL:
+                    0;
+            }
+
+            IF (RESULT_PENDING_FINAL == 0) {
+
+                ⚡ REQUEST_PENDING_FINAL:
+                    1;
+                IF (REQUEST_FINAL == "") {
+                    ⚡ REQUEST_PENDING_FINAL:
+                        0;
+                }
+
+                IF (REQUEST_PENDING_FINAL) {
+                    ⚡ WRITE_A3_EXISTING_REQUEST_RC:
+                        H("write_text", ".sigma_exec/SIGMA_V4A3_CORPUS_READ_REQUEST.memory", REQUEST_FINAL, NULL);
+                    ⚡ STATUS:
+                        "NATIVE_CORPUS_READ_REQUEST_PENDING";
+                }
+
+                IF (REQUEST_PENDING_FINAL == 0) {
+
+                    ⚡ ACTIVE_FINAL_PRESENT:
+                        1;
+                    IF (ACTIVE_FINAL == "") {
+                        ⚡ ACTIVE_FINAL_PRESENT:
+                            0;
+                    }
+
+                    IF (ACTIVE_FINAL_PRESENT) {
+
+                        ⚡ LINE_CURSOR_PATH_FINAL:
+                            STATE_DIR + "/" + ACTIVE_FINAL + ".line_cursor";
+
+                        ⚡ LINE_CURSOR_EXISTS_FINAL:
+                            H("file_exists", LINE_CURSOR_PATH_FINAL, NULL, NULL);
+
+                        IF (LINE_CURSOR_EXISTS_FINAL == FALSE) {
+                            ⚡ INIT_LINE_CURSOR_FINAL_RC:
+                                H("write_text", LINE_CURSOR_PATH_FINAL, "", NULL);
+                        }
+
+                        ⚡ LINE_CURSOR_FINAL:
+                            H("read_text", LINE_CURSOR_PATH_FINAL, NULL, NULL);
+
+                        ⚡ LINE_CURSOR_VALID_FINAL:
+                            unary_valid(LINE_CURSOR_FINAL);
+
+                        IF (LINE_CURSOR_VALID_FINAL) {
+
+                            ⚡ NEW_REQUEST_ID:
+                                ACTIVE_FINAL + "::LINE=" + LINE_CURSOR_FINAL + "::PURPOSE=" + PURPOSE_FINAL;
+
+                            ⚡ WRITE_REQ_ID_FINAL_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", NEW_REQUEST_ID, NULL);
+                            ⚡ WRITE_REQ_DOC_FINAL_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_DOC.memory", ACTIVE_FINAL, NULL);
+                            ⚡ WRITE_REQ_LINE_FINAL_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_LINE.memory", LINE_CURSOR_FINAL, NULL);
+                            ⚡ WRITE_REQ_PURPOSE_FINAL_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4C2R2_READ_PURPOSE.memory", PURPOSE_FINAL, NULL);
+                            ⚡ WRITE_A3_NEW_REQUEST_RC:
+                                H("write_text", ".sigma_exec/SIGMA_V4A3_CORPUS_READ_REQUEST.memory", NEW_REQUEST_ID, NULL);
+
+                            ⚡ READ_REQUEST_EMITTED:
+                                1;
+                            ⚡ STATUS:
+                                "NATIVE_EXACT_CORPUS_LINE_READ_REQUEST_EMITTED";
+                        }
+
+                        IF (LINE_CURSOR_VALID_FINAL == 0) {
+                            ⚡ STATUS:
+                                "REFUSE_FINAL_LINE_CURSOR";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ WRITE_STATUS_RC:
+        H("write_text", ".sigma_exec/SIGMA_V4C2R2_STATUS.memory", STATUS, NULL);
+
+    ⚡ PRINT_PHASE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_PHASE.memory", NULL, NULL);
+
+    ⚡ PRINT_ACTIVE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_DOC.memory", NULL, NULL);
+
+    ⚡ PRINT_PURPOSE:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_ACTIVE_PURPOSE.memory", NULL, NULL);
+
+    ⚡ PRINT_REQUEST:
+        H("read_text", ".sigma_exec/SIGMA_V4C2R2_READ_REQUEST_ID.memory", NULL, NULL);
+
+    ⚡ print("SIGMA_V4C2R2_FULL_CORPUS_EVALUATION_CONTROLLER");
+    ⚡ print("STATUS", STATUS);
+    ⚡ print("PHASE", PRINT_PHASE);
+    ⚡ print("ACTIVE_DOC", PRINT_ACTIVE);
+    ⚡ print("ACTIVE_PURPOSE", PRINT_PURPOSE);
+    ⚡ print("READ_REQUEST_ID", PRINT_REQUEST);
+    ⚡ print("PROFILE_COMMITTED", PROFILE_COMMITTED);
+    ⚡ print("PRIORITY_SELECTED", PRIORITY_SELECTED);
+    ⚡ print("DOCUMENT_COMPLETED", DOCUMENT_COMPLETED);
+    ⚡ print("DOCUMENT_HELD", DOCUMENT_HELD);
+    ⚡ print("READ_REQUEST_EMITTED", READ_REQUEST_EMITTED);
+    ⚡ print("READ_RESULT_CONSUMED", READ_RESULT_CONSUMED);
+    ⚡ print("LEARNER_EVIDENCE_ARCHIVED", LEARNER_EVIDENCE_ARCHIVED);
+    ⚡ print("MAX_DIRECTORY_SCAN_PER_INVOCATION", MAX_DIRECTORY_SCAN_PER_INVOCATION);
+    ⚡ print("CORPUS_POLICY", "PROFILE_ALL_THEN_GLOBAL_PRIORITY_THEN_DEEP_LEARN");
+    ⚡ print("PRIORITY_POLICY", "SPAN_WIDTH_DESC_THEN_SUPPORT_DESC_FIRST_NATIVE_TRAVERSAL_TIE");
+    ⚡ print("RAW_CONTENT_READ_BY_NATIVE_MANAGER", "NO");
+    ⚡ print("CORPUS_READ_TRANSPORT_POLICY", "HOST_RETURNS_ONLY_EXACT_LINE_REQUESTED_BY_NATIVE_SIGMA");
+    ⚡ print("HOST_DOCUMENT_SELECTION", "NO");
+    ⚡ print("HOST_LINE_SELECTION", "NO");
+    ⚡ print("HOST_WINDOW_SELECTION", "NO");
+    ⚡ print("HOST_CORPUS_PRIORITY", "NO");
+    ⚡ print("HOST_RETRY_DECISION", "NO");
+    ⚡ print("HOST_COMPLETION_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("BOUNDED_VM_CORPUS_INPUT_PER_TRANSPORT", "ONE_REQUESTED_LINE");
+    ⚡ print("BOUNDED_FILE_IO", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
