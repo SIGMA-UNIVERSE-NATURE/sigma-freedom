@@ -1,0 +1,103 @@
+# V4-PK1 Native Admission V1 — Persistent Semantic Hypergraph — PASS
+
+Date: 2026-09-05 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+
+## Locked runtime identities
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+SIGMA_VM_V0.9_CANDIDATE_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+LOCKED_RUNTIME_IDENTITY=PASS
+```
+
+## Admitted artifact identity
+
+```text
+SOURCE_PATH=SIGMA_V4_PERSISTENT_SEMANTIC_HYPERGRAPH_V4PK1.sigma
+SOURCE_SHA256=bef6fdb02c15299a07b2010fcce1664cc98e0888f97536c4d0d4298acca05bcb
+BYTECODE_SHA256=d6b282d5ff6938ce67099e371b6ab8e5ee8dcc2c3e20c9f2ef419f596af104de
+COMPILE_RC=0
+```
+
+## Runtime machine evidence
+
+```text
+A_CREATE_3ARY=PASS
+A_REPLAY_FRESH_VM_IDEMPOTENT=PASS
+A_EDGE_ID_CONFLICT=PASS
+B_CREATE_2ARY_WITH_PERSISTED_A=PASS
+C_REFUSE_ONE_MEMBER=PASS
+D_REFUSE_DUPLICATE_MEMBER=PASS
+E_REFUSE_WEIGHT_RANGE=PASS
+F_REFUSE_UNCERTAINTY_RANGE=PASS
+G_REFUSE_UNSAFE_TOKEN=PASS
+H_REFUSE_MALFORMED_STORE=PASS
+VM_RC=0_IN_ALL_TESTED_INVOCATIONS
+STEP_LIMIT_NOT_OBSERVED_IN_BOUNDED_CASES=YES
+```
+
+Observed native state transitions include:
+
+- first valid 3-member hyperedge committed with native write/readback equality;
+- exact replay across a fresh VM process produced no duplicate mutation;
+- conflicting reuse of the same edge ID was refused without mutation;
+- a second valid 2-member hyperedge observed and used prior persisted state;
+- one-member and duplicate-member hyperedges were refused;
+- weight and uncertainty values above 10000 basis points were refused;
+- unsafe serialized relation token was refused;
+- malformed persistent-store record was detected and further mutation refused.
+
+## Host-substitution boundary
+
+```text
+ACTIVE_CAPABILITY_IMPLEMENTATION=NATIVE_SIGMA_ONLY
+ACTIVE_SIGMA_COGNITION=SIGMA_NATIVE_ONLY
+HOST_COGNITION=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_HYPEREDGE_ADMISSION_DECISION=NO
+HOST_WEIGHT_DECISION=NO
+HOST_EVIDENCE_DECISION=NO
+HOST_POST_VM_TEST_ORACLE_ONLY=YES
+PYTHON_USED=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+```
+
+## Admission
+
+```text
+V4PK1_NATIVE_ADMISSION_V1=PASS
+PERSISTENT_SEMANTIC_HYPERGRAPH_TESTED_SCOPE=PASS
+NATIVE_HYPEREDGE_VALIDATION=PASS
+NATIVE_PERSISTENT_COMMIT=PASS
+FRESH_VM_PERSISTENT_STATE_REUSE=PASS
+EXACT_REPLAY_IDEMPOTENCY=PASS
+EDGE_ID_CONFLICT_REFUSAL=PASS
+WEIGHT_UNCERTAINTY_RANGE_GATES=PASS
+MALFORMED_STORE_REFUSAL=PASS
+RESULT=PASS_IN_EXACT_TESTED_SCOPE
+```
+
+## Claim boundaries
+
+```text
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+MULTI_HOP_REASONING=NOT_EXECUTED
+CONTROLLED_INFERENCE=NOT_EXECUTED
+GENERAL_KNOWLEDGE_PROMOTION=NOT_PROVEN
+DEVICE_RESTART_DURABILITY=NOT_PROVEN
+PARTIAL_WRITE_ATOMICITY=NOT_PROVEN
+CONCURRENT_WRITER_SAFETY=NOT_PROVEN
+PRODUCTION_BINDING=NO
+```
+
+The term `Semantic Hypergraph` names the intended representation substrate. This admission proves bounded persistent native hyperedge storage/validation behavior only; it does not prove semantic understanding.
+
+## Dependency progression
+
+```text
+V4_PK1_ADMISSION=PASS
+V4_PK2_WEIGHT_EVIDENCE=UNLOCKED_FOR_NATIVE_ADMISSION_WORK
+V4_PK3_MULTI_HOP=LOCKED_UNTIL_V4_PK2_PASS
+```
