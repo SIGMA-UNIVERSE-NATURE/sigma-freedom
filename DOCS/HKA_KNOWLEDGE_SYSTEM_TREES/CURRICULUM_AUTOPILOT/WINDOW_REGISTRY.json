@@ -1,16 +1,18 @@
 {
-  "schema_version": "3.1",
+  "schema_version": "3.2",
   "canonical_pipeline_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
-  "rule": "Successor windows read GitHub state, immutable architecture anchors, active dependency amendments and predecessor artifacts; chat history is never a dependency.",
-  "child_window_rule": "Each child writes RESULT.json plus mandatory durable status. Only Director-accepted PASS unlocks successor work.",
+  "rule": "Successor windows read GitHub state, immutable architecture anchors, active amendments, foundational 13-year coverage gate and predecessor artifacts; chat history is never a dependency.",
+  "child_window_rule": "Each child writes RESULT.json plus mandatory durable status. Only Director-accepted PASS unlocks successor work, and subbranch completion/successor transitions additionally require applicable integration/foundational gates.",
   "scope_map_anchor": {"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
   "active_dependency_amendments": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_1.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_2.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_3.md",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_4.md",
-    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md"
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/B1_1_MATH_EXECUTION_DEPENDENCY_AMENDMENT_5.md",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md"
   ],
+  "foundational_13_year_gate": {"path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json","status":"ACTIVE_REQUIRED","B1_1_audit_status":"NOT_YET_RUN","required_gap_count":0,"B1_2_unlock_before_pass":false},
   "stage_order": ["KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"],
   "stages": [
     {"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT","artifacts":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md@fc799bf1104ab6352710e1801777a971b5179995"]},
@@ -18,13 +20,14 @@
       "stage_id":"CURRICULUM",
       "status":"IN_PROGRESS",
       "entry_gate":"KNOWLEDGE=LOCKED_INPUT",
-      "exit_gate":"all six branches complete + global coverage/prerequisite/semantic-duplicate audits PASS + multi-continent curriculum benchmark integrated",
+      "exit_gate":"all six branches complete + foundational 13-year coverage gap count 0 + global coverage/prerequisite/semantic-duplicate audits PASS + multi-continent full-general-education benchmark and external mappings integrated",
       "windows":[
         {"window_id":"C01-W01-B1-ARCHITECTURE","scope":"B1 coverage, stable IDs, bounded partition and sequencing plan","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
         {
           "window_id":"C01-W02-B1.1-MATH-FAMILY",
           "scope":"B1.1 bounded authoring family",
           "status":"IN_PROGRESS",
+          "subbranch_exit_gate":{"foundational_13_year_coverage_audit":"REQUIRED_NOT_YET_RUN","foundational_gap_count_required":0,"B1_2_unlock_forbidden_until_pass":true},
           "children":[
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C01","scope_id":"B1.1-C01","scope":"Logic, tập hợp và chứng minh","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c01","accepted_commit_sha":"5659288da80a239e2ded408da87348670c1410c2","topic_count":8,"claim_count":38,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS"},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C02","scope_id":"B1.1-C02","scope":"Số học và lý thuyết số","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c02","accepted_commit_sha":"cfd9746e2296280705e2e2e67b2c5980d440f02d","topic_count":8,"claim_count":64,"source_count":7,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","cross_link_count":15},
@@ -35,10 +38,10 @@
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C07","scope_id":"B1.1-C07","scope":"Xác suất, thống kê và suy luận","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c07","worker_candidate_commit_sha":"fa7c11c2df42490df099dd07c0c7e0f46949013e","director_claim_amendment_commit_sha":"deb2740192eecdfe21d984ecddbc2073c70e8ae2","accepted_commit_sha":"be10c01bf8df64a723e135524b75ce644947dcbd","topic_count":10,"claim_count":158,"source_count":7,"learning_objective_count":40,"claim_to_learning_objective_closure":"40/40 SEMANTIC PASS","cross_link_count":17,"sequence_intent_count":10,"mandatory_risks":["R06","R13"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C08","scope_id":"B1.1-C08","scope":"Toán rời rạc và tổ hợp","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c08","worker_candidate_commit_sha":"4f0493b4c7605e9d457810c9efe7ae822eeeab7a","director_claim_amendment_commit_sha":"e6167f0e68aa5d49f39b09ffabe686ca28960bad","accepted_commit_sha":"14729ce490289b057d5dca25767c3b5ea357e1ec","topic_count":8,"claim_count":109,"source_count":7,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 SEMANTIC PASS","cross_link_count":17,"sequence_intent_count":8,"mandatory_risks":["R05","R02"]},
             {"window_id":"C01-W02-B1.1-MATH-FAMILY-C09","scope_id":"B1.1-C09","scope":"Tô pô và hình học hiện đại","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w02-math-c09","accepted_predecessor_commit_sha":"be10c01bf8df64a723e135524b75ce644947dcbd","worker_candidate_commit_sha":"f7d8afaa92c4401abe97ca8d9623d79b8617d8ca","accepted_commit_sha":"9f17cee504c51830f0f4fbfbe429ffa8759ea793","topic_count":7,"claim_count":84,"source_count":6,"learning_objective_count":28,"claim_to_learning_objective_closure":"28/28 SEMANTIC PASS","cross_link_count":15,"sequence_intent_count":7,"academic_repairs_required":0,"execution_note":"Director independently audited all C09 claims/sources/objectives/closures and accepted without repair; C03/C05/C04 ownership boundaries preserved."},
-            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C10","scope_id":"B1.1-C10","scope":"Toán ứng dụng và tính toán","status":"READY","execution_branch":"hka-tree/c01-w02-math-c10","accepted_predecessor_commit_sha":"9f17cee504c51830f0f4fbfbe429ffa8759ea793","topic_count":10,"depends_on":["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"],"continuity_predecessor_only":"B1.1-C09","mandatory_risks":["R06","R13"],"execution_note":"Final B1.1 authoring scope. Amendment 5 locks decision/optimization/domain-model/B1.5 boundaries. Completion remains worker-candidate only and cannot unlock B1.2 or later stages."}
+            {"window_id":"C01-W02-B1.1-MATH-FAMILY-C10","scope_id":"B1.1-C10","scope":"Toán ứng dụng và tính toán","status":"READY","execution_branch":"hka-tree/c01-w02-math-c10","accepted_predecessor_commit_sha":"9f17cee504c51830f0f4fbfbe429ffa8759ea793","topic_count":10,"depends_on":["B1.1-C03","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08"],"continuity_predecessor_only":"B1.1-C09","mandatory_risks":["R06","R13"],"foundational_13_year_rule":"Preserve foundational applied-math meanings before advanced extensions; do not patch other owner scopes. Worker PASS must be followed by Director C10 audit then B1.1 foundational audit.","execution_note":"Final B1.1 authoring scope. Completion remains worker candidate only. B1.1 completion and B1.2 unlock are forbidden until post-C10 foundational audit PASS with gap count 0."}
           ]
         },
-        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","status":"LOCKED"},
+        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","status":"LOCKED","unlock_gate":"B1.1 Director-complete after foundational 13-year audit PASS with gap count 0"},
         {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"LOCKED"},
         {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"LOCKED"},
         {"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED"},
