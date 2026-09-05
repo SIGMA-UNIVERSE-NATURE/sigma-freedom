@@ -45,22 +45,26 @@ DEF preview_words(text, max_words) {
             ⚡ TOKEN:
                 H("list_get", TOKENS, I, NULL);
             IF (TOKEN != "") {
-                IF (OUT == "") {
+                IF (TAKEN == 0) {
                     ⚡ OUT:
                         TOKEN;
                 }
-                IF (OUT != "") {
-                    IF (OUT != TOKEN) {
-                        ⚡ OUT:
-                            OUT + " " + TOKEN;
-                    }
+                IF (0 < TAKEN) {
+                    ⚡ OUT:
+                        OUT + " " + TOKEN;
                 }
                 ⚡ TAKEN:
                     TAKEN + 1;
             }
         }
-        ⚡ I:
-            I + 1;
+        IF (max_words <= TAKEN) {
+            ⚡ I:
+                TOTAL;
+        }
+        IF (I < TOTAL) {
+            ⚡ I:
+                I + 1;
+        }
     }
 
     IF (max_words < TOTAL) {
