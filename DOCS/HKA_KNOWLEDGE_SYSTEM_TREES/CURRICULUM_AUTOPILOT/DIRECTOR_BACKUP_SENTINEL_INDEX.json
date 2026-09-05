@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "backup_window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "branch": "hka-tree/director-backup-sentinel",
+  "mode": "READ_VERIFY_REPORT_ONLY",
+  "contract_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/DIRECTOR_BACKUP_S01/WINDOW_CONTRACT.md",
+  "execution_prompt_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/DIRECTOR_BACKUP_S01/GPT_EXECUTION_PROMPT.md",
+  "open_order_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOWS/DIRECTOR_BACKUP_S01/DIRECTOR_OPEN_ORDER.md",
+  "status_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-BACKUP-S01/STATUS.json",
+  "continuity_snapshot_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
+  "protocol_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_CONTINUITY_PROTOCOL.md",
+  "baseline_sentinel_status": "TREE_ALIGNMENT_PASS",
+  "baseline_active_scope": "B1.1-C06",
+  "baseline_checkpoint_commit": "a221a57d5164fe8086306a3c8bb283ce2172a8c8",
+  "authority": {
+    "academic_authoring": false,
+    "director_acceptance": false,
+    "successor_unlock": false,
+    "control_plane_mutation": false
+  },
+  "required_use": [
+    "before_new_window_open",
+    "after_worker_candidate_received",
+    "on_director_context_loss",
+    "on_any_state_registry_snapshot_mismatch"
+  ]
+}
