@@ -31,7 +31,7 @@ This is intended to complement, not replace, already admitted DNA16 experience r
 Native source:
 `SIGMA_PROFESSOR/artifacts/SOURCES/C5_NATIVE_EXPERIENCE_TO_STRATEGY_ADVISER_V1.sigma`
 
-`SOURCE_SHA256=b1f48b157a4603e19f013dae92f3792cc2b7e9e26327faec7dd9b8bbcd599304`
+`SOURCE_SHA256=b9dc078b2898c58b6af88b3eed22976fffb59dc1dbe5f950babb6b18bab2e33e`
 
 Mechanical builder:
 `SIGMA_PROFESSOR/artifacts/TOOLS/C5_MECHANICAL_EXPERIENCE_TO_STRATEGY_INPUT_BUILDER_V1.py`
