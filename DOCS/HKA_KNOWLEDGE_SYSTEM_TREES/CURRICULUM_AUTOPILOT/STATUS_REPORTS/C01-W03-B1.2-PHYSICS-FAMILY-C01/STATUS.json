@@ -4,27 +4,57 @@
   "role": "ACADEMIC_CURRICULUM_WORKER",
   "stage": "CURRICULUM",
   "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
   "execution_branch": "hka-tree/c01-w03-physics-c01",
   "input_commit_sha": "a4c4eea2430c13fce478c7ff3c080151eecff0d4",
-  "last_checkpoint_commit_sha": "7c5d0efc4f2c80b81f47f91d8ac1868ee07453bf",
-  "last_checkpoint_id": "CP01-PRE-PASS-REAUDIT",
-  "scope_ids": [
-    "B1.2-C01"
-  ],
+  "last_checkpoint_commit_sha": "0379b3e8bab5e9d3b64c36c4a0c088a6297ec8e0",
+  "last_checkpoint_id": "CP02-TERMINAL-PASS-CANDIDATE",
+  "scope_ids": ["B1.2-C01"],
   "canonical_topic_count": 6,
   "prerequisites": [
     "B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d",
     "B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"
   ],
+  "artifact_counts": {
+    "nodes": 6,
+    "claims": 30,
+    "sources": 6,
+    "learning_objectives": 24,
+    "claim_to_learning_objective_closures": 24,
+    "cross_links": 8,
+    "sequence_intent_records": 6
+  },
   "completed_work": [
-    "Authored all 6 canonical measurement topics",
-    "Created 6 nodes and 30 atomic sourced claims",
-    "Created 24 D1-D4 learning objectives and 24/24 semantic closures",
-    "Recorded source locks, cross-links and sequence intents",
-    "Completed self-audit, 2 self-repairs and re-audit PASS",
-    "Committed pre-PASS audited academic state"
+    "Authored all 6 canonical B1.2-C01 measurement topics.",
+    "Created 6 canonical nodes and 30 atomic sourced claims.",
+    "Created 24 age-independent D1-D4 learning objectives and 24 explicit Claim-to-Learning-Objective closure records.",
+    "Pinned six versioned/DOI metrology sources with deterministic SHA-256 source IDs.",
+    "Resolved C02 numerical-approximation and C03 algebra/function ownership boundaries through prerequisite references and typed cross-links.",
+    "Completed self-audit, applied 2 in-scope self-repairs, and completed re-audit PASS.",
+    "Committed pre-PASS audited academic state at 7c5d0efc4f2c80b81f47f91d8ac1868ee07453bf.",
+    "Published RESULT.json and HANDOFF.md at terminal output commit 09a943ea732d52e34ca00882da533f5b4daea896.",
+    "Read committed academic outputs, claims, objectives and closure records back from GitHub durable state.",
+    "Created CP02 terminal worker PASS candidate checkpoint at 0379b3e8bab5e9d3b64c36c4a0c088a6297ec8e0."
   ],
-  "remaining_work": [],
+  "audit_summary": {
+    "topic_completeness": "6/6 PASS",
+    "id_integrity": "PASS",
+    "claim_atomicity_and_traceability": "30/30 PASS",
+    "source_identity_and_sha256_determinism": "PASS",
+    "D1_D4_objectives": "24/24 PASS",
+    "claim_to_learning_objective_closure": "24/24 PASS",
+    "future_or_locked_scope_support_claims": 0,
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "foundational_measurement_coverage": "PASS",
+    "stage_boundary": "PASS",
+    "control_plane_non_mutation": "PASS",
+    "durable_read_back": "PASS"
+  },
+  "self_repairs": 2,
+  "remaining_work": [
+    "Director review and acceptance only. This worker must not open or execute B1.2-C02."
+  ],
   "output_paths": [
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/NODES.jsonl",
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/CLAIMS.jsonl",
@@ -38,20 +68,22 @@
   ],
   "blocking_issues": [],
   "decisions_locked": [
-    "B1.2-C01 scope only",
-    "6 canonical topics complete",
-    "B1.1-C02/C03 reused as accepted prerequisites",
-    "C02 owns numerical rounding/significant-figure arithmetic; C01 owns metrological uncertainty semantics",
-    "B1.2-C02..C12 remain locked",
-    "CURRICULUM-only boundary"
+    "Scope is B1.2-C01 only and all 6 canonical topics are complete.",
+    "B1.1-C02 remains primary owner of generic arithmetic, ratios, rounding, significant figures and numerical approximation/error bounds.",
+    "B1.1-C03 remains primary owner of generic algebra and function semantics reused by dimensions and measurement models.",
+    "B1.2-C01 owns metrological quantity/unit meaning, dimensions, accuracy/precision, measurement error/uncertainty, instruments/calibration and standards/traceability.",
+    "B1.2-C02 through B1.2-C12 remain locked.",
+    "CURRICULUM-only boundary remains locked; no Lesson Registry or later-stage artifact was created."
   ],
   "do_not_repeat": [
-    "Do not reauthor B1.1-C02/C03 mathematical foundations",
-    "Do not author B1.2-C02..C12",
-    "Do not create Lesson Registry, prompts, image, R2, delivery or website artifacts",
-    "Do not reopen accepted IDs without Director-governed supersession"
+    "Do not re-author accepted B1.1-C02 or B1.1-C03 foundations.",
+    "Do not re-author B1.2-C01 after Director acceptance without an explicit supersession window.",
+    "Do not renumber accepted IDs.",
+    "Do not start or unlock B1.2-C02 from this worker branch.",
+    "Do not create Lesson Registry, prompts, images, R2, delivery, website or ACADEMIC_LOCKED artifacts from this window."
   ],
-  "next_action": "Director review/accept B1.2-C01; only then gate/unlock B1.2-C02.",
+  "next_action": "B1.2-C02 — GATED pending Director acceptance of C01",
   "successor_window": "C01-W03-B1.2-PHYSICS-FAMILY-C02",
-  "updated_at": "2026-09-06T20:59:21+07:00"
+  "successor_status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at": "2026-09-06T21:04:22+07:00"
 }
