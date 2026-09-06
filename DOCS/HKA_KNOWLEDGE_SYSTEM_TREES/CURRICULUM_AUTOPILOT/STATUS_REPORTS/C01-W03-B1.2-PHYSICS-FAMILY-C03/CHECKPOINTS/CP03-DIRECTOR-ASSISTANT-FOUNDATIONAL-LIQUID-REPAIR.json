@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-LIQUID-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C03",
+  "scope_id":"B1.2-C03",
+  "topic_id":"B1.2-C03-T03",
+  "role":"DIRECTOR_ASSISTANT_REPAIR",
+  "stage":"CURRICULUM",
+  "base_worker_candidate_sha":"05dfd94fe2c21093be7b5cee2d36e09cda256bb4",
+  "academic_repair_commit_sha":"567008f1d1272d133ea865471316afd8c829b82c",
+  "defect":"Foundational general-education liquid behavior was implicit but not explicit enough: the candidate covered pressure/hydrostatics before explicitly stating that ordinary liquids flow, take container shape, and approximately retain volume.",
+  "repair":{"claim_id":"HKA-B1-2-C03-N003-C005","learning_objective_id":"HKA-B1-2-C03-N003-LO-D1-002","closure_rows_added":1,"node_record_version":2,"sequence_record_version":2,"stable_ids_renumbered":false,"ownership_transfer":false},
+  "effective_counts":{"topics":7,"nodes":7,"claims":29,"sources":5,"learning_objectives":29,"claim_to_learning_objective_closures":29,"cross_links":5,"sequence_intent_records":7},
+  "re_audit":{"topic_coverage":"7/7 PASS","id_uniqueness":"PASS","new_claim_source_resolution":"PASS","semantic_closure":"29/29 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"ownership":"PASS — true owner B1.2-C03-T03","foundational_general_education":"PASS_AFTER_REPAIR","prerequisite_sequence":"PASS","stage_boundary":"PASS — CURRICULUM only"},
+  "worker_self_repairs_preserved":2,
+  "director_assistant_repairs":1,
+  "control_plane_mutation":"NO",
+  "director_acceptance_declared":false,
+  "successor_unlock_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C03 candidate; B1.2-C04 remains gated until Director acceptance."
+}
