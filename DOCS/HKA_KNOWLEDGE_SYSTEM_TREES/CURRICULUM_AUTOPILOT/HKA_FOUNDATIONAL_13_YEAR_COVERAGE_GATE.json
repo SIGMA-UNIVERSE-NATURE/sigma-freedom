@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status": "ACTIVE_REQUIRED",
   "stage": "CURRICULUM",
@@ -17,7 +17,9 @@
     "foundational_13_year_coverage_audit_required": true,
     "foundational_gap_count_required": 0,
     "external_general_education_mapping_required": true,
-    "advanced_coverage_does_not_offset_foundational_gap": true
+    "advanced_coverage_does_not_offset_foundational_gap": true,
+    "director_integration_audit_required": true,
+    "fresh_backup_sentinel_tree_alignment_pass_required": true
   },
   "global_pre_academic_lock_gate": {
     "minimum_continents_for_benchmark": 5,
@@ -31,11 +33,16 @@
     "active_subbranch": "B1.1",
     "accepted_C01_C10_automatically_reopened": false,
     "accepted_C10_commit": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
-    "current_foundational_audit_status": "ACTIVE_NOT_YET_PASS",
-    "foundational_gap_count": null,
-    "audit_scope": "Accepted B1.1 C01-C10 against full primary-through-upper-secondary general-education progressions from multiple systems across at least five continents.",
+    "current_foundational_audit_status": "PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
+    "foundational_gap_count": 0,
+    "post_repair_reaudit_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/FOUNDATIONAL_AUDITS/B1_1_13_YEAR/POST_REPAIR_REAUDIT.json",
+    "post_repair_reaudit_commit": "2c9fd7023c6100fecb77a4c7685e184ff4baf47b",
+    "gap_register_commit": "32642a59d6451fb16068de68432ba840338b75a9",
+    "audit_scope": "Accepted B1.1 C01-C10 plus effective true-owner foundational overlays against full primary-through-upper-secondary general-education progressions across six systems/six continents.",
     "repair_policy": "Only concrete gaps reopen their true owner scopes; advanced content never offsets a gap.",
-    "B1_2_unlock": "FORBIDDEN_UNTIL_PASS_GAP_0"
+    "director_integration_audit_status": "NOT_YET_RUN_ON_ZERO_GAP_EFFECTIVE_VIEW",
+    "backup_sentinel_fresh_alignment_status": "REQUIRED_NOT_YET_REFRESHED_AFTER_ZERO_GAP",
+    "B1_2_unlock": "FORBIDDEN_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL"
   },
   "later_lesson_registry_policy": {
     "foundational_spine_mandatory": true,
@@ -45,5 +52,5 @@
   },
   "authority_source": "DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "authority_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
-  "updated_at": "2026-09-06T05:45:00+07:00"
+  "updated_at": "2026-09-06"
 }
