@@ -1,0 +1,616 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.NATIVE.SELF.REVIEW.EXTERNAL.TOOL.ROUTER][VERSION=1.0]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF flag_valid(v) {
+    IF (v == "0") { RETURN 1; }
+    IF (v == "1") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF digits(v) {
+    IF (v == "") { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lower_hex64(v) {
+    IF (H("str_len", v, NULL, NULL) != 64) { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+    ⚡ R: H("str_replace", R, "a", "");
+    ⚡ R: H("str_replace", R, "b", "");
+    ⚡ R: H("str_replace", R, "c", "");
+    ⚡ R: H("str_replace", R, "d", "");
+    ⚡ R: H("str_replace", R, "e", "");
+    ⚡ R: H("str_replace", R, "f", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF num(v) {
+    RETURN H("to_float", v, NULL, NULL);
+}
+
+DEF gt_num(a, b) {
+    IF (num(a) > num(b)) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lt_num(a, b) {
+    IF (num(a) < num(b)) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF contains_text(text, token) {
+    IF (token == "") { RETURN 0; }
+    IF (text == "") { RETURN 0; }
+
+    ⚡ BEFORE: H("str_len", text, NULL, NULL);
+    ⚡ AFTER_TEXT: H("str_replace", text, token, "");
+    ⚡ AFTER: H("str_len", AFTER_TEXT, NULL, NULL);
+
+    IF (AFTER < BEFORE) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF overlap_one(desc, langs, media, token) {
+    IF (contains_text(desc, token) == 1) { RETURN 1; }
+    IF (contains_text(langs, token) == 1) { RETURN 1; }
+    IF (contains_text(media, token) == 1) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF tool_valid(id, token, available, readiness, prior, material, nomat, tfail, httpfail, dfail) {
+    IF (digits(id) != 1) { RETURN 0; }
+    IF (token == "") { RETURN 0; }
+    IF (flag_valid(available) != 1) { RETURN 0; }
+    IF (digits(readiness) != 1) { RETURN 0; }
+    IF (digits(prior) != 1) { RETURN 0; }
+    IF (digits(material) != 1) { RETURN 0; }
+    IF (digits(nomat) != 1) { RETURN 0; }
+    IF (digits(tfail) != 1) { RETURN 0; }
+    IF (digits(httpfail) != 1) { RETURN 0; }
+    IF (digits(dfail) != 1) { RETURN 0; }
+    RETURN 1;
+}
+
+DEF is_better(ov, hardfail, material, nomat, prior, readiness, id, bov, bhardfail, bmaterial, bnomat, bprior, breadiness, bid) {
+    IF (gt_num(ov, bov) == 1) { RETURN 1; }
+    IF (lt_num(ov, bov) == 1) { RETURN 0; }
+
+    IF (lt_num(hardfail, bhardfail) == 1) { RETURN 1; }
+    IF (gt_num(hardfail, bhardfail) == 1) { RETURN 0; }
+
+    IF (gt_num(material, bmaterial) == 1) { RETURN 1; }
+    IF (lt_num(material, bmaterial) == 1) { RETURN 0; }
+
+    IF (lt_num(nomat, bnomat) == 1) { RETURN 1; }
+    IF (gt_num(nomat, bnomat) == 1) { RETURN 0; }
+
+    IF (lt_num(prior, bprior) == 1) { RETURN 1; }
+    IF (gt_num(prior, bprior) == 1) { RETURN 0; }
+
+    IF (gt_num(readiness, breadiness) == 1) { RETURN 1; }
+    IF (lt_num(readiness, breadiness) == 1) { RETURN 0; }
+
+    IF (lt_num(id, bid) == 1) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF readv(base, name) {
+    RETURN H("read_text", base + "/input/" + name, NULL, NULL);
+}
+
+⟡(Σ.C5_NATIVE_SELF_REVIEW_EXTERNAL_TOOL_ROUTER_V1) {
+    ⚡ BASE:
+        ".sigma_exec/C5_NATIVE_SELF_REVIEW_EXTERNAL_TOOL_ROUTER_V1";
+
+    ⚡ INSTANCE_FINGERPRINT:
+        readv(BASE, "instance_fingerprint_sha256.txt");
+    ⚡ C5_CORE_SHA256:
+        readv(BASE, "c5_core_sha256.txt");
+    ⚡ QUERY_SHA256:
+        readv(BASE, "query_sha256.txt");
+    ⚡ QUERY_TEXT:
+        readv(BASE, "query.txt");
+    ⚡ LAST_SELECTED_TOOL_ID:
+        readv(BASE, "last_selected_tool_id.txt");
+
+    ⚡ EXPECTED_INSTANCE_FINGERPRINT:
+        "fa2834a009f666738129d102dff5b6f09a3c1333c2f2aec8dbd4ac8680a8d125";
+    ⚡ EXPECTED_C5_CORE_SHA256:
+        "1815d9324c721dd51d73f40f0e9ba4e7d76454e0a81831152e213071feef8ace";
+
+    ⚡ Q0: readv(BASE, "query_token_0.txt");
+    ⚡ Q1: readv(BASE, "query_token_1.txt");
+    ⚡ Q2: readv(BASE, "query_token_2.txt");
+    ⚡ Q3: readv(BASE, "query_token_3.txt");
+    ⚡ Q4: readv(BASE, "query_token_4.txt");
+    ⚡ Q5: readv(BASE, "query_token_5.txt");
+    ⚡ Q6: readv(BASE, "query_token_6.txt");
+    ⚡ Q7: readv(BASE, "query_token_7.txt");
+    ⚡ Q8: readv(BASE, "query_token_8.txt");
+    ⚡ Q9: readv(BASE, "query_token_9.txt");
+    ⚡ Q10: readv(BASE, "query_token_10.txt");
+    ⚡ Q11: readv(BASE, "query_token_11.txt");
+
+    ⚡ T0_ID: readv(BASE, "tool0_id.txt");
+    ⚡ T0_TOKEN: readv(BASE, "tool0_token.txt");
+    ⚡ T0_AVAILABLE: readv(BASE, "tool0_available.txt");
+    ⚡ T0_READINESS: readv(BASE, "tool0_readiness.txt");
+    ⚡ T0_PRIOR: readv(BASE, "tool0_prior_selected.txt");
+    ⚡ T0_MATERIAL: readv(BASE, "tool0_material_success.txt");
+    ⚡ T0_NOMAT: readv(BASE, "tool0_no_material.txt");
+    ⚡ T0_TFAIL: readv(BASE, "tool0_transport_failure.txt");
+    ⚡ T0_HTTPFAIL: readv(BASE, "tool0_http_failure.txt");
+    ⚡ T0_DFAIL: readv(BASE, "tool0_decode_failure.txt");
+    ⚡ T0_DESC: readv(BASE, "tool0_descriptor.txt");
+    ⚡ T0_LANG: readv(BASE, "tool0_languages.txt");
+    ⚡ T0_MEDIA: readv(BASE, "tool0_media.txt");
+
+    ⚡ T1_ID: readv(BASE, "tool1_id.txt");
+    ⚡ T1_TOKEN: readv(BASE, "tool1_token.txt");
+    ⚡ T1_AVAILABLE: readv(BASE, "tool1_available.txt");
+    ⚡ T1_READINESS: readv(BASE, "tool1_readiness.txt");
+    ⚡ T1_PRIOR: readv(BASE, "tool1_prior_selected.txt");
+    ⚡ T1_MATERIAL: readv(BASE, "tool1_material_success.txt");
+    ⚡ T1_NOMAT: readv(BASE, "tool1_no_material.txt");
+    ⚡ T1_TFAIL: readv(BASE, "tool1_transport_failure.txt");
+    ⚡ T1_HTTPFAIL: readv(BASE, "tool1_http_failure.txt");
+    ⚡ T1_DFAIL: readv(BASE, "tool1_decode_failure.txt");
+    ⚡ T1_DESC: readv(BASE, "tool1_descriptor.txt");
+    ⚡ T1_LANG: readv(BASE, "tool1_languages.txt");
+    ⚡ T1_MEDIA: readv(BASE, "tool1_media.txt");
+
+    ⚡ T2_ID: readv(BASE, "tool2_id.txt");
+    ⚡ T2_TOKEN: readv(BASE, "tool2_token.txt");
+    ⚡ T2_AVAILABLE: readv(BASE, "tool2_available.txt");
+    ⚡ T2_READINESS: readv(BASE, "tool2_readiness.txt");
+    ⚡ T2_PRIOR: readv(BASE, "tool2_prior_selected.txt");
+    ⚡ T2_MATERIAL: readv(BASE, "tool2_material_success.txt");
+    ⚡ T2_NOMAT: readv(BASE, "tool2_no_material.txt");
+    ⚡ T2_TFAIL: readv(BASE, "tool2_transport_failure.txt");
+    ⚡ T2_HTTPFAIL: readv(BASE, "tool2_http_failure.txt");
+    ⚡ T2_DFAIL: readv(BASE, "tool2_decode_failure.txt");
+    ⚡ T2_DESC: readv(BASE, "tool2_descriptor.txt");
+    ⚡ T2_LANG: readv(BASE, "tool2_languages.txt");
+    ⚡ T2_MEDIA: readv(BASE, "tool2_media.txt");
+
+    ⚡ T3_ID: readv(BASE, "tool3_id.txt");
+    ⚡ T3_TOKEN: readv(BASE, "tool3_token.txt");
+    ⚡ T3_AVAILABLE: readv(BASE, "tool3_available.txt");
+    ⚡ T3_READINESS: readv(BASE, "tool3_readiness.txt");
+    ⚡ T3_PRIOR: readv(BASE, "tool3_prior_selected.txt");
+    ⚡ T3_MATERIAL: readv(BASE, "tool3_material_success.txt");
+    ⚡ T3_NOMAT: readv(BASE, "tool3_no_material.txt");
+    ⚡ T3_TFAIL: readv(BASE, "tool3_transport_failure.txt");
+    ⚡ T3_HTTPFAIL: readv(BASE, "tool3_http_failure.txt");
+    ⚡ T3_DFAIL: readv(BASE, "tool3_decode_failure.txt");
+    ⚡ T3_DESC: readv(BASE, "tool3_descriptor.txt");
+    ⚡ T3_LANG: readv(BASE, "tool3_languages.txt");
+    ⚡ T3_MEDIA: readv(BASE, "tool3_media.txt");
+
+    ⚡ T4_ID: readv(BASE, "tool4_id.txt");
+    ⚡ T4_TOKEN: readv(BASE, "tool4_token.txt");
+    ⚡ T4_AVAILABLE: readv(BASE, "tool4_available.txt");
+    ⚡ T4_READINESS: readv(BASE, "tool4_readiness.txt");
+    ⚡ T4_PRIOR: readv(BASE, "tool4_prior_selected.txt");
+    ⚡ T4_MATERIAL: readv(BASE, "tool4_material_success.txt");
+    ⚡ T4_NOMAT: readv(BASE, "tool4_no_material.txt");
+    ⚡ T4_TFAIL: readv(BASE, "tool4_transport_failure.txt");
+    ⚡ T4_HTTPFAIL: readv(BASE, "tool4_http_failure.txt");
+    ⚡ T4_DFAIL: readv(BASE, "tool4_decode_failure.txt");
+    ⚡ T4_DESC: readv(BASE, "tool4_descriptor.txt");
+    ⚡ T4_LANG: readv(BASE, "tool4_languages.txt");
+    ⚡ T4_MEDIA: readv(BASE, "tool4_media.txt");
+
+    ⚡ T5_ID: readv(BASE, "tool5_id.txt");
+    ⚡ T5_TOKEN: readv(BASE, "tool5_token.txt");
+    ⚡ T5_AVAILABLE: readv(BASE, "tool5_available.txt");
+    ⚡ T5_READINESS: readv(BASE, "tool5_readiness.txt");
+    ⚡ T5_PRIOR: readv(BASE, "tool5_prior_selected.txt");
+    ⚡ T5_MATERIAL: readv(BASE, "tool5_material_success.txt");
+    ⚡ T5_NOMAT: readv(BASE, "tool5_no_material.txt");
+    ⚡ T5_TFAIL: readv(BASE, "tool5_transport_failure.txt");
+    ⚡ T5_HTTPFAIL: readv(BASE, "tool5_http_failure.txt");
+    ⚡ T5_DFAIL: readv(BASE, "tool5_decode_failure.txt");
+    ⚡ T5_DESC: readv(BASE, "tool5_descriptor.txt");
+    ⚡ T5_LANG: readv(BASE, "tool5_languages.txt");
+    ⚡ T5_MEDIA: readv(BASE, "tool5_media.txt");
+
+    ⚡ T6_ID: readv(BASE, "tool6_id.txt");
+    ⚡ T6_TOKEN: readv(BASE, "tool6_token.txt");
+    ⚡ T6_AVAILABLE: readv(BASE, "tool6_available.txt");
+    ⚡ T6_READINESS: readv(BASE, "tool6_readiness.txt");
+    ⚡ T6_PRIOR: readv(BASE, "tool6_prior_selected.txt");
+    ⚡ T6_MATERIAL: readv(BASE, "tool6_material_success.txt");
+    ⚡ T6_NOMAT: readv(BASE, "tool6_no_material.txt");
+    ⚡ T6_TFAIL: readv(BASE, "tool6_transport_failure.txt");
+    ⚡ T6_HTTPFAIL: readv(BASE, "tool6_http_failure.txt");
+    ⚡ T6_DFAIL: readv(BASE, "tool6_decode_failure.txt");
+    ⚡ T6_DESC: readv(BASE, "tool6_descriptor.txt");
+    ⚡ T6_LANG: readv(BASE, "tool6_languages.txt");
+    ⚡ T6_MEDIA: readv(BASE, "tool6_media.txt");
+
+    ⚡ T7_ID: readv(BASE, "tool7_id.txt");
+    ⚡ T7_TOKEN: readv(BASE, "tool7_token.txt");
+    ⚡ T7_AVAILABLE: readv(BASE, "tool7_available.txt");
+    ⚡ T7_READINESS: readv(BASE, "tool7_readiness.txt");
+    ⚡ T7_PRIOR: readv(BASE, "tool7_prior_selected.txt");
+    ⚡ T7_MATERIAL: readv(BASE, "tool7_material_success.txt");
+    ⚡ T7_NOMAT: readv(BASE, "tool7_no_material.txt");
+    ⚡ T7_TFAIL: readv(BASE, "tool7_transport_failure.txt");
+    ⚡ T7_HTTPFAIL: readv(BASE, "tool7_http_failure.txt");
+    ⚡ T7_DFAIL: readv(BASE, "tool7_decode_failure.txt");
+    ⚡ T7_DESC: readv(BASE, "tool7_descriptor.txt");
+    ⚡ T7_LANG: readv(BASE, "tool7_languages.txt");
+    ⚡ T7_MEDIA: readv(BASE, "tool7_media.txt");
+
+    ⚡ INSTANCE_BOUND: 0;
+    IF (lower_hex64(INSTANCE_FINGERPRINT) == 1) {
+        IF (lower_hex64(C5_CORE_SHA256) == 1) {
+            IF (INSTANCE_FINGERPRINT == EXPECTED_INSTANCE_FINGERPRINT) {
+                IF (C5_CORE_SHA256 == EXPECTED_C5_CORE_SHA256) {
+                    ⚡ INSTANCE_BOUND: 1;
+                }
+            }
+        }
+    }
+
+    ⚡ INPUT_VALID: INSTANCE_BOUND * lower_hex64(QUERY_SHA256);
+    IF (QUERY_TEXT == "") { ⚡ INPUT_VALID: 0; }
+
+    ⚡ BEST_FOUND: 0;
+    ⚡ BEST_ID: "";
+    ⚡ BEST_TOKEN: "";
+    ⚡ BEST_OV: "0";
+    ⚡ BEST_HARDFAIL: "0";
+    ⚡ BEST_MATERIAL: "0";
+    ⚡ BEST_NOMAT: "0";
+    ⚡ BEST_PRIOR: "0";
+    ⚡ BEST_READINESS: "0";
+    ⚡ VALID_AVAILABLE_TOOL_COUNT: 0;
+
+    ⚡ O0: overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q0) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q1) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q2) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q3) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q4) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q5) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q6) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q7) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q8) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q9) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q10) + overlap_one(T0_DESC, T0_LANG, T0_MEDIA, Q11);
+    ⚡ HF0: num(T0_TFAIL) + num(T0_HTTPFAIL) + num(T0_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T0_ID, T0_TOKEN, T0_AVAILABLE, T0_READINESS, T0_PRIOR, T0_MATERIAL, T0_NOMAT, T0_TFAIL, T0_HTTPFAIL, T0_DFAIL) == 1) {
+            IF (T0_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T0_ID;
+                    ⚡ BEST_TOKEN: T0_TOKEN;
+                    ⚡ BEST_OV: O0;
+                    ⚡ BEST_HARDFAIL: HF0;
+                    ⚡ BEST_MATERIAL: T0_MATERIAL;
+                    ⚡ BEST_NOMAT: T0_NOMAT;
+                    ⚡ BEST_PRIOR: T0_PRIOR;
+                    ⚡ BEST_READINESS: T0_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T0_ID) {
+                        IF (is_better(O0, HF0, T0_MATERIAL, T0_NOMAT, T0_PRIOR, T0_READINESS, T0_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T0_ID;
+                            ⚡ BEST_TOKEN: T0_TOKEN;
+                            ⚡ BEST_OV: O0;
+                            ⚡ BEST_HARDFAIL: HF0;
+                            ⚡ BEST_MATERIAL: T0_MATERIAL;
+                            ⚡ BEST_NOMAT: T0_NOMAT;
+                            ⚡ BEST_PRIOR: T0_PRIOR;
+                            ⚡ BEST_READINESS: T0_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O1: overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q0) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q1) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q2) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q3) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q4) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q5) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q6) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q7) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q8) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q9) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q10) + overlap_one(T1_DESC, T1_LANG, T1_MEDIA, Q11);
+    ⚡ HF1: num(T1_TFAIL) + num(T1_HTTPFAIL) + num(T1_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T1_ID, T1_TOKEN, T1_AVAILABLE, T1_READINESS, T1_PRIOR, T1_MATERIAL, T1_NOMAT, T1_TFAIL, T1_HTTPFAIL, T1_DFAIL) == 1) {
+            IF (T1_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T1_ID;
+                    ⚡ BEST_TOKEN: T1_TOKEN;
+                    ⚡ BEST_OV: O1;
+                    ⚡ BEST_HARDFAIL: HF1;
+                    ⚡ BEST_MATERIAL: T1_MATERIAL;
+                    ⚡ BEST_NOMAT: T1_NOMAT;
+                    ⚡ BEST_PRIOR: T1_PRIOR;
+                    ⚡ BEST_READINESS: T1_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T1_ID) {
+                        IF (is_better(O1, HF1, T1_MATERIAL, T1_NOMAT, T1_PRIOR, T1_READINESS, T1_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T1_ID;
+                            ⚡ BEST_TOKEN: T1_TOKEN;
+                            ⚡ BEST_OV: O1;
+                            ⚡ BEST_HARDFAIL: HF1;
+                            ⚡ BEST_MATERIAL: T1_MATERIAL;
+                            ⚡ BEST_NOMAT: T1_NOMAT;
+                            ⚡ BEST_PRIOR: T1_PRIOR;
+                            ⚡ BEST_READINESS: T1_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O2: overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q0) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q1) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q2) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q3) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q4) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q5) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q6) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q7) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q8) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q9) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q10) + overlap_one(T2_DESC, T2_LANG, T2_MEDIA, Q11);
+    ⚡ HF2: num(T2_TFAIL) + num(T2_HTTPFAIL) + num(T2_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T2_ID, T2_TOKEN, T2_AVAILABLE, T2_READINESS, T2_PRIOR, T2_MATERIAL, T2_NOMAT, T2_TFAIL, T2_HTTPFAIL, T2_DFAIL) == 1) {
+            IF (T2_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T2_ID;
+                    ⚡ BEST_TOKEN: T2_TOKEN;
+                    ⚡ BEST_OV: O2;
+                    ⚡ BEST_HARDFAIL: HF2;
+                    ⚡ BEST_MATERIAL: T2_MATERIAL;
+                    ⚡ BEST_NOMAT: T2_NOMAT;
+                    ⚡ BEST_PRIOR: T2_PRIOR;
+                    ⚡ BEST_READINESS: T2_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T2_ID) {
+                        IF (is_better(O2, HF2, T2_MATERIAL, T2_NOMAT, T2_PRIOR, T2_READINESS, T2_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T2_ID;
+                            ⚡ BEST_TOKEN: T2_TOKEN;
+                            ⚡ BEST_OV: O2;
+                            ⚡ BEST_HARDFAIL: HF2;
+                            ⚡ BEST_MATERIAL: T2_MATERIAL;
+                            ⚡ BEST_NOMAT: T2_NOMAT;
+                            ⚡ BEST_PRIOR: T2_PRIOR;
+                            ⚡ BEST_READINESS: T2_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O3: overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q0) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q1) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q2) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q3) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q4) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q5) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q6) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q7) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q8) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q9) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q10) + overlap_one(T3_DESC, T3_LANG, T3_MEDIA, Q11);
+    ⚡ HF3: num(T3_TFAIL) + num(T3_HTTPFAIL) + num(T3_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T3_ID, T3_TOKEN, T3_AVAILABLE, T3_READINESS, T3_PRIOR, T3_MATERIAL, T3_NOMAT, T3_TFAIL, T3_HTTPFAIL, T3_DFAIL) == 1) {
+            IF (T3_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T3_ID;
+                    ⚡ BEST_TOKEN: T3_TOKEN;
+                    ⚡ BEST_OV: O3;
+                    ⚡ BEST_HARDFAIL: HF3;
+                    ⚡ BEST_MATERIAL: T3_MATERIAL;
+                    ⚡ BEST_NOMAT: T3_NOMAT;
+                    ⚡ BEST_PRIOR: T3_PRIOR;
+                    ⚡ BEST_READINESS: T3_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T3_ID) {
+                        IF (is_better(O3, HF3, T3_MATERIAL, T3_NOMAT, T3_PRIOR, T3_READINESS, T3_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T3_ID;
+                            ⚡ BEST_TOKEN: T3_TOKEN;
+                            ⚡ BEST_OV: O3;
+                            ⚡ BEST_HARDFAIL: HF3;
+                            ⚡ BEST_MATERIAL: T3_MATERIAL;
+                            ⚡ BEST_NOMAT: T3_NOMAT;
+                            ⚡ BEST_PRIOR: T3_PRIOR;
+                            ⚡ BEST_READINESS: T3_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O4: overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q0) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q1) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q2) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q3) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q4) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q5) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q6) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q7) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q8) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q9) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q10) + overlap_one(T4_DESC, T4_LANG, T4_MEDIA, Q11);
+    ⚡ HF4: num(T4_TFAIL) + num(T4_HTTPFAIL) + num(T4_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T4_ID, T4_TOKEN, T4_AVAILABLE, T4_READINESS, T4_PRIOR, T4_MATERIAL, T4_NOMAT, T4_TFAIL, T4_HTTPFAIL, T4_DFAIL) == 1) {
+            IF (T4_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T4_ID;
+                    ⚡ BEST_TOKEN: T4_TOKEN;
+                    ⚡ BEST_OV: O4;
+                    ⚡ BEST_HARDFAIL: HF4;
+                    ⚡ BEST_MATERIAL: T4_MATERIAL;
+                    ⚡ BEST_NOMAT: T4_NOMAT;
+                    ⚡ BEST_PRIOR: T4_PRIOR;
+                    ⚡ BEST_READINESS: T4_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T4_ID) {
+                        IF (is_better(O4, HF4, T4_MATERIAL, T4_NOMAT, T4_PRIOR, T4_READINESS, T4_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T4_ID;
+                            ⚡ BEST_TOKEN: T4_TOKEN;
+                            ⚡ BEST_OV: O4;
+                            ⚡ BEST_HARDFAIL: HF4;
+                            ⚡ BEST_MATERIAL: T4_MATERIAL;
+                            ⚡ BEST_NOMAT: T4_NOMAT;
+                            ⚡ BEST_PRIOR: T4_PRIOR;
+                            ⚡ BEST_READINESS: T4_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O5: overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q0) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q1) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q2) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q3) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q4) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q5) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q6) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q7) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q8) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q9) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q10) + overlap_one(T5_DESC, T5_LANG, T5_MEDIA, Q11);
+    ⚡ HF5: num(T5_TFAIL) + num(T5_HTTPFAIL) + num(T5_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T5_ID, T5_TOKEN, T5_AVAILABLE, T5_READINESS, T5_PRIOR, T5_MATERIAL, T5_NOMAT, T5_TFAIL, T5_HTTPFAIL, T5_DFAIL) == 1) {
+            IF (T5_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T5_ID;
+                    ⚡ BEST_TOKEN: T5_TOKEN;
+                    ⚡ BEST_OV: O5;
+                    ⚡ BEST_HARDFAIL: HF5;
+                    ⚡ BEST_MATERIAL: T5_MATERIAL;
+                    ⚡ BEST_NOMAT: T5_NOMAT;
+                    ⚡ BEST_PRIOR: T5_PRIOR;
+                    ⚡ BEST_READINESS: T5_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T5_ID) {
+                        IF (is_better(O5, HF5, T5_MATERIAL, T5_NOMAT, T5_PRIOR, T5_READINESS, T5_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T5_ID;
+                            ⚡ BEST_TOKEN: T5_TOKEN;
+                            ⚡ BEST_OV: O5;
+                            ⚡ BEST_HARDFAIL: HF5;
+                            ⚡ BEST_MATERIAL: T5_MATERIAL;
+                            ⚡ BEST_NOMAT: T5_NOMAT;
+                            ⚡ BEST_PRIOR: T5_PRIOR;
+                            ⚡ BEST_READINESS: T5_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O6: overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q0) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q1) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q2) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q3) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q4) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q5) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q6) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q7) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q8) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q9) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q10) + overlap_one(T6_DESC, T6_LANG, T6_MEDIA, Q11);
+    ⚡ HF6: num(T6_TFAIL) + num(T6_HTTPFAIL) + num(T6_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T6_ID, T6_TOKEN, T6_AVAILABLE, T6_READINESS, T6_PRIOR, T6_MATERIAL, T6_NOMAT, T6_TFAIL, T6_HTTPFAIL, T6_DFAIL) == 1) {
+            IF (T6_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T6_ID;
+                    ⚡ BEST_TOKEN: T6_TOKEN;
+                    ⚡ BEST_OV: O6;
+                    ⚡ BEST_HARDFAIL: HF6;
+                    ⚡ BEST_MATERIAL: T6_MATERIAL;
+                    ⚡ BEST_NOMAT: T6_NOMAT;
+                    ⚡ BEST_PRIOR: T6_PRIOR;
+                    ⚡ BEST_READINESS: T6_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T6_ID) {
+                        IF (is_better(O6, HF6, T6_MATERIAL, T6_NOMAT, T6_PRIOR, T6_READINESS, T6_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T6_ID;
+                            ⚡ BEST_TOKEN: T6_TOKEN;
+                            ⚡ BEST_OV: O6;
+                            ⚡ BEST_HARDFAIL: HF6;
+                            ⚡ BEST_MATERIAL: T6_MATERIAL;
+                            ⚡ BEST_NOMAT: T6_NOMAT;
+                            ⚡ BEST_PRIOR: T6_PRIOR;
+                            ⚡ BEST_READINESS: T6_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ O7: overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q0) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q1) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q2) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q3) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q4) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q5) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q6) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q7) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q8) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q9) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q10) + overlap_one(T7_DESC, T7_LANG, T7_MEDIA, Q11);
+    ⚡ HF7: num(T7_TFAIL) + num(T7_HTTPFAIL) + num(T7_DFAIL);
+    IF (INPUT_VALID == 1) {
+        IF (tool_valid(T7_ID, T7_TOKEN, T7_AVAILABLE, T7_READINESS, T7_PRIOR, T7_MATERIAL, T7_NOMAT, T7_TFAIL, T7_HTTPFAIL, T7_DFAIL) == 1) {
+            IF (T7_AVAILABLE == "1") {
+                ⚡ VALID_AVAILABLE_TOOL_COUNT: VALID_AVAILABLE_TOOL_COUNT + 1;
+                IF (BEST_FOUND == 0) {
+                    ⚡ BEST_FOUND: 1;
+                    ⚡ BEST_ID: T7_ID;
+                    ⚡ BEST_TOKEN: T7_TOKEN;
+                    ⚡ BEST_OV: O7;
+                    ⚡ BEST_HARDFAIL: HF7;
+                    ⚡ BEST_MATERIAL: T7_MATERIAL;
+                    ⚡ BEST_NOMAT: T7_NOMAT;
+                    ⚡ BEST_PRIOR: T7_PRIOR;
+                    ⚡ BEST_READINESS: T7_READINESS;
+                }
+                IF (BEST_FOUND == 1) {
+                    IF (BEST_ID != T7_ID) {
+                        IF (is_better(O7, HF7, T7_MATERIAL, T7_NOMAT, T7_PRIOR, T7_READINESS, T7_ID, BEST_OV, BEST_HARDFAIL, BEST_MATERIAL, BEST_NOMAT, BEST_PRIOR, BEST_READINESS, BEST_ID) == 1) {
+                            ⚡ BEST_ID: T7_ID;
+                            ⚡ BEST_TOKEN: T7_TOKEN;
+                            ⚡ BEST_OV: O7;
+                            ⚡ BEST_HARDFAIL: HF7;
+                            ⚡ BEST_MATERIAL: T7_MATERIAL;
+                            ⚡ BEST_NOMAT: T7_NOMAT;
+                            ⚡ BEST_PRIOR: T7_PRIOR;
+                            ⚡ BEST_READINESS: T7_READINESS;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ ROUTER_STATUS: "HOLD_INPUT_INVALID";
+    IF (INPUT_VALID == 1) {
+        ⚡ ROUTER_STATUS: "NO_AVAILABLE_ROUTE";
+        IF (BEST_FOUND == 1) {
+            ⚡ ROUTER_STATUS: "ROUTE_READY";
+        }
+    }
+
+    ⚡ SELECTION_DIFFERS_FROM_LAST: 0;
+    IF (BEST_FOUND == 1) {
+        IF (LAST_SELECTED_TOOL_ID != "") {
+            IF (BEST_ID != LAST_SELECTED_TOOL_ID) {
+                ⚡ SELECTION_DIFFERS_FROM_LAST: 1;
+            }
+        }
+    }
+
+    ⚡ print("ROUTER_STATUS", ROUTER_STATUS);
+    ⚡ print("INSTANCE_BOUND", INSTANCE_BOUND);
+    ⚡ print("QUERY_SHA256", QUERY_SHA256);
+    ⚡ print("QUERY_BYTES", H("str_len", QUERY_TEXT, NULL, NULL));
+    ⚡ print("VALID_AVAILABLE_TOOL_COUNT", VALID_AVAILABLE_TOOL_COUNT);
+    ⚡ print("SELECTED_TOOL_ID", BEST_ID);
+    ⚡ print("SELECTED_TOOL_TOKEN", BEST_TOKEN);
+    ⚡ print("SELECTED_QUERY_TOKEN_OVERLAP", BEST_OV);
+    ⚡ print("SELECTED_PRIOR_MATERIAL_COUNT", BEST_MATERIAL);
+    ⚡ print("SELECTED_PRIOR_NO_MATERIAL_COUNT", BEST_NOMAT);
+    ⚡ print("SELECTED_PRIOR_HARD_FAILURE_TOTAL", BEST_HARDFAIL);
+    ⚡ print("SELECTED_PRIOR_SELECTION_COUNT", BEST_PRIOR);
+    ⚡ print("SELECTED_MECHANICAL_READINESS", BEST_READINESS);
+    ⚡ print("SELECTION_DIFFERS_FROM_LAST", SELECTION_DIFFERS_FROM_LAST);
+    ⚡ print("HOST_QUERY_GENERATION", "NO");
+    ⚡ print("HOST_SOURCE_SELECTION", "NO");
+    ⚡ print("HOST_RESOURCE_SELECTION", "NO");
+    ⚡ print("HOST_TRUTH_DECISION", "NO");
+}
