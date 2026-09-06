@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04",
+  "scope_id":"B1.2-C04",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c04",
+  "accepted_predecessor":"B1.2-C03@693348843918fcd66445e8e30624dcddcc1a9589",
+  "prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc","B1.1-C07@be10c01bf8df64a723e135524b75ce644947dcbd"],
+  "canonical_topic_count":7,
+  "scope_locked":true,
+  "next_action":"Execute C04 end-to-end and return final receipt only.",
+  "updated_at":"2026-09-07T00:24:00+07:00"
+}
