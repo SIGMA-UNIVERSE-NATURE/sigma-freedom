@@ -1,0 +1,18 @@
+{
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05",
+  "scope_id":"B1.2-C05",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE",
+  "canonical_topics":{"expected":8,"authored":8,"status":"PASS"},
+  "artifact_counts":{"nodes":8,"claims":32,"sources":6,"learning_objectives":32,"claim_to_learning_objective_closures":32,"cross_links":7,"sequence_intent_records":8},
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","learning_objective_completeness":"32/32 PASS","semantic_closure":"32/32 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "self_repairs":[
+    {"repair_id":"SR01","defect":"Draft oscillation wording risked duplicating C02 mechanics ownership.","repair":"Restricted C05 ownership to oscillation/wave behavior and made C02 mechanics prerequisite reuse explicit.","status":"REPAIRED"},
+    {"repair_id":"SR02","defect":"Advanced laser/photonics emphasis risked crowding out basic light and image-formation foundations.","repair":"Strengthened foundational progression through waves, acoustics, light, geometric optics and wave optics before T08.","status":"REPAIRED"},
+    {"repair_id":"SR03","defect":"Advanced optics references risked implying support from future scopes.","repair":"Constrained C06-C12 to boundary references only; all closure support Claim IDs are C05-local.","status":"REPAIRED"}
+  ],
+  "re_audit":"PASS",
+  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "red_flag":"NONE",
+  "next":"B1.2-C06 — GATED pending Director acceptance of C05"
+}
