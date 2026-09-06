@@ -1,23 +1,57 @@
 {
-  "schema_version":"1.0",
-  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
-  "role":"ACADEMIC_CURRICULUM_WORKER",
-  "stage":"CURRICULUM",
-  "status":"READY",
-  "execution_branch":"hka-tree/c01-w03-physics-c01",
-  "input_commit_sha":"a4c4eea2430c13fce478c7ff3c080151eecff0d4",
-  "last_checkpoint_commit_sha":"5067b37074217c1160bd1ff3bd41de4b71d0fe06",
-  "last_checkpoint_id":"CP00-ACTIVATED",
-  "scope_ids":["B1.2-C01"],
-  "canonical_topic_count":6,
-  "prerequisites":["B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d","B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"],
-  "completed_work":["Window contract created","Execution prompt created","Activation checkpoint created","Durable report initialized"],
-  "remaining_work":["Author B1.2-C01 curriculum outputs","Self-audit","Self-repair if needed","Re-audit","Commit terminal outputs and final durable status"],
-  "output_paths":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/"],
-  "blocking_issues":[],
-  "decisions_locked":["Scope B1.2-C01 only","6 canonical topics","B1.1-C02 and B1.1-C03 prerequisites","B1.2-C02..C12 remain locked","CURRICULUM-only boundary"],
-  "do_not_repeat":["Do not rerun B1.1 integration or Sentinel","Do not ask Director to repair in-scope defects","Do not return intermediate state as final receipt"],
-  "next_action":"Execute complete B1.2-C01 authoring transaction and return only final PASS candidate or true external BLOCK.",
-  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
-  "updated_at":"2026-09-06T19:37:00+07:00"
+  "schema_version": "1.0",
+  "window_id": "C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "role": "ACADEMIC_CURRICULUM_WORKER",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "execution_branch": "hka-tree/c01-w03-physics-c01",
+  "input_commit_sha": "a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "last_checkpoint_commit_sha": "7c5d0efc4f2c80b81f47f91d8ac1868ee07453bf",
+  "last_checkpoint_id": "CP01-PRE-PASS-REAUDIT",
+  "scope_ids": [
+    "B1.2-C01"
+  ],
+  "canonical_topic_count": 6,
+  "prerequisites": [
+    "B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"
+  ],
+  "completed_work": [
+    "Authored all 6 canonical measurement topics",
+    "Created 6 nodes and 30 atomic sourced claims",
+    "Created 24 D1-D4 learning objectives and 24/24 semantic closures",
+    "Recorded source locks, cross-links and sequence intents",
+    "Completed self-audit, 2 self-repairs and re-audit PASS",
+    "Committed pre-PASS audited academic state"
+  ],
+  "remaining_work": [],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/RESULT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/HANDOFF.md"
+  ],
+  "blocking_issues": [],
+  "decisions_locked": [
+    "B1.2-C01 scope only",
+    "6 canonical topics complete",
+    "B1.1-C02/C03 reused as accepted prerequisites",
+    "C02 owns numerical rounding/significant-figure arithmetic; C01 owns metrological uncertainty semantics",
+    "B1.2-C02..C12 remain locked",
+    "CURRICULUM-only boundary"
+  ],
+  "do_not_repeat": [
+    "Do not reauthor B1.1-C02/C03 mathematical foundations",
+    "Do not author B1.2-C02..C12",
+    "Do not create Lesson Registry, prompts, image, R2, delivery or website artifacts",
+    "Do not reopen accepted IDs without Director-governed supersession"
+  ],
+  "next_action": "Director review/accept B1.2-C01; only then gate/unlock B1.2-C02.",
+  "successor_window": "C01-W03-B1.2-PHYSICS-FAMILY-C02",
+  "updated_at": "2026-09-06T20:59:21+07:00"
 }

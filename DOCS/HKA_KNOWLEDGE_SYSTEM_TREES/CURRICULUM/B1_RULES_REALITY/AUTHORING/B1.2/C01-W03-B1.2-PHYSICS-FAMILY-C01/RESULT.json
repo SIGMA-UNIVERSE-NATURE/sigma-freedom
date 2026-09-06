@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "scope_id": "B1.2-C01",
+  "scope_name": "Đo lường vật lý",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "candidate_type": "WORKER_PASS_CANDIDATE",
+  "execution_branch": "hka-tree/c01-w03-physics-c01",
+  "input_commit_sha": "a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "accepted_prerequisite_commits": {
+    "B1.1-C02": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "B1.1-C03": "7546ad74fb0e71ad2120c7091947993690bef82d"
+  },
+  "pre_pass_audited_commit_sha": "7c5d0efc4f2c80b81f47f91d8ac1868ee07453bf",
+  "pre_pass_checkpoint_id": "CP01-PRE-PASS-REAUDIT",
+  "pre_pass_checkpoint_commit_sha": "7c5d0efc4f2c80b81f47f91d8ac1868ee07453bf",
+  "canonical_topic_ids": [
+    "B1.2-C01-T01",
+    "B1.2-C01-T02",
+    "B1.2-C01-T03",
+    "B1.2-C01-T04",
+    "B1.2-C01-T05",
+    "B1.2-C01-T06"
+  ],
+  "counts": {
+    "canonical_topics": 6,
+    "nodes": 6,
+    "claims": 30,
+    "sources": 6,
+    "learning_objectives": 24,
+    "claim_to_learning_objective_closures": 24,
+    "cross_links": 8,
+    "sequence_intent_records": 6
+  },
+  "audits": {
+    "bootstrap_and_scope_gate": "PASS",
+    "topic_completeness": "PASS",
+    "id_integrity": "PASS",
+    "claim_atomicity_source_scope_epistemic_certainty": "PASS",
+    "source_identity_and_traceability": "PASS",
+    "source_id_sha256_determinism": "PASS",
+    "D1_D4_age_independent_objectives": "PASS",
+    "claim_to_learning_objective_closure": {
+      "status": "PASS",
+      "supported": 24,
+      "total": 24,
+      "coverage_percent": 100,
+      "future_or_locked_scope_support_claims": 0
+    },
+    "semantic_duplicate_and_ownership": "PASS",
+    "prerequisite_and_sequence": "PASS",
+    "foundational_measurement_coverage": "PASS",
+    "stage_boundary": "PASS",
+    "control_plane_non_mutation": "PASS"
+  },
+  "self_repairs": [
+    "Constrained uncertainty propagation to first-order linearized use, added nonlinearity limits, and cited JCGM GUM-6.",
+    "Kept rounding/significant-figure arithmetic under accepted B1.1-C02-N004 and narrowed C01 to metrological accuracy/precision/error/uncertainty."
+  ],
+  "self_repair_count": 2,
+  "ownership_resolutions": [
+    "B1.1-C02 remains primary owner of generic arithmetic, ratios, rounding, significant figures and numerical approximation/error bounds.",
+    "B1.1-C03 remains primary owner of generic algebra and function semantics used by dimension/measurement models.",
+    "B1.2-C01 owns physical quantity/unit meaning, dimensions, metrological accuracy/precision, measurement error/uncertainty, instruments/calibration and standards/traceability."
+  ],
+  "locked_boundaries": {
+    "B1.2-C02_through_C12": "LOCKED",
+    "ACADEMIC_LOCKED": "GATED_NOT_AUTHORIZED",
+    "LESSON_REGISTRY": "GATED_NOT_AUTHORIZED",
+    "PROMPTS": "GATED_NOT_AUTHORIZED",
+    "IMAGE_PRODUCTION": "GATED_NOT_AUTHORIZED",
+    "R2_STAGING": "GATED_NOT_AUTHORIZED",
+    "DELIVERY": "GATED_NOT_AUTHORIZED",
+    "WEBSITE_UPDATE": "GATED_NOT_AUTHORIZED"
+  },
+  "lesson_registry_records_created": 0,
+  "blocking_issues": [],
+  "director_acceptance_required": true,
+  "successor_window": "C01-W03-B1.2-PHYSICS-FAMILY-C02",
+  "successor_status": "GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "next_action": "B1.2-C02 — GATED pending Director acceptance of C01"
+}
