@@ -1,0 +1,63 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-FOUNDATIONAL-ZERO-GAP-PASS-CANDIDATE",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
+  "durable_order_commit":"610eaa00b8e32d346870b6b183eea9e0997a6d99",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "post_repair_reaudit_commit":"2c9fd7023c6100fecb77a4c7685e184ff4baf47b",
+  "gap_register_commit":"32642a59d6451fb16068de68432ba840338b75a9",
+  "foundational_gap_count":0,
+  "benchmark":{
+    "continents":6,
+    "systems":["ENG-NC-MATH","US-CCSS-MATH","AUS-ACARA-MATH-V9","SG-MOE-MATH","BR-BNCC-MATH","ZA-CAPS-MATH"],
+    "progression":"early/primary -> lower-secondary -> upper-secondary/general-education",
+    "requirements":"F13-R01..F13-R10 COVERED"
+  },
+  "gap_result":{
+    "F13-G01":"CLOSED_COVERED",
+    "F13-G02":"CLOSED_COVERED",
+    "F13-G03":"CLOSED_COVERED",
+    "F13-G04":"CLOSED_COVERED",
+    "F13-G05":"CLOSED_COVERED",
+    "F13-G06":"CLOSED_COVERED",
+    "F13-G07":"CLOSED_COVERED",
+    "F13-G08":"CLOSED_COVERED",
+    "F13-G09":"CLOSED_COVERED"
+  },
+  "director_repairs_in_this_execution":[
+    {"scope":"B1.1-C02","meaning":"fraction-as-operator","commits":["5596b8c340ee00d8d55e0f9e2d8be37013334288","fa5f4a9d8a1f4944d248cf31145efd0eb131d12d"]},
+    {"scope":"B1.1-C04","meaning":"unit choice/magnitude + elementary spatial composition/views/relations","commits":["0ba5839d78b914becd5bb23b2cd77166d19f71de","dd894adff77c3d1b87e1191e836589b8e2c75917"]},
+    {"scope":"B1.1-C07","meaning":"explicit data collection/recording","commits":["e320e12dde9d5dfba00e844486f49f641a212fa1","7dce40e282d241afd3fa3194c3355e0265332cf5"]},
+    {"scope":"B1.1-C10","meaning":"common-spine modelling/problem-solving cycle","commits":["a3dd6ccf62637ca024314a2a0b61560927b56251","9f34814a35bed9c706464247896791e3cb94edd8"]},
+    {"scope":"B1.1-C07","meaning":"pre-numerical qualitative chance progression","commits":["471074cdc29017f12a4c0134f2356bc063590e53","f61e40098f0e49e1a686a575dbce035d147a6596"]},
+    {"scope":"B1.1-C02","meaning":"terminating-decimal written arithmetic methods","commits":["9cb85b9d31a9a98fb08f0357dd04adb7b1db9a42","92b49257f863d3b7617386a27671d5959b062926"]}
+  ],
+  "final_gates":{
+    "remaining_partially_covered":0,
+    "remaining_missing":0,
+    "new_gap_scan":"PASS_NONE_REMAINING",
+    "true_owner_scope_audit":"PASS",
+    "semantic_duplicate_audit":"PASS",
+    "stable_id_policy":"PASS_APPEND_ONLY_OR_EXPLICIT_SUPERSESSION",
+    "foundational_prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS",
+    "future_or_locked_scope_support":0,
+    "advanced_content_substituting_for_foundation":0,
+    "source_resolution":"PASS",
+    "stage_boundary":"PASS_CURRICULUM_ONLY"
+  },
+  "control_plane_sync":{
+    "gate_commit":"94fa5611caf80e8f5b1d9d69e86a86a16866963a",
+    "state_commit":"aa9f8e8fd30128f1e7718c7f3d209c3a1bf54860",
+    "continuity_snapshot_commit":"b9cce2b398b3701e202517c32f72aefcb6b39938",
+    "window_registry_commit":"c94d1789288bc647c7719474e873c577dfaa65e3"
+  },
+  "B1_1_complete":false,
+  "B1_2":"LOCKED_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
+  "academic_locked":false,
+  "later_pipeline_stages":"GATED",
+  "non_blocking_technical_anomalies":["__invalid_probe__ branch exists outside curriculum workflow; ignored per user instruction."],
+  "next_action":"Run Director B1.1 integration audit on accepted C01-C10 plus effective foundational overlays at gap 0, then obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Do not unlock B1.2 before both pass."
+}
