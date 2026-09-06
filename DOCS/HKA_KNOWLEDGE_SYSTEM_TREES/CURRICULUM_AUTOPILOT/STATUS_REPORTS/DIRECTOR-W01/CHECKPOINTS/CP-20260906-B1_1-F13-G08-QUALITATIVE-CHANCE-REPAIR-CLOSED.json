@@ -1,0 +1,30 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-F13-G08-QUALITATIVE-CHANCE-REPAIR-CLOSED",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "gap_id":"F13-G08",
+  "benchmark_requirement":"F13-R08",
+  "pre_repair_classification":"PARTIALLY_COVERED",
+  "post_repair_classification":"COVERED",
+  "true_owner_scope":"B1.1-C07",
+  "true_owner_node":"HKA-B1-1-C07-N001",
+  "repair_commits":["471074cdc29017f12a4c0134f2356bc063590e53","f61e40098f0e49e1a686a575dbce035d147a6596"],
+  "added_claim_id":"HKA-B1-1-C07-N001-C019",
+  "superseding_foundational_objective":"HKA-F13-B1-1-C07-N001-FLO-001@record_version=3",
+  "closure":{
+    "qualitative_impossible_possible_certain":"PASS",
+    "qualitative_more_less_equally_likely_before_numbers":"PASS",
+    "transition_to_0_1_probability_scale":"PASS",
+    "simple_finite_sample_space":"PASS",
+    "equally_likely_favorable_over_total_boundary":"PASS",
+    "repeated_experiment_relative_frequency":"PASS",
+    "experimental_vs_theoretical_probability":"PASS"
+  },
+  "duplicate_risk_check":"PASS: chance/probability semantics remain C07; no decision-theory, psychology, or B1.5 implementation ownership imported.",
+  "advanced_substitution_check":"PASS: pre-formal chance language is now explicit rather than inferred from measure-theoretic probability.",
+  "foundational_global_pass_declared":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Final whole-matrix regression R01-R10 and final effective-gap audit; only then may FOUNDATIONAL_GAP_COUNT be persisted as 0."
+}
