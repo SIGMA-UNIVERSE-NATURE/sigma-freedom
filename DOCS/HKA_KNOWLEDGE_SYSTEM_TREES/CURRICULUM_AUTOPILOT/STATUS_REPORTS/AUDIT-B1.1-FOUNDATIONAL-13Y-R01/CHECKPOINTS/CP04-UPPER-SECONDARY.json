@@ -1,0 +1,32 @@
+{
+  "checkpoint_id":"CP04-UPPER-SECONDARY",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "status":"PASS",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "benchmark_continents":6,
+  "progression_band":"UPPER_SECONDARY_GENERAL_EDUCATION",
+  "general_education_spine":{
+    "algebra_functions":"COVERED_C03",
+    "number_ratio_percent":"COVERED_C02",
+    "geometry_measurement":"COVERED_C04",
+    "statistics_probability":"COVERED_C07",
+    "modelling_problem_solving":"COVERED_C10"
+  },
+  "accepted_advanced_scope_scan":{
+    "C01":"EXTENSION_LOGIC_SETS_PROOF_NOT_FOUNDATIONAL_SUBSTITUTE",
+    "C05":"EXTENSION_ANALYSIS_CALCULUS_NOT_FOUNDATIONAL_SUBSTITUTE",
+    "C06":"EXTENSION_ODE_PDE_DYNAMICS_NOT_FOUNDATIONAL_SUBSTITUTE",
+    "C08":"EXTENSION_DISCRETE_COMBINATORICS_NOT_FOUNDATIONAL_SUBSTITUTE",
+    "C09":"EXTENSION_TOPOLOGY_MODERN_GEOMETRY_NOT_FOUNDATIONAL_SUBSTITUTE"
+  },
+  "advanced_substitution_count":0,
+  "primary_ownership_collision_count":0,
+  "future_or_locked_scope_support_count":0,
+  "progression_continuity":"PASS_LOWER_TO_UPPER_SECONDARY_GENERAL_EDUCATION",
+  "new_gaps_in_band":0,
+  "worker_repairs_committed":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "next_checkpoint":"CP05-G01-G08-RETEST"
+}
