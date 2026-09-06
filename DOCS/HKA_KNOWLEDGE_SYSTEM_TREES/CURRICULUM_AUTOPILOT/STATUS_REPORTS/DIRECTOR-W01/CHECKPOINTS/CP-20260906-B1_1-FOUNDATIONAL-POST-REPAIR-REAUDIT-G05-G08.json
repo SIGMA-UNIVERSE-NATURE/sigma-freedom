@@ -1,0 +1,54 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-FOUNDATIONAL-POST-REPAIR-REAUDIT-G05-G08",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "evaluation":[
+    {
+      "gap_id":"F13-G05",
+      "classification":"PARTIALLY_COVERED",
+      "owner":"B1.1-C04",
+      "verified_meanings":["compare measurable quantities before units","measurement as number plus unit","same-kind multiplicative unit conversion","clock/calendar duration and timetable arithmetic","money total/change/unit-price context","graduated-scale reading","temperature affine-scale limitation","physical calibration/uncertainty boundary stays B1.2"],
+      "residual_missing_meaning":"Common-spine selection of an appropriate unit for the scale/context and explicit magnitude estimation before/after conversion is not represented by a dedicated foundational claim/objective.",
+      "expected_developmental_role":"Build measurement sense so learners choose sensible units and detect implausible orders of magnitude rather than applying conversion factors mechanically.",
+      "external_curriculum_evidence":["ENG-NC-MATH KS1-KS3 measurement","US-CCSS-MATH K-5 Measurement and Data","AUS-ACARA-MATH-V9 Measurement","SG-MOE-MATH Primary length/mass/volume units"],
+      "proposed_minimal_repair":"Add one C04-N002 claim plus one common-spine foundational objective for unit choice and magnitude estimation; preserve B1.2 metrology boundary.",
+      "duplicate_risk":"LOW: C04 owns mathematical measurement/unit reasoning; C02 retains general numerical estimation and B1.2 retains instruments/calibration/uncertainty."
+    },
+    {
+      "gap_id":"F13-G06",
+      "classification":"PARTIALLY_COVERED",
+      "owner":"B1.1-C04",
+      "verified_meanings":["common 2-D/3-D recognition across orientation","faces/edges/vertices and curved surfaces","nets and face-solid relation","position/direction and whole/half/quarter turns","simple Cartesian grids and movement","translation/reflection/rotation and line symmetry","formal parallel/perpendicular criteria already exist in accepted C04"],
+      "residual_missing_meanings":["explicit common-spine compose/decompose reasoning for 2-D shapes","explicit plan/top/front/side views of simple solids","parallel/perpendicular and horizontal/vertical as elementary spatial relations rather than relying on later analytic criteria"],
+      "expected_developmental_role":"Provide manipulable spatial meanings before formal Euclidean/analytic geometry and support later area, coordinates, transformations and 3-D visualization.",
+      "external_curriculum_evidence":["ENG-NC-MATH KS1-KS3 shape/position/direction/nets","US-CCSS-MATH K-5 compose/analyse shapes and coordinate plane","AUS-ACARA-MATH-V9 Space","SG-MOE-MATH Primary geometry"],
+      "proposed_minimal_repair":"Append small C04 foundational claims/objectives for 2-D composition, simple solid views, and elementary reference-frame parallel/perpendicular/horizontal/vertical relations; do not modify advanced geometry claims.",
+      "duplicate_risk":"LOW if meanings remain school-level representations; C04 is the true geometry owner."
+    },
+    {
+      "gap_id":"F13-G07",
+      "classification":"PARTIALLY_COVERED",
+      "owner":"B1.1-C07",
+      "verified_meanings":["data-question framing","variables/categories","classification/counting of recorded observations","tally/frequency tables","pictograms/bar charts","line/time graphs and pie charts","axes/scales/legends","category/total comparisons and pattern description","display choice and underlying-data distinction"],
+      "residual_missing_meaning":"Actual simple data collection/recording action is absent. C07 objective amendment 2 explicitly removed unsupported collection language, so semantic closure of the objective cannot be used to claim this benchmark meaning is covered.",
+      "expected_developmental_role":"Connect a question to observations that are intentionally recorded before classification/display, making clear that data do not appear already tabulated.",
+      "external_curriculum_evidence":["ENG-NC-MATH KS1 statistics tally/table","US-CCSS-MATH K-5 Measurement and Data","AUS-ACARA-MATH-V9 early Statistics investigation","BR-BNCC-MATH Probabilidade e Estatística"],
+      "proposed_minimal_repair":"Add one C07-N005 claim about a simple consistent observational recording plan and supersede FLO-001 to restore collect/record language with direct claim support.",
+      "duplicate_risk":"LOW: mathematical/statistical data collection framing stays C07; acquisition systems/storage/pipelines stay B1.5."
+    },
+    {
+      "gap_id":"F13-G08",
+      "classification":"COVERED",
+      "owner":"B1.1-C07",
+      "verified_meanings":["impossible/possible/certain and comparative likelihood in specified simple models","0-to-1 probability scale","finite sample-space enumeration/exhaustiveness","favorable/total only for equally-likely elementary outcomes","repeated simple experiments","empirical relative frequency and finite-run variation","experimental frequency vs theoretical/model probability"],
+      "duplicate_risk":"PASS: measure-theoretic probability remains the advanced accepted layer; the repair adds foundational chance meaning below it."
+    }
+  ],
+  "block_result":"TARGETED_REPAIRS_REQUIRED",
+  "remaining_gap_count_within_G05_G08":3,
+  "foundational_global_pass_declared":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Repair residual G05/G06 at C04 and G07 at C07 with append-only claims/objectives, re-test, then perform full C01-C10 benchmark scan including F13-R09/R10 and new-gap detection."
+}
