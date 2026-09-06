@@ -1,0 +1,28 @@
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D1-001","node_id":"HKA-B1-2-C06-N001","depth":"D1","objective":"Nhận biết điện tích, lực điện và điện trường trong hiện tượng quen thuộc.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D2-001","node_id":"HKA-B1-2-C06-N001","depth":"D2","objective":"Giải thích Coulomb, chồng chất và ý nghĩa đường/trường điện.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D3-001","node_id":"HKA-B1-2-C06-N001","depth":"D3","objective":"Áp dụng Coulomb, E=F/q và Gauss trong cấu hình phù hợp.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D4-001","node_id":"HKA-B1-2-C06-N001","depth":"D4","objective":"Đánh giá giới hạn mô hình điện tích điểm và điều kiện đối xứng khi dùng Gauss.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N002-LO-D1-001","node_id":"HKA-B1-2-C06-N002","depth":"D1","objective":"Nhận biết dòng điện, điện áp, điện trở và công suất điện.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N002-LO-D2-001","node_id":"HKA-B1-2-C06-N002","depth":"D2","objective":"Giải thích dòng điện như chuyển điện tích và phân biệt vật liệu ohmic với phi tuyến.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N002-LO-D3-001","node_id":"HKA-B1-2-C06-N002","depth":"D3","objective":"Áp dụng I=dQ/dt, V=IR và P=VI trong bài toán định lượng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N002-LO-D4-001","node_id":"HKA-B1-2-C06-N002","depth":"D4","objective":"Đánh giá miền hiệu lực của Ohm và liên hệ J với mô tả continuum C03 mà không trùng ownership.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D1-001","node_id":"HKA-B1-2-C06-N003","depth":"D1","objective":"Nhận biết từ trường, nam châm và lực từ lên điện tích chuyển động/dòng điện.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D2-001","node_id":"HKA-B1-2-C06-N003","depth":"D2","objective":"Giải thích nguồn từ trường và chiều lực Lorentz.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D3-001","node_id":"HKA-B1-2-C06-N003","depth":"D3","objective":"Áp dụng lực Lorentz, Biot–Savart hoặc Ampère trong cấu hình thích hợp.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D4-001","node_id":"HKA-B1-2-C06-N003","depth":"D4","objective":"Phân biệt miền từ tĩnh với trường biến thiên và kiểm tra giới hạn đối xứng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N004-LO-D1-001","node_id":"HKA-B1-2-C06-N004","depth":"D1","objective":"Nhận biết hiện tượng cảm ứng và chiều dòng cảm ứng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N004-LO-D2-001","node_id":"HKA-B1-2-C06-N004","depth":"D2","objective":"Giải thích Faraday–Lenz và suất điện động chuyển động.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N004-LO-D3-001","node_id":"HKA-B1-2-C06-N004","depth":"D3","objective":"Tính suất điện động cảm ứng và năng lượng cuộn cảm trong mô hình phù hợp.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N004-LO-D4-001","node_id":"HKA-B1-2-C06-N004","depth":"D4","objective":"Đánh giá dấu, định hướng và giả định hình học trong bài toán cảm ứng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N005-LO-D1-001","node_id":"HKA-B1-2-C06-N005","depth":"D1","objective":"Nhận biết E và B là hai mặt liên kết của trường điện từ biến thiên.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N005-LO-D2-001","node_id":"HKA-B1-2-C06-N005","depth":"D2","objective":"Giải thích vai trò của dòng điện dịch và bảo toàn điện tích trong Maxwell.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N005-LO-D3-001","node_id":"HKA-B1-2-C06-N005","depth":"D3","objective":"Dùng các phương trình Maxwell và Poynting để phân tích trường trong cấu hình cơ bản.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N005-LO-D4-001","node_id":"HKA-B1-2-C06-N005","depth":"D4","objective":"Đánh giá biểu diễn thế/gauge như mở rộng hình thức mà không thay thế ý nghĩa vật lý E/B.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D1-001","node_id":"HKA-B1-2-C06-N006","depth":"D1","objective":"Nhận biết mạch kín, nút, nhánh, nguồn và tải.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D2-001","node_id":"HKA-B1-2-C06-N006","depth":"D2","objective":"Giải thích Kirchhoff và quy tắc nối tiếp/song song từ bảo toàn điện tích và điện thế.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D3-001","node_id":"HKA-B1-2-C06-N006","depth":"D3","objective":"Giải mạch DC cơ bản và phân tích quá độ RC/RL hoặc AC tuyến tính đơn giản.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D4-001","node_id":"HKA-B1-2-C06-N006","depth":"D4","objective":"Đánh giá khi nào mô hình mạch tập trung/Kirchhoff không còn đủ do trường phân bố hoặc cảm ứng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N007-LO-D1-001","node_id":"HKA-B1-2-C06-N007","depth":"D1","objective":"Nhận biết sóng điện từ và các vùng chính của phổ điện từ.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N007-LO-D2-001","node_id":"HKA-B1-2-C06-N007","depth":"D2","objective":"Giải thích quan hệ E–B–phương truyền và tốc độ c trong chân không.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N007-LO-D3-001","node_id":"HKA-B1-2-C06-N007","depth":"D3","objective":"Áp dụng quan hệ sóng và Poynting để tính biên độ/cường độ trong mô hình sóng phẳng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C06-N007-LO-D4-001","node_id":"HKA-B1-2-C06-N007","depth":"D4","objective":"Phân biệt ownership sóng điện từ C06 với quang học C05 và các phạm vi tương lai C07-C12.","record_version":1}

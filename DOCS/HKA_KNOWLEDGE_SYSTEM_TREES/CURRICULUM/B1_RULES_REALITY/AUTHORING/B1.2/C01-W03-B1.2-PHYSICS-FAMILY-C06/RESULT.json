@@ -1,0 +1,14 @@
+{
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C06",
+  "scope_id":"B1.2-C06",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE",
+  "canonical_topics":{"expected":7,"authored":7,"status":"PASS"},
+  "artifact_counts":{"nodes":7,"claims":28,"sources":4,"learning_objectives":28,"claim_to_learning_objective_closures":28,"cross_links":6,"sequence_intent_records":7},
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"28/28 PASS","source_resolution":"PASS","learning_objective_completeness":"28/28 PASS","semantic_closure":"28/28 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "self_repairs":[{"repair_id":"SR01","defect":"Current-density wording risked duplicating C03 continuum ownership.","repair":"Restricted C06 to electromagnetic specialization and explicitly reused C03 density/flux language.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Electromagnetic-wave coverage overlapped C05 optical-light ownership.","repair":"Kept Maxwell-wave foundations in C06 and left optical-light phenomena to accepted C05.","status":"REPAIRED"},{"repair_id":"SR03","defect":"Advanced Maxwell/gauge material risked dominating basic charge/current/magnetism/circuit literacy.","repair":"Sequenced foundational meanings before advanced field formalism and waves.","status":"REPAIRED"}],
+  "re_audit":"PASS",
+  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "red_flag":"NONE",
+  "next":"B1.2-C07 — GATED pending Director acceptance of C06"
+}
