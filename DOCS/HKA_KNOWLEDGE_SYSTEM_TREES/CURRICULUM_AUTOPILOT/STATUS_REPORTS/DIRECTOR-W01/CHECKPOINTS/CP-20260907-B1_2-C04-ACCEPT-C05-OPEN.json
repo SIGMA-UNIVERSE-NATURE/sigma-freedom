@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-C04-ACCEPT-C05-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_B1.2-C04_OPEN_B1.2-C05",
+  "accepted_scope":"B1.2-C04",
+  "accepted_commit_sha":"ac64a006c9aeeb2296f8da5d819df1246be64fb4",
+  "academic_repair_sha":"7ea07c01bed200c2df1b56a5e17f720bc5ad1fbc",
+  "repair_checkpoint_sha":"dd95c4cc2fedf64c620ff5f3aa932aeafc55617f",
+  "acceptance_summary":{"topics":"7/7 PASS","claims":"36/36 PASS","learning_objectives":"29/29 PASS","semantic_closure":"29/29 PASS","worker_self_repairs":3,"director_assistant_repairs":2,"foundational_coverage":"PASS_AFTER_REPAIR","canonical_dependency_alignment":"PASS","prerequisite_graph":"PASS","ownership":"PASS","future_locked_support":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "successor_scope":"B1.2-C05",
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C05",
+  "successor_branch":"hka-tree/c01-w03-physics-c05",
+  "open_order_commit":"3fb4af11b10665c176f4aae5c766490154415a49",
+  "next_action":"Execute B1.2-C05 end-to-end; return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-07"
+}
