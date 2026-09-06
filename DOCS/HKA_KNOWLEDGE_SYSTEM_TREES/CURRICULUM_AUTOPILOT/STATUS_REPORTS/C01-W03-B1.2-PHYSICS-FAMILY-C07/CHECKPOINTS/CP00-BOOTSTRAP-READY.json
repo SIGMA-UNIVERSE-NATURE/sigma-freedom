@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C07",
+  "scope_id":"B1.2-C07",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c07",
+  "accepted_predecessor_commit_sha":"8295726bf0599bb636f29c096e97363d26e5fccc",
+  "open_order_commit":"feb190de56f6a4489681136b3b1e3cd0da1274ff",
+  "canonical_topic_count":7,
+  "prerequisites":["B1.2-C01","B1.2-C05","B1.2-C06","B1.1-C03","B1.1-C05"],
+  "next_action":"Execute C07 end-to-end; return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-07T01:50:00+07:00"
+}
