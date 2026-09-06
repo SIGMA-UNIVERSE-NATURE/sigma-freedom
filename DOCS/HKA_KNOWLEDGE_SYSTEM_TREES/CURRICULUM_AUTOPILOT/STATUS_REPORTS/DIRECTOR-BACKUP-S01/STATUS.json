@@ -1,29 +1,55 @@
 {
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "window_id": "DIRECTOR-BACKUP-S01",
   "role": "BACKUP_SENTINEL",
   "status": "STANDBY_READY",
   "execution_branch": "hka-tree/director-backup-sentinel",
-  "last_checkpoint_id": "CP14-B1_1-FOUNDATIONAL-AUDIT-ACTIVATION-ALIGNMENT",
-  "last_checkpoint_commit_sha": "41846d0aac0e8f9f55e0990533698d64022af04b",
+  "last_checkpoint_id": "CP15-B1_1-INTEGRATION-ACCEPTED-FRESH-TREE-ALIGNMENT",
+  "last_checkpoint_commit_sha": "25873c370f1314711a6ef1ae3e1a5d03f97b57e0",
   "last_sentinel_status": "TREE_ALIGNMENT_PASS",
+  "report_commit_sha": "c0af7c1781f104ab61ffed4d76d097c93d890e20",
+  "control_plane_read_sha": "0ec99580097e8bd24dde9b7e1c1e55a296fd39a6",
   "current_stage": "CURRICULUM",
-  "active_scope": "B1.1-FOUNDATIONAL-13Y-AUDIT",
-  "active_window": "DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
-  "active_branch": "hka-tree/curriculum-master",
-  "accepted_predecessor": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
-  "scope_map_anchor": {"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
+  "active_scope": "B1.1-SENTINEL-ALIGNMENT",
+  "active_window": "DIRECTOR-BACKUP-S01",
+  "active_branch": "hka-tree/director-backup-sentinel",
+  "accepted_predecessor": "b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "accepted_integration_commit": "b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "scope_map_anchor": {
+    "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856"
+  },
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "active_dependency_amendments": [1,2,3,4,5,"FOUNDATIONAL_13_YEAR_1"],
   "active_global_foundational_gate": {
     "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
     "status": "ACTIVE_REQUIRED",
-    "current_audit_status": "ACTIVE_NOT_YET_PASS",
+    "current_audit_status": "DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
     "required_gap_count": 0,
-    "blocking_rule": "No B1.1 completion or B1.2 unlock before PASS with FOUNDATIONAL_GAP_COUNT=0"
+    "foundational_gap_count": 0,
+    "advanced_substitution_count": 0
   },
-  "authority": {"academic_authoring":false,"director_acceptance":false,"successor_unlock":false,"control_plane_mutation":false,"own_status_checkpoint_writes":true},
+  "fresh_alignment": {
+    "result": "TREE_ALIGNMENT_PASS",
+    "foundational_gap_count": 0,
+    "locked_scope_support": 0,
+    "pipeline_boundary": "PASS_CURRICULUM_ONLY",
+    "state_registry_snapshot_match": "PASS",
+    "accepted_chain_match": "PASS",
+    "canonical_scope_map_match": "PASS",
+    "control_plane_mutation_by_sentinel": "NO",
+    "alerts": []
+  },
+  "B1_2_status_at_verification": "LOCKED_PENDING_FRESH_SENTINEL",
+  "authority": {
+    "academic_authoring": false,
+    "director_acceptance": false,
+    "successor_unlock": false,
+    "control_plane_mutation": false,
+    "own_status_checkpoint_writes": true
+  },
   "continuity_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json",
   "foundational_gate_source": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
-  "next_action": "On invocation, re-read snapshot, foundational gate, state, registry and active audit status; alert if B1.2 opens before foundational PASS gap 0.",
-  "updated_at": "2026-09-06T05:45:00+07:00"
+  "next_action": "Close B1.1 and unlock canonical B1.2-C01.",
+  "updated_at": "2026-09-06"
 }
