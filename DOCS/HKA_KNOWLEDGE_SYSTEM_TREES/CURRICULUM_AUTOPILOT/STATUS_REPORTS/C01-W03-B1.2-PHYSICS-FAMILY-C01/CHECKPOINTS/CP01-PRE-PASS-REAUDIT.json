@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP01-PRE-PASS-REAUDIT",
+  "window_id": "C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "scope_id": "B1.2-C01",
+  "stage": "CURRICULUM",
+  "status": "PASS",
+  "execution_branch": "hka-tree/c01-w03-physics-c01",
+  "audited_base_commit_sha": "8f2e30aaeb380cc793bf6ea606a8e7f1c99968b7",
+  "control_plane_activation_commit": "a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+  "accepted_prerequisites": [
+    "B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"
+  ],
+  "b1_1_integration_commit": "b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "fresh_sentinel_commit": "2e3e1ee0a811cae3256cb08828dff193da49c0dd",
+  "counts": {
+    "canonical_topics": 6,
+    "nodes": 6,
+    "claims": 30,
+    "sources": 6,
+    "learning_objectives": 24,
+    "claim_to_learning_objective_closure_records": 24,
+    "cross_links": 8,
+    "sequence_intents": 6
+  },
+  "self_audit": {
+    "canonical_topic_coverage": "PASS",
+    "stable_id_integrity": "PASS",
+    "node_minimum_fields": "PASS",
+    "claim_schema_epistemic_certainty_scope": "PASS",
+    "source_traceability_and_deterministic_ids": "PASS",
+    "D1_D4_age_independent": "PASS",
+    "semantic_claim_to_learning_objective_closure": "24/24 PASS",
+    "semantic_duplicate_control": "PASS",
+    "prerequisite_graph": "PASS_ACYCLIC_NO_DANGLING_IDS",
+    "sequence_integrity": "PASS",
+    "foundational_measurement_coverage": "PASS",
+    "future_locked_support": 0,
+    "stage_boundary": "PASS_CURRICULUM_ONLY"
+  },
+  "self_repairs": [
+    {
+      "repair_id": "RPR-01",
+      "issue": "Uncertainty propagation wording could be read as universally exact.",
+      "repair": "Constrained propagation to first-order linearized use, added nonlinearity limit, and anchored it to JCGM GUM-6."
+    },
+    {
+      "repair_id": "RPR-02",
+      "issue": "Precision/reporting language risked duplicating B1.1-C02-N004 numerical rounding/significant-figure ownership.",
+      "repair": "Narrowed C01 to metrological quality/uncertainty meaning and added explicit prerequisite/overlap cross-links to accepted C02."
+    }
+  ],
+  "self_repair_count": 2,
+  "re_audit": {
+    "status": "PASS",
+    "issues_remaining": 0,
+    "future_locked_support": 0,
+    "unresolved_support_ids": 0,
+    "uncontrolled_semantic_duplicates": 0
+  },
+  "content_sha256": {
+    "NODES.jsonl": "20622dca236968601150a6696ffc0c865cb127e099087fa986b6755f30e70653",
+    "CLAIMS.jsonl": "00215ebe3de8432e58458e84245f350410255f6ece2028d8d030d215427af993",
+    "SOURCES.jsonl": "87777df004d9946dcd7cd6cfb048c89eed17347d9f9676f7f0eea78eef017474",
+    "LEARNING_OBJECTIVES.jsonl": "a0f191546e25c6affda9e29496c206e27109a92e88d1864a455b6000639a05f2",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl": "7c94b28a80f8eaa302e0e6a178a4063b8d8fc3ec10a1295bc5e18a6fe60640f5",
+    "CROSS_LINKS.jsonl": "d57d0e9a780d8ef8e77ad6d780e862fa781fcc5b1af85a87a3880df74c5e6400",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl": "3cb58ab641d6a49b38df72f1f825230ed58a9c962ab8eadda8e3049fae4637eb"
+  },
+  "next_action": "Commit audited academic outputs and this checkpoint, then write terminal RESULT/HANDOFF/STATUS/REPORT.",
+  "updated_at": "2026-09-06T20:46:09+07:00"
+}
