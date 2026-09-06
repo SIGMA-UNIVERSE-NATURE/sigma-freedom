@@ -1,0 +1,38 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-F13-G09-TRUE-OWNER-REPAIR-CLOSED",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "gap_id":"F13-G09",
+  "benchmark_requirement":"F13-R09",
+  "pre_repair_classification":"PARTIALLY_COVERED",
+  "post_repair_classification":"COVERED",
+  "true_owner_scope":"B1.1-C10",
+  "true_owner_node":"HKA-B1-1-C10-N001",
+  "repair_commits":["a3dd6ccf62637ca024314a2a0b61560927b56251","9f34814a35bed9c706464247896791e3cb94edd8"],
+  "added_claim_ids":["HKA-B1-1-C10-N001-C011","HKA-B1-1-C10-N001-C012"],
+  "added_foundational_objective_ids":["HKA-F13-B1-1-C10-N001-FLO-001","HKA-F13-B1-1-C10-N001-FLO-002"],
+  "source_reuse":"HKA-SRC-896d5e720ac8 — A First Course in Mathematical Modeling, 5th ed., ISBN:9781285050904",
+  "semantic_closure":{
+    "simple_context_to_model_cycle":"PASS",
+    "multiple_representation_support":"PASS via C03 accepted foundational claims/objectives",
+    "interpretation_back_to_context":"PASS",
+    "unit_sign_bound_magnitude_constraint_check":"PASS via C10 C012 + C02/C03/C04 foundational support",
+    "revise_assumptions_representation_or_calculation":"PASS",
+    "advanced_prerequisite_substitution":"NONE"
+  },
+  "foundational_prerequisite_graph":{
+    "FLO_001":["HKA-F13-B1-1-C02-N003-FLO-001","HKA-F13-B1-1-C03-N001-FLO-001"],
+    "FLO_002":["HKA-F13-B1-1-C10-N001-FLO-001","HKA-F13-B1-1-C02-N003-FLO-004","HKA-F13-B1-1-C03-N001-FLO-003","HKA-F13-B1-1-C04-N002-FLO-006"],
+    "future_or_locked_scope_dependencies":0,
+    "C05_C06_required_for_foundational_modelling":false
+  },
+  "duplicate_risk_check":"PASS: C10 orchestrates modelling; C02 arithmetic/estimation, C03 algebra/representations, C04 measurement/units, C07 data/inference and domain empirical ownership remain distinct.",
+  "stable_id_check":"PASS_APPEND_ONLY",
+  "prior_registered_gaps_post_repair":{"F13-G01":"COVERED","F13-G02":"COVERED","F13-G03":"COVERED","F13-G04":"COVERED","F13-G05":"COVERED","F13-G06":"COVERED","F13-G07":"COVERED","F13-G08":"COVERED","F13-G09":"COVERED"},
+  "foundational_global_pass_declared":false,
+  "reason_no_pass_yet":"A final whole-matrix regression, duplicate/ownership audit and prerequisite audit are still required before FOUNDATIONAL_GAP_COUNT may be persisted as zero.",
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Run final F13-R01..R10 regression over effective C01-C10 plus all foundational overlays; verify no new gap, duplicate, unresolved prerequisite or scope-boundary violation."
+}
