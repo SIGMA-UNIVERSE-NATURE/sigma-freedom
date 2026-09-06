@@ -18,28 +18,28 @@ DEF P(g,b,r,a,q,i,G,B,R,A,Q,I){
  ⚡ EC:"1815d9324c721dd51d73f40f0e9ba4e7d76454e0a81831152e213071feef8ace";
  ⚡ F:R(B,"instance_fingerprint_sha256.txt"); ⚡ C:R(B,"c5_core_sha256.txt");
  ⚡ CNT:R(B,"candidate_count.txt"); ⚡ LAST:R(B,"last_selected_id.txt");
- ⚡ I0:N(R(B,"c0_id.txt")); ⚡ T0:R(B,"c0_token.txt"); ⚡ V0:R(B,"c0_available.txt");
+ ⚡ J0:R(B,"c0_id.txt"); ⚡ I0:N(J0); ⚡ T0:R(B,"c0_token.txt"); ⚡ V0:R(B,"c0_available.txt");
  ⚡ Q0:N(R(B,"c0_readiness.txt")); ⚡ A0:N(R(B,"c0_attempts.txt"));
  ⚡ M0:N(R(B,"c0_material_success.txt")); ⚡ E0:N(R(B,"c0_evidence_units.txt"));
  ⚡ K0:N(R(B,"c0_knowledge_units.txt")); ⚡ S0:N(R(B,"c0_segment_commits.txt"));
  ⚡ X0:N(R(B,"c0_hard_failures.txt")); ⚡ Z0:N(R(B,"c0_repeated_failures.txt"));
  ⚡ U0:N(R(B,"c0_unresolved_improve.txt")); ⚡ W0:N(R(B,"c0_unresolved_worsen.txt"));
  ⚡ GG0:G(M0,E0,K0,S0,U0); ⚡ BB0:D(X0,Z0,W0);
- ⚡ I1:N(R(B,"c1_id.txt")); ⚡ T1:R(B,"c1_token.txt"); ⚡ V1:R(B,"c1_available.txt");
+ ⚡ J1:R(B,"c1_id.txt"); ⚡ I1:N(J1); ⚡ T1:R(B,"c1_token.txt"); ⚡ V1:R(B,"c1_available.txt");
  ⚡ Q1:N(R(B,"c1_readiness.txt")); ⚡ A1:N(R(B,"c1_attempts.txt"));
  ⚡ M1:N(R(B,"c1_material_success.txt")); ⚡ E1:N(R(B,"c1_evidence_units.txt"));
  ⚡ K1:N(R(B,"c1_knowledge_units.txt")); ⚡ S1:N(R(B,"c1_segment_commits.txt"));
  ⚡ X1:N(R(B,"c1_hard_failures.txt")); ⚡ Z1:N(R(B,"c1_repeated_failures.txt"));
  ⚡ U1:N(R(B,"c1_unresolved_improve.txt")); ⚡ W1:N(R(B,"c1_unresolved_worsen.txt"));
  ⚡ GG1:G(M1,E1,K1,S1,U1); ⚡ BB1:D(X1,Z1,W1);
- ⚡ I2:N(R(B,"c2_id.txt")); ⚡ T2:R(B,"c2_token.txt"); ⚡ V2:R(B,"c2_available.txt");
+ ⚡ J2:R(B,"c2_id.txt"); ⚡ I2:N(J2); ⚡ T2:R(B,"c2_token.txt"); ⚡ V2:R(B,"c2_available.txt");
  ⚡ Q2:N(R(B,"c2_readiness.txt")); ⚡ A2:N(R(B,"c2_attempts.txt"));
  ⚡ M2:N(R(B,"c2_material_success.txt")); ⚡ E2:N(R(B,"c2_evidence_units.txt"));
  ⚡ K2:N(R(B,"c2_knowledge_units.txt")); ⚡ S2:N(R(B,"c2_segment_commits.txt"));
  ⚡ X2:N(R(B,"c2_hard_failures.txt")); ⚡ Z2:N(R(B,"c2_repeated_failures.txt"));
  ⚡ U2:N(R(B,"c2_unresolved_improve.txt")); ⚡ W2:N(R(B,"c2_unresolved_worsen.txt"));
  ⚡ GG2:G(M2,E2,K2,S2,U2); ⚡ BB2:D(X2,Z2,W2);
- ⚡ I3:N(R(B,"c3_id.txt")); ⚡ T3:R(B,"c3_token.txt"); ⚡ V3:R(B,"c3_available.txt");
+ ⚡ J3:R(B,"c3_id.txt"); ⚡ I3:N(J3); ⚡ T3:R(B,"c3_token.txt"); ⚡ V3:R(B,"c3_available.txt");
  ⚡ Q3:N(R(B,"c3_readiness.txt")); ⚡ A3:N(R(B,"c3_attempts.txt"));
  ⚡ M3:N(R(B,"c3_material_success.txt")); ⚡ E3:N(R(B,"c3_evidence_units.txt"));
  ⚡ K3:N(R(B,"c3_knowledge_units.txt")); ⚡ S3:N(R(B,"c3_segment_commits.txt"));
@@ -47,23 +47,20 @@ DEF P(g,b,r,a,q,i,G,B,R,A,Q,I){
  ⚡ U3:N(R(B,"c3_unresolved_improve.txt")); ⚡ W3:N(R(B,"c3_unresolved_worsen.txt"));
  ⚡ GG3:G(M3,E3,K3,S3,U3); ⚡ BB3:D(X3,Z3,W3);
  ⚡ IB:0; IF(F==EF){IF(C==EC){⚡ IB:1;}}
- ⚡ BS:0; ⚡ BI:0; ⚡ BT:""; ⚡ BG:0; ⚡ BD:0; ⚡ BR:0; ⚡ BA:0; ⚡ BQ:0;
- IF(IB==1){IF(V0=="1"){⚡ ZB0:0; IF(BS==0){⚡ ZB0:1;} IF(BS==1){⚡ ZB0:P(GG0,BB0,Z0,A0,Q0,I0,BG,BD,BR,BA,BQ,BI);} IF(ZB0==1){⚡ BS:1;⚡ BI:I0;⚡ BT:T0;⚡ BG:GG0;⚡ BD:BB0;⚡ BR:Z0;⚡ BA:A0;⚡ BQ:Q0;}}}
- IF(IB==1){IF(V1=="1"){⚡ ZB1:0; IF(BS==0){⚡ ZB1:1;} IF(BS==1){⚡ ZB1:P(GG1,BB1,Z1,A1,Q1,I1,BG,BD,BR,BA,BQ,BI);} IF(ZB1==1){⚡ BS:1;⚡ BI:I1;⚡ BT:T1;⚡ BG:GG1;⚡ BD:BB1;⚡ BR:Z1;⚡ BA:A1;⚡ BQ:Q1;}}}
- IF(IB==1){IF(V2=="1"){⚡ ZB2:0; IF(BS==0){⚡ ZB2:1;} IF(BS==1){⚡ ZB2:P(GG2,BB2,Z2,A2,Q2,I2,BG,BD,BR,BA,BQ,BI);} IF(ZB2==1){⚡ BS:1;⚡ BI:I2;⚡ BT:T2;⚡ BG:GG2;⚡ BD:BB2;⚡ BR:Z2;⚡ BA:A2;⚡ BQ:Q2;}}}
- IF(IB==1){IF(V3=="1"){⚡ ZB3:0; IF(BS==0){⚡ ZB3:1;} IF(BS==1){⚡ ZB3:P(GG3,BB3,Z3,A3,Q3,I3,BG,BD,BR,BA,BQ,BI);} IF(ZB3==1){⚡ BS:1;⚡ BI:I3;⚡ BT:T3;⚡ BG:GG3;⚡ BD:BB3;⚡ BR:Z3;⚡ BA:A3;⚡ BQ:Q3;}}}
+ ⚡ BS:0; ⚡ BI:0; ⚡ BJ:""; ⚡ BT:""; ⚡ BG:0; ⚡ BD:0; ⚡ BR:0; ⚡ BA:0; ⚡ BQ:0;
+ IF(IB==1){IF(V0=="1"){⚡ ZB0:0; IF(BS==0){⚡ ZB0:1;} IF(BS==1){⚡ ZB0:P(GG0,BB0,Z0,A0,Q0,I0,BG,BD,BR,BA,BQ,BI);} IF(ZB0==1){⚡ BS:1;⚡ BI:I0;⚡ BJ:J0;⚡ BT:T0;⚡ BG:GG0;⚡ BD:BB0;⚡ BR:Z0;⚡ BA:A0;⚡ BQ:Q0;}}}
+ IF(IB==1){IF(V1=="1"){⚡ ZB1:0; IF(BS==0){⚡ ZB1:1;} IF(BS==1){⚡ ZB1:P(GG1,BB1,Z1,A1,Q1,I1,BG,BD,BR,BA,BQ,BI);} IF(ZB1==1){⚡ BS:1;⚡ BI:I1;⚡ BJ:J1;⚡ BT:T1;⚡ BG:GG1;⚡ BD:BB1;⚡ BR:Z1;⚡ BA:A1;⚡ BQ:Q1;}}}
+ IF(IB==1){IF(V2=="1"){⚡ ZB2:0; IF(BS==0){⚡ ZB2:1;} IF(BS==1){⚡ ZB2:P(GG2,BB2,Z2,A2,Q2,I2,BG,BD,BR,BA,BQ,BI);} IF(ZB2==1){⚡ BS:1;⚡ BI:I2;⚡ BJ:J2;⚡ BT:T2;⚡ BG:GG2;⚡ BD:BB2;⚡ BR:Z2;⚡ BA:A2;⚡ BQ:Q2;}}}
+ IF(IB==1){IF(V3=="1"){⚡ ZB3:0; IF(BS==0){⚡ ZB3:1;} IF(BS==1){⚡ ZB3:P(GG3,BB3,Z3,A3,Q3,I3,BG,BD,BR,BA,BQ,BI);} IF(ZB3==1){⚡ BS:1;⚡ BI:I3;⚡ BJ:J3;⚡ BT:T3;⚡ BG:GG3;⚡ BD:BB3;⚡ BR:Z3;⚡ BA:A3;⚡ BQ:Q3;}}}
  ⚡ ST:"INSTANCE_BINDING_FAILED"; IF(IB==1){⚡ ST:"NO_AVAILABLE_CANDIDATE";IF(BS==1){⚡ ST:"ADVICE_READY";}}
  ⚡ DF:0; IF(BS==1){IF(LAST!=""){IF(LAST!="NONE"){IF(N(LAST)!=BI){⚡ DF:1;}}}}
+ ⚡ IBS:"0"; IF(IB==1){⚡ IBS:"1";}
+ ⚡ DFS:"0"; IF(DF==1){⚡ DFS:"1";}
  ⚡ O0:H("write_text",B+"/output/adviser_status.txt",ST,NULL);
- ⚡ O1:H("write_text",B+"/output/instance_bound.txt",IB,NULL);
- ⚡ O2:H("write_text",B+"/output/selected_candidate_id.txt",BI,NULL);
+ ⚡ O1:H("write_text",B+"/output/instance_bound.txt",IBS,NULL);
+ ⚡ O2:H("write_text",B+"/output/selected_candidate_id.txt",BJ,NULL);
  ⚡ O3:H("write_text",B+"/output/selected_candidate_token.txt",BT,NULL);
- ⚡ O4:H("write_text",B+"/output/selected_good_units.txt",BG,NULL);
- ⚡ O5:H("write_text",B+"/output/selected_bad_units.txt",BD,NULL);
- ⚡ O6:H("write_text",B+"/output/selected_repeated_failures.txt",BR,NULL);
- ⚡ O7:H("write_text",B+"/output/selected_attempts.txt",BA,NULL);
- ⚡ O8:H("write_text",B+"/output/selected_readiness.txt",BQ,NULL);
- ⚡ O9:H("write_text",B+"/output/selection_differs_from_last.txt",DF,NULL);
+ ⚡ O4:H("write_text",B+"/output/selection_differs_from_last.txt",DFS,NULL);
  ⚡ print("C5_NATIVE_EXPERIENCE_TO_STRATEGY_ADVISER","V1");
  ⚡ print("ARTIFACT_ORIGIN","TEACHER_AUTHORED_BOOTSTRAP"); ⚡ print("INSTANCE_BOUND",IB);
  ⚡ print("CANDIDATE_COUNT",CNT); ⚡ print("ADVISER_STATUS",ST);
