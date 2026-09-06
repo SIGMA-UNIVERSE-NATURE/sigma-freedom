@@ -2,14 +2,23 @@
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C06",
   "scope_id":"B1.2-C06",
   "stage":"CURRICULUM",
-  "status":"PASS_CANDIDATE",
+  "status":"PASS_CANDIDATE_REPAIRED",
   "canonical_topics":{"expected":7,"authored":7,"status":"PASS"},
-  "artifact_counts":{"nodes":7,"claims":28,"sources":4,"learning_objectives":28,"claim_to_learning_objective_closures":28,"cross_links":6,"sequence_intent_records":7},
-  "audit":{"id_uniqueness":"PASS","claim_integrity":"28/28 PASS","source_resolution":"PASS","learning_objective_completeness":"28/28 PASS","semantic_closure":"28/28 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
-  "self_repairs":[{"repair_id":"SR01","defect":"Current-density wording risked duplicating C03 continuum ownership.","repair":"Restricted C06 to electromagnetic specialization and explicitly reused C03 density/flux language.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Electromagnetic-wave coverage overlapped C05 optical-light ownership.","repair":"Kept Maxwell-wave foundations in C06 and left optical-light phenomena to accepted C05.","status":"REPAIRED"},{"repair_id":"SR03","defect":"Advanced Maxwell/gauge material risked dominating basic charge/current/magnetism/circuit literacy.","repair":"Sequenced foundational meanings before advanced field formalism and waves.","status":"REPAIRED"}],
+  "artifact_counts":{"nodes":7,"claims":32,"sources":4,"learning_objectives":28,"claim_to_learning_objective_closures":28,"cross_links":6,"sequence_intent_records":7},
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","learning_objective_completeness":"28/28 PASS","semantic_closure":"28/28 PASS — exactly one row per objective and semantically complete after repair","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","canonical_prerequisite_alignment":"PASS — B1.2-C01 and B1.2-C03","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "worker_self_repairs":[{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
+  "director_assistant_repairs":[
+    {"repair_id":"DA-SR01","defect":"Magnet behavior and force on a current-carrying conductor were not explicitly claimed although named by foundational D1.","repair":"Appended two sourced T03 claims and expanded the existing D1 closure; stable IDs preserved.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"Basic circuit concepts—closed path, source/load, node/branch—were not explicitly supported by foundational D1.","repair":"Appended two sourced T06 claims and expanded the existing D1 closure; stable IDs preserved.","status":"REPAIRED"},
+    {"repair_id":"DA-SR03","defect":"T01 D1/D3 closure rows omitted local claims needed for all objective concepts.","repair":"Expanded supporting_claim_ids only; exactly one closure row per objective remains.","status":"REPAIRED"}
+  ],
   "re_audit":"PASS",
-  "academic_output_commit_sha":"cbb96ee9eea75d0686031da474844a324daee244",
-  "durable_read_back":"PASS",
+  "worker_candidate_commit_sha":"1c7ff31a296fe1cec06e4b23bf29e5ab53147e91",
+  "worker_academic_output_commit_sha":"cbb96ee9eea75d0686031da474844a324daee244",
+  "effective_academic_output_commit_sha":"fee249ac4439823b98a37b019546180e64d6d674",
+  "director_assistant_checkpoint_commit_sha":"1d6cd21b2516c0510be0744bdaa8377e40da0403",
+  "durable_read_back":"PASS_AFTER_ASSISTANT_REPAIR",
+  "director_acceptance_declared":false,
   "red_flag":"NONE",
-  "next":"B1.2-C07 — GATED pending Director acceptance of C06"
+  "next":"Director review/acceptance of repaired C06 candidate; B1.2-C07 remains GATED until Director acceptance."
 }
