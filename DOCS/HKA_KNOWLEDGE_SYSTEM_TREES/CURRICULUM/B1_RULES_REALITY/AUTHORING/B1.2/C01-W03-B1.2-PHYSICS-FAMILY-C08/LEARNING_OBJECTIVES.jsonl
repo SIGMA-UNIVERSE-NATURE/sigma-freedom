@@ -1,4 +1,4 @@
-{"learning_objective_id":"HKA-B1-2-C08-N001-LO-D1-001","node_id":"HKA-B1-2-C08-N001","depth":"D1","objective":"Nhận biết mức năng lượng, số lượng tử và spin trong cấu trúc nguyên tử.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C08-N001-LO-D1-001","node_id":"HKA-B1-2-C08-N001","depth":"D1","objective":"Nhận biết hạt nhân và electron là các thành phần nền tảng của nguyên tử, đồng thời nhận biết mức năng lượng, số lượng tử và spin trong mô tả nguyên tử lượng tử.","record_version":2}
 {"learning_objective_id":"HKA-B1-2-C08-N001-LO-D2-001","node_id":"HKA-B1-2-C08-N001","depth":"D2","objective":"Giải thích vì sao mô hình quỹ đạo hành tinh không mô tả đúng trạng thái electron lượng tử.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N001-LO-D3-001","node_id":"HKA-B1-2-C08-N001","depth":"D3","objective":"Phân tích mức hydrogenic và số lượng tử trong mô hình chuẩn đơn giản.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N001-LO-D4-001","node_id":"HKA-B1-2-C08-N001","depth":"D4","objective":"Đánh giá giới hạn mô hình phi tương đối tính và ranh giới với C07/C09/C10.","record_version":1}
@@ -6,7 +6,7 @@
 {"learning_objective_id":"HKA-B1-2-C08-N002-LO-D2-001","node_id":"HKA-B1-2-C08-N002","depth":"D2","objective":"Giải thích quan hệ giữa chuyển mức, linewidth và cường độ vạch.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N002-LO-D3-001","node_id":"HKA-B1-2-C08-N002","depth":"D3","objective":"Dùng hν=ΔE và mô hình Zeeman cơ bản để phân tích phổ.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N002-LO-D4-001","node_id":"HKA-B1-2-C08-N002","depth":"D4","objective":"Đánh giá giới hạn suy luận cấu trúc từ phổ có broadening và dữ liệu không đầy đủ.","record_version":1}
-{"learning_objective_id":"HKA-B1-2-C08-N003-LO-D1-001","node_id":"HKA-B1-2-C08-N003","depth":"D1","objective":"Nhận biết orbital phân tử, liên kết và các bậc quay/dao động.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C08-N003-LO-D1-001","node_id":"HKA-B1-2-C08-N003","depth":"D1","objective":"Nhận biết phân tử như một hệ nhiều nguyên tử/hạt nhân liên kết, cùng orbital phân tử, liên kết và các bậc quay/dao động.","record_version":2}
 {"learning_objective_id":"HKA-B1-2-C08-N003-LO-D2-001","node_id":"HKA-B1-2-C08-N003","depth":"D2","objective":"Giải thích cách orbital và chuyển động hạt nhân tạo cấu trúc phân tử.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N003-LO-D3-001","node_id":"HKA-B1-2-C08-N003","depth":"D3","objective":"Áp dụng mô hình orbital và thang năng lượng quay/dao động trong ví dụ đơn giản.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C08-N003-LO-D4-001","node_id":"HKA-B1-2-C08-N003","depth":"D4","objective":"Đánh giá miền hiệu lực Born–Oppenheimer và ranh giới với hóa học liên kết.","record_version":1}
