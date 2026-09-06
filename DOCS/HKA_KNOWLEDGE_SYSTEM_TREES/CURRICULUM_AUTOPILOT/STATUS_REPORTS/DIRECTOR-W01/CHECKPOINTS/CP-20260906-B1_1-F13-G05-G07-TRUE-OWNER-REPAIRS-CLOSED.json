@@ -1,0 +1,42 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-F13-G05-G07-TRUE-OWNER-REPAIRS-CLOSED",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "repairs":[
+    {
+      "gap_id":"F13-G05",
+      "owner":"B1.1-C04",
+      "post_repair_classification":"COVERED",
+      "added_claim_ids":["HKA-B1-1-C04-N002-C018"],
+      "added_objective_ids":["HKA-F13-B1-1-C04-N002-FLO-006"],
+      "repair_commits":["0ba5839d78b914becd5bb23b2cd77166d19f71de","dd894adff77c3d1b87e1191e836589b8e2c75917"],
+      "closure":"Unit choice and magnitude estimation are now explicit without crossing into B1.2 metrology."
+    },
+    {
+      "gap_id":"F13-G06",
+      "owner":"B1.1-C04",
+      "post_repair_classification":"COVERED",
+      "added_claim_ids":["HKA-B1-1-C04-N001-C013","HKA-B1-1-C04-N001-C014","HKA-B1-1-C04-N005-C012"],
+      "added_objective_ids":["HKA-F13-B1-1-C04-N001-FLO-004","HKA-F13-B1-1-C04-N005-FLO-002"],
+      "repair_commits":["0ba5839d78b914becd5bb23b2cd77166d19f71de","dd894adff77c3d1b87e1191e836589b8e2c75917"],
+      "closure":"2-D composition/decomposition, simple solid views and elementary horizontal/vertical/parallel/perpendicular meanings are explicit before advanced geometry."
+    },
+    {
+      "gap_id":"F13-G07",
+      "owner":"B1.1-C07",
+      "post_repair_classification":"COVERED",
+      "added_claim_ids":["HKA-B1-1-C07-N005-C023"],
+      "superseding_objective_ids":["HKA-F13-B1-1-C07-N005-FLO-001@record_version=3"],
+      "repair_commits":["e320e12dde9d5dfba00e844486f49f641a212fa1","7dce40e282d241afd3fa3194c3355e0265332cf5"],
+      "closure":"Simple collect/record action now has direct claim support; data acquisition systems/storage remain B1.5."
+    }
+  ],
+  "prior_gap_post_repair_status":{"F13-G01":"COVERED","F13-G02":"COVERED","F13-G03":"COVERED","F13-G04":"COVERED","F13-G05":"COVERED","F13-G06":"COVERED","F13-G07":"COVERED","F13-G08":"COVERED"},
+  "important_dependency_repair":"C07 FLO-003 prerequisite HKA-F13-B1-1-C02-N005-FLO-001 now resolves after the G03 C02 repair; this removes a previously dangling foundational prerequisite reference.",
+  "foundational_global_pass_declared":false,
+  "reason_no_pass_yet":"The durable order requires a complete post-repair scan across C01-C10 and the whole benchmark matrix, including new-gap detection and F13-R09/R10, before gap count can be set to zero.",
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"CP05 full C01-C10 foundational scan against F13-R01..R10; inspect accepted nodes/objectives plus effective foundational overlays and detect any new PARTIALLY_COVERED or MISSING items."
+}
