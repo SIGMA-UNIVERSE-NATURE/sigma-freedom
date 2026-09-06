@@ -2,12 +2,14 @@
 
 Scope: `B1.2-C08 — Vật lý nguyên tử, phân tử và quang học`, CURRICULUM only.
 
-Completed: 6/6 canonical topics; 6 nodes; 24 atomic sourced claims; 6 stable/versioned sources; 24 age-independent D1–D4 objectives; 24/24 exactly-one-row semantic closures; 7 typed cross-links; 6 sequence-intent records.
+Effective completion: 6/6 canonical topics; 6 nodes; 24 sourced claims; 6 versioned academic sources; 24 D1–D4 learning objectives; 24/24 exactly-one-row semantic closures; 7 cross-links; 6 sequence-intent records.
 
-Ownership: accepted C05 owns general optics/laser-photonics; C07 owns general quantum formalism; C01 owns generic metrology. C08 owns AMO specialization. C09-C12 are boundary-only and provide no support claims.
+Foundational progression is now explicit: basic atom structure (nucleus + electrons) → discrete states/spectra → basic molecular meaning and rotational/vibrational structure → atom-light interaction → cold-atom control → precision measurement. Advanced AMO material extends rather than substitutes for general-education foundations.
 
-Foundational progression: atomic structure and spectra precede molecular specialization, atom-light interaction, cold atoms and precision measurement. Advanced AMO content extends rather than substitutes for foundational coverage.
+Canonical prerequisites are accepted C05 optics and C07 quantum physics. C01 metrology and C06 electromagnetic-field concepts remain accepted context references only; C09-C12 are boundary-only and provide no supporting Claim IDs.
 
-Self-repairs: SR01 ownership overlap; SR02 foundational sequencing; SR03 metrology/future-scope overreach. Re-audit PASS. `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`.
+Worker self-repairs: 3. Director-assistant repairs: 3. Re-audit PASS for semantic closure, source/support resolution, canonical prerequisite alignment, acyclic/no-dangling graph, ownership, foundational coverage and CURRICULUM-only stage discipline. `FUTURE_LOCKED_SUPPORT=0`.
 
-Next: B1.2-C09 — GATED pending Director acceptance of C08.
+Effective academic repair commit: `9a822cc23547fc8ca8b7a3c9809068e44ff66d24`. Repair checkpoint: `cab1b98262502f74637efb5c4731030aa370c77d`.
+
+Next: Director review/acceptance of repaired C08 candidate. B1.2-C09 remains GATED until Director acceptance.
