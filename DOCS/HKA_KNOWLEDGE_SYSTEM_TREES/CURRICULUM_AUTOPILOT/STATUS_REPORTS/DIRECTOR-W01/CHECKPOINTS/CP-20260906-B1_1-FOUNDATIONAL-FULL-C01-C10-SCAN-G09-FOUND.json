@@ -1,0 +1,59 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-FOUNDATIONAL-FULL-C01-C10-SCAN-G09-FOUND",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "scan_scope":"Accepted B1.1 C01-C10 plus effective foundational overlays through current control-plane head",
+  "benchmark":"F13-R01..F13-R10 from six-system/six-continent GENERAL_EDUCATION benchmark",
+  "scope_scan":[
+    {"scope":"B1.1-C01","result":"NO_NEW_FOUNDATIONAL_GAP","role":"formal logic/set/proof foundations; not used as substitute for school numeracy/algebra/geometry/data meanings"},
+    {"scope":"B1.1-C02","result":"FOUNDATIONAL_SPINE_PRESENT_AFTER_REPAIRS","requirements":["F13-R01","F13-R02","F13-R03","F13-R09-estimation/reasonableness"]},
+    {"scope":"B1.1-C03","result":"FOUNDATIONAL_SPINE_PRESENT_AFTER_REPAIRS","requirements":["F13-R04","F13-R09-context-to-algebra/representation"]},
+    {"scope":"B1.1-C04","result":"FOUNDATIONAL_SPINE_PRESENT_AFTER_REPAIRS","requirements":["F13-R05","F13-R06","F13-R09-unit/magnitude checks"]},
+    {"scope":"B1.1-C05","result":"NO_NEW_FOUNDATIONAL_GAP","role":"upper-secondary/advanced analysis extension; not counted as replacement for foundational numeracy/algebra"},
+    {"scope":"B1.1-C06","result":"NO_NEW_FOUNDATIONAL_GAP","role":"specialist ODE/PDE/dynamics extension; not common-spine prerequisite for foundational meanings"},
+    {"scope":"B1.1-C07","result":"FOUNDATIONAL_SPINE_PRESENT_AFTER_REPAIRS","requirements":["F13-R07","F13-R08"]},
+    {"scope":"B1.1-C08","result":"NO_NEW_FOUNDATIONAL_GAP","role":"discrete/combinatorial extension; early pattern/generalization remains C03-owned"},
+    {"scope":"B1.1-C09","result":"NO_NEW_FOUNDATIONAL_GAP","role":"topology/manifold/global-geometry specialist extension; not used as evidence for elementary geometry"},
+    {"scope":"B1.1-C10","result":"NEW_FOUNDATIONAL_GAP","role":"applied-mathematics owner; accepted modelling layer exists but its D1 objective depends on C03+C05+C06+C07 and is therefore not a general-education common-spine modelling cycle"}
+  ],
+  "requirement_classification_before_G09_repair":{
+    "F13-R01":"COVERED",
+    "F13-R02":"COVERED",
+    "F13-R03":"COVERED",
+    "F13-R04":"COVERED",
+    "F13-R05":"COVERED",
+    "F13-R06":"COVERED",
+    "F13-R07":"COVERED",
+    "F13-R08":"COVERED",
+    "F13-R09":"PARTIALLY_COVERED",
+    "F13-R10":"COVERED"
+  },
+  "new_gap":{
+    "gap_id":"F13-G09",
+    "classification":"PARTIALLY_COVERED",
+    "concept":"Common-spine mathematical problem solving and modelling cycle from contextual question to representation, reasoning, interpretation, reasonableness check and revision",
+    "expected_developmental_role":"Across general education, learners repeatedly translate a bounded contextual question into quantities/relationships/representations, reason mathematically, interpret the result in context, test units/bounds/magnitude/constraints, and revise assumptions or representation when the result is not fit for purpose.",
+    "external_curriculum_evidence":[
+      "ENG-NC-MATH: mathematical fluency/reasoning/problem solving and modelling applications recur through KS1-KS4",
+      "US-CCSS-MATH: Standards for Mathematical Practice include model with mathematics, reason quantitatively, use tools/representations and attend to precision across K-12",
+      "AUS-ACARA-MATH-V9: proficiency strands and mathematical modelling/problem solving recur across F-10",
+      "SG-MOE-MATH: problem solving is the central focus/process across Primary and Secondary mathematics",
+      "BR-BNCC-MATH: problem situations, representations and modelling/contextual reasoning recur across Educação Básica",
+      "ZA-CAPS-MATH: mathematical problem-solving progression spans Foundation through FET"
+    ],
+    "true_owner_scope":"B1.1-C10",
+    "true_owner_node":"HKA-B1-1-C10-N001",
+    "supporting_scopes":["B1.1-C02","B1.1-C03","B1.1-C04"],
+    "current_state":"C02 explicitly supports estimation/reasonableness; C03 explicitly supports contextual expression/equation and table/graph/formula representations; C04 supports unit/magnitude checks. C10 owns modelling but accepted C10-N001 D1 requires C03+C05+C06+C07, so it cannot serve as the foundational common-spine modelling progression without an independent foundational overlay.",
+    "proposed_minimal_repair":"Append C10-N001 foundational claim(s) for a simple modelling/problem-solving cycle and representation/validation loop, plus a common-spine FOUNDATIONAL_OBJECTIVE whose prerequisites are foundational C02/C03/C04 meanings rather than C05/C06 specialist scopes. Reuse accepted immutable C10 modelling source.",
+    "duplicate_risk_check":"LOW/PASS if C10 owns only modelling-cycle orchestration: C02 retains arithmetic/estimation, C03 retains equations/functions/representations, C04 retains mathematical measurement/units, C07 retains data/inference, and domain sciences retain empirical truth."
+  },
+  "F13_R10_basis":"PASS: foundational overlays are a separate common-spine axis with common_spine_required=true, while C05/C06/C08/C09 and advanced portions of C10 remain specialist/deeper layers; no advanced node is being used to waive a missing R01-R09 meaning.",
+  "current_foundational_gap_count":1,
+  "pass_candidate":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "non_blocking_technical_anomalies":["__invalid_probe__ branch; excluded from curriculum workflow and not acted on per user instruction."],
+  "next_action":"Apply minimal true-owner F13-G09 repair at C10-N001, independently re-test R09, then run final whole-matrix regression/duplicate/dependency audit before setting any zero-gap result."
+}
