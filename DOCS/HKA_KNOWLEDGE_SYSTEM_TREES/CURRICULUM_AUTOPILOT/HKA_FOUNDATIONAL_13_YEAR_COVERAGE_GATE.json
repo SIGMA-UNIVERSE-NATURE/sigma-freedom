@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status": "ACTIVE_REQUIRED",
   "stage": "CURRICULUM",
@@ -31,6 +31,8 @@
   },
   "current_application": {
     "active_subbranch": "B1.1",
+    "active_scope":"B1.1-INTEGRATION-AUDIT",
+    "active_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
     "accepted_C01_C10_automatically_reopened": false,
     "accepted_C10_commit": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
     "current_foundational_audit_status": "PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
@@ -40,8 +42,10 @@
     "gap_register_commit": "32642a59d6451fb16068de68432ba840338b75a9",
     "audit_scope": "Accepted B1.1 C01-C10 plus effective true-owner foundational overlays against full primary-through-upper-secondary general-education progressions across six systems/six continents.",
     "repair_policy": "Only concrete gaps reopen their true owner scopes; advanced content never offsets a gap.",
-    "director_integration_audit_status": "NOT_YET_RUN_ON_ZERO_GAP_EFFECTIVE_VIEW",
-    "backup_sentinel_fresh_alignment_status": "REQUIRED_NOT_YET_REFRESHED_AFTER_ZERO_GAP",
+    "director_integration_audit_status": "ACTIVE_NOT_YET_PASS",
+    "director_integration_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
+    "director_integration_open_order_commit":"8297df53dc44284e9880606c484bb941e9c2b28a",
+    "backup_sentinel_fresh_alignment_status": "REQUIRED_AFTER_INTEGRATION_PASS",
     "B1_2_unlock": "FORBIDDEN_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL"
   },
   "later_lesson_registry_policy": {
