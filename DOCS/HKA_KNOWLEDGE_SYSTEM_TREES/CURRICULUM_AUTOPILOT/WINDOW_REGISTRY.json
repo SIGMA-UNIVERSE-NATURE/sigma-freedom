@@ -1,5 +1,5 @@
 {
-  "schema_version":"4.1",
+  "schema_version":"4.2",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub state, immutable architecture anchors, active amendments, foundational 13-year coverage gate and predecessor artifacts; chat history is never a dependency.",
   "child_window_rule":"Only Director-accepted PASS counts as accepted academic authoring. Subbranch completion/successor transitions additionally require applicable integration/foundational gates.",
@@ -13,7 +13,7 @@
     "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md"
   ],
   "foundational_13_year_gate":{"path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json","status":"ACTIVE_REQUIRED","B1_1_audit_status":"PASS","current_gap_count":0,"required_gap_count":0,"B1_2_unlock_before_pass":false},
-  "active_transition":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04","scope_id":"B1.2-C04","branch":"hka-tree/c01-w03-physics-c04","status":"READY","accepted_predecessor_commit_sha":"693348843918fcd66445e8e30624dcddcc1a9589","open_order_commit":"947cff5d68f4c1eabfccca63ee3d5a2fbe3d27de"},
+  "active_transition":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05","scope_id":"B1.2-C05","branch":"hka-tree/c01-w03-physics-c05","status":"READY","accepted_predecessor_commit_sha":"ac64a006c9aeeb2296f8da5d819df1246be64fb4","open_order_commit":"3fb4af11b10665c176f4aae5c766490154415a49"},
   "stage_order":["KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"],
   "stages":[
     {"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT","artifacts":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES.md@fc799bf1104ab6352710e1801777a971b5179995"]},
@@ -35,8 +35,8 @@
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01","scope_id":"B1.2-C01","scope":"Đo lường vật lý","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w03-physics-c01","accepted_commit_sha":"62a26590dc9055323316456f1620856b885462d7","topic_count":6,"claim_count":30,"learning_objective_count":24,"claim_to_learning_objective_closure":"24/24 PASS","self_repairs":2,"foundational_coverage":"PASS","future_locked_support":0,"required_prior_scope_pass":["B1.1-C02","B1.1-C03"]},
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C02","scope_id":"B1.2-C02","scope":"Cơ học cổ điển","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w03-physics-c02","accepted_commit_sha":"2c112f281ca8915ef2e8800043db952c550531bc","topic_count":8,"claim_count":64,"learning_objective_count":32,"claim_to_learning_objective_closure":"32/32 PASS","self_repairs":3,"foundational_coverage":"PASS","future_locked_support":0,"required_prior_scope_pass":["B1.2-C01","B1.1-C03","B1.1-C04"]},
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C03","scope_id":"B1.2-C03","scope":"Cơ học môi trường liên tục","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w03-physics-c03","accepted_commit_sha":"693348843918fcd66445e8e30624dcddcc1a9589","worker_candidate_commit_sha":"05dfd94fe2c21093be7b5cee2d36e09cda256bb4","academic_repair_sha":"567008f1d1272d133ea865471316afd8c829b82c","repair_checkpoint_sha":"3cd31cca7324a71320249c538af141b823c5de30","topic_count":7,"claim_count":29,"learning_objective_count":29,"claim_to_learning_objective_closure":"29/29 PASS","worker_self_repairs":2,"director_assistant_repairs":1,"foundational_coverage":"PASS_AFTER_REPAIR","future_locked_support":0,"required_prior_scope_pass":["B1.2-C01","B1.2-C02"]},
-        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04","scope_id":"B1.2-C04","scope":"Nhiệt động lực học và vật lý thống kê","status":"READY","execution_branch":"hka-tree/c01-w03-physics-c04","topic_count":7,"required_prior_scope_pass":["B1.2-C01","B1.2-C02","B1.1-C07"],"output_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C04/"},
-        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05","scope_id":"B1.2-C05","status":"LOCKED"},
+        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04","scope_id":"B1.2-C04","scope":"Nhiệt động lực học và vật lý thống kê","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w03-physics-c04","accepted_commit_sha":"ac64a006c9aeeb2296f8da5d819df1246be64fb4","worker_candidate_commit_sha":"e1f681f217e48aa77b3edb6cd6ab3775441792dd","academic_repair_sha":"7ea07c01bed200c2df1b56a5e17f720bc5ad1fbc","repair_checkpoint_sha":"dd95c4cc2fedf64c620ff5f3aa932aeafc55617f","topic_count":7,"claim_count":36,"learning_objective_count":29,"claim_to_learning_objective_closure":"29/29 PASS","worker_self_repairs":3,"director_assistant_repairs":2,"foundational_coverage":"PASS_AFTER_REPAIR","canonical_dependency_alignment":"PASS","prerequisite_graph":"PASS","ownership":"PASS","future_locked_support":0,"stage_boundary":"PASS_CURRICULUM_ONLY","required_prior_scope_pass":["B1.2-C01","B1.2-C02","B1.1-C07"]},
+        {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05","scope_id":"B1.2-C05","scope":"Sóng, âm thanh và quang học","status":"READY","execution_branch":"hka-tree/c01-w03-physics-c05","topic_count":8,"required_prior_scope_pass":["B1.2-C02"],"output_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C05/"},
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C06","scope_id":"B1.2-C06","status":"LOCKED"},
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C07","scope_id":"B1.2-C07","status":"LOCKED"},
         {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C08","scope_id":"B1.2-C08","status":"LOCKED"},
@@ -58,5 +58,5 @@
     ]},
     {"stage_id":"ACADEMIC_LOCKED","status":"GATED"},{"stage_id":"LESSON_REGISTRY","status":"GATED"},{"stage_id":"LESSON_REGISTRY_LOCKED","status":"GATED"},{"stage_id":"PROMPTS","status":"GATED"},{"stage_id":"PROMPT_LOCKED","status":"GATED"},{"stage_id":"IMAGE_PRODUCTION","status":"GATED"},{"stage_id":"R2_STAGING","status":"GATED"},{"stage_id":"INDEPENDENT_QA","status":"GATED"},{"stage_id":"VAULT","status":"GATED"},{"stage_id":"WEB_OPTIMIZE","status":"GATED"},{"stage_id":"DELIVERY","status":"GATED"},{"stage_id":"WEBSITE_UPDATE","status":"GATED"}
   ],
-  "updated_at":"2026-09-07T00:24:00+07:00"
+  "updated_at":"2026-09-07"
 }
