@@ -10,7 +10,9 @@
   "foundational_coverage":{"solids":"PASS","elasticity_and_Hooke_intuition":"PASS","liquids_pressure_density_buoyancy":"PASS","gases_macroscopic_pressure_compressibility":"PASS","continuity_Bernoulli_viscosity":"PASS","aerodynamics_lift_drag":"PASS","turbulence_intro":"PASS"},
   "self_repairs":[{"repair_id":"SR01","defect":"Draft solid wording risked duplicating C02 generic force balance.","repair":"Specialized to distributed stress/strain and explicit C02 reuse.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Draft gas/aero boundary risked implying future-scope support.","repair":"Restricted future scopes C04-C12 to boundary-only references; all closure support is C03-local.","status":"REPAIRED"}],
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_UNTIL_COMMIT",
+  "academic_output_commit_sha":"61e3fa10e69c5624b745ddf3ee565183be515edd",
+  "terminal_checkpoint_commit_sha":"5961135c8f70e9f2be80665f9323f69790f9fd49",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "next":"B1.2-C04 — GATED pending Director acceptance of C03"
 }
