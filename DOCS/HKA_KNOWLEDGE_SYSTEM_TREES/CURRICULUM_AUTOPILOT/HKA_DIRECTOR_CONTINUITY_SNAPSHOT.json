@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.9",
+  "schema_version": "2.0",
   "role": "DIRECTOR_CONTINUITY_SNAPSHOT",
   "purpose": "Compact recovery and Knowledge Tree alignment state. Chat memory is never authoritative.",
   "source_of_truth": {
@@ -17,7 +17,8 @@
     "gap_register_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/FOUNDATIONAL_AUDITS/B1_1_13_YEAR/FOUNDATIONAL_GAP_REGISTER.json",
     "integration_order_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/DIRECTOR-B1.1-ZERO-GAP-INTEGRATION-AUDIT-OPEN.md",
     "integration_execution_status_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-B1.1-INTEGRATION-AUDIT/STATUS.json",
-    "integration_execution_report_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-B1.1-INTEGRATION-AUDIT/REPORT.md"
+    "integration_execution_report_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-B1.1-INTEGRATION-AUDIT/REPORT.md",
+    "backup_sentinel_index_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_BACKUP_SENTINEL_INDEX.json"
   },
   "knowledge_tree_invariants": {
     "human_roots":["SELF","OTHERS","WORLD"],
@@ -39,23 +40,18 @@
   "current_execution": {
     "active_branch_id":"B1",
     "active_subbranch_id":"B1.1",
-    "active_scope_id":"B1.1-INTEGRATION-AUDIT",
-    "active_window_id":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
-    "active_execution_branch":"hka-tree/director-b1-1-integration-audit",
+    "active_scope_id":"B1.1-SENTINEL-ALIGNMENT",
+    "active_window_id":"DIRECTOR-BACKUP-S01",
+    "active_execution_branch":"hka-tree/director-backup-sentinel",
     "control_plane_branch":"hka-tree/curriculum-master",
-    "active_status":"INTEGRATION_AUDIT_ACTIVE",
-    "open_order_activation_base_commit":"a47e5b6b09949084b31bf4c832bac33562e75c7d",
-    "execution_branch_base_commit":"b7eaae3ed59aa4c9ea8f65580895735252523746",
-    "execution_status_init_commit":"b2f222bfc13c37a012950837e12ead3af4cf7caa",
-    "execution_report_init_commit":"bfeccbc27a79e5b7d74327f485eea2c37df9b3fe",
-    "open_order_commit":"8297df53dc44284e9880606c484bb941e9c2b28a",
-    "activation_checkpoint_commit":"5a3d1def343de23c2a25559cdbfa628efb93aa61",
-    "accepted_predecessor_commit":"d39ac894d0c6fcb112071170a75fc1b7b661b449",
-    "authoring_status":"C01-C10 DIRECTOR_ACCEPTED; FOUNDATIONAL ZERO-GAP PASS CANDIDATE; DIRECTOR INTEGRATION EXECUTION WINDOW ACTIVE",
-    "foundational_13_year_controls":{"gate_status":"ACTIVE_REQUIRED","current_audit_status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL","current_gap_count":0,"required_gap_count":0,"advanced_content_cannot_offset_gap":true,"repair_cross_scope_gaps_at_true_owner":true,"B1_2_unlock_before_pass":false},
+    "active_status":"SENTINEL_ALIGNMENT_ACTIVE",
+    "accepted_predecessor_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a",
+    "authoring_status":"C01-C10 DIRECTOR_ACCEPTED; FOUNDATIONAL ZERO-GAP ACCEPTED; DIRECTOR INTEGRATION PASS ACCEPTED; FRESH SENTINEL ACTIVE",
+    "foundational_13_year_controls":{"gate_status":"ACTIVE_REQUIRED","current_audit_status":"DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL","current_gap_count":0,"required_gap_count":0,"advanced_content_cannot_offset_gap":true,"repair_cross_scope_gaps_at_true_owner":true,"B1_2_unlock_before_pass":false},
     "post_repair_reaudit":{"file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/FOUNDATIONAL_AUDITS/B1_1_13_YEAR/POST_REPAIR_REAUDIT.json","commit":"2c9fd7023c6100fecb77a4c7685e184ff4baf47b","gap_register_commit":"32642a59d6451fb16068de68432ba840338b75a9","benchmark_continents":6,"requirements":"F13-R01..F13-R10 COVERED","gaps":"F13-G01..F13-G09 CLOSED_COVERED","remaining_partial":0,"remaining_missing":0,"duplicate_audit":"PASS","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","advanced_substitution_count":0},
-    "integration_audit":{"status":"ACTIVE_NOT_YET_PASS","execution_branch":"hka-tree/director-b1-1-integration-audit","effective_view":"accepted C01-C10 plus all effective foundational overlays","required_pass":"DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL","successor_unlock_authority":false},
-    "fresh_backup_sentinel_status":"GATED_PENDING_INTEGRATION_PASS",
+    "integration_audit":{"status":"DIRECTOR_ACCEPTED_PASS_PENDING_FRESH_SENTINEL","execution_branch":"hka-tree/director-b1-1-integration-audit","accepted_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a","foundational_gap_count":0,"future_locked_support":0,"red_flag":"NONE","effective_view":"accepted C01-C10 plus all effective foundational overlays","successor_unlock_authority":false},
+    "fresh_backup_sentinel_status":"ACTIVE_REQUIRED",
+    "fresh_backup_sentinel_branch":"hka-tree/director-backup-sentinel",
     "successor_unlock_forbidden":true
   },
   "accepted_scopes": {
@@ -81,9 +77,9 @@
   },
   "execution_order_override":"C06 -> C08 -> C07 -> C09 -> C10 -> B1.1 FOUNDATIONAL 13-YEAR AUDIT -> B1.1 DIRECTOR INTEGRATION AUDIT -> BACKUP SENTINEL ALIGNMENT",
   "director_acceptance_invariants":["Worker PASS is candidate only; partial worker output must not be mislabeled as worker PASS.","Director independently audits claims, sources, objectives and semantic closure before acceptance.","Closure row existence/flags are insufficient; listed claims must semantically cover each objective.","Future or locked scope Claim IDs cannot supply support.","Semantic duplicate ownership requires explicit disposition.","Prerequisite graph must be acyclic and academically necessary.","D1-D4 remain age-independent and cannot be used as school-grade labels.","Foundational 13-year general-education coverage is mandatory and advanced content cannot compensate for a foundational gap.","A foundational gap must be repaired at its true owner scope, not patched into the currently active scope.","Stage boundary must remain CURRICULUM-only.","Stable accepted IDs are append-only and never silently renumbered."],
-  "global_pre_academic_lock_gates":{"all_six_branches_complete_required":true,"global_coverage_audit_required":true,"global_prerequisite_audit_required":true,"global_semantic_duplicate_audit_required":true,"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"current_foundational_13_year_audit_status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL","current_foundational_gap_count":0,"B1_1_director_integration_status":"ACTIVE_NOT_YET_PASS","B1_1_fresh_backup_sentinel_status":"GATED_PENDING_INTEGRATION_PASS","multi_continent_education_benchmark_required":true,"minimum_continents":5,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"vietnam_must_not_be_single_baseline":true,"B1_1_benchmark_status":"PASS_6_CONTINENTS","external_curriculum_mapping_integration_required":true,"current_global_benchmark_status":"NOT_YET_PASS","current_external_mapping_integration_status":"NOT_YET_PASS","academic_locked_forbidden_until_all_pass":true},
-  "backup_sentinel_protocol":{"backup_window_id":"DIRECTOR-BACKUP-S01","mode":"READ_VERIFY_REPORT_ONLY","must_not_author_curriculum":true,"must_not_accept_or_unlock_successor":true,"must_not_mutate_control_plane":true,"fresh_run_gate":"AFTER_DIRECTOR_INTEGRATION_PASS","validation_result_enum":["TREE_ALIGNMENT_PASS","TREE_ALIGNMENT_ALERT","RECOVERY_REQUIRED"],"minimum_checks":["canonical tree commit unchanged","immutable B1 scope-map blob anchor resolves","current stage equals CURRICULUM","active integration audit matches state/registry/snapshot","C01-C10 accepted chain matches","foundational gap count remains 0","no B1.2 unlock before Director integration PASS plus fresh Sentinel TREE_ALIGNMENT_PASS","locked scopes are not used as support","no later pipeline stage artifact appears"]},
+  "global_pre_academic_lock_gates":{"all_six_branches_complete_required":true,"global_coverage_audit_required":true,"global_prerequisite_audit_required":true,"global_semantic_duplicate_audit_required":true,"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"current_foundational_13_year_audit_status":"DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL","current_foundational_gap_count":0,"B1_1_director_integration_status":"DIRECTOR_ACCEPTED_PASS","B1_1_director_integration_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a","B1_1_fresh_backup_sentinel_status":"ACTIVE_REQUIRED","multi_continent_education_benchmark_required":true,"minimum_continents":5,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"vietnam_must_not_be_single_baseline":true,"B1_1_benchmark_status":"PASS_6_CONTINENTS","external_curriculum_mapping_integration_required":true,"current_global_benchmark_status":"NOT_YET_PASS","current_external_mapping_integration_status":"NOT_YET_PASS","academic_locked_forbidden_until_all_pass":true},
+  "backup_sentinel_protocol":{"backup_window_id":"DIRECTOR-BACKUP-S01","mode":"READ_VERIFY_REPORT_ONLY","must_not_author_curriculum":true,"must_not_accept_or_unlock_successor":true,"must_not_mutate_control_plane":true,"fresh_run_gate":"AFTER_DIRECTOR_INTEGRATION_PASS","validation_result_enum":["TREE_ALIGNMENT_PASS","TREE_ALIGNMENT_ALERT","RECOVERY_REQUIRED"],"minimum_checks":["canonical tree commit unchanged","immutable B1 scope-map blob anchor resolves","current stage equals CURRICULUM","accepted integration commit b2818160e8619a7cc3807a0ca3252280be68c16a resolves","C01-C10 accepted chain matches","foundational gap count remains 0","no B1.2 unlock before fresh Sentinel TREE_ALIGNMENT_PASS","locked scopes are not used as support","no later pipeline stage artifact appears"]},
   "continuity_update_rule":{"snapshot_update_required_on_every_director_acceptance":true,"snapshot_update_required_on_every_active_window_change":true,"snapshot_update_required_on_dependency_amendment":true,"replacement_director_bootstrap_order":["READ HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json","READ HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json","VERIFY canonical tree commit and immutable scope-map blob anchor","READ HKA_CURRICULUM_STATE.json","READ WINDOW_REGISTRY.json","READ active dependency amendments","READ Director latest checkpoint/status","READ active execution-window STATUS/REPORT from the execution branch","VERIFY active audit/window status","CONTINUE only from durable next_action"]},
-  "next_action":"Execute DIRECTOR-B1.1-INTEGRATION-AUDIT on hka-tree/director-b1-1-integration-audit over accepted C01-C10 plus all effective foundational overlays at FOUNDATIONAL_GAP_COUNT=0. If PASS, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both pass.",
-  "updated_at":"2026-09-06"
+  "next_action":"Run fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT on hka-tree/director-backup-sentinel against accepted integration commit b2818160e8619a7cc3807a0ca3252280be68c16a. If TREE_ALIGNMENT_PASS with FOUNDATIONAL_GAP_COUNT=0 and LOCKED_SCOPE_SUPPORT=0, close B1.1 and unlock canonical B1.2-C01.",
+  "updated_at":"2026-09-06T19:36:00+07:00"
 }
