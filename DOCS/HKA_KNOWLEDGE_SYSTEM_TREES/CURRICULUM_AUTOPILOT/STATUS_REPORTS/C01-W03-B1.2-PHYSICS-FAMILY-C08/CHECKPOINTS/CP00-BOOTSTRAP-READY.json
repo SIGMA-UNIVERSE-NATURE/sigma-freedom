@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C08",
+  "scope_id":"B1.2-C08",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c08",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "accepted_predecessor_commit_sha":"7d710491de2d4bb5e550a2b9b208739934a9f650",
+  "canonical_topic_count":6,
+  "prerequisites":["B1.2-C05@3aa0d02082ea409974130465e06ec387117daa1c","B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650"],
+  "future_locked_scope":"B1.2-C09..C12",
+  "next_action":"Execute C08 end-to-end using GPT_EXECUTION_PROMPT.md and return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-07T03:05:00+07:00"
+}
