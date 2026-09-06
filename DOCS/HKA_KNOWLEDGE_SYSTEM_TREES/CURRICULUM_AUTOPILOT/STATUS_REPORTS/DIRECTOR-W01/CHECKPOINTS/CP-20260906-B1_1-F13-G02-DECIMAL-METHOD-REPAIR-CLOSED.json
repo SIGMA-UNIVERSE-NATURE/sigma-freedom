@@ -1,0 +1,28 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-F13-G02-DECIMAL-METHOD-REPAIR-CLOSED",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "gap_id":"F13-G02",
+  "benchmark_requirement":"F13-R02",
+  "post_repair_classification":"COVERED",
+  "true_owner_scope":"B1.1-C02",
+  "true_owner_node":"HKA-B1-1-C02-N003",
+  "repair_commits":["9cb85b9d31a9a98fb08f0357dd04adb7b1db9a42","92b49257f863d3b7617386a27671d5959b062926"],
+  "added_claim_ids":["HKA-B1-1-C02-N003-C016","HKA-B1-1-C02-N003-C017"],
+  "superseding_foundational_objective":"HKA-F13-B1-1-C02-N003-FLO-003@record_version=2",
+  "closure":{
+    "whole_number_written_methods":"PASS",
+    "terminating_decimal_add_subtract_by_place_value":"PASS",
+    "terminating_decimal_multiply_by_power_of_ten_tracking":"PASS",
+    "decimal_division_reduction_to_integer_divisor":"PASS",
+    "mental_strategies":"PASS",
+    "estimation_reasonableness":"PASS"
+  },
+  "duplicate_risk_check":"PASS: arithmetic method ownership remains C02; B1.5 implementation/runtime and C10 numerical-analysis stability/error remain separate.",
+  "advanced_substitution_check":"PASS: decimal written methods are explicit and no longer inferred from formal field operations.",
+  "foundational_global_pass_declared":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Final F13-R01..R10 matrix regression and effective gap count computation."
+}
