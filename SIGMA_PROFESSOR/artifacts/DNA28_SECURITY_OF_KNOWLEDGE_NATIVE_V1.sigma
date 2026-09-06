@@ -1,0 +1,446 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA28.SECURITY.OF.KNOWLEDGE.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF knowledge_class_encoding_valid(value) {
+    IF (value == "PUBLIC") { RETURN 1.0; }
+    IF (value == "SENSITIVE") { RETURN 1.0; }
+    IF (value == "SECRET") { RETURN 1.0; }
+    IF (value == "NONE") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF target_memory_encoding_valid(value) {
+    IF (value == "NONE") { RETURN 1.0; }
+    IF (value == "working") { RETURN 1.0; }
+    IF (value == "episodic") { RETURN 1.0; }
+    IF (value == "hypothesis") { RETURN 1.0; }
+    IF (value == "verified") { RETURN 1.0; }
+    IF (value == "rejected") { RETURN 1.0; }
+    IF (value == "strategy") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF general_memory_class(value) {
+    IF (value == "working") { RETURN 1.0; }
+    IF (value == "episodic") { RETURN 1.0; }
+    IF (value == "hypothesis") { RETURN 1.0; }
+    IF (value == "verified") { RETURN 1.0; }
+    IF (value == "rejected") { RETURN 1.0; }
+    IF (value == "strategy") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF stored_class_valid(value) {
+    RETURN knowledge_class_encoding_valid(value);
+}
+
+DEF status_valid(value) {
+    IF (value == "KNOWLEDGE_SECURITY_ALIGNED") { RETURN 1.0; }
+    IF (value == "KNOWLEDGE_SECURITY_BLOCKED") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF choose_stage1(dep_valid, bool_valid, class_valid, memory_valid) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (class_valid < 0.5) { RETURN "KNOWLEDGE_CLASS_ENCODING_INVALID"; }
+    IF (memory_valid < 0.5) { RETURN "TARGET_MEMORY_CLASS_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(store_valid, supplied, capacity_available, aligned) {
+    IF (store_valid < 0.5) { RETURN "SECURITY_STORE_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_SECURITY_CASE_SUPPLIED"; }
+    IF (capacity_available < 0.5) { RETURN "SECURITY_STATE_CAPACITY_REACHED"; }
+    IF (aligned > 0.5) { RETURN "KNOWLEDGE_SECURITY_ALIGNED"; }
+    RETURN "KNOWLEDGE_SECURITY_BLOCKED";
+}
+
+DEF choose_status(stage1, stage2) {
+    IF (stage1 == "CONTINUE") { RETURN stage2; }
+    RETURN stage1;
+}
+
+⟡(Σ.DNA28_SECURITY_OF_KNOWLEDGE_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ DNA10_SCHEMA: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/dna10_schema.txt");
+    ⚡ DNA10_OUTPUT_PRESENT: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/dna10_output_present.txt");
+
+    ⚡ CASE_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/case_supplied.txt");
+    ⚡ SECURITY_CASE_ID: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/security_case_id.txt");
+    ⚡ KNOWLEDGE_CLASS: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/knowledge_class.txt");
+    ⚡ ACCESS_FIELD_PRESENT_TOKEN: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/knowledge_access_field_present.txt");
+    ⚡ KNOWLEDGE_ACCESS_GRANTED_TOKEN: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/knowledge_access_granted.txt");
+    ⚡ AUTHORITY_FIELD_PRESENT_TOKEN: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/execution_authority_field_present.txt");
+    ⚡ EXECUTION_AUTHORITY_GRANTED_TOKEN: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/execution_authority_granted.txt");
+    ⚡ AUTHORITY_BASIS: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/authority_basis.txt");
+    ⚡ TARGET_MEMORY_CLASS: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/target_memory_class.txt");
+    ⚡ SECRET_REFERENCE: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/secret_reference.txt");
+    ⚡ SECRET_REFERENCE_ENCODING: load_text(".sigma_exec/DNA28_NATIVE_ADMISSION_V1/input/secret_reference_encoding.txt");
+
+    ⚡ DNA10_OUTPUT_BOOL_OK: bool_token_valid(DNA10_OUTPUT_PRESENT);
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1")
+        * exact(DNA10_SCHEMA, "SIGMA_MEMORY_GENOME_V1")
+        * DNA10_OUTPUT_BOOL_OK
+        * bool_true(DNA10_OUTPUT_PRESENT);
+
+    ⚡ CASE_SUPPLIED_TOKEN_VALID: bool_token_valid(CASE_SUPPLIED_TOKEN);
+    ⚡ ACCESS_FIELD_PRESENT_TOKEN_VALID: bool_token_valid(ACCESS_FIELD_PRESENT_TOKEN);
+    ⚡ KNOWLEDGE_ACCESS_TOKEN_VALID: bool_token_valid(KNOWLEDGE_ACCESS_GRANTED_TOKEN);
+    ⚡ AUTHORITY_FIELD_PRESENT_TOKEN_VALID: bool_token_valid(AUTHORITY_FIELD_PRESENT_TOKEN);
+    ⚡ EXECUTION_AUTHORITY_TOKEN_VALID: bool_token_valid(EXECUTION_AUTHORITY_GRANTED_TOKEN);
+
+    ⚡ BOOLEAN_ENCODINGS_VALID:
+        CASE_SUPPLIED_TOKEN_VALID
+        * ACCESS_FIELD_PRESENT_TOKEN_VALID
+        * KNOWLEDGE_ACCESS_TOKEN_VALID
+        * AUTHORITY_FIELD_PRESENT_TOKEN_VALID
+        * EXECUTION_AUTHORITY_TOKEN_VALID
+        * DNA10_OUTPUT_BOOL_OK;
+
+    ⚡ KNOWLEDGE_CLASS_ENCODING_VALID: knowledge_class_encoding_valid(KNOWLEDGE_CLASS);
+    ⚡ TARGET_MEMORY_ENCODING_VALID: target_memory_encoding_valid(TARGET_MEMORY_CLASS);
+
+    ⚡ CASE_SUPPLIED: CASE_SUPPLIED_TOKEN_VALID * bool_true(CASE_SUPPLIED_TOKEN);
+    ⚡ ACCESS_FIELD_PRESENT: ACCESS_FIELD_PRESENT_TOKEN_VALID * bool_true(ACCESS_FIELD_PRESENT_TOKEN);
+    ⚡ KNOWLEDGE_ACCESS_GRANTED: KNOWLEDGE_ACCESS_TOKEN_VALID * bool_true(KNOWLEDGE_ACCESS_GRANTED_TOKEN);
+    ⚡ AUTHORITY_FIELD_PRESENT: AUTHORITY_FIELD_PRESENT_TOKEN_VALID * bool_true(AUTHORITY_FIELD_PRESENT_TOKEN);
+    ⚡ EXECUTION_AUTHORITY_GRANTED: EXECUTION_AUTHORITY_TOKEN_VALID * bool_true(EXECUTION_AUTHORITY_GRANTED_TOKEN);
+
+    ⚡ KNOWLEDGE_CLASS_PRESENT: present(KNOWLEDGE_CLASS);
+    ⚡ SECURITY_CASE_FIELDS_COMPLETE:
+        present(SECURITY_CASE_ID)
+        * KNOWLEDGE_CLASS_PRESENT
+        * ACCESS_FIELD_PRESENT
+        * AUTHORITY_FIELD_PRESENT;
+
+    ⚡ ACCESS_IMPLIES_EXECUTION:
+        KNOWLEDGE_ACCESS_GRANTED
+        * EXECUTION_AUTHORITY_GRANTED
+        * exact(AUTHORITY_BASIS, "KNOWLEDGE_ACCESS_ONLY");
+
+    ⚡ SECRET_CLASS: exact(KNOWLEDGE_CLASS, "SECRET");
+    ⚡ TARGET_IS_GENERAL_MEMORY: general_memory_class(TARGET_MEMORY_CLASS);
+    ⚡ SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION:
+        SECRET_CLASS * TARGET_IS_GENERAL_MEMORY;
+
+    ⚡ SECRET_REFERENCE_PRESENT: SECRET_CLASS * present(SECRET_REFERENCE);
+    ⚡ SECRET_REFERENCE_ENCODING_VALID: 1.0;
+    IF (SECRET_REFERENCE_PRESENT > 0.5) {
+        ⚡ SECRET_REFERENCE_ENCODING_VALID: exact(SECRET_REFERENCE_ENCODING, "SHA256");
+    }
+    ⚡ SECRET_REFERENCE_ENCODING_VIOLATION:
+        SECRET_REFERENCE_PRESENT * (1.0 - SECRET_REFERENCE_ENCODING_VALID);
+
+    ⚡ CANON_ALIGNED:
+        DEPENDENCY_BINDING_VALID
+        * CASE_SUPPLIED
+        * BOOLEAN_ENCODINGS_VALID
+        * KNOWLEDGE_CLASS_ENCODING_VALID
+        * TARGET_MEMORY_ENCODING_VALID
+        * SECURITY_CASE_FIELDS_COMPLETE
+        * (1.0 - ACCESS_IMPLIES_EXECUTION)
+        * (1.0 - SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION)
+        * (1.0 - SECRET_REFERENCE_ENCODING_VIOLATION);
+
+    ⚡ GENERAL_COGNITIVE_MEMORY_WRITE_ALLOWED: 1.0 - SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA28_NATIVE_ADMISSION_V1/state/security_of_knowledge_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA28_SECURITY_OF_KNOWLEDGE_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_SECURITY_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ SECURITY_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 15) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RCLASS: host("list_get", PARTS, 2, NULL);
+                ⚡ RSTATUS: host("list_get", PARTS, 3, NULL);
+                ⚡ RACCESS: host("list_get", PARTS, 4, NULL);
+                ⚡ RAUTHORITY: host("list_get", PARTS, 5, NULL);
+                ⚡ RBASIS: host("list_get", PARTS, 6, NULL);
+                ⚡ RTARGET: host("list_get", PARTS, 7, NULL);
+                ⚡ RREFERENCE: host("list_get", PARTS, 8, NULL);
+                ⚡ RALIGNED: host("list_get", PARTS, 9, NULL);
+                ⚡ RCONFLATION: host("list_get", PARTS, 10, NULL);
+                ⚡ RSECRETVIOLATION: host("list_get", PARTS, 11, NULL);
+                ⚡ RPAYLOAD: host("list_get", PARTS, 12, NULL);
+                ⚡ RWRITEALLOWED: host("list_get", PARTS, 13, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 14, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "SECURITY")
+                    * present(RCASE)
+                    * stored_class_valid(RCLASS)
+                    * status_valid(RSTATUS)
+                    * bool_token_valid(RACCESS)
+                    * bool_token_valid(RAUTHORITY)
+                    * target_memory_encoding_valid(RTARGET)
+                    * bool_token_valid(RALIGNED)
+                    * bool_token_valid(RCONFLATION)
+                    * bool_token_valid(RSECRETVIOLATION)
+                    * exact(RPAYLOAD, "PAYLOAD_RETAINED=0")
+                    * bool_token_valid(RWRITEALLOWED)
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ SECURITY_RECORD_COUNT_BEFORE: SECURITY_RECORD_COUNT_BEFORE + 1.0;
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (SECURITY_RECORD_COUNT_BEFORE < MAX_SECURITY_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ RETAIN_ELIGIBLE:
+        DEPENDENCY_BINDING_VALID
+        * CASE_SUPPLIED
+        * BOOLEAN_ENCODINGS_VALID
+        * KNOWLEDGE_CLASS_ENCODING_VALID
+        * TARGET_MEMORY_ENCODING_VALID
+        * STORE_STATE_VALID
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ SECURITY_RECORD_RETAINED: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ RECORD_STATUS: "KNOWLEDGE_SECURITY_BLOCKED";
+        IF (CANON_ALIGNED > 0.5) { ⚡ RECORD_STATUS: "KNOWLEDGE_SECURITY_ALIGNED"; }
+
+        ⚡ ACCESS_OUT: "0";
+        ⚡ AUTHORITY_OUT: "0";
+        ⚡ ALIGNED_OUT: "0";
+        ⚡ CONFLATION_OUT: "0";
+        ⚡ SECRET_VIOLATION_OUT: "0";
+        ⚡ WRITE_ALLOWED_OUT: "0";
+        IF (KNOWLEDGE_ACCESS_GRANTED > 0.5) { ⚡ ACCESS_OUT: "1"; }
+        IF (EXECUTION_AUTHORITY_GRANTED > 0.5) { ⚡ AUTHORITY_OUT: "1"; }
+        IF (CANON_ALIGNED > 0.5) { ⚡ ALIGNED_OUT: "1"; }
+        IF (ACCESS_IMPLIES_EXECUTION > 0.5) { ⚡ CONFLATION_OUT: "1"; }
+        IF (SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION > 0.5) { ⚡ SECRET_VIOLATION_OUT: "1"; }
+        IF (GENERAL_COGNITIVE_MEMORY_WRITE_ALLOWED > 0.5) { ⚡ WRITE_ALLOWED_OUT: "1"; }
+
+        ⚡ CASE_OUT: SECURITY_CASE_ID;
+        IF (present(CASE_OUT) < 0.5) { ⚡ CASE_OUT: "MISSING_CASE_ID"; }
+        ⚡ CLASS_OUT: KNOWLEDGE_CLASS;
+        IF (present(CLASS_OUT) < 0.5) { ⚡ CLASS_OUT: "NONE"; }
+        ⚡ BASIS_OUT: AUTHORITY_BASIS;
+        IF (present(BASIS_OUT) < 0.5) { ⚡ BASIS_OUT: "NONE"; }
+        ⚡ TARGET_OUT: TARGET_MEMORY_CLASS;
+        IF (present(TARGET_OUT) < 0.5) { ⚡ TARGET_OUT: "NONE"; }
+        ⚡ REFERENCE_OUT: SECRET_REFERENCE;
+        IF (present(REFERENCE_OUT) < 0.5) { ⚡ REFERENCE_OUT: "NONE"; }
+
+        ⚡ NEW_RECORD:
+            "SECURITY||"
+            + CASE_OUT + "||"
+            + CLASS_OUT + "||"
+            + RECORD_STATUS + "||"
+            + ACCESS_OUT + "||"
+            + AUTHORITY_OUT + "||"
+            + BASIS_OUT + "||"
+            + TARGET_OUT + "||"
+            + REFERENCE_OUT + "||"
+            + ALIGNED_OUT + "||"
+            + CONFLATION_OUT + "||"
+            + SECRET_VIOLATION_OUT + "||PAYLOAD_RETAINED=0||"
+            + WRITE_ALLOWED_OUT + "||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD; }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ SECURITY_RECORD_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ SECURITY_RECORD_COUNT_AFTER: SECURITY_RECORD_COUNT_BEFORE + SECURITY_RECORD_RETAINED;
+    ⚡ STATE_MUTATED: SECURITY_RECORD_RETAINED;
+
+    ⚡ STAGE1: choose_stage1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, KNOWLEDGE_CLASS_ENCODING_VALID, TARGET_MEMORY_ENCODING_VALID);
+    ⚡ STAGE2: choose_stage2(STORE_STATE_VALID, CASE_SUPPLIED, STATE_CAPACITY_AVAILABLE, CANON_ALIGNED);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2);
+
+    ⚡ print("DNA28_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("DNA10_SCHEMA_OK");
+    ⚡ print(exact(DNA10_SCHEMA, "SIGMA_MEMORY_GENOME_V1"));
+    ⚡ print("CASE_SUPPLIED");
+    ⚡ print(CASE_SUPPLIED);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID");
+    ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("KNOWLEDGE_CLASS_ENCODING_VALID");
+    ⚡ print(KNOWLEDGE_CLASS_ENCODING_VALID);
+    ⚡ print("TARGET_MEMORY_ENCODING_VALID");
+    ⚡ print(TARGET_MEMORY_ENCODING_VALID);
+    ⚡ print("SECURITY_CASE_FIELDS_COMPLETE");
+    ⚡ print(SECURITY_CASE_FIELDS_COMPLETE);
+    ⚡ print("KNOWLEDGE_ACCESS_GRANTED");
+    ⚡ print(KNOWLEDGE_ACCESS_GRANTED);
+    ⚡ print("EXECUTION_AUTHORITY_GRANTED");
+    ⚡ print(EXECUTION_AUTHORITY_GRANTED);
+    ⚡ print("ACCESS_IMPLIES_EXECUTION");
+    ⚡ print(ACCESS_IMPLIES_EXECUTION);
+    ⚡ print("SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION");
+    ⚡ print(SECRET_GENERAL_COGNITIVE_MEMORY_VIOLATION);
+    ⚡ print("SECRET_REFERENCE_PRESENT");
+    ⚡ print(SECRET_REFERENCE_PRESENT);
+    ⚡ print("SECRET_REFERENCE_ENCODING_VALID");
+    ⚡ print(SECRET_REFERENCE_ENCODING_VALID);
+    ⚡ print("SECRET_REFERENCE_ENCODING_VIOLATION");
+    ⚡ print(SECRET_REFERENCE_ENCODING_VIOLATION);
+    ⚡ print("CANON_ALIGNED");
+    ⚡ print(CANON_ALIGNED);
+    ⚡ print("GENERAL_COGNITIVE_MEMORY_WRITE_ALLOWED");
+    ⚡ print(GENERAL_COGNITIVE_MEMORY_WRITE_ALLOWED);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("SECURITY_RECORD_COUNT_BEFORE");
+    ⚡ print(SECURITY_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE");
+    ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("SECURITY_RECORD_RETAINED");
+    ⚡ print(SECURITY_RECORD_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("SECURITY_RECORD_COUNT_AFTER");
+    ⚡ print(SECURITY_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS");
+    ⚡ print(STATUS);
+
+    ⚡ print("SECURITY_OF_KNOWLEDGE_SCHEMA");
+    ⚡ print("SIGMA_SECURITY_OF_KNOWLEDGE_V1");
+    ⚡ print("PERSISTENT_LEDGER_SCHEMA");
+    ⚡ print("SIGMA_DNA28_SECURITY_OF_KNOWLEDGE_LEDGER_V1");
+    ⚡ print("MAX_SECURITY_RECORDS");
+    ⚡ print(MAX_SECURITY_RECORDS);
+    ⚡ print("KNOWLEDGE_ACCESS_IS_EXECUTION_AUTHORITY");
+    ⚡ print(0.0);
+    ⚡ print("EXECUTION_AUTHORITY_MUST_BE_SEPARATELY_GRANTED");
+    ⚡ print(1.0);
+    ⚡ print("SECRET_IN_GENERAL_COGNITIVE_MEMORY_ALLOWED");
+    ⚡ print(0.0);
+    ⚡ print("SECRET_PAYLOAD_ACTIVE_INPUT_PRESENT");
+    ⚡ print(0.0);
+    ⚡ print("SECRET_PAYLOAD_READ_BY_DNA28");
+    ⚡ print(0.0);
+    ⚡ print("SECRET_PAYLOAD_RETAINED");
+    ⚡ print(0.0);
+    ⚡ print("SECRET_REFERENCE_SOURCE");
+    ⚡ print("SUPPLIED_OPAQUE_REFERENCE_IF_PRESENT");
+    ⚡ print("SECRET_REFERENCE_ENCODING_CONTRACT");
+    ⚡ print("SHA256_ONLY");
+    ⚡ print("SECRET_REFERENCE_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SECRET_REFERENCE_GENERAL_VALIDATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("ACCESS_PERFORMED_BY_DNA28");
+    ⚡ print(0.0);
+    ⚡ print("EXECUTION_PERFORMED_BY_DNA28");
+    ⚡ print(0.0);
+    ⚡ print("MEMORY_RUNTIME_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_SECRET_STORE_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_SECURITY_VALIDATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING");
+    ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION");
+    ⚡ print(0.0);
+}
