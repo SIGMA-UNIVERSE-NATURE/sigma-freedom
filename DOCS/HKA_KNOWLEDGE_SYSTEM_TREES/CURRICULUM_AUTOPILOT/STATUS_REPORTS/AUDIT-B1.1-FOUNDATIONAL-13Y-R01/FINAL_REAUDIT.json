@@ -1,0 +1,72 @@
+{
+  "schema_version":"1.0",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "role":"FOUNDATIONAL_CURRICULUM_EXECUTION_AND_AUDIT_WORKER",
+  "status":"PASS_CANDIDATE",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "director_order_commit":"610eaa00b8e32d346870b6b183eea9e0997a6d99",
+  "control_plane_head_at_bootstrap":"44a91c960a23a863f825d2cdfffce49e3138d91e",
+  "execution_branch":"hka-tree/audit-b1-1-foundational-13y-r01",
+  "benchmark":{
+    "systems":["England","US Common Core","Australia","Singapore","Brazil","South Africa"],
+    "continents":6,
+    "progression":["early/primary","lower-secondary","upper-secondary/general-education"],
+    "university_only_baseline":false
+  },
+  "classification":{
+    "F13-R01":"COVERED",
+    "F13-R02":"COVERED",
+    "F13-R03":"COVERED",
+    "F13-R04":"COVERED",
+    "F13-R05":"COVERED",
+    "F13-R06":"COVERED",
+    "F13-R07":"COVERED",
+    "F13-R08":"COVERED",
+    "F13-R09":"COVERED",
+    "F13-R10":"COVERED"
+  },
+  "g01_g08":{
+    "F13-G01":"PASS_COVERED_C02",
+    "F13-G02":"PASS_COVERED_C02",
+    "F13-G03":"PASS_COVERED_C02",
+    "F13-G04":"PASS_COVERED_C03",
+    "F13-G05":"PASS_COVERED_C04",
+    "F13-G06":"PASS_COVERED_C04",
+    "F13-G07":"PASS_COVERED_C07",
+    "F13-G08":"PASS_COVERED_C07",
+    "result":"8/8 PASS"
+  },
+  "existing_repaired_gap_revalidated":{
+    "F13-G09":"CLOSED_COVERED_C10_COMMON_SPINE_MODELLING"
+  },
+  "effective_record_checks":{
+    "supersession_integrity":"PASS",
+    "support_id_resolution":"PASS_NO_DANGLING_SUPPORT_IDS",
+    "prerequisite_foundational_objective_resolution":"PASS",
+    "prerequisite_cycle_count":0,
+    "future_or_locked_scope_support_count":0,
+    "semantic_primary_ownership_collision_count":0,
+    "advanced_substitution_count":0
+  },
+  "progression_gates":{
+    "early_primary":"PASS",
+    "lower_secondary":"PASS",
+    "upper_secondary_general_education":"PASS"
+  },
+  "out_of_B1_1_scope_boundaries":[
+    "physical instrument calibration/resolution/measurement uncertainty",
+    "empirical validation of scientific mechanisms",
+    "domain-specific scientific facts and mechanisms",
+    "software implementation/computing-system execution details"
+  ],
+  "new_gaps_found":0,
+  "worker_repairs_committed":0,
+  "remaining_partially_covered":0,
+  "remaining_missing":0,
+  "foundational_gap_count":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "director_acceptance_claimed":false,
+  "next":"DIRECTOR REVIEW"
+}
