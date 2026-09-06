@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c05",
+  "input_commit_sha":"97c389a01bd2a650f519b4c542c59b2790a4cb49",
+  "last_checkpoint_commit_sha":"906ace3bbecdd2177b58993c04162fc5e6a1e852",
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "scope_ids":["B1.2-C05"],
+  "canonical_topic_count":8,
+  "prerequisites":["B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc"],
+  "completed_work":["Canonical scope, predecessor, prerequisite, contract and execution prompt locked.","Durable CP00 bootstrap checkpoint and REPORT initialized."],
+  "remaining_work":["Author all 8 canonical topics.","Self-audit and repair every in-scope defect.","Re-audit, commit all outputs/status/checkpoints, read back from GitHub and return final receipt only."],
+  "output_paths":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C05/"],
+  "blocking_issues":[],
+  "decisions_locked":["B1.2-C04 is Director-accepted at ac64a006c9aeeb2296f8da5d819df1246be64fb4.","C05 owns only B1.2-C05 and its 8 canonical topics.","B1.2-C06..C12 remain gated.","FUTURE_LOCKED_SUPPORT must remain 0.","CURRICULUM-only stage boundary."],
+  "do_not_repeat":["Do not re-author accepted predecessor scopes.","Do not return intermediate receipts.","Do not unlock C06.","Do not create post-CURRICULUM artifacts."],
+  "next_action":"Execute B1.2-C05 end-to-end: author -> self-audit -> self-repair -> re-audit -> commit -> read back -> final receipt.",
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C06",
+  "updated_at":"2026-09-07"
+}
