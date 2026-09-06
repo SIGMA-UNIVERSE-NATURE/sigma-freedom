@@ -1,24 +1,9 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C08
 
-## Assigned job
-Author `B1.2-C08 — Vật lý nguyên tử, phân tử và quang học` end-to-end at `CURRICULUM` stage.
+Status: WORKER PASS CANDIDATE for `B1.2-C08 — Vật lý nguyên tử, phân tử và quang học` at CURRICULUM stage.
 
-## Current status
-`READY`.
+Completed 6/6 canonical topics, 24 atomic sourced claims, 24 D1–D4 learning objectives and 24/24 exactly-one-row semantic closures. Accepted C05 optics and C07 quantum foundations are reused without duplicate ownership; C01 metrology and C06 field concepts are referenced where needed. C09-C12 remain boundary-only; `FUTURE_LOCKED_SUPPORT=0`.
 
-## Canonical scope
-6 topics: Cấu trúc nguyên tử; Phổ; Liên kết phân tử; Tương tác ánh sáng–vật chất; Nguyên tử lạnh; Đo lường chính xác.
+Self-audit found and repaired three in-scope defects: C05/C07 ownership overlap, advanced-content dominance, and generic-metrology/future-scope overreach. Re-audit PASS. Prerequisite graph PASS acyclic/no dangling IDs. Foundational coverage PASS_AFTER_REPAIR. Durable GitHub read-back PASS.
 
-Accepted prerequisites:
-- `B1.2-C05@3aa0d02082ea409974130465e06ec387117daa1c`
-- `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650`
-
-Accepted predecessor: `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650`.
-
-## Worker authority
-Worker owns C08 authoring, self-audit, self-repair, re-audit, durable writes, commits and read-back on `hka-tree/c01-w03-physics-c08`.
-
-C09-C12 remain gated. Control-plane mutation and every post-CURRICULUM stage are outside this Worker scope.
-
-## Next
-Read `GPT_EXECUTION_PROMPT.md`, complete C08 end-to-end, persist terminal STATUS/REPORT/checkpoint and return only final PASS candidate or true external BLOCK.
+Next: B1.2-C09 — GATED pending Director acceptance of C08.
