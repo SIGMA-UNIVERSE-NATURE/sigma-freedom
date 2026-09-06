@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c01",
+  "input_commit_sha":"a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "last_checkpoint_commit_sha":"5067b37074217c1160bd1ff3bd41de4b71d0fe06",
+  "last_checkpoint_id":"CP00-ACTIVATED",
+  "scope_ids":["B1.2-C01"],
+  "canonical_topic_count":6,
+  "prerequisites":["B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d","B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"],
+  "completed_work":["Window contract created","Execution prompt created","Activation checkpoint created","Durable report initialized"],
+  "remaining_work":["Author B1.2-C01 curriculum outputs","Self-audit","Self-repair if needed","Re-audit","Commit terminal outputs and final durable status"],
+  "output_paths":["DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.2/C01-W03-B1.2-PHYSICS-FAMILY-C01/"],
+  "blocking_issues":[],
+  "decisions_locked":["Scope B1.2-C01 only","6 canonical topics","B1.1-C02 and B1.1-C03 prerequisites","B1.2-C02..C12 remain locked","CURRICULUM-only boundary"],
+  "do_not_repeat":["Do not rerun B1.1 integration or Sentinel","Do not ask Director to repair in-scope defects","Do not return intermediate state as final receipt"],
+  "next_action":"Execute complete B1.2-C01 authoring transaction and return only final PASS candidate or true external BLOCK.",
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
+  "updated_at":"2026-09-06T19:37:00+07:00"
+}
