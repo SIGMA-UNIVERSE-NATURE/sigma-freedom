@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C03",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "scope_id":"B1.2-C03",
+  "scope_name":"Cơ học môi trường liên tục",
+  "execution_branch":"hka-tree/c01-w03-physics-c03",
+  "accepted_predecessor":"B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc",
+  "prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc"],
+  "canonical_topic_count":7,
+  "topics":["Vật rắn","Đàn hồi","Chất lỏng","Chất khí","Thủy động lực học","Khí động học","Dòng chảy rối"],
+  "scope_locked":true,
+  "next_action":"Execute C03 end-to-end; self-repair all in-scope defects; return final receipt only.",
+  "updated_at":"2026-09-06T22:30:00+07:00"
+}
