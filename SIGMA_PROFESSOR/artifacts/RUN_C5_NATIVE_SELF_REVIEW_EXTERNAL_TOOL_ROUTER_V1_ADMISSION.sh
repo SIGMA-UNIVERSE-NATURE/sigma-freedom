@@ -114,6 +114,7 @@ RUN="$ADMISSION_ROOT/$RUN_ID"
 FIX="$RUN/fixtures"
 CASES="$RUN/cases"
 $MKDIR -p "$FIX" "$CASES" || hold "ADMISSION_DIRECTORY_CREATE_FAILED" 39
+printf 'ADMISSION_RUN_DIR=%s\n' "$RUN"
 
 BC="$RUN/C5_NATIVE_SELF_REVIEW_EXTERNAL_TOOL_ROUTER_V1.sigmab"
 "$SIGMAC" "$SRC" "$BC.partial" >"$RUN/sigmac.log" 2>&1
@@ -166,7 +167,12 @@ run_case() {
     history="${4:-}"
     case_root="$CASES/$name"
     input="$case_root/.sigma_exec/C5_NATIVE_SELF_REVIEW_EXTERNAL_TOOL_ROUTER_V1/input"
-    $MKDIR -p "$input" || return 60
+
+    if ! $MKDIR -p "$input"; then
+        printf 'CASE=%s CASE_STAGE=INPUT_DIRECTORY_CREATE CASE_SUBRC=60\n' "$name"
+        printf 'CASE_ROOT=%s\n' "$case_root"
+        return 60
+    fi
 
     if [ -n "$history" ]; then
         "$PY" "$BUILDER" \
@@ -187,21 +193,46 @@ run_case() {
             >"$case_root/builder.log" 2>&1
     fi
     brc=$?
-    [ "$brc" -eq 0 ] || return 61
+    if [ "$brc" -ne 0 ]; then
+        printf 'CASE=%s CASE_STAGE=MECHANICAL_INPUT_BUILD CASE_SUBRC=61 BUILDER_RC=%s\n' "$name" "$brc"
+        printf 'CASE_ROOT=%s\n' "$case_root"
+        printf '%s\n' '--- BUILDER.LOG BEGIN ---'
+        $CAT "$case_root/builder.log" 2>/dev/null || true
+        printf '%s\n' '--- BUILDER.LOG END ---'
+        return 61
+    fi
 
     (
         cd "$case_root" || exit 62
         "$VM" "$BC"
     ) >"$case_root/vm.log" 2>&1
     vrc=$?
-    [ "$vrc" -eq 0 ] || return 63
+    if [ "$vrc" -ne 0 ]; then
+        printf 'CASE=%s CASE_STAGE=LOCKED_VM_EXECUTION CASE_SUBRC=63 VM_RC=%s\n' "$name" "$vrc"
+        printf 'CASE_ROOT=%s\n' "$case_root"
+        printf '%s\n' '--- VM.LOG BEGIN ---'
+        $CAT "$case_root/vm.log" 2>/dev/null || true
+        printf '%s\n' '--- VM.LOG END ---'
+        return 63
+    fi
 
     LAST_STATUS="$($AWK -F= '/^ROUTER_STATUS=/{v=$2} END{print v}' "$case_root/vm.log")"
     LAST_ID="$($AWK -F= '/^SELECTED_TOOL_ID=/{v=$2} END{print v}' "$case_root/vm.log")"
     LAST_TOKEN="$($AWK -F= '/^SELECTED_TOOL_TOKEN=/{v=$2} END{print v}' "$case_root/vm.log")"
     LAST_INSTANCE="$($AWK -F= '/^INSTANCE_BOUND=/{v=$2} END{print v}' "$case_root/vm.log")"
 
-    [ "$LAST_INSTANCE" = "1" ] || return 64
+    if [ "$LAST_INSTANCE" != "1" ]; then
+        printf 'CASE=%s CASE_STAGE=NATIVE_OUTPUT_BINDING_PARSE CASE_SUBRC=64\n' "$name"
+        printf 'PARSED_ROUTER_STATUS=%s\n' "$LAST_STATUS"
+        printf 'PARSED_SELECTED_TOOL_ID=%s\n' "$LAST_ID"
+        printf 'PARSED_SELECTED_TOOL_TOKEN=%s\n' "$LAST_TOKEN"
+        printf 'PARSED_INSTANCE_BOUND=%s\n' "$LAST_INSTANCE"
+        printf 'CASE_ROOT=%s\n' "$case_root"
+        printf '%s\n' '--- VM.LOG BEGIN ---'
+        $CAT "$case_root/vm.log" 2>/dev/null || true
+        printf '%s\n' '--- VM.LOG END ---'
+        return 64
+    fi
 
     if [ "$LAST_STATUS" = "ROUTE_READY" ]; then
         "$PY" - "$catalog" "$LAST_ID" "$LAST_TOKEN" <<'PYMEM'
@@ -212,7 +243,18 @@ rows = obj.get("tools", [])
 ok = any(str(r.get("id", "")) == sid and str(r.get("token", "")) == stok and str(r.get("available", "")) == "1" for r in rows)
 raise SystemExit(0 if ok else 1)
 PYMEM
-        [ $? -eq 0 ] || return 65
+        mrc=$?
+        if [ "$mrc" -ne 0 ]; then
+            printf 'CASE=%s CASE_STAGE=NATIVE_ROUTE_MEMBERSHIP_CHECK CASE_SUBRC=65 MEMBERSHIP_RC=%s\n' "$name" "$mrc"
+            printf 'PARSED_ROUTER_STATUS=%s\n' "$LAST_STATUS"
+            printf 'PARSED_SELECTED_TOOL_ID=%s\n' "$LAST_ID"
+            printf 'PARSED_SELECTED_TOOL_TOKEN=%s\n' "$LAST_TOKEN"
+            printf 'CASE_ROOT=%s\n' "$case_root"
+            printf '%s\n' '--- VM.LOG BEGIN ---'
+            $CAT "$case_root/vm.log" 2>/dev/null || true
+            printf '%s\n' '--- VM.LOG END ---'
+            return 65
+        fi
     fi
 
     printf 'CASE=%s ROUTER_STATUS=%s SELECTED_TOOL_ID=%s SELECTED_TOOL_TOKEN=%s\n' \
@@ -332,6 +374,5 @@ RUNNER_AFTER="$($SHA "$C5_RUNNER" | $AWK '{print $1}')"
 
 printf 'C5_V3_SAME_PROCESS_AFTER=YES\n'
 printf 'C5_V3_RUNNER_UNCHANGED=YES\n'
-printf 'ADMISSION_RUN_DIR=%s\n' "$RUN"
 printf 'C5_NATIVE_SELF_REVIEW_EXTERNAL_TOOL_ROUTER_V1_ADMISSION=PASS_TESTED_SCOPE\n'
 printf 'PRODUCTION_BINDING=NO\n'
