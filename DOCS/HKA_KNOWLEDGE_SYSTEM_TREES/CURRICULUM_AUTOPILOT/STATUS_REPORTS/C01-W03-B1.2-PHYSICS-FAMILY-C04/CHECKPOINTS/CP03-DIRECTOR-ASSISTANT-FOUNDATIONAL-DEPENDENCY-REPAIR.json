@@ -1,0 +1,25 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-DEPENDENCY-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04",
+  "scope_id":"B1.2-C04",
+  "role":"DIRECTOR_ASSISTANT_REPAIR",
+  "stage":"CURRICULUM",
+  "base_worker_candidate_sha":"e1f681f217e48aa77b3edb6cd6ab3775441792dd",
+  "worker_academic_output_commit_sha":"3e0c54b22656ef68aaf68c1397773c9fb67de4b3",
+  "effective_academic_output_commit_sha":"7ea07c01bed200c2df1b56a5e17f720bc5ad1fbc",
+  "canonical_prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc","B1.1-C07@be10c01bf8df64a723e135524b75ce644947dcbd"],
+  "repairs":[
+    {"repair_id":"DA-SR01","defect":"N007 Hệ ngoài cân bằng treated accepted B1.2-C03-N005 as a prerequisite although canonical C04 prerequisites are only B1.2-C01, B1.2-C02 and B1.1-C07.","repair":"Removed HKA-B1-2-C03-N005 from N007 node, all four N007 learning-objective prerequisite lists and N007 sequence intent; converted the C03 cross-link from PREREQUISITE_REFERENCE to CONTEXT_REFERENCE.","stable_ids_renumbered":false,"ownership_transfer":false,"status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"T05 Chuyển pha moved quickly to latent heat/phase diagrams without explicitly securing familiar general-education transitions used across grades 1-13.","repair":"Appended HKA-B1-2-C04-N005-C006, HKA-B1-2-C04-N005-LO-D1-002 and exactly one closure; versioned N005 and its sequence intent to place melting/freezing, vaporization/condensation and sublimation/deposition before advanced phase analysis.","stable_ids_renumbered":false,"ownership_transfer":false,"status":"REPAIRED"}
+  ],
+  "effective_counts":{"topics":7,"nodes":7,"claims":36,"sources":6,"learning_objectives":29,"claim_to_learning_objective_closures":29,"cross_links":7,"sequence_intent_records":7},
+  "re_audit":{"topic_coverage":"7/7 PASS","id_uniqueness":"PASS","claim_source_resolution":"PASS","semantic_closure":"29/29 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"canonical_dependency_alignment":"PASS","semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","foundational_general_education":"PASS_AFTER_REPAIR","stage_boundary":"PASS — CURRICULUM only"},
+  "worker_self_repairs_preserved":3,
+  "director_assistant_repairs":2,
+  "control_plane_mutation":"NO",
+  "director_acceptance_declared":false,
+  "successor_unlock_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C04 candidate; B1.2-C05 remains GATED until Director acceptance."
+}
