@@ -1,0 +1,589 @@
+#SIGMAUNIVERSE_VNM[DOMAIN=SIGMA.VNM.SURFACE.FORM.EVIDENCE.WEIGHT][VERSION=VNM-01-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF candidate_member(value, form_a, form_b) {
+    IF (value == form_a) { RETURN 1; }
+    IF (value == form_b) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF relation_class(observed_a, observed_b, form_a, form_b) {
+    IF (observed_a == form_a) {
+        IF (observed_b == form_b) { RETURN "SUPPORT"; }
+    }
+    IF (observed_a == form_b) {
+        IF (observed_b == form_a) { RETURN "SUPPORT"; }
+    }
+
+    IF (candidate_member(observed_a, form_a, form_b) == 1) {
+        IF (candidate_member(observed_b, form_a, form_b) == 0) {
+            RETURN "COMPETING";
+        }
+    }
+    IF (candidate_member(observed_b, form_a, form_b) == 1) {
+        IF (candidate_member(observed_a, form_a, form_b) == 0) {
+            RETURN "COMPETING";
+        }
+    }
+    RETURN "UNRELATED";
+}
+
+DEF weight_from_counts(support_count, competing_count) {
+    RETURN support_count - competing_count;
+}
+
+⟡(Σ.VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_01_SURFACE_FORM_EVIDENCE_WEIGHTING_V1";
+
+    ⚡ HYPOTHESIS_TEXT:
+        H("read_text", BASE + "/input/hypothesis.memory", NULL, NULL);
+    ⚡ NEW_EVIDENCE_TEXT:
+        H("read_text", BASE + "/input/evidence.memory", NULL, NULL);
+
+    ⚡ HYPOTHESIS_PARTS:
+        H("str_split", HYPOTHESIS_TEXT, "||", NULL);
+    ⚡ HYPOTHESIS_PART_COUNT:
+        H("list_len", HYPOTHESIS_PARTS, NULL, NULL);
+
+    ⚡ HYPOTHESIS_VALID: 0;
+    ⚡ HYPOTHESIS_ID: "";
+    ⚡ FORM_A: "";
+    ⚡ FORM_B: "";
+
+    IF (HYPOTHESIS_PART_COUNT == 6) {
+        ⚡ H0: H("list_get", HYPOTHESIS_PARTS, 0, NULL);
+        ⚡ H1: H("list_get", HYPOTHESIS_PARTS, 1, NULL);
+        ⚡ H2: H("list_get", HYPOTHESIS_PARTS, 2, NULL);
+        ⚡ H3: H("list_get", HYPOTHESIS_PARTS, 3, NULL);
+        ⚡ H4: H("list_get", HYPOTHESIS_PARTS, 4, NULL);
+        ⚡ H5: H("list_get", HYPOTHESIS_PARTS, 5, NULL);
+
+        ⚡ H_FIELDS_VALID:
+            exact(H0, "HYPOTHESIS")
+            * present(H1)
+            * exact(H2, "FORM_A")
+            * present(H3)
+            * exact(H4, "FORM_B")
+            * present(H5);
+
+        IF (H_FIELDS_VALID == 1) {
+            ⚡ FORMS_SAME: exact(H3, H5);
+            IF (FORMS_SAME == 0) {
+                ⚡ HYPOTHESIS_VALID: 1;
+                ⚡ HYPOTHESIS_ID: H1;
+                ⚡ FORM_A: H3;
+                ⚡ FORM_B: H5;
+            }
+        }
+    }
+
+    ⚡ STATE_PATH:
+        BASE + "/state/surface_form_weight_state.memory";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ STATE_EMPTY:
+        exact(STATE_TEXT, "");
+
+    ⚡ MAX_EVIDENCE_RECORDS: 8;
+    ⚡ MAX_NEW_SPLIT_LINES: 16;
+
+    ⚡ PREVIOUS_STATE_VALID: 0;
+    ⚡ PREVIOUS_STATE_INVALID: 0;
+    ⚡ PRIOR_EVIDENCE_COUNT: 0;
+    ⚡ PRIOR_SUPPORT_COUNT: 0;
+    ⚡ PRIOR_COMPETING_COUNT: 0;
+
+    ⚡ SEEN_EVIDENCE:
+        H("map_new", NULL, NULL, NULL);
+
+    IF (STATE_EMPTY == 0) {
+        ⚡ STATE_LINES:
+            H("str_split", STATE_TEXT, "\n", NULL);
+        ⚡ STATE_LINE_COUNT:
+            H("list_len", STATE_LINES, NULL, NULL);
+        ⚡ STATE_HEADER_VALID: 0;
+        ⚡ STATE_RECORD_INVALID_COUNT: 0;
+
+        IF (0 < STATE_LINE_COUNT) {
+            IF (STATE_LINE_COUNT < 10) {
+                ⚡ STATE_HEADER:
+                    H("list_get", STATE_LINES, 0, NULL);
+                ⚡ HEADER_PARTS:
+                    H("str_split", STATE_HEADER, "||", NULL);
+                ⚡ HEADER_PART_COUNT:
+                    H("list_len", HEADER_PARTS, NULL, NULL);
+
+                IF (HEADER_PART_COUNT == 10) {
+                    ⚡ S0: H("list_get", HEADER_PARTS, 0, NULL);
+                    ⚡ S1: H("list_get", HEADER_PARTS, 1, NULL);
+                    ⚡ S2: H("list_get", HEADER_PARTS, 2, NULL);
+                    ⚡ S3: H("list_get", HEADER_PARTS, 3, NULL);
+                    ⚡ S4: H("list_get", HEADER_PARTS, 4, NULL);
+                    ⚡ S5: H("list_get", HEADER_PARTS, 5, NULL);
+                    ⚡ S6: H("list_get", HEADER_PARTS, 6, NULL);
+                    ⚡ S7: H("list_get", HEADER_PARTS, 7, NULL);
+                    ⚡ S8: H("list_get", HEADER_PARTS, 8, NULL);
+                    ⚡ S9: H("list_get", HEADER_PARTS, 9, NULL);
+
+                    ⚡ STATE_HEADER_VALID:
+                        exact(S0, "STATE")
+                        * exact(S1, "SIGMA_VNM_01_SURFACE_FORM_WEIGHT_STATE_V1")
+                        * exact(S2, "HYPOTHESIS")
+                        * exact(S3, HYPOTHESIS_ID)
+                        * exact(S4, "FORM_A")
+                        * exact(S5, FORM_A)
+                        * exact(S6, "FORM_B")
+                        * exact(S7, FORM_B)
+                        * exact(S8, "COMMIT")
+                        * exact(S9, "YES");
+                }
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 1) {
+            ⚡ SI: 1;
+            WHILE (SI < STATE_LINE_COUNT) {
+                ⚡ STATE_LINE:
+                    H("list_get", STATE_LINES, SI, NULL);
+                ⚡ STATE_PARTS:
+                    H("str_split", STATE_LINE, "||", NULL);
+                ⚡ STATE_PART_COUNT:
+                    H("list_len", STATE_PARTS, NULL, NULL);
+                ⚡ STATE_RECORD_VALID: 0;
+
+                IF (STATE_PART_COUNT == 8) {
+                    ⚡ E0: H("list_get", STATE_PARTS, 0, NULL);
+                    ⚡ E1: H("list_get", STATE_PARTS, 1, NULL);
+                    ⚡ E2: H("list_get", STATE_PARTS, 2, NULL);
+                    ⚡ E3: H("list_get", STATE_PARTS, 3, NULL);
+                    ⚡ E4: H("list_get", STATE_PARTS, 4, NULL);
+                    ⚡ E5: H("list_get", STATE_PARTS, 5, NULL);
+                    ⚡ E6: H("list_get", STATE_PARTS, 6, NULL);
+                    ⚡ E7: H("list_get", STATE_PARTS, 7, NULL);
+
+                    ⚡ STATE_RECORD_VALID:
+                        exact(E0, "EVIDENCE")
+                        * present(E1)
+                        * present(E2)
+                        * present(E3)
+                        * exact(E4, "SOURCE")
+                        * present(E5)
+                        * exact(E6, "COMMIT")
+                        * exact(E7, "YES");
+
+                    IF (STATE_RECORD_VALID == 1) {
+                        ⚡ STATE_CLASS:
+                            relation_class(E2, E3, FORM_A, FORM_B);
+
+                        IF (STATE_CLASS == "UNRELATED") {
+                            ⚡ STATE_RECORD_VALID: 0;
+                        }
+
+                        IF (STATE_RECORD_VALID == 1) {
+                            ⚡ STATE_EVIDENCE_EXISTS:
+                                H("map_has", SEEN_EVIDENCE, E1, NULL);
+
+                            IF (STATE_EVIDENCE_EXISTS) {
+                                ⚡ STATE_RECORD_VALID: 0;
+                            }
+
+                            IF (STATE_EVIDENCE_EXISTS == FALSE) {
+                                ⚡ STATE_FINGERPRINT:
+                                    E2 + "||" + E3 + "||" + E5;
+                                ⚡ MARK_STATE_EVIDENCE:
+                                    H("map_set", SEEN_EVIDENCE, E1, STATE_FINGERPRINT);
+
+                                ⚡ PRIOR_EVIDENCE_COUNT:
+                                    PRIOR_EVIDENCE_COUNT + 1;
+
+                                IF (STATE_CLASS == "SUPPORT") {
+                                    ⚡ PRIOR_SUPPORT_COUNT:
+                                        PRIOR_SUPPORT_COUNT + 1;
+                                }
+                                IF (STATE_CLASS == "COMPETING") {
+                                    ⚡ PRIOR_COMPETING_COUNT:
+                                        PRIOR_COMPETING_COUNT + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                IF (STATE_RECORD_VALID == 0) {
+                    ⚡ STATE_RECORD_INVALID_COUNT:
+                        STATE_RECORD_INVALID_COUNT + 1;
+                }
+
+                ⚡ SI: SI + 1;
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 0) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (0 < STATE_RECORD_INVALID_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (MAX_EVIDENCE_RECORDS < PRIOR_EVIDENCE_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+
+        IF (PREVIOUS_STATE_INVALID == 0) {
+            ⚡ PREVIOUS_STATE_VALID: 1;
+        }
+    }
+
+    ⚡ WEIGHT_BEFORE:
+        weight_from_counts(PRIOR_SUPPORT_COUNT, PRIOR_COMPETING_COUNT);
+
+    ⚡ NEW_LINES:
+        H("str_split", NEW_EVIDENCE_TEXT, "\n", NULL);
+    ⚡ RAW_NEW_LINE_COUNT:
+        H("list_len", NEW_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_NEW_SPLIT_LINES < RAW_NEW_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ PENDING_STATE_LINES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ NEW_EVIDENCE_LINE_COUNT: 0;
+    ⚡ NEW_QUALIFIED_EVIDENCE_COUNT: 0;
+    ⚡ NEW_SUPPORT_COUNT: 0;
+    ⚡ NEW_COMPETING_COUNT: 0;
+    ⚡ NEW_UNRELATED_COUNT: 0;
+    ⚡ DUPLICATE_EVIDENCE_COUNT: 0;
+    ⚡ EVIDENCE_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_EVIDENCE_RECORD_COUNT: 0;
+
+    ⚡ NI: 0;
+    WHILE (NI < RAW_NEW_LINE_COUNT) {
+        ⚡ NEW_LINE:
+            H("list_get", NEW_LINES, NI, NULL);
+        ⚡ NEW_LINE_PRESENT:
+            present(NEW_LINE);
+
+        IF (NEW_LINE_PRESENT == 1) {
+            ⚡ NEW_EVIDENCE_LINE_COUNT:
+                NEW_EVIDENCE_LINE_COUNT + 1;
+
+            ⚡ NEW_PARTS:
+                H("str_split", NEW_LINE, "||", NULL);
+            ⚡ NEW_PART_COUNT:
+                H("list_len", NEW_PARTS, NULL, NULL);
+            ⚡ NEW_RECORD_VALID: 0;
+
+            IF (NEW_PART_COUNT == 6) {
+                ⚡ N0: H("list_get", NEW_PARTS, 0, NULL);
+                ⚡ N1: H("list_get", NEW_PARTS, 1, NULL);
+                ⚡ N2: H("list_get", NEW_PARTS, 2, NULL);
+                ⚡ N3: H("list_get", NEW_PARTS, 3, NULL);
+                ⚡ N4: H("list_get", NEW_PARTS, 4, NULL);
+                ⚡ N5: H("list_get", NEW_PARTS, 5, NULL);
+
+                ⚡ NEW_RECORD_VALID:
+                    exact(N0, "EVIDENCE")
+                    * present(N1)
+                    * present(N2)
+                    * present(N3)
+                    * exact(N4, "SOURCE")
+                    * present(N5);
+
+                IF (NEW_RECORD_VALID == 1) {
+                    ⚡ NEW_FINGERPRINT:
+                        N2 + "||" + N3 + "||" + N5;
+                    ⚡ NEW_EVIDENCE_EXISTS:
+                        H("map_has", SEEN_EVIDENCE, N1, NULL);
+
+                    IF (NEW_EVIDENCE_EXISTS) {
+                        ⚡ EXISTING_FINGERPRINT:
+                            H("map_get", SEEN_EVIDENCE, N1, NULL);
+                        ⚡ FINGERPRINT_SAME:
+                            exact(EXISTING_FINGERPRINT, NEW_FINGERPRINT);
+
+                        IF (FINGERPRINT_SAME == 1) {
+                            ⚡ DUPLICATE_EVIDENCE_COUNT:
+                                DUPLICATE_EVIDENCE_COUNT + 1;
+                        }
+                        IF (FINGERPRINT_SAME == 0) {
+                            ⚡ EVIDENCE_ID_COLLISION_COUNT:
+                                EVIDENCE_ID_COLLISION_COUNT + 1;
+                        }
+                    }
+
+                    IF (NEW_EVIDENCE_EXISTS == FALSE) {
+                        ⚡ NEW_CLASS:
+                            relation_class(N2, N3, FORM_A, FORM_B);
+
+                        ⚡ MARK_NEW_EVIDENCE:
+                            H("map_set", SEEN_EVIDENCE, N1, NEW_FINGERPRINT);
+
+                        IF (NEW_CLASS == "SUPPORT") {
+                            ⚡ NEW_QUALIFIED_EVIDENCE_COUNT:
+                                NEW_QUALIFIED_EVIDENCE_COUNT + 1;
+                            ⚡ NEW_SUPPORT_COUNT:
+                                NEW_SUPPORT_COUNT + 1;
+                            ⚡ PENDING_STATE_LINE:
+                                NEW_LINE + "||COMMIT||YES";
+                            ⚡ PUSH_PENDING_STATE_LINE:
+                                H("list_push", PENDING_STATE_LINES, PENDING_STATE_LINE, NULL);
+                        }
+
+                        IF (NEW_CLASS == "COMPETING") {
+                            ⚡ NEW_QUALIFIED_EVIDENCE_COUNT:
+                                NEW_QUALIFIED_EVIDENCE_COUNT + 1;
+                            ⚡ NEW_COMPETING_COUNT:
+                                NEW_COMPETING_COUNT + 1;
+                            ⚡ PENDING_STATE_LINE:
+                                NEW_LINE + "||COMMIT||YES";
+                            ⚡ PUSH_PENDING_STATE_LINE:
+                                H("list_push", PENDING_STATE_LINES, PENDING_STATE_LINE, NULL);
+                        }
+
+                        IF (NEW_CLASS == "UNRELATED") {
+                            ⚡ NEW_UNRELATED_COUNT:
+                                NEW_UNRELATED_COUNT + 1;
+                        }
+                    }
+                }
+            }
+
+            IF (NEW_RECORD_VALID == 0) {
+                ⚡ INVALID_EVIDENCE_RECORD_COUNT:
+                    INVALID_EVIDENCE_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ NI: NI + 1;
+    }
+
+    ⚡ PROPOSED_SUPPORT_COUNT:
+        PRIOR_SUPPORT_COUNT + NEW_SUPPORT_COUNT;
+    ⚡ PROPOSED_COMPETING_COUNT:
+        PRIOR_COMPETING_COUNT + NEW_COMPETING_COUNT;
+    ⚡ PROPOSED_EVIDENCE_COUNT:
+        PRIOR_EVIDENCE_COUNT + NEW_QUALIFIED_EVIDENCE_COUNT;
+    ⚡ PROPOSED_WEIGHT:
+        weight_from_counts(PROPOSED_SUPPORT_COUNT, PROPOSED_COMPETING_COUNT);
+
+    ⚡ EVIDENCE_CAPACITY_EXCEEDED: 0;
+    IF (MAX_EVIDENCE_RECORDS < PROPOSED_EVIDENCE_COUNT) {
+        ⚡ EVIDENCE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ STATE_BASE_VALID: 0;
+    IF (STATE_EMPTY == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+    IF (PREVIOUS_STATE_VALID == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+
+    ⚡ NEW_BATCH_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < INVALID_EVIDENCE_RECORD_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < EVIDENCE_ID_COLLISION_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (EVIDENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+
+    ⚡ LEARNING_ALLOWED:
+        HYPOTHESIS_VALID
+        * STATE_BASE_VALID
+        * NEW_BATCH_VALID;
+
+    ⚡ NATIVE_UPDATE_REASON: "NO_UPDATE";
+    IF (LEARNING_ALLOWED == 1) {
+        IF (NEW_QUALIFIED_EVIDENCE_COUNT == 0) {
+            ⚡ NATIVE_UPDATE_REASON:
+                "NO_NEW_QUALIFIED_EVIDENCE";
+        }
+        IF (0 < NEW_QUALIFIED_EVIDENCE_COUNT) {
+            IF (WEIGHT_BEFORE < PROPOSED_WEIGHT) {
+                ⚡ NATIVE_UPDATE_REASON:
+                    "EVIDENCE_SHIFTED_WEIGHT_UP";
+            }
+            IF (PROPOSED_WEIGHT < WEIGHT_BEFORE) {
+                ⚡ NATIVE_UPDATE_REASON:
+                    "EVIDENCE_SHIFTED_WEIGHT_DOWN";
+            }
+            IF (PROPOSED_WEIGHT == WEIGHT_BEFORE) {
+                ⚡ NATIVE_UPDATE_REASON:
+                    "OFFSETTING_EVIDENCE_NO_NET_WEIGHT_CHANGE";
+            }
+        }
+    }
+
+    IF (HYPOTHESIS_VALID == 0) {
+        ⚡ NATIVE_UPDATE_REASON: "HYPOTHESIS_INVALID";
+    }
+    IF (PREVIOUS_STATE_INVALID == 1) {
+        ⚡ NATIVE_UPDATE_REASON: "PREVIOUS_STATE_INVALID";
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ NATIVE_UPDATE_REASON: "INPUT_BOUND_EXCEEDED";
+    }
+    IF (0 < INVALID_EVIDENCE_RECORD_COUNT) {
+        ⚡ NATIVE_UPDATE_REASON: "EVIDENCE_RECORD_INVALID";
+    }
+    IF (0 < EVIDENCE_ID_COLLISION_COUNT) {
+        ⚡ NATIVE_UPDATE_REASON: "EVIDENCE_ID_COLLISION";
+    }
+    IF (EVIDENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ NATIVE_UPDATE_REASON: "EVIDENCE_CAPACITY_EXCEEDED";
+    }
+
+    ⚡ STATE_COMMIT_ALLOWED: 0;
+    IF (LEARNING_ALLOWED == 1) {
+        IF (0 < NEW_QUALIFIED_EVIDENCE_COUNT) {
+            ⚡ STATE_COMMIT_ALLOWED: 1;
+        }
+    }
+
+    ⚡ STATE_MUTATED: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ WRITE_RC: 0;
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        ⚡ STATE_HEADER:
+            "STATE"
+            + "||SIGMA_VNM_01_SURFACE_FORM_WEIGHT_STATE_V1"
+            + "||HYPOTHESIS||"
+            + HYPOTHESIS_ID
+            + "||FORM_A||"
+            + FORM_A
+            + "||FORM_B||"
+            + FORM_B
+            + "||COMMIT||YES";
+
+        ⚡ PENDING_TEXT:
+            H("str_join", PENDING_STATE_LINES, "\n", NULL);
+        ⚡ PROPOSED_STATE:
+            STATE_HEADER + "\n" + PENDING_TEXT;
+
+        IF (PREVIOUS_STATE_VALID == 1) {
+            ⚡ PROPOSED_STATE:
+                STATE_TEXT + "\n" + PENDING_TEXT;
+        }
+
+        ⚡ WRITE_RC:
+            H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+        ⚡ READBACK_STATE:
+            H("read_text", STATE_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK_STATE, PROPOSED_STATE);
+        ⚡ STATE_MUTATED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ WEIGHT_AFTER: WEIGHT_BEFORE;
+    IF (STATE_MUTATED == 1) {
+        ⚡ WEIGHT_AFTER: PROPOSED_WEIGHT;
+    }
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ NATIVE_UPDATE_REASON:
+                "PERSISTENCE_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ LEARNING_STATUS: "READY";
+    IF (LEARNING_ALLOWED == 1) {
+        IF (NEW_QUALIFIED_EVIDENCE_COUNT == 0) {
+            ⚡ LEARNING_STATUS: "NO_QUALIFIED_UPDATE";
+        }
+        IF (0 < NEW_QUALIFIED_EVIDENCE_COUNT) {
+            ⚡ LEARNING_STATUS: "QUALIFIED_UPDATE_COMPUTED";
+        }
+    }
+    IF (STATE_MUTATED == 1) {
+        ⚡ LEARNING_STATUS: "QUALIFIED_UPDATE_PERSISTED";
+    }
+    IF (HYPOTHESIS_VALID == 0) {
+        ⚡ LEARNING_STATUS: "REFUSED_HYPOTHESIS_INVALID";
+    }
+    IF (PREVIOUS_STATE_INVALID == 1) {
+        ⚡ LEARNING_STATUS: "REFUSED_PREVIOUS_STATE_INVALID";
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ LEARNING_STATUS: "REFUSED_INPUT_BOUND";
+    }
+    IF (0 < INVALID_EVIDENCE_RECORD_COUNT) {
+        ⚡ LEARNING_STATUS: "REFUSED_EVIDENCE_RECORD_INVALID";
+    }
+    IF (0 < EVIDENCE_ID_COLLISION_COUNT) {
+        ⚡ LEARNING_STATUS: "REFUSED_EVIDENCE_ID_COLLISION";
+    }
+    IF (EVIDENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ LEARNING_STATUS: "REFUSED_EVIDENCE_CAPACITY";
+    }
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ LEARNING_STATUS: "REFUSED_PERSISTENCE_FAILURE";
+        }
+    }
+
+    ⚡ print("SIGMA_VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("HYPOTHESIS_VALID", HYPOTHESIS_VALID);
+    ⚡ print("HYPOTHESIS_ID", HYPOTHESIS_ID);
+    ⚡ print("FORM_A", FORM_A);
+    ⚡ print("FORM_B", FORM_B);
+    ⚡ print("PREVIOUS_STATE_VALID", PREVIOUS_STATE_VALID);
+    ⚡ print("PREVIOUS_STATE_INVALID", PREVIOUS_STATE_INVALID);
+    ⚡ print("PRIOR_EVIDENCE_COUNT", PRIOR_EVIDENCE_COUNT);
+    ⚡ print("PRIOR_SUPPORT_COUNT", PRIOR_SUPPORT_COUNT);
+    ⚡ print("PRIOR_COMPETING_COUNT", PRIOR_COMPETING_COUNT);
+    ⚡ print("NEW_EVIDENCE_LINE_COUNT", NEW_EVIDENCE_LINE_COUNT);
+    ⚡ print("NEW_QUALIFIED_EVIDENCE_COUNT", NEW_QUALIFIED_EVIDENCE_COUNT);
+    ⚡ print("NEW_SUPPORT_COUNT", NEW_SUPPORT_COUNT);
+    ⚡ print("NEW_COMPETING_COUNT", NEW_COMPETING_COUNT);
+    ⚡ print("NEW_UNRELATED_COUNT", NEW_UNRELATED_COUNT);
+    ⚡ print("DUPLICATE_EVIDENCE_COUNT", DUPLICATE_EVIDENCE_COUNT);
+    ⚡ print("EVIDENCE_ID_COLLISION_COUNT", EVIDENCE_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_EVIDENCE_RECORD_COUNT", INVALID_EVIDENCE_RECORD_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("EVIDENCE_CAPACITY_EXCEEDED", EVIDENCE_CAPACITY_EXCEEDED);
+    ⚡ print("WEIGHT_BEFORE", WEIGHT_BEFORE);
+    ⚡ print("PROPOSED_WEIGHT", PROPOSED_WEIGHT);
+    ⚡ print("WEIGHT_AFTER", WEIGHT_AFTER);
+    ⚡ print("NATIVE_UPDATE_REASON", NATIVE_UPDATE_REASON);
+    ⚡ print("LEARNING_STATUS", LEARNING_STATUS);
+    ⚡ print("STATE_COMMIT_ALLOWED", STATE_COMMIT_ALLOWED);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("EVIDENCE_CAPACITY", MAX_EVIDENCE_RECORDS);
+    ⚡ print("INPUT_DYNAMIC_REQUIRED", "YES");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_WEIGHT_UPDATE", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("SURFACE_FORM_PAIR_GENERATION", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_EQUIVALENCE", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
