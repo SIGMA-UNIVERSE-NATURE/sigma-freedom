@@ -1,0 +1,21 @@
+{
+  "checkpoint_id":"CP01-PRE-PASS-REAUDIT",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C04",
+  "scope_id":"B1.2-C04",
+  "stage":"CURRICULUM",
+  "audit":"PASS_AFTER_SELF_REPAIR",
+  "topics":"7/7 PASS",
+  "claims":"35/35 PASS",
+  "learning_objectives":"28/28 PASS",
+  "semantic_closure":"28/28 exactly one row PASS",
+  "supporting_claim_resolution":"PASS",
+  "semantic_duplicate_scan":"PASS",
+  "ownership_collision_scan":"PASS",
+  "prerequisite_graph":"PASS — acyclic",
+  "foundational_coverage":"PASS",
+  "future_locked_support":0,
+  "requires_unlocked_scope_claims":false,
+  "stage_discipline":"PASS — CURRICULUM only",
+  "self_repairs":["SR01 probability/statistics ownership boundary","SR02 C05-C12 boundary-only","SR03 strengthened foundational heat/temperature/energy-transfer coverage"],
+  "created_at":"2026-09-07T01:00:00+07:00"
+}
