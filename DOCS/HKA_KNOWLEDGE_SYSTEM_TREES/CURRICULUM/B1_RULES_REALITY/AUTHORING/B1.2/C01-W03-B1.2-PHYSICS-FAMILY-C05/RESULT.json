@@ -6,11 +6,7 @@
   "canonical_topics":{"expected":8,"authored":8,"status":"PASS"},
   "artifact_counts":{"nodes":8,"claims":32,"sources":6,"learning_objectives":32,"claim_to_learning_objective_closures":32,"cross_links":7,"sequence_intent_records":8},
   "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","learning_objective_completeness":"32/32 PASS","semantic_closure":"32/32 PASS — exactly one row per objective and semantically complete after repair","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic","canonical_prerequisite_alignment":"PASS — B1.2-C02 required; accepted C01/C03/C04 references remain non-prerequisite","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
-  "worker_self_repairs":[
-    {"repair_id":"SR01","status":"REPAIRED"},
-    {"repair_id":"SR02","status":"REPAIRED"},
-    {"repair_id":"SR03","status":"REPAIRED"}
-  ],
+  "worker_self_repairs":[{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
   "director_assistant_repairs":[
     {"repair_id":"DA-SR01","defect":"Foundational amplitude and wavelength meaning was implicit in formula notation.","repair":"Versioned HKA-B1-2-C05-N001-C002 and HKA-B1-2-C05-N001-C003 to define amplitude and wavelength explicitly while preserving stable IDs.","status":"REPAIRED"},
     {"repair_id":"DA-SR02","defect":"Multiple closure rows were structurally present but did not support every concept named in their learning objective.","repair":"Expanded only supporting_claim_ids of the affected existing closure rows; exactly one row per objective remains and no future claim is used.","status":"REPAIRED"}
@@ -19,6 +15,7 @@
   "worker_candidate_commit_sha":"8b6eedebff584ee436eb46c6cf0a27d78f7f7d4d",
   "worker_academic_output_commit_sha":"e5a73b1d0adccb7c87fe4ac346db1e257ddfbb33",
   "effective_academic_output_commit_sha":"16dd012c1b1b64ec7e2bab5340ae1fc06550ef93",
+  "director_assistant_checkpoint_commit_sha":"d5b6425b0d0f21d054ce85a353465234449bf77c",
   "durable_read_back":"PASS_AFTER_ASSISTANT_REPAIR",
   "director_acceptance_declared":false,
   "red_flag":"NONE",
