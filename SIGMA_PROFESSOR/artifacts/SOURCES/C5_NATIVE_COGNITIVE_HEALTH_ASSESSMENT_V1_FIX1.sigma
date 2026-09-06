@@ -1,0 +1,441 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.NATIVE.COGNITIVE.HEALTH.ASSESSMENT][VERSION=1.1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF flag_valid(v) {
+    IF (v == "0") { RETURN 1; }
+    IF (v == "1") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF digits(v) {
+    IF (v == "") { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lower_hex64(v) {
+    IF (H("str_len", v, NULL, NULL) != 64) { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+    ⚡ R: H("str_replace", R, "a", "");
+    ⚡ R: H("str_replace", R, "b", "");
+    ⚡ R: H("str_replace", R, "c", "");
+    ⚡ R: H("str_replace", R, "d", "");
+    ⚡ R: H("str_replace", R, "e", "");
+    ⚡ R: H("str_replace", R, "f", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF hash_or_none(v) {
+    IF (v == "NONE") { RETURN 1; }
+    RETURN lower_hex64(v);
+}
+
+DEF verification_status_valid(v) {
+    IF (v == "NONE") { RETURN 1; }
+    IF (v == "VERIFIED") { RETURN 1; }
+    IF (v == "FAILED") { RETURN 1; }
+    IF (v == "UNVERIFIED") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF gt_num(a, b) {
+    ⚡ A:
+        H("to_float", a, NULL, NULL);
+    ⚡ B:
+        H("to_float", b, NULL, NULL);
+
+    IF (A > B) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lt_num(a, b) {
+    ⚡ A:
+        H("to_float", a, NULL, NULL);
+    ⚡ B:
+        H("to_float", b, NULL, NULL);
+
+    IF (A < B) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF readv(base, name) {
+    RETURN H("read_text", base + "/input/" + name, NULL, NULL);
+}
+
+⟡(Σ.C5_NATIVE_COGNITIVE_HEALTH_ASSESSMENT_V1_FIX1) {
+    ⚡ BASE:
+        ".sigma_exec/C5_NATIVE_COGNITIVE_HEALTH_ASSESSMENT_V1_FIX1";
+
+    ⚡ EXPECTED_INSTANCE_FINGERPRINT:
+        "fa2834a009f666738129d102dff5b6f09a3c1333c2f2aec8dbd4ac8680a8d125";
+    ⚡ EXPECTED_C5_CORE_SHA256:
+        "1815d9324c721dd51d73f40f0e9ba4e7d76454e0a81831152e213071feef8ace";
+
+    ⚡ INSTANCE_FINGERPRINT:
+        readv(BASE, "instance_fingerprint_sha256.txt");
+    ⚡ C5_CORE_SHA256:
+        readv(BASE, "c5_core_sha256.txt");
+    ⚡ PROCESS_ALIVE:
+        readv(BASE, "process_alive.txt");
+    ⚡ RUNNER_IDENTITY_MATCH:
+        readv(BASE, "runner_identity_match.txt");
+
+    ⚡ S0_TURN: readv(BASE, "sample0_turn.txt");
+    ⚡ S1_TURN: readv(BASE, "sample1_turn.txt");
+    ⚡ S2_TURN: readv(BASE, "sample2_turn.txt");
+
+    ⚡ S0_SEGMENT_COMMITS: readv(BASE, "sample0_segment_commits.txt");
+    ⚡ S1_SEGMENT_COMMITS: readv(BASE, "sample1_segment_commits.txt");
+    ⚡ S2_SEGMENT_COMMITS: readv(BASE, "sample2_segment_commits.txt");
+
+    ⚡ S0_EVIDENCE: readv(BASE, "sample0_evidence.txt");
+    ⚡ S1_EVIDENCE: readv(BASE, "sample1_evidence.txt");
+    ⚡ S2_EVIDENCE: readv(BASE, "sample2_evidence.txt");
+
+    ⚡ S0_KNOWLEDGE: readv(BASE, "sample0_knowledge.txt");
+    ⚡ S1_KNOWLEDGE: readv(BASE, "sample1_knowledge.txt");
+    ⚡ S2_KNOWLEDGE: readv(BASE, "sample2_knowledge.txt");
+
+    ⚡ S0_REQUESTS: readv(BASE, "sample0_requests.txt");
+    ⚡ S1_REQUESTS: readv(BASE, "sample1_requests.txt");
+    ⚡ S2_REQUESTS: readv(BASE, "sample2_requests.txt");
+
+    ⚡ S0_WORK_SHA: readv(BASE, "sample0_work_sha256.txt");
+    ⚡ S1_WORK_SHA: readv(BASE, "sample1_work_sha256.txt");
+    ⚡ S2_WORK_SHA: readv(BASE, "sample2_work_sha256.txt");
+
+    ⚡ S0_FAILURE_SHA: readv(BASE, "sample0_failure_sha256.txt");
+    ⚡ S1_FAILURE_SHA: readv(BASE, "sample1_failure_sha256.txt");
+    ⚡ S2_FAILURE_SHA: readv(BASE, "sample2_failure_sha256.txt");
+
+    ⚡ S0_VM_RC: readv(BASE, "sample0_vm_rc.txt");
+    ⚡ S1_VM_RC: readv(BASE, "sample1_vm_rc.txt");
+    ⚡ S2_VM_RC: readv(BASE, "sample2_vm_rc.txt");
+
+    ⚡ S0_STEP_LIMIT: readv(BASE, "sample0_step_limit.txt");
+    ⚡ S1_STEP_LIMIT: readv(BASE, "sample1_step_limit.txt");
+    ⚡ S2_STEP_LIMIT: readv(BASE, "sample2_step_limit.txt");
+
+    ⚡ S0_VERIFY: readv(BASE, "sample0_verification_status.txt");
+    ⚡ S1_VERIFY: readv(BASE, "sample1_verification_status.txt");
+    ⚡ S2_VERIFY: readv(BASE, "sample2_verification_status.txt");
+
+    ⚡ S0_STATE_DECLARED_SHA: readv(BASE, "sample0_state_declared_sha256.txt");
+    ⚡ S1_STATE_DECLARED_SHA: readv(BASE, "sample1_state_declared_sha256.txt");
+    ⚡ S2_STATE_DECLARED_SHA: readv(BASE, "sample2_state_declared_sha256.txt");
+
+    ⚡ S0_STATE_OBSERVED_SHA: readv(BASE, "sample0_state_observed_sha256.txt");
+    ⚡ S1_STATE_OBSERVED_SHA: readv(BASE, "sample1_state_observed_sha256.txt");
+    ⚡ S2_STATE_OBSERVED_SHA: readv(BASE, "sample2_state_observed_sha256.txt");
+
+    ⚡ INPUT_VALID:
+        lower_hex64(INSTANCE_FINGERPRINT)
+        * lower_hex64(C5_CORE_SHA256)
+        * flag_valid(PROCESS_ALIVE)
+        * flag_valid(RUNNER_IDENTITY_MATCH)
+        * digits(S0_TURN)
+        * digits(S1_TURN)
+        * digits(S2_TURN)
+        * digits(S0_SEGMENT_COMMITS)
+        * digits(S1_SEGMENT_COMMITS)
+        * digits(S2_SEGMENT_COMMITS)
+        * digits(S0_EVIDENCE)
+        * digits(S1_EVIDENCE)
+        * digits(S2_EVIDENCE)
+        * digits(S0_KNOWLEDGE)
+        * digits(S1_KNOWLEDGE)
+        * digits(S2_KNOWLEDGE)
+        * digits(S0_REQUESTS)
+        * digits(S1_REQUESTS)
+        * digits(S2_REQUESTS)
+        * hash_or_none(S0_WORK_SHA)
+        * hash_or_none(S1_WORK_SHA)
+        * hash_or_none(S2_WORK_SHA)
+        * hash_or_none(S0_FAILURE_SHA)
+        * hash_or_none(S1_FAILURE_SHA)
+        * hash_or_none(S2_FAILURE_SHA)
+        * digits(S0_VM_RC)
+        * digits(S1_VM_RC)
+        * digits(S2_VM_RC)
+        * flag_valid(S0_STEP_LIMIT)
+        * flag_valid(S1_STEP_LIMIT)
+        * flag_valid(S2_STEP_LIMIT)
+        * verification_status_valid(S0_VERIFY)
+        * verification_status_valid(S1_VERIFY)
+        * verification_status_valid(S2_VERIFY)
+        * lower_hex64(S0_STATE_DECLARED_SHA)
+        * lower_hex64(S1_STATE_DECLARED_SHA)
+        * lower_hex64(S2_STATE_DECLARED_SHA)
+        * lower_hex64(S0_STATE_OBSERVED_SHA)
+        * lower_hex64(S1_STATE_OBSERVED_SHA)
+        * lower_hex64(S2_STATE_OBSERVED_SHA);
+
+    ⚡ INSTANCE_BOUND: 0;
+    IF (INPUT_VALID == 1) {
+        IF (INSTANCE_FINGERPRINT == EXPECTED_INSTANCE_FINGERPRINT) {
+            IF (C5_CORE_SHA256 == EXPECTED_C5_CORE_SHA256) {
+                ⚡ INSTANCE_BOUND: 1;
+            }
+        }
+    }
+
+    ⚡ HEALTH_CONTEXT_BOUND: 0;
+    IF (INPUT_VALID == 1) {
+        IF (INSTANCE_BOUND == 1) {
+            IF (PROCESS_ALIVE == "1") {
+                IF (RUNNER_IDENTITY_MATCH == "1") {
+                    ⚡ HEALTH_CONTEXT_BOUND: 1;
+                }
+            }
+        }
+    }
+
+    ⚡ STATE_INCONSISTENCY: 0;
+    ⚡ PROGRESS_01: 0;
+    ⚡ PROGRESS_12: 0;
+    ⚡ F0: 0;
+    ⚡ F1: 0;
+    ⚡ F2: 0;
+
+    IF (HEALTH_CONTEXT_BOUND == 1) {
+        IF (lt_num(S1_TURN, S0_TURN) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (lt_num(S2_TURN, S1_TURN) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (lt_num(S1_SEGMENT_COMMITS, S0_SEGMENT_COMMITS) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (lt_num(S2_SEGMENT_COMMITS, S1_SEGMENT_COMMITS) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (lt_num(S1_EVIDENCE, S0_EVIDENCE) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (lt_num(S2_EVIDENCE, S1_EVIDENCE) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (lt_num(S1_KNOWLEDGE, S0_KNOWLEDGE) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (lt_num(S2_KNOWLEDGE, S1_KNOWLEDGE) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (lt_num(S1_REQUESTS, S0_REQUESTS) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (lt_num(S2_REQUESTS, S1_REQUESTS) == 1) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (S0_STATE_DECLARED_SHA != S0_STATE_OBSERVED_SHA) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (S1_STATE_DECLARED_SHA != S1_STATE_OBSERVED_SHA) { ⚡ STATE_INCONSISTENCY: 1; }
+        IF (S2_STATE_DECLARED_SHA != S2_STATE_OBSERVED_SHA) { ⚡ STATE_INCONSISTENCY: 1; }
+
+        IF (gt_num(S1_SEGMENT_COMMITS, S0_SEGMENT_COMMITS) == 1) { ⚡ PROGRESS_01: 1; }
+        IF (gt_num(S1_EVIDENCE, S0_EVIDENCE) == 1) { ⚡ PROGRESS_01: 1; }
+        IF (gt_num(S1_KNOWLEDGE, S0_KNOWLEDGE) == 1) { ⚡ PROGRESS_01: 1; }
+        IF (gt_num(S1_REQUESTS, S0_REQUESTS) == 1) { ⚡ PROGRESS_01: 1; }
+
+        IF (gt_num(S2_SEGMENT_COMMITS, S1_SEGMENT_COMMITS) == 1) { ⚡ PROGRESS_12: 1; }
+        IF (gt_num(S2_EVIDENCE, S1_EVIDENCE) == 1) { ⚡ PROGRESS_12: 1; }
+        IF (gt_num(S2_KNOWLEDGE, S1_KNOWLEDGE) == 1) { ⚡ PROGRESS_12: 1; }
+        IF (gt_num(S2_REQUESTS, S1_REQUESTS) == 1) { ⚡ PROGRESS_12: 1; }
+
+        IF (S0_VM_RC != "0") { ⚡ F0: 1; }
+        IF (S1_VM_RC != "0") { ⚡ F1: 1; }
+        IF (S2_VM_RC != "0") { ⚡ F2: 1; }
+
+        IF (S0_STEP_LIMIT == "1") { ⚡ F0: 1; }
+        IF (S1_STEP_LIMIT == "1") { ⚡ F1: 1; }
+        IF (S2_STEP_LIMIT == "1") { ⚡ F2: 1; }
+
+        IF (S0_VERIFY == "FAILED") { ⚡ F0: 1; }
+        IF (S1_VERIFY == "FAILED") { ⚡ F1: 1; }
+        IF (S2_VERIFY == "FAILED") { ⚡ F2: 1; }
+
+        IF (S0_FAILURE_SHA != "NONE") { ⚡ F0: 1; }
+        IF (S1_FAILURE_SHA != "NONE") { ⚡ F1: 1; }
+        IF (S2_FAILURE_SHA != "NONE") { ⚡ F2: 1; }
+    }
+
+    ⚡ PROCESS_ALIVE_AND_PROGRESSING: 0;
+    ⚡ PROCESS_ALIVE_NO_PROGRESS: 0;
+    ⚡ REPEATED_IDENTICAL_FAILURE: 0;
+    ⚡ REPEATED_IDENTICAL_WORK: 0;
+    ⚡ STATE_PROGRESS_STALLED: 0;
+    ⚡ RECOVERABLE_FAILURE: 0;
+    ⚡ PERSISTENT_FAILURE: 0;
+    ⚡ VERIFICATION_FAILURE: 0;
+
+    IF (HEALTH_CONTEXT_BOUND == 1) {
+        IF (PROGRESS_12 == 1) {
+            ⚡ PROCESS_ALIVE_AND_PROGRESSING: 1;
+        }
+
+        IF (PROGRESS_12 == 0) {
+            ⚡ PROCESS_ALIVE_NO_PROGRESS: 1;
+        }
+
+        IF (PROGRESS_01 == 0) {
+            IF (PROGRESS_12 == 0) {
+                IF (gt_num(S1_TURN, S0_TURN) == 1) {
+                    IF (gt_num(S2_TURN, S1_TURN) == 1) {
+                        ⚡ STATE_PROGRESS_STALLED: 1;
+                    }
+                }
+            }
+        }
+
+        IF (S0_WORK_SHA != "NONE") {
+            IF (S0_WORK_SHA == S1_WORK_SHA) {
+                IF (S1_WORK_SHA == S2_WORK_SHA) {
+                    IF (PROGRESS_01 == 0) {
+                        IF (PROGRESS_12 == 0) {
+                            ⚡ REPEATED_IDENTICAL_WORK: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        IF (F1 == 1) {
+            IF (F2 == 1) {
+                IF (S1_FAILURE_SHA != "NONE") {
+                    IF (S1_FAILURE_SHA == S2_FAILURE_SHA) {
+                        ⚡ REPEATED_IDENTICAL_FAILURE: 1;
+                    }
+                }
+            }
+        }
+
+        IF (F0 == 1) {
+            IF (F1 == 1) {
+                IF (F2 == 1) {
+                    IF (S0_FAILURE_SHA != "NONE") {
+                        IF (S0_FAILURE_SHA == S1_FAILURE_SHA) {
+                            IF (S1_FAILURE_SHA == S2_FAILURE_SHA) {
+                                ⚡ PERSISTENT_FAILURE: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        IF (F1 == 1) {
+            IF (F2 == 0) {
+                IF (PROGRESS_12 == 1) {
+                    ⚡ RECOVERABLE_FAILURE: 1;
+                }
+            }
+        }
+
+        IF (S2_VERIFY == "FAILED") {
+            ⚡ VERIFICATION_FAILURE: 1;
+        }
+    }
+
+    ⚡ PRIMARY_STATUS: "REFUSE_INPUT";
+
+    IF (INPUT_VALID == 1) {
+        ⚡ PRIMARY_STATUS: "REFUSE_INSTANCE_BINDING";
+
+        IF (INSTANCE_BOUND == 1) {
+            ⚡ PRIMARY_STATUS: "PROCESS_NOT_ALIVE";
+
+            IF (PROCESS_ALIVE == "1") {
+                ⚡ PRIMARY_STATUS: "PROCESS_IDENTITY_MISMATCH";
+
+                IF (RUNNER_IDENTITY_MATCH == "1") {
+                    ⚡ PRIMARY_STATUS: "HEALTH_UNRESOLVED";
+
+                    IF (PROCESS_ALIVE_AND_PROGRESSING == 1) {
+                        ⚡ PRIMARY_STATUS: "PROCESS_ALIVE_AND_PROGRESSING";
+                    }
+
+                    IF (PROCESS_ALIVE_NO_PROGRESS == 1) {
+                        ⚡ PRIMARY_STATUS: "PROCESS_ALIVE_NO_PROGRESS";
+                    }
+
+                    IF (STATE_PROGRESS_STALLED == 1) {
+                        ⚡ PRIMARY_STATUS: "STATE_PROGRESS_STALLED";
+                    }
+
+                    IF (REPEATED_IDENTICAL_WORK == 1) {
+                        ⚡ PRIMARY_STATUS: "REPEATED_IDENTICAL_WORK";
+                    }
+
+                    IF (RECOVERABLE_FAILURE == 1) {
+                        ⚡ PRIMARY_STATUS: "RECOVERABLE_FAILURE";
+                    }
+
+                    IF (REPEATED_IDENTICAL_FAILURE == 1) {
+                        ⚡ PRIMARY_STATUS: "REPEATED_IDENTICAL_FAILURE";
+                    }
+
+                    IF (PERSISTENT_FAILURE == 1) {
+                        ⚡ PRIMARY_STATUS: "PERSISTENT_FAILURE";
+                    }
+
+                    IF (VERIFICATION_FAILURE == 1) {
+                        ⚡ PRIMARY_STATUS: "VERIFICATION_FAILURE";
+                    }
+
+                    IF (STATE_INCONSISTENCY == 1) {
+                        ⚡ PRIMARY_STATUS: "STATE_INCONSISTENCY";
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ print("C5_NATIVE_HEALTH_ASSESSMENT", "V1_FIX1");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("INPUT_VALID", INPUT_VALID);
+    ⚡ print("INSTANCE_BOUND", INSTANCE_BOUND);
+    ⚡ print("HEALTH_CONTEXT_BOUND", HEALTH_CONTEXT_BOUND);
+    ⚡ print("PROCESS_ALIVE", PROCESS_ALIVE);
+    ⚡ print("RUNNER_IDENTITY_MATCH", RUNNER_IDENTITY_MATCH);
+    ⚡ print("PROGRESS_01", PROGRESS_01);
+    ⚡ print("PROGRESS_12", PROGRESS_12);
+    ⚡ print("FAILURE_PRESENT_0", F0);
+    ⚡ print("FAILURE_PRESENT_1", F1);
+    ⚡ print("FAILURE_PRESENT_2", F2);
+    ⚡ print("PROCESS_ALIVE_AND_PROGRESSING", PROCESS_ALIVE_AND_PROGRESSING);
+    ⚡ print("PROCESS_ALIVE_NO_PROGRESS", PROCESS_ALIVE_NO_PROGRESS);
+    ⚡ print("REPEATED_IDENTICAL_FAILURE", REPEATED_IDENTICAL_FAILURE);
+    ⚡ print("REPEATED_IDENTICAL_WORK", REPEATED_IDENTICAL_WORK);
+    ⚡ print("STATE_PROGRESS_STALLED", STATE_PROGRESS_STALLED);
+    ⚡ print("RECOVERABLE_FAILURE", RECOVERABLE_FAILURE);
+    ⚡ print("PERSISTENT_FAILURE", PERSISTENT_FAILURE);
+    ⚡ print("STATE_INCONSISTENCY", STATE_INCONSISTENCY);
+    ⚡ print("VERIFICATION_FAILURE", VERIFICATION_FAILURE);
+    ⚡ print("PRIMARY_STATUS", PRIMARY_STATUS);
+
+    ⚡ print("HEALTH_FLAGS_GATED_BY_CANONICAL_BINDING", "YES");
+    ⚡ print("PROCESS_PROGRESS_FLAGS_GATED_BY_RUNNER_IDENTITY", "YES");
+    ⚡ print("COUNTER_COMPARISON_EXACT_SCOPE", "0_TO_9007199254740991");
+    ⚡ print("STATE_MUTATION", "NO");
+    ⚡ print("REPAIR_EXECUTED", "NO");
+    ⚡ print("DNA16_RETENTION_EXECUTED", "NO");
+    ⚡ print("HOST_HEALTH_CLASSIFICATION", "NO");
+    ⚡ print("HOST_HYPOTHESIS_GENERATION", "NO");
+    ⚡ print("HOST_REPAIR_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+}
