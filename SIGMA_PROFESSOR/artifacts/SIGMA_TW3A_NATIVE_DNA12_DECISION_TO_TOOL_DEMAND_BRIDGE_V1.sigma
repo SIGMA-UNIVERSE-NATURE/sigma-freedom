@@ -1,0 +1,468 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.TW3A.DNA12.DECISION.TOOL.DEMAND.BRIDGE][VERSION=TW3AV1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(v) {
+    IF (v == "") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(v, expected) {
+    IF (v == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF token_safe(v) {
+    IF (present(v) == 0) { RETURN 0; }
+
+    ⚡ A:
+        H("str_replace", v, "||", "");
+    IF (A != v) { RETURN 0; }
+
+    ⚡ B:
+        H("str_replace", v, "\n", "");
+    IF (B != v) { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF flag_valid(v) {
+    IF (v == "0") { RETURN 1; }
+    IF (v == "1") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF mode_valid(v) {
+    IF (v == "THINK_ONLY") { RETURN 1; }
+    IF (v == "TOOL_ASSISTED_REASONING") { RETURN 1; }
+    IF (v == "THINK_AND_DECLARE_TOOL_GAP") { RETURN 1; }
+    IF (v == "THINK_AND_IDENTIFY_EVIDENCE_GAP") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF binding_record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ N:
+        H("list_len", P, NULL, NULL);
+
+    IF (N != 5) { RETURN 0; }
+    IF (H("list_get", P, 0, NULL) != "BIND") { RETURN 0; }
+    IF (token_safe(H("list_get", P, 1, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 2, NULL)) == 0) { RETURN 0; }
+    IF (H("list_get", P, 1, NULL) == "NONE") { RETURN 0; }
+    IF (H("list_get", P, 2, NULL) == "NONE") { RETURN 0; }
+    IF (H("list_get", P, 3, NULL) != "COMMIT") { RETURN 0; }
+    IF (H("list_get", P, 4, NULL) != "YES") { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF decision_record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ N:
+        H("list_len", P, NULL, NULL);
+
+    IF (N != 13) { RETURN 0; }
+    IF (H("list_get", P, 0, NULL) != "DNA12_DECISION") { RETURN 0; }
+    IF (token_safe(H("list_get", P, 1, NULL)) == 0) { RETURN 0; }
+    IF (mode_valid(H("list_get", P, 2, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 3, NULL)) == 0) { RETURN 0; }
+
+    ⚡ I: 4;
+    WHILE (I <= 10) {
+        IF (flag_valid(H("list_get", P, I, NULL)) == 0) { RETURN 0; }
+        ⚡ I: I + 1;
+    }
+
+    IF (H("list_get", P, 11, NULL) != "COMMIT") { RETURN 0; }
+    IF (H("list_get", P, 12, NULL) != "YES") { RETURN 0; }
+
+    ⚡ MODE:
+        H("list_get", P, 2, NULL);
+    ⚡ CANDIDATE:
+        H("list_get", P, 3, NULL);
+    ⚡ TOOL_AVAILABLE:
+        H("list_get", P, 4, NULL);
+    ⚡ INTERNAL_SUFFICIENT:
+        H("list_get", P, 5, NULL);
+
+    ⚡ ACTIVE: 0;
+
+    IF (H("list_get", P, 6, NULL) == "1") {
+        ⚡ ACTIVE: ACTIVE + 1;
+    }
+    IF (H("list_get", P, 7, NULL) == "1") {
+        ⚡ ACTIVE: ACTIVE + 1;
+    }
+    IF (H("list_get", P, 8, NULL) == "1") {
+        ⚡ ACTIVE: ACTIVE + 1;
+    }
+    IF (H("list_get", P, 9, NULL) == "1") {
+        ⚡ ACTIVE: ACTIVE + 1;
+    }
+    IF (H("list_get", P, 10, NULL) == "1") {
+        ⚡ ACTIVE: ACTIVE + 1;
+    }
+
+    IF (MODE == "THINK_ONLY") {
+        IF (ACTIVE != 0) { RETURN 0; }
+        IF (INTERNAL_SUFFICIENT != "1") { RETURN 0; }
+    }
+
+    IF (MODE == "TOOL_ASSISTED_REASONING") {
+        IF (ACTIVE == 0) { RETURN 0; }
+        IF (TOOL_AVAILABLE != "1") { RETURN 0; }
+        IF (CANDIDATE == "NONE") { RETURN 0; }
+    }
+
+    IF (MODE == "THINK_AND_DECLARE_TOOL_GAP") {
+        IF (ACTIVE == 0) { RETURN 0; }
+        IF (TOOL_AVAILABLE != "0") { RETURN 0; }
+    }
+
+    IF (MODE == "THINK_AND_IDENTIFY_EVIDENCE_GAP") {
+        IF (ACTIVE != 0) { RETURN 0; }
+        IF (INTERNAL_SUFFICIENT != "0") { RETURN 0; }
+    }
+
+    RETURN 1;
+}
+
+DEF binding_scope(binding_text, candidate) {
+    ⚡ L:
+        H("str_split", binding_text, "\n", NULL);
+    ⚡ N:
+        H("list_len", L, NULL, NULL);
+    ⚡ RESULT: "NONE";
+    ⚡ I: 0;
+
+    WHILE (I < N) {
+        ⚡ LINE:
+            H("list_get", L, I, NULL);
+
+        IF (LINE != "") {
+            IF (binding_record_valid(LINE) == 1) {
+                ⚡ P:
+                    H("str_split", LINE, "||", NULL);
+
+                IF (H("list_get", P, 1, NULL) == candidate) {
+                    ⚡ RESULT:
+                        H("list_get", P, 2, NULL);
+                }
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    RETURN RESULT;
+}
+
+⟡(Σ.TW3A_DNA12_DECISION_TO_TOOL_DEMAND_BRIDGE) {
+    ⚡ BASE:
+        ".sigma_exec/SIGMA_TW3A_DNA12_DECISION_TOOL_DEMAND_BRIDGE";
+
+    ⚡ DECISION_TEXT:
+        H("read_text", BASE + "/input/dna12_decision.txt", NULL, NULL);
+    ⚡ BINDING_TEXT:
+        H("read_text", BASE + "/input/tool_scope_binding.txt", NULL, NULL);
+
+    ⚡ SCOPE_PATH:
+        BASE + "/state/scope_request.txt";
+    ⚡ D_CURRENT_PATH:
+        BASE + "/state/demand_current.txt";
+    ⚡ D_RETRIEVAL_PATH:
+        BASE + "/state/demand_retrieval.txt";
+    ⚡ D_EXACT_PATH:
+        BASE + "/state/demand_exact.txt";
+    ⚡ D_OBSERVE_PATH:
+        BASE + "/state/demand_observe.txt";
+    ⚡ D_ACTION_PATH:
+        BASE + "/state/demand_action.txt";
+    ⚡ EVENT_PATH:
+        BASE + "/state/tw3a_event.txt";
+
+    ⚡ BL:
+        H("str_split", BINDING_TEXT, "\n", NULL);
+    ⚡ BN:
+        H("list_len", BL, NULL, NULL);
+
+    ⚡ BINDING_VALID: 1;
+    ⚡ BINDING_RECORD_COUNT: 0;
+    ⚡ DUPLICATE_CANDIDATE_TOOL: 0;
+
+    IF (BN > 33) {
+        ⚡ BINDING_VALID: 0;
+    }
+
+    ⚡ I: 0;
+    WHILE (I < BN) {
+        ⚡ LINE:
+            H("list_get", BL, I, NULL);
+
+        IF (LINE != "") {
+            IF (binding_record_valid(LINE) == 0) {
+                ⚡ BINDING_VALID: 0;
+            }
+
+            IF (binding_record_valid(LINE) == 1) {
+                ⚡ BINDING_RECORD_COUNT:
+                    BINDING_RECORD_COUNT + 1;
+
+                ⚡ P:
+                    H("str_split", LINE, "||", NULL);
+                ⚡ CAND:
+                    H("list_get", P, 1, NULL);
+                ⚡ J:
+                    I + 1;
+
+                WHILE (J < BN) {
+                    ⚡ LINE2:
+                        H("list_get", BL, J, NULL);
+
+                    IF (LINE2 != "") {
+                        IF (binding_record_valid(LINE2) == 1) {
+                            ⚡ P2:
+                                H("str_split", LINE2, "||", NULL);
+
+                            IF (H("list_get", P2, 1, NULL) == CAND) {
+                                ⚡ DUPLICATE_CANDIDATE_TOOL: 1;
+                                ⚡ BINDING_VALID: 0;
+                            }
+                        }
+                    }
+
+                    ⚡ J: J + 1;
+                }
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    IF (BINDING_RECORD_COUNT == 0) {
+        ⚡ BINDING_VALID: 0;
+    }
+
+    ⚡ DL:
+        H("str_split", DECISION_TEXT, "\n", NULL);
+    ⚡ DN:
+        H("list_len", DL, NULL, NULL);
+
+    ⚡ DECISION_VALID: 1;
+    ⚡ DECISION_RECORD_COUNT: 0;
+    ⚡ DECISION_LINE: "";
+
+    IF (DN > 3) {
+        ⚡ DECISION_VALID: 0;
+    }
+
+    ⚡ D: 0;
+    WHILE (D < DN) {
+        ⚡ DLINE:
+            H("list_get", DL, D, NULL);
+
+        IF (DLINE != "") {
+            ⚡ DECISION_RECORD_COUNT:
+                DECISION_RECORD_COUNT + 1;
+            ⚡ DECISION_LINE:
+                DLINE;
+
+            IF (decision_record_valid(DLINE) == 0) {
+                ⚡ DECISION_VALID: 0;
+            }
+        }
+
+        ⚡ D: D + 1;
+    }
+
+    IF (DECISION_RECORD_COUNT != 1) {
+        ⚡ DECISION_VALID: 0;
+    }
+
+    ⚡ RUN_ID: "";
+    ⚡ MODE: "";
+    ⚡ CANDIDATE_TOOL: "";
+    ⚡ TOOL_AVAILABLE: "0";
+    ⚡ INTERNAL_SUFFICIENT: "0";
+    ⚡ D_CURRENT: "0";
+    ⚡ D_RETRIEVAL: "0";
+    ⚡ D_EXACT: "0";
+    ⚡ D_OBSERVE: "0";
+    ⚡ D_ACTION: "0";
+    ⚡ SCOPE_ID: "NONE";
+
+    IF (DECISION_VALID == 1) {
+        ⚡ DP:
+            H("str_split", DECISION_LINE, "||", NULL);
+
+        ⚡ RUN_ID:
+            H("list_get", DP, 1, NULL);
+        ⚡ MODE:
+            H("list_get", DP, 2, NULL);
+        ⚡ CANDIDATE_TOOL:
+            H("list_get", DP, 3, NULL);
+        ⚡ TOOL_AVAILABLE:
+            H("list_get", DP, 4, NULL);
+        ⚡ INTERNAL_SUFFICIENT:
+            H("list_get", DP, 5, NULL);
+        ⚡ D_CURRENT:
+            H("list_get", DP, 6, NULL);
+        ⚡ D_RETRIEVAL:
+            H("list_get", DP, 7, NULL);
+        ⚡ D_EXACT:
+            H("list_get", DP, 8, NULL);
+        ⚡ D_OBSERVE:
+            H("list_get", DP, 9, NULL);
+        ⚡ D_ACTION:
+            H("list_get", DP, 10, NULL);
+
+        IF (BINDING_VALID == 1) {
+            ⚡ SCOPE_ID:
+                binding_scope(BINDING_TEXT, CANDIDATE_TOOL);
+        }
+    }
+
+    ⚡ STATUS: "REFUSE_BINDING";
+    ⚡ OUTPUT_READY: 0;
+    ⚡ SCOPE_READBACK_MATCH: 0;
+    ⚡ DEMAND_READBACK_MATCH: 0;
+    ⚡ EVENT_EMITTED: 0;
+    ⚡ EVENT_READBACK_MATCH: 0;
+
+    IF (BINDING_VALID == 1) {
+        ⚡ STATUS: "REFUSE_DNA12_DECISION";
+
+        IF (DECISION_VALID == 1) {
+            ⚡ STATUS: "THINK_ONLY_NO_TOOL_SCOPE";
+
+            IF (MODE == "THINK_AND_IDENTIFY_EVIDENCE_GAP") {
+                ⚡ STATUS: "EVIDENCE_GAP_VISIBLE";
+            }
+
+            IF (MODE == "THINK_AND_DECLARE_TOOL_GAP") {
+                ⚡ STATUS: "TOOL_GAP_VISIBLE";
+            }
+
+            IF (MODE == "TOOL_ASSISTED_REASONING") {
+                ⚡ STATUS: "HOLD_UNBOUND_CANDIDATE_TOOL";
+
+                IF (SCOPE_ID != "NONE") {
+                    ⚡ SCOPE_OUT:
+                        "SCOPE||" + SCOPE_ID + "||COMMIT||YES";
+
+                    ⚡ SW:
+                        H("write_text", SCOPE_PATH, SCOPE_OUT, NULL);
+                    ⚡ SR:
+                        H("read_text", SCOPE_PATH, NULL, NULL);
+                    ⚡ SCOPE_READBACK_MATCH:
+                        exact(SR, SCOPE_OUT);
+
+                    ⚡ W1:
+                        H("write_text", D_CURRENT_PATH, D_CURRENT, NULL);
+                    ⚡ W2:
+                        H("write_text", D_RETRIEVAL_PATH, D_RETRIEVAL, NULL);
+                    ⚡ W3:
+                        H("write_text", D_EXACT_PATH, D_EXACT, NULL);
+                    ⚡ W4:
+                        H("write_text", D_OBSERVE_PATH, D_OBSERVE, NULL);
+                    ⚡ W5:
+                        H("write_text", D_ACTION_PATH, D_ACTION, NULL);
+
+                    ⚡ R1:
+                        H("read_text", D_CURRENT_PATH, NULL, NULL);
+                    ⚡ R2:
+                        H("read_text", D_RETRIEVAL_PATH, NULL, NULL);
+                    ⚡ R3:
+                        H("read_text", D_EXACT_PATH, NULL, NULL);
+                    ⚡ R4:
+                        H("read_text", D_OBSERVE_PATH, NULL, NULL);
+                    ⚡ R5:
+                        H("read_text", D_ACTION_PATH, NULL, NULL);
+
+                    IF (R1 == D_CURRENT) {
+                        IF (R2 == D_RETRIEVAL) {
+                            IF (R3 == D_EXACT) {
+                                IF (R4 == D_OBSERVE) {
+                                    IF (R5 == D_ACTION) {
+                                        ⚡ DEMAND_READBACK_MATCH: 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    IF (SCOPE_READBACK_MATCH == 1) {
+                        IF (DEMAND_READBACK_MATCH == 1) {
+                            ⚡ EVENT:
+                                "TW3A_EVENT||"
+                                + RUN_ID + "||"
+                                + MODE + "||"
+                                + CANDIDATE_TOOL + "||"
+                                + SCOPE_ID + "||"
+                                + D_CURRENT + "||"
+                                + D_RETRIEVAL + "||"
+                                + D_EXACT + "||"
+                                + D_OBSERVE + "||"
+                                + D_ACTION
+                                + "||COMMIT||YES";
+
+                            ⚡ EW:
+                                H("write_text", EVENT_PATH, EVENT, NULL);
+                            ⚡ ER:
+                                H("read_text", EVENT_PATH, NULL, NULL);
+                            ⚡ EVENT_READBACK_MATCH:
+                                exact(ER, EVENT);
+
+                            IF (EVENT_READBACK_MATCH == 1) {
+                                ⚡ EVENT_EMITTED: 1;
+                                ⚡ OUTPUT_READY: 1;
+                                ⚡ STATUS: "SCOPE_AND_DEMAND_EMITTED";
+                            }
+                        }
+                    }
+
+                    IF (OUTPUT_READY == 0) {
+                        ⚡ STATUS: "OUTPUT_WRITE_READBACK_FAILED";
+                    }
+                }
+            }
+        }
+    }
+
+    ⚡ print("TW3A_NATIVE", "DNA12_DECISION_TO_TOOL_DEMAND_BRIDGE");
+    ⚡ print("BINDING_VALID", BINDING_VALID);
+    ⚡ print("BINDING_RECORD_COUNT", BINDING_RECORD_COUNT);
+    ⚡ print("DUPLICATE_CANDIDATE_TOOL", DUPLICATE_CANDIDATE_TOOL);
+    ⚡ print("DECISION_VALID", DECISION_VALID);
+    ⚡ print("DECISION_RECORD_COUNT", DECISION_RECORD_COUNT);
+    ⚡ print("RUN_ID", RUN_ID);
+    ⚡ print("DNA12_MODE", MODE);
+    ⚡ print("CANDIDATE_TOOL", CANDIDATE_TOOL);
+    ⚡ print("TOOL_AVAILABLE", TOOL_AVAILABLE);
+    ⚡ print("INTERNAL_REASONING_SUFFICIENT", INTERNAL_SUFFICIENT);
+    ⚡ print("DEMAND_CURRENT", D_CURRENT);
+    ⚡ print("DEMAND_RETRIEVAL", D_RETRIEVAL);
+    ⚡ print("DEMAND_EXACT", D_EXACT);
+    ⚡ print("DEMAND_OBSERVE", D_OBSERVE);
+    ⚡ print("DEMAND_ACTION", D_ACTION);
+    ⚡ print("SCOPE_ID", SCOPE_ID);
+    ⚡ print("SCOPE_READBACK_MATCH", SCOPE_READBACK_MATCH);
+    ⚡ print("DEMAND_READBACK_MATCH", DEMAND_READBACK_MATCH);
+    ⚡ print("OUTPUT_READY", OUTPUT_READY);
+    ⚡ print("EVENT_EMITTED", EVENT_EMITTED);
+    ⚡ print("EVENT_READBACK_MATCH", EVENT_READBACK_MATCH);
+    ⚡ print("TW3A_STATUS", STATUS);
+
+    ⚡ print("HOST_SCOPE_INFERENCE", "NO");
+    ⚡ print("HOST_DEMAND_GENERATION", "NO");
+    ⚡ print("HOST_TOOL_SELECTION", "NO");
+    ⚡ print("HOST_TOOL_RANKING", "NO");
+    ⚡ print("DIRECT_DNA12_RUNTIME_BINDING", "NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("HUMAN_LANGUAGE_UNDERSTANDING", "NOT_PROVEN");
+}
