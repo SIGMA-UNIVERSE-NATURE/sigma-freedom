@@ -1,0 +1,44 @@
+{
+  "checkpoint_id":"CP06-FULL-NEW-GAP-SCAN",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "status":"PASS_NO_NEW_GAPS",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "scan_scope":"accepted B1.1 C01-C10 plus effective foundational overlays, against six-system/six-continent early-primary through upper-secondary/general-education progression",
+  "accepted_scopes_scanned":["B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10"],
+  "classification":{
+    "F13-R01":"COVERED",
+    "F13-R02":"COVERED",
+    "F13-R03":"COVERED",
+    "F13-R04":"COVERED",
+    "F13-R05":"COVERED",
+    "F13-R06":"COVERED",
+    "F13-R07":"COVERED",
+    "F13-R08":"COVERED",
+    "F13-R09":"COVERED",
+    "F13-R10":"COVERED"
+  },
+  "existing_repaired_gap_revalidated":{
+    "F13-G09":{"status":"CLOSED_COVERED","true_owner":"B1.1-C10","evidence":"simple contextual modelling/problem-solving cycle plus reasonableness/revision; prerequisites resolve only to foundational C02/C03/C04 spine and not C05/C06 specialist theory"}
+  },
+  "out_of_B1_1_scope_boundaries":[
+    "physical instrument calibration/resolution/measurement uncertainty",
+    "empirical validation of scientific mechanisms",
+    "domain-specific scientific facts and mechanisms",
+    "software implementation/computing-system execution details"
+  ],
+  "out_of_scope_patch_attempts":0,
+  "semantic_primary_ownership_collision_count":0,
+  "dangling_support_id_count":0,
+  "prerequisite_cycle_count":0,
+  "future_or_locked_scope_support_count":0,
+  "advanced_substitution_count":0,
+  "new_gaps_found":0,
+  "remaining_partially_covered":0,
+  "remaining_missing":0,
+  "foundational_gap_count":0,
+  "worker_repairs_committed":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "next_checkpoint":"FINAL-FULL-REAUDIT"
+}
