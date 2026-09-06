@@ -1,0 +1,32 @@
+{
+  "checkpoint_id":"CP02-EARLY-PRIMARY",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "status":"PASS",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "benchmark_systems":["England","US Common Core","Australia","Singapore","Brazil","South Africa"],
+  "benchmark_continents":6,
+  "progression_band":"EARLY_PRIMARY_THROUGH_PRIMARY",
+  "semantic_findings":{
+    "R01":"COVERED_C02 counting-cardinality-place-value",
+    "R02":"COVERED_C02 operation meanings mental strategies written methods estimation",
+    "R03":"COVERED_C02 fractions-as-numbers decimal place value fraction scaling",
+    "R04":"COVERED_C03 equality unknowns patterns generalization representations contextual equations",
+    "R05":"COVERED_C04 compare-before-unit quantity-number-unit everyday measure unit choice magnitude",
+    "R06":"COVERED_C04 elementary 2D/3D composition views nets spatial relations",
+    "R07":"COVERED_C07 observation collection recording tally displays graph literacy",
+    "R08":"COVERED_C07 qualitative chance before numerical probability",
+    "R09":"COVERED_C10 simple modelling/problem-solving cycle",
+    "R10":"COVERED governance/common-spine rule prevents advanced substitution"
+  },
+  "effective_supersession_checks":"PASS",
+  "support_id_resolution":"PASS_NO_DANGLING_SUPPORT_IDS",
+  "prerequisite_foundational_objective_resolution":"PASS",
+  "specialist_dependency_substitution_count":0,
+  "future_or_locked_scope_support_count":0,
+  "new_gaps_in_band":0,
+  "worker_repairs_committed":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "next_checkpoint":"CP03-LOWER-SECONDARY"
+}
