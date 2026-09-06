@@ -1,0 +1,15 @@
+{
+  "checkpoint_id":"CP02-TERMINAL-PASS-CANDIDATE",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C03",
+  "scope_id":"B1.2-C03",
+  "stage":"CURRICULUM",
+  "candidate_type":"WORKER_PASS_CANDIDATE",
+  "academic_output_commit_sha":"61e3fa10e69c5624b745ddf3ee565183be515edd",
+  "durable_read_back":"PASS",
+  "read_back_files":["NODES.jsonl","CLAIMS.jsonl","SOURCES.jsonl","LEARNING_OBJECTIVES.jsonl","CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl","CROSS_LINKS.jsonl","CURRICULUM_SEQUENCE_INTENT.jsonl","RESULT.json","HANDOFF.md"],
+  "audit":{"topics":"7/7 PASS","claims":"28/28 PASS","learning_objectives":"28/28 PASS","semantic_closure":"28/28 exactly-one-row PASS","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic","foundational_coverage":"PASS","stage_discipline":"PASS"},
+  "self_repairs":["SR01: specialized solid-continuum wording to avoid C02 mechanics duplication.","SR02: constrained C04-C12 to boundary-only references with no support claims."],
+  "red_flag":"NONE",
+  "next":"B1.2-C04 — GATED pending Director acceptance of C03",
+  "created_at":"2026-09-06T23:46:00+07:00"
+}
