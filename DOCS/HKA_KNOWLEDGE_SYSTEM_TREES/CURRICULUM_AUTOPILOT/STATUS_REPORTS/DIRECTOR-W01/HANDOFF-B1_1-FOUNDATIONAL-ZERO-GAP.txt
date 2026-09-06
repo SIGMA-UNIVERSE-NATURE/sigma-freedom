@@ -1,0 +1,66 @@
+HKA DIRECTOR TEXT HANDOFF — B1.1 FOUNDATIONAL ZERO-GAP
+
+SOURCE OF TRUTH: GitHub durable state on hka-tree/curriculum-master. Chat memory is non-authoritative.
+
+CURRENT STAGE: CURRICULUM
+CURRENT SCOPE: B1.1-FOUNDATIONAL-13Y-AUDIT
+CURRENT STATUS: PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL
+FOUNDATIONAL_GAP_COUNT: 0
+B1.1 COMPLETE: NO
+B1.2: LOCKED_PENDING_B1_1_INTEGRATION_AND_SENTINEL
+ACADEMIC_LOCKED: NO
+ALL LATER PIPELINE STAGES: GATED
+
+EXECUTED ORDER:
+DIRECTOR-B1.1-FOUNDATIONAL-13Y-POST-REPAIR-REAUDIT
+Durable order commit: 610eaa00b8e32d346870b6b183eea9e0997a6d99
+Academic input anchor: fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32
+
+FINAL RE-AUDIT:
+POST_REPAIR_REAUDIT.json commit: 2c9fd7023c6100fecb77a4c7685e184ff4baf47b
+FOUNDATIONAL_GAP_REGISTER.json zero-gap commit: 32642a59d6451fb16068de68432ba840338b75a9
+Terminal checkpoint: af0e5d8ee1312c5957d45ee83692dca2f38be939
+
+FINAL RESULT:
+- Six-system / six-continent general-education benchmark retained.
+- Progression audited early/primary -> lower-secondary -> upper-secondary/general education.
+- F13-R01 through F13-R10: COVERED.
+- F13-G01 through F13-G09: CLOSED_COVERED.
+- Remaining PARTIALLY_COVERED: 0.
+- Remaining MISSING: 0.
+- New-gap regression: PASS_NONE_REMAINING.
+- Advanced mathematics substituting foundational meaning: 0.
+- True-owner audit: PASS.
+- Semantic duplicate audit: PASS.
+- Foundational prerequisite graph: PASS_ACYCLIC_NO_DANGLING_IDS.
+- Future/locked scope support: 0.
+- Stage boundary: PASS_CURRICULUM_ONLY.
+
+DIRECTOR SELF-REPAIRS IN THIS EXECUTION:
+1. C02: generic fraction-as-operator/scaling.
+   commits 5596b8c340ee00d8d55e0f9e2d8be37013334288 / fa5f4a9d8a1f4944d248cf31145efd0eb131d12d
+2. C04: unit choice/magnitude sense + elementary 2-D composition/simple solid views/spatial relations.
+   commits 0ba5839d78b914becd5bb23b2cd77166d19f71de / dd894adff77c3d1b87e1191e836589b8e2c75917
+3. C07: explicit data collection/recording.
+   commits e320e12dde9d5dfba00e844486f49f641a212fa1 / 7dce40e282d241afd3fa3194c3355e0265332cf5
+4. C10: common-spine mathematical modelling/problem-solving cycle independent of C05/C06 specialist prerequisites.
+   commits a3dd6ccf62637ca024314a2a0b61560927b56251 / 9f34814a35bed9c706464247896791e3cb94edd8
+5. C07: pre-numerical qualitative chance progression before numeric probability.
+   commits 471074cdc29017f12a4c0134f2356bc063590e53 / f61e40098f0e49e1a686a575dbce035d147a6596
+6. C02: terminating-decimal written arithmetic methods.
+   commits 9cb85b9d31a9a98fb08f0357dd04adb7b1db9a42 / 92b49257f863d3b7617386a27671d5959b062926
+
+CONTROL-PLANE SYNC:
+HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json: 94fa5611caf80e8f5b1d9d69e86a86a16866963a
+HKA_CURRICULUM_STATE.json: aa9f8e8fd30128f1e7718c7f3d209c3a1bf54860
+HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json: b9cce2b398b3701e202517c32f72aefcb6b39938
+WINDOW_REGISTRY.json: c94d1789288bc647c7719474e873c577dfaa65e3
+
+NEXT EXACT ACTION:
+1. Run Director B1.1 integration audit over accepted C01-C10 plus all effective foundational overlays at gap count 0.
+2. If integration audit PASS, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS against the zero-gap control-plane state.
+3. Only if both pass may Director consider the B1.1 completion / B1.2 successor unlock decision.
+4. Do not transition to ACADEMIC_LOCKED or any later stage; B1 still has B1.2-B1.5 and integration work.
+
+NON-BLOCKING TECHNICAL ANOMALY:
+Branch __invalid_probe__ exists outside the curriculum workflow. User explicitly instructed no action now. Do not treat it as a curriculum blocker.
