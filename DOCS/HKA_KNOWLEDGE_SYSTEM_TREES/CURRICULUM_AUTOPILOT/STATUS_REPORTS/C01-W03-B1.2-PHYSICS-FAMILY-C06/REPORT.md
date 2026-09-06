@@ -1,15 +1,17 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C06
 
-Assigned job: complete `B1.2-C06 — Điện và từ` end-to-end at CURRICULUM stage.
+Status: PASS candidate.
 
-Status: READY.
+Completed `B1.2-C06 — Điện và từ` at CURRICULUM stage on `hka-tree/c01-w03-physics-c06`.
 
-Canonical topics: 7 — Điện tích và điện trường; Dòng điện; Từ trường; Cảm ứng điện từ; Trường điện từ; Mạch điện; Sóng điện từ.
+Coverage: 7/7 canonical topics, 28 atomic sourced claims, 28 age-independent D1–D4 learning objectives and 28/28 exactly-one-row semantic closures.
 
-Accepted predecessor: `B1.2-C05@3aa0d02082ea409974130465e06ec387117daa1c`.
+Self-audit PASS after three in-scope repairs: SR01 constrained current-density wording to electromagnetic specialization and reused C03 continuum ownership; SR02 separated C06 electromagnetic-wave foundations from accepted C05 optical-light ownership; SR03 restored foundational charge/current/magnetism/circuit progression before advanced Maxwell/gauge extensions.
 
-Canonical prerequisites: `B1.2-C01@62a26590dc9055323316456f1620856b885462d7`, `B1.2-C03@693348843918fcd66445e8e30624dcddcc1a9589`.
+Re-audit: semantic duplicate PASS; ownership PASS; prerequisite graph PASS acyclic/no dangling IDs; foundational coverage PASS_AFTER_REPAIR; `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; stage boundary PASS CURRICULUM only.
 
-Worker owns authoring, self-audit, self-repair, re-audit, durable writes and read-back inside C06. It must not return intermediate status. C07-C12 and all post-CURRICULUM stages remain gated.
+Academic output commit: `cbb96ee9eea75d0686031da474844a324daee244`.
+Terminal read-back checkpoint: `84e2707ec4eff16a30cb223d1835b95503bc8439`.
+Durable GitHub read-back: PASS.
 
-Next action: execute the scope completely and return only a final PASS candidate or a true external BLOCK.
+C07 remains gated pending Director acceptance of C06.
