@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status": "ACTIVE_REQUIRED",
   "stage": "CURRICULUM",
@@ -30,24 +30,23 @@
     "academic_locked_forbidden_until_pass": true
   },
   "current_application": {
-    "active_subbranch": "B1.1",
-    "active_scope":"B1.1-SENTINEL-ALIGNMENT",
-    "active_window":"DIRECTOR-BACKUP-S01",
+    "active_subbranch": "B1.2",
+    "active_scope":"B1.2-C01",
+    "active_window":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
     "accepted_C01_C10_automatically_reopened": false,
     "accepted_C10_commit": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
-    "current_foundational_audit_status": "DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
+    "current_foundational_audit_status": "PASS",
     "foundational_gap_count": 0,
     "post_repair_reaudit_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/FOUNDATIONAL_AUDITS/B1_1_13_YEAR/POST_REPAIR_REAUDIT.json",
     "post_repair_reaudit_commit": "2c9fd7023c6100fecb77a4c7685e184ff4baf47b",
     "gap_register_commit": "32642a59d6451fb16068de68432ba840338b75a9",
-    "audit_scope": "Accepted B1.1 C01-C10 plus effective true-owner foundational overlays against full primary-through-upper-secondary general-education progressions across six systems/six continents.",
-    "repair_policy": "Only concrete gaps reopen their true owner scopes; advanced content never offsets a gap.",
     "director_integration_audit_status": "DIRECTOR_ACCEPTED_PASS",
     "director_integration_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
     "director_integration_accepted_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a",
-    "director_integration_open_order_commit":"8297df53dc44284e9880606c484bb941e9c2b28a",
-    "backup_sentinel_fresh_alignment_status": "ACTIVE_REQUIRED",
-    "B1_2_unlock": "FORBIDDEN_PENDING_FRESH_SENTINEL"
+    "backup_sentinel_fresh_alignment_status": "TREE_ALIGNMENT_PASS",
+    "backup_sentinel_final_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd",
+    "B1_2_unlock": "PASS",
+    "active_B1_2_scope":"B1.2-C01 — Đo lường vật lý"
   },
   "later_lesson_registry_policy": {
     "foundational_spine_mandatory": true,
@@ -57,5 +56,5 @@
   },
   "authority_source": "DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "authority_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
-  "updated_at": "2026-09-06T19:36:00+07:00"
+  "updated_at": "2026-09-06T19:38:00+07:00"
 }
