@@ -19,23 +19,29 @@ The active Teacher-GPT priority is to help SIGMA become able to:
 
 ```text
 ACTIVE_AXIS=SIGMA_SUPPORT_WEIGHTED_TOOL_AND_LANGUAGE_INTEGRATION
-CURRENT_STAGE=TW1_NATIVE_WEIGHTED_TOOL_ARBITRATION
-TW1_SOURCE_READY=YES
+CURRENT_STAGE=TW1_NATIVE_WEIGHTED_TOOL_ARBITRATION_FIX1
+TW1_FIX1_SOURCE_READY=YES
 TW1_RUNTIME_ADMISSION=NOT_RUN
 V5K8A_STATUS=FROZEN_SOURCE_READY_NOT_ACTIVE_FRONTIER
 ```
 
-Source-ready checkpoint:
+Active source-ready correction checkpoint:
+
+`DOCS/GPT_REFERENCE/CHECKPOINTS/20260906_TW1_FIX1_PRE_RUNTIME_NUMERIC_PROTOCOL_CORRECTION.md`
+
+Historical pre-runtime source-ready checkpoint:
 
 `DOCS/GPT_REFERENCE/CHECKPOINTS/20260906_TW1_WEIGHTED_TOOL_ARBITRATION_SOURCE_READY.md`
 
-## TW1 identities
+## TW1 FIX1 identities
 
 ```text
-BUNDLE_SHA256=b974f085dc1559457f51fdcdbfa94a887e9f82384cbe24c7190ae9b2c990f201
-TW1_SOURCE_SHA256=3172fe929ca5808d3fee3b354cb497d535edfab827211e15f16a8498bcd43474
-TW1_RUNNER_SHA256=9ef388f6c7f735e8333f2ae33b40961f45754a06a289017b94bd4c31d7015a83
+BUNDLE_SHA256=7db10a49a07915a49337715dde276c7cbfaa02d629028470d3c9892107b96199
+TW1_SOURCE_SHA256=a91420c832c88156cf9dba1e8437931627df3d1a83d2495d16da6edf7d9456da
+TW1_RUNNER_SHA256=68e39bf8665f9fef98216aa9bd36bd5c6ab3350f34a65c2baa02e4546f5b8f45
 PLANNED_VM_INVOCATIONS=15
+PRE_RUNTIME_FIX=NUMERIC_TOOL_COUNT_TEXT_PROTOCOL_SERIALIZATION
+COGNITIVE_POLICY_CHANGED=NO
 ```
 
 ## Why this is a new capability
@@ -74,7 +80,7 @@ LANG-01A..LANG-01G=ADMITTED_IN_EXACT_TESTED_STRUCTURAL_SCOPES
 LANG-02A=SOURCE_READY_R1_ADMISSION_NOT_RUN
 ```
 
-Do not equate admitted structural language capabilities with general language understanding. The immediate integration objective after TW2 is to make native language/cognitive outputs drive TW1 demand signals rather than having host/GPT choose a tool.
+The immediate language integration objective after TW2 is to make native language/cognitive outputs drive TW1 demand signals rather than having host/GPT choose a tool.
 
 ## Governance
 
@@ -92,6 +98,6 @@ RUNTIME_PROOF_REQUIRED=YES
 
 ## Immediate next action
 
-Run the exact TW1 source-ready bundle under the locked Termux SIGMAC/VM and preserve the first HOLD/FAIL or the complete `=== TW1 ADMISSION SUMMARY ===`.
+Run only the exact TW1 FIX1 bundle under the locked Termux SIGMAC/VM and preserve the first HOLD/FAIL or the complete `=== TW1 ADMISSION SUMMARY ===`.
 
 On PASS, immediately checkpoint machine evidence and begin TW2 actual-capability registry binding. Do not return to V5K8A until this support axis reaches an explicit dependency reason to do so.
