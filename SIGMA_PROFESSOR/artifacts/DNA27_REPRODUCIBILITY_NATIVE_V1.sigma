@@ -1,0 +1,459 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA27.REPRODUCIBILITY.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF record_status_valid(value) {
+    IF (value == "IMPORTANT_EXPERIMENT_REPRODUCIBLE_PACKAGE_READY") { RETURN 1.0; }
+    IF (value == "IMPORTANT_EXPERIMENT_NOT_REPRODUCIBLE_PACKAGE") { RETURN 1.0; }
+    IF (value == "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_AVAILABLE") { RETURN 1.0; }
+    IF (value == "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_NOT_REQUIRED") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF choose_status_1(dep_valid, bool_valid, store_valid, supplied) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (store_valid < 0.5) { RETURN "REPRODUCIBILITY_STORE_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_EXPERIMENT_SUPPLIED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_status_2(duplicate_found, capacity_available, important, package_complete) {
+    IF (duplicate_found > 0.5) { RETURN "DUPLICATE_EXPERIMENT_ID_REJECTED"; }
+    IF (capacity_available < 0.5) { RETURN "REPRODUCIBILITY_CAPACITY_REACHED"; }
+    IF (important > 0.5) {
+        IF (package_complete > 0.5) { RETURN "IMPORTANT_EXPERIMENT_REPRODUCIBLE_PACKAGE_READY"; }
+        RETURN "IMPORTANT_EXPERIMENT_NOT_REPRODUCIBLE_PACKAGE";
+    }
+    IF (package_complete > 0.5) { RETURN "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_AVAILABLE"; }
+    RETURN "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_NOT_REQUIRED";
+}
+
+DEF choose_status(stage1, stage2) {
+    IF (stage1 == "CONTINUE") { RETURN stage2; }
+    RETURN stage1;
+}
+
+⟡(Σ.DNA27_REPRODUCIBILITY_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/case_id.txt");
+
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ DNA09_SCHEMA: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_schema.txt");
+    ⚡ DNA26_SCHEMA: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_schema.txt");
+    ⚡ DNA09_OUTPUT_PRESENT: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_output_present.txt");
+    ⚡ DNA26_OUTPUT_PRESENT: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_output_present.txt");
+
+    ⚡ EXPERIMENT_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/experiment_supplied.txt");
+    ⚡ EXPERIMENT_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/experiment_id.txt");
+    ⚡ IMPORTANT_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/important.txt");
+    ⚡ INPUT_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/input_token.txt");
+    ⚡ VERSION_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/version_token.txt");
+    ⚡ CONFIG_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/config_token.txt");
+    ⚡ RESULT_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/result_token.txt");
+
+    ⚡ VERIFIER_EVALUATION_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/verifier_evaluation_id.txt");
+    ⚡ VERIFIER_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/verifier_id.txt");
+    ⚡ VERIFIER_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/verifier_independent.txt");
+    ⚡ VERIFIER_PASSED_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/verifier_passed.txt");
+    ⚡ VERIFIER_SOURCE_SHA256: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/verifier_source_sha256.txt");
+
+    ⚡ DNA09_EVALUATION_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_evaluation_id.txt");
+    ⚡ DNA09_VERIFIER_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_verifier_id.txt");
+    ⚡ DNA09_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_independent.txt");
+    ⚡ DNA09_PASSED_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_passed.txt");
+    ⚡ DNA09_SOURCE_SHA256: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_source_sha256.txt");
+    ⚡ DNA09_CANDIDATE_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna09_candidate_token.txt");
+
+    ⚡ DNA26_LATEST_ARTIFACT_ID: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_latest_artifact_id.txt");
+    ⚡ DNA26_LATEST_ARTIFACT_COMPLETE_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_latest_artifact_complete.txt");
+    ⚡ DNA26_LATEST_INTEGRITY_VERIFIABLE_TOKEN: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_latest_integrity_verifiable.txt");
+    ⚡ DNA26_LATEST_ARTIFACT_SHA256: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_latest_artifact_sha256.txt");
+    ⚡ DNA26_LATEST_CHAIN_SHA256: load_text(".sigma_exec/DNA27_NATIVE_ADMISSION_V1/input/dna26_latest_chain_sha256.txt");
+
+    ⚡ DNA09_OUTPUT_BOOL_OK: bool_token_valid(DNA09_OUTPUT_PRESENT);
+    ⚡ DNA26_OUTPUT_BOOL_OK: bool_token_valid(DNA26_OUTPUT_PRESENT);
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1")
+        * exact(DNA09_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1")
+        * exact(DNA26_SCHEMA, "SIGMA_OBSERVABILITY_V1")
+        * DNA09_OUTPUT_BOOL_OK * bool_true(DNA09_OUTPUT_PRESENT)
+        * DNA26_OUTPUT_BOOL_OK * bool_true(DNA26_OUTPUT_PRESENT);
+
+    ⚡ EXPERIMENT_SUPPLIED_TOKEN_VALID: bool_token_valid(EXPERIMENT_SUPPLIED_TOKEN);
+    ⚡ IMPORTANT_TOKEN_VALID: bool_token_valid(IMPORTANT_TOKEN);
+    ⚡ VERIFIER_INDEPENDENT_TOKEN_VALID: bool_token_valid(VERIFIER_INDEPENDENT_TOKEN);
+    ⚡ VERIFIER_PASSED_TOKEN_VALID: bool_token_valid(VERIFIER_PASSED_TOKEN);
+    ⚡ DNA09_INDEPENDENT_TOKEN_VALID: bool_token_valid(DNA09_INDEPENDENT_TOKEN);
+    ⚡ DNA09_PASSED_TOKEN_VALID: bool_token_valid(DNA09_PASSED_TOKEN);
+    ⚡ DNA26_COMPLETE_TOKEN_VALID: bool_token_valid(DNA26_LATEST_ARTIFACT_COMPLETE_TOKEN);
+    ⚡ DNA26_INTEGRITY_TOKEN_VALID: bool_token_valid(DNA26_LATEST_INTEGRITY_VERIFIABLE_TOKEN);
+
+    ⚡ BOOLEAN_ENCODINGS_VALID:
+        EXPERIMENT_SUPPLIED_TOKEN_VALID
+        * IMPORTANT_TOKEN_VALID
+        * VERIFIER_INDEPENDENT_TOKEN_VALID
+        * VERIFIER_PASSED_TOKEN_VALID
+        * DNA09_INDEPENDENT_TOKEN_VALID
+        * DNA09_PASSED_TOKEN_VALID
+        * DNA26_COMPLETE_TOKEN_VALID
+        * DNA26_INTEGRITY_TOKEN_VALID;
+
+    ⚡ EXPERIMENT_SUPPLIED: EXPERIMENT_SUPPLIED_TOKEN_VALID * bool_true(EXPERIMENT_SUPPLIED_TOKEN);
+    ⚡ IMPORTANT_EXPERIMENT: IMPORTANT_TOKEN_VALID * bool_true(IMPORTANT_TOKEN);
+
+    ⚡ PACKAGE_FIELDS_COMPLETE:
+        present(EXPERIMENT_ID)
+        * present(INPUT_TOKEN)
+        * present(VERSION_TOKEN)
+        * present(CONFIG_TOKEN)
+        * present(RESULT_TOKEN)
+        * present(VERIFIER_EVALUATION_ID)
+        * present(VERIFIER_ID)
+        * present(VERIFIER_SOURCE_SHA256);
+
+    ⚡ VERIFIER_SOURCE_COMPONENT_BINDING_VALID:
+        exact(VERIFIER_EVALUATION_ID, DNA09_EVALUATION_ID)
+        * exact(VERIFIER_ID, DNA09_VERIFIER_ID)
+        * exact(VERIFIER_INDEPENDENT_TOKEN, DNA09_INDEPENDENT_TOKEN)
+        * exact(VERIFIER_PASSED_TOKEN, DNA09_PASSED_TOKEN)
+        * exact(VERIFIER_SOURCE_SHA256, DNA09_SOURCE_SHA256);
+
+    ⚡ RESULT_BINDING_VALID:
+        present(DNA09_CANDIDATE_TOKEN)
+        * exact(RESULT_TOKEN, DNA09_CANDIDATE_TOKEN);
+
+    ⚡ OBSERVABILITY_SOURCE_STRUCTURALLY_BOUND:
+        present(DNA26_LATEST_ARTIFACT_ID)
+        * DNA26_COMPLETE_TOKEN_VALID * bool_true(DNA26_LATEST_ARTIFACT_COMPLETE_TOKEN)
+        * DNA26_INTEGRITY_TOKEN_VALID * bool_true(DNA26_LATEST_INTEGRITY_VERIFIABLE_TOKEN)
+        * present(DNA26_LATEST_ARTIFACT_SHA256)
+        * present(DNA26_LATEST_CHAIN_SHA256);
+
+    ⚡ PACKAGE_COMPLETE:
+        DEPENDENCY_BINDING_VALID
+        * EXPERIMENT_SUPPLIED
+        * BOOLEAN_ENCODINGS_VALID
+        * PACKAGE_FIELDS_COMPLETE
+        * VERIFIER_SOURCE_COMPONENT_BINDING_VALID
+        * RESULT_BINDING_VALID;
+
+    ⚡ REPRODUCIBLE_PACKAGE_READY: PACKAGE_COMPLETE;
+
+    ⚡ IMPORTANT_REQUIREMENT_SATISFIED: 0.0;
+    IF (IMPORTANT_TOKEN_VALID > 0.5) {
+        IF (IMPORTANT_EXPERIMENT < 0.5) { ⚡ IMPORTANT_REQUIREMENT_SATISFIED: 1.0; }
+        IF (IMPORTANT_EXPERIMENT > 0.5) {
+            IF (REPRODUCIBLE_PACKAGE_READY > 0.5) { ⚡ IMPORTANT_REQUIREMENT_SATISFIED: 1.0; }
+        }
+    }
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA27_NATIVE_ADMISSION_V1/state/reproducibility_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA27_REPRODUCIBILITY_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_REPRODUCIBILITY_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) {
+        ⚡ STORE_HEADER_OK: 1.0;
+    }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ REPRODUCIBILITY_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ DUPLICATE_EXPERIMENT_ID_FOUND: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 16) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ REXPERIMENT: host("list_get", PARTS, 1, NULL);
+                ⚡ RIMPORTANT: host("list_get", PARTS, 2, NULL);
+                ⚡ RSTATUS: host("list_get", PARTS, 3, NULL);
+                ⚡ RCOMPLETE: host("list_get", PARTS, 4, NULL);
+                ⚡ RREPRO: host("list_get", PARTS, 5, NULL);
+                ⚡ RREQUIREMENT: host("list_get", PARTS, 6, NULL);
+                ⚡ RVERIFIERBIND: host("list_get", PARTS, 7, NULL);
+                ⚡ RRESULTBIND: host("list_get", PARTS, 8, NULL);
+                ⚡ ROBSBOUND: host("list_get", PARTS, 9, NULL);
+                ⚡ RREPLAY: host("list_get", PARTS, 10, NULL);
+                ⚡ RRESULTREPRO: host("list_get", PARTS, 11, NULL);
+                ⚡ REXECUTED: host("list_get", PARTS, 12, NULL);
+                ⚡ RTRUTH: host("list_get", PARTS, 13, NULL);
+                ⚡ RKNOWLEDGE: host("list_get", PARTS, 14, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 15, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "REPRO")
+                    * bool_token_valid(RIMPORTANT)
+                    * record_status_valid(RSTATUS)
+                    * bool_token_valid(RCOMPLETE)
+                    * bool_token_valid(RREPRO)
+                    * bool_token_valid(RREQUIREMENT)
+                    * bool_token_valid(RVERIFIERBIND)
+                    * bool_token_valid(RRESULTBIND)
+                    * bool_token_valid(ROBSBOUND)
+                    * exact(RREPLAY, "REPLAY=0")
+                    * exact(RRESULTREPRO, "RESULT_REPRODUCED=0")
+                    * exact(REXECUTED, "EXPERIMENT_EXECUTED=0")
+                    * exact(RTRUTH, "TRUTH=0")
+                    * exact(RKNOWLEDGE, "KNOWLEDGE=0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ REPRODUCIBILITY_RECORD_COUNT_BEFORE: REPRODUCIBILITY_RECORD_COUNT_BEFORE + 1.0;
+                    IF (present(EXPERIMENT_ID) > 0.5) {
+                        IF (exact(REXPERIMENT, EXPERIMENT_ID) > 0.5) {
+                            ⚡ DUPLICATE_EXPERIMENT_ID_FOUND: 1.0;
+                        }
+                    }
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) {
+        ⚡ STORE_STATE_VALID: 0.0;
+    }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (REPRODUCIBILITY_RECORD_COUNT_BEFORE < MAX_REPRODUCIBILITY_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ RETAIN_ELIGIBLE:
+        DEPENDENCY_BINDING_VALID
+        * EXPERIMENT_SUPPLIED
+        * BOOLEAN_ENCODINGS_VALID
+        * STORE_STATE_VALID
+        * (1.0 - DUPLICATE_EXPERIMENT_ID_FOUND)
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ EXPERIMENT_RECORD_RETAINED: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ RECORD_STATUS: "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_NOT_REQUIRED";
+        IF (IMPORTANT_EXPERIMENT > 0.5) {
+            ⚡ RECORD_STATUS: "IMPORTANT_EXPERIMENT_NOT_REPRODUCIBLE_PACKAGE";
+            IF (REPRODUCIBLE_PACKAGE_READY > 0.5) {
+                ⚡ RECORD_STATUS: "IMPORTANT_EXPERIMENT_REPRODUCIBLE_PACKAGE_READY";
+            }
+        }
+        IF (IMPORTANT_EXPERIMENT < 0.5) {
+            IF (REPRODUCIBLE_PACKAGE_READY > 0.5) {
+                ⚡ RECORD_STATUS: "NON_IMPORTANT_EXPERIMENT_REPRODUCIBILITY_AVAILABLE";
+            }
+        }
+
+        ⚡ IMPORTANT_OUT: "0";
+        ⚡ COMPLETE_OUT: "0";
+        ⚡ REPRO_OUT: "0";
+        ⚡ REQUIREMENT_OUT: "0";
+        ⚡ VERIFIER_BIND_OUT: "0";
+        ⚡ RESULT_BIND_OUT: "0";
+        ⚡ OBS_BOUND_OUT: "0";
+        IF (IMPORTANT_EXPERIMENT > 0.5) { ⚡ IMPORTANT_OUT: "1"; }
+        IF (PACKAGE_COMPLETE > 0.5) { ⚡ COMPLETE_OUT: "1"; }
+        IF (REPRODUCIBLE_PACKAGE_READY > 0.5) { ⚡ REPRO_OUT: "1"; }
+        IF (IMPORTANT_REQUIREMENT_SATISFIED > 0.5) { ⚡ REQUIREMENT_OUT: "1"; }
+        IF (VERIFIER_SOURCE_COMPONENT_BINDING_VALID > 0.5) { ⚡ VERIFIER_BIND_OUT: "1"; }
+        IF (RESULT_BINDING_VALID > 0.5) { ⚡ RESULT_BIND_OUT: "1"; }
+        IF (OBSERVABILITY_SOURCE_STRUCTURALLY_BOUND > 0.5) { ⚡ OBS_BOUND_OUT: "1"; }
+
+        ⚡ NEW_RECORD:
+            "REPRO||"
+            + EXPERIMENT_ID + "||"
+            + IMPORTANT_OUT + "||"
+            + RECORD_STATUS + "||"
+            + COMPLETE_OUT + "||"
+            + REPRO_OUT + "||"
+            + REQUIREMENT_OUT + "||"
+            + VERIFIER_BIND_OUT + "||"
+            + RESULT_BIND_OUT + "||"
+            + OBS_BOUND_OUT
+            + "||REPLAY=0||RESULT_REPRODUCED=0||EXPERIMENT_EXECUTED=0||TRUTH=0||KNOWLEDGE=0||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) {
+            ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ EXPERIMENT_RECORD_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ REPRODUCIBILITY_RECORD_COUNT_AFTER:
+        REPRODUCIBILITY_RECORD_COUNT_BEFORE + EXPERIMENT_RECORD_RETAINED;
+    ⚡ STATE_MUTATED: EXPERIMENT_RECORD_RETAINED;
+
+    ⚡ STAGE1: choose_status_1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, STORE_STATE_VALID, EXPERIMENT_SUPPLIED);
+    ⚡ STAGE2: choose_status_2(DUPLICATE_EXPERIMENT_ID_FOUND, STATE_CAPACITY_AVAILABLE, IMPORTANT_EXPERIMENT, PACKAGE_COMPLETE);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2);
+
+    ⚡ print("DNA27_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("DNA09_SCHEMA_OK");
+    ⚡ print(exact(DNA09_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1"));
+    ⚡ print("DNA26_SCHEMA_OK");
+    ⚡ print(exact(DNA26_SCHEMA, "SIGMA_OBSERVABILITY_V1"));
+
+    ⚡ print("EXPERIMENT_SUPPLIED");
+    ⚡ print(EXPERIMENT_SUPPLIED);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID");
+    ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("IMPORTANT_EXPERIMENT");
+    ⚡ print(IMPORTANT_EXPERIMENT);
+    ⚡ print("PACKAGE_FIELDS_COMPLETE");
+    ⚡ print(PACKAGE_FIELDS_COMPLETE);
+    ⚡ print("VERIFIER_SOURCE_COMPONENT_BINDING_VALID");
+    ⚡ print(VERIFIER_SOURCE_COMPONENT_BINDING_VALID);
+    ⚡ print("RESULT_BINDING_VALID");
+    ⚡ print(RESULT_BINDING_VALID);
+    ⚡ print("OBSERVABILITY_SOURCE_STRUCTURALLY_BOUND");
+    ⚡ print(OBSERVABILITY_SOURCE_STRUCTURALLY_BOUND);
+    ⚡ print("PACKAGE_COMPLETE");
+    ⚡ print(PACKAGE_COMPLETE);
+    ⚡ print("REPRODUCIBLE_PACKAGE_READY");
+    ⚡ print(REPRODUCIBLE_PACKAGE_READY);
+    ⚡ print("IMPORTANT_REQUIREMENT_SATISFIED");
+    ⚡ print(IMPORTANT_REQUIREMENT_SATISFIED);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("REPRODUCIBILITY_RECORD_COUNT_BEFORE");
+    ⚡ print(REPRODUCIBILITY_RECORD_COUNT_BEFORE);
+    ⚡ print("DUPLICATE_EXPERIMENT_ID_FOUND");
+    ⚡ print(DUPLICATE_EXPERIMENT_ID_FOUND);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE");
+    ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("EXPERIMENT_RECORD_RETAINED");
+    ⚡ print(EXPERIMENT_RECORD_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("REPRODUCIBILITY_RECORD_COUNT_AFTER");
+    ⚡ print(REPRODUCIBILITY_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS");
+    ⚡ print(STATUS);
+
+    ⚡ print("REPRODUCIBILITY_SCHEMA");
+    ⚡ print("SIGMA_REPRODUCIBILITY_V1");
+    ⚡ print("PERSISTENT_LEDGER_SCHEMA");
+    ⚡ print("SIGMA_DNA27_REPRODUCIBILITY_LEDGER_V1");
+    ⚡ print("REQUIRED_COMPONENTS");
+    ⚡ print("INPUT,VERSION,CONFIG,RESULT,VERIFIER_RECORD");
+    ⚡ print("MAX_REPRODUCIBILITY_RECORDS");
+    ⚡ print(MAX_REPRODUCIBILITY_RECORDS);
+
+    ⚡ print("ACTUAL_REPLAY_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("RESULT_REPRODUCED");
+    ⚡ print(0.0);
+    ⚡ print("EXPERIMENT_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("TRUTH_ESTABLISHED");
+    ⚡ print(0.0);
+    ⚡ print("KNOWLEDGE_PROMOTED");
+    ⚡ print(0.0);
+    ⚡ print("COMPONENT_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("PACKAGE_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("APPEND_CHAIN_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("CRYPTOGRAPHIC_TAMPER_DETECTION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_REPRODUCIBILITY_VALIDATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_PERSISTENCE_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("MEMORY_RUNTIME_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("MODEL_CALLS_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING");
+    ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION");
+    ⚡ print(0.0);
+}
