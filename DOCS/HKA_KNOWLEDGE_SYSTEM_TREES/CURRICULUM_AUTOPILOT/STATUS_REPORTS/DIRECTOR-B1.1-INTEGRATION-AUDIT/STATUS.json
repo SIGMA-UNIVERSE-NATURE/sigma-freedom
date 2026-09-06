@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-B1.1-INTEGRATION-AUDIT",
+  "role": "DIRECTOR_INTEGRATION_AUDIT",
+  "stage": "CURRICULUM",
+  "status": "ACTIVE",
+  "execution_branch": "hka-tree/director-b1-1-integration-audit",
+  "control_plane_branch": "hka-tree/curriculum-master",
+  "activation_base_commit": "b7eaae3ed59aa4c9ea8f65580895735252523746",
+  "scope_id": "B1.1-INTEGRATION-AUDIT",
+  "input_foundational_gap_count": 0,
+  "input_foundational_status": "PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
+  "accepted_scopes": ["B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10"],
+  "effective_overlay_scopes": ["B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C07","B1.1-C10"],
+  "required_checks": [
+    "stable-ID and supersession integrity",
+    "semantic claim/objective closure",
+    "ownership and semantic-duplicate audit",
+    "prerequisite graph acyclic with zero dangling IDs",
+    "zero future/locked-scope support",
+    "FOUNDATIONAL_GAP_COUNT remains 0",
+    "canonical tree and immutable scope-map alignment",
+    "CURRICULUM-only stage boundary",
+    "accepted C01-C10 history integrity"
+  ],
+  "allowed_terminal_pass": "DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
+  "successor_unlock_authority": false,
+  "B1_2_status": "LOCKED_PENDING_B1_1_INTEGRATION_AND_SENTINEL",
+  "academic_locked": false,
+  "next_gate_if_pass": "DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS",
+  "updated_at": "2026-09-06T13:21:00+07:00"
+}
