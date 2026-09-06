@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260906-B1_1-FOUNDATIONAL-POST-REPAIR-REAUDIT-G01-G04",
+  "window_id": "DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "academic_input_anchor": "fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "evaluation": [
+    {
+      "gap_id": "F13-G01",
+      "classification": "COVERED",
+      "owner": "B1.1-C02",
+      "evidence_claim_ids": ["HKA-B1-1-C02-N001-C008","HKA-B1-1-C02-N001-C009","HKA-B1-1-C02-N001-C010","HKA-B1-1-C02-N001-C011"],
+      "evidence_objective_ids": ["HKA-F13-B1-1-C02-N001-FLO-001","HKA-F13-B1-1-C02-N001-FLO-002","HKA-F13-B1-1-C02-N001-FLO-003"],
+      "developmental_meanings_verified": ["count sequence tied to finite cardinality","numeral-quantity representation","base-ten positional notation and digit value","compose/decompose place value","compare/order using place value","zero as number/positional placeholder"],
+      "duplicate_risk": "PASS: school-level numeration stays C02; generic cardinal/set theory stays C01."
+    },
+    {
+      "gap_id": "F13-G02",
+      "classification": "COVERED",
+      "owner": "B1.1-C02",
+      "evidence_claim_ids": ["HKA-B1-1-C02-N003-C009","HKA-B1-1-C02-N003-C010","HKA-B1-1-C02-N003-C011","HKA-B1-1-C02-N003-C012","HKA-B1-1-C02-N003-C013","HKA-B1-1-C02-N003-C014","HKA-B1-1-C02-N003-C015"],
+      "evidence_objective_ids": ["HKA-F13-B1-1-C02-N003-FLO-001","HKA-F13-B1-1-C02-N003-FLO-002","HKA-F13-B1-1-C02-N003-FLO-003","HKA-F13-B1-1-C02-N003-FLO-004"],
+      "developmental_meanings_verified": ["addition/subtraction combine-change-compare and inverse","multiplication equal-groups/arrays/scaling basis","division sharing/grouping and inverse","mental decomposition/compensation","place-value written methods","estimation/reasonableness"],
+      "duplicate_risk": "PASS: mathematical calculation meaning/methods stay C02; software algorithm/complexity stays B1.5."
+    },
+    {
+      "gap_id": "F13-G03",
+      "classification": "PARTIALLY_COVERED",
+      "owner": "B1.1-C02",
+      "evidence_claim_ids": ["HKA-B1-1-C02-N001-C012","HKA-B1-1-C02-N001-C013","HKA-B1-1-C02-N001-C014","HKA-B1-1-C02-N001-C004","HKA-B1-1-C02-N002-C009","HKA-B1-1-C02-N002-C010","HKA-B1-1-C02-N005-C004"],
+      "evidence_objective_ids": ["HKA-F13-B1-1-C02-N001-FLO-004","HKA-F13-B1-1-C02-N001-FLO-005","HKA-F13-B1-1-C02-N002-FLO-001"],
+      "verified_meanings": ["unit fraction/equal-part meaning","part-whole and quotient interpretations","fraction as number/measure on number line","equivalent fractions through numerator/denominator scaling","proper/improper/mixed-number relationship","decimal place value","fraction-decimal-percent connection"],
+      "residual_missing_meaning": "Generic fraction-as-operator/scaling interpretation is not explicit: a/b acting on a quantity Q as (a/b)Q. Percent-of-Q exists as a special case, but advanced/formal inference or a special case may not substitute for the foundational generic operator meaning.",
+      "expected_developmental_role": "Connect a fraction as a number to multiplicative scaling of a quantity, supporting fraction-of-a-quantity, proportional reasoning and later percent/rate work.",
+      "external_curriculum_evidence": ["ENG-NC-MATH Years 1-7 fraction/percentage progression","SG-MOE-MATH Primary fractions/decimals/percentages","AUS-ACARA-MATH-V9 Number fraction/decimal/percentage progression"],
+      "proposed_minimal_repair": "Append one C02-N005 atomic claim defining fraction-as-operator/scaling and one common-spine foundational objective mapped to it; reuse accepted versioned Prealgebra source and existing benchmark mappings.",
+      "duplicate_risk": "LOW/PASS if confined to numerical scaling; C03 keeps general function/operator theory and C04 keeps geometric similarity/scale."
+    },
+    {
+      "gap_id": "F13-G04",
+      "classification": "COVERED",
+      "owner": "B1.1-C03",
+      "developmental_meanings_verified": ["repeating/growing patterns","rule/invariant recognition","equality as same-value relation","unknown symbol/box/letter","simple contextual number sentences","arithmetic generalization","progressive table/graph/formula representations"],
+      "duplicate_risk": "PASS: early symbolic/generalization meaning stays C03; combinatorial recurrence structures stay C08."
+    }
+  ],
+  "block_result": "REPAIR_REQUIRED_FOR_G03",
+  "remaining_gap_count_within_G01_G04": 1,
+  "foundational_global_pass_declared": false,
+  "locks": {"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "non_blocking_technical_anomalies": ["__invalid_probe__ branch; no action per user instruction."],
+  "next_action": "Apply minimal append-only true-owner repair for F13-G03 fraction-as-operator at B1.1-C02, re-test G03, then continue G05-G08."
+}
