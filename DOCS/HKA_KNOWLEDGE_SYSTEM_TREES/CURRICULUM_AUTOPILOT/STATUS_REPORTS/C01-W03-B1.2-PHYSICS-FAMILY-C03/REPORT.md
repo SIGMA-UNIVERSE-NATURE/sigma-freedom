@@ -1,22 +1,23 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C03
 
 ## Assigned job
-Complete `B1.2-C03 — Cơ học môi trường liên tục` end-to-end at CURRICULUM stage.
+Complete `B1.2-C03 — Cơ học môi trường liên tục` end-to-end at CURRICULUM stage, with full general-education foundations preserved before advanced dominance.
 
-## Definitely finished
-All 7/7 canonical topics are complete: Vật rắn, Đàn hồi, Chất lỏng, Chất khí, Thủy động lực học, Khí động học, Dòng chảy rối. Durable artifacts contain 7 nodes, 28 atomic sourced claims, 5 normalized/versioned sources, 28 D1-D4 objectives, 28/28 exactly-one-row semantic closures, 5 cross-links and 7 sequence-intent records.
+## Worker candidate
+Worker completed all 7/7 canonical topics and returned PASS candidate at `05dfd94fe2c21093be7b5cee2d36e09cda256bb4`: 7 nodes, 28 claims, 5 sources, 28 D1-D4 objectives, 28/28 exactly-one-row closures, 5 cross-links and 7 sequence-intent records. Worker self-repairs SR01/SR02 remain preserved as worker provenance.
 
-## Ownership and audit
-Accepted B1.2-C01 metrology and B1.2-C02 mechanics are reused by prerequisite/reference and not duplicated. C04-C12 are boundary-reference only and supply no academic support. Every closure has `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`. Semantic duplicate scan, ownership collision scan, ID/traceability audit, supporting-claim resolution, prerequisite graph/cycle audit, foundational general-education coverage and CURRICULUM stage discipline all PASS.
+## Director-assistant foundational repair
+Independent review found one small true-owner foundational omission in `B1.2-C03-T03 — Chất lỏng`: the candidate moved directly into pressure/hydrostatics without explicitly stating the early general-education macroscopic distinction that ordinary liquids flow, take the shape of the occupied container region, and approximately retain the volume of a fixed amount under ordinary conditions.
 
-## Self-repair and re-audit
-SR01 specialized solid-continuum wording to avoid re-authoring generic C02 force balance. SR02 constrained gas/aerodynamic future-scope language to boundary-only references. Re-audit PASS.
+DA-SR01 repaired this append-only at academic commit `567008f1d1272d133ea865471316afd8c829b82c` by adding claim `HKA-B1-2-C03-N003-C005`, D1 objective `HKA-B1-2-C03-N003-LO-D1-002`, and exactly one matching semantic-closure row. N003 and its sequence intent were updated without renumbering existing IDs or transferring ownership. Checkpoint: `CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-LIQUID-REPAIR` at `3cd31cca7324a71320249c538af141b823c5de30`.
 
-## Durable verification
-Academic output commit: `61e3fa10e69c5624b745ddf3ee565183be515edd`. Required committed outputs were read back from GitHub durable state before terminal PASS-candidate status. Terminal checkpoint: `CP02-TERMINAL-PASS-CANDIDATE` at `5961135c8f70e9f2be80665f9323f69790f9fd49`.
+## Effective audit
+Effective durable artifacts now contain 7 nodes, 29 atomic sourced claims, 5 sources, 29 learning objectives, 29/29 exactly-one-row semantic closures, 5 cross-links and 7 sequence-intent records. All supporting Claim IDs resolve; every closure has `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`. C01 metrology and C02 mechanics remain prerequisite/reference reuse, not duplicated ownership. C04-C12 remain boundary-reference only. Prerequisite graph remains acyclic. Stage discipline remains CURRICULUM-only.
 
-## Remaining / risks
-No worker-scope defects or external blockers remain. Director acceptance is still required before C04 can activate.
+Foundational general-education coverage is `PASS_AFTER_REPAIR`, including explicit solids, elasticity intuition, basic liquid shape/volume/flow behavior before hydrostatics, gas compressibility, hydrodynamics, aerodynamics and turbulence foundations. Advanced mechanics does not substitute for the repaired early liquid foundation.
+
+## Authority boundary
+This review did not mutate `hka-tree/curriculum-master`, did not declare Director acceptance, and did not unlock B1.2-C04.
 
 ## Next
-B1.2-C04 — GATED pending Director acceptance of C03
+Director review/acceptance of the repaired C03 candidate. `B1.2-C04` remains GATED until Director acceptance.
