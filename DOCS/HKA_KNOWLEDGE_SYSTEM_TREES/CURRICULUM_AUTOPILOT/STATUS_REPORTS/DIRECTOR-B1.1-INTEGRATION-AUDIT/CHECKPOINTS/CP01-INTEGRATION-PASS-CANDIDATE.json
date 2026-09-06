@@ -1,0 +1,27 @@
+{
+  "checkpoint_id": "CP01-INTEGRATION-PASS-CANDIDATE",
+  "window_id": "DIRECTOR-B1.1-INTEGRATION-AUDIT",
+  "scope_id": "B1.1-INTEGRATION-AUDIT",
+  "stage": "CURRICULUM",
+  "worker_submission_state": "PASS_CANDIDATE",
+  "result": "DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
+  "result_commit": "5c0c473c0675ea500502f6571074f2321728e40e",
+  "audit": {
+    "stable_id_and_supersession_integrity": "PASS",
+    "semantic_closure": "PASS",
+    "ownership_and_semantic_duplicate": "PASS",
+    "prerequisite_graph": "PASS_ACYCLIC_ZERO_DANGLING",
+    "future_locked_support": 0,
+    "foundational_gap_count": 0,
+    "advanced_substitution": 0,
+    "canonical_scope_alignment": "PASS",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "accepted_history_integrity": "PASS"
+  },
+  "self_repair_required": false,
+  "self_repair_count": 0,
+  "reaudit": "PASS",
+  "successor_unlock_authority": false,
+  "B1_2_status": "LOCKED_PENDING_B1_1_INTEGRATION_AND_SENTINEL",
+  "next": "TREE_ALIGNMENT"
+}
