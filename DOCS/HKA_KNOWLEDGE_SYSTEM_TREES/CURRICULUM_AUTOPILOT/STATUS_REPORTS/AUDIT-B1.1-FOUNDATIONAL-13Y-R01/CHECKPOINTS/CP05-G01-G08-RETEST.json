@@ -1,0 +1,25 @@
+{
+  "checkpoint_id":"CP05-G01-G08-RETEST",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "status":"PASS",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "retest_method":"semantic evidence in accepted claims plus effective foundational overlay/supersession records; file existence alone is insufficient",
+  "gaps":{
+    "F13-G01":{"status":"PASS_COVERED","true_owner":"B1.1-C02","evidence":"counting-cardinality + base-ten place value + comparison/order"},
+    "F13-G02":{"status":"PASS_COVERED","true_owner":"B1.1-C02","evidence":"operation meanings + mental strategies + estimate/reasonableness + whole-number written methods + terminating-decimal written methods","effective_supersession":"C02 N003 foundational written-method objective record_version=2"},
+    "F13-G03":{"status":"PASS_COVERED","true_owner":"B1.1-C02","evidence":"equal partition/unit fractions + quotient/measure/number line + mixed/improper + decimals/percent + fraction-as-operator scaling"},
+    "F13-G04":{"status":"PASS_COVERED","true_owner":"B1.1-C03","evidence":"equality relation + unknowns + arithmetic generalization + repeating/growing patterns + table/graph/formula representations + context-to-equation","effective_supersession":"C03 N001 FLO-003 record_version=2 with direct C012 support"},
+    "F13-G05":{"status":"PASS_COVERED","true_owner":"B1.1-C04","evidence":"compare-before-unit + number-and-unit quantity + everyday conversion/time/scale/money + unit choice + magnitude plausibility"},
+    "F13-G06":{"status":"PASS_COVERED","true_owner":"B1.1-C04","evidence":"2D/3D classification + compose/decompose + nets + top/front/side views + spatial language + horizontal/vertical/parallel/perpendicular relations"},
+    "F13-G07":{"status":"PASS_COVERED","true_owner":"B1.1-C07","evidence":"direct observation/data collection and recording before tally + frequency tables/displays + graph literacy","effective_supersession":"C07 N005 foundational collection objective record_version=3"},
+    "F13-G08":{"status":"PASS_COVERED","true_owner":"B1.1-C07","evidence":"qualitative impossible/possible/certain and more/less/equally likely before finite numerical model + experiment/relative frequency + formal probability","effective_supersession":"C07 N001 qualitative chance objective record_version=3"}
+  },
+  "g01_g08_result":"8/8 PASS",
+  "dangling_support_ids":0,
+  "advanced_substitution_count":0,
+  "worker_repairs_committed":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "next_checkpoint":"CP06-FULL-NEW-GAP-SCAN"
+}
