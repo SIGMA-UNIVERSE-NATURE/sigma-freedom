@@ -1,0 +1,26 @@
+{
+  "checkpoint_id":"CP03-LOWER-SECONDARY",
+  "window_id":"AUDIT-B1.1-FOUNDATIONAL-13Y-R01",
+  "status":"PASS",
+  "stage":"CURRICULUM",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "benchmark_continents":6,
+  "progression_band":"LOWER_SECONDARY",
+  "coverage":{
+    "number_ratio_percent":"COVERED_C02",
+    "equations_functions_representations":"COVERED_C03",
+    "measurement_geometry":"COVERED_C04",
+    "data_descriptive_statistics":"COVERED_C07",
+    "chance_experimental_to_numerical_probability":"COVERED_C07",
+    "problem_solving_modelling":"COVERED_C10"
+  },
+  "progression_continuity":"PASS_PRIMARY_TO_LOWER_SECONDARY",
+  "advanced_substitution_count":0,
+  "dangling_support_ids":0,
+  "future_or_locked_scope_support_count":0,
+  "new_gaps_in_band":0,
+  "worker_repairs_committed":0,
+  "B1_2":"LOCKED",
+  "academic_locked":false,
+  "next_checkpoint":"CP04-UPPER-SECONDARY"
+}
