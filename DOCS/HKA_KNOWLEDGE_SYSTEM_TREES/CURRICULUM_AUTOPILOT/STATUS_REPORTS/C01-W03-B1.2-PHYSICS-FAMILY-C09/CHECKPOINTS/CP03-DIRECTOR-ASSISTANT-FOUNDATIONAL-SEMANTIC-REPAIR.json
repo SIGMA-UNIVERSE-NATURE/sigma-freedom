@@ -1,0 +1,28 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C09",
+  "scope_id":"B1.2-C09",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "worker_candidate_commit_sha":"f3c9ee9caf25d0b57f480d6e3c8ff740f9b349b7",
+  "effective_academic_output_commit_sha":"e9e952dbb02910c640bcea9d72ae3e26aadf6264",
+  "artifact_counts":{"topics":7,"claims":28,"learning_objectives":28,"semantic_closures":28},
+  "director_assistant_repairs":[
+    {"repair_id":"DA-SR01","defect":"General-education solid-state foundation did not explicitly distinguish crystalline and amorphous solids.","repair":"Versioned N001-C001 and N001 D1 objective to establish solid/crystalline/amorphous distinctions before advanced condensed-matter concepts.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"Real-crystal effects and Type-I/Type-II superconductivity were named by objectives more strongly than local Claim support.","repair":"Versioned N002-C001 and N005-C002 so defects/thermal deviations and Type-I/Type-II critical-field behavior are explicitly Claim-supported.","status":"REPAIRED"},
+    {"repair_id":"DA-SR03","defect":"Semiconductor D1 objective did not explicitly secure the foundational metal/semiconductor/insulator distinction already owned by N003-C001.","repair":"Versioned N003 D1 objective to require qualitative band-model classification without adding or renumbering IDs.","status":"REPAIRED"}
+  ],
+  "semantic_closure":"28/28 PASS_AFTER_REPAIR",
+  "canonical_prerequisite_alignment":"PASS — B1.2-C04 + B1.2-C07 + B1.2-C08",
+  "prerequisite_graph":"PASS — acyclic, no dangling IDs",
+  "ownership":"PASS",
+  "foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR",
+  "requires_unlocked_scope_claims":false,
+  "future_locked_support":0,
+  "stage_boundary":"PASS — CURRICULUM only",
+  "director_acceptance_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C09 candidate; B1.2-C10 remains GATED until Director acceptance.",
+  "updated_at":"2026-09-07"
+}
