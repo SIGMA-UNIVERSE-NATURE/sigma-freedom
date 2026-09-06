@@ -1,20 +1,26 @@
 {
-  "schema_version": "2.6",
+  "schema_version": "2.7",
   "window_id": "DIRECTOR-W01",
   "role": "DIRECTOR",
   "stage": "CURRICULUM",
-  "status": "CHECKPOINTED_ACTIVE_INTEGRATION_AUDIT",
-  "execution_branch": "hka-tree/curriculum-master",
+  "status": "CHECKPOINTED_ACTIVE_INTEGRATION_EXECUTION_WINDOW",
+  "control_plane_branch": "hka-tree/curriculum-master",
+  "execution_branch": "hka-tree/director-b1-1-integration-audit",
+  "execution_branch_base_commit": "b7eaae3ed59aa4c9ea8f65580895735252523746",
   "last_checkpoint_commit_sha": "5a3d1def343de23c2a25559cdbfa628efb93aa61",
   "last_checkpoint_id": "CP-20260906-B1_1-INTEGRATION-AUDIT-WINDOW-OPENED",
   "active_scope": "B1.1-INTEGRATION-AUDIT",
   "active_window": "DIRECTOR-B1.1-INTEGRATION-AUDIT",
   "active_window_status": "INTEGRATION_AUDIT_ACTIVE",
-  "activation_base_commit": "a47e5b6b09949084b31bf4c832bac33562e75c7d",
+  "open_order_activation_base_commit": "a47e5b6b09949084b31bf4c832bac33562e75c7d",
   "open_order_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/DIRECTOR-B1.1-ZERO-GAP-INTEGRATION-AUDIT-OPEN.md",
   "open_order_commit": "8297df53dc44284e9880606c484bb941e9c2b28a",
+  "execution_status_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-B1.1-INTEGRATION-AUDIT/STATUS.json",
+  "execution_report_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/DIRECTOR-B1.1-INTEGRATION-AUDIT/REPORT.md",
+  "execution_status_init_commit": "b2f222bfc13c37a012950837e12ead3af4cf7caa",
+  "execution_report_init_commit": "bfeccbc27a79e5b7d74327f485eea2c37df9b3fe",
   "accepted_predecessor_commit_sha": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
-  "authoring_status": "B1.1 C01-C10 DIRECTOR_ACCEPTED; FOUNDATIONAL ZERO-GAP PASS CANDIDATE; INTEGRATION AUDIT ACTIVE",
+  "authoring_status": "B1.1 C01-C10 DIRECTOR_ACCEPTED; FOUNDATIONAL ZERO-GAP PASS CANDIDATE; INTEGRATION EXECUTION WINDOW ACTIVE",
   "foundational_audit": {
     "gate_status": "ACTIVE_REQUIRED",
     "current_status": "PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
@@ -38,6 +44,7 @@
   },
   "integration_audit": {
     "status":"ACTIVE_NOT_YET_PASS",
+    "execution_branch":"hka-tree/director-b1-1-integration-audit",
     "effective_view":"accepted C01-C10 plus every effective foundational overlay and supersession record",
     "required_checks":["stable ID and supersession integrity","semantic claim/objective closure","ownership and duplicate collision","prerequisite graph and dangling IDs","zero-gap preservation","scope-map alignment","stage boundary","C01-C10 acceptance-history integrity"],
     "allowed_pass":"DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
@@ -45,12 +52,14 @@
   },
   "completed_work": [
     "Executed the full post-repair foundational re-audit and persisted FOUNDATIONAL_GAP_COUNT=0.",
-    "Issued and durably committed the B1.1 zero-gap integration audit open order at 8297df53dc44284e9880606c484bb941e9c2b28a.",
-    "Opened DIRECTOR-B1.1-INTEGRATION-AUDIT on hka-tree/curriculum-master and checkpointed activation at 5a3d1def343de23c2a25559cdbfa628efb93aa61.",
+    "Issued the B1.1 zero-gap integration audit open order at 8297df53dc44284e9880606c484bb941e9c2b28a.",
+    "Created the dedicated execution branch hka-tree/director-b1-1-integration-audit from control-plane HEAD b7eaae3ed59aa4c9ea8f65580895735252523746.",
+    "Initialized execution-window STATUS at b2f222bfc13c37a012950837e12ead3af4cf7caa and REPORT at bfeccbc27a79e5b7d74327f485eea2c37df9b3fe.",
+    "Bound curriculum state, continuity snapshot and window registry to the dedicated execution branch.",
     "Kept B1.2 locked and all post-CURRICULUM stages gated."
   ],
   "remaining_work": [
-    "Execute the Director integration audit against accepted C01-C10 plus the effective foundational overlays.",
+    "Execute the Director integration audit on hka-tree/director-b1-1-integration-audit against accepted C01-C10 plus the effective foundational overlays.",
     "Repair only small certain defects at true owners if needed, and revalidate affected foundational coverage if a repair can alter zero-gap semantics.",
     "If integration PASS, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS against the post-integration durable state.",
     "Only after integration PASS plus fresh Sentinel PASS may Director consider B1.1 completion and B1.2 unlock."
@@ -66,12 +75,13 @@
     "ACADEMIC_LOCKED and every later pipeline stage remain gated."
   ],
   "do_not_repeat": [
+    "Do not execute the integration audit on curriculum-master; use the dedicated execution branch.",
     "Do not reopen accepted C01-C10 wholesale; audit the effective accepted-plus-overlay view.",
     "Do not treat integration PASS alone as B1.2 unlock; fresh Sentinel TREE_ALIGNMENT_PASS is still mandatory.",
     "Do not renumber accepted stable IDs.",
     "Do not author Lesson Registry, prompts, images, R2, delivery or website outputs during CURRICULUM."
   ],
-  "next_action": "Execute DIRECTOR-B1.1-INTEGRATION-AUDIT. If and only if it passes, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both pass.",
+  "next_action": "Execute DIRECTOR-B1.1-INTEGRATION-AUDIT on hka-tree/director-b1-1-integration-audit. If and only if it passes, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both pass.",
   "successor_window": null,
   "updated_at": "2026-09-06T13:21:00+07:00"
 }
