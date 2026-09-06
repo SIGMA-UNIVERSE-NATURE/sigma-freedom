@@ -185,7 +185,7 @@ def main():
     for i in range(MAX_CANDIDATES):
         if i not in by_index:
             values = {
-                "configured": "0", "id": "", "token": "", "available": "0", "readiness": 0,
+                "configured": "0", "id": "0", "token": "NONE", "available": "0", "readiness": 0,
                 "attempts": 0, "material_success": 0, "evidence_units": 0,
                 "knowledge_units": 0, "segment_commits": 0, "hard_failures": 0,
                 "repeated_failures": 0, "unresolved_improve": 0, "unresolved_worsen": 0,
