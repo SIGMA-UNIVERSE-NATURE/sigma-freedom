@@ -1,0 +1,69 @@
+{
+  "schema_version":"1.0",
+  "audit_id":"B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "audit_phase":"POST_REPAIR_FINAL_REAUDIT",
+  "status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL",
+  "stage":"CURRICULUM",
+  "durable_order_commit":"610eaa00b8e32d346870b6b183eea9e0997a6d99",
+  "academic_input_anchor":"fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "canonical_tree_commit":"fc799bf1104ab6352710e1801777a971b5179995",
+  "b1_architecture_commit":"265bb584b5d7e36e11091289d58558408880118c",
+  "immutable_b1_scope_map_blob":"bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "benchmark":{
+    "type":"GENERAL_EDUCATION_NOT_UNIVERSITY",
+    "continents":6,
+    "systems":["ENG-NC-MATH","US-CCSS-MATH","AUS-ACARA-MATH-V9","SG-MOE-MATH","BR-BNCC-MATH","ZA-CAPS-MATH"],
+    "progression":"early/primary -> lower-secondary -> upper-secondary/general-education",
+    "university_only_baseline":false
+  },
+  "classification_enum":["COVERED","PARTIALLY_COVERED","MISSING","OUT_OF_B1_1_SCOPE"],
+  "requirement_matrix":[
+    {"requirement_id":"F13-R01","classification":"COVERED","primary_owner":"B1.1-C02","meaning":"counting/cardinality and base-ten place value","effective_evidence":["HKA-B1-1-C02-N001-C008","HKA-B1-1-C02-N001-C009","HKA-B1-1-C02-N001-C010","HKA-B1-1-C02-N001-C011"],"advanced_substitution":false},
+    {"requirement_id":"F13-R02","classification":"COVERED","primary_owner":"B1.1-C02","meaning":"operation meanings, mental/written fluency for whole numbers and terminating decimals, estimation/reasonableness","effective_evidence":["HKA-B1-1-C02-N003-C009","HKA-B1-1-C02-N003-C010","HKA-B1-1-C02-N003-C011","HKA-B1-1-C02-N003-C012","HKA-B1-1-C02-N003-C013","HKA-B1-1-C02-N003-C014","HKA-B1-1-C02-N003-C015","HKA-B1-1-C02-N003-C016","HKA-B1-1-C02-N003-C017"],"advanced_substitution":false},
+    {"requirement_id":"F13-R03","classification":"COVERED","primary_owner":"B1.1-C02","meaning":"fractions/decimals/percent from concrete quantity representations through formal rational structure","effective_evidence":["HKA-B1-1-C02-N001-C012","HKA-B1-1-C02-N001-C013","HKA-B1-1-C02-N001-C014","HKA-B1-1-C02-N001-C004","HKA-B1-1-C02-N002-C009","HKA-B1-1-C02-N002-C010","HKA-B1-1-C02-N005-C004","HKA-B1-1-C02-N005-C009"],"advanced_substitution":false},
+    {"requirement_id":"F13-R04","classification":"COVERED","primary_owner":"B1.1-C03","meaning":"patterns, equality, unknowns, early algebraic generalisation and representation progression","effective_evidence":["HKA-B1-1-C03-N001-C009","HKA-B1-1-C03-N001-C010","HKA-B1-1-C03-N001-C011","HKA-B1-1-C03-N001-C012","HKA-B1-1-C03-N003-C009","HKA-B1-1-C03-N003-C010","HKA-B1-1-C03-N003-C011"],"advanced_substitution":false},
+    {"requirement_id":"F13-R05","classification":"COVERED","primary_owner":"B1.1-C04","supporting_owner":"B1.1-C02","meaning":"everyday measurement/unit reasoning including time, money, mass/capacity, scale reading, temperature context, unit choice and magnitude sense","effective_evidence":["HKA-B1-1-C04-N002-C010","HKA-B1-1-C04-N002-C011","HKA-B1-1-C04-N002-C012","HKA-B1-1-C04-N002-C013","HKA-B1-1-C04-N002-C014","HKA-B1-1-C04-N002-C015","HKA-B1-1-C04-N002-C016","HKA-B1-1-C04-N002-C017","HKA-B1-1-C04-N002-C018"],"advanced_substitution":false,"scope_boundary":"physical instruments/calibration/uncertainty remain B1.2"},
+    {"requirement_id":"F13-R06","classification":"COVERED","primary_owner":"B1.1-C04","meaning":"elementary 2-D/3-D shape and spatial reasoning before formal geometry","effective_evidence":["HKA-B1-1-C04-N001-C008","HKA-B1-1-C04-N001-C009","HKA-B1-1-C04-N001-C010","HKA-B1-1-C04-N001-C011","HKA-B1-1-C04-N001-C012","HKA-B1-1-C04-N001-C013","HKA-B1-1-C04-N001-C014","HKA-B1-1-C04-N005-C011","HKA-B1-1-C04-N005-C012","HKA-B1-1-C04-N006-C010","HKA-B1-1-C04-N006-C011","HKA-B1-1-C04-N006-C012"],"advanced_substitution":false},
+    {"requirement_id":"F13-R07","classification":"COVERED","primary_owner":"B1.1-C07","meaning":"pose/collect/classify/count/display/read/choose representations for data before advanced statistics","effective_evidence":["HKA-B1-1-C07-N005-C015","HKA-B1-1-C07-N005-C016","HKA-B1-1-C07-N005-C017","HKA-B1-1-C07-N005-C018","HKA-B1-1-C07-N005-C019","HKA-B1-1-C07-N005-C020","HKA-B1-1-C07-N005-C021","HKA-B1-1-C07-N005-C022","HKA-B1-1-C07-N005-C023"],"advanced_substitution":false,"scope_boundary":"data acquisition systems/storage/pipelines remain B1.5"},
+    {"requirement_id":"F13-R08","classification":"COVERED","primary_owner":"B1.1-C07","meaning":"qualitative chance -> numerical scale -> finite equally-likely models -> experimental/theoretical probability distinction","effective_evidence":["HKA-B1-1-C07-N001-C019","HKA-B1-1-C07-N001-C015","HKA-B1-1-C07-N001-C016","HKA-B1-1-C07-N001-C017","HKA-B1-1-C07-N003-C017","HKA-B1-1-C07-N003-C018","HKA-B1-1-C07-N003-C019"],"advanced_substitution":false},
+    {"requirement_id":"F13-R09","classification":"COVERED","primary_owner":"B1.1-C10","supporting_owners":["B1.1-C02","B1.1-C03","B1.1-C04"],"meaning":"recurring problem solving/modelling/representation/reasonableness cycle independent of specialist mathematics","effective_evidence":["HKA-B1-1-C10-N001-C011","HKA-B1-1-C10-N001-C012","HKA-B1-1-C02-N003-C015","HKA-B1-1-C03-N001-C012","HKA-B1-1-C03-N003-C011","HKA-B1-1-C04-N002-C018"],"advanced_substitution":false,"foundational_modelling_requires_C05_or_C06":false},
+    {"requirement_id":"F13-R10","classification":"COVERED","primary_owner":"GOVERNANCE_AND_PATHWAY_STRUCTURE","meaning":"advanced/specialist mathematics is layered after a common foundational spine rather than substituted for it","effective_evidence":["all repair foundational objectives mark common_spine_required=true","C05/C06/C08/C09 and advanced C10 layers remain specialist/deeper content","no R01-R09 classification is justified solely by an advanced theorem"],"advanced_substitution":false}
+  ],
+  "progression_audit":{
+    "EARLY_PRIMARY":{"status":"PASS","coverage":["counting/cardinality/place value","operation meanings","equality/unknowns/patterns","basic shapes/spatial language","measurement/time/money","simple data collection/displays","qualitative chance","simple contextual modelling"]},
+    "LATER_PRIMARY_TO_LOWER_SECONDARY":{"status":"PASS","coverage":["multi-digit and terminating-decimal written arithmetic","fractions/decimals/percent","equations and contextual algebra","table/graph/formula representations","unit conversion and magnitude checks","coordinates/transformations/nets/views","line/pie graphs","finite probability and relative frequency","model interpretation/revision"]},
+    "UPPER_SECONDARY_GENERAL_ED":{"status":"PASS","coverage":["accepted C03 algebra/functions","accepted C04 Euclidean/analytic geometry and trigonometric progression","accepted C07 statistics/probability progression","C10 modelling/validation logic with a separate foundational entry path","advanced C05/C06/C08/C09/C10 content remains optional/deeper rather than replacement"]}
+  },
+  "gap_dispositions":[
+    {"gap_id":"F13-G01","status":"CLOSED_COVERED","owner":"B1.1-C02"},
+    {"gap_id":"F13-G02","status":"CLOSED_COVERED","owner":"B1.1-C02","latest_repair_commits":["9cb85b9d31a9a98fb08f0357dd04adb7b1db9a42","92b49257f863d3b7617386a27671d5959b062926"]},
+    {"gap_id":"F13-G03","status":"CLOSED_COVERED","owner":"B1.1-C02","latest_repair_commits":["5596b8c340ee00d8d55e0f9e2d8be37013334288","fa5f4a9d8a1f4944d248cf31145efd0eb131d12d"]},
+    {"gap_id":"F13-G04","status":"CLOSED_COVERED","owner":"B1.1-C03"},
+    {"gap_id":"F13-G05","status":"CLOSED_COVERED","owner":"B1.1-C04","latest_repair_commits":["0ba5839d78b914becd5bb23b2cd77166d19f71de","dd894adff77c3d1b87e1191e836589b8e2c75917"]},
+    {"gap_id":"F13-G06","status":"CLOSED_COVERED","owner":"B1.1-C04","latest_repair_commits":["0ba5839d78b914becd5bb23b2cd77166d19f71de","dd894adff77c3d1b87e1191e836589b8e2c75917"]},
+    {"gap_id":"F13-G07","status":"CLOSED_COVERED","owner":"B1.1-C07","latest_repair_commits":["e320e12dde9d5dfba00e844486f49f641a212fa1","7dce40e282d241afd3fa3194c3355e0265332cf5"]},
+    {"gap_id":"F13-G08","status":"CLOSED_COVERED","owner":"B1.1-C07","latest_repair_commits":["471074cdc29017f12a4c0134f2356bc063590e53","f61e40098f0e49e1a686a575dbce035d147a6596"]},
+    {"gap_id":"F13-G09","status":"CLOSED_COVERED","owner":"B1.1-C10","latest_repair_commits":["a3dd6ccf62637ca024314a2a0b61560927b56251","9f34814a35bed9c706464247896791e3cb94edd8"]}
+  ],
+  "final_gates":{
+    "all_high_confidence_foundational_requirements_covered":true,
+    "remaining_partially_covered":0,
+    "remaining_missing":0,
+    "new_gap_scan_after_repairs":"PASS_NONE_FOUND",
+    "true_owner_scope_audit":"PASS",
+    "semantic_duplicate_audit":"PASS",
+    "stable_id_policy":"PASS_APPEND_ONLY_OR_EXPLICIT_SUPERSESSION",
+    "foundational_prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS",
+    "future_or_locked_scope_support":0,
+    "advanced_content_substituting_for_foundation":0,
+    "source_resolution":"PASS_REUSED_ACCEPTED_OR_VERSIONED_FOUNDATIONAL_SOURCES",
+    "stage_boundary":"PASS_CURRICULUM_ONLY"
+  },
+  "foundational_gap_count":0,
+  "pass_candidate":true,
+  "B1_1_complete":false,
+  "B1_2_unlock":false,
+  "blocking_before_successor":["DIRECTOR_INTEGRATION_AUDIT_PASS","FRESH_BACKUP_SENTINEL_TREE_ALIGNMENT_PASS"],
+  "non_blocking_technical_anomalies":["__invalid_probe__ branch exists outside curriculum workflow; ignored per user direction."],
+  "next_action":"Run Director B1.1 integration audit on accepted C01-C10 plus effective foundational overlays, then obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both pass."
+}
