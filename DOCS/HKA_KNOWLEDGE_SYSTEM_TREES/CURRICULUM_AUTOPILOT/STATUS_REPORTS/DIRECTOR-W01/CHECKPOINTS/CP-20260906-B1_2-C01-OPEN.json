@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_2-C01-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"B1.1_CLOSED_B1.2_C01_OPENED",
+  "b1_1_status":"PASS",
+  "integration_accepted_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "sentinel_pass_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd",
+  "foundational_gap_count":0,
+  "locked_scope_support":0,
+  "active_scope":"B1.2-C01",
+  "active_window":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "execution_branch":"hka-tree/c01-w03-physics-c01",
+  "control_plane_open_order_commit":"a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "worker_bootstrap_head":"8f2e30aaeb380cc793bf6ea606a8e7f1c99968b7",
+  "next_action":"Receive only final Worker receipt for B1.2-C01, make quick ACCEPT/BLOCK decision, then open B1.2-C02 if accepted.",
+  "updated_at":"2026-09-06T19:38:00+07:00"
+}
