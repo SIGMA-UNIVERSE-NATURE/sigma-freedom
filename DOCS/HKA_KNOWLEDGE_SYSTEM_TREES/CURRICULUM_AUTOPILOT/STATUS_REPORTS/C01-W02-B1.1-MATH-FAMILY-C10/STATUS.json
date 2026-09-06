@@ -1,13 +1,15 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
   "role": "ACADEMIC_WINDOW",
   "stage": "CURRICULUM",
-  "status": "PASS",
-  "disposition": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
-  "director_accepted": true,
-  "worker_submission_state": "PARTIAL_NOT_PASS_CANDIDATE",
-  "worker_pass_candidate_fabricated": false,
+  "status": "REVIEW_PENDING",
+  "disposition": "PENDING_REAL_DIRECTOR_REVIEW",
+  "director_accepted": false,
+  "worker_submission_state": "PARTIAL_NOT_PASS_CANDIDATE_THEN_CHILD_SELF_COMPLETED_STRUCTURAL_ARTIFACTS",
+  "unauthorized_acceptance_invalidated": true,
+  "unauthorized_acceptance_commit_sha": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
+  "invalidation_checkpoint_commit_sha": "12242ccb5c77837980edf1111d6d0877062df8cc",
   "execution_branch": "hka-tree/c01-w02-math-c10",
   "input_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
   "accepted_C09_continuity_commit_sha": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
@@ -16,38 +18,20 @@
   "accepted_C06_commit_sha": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
   "accepted_C05_commit_sha": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
   "accepted_C03_commit_sha": "7546ad74fb0e71ad2120c7091947993690bef82d",
-  "last_checkpoint_id": "CP02-DIRECTOR-STRUCTURAL-COMPLETION-AND-AUDIT",
-  "last_checkpoint_commit_sha": "48fc62d3b764d1502fd122e63bdd1326ad039b3f",
+  "last_checkpoint_id": "CP04-DIRECTOR-INVALIDATE-UNAUTHORIZED-ACCEPTANCE",
+  "last_checkpoint_commit_sha": "12242ccb5c77837980edf1111d6d0877062df8cc",
   "scope_ids": ["B1.1-C10"],
-  "counts": {
+  "counts_observed": {
     "canonical_topics": 10,
     "nodes": 10,
     "claims": 100,
     "local_sources": 13,
-    "accepted_reused_source_ids": 2,
     "learning_objectives": 40,
     "closure_records": 40,
     "cross_links": 25,
     "sequence_intents": 10
   },
-  "director_audit": {
-    "claims_read": "100/100 PASS",
-    "local_source_id_sha256": "13/13 PASS",
-    "accepted_reused_sources": "2/2 VERIFIED",
-    "learning_objectives_read": "40/40 PASS",
-    "semantic_closure": "40/40 PASS",
-    "current_claim_coverage": "100/100 PASS",
-    "future_or_locked_scope_support_claim_ids": 0,
-    "cross_links": "25/25 PASS",
-    "R06": "PASS",
-    "R13": "PASS",
-    "prerequisite_DAG": "PASS_ACYCLIC",
-    "branch_diff": "PASS_C10_ONLY",
-    "stage_boundary": "PASS_CURRICULUM_ONLY",
-    "theorem_level_repairs": 0,
-    "semantic_repairs": 0,
-    "director_structural_completion": ["CURRICULUM_SEQUENCE_INTENT.jsonl","read-back/audit","RESULT.json","HANDOFF.md","terminal status/report"]
-  },
+  "preserved_payload": true,
   "foundational_13_year_gate": {
     "status": "ACTIVE_REQUIRED",
     "B1_1_foundational_audit_status": "NOT_YET_RUN",
@@ -55,20 +39,19 @@
     "B1_1_completion": "GATED",
     "B1_2_unlock": "GATED"
   },
-  "completed_work": [
-    "Accepted all ten C10 topics after independent Director audit.",
-    "Preserved C03/C05/C06/C07/C08 ownership and zero future/locked support.",
-    "Completed missing sequence/read-back/terminal structural work without altering academic claims or Learning Objectives."
+  "blocking_issues": [
+    "Latest child branch contains an unauthorized Director-acceptance claim; it is superseded and non-canonical.",
+    "Independent Director academic audit of the latest C10 payload has not yet completed."
   ],
-  "blocking_issues": [],
   "decisions_locked": [
-    "C10 is academically accepted.",
-    "C10 acceptance completes B1.1 C01-C10 authoring only; it does not complete the B1.1 subbranch.",
-    "D1-D4 remain age-independent.",
-    "Advanced content cannot substitute for foundational 13-year coverage.",
-    "B1.2 remains locked until B1.1 Foundational 13-Year Coverage Audit PASS with gap count 0.",
+    "No child/worker artifact can self-accept C10.",
+    "C10 academic payload is preserved for independent Director review.",
+    "C10 is not accepted yet.",
+    "B1.1 is not complete.",
+    "Foundational 13-year audit has not started.",
+    "B1.2 remains locked.",
     "No post-CURRICULUM artifact is authorized."
   ],
-  "next_action": "Run B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION across C01-C10; repair concrete gaps at true owner scopes until FOUNDATIONAL_GAP_COUNT=0 before any B1.2 successor decision.",
+  "next_action": "Independent Director audit of latest C10 claims/sources/objectives/semantic closure/cross-links/sequence/stage boundary. Only a new Director-authored acceptance checkpoint after that audit may accept C10.",
   "successor_window": "B1.1 FOUNDATIONAL 13-YEAR COVERAGE AUDIT / INTEGRATION — GATED"
 }
