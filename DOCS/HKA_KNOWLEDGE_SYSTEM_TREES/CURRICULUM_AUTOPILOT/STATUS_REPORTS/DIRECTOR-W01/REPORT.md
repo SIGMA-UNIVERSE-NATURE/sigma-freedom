@@ -2,18 +2,20 @@
 
 Stage: `CURRICULUM`.
 
-`B1.2-C01 — Đo lường vật lý` is Director-accepted at `62a26590dc9055323316456f1620856b885462d7`: 6/6 topics, 30 claims, 24 objectives, 24/24 semantic closure PASS, self-audit PASS, 2 self-repairs, foundational coverage PASS, FUTURE_LOCKED_SUPPORT=0, RED_FLAG=NONE.
+B1.1 remains closed PASS. B1.2-C01 and B1.2-C02 are Director-accepted.
 
-Active scope: `B1.2-C02 — Cơ học cổ điển`.
+Latest accepted child: `B1.2-C02 — Cơ học cổ điển` at `2c112f281ca8915ef2e8800043db952c550531bc` with 8/8 topics, 64 claims, 32/32 semantic closure, self-audit PASS, 3 self-repairs, foundational coverage PASS, FUTURE_LOCKED_SUPPORT=0 and RED_FLAG=NONE.
 
-Active window: `C01-W03-B1.2-PHYSICS-FAMILY-C02`.
+Active scope: `B1.2-C03 — Cơ học môi trường liên tục`.
 
-Execution branch: `hka-tree/c01-w03-physics-c02`.
+Active window: `C01-W03-B1.2-PHYSICS-FAMILY-C03`.
 
-Canonical scope: 8 topics — Chuyển động; Lực; Công và năng lượng; Động lượng; Mômen động lượng; Dao động; Cơ học giải tích; Cơ học thiên thể.
+Execution branch: `hka-tree/c01-w03-physics-c03`.
 
-Prerequisites: accepted `B1.2-C01`, `B1.1-C03`, `B1.1-C04`.
+Canonical scope: 7 topics — Vật rắn; Đàn hồi; Chất lỏng; Chất khí; Thủy động lực học; Khí động học; Dòng chảy rối.
 
-Worker bootstrap HEAD: `bad8163717d3ba8bd377c95e1f420b27c3a8a25f`. Worker runs author -> self-audit -> self-repair -> re-audit -> durable write -> final receipt only.
+Prerequisites: accepted `B1.2-C01` and `B1.2-C02`.
 
-B1.2-C03..C12 remain locked. Director next action: receive the final C02 receipt, make a quick ACCEPT/BLOCK decision, then open C03 only if accepted.
+Worker owns authoring, self-audit, self-repair, re-audit and durable GitHub writes inside C03. It returns only a final PASS candidate or a true external BLOCK.
+
+B1.2-C04..C12 remain locked. Director next action: receive final C03 receipt, make a quick ACCEPT/BLOCK decision, then open C04 only if accepted. Do not re-audit accepted C01/C02 without a real red flag.
