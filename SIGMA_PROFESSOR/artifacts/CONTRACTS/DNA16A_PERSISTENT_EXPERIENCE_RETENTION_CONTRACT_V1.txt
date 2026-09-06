@@ -1,0 +1,62 @@
+SIGMA DNA16A — PERSISTENT EXPERIENCE RETENTION CONTRACT V1
+================================================================
+
+Canon learning unit:
+observation + hypothesis + action + outcome + verification
+
+Active native representation uses hashes/references rather than host-authored
+semantic prose:
+
+EXPERIENCE||
+EXPERIENCE_ID||
+OBSERVATION_SHA256||
+HYPOTHESIS_SHA256||
+ACTION_SHA256||
+OUTCOME_SHA256||
+VERIFICATION_EVENT_SHA256||
+VERIFICATION_STATUS||
+EVIDENCE_CLASS||
+SOURCE_CAPABILITY_ID||
+SOURCE_CAPABILITY_SHA256||
+PROVENANCE_ID||
+LEARNER_ID||
+VERIFIER_ID||
+VERIFIER_INDEPENDENT||
+COMMIT||
+YES
+
+Ledger header:
+STATE||SIGMA_DNA16A_PERSISTENT_EXPERIENCE_LEDGER_V1||COMMIT||YES
+
+Retention gates:
+- every five-part learning-unit reference must be present and hash-valid;
+- verification status must be VERIFIED;
+- verifier must be marked independent;
+- learner and verifier identities must differ;
+- EVIDENCE_CLASS=UNVERIFIED_TOOL_OUTPUT is never retained;
+- maximum 64 retained experience records;
+- exact replay is idempotent;
+- same EXPERIENCE_ID with different bytes is refused;
+- malformed persistent state is refused without mutation;
+- dirty prestate containing an unverified retained record is refused;
+- dirty prestate containing duplicate EXPERIENCE_ID records is refused.
+
+DNA-12 exact native dependency:
+SOURCE_SHA256=336152fca9e1112e9646249b5109c54835d52d9d0b5948d6bbf6703bf328920c
+ADMITTED_BYTECODE_SHA256=7dc7cceab5442938a0846c811e98e8c367ab6beedfdefc7c281355f305f7fe70
+USER_SUPPLIED_BUNDLE_SHA256=a010a4671c9f110f1780f43c1b8674243dddadbcd3762f734463e306beaa873a
+
+DNA-15 admitted machine contract:
+SOURCE_SHA256=e0ac36559b85a189152709238e176a99e48f325f3f1308aba8b360a768e74d8f
+BYTECODE_SHA256=f81f4542d2813f69ef308bf54dff3cc0528227ea4d5100d08683d13b1b0b2028
+K_SCOPE=INTERVAL_DERIVED_K
+
+Important ownership:
+DNA16A does not generate the hypothesis.
+DNA16A does not choose the action.
+DNA16A does not decide semantic truth.
+DNA16A does not execute knowledge promotion.
+Those inputs must ultimately come from admitted native SIGMA capabilities.
+
+DNA16A is a persistent retention gate and learning-memory primitive, not the
+complete autonomous-learning loop.
