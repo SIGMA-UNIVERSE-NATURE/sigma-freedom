@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-FINAL-REGRESSION-G02-DECIMAL-METHOD-RESIDUAL",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "gap_id":"F13-G02",
+  "benchmark_requirement":"F13-R02",
+  "classification":"PARTIALLY_COVERED",
+  "finding":"Existing C02 foundational claims C012-C014 justify base-ten written addition/subtraction, multiplication and long division for whole-number/integer representations. C02-N002-C010 allows decimal place alignment, but there is no explicit foundational claim explaining written arithmetic for terminating decimals. Formal field operations on Q/R cannot substitute for the place-value written-method progression required by G02.",
+  "residual_missing_meaning":"place-value-based written methods for multi-digit terminating-decimal addition/subtraction/multiplication/division",
+  "expected_developmental_role":"Extend whole-number place-value algorithms coherently across the decimal point so learners understand decimal written methods as scaled base-ten arithmetic rather than decimal-point placement rules by rote.",
+  "external_curriculum_evidence":["ENG-NC-MATH upper-primary decimal calculations","US-CCSS-MATH Grades 5-6 decimal operations","AUS-ACARA-MATH-V9 Number decimal calculation progression","SG-MOE-MATH Primary decimal operations"],
+  "true_owner_scope":"B1.1-C02",
+  "true_owner_node":"HKA-B1-1-C02-N003",
+  "proposed_minimal_repair":"Append two atomic claims: finite-decimal addition/subtraction via common place-value scaling, and finite-decimal multiplication/division via integer scaling with tracked powers of ten. Supersede foundational objective N003-FLO-003 to explicitly include terminating decimals.",
+  "duplicate_risk_check":"LOW: C02 owns mathematical arithmetic methods; B1.5 retains implementation/runtime, and C10 retains numerical-analysis error/stability rather than school arithmetic algorithms.",
+  "current_foundational_gap_count":1,
+  "pass_candidate":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Apply minimal C02 decimal-method repair, re-test G02, then continue semantic-atom regression for G03-G09."
+}
