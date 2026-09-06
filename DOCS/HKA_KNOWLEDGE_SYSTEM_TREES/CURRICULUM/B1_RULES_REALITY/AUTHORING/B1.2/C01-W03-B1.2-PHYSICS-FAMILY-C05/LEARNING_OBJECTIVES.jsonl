@@ -1,0 +1,32 @@
+{"learning_objective_id":"HKA-B1-2-C05-N001-LO-D1-001","node_id":"HKA-B1-2-C05-N001","depth":"D1","objective":"Nhận biết biên độ, chu kỳ, tần số, bước sóng và sự truyền sóng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N001-LO-D2-001","node_id":"HKA-B1-2-C05-N001","depth":"D2","objective":"Giải thích dao động điều hòa, chồng chất và quan hệ giữa tần số, bước sóng, vận tốc pha.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N001-LO-D3-001","node_id":"HKA-B1-2-C05-N001","depth":"D3","objective":"Áp dụng f=1/T, ω=2πf và v=fλ trong bài toán phù hợp.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N001-LO-D4-001","node_id":"HKA-B1-2-C05-N001","depth":"D4","objective":"Đánh giá giới hạn của mô hình dao động điều hòa và chồng chất tuyến tính.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N002-LO-D1-001","node_id":"HKA-B1-2-C05-N002","depth":"D1","objective":"Nhận biết giao thoa tăng cường, triệt tiêu, nút và bụng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N002-LO-D2-001","node_id":"HKA-B1-2-C05-N002","depth":"D2","objective":"Giải thích vai trò của độ lệch pha và tính kết hợp trong mẫu giao thoa.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N002-LO-D3-001","node_id":"HKA-B1-2-C05-N002","depth":"D3","objective":"Dùng Δφ=2πΔL/λ để dự đoán cực đại, cực tiểu và sóng dừng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N002-LO-D4-001","node_id":"HKA-B1-2-C05-N002","depth":"D4","objective":"Phê bình mô hình giao thoa khi coherence, suy hao hoặc biên độ nguồn không lý tưởng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N003-LO-D1-001","node_id":"HKA-B1-2-C05-N003","depth":"D1","objective":"Nhận biết nhiễu xạ và điều kiện kích thước khiến nó rõ rệt.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N003-LO-D2-001","node_id":"HKA-B1-2-C05-N003","depth":"D2","objective":"Giải thích Huygens–Fresnel và giới hạn phân giải do khẩu độ.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N003-LO-D3-001","node_id":"HKA-B1-2-C05-N003","depth":"D3","objective":"Áp dụng a sinθ=mλ và quan hệ khẩu độ–phân giải trong xấp xỉ thích hợp.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N003-LO-D4-001","node_id":"HKA-B1-2-C05-N003","depth":"D4","objective":"Đánh giá khi mô hình khe đơn/trường xa không đủ cho hệ thực.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N004-LO-D1-001","node_id":"HKA-B1-2-C05-N004","depth":"D1","objective":"Nhận biết sóng âm, cao độ, cường độ, cộng hưởng và Doppler.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N004-LO-D2-001","node_id":"HKA-B1-2-C05-N004","depth":"D2","objective":"Giải thích quan hệ giữa tần số, cao độ, mức âm và cộng hưởng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N004-LO-D3-001","node_id":"HKA-B1-2-C05-N004","depth":"D3","objective":"Tính mức decibel và phân tích Doppler trong mô hình âm học đơn giản.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N004-LO-D4-001","node_id":"HKA-B1-2-C05-N004","depth":"D4","objective":"Phân biệt đại lượng âm vật lý với tri giác và đánh giá giới hạn mô hình âm học lý tưởng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N005-LO-D1-001","node_id":"HKA-B1-2-C05-N005","depth":"D1","objective":"Nhận biết ánh sáng, phản xạ, khúc xạ và phổ điện từ.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N005-LO-D2-001","node_id":"HKA-B1-2-C05-N005","depth":"D2","objective":"Giải thích tốc độ ánh sáng, phản xạ, khúc xạ và tán sắc.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N005-LO-D3-001","node_id":"HKA-B1-2-C05-N005","depth":"D3","objective":"Áp dụng định luật phản xạ và Snell trong các bài toán cơ bản.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N005-LO-D4-001","node_id":"HKA-B1-2-C05-N005","depth":"D4","objective":"Đánh giá giới hạn của mô hình chiết suất đơn giản trong môi trường tán sắc.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N006-LO-D1-001","node_id":"HKA-B1-2-C05-N006","depth":"D1","objective":"Nhận biết tia sáng, gương, thấu kính, tiêu điểm và ảnh.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N006-LO-D2-001","node_id":"HKA-B1-2-C05-N006","depth":"D2","objective":"Giải thích tạo ảnh thật/ảo và vai trò của tiêu cự.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N006-LO-D3-001","node_id":"HKA-B1-2-C05-N006","depth":"D3","objective":"Dùng phương trình gương/thấu kính mỏng và độ phóng đại với quy ước dấu nhất quán.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N006-LO-D4-001","node_id":"HKA-B1-2-C05-N006","depth":"D4","objective":"Đánh giá khi xấp xỉ tia, thấu kính mỏng hoặc paraxial không còn đủ.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N007-LO-D1-001","node_id":"HKA-B1-2-C05-N007","depth":"D1","objective":"Nhận biết giao thoa, nhiễu xạ và phân cực của ánh sáng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N007-LO-D2-001","node_id":"HKA-B1-2-C05-N007","depth":"D2","objective":"Giải thích vì sao quang sóng bổ sung cho quang hình.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N007-LO-D3-001","node_id":"HKA-B1-2-C05-N007","depth":"D3","objective":"Áp dụng mô hình hai khe, định luật Malus và tiêu chuẩn Rayleigh.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N007-LO-D4-001","node_id":"HKA-B1-2-C05-N007","depth":"D4","objective":"Đánh giá giới hạn coherence, nhiễu xạ và phân giải trong hệ quang học.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N008-LO-D1-001","node_id":"HKA-B1-2-C05-N008","depth":"D1","objective":"Nhận biết phát xạ kích thích, nghịch đảo mật độ, buồng cộng hưởng và quang tử học.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N008-LO-D2-001","node_id":"HKA-B1-2-C05-N008","depth":"D2","objective":"Giải thích nguyên lý khuếch đại và ngưỡng laser ở mức hệ thống.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N008-LO-D3-001","node_id":"HKA-B1-2-C05-N008","depth":"D3","objective":"Phân tích định tính gain, loss, mode và confinement trong laser/ống dẫn sóng.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C05-N008-LO-D4-001","node_id":"HKA-B1-2-C05-N008","depth":"D4","objective":"Đánh giá giới hạn của mô tả laser lý tưởng và ranh giới với các scope vật lý tương lai.","record_version":1}
