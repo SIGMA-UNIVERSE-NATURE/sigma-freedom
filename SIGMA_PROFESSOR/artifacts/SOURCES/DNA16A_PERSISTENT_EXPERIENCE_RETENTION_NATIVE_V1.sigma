@@ -1,0 +1,445 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA16A.PERSISTENT.EXPERIENCE.RETENTION][VERSION=1.0]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(v) {
+    IF (v == "") { RETURN 0; }
+    IF (v == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF token_safe(v) {
+    IF (present(v) == 0) { RETURN 0; }
+
+    ⚡ A:
+        H("str_replace", v, "||", "");
+    IF (A != v) { RETURN 0; }
+
+    ⚡ B:
+        H("str_replace", v, "\n", "");
+    IF (B != v) { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF flag_valid(v) {
+    IF (v == "0") { RETURN 1; }
+    IF (v == "1") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lower_hex64(v) {
+    IF (H("str_len", v, NULL, NULL) != 64) { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+    ⚡ R: H("str_replace", R, "a", "");
+    ⚡ R: H("str_replace", R, "b", "");
+    ⚡ R: H("str_replace", R, "c", "");
+    ⚡ R: H("str_replace", R, "d", "");
+    ⚡ R: H("str_replace", R, "e", "");
+    ⚡ R: H("str_replace", R, "f", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF verification_status_valid(v) {
+    IF (v == "VERIFIED") { RETURN 1; }
+    IF (v == "FAILED") { RETURN 1; }
+    IF (v == "UNVERIFIED") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ N:
+        H("list_len", P, NULL, NULL);
+
+    IF (N != 17) { RETURN 0; }
+    IF (H("list_get", P, 0, NULL) != "EXPERIENCE") { RETURN 0; }
+
+    IF (token_safe(H("list_get", P, 1, NULL)) == 0) { RETURN 0; }
+
+    ⚡ I: 2;
+    WHILE (I <= 6) {
+        IF (lower_hex64(H("list_get", P, I, NULL)) == 0) { RETURN 0; }
+        ⚡ I: I + 1;
+    }
+
+    IF (H("list_get", P, 7, NULL) != "VERIFIED") { RETURN 0; }
+    IF (token_safe(H("list_get", P, 8, NULL)) == 0) { RETURN 0; }
+    IF (H("list_get", P, 8, NULL) == "UNVERIFIED_TOOL_OUTPUT") { RETURN 0; }
+    IF (token_safe(H("list_get", P, 9, NULL)) == 0) { RETURN 0; }
+    IF (lower_hex64(H("list_get", P, 10, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 11, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 12, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 13, NULL)) == 0) { RETURN 0; }
+    IF (H("list_get", P, 12, NULL) == H("list_get", P, 13, NULL)) { RETURN 0; }
+    IF (H("list_get", P, 14, NULL) != "1") { RETURN 0; }
+    IF (H("list_get", P, 15, NULL) != "COMMIT") { RETURN 0; }
+    IF (H("list_get", P, 16, NULL) != "YES") { RETURN 0; }
+
+    RETURN 1;
+}
+
+⟡(Σ.DNA16A_PERSISTENT_EXPERIENCE_RETENTION) {
+    ⚡ BASE:
+        ".sigma_exec/DNA16A_NATIVE_ADMISSION_V1";
+
+    ⚡ EXPERIENCE_ID:
+        H("read_text", BASE + "/input/experience_id.txt", NULL, NULL);
+    ⚡ OBSERVATION_SHA:
+        H("read_text", BASE + "/input/observation_sha256.txt", NULL, NULL);
+    ⚡ HYPOTHESIS_SHA:
+        H("read_text", BASE + "/input/hypothesis_sha256.txt", NULL, NULL);
+    ⚡ ACTION_SHA:
+        H("read_text", BASE + "/input/action_sha256.txt", NULL, NULL);
+    ⚡ OUTCOME_SHA:
+        H("read_text", BASE + "/input/outcome_sha256.txt", NULL, NULL);
+    ⚡ VERIFICATION_SHA:
+        H("read_text", BASE + "/input/verification_sha256.txt", NULL, NULL);
+    ⚡ VERIFICATION_STATUS:
+        H("read_text", BASE + "/input/verification_status.txt", NULL, NULL);
+    ⚡ EVIDENCE_CLASS:
+        H("read_text", BASE + "/input/evidence_class.txt", NULL, NULL);
+    ⚡ SOURCE_CAPABILITY_ID:
+        H("read_text", BASE + "/input/source_capability_id.txt", NULL, NULL);
+    ⚡ SOURCE_CAPABILITY_SHA:
+        H("read_text", BASE + "/input/source_capability_sha256.txt", NULL, NULL);
+    ⚡ PROVENANCE_ID:
+        H("read_text", BASE + "/input/provenance_id.txt", NULL, NULL);
+    ⚡ LEARNER_ID:
+        H("read_text", BASE + "/input/learner_id.txt", NULL, NULL);
+    ⚡ VERIFIER_ID:
+        H("read_text", BASE + "/input/verifier_id.txt", NULL, NULL);
+    ⚡ VERIFIER_INDEPENDENT:
+        H("read_text", BASE + "/input/verifier_independent.txt", NULL, NULL);
+
+    ⚡ MEMORY_PATH:
+        BASE + "/state/dna16a.experience.memory";
+    ⚡ EVENT_PATH:
+        BASE + "/state/dna16a_event.txt";
+    ⚡ MEMORY_HEADER:
+        "STATE||SIGMA_DNA16A_PERSISTENT_EXPERIENCE_LEDGER_V1||COMMIT||YES";
+
+    ⚡ MEMORY_TEXT:
+        H("read_text", MEMORY_PATH, NULL, NULL);
+
+    ⚡ INPUT_VALID:
+        token_safe(EXPERIENCE_ID)
+        * lower_hex64(OBSERVATION_SHA)
+        * lower_hex64(HYPOTHESIS_SHA)
+        * lower_hex64(ACTION_SHA)
+        * lower_hex64(OUTCOME_SHA)
+        * lower_hex64(VERIFICATION_SHA)
+        * verification_status_valid(VERIFICATION_STATUS)
+        * token_safe(EVIDENCE_CLASS)
+        * token_safe(SOURCE_CAPABILITY_ID)
+        * lower_hex64(SOURCE_CAPABILITY_SHA)
+        * token_safe(PROVENANCE_ID)
+        * token_safe(LEARNER_ID)
+        * token_safe(VERIFIER_ID)
+        * flag_valid(VERIFIER_INDEPENDENT);
+
+    ⚡ PROPOSED_RECORD:
+        "EXPERIENCE||"
+        + EXPERIENCE_ID + "||"
+        + OBSERVATION_SHA + "||"
+        + HYPOTHESIS_SHA + "||"
+        + ACTION_SHA + "||"
+        + OUTCOME_SHA + "||"
+        + VERIFICATION_SHA + "||"
+        + VERIFICATION_STATUS + "||"
+        + EVIDENCE_CLASS + "||"
+        + SOURCE_CAPABILITY_ID + "||"
+        + SOURCE_CAPABILITY_SHA + "||"
+        + PROVENANCE_ID + "||"
+        + LEARNER_ID + "||"
+        + VERIFIER_ID + "||"
+        + VERIFIER_INDEPENDENT
+        + "||COMMIT||YES";
+
+    ⚡ MEMORY_VALID: 1;
+    ⚡ RECORD_COUNT: 0;
+    ⚡ MEMORY_DUPLICATE_EXPERIENCE_ID: 0;
+    ⚡ SEEN_EXPERIENCE_IDS: "";
+
+    IF (MEMORY_TEXT != "") {
+        ⚡ ML:
+            H("str_split", MEMORY_TEXT, "\n", NULL);
+        ⚡ MN:
+            H("list_len", ML, NULL, NULL);
+
+        IF (MN > 66) {
+            ⚡ MEMORY_VALID: 0;
+        }
+
+        IF (MEMORY_VALID == 1) {
+            IF (H("list_get", ML, 0, NULL) != MEMORY_HEADER) {
+                ⚡ MEMORY_VALID: 0;
+            }
+        }
+
+        ⚡ M: 1;
+        WHILE (M < MN) {
+            ⚡ REC:
+                H("list_get", ML, M, NULL);
+
+            IF (REC != "") {
+                IF (record_valid(REC) == 0) {
+                    ⚡ MEMORY_VALID: 0;
+                }
+
+                IF (record_valid(REC) == 1) {
+                    ⚡ RECORD_COUNT: RECORD_COUNT + 1;
+
+                    ⚡ RP:
+                        H("str_split", REC, "||", NULL);
+                    ⚡ RID:
+                        H("list_get", RP, 1, NULL);
+                    ⚡ RID_MARKER:
+                        "||" + RID + "||";
+                    ⚡ SEEN_WITHOUT_RID:
+                        H("str_replace", SEEN_EXPERIENCE_IDS, RID_MARKER, "");
+
+                    IF (SEEN_WITHOUT_RID != SEEN_EXPERIENCE_IDS) {
+                        ⚡ MEMORY_DUPLICATE_EXPERIENCE_ID: 1;
+                        ⚡ MEMORY_VALID: 0;
+                    }
+
+                    IF (SEEN_WITHOUT_RID == SEEN_EXPERIENCE_IDS) {
+                        ⚡ SEEN_EXPERIENCE_IDS:
+                            SEEN_EXPERIENCE_IDS + RID_MARKER;
+                    }
+                }
+            }
+
+            ⚡ M: M + 1;
+        }
+
+        IF (RECORD_COUNT > 64) {
+            ⚡ MEMORY_VALID: 0;
+        }
+    }
+
+    ⚡ EXACT_ALREADY: 0;
+    ⚡ ID_CONFLICT: 0;
+
+    IF (INPUT_VALID == 1) {
+        IF (MEMORY_VALID == 1) {
+            IF (MEMORY_TEXT != "") {
+                ⚡ ML2:
+                    H("str_split", MEMORY_TEXT, "\n", NULL);
+                ⚡ MN2:
+                    H("list_len", ML2, NULL, NULL);
+                ⚡ K: 1;
+
+                WHILE (K < MN2) {
+                    ⚡ EXISTING:
+                        H("list_get", ML2, K, NULL);
+
+                    IF (EXISTING != "") {
+                        IF (record_valid(EXISTING) == 1) {
+                            ⚡ EP:
+                                H("str_split", EXISTING, "||", NULL);
+
+                            IF (H("list_get", EP, 1, NULL) == EXPERIENCE_ID) {
+                                IF (EXISTING == PROPOSED_RECORD) {
+                                    ⚡ EXACT_ALREADY: 1;
+                                }
+
+                                IF (EXISTING != PROPOSED_RECORD) {
+                                    ⚡ ID_CONFLICT: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    ⚡ K: K + 1;
+                }
+            }
+        }
+    }
+
+    ⚡ LEARNER_VERIFIER_SEPARATED: 0;
+    IF (LEARNER_ID != VERIFIER_ID) {
+        ⚡ LEARNER_VERIFIER_SEPARATED: 1;
+    }
+
+    ⚡ STATUS: "REFUSE_INPUT";
+
+    IF (INPUT_VALID == 1) {
+        ⚡ STATUS: "REFUSE_MEMORY";
+
+        IF (MEMORY_VALID == 1) {
+            ⚡ STATUS: "HOLD_UNVERIFIED_TOOL_OUTPUT";
+
+            IF (EVIDENCE_CLASS != "UNVERIFIED_TOOL_OUTPUT") {
+                ⚡ STATUS: "HOLD_VERIFICATION_NOT_PASSED";
+
+                IF (VERIFICATION_STATUS == "VERIFIED") {
+                    ⚡ STATUS: "HOLD_VERIFIER_NOT_INDEPENDENT";
+
+                    IF (VERIFIER_INDEPENDENT == "1") {
+                        IF (LEARNER_VERIFIER_SEPARATED == 1) {
+                            ⚡ STATUS: "HOLD_CAPACITY";
+
+                            IF (RECORD_COUNT < 64) {
+                                ⚡ STATUS: "EXPERIENCE_READY";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    IF (ID_CONFLICT == 1) {
+        ⚡ STATUS: "REFUSE_EXPERIENCE_ID_CONFLICT";
+    }
+
+    IF (ID_CONFLICT == 0) {
+        IF (EXACT_ALREADY == 1) {
+            ⚡ STATUS: "EXPERIENCE_ALREADY_RETAINED";
+        }
+    }
+
+    ⚡ STATE_MUTATED: 0;
+    ⚡ STATE_READBACK_MATCH: 0;
+    ⚡ ROLLBACK_READBACK_MATCH: 0;
+
+    IF (STATUS == "EXPERIENCE_READY") {
+        ⚡ NEW_STATE:
+            MEMORY_HEADER + "\n" + PROPOSED_RECORD;
+
+        IF (MEMORY_TEXT != "") {
+            ⚡ NEW_STATE:
+                MEMORY_TEXT + "\n" + PROPOSED_RECORD;
+        }
+
+        ⚡ W:
+            H("write_text", MEMORY_PATH, NEW_STATE, NULL);
+        ⚡ RB:
+            H("read_text", MEMORY_PATH, NULL, NULL);
+
+        IF (RB == NEW_STATE) {
+            ⚡ STATE_MUTATED: 1;
+            ⚡ STATE_READBACK_MATCH: 1;
+            ⚡ STATUS: "EXPERIENCE_RETAINED";
+        }
+
+        IF (RB != NEW_STATE) {
+            ⚡ RW:
+                H("write_text", MEMORY_PATH, MEMORY_TEXT, NULL);
+            ⚡ RRB:
+                H("read_text", MEMORY_PATH, NULL, NULL);
+
+            IF (RRB == MEMORY_TEXT) {
+                ⚡ ROLLBACK_READBACK_MATCH: 1;
+            }
+
+            ⚡ STATUS: "STATE_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ EVENT_EMITTED: 0;
+    ⚡ EVENT_READBACK_MATCH: 0;
+
+    IF (STATUS == "EXPERIENCE_RETAINED") {
+        ⚡ EVENT:
+            "DNA16A_EVENT||"
+            + EXPERIENCE_ID
+            + "||EXPERIENCE_RETAINED||COMMIT||YES";
+
+        ⚡ EW:
+            H("write_text", EVENT_PATH, EVENT, NULL);
+        ⚡ ERB:
+            H("read_text", EVENT_PATH, NULL, NULL);
+
+        IF (ERB == EVENT) {
+            ⚡ EVENT_EMITTED: 1;
+            ⚡ EVENT_READBACK_MATCH: 1;
+        }
+
+        IF (ERB != EVENT) {
+            ⚡ ERW:
+                H("write_text", MEMORY_PATH, MEMORY_TEXT, NULL);
+            ⚡ ERRB:
+                H("read_text", MEMORY_PATH, NULL, NULL);
+
+            IF (ERRB == MEMORY_TEXT) {
+                ⚡ STATE_MUTATED: 0;
+                ⚡ ROLLBACK_READBACK_MATCH: 1;
+            }
+
+            ⚡ STATUS: "EVENT_WRITE_READBACK_FAILED";
+        }
+    }
+
+    IF (STATUS == "EXPERIENCE_ALREADY_RETAINED") {
+        ⚡ EVENT2:
+            "DNA16A_EVENT||"
+            + EXPERIENCE_ID
+            + "||EXPERIENCE_ALREADY_RETAINED||COMMIT||YES";
+
+        ⚡ EW2:
+            H("write_text", EVENT_PATH, EVENT2, NULL);
+        ⚡ ERB2:
+            H("read_text", EVENT_PATH, NULL, NULL);
+
+        IF (ERB2 == EVENT2) {
+            ⚡ EVENT_EMITTED: 1;
+            ⚡ EVENT_READBACK_MATCH: 1;
+        }
+
+        IF (ERB2 != EVENT2) {
+            ⚡ STATUS: "EVENT_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ print("DNA16A_NATIVE", "PERSISTENT_EXPERIENCE_RETENTION");
+    ⚡ print("INPUT_VALID", INPUT_VALID);
+    ⚡ print("MEMORY_VALID", MEMORY_VALID);
+    ⚡ print("MEMORY_DUPLICATE_EXPERIENCE_ID", MEMORY_DUPLICATE_EXPERIENCE_ID);
+    ⚡ print("RECORD_COUNT_BEFORE", RECORD_COUNT);
+    ⚡ print("VERIFICATION_STATUS", VERIFICATION_STATUS);
+    ⚡ print("EVIDENCE_CLASS", EVIDENCE_CLASS);
+    ⚡ print("SOURCE_CAPABILITY_ID", SOURCE_CAPABILITY_ID);
+    ⚡ print("SOURCE_CAPABILITY_SHA256", SOURCE_CAPABILITY_SHA);
+    ⚡ print("VERIFIER_INDEPENDENT", VERIFIER_INDEPENDENT);
+    ⚡ print("LEARNER_VERIFIER_SEPARATED", LEARNER_VERIFIER_SEPARATED);
+    ⚡ print("EXACT_ALREADY", EXACT_ALREADY);
+    ⚡ print("EXPERIENCE_ID_CONFLICT", ID_CONFLICT);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("STATE_READBACK_MATCH", STATE_READBACK_MATCH);
+    ⚡ print("ROLLBACK_READBACK_MATCH", ROLLBACK_READBACK_MATCH);
+    ⚡ print("EVENT_EMITTED", EVENT_EMITTED);
+    ⚡ print("EVENT_READBACK_MATCH", EVENT_READBACK_MATCH);
+    ⚡ print("DNA16A_STATUS", STATUS);
+
+    ⚡ print("LEARNING_UNIT_COMPONENT_COUNT", "5");
+    ⚡ print("OBSERVATION_REQUIRED", "YES");
+    ⚡ print("HYPOTHESIS_REQUIRED", "YES");
+    ⚡ print("ACTION_REQUIRED", "YES");
+    ⚡ print("OUTCOME_REQUIRED", "YES");
+    ⚡ print("VERIFICATION_REQUIRED", "YES");
+    ⚡ print("UNVERIFIED_TOOL_OUTPUT_RETAINABLE", "NO");
+    ⚡ print("KNOWLEDGE_PROMOTION_EXECUTED", "NO");
+    ⚡ print("HOST_HYPOTHESIS_GENERATION", "NO");
+    ⚡ print("HOST_ACTION_SELECTION", "NO");
+    ⚡ print("HOST_VERIFICATION_DECISION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+}
