@@ -1,17 +1,19 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C06
 
-Status: PASS candidate.
+Status: PASS_CANDIDATE_REPAIRED.
 
 Completed `B1.2-C06 — Điện và từ` at CURRICULUM stage on `hka-tree/c01-w03-physics-c06`.
 
-Coverage: 7/7 canonical topics, 28 atomic sourced claims, 28 age-independent D1–D4 learning objectives and 28/28 exactly-one-row semantic closures.
+Effective coverage: 7/7 canonical topics, 32 sourced claims, 4 stable/versioned sources, 28 age-independent D1–D4 learning objectives and 28/28 exactly-one-row semantic closures.
 
-Self-audit PASS after three in-scope repairs: SR01 constrained current-density wording to electromagnetic specialization and reused C03 continuum ownership; SR02 separated C06 electromagnetic-wave foundations from accepted C05 optical-light ownership; SR03 restored foundational charge/current/magnetism/circuit progression before advanced Maxwell/gauge extensions.
+Worker self-audit repaired three in-scope defects: C03 current-density overlap, C05 optical-light overlap, and advanced-formalism dominance.
 
-Re-audit: semantic duplicate PASS; ownership PASS; prerequisite graph PASS acyclic/no dangling IDs; foundational coverage PASS_AFTER_REPAIR; `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; stage boundary PASS CURRICULUM only.
+Director-assistant review then repaired three additional small true-owner defects for the 13-year foundational progression: (1) explicit permanent-magnet behavior and magnetic force on a current-carrying conductor, (2) explicit basic-circuit literacy covering closed path, source/load and node/branch, and (3) incomplete semantic support in T01 D1/D3 closure rows.
 
-Academic output commit: `cbb96ee9eea75d0686031da474844a324daee244`.
-Terminal read-back checkpoint: `84e2707ec4eff16a30cb223d1835b95503bc8439`.
-Durable GitHub read-back: PASS.
+Re-audit PASS: all 32 claims resolve to existing sources; 28/28 objectives have exactly one semantically sufficient closure row; canonical prerequisites remain B1.2-C01 and B1.2-C03; prerequisite graph is acyclic with no dangling IDs; ownership/duplicate scan PASS; `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; stage boundary remains CURRICULUM only.
 
-C07 remains gated pending Director acceptance of C06.
+Worker candidate: `1c7ff31a296fe1cec06e4b23bf29e5ab53147e91`.
+Effective academic repair commit: `fee249ac4439823b98a37b019546180e64d6d674`.
+Director-assistant checkpoint: `1d6cd21b2516c0510be0744bdaa8377e40da0403`.
+
+Director acceptance has not been declared. C07 remains gated pending Director acceptance of repaired C06.
