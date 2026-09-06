@@ -2,17 +2,25 @@
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C05",
   "scope_id":"B1.2-C05",
   "stage":"CURRICULUM",
-  "status":"PASS_CANDIDATE",
+  "status":"PASS_CANDIDATE_REPAIRED",
   "canonical_topics":{"expected":8,"authored":8,"status":"PASS"},
   "artifact_counts":{"nodes":8,"claims":32,"sources":6,"learning_objectives":32,"claim_to_learning_objective_closures":32,"cross_links":7,"sequence_intent_records":8},
-  "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","learning_objective_completeness":"32/32 PASS","semantic_closure":"32/32 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
-  "self_repairs":[
-    {"repair_id":"SR01","defect":"Draft oscillation wording risked duplicating C02 mechanics ownership.","repair":"Restricted C05 ownership to oscillation/wave behavior and made C02 mechanics prerequisite reuse explicit.","status":"REPAIRED"},
-    {"repair_id":"SR02","defect":"Advanced laser/photonics emphasis risked crowding out basic light and image-formation foundations.","repair":"Strengthened foundational progression through waves, acoustics, light, geometric optics and wave optics before T08.","status":"REPAIRED"},
-    {"repair_id":"SR03","defect":"Advanced optics references risked implying support from future scopes.","repair":"Constrained C06-C12 to boundary references only; all closure support Claim IDs are C05-local.","status":"REPAIRED"}
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","learning_objective_completeness":"32/32 PASS","semantic_closure":"32/32 PASS — exactly one row per objective and semantically complete after repair","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","prerequisite_graph":"PASS — acyclic","canonical_prerequisite_alignment":"PASS — B1.2-C02 required; accepted C01/C03/C04 references remain non-prerequisite","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "worker_self_repairs":[
+    {"repair_id":"SR01","status":"REPAIRED"},
+    {"repair_id":"SR02","status":"REPAIRED"},
+    {"repair_id":"SR03","status":"REPAIRED"}
+  ],
+  "director_assistant_repairs":[
+    {"repair_id":"DA-SR01","defect":"Foundational amplitude and wavelength meaning was implicit in formula notation.","repair":"Versioned HKA-B1-2-C05-N001-C002 and HKA-B1-2-C05-N001-C003 to define amplitude and wavelength explicitly while preserving stable IDs.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"Multiple closure rows were structurally present but did not support every concept named in their learning objective.","repair":"Expanded only supporting_claim_ids of the affected existing closure rows; exactly one row per objective remains and no future claim is used.","status":"REPAIRED"}
   ],
   "re_audit":"PASS",
-  "durable_read_back":"PASS",
+  "worker_candidate_commit_sha":"8b6eedebff584ee436eb46c6cf0a27d78f7f7d4d",
+  "worker_academic_output_commit_sha":"e5a73b1d0adccb7c87fe4ac346db1e257ddfbb33",
+  "effective_academic_output_commit_sha":"16dd012c1b1b64ec7e2bab5340ae1fc06550ef93",
+  "durable_read_back":"PASS_AFTER_ASSISTANT_REPAIR",
+  "director_acceptance_declared":false,
   "red_flag":"NONE",
-  "next":"B1.2-C06 — GATED pending Director acceptance of C05"
+  "next":"Director review/acceptance of repaired C05 candidate; B1.2-C06 remains GATED until Director acceptance."
 }
