@@ -1,15 +1,21 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C05
 
-Assigned job: author `B1.2-C05 — Sóng, âm thanh và quang học` end-to-end at CURRICULUM stage.
+Status: PASS_CANDIDATE.
 
-Status: READY.
+Scope: `B1.2-C05 — Sóng, âm thanh và quang học`, CURRICULUM only.
 
-Canonical topics: 8 — Dao động và sóng; Giao thoa; Nhiễu xạ; Âm học; Ánh sáng; Quang hình; Quang sóng; Laser và quang tử học.
+Completed: 8/8 canonical topics; 8 nodes; 32 atomic sourced claims; 6 academic sources; 32 D1–D4 learning objectives; 32/32 exactly-one-row semantic closures; 7 cross-links; 8 sequence-intent records.
 
-Director-accepted predecessor: `B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4`.
+Foundational progression: waves → interference/diffraction → acoustics → light → geometric optics → wave optics → laser/photonics. Advanced extensions do not replace foundational coverage.
 
-Canonical prerequisite: `B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc`.
+Ownership: C02 mechanics is prerequisite reuse; C01/C03/C04 are accepted references only where relevant. C06-C12 remain locked boundary references only. `FUTURE_LOCKED_SUPPORT=0`; `requires_unlocked_scope_claims=false`.
 
-Worker owns authoring, self-audit, self-repair, re-audit, durable writes and read-back inside C05. It must repair in-scope defects itself and return only final PASS candidate or true external BLOCK.
+Self-audit: PASS. Repairs: SR01 C02 ownership boundary; SR02 foundational optics progression; SR03 future-scope support boundary. Re-audit: PASS.
 
-C06-C12 remain gated. `FUTURE_LOCKED_SUPPORT` must remain 0. Stage remains CURRICULUM only.
+Semantic duplicate PASS; ownership collision PASS; prerequisite graph PASS/acyclic; stage boundary PASS/CURRICULUM-only; committed read-back PASS.
+
+Checkpoint: `CP02-TERMINAL-PASS-CANDIDATE` at `c42a0f516a35823fe82697a1c090956d26e18a42`.
+
+Red flag: NONE.
+
+Next: B1.2-C06 — GATED pending Director acceptance of C05.
