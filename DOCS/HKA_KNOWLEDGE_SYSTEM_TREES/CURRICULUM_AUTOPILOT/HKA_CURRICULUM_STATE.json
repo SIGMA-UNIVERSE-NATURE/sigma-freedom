@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.6",
+  "schema_version": "2.7",
   "program": "HKA World Tree 1.0",
   "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
   "governance_base_commit": "b2c6b8dacfb425c5e6d260176ed879fb75da6dae",
@@ -44,15 +44,28 @@
     "prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS",
     "stage_boundary":"PASS_CURRICULUM_ONLY"
   },
+  "director_integration_audit": {
+    "window_id":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
+    "scope_id":"B1.1-INTEGRATION-AUDIT",
+    "status":"ACTIVE_NOT_YET_PASS",
+    "execution_branch":"hka-tree/curriculum-master",
+    "activation_base_commit":"a47e5b6b09949084b31bf4c832bac33562e75c7d",
+    "open_order_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/DIRECTOR-B1.1-ZERO-GAP-INTEGRATION-AUDIT-OPEN.md",
+    "open_order_commit":"8297df53dc44284e9880606c484bb941e9c2b28a",
+    "activation_checkpoint_commit":"5a3d1def343de23c2a25559cdbfa628efb93aa61",
+    "effective_view":"accepted C01-C10 plus all effective foundational overlays at FOUNDATIONAL_GAP_COUNT=0",
+    "required_terminal_pass":"DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
+    "successor_unlock_authority":false
+  },
   "pipeline_sequence": ["KNOWLEDGE","CURRICULUM","ACADEMIC_LOCKED","LESSON_REGISTRY","LESSON_REGISTRY_LOCKED","PROMPTS","PROMPT_LOCKED","IMAGE_PRODUCTION","R2_STAGING","INDEPENDENT_QA","VAULT","WEB_OPTIMIZE","DELIVERY","WEBSITE_UPDATE"],
   "global_status":"ACTIVE",
   "current_stage":"CURRICULUM",
   "stage_status":{"KNOWLEDGE":"LOCKED_INPUT","CURRICULUM":"IN_PROGRESS","ACADEMIC_LOCKED":"GATED","LESSON_REGISTRY":"GATED","LESSON_REGISTRY_LOCKED":"GATED","PROMPTS":"GATED","PROMPT_LOCKED":"GATED","IMAGE_PRODUCTION":"GATED","R2_STAGING":"GATED","INDEPENDENT_QA":"GATED","VAULT":"GATED","WEB_OPTIMIZE":"GATED","DELIVERY":"GATED","WEBSITE_UPDATE":"GATED"},
   "active_branch":"B1",
   "active_subbranch":"B1.1",
-  "active_scope_id":"B1.1-FOUNDATIONAL-13Y-AUDIT",
-  "active_window":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
-  "active_window_status":"AUDIT_PASS_CANDIDATE_PENDING_INTEGRATION",
+  "active_scope_id":"B1.1-INTEGRATION-AUDIT",
+  "active_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
+  "active_window_status":"INTEGRATION_AUDIT_ACTIVE",
   "window_execution_branch":"hka-tree/curriculum-master",
   "accepted_predecessor_commit_sha":"d39ac894d0c6fcb112071170a75fc1b7b661b449",
   "last_accepted_work_checkpoint": {
@@ -77,16 +90,16 @@
     "R06":"PASS","R13":"PASS","prerequisite_and_sequence":"PASS_ACYCLIC","stage_boundary":"PASS","academic_repairs":0
   },
   "execution_dependency_order":"C06 -> C08 -> C07 -> C09 -> C10 -> B1.1 FOUNDATIONAL 13-YEAR AUDIT -> B1.1 DIRECTOR INTEGRATION AUDIT -> BACKUP SENTINEL ALIGNMENT",
-  "next_action":"Run Director B1.1 integration audit on accepted C01-C10 plus the effective foundational overlays at zero gap. Then obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both gates PASS.",
+  "next_action":"Execute DIRECTOR-B1.1-INTEGRATION-AUDIT over accepted C01-C10 plus all effective foundational overlays at FOUNDATIONAL_GAP_COUNT=0. If and only if integration PASS, obtain a fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS. Keep B1.2 locked until both pass.",
   "branches":[
     {"branch_id":"B1","name":"QUY LUẬT — Quy luật & Thực tại","status":"IN_PROGRESS","architecture_status":"PASS","architecture_accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c","subbranches":[
-      {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"AUTHORING_COMPLETE_FOUNDATIONAL_PASS_CANDIDATE_PENDING_INTEGRATION","active_scope":"B1.1-FOUNDATIONAL-13Y-AUDIT","accepted_scopes":["B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10"],"foundational_13_year_audit_status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL","foundational_gap_count":0,"execution_note":"C01-C10 authoring accepted. Post-repair foundational re-audit covers F13-R01..R10 with gap count 0, but B1.1 remains incomplete until Director integration audit PASS and fresh Backup Sentinel TREE_ALIGNMENT_PASS."},
+      {"id":"B1.1","name":"Toán học & Hệ hình thức","status":"AUTHORING_COMPLETE_FOUNDATIONAL_PASS_CANDIDATE_INTEGRATION_ACTIVE","active_scope":"B1.1-INTEGRATION-AUDIT","accepted_scopes":["B1.1-C01","B1.1-C02","B1.1-C03","B1.1-C04","B1.1-C05","B1.1-C06","B1.1-C07","B1.1-C08","B1.1-C09","B1.1-C10"],"foundational_13_year_audit_status":"PASS_CANDIDATE_PENDING_DIRECTOR_INTEGRATION_AND_SENTINEL","foundational_gap_count":0,"director_integration_audit_status":"ACTIVE_NOT_YET_PASS","execution_note":"Zero-gap foundational PASS candidate is the input to the active Director integration audit. B1.1 remains incomplete until integration PASS and fresh Backup Sentinel TREE_ALIGNMENT_PASS."},
       {"id":"B1.2","name":"Vật chất & Năng lượng","status":"LOCKED_PENDING_B1_1_INTEGRATION_AND_SENTINEL"},
       {"id":"B1.3","name":"Chất & Biến đổi","status":"NOT_STARTED"},{"id":"B1.4","name":"Trái Đất & Vũ trụ","status":"NOT_STARTED"},{"id":"B1.5","name":"Thông tin & Tính toán","status":"NOT_STARTED"}
     ]},
     {"branch_id":"B2","name":"SỰ SỐNG — Sự sống, Sức khỏe & Tâm trí","status":"NOT_STARTED"},{"branch_id":"B3","name":"KẾT NỐI — Hệ thống, Thiết kế & Kết nối","status":"NOT_STARTED"},{"branch_id":"B4","name":"THỜI GIAN — Thời gian, Nơi chốn & Tương lai","status":"NOT_STARTED"},{"branch_id":"B5","name":"BIỂU ĐẠT — Ngôn ngữ, Biểu đạt & Ý nghĩa","status":"NOT_STARTED"},{"branch_id":"B6","name":"CÙNG TỒN TẠI — Cùng tồn tại, Lựa chọn & Công lý","status":"NOT_STARTED"}
   ],
-  "gates":{"status_folder_required_for_pass":true,"all_six_branches_complete":false,"global_curriculum_coverage_audit_pass":false,"global_curriculum_prerequisite_audit_pass":false,"global_curriculum_duplicate_audit_pass":false,"foundational_13_year_coverage_audit_required":true,"foundational_13_year_coverage_audit_pass":false,"foundational_13_year_pass_candidate":true,"foundational_gap_count_current":0,"foundational_gap_count_required":0,"multi_continent_curriculum_benchmark_required":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"multi_continent_curriculum_benchmark_pass":false,"external_curriculum_mapping_integration_required":true,"external_curriculum_mapping_integration_pass":false,"academic_locked":false,"academic_locked_forbidden_until_all_curriculum_and_global_gates_pass":true,"lesson_registry_locked":false,"prompt_locked":false,"qa_approved_required_for_vault":true,"vault_verified_required_for_web_optimize":true,"web_optimize_pass_required_for_delivery":true,"delivery_required_for_website_update":true},
+  "gates":{"status_folder_required_for_pass":true,"all_six_branches_complete":false,"global_curriculum_coverage_audit_pass":false,"global_curriculum_prerequisite_audit_pass":false,"global_curriculum_duplicate_audit_pass":false,"foundational_13_year_coverage_audit_required":true,"foundational_13_year_coverage_audit_pass":false,"foundational_13_year_pass_candidate":true,"foundational_gap_count_current":0,"foundational_gap_count_required":0,"B1_1_director_integration_audit_pass":false,"B1_1_fresh_backup_sentinel_tree_alignment_pass":false,"multi_continent_curriculum_benchmark_required":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"multi_continent_curriculum_benchmark_pass":false,"external_curriculum_mapping_integration_required":true,"external_curriculum_mapping_integration_pass":false,"academic_locked":false,"academic_locked_forbidden_until_all_curriculum_and_global_gates_pass":true,"lesson_registry_locked":false,"prompt_locked":false,"qa_approved_required_for_vault":true,"vault_verified_required_for_web_optimize":true,"web_optimize_pass_required_for_delivery":true,"delivery_required_for_website_update":true},
   "status_reporting":{"mandatory":true,"required_files":["STATUS.json","REPORT.md"],"checkpoint_directory":"CHECKPOINTS","acceptance_rule":"NO STATUS FOLDER = NO ACCEPTED COMPLETION","bootstrap_rule":"Replacement reads continuity snapshot, foundational 13-year gate, immutable scope-map anchor, state, active amendments, status folder, latest checkpoint and exact committed outputs before resuming."},
   "recovery":{"source_of_truth":"GitHub canonical tree + immutable scope-map anchor + foundational 13-year gate + accepted commits + effective foundational overlays + machine-readable state/status","chat_memory_authoritative":false,"resume_policy":"Resume only from durable next_action after continuity/sentinel alignment checks.","incomplete_window_policy":"B1.1 remains incomplete at zero-gap PASS candidate until Director integration audit PASS and fresh Backup Sentinel TREE_ALIGNMENT_PASS.","stable_id_policy":"Never silently recreate or renumber accepted NODE_ID, CLAIM_ID, LESSON_ID or ASSET_ID."}
 }
