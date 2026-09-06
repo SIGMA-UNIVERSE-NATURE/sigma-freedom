@@ -1,12 +1,12 @@
-{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C001","HKA-B1-2-C06-N001-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C001","HKA-B1-2-C06-N001-C002","HKA-B1-2-C06-N001-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"record_version":2}
 {"learning_objective_id":"HKA-B1-2-C06-N001-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C002","HKA-B1-2-C06-N001-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
-{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C002","HKA-B1-2-C06-N001-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
+{"learning_objective_id":"HKA-B1-2-C06-N001-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C002","HKA-B1-2-C06-N001-C003","HKA-B1-2-C06-N001-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"record_version":2}
 {"learning_objective_id":"HKA-B1-2-C06-N001-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C06-N001-C002","HKA-B1-2-C06-N001-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N002-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N002-C001","HKA-B1-2-C06-N002-C003","HKA-B1-2-C06-N002-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N002-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C06-N002-C001","HKA-B1-2-C06-N002-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N002-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N002-C001","HKA-B1-2-C06-N002-C003","HKA-B1-2-C06-N002-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N002-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C06-N002-C002","HKA-B1-2-C06-N002-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
-{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N003-C001","HKA-B1-2-C06-N003-C002"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
+{"learning_objective_id":"HKA-B1-2-C06-N003-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N003-C001","HKA-B1-2-C06-N003-C002","HKA-B1-2-C06-N003-C005","HKA-B1-2-C06-N003-C006"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"record_version":2}
 {"learning_objective_id":"HKA-B1-2-C06-N003-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C06-N003-C001","HKA-B1-2-C06-N003-C002"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N003-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N003-C001","HKA-B1-2-C06-N003-C002","HKA-B1-2-C06-N003-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N003-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C06-N003-C003","HKA-B1-2-C06-N003-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
@@ -18,7 +18,7 @@
 {"learning_objective_id":"HKA-B1-2-C06-N005-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C06-N005-C001","HKA-B1-2-C06-N005-C002"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N005-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N005-C001","HKA-B1-2-C06-N005-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N005-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C06-N005-C003","HKA-B1-2-C06-N005-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"boundary_references_not_support_claims":["B1.2-C07","B1.2-C08","B1.2-C09","B1.2-C10","B1.2-C11","B1.2-C12"]}
-{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N006-C001","HKA-B1-2-C06-N006-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
+{"learning_objective_id":"HKA-B1-2-C06-N006-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C06-N006-C001","HKA-B1-2-C06-N006-C005","HKA-B1-2-C06-N006-C006"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"record_version":2}
 {"learning_objective_id":"HKA-B1-2-C06-N006-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C06-N006-C001","HKA-B1-2-C06-N006-C002","HKA-B1-2-C06-N006-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N006-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C06-N006-C003","HKA-B1-2-C06-N006-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C06-N006-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C06-N006-C002","HKA-B1-2-C06-N006-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
