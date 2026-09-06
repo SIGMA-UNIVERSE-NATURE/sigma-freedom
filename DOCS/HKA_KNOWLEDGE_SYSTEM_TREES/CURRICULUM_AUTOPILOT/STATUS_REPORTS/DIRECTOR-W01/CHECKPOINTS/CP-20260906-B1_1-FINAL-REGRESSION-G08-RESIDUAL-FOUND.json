@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-FINAL-REGRESSION-G08-RESIDUAL-FOUND",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "regression_result":"REPAIR_REQUIRED",
+  "gap_id":"F13-G08",
+  "benchmark_requirement":"F13-R08",
+  "classification":"PARTIALLY_COVERED",
+  "finding":"The previous C07 probability repair covers finite-model impossible/possible/certain language, numerical likelihood comparison, 0-1 scale, finite equally-likely sample spaces and experimental-vs-theoretical probability, but amendment record_version=2 intentionally removed pre-numerical qualitative chance language. The original G08 requirement explicitly includes ordering events by likelihood without requiring a numerical model.",
+  "direct_evidence_of_residual":"HKA-F13-B1-1-C07-N001-FLO-001 record_version=2 restricts the objective to simple finite chance models; HKA-B1-1-C07-N001-C015 explicitly states that everyday plausibility before a model is a pre-formal concept rather than providing the missing claim.",
+  "expected_developmental_role":"Learners first use impossible/possible/certain and more/less/equally likely as qualitative comparisons in simple stated contexts before assigning a number on the probability scale; this creates a bridge from ordinary uncertainty language to formal probability without pretending qualitative judgments are precise probabilities.",
+  "external_curriculum_evidence":["ENG-NC-MATH KS2-KS3 probability language before/alongside numerical probability","AUS-ACARA-MATH-V9 early chance language and ordering likelihood","BR-BNCC-MATH early uncertainty/chance","SG-MOE-MATH primary/secondary probability progression"],
+  "true_owner_scope":"B1.1-C07",
+  "true_owner_node":"HKA-B1-1-C07-N001",
+  "proposed_minimal_repair":"Append one sourced claim defining qualitative likelihood ordering as non-numerical/context-dependent pre-formal comparison, then supersede C07-N001 foundational objective FLO-001 to record_version=3 so it explicitly progresses from qualitative language to the 0-1 model without overclaiming a unique numerical probability.",
+  "duplicate_risk_check":"LOW: C07 owns probability/chance semantics. The repair does not import psychological belief, decision theory or numerical probability machinery beyond the existing C07 boundary.",
+  "current_foundational_gap_count":1,
+  "pass_candidate":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"Apply minimal C07-N001 qualitative-chance repair, re-test G08, then restart final whole-matrix regression from R08-R10 before persisting gap count zero."
+}
