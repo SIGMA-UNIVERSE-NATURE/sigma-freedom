@@ -12,7 +12,7 @@
     {"repair_id":"SR03","defect":"Advanced optics references risked implying support from future scopes.","repair":"Constrained C06-C12 to boundary references only; all closure support Claim IDs are C05-local.","status":"REPAIRED"}
   ],
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "next":"B1.2-C06 — GATED pending Director acceptance of C05"
 }
