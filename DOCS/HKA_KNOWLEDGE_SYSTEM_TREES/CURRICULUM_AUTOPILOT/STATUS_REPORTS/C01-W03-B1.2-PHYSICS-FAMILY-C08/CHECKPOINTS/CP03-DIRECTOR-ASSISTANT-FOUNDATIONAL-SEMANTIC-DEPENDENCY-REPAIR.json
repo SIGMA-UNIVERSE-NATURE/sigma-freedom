@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-DEPENDENCY-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C08",
+  "scope_id":"B1.2-C08",
+  "stage":"CURRICULUM",
+  "worker_candidate_commit_sha":"debeac7172564c72982eb5de8aba9533d8c86a78",
+  "effective_academic_output_commit_sha":"9a822cc23547fc8ca8b7a3c9809068e44ff66d24",
+  "repairs":[
+    "DA-SR01: strengthened foundational atomic structure and molecular meaning using versioned existing Claim/LO IDs; counts unchanged.",
+    "DA-SR02: repaired Claim-to-LO semantic support for atomic structure, spectroscopy and molecular rotation/vibration; exactly one closure row per objective preserved.",
+    "DA-SR03: removed noncanonical C06/C01 node/sequence prerequisites while preserving them as accepted context references; canonical prerequisite set remains C05+C07."
+  ],
+  "audit":{"topics":"6/6 PASS","claims":"24/24 PASS","learning_objectives":"24/24 PASS","semantic_closure":"24/24 PASS_AFTER_REPAIR","canonical_prerequisite_alignment":"PASS — C05+C07","prerequisite_graph":"PASS — acyclic, no dangling IDs","ownership":"PASS","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","requires_unlocked_scope_claims":false,"future_locked_support":0,"stage_boundary":"PASS_CURRICULUM_ONLY"},
+  "director_acceptance_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C08 candidate; B1.2-C09 remains GATED until Director acceptance.",
+  "updated_at":"2026-09-07"
+}
