@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260906-B1_1-FOUNDATIONAL-POST-REPAIR-REAUDIT-INPUT-LOCK",
+  "window_id": "DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "status": "INPUT_LOCK_PASS",
+  "durable_order_commit": "610eaa00b8e32d346870b6b183eea9e0997a6d99",
+  "academic_input_anchor": "fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "control_plane_head_before_checkpoint": "24100030de35bf499ebd493209449c2e41142fbf",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "b1_architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+  "immutable_b1_scope_map_blob": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "verified_inputs": {
+    "audit_protocol": true,
+    "external_benchmark_matrix": true,
+    "pre_repair_gap_register": true,
+    "repair_scope_C02": {
+      "present": true,
+      "claims_blob": "269b4211c5d634794057219be89b7877262efdea",
+      "objectives_blob": "0538feaec8504629e0dacf7c84fcd1f3df3d34ba",
+      "objectives_amendment_2_blob": "f026ed003229bb7963af490e54bbeaa884bb0a49"
+    },
+    "repair_scope_C03": {
+      "present": true,
+      "claims_blob": "d5462a9b6067d6cca4ad8e6a7352806bc927622c",
+      "claims_amendment_2_blob": "bd50e59ecea2cc091b8d78e259efead5f1b10b15",
+      "objectives_blob": "dbde947a0814fa2b26f1c94e70a8f839ed330927",
+      "objectives_amendment_2_blob": "00c8406b01df0b80903c4140f7cca3672193abd1"
+    },
+    "repair_scope_C04": {
+      "present": true,
+      "claims_blob": "3acc4f49eeabaa59957242db0f8e2b81bc654371",
+      "claims_amendment_2_blob": "e944033bc54cf60533b38cdbd3de71004149e8b1",
+      "objectives_blob": "9be2bae1373d6c236b402ddb21ab6eab1e522874",
+      "objectives_amendment_2_blob": "85ffd4c6482369ebd3c03ed1a63047ca46921a55"
+    },
+    "repair_scope_C07": {
+      "present": true,
+      "claims_blob": "669bd5cda6cffa5b3b42e715321e5656125f3b6b",
+      "claims_amendment_2_blob": "490463a764cc2f52dfa95af2eff519bd04c5cadb",
+      "objectives_blob": "ff647882a569936b37b6cc34df7c0cf2d4a85e18",
+      "objectives_amendment_2_blob": "220a4968748b936a4f86686d5ddc186b4b00a3ee",
+      "sources_blob": "7c9f0c15d9cdbfd35eae1a9035b5a61b46123ba7"
+    }
+  },
+  "semantic_spot_checks": [
+    "C03 repair explicitly covers equality-as-relation, unknowns, arithmetic generalization, repeating/growing patterns and table/graph/formula representations.",
+    "C04 repair explicitly separates multiplicative unit conversion from affine temperature-scale reasoning and keeps physical calibration/uncertainty in B1.2.",
+    "C04 repair explicitly covers elementary 2-D/3-D classification, nets, turns, symmetry, coordinates and reference-frame spatial language.",
+    "C07 repair explicitly covers data-question framing, frequency tables, pictograms/bar/line/pie displays, axes/scales/legends and display choice.",
+    "C07 repair explicitly separates empirical relative frequency from model probability and constrains favorable/total counting to finite equally-likely models."
+  ],
+  "non_blocking_technical_anomalies": ["__invalid_probe__ branch exists outside curriculum workflow; user directed no action in this execution."],
+  "locks": {
+    "B1_2": "LOCKED",
+    "stage_change": false,
+    "academic_locked": false
+  },
+  "next_action": "CP02: independently re-test F13-G01 through F13-G04 against effective accepted C02/C03 plus foundational overlays; classify using COVERED/PARTIALLY_COVERED/MISSING/OUT_OF_B1_1_SCOPE."
+}
