@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-ACTIVATED",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "scope_id":"B1.2-C01",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c01",
+  "control_plane_activation_commit":"a4c4eea2430c13fce478c7ff3c080151eecff0d4",
+  "canonical_scope_map_commit":"265bb584b5d7e36e11091289d58558408880118c",
+  "canonical_topic_count":6,
+  "prerequisites":["B1.1-C02","B1.1-C03"],
+  "b1_1_integration_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "fresh_sentinel_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd",
+  "next_action":"Execute B1.2-C01 end-to-end under WINDOW_CONTRACT and GPT_EXECUTION_PROMPT; return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-06T19:37:00+07:00"
+}
