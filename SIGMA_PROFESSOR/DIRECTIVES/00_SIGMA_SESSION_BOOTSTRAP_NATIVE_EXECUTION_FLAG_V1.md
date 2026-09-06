@@ -12,10 +12,19 @@ Before doing any SIGMA work, read:
 2. this directive
 3. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
 4. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_EXCLUSIVE_SELF_LEARNING_UNDERSTANDING_AND_ANTI_HARDCODE_LOCK_V1.md`
-5. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
-6. the latest relevant checkpoint
+5. `SIGMA_PROFESSOR/DIRECTIVES/00_IMPORTANT_NATIVE_DNA_ARTIFACT_BUILD_ADMISSION_METHOD_V1.md`
+6. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
+7. the latest relevant checkpoint
 
 If these rules conflict with an old artifact, old runner, old comment, old experiment, or historical implementation, the old material is evidence/history only. Do not weaken this directive to preserve old behavior.
+
+## Native DNA artifact build/admission method lock
+
+The repository-wide build/admission method note is mandatory for every DNA/support artifact build, repair, admission, replay, and handoff:
+
+`SIGMA_PROFESSOR/DIRECTIVES/00_IMPORTANT_NATIVE_DNA_ARTIFACT_BUILD_ADMISSION_METHOD_V1.md`
+
+It locks the proven operating style: exact bytes/hashes before trust; compile before dynamic fixture generation; freeze source/bytecode identity; native SIGMA owns the claimed computation/decision/learning; host oracle starts only after VM execution; raw VM evidence is preserved before interpretation; partial PASS is not full admission; failures are localized and fixed minimally; the full required suite is rerun after fixes; exact tested scope is never widened by narration.
 
 ## Exclusive self-learning / understanding sovereignty lock
 
