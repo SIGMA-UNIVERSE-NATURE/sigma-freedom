@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C06",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c06",
+  "input_commit_sha":"fa04b7402fbf947edb01b6e5020c2787c4714b4c",
+  "last_checkpoint_commit_sha":"e0dc150bf069b94cb1fcfc445ec7fcf3c91a4e70",
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "scope_ids":["B1.2-C06"],
+  "canonical_topic_count":7,
+  "prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.2-C03@693348843918fcd66445e8e30624dcddcc1a9589"],
+  "completed_work":["Canonical scope/contract/prompt locked.","Durable CP00 and REPORT initialized."],
+  "remaining_work":["Author all 7 canonical topics.","Self-audit, self-repair, re-audit, durable read-back and terminal PASS candidate."],
+  "blocking_issues":[],
+  "decisions_locked":["C06 scope only.","C01/C03 are accepted canonical prerequisites.","C07-C12 remain locked.","FUTURE_LOCKED_SUPPORT must remain 0.","CURRICULUM-only boundary."],
+  "next_action":"Execute B1.2-C06 end-to-end and return only final PASS candidate or true external BLOCK.",
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C07",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at":"2026-09-07T01:50:00+07:00"
+}
