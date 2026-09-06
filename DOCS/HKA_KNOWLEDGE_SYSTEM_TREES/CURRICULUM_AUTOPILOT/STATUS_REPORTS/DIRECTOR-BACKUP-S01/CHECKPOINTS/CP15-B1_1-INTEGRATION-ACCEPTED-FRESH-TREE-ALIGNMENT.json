@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP15-B1_1-INTEGRATION-ACCEPTED-FRESH-TREE-ALIGNMENT",
+  "window_id": "DIRECTOR-BACKUP-S01",
+  "role": "BACKUP_SENTINEL",
+  "stage": "CURRICULUM",
+  "sentinel_status": "TREE_ALIGNMENT_PASS",
+  "execution_branch": "hka-tree/director-backup-sentinel",
+  "control_plane_read_sha": "0ec99580097e8bd24dde9b7e1c1e55a296fd39a6",
+  "accepted_integration_commit": "b2818160e8619a7cc3807a0ca3252280be68c16a",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_anchor": {
+    "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856"
+  },
+  "active_transition": {
+    "scope": "B1.1-SENTINEL-ALIGNMENT",
+    "window": "DIRECTOR-BACKUP-S01",
+    "branch": "hka-tree/director-backup-sentinel",
+    "academic_topic_mutation": false
+  },
+  "checks": {
+    "canonical_tree_commit": "PASS",
+    "immutable_scope_map_anchor_resolves": "PASS",
+    "current_stage": "PASS_CURRICULUM",
+    "state_registry_snapshot_alignment": "PASS",
+    "accepted_integration_commit_resolves": "PASS",
+    "accepted_C01_C10_chain": "PASS",
+    "active_dependency_amendments": "PASS_ACTIVE_1_TO_5_PLUS_FOUNDATIONAL_13_YEAR_1",
+    "foundational_13_year_gate": "PASS_ACTIVE_REQUIRED",
+    "foundational_gap_count": 0,
+    "advanced_substitution_count": 0,
+    "locked_scope_support": 0,
+    "B1_2_lock_before_sentinel_pass": "PASS_LOCKED_PENDING_FRESH_SENTINEL",
+    "pipeline_boundary": "PASS_CURRICULUM_ONLY",
+    "post_curriculum_stages": "GATED",
+    "stable_id_integrity": "PASS",
+    "control_plane_mutation_by_sentinel": "NO"
+  },
+  "alerts": [],
+  "durable_next_action_read": "Run fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT against accepted integration commit b2818160e8619a7cc3807a0ca3252280be68c16a. If TREE_ALIGNMENT_PASS with FOUNDATIONAL_GAP_COUNT=0 and LOCKED_SCOPE_SUPPORT=0, close B1.1 and unlock canonical B1.2-C01. Keep B1.2 locked until that PASS.",
+  "next_after_pass": "Close B1.1 and unlock canonical B1.2-C01.",
+  "updated_at": "2026-09-06"
+}
