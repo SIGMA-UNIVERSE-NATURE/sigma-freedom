@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_2-C01-ACCEPT-C02-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_B1_2_C01_OPEN_B1_2_C02",
+  "accepted_scope":"B1.2-C01",
+  "accepted_worker_window":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
+  "accepted_commit_sha":"62a26590dc9055323316456f1620856b885462d7",
+  "receipt":{"topics":"6/6","claims":30,"learning_objectives":24,"semantic_closure":"24/24 PASS","self_audit":"PASS","self_repairs":2,"foundational_coverage":"PASS","future_locked_support":0,"red_flag":"NONE"},
+  "successor_scope":"B1.2-C02",
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
+  "successor_branch":"hka-tree/c01-w03-physics-c02",
+  "open_order_commit":"25246b480008d27112176171b57ebd51631162fb",
+  "updated_at":"2026-09-06T21:30:00+07:00"
+}
