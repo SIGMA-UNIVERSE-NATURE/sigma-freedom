@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "window_id": "DIRECTOR-B1.1-INTEGRATION-AUDIT",
+  "scope_id": "B1.1-INTEGRATION-AUDIT",
+  "role": "DIRECTOR_INTEGRATION_AUDIT",
+  "stage": "CURRICULUM",
+  "worker_submission_state": "PASS_CANDIDATE",
+  "status": "DIRECTOR_INTEGRATION_PASS_PENDING_FRESH_SENTINEL",
+  "execution_branch": "hka-tree/director-b1-1-integration-audit",
+  "audit_input_head": "bfeccbc27a79e5b7d74327f485eea2c37df9b3fe",
+  "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+  "b1_architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+  "immutable_b1_scope_map_blob": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "accepted_scopes": {
+    "B1.1-C01": "5659288da80a239e2ded408da87348670c1410c2",
+    "B1.1-C02": "cfd9746e2296280705e2e2e67b2c5980d440f02d",
+    "B1.1-C03": "7546ad74fb0e71ad2120c7091947993690bef82d",
+    "B1.1-C04": "76077695c07b853ac37f058477177e211f740f17",
+    "B1.1-C05": "9c743ab4d5b5ad2ed18000af6a3b80bdace81e16",
+    "B1.1-C06": "e0d6f667d38e937c7c6040b51fb14e34f0bb6345",
+    "B1.1-C07": "be10c01bf8df64a723e135524b75ce644947dcbd",
+    "B1.1-C08": "14729ce490289b057d5dca25767c3b5ea357e1ec",
+    "B1.1-C09": "9f17cee504c51830f0f4fbfbe429ffa8759ea793",
+    "B1.1-C10": "d39ac894d0c6fcb112071170a75fc1b7b661b449"
+  },
+  "effective_overlay_scopes": ["B1.1-C02", "B1.1-C03", "B1.1-C04", "B1.1-C07", "B1.1-C10"],
+  "audit_counts": {
+    "effective_foundational_objectives": 40,
+    "effective_foundational_claim_ids": 67,
+    "objective_supersession_chains": 14,
+    "claim_supersession_chains": 2,
+    "unresolved_supersession_chains": 0,
+    "semantic_closure_failures": 0,
+    "semantic_duplicate_collisions": 0,
+    "dangling_prerequisite_ids": 0,
+    "prerequisite_cycles": 0,
+    "future_locked_support_claim_ids": 0,
+    "foundational_gap_count": 0,
+    "advanced_substitution_count": 0,
+    "academic_repairs_required": 0
+  },
+  "checks": {
+    "effective_accepted_plus_overlay_view": "PASS",
+    "stable_id_and_supersession_integrity": "PASS",
+    "foundational_objective_semantic_closure": "40/40 PASS",
+    "affected_accepted_objective_closure_preserved": "PASS",
+    "ownership_and_semantic_duplicate_audit": "PASS",
+    "prerequisite_graph": "PASS_ACYCLIC_ZERO_DANGLING",
+    "common_spine_specialist_dependency": "PASS_ZERO_DISALLOWED_C05_C06_C08_C09_DEPENDENCIES",
+    "future_locked_scope_support": "PASS_ZERO",
+    "foundational_zero_gap_preservation": "PASS_GAP_COUNT_0",
+    "advanced_content_substitution": "PASS_ZERO",
+    "canonical_tree_alignment": "PASS",
+    "immutable_scope_map_alignment": "PASS",
+    "stage_boundary": "PASS_CURRICULUM_ONLY",
+    "accepted_history_integrity": "PASS"
+  },
+  "accepted_history_integrity": {
+    "C01_C10_acceptance_chain_preserved": true,
+    "C10_decision": "DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
+    "C10_worker_submission_state": "PARTIAL_NOT_PASS_CANDIDATE",
+    "foundational_overlays_are_post_acceptance": true
+  },
+  "self_repair": {
+    "required": false,
+    "repairs_made": 0,
+    "reaudit": "PASS"
+  },
+  "locks": {
+    "successor_unlock_authority": false,
+    "B1_2_status": "LOCKED_PENDING_B1_1_INTEGRATION_AND_SENTINEL",
+    "ACADEMIC_LOCKED": false,
+    "later_pipeline_stages": "GATED"
+  },
+  "next_gate": "DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS",
+  "next": "TREE_ALIGNMENT",
+  "updated_at": "2026-09-06"
+}
