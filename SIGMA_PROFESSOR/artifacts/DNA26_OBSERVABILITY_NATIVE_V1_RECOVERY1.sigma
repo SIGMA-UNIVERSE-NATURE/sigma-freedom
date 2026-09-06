@@ -1,0 +1,596 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA26.OBSERVABILITY.NATIVE.RECOVERY1][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF list_encoding_valid(value) {
+    IF (value == "LIST") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+
+DEF tool_output_shape_valid(used_token, output_id) {
+    IF (used_token == "1") {
+        RETURN present(output_id);
+    }
+    IF (used_token == "0") {
+        IF (output_id == "NONE") { RETURN 1.0; }
+        RETURN 0.0;
+    }
+    RETURN 0.0;
+}
+
+DEF hypothesis_status_valid(value) {
+    IF (value == "PROPOSED") { RETURN 1.0; }
+    IF (value == "TESTED") { RETURN 1.0; }
+    IF (value == "SUPPORTED") { RETURN 1.0; }
+    IF (value == "REJECTED") { RETURN 1.0; }
+    IF (value == "UNRESOLVED") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF record_status_valid(value) {
+    IF (value == "OBSERVABILITY_ARTIFACT_VERIFIABLE") { RETURN 1.0; }
+    IF (value == "OBSERVABILITY_ARTIFACT_INCOMPLETE") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF number_if(flag, token) {
+    IF (flag < 0.5) { RETURN 0.0; }
+    RETURN host("to_float", token, NULL, NULL);
+}
+
+DEF probability_valid(flag, value) {
+    IF (flag < 0.5) { RETURN 0.0; }
+    IF (value < 0.0) { RETURN 0.0; }
+    IF (value > 1.0) { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF number_equal(a, b) {
+    IF (a == b) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF choose_status_1(dep_valid, list_valid, bool_valid, hypothesis_valid) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (list_valid < 0.5) { RETURN "LIST_ENCODING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (hypothesis_valid < 0.5) { RETURN "HYPOTHESIS_STATUS_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_status_2(store_valid, artifact_supplied, duplicate_found, capacity_available) {
+    IF (store_valid < 0.5) { RETURN "OBSERVABILITY_STORE_INVALID"; }
+    IF (artifact_supplied < 0.5) { RETURN "NO_OBSERVABILITY_ARTIFACT_SUPPLIED"; }
+    IF (duplicate_found > 0.5) { RETURN "DUPLICATE_ARTIFACT_ID_REJECTED"; }
+    IF (capacity_available < 0.5) { RETURN "OBSERVABILITY_CAPACITY_REACHED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_status_3(retained, complete, structural_verifiable) {
+    IF (retained < 0.5) { RETURN "OBSERVABILITY_ARTIFACT_QUALIFIED_NOT_RETAINED"; }
+    IF (complete < 0.5) { RETURN "OBSERVABILITY_ARTIFACT_INCOMPLETE"; }
+    IF (structural_verifiable > 0.5) { RETURN "OBSERVABILITY_ARTIFACT_VERIFIABLE"; }
+    RETURN "OBSERVABILITY_ARTIFACT_INCOMPLETE";
+}
+
+DEF choose_status(stage1, stage2, stage3) {
+    IF (stage1 == "CONTINUE") {
+        IF (stage2 == "CONTINUE") { RETURN stage3; }
+        RETURN stage2;
+    }
+    RETURN stage1;
+}
+
+⟡(Σ.DNA26_OBSERVABILITY_NATIVE_V1_RECOVERY1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/case_id.txt");
+
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/state_schema.txt");
+    ⚡ DNA09_SCHEMA: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_schema.txt");
+    ⚡ DNA12_SCHEMA: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_schema.txt");
+    ⚡ DNA20_SCHEMA: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_schema.txt");
+    ⚡ DNA25_SCHEMA: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna25_schema.txt");
+    ⚡ DNA09_OUTPUT_PRESENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_output_present.txt");
+    ⚡ DNA12_OUTPUT_PRESENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_output_present.txt");
+    ⚡ DNA20_OUTPUT_PRESENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_output_present.txt");
+    ⚡ DNA25_OUTPUT_PRESENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna25_output_present.txt");
+
+    ⚡ ARTIFACT_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/artifact_supplied.txt");
+    ⚡ ARTIFACT_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/artifact_id.txt");
+
+    ⚡ DECISIONS_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decisions_list_encoding.txt");
+    ⚡ DECISION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decision_id.txt");
+    ⚡ DECISION_STATEMENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decision_statement.txt");
+    ⚡ DECISION_RATIONALE: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decision_rationale.txt");
+    ⚡ DECISION_EVIDENCE_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decision_evidence_list_encoding.txt");
+    ⚡ DECISION_EVIDENCE: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/decision_evidence.txt");
+
+    ⚡ HYPOTHESES_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypotheses_list_encoding.txt");
+    ⚡ HYPOTHESIS_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis_id.txt");
+    ⚡ HYPOTHESIS_STATEMENT: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis_statement.txt");
+    ⚡ HYPOTHESIS_STATUS: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis_status.txt");
+    ⚡ HYPOTHESIS_EVIDENCE_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis_evidence_list_encoding.txt");
+    ⚡ HYPOTHESIS_EVIDENCE: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/hypothesis_evidence.txt");
+
+    ⚡ TOOLS_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/tools_list_encoding.txt");
+    ⚡ TOOL_DECISION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/tool_decision_id.txt");
+    ⚡ TOOL_USED_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/tool_used.txt");
+    ⚡ TOOL_OUTPUT_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/tool_output_id.txt");
+    ⚡ TOOL_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/tool_source_sha256.txt");
+
+    ⚡ DNA12_DECISION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_decision_id.txt");
+    ⚡ DNA12_TOOL_USED_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_tool_used.txt");
+    ⚡ DNA12_TOOL_OUTPUT_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_tool_output_id.txt");
+    ⚡ DNA12_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna12_source_sha256.txt");
+
+    ⚡ VERIFIER_RESULTS_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_results_list_encoding.txt");
+    ⚡ VERIFIER_EVALUATION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_evaluation_id.txt");
+    ⚡ VERIFIER_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_id.txt");
+    ⚡ VERIFIER_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_independent.txt");
+    ⚡ VERIFIER_PASSED_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_passed.txt");
+    ⚡ VERIFIER_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/verifier_source_sha256.txt");
+
+    ⚡ DNA09_EVALUATION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_evaluation_id.txt");
+    ⚡ DNA09_VERIFIER_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_verifier_id.txt");
+    ⚡ DNA09_INDEPENDENT_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_independent.txt");
+    ⚡ DNA09_PASSED_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_passed.txt");
+    ⚡ DNA09_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna09_source_sha256.txt");
+
+    ⚡ CONFIDENCE_CONCLUSION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_conclusion_id.txt");
+    ⚡ CONFIDENCE_VALUE_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_value.txt");
+    ⚡ CONFIDENCE_EVIDENCE_COVERAGE_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_evidence_coverage.txt");
+    ⚡ CONFIDENCE_UNRESOLVED_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_unresolved_list_encoding.txt");
+    ⚡ CONFIDENCE_UNRESOLVED: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_unresolved.txt");
+    ⚡ CONFIDENCE_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/confidence_source_sha256.txt");
+
+    ⚡ DNA20_CONCLUSION_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_conclusion_id.txt");
+    ⚡ DNA20_CONFIDENCE_VALUE_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_confidence_value.txt");
+    ⚡ DNA20_EVIDENCE_COVERAGE_TOKEN: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_evidence_coverage.txt");
+    ⚡ DNA20_UNRESOLVED: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_unresolved.txt");
+    ⚡ DNA20_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/dna20_source_sha256.txt");
+
+    ⚡ LINEAGE_LIST_ENCODING: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_list_encoding.txt");
+
+    ⚡ LINEAGE_1_SOURCE_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_1_source_id.txt");
+    ⚡ LINEAGE_1_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_1_source_sha256.txt");
+    ⚡ LINEAGE_1_RELATION: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_1_relation.txt");
+
+    ⚡ LINEAGE_2_SOURCE_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_2_source_id.txt");
+    ⚡ LINEAGE_2_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_2_source_sha256.txt");
+    ⚡ LINEAGE_2_RELATION: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_2_relation.txt");
+
+    ⚡ LINEAGE_3_SOURCE_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_3_source_id.txt");
+    ⚡ LINEAGE_3_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_3_source_sha256.txt");
+    ⚡ LINEAGE_3_RELATION: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_3_relation.txt");
+
+    ⚡ LINEAGE_4_SOURCE_ID: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_4_source_id.txt");
+    ⚡ LINEAGE_4_SOURCE_SHA256: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_4_source_sha256.txt");
+    ⚡ LINEAGE_4_RELATION: load_text(".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/input/lineage_4_relation.txt");
+
+    ⚡ DNA09_OUTPUT_BOOL_OK: bool_token_valid(DNA09_OUTPUT_PRESENT);
+    ⚡ DNA12_OUTPUT_BOOL_OK: bool_token_valid(DNA12_OUTPUT_PRESENT);
+    ⚡ DNA20_OUTPUT_BOOL_OK: bool_token_valid(DNA20_OUTPUT_PRESENT);
+    ⚡ DNA25_OUTPUT_BOOL_OK: bool_token_valid(DNA25_OUTPUT_PRESENT);
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1")
+        * exact(DNA09_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1")
+        * exact(DNA12_SCHEMA, "SIGMA_TOOL_INTELLIGENCE_V1")
+        * exact(DNA20_SCHEMA, "SIGMA_UNCERTAINTY_FIRST_CLASS_DATA_V1")
+        * exact(DNA25_SCHEMA, "SIGMA_SELF_IMPROVEMENT_V1")
+        * DNA09_OUTPUT_BOOL_OK * bool_true(DNA09_OUTPUT_PRESENT)
+        * DNA12_OUTPUT_BOOL_OK * bool_true(DNA12_OUTPUT_PRESENT)
+        * DNA20_OUTPUT_BOOL_OK * bool_true(DNA20_OUTPUT_PRESENT)
+        * DNA25_OUTPUT_BOOL_OK * bool_true(DNA25_OUTPUT_PRESENT);
+
+    ⚡ ARTIFACT_SUPPLIED_TOKEN_VALID: bool_token_valid(ARTIFACT_SUPPLIED_TOKEN);
+    ⚡ ARTIFACT_SUPPLIED: ARTIFACT_SUPPLIED_TOKEN_VALID * bool_true(ARTIFACT_SUPPLIED_TOKEN);
+
+    ⚡ LIST_ENCODINGS_VALID:
+        list_encoding_valid(DECISIONS_LIST_ENCODING)
+        * list_encoding_valid(DECISION_EVIDENCE_LIST_ENCODING)
+        * list_encoding_valid(HYPOTHESES_LIST_ENCODING)
+        * list_encoding_valid(HYPOTHESIS_EVIDENCE_LIST_ENCODING)
+        * list_encoding_valid(TOOLS_LIST_ENCODING)
+        * list_encoding_valid(VERIFIER_RESULTS_LIST_ENCODING)
+        * list_encoding_valid(CONFIDENCE_UNRESOLVED_LIST_ENCODING)
+        * list_encoding_valid(LINEAGE_LIST_ENCODING);
+
+    ⚡ BOOLEAN_ENCODINGS_VALID:
+        ARTIFACT_SUPPLIED_TOKEN_VALID
+        * bool_token_valid(TOOL_USED_TOKEN)
+        * bool_token_valid(DNA12_TOOL_USED_TOKEN)
+        * bool_token_valid(VERIFIER_INDEPENDENT_TOKEN)
+        * bool_token_valid(VERIFIER_PASSED_TOKEN)
+        * bool_token_valid(DNA09_INDEPENDENT_TOKEN)
+        * bool_token_valid(DNA09_PASSED_TOKEN);
+
+    ⚡ HYPOTHESIS_STATUS_VALID: hypothesis_status_valid(HYPOTHESIS_STATUS);
+
+    ⚡ CONF_NUMERIC_ALLOWED:
+        present(CONFIDENCE_VALUE_TOKEN)
+        * present(CONFIDENCE_EVIDENCE_COVERAGE_TOKEN)
+        * present(DNA20_CONFIDENCE_VALUE_TOKEN)
+        * present(DNA20_EVIDENCE_COVERAGE_TOKEN);
+    ⚡ CONFIDENCE_VALUE: number_if(CONF_NUMERIC_ALLOWED, CONFIDENCE_VALUE_TOKEN);
+    ⚡ CONFIDENCE_EVIDENCE_COVERAGE: number_if(CONF_NUMERIC_ALLOWED, CONFIDENCE_EVIDENCE_COVERAGE_TOKEN);
+    ⚡ DNA20_CONFIDENCE_VALUE: number_if(CONF_NUMERIC_ALLOWED, DNA20_CONFIDENCE_VALUE_TOKEN);
+    ⚡ DNA20_EVIDENCE_COVERAGE: number_if(CONF_NUMERIC_ALLOWED, DNA20_EVIDENCE_COVERAGE_TOKEN);
+
+    ⚡ CONFIDENCE_VALUES_VALID:
+        probability_valid(CONF_NUMERIC_ALLOWED, CONFIDENCE_VALUE)
+        * probability_valid(CONF_NUMERIC_ALLOWED, CONFIDENCE_EVIDENCE_COVERAGE)
+        * probability_valid(CONF_NUMERIC_ALLOWED, DNA20_CONFIDENCE_VALUE)
+        * probability_valid(CONF_NUMERIC_ALLOWED, DNA20_EVIDENCE_COVERAGE);
+
+    ⚡ DECISION_COMPLETE:
+        present(DECISION_ID) * present(DECISION_STATEMENT) * present(DECISION_RATIONALE) * present(DECISION_EVIDENCE);
+    ⚡ HYPOTHESIS_COMPLETE:
+        present(HYPOTHESIS_ID) * present(HYPOTHESIS_STATEMENT) * present(HYPOTHESIS_EVIDENCE);
+    ⚡ TOOL_COMPLETE:
+        present(TOOL_DECISION_ID)
+        * present(TOOL_SOURCE_SHA256)
+        * tool_output_shape_valid(TOOL_USED_TOKEN, TOOL_OUTPUT_ID);
+    ⚡ VERIFIER_COMPLETE:
+        present(VERIFIER_EVALUATION_ID) * present(VERIFIER_ID) * present(VERIFIER_SOURCE_SHA256);
+    ⚡ CONFIDENCE_COMPLETE:
+        present(CONFIDENCE_CONCLUSION_ID)
+        * present(CONFIDENCE_VALUE_TOKEN)
+        * present(CONFIDENCE_EVIDENCE_COVERAGE_TOKEN)
+        * present(CONFIDENCE_UNRESOLVED)
+        * present(CONFIDENCE_SOURCE_SHA256)
+        * CONFIDENCE_VALUES_VALID;
+    ⚡ LINEAGE_COMPLETE:
+        present(LINEAGE_1_SOURCE_ID) * present(LINEAGE_1_SOURCE_SHA256) * present(LINEAGE_1_RELATION)
+        * present(LINEAGE_2_SOURCE_ID) * present(LINEAGE_2_SOURCE_SHA256) * present(LINEAGE_2_RELATION)
+        * present(LINEAGE_3_SOURCE_ID) * present(LINEAGE_3_SOURCE_SHA256) * present(LINEAGE_3_RELATION)
+        * present(LINEAGE_4_SOURCE_ID) * present(LINEAGE_4_SOURCE_SHA256) * present(LINEAGE_4_RELATION);
+
+    ⚡ ARTIFACT_FIELDS_COMPLETE:
+        present(ARTIFACT_ID)
+        * DECISION_COMPLETE
+        * HYPOTHESIS_COMPLETE
+        * TOOL_COMPLETE
+        * VERIFIER_COMPLETE
+        * CONFIDENCE_COMPLETE
+        * LINEAGE_COMPLETE;
+
+    ⚡ TOOL_SOURCE_COMPONENT_BINDING_VALID:
+        exact(TOOL_DECISION_ID, DNA12_DECISION_ID)
+        * exact(TOOL_USED_TOKEN, DNA12_TOOL_USED_TOKEN)
+        * exact(TOOL_OUTPUT_ID, DNA12_TOOL_OUTPUT_ID)
+        * exact(TOOL_SOURCE_SHA256, DNA12_SOURCE_SHA256);
+
+    ⚡ VERIFIER_SOURCE_COMPONENT_BINDING_VALID:
+        exact(VERIFIER_EVALUATION_ID, DNA09_EVALUATION_ID)
+        * exact(VERIFIER_ID, DNA09_VERIFIER_ID)
+        * exact(VERIFIER_INDEPENDENT_TOKEN, DNA09_INDEPENDENT_TOKEN)
+        * exact(VERIFIER_PASSED_TOKEN, DNA09_PASSED_TOKEN)
+        * exact(VERIFIER_SOURCE_SHA256, DNA09_SOURCE_SHA256);
+
+    ⚡ CONFIDENCE_SOURCE_COMPONENT_BINDING_VALID:
+        exact(CONFIDENCE_CONCLUSION_ID, DNA20_CONCLUSION_ID)
+        * number_equal(CONFIDENCE_VALUE, DNA20_CONFIDENCE_VALUE)
+        * number_equal(CONFIDENCE_EVIDENCE_COVERAGE, DNA20_EVIDENCE_COVERAGE)
+        * exact(CONFIDENCE_UNRESOLVED, DNA20_UNRESOLVED)
+        * exact(CONFIDENCE_SOURCE_SHA256, DNA20_SOURCE_SHA256);
+
+    ⚡ SOURCE_COMPONENT_BINDING_VALID:
+        TOOL_SOURCE_COMPONENT_BINDING_VALID
+        * VERIFIER_SOURCE_COMPONENT_BINDING_VALID
+        * CONFIDENCE_SOURCE_COMPONENT_BINDING_VALID;
+
+    ⚡ LINEAGE_CORE_ID_BINDING_VALID:
+        exact(LINEAGE_1_SOURCE_ID, "DNA-09")
+        * exact(LINEAGE_2_SOURCE_ID, "DNA-12")
+        * exact(LINEAGE_3_SOURCE_ID, "DNA-20")
+        * exact(LINEAGE_4_SOURCE_ID, "DNA-25");
+
+    ⚡ ARTIFACT_COMPLETE:
+        DEPENDENCY_BINDING_VALID
+        * ARTIFACT_SUPPLIED
+        * LIST_ENCODINGS_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * HYPOTHESIS_STATUS_VALID
+        * ARTIFACT_FIELDS_COMPLETE
+        * SOURCE_COMPONENT_BINDING_VALID
+        * LINEAGE_CORE_ID_BINDING_VALID;
+
+    ⚡ STRUCTURAL_INTEGRITY_VERIFIABLE: ARTIFACT_COMPLETE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA26_NATIVE_ADMISSION_V1_RECOVERY1/state/observability_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA26_OBSERVABILITY_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_OBSERVABILITY_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) {
+        ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0;
+    }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) {
+        ⚡ STORE_HEADER_OK: 1.0;
+    }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ OBSERVABILITY_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ DUPLICATE_ARTIFACT_ID_FOUND: 0.0;
+    ⚡ I: 1.0;
+
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 10) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RARTIFACT: host("list_get", PARTS, 1, NULL);
+                ⚡ RSTATUS: host("list_get", PARTS, 2, NULL);
+                ⚡ RCOMPLETE: host("list_get", PARTS, 3, NULL);
+                ⚡ RVERIFY: host("list_get", PARTS, 4, NULL);
+                ⚡ RSOURCEBIND: host("list_get", PARTS, 5, NULL);
+                ⚡ RLINEAGEBIND: host("list_get", PARTS, 6, NULL);
+                ⚡ RTRUTH: host("list_get", PARTS, 7, NULL);
+                ⚡ RKNOWLEDGE: host("list_get", PARTS, 8, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 9, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "OBS")
+                    * record_status_valid(RSTATUS)
+                    * bool_token_valid(RCOMPLETE)
+                    * bool_token_valid(RVERIFY)
+                    * bool_token_valid(RSOURCEBIND)
+                    * bool_token_valid(RLINEAGEBIND)
+                    * exact(RTRUTH, "TRUTH=0")
+                    * exact(RKNOWLEDGE, "KNOWLEDGE=0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ OBSERVABILITY_RECORD_COUNT_BEFORE: OBSERVABILITY_RECORD_COUNT_BEFORE + 1.0;
+                    IF (present(ARTIFACT_ID) > 0.5) {
+                        IF (exact(RARTIFACT, ARTIFACT_ID) > 0.5) {
+                            ⚡ DUPLICATE_ARTIFACT_ID_FOUND: 1.0;
+                        }
+                    }
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) {
+        ⚡ STORE_STATE_VALID: 0.0;
+    }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (OBSERVABILITY_RECORD_COUNT_BEFORE < MAX_OBSERVABILITY_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ RETAIN_ELIGIBLE:
+        DEPENDENCY_BINDING_VALID
+        * ARTIFACT_SUPPLIED
+        * LIST_ENCODINGS_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * HYPOTHESIS_STATUS_VALID
+        * STORE_STATE_VALID
+        * (1.0 - DUPLICATE_ARTIFACT_ID_FOUND)
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ ARTIFACT_RETAINED: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ RECORD_STATUS: "OBSERVABILITY_ARTIFACT_INCOMPLETE";
+        IF (ARTIFACT_COMPLETE > 0.5) {
+            ⚡ RECORD_STATUS: "OBSERVABILITY_ARTIFACT_VERIFIABLE";
+        }
+
+        ⚡ COMPLETE_TOKEN: "0";
+        ⚡ VERIFY_TOKEN: "0";
+        ⚡ SOURCE_BIND_TOKEN: "0";
+        ⚡ LINEAGE_BIND_TOKEN: "0";
+        IF (ARTIFACT_COMPLETE > 0.5) { ⚡ COMPLETE_TOKEN: "1"; }
+        IF (STRUCTURAL_INTEGRITY_VERIFIABLE > 0.5) { ⚡ VERIFY_TOKEN: "1"; }
+        IF (SOURCE_COMPONENT_BINDING_VALID > 0.5) { ⚡ SOURCE_BIND_TOKEN: "1"; }
+        IF (LINEAGE_CORE_ID_BINDING_VALID > 0.5) { ⚡ LINEAGE_BIND_TOKEN: "1"; }
+
+        ⚡ NEW_RECORD:
+            "OBS||"
+            + ARTIFACT_ID + "||"
+            + RECORD_STATUS + "||"
+            + COMPLETE_TOKEN + "||"
+            + VERIFY_TOKEN + "||"
+            + SOURCE_BIND_TOKEN + "||"
+            + LINEAGE_BIND_TOKEN + "||TRUTH=0||KNOWLEDGE=0||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + NEW_RECORD;
+        IF (STORE_EMPTY < 0.5) {
+            ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + NEW_RECORD;
+        }
+
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ ARTIFACT_RETAINED: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ OBSERVABILITY_RECORD_COUNT_AFTER:
+        OBSERVABILITY_RECORD_COUNT_BEFORE + ARTIFACT_RETAINED;
+    ⚡ STATE_MUTATED: ARTIFACT_RETAINED;
+
+    ⚡ STAGE1:
+        choose_status_1(
+            DEPENDENCY_BINDING_VALID,
+            LIST_ENCODINGS_VALID,
+            BOOLEAN_ENCODINGS_VALID,
+            HYPOTHESIS_STATUS_VALID
+        );
+    ⚡ STAGE2:
+        choose_status_2(
+            STORE_STATE_VALID,
+            ARTIFACT_SUPPLIED,
+            DUPLICATE_ARTIFACT_ID_FOUND,
+            STATE_CAPACITY_AVAILABLE
+        );
+    ⚡ STAGE3:
+        choose_status_3(
+            ARTIFACT_RETAINED,
+            ARTIFACT_COMPLETE,
+            STRUCTURAL_INTEGRITY_VERIFIABLE
+        );
+    ⚡ STATUS: choose_status(STAGE1, STAGE2, STAGE3);
+
+    ⚡ print("DNA26_NATIVE_ADMISSION_V1_RECOVERY1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+
+    ⚡ print("DEPENDENCY_BINDING_VALID");
+    ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("STATE_SCHEMA_OK");
+    ⚡ print(exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1"));
+    ⚡ print("DNA09_SCHEMA_OK");
+    ⚡ print(exact(DNA09_SCHEMA, "SIGMA_INDEPENDENT_VERIFICATION_WALL_V1"));
+    ⚡ print("DNA12_SCHEMA_OK");
+    ⚡ print(exact(DNA12_SCHEMA, "SIGMA_TOOL_INTELLIGENCE_V1"));
+    ⚡ print("DNA20_SCHEMA_OK");
+    ⚡ print(exact(DNA20_SCHEMA, "SIGMA_UNCERTAINTY_FIRST_CLASS_DATA_V1"));
+    ⚡ print("DNA25_SCHEMA_OK");
+    ⚡ print(exact(DNA25_SCHEMA, "SIGMA_SELF_IMPROVEMENT_V1"));
+
+    ⚡ print("ARTIFACT_SUPPLIED");
+    ⚡ print(ARTIFACT_SUPPLIED);
+    ⚡ print("LIST_ENCODINGS_VALID");
+    ⚡ print(LIST_ENCODINGS_VALID);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID");
+    ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("HYPOTHESIS_STATUS_VALID");
+    ⚡ print(HYPOTHESIS_STATUS_VALID);
+    ⚡ print("ARTIFACT_FIELDS_COMPLETE");
+    ⚡ print(ARTIFACT_FIELDS_COMPLETE);
+    ⚡ print("SOURCE_COMPONENT_BINDING_VALID");
+    ⚡ print(SOURCE_COMPONENT_BINDING_VALID);
+    ⚡ print("LINEAGE_CORE_ID_BINDING_VALID");
+    ⚡ print(LINEAGE_CORE_ID_BINDING_VALID);
+    ⚡ print("ARTIFACT_COMPLETE");
+    ⚡ print(ARTIFACT_COMPLETE);
+    ⚡ print("STRUCTURAL_INTEGRITY_VERIFIABLE");
+    ⚡ print(STRUCTURAL_INTEGRITY_VERIFIABLE);
+
+    ⚡ print("STORE_STATE_VALID");
+    ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED");
+    ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT");
+    ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("OBSERVABILITY_RECORD_COUNT_BEFORE");
+    ⚡ print(OBSERVABILITY_RECORD_COUNT_BEFORE);
+    ⚡ print("DUPLICATE_ARTIFACT_ID_FOUND");
+    ⚡ print(DUPLICATE_ARTIFACT_ID_FOUND);
+    ⚡ print("STATE_CAPACITY_AVAILABLE");
+    ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE");
+    ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED");
+    ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC");
+    ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH");
+    ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("ARTIFACT_RETAINED");
+    ⚡ print(ARTIFACT_RETAINED);
+    ⚡ print("STATE_MUTATED");
+    ⚡ print(STATE_MUTATED);
+    ⚡ print("OBSERVABILITY_RECORD_COUNT_AFTER");
+    ⚡ print(OBSERVABILITY_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS");
+    ⚡ print(STATUS);
+
+    ⚡ print("OBSERVABILITY_SCHEMA");
+    ⚡ print("SIGMA_OBSERVABILITY_V1");
+    ⚡ print("PERSISTENT_LEDGER_SCHEMA");
+    ⚡ print("SIGMA_DNA26_OBSERVABILITY_LEDGER_V1");
+    ⚡ print("CANONICAL_CATEGORIES");
+    ⚡ print("DECISIONS,HYPOTHESES,TOOLS,VERIFIER_RESULTS,CONFIDENCE,LINEAGE");
+    ⚡ print("MAX_OBSERVABILITY_RECORDS");
+    ⚡ print(MAX_OBSERVABILITY_RECORDS);
+    ⚡ print("INCOMPLETE_ARTIFACTS_REMAIN_VISIBLE");
+    ⚡ print(1.0);
+    ⚡ print("ARTIFACT_INTEGRITY_IS_TRUTH");
+    ⚡ print(0.0);
+    ⚡ print("TRUTH_ESTABLISHED");
+    ⚡ print(0.0);
+    ⚡ print("KNOWLEDGE_PROMOTED");
+    ⚡ print(0.0);
+    ⚡ print("SOURCE_SHA256_DERIVATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("LINEAGE_SOURCE_SHA256_BINDING_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("CANONICAL_ARTIFACT_SHA256_DERIVATION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("CANONICAL_APPEND_CHAIN_SHA256_DERIVATION_EXECUTED");
+    ⚡ print(0.0);
+    ⚡ print("CRYPTOGRAPHIC_TAMPER_DETECTION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_OBSERVABILITY_VALIDATION_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN");
+    ⚡ print(0.0);
+    ⚡ print("MEMORY_RUNTIME_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("MODEL_CALLS_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_STARTED");
+    ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING");
+    ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION");
+    ⚡ print(0.0);
+}
