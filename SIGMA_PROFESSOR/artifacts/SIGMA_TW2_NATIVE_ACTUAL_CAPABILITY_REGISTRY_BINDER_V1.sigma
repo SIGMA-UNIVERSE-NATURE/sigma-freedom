@@ -1,0 +1,531 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.TW2.ACTUAL.CAPABILITY.REGISTRY.BINDING][VERSION=TW2V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(v) {
+    IF (v == "") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(v, expected) {
+    IF (v == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF token_safe(v) {
+    IF (present(v) == 0) { RETURN 0; }
+
+    ⚡ A:
+        H("str_replace", v, "||", "");
+    IF (A != v) { RETURN 0; }
+
+    ⚡ B:
+        H("str_replace", v, "\n", "");
+    IF (B != v) { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF digits_only(v) {
+    IF (v == "") { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF flag_valid(v) {
+    IF (v == "0") { RETURN 1; }
+    IF (v == "1") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF lower_hex64(v) {
+    IF (H("str_len", v, NULL, NULL) != 64) { RETURN 0; }
+
+    ⚡ R: v;
+    ⚡ R: H("str_replace", R, "0", "");
+    ⚡ R: H("str_replace", R, "1", "");
+    ⚡ R: H("str_replace", R, "2", "");
+    ⚡ R: H("str_replace", R, "3", "");
+    ⚡ R: H("str_replace", R, "4", "");
+    ⚡ R: H("str_replace", R, "5", "");
+    ⚡ R: H("str_replace", R, "6", "");
+    ⚡ R: H("str_replace", R, "7", "");
+    ⚡ R: H("str_replace", R, "8", "");
+    ⚡ R: H("str_replace", R, "9", "");
+    ⚡ R: H("str_replace", R, "a", "");
+    ⚡ R: H("str_replace", R, "b", "");
+    ⚡ R: H("str_replace", R, "c", "");
+    ⚡ R: H("str_replace", R, "d", "");
+    ⚡ R: H("str_replace", R, "e", "");
+    ⚡ R: H("str_replace", R, "f", "");
+
+    IF (R == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF proof_status_valid(v) {
+    IF (v == "PASS") { RETURN 1; }
+    IF (v == "SOURCE_READY") { RETURN 1; }
+    IF (v == "HOLD") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF exec_class_valid(v) {
+    IF (v == "TOOL_SURFACE") { RETURN 1; }
+    IF (v == "INTERNAL_EXEC_SURFACE") { RETURN 1; }
+    IF (v == "ACTION_SURFACE") { RETURN 1; }
+    IF (v == "CONTROL_SURFACE") { RETURN 1; }
+    IF (v == "INTERNAL_COGNITION") { RETURN 1; }
+    IF (v == "MEMORY_SURFACE") { RETURN 1; }
+    IF (v == "LANGUAGE_COGNITION") { RETURN 1; }
+    IF (v == "PIPELINE_BINDING") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF tw1_exec_class(v) {
+    IF (v == "TOOL_SURFACE") { RETURN 1; }
+    IF (v == "INTERNAL_EXEC_SURFACE") { RETURN 1; }
+    IF (v == "ACTION_SURFACE") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF source_field_valid(v) {
+    IF (v == "UNKNOWN") { RETURN 1; }
+    RETURN lower_hex64(v);
+}
+
+DEF scope_record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ N:
+        H("list_len", P, NULL, NULL);
+
+    IF (N != 4) { RETURN 0; }
+    IF (H("list_get", P, 0, NULL) != "SCOPE") { RETURN 0; }
+    IF (token_safe(H("list_get", P, 1, NULL)) == 0) { RETURN 0; }
+    IF (H("list_get", P, 2, NULL) != "COMMIT") { RETURN 0; }
+    IF (H("list_get", P, 3, NULL) != "YES") { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF scope_requested(scope_text, scope_id) {
+    ⚡ L:
+        H("str_split", scope_text, "\n", NULL);
+    ⚡ N:
+        H("list_len", L, NULL, NULL);
+    ⚡ FOUND: 0;
+    ⚡ I: 0;
+
+    WHILE (I < N) {
+        ⚡ LINE:
+            H("list_get", L, I, NULL);
+
+        IF (LINE != "") {
+            IF (scope_record_valid(LINE) == 1) {
+                ⚡ P:
+                    H("str_split", LINE, "||", NULL);
+
+                IF (H("list_get", P, 1, NULL) == scope_id) {
+                    ⚡ FOUND: 1;
+                }
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    RETURN FOUND;
+}
+
+DEF catalog_record_valid(line) {
+    ⚡ P:
+        H("str_split", line, "||", NULL);
+    ⚡ N:
+        H("list_len", P, NULL, NULL);
+
+    IF (N != 18) { RETURN 0; }
+    IF (H("list_get", P, 0, NULL) != "CAP") { RETURN 0; }
+    IF (digits_only(H("list_get", P, 1, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 2, NULL)) == 0) { RETURN 0; }
+    IF (proof_status_valid(H("list_get", P, 3, NULL)) == 0) { RETURN 0; }
+    IF (token_safe(H("list_get", P, 4, NULL)) == 0) { RETURN 0; }
+    IF (source_field_valid(H("list_get", P, 5, NULL)) == 0) { RETURN 0; }
+    IF (exec_class_valid(H("list_get", P, 6, NULL)) == 0) { RETURN 0; }
+
+    ⚡ SCOPE:
+        H("list_get", P, 7, NULL);
+
+    IF (SCOPE != "NONE") {
+        IF (token_safe(SCOPE) == 0) { RETURN 0; }
+    }
+
+    ⚡ I: 8;
+    WHILE (I <= 15) {
+        IF (flag_valid(H("list_get", P, I, NULL)) == 0) { RETURN 0; }
+        ⚡ I: I + 1;
+    }
+
+    IF (H("list_get", P, 16, NULL) != "COMMIT") { RETURN 0; }
+    IF (H("list_get", P, 17, NULL) != "YES") { RETURN 0; }
+
+    ⚡ READY:
+        H("list_get", P, 8, NULL);
+    ⚡ ADMITTED:
+        H("list_get", P, 10, NULL);
+    ⚡ STATUS:
+        H("list_get", P, 3, NULL);
+    ⚡ SOURCE:
+        H("list_get", P, 5, NULL);
+    ⚡ CLASS:
+        H("list_get", P, 6, NULL);
+
+    IF (STATUS == "PASS") {
+        IF (ADMITTED != "1") { RETURN 0; }
+    }
+
+    IF (STATUS != "PASS") {
+        IF (ADMITTED != "0") { RETURN 0; }
+    }
+
+    IF (READY == "1") {
+        IF (STATUS != "PASS") { RETURN 0; }
+        IF (ADMITTED != "1") { RETURN 0; }
+        IF (lower_hex64(SOURCE) == 0) { RETURN 0; }
+        IF (tw1_exec_class(CLASS) == 0) { RETURN 0; }
+        IF (SCOPE == "NONE") { RETURN 0; }
+    }
+
+    RETURN 1;
+}
+
+⟡(Σ.TW2_ACTUAL_CAPABILITY_REGISTRY_BINDING) {
+    ⚡ BASE:
+        ".sigma_exec/SIGMA_TW2_ACTUAL_CAPABILITY_REGISTRY_BINDING";
+
+    ⚡ CATALOG:
+        H("read_text", BASE + "/input/capability_catalog.txt", NULL, NULL);
+    ⚡ SCOPE_REQUEST:
+        H("read_text", BASE + "/input/scope_request.txt", NULL, NULL);
+
+    ⚡ REGISTRY_PATH:
+        BASE + "/state/tw1_registry.txt";
+    ⚡ EVENT_PATH:
+        BASE + "/state/tw2_event.txt";
+
+    ⚡ CL:
+        H("str_split", CATALOG, "\n", NULL);
+    ⚡ CN:
+        H("list_len", CL, NULL, NULL);
+
+    ⚡ SL:
+        H("str_split", SCOPE_REQUEST, "\n", NULL);
+    ⚡ SN:
+        H("list_len", SL, NULL, NULL);
+
+    ⚡ CATALOG_VALID: 1;
+    ⚡ CATALOG_LIMIT_EXCEEDED: 0;
+    ⚡ CATALOG_RECORD_COUNT: 0;
+    ⚡ DUPLICATE_REGISTRY_ID: 0;
+    ⚡ DUPLICATE_CAPABILITY_ID: 0;
+    ⚡ UNKNOWN_SOURCE_RECORD_COUNT: 0;
+    ⚡ INVENTORY_ONLY_COUNT: 0;
+
+    IF (CN > 65) {
+        ⚡ CATALOG_LIMIT_EXCEEDED: 1;
+        ⚡ CATALOG_VALID: 0;
+    }
+
+    ⚡ I: 0;
+    WHILE (I < CN) {
+        ⚡ LINE:
+            H("list_get", CL, I, NULL);
+
+        IF (LINE != "") {
+            IF (catalog_record_valid(LINE) == 0) {
+                ⚡ CATALOG_VALID: 0;
+            }
+
+            IF (catalog_record_valid(LINE) == 1) {
+                ⚡ CATALOG_RECORD_COUNT:
+                    CATALOG_RECORD_COUNT + 1;
+
+                ⚡ P:
+                    H("str_split", LINE, "||", NULL);
+                ⚡ RID:
+                    H("list_get", P, 1, NULL);
+                ⚡ CAP_ID:
+                    H("list_get", P, 2, NULL);
+                ⚡ SOURCE:
+                    H("list_get", P, 5, NULL);
+                ⚡ READY:
+                    H("list_get", P, 8, NULL);
+
+                IF (SOURCE == "UNKNOWN") {
+                    ⚡ UNKNOWN_SOURCE_RECORD_COUNT:
+                        UNKNOWN_SOURCE_RECORD_COUNT + 1;
+                }
+
+                IF (READY == "0") {
+                    ⚡ INVENTORY_ONLY_COUNT:
+                        INVENTORY_ONLY_COUNT + 1;
+                }
+
+                ⚡ J:
+                    I + 1;
+
+                WHILE (J < CN) {
+                    ⚡ LINE2:
+                        H("list_get", CL, J, NULL);
+
+                    IF (LINE2 != "") {
+                        IF (catalog_record_valid(LINE2) == 1) {
+                            ⚡ P2:
+                                H("str_split", LINE2, "||", NULL);
+
+                            IF (H("list_get", P2, 1, NULL) == RID) {
+                                ⚡ DUPLICATE_REGISTRY_ID: 1;
+                                ⚡ CATALOG_VALID: 0;
+                            }
+
+                            IF (H("list_get", P2, 2, NULL) == CAP_ID) {
+                                ⚡ DUPLICATE_CAPABILITY_ID: 1;
+                                ⚡ CATALOG_VALID: 0;
+                            }
+                        }
+                    }
+
+                    ⚡ J: J + 1;
+                }
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    IF (CATALOG_RECORD_COUNT == 0) {
+        ⚡ CATALOG_VALID: 0;
+    }
+
+    ⚡ SCOPE_VALID: 1;
+    ⚡ SCOPE_RECORD_COUNT: 0;
+    ⚡ DUPLICATE_SCOPE_ID: 0;
+
+    IF (SN > 9) {
+        ⚡ SCOPE_VALID: 0;
+    }
+
+    ⚡ S: 0;
+    WHILE (S < SN) {
+        ⚡ SLINE:
+            H("list_get", SL, S, NULL);
+
+        IF (SLINE != "") {
+            IF (scope_record_valid(SLINE) == 0) {
+                ⚡ SCOPE_VALID: 0;
+            }
+
+            IF (scope_record_valid(SLINE) == 1) {
+                ⚡ SCOPE_RECORD_COUNT:
+                    SCOPE_RECORD_COUNT + 1;
+
+                ⚡ SP:
+                    H("str_split", SLINE, "||", NULL);
+                ⚡ SID:
+                    H("list_get", SP, 1, NULL);
+                ⚡ T:
+                    S + 1;
+
+                WHILE (T < SN) {
+                    ⚡ SLINE2:
+                        H("list_get", SL, T, NULL);
+
+                    IF (SLINE2 != "") {
+                        IF (scope_record_valid(SLINE2) == 1) {
+                            ⚡ SP2:
+                                H("str_split", SLINE2, "||", NULL);
+
+                            IF (H("list_get", SP2, 1, NULL) == SID) {
+                                ⚡ DUPLICATE_SCOPE_ID: 1;
+                                ⚡ SCOPE_VALID: 0;
+                            }
+                        }
+                    }
+
+                    ⚡ T: T + 1;
+                }
+            }
+        }
+
+        ⚡ S: S + 1;
+    }
+
+    IF (SCOPE_RECORD_COUNT == 0) {
+        ⚡ SCOPE_VALID: 0;
+    }
+
+    ⚡ REGISTRY_OUT: "";
+    ⚡ REGISTRY_SURFACE_COUNT: 0;
+    ⚡ AVAILABLE_REGISTRY_SURFACE_COUNT: 0;
+
+    IF (CATALOG_VALID == 1) {
+        IF (SCOPE_VALID == 1) {
+            ⚡ K: 0;
+
+            WHILE (K < CN) {
+                ⚡ CLINE:
+                    H("list_get", CL, K, NULL);
+
+                IF (CLINE != "") {
+                    IF (catalog_record_valid(CLINE) == 1) {
+                        ⚡ CP:
+                            H("str_split", CLINE, "||", NULL);
+
+                        ⚡ READY:
+                            H("list_get", CP, 8, NULL);
+                        ⚡ SCOPE_ID:
+                            H("list_get", CP, 7, NULL);
+
+                        IF (READY == "1") {
+                            IF (scope_requested(SCOPE_REQUEST, SCOPE_ID) == 1) {
+                                ⚡ ROW:
+                                    "TOOL||"
+                                    + H("list_get", CP, 1, NULL) + "||"
+                                    + H("list_get", CP, 2, NULL) + "||"
+                                    + H("list_get", CP, 9, NULL) + "||"
+                                    + H("list_get", CP, 10, NULL) + "||"
+                                    + H("list_get", CP, 11, NULL) + "||"
+                                    + H("list_get", CP, 12, NULL) + "||"
+                                    + H("list_get", CP, 13, NULL) + "||"
+                                    + H("list_get", CP, 14, NULL) + "||"
+                                    + H("list_get", CP, 15, NULL)
+                                    + "||5000||0||500||COMMIT||YES";
+
+                                IF (REGISTRY_OUT == "") {
+                                    ⚡ REGISTRY_OUT:
+                                        ROW;
+                                } ELSE {
+                                    ⚡ REGISTRY_OUT:
+                                        REGISTRY_OUT + "\n" + ROW;
+                                }
+
+                                ⚡ REGISTRY_SURFACE_COUNT:
+                                    REGISTRY_SURFACE_COUNT + 1;
+
+                                IF (H("list_get", CP, 9, NULL) == "1") {
+                                    ⚡ AVAILABLE_REGISTRY_SURFACE_COUNT:
+                                        AVAILABLE_REGISTRY_SURFACE_COUNT + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ⚡ K: K + 1;
+            }
+        }
+    }
+
+    ⚡ STATUS: "REFUSE_CATALOG";
+    ⚡ REGISTRY_WRITTEN: 0;
+    ⚡ REGISTRY_READBACK_MATCH: 0;
+    ⚡ EVENT_EMITTED: 0;
+    ⚡ EVENT_READBACK_MATCH: 0;
+
+    IF (CATALOG_VALID == 1) {
+        ⚡ STATUS: "REFUSE_SCOPE_REQUEST";
+
+        IF (SCOPE_VALID == 1) {
+            ⚡ STATUS: "HOLD_NO_MATCHING_TOOL_SURFACE";
+
+            IF (REGISTRY_SURFACE_COUNT > 0) {
+                ⚡ STATUS: "NATIVE_REGISTRY_READY";
+            }
+
+            IF (REGISTRY_SURFACE_COUNT > 32) {
+                ⚡ STATUS: "HOLD_REGISTRY_LIMIT";
+            }
+        }
+    }
+
+    IF (STATUS == "NATIVE_REGISTRY_READY") {
+        ⚡ W:
+            H("write_text", REGISTRY_PATH, REGISTRY_OUT, NULL);
+        ⚡ RB:
+            H("read_text", REGISTRY_PATH, NULL, NULL);
+        ⚡ REGISTRY_READBACK_MATCH:
+            exact(RB, REGISTRY_OUT);
+
+        IF (REGISTRY_READBACK_MATCH == 1) {
+            ⚡ REGISTRY_WRITTEN: 1;
+            ⚡ STATUS: "REGISTRY_EMITTED";
+        }
+
+        IF (REGISTRY_READBACK_MATCH == 0) {
+            ⚡ STATUS: "REGISTRY_WRITE_READBACK_FAILED";
+        }
+    }
+
+    IF (STATUS == "REGISTRY_EMITTED") {
+        ⚡ EVENT:
+            "TW2_EVENT||ACTUAL_CAPABILITY_REGISTRY||COMMIT||YES";
+
+        ⚡ EW:
+            H("write_text", EVENT_PATH, EVENT, NULL);
+        ⚡ ERB:
+            H("read_text", EVENT_PATH, NULL, NULL);
+        ⚡ EVENT_READBACK_MATCH:
+            exact(ERB, EVENT);
+
+        IF (EVENT_READBACK_MATCH == 1) {
+            ⚡ EVENT_EMITTED: 1;
+        }
+
+        IF (EVENT_READBACK_MATCH == 0) {
+            ⚡ STATUS: "EVENT_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ print("TW2_NATIVE", "ACTUAL_CAPABILITY_REGISTRY_BINDING");
+    ⚡ print("CATALOG_VALID", CATALOG_VALID);
+    ⚡ print("CATALOG_LIMIT_EXCEEDED", CATALOG_LIMIT_EXCEEDED);
+    ⚡ print("CATALOG_RECORD_COUNT", CATALOG_RECORD_COUNT);
+    ⚡ print("DUPLICATE_REGISTRY_ID", DUPLICATE_REGISTRY_ID);
+    ⚡ print("DUPLICATE_CAPABILITY_ID", DUPLICATE_CAPABILITY_ID);
+    ⚡ print("UNKNOWN_SOURCE_RECORD_COUNT", UNKNOWN_SOURCE_RECORD_COUNT);
+    ⚡ print("INVENTORY_ONLY_COUNT", INVENTORY_ONLY_COUNT);
+    ⚡ print("SCOPE_VALID", SCOPE_VALID);
+    ⚡ print("SCOPE_RECORD_COUNT", SCOPE_RECORD_COUNT);
+    ⚡ print("DUPLICATE_SCOPE_ID", DUPLICATE_SCOPE_ID);
+    ⚡ print("REGISTRY_SURFACE_COUNT", REGISTRY_SURFACE_COUNT);
+    ⚡ print("AVAILABLE_REGISTRY_SURFACE_COUNT", AVAILABLE_REGISTRY_SURFACE_COUNT);
+    ⚡ print("REGISTRY_WRITTEN", REGISTRY_WRITTEN);
+    ⚡ print("REGISTRY_READBACK_MATCH", REGISTRY_READBACK_MATCH);
+    ⚡ print("EVENT_EMITTED", EVENT_EMITTED);
+    ⚡ print("EVENT_READBACK_MATCH", EVENT_READBACK_MATCH);
+    ⚡ print("TW2_STATUS", STATUS);
+
+    ⚡ print("CATALOG_SCOPE", "SUPPORT_AXIS_RELEVANT_V1");
+    ⚡ print("TW1_BASE_WEIGHT_BP", "5000");
+    ⚡ print("TW1_COST_BP", "0");
+    ⚡ print("TW1_PRIOR_USE_PENALTY_BP", "500");
+    ⚡ print("HOST_SCOPE_INFERENCE", "NO");
+    ⚡ print("HOST_TOOL_FILTERING", "NO");
+    ⚡ print("HOST_TOOL_SELECTION", "NO");
+    ⚡ print("HOST_TOOL_RANKING", "NO");
+}
