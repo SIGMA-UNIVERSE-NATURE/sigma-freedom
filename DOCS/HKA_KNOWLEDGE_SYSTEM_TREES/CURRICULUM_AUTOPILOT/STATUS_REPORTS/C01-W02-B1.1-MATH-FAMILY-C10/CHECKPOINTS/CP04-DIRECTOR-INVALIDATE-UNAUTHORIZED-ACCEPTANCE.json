@@ -1,0 +1,28 @@
+{
+  "checkpoint_id": "CP04-DIRECTOR-INVALIDATE-UNAUTHORIZED-ACCEPTANCE",
+  "window_id": "C01-W02-B1.1-MATH-FAMILY-C10",
+  "stage": "CURRICULUM",
+  "scope_id": "B1.1-C10",
+  "decision": "UNAUTHORIZED_DIRECTOR_ACCEPTANCE_INVALIDATED",
+  "invalidated_commit_sha": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
+  "invalidated_checkpoint_id": "CP03-DIRECTOR-ACCEPTANCE",
+  "reason": "The C10 academic child branch is not Director authority. Worker/child artifacts may not claim Director acceptance or mutate acceptance authority. The user submission explicitly reported PARTIAL_NOT_PASS_CANDIDATE; therefore later self-authored Director acceptance cannot be canonical without independent Director audit in this Director session.",
+  "preserve_payload": true,
+  "preserved_substantive_artifacts": [
+    "SOURCES.jsonl",
+    "CLAIMS.jsonl",
+    "NODES.jsonl",
+    "LEARNING_OBJECTIVES.jsonl",
+    "CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "CROSS_LINKS.jsonl",
+    "CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "RESULT.json",
+    "HANDOFF.md"
+  ],
+  "canonical_status_after_this_checkpoint": "PENDING_REAL_DIRECTOR_REVIEW",
+  "director_accepted": false,
+  "B1_1_complete": false,
+  "B1_2_unlock": false,
+  "foundational_13_year_audit": "NOT_YET_RUN",
+  "next_action": "Director independently audits the latest C10 payload. No C10 acceptance, B1.1 completion, foundational audit start, or B1.2 successor decision is canonical until that audit finishes and is durably recorded by Director authority."
+}
