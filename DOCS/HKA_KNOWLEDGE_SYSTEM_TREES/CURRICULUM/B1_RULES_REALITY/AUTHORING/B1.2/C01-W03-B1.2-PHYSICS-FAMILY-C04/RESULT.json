@@ -10,7 +10,8 @@
   "foundational_coverage":{"temperature_heat":"PASS","first_law_internal_energy":"PASS","entropy_second_law":"PASS","equilibrium":"PASS","phase_change":"PASS","statistical_mechanics":"PASS","nonequilibrium":"PASS"},
   "self_repairs":[{"repair_id":"SR01","defect":"Draft statistical-mechanics wording risked duplicating B1.1-C07 probability definitions.","repair":"Recast C04 claims to apply accepted probability objects to ensembles and made B1.1-C07 ownership explicit.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Draft nonequilibrium section risked overreaching into future specialized physics scopes.","repair":"Restricted C05-C12 to boundary-only references and kept support entirely in accepted/local claims.","status":"REPAIRED"},{"repair_id":"SR03","defect":"Draft advanced material risked crowding out basic heat/temperature/energy-transfer foundations.","repair":"Expanded T01/T02 foundational claims and objectives before advanced entropy/statistical/non-equilibrium material.","status":"REPAIRED"}],
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_UNTIL_COMMIT",
+  "academic_output_commit_sha":"3e0c54b22656ef68aaf68c1397773c9fb67de4b3",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "next":"B1.2-C05 — GATED pending Director acceptance of C04"
 }
