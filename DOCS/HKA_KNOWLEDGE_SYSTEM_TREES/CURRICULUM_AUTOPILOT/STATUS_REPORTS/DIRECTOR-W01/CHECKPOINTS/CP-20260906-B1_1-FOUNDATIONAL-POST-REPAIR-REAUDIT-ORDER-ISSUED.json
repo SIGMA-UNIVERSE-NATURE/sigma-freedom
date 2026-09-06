@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CP-20260906-B1_1-FOUNDATIONAL-POST-REPAIR-REAUDIT-ORDER-ISSUED",
+  "window_id": "DIRECTOR-W01",
+  "role": "DIRECTOR",
+  "stage": "CURRICULUM",
+  "active_scope": "B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "active_window": "DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "execution_branch": "hka-tree/curriculum-master",
+  "checkpoint_status": "ORDER_ISSUED",
+  "director_order_path": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/DIRECTOR-B1.1-FOUNDATIONAL-13Y-POST-REPAIR-REAUDIT.md",
+  "director_order_commit_sha": "610eaa00b8e32d346870b6b183eea9e0997a6d99",
+  "academic_repair_input_anchor": "fcb2d72dc2a0d75ee72ce3dd8ddccefae4c72b32",
+  "pre_repair_gap_register_status": "GAPS_CONFIRMED_REPAIR_REQUIRED",
+  "pre_repair_gap_count": 8,
+  "repair_scopes_present": ["B1.1-C02", "B1.1-C03", "B1.1-C04", "B1.1-C07"],
+  "current_foundational_audit_status": "ACTIVE_NOT_YET_PASS",
+  "current_foundational_gap_count": null,
+  "B1_2_status": "LOCKED_PENDING_B1_1_FOUNDATIONAL_PASS",
+  "next_action": "Execute the full post-repair foundational re-audit order. Re-map the complete multi-continent benchmark, independently re-test F13-G01..F13-G08, scan for newly exposed gaps, and persist the revised gap register. PASS candidacy requires FOUNDATIONAL_GAP_COUNT=0; B1.2 remains locked pending Director integration audit and Sentinel TREE_ALIGNMENT_PASS.",
+  "stage_boundary": "CURRICULUM_ONLY",
+  "updated_at": "2026-09-06"
+}
