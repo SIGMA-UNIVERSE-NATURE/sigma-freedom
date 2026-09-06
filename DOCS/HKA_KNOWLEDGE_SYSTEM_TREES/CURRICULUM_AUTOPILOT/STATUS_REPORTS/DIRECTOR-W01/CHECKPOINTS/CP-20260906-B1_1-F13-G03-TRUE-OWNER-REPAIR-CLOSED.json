@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260906-B1_1-F13-G03-TRUE-OWNER-REPAIR-CLOSED",
+  "window_id":"DIRECTOR-B1.1-FOUNDATIONAL-13Y-AUDIT",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "gap_id":"F13-G03",
+  "pre_repair_classification":"PARTIALLY_COVERED",
+  "post_repair_classification":"COVERED",
+  "true_owner_scope":"B1.1-C02",
+  "repair_commits":["5596b8c340ee00d8d55e0f9e2d8be37013334288","fa5f4a9d8a1f4944d248cf31145efd0eb131d12d"],
+  "added_claim":{"claim_id":"HKA-B1-1-C02-N005-C009","meaning":"generic fraction-as-operator/scaling: (a/b) of Q = (a/b)Q, with equal-part interpretation where context permits"},
+  "added_foundational_objective":{"objective_id":"HKA-F13-B1-1-C02-N005-FLO-001","common_spine_required":true,"supporting_claim_ids":["HKA-B1-1-C02-N005-C009","HKA-B1-1-C02-N005-C004"]},
+  "source_reuse":"HKA-SRC-1c660c7600a6 — OpenStax Prealgebra 2e, accepted/versioned C02 source",
+  "external_curriculum_mappings":["ENG-NC-MATH Years 3-7 fractions of quantities and fractions/percentages","SG-MOE-MATH Primary fractions, decimals and percentages","AUS-ACARA-MATH-V9 Number strand fraction/decimal/percentage progression"],
+  "duplicate_risk_check":"PASS: numerical fraction scaling stays C02; generic function/operator theory stays C03; geometric scaling stays C04; physical quantity calibration/uncertainty stays B1.2.",
+  "stable_id_check":"PASS_APPEND_ONLY",
+  "G01_G04_post_repair_status":{"F13-G01":"COVERED","F13-G02":"COVERED","F13-G03":"COVERED","F13-G04":"COVERED"},
+  "foundational_global_pass_declared":false,
+  "locks":{"B1_2":"LOCKED","current_stage":"CURRICULUM","academic_locked":false},
+  "next_action":"CP03: independently re-test F13-G05 through F13-G08 against committed C04/C07 repairs, then scan all C01-C10 for newly exposed gaps."
+}
