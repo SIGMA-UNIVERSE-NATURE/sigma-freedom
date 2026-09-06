@@ -1,4 +1,4 @@
-{"learning_objective_id":"HKA-B1-2-C09-N001-LO-D1-001","node_id":"HKA-B1-2-C09-N001","depth":"D1","objective":"Nhận biết chất rắn như hệ vật chất có liên kết và các kích thích tập thể như phonon.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C09-N001-LO-D1-001","node_id":"HKA-B1-2-C09-N001","depth":"D1","objective":"Nhận biết chất rắn, phân biệt tinh thể với chất rắn vô định hình, và nhận biết phonon là mô tả dao động tập thể lượng tử.","record_version":2}
 {"learning_objective_id":"HKA-B1-2-C09-N001-LO-D2-001","node_id":"HKA-B1-2-C09-N001","depth":"D2","objective":"Giải thích vì sao tính chất vĩ mô của chất rắn có thể nổi lên từ electron, dao động mạng và tương tác.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N001-LO-D3-001","node_id":"HKA-B1-2-C09-N001","depth":"D3","objective":"So sánh mô hình electron tự do và liên kết chặt trong miền hiệu lực phù hợp.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N001-LO-D4-001","node_id":"HKA-B1-2-C09-N001","depth":"D4","objective":"Đánh giá giới hạn của mô hình hiệu dụng khi mô tả đáp ứng nhiệt và điện của chất rắn.","record_version":1}
@@ -6,7 +6,7 @@
 {"learning_objective_id":"HKA-B1-2-C09-N002-LO-D2-001","node_id":"HKA-B1-2-C09-N002","depth":"D2","objective":"Giải thích mối liên hệ giữa cấu trúc tinh thể, nhiễu xạ và định luật Bragg.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N002-LO-D3-001","node_id":"HKA-B1-2-C09-N002","depth":"D3","objective":"Áp dụng điều kiện Bragg và mô tả vùng Brillouin cơ bản cho mạng đơn giản.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N002-LO-D4-001","node_id":"HKA-B1-2-C09-N002","depth":"D4","objective":"Phân tích tác động của khuyết tật, nhiệt và lựa chọn ô cơ sở lên mô hình tinh thể lý tưởng.","record_version":1}
-{"learning_objective_id":"HKA-B1-2-C09-N003-LO-D1-001","node_id":"HKA-B1-2-C09-N003","depth":"D1","objective":"Nhận biết dải hóa trị, dải dẫn, khe năng lượng, electron và lỗ trống.","record_version":1}
+{"learning_objective_id":"HKA-B1-2-C09-N003-LO-D1-001","node_id":"HKA-B1-2-C09-N003","depth":"D1","objective":"Phân biệt định tính kim loại, bán dẫn và điện môi bằng độ đầy dải và khe năng lượng trong mô hình vùng.","record_version":2}
 {"learning_objective_id":"HKA-B1-2-C09-N003-LO-D2-001","node_id":"HKA-B1-2-C09-N003","depth":"D2","objective":"Giải thích bán dẫn nội tại, pha tạp loại n/p và vai trò mức Fermi.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N003-LO-D3-001","node_id":"HKA-B1-2-C09-N003","depth":"D3","objective":"Phân tích định tính tiếp giáp p-n, vùng nghèo và ảnh hưởng của phân cực ngoài.","record_version":1}
 {"learning_objective_id":"HKA-B1-2-C09-N003-LO-D4-001","node_id":"HKA-B1-2-C09-N003","depth":"D4","objective":"Đánh giá giới hạn mô hình vùng và diode lý tưởng trong vật liệu thực.","record_version":1}
