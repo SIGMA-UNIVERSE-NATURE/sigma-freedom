@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C06",
+  "scope_id":"B1.2-C06",
+  "role":"DIRECTOR_ASSISTANT_REPAIR",
+  "stage":"CURRICULUM",
+  "base_worker_candidate_sha":"1c7ff31a296fe1cec06e4b23bf29e5ab53147e91",
+  "effective_academic_repair_sha":"fee249ac4439823b98a37b019546180e64d6d674",
+  "repairs":[
+    {"repair_id":"DA-SR01","topic_id":"B1.2-C06-T03","defect":"Foundational magnet behavior and force on a current-carrying conductor were named by D1 but not explicitly claimed.","repair":"Appended HKA-B1-2-C06-N003-C005 and C006; versioned N003 and its D1 closure without renumbering existing IDs."},
+    {"repair_id":"DA-SR02","topic_id":"B1.2-C06-T06","defect":"Basic circuit literacy—closed path, source/load, node/branch—was named by D1 but supported only by Kirchhoff/resistor claims.","repair":"Appended HKA-B1-2-C06-N006-C005 and C006; versioned N006 and its D1 closure without renumbering existing IDs."},
+    {"repair_id":"DA-SR03","topic_id":"B1.2-C06-T01","defect":"Two closure rows were structurally present but did not include all local claims needed for the concepts explicitly named by their objectives.","repair":"Expanded D1 support to include Coulomb force and D3 support to include E=F/q; exactly one closure row per objective remains."}
+  ],
+  "effective_counts":{"topics":7,"nodes":7,"claims":32,"sources":4,"learning_objectives":28,"claim_to_learning_objective_closures":28,"cross_links":6,"sequence_intent_records":7},
+  "re_audit":{"topic_coverage":"7/7 PASS","claim_integrity":"32/32 PASS","source_resolution":"PASS","semantic_closure":"28/28 PASS — exactly one row per objective and semantically complete after repair","supporting_claim_resolution":"PASS","canonical_prerequisites":"PASS — B1.2-C01 and B1.2-C03","prerequisite_graph":"PASS — acyclic, no dangling IDs","ownership":"PASS","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","requires_unlocked_scope_claims":false,"future_locked_support":0,"stage_boundary":"PASS — CURRICULUM only"},
+  "worker_self_repairs":3,
+  "director_assistant_repairs":3,
+  "control_plane_mutation":"NO",
+  "director_acceptance_declared":false,
+  "successor_unlock_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C06 candidate; B1.2-C07 remains gated until Director acceptance."
+}
