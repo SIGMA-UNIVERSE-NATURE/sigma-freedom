@@ -2,14 +2,23 @@
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C08",
   "scope_id":"B1.2-C08",
   "stage":"CURRICULUM",
-  "status":"PASS_CANDIDATE",
+  "status":"PASS_CANDIDATE_REPAIRED",
   "canonical_topics":{"expected":6,"authored":6,"status":"PASS"},
   "artifact_counts":{"nodes":6,"claims":24,"sources":6,"learning_objectives":24,"claim_to_learning_objective_closures":24,"cross_links":7,"sequence_intent_records":6},
-  "audit":{"id_uniqueness":"PASS","claim_integrity":"24/24 PASS","source_resolution":"PASS","learning_objective_completeness":"24/24 PASS","semantic_closure":"24/24 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","canonical_prerequisite_alignment":"PASS","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
-  "self_repairs":[{"repair_id":"SR01","defect":"Draft AMO content risked duplicating C05 general optics and C07 general quantum formalism.","repair":"Restricted C08 ownership to atomic/molecular/optical specialization and made C05/C07 prerequisite reuse explicit.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Advanced cold-atom and precision material risked crowding out atomic-structure and spectroscopy foundations.","repair":"Reordered progression so structure, spectra and molecules precede atom-light control, cold atoms and precision measurement.","status":"REPAIRED"},{"repair_id":"SR03","defect":"Precision measurement risked re-authoring generic metrology and leaning on future C09-C12 scopes.","repair":"Reused C01 metrology and constrained C09-C12 to boundary-only references with no support Claim IDs.","status":"REPAIRED"}],
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"24/24 PASS","source_resolution":"PASS","learning_objective_completeness":"24/24 PASS","semantic_closure":"24/24 PASS — exactly one row per objective and semantically complete after repair","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","canonical_prerequisite_alignment":"PASS — B1.2-C05 and B1.2-C07; C01/C06 remain accepted context references","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "worker_self_repairs":[{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
+  "director_assistant_repairs":[
+    {"repair_id":"DA-SR01","defect":"Atomic and molecular sections entered quantum/orbital formalism before explicitly securing general-education meanings of atom and molecule.","repair":"Versioned existing N001-C001/N003-C001 and corresponding D1 objectives to state nucleus+electron atomic structure and molecule-as-bound-multi-atom system without creating new IDs.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"Several closure rows were structurally present but omitted claims needed for all concepts named by their objectives.","repair":"Expanded support for atomic levels/spin, spectroscopy transition, and molecular rotation/vibration; atom-light absorption was made explicit in existing N004-C001. Exactly one closure row per objective remains.","status":"REPAIRED"},
+    {"repair_id":"DA-SR03","defect":"N005 and N006 encoded accepted C06/C01 references as prerequisites although the canonical C08 prerequisite set is C05+C07.","repair":"Removed C06/C01 from N005/N006 node and sequence prerequisite lists; existing ACCEPTED_SCOPE_REFERENCE cross-links remain intact.","status":"REPAIRED"}
+  ],
   "re_audit":"PASS",
-  "academic_output_commit_sha":"a11e85d27ed9999a66b2dd75e1acc03fb0b39ce3",
-  "durable_read_back":"PASS",
+  "worker_candidate_commit_sha":"debeac7172564c72982eb5de8aba9533d8c86a78",
+  "worker_academic_output_commit_sha":"a11e85d27ed9999a66b2dd75e1acc03fb0b39ce3",
+  "effective_academic_output_commit_sha":"9a822cc23547fc8ca8b7a3c9809068e44ff66d24",
+  "director_assistant_checkpoint_commit_sha":"cab1b98262502f74637efb5c4731030aa370c77d",
+  "durable_read_back":"PASS_AFTER_ASSISTANT_REPAIR",
+  "director_acceptance_declared":false,
   "red_flag":"NONE",
-  "next":"B1.2-C09 — GATED pending Director acceptance of C08"
+  "next":"Director review/acceptance of repaired C08 candidate; B1.2-C09 remains GATED until Director acceptance."
 }
