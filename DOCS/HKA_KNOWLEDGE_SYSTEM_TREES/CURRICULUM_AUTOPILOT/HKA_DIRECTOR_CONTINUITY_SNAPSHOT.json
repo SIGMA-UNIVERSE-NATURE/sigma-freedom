@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.1",
+  "schema_version": "2.2",
   "role": "DIRECTOR_CONTINUITY_SNAPSHOT",
   "purpose": "Compact recovery and Knowledge Tree alignment state. Chat memory is never authoritative.",
   "source_of_truth": {
@@ -13,8 +13,8 @@
     "window_registry_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/WINDOW_REGISTRY.json",
     "foundational_13_year_gate_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json",
     "foundational_13_year_amendment_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
-    "b1_2_c01_open_order_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W03-B1.2-PHYSICS-FAMILY-C01-OPEN.md",
-    "b1_2_c01_status_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W03-B1.2-PHYSICS-FAMILY-C01/STATUS.json"
+    "b1_2_c02_open_order_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/DIRECTOR_ORDERS/C01-W03-B1.2-PHYSICS-FAMILY-C02-OPEN.md",
+    "b1_2_c02_status_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/STATUS_REPORTS/C01-W03-B1.2-PHYSICS-FAMILY-C02/STATUS.json"
   },
   "knowledge_tree_invariants": {
     "human_roots":["SELF","OTHERS","WORLD"],
@@ -36,20 +36,21 @@
   "current_execution": {
     "active_branch_id":"B1",
     "active_subbranch_id":"B1.2",
-    "active_scope_id":"B1.2-C01",
-    "active_window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
-    "active_execution_branch":"hka-tree/c01-w03-physics-c01",
+    "active_scope_id":"B1.2-C02",
+    "active_window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
+    "active_execution_branch":"hka-tree/c01-w03-physics-c02",
     "control_plane_branch":"hka-tree/curriculum-master",
     "active_status":"READY",
-    "control_plane_activation_commit":"a4c4eea2430c13fce478c7ff3c080151eecff0d4",
-    "worker_bootstrap_status_commit":"8f2e30aaeb380cc793bf6ea606a8e7f1c99968b7",
-    "authoring_status":"B1.1 CLOSED; B1.2-C01 READY",
-    "scope_name":"Đo lường vật lý",
-    "owner_window":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
-    "canonical_topic_count":6,
-    "canonical_topics":["Đại lượng và đơn vị","Thứ nguyên","Độ chính xác và độ chụm","Sai số","Thiết bị đo","Chuẩn đo lường"],
-    "prerequisites":["B1.1-C02@cfd9746e2296280705e2e2e67b2c5980d440f02d","B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d"],
-    "successor_locked":"B1.2-C02"
+    "control_plane_activation_commit":"6dcfbe989515921cb086f572de361302284cf37e",
+    "worker_bootstrap_status_commit":"bad8163717d3ba8bd377c95e1f420b27c3a8a25f",
+    "authoring_status":"B1.1 CLOSED; B1.2-C01 DIRECTOR_ACCEPTED; B1.2-C02 READY",
+    "scope_name":"Cơ học cổ điển",
+    "owner_window":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
+    "canonical_topic_count":8,
+    "canonical_topics":["Chuyển động","Lực","Công và năng lượng","Động lượng","Mômen động lượng","Dao động","Cơ học giải tích","Cơ học thiên thể"],
+    "accepted_predecessor":"B1.2-C01@62a26590dc9055323316456f1620856b885462d7",
+    "prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.1-C03@7546ad74fb0e71ad2120c7091947993690bef82d","B1.1-C04@76077695c07b853ac37f058477177e211f740f17"],
+    "successor_locked":"B1.2-C03"
   },
   "B1_1_completion": {
     "status":"PASS",
@@ -63,6 +64,12 @@
     "sentinel_locked_scope_support":0,
     "sentinel_alerts":"NONE"
   },
+  "B1_2_progress": {
+    "status":"IN_PROGRESS",
+    "accepted_scopes":{"B1.2-C01":"62a26590dc9055323316456f1620856b885462d7"},
+    "C01_receipt":{"topics":"6/6","claims":30,"learning_objectives":24,"semantic_closure":"24/24 PASS","self_audit":"PASS","self_repairs":2,"foundational_coverage":"PASS","future_locked_support":0,"red_flag":"NONE"},
+    "active_scope":"B1.2-C02"
+  },
   "accepted_scopes": {
     "B1.1-C01":"5659288da80a239e2ded408da87348670c1410c2",
     "B1.1-C02":"cfd9746e2296280705e2e2e67b2c5980d440f02d",
@@ -73,7 +80,8 @@
     "B1.1-C07":"be10c01bf8df64a723e135524b75ce644947dcbd",
     "B1.1-C08":"14729ce490289b057d5dca25767c3b5ea357e1ec",
     "B1.1-C09":"9f17cee504c51830f0f4fbfbe429ffa8759ea793",
-    "B1.1-C10":"d39ac894d0c6fcb112071170a75fc1b7b661b449"
+    "B1.1-C10":"d39ac894d0c6fcb112071170a75fc1b7b661b449",
+    "B1.2-C01":"62a26590dc9055323316456f1620856b885462d7"
   },
   "C10_acceptance": {
     "decision":"DIRECTOR_ACCEPTED_PASS_AFTER_STRUCTURAL_COMPLETION",
@@ -85,6 +93,6 @@
   "global_pre_academic_lock_gates":{"all_six_branches_complete_required":true,"global_coverage_audit_required":true,"global_prerequisite_audit_required":true,"global_semantic_duplicate_audit_required":true,"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"B1_1_foundational_status":"PASS","B1_1_director_integration_status":"DIRECTOR_ACCEPTED_PASS","B1_1_director_integration_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a","B1_1_fresh_backup_sentinel_status":"TREE_ALIGNMENT_PASS","B1_1_fresh_backup_sentinel_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd","multi_continent_education_benchmark_required":true,"minimum_continents":5,"current_global_benchmark_status":"NOT_YET_PASS","current_external_mapping_integration_status":"NOT_YET_PASS","academic_locked_forbidden_until_all_pass":true},
   "backup_sentinel_protocol":{"backup_window_id":"DIRECTOR-BACKUP-S01","mode":"READ_VERIFY_REPORT_ONLY","must_not_author_curriculum":true,"must_not_accept_or_unlock_successor":true,"must_not_mutate_control_plane":true,"latest_pass_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd"},
   "continuity_update_rule":{"snapshot_update_required_on_every_director_acceptance":true,"snapshot_update_required_on_every_active_window_change":true,"replacement_director_bootstrap_order":["READ HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json","READ HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json","VERIFY canonical tree commit and immutable scope-map blob anchor","READ HKA_CURRICULUM_STATE.json","READ WINDOW_REGISTRY.json","READ active execution-window STATUS/REPORT","CONTINUE only from durable next_action"]},
-  "next_action":"Execute C01-W03-B1.2-PHYSICS-FAMILY-C01 on hka-tree/c01-w03-physics-c01. Worker runs end-to-end and returns only final PASS candidate or true external BLOCK. B1.2-C02 remains locked pending Director acceptance of C01.",
-  "updated_at":"2026-09-06T19:38:00+07:00"
+  "next_action":"Execute C01-W03-B1.2-PHYSICS-FAMILY-C02 on hka-tree/c01-w03-physics-c02. Worker runs end-to-end and returns only final PASS candidate or true external BLOCK. B1.2-C03 remains locked pending Director acceptance of C02.",
+  "updated_at":"2026-09-06T21:30:00+07:00"
 }
