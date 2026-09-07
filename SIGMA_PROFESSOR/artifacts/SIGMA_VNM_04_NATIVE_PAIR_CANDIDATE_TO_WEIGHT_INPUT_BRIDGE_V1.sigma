@@ -1,0 +1,474 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.PAIR.CANDIDATE.TO.WEIGHT.INPUT.BRIDGE][VERSION=VNM-04-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF candidate_member(value, form_a, form_b) {
+    IF (value == form_a) { RETURN 1; }
+    IF (value == form_b) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF pair_matches(a, b, x, y) {
+    IF (a == x) {
+        IF (b == y) { RETURN 1; }
+    }
+    IF (a == y) {
+        IF (b == x) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+DEF same_context(left_a, right_a, left_b, right_b) {
+    IF (left_a == left_b) {
+        IF (right_a == right_b) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+⟡(Σ.VNM_04_NATIVE_PAIR_CANDIDATE_TO_WEIGHT_INPUT_BRIDGE_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_04_PAIR_CANDIDATE_TO_WEIGHT_INPUT_BRIDGE_V1";
+
+    ⚡ CANDIDATE_TEXT:
+        H("read_text", BASE + "/input/candidate.memory", NULL, NULL);
+    ⚡ OBSERVATION_TEXT:
+        H("read_text", BASE + "/input/observations.memory", NULL, NULL);
+
+    ⚡ BUNDLE_PATH:
+        BASE + "/output/vnm01_input_bundle.memory";
+
+    ⚡ MAX_OBSERVATIONS: 8;
+    ⚡ MAX_OBSERVATION_SPLIT_LINES: 16;
+    ⚡ MAX_EVIDENCE_RECORDS: 8;
+    ⚡ MIN_CANDIDATE_SUPPORT: 2;
+
+    ⚡ CANDIDATE_PARTS:
+        H("str_split", CANDIDATE_TEXT, "||", NULL);
+    ⚡ CANDIDATE_PART_COUNT:
+        H("list_len", CANDIDATE_PARTS, NULL, NULL);
+
+    ⚡ CANDIDATE_VALID: 0;
+    ⚡ CANDIDATE_FORM_A: "";
+    ⚡ CANDIDATE_FORM_B: "";
+    ⚡ CANDIDATE_SUPPORT_TEXT: "";
+    ⚡ CANDIDATE_SUPPORT: 0;
+
+    IF (CANDIDATE_PART_COUNT == 8) {
+        ⚡ C0: H("list_get", CANDIDATE_PARTS, 0, NULL);
+        ⚡ C1: H("list_get", CANDIDATE_PARTS, 1, NULL);
+        ⚡ C2: H("list_get", CANDIDATE_PARTS, 2, NULL);
+        ⚡ C3: H("list_get", CANDIDATE_PARTS, 3, NULL);
+        ⚡ C4: H("list_get", CANDIDATE_PARTS, 4, NULL);
+        ⚡ C5: H("list_get", CANDIDATE_PARTS, 5, NULL);
+        ⚡ C6: H("list_get", CANDIDATE_PARTS, 6, NULL);
+        ⚡ C7: H("list_get", CANDIDATE_PARTS, 7, NULL);
+
+        ⚡ CANDIDATE_FIELDS_VALID:
+            exact(C0, "CANDIDATE")
+            * exact(C1, "PAIR_CANDIDATE_INDUCED")
+            * exact(C2, "FORM_A")
+            * present(C3)
+            * exact(C4, "FORM_B")
+            * present(C5)
+            * exact(C6, "SUPPORT")
+            * present(C7);
+
+        IF (CANDIDATE_FIELDS_VALID == 1) {
+            ⚡ CANDIDATE_FORMS_SAME:
+                exact(C3, C5);
+            IF (CANDIDATE_FORMS_SAME == 0) {
+                ⚡ CANDIDATE_SUPPORT:
+                    H("to_int", C7, NULL, NULL);
+                IF (CANDIDATE_SUPPORT < 0) {
+                    ⚡ CANDIDATE_VALID: 0;
+                }
+                IF (CANDIDATE_SUPPORT < MIN_CANDIDATE_SUPPORT) {
+                    ⚡ CANDIDATE_VALID: 0;
+                }
+                IF (MIN_CANDIDATE_SUPPORT < CANDIDATE_SUPPORT) {
+                    ⚡ CANDIDATE_VALID: 1;
+                }
+                IF (CANDIDATE_SUPPORT == MIN_CANDIDATE_SUPPORT) {
+                    ⚡ CANDIDATE_VALID: 1;
+                }
+
+                IF (CANDIDATE_VALID == 1) {
+                    ⚡ CANDIDATE_FORM_A: C3;
+                    ⚡ CANDIDATE_FORM_B: C5;
+                    ⚡ CANDIDATE_SUPPORT_TEXT: C7;
+                }
+            }
+        }
+    }
+
+    ⚡ OBS_LINES:
+        H("str_split", OBSERVATION_TEXT, "\n", NULL);
+    ⚡ RAW_OBSERVATION_LINE_COUNT:
+        H("list_len", OBS_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_OBSERVATION_SPLIT_LINES < RAW_OBSERVATION_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ OBS_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ OBS_FORMS: H("list_new", NULL, NULL, NULL);
+    ⚡ OBS_LEFT: H("list_new", NULL, NULL, NULL);
+    ⚡ OBS_RIGHT: H("list_new", NULL, NULL, NULL);
+    ⚡ OBS_SOURCE: H("list_new", NULL, NULL, NULL);
+    ⚡ SEEN_OBSERVATION: H("map_new", NULL, NULL, NULL);
+
+    ⚡ UNIQUE_OBSERVATION_COUNT: 0;
+    ⚡ DUPLICATE_OBSERVATION_COUNT: 0;
+    ⚡ OBSERVATION_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_OBSERVATION_RECORD_COUNT: 0;
+
+    ⚡ SCAN_LINE_COUNT:
+        RAW_OBSERVATION_LINE_COUNT;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ SCAN_LINE_COUNT: 0;
+    }
+
+    ⚡ OI: 0;
+    WHILE (OI < SCAN_LINE_COUNT) {
+        ⚡ OLINE:
+            H("list_get", OBS_LINES, OI, NULL);
+        ⚡ OLINE_PRESENT:
+            present(OLINE);
+
+        IF (OLINE_PRESENT == 1) {
+            ⚡ OPARTS:
+                H("str_split", OLINE, "||", NULL);
+            ⚡ OPART_COUNT:
+                H("list_len", OPARTS, NULL, NULL);
+            ⚡ OBS_RECORD_VALID: 0;
+
+            IF (OPART_COUNT == 10) {
+                ⚡ O0: H("list_get", OPARTS, 0, NULL);
+                ⚡ O1: H("list_get", OPARTS, 1, NULL);
+                ⚡ O2: H("list_get", OPARTS, 2, NULL);
+                ⚡ O3: H("list_get", OPARTS, 3, NULL);
+                ⚡ O4: H("list_get", OPARTS, 4, NULL);
+                ⚡ O5: H("list_get", OPARTS, 5, NULL);
+                ⚡ O6: H("list_get", OPARTS, 6, NULL);
+                ⚡ O7: H("list_get", OPARTS, 7, NULL);
+                ⚡ O8: H("list_get", OPARTS, 8, NULL);
+                ⚡ O9: H("list_get", OPARTS, 9, NULL);
+
+                ⚡ OBS_RECORD_VALID:
+                    exact(O0, "OBS")
+                    * present(O1)
+                    * exact(O2, "FORM")
+                    * present(O3)
+                    * exact(O4, "LEFT")
+                    * present(O5)
+                    * exact(O6, "RIGHT")
+                    * present(O7)
+                    * exact(O8, "SOURCE")
+                    * present(O9);
+
+                IF (OBS_RECORD_VALID == 1) {
+                    ⚡ OBS_FINGERPRINT:
+                        O3 + "||" + O5 + "||" + O7 + "||" + O9;
+                    ⚡ OBS_EXISTS:
+                        H("map_has", SEEN_OBSERVATION, O1, NULL);
+
+                    IF (OBS_EXISTS) {
+                        ⚡ EXISTING_FINGERPRINT:
+                            H("map_get", SEEN_OBSERVATION, O1, NULL);
+                        ⚡ FINGERPRINT_SAME:
+                            exact(EXISTING_FINGERPRINT, OBS_FINGERPRINT);
+
+                        IF (FINGERPRINT_SAME == 1) {
+                            ⚡ DUPLICATE_OBSERVATION_COUNT:
+                                DUPLICATE_OBSERVATION_COUNT + 1;
+                        }
+                        IF (FINGERPRINT_SAME == 0) {
+                            ⚡ OBSERVATION_ID_COLLISION_COUNT:
+                                OBSERVATION_ID_COLLISION_COUNT + 1;
+                        }
+                    }
+
+                    IF (OBS_EXISTS == FALSE) {
+                        ⚡ MARK_OBSERVATION:
+                            H("map_set", SEEN_OBSERVATION, O1, OBS_FINGERPRINT);
+                        ⚡ PUSH_OBS_ID:
+                            H("list_push", OBS_IDS, O1, NULL);
+                        ⚡ PUSH_OBS_FORM:
+                            H("list_push", OBS_FORMS, O3, NULL);
+                        ⚡ PUSH_OBS_LEFT:
+                            H("list_push", OBS_LEFT, O5, NULL);
+                        ⚡ PUSH_OBS_RIGHT:
+                            H("list_push", OBS_RIGHT, O7, NULL);
+                        ⚡ PUSH_OBS_SOURCE:
+                            H("list_push", OBS_SOURCE, O9, NULL);
+                        ⚡ UNIQUE_OBSERVATION_COUNT:
+                            UNIQUE_OBSERVATION_COUNT + 1;
+                    }
+                }
+            }
+
+            IF (OBS_RECORD_VALID == 0) {
+                ⚡ INVALID_OBSERVATION_RECORD_COUNT:
+                    INVALID_OBSERVATION_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ OI: OI + 1;
+    }
+
+    ⚡ OBSERVATION_CAPACITY_EXCEEDED: 0;
+    IF (MAX_OBSERVATIONS < UNIQUE_OBSERVATION_COUNT) {
+        ⚡ OBSERVATION_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ BRIDGE_INPUT_VALID: 1;
+    IF (CANDIDATE_VALID == 0) {
+        ⚡ BRIDGE_INPUT_VALID: 0;
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ BRIDGE_INPUT_VALID: 0;
+    }
+    IF (0 < INVALID_OBSERVATION_RECORD_COUNT) {
+        ⚡ BRIDGE_INPUT_VALID: 0;
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ BRIDGE_INPUT_VALID: 0;
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ BRIDGE_INPUT_VALID: 0;
+    }
+
+    ⚡ EVIDENCE_LINES:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ELIGIBLE_EVIDENCE_COUNT: 0;
+    ⚡ SUPPORT_PAIR_COUNT: 0;
+    ⚡ COMPETING_RAW_PAIR_COUNT: 0;
+
+    ⚡ PAIR_SCAN_COUNT:
+        UNIQUE_OBSERVATION_COUNT;
+    IF (BRIDGE_INPUT_VALID == 0) {
+        ⚡ PAIR_SCAN_COUNT: 0;
+    }
+
+    ⚡ PI: 0;
+    WHILE (PI < PAIR_SCAN_COUNT) {
+        ⚡ PJ: PI + 1;
+        WHILE (PJ < PAIR_SCAN_COUNT) {
+            ⚡ PI_ID: H("list_get", OBS_IDS, PI, NULL);
+            ⚡ PJ_ID: H("list_get", OBS_IDS, PJ, NULL);
+            ⚡ PI_FORM: H("list_get", OBS_FORMS, PI, NULL);
+            ⚡ PJ_FORM: H("list_get", OBS_FORMS, PJ, NULL);
+            ⚡ PI_LEFT: H("list_get", OBS_LEFT, PI, NULL);
+            ⚡ PJ_LEFT: H("list_get", OBS_LEFT, PJ, NULL);
+            ⚡ PI_RIGHT: H("list_get", OBS_RIGHT, PI, NULL);
+            ⚡ PJ_RIGHT: H("list_get", OBS_RIGHT, PJ, NULL);
+            ⚡ PI_SOURCE: H("list_get", OBS_SOURCE, PI, NULL);
+            ⚡ PJ_SOURCE: H("list_get", OBS_SOURCE, PJ, NULL);
+
+            ⚡ FORMS_SAME:
+                exact(PI_FORM, PJ_FORM);
+            ⚡ CONTEXT_MATCH:
+                same_context(PI_LEFT, PI_RIGHT, PJ_LEFT, PJ_RIGHT);
+            ⚡ PI_MEMBER:
+                candidate_member(PI_FORM, CANDIDATE_FORM_A, CANDIDATE_FORM_B);
+            ⚡ PJ_MEMBER:
+                candidate_member(PJ_FORM, CANDIDATE_FORM_A, CANDIDATE_FORM_B);
+            ⚡ HAS_CANDIDATE_MEMBER: 0;
+
+            IF (PI_MEMBER == 1) {
+                ⚡ HAS_CANDIDATE_MEMBER: 1;
+            }
+            IF (PJ_MEMBER == 1) {
+                ⚡ HAS_CANDIDATE_MEMBER: 1;
+            }
+
+            ⚡ PAIR_ELIGIBLE: 0;
+            IF (FORMS_SAME == 0) {
+                IF (CONTEXT_MATCH == 1) {
+                    IF (HAS_CANDIDATE_MEMBER == 1) {
+                        ⚡ PAIR_ELIGIBLE: 1;
+                    }
+                }
+            }
+
+            IF (PAIR_ELIGIBLE == 1) {
+                ⚡ EVIDENCE_ID:
+                    "VNM04:" + PI_ID + ":" + PJ_ID;
+                ⚡ EVIDENCE_SOURCE:
+                    PI_SOURCE + "&" + PJ_SOURCE;
+                ⚡ EVIDENCE_LINE:
+                    "EVIDENCE||" + EVIDENCE_ID
+                    + "||" + PI_FORM
+                    + "||" + PJ_FORM
+                    + "||SOURCE||" + EVIDENCE_SOURCE;
+                ⚡ PUSH_EVIDENCE:
+                    H("list_push", EVIDENCE_LINES, EVIDENCE_LINE, NULL);
+                ⚡ ELIGIBLE_EVIDENCE_COUNT:
+                    ELIGIBLE_EVIDENCE_COUNT + 1;
+
+                ⚡ IS_SUPPORT_PAIR:
+                    pair_matches(
+                        PI_FORM,
+                        PJ_FORM,
+                        CANDIDATE_FORM_A,
+                        CANDIDATE_FORM_B
+                    );
+
+                IF (IS_SUPPORT_PAIR == 1) {
+                    ⚡ SUPPORT_PAIR_COUNT:
+                        SUPPORT_PAIR_COUNT + 1;
+                }
+                IF (IS_SUPPORT_PAIR == 0) {
+                    ⚡ COMPETING_RAW_PAIR_COUNT:
+                        COMPETING_RAW_PAIR_COUNT + 1;
+                }
+            }
+
+            ⚡ PJ: PJ + 1;
+        }
+
+        ⚡ PI: PI + 1;
+    }
+
+    ⚡ SUPPORT_MATCH: 0;
+    IF (SUPPORT_PAIR_COUNT == CANDIDATE_SUPPORT) {
+        ⚡ SUPPORT_MATCH: 1;
+    }
+
+    ⚡ EVIDENCE_CAPACITY_EXCEEDED: 0;
+    IF (MAX_EVIDENCE_RECORDS < ELIGIBLE_EVIDENCE_COUNT) {
+        ⚡ EVIDENCE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ OUTPUT_ALLOWED:
+        BRIDGE_INPUT_VALID * SUPPORT_MATCH;
+    IF (EVIDENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ OUTPUT_ALLOWED: 0;
+    }
+    IF (ELIGIBLE_EVIDENCE_COUNT == 0) {
+        ⚡ OUTPUT_ALLOWED: 0;
+    }
+
+    ⚡ HYPOTHESIS_TEXT: "";
+    ⚡ EVIDENCE_TEXT: "";
+    ⚡ BUNDLE_TEXT: "";
+    ⚡ BUNDLE_WRITE_READBACK_MATCH: 0;
+    ⚡ OUTPUT_MUTATED: 0;
+
+    IF (OUTPUT_ALLOWED == 1) {
+        ⚡ HYPOTHESIS_ID:
+            "VNM04:" + CANDIDATE_FORM_A + ":" + CANDIDATE_FORM_B;
+        ⚡ HYPOTHESIS_TEXT:
+            "HYPOTHESIS||" + HYPOTHESIS_ID
+            + "||FORM_A||" + CANDIDATE_FORM_A
+            + "||FORM_B||" + CANDIDATE_FORM_B;
+        ⚡ EVIDENCE_TEXT:
+            H("str_join", EVIDENCE_LINES, "\n", NULL);
+        ⚡ BUNDLE_TEXT:
+            HYPOTHESIS_TEXT + "\n" + EVIDENCE_TEXT;
+
+        ⚡ BUNDLE_WRITE_RC:
+            H("write_text", BUNDLE_PATH, BUNDLE_TEXT, NULL);
+        ⚡ BUNDLE_READBACK:
+            H("read_text", BUNDLE_PATH, NULL, NULL);
+        ⚡ BUNDLE_WRITE_READBACK_MATCH:
+            exact(BUNDLE_READBACK, BUNDLE_TEXT);
+        ⚡ OUTPUT_MUTATED:
+            BUNDLE_WRITE_READBACK_MATCH;
+    }
+
+    ⚡ BRIDGE_STATUS:
+        "BRIDGE_READY";
+
+    IF (CANDIDATE_VALID == 0) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_CANDIDATE_INVALID";
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_INPUT_BOUND";
+    }
+    IF (0 < INVALID_OBSERVATION_RECORD_COUNT) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_OBSERVATION_RECORD_INVALID";
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_OBSERVATION_ID_COLLISION";
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_OBSERVATION_CAPACITY";
+    }
+    IF (BRIDGE_INPUT_VALID == 1) {
+        IF (SUPPORT_MATCH == 0) {
+            ⚡ BRIDGE_STATUS:
+                "REFUSED_CANDIDATE_SUPPORT_MISMATCH";
+        }
+    }
+    IF (EVIDENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ BRIDGE_STATUS:
+            "REFUSED_EVIDENCE_CAPACITY";
+    }
+    IF (OUTPUT_ALLOWED == 1) {
+        IF (OUTPUT_MUTATED == 0) {
+            ⚡ BRIDGE_STATUS:
+                "REFUSED_OUTPUT_WRITE_FAILURE";
+        }
+    }
+
+    ⚡ print("SIGMA_VNM_04_NATIVE_PAIR_CANDIDATE_TO_WEIGHT_INPUT_BRIDGE");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("CANDIDATE_VALID", CANDIDATE_VALID);
+    ⚡ print("CANDIDATE_FORM_A", CANDIDATE_FORM_A);
+    ⚡ print("CANDIDATE_FORM_B", CANDIDATE_FORM_B);
+    ⚡ print("CANDIDATE_SUPPORT", CANDIDATE_SUPPORT);
+    ⚡ print("RAW_OBSERVATION_LINE_COUNT", RAW_OBSERVATION_LINE_COUNT);
+    ⚡ print("UNIQUE_OBSERVATION_COUNT", UNIQUE_OBSERVATION_COUNT);
+    ⚡ print("DUPLICATE_OBSERVATION_COUNT", DUPLICATE_OBSERVATION_COUNT);
+    ⚡ print("OBSERVATION_ID_COLLISION_COUNT", OBSERVATION_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_OBSERVATION_RECORD_COUNT", INVALID_OBSERVATION_RECORD_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("OBSERVATION_CAPACITY_EXCEEDED", OBSERVATION_CAPACITY_EXCEEDED);
+    ⚡ print("ELIGIBLE_EVIDENCE_COUNT", ELIGIBLE_EVIDENCE_COUNT);
+    ⚡ print("SUPPORT_PAIR_COUNT", SUPPORT_PAIR_COUNT);
+    ⚡ print("COMPETING_RAW_PAIR_COUNT", COMPETING_RAW_PAIR_COUNT);
+    ⚡ print("SUPPORT_MATCH", SUPPORT_MATCH);
+    ⚡ print("EVIDENCE_CAPACITY_EXCEEDED", EVIDENCE_CAPACITY_EXCEEDED);
+    ⚡ print("OUTPUT_ALLOWED", OUTPUT_ALLOWED);
+    ⚡ print("BUNDLE_WRITE_READBACK_MATCH", BUNDLE_WRITE_READBACK_MATCH);
+    ⚡ print("OUTPUT_MUTATED", OUTPUT_MUTATED);
+    ⚡ print("BRIDGE_STATUS", BRIDGE_STATUS);
+    ⚡ print("MAX_OBSERVATIONS", MAX_OBSERVATIONS);
+    ⚡ print("MAX_EVIDENCE_RECORDS", MAX_EVIDENCE_RECORDS);
+    ⚡ print("MIN_CANDIDATE_SUPPORT", MIN_CANDIDATE_SUPPORT);
+    ⚡ print("INPUT_DYNAMIC_REQUIRED", "YES");
+    ⚡ print("BRIDGE_DECISION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("HYPOTHESIS_GENERATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("EVIDENCE_GENERATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("HOST_EXACT_PROTOCOL_DECODE", "MECHANICAL_ONLY");
+    ⚡ print("HOST_CANDIDATE_SELECTION", "NO");
+    ⚡ print("HOST_EVIDENCE_GENERATION", "NO");
+    ⚡ print("HOST_WEIGHT_UPDATE", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("SEMANTIC_EQUIVALENCE", "NOT_PROVEN");
+    ⚡ print("WORD_MEANING", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
