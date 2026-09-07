@@ -30,6 +30,8 @@ HOST_WEIGHT_UPDATE=NO
 HOST_SEMANTIC_INTERPRETATION=NO
 HOST_SEMANTIC_SUBSTITUTION=NO
 RUNTIME_PROOF_REQUIRED=YES
+FAILURE_IS_EVIDENCE=YES
+WEAKEN_GATE_TO_FORCE_PASS=FORBIDDEN
 PRODUCTION_STATE_MUTATED_DURING_PREFLIGHT=NO
 ```
 
@@ -44,43 +46,81 @@ VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 
 ```text
 ACTIVE_CAPABILITY=VNM-01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING
-SOURCE_READY=YES
-LOCKED_SIGMAC_COMPILE=NOT_RUN
-LOCKED_VM_RUNTIME=NOT_RUN
-ADMISSION=NOT_RUN
+FIX1_SOURCE_READY=YES
+LOCKED_SIGMAC_COMPILE_FIX1=NOT_RUN
+LOCKED_VM_RUNTIME_FIX1=NOT_RUN
+ADMISSION=NOT_RUN_FIX1
 PRODUCTION_BINDING=NO
 ```
 
-Native source:
+## Preserved first failure
+
+Checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260907_VNM01_FIRST_LOCKED_COMPILE_FAIL_INVALID_HEADER.md`
+
+Exact first-run boundary:
 
 ```text
-PATH=SIGMA_PROFESSOR/artifacts/SIGMA_VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_V1.sigma
-SOURCE_COMMIT=c7cf0881fc2f8a500e92f929a6c7d44eafc4dcdb
-SOURCE_GIT_BLOB=dbec0349b7b12a18e3f08b0d7fac5d60edcbf039
+RUNNER_RC=25
+SIGMAC_RC=3
+SIGMAC_ERROR=invalid/missing SIGMA header
 SOURCE_SHA256=638078331f21fccf392b6456f81a76713010a59b641026962bcaf28e2ac3814a
-ORIGIN=TEACHER_AUTHORED_BOOTSTRAP
+TOTAL_VM_INVOCATIONS=0
+VM_RC=NOT_RUN
+ADMISSION=FAIL_AT_COMPILE_GATE
 ```
 
-Admission runner:
+Root cause was the unsupported source header family `#SIGMAUNIVERSE_VNM`. No native learning/runtime behavior was executed in that attempt.
+
+## VNM-01 FIX1 source
+
+Path:
+
+`SIGMA_PROFESSOR/artifacts/SIGMA_VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_V1.sigma`
+
+FIX1 changed only the declaration header prefix to the compiler-supported language family:
 
 ```text
-PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_PREFLIGHT.sh
-RUNNER_COMMIT=336340beb380b8857d03208121108c579196d2b0
-RUNNER_GIT_BLOB=0cb9909144c1a1684351fca5273645753d34b101
-RUNNER_SHA256=b4456fbd4b60c94c3f45739c2d4e74593619867f1af83ac14da43e5b0f26dc2f
-PLANNED_VM_INVOCATIONS=18
-RUNNER_STATIC_BASH_SYNTAX=PASS
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.SURFACE.FORM.EVIDENCE.WEIGHT][VERSION=VNM-01-V1]
 ```
 
-Source-ready checkpoint:
+Identity:
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260907_VNM01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_SOURCE_READY.md`
+```text
+SOURCE_COMMIT=cfbd3d2974cf310ce5ef14c740551529a8787dbb
+SOURCE_GIT_BLOB=2eec7a9798d6152deba1a44a9e639cdea0110513
+SOURCE_SHA256=cd399793ebde7e5dfa4a10cf263bb97fd45d1379ce8dac02520d5277cf2ca788
+ORIGIN=TEACHER_AUTHORED_BOOTSTRAP
+NATIVE_COGNITION_BODY_CHANGED=NO
+WEIGHT_RULE_CHANGED=NO
+STATE_SCHEMA_CHANGED=NO
+```
+
+## VNM-01 FIX1 runner
+
+Path:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_VNM_01_NATIVE_SURFACE_FORM_EVIDENCE_WEIGHTING_PREFLIGHT.sh`
+
+Only the pinned `EXPECTED_SOURCE` identity changed; the 18-case suite and PASS definition remain unchanged.
+
+```text
+RUNNER_COMMIT=7cb35091e077003e1bbe0daf368cbb31f8328181
+RUNNER_GIT_BLOB=b1a455e5cdf3bee00eb55f15efbdf121d776d226
+RUNNER_SHA256=ddf7cc3bcf6a4eeb94705739885961a1f15393506261dd5d8cecd56325a1355b
+PLANNED_VM_INVOCATIONS=18
+TEST_MATRIX_CHANGED=NO
+PASS_DEFINITION_CHANGED=NO
+```
+
+FIX1 checkpoint:
+
+`SIGMA_PROFESSOR/CHECKPOINTS/20260907_VNM01_FIX1_HEADER_SOURCE_READY.md`
 
 ## VNM-01 exact teaching scope
 
-VNM-01 receives an externally supplied pair hypothesis. Native SIGMA classifies observation records as structural `SUPPORT`, `COMPETING`, or `UNRELATED`, deduplicates evidence, rejects collisions, computes a bounded persistent weight, and emits the native update reason.
-
-This is intentionally not a meaning lesson yet.
+VNM-01 receives an externally supplied bounded pair hypothesis over arbitrary UTF-8 surface forms. Native SIGMA must classify structural observation evidence as `SUPPORT`, `COMPETING`, or `UNRELATED`, deduplicate evidence, reject evidence-ID collisions and malformed/out-of-bound cases, compute and persist the bounded weight, expose native update reason, and preserve/reuse state across fresh VM invocations.
 
 Keep:
 
@@ -93,33 +133,32 @@ VIETNAMESE_SEMANTIC_UNDERSTANDING=NOT_PROVEN
 GENERAL_SEMANTIC_UNDERSTANDING=NOT_PROVEN
 ```
 
-## First runtime gate
+## FIX1 full rerun gate
 
-The exact next action is the VNM-01 locked-runtime preflight on the Oppo/Termux installation.
+The exact next action is the same full VNM-01 preflight on Oppo/Termux after pulling FIX1.
 
-Expected behavior of the process:
+Required aggregate PASS remains:
 
 ```text
-compile exact source
--> freeze bytecode
--> generate dynamic Vietnamese-bearing inputs after compile
--> 18 VM invocations
--> positive weight-up cases
--> competing weight-down cases
--> unrelated/duplicate negative cases
--> collision/malformed refusal
--> persistence/restart
--> capacity/input bounds
--> identical input+prestate replay
--> source/bytecode unchanged
--> claim-scope gate
+TOTAL_VM_INVOCATIONS=18
+POST_VM_ALIGNMENT_PASS_COUNT=18
+POST_VM_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+NEGATIVE_TEST=PASS
+PERSISTENT_STATE_TEST=PASS
+RESTART_REPLAY_TEST=PASS
+SOURCE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+BYTECODE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+UNSEEN_HIGH_ENTROPY_TOKEN_LEAK_COUNT_IN_SOURCE_OR_BYTECODE=0
+ADMISSION=PASS_IN_EXACT_TESTED_PREFLIGHT_SCOPE
 ```
 
-No failure may be hidden. Preserve exact compiler/VM RC and logs.
+No compile-only success may be promoted to admission.
 
 ## Next capability policy
 
-Only after VNM-01 admission PASS may the lane select the next native lesson.
+Only after VNM-01 FIX1 full admission PASS may the lane select the next native lesson.
 
 Preferred candidate, subject to dependency review:
 
@@ -127,15 +166,14 @@ Preferred candidate, subject to dependency review:
 VNM-02_NATIVE_SURFACE_FORM_PAIR_CANDIDATE_INDUCTION
 ```
 
-VNM-02 must move pair-candidate formation into native SIGMA. Host/GPT/Python may not strip accents, consult a dictionary, generate semantic pair labels, or choose the candidate relation for SIGMA.
-
 ## Current claim
 
 ```text
 VNM_COURSE_STARTED=YES
-VNM_01_SOURCE_READY=YES
-VNM_01_RUNTIME_PROOF=NOT_RUN
-VNM_01_ADMISSION=NOT_RUN
-CLAIM_SCOPE=SOURCE_READY_ONLY
-NEXT_ACTION=RUN_EXACT_VNM_01_LOCKED_RUNTIME_PREFLIGHT
+VNM_01_FIRST_ATTEMPT_FAIL_PRESERVED=YES
+VNM_01_FIX1_SOURCE_READY=YES
+VNM_01_RUNTIME_PROOF=NOT_RUN_FIX1
+VNM_01_ADMISSION=NOT_RUN_FIX1
+CLAIM_SCOPE=FIX1_SOURCE_READY_ONLY
+NEXT_ACTION=PULL_FIX1_AND_RERUN_FULL_VNM01_PREFLIGHT
 ```
