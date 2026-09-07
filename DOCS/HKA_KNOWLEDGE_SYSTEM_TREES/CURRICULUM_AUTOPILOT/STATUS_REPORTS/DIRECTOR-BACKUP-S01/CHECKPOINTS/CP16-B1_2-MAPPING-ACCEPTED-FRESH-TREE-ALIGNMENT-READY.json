@@ -1,0 +1,21 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP16-B1_2-MAPPING-ACCEPTED-FRESH-TREE-ALIGNMENT-READY",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/director-backup-sentinel",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "director_order_commit_sha":"f68454b38f695904f2f3805ebf0f339bb382abe3",
+  "director_checkpoint_commit_sha":"d512a3158dff35956cc56277517bacf934d1f848",
+  "accepted_family_integration_sha":"425df302d7331293ad12744a6096e05d51560890",
+  "accepted_external_mapping_sha":"5492127b661b770c23026c6205d1fbd4e8464835",
+  "effective_mapping_metadata_repair_sha":"c6c8fda3bf6a0d898e7a9f7c39ec20d6b1b3d5e2",
+  "canonical_tree_commit":"fc799bf1104ab6352710e1801777a971b5179995",
+  "scope_map_blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856",
+  "authority":{"academic_authoring":false,"director_acceptance":false,"successor_unlock":false,"control_plane_mutation":false,"own_status_checkpoint_writes":true},
+  "B1_3_unlock":false,
+  "next_action":"Run GPT_B1_2_FRESH_TREE_ALIGNMENT_PROMPT.md against current curriculum-master HEAD and return only final TREE_ALIGNMENT_PASS or exact BLOCK.",
+  "updated_at":"2026-09-07T12:22:00+07:00"
+}
