@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_3-C05-BOOTSTRAP-CONTROL-PLANE-CLEAN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "status":"CLEAN_AFTER_TECHNICAL_BOOTSTRAP_REPAIR",
+  "accidental_temp_file_removed":true,
+  "academic_mutation":0,
+  "active_scope":"B1.3-C05",
+  "next":"Create hka-tree/c01-w04-chemistry-c05 from clean control-plane HEAD and bootstrap Worker only on that branch.",
+  "updated_at":"2026-09-07T22:35:00+07:00"
+}
