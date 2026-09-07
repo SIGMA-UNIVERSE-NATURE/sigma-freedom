@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-FAMILY-ACCEPT-EXTERNAL-MAPPING-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_B1_2_FAMILY_INTEGRATION_OPEN_EXTERNAL_MAPPING",
+  "family_window":"C01-W03-B1.2-PHYSICS-FAMILY",
+  "accepted_family_commit_sha":"425df302d7331293ad12744a6096e05d51560890",
+  "worker_candidate_sha":"a416e6c6a5c56cc74724574ae8bc6ca264ef868e",
+  "director_assistant_checkpoint_sha":"5137b0f2593be3ea4559b6e375faaf4ea62d5b5d",
+  "aggregate":{"children":"12/12","topics":84,"claims":394,"learning_objectives":338,"semantic_closures":"338/338"},
+  "integration_gates":{"foundational_content_coverage":"PASS","foundational_gap_count":0,"mass_vs_weight_foundational":"PASS","duplicate_ownership":"PASS","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "subbranch_exit_status":"HOLD_PENDING_EXIT_EVIDENCE",
+  "external_general_education_mapping":"OPEN",
+  "fresh_backup_sentinel":"REQUIRED_AFTER_MAPPING",
+  "B1_3_unlock":false,
+  "open_order_commit":"710cbcd43f978de6b32e1c0662828aca19374141",
+  "next":"Run external general-education mapping on the registered B1.2 family controller. Keep B1.3 locked.",
+  "updated_at":"2026-09-07T10:42:00+07:00"
+}
