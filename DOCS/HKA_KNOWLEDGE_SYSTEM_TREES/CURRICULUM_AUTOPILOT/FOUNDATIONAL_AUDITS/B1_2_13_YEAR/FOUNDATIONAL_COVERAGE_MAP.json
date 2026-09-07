@@ -1,5 +1,5 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY",
   "requirements_total":10,
   "status_counts":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},
@@ -14,10 +14,10 @@
     {"id":"PHY-GE-07","meaning":"Atomic, nuclear and radiation foundations at general-education depth","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C08 + B1.2-C10","evidence":"C08 secures atom/molecule/spectroscopy foundations; C10 secures nucleus, radioactivity, nuclear reactions and particle-physics extensions, with foundational nuclear sequence preceding advanced Standard Model/accelerator/plasma material."},
     {"id":"PHY-GE-08","meaning":"Scientific modelling, evidence, assumptions, limits and quantitative reasoning across physical phenomena","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C01..C12 distributed","evidence":"Across accepted child objectives and closures, D1-D4 progression includes observation, model construction, formalization, evidence/assumption checks and model-limit critique; all support resolves to accepted/local claims."},
     {"id":"PHY-GE-09","meaning":"Applied energy, devices, sensors and interdisciplinary physical-principle contexts","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C12","evidence":"Accepted C12 covers computational/applied interfaces, energy, devices and sensors while restricting domain conclusions to physics-owned measurement/model principles."},
-    {"id":"PHY-GE-10","meaning":"Earth/space, biological and medical domain conclusions beyond the underlying physical principle","cross_system_confidence":"HIGH","status":"NOT_OWNER","owner_scope":"B1.3/B1.4/B1.5 domain curricula as applicable","evidence":"B1.2 supplies transferable mechanics, thermodynamics, EM, radiation and sensing principles. Domain-specific Earth-system, astronomy, biology and medicine conclusions are explicitly outside B1.2 ownership and are not required to close B1.2 foundational physics."}
+    {"id":"PHY-GE-10","meaning":"Earth/space, biological and medical domain conclusions beyond the underlying physical principle","cross_system_confidence":"HIGH","status":"NOT_OWNER","owner_scope":"B1.4 for Earth/space; biological/medical domain owner is outside the canonical B1 scope map and is not asserted by this audit","evidence":"B1.2 supplies transferable mechanics, thermodynamics, EM, radiation and sensing principles. Canonical B1 assigns Earth/space domain conclusions to B1.4; biological and medical domain conclusions are outside B1.2 and are not reassigned to B1.3 chemistry or B1.5 information/computation. Exact non-B1 owner is intentionally not asserted here."}
   ],
   "mass_vs_weight_foundational":"PASS",
-  "ownership":"PASS",
+  "ownership":"PASS_AFTER_ASSISTANT_METADATA_REPAIR",
   "future_locked_support":0,
   "cross_scope_academic_mutation":0,
   "stage_boundary":"PASS — CURRICULUM ONLY"
