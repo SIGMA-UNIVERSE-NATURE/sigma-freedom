@@ -1,0 +1,597 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA36.CAUSAL.WORLD.MODEL.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF relation_count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    IF (value == "3") { RETURN 1.0; }
+    IF (value == "4") { RETURN 1.0; }
+    IF (value == "5") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF relation_type_valid(value) {
+    IF (value == "CORRELATION") { RETURN 1.0; }
+    IF (value == "CAUSATION") { RETURN 1.0; }
+    IF (value == "MECHANISM") { RETURN 1.0; }
+    IF (value == "INTERVENTION") { RETURN 1.0; }
+    IF (value == "COUNTERFACTUAL") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF active_fields_valid(active, rid, statement, evidence) {
+    IF (active > 0.5) {
+        RETURN present(rid) * present(statement) * present(evidence);
+    }
+    RETURN exact(rid, "NONE") * exact(statement, "NONE") * exact(evidence, "NONE");
+}
+
+DEF active_type_valid(active, rtype) {
+    IF (active > 0.5) { RETURN relation_type_valid(rtype); }
+    RETURN exact(rtype, "NONE");
+}
+
+DEF active_details_valid(active, details) {
+    IF (active > 0.5) { RETURN 1.0; }
+    RETURN exact(details, "NONE");
+}
+
+DEF pair_distinct(active_a, active_b, id_a, id_b) {
+    IF (active_a > 0.5) {
+        IF (active_b > 0.5) {
+            IF (id_a == id_b) { RETURN 0.0; }
+        }
+    }
+    RETURN 1.0;
+}
+
+DEF active_type_is(active, rtype, expected) {
+    IF (active > 0.5) {
+        IF (rtype == expected) { RETURN 1.0; }
+    }
+    RETURN 0.0;
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF choose_stage1(dep_valid, bool_valid, supplied, count_valid) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_CAUSAL_BATCH"; }
+    IF (count_valid < 0.5) { RETURN "RELATION_COUNT_ENCODING_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(fields_valid, types_valid, ids_distinct) {
+    IF (fields_valid < 0.5) { RETURN "RELATION_ENCODING_INVALID"; }
+    IF (types_valid < 0.5) { RETURN "UNKNOWN_RELATION_TYPE"; }
+    IF (ids_distinct < 0.5) { RETURN "DUPLICATE_RELATION_ID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(store_valid, capacity, complete) {
+    IF (store_valid < 0.5) { RETURN "CAUSAL_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "CAUSAL_CAPACITY_REACHED"; }
+    IF (complete > 0.5) { RETURN "CAUSAL_RELATION_TYPES_COMPLETE"; }
+    RETURN "CAUSAL_RELATION_TYPES_INCOMPLETE";
+}
+
+DEF choose_status(s1, s2, s3) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    RETURN s3;
+}
+
+⟡(Σ.DNA36_CAUSAL_WORLD_MODEL_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ BATCH_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/batch_supplied.txt");
+    ⚡ RELATION_COUNT_TOKEN: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation_count.txt");
+
+    ⚡ R1_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation1_id.txt");
+    ⚡ R1_TYPE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation1_type.txt");
+    ⚡ R1_STATEMENT: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation1_statement.txt");
+    ⚡ R1_EVIDENCE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation1_evidence.txt");
+    ⚡ R1_DETAILS: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation1_details.txt");
+
+    ⚡ R2_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation2_id.txt");
+    ⚡ R2_TYPE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation2_type.txt");
+    ⚡ R2_STATEMENT: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation2_statement.txt");
+    ⚡ R2_EVIDENCE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation2_evidence.txt");
+    ⚡ R2_DETAILS: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation2_details.txt");
+
+    ⚡ R3_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation3_id.txt");
+    ⚡ R3_TYPE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation3_type.txt");
+    ⚡ R3_STATEMENT: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation3_statement.txt");
+    ⚡ R3_EVIDENCE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation3_evidence.txt");
+    ⚡ R3_DETAILS: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation3_details.txt");
+
+    ⚡ R4_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation4_id.txt");
+    ⚡ R4_TYPE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation4_type.txt");
+    ⚡ R4_STATEMENT: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation4_statement.txt");
+    ⚡ R4_EVIDENCE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation4_evidence.txt");
+    ⚡ R4_DETAILS: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation4_details.txt");
+
+    ⚡ R5_ID: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation5_id.txt");
+    ⚡ R5_TYPE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation5_type.txt");
+    ⚡ R5_STATEMENT: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation5_statement.txt");
+    ⚡ R5_EVIDENCE: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation5_evidence.txt");
+    ⚡ R5_DETAILS: load_text(".sigma_exec/DNA36_NATIVE_ADMISSION_V1/input/relation5_details.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+
+    ⚡ BOOLEAN_ENCODINGS_VALID: bool_token_valid(BATCH_SUPPLIED_TOKEN);
+    ⚡ BATCH_SUPPLIED: bool_true(BATCH_SUPPLIED_TOKEN);
+    ⚡ RELATION_COUNT_ENCODING_VALID: relation_count_valid(RELATION_COUNT_TOKEN);
+
+    ⚡ A1:
+        exact(RELATION_COUNT_TOKEN, "1")
+        + exact(RELATION_COUNT_TOKEN, "2")
+        + exact(RELATION_COUNT_TOKEN, "3")
+        + exact(RELATION_COUNT_TOKEN, "4")
+        + exact(RELATION_COUNT_TOKEN, "5");
+    ⚡ A2:
+        exact(RELATION_COUNT_TOKEN, "2")
+        + exact(RELATION_COUNT_TOKEN, "3")
+        + exact(RELATION_COUNT_TOKEN, "4")
+        + exact(RELATION_COUNT_TOKEN, "5");
+    ⚡ A3:
+        exact(RELATION_COUNT_TOKEN, "3")
+        + exact(RELATION_COUNT_TOKEN, "4")
+        + exact(RELATION_COUNT_TOKEN, "5");
+    ⚡ A4:
+        exact(RELATION_COUNT_TOKEN, "4")
+        + exact(RELATION_COUNT_TOKEN, "5");
+    ⚡ A5: exact(RELATION_COUNT_TOKEN, "5");
+
+    ⚡ RELATION_FIELDS_VALID:
+        active_fields_valid(A1, R1_ID, R1_STATEMENT, R1_EVIDENCE)
+        * active_fields_valid(A2, R2_ID, R2_STATEMENT, R2_EVIDENCE)
+        * active_fields_valid(A3, R3_ID, R3_STATEMENT, R3_EVIDENCE)
+        * active_fields_valid(A4, R4_ID, R4_STATEMENT, R4_EVIDENCE)
+        * active_fields_valid(A5, R5_ID, R5_STATEMENT, R5_EVIDENCE)
+        * active_details_valid(A1, R1_DETAILS)
+        * active_details_valid(A2, R2_DETAILS)
+        * active_details_valid(A3, R3_DETAILS)
+        * active_details_valid(A4, R4_DETAILS)
+        * active_details_valid(A5, R5_DETAILS);
+
+    ⚡ RELATION_TYPES_VALID:
+        active_type_valid(A1, R1_TYPE)
+        * active_type_valid(A2, R2_TYPE)
+        * active_type_valid(A3, R3_TYPE)
+        * active_type_valid(A4, R4_TYPE)
+        * active_type_valid(A5, R5_TYPE);
+
+    ⚡ RELATION_IDS_DISTINCT:
+        pair_distinct(A1, A2, R1_ID, R2_ID)
+        * pair_distinct(A1, A3, R1_ID, R3_ID)
+        * pair_distinct(A1, A4, R1_ID, R4_ID)
+        * pair_distinct(A1, A5, R1_ID, R5_ID)
+        * pair_distinct(A2, A3, R2_ID, R3_ID)
+        * pair_distinct(A2, A4, R2_ID, R4_ID)
+        * pair_distinct(A2, A5, R2_ID, R5_ID)
+        * pair_distinct(A3, A4, R3_ID, R4_ID)
+        * pair_distinct(A3, A5, R3_ID, R5_ID)
+        * pair_distinct(A4, A5, R4_ID, R5_ID);
+
+    ⚡ CORRELATION_SCORE:
+        active_type_is(A1, R1_TYPE, "CORRELATION")
+        + active_type_is(A2, R2_TYPE, "CORRELATION")
+        + active_type_is(A3, R3_TYPE, "CORRELATION")
+        + active_type_is(A4, R4_TYPE, "CORRELATION")
+        + active_type_is(A5, R5_TYPE, "CORRELATION");
+    ⚡ CAUSATION_SCORE:
+        active_type_is(A1, R1_TYPE, "CAUSATION")
+        + active_type_is(A2, R2_TYPE, "CAUSATION")
+        + active_type_is(A3, R3_TYPE, "CAUSATION")
+        + active_type_is(A4, R4_TYPE, "CAUSATION")
+        + active_type_is(A5, R5_TYPE, "CAUSATION");
+    ⚡ MECHANISM_SCORE:
+        active_type_is(A1, R1_TYPE, "MECHANISM")
+        + active_type_is(A2, R2_TYPE, "MECHANISM")
+        + active_type_is(A3, R3_TYPE, "MECHANISM")
+        + active_type_is(A4, R4_TYPE, "MECHANISM")
+        + active_type_is(A5, R5_TYPE, "MECHANISM");
+    ⚡ INTERVENTION_SCORE:
+        active_type_is(A1, R1_TYPE, "INTERVENTION")
+        + active_type_is(A2, R2_TYPE, "INTERVENTION")
+        + active_type_is(A3, R3_TYPE, "INTERVENTION")
+        + active_type_is(A4, R4_TYPE, "INTERVENTION")
+        + active_type_is(A5, R5_TYPE, "INTERVENTION");
+    ⚡ COUNTERFACTUAL_SCORE:
+        active_type_is(A1, R1_TYPE, "COUNTERFACTUAL")
+        + active_type_is(A2, R2_TYPE, "COUNTERFACTUAL")
+        + active_type_is(A3, R3_TYPE, "COUNTERFACTUAL")
+        + active_type_is(A4, R4_TYPE, "COUNTERFACTUAL")
+        + active_type_is(A5, R5_TYPE, "COUNTERFACTUAL");
+
+    ⚡ CORRELATION_PRESENT: 0.0;
+    ⚡ CAUSATION_PRESENT: 0.0;
+    ⚡ MECHANISM_PRESENT: 0.0;
+    ⚡ INTERVENTION_PRESENT: 0.0;
+    ⚡ COUNTERFACTUAL_PRESENT: 0.0;
+    IF (CORRELATION_SCORE > 0.0) { ⚡ CORRELATION_PRESENT: 1.0; }
+    IF (CAUSATION_SCORE > 0.0) { ⚡ CAUSATION_PRESENT: 1.0; }
+    IF (MECHANISM_SCORE > 0.0) { ⚡ MECHANISM_PRESENT: 1.0; }
+    IF (INTERVENTION_SCORE > 0.0) { ⚡ INTERVENTION_PRESENT: 1.0; }
+    IF (COUNTERFACTUAL_SCORE > 0.0) { ⚡ COUNTERFACTUAL_PRESENT: 1.0; }
+
+    ⚡ COMPLETE_TYPE_COVERAGE:
+        CORRELATION_PRESENT
+        * CAUSATION_PRESENT
+        * MECHANISM_PRESENT
+        * INTERVENTION_PRESENT
+        * COUNTERFACTUAL_PRESENT;
+    ⚡ MISSING_RELATION_TYPE_COUNT:
+        5.0
+        - CORRELATION_PRESENT
+        - CAUSATION_PRESENT
+        - MECHANISM_PRESENT
+        - INTERVENTION_PRESENT
+        - COUNTERFACTUAL_PRESENT;
+
+    ⚡ BATCH_STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * BATCH_SUPPLIED
+        * RELATION_COUNT_ENCODING_VALID
+        * RELATION_FIELDS_VALID
+        * RELATION_TYPES_VALID
+        * RELATION_IDS_DISTINCT;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA36_NATIVE_ADMISSION_V1/state/causal_world_model_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA36_CAUSAL_WORLD_MODEL_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_BATCH_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ BATCH_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+
+            IF (PART_TOTAL == 42) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RCOUNT: host("list_get", PARTS, 2, NULL);
+
+                ⚡ RR1ID: host("list_get", PARTS, 3, NULL);
+                ⚡ RR1TYPE: host("list_get", PARTS, 4, NULL);
+                ⚡ RR1STMT: host("list_get", PARTS, 5, NULL);
+                ⚡ RR1EVID: host("list_get", PARTS, 6, NULL);
+                ⚡ RR1DETAIL: host("list_get", PARTS, 7, NULL);
+
+                ⚡ RR2ID: host("list_get", PARTS, 8, NULL);
+                ⚡ RR2TYPE: host("list_get", PARTS, 9, NULL);
+                ⚡ RR2STMT: host("list_get", PARTS, 10, NULL);
+                ⚡ RR2EVID: host("list_get", PARTS, 11, NULL);
+                ⚡ RR2DETAIL: host("list_get", PARTS, 12, NULL);
+
+                ⚡ RR3ID: host("list_get", PARTS, 13, NULL);
+                ⚡ RR3TYPE: host("list_get", PARTS, 14, NULL);
+                ⚡ RR3STMT: host("list_get", PARTS, 15, NULL);
+                ⚡ RR3EVID: host("list_get", PARTS, 16, NULL);
+                ⚡ RR3DETAIL: host("list_get", PARTS, 17, NULL);
+
+                ⚡ RR4ID: host("list_get", PARTS, 18, NULL);
+                ⚡ RR4TYPE: host("list_get", PARTS, 19, NULL);
+                ⚡ RR4STMT: host("list_get", PARTS, 20, NULL);
+                ⚡ RR4EVID: host("list_get", PARTS, 21, NULL);
+                ⚡ RR4DETAIL: host("list_get", PARTS, 22, NULL);
+
+                ⚡ RR5ID: host("list_get", PARTS, 23, NULL);
+                ⚡ RR5TYPE: host("list_get", PARTS, 24, NULL);
+                ⚡ RR5STMT: host("list_get", PARTS, 25, NULL);
+                ⚡ RR5EVID: host("list_get", PARTS, 26, NULL);
+                ⚡ RR5DETAIL: host("list_get", PARTS, 27, NULL);
+
+                ⚡ RCORR: host("list_get", PARTS, 28, NULL);
+                ⚡ RCAUSE: host("list_get", PARTS, 29, NULL);
+                ⚡ RMECH: host("list_get", PARTS, 30, NULL);
+                ⚡ RINTERV: host("list_get", PARTS, 31, NULL);
+                ⚡ RCF: host("list_get", PARTS, 32, NULL);
+                ⚡ RCOMPLETE: host("list_get", PARTS, 33, NULL);
+                ⚡ RPROMOTE: host("list_get", PARTS, 34, NULL);
+                ⚡ RINFER: host("list_get", PARTS, 35, NULL);
+                ⚡ RINTEXEC: host("list_get", PARTS, 36, NULL);
+                ⚡ RWORLD: host("list_get", PARTS, 37, NULL);
+                ⚡ RLEARNING: host("list_get", PARTS, 38, NULL);
+                ⚡ RMODEL: host("list_get", PARTS, 39, NULL);
+                ⚡ REXTERNAL: host("list_get", PARTS, 40, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 41, NULL);
+
+                ⚡ RA1:
+                    exact(RCOUNT, "1")
+                    + exact(RCOUNT, "2")
+                    + exact(RCOUNT, "3")
+                    + exact(RCOUNT, "4")
+                    + exact(RCOUNT, "5");
+                ⚡ RA2:
+                    exact(RCOUNT, "2")
+                    + exact(RCOUNT, "3")
+                    + exact(RCOUNT, "4")
+                    + exact(RCOUNT, "5");
+                ⚡ RA3:
+                    exact(RCOUNT, "3")
+                    + exact(RCOUNT, "4")
+                    + exact(RCOUNT, "5");
+                ⚡ RA4:
+                    exact(RCOUNT, "4")
+                    + exact(RCOUNT, "5");
+                ⚡ RA5: exact(RCOUNT, "5");
+
+                ⚡ RFIELDS:
+                    active_fields_valid(RA1, RR1ID, RR1STMT, RR1EVID)
+                    * active_fields_valid(RA2, RR2ID, RR2STMT, RR2EVID)
+                    * active_fields_valid(RA3, RR3ID, RR3STMT, RR3EVID)
+                    * active_fields_valid(RA4, RR4ID, RR4STMT, RR4EVID)
+                    * active_fields_valid(RA5, RR5ID, RR5STMT, RR5EVID)
+                    * active_details_valid(RA1, RR1DETAIL)
+                    * active_details_valid(RA2, RR2DETAIL)
+                    * active_details_valid(RA3, RR3DETAIL)
+                    * active_details_valid(RA4, RR4DETAIL)
+                    * active_details_valid(RA5, RR5DETAIL);
+                ⚡ RTYPES:
+                    active_type_valid(RA1, RR1TYPE)
+                    * active_type_valid(RA2, RR2TYPE)
+                    * active_type_valid(RA3, RR3TYPE)
+                    * active_type_valid(RA4, RR4TYPE)
+                    * active_type_valid(RA5, RR5TYPE);
+                ⚡ RIDDISTINCT:
+                    pair_distinct(RA1, RA2, RR1ID, RR2ID)
+                    * pair_distinct(RA1, RA3, RR1ID, RR3ID)
+                    * pair_distinct(RA1, RA4, RR1ID, RR4ID)
+                    * pair_distinct(RA1, RA5, RR1ID, RR5ID)
+                    * pair_distinct(RA2, RA3, RR2ID, RR3ID)
+                    * pair_distinct(RA2, RA4, RR2ID, RR4ID)
+                    * pair_distinct(RA2, RA5, RR2ID, RR5ID)
+                    * pair_distinct(RA3, RA4, RR3ID, RR4ID)
+                    * pair_distinct(RA3, RA5, RR3ID, RR5ID)
+                    * pair_distinct(RA4, RA5, RR4ID, RR5ID);
+
+                ⚡ RCS:
+                    active_type_is(RA1, RR1TYPE, "CORRELATION")
+                    + active_type_is(RA2, RR2TYPE, "CORRELATION")
+                    + active_type_is(RA3, RR3TYPE, "CORRELATION")
+                    + active_type_is(RA4, RR4TYPE, "CORRELATION")
+                    + active_type_is(RA5, RR5TYPE, "CORRELATION");
+                ⚡ RCAS:
+                    active_type_is(RA1, RR1TYPE, "CAUSATION")
+                    + active_type_is(RA2, RR2TYPE, "CAUSATION")
+                    + active_type_is(RA3, RR3TYPE, "CAUSATION")
+                    + active_type_is(RA4, RR4TYPE, "CAUSATION")
+                    + active_type_is(RA5, RR5TYPE, "CAUSATION");
+                ⚡ RMS:
+                    active_type_is(RA1, RR1TYPE, "MECHANISM")
+                    + active_type_is(RA2, RR2TYPE, "MECHANISM")
+                    + active_type_is(RA3, RR3TYPE, "MECHANISM")
+                    + active_type_is(RA4, RR4TYPE, "MECHANISM")
+                    + active_type_is(RA5, RR5TYPE, "MECHANISM");
+                ⚡ RIS:
+                    active_type_is(RA1, RR1TYPE, "INTERVENTION")
+                    + active_type_is(RA2, RR2TYPE, "INTERVENTION")
+                    + active_type_is(RA3, RR3TYPE, "INTERVENTION")
+                    + active_type_is(RA4, RR4TYPE, "INTERVENTION")
+                    + active_type_is(RA5, RR5TYPE, "INTERVENTION");
+                ⚡ RCFS:
+                    active_type_is(RA1, RR1TYPE, "COUNTERFACTUAL")
+                    + active_type_is(RA2, RR2TYPE, "COUNTERFACTUAL")
+                    + active_type_is(RA3, RR3TYPE, "COUNTERFACTUAL")
+                    + active_type_is(RA4, RR4TYPE, "COUNTERFACTUAL")
+                    + active_type_is(RA5, RR5TYPE, "COUNTERFACTUAL");
+
+                ⚡ RCP: 0.0;
+                ⚡ RCAP: 0.0;
+                ⚡ RMP: 0.0;
+                ⚡ RIP: 0.0;
+                ⚡ RCFP: 0.0;
+                IF (RCS > 0.0) { ⚡ RCP: 1.0; }
+                IF (RCAS > 0.0) { ⚡ RCAP: 1.0; }
+                IF (RMS > 0.0) { ⚡ RMP: 1.0; }
+                IF (RIS > 0.0) { ⚡ RIP: 1.0; }
+                IF (RCFS > 0.0) { ⚡ RCFP: 1.0; }
+
+                ⚡ RCOMP: RCP * RCAP * RMP * RIP * RCFP;
+                ⚡ RCPSTR: bit_string(RCP);
+                ⚡ RCAPSTR: bit_string(RCAP);
+                ⚡ RMPSTR: bit_string(RMP);
+                ⚡ RIPSTR: bit_string(RIP);
+                ⚡ RCFPSTR: bit_string(RCFP);
+                ⚡ RCOMPSTR: bit_string(RCOMP);
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "BATCH")
+                    * present(RCASE)
+                    * relation_count_valid(RCOUNT)
+                    * RFIELDS
+                    * RTYPES
+                    * RIDDISTINCT
+                    * exact(RCORR, RCPSTR)
+                    * exact(RCAUSE, RCAPSTR)
+                    * exact(RMECH, RMPSTR)
+                    * exact(RINTERV, RIPSTR)
+                    * exact(RCF, RCFPSTR)
+                    * exact(RCOMPLETE, RCOMPSTR)
+                    * exact(RPROMOTE, "CORR_PROMOTE=0")
+                    * exact(RINFER, "INFERENCE=0")
+                    * exact(RINTEXEC, "INTERVENTION_EXEC=0")
+                    * exact(RWORLD, "WORLD=0")
+                    * exact(RLEARNING, "LEARNING=0")
+                    * exact(RMODEL, "MODEL=0")
+                    * exact(REXTERNAL, "EXTERNAL=0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+
+                IF (RECORD_VALID > 0.5) {
+                    ⚡ BATCH_RECORD_COUNT_BEFORE: BATCH_RECORD_COUNT_BEFORE + 1.0;
+                }
+            }
+
+            IF (RECORD_VALID < 0.5) {
+                ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0;
+            }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (BATCH_RECORD_COUNT_BEFORE < MAX_BATCH_RECORDS) {
+        ⚡ STATE_CAPACITY_AVAILABLE: 1.0;
+    }
+
+    ⚡ RETAIN_ELIGIBLE:
+        BATCH_STRUCTURALLY_VALID
+        * STORE_STATE_VALID
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_RECORD_COUNT: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ CORR_STR: bit_string(CORRELATION_PRESENT);
+        ⚡ CAUSE_STR: bit_string(CAUSATION_PRESENT);
+        ⚡ MECH_STR: bit_string(MECHANISM_PRESENT);
+        ⚡ INTERV_STR: bit_string(INTERVENTION_PRESENT);
+        ⚡ CF_STR: bit_string(COUNTERFACTUAL_PRESENT);
+        ⚡ COMPLETE_STR: bit_string(COMPLETE_TYPE_COVERAGE);
+
+        ⚡ RECORD_LINE:
+            "BATCH||" + CASE_ID + "||" + RELATION_COUNT_TOKEN
+            + "||" + R1_ID + "||" + R1_TYPE + "||" + R1_STATEMENT + "||" + R1_EVIDENCE + "||" + R1_DETAILS
+            + "||" + R2_ID + "||" + R2_TYPE + "||" + R2_STATEMENT + "||" + R2_EVIDENCE + "||" + R2_DETAILS
+            + "||" + R3_ID + "||" + R3_TYPE + "||" + R3_STATEMENT + "||" + R3_EVIDENCE + "||" + R3_DETAILS
+            + "||" + R4_ID + "||" + R4_TYPE + "||" + R4_STATEMENT + "||" + R4_EVIDENCE + "||" + R4_DETAILS
+            + "||" + R5_ID + "||" + R5_TYPE + "||" + R5_STATEMENT + "||" + R5_EVIDENCE + "||" + R5_DETAILS
+            + "||" + CORR_STR + "||" + CAUSE_STR + "||" + MECH_STR + "||" + INTERV_STR + "||" + CF_STR
+            + "||" + COMPLETE_STR
+            + "||CORR_PROMOTE=0||INFERENCE=0||INTERVENTION_EXEC=0||WORLD=0||LEARNING=0||MODEL=0||EXTERNAL=0||COMMIT=YES";
+
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ RETAINED_RECORD_COUNT: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ BATCH_RECORD_COUNT_AFTER: BATCH_RECORD_COUNT_BEFORE + RETAINED_RECORD_COUNT;
+    ⚡ STATE_MUTATED: 0.0;
+    IF (RETAINED_RECORD_COUNT > 0.5) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ S1: choose_stage1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, BATCH_SUPPLIED, RELATION_COUNT_ENCODING_VALID);
+    ⚡ S2: choose_stage2(RELATION_FIELDS_VALID, RELATION_TYPES_VALID, RELATION_IDS_DISTINCT);
+    ⚡ S3: choose_stage3(STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE, COMPLETE_TYPE_COVERAGE);
+    ⚡ STATUS: choose_status(S1, S2, S3);
+
+    ⚡ print("DNA36_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID"); ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("BATCH_SUPPLIED"); ⚡ print(BATCH_SUPPLIED);
+    ⚡ print("RELATION_COUNT_ENCODING_VALID"); ⚡ print(RELATION_COUNT_ENCODING_VALID);
+    ⚡ print("RELATION_FIELDS_VALID"); ⚡ print(RELATION_FIELDS_VALID);
+    ⚡ print("RELATION_TYPES_VALID"); ⚡ print(RELATION_TYPES_VALID);
+    ⚡ print("RELATION_IDS_DISTINCT"); ⚡ print(RELATION_IDS_DISTINCT);
+    ⚡ print("BATCH_STRUCTURALLY_VALID"); ⚡ print(BATCH_STRUCTURALLY_VALID);
+    ⚡ print("CORRELATION_PRESENT"); ⚡ print(CORRELATION_PRESENT);
+    ⚡ print("CAUSATION_PRESENT"); ⚡ print(CAUSATION_PRESENT);
+    ⚡ print("MECHANISM_PRESENT"); ⚡ print(MECHANISM_PRESENT);
+    ⚡ print("INTERVENTION_PRESENT"); ⚡ print(INTERVENTION_PRESENT);
+    ⚡ print("COUNTERFACTUAL_PRESENT"); ⚡ print(COUNTERFACTUAL_PRESENT);
+    ⚡ print("MISSING_RELATION_TYPE_COUNT"); ⚡ print(MISSING_RELATION_TYPE_COUNT);
+    ⚡ print("COMPLETE_TYPE_COVERAGE"); ⚡ print(COMPLETE_TYPE_COVERAGE);
+    ⚡ print("CORRELATION_PROMOTED_TO_CAUSATION"); ⚡ print(0.0);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("BATCH_RECORD_COUNT_BEFORE"); ⚡ print(BATCH_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_RECORD_COUNT"); ⚡ print(RETAINED_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("BATCH_RECORD_COUNT_AFTER"); ⚡ print(BATCH_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("CAUSAL_WORLD_MODEL_SCHEMA"); ⚡ print("SIGMA_CAUSAL_WORLD_MODEL_V1");
+    ⚡ print("CANON_RELATION_TYPES"); ⚡ print("CORRELATION,CAUSATION,MECHANISM,INTERVENTION,COUNTERFACTUAL");
+    ⚡ print("RELATION_TYPE_MUST_BE_EXPLICIT"); ⚡ print(1.0);
+    ⚡ print("CORRELATION_IS_CAUSATION"); ⚡ print(0.0);
+    ⚡ print("CAUSATION_IS_MECHANISM"); ⚡ print(0.0);
+    ⚡ print("OBSERVATION_IS_INTERVENTION"); ⚡ print(0.0);
+    ⚡ print("FACTUAL_IS_COUNTERFACTUAL"); ⚡ print(0.0);
+    ⚡ print("EVIDENCE_REQUIRED"); ⚡ print(1.0);
+    ⚡ print("MISSING_RELATION_TYPE_IS_NOT_INVENTED"); ⚡ print(1.0);
+    ⚡ print("CAUSAL_INFERENCE_EXECUTED_BY_DNA36"); ⚡ print(0.0);
+    ⚡ print("INTERVENTION_EXECUTED_BY_DNA36"); ⚡ print(0.0);
+    ⚡ print("WORLD_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("MODEL_CALLS_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("STATEMENT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("EVIDENCE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("DETAILS_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_RELATION_CARDINALITY_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_CAUSAL_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
