@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c02",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "input_control_plane_commit_sha":"5fc8418e7c0a0c5f198a6bbade3a6045ad1afef8",
+  "last_checkpoint_commit_sha":"8b814508d963afc11366bec89a2fcc5fbba47761",
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "scope_ids":["B1.3-C02"],
+  "canonical_topic_count":6,
+  "prerequisites":["B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d"],
+  "remaining_work":["Author all 6 canonical topics.","Self-audit and self-repair in-scope defects.","Re-audit, commit, read back, update RESULT/HANDOFF/status/report/checkpoint.","Return final receipt only."],
+  "blocking_issues":[],
+  "successor_scope":"B1.3-C03",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at":"2026-09-07T15:07:00+07:00"
+}
