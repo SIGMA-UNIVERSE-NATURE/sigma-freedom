@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C12",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c12",
+  "input_commit_sha":"379b68cf726ae70140d87c63a9287c35af394b44",
+  "last_checkpoint_commit_sha":"eb23db38afad0ab512c9f61cd82eb6e2e5c91bb2",
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "scope_ids":["B1.2-C12"],
+  "canonical_topic_count":7,
+  "prerequisites":["B1.2-C01@62a26590dc9055323316456f1620856b885462d7","B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc","B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4","B1.2-C06@8295726bf0599bb636f29c096e97363d26e5fccc"],
+  "remaining_work":["Author all 7 canonical topics.","Self-audit and repair in-scope defects.","Re-audit semantic closure, ownership, prerequisites, source resolution, foundational progression, future/locked support and stage boundary.","Commit all outputs and terminal durable status then read back from GitHub."],
+  "blocking_issues":[],
+  "successor_gate":"B1.2_FAMILY_COMPLETION_GATE",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE_OF_C12",
+  "next_action":"Execute GPT_EXECUTION_PROMPT.md end-to-end and return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-07T09:27:00+07:00"
+}
