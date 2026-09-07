@@ -6,13 +6,10 @@
   "canonical_topics":{"expected":7,"authored":7,"status":"PASS"},
   "artifact_counts":{"nodes":7,"claims":28,"sources":7,"learning_objectives":28,"claim_to_learning_objective_closures":28,"cross_links":7,"sequence_intent_records":7},
   "audit":{"id_uniqueness":"PASS","claim_integrity":"28/28 PASS","source_resolution":"7/7 PASS","learning_objective_completeness":"28/28 PASS","semantic_closure":"28/28 PASS — exactly one row per objective","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","canonical_prerequisite_alignment":"PASS — C01 + C02 + C04 + C06","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
-  "self_repairs":[
-    {"repair_id":"SR01","defect":"Draft interdisciplinary claims risked taking ownership from future biology, medicine, Earth-system and computation curricula.","repair":"Restricted each topic to the physics interface and added explicit B1.3/B1.4/B1.5 ownership boundaries.","status":"REPAIRED"},
-    {"repair_id":"SR02","defect":"Advanced applications risked obscuring foundational measurement, mechanics, thermodynamics and electromagnetism.","repair":"Re-sequenced learning from foundational physical quantities/laws to applications, then limits and uncertainty.","status":"REPAIRED"},
-    {"repair_id":"SR03","defect":"Sensor, medical and geophysical statements risked conflating measured physical quantities with domain-specific decisions or causal conclusions.","repair":"Added explicit model, uncertainty and professional-domain limits; support claims remain physics-specific.","status":"REPAIRED"}
-  ],
+  "self_repairs":[{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "academic_output_commit_sha":"c5d2e3bdbab7854ec4114feef84cf711885e6f08",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "next":"B1.2 FAMILY COMPLETION GATE — GATED pending Director acceptance of C12"
 }
