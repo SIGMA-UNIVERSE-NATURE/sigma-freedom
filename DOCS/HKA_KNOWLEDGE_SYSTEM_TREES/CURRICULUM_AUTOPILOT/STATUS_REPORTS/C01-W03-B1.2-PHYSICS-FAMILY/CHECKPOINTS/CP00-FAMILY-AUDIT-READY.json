@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-FAMILY-AUDIT-READY",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY",
+  "stage":"CURRICULUM",
+  "status":"AUDIT_READY",
+  "execution_branch":"hka-tree/c01-w03-physics-family",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "accepted_children":"12/12",
+  "C02_reconciled":true,
+  "C02_effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18",
+  "foundational_debt_count":0,
+  "B1_3_unlock":false,
+  "next_action":"Execute family completion/integration audit end-to-end and return only final PASS candidate or true external BLOCK.",
+  "updated_at":"2026-09-07T10:42:00+07:00"
+}
