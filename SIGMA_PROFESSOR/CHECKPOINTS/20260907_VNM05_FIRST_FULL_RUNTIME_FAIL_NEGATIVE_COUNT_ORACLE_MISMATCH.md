@@ -1,0 +1,171 @@
+# VNM-05 — First Full Locked-Runtime Attempt — NEGATIVE COUNT ORACLE MISMATCH
+
+Date: 2026-09-07 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+Lane: `TEACHER_GPT_VNM`
+Status: `ADMISSION=FAIL`
+
+## Governance
+
+This failure remains governed by the repository-wide native execution / admission stop-gate. Failure is evidence. Do not weaken a gate silently, do not modify native cognition without evidence that native cognition is wrong, and rerun the full required suite after any repair.
+
+Core locks remain:
+
+```text
+DO_NOT_LOAD_RESULTS=YES
+LOAD_CAPABILITIES=YES
+CAPABILITY_MUST_RUN_INSIDE_SIGMA=YES
+RUNTIME_PROOF_REQUIRED=YES
+ACTIVE_SIGMA_COGNITION=SIGMA_NATIVE_ONLY
+ACTIVE_PYTHON_COGNITION=FORBIDDEN
+HOST_SPAN_GENERATION=NO
+HOST_SPAN_SELECTION=NO
+HOST_BOUNDARY_INFERENCE=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+PRODUCTION_STATE_MUTATED_DURING_PREFLIGHT=NO
+```
+
+## Frozen candidate identities
+
+```text
+CAPABILITY_ID=VNM-05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION
+NATIVE_SOURCE_PATH=SIGMA_PROFESSOR/artifacts/SIGMA_VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_V1.sigma
+SOURCE_GIT_BLOB=bcdbbfb1565de4733580e730c1ee428bd09d1500
+SOURCE_SHA256=5158343391d7dce0046802162969211c8e7f73b873375a8bc376c0f6ea63c2b6
+RUNNER_PATH=SIGMA_PROFESSOR/artifacts/RUN_SIGMA_VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_PREFLIGHT.sh
+RUNNER_GIT_BLOB=27771ff9e7621cb3bc1914389b5bf40267238fb1
+RUNNER_SHA256=f011886e977a2e4cd76afa561c18ff046c2d0d799b5de797d778958bcd19f2c4
+BYTECODE_SHA256=a2b93c79733837b8e6c8b0c5a8d6368fc2f308bd71fc8ce0befded03c9b78912
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+```
+
+## Operator-supplied machine summary
+
+The first full locked-runtime attempt reached the aggregate gate after all 20 VM invocations. The supplied final summary reported:
+
+```text
+TOTAL_VM_INVOCATIONS=20
+POST_VM_ALIGNMENT_PASS_COUNT=20
+POST_VM_ALIGNMENT_FAIL_COUNT=0
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+NEGATIVE_PASS_COUNT=12
+PERSISTENCE_PASS_COUNT=3
+COUNTERFACTUAL_PASS_COUNT=1
+INPUT_DYNAMIC=YES
+OUTPUT_DEPENDS_ON_INPUT=YES
+NEGATIVE_TEST=PASS
+PERSISTENT_STATE=YES
+PERSISTENT_STATE_TEST=PASS
+RESTART_REPLAY_TEST=PASS
+REPLAY_IDENTICAL_INPUT_PRESTATE_DECISION=YES
+DISTINCT_SEQUENCE_SUPPORT_TEST=PASS
+ORDERED_ADJACENCY_TEST=PASS
+TIE_AMBIGUITY_TEST=PASS
+SPAN_CANDIDATE_GENERATION_OWNER=SIGMA_NATIVE
+HOST_SPAN_GENERATION=NO
+HOST_SPAN_SELECTION=NO
+HOST_BOUNDARY_INFERENCE=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_INTERPRETATION=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
+SOURCE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+BYTECODE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+UNSEEN_HIGH_ENTROPY_TOKEN_LEAK_COUNT_IN_SOURCE_OR_BYTECODE=0
+STEP_LIMIT_STATUS=PASS_IN_20_INVOCATION_BOUNDED_SUITE
+PRODUCTION_STATE_MUTATED=NO
+VNM_05_PREFLIGHT=FAIL
+FAILURE_CASE=CASE_020_REPLAY_B
+FAILURE=NEGATIVE_PASS_COUNT_MISMATCH
+```
+
+`RUNNER_RC=UNKNOWN_NOT_SUPPLIED_IN_USER_EXCERPT`.
+
+## Exact runner diagnosis
+
+The canonical runner contains twelve deliberate increments of `NEGATIVE_PASS_COUNT`, attached to these case-level gates:
+
+```text
+CASE_005  tie ambiguity after persistent competing evidence
+CASE_007  A->B versus B->A ordered-adjacency non-pooling
+CASE_008  same-sequence repeated A->B does not inflate distinct-sequence support
+CASE_010  equal recurrent-span support remains ambiguous
+CASE_011  exact duplicate sequence ID is idempotent / no support inflation
+CASE_012  sequence-ID collision refusal / no state mutation
+CASE_013  malformed-record refusal
+CASE_014  two-unit sequence refusal
+CASE_015  five-unit sequence refusal
+CASE_016  empty-unit refusal
+CASE_017  fifth unique sequence capacity refusal
+CASE_018  raw input-bound refusal
+```
+
+Therefore:
+
+```text
+IMPLEMENTED_NEGATIVE_COUNTER_INCREMENT_SITES=12
+OBSERVED_NEGATIVE_PASS_COUNT=12
+AGGREGATE_EXPECTED_NEGATIVE_PASS_COUNT=11
+```
+
+The aggregate gate line in the same runner is:
+
+```text
+[ "$NEGATIVE_PASS_COUNT" -eq 11 ] || fail_gate 95 NEGATIVE_PASS_COUNT_MISMATCH
+```
+
+The mismatch is internal to the post-VM aggregate oracle metadata. It is not evidence that a native case failed.
+
+## Failure classification
+
+```text
+FAILURE_CLASS=C_POST_VM_ORACLE_DEFECT
+DEFECT_SUBCLASS=AGGREGATE_NEGATIVE_PASS_EXPECTATION_OFF_BY_ONE_RELATIVE_TO_PREDECLARED_CASE_INCREMENTS
+NATIVE_SOURCE_DEFECT=NO_EVIDENCE
+COMPILER_DEFECT=NO_EVIDENCE
+VM_DEFECT=NO_EVIDENCE
+PERSISTENCE_DEFECT=NO_EVIDENCE
+HOST_SUBSTITUTION_DEFECT=NO_EVIDENCE
+PRODUCTION_STATE_MUTATED=NO
+ADMISSION=FAIL
+```
+
+This classification does not convert the failed run into admission. The aggregate gate failed and must remain preserved as failure evidence.
+
+## Minimal repair constraint
+
+The smallest justified repair is runner/oracle-only:
+
+```text
+NEGATIVE_PASS_COUNT_EXPECTED: 11 -> 12
+NATIVE_SOURCE_CHANGED=NO
+CASE_MATRIX_CHANGED=NO
+CASE_EXPECTATIONS_CHANGED=NO
+NEGATIVE_CASE_REMOVED=NO
+PASS_DEFINITION_SEMANTICS_CHANGED=NO
+```
+
+This is an arithmetic/accounting correction so the aggregate counter matches the twelve already-declared and already-executed negative/adversarial gates. It must not remove any case or weaken any behavioral expectation.
+
+Per the mandatory method, after repair the **entire 20-invocation suite must be rerun**. The first result of that rerun must again be preserved as evidence.
+
+## Claim state
+
+```text
+VNM_05_RUNTIME_ATTEMPT=FAIL_AT_AGGREGATE_ORACLE
+VNM_05_ADMISSION=FAIL
+VNM_05_PRODUCTION_BINDING=NO
+NATURAL_LANGUAGE_TOKENIZATION=NOT_PROVEN
+WORD_BOUNDARY_DETECTION=NOT_PROVEN
+PHRASE_BOUNDARY_DETECTION=NOT_PROVEN
+PHRASE_SEMANTICS=NOT_PROVEN
+VIETNAMESE_SEMANTIC_UNDERSTANDING=NOT_PROVEN
+GENERAL_SEMANTIC_UNDERSTANDING=NOT_PROVEN
+```
+
+```text
+NEXT_ACTION=PREPARE_RUNNER_ONLY_FIX1_NEGATIVE_COUNTER_EXPECTATION_12_AND_RERUN_FULL_20_VM_SUITE
+```
