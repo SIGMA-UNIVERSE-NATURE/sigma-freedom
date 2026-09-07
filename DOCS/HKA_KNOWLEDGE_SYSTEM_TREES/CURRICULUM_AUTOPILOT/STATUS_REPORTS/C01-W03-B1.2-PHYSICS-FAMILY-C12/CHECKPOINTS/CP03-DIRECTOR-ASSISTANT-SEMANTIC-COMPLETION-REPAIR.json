@@ -1,0 +1,31 @@
+{
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-SEMANTIC-COMPLETION-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C12",
+  "scope_id":"B1.2-C12",
+  "stage":"CURRICULUM",
+  "worker_candidate_commit_sha":"7bdf3ee63b67b7896b5a513b36be47cbc7d0e226",
+  "effective_academic_output_commit_sha":"10aa9b0aa30142a201934e709709906d00be146e",
+  "repairs":[
+    {"repair_id":"DA-SR01","defect":"Several D3 objectives overclaimed quantitative/convergence operations beyond local Claim support.","repair":"Versioned N001-D3, N003-D3 and N004-D3 in place to evidence-bearing applied outcomes supported by existing C12 Claims; no IDs or counts changed.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"N006-D4 invoked lifecycle/economic/policy evaluation not authored by local Claims.","repair":"Versioned N006-D4 to evaluate system-boundary dependence and thermodynamic limits, and added N006-C002 to its closure support.","status":"REPAIRED"},
+    {"repair_id":"DA-SR03","defect":"N007-D4 named sensitivity and measurement range although its closure supported calibration plus noise/bandwidth.","repair":"Versioned N007-D4 to the supported trade-off among noise, bandwidth and calibration validity.","status":"REPAIRED"}
+  ],
+  "re_audit":{
+    "topics":"7/7 PASS",
+    "claims":"28/28 PASS",
+    "learning_objectives":"28/28 PASS_AFTER_ASSISTANT_REPAIR",
+    "semantic_closure":"28/28 PASS_AFTER_ASSISTANT_REPAIR — exactly one row per objective",
+    "canonical_prerequisite_alignment":"PASS — C01 + C02 + C04 + C06",
+    "ownership":"PASS",
+    "source_resolution":"7/7 PASS",
+    "future_locked_support":0,
+    "stage_boundary":"PASS — CURRICULUM only"
+  },
+  "c12_acceptance_recommendation":"ACCEPT_RECOMMENDED",
+  "director_acceptance_declared":false,
+  "family_completion_gate":"HOLD_PENDING_B1_2_INTEGRATION_AND_FOUNDATIONAL_DEBT_RECONCILIATION",
+  "family_completion_debt":[
+    {"scope_id":"B1.2-C02","accepted_commit_sha":"2c112f281ca8915ef2e8800043db952c550531bc","issue":"Foundational mass-vs-weight semantics remain absent from accepted C02 true-owner content; repair and Director reconciliation required before B1.2 family completion."}
+  ],
+  "red_flag":"NONE_FOR_C12; FAMILY_COMPLETION_DEBT_PRESENT"
+}
