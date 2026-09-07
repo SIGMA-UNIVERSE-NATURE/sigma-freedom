@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "window_id": "C01-W04-B1.3-CHEMISTRY-FAMILY-C01",
+  "scope_id": "B1.3-C01",
+  "stage": "CURRICULUM",
+  "status": "PASS_CANDIDATE",
+  "candidate_type": "ACADEMIC_CURRICULUM_CHILD",
+  "execution_branch": "hka-tree/c01-w04-chemistry-c01",
+  "input_commit_sha": "1acfdd5abc7ca1e751938cd7c22237e733b5b1eb",
+  "academic_output_commit_sha": "c43b3b47331d57df2360a5ba57ff8ca000a4adf4",
+  "pre_pass_checkpoint_commit_sha": "8d5d48beacc61f0e167ca9d03dbe4a5044328e85",
+  "canonical_topics": {
+    "expected": 6,
+    "authored": 6,
+    "status": "PASS",
+    "topic_ids": ["B1.3-C01-T01", "B1.3-C01-T02", "B1.3-C01-T03", "B1.3-C01-T04", "B1.3-C01-T05", "B1.3-C01-T06"]
+  },
+  "canonical_prerequisites": {
+    "B1.2-C07": "7d710491de2d4bb5e550a2b9b208739934a9f650",
+    "B1.2-C08": "65ea8a21141e114dbff1c9e9a3e63b5a49571ad8"
+  },
+  "artifact_counts": {
+    "nodes": 6,
+    "claims": 24,
+    "sources": 5,
+    "learning_objectives": 24,
+    "claim_to_learning_objective_closures": 24,
+    "cross_links": 15,
+    "sequence_intent_records": 6
+  },
+  "audit": {
+    "self_audit": "PASS_AFTER_REPAIRS",
+    "self_repairs": 2,
+    "re_audit": "PASS",
+    "id_uniqueness": "PASS",
+    "claim_integrity": "24/24 PASS",
+    "source_resolution": "PASS — 5/5 resolved and used",
+    "learning_objective_completeness": "24/24 PASS — D1-D4 explicit for every node",
+    "semantic_closure": "24/24 PASS — exactly one closure row per learning objective",
+    "supporting_claim_resolution": "PASS",
+    "requires_unlocked_scope_claims": false,
+    "future_locked_support": 0,
+    "canonical_prerequisite_alignment": "PASS — B1.2-C07 + B1.2-C08",
+    "prerequisite_graph": "PASS — acyclic, no dangling prerequisite IDs",
+    "semantic_duplicate_scan": "PASS — R07 reviewed; boundary-only overlaps typed explicitly",
+    "ownership_collision_scan": "PASS — no primary ownership transfer from physics or future chemistry scopes",
+    "foundational_coverage": "PASS",
+    "stage_discipline": "PASS — CURRICULUM only",
+    "durable_read_back": "PASS"
+  },
+  "self_repairs": [
+    {
+      "repair_id": "SR01",
+      "defect": "Four boundary-only links carried R08/R09 tags even though B1.3-C01 is not an affected stable ID in those risk cases.",
+      "repair": "Normalized XL009, XL010, XL013 and XL014 risk_id to null while preserving typed ownership/boundary semantics.",
+      "status": "REPAIRED"
+    },
+    {
+      "repair_id": "SR02",
+      "defect": "One resolved source record was unused by the final node/claim graph.",
+      "repair": "Removed the unused NIST source record; the final source registry contains five used, resolved sources.",
+      "status": "REPAIRED"
+    }
+  ],
+  "output_paths": [
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/NODES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/CLAIMS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/SOURCES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/LEARNING_OBJECTIVES.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/CLAIM_TO_LEARNING_OBJECTIVE_CLOSURE.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/CROSS_LINKS.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/CURRICULUM_SEQUENCE_INTENT.jsonl",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/RESULT.json",
+    "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/HANDOFF.md"
+  ],
+  "outputs_saved": true,
+  "status_saved": true,
+  "red_flag": "NONE",
+  "director_acceptance_declared": false,
+  "next_action": "Director review/acceptance of B1.3-C01 candidate; B1.3-C02 remains GATED until Director acceptance."
+}
