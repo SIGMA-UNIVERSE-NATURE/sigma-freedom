@@ -2,15 +2,17 @@
 
 Stage: `CURRICULUM`.
 
-`B1.2-C01` through `B1.2-C12` are now Director-accepted. Latest accepted child: `B1.2-C12 — Vật lý ứng dụng và liên ngành` at `d0772ad9a030defa8d29a52896298b95bb7f93f6`: 7/7 topics, 28 claims, 28 objectives, 28/28 semantic closure PASS_AFTER_ASSISTANT_REPAIR, source resolution 7/7 PASS, FUTURE_LOCKED_SUPPORT=0, RED_FLAG NONE.
+`B1.2-C01` through `B1.2-C12` are Director-accepted.
 
-B1.2 family completion is **HOLD_FOUNDATIONAL_REPAIR** because the completion review identified one real foundational debt at true owner `B1.2-C02 — Cơ học cổ điển`: the mass-versus-weight distinction must be made explicit and semantically closed.
+C02 foundational mass-vs-weight repair is Director-reconciled:
+- baseline `2c112f281ca8915ef2e8800043db952c550531bc`
+- repaired final `8c61737276f5d17256c2ec7d075a8b5a46ed192a`
+- effective academic repair `efc85c8278da087063e94c6e940719514e389f18`
+- read-back checkpoint `1a52b2edf027bae17e23b500d4c91ffa805fdc20`
+- mass-vs-weight foundational PASS; stable IDs preserved; cross-scope mutation 0; FUTURE_LOCKED_SUPPORT=0.
 
-Active repair window: `C01-W03-B1.2-PHYSICS-FAMILY-C02`.
-Execution branch: `hka-tree/c01-w03-physics-c02`.
-Accepted C02 baseline: `2c112f281ca8915ef2e8800043db952c550531bc`.
-Repair order: `f5437dff0c25e635c7b4b0a697cf30d634c14c51`.
+Active controller: `C01-W03-B1.2-PHYSICS-FAMILY` on `hka-tree/c01-w03-physics-family`.
 
-Worker repairs only C02, preserves stable IDs, self-audits/re-audits and returns one final repaired receipt. Director then reconciles the repaired effective C02 SHA and runs the B1.2 family completion/integration audit.
+Task: B1.2 family completion/integration audit across the 12 accepted child scopes. Required clean gates: foundational gap count 0, semantic duplicate/ownership PASS, canonical prerequisite graph PASS with no dangling IDs, all support resolved without locked/future claims, aggregate durable read-back PASS, and CURRICULUM-only stage boundary.
 
-`B1.3` remains locked. No post-CURRICULUM stage is authorized.
+`B1.3` remains LOCKED until Director acceptance of a clean family-controller PASS candidate. No post-CURRICULUM stage is authorized.
