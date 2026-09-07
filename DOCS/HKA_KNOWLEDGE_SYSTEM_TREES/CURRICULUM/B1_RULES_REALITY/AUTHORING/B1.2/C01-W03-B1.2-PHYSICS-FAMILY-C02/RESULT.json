@@ -1,84 +1,19 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C02",
   "scope_id":"B1.2-C02",
   "scope_name":"Cơ học cổ điển",
   "stage":"CURRICULUM",
-  "status":"PASS",
-  "candidate_type":"WORKER_PASS_CANDIDATE",
-  "execution_branch":"hka-tree/c01-w03-physics-c02",
-  "input_commit_sha":"6dcfbe989515921cb086f572de361302284cf37e",
-  "accepted_prerequisite_commits":{
-    "B1.2-C01":"62a26590dc9055323316456f1620856b885462d7",
-    "B1.1-C03":"7546ad74fb0e71ad2120c7091947993690bef82d",
-    "B1.1-C04":"76077695c07b853ac37f058477177e211f740f17"
-  },
-  "pre_pass_audited_commit_sha":"be94eda0bcd9c94a5367b8e2be9a876f1f863366",
-  "pre_pass_checkpoint_id":"CP01-PRE-PASS-REAUDIT",
-  "pre_pass_checkpoint_commit_sha":"bb03ead6b75d4a427098b71b5e18c91348fa1fc8",
-  "canonical_topic_ids":[
-    "B1.2-C02-T01","B1.2-C02-T02","B1.2-C02-T03","B1.2-C02-T04",
-    "B1.2-C02-T05","B1.2-C02-T06","B1.2-C02-T07","B1.2-C02-T08"
-  ],
-  "counts":{
-    "canonical_topics":8,
-    "nodes":8,
-    "claims":64,
-    "sources":7,
-    "learning_objectives":32,
-    "claim_to_learning_objective_closures":32,
-    "cross_links":14,
-    "sequence_intent_records":8
-  },
-  "audits":{
-    "bootstrap_and_scope_gate":"PASS",
-    "topic_completeness":"PASS",
-    "id_integrity":"PASS",
-    "claim_atomicity_source_scope_epistemic_certainty":"PASS",
-    "source_identity_and_traceability":"PASS",
-    "source_id_sha256_determinism":"PASS",
-    "D1_D4_age_independent_objectives":"PASS",
-    "claim_to_learning_objective_closure":{
-      "status":"PASS",
-      "supported":32,
-      "total":32,
-      "coverage_percent":100,
-      "future_or_locked_scope_support_claims":0
-    },
-    "semantic_duplicate_and_ownership":"PASS",
-    "prerequisite_and_sequence":"PASS",
-    "foundational_classical_mechanics_coverage":"PASS",
-    "stage_boundary":"PASS",
-    "control_plane_non_mutation":"PASS",
-    "durable_read_back":"PASS"
-  },
-  "self_repairs":[
-    "Resolved R03 physical-oscillation versus mathematical periodic-orbit ownership with an explicit boundary link to accepted B1.1-C06-N005 and zero C06 support claims.",
-    "Qualified analytical-mechanics claims and added the accepted B1.1-C10-N009 mathematical-physics boundary so L=T-U, H=energy and stationary-action language are not overstated.",
-    "Resolved R10 and relativity boundaries so Newtonian celestial mechanics remains C02 while B1.4 systems/observations and B1.2-C11 relativistic gravity are boundary-only and never support C02 closure."
-  ],
-  "self_repair_count":3,
-  "ownership_resolutions":[
-    "B1.2-C01 remains primary owner of physical measurement, units, dimensions, uncertainty, instruments and traceability reused by C02.",
-    "B1.1-C03 remains primary owner of generic algebra/function/vector-space semantics; B1.1-C04 remains primary owner of trigonometry and coordinate geometry.",
-    "B1.1-C06-N005 remains owner of mathematical periodic-orbit/limit-cycle theory; B1.2-C02-N006 owns physical oscillators, damping, driving and resonance.",
-    "B1.1-C10-N009 retains generic mathematical-physics/variational structures; B1.2-C02-N007 owns their physical classical-mechanics formulation and interpretation.",
-    "B1.2-C02 owns transferable Newtonian orbital mechanics; B1.4 observational/system scopes and B1.2-C11 relativistic gravity remain locked boundary references."
-  ],
-  "locked_boundaries":{
-    "B1.2-C03_through_C12":"LOCKED",
-    "ACADEMIC_LOCKED":"GATED_NOT_AUTHORIZED",
-    "LESSON_REGISTRY":"GATED_NOT_AUTHORIZED",
-    "PROMPTS":"GATED_NOT_AUTHORIZED",
-    "IMAGE_PRODUCTION":"GATED_NOT_AUTHORIZED",
-    "R2_STAGING":"GATED_NOT_AUTHORIZED",
-    "DELIVERY":"GATED_NOT_AUTHORIZED",
-    "WEBSITE_UPDATE":"GATED_NOT_AUTHORIZED"
-  },
-  "lesson_registry_records_created":0,
-  "blocking_issues":[],
-  "director_acceptance_required":true,
-  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C03",
-  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
-  "next_action":"B1.2-C03 — GATED pending Director acceptance of C02"
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "repair_mode":"FOUNDATIONAL_MASS_VS_WEIGHT_REPAIR",
+  "accepted_baseline_commit_sha":"2c112f281ca8915ef2e8800043db952c550531bc",
+  "effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18",
+  "counts":{"canonical_topics":8,"nodes":8,"claims":64,"sources":7,"learning_objectives":32,"claim_to_learning_objective_closures":32,"cross_links":14,"sequence_intent_records":8},
+  "mass_vs_weight_foundational":"PASS",
+  "repair_outcomes":{"mass":"PASS — Newtonian inertial scalar, kg, not force; location change alone does not change mass","weight":"PASS — gravitational force, N, local-field dependent","local_model":"PASS — W=m g explicitly limited to local approximately uniform gravitational field","location_dependence":"PASS","measurement_language":"PASS — balance mass versus spring/force scale force; kg is not force unit","apparent_weight":"PASS — distinguished as support/normal-force reading from gravitational weight"},
+  "audits":{"stable_ids":"PASS — existing IDs preserved","semantic_closure":"32/32 PASS_AFTER_REPAIR","supporting_claim_resolution":"PASS","canonical_prerequisite_alignment":"PASS — C01 + B1.1-C03 + B1.1-C04","prerequisite_graph":"PASS — ACYCLIC, NO DANGLING IDS","ownership":"PASS — repair only at C02 true owner","semantic_duplicate":"PASS","foundational_coverage":"PASS_AFTER_REPAIR","future_locked_support":0,"stage_boundary":"PASS — CURRICULUM ONLY","cross_scope_non_mutation":"PASS"},
+  "self_repairs":["SR-MW-01: strengthened existing N002 mass/gravity claims so mass and gravitational weight are explicitly distinct in meaning, unit and location dependence.","SR-MW-02: separated balance-based mass measurement, force-scale readings and apparent weight; then updated N002 D1-D4 objectives and closure support."],
+  "self_repair_count":2,
+  "red_flag":"NONE",
+  "next_action":"B1.2 FAMILY COMPLETION AUDIT — GATED pending Director reconciliation of repaired C02 effective SHA"
 }
