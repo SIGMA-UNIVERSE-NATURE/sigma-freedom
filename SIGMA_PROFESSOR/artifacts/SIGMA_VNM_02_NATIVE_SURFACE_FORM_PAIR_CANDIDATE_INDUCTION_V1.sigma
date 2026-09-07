@@ -1,0 +1,676 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.SURFACE.FORM.PAIR.CANDIDATE.INDUCTION][VERSION=VNM-02-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF same_context(left_a, right_a, left_b, right_b) {
+    IF (left_a == left_b) {
+        IF (right_a == right_b) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+DEF pair_matches(a, b, x, y) {
+    IF (a == x) {
+        IF (b == y) { RETURN 1; }
+    }
+    IF (a == y) {
+        IF (b == x) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+⟡(Σ.VNM_02_NATIVE_SURFACE_FORM_PAIR_CANDIDATE_INDUCTION_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_02_SURFACE_FORM_PAIR_CANDIDATE_INDUCTION_V1";
+
+    ⚡ NEW_OBSERVATION_TEXT:
+        H("read_text", BASE + "/input/observations.memory", NULL, NULL);
+
+    ⚡ STATE_PATH:
+        BASE + "/state/pair_induction_state.memory";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ STATE_EMPTY:
+        exact(STATE_TEXT, "");
+
+    ⚡ MAX_OBSERVATIONS: 8;
+    ⚡ MAX_NEW_SPLIT_LINES: 16;
+    ⚡ MIN_PAIR_SUPPORT: 2;
+
+    ⚡ ALL_IDS:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_FORMS:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_LEFT:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_RIGHT:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_SOURCE:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ SEEN_OBSERVATION:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ PREVIOUS_STATE_VALID: 0;
+    ⚡ PREVIOUS_STATE_INVALID: 0;
+    ⚡ PRIOR_OBSERVATION_COUNT: 0;
+
+    IF (STATE_EMPTY == 0) {
+        ⚡ STATE_LINES:
+            H("str_split", STATE_TEXT, "\n", NULL);
+        ⚡ STATE_LINE_COUNT:
+            H("list_len", STATE_LINES, NULL, NULL);
+        ⚡ STATE_HEADER_VALID: 0;
+        ⚡ STATE_RECORD_INVALID_COUNT: 0;
+
+        IF (0 < STATE_LINE_COUNT) {
+            IF (STATE_LINE_COUNT < 10) {
+                ⚡ STATE_HEADER:
+                    H("list_get", STATE_LINES, 0, NULL);
+                ⚡ HEADER_PARTS:
+                    H("str_split", STATE_HEADER, "||", NULL);
+                ⚡ HEADER_PART_COUNT:
+                    H("list_len", HEADER_PARTS, NULL, NULL);
+
+                IF (HEADER_PART_COUNT == 4) {
+                    ⚡ SH0: H("list_get", HEADER_PARTS, 0, NULL);
+                    ⚡ SH1: H("list_get", HEADER_PARTS, 1, NULL);
+                    ⚡ SH2: H("list_get", HEADER_PARTS, 2, NULL);
+                    ⚡ SH3: H("list_get", HEADER_PARTS, 3, NULL);
+
+                    ⚡ STATE_HEADER_VALID:
+                        exact(SH0, "STATE")
+                        * exact(SH1, "SIGMA_VNM_02_PAIR_INDUCTION_STATE_V1")
+                        * exact(SH2, "COMMIT")
+                        * exact(SH3, "YES");
+                }
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 1) {
+            ⚡ SI: 1;
+            WHILE (SI < STATE_LINE_COUNT) {
+                ⚡ STATE_LINE:
+                    H("list_get", STATE_LINES, SI, NULL);
+                ⚡ STATE_PARTS:
+                    H("str_split", STATE_LINE, "||", NULL);
+                ⚡ STATE_PART_COUNT:
+                    H("list_len", STATE_PARTS, NULL, NULL);
+                ⚡ STATE_RECORD_VALID: 0;
+
+                IF (STATE_PART_COUNT == 12) {
+                    ⚡ S0: H("list_get", STATE_PARTS, 0, NULL);
+                    ⚡ S1: H("list_get", STATE_PARTS, 1, NULL);
+                    ⚡ S2: H("list_get", STATE_PARTS, 2, NULL);
+                    ⚡ S3: H("list_get", STATE_PARTS, 3, NULL);
+                    ⚡ S4: H("list_get", STATE_PARTS, 4, NULL);
+                    ⚡ S5: H("list_get", STATE_PARTS, 5, NULL);
+                    ⚡ S6: H("list_get", STATE_PARTS, 6, NULL);
+                    ⚡ S7: H("list_get", STATE_PARTS, 7, NULL);
+                    ⚡ S8: H("list_get", STATE_PARTS, 8, NULL);
+                    ⚡ S9: H("list_get", STATE_PARTS, 9, NULL);
+                    ⚡ S10: H("list_get", STATE_PARTS, 10, NULL);
+                    ⚡ S11: H("list_get", STATE_PARTS, 11, NULL);
+
+                    ⚡ STATE_RECORD_VALID:
+                        exact(S0, "OBS")
+                        * present(S1)
+                        * exact(S2, "FORM")
+                        * present(S3)
+                        * exact(S4, "LEFT")
+                        * present(S5)
+                        * exact(S6, "RIGHT")
+                        * present(S7)
+                        * exact(S8, "SOURCE")
+                        * present(S9)
+                        * exact(S10, "COMMIT")
+                        * exact(S11, "YES");
+
+                    IF (STATE_RECORD_VALID == 1) {
+                        ⚡ STATE_OBS_EXISTS:
+                            H("map_has", SEEN_OBSERVATION, S1, NULL);
+
+                        IF (STATE_OBS_EXISTS) {
+                            ⚡ STATE_RECORD_VALID: 0;
+                        }
+
+                        IF (STATE_OBS_EXISTS == FALSE) {
+                            ⚡ STATE_FINGERPRINT:
+                                S3 + "||" + S5 + "||" + S7 + "||" + S9;
+                            ⚡ MARK_STATE_OBS:
+                                H("map_set", SEEN_OBSERVATION, S1, STATE_FINGERPRINT);
+
+                            ⚡ PUSH_STATE_ID:
+                                H("list_push", ALL_IDS, S1, NULL);
+                            ⚡ PUSH_STATE_FORM:
+                                H("list_push", ALL_FORMS, S3, NULL);
+                            ⚡ PUSH_STATE_LEFT:
+                                H("list_push", ALL_LEFT, S5, NULL);
+                            ⚡ PUSH_STATE_RIGHT:
+                                H("list_push", ALL_RIGHT, S7, NULL);
+                            ⚡ PUSH_STATE_SOURCE:
+                                H("list_push", ALL_SOURCE, S9, NULL);
+
+                            ⚡ PRIOR_OBSERVATION_COUNT:
+                                PRIOR_OBSERVATION_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (STATE_RECORD_VALID == 0) {
+                    ⚡ STATE_RECORD_INVALID_COUNT:
+                        STATE_RECORD_INVALID_COUNT + 1;
+                }
+
+                ⚡ SI: SI + 1;
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 0) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (0 < STATE_RECORD_INVALID_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (MAX_OBSERVATIONS < PRIOR_OBSERVATION_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+
+        IF (PREVIOUS_STATE_INVALID == 0) {
+            ⚡ PREVIOUS_STATE_VALID: 1;
+        }
+    }
+
+    ⚡ NEW_LINES:
+        H("str_split", NEW_OBSERVATION_TEXT, "\n", NULL);
+    ⚡ RAW_NEW_LINE_COUNT:
+        H("list_len", NEW_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_NEW_SPLIT_LINES < RAW_NEW_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ PENDING_STATE_LINES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ NEW_OBSERVATION_LINE_COUNT: 0;
+    ⚡ NEW_UNIQUE_OBSERVATION_COUNT: 0;
+    ⚡ DUPLICATE_OBSERVATION_COUNT: 0;
+    ⚡ OBSERVATION_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_OBSERVATION_RECORD_COUNT: 0;
+
+    ⚡ NI: 0;
+    WHILE (NI < RAW_NEW_LINE_COUNT) {
+        ⚡ NEW_LINE:
+            H("list_get", NEW_LINES, NI, NULL);
+        ⚡ NEW_LINE_PRESENT:
+            present(NEW_LINE);
+
+        IF (NEW_LINE_PRESENT == 1) {
+            ⚡ NEW_OBSERVATION_LINE_COUNT:
+                NEW_OBSERVATION_LINE_COUNT + 1;
+
+            ⚡ NEW_PARTS:
+                H("str_split", NEW_LINE, "||", NULL);
+            ⚡ NEW_PART_COUNT:
+                H("list_len", NEW_PARTS, NULL, NULL);
+            ⚡ NEW_RECORD_VALID: 0;
+
+            IF (NEW_PART_COUNT == 10) {
+                ⚡ N0: H("list_get", NEW_PARTS, 0, NULL);
+                ⚡ N1: H("list_get", NEW_PARTS, 1, NULL);
+                ⚡ N2: H("list_get", NEW_PARTS, 2, NULL);
+                ⚡ N3: H("list_get", NEW_PARTS, 3, NULL);
+                ⚡ N4: H("list_get", NEW_PARTS, 4, NULL);
+                ⚡ N5: H("list_get", NEW_PARTS, 5, NULL);
+                ⚡ N6: H("list_get", NEW_PARTS, 6, NULL);
+                ⚡ N7: H("list_get", NEW_PARTS, 7, NULL);
+                ⚡ N8: H("list_get", NEW_PARTS, 8, NULL);
+                ⚡ N9: H("list_get", NEW_PARTS, 9, NULL);
+
+                ⚡ NEW_RECORD_VALID:
+                    exact(N0, "OBS")
+                    * present(N1)
+                    * exact(N2, "FORM")
+                    * present(N3)
+                    * exact(N4, "LEFT")
+                    * present(N5)
+                    * exact(N6, "RIGHT")
+                    * present(N7)
+                    * exact(N8, "SOURCE")
+                    * present(N9);
+
+                IF (NEW_RECORD_VALID == 1) {
+                    ⚡ NEW_FINGERPRINT:
+                        N3 + "||" + N5 + "||" + N7 + "||" + N9;
+                    ⚡ NEW_OBS_EXISTS:
+                        H("map_has", SEEN_OBSERVATION, N1, NULL);
+
+                    IF (NEW_OBS_EXISTS) {
+                        ⚡ EXISTING_FINGERPRINT:
+                            H("map_get", SEEN_OBSERVATION, N1, NULL);
+                        ⚡ FINGERPRINT_SAME:
+                            exact(EXISTING_FINGERPRINT, NEW_FINGERPRINT);
+
+                        IF (FINGERPRINT_SAME == 1) {
+                            ⚡ DUPLICATE_OBSERVATION_COUNT:
+                                DUPLICATE_OBSERVATION_COUNT + 1;
+                        }
+                        IF (FINGERPRINT_SAME == 0) {
+                            ⚡ OBSERVATION_ID_COLLISION_COUNT:
+                                OBSERVATION_ID_COLLISION_COUNT + 1;
+                        }
+                    }
+
+                    IF (NEW_OBS_EXISTS == FALSE) {
+                        ⚡ MARK_NEW_OBS:
+                            H("map_set", SEEN_OBSERVATION, N1, NEW_FINGERPRINT);
+
+                        ⚡ PUSH_NEW_ID:
+                            H("list_push", ALL_IDS, N1, NULL);
+                        ⚡ PUSH_NEW_FORM:
+                            H("list_push", ALL_FORMS, N3, NULL);
+                        ⚡ PUSH_NEW_LEFT:
+                            H("list_push", ALL_LEFT, N5, NULL);
+                        ⚡ PUSH_NEW_RIGHT:
+                            H("list_push", ALL_RIGHT, N7, NULL);
+                        ⚡ PUSH_NEW_SOURCE:
+                            H("list_push", ALL_SOURCE, N9, NULL);
+
+                        ⚡ PENDING_STATE_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                        ⚡ PUSH_PENDING_STATE:
+                            H("list_push", PENDING_STATE_LINES, PENDING_STATE_LINE, NULL);
+
+                        ⚡ NEW_UNIQUE_OBSERVATION_COUNT:
+                            NEW_UNIQUE_OBSERVATION_COUNT + 1;
+                    }
+                }
+            }
+
+            IF (NEW_RECORD_VALID == 0) {
+                ⚡ INVALID_OBSERVATION_RECORD_COUNT:
+                    INVALID_OBSERVATION_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ NI: NI + 1;
+    }
+
+    ⚡ TOTAL_OBSERVATION_COUNT:
+        PRIOR_OBSERVATION_COUNT + NEW_UNIQUE_OBSERVATION_COUNT;
+
+    ⚡ OBSERVATION_CAPACITY_EXCEEDED: 0;
+    IF (MAX_OBSERVATIONS < TOTAL_OBSERVATION_COUNT) {
+        ⚡ OBSERVATION_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ STATE_BASE_VALID: 0;
+    IF (STATE_EMPTY == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+    IF (PREVIOUS_STATE_VALID == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+
+    ⚡ NEW_BATCH_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < INVALID_OBSERVATION_RECORD_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+
+    ⚡ LEARNING_ALLOWED:
+        STATE_BASE_VALID * NEW_BATCH_VALID;
+
+    ⚡ STATE_COMMIT_ALLOWED: 0;
+    IF (LEARNING_ALLOWED == 1) {
+        IF (0 < NEW_UNIQUE_OBSERVATION_COUNT) {
+            ⚡ STATE_COMMIT_ALLOWED: 1;
+        }
+    }
+
+    ⚡ STATE_MUTATED: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ WRITE_RC: 0;
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        ⚡ STATE_HEADER:
+            "STATE||SIGMA_VNM_02_PAIR_INDUCTION_STATE_V1||COMMIT||YES";
+        ⚡ PENDING_TEXT:
+            H("str_join", PENDING_STATE_LINES, "\n", NULL);
+        ⚡ PROPOSED_STATE:
+            STATE_HEADER + "\n" + PENDING_TEXT;
+
+        IF (PREVIOUS_STATE_VALID == 1) {
+            ⚡ PROPOSED_STATE:
+                STATE_TEXT + "\n" + PENDING_TEXT;
+        }
+
+        ⚡ WRITE_RC:
+            H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+        ⚡ READBACK_STATE:
+            H("read_text", STATE_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK_STATE, PROPOSED_STATE);
+        ⚡ STATE_MUTATED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ PERSISTENCE_OK: 1;
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ PERSISTENCE_OK: 0;
+        }
+    }
+
+    ⚡ RESULT_ALLOWED:
+        LEARNING_ALLOWED * PERSISTENCE_OK;
+
+    ⚡ CANDIDATE_A_LIST:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ CANDIDATE_B_LIST:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ CANDIDATE_SUPPORT_LIST:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ OI: 0;
+    WHILE (OI < TOTAL_OBSERVATION_COUNT) {
+        ⚡ OJ: OI + 1;
+        WHILE (OJ < TOTAL_OBSERVATION_COUNT) {
+            ⚡ OI_FORM: H("list_get", ALL_FORMS, OI, NULL);
+            ⚡ OJ_FORM: H("list_get", ALL_FORMS, OJ, NULL);
+            ⚡ OI_LEFT: H("list_get", ALL_LEFT, OI, NULL);
+            ⚡ OJ_LEFT: H("list_get", ALL_LEFT, OJ, NULL);
+            ⚡ OI_RIGHT: H("list_get", ALL_RIGHT, OI, NULL);
+            ⚡ OJ_RIGHT: H("list_get", ALL_RIGHT, OJ, NULL);
+
+            ⚡ SAME_FORM:
+                exact(OI_FORM, OJ_FORM);
+            ⚡ CONTEXT_MATCH:
+                same_context(OI_LEFT, OI_RIGHT, OJ_LEFT, OJ_RIGHT);
+            ⚡ QUALIFY_PAIR: 0;
+
+            IF (SAME_FORM == 0) {
+                IF (CONTEXT_MATCH == 1) {
+                    ⚡ QUALIFY_PAIR: 1;
+                }
+            }
+
+            IF (QUALIFY_PAIR == 1) {
+                ⚡ EXISTING_PAIR: 0;
+                ⚡ EXISTING_PAIR_COUNT:
+                    H("list_len", CANDIDATE_A_LIST, NULL, NULL);
+                ⚡ CI: 0;
+
+                WHILE (CI < EXISTING_PAIR_COUNT) {
+                    ⚡ CA:
+                        H("list_get", CANDIDATE_A_LIST, CI, NULL);
+                    ⚡ CB:
+                        H("list_get", CANDIDATE_B_LIST, CI, NULL);
+                    ⚡ PAIR_SAME:
+                        pair_matches(OI_FORM, OJ_FORM, CA, CB);
+
+                    IF (PAIR_SAME == 1) {
+                        ⚡ EXISTING_PAIR: 1;
+                    }
+
+                    ⚡ CI: CI + 1;
+                }
+
+                IF (EXISTING_PAIR == 0) {
+                    ⚡ SUPPORT_COUNT: 0;
+                    ⚡ KI: 0;
+
+                    WHILE (KI < TOTAL_OBSERVATION_COUNT) {
+                        ⚡ KJ: KI + 1;
+
+                        WHILE (KJ < TOTAL_OBSERVATION_COUNT) {
+                            ⚡ KI_FORM:
+                                H("list_get", ALL_FORMS, KI, NULL);
+                            ⚡ KJ_FORM:
+                                H("list_get", ALL_FORMS, KJ, NULL);
+                            ⚡ KI_LEFT:
+                                H("list_get", ALL_LEFT, KI, NULL);
+                            ⚡ KJ_LEFT:
+                                H("list_get", ALL_LEFT, KJ, NULL);
+                            ⚡ KI_RIGHT:
+                                H("list_get", ALL_RIGHT, KI, NULL);
+                            ⚡ KJ_RIGHT:
+                                H("list_get", ALL_RIGHT, KJ, NULL);
+
+                            ⚡ SUPPORT_PAIR_MATCH:
+                                pair_matches(KI_FORM, KJ_FORM, OI_FORM, OJ_FORM);
+                            ⚡ SUPPORT_CONTEXT_MATCH:
+                                same_context(KI_LEFT, KI_RIGHT, KJ_LEFT, KJ_RIGHT);
+
+                            IF (SUPPORT_PAIR_MATCH == 1) {
+                                IF (SUPPORT_CONTEXT_MATCH == 1) {
+                                    ⚡ SUPPORT_COUNT:
+                                        SUPPORT_COUNT + 1;
+                                }
+                            }
+
+                            ⚡ KJ: KJ + 1;
+                        }
+
+                        ⚡ KI: KI + 1;
+                    }
+
+                    ⚡ PUSH_CANDIDATE_A:
+                        H("list_push", CANDIDATE_A_LIST, OI_FORM, NULL);
+                    ⚡ PUSH_CANDIDATE_B:
+                        H("list_push", CANDIDATE_B_LIST, OJ_FORM, NULL);
+                    ⚡ PUSH_CANDIDATE_SUPPORT:
+                        H("list_push", CANDIDATE_SUPPORT_LIST, SUPPORT_COUNT, NULL);
+                }
+            }
+
+            ⚡ OJ: OJ + 1;
+        }
+
+        ⚡ OI: OI + 1;
+    }
+
+    ⚡ CANDIDATE_PAIR_COUNT:
+        H("list_len", CANDIDATE_A_LIST, NULL, NULL);
+
+    ⚡ QUALIFIED_PAIR_COUNT: 0;
+    ⚡ BEST_SET: 0;
+    ⚡ BEST_TIE: 0;
+    ⚡ BEST_SUPPORT: 0;
+    ⚡ BEST_FORM_A: "";
+    ⚡ BEST_FORM_B: "";
+
+    ⚡ BI: 0;
+    WHILE (BI < CANDIDATE_PAIR_COUNT) {
+        ⚡ BA:
+            H("list_get", CANDIDATE_A_LIST, BI, NULL);
+        ⚡ BB:
+            H("list_get", CANDIDATE_B_LIST, BI, NULL);
+        ⚡ BS:
+            H("list_get", CANDIDATE_SUPPORT_LIST, BI, NULL);
+        ⚡ SUPPORT_QUALIFIES: 0;
+
+        IF (MIN_PAIR_SUPPORT < BS) {
+            ⚡ SUPPORT_QUALIFIES: 1;
+        }
+        IF (BS == MIN_PAIR_SUPPORT) {
+            ⚡ SUPPORT_QUALIFIES: 1;
+        }
+
+        IF (SUPPORT_QUALIFIES == 1) {
+            ⚡ QUALIFIED_PAIR_COUNT:
+                QUALIFIED_PAIR_COUNT + 1;
+            ⚡ HAD_BEST:
+                BEST_SET;
+
+            IF (HAD_BEST == 0) {
+                ⚡ BEST_SET: 1;
+                ⚡ BEST_TIE: 0;
+                ⚡ BEST_SUPPORT: BS;
+                ⚡ BEST_FORM_A: BA;
+                ⚡ BEST_FORM_B: BB;
+            }
+
+            IF (HAD_BEST == 1) {
+                ⚡ SUPPORT_GREATER: 0;
+                ⚡ SUPPORT_EQUAL:
+                    exact(BS, BEST_SUPPORT);
+
+                IF (BEST_SUPPORT < BS) {
+                    ⚡ SUPPORT_GREATER: 1;
+                }
+
+                IF (SUPPORT_GREATER == 1) {
+                    ⚡ BEST_TIE: 0;
+                    ⚡ BEST_SUPPORT: BS;
+                    ⚡ BEST_FORM_A: BA;
+                    ⚡ BEST_FORM_B: BB;
+                }
+
+                IF (SUPPORT_EQUAL == 1) {
+                    ⚡ SAME_AS_BEST:
+                        pair_matches(BA, BB, BEST_FORM_A, BEST_FORM_B);
+
+                    IF (SAME_AS_BEST == 0) {
+                        ⚡ BEST_TIE: 1;
+                    }
+                }
+            }
+        }
+
+        ⚡ BI: BI + 1;
+    }
+
+    ⚡ PAIR_CANDIDATE_STATUS:
+        "INSUFFICIENT_RECURRENT_EVIDENCE";
+    ⚡ PAIR_CANDIDATE_FORM_A: "";
+    ⚡ PAIR_CANDIDATE_FORM_B: "";
+    ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+
+    IF (RESULT_ALLOWED == 1) {
+        IF (BEST_SET == 1) {
+            IF (BEST_TIE == 1) {
+                ⚡ PAIR_CANDIDATE_STATUS:
+                    "AMBIGUOUS_PAIR_CANDIDATE";
+            }
+            IF (BEST_TIE == 0) {
+                ⚡ PAIR_CANDIDATE_STATUS:
+                    "PAIR_CANDIDATE_INDUCED";
+                ⚡ PAIR_CANDIDATE_FORM_A:
+                    BEST_FORM_A;
+                ⚡ PAIR_CANDIDATE_FORM_B:
+                    BEST_FORM_B;
+                ⚡ PAIR_CANDIDATE_SUPPORT:
+                    BEST_SUPPORT;
+            }
+        }
+    }
+
+    IF (PREVIOUS_STATE_INVALID == 1) {
+        ⚡ PAIR_CANDIDATE_STATUS:
+            "REFUSED_PREVIOUS_STATE_INVALID";
+        ⚡ PAIR_CANDIDATE_FORM_A: "";
+        ⚡ PAIR_CANDIDATE_FORM_B: "";
+        ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ PAIR_CANDIDATE_STATUS:
+            "REFUSED_INPUT_BOUND";
+        ⚡ PAIR_CANDIDATE_FORM_A: "";
+        ⚡ PAIR_CANDIDATE_FORM_B: "";
+        ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+    }
+    IF (0 < INVALID_OBSERVATION_RECORD_COUNT) {
+        ⚡ PAIR_CANDIDATE_STATUS:
+            "REFUSED_OBSERVATION_RECORD_INVALID";
+        ⚡ PAIR_CANDIDATE_FORM_A: "";
+        ⚡ PAIR_CANDIDATE_FORM_B: "";
+        ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ PAIR_CANDIDATE_STATUS:
+            "REFUSED_OBSERVATION_ID_COLLISION";
+        ⚡ PAIR_CANDIDATE_FORM_A: "";
+        ⚡ PAIR_CANDIDATE_FORM_B: "";
+        ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ PAIR_CANDIDATE_STATUS:
+            "REFUSED_OBSERVATION_CAPACITY";
+        ⚡ PAIR_CANDIDATE_FORM_A: "";
+        ⚡ PAIR_CANDIDATE_FORM_B: "";
+        ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+    }
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ PAIR_CANDIDATE_STATUS:
+                "REFUSED_PERSISTENCE_FAILURE";
+            ⚡ PAIR_CANDIDATE_FORM_A: "";
+            ⚡ PAIR_CANDIDATE_FORM_B: "";
+            ⚡ PAIR_CANDIDATE_SUPPORT: 0;
+        }
+    }
+
+    ⚡ print("SIGMA_VNM_02_NATIVE_SURFACE_FORM_PAIR_CANDIDATE_INDUCTION");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("PREVIOUS_STATE_VALID", PREVIOUS_STATE_VALID);
+    ⚡ print("PREVIOUS_STATE_INVALID", PREVIOUS_STATE_INVALID);
+    ⚡ print("PRIOR_OBSERVATION_COUNT", PRIOR_OBSERVATION_COUNT);
+    ⚡ print("NEW_OBSERVATION_LINE_COUNT", NEW_OBSERVATION_LINE_COUNT);
+    ⚡ print("NEW_UNIQUE_OBSERVATION_COUNT", NEW_UNIQUE_OBSERVATION_COUNT);
+    ⚡ print("DUPLICATE_OBSERVATION_COUNT", DUPLICATE_OBSERVATION_COUNT);
+    ⚡ print("OBSERVATION_ID_COLLISION_COUNT", OBSERVATION_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_OBSERVATION_RECORD_COUNT", INVALID_OBSERVATION_RECORD_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("OBSERVATION_CAPACITY_EXCEEDED", OBSERVATION_CAPACITY_EXCEEDED);
+    ⚡ print("TOTAL_OBSERVATION_COUNT", TOTAL_OBSERVATION_COUNT);
+    ⚡ print("CANDIDATE_PAIR_COUNT", CANDIDATE_PAIR_COUNT);
+    ⚡ print("QUALIFIED_PAIR_COUNT", QUALIFIED_PAIR_COUNT);
+    ⚡ print("PAIR_CANDIDATE_STATUS", PAIR_CANDIDATE_STATUS);
+    ⚡ print("PAIR_CANDIDATE_FORM_A", PAIR_CANDIDATE_FORM_A);
+    ⚡ print("PAIR_CANDIDATE_FORM_B", PAIR_CANDIDATE_FORM_B);
+    ⚡ print("PAIR_CANDIDATE_SUPPORT", PAIR_CANDIDATE_SUPPORT);
+    ⚡ print("MIN_PAIR_SUPPORT", MIN_PAIR_SUPPORT);
+    ⚡ print("STATE_COMMIT_ALLOWED", STATE_COMMIT_ALLOWED);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("OBSERVATION_CAPACITY", MAX_OBSERVATIONS);
+    ⚡ print("INPUT_DYNAMIC_REQUIRED", "YES");
+    ⚡ print("PAIR_GENERATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("PAIR_ORIENTATION_SEMANTIC", "NO");
+    ⚡ print("HOST_CANDIDATE_GENERATION", "NO");
+    ⚡ print("HOST_PAIR_SELECTION", "NO");
+    ⚡ print("HOST_CONTEXT_SCORING", "NO");
+    ⚡ print("HOST_NORMALIZATION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("SEMANTIC_EQUIVALENCE", "NOT_PROVEN");
+    ⚡ print("DIACRITIC_EQUIVALENCE", "NOT_PROVEN");
+    ⚡ print("WORD_MEANING", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
