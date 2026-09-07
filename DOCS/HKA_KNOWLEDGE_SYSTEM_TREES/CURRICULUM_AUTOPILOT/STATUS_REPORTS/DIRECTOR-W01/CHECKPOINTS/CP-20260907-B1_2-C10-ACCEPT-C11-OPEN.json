@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-C10-ACCEPT-C11-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_B1_2_C10_REPAIRED_PASS_AND_OPEN_C11",
+  "accepted_child":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C10","scope_id":"B1.2-C10","accepted_commit_sha":"b1754ad56352a9fc9224d59dd3fb7738fc592173","worker_candidate_sha":"c530e131bd73ce774c57fc7f0a24e029166d90da","effective_academic_output_sha":"302de1437324807979aa492891b6505391598344","repair_checkpoint_sha":"27dd30b09027f3fe0d5f012e48e8f6430e370954","topics":"8/8 PASS","claims":"32/32 PASS","learning_objectives":"32/32 PASS_AFTER_ASSISTANT_REPAIR","semantic_closure":"32/32 PASS_AFTER_ASSISTANT_REPAIR","worker_self_repairs":3,"director_assistant_repairs":2,"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","canonical_prerequisite_alignment":"PASS_C01_C07","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","ownership":"PASS","source_resolution":"6/6 PASS","future_locked_support":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "opened_child":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C11","scope_id":"B1.2-C11","scope":"Tương đối và hấp dẫn","execution_branch":"hka-tree/c01-w03-physics-c11","canonical_topic_count":6,"prerequisites":["B1.2-C02","B1.2-C06","B1.2-C07"],"open_order_commit":"144354dfa967bb46e2a7860fe4f5707be6eba03a"},
+  "successor_locked":"B1.2-C12",
+  "updated_at":"2026-09-07T08:14:00+07:00"
+}
