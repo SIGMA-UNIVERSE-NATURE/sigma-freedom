@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-MAPPING-ACCEPT-FRESH-SENTINEL-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "role":"DIRECTOR",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_B1_2_EXTERNAL_MAPPING_AND_OPEN_FRESH_SENTINEL",
+  "accepted_family_integration_sha":"425df302d7331293ad12744a6096e05d51560890",
+  "accepted_mapping_final_sha":"5492127b661b770c23026c6205d1fbd4e8464835",
+  "mapping_worker_candidate_sha":"3597acc2d14d6cfb45e2bfa923b7396a519b19a3",
+  "mapping_effective_metadata_repair_sha":"c6c8fda3bf6a0d898e7a9f7c39ec20d6b1b3d5e2",
+  "mapping_checkpoint_sha":"9c818c487942360ac7a41c433865d3e4d9292d5a",
+  "mapping":{"systems":6,"continents":6,"official_source_resolution":"6/6 PASS","university_only_baseline":false,"foundational_requirements":10,"full":9,"partial":0,"gap":0,"not_owner":1,"foundational_gap_count":0,"mass_vs_weight_foundational":"PASS","ownership":"PASS_AFTER_ASSISTANT_METADATA_REPAIR","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "fresh_sentinel":{"window_id":"DIRECTOR-BACKUP-S01","role":"BACKUP_SENTINEL","execution_branch":"hka-tree/director-backup-sentinel","status":"AUTHORIZED_READY","order_commit_sha":"f68454b38f695904f2f3805ebf0f339bb382abe3","director_acceptance_authority":false,"successor_unlock_authority":false,"control_plane_mutation_authority":false},
+  "B1_2_subbranch_exit":"HOLD_PENDING_FRESH_SENTINEL",
+  "B1_3_unlock":false,
+  "next_action":"Run fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT against current control-plane state. Director re-reads all B1.2 exit gates only after Sentinel receipt.",
+  "updated_at":"2026-09-07T12:22:00+07:00"
+}
