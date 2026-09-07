@@ -1,0 +1,299 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.SPAN.OBSERVATION.FORM.ADAPTER][VERSION=VNM-07-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+⟡(Σ.VNM_07_NATIVE_SPAN_OBSERVATION_TO_FORM_OBSERVATION_ADAPTER_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_07_SPAN_OBSERVATION_TO_FORM_OBSERVATION_ADAPTER_V1";
+
+    ⚡ INPUT_TEXT:
+        H("read_text", BASE + "/input/span_observations.memory", NULL, NULL);
+    ⚡ OUTPUT_PATH:
+        BASE + "/output/form_observations.memory";
+
+    ⚡ MAX_INPUT_SPLIT_LINES: 8;
+    ⚡ MAX_SPAN_OBSERVATIONS: 4;
+    ⚡ MAX_OUTPUT_OBSERVATIONS: 4;
+
+    ⚡ RAW_LINES:
+        H("str_split", INPUT_TEXT, "\n", NULL);
+    ⚡ RAW_LINE_COUNT:
+        H("list_len", RAW_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_INPUT_SPLIT_LINES < RAW_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ OUTPUT_LINES:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ SEEN_OBSERVATION:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ SPAN_OBSERVATION_LINE_COUNT: 0;
+    ⚡ UNIQUE_SPAN_OBSERVATION_COUNT: 0;
+    ⚡ DUPLICATE_SPAN_OBSERVATION_COUNT: 0;
+    ⚡ OBSERVATION_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_SPAN_OBSERVATION_RECORD_COUNT: 0;
+    ⚡ RESERVED_DELIMITER_VIOLATION_COUNT: 0;
+
+    ⚡ PARSE_COUNT:
+        RAW_LINE_COUNT;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ PARSE_COUNT: 0;
+    }
+
+    ⚡ LI: 0;
+    WHILE (LI < PARSE_COUNT) {
+        ⚡ LINE:
+            H("list_get", RAW_LINES, LI, NULL);
+        ⚡ LINE_PRESENT:
+            present(LINE);
+
+        IF (LINE_PRESENT == 1) {
+            ⚡ SPAN_OBSERVATION_LINE_COUNT:
+                SPAN_OBSERVATION_LINE_COUNT + 1;
+            ⚡ PARTS:
+                H("str_split", LINE, "||", NULL);
+            ⚡ PART_COUNT:
+                H("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0;
+
+            IF (PART_COUNT == 12) {
+                ⚡ P0: H("list_get", PARTS, 0, NULL);
+                ⚡ P1: H("list_get", PARTS, 1, NULL);
+                ⚡ P2: H("list_get", PARTS, 2, NULL);
+                ⚡ P3: H("list_get", PARTS, 3, NULL);
+                ⚡ P4: H("list_get", PARTS, 4, NULL);
+                ⚡ P5: H("list_get", PARTS, 5, NULL);
+                ⚡ P6: H("list_get", PARTS, 6, NULL);
+                ⚡ P7: H("list_get", PARTS, 7, NULL);
+                ⚡ P8: H("list_get", PARTS, 8, NULL);
+                ⚡ P9: H("list_get", PARTS, 9, NULL);
+                ⚡ P10: H("list_get", PARTS, 10, NULL);
+                ⚡ P11: H("list_get", PARTS, 11, NULL);
+
+                ⚡ RECORD_VALID:
+                    exact(P0, "SPAN_OBS")
+                    * present(P1)
+                    * exact(P2, "UNIT_A")
+                    * present(P3)
+                    * exact(P4, "UNIT_B")
+                    * present(P5)
+                    * exact(P6, "LEFT")
+                    * present(P7)
+                    * exact(P8, "RIGHT")
+                    * present(P9)
+                    * exact(P10, "SOURCE")
+                    * present(P11);
+
+                IF (RECORD_VALID == 1) {
+                    ⚡ ID_TILDE_PARTS:
+                        H("str_split", P1, "~", NULL);
+                    ⚡ A_TILDE_PARTS:
+                        H("str_split", P3, "~", NULL);
+                    ⚡ B_TILDE_PARTS:
+                        H("str_split", P5, "~", NULL);
+
+                    ⚡ ID_TILDE_PART_COUNT:
+                        H("list_len", ID_TILDE_PARTS, NULL, NULL);
+                    ⚡ A_TILDE_PART_COUNT:
+                        H("list_len", A_TILDE_PARTS, NULL, NULL);
+                    ⚡ B_TILDE_PART_COUNT:
+                        H("list_len", B_TILDE_PARTS, NULL, NULL);
+
+                    ⚡ RESERVED_OK: 0;
+                    IF (ID_TILDE_PART_COUNT == 1) {
+                        IF (A_TILDE_PART_COUNT == 1) {
+                            IF (B_TILDE_PART_COUNT == 1) {
+                                ⚡ RESERVED_OK: 1;
+                            }
+                        }
+                    }
+
+                    IF (RESERVED_OK == 0) {
+                        ⚡ RESERVED_DELIMITER_VIOLATION_COUNT:
+                            RESERVED_DELIMITER_VIOLATION_COUNT + 1;
+                        ⚡ RECORD_VALID: 0;
+                    }
+                }
+
+                IF (RECORD_VALID == 1) {
+                    ⚡ FORM_VALUE:
+                        P3 + "~" + P5;
+                    ⚡ OBSERVATION_ID:
+                        "VNM07:" + P1 + "~" + P3 + "~" + P5;
+                    ⚡ FINGERPRINT:
+                        FORM_VALUE + "||" + P7 + "||" + P9 + "||" + P11;
+
+                    ⚡ EXISTS:
+                        H("map_has", SEEN_OBSERVATION, OBSERVATION_ID, NULL);
+
+                    IF (EXISTS) {
+                        ⚡ PRIOR_FINGERPRINT:
+                            H("map_get", SEEN_OBSERVATION, OBSERVATION_ID, NULL);
+                        ⚡ SAME_FINGERPRINT:
+                            exact(PRIOR_FINGERPRINT, FINGERPRINT);
+
+                        IF (SAME_FINGERPRINT == 1) {
+                            ⚡ DUPLICATE_SPAN_OBSERVATION_COUNT:
+                                DUPLICATE_SPAN_OBSERVATION_COUNT + 1;
+                        }
+                        IF (SAME_FINGERPRINT == 0) {
+                            ⚡ OBSERVATION_ID_COLLISION_COUNT:
+                                OBSERVATION_ID_COLLISION_COUNT + 1;
+                        }
+                    }
+
+                    IF (EXISTS == FALSE) {
+                        ⚡ MARK_OBSERVATION:
+                            H("map_set", SEEN_OBSERVATION, OBSERVATION_ID, FINGERPRINT);
+
+                        ⚡ OUTPUT_LINE:
+                            "OBS||" + OBSERVATION_ID
+                            + "||FORM||" + FORM_VALUE
+                            + "||LEFT||" + P7
+                            + "||RIGHT||" + P9
+                            + "||SOURCE||" + P11;
+
+                        ⚡ PUSH_OUTPUT_LINE:
+                            H("list_push", OUTPUT_LINES, OUTPUT_LINE, NULL);
+                        ⚡ UNIQUE_SPAN_OBSERVATION_COUNT:
+                            UNIQUE_SPAN_OBSERVATION_COUNT + 1;
+                    }
+                }
+            }
+
+            IF (RECORD_VALID == 0) {
+                ⚡ INVALID_SPAN_OBSERVATION_RECORD_COUNT:
+                    INVALID_SPAN_OBSERVATION_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ LI: LI + 1;
+    }
+
+    ⚡ OBSERVATION_CAPACITY_EXCEEDED: 0;
+    IF (MAX_SPAN_OBSERVATIONS < UNIQUE_SPAN_OBSERVATION_COUNT) {
+        ⚡ OBSERVATION_CAPACITY_EXCEEDED: 1;
+    }
+    IF (MAX_OUTPUT_OBSERVATIONS < UNIQUE_SPAN_OBSERVATION_COUNT) {
+        ⚡ OBSERVATION_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ INPUT_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ INPUT_VALID: 0;
+    }
+    IF (0 < INVALID_SPAN_OBSERVATION_RECORD_COUNT) {
+        ⚡ INPUT_VALID: 0;
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ INPUT_VALID: 0;
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ INPUT_VALID: 0;
+    }
+
+    ⚡ OUTPUT_TEXT:
+        H("str_join", OUTPUT_LINES, "\n", NULL);
+    ⚡ OUTPUT_WRITE_ALLOWED:
+        INPUT_VALID;
+    ⚡ OUTPUT_WRITE_READBACK_MATCH: 0;
+    ⚡ OUTPUT_MUTATED: 0;
+
+    IF (OUTPUT_WRITE_ALLOWED == 1) {
+        ⚡ OUTPUT_WRITE_RC:
+            H("write_text", OUTPUT_PATH, OUTPUT_TEXT, NULL);
+        ⚡ OUTPUT_READBACK:
+            H("read_text", OUTPUT_PATH, NULL, NULL);
+        ⚡ OUTPUT_WRITE_READBACK_MATCH:
+            exact(OUTPUT_READBACK, OUTPUT_TEXT);
+
+        IF (OUTPUT_WRITE_READBACK_MATCH == 1) {
+            IF (0 < UNIQUE_SPAN_OBSERVATION_COUNT) {
+                ⚡ OUTPUT_MUTATED: 1;
+            }
+        }
+    }
+
+    ⚡ ADAPTER_STATUS:
+        "NO_SPAN_OBSERVATIONS";
+
+    IF (INPUT_VALID == 1) {
+        IF (0 < UNIQUE_SPAN_OBSERVATION_COUNT) {
+            ⚡ ADAPTER_STATUS:
+                "FORM_OBSERVATIONS_DERIVED";
+        }
+        IF (OUTPUT_WRITE_READBACK_MATCH == 0) {
+            ⚡ ADAPTER_STATUS:
+                "REFUSED_OUTPUT_WRITE_FAILURE";
+        }
+    }
+
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ ADAPTER_STATUS:
+            "REFUSED_INPUT_BOUND";
+    }
+    IF (0 < INVALID_SPAN_OBSERVATION_RECORD_COUNT) {
+        ⚡ ADAPTER_STATUS:
+            "REFUSED_SPAN_OBSERVATION_INVALID";
+    }
+    IF (0 < OBSERVATION_ID_COLLISION_COUNT) {
+        ⚡ ADAPTER_STATUS:
+            "REFUSED_OBSERVATION_ID_COLLISION";
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ ADAPTER_STATUS:
+            "REFUSED_OBSERVATION_CAPACITY";
+    }
+
+    ⚡ print("SIGMA_VNM_07_NATIVE_SPAN_OBSERVATION_TO_FORM_OBSERVATION_ADAPTER");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("SPAN_OBSERVATION_LINE_COUNT", SPAN_OBSERVATION_LINE_COUNT);
+    ⚡ print("UNIQUE_SPAN_OBSERVATION_COUNT", UNIQUE_SPAN_OBSERVATION_COUNT);
+    ⚡ print("DUPLICATE_SPAN_OBSERVATION_COUNT", DUPLICATE_SPAN_OBSERVATION_COUNT);
+    ⚡ print("OBSERVATION_ID_COLLISION_COUNT", OBSERVATION_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_SPAN_OBSERVATION_RECORD_COUNT", INVALID_SPAN_OBSERVATION_RECORD_COUNT);
+    ⚡ print("RESERVED_DELIMITER_VIOLATION_COUNT", RESERVED_DELIMITER_VIOLATION_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("OBSERVATION_CAPACITY_EXCEEDED", OBSERVATION_CAPACITY_EXCEEDED);
+    ⚡ print("OUTPUT_WRITE_ALLOWED", OUTPUT_WRITE_ALLOWED);
+    ⚡ print("OUTPUT_WRITE_READBACK_MATCH", OUTPUT_WRITE_READBACK_MATCH);
+    ⚡ print("OUTPUT_MUTATED", OUTPUT_MUTATED);
+    ⚡ print("ADAPTER_STATUS", ADAPTER_STATUS);
+    ⚡ print("MAX_SPAN_OBSERVATIONS", MAX_SPAN_OBSERVATIONS);
+    ⚡ print("MAX_OUTPUT_OBSERVATIONS", MAX_OUTPUT_OBSERVATIONS);
+    ⚡ print("FORM_SERIALIZATION_POLICY", "ORDERED_UNIT_A_TILDE_UNIT_B");
+    ⚡ print("OBSERVATION_ID_POLICY", "VNM07_SEQID_AND_ORDERED_SPAN");
+    ⚡ print("SPAN_FORM_SERIALIZATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("OBSERVATION_ID_DERIVATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("HOST_FORM_SERIALIZATION", "NO");
+    ⚡ print("HOST_OBSERVATION_ID_DERIVATION", "NO");
+    ⚡ print("HOST_SPAN_CONTEXT_EXTRACTION", "NO");
+    ⚡ print("HOST_PAIR_SELECTION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("PERSISTENT_STATE", "NO");
+    ⚡ print("NATURAL_LANGUAGE_TOKENIZATION", "NOT_PROVEN");
+    ⚡ print("WORD_BOUNDARY_DETECTION", "NOT_PROVEN");
+    ⚡ print("PHRASE_BOUNDARY_DETECTION", "NOT_PROVEN");
+    ⚡ print("PHRASE_SEMANTICS", "NOT_PROVEN");
+    ⚡ print("WORD_MEANING", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
