@@ -1,23 +1,15 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C02
 
-## Assigned job
-Author `B1.2-C02 — Cơ học cổ điển` end-to-end at `CURRICULUM`: author → self-audit → self-repair → re-audit → commit → durable read-back.
+Status: `REPAIR_READY` for the accepted `B1.2-C02 — Cơ học cổ điển` curriculum.
 
-## Definitely finished
-All 8/8 canonical topics are complete with 8 nodes, 64 atomic sourced claims, 7 stable/versioned academic sources, 32 age-independent D1–D4 learning objectives, 32/32 Claim-to-Learning-Objective closures, 14 typed cross-links and 8 curriculum sequence-intent records. Three in-scope defects/boundary risks identified during self-audit were repaired. Re-audit is PASS with `FUTURE_LOCKED_SUPPORT=0`.
+Original C02 academic work remains accepted at `2c112f281ca8915ef2e8800043db952c550531bc` with 8/8 canonical topics, 64 claims, 32 learning objectives and 32/32 semantic closures.
 
-## Durable verification
-- Academic pre-PASS commit: `be94eda0bcd9c94a5367b8e2be9a876f1f863366`
-- Pre-PASS re-audit checkpoint: `CP01-PRE-PASS-REAUDIT` at `bb03ead6b75d4a427098b71b5e18c91348fa1fc8`
-- Terminal `RESULT.json` / `HANDOFF.md` commit: `ce1f3d249591d5b047646561926090b0035f7ef8`
-- Terminal durable checkpoint: `CP02-TERMINAL-PASS-CANDIDATE` at `8509bc210f703c618aad94afbce476657c1c0135`
-- GitHub read-back resolved the required output directory plus final node N008, claim N008-C008, source record 7, LO N008-D4, closure N008-D4, cross-link 14, sequence row 8, `RESULT.json` and `HANDOFF.md`.
+B1.2 family completion later identified one confirmed foundational debt at this true owner: the curriculum must explicitly distinguish **mass** from **weight** and close the associated foundational semantics without cross-scope patching.
 
-## Locked decisions
-`B1.2-C01` retains measurement/metrology ownership. `B1.1-C03/C04` retain generic math/geometry ownership. R03 is resolved by separating `B1.1-C06-N005` mathematical periodic-orbit theory from C02 physical oscillator content. `B1.1-C10-N009` retains generic mathematical-physics/variational structures while C02 owns physical classical-mechanics formulations. R10 is resolved by bounding C02 to transferable Newtonian orbital mechanics; B1.4 systems/observations and B1.2-C11 relativistic gravity remain non-support boundaries. `B1.2-C03..C12` and every post-CURRICULUM stage remain gated.
+Director repair order: `f5437dff0c25e635c7b4b0a697cf30d634c14c51`.
+Repair prompt: `GPT_REPAIR_PROMPT.md`.
+Activation checkpoint: `CP03-MASS-WEIGHT-FOUNDATIONAL-REPAIR-ACTIVATED`.
 
-## Remaining / risks
-No worker-scope defects or external blockers remain. Only Director review/acceptance remains. This worker PASS candidate does not itself unlock C03.
+Worker must repair only the necessary C02 records, preserve stable IDs, self-audit/re-audit, commit/read-back durable state, then return one final repaired receipt. Other B1.2 children remain untouched.
 
-## Next action
-`B1.2-C03 — GATED pending Director acceptance of C02`.
+B1.2 family completion remains `HOLD_FOUNDATIONAL_REPAIR`; B1.3 remains locked. After final C02 repair receipt, Director must reconcile the effective C02 SHA before the B1.2 family completion/integration audit can run.
