@@ -6,9 +6,10 @@
   "canonical_topics": {"expected": 8, "authored": 8, "status": "PASS"},
   "artifact_counts": {"nodes": 8, "claims": 32, "sources": 6, "learning_objectives": 32, "claim_to_learning_objective_closures": 32, "cross_links": 7, "sequence_intent_records": 8},
   "audit": {"id_uniqueness": "PASS", "claim_integrity": "32/32 PASS", "source_resolution": "6/6 PASS", "learning_objective_completeness": "32/32 PASS", "semantic_closure": "32/32 PASS — exactly one row per objective", "supporting_claim_resolution": "PASS", "requires_unlocked_scope_claims": false, "future_locked_support": 0, "semantic_duplicate_scan": "PASS", "ownership_collision_scan": "PASS", "canonical_prerequisite_alignment": "PASS — C01 + C07", "prerequisite_graph": "PASS — acyclic, no dangling IDs", "foundational_general_education": "PASS_AFTER_REPAIR", "stage_discipline": "PASS — CURRICULUM only"},
-  "self_repairs": [{"repair_id":"SR01","defect":"Draft nuclear wording risked overlapping C08 atomic-structure ownership.","repair":"Restricted C10 to nucleus/nucleons/binding and left electron-shell atomic structure to C08.","status":"REPAIRED"},{"repair_id":"SR02","defect":"Advanced particle/Standard-Model material risked dominating foundational nuclear literacy.","repair":"Sequenced nucleus, radioactivity and reactions before particle physics, accelerators, plasma and fusion.","status":"REPAIRED"},{"repair_id":"SR03","defect":"Fusion/particle boundaries risked implying locked C11-C12 support.","repair":"Made C11-C12 boundary-only and kept closure support C10-local.","status":"REPAIRED"}],
+  "self_repairs": [{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
   "re_audit": "PASS",
-  "durable_read_back": "PENDING_FINAL_READ_BACK",
+  "academic_output_commit_sha": "5f63298bd2e6ccf37da46bca5f1cb9a87c94280b",
+  "durable_read_back": "PASS",
   "red_flag": "NONE",
   "next": "B1.2-C11 — GATED pending Director acceptance of C10"
 }
