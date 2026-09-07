@@ -1,0 +1,245 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA46.KNOWLEDGE.DECAY.REVALIDATION.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF inactive_provenance_valid(id, record_id, version, time) {
+    RETURN exact(id, "NONE") * exact(record_id, "NONE") * exact(version, "NONE") * exact(time, "NONE");
+}
+
+DEF inactive_assessment_valid(id, knowledge_id, dynamic, stale) {
+    RETURN exact(id, "NONE") * exact(knowledge_id, "NONE") * exact(dynamic, "NONE") * exact(stale, "NONE");
+}
+
+DEF inactive_assessment_tail_valid(evidence, required, result) {
+    RETURN exact(evidence, "NONE") * exact(required, "NONE") * exact(result, "NONE");
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF choose_stage1(dep, prov_count_ok, prov_inactive_ok, prov_metadata_ok) {
+    IF (dep < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (prov_count_ok < 0.5) { RETURN "PROVENANCE_COUNT_ENCODING_INVALID"; }
+    IF (prov_inactive_ok < 0.5) { RETURN "PROVENANCE_ENCODING_INVALID"; }
+    IF (prov_metadata_ok < 0.5) { RETURN "PROVENANCE_ENCODING_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(count_ok, inactive_ok, ids_ok, knowledge_ids_ok) {
+    IF (count_ok < 0.5) { RETURN "ASSESSMENT_COUNT_ENCODING_INVALID"; }
+    IF (inactive_ok < 0.5) { RETURN "INACTIVE_ASSESSMENT_ENCODING_INVALID"; }
+    IF (ids_ok < 0.5) { RETURN "ASSESSMENT_ID_REQUIRED"; }
+    IF (knowledge_ids_ok < 0.5) { RETURN "KNOWLEDGE_ID_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(bool_ok, references_ok, duplicate_free, stale_gate) {
+    IF (bool_ok < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (references_ok < 0.5) { RETURN "UNKNOWN_PROVENANCE_KNOWLEDGE"; }
+    IF (duplicate_free < 0.5) { RETURN "DUPLICATE_ASSESSMENT_ID"; }
+    IF (stale_gate < 0.5) { RETURN "STALENESS_REQUIRES_EVIDENCE"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage4(dynamic_gate, store_ok, capacity, count_num) {
+    IF (dynamic_gate < 0.5) { RETURN "DYNAMIC_KNOWLEDGE_MUST_REVALIDATE"; }
+    IF (store_ok < 0.5) { RETURN "KNOWLEDGE_DECAY_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "KNOWLEDGE_DECAY_CAPACITY_REACHED"; }
+    IF (count_num < 0.5) { RETURN "NO_DECAY_ASSESSMENT_SUPPLIED"; }
+    RETURN "KNOWLEDGE_DECAY_ASSESSMENT_RECORDED";
+}
+
+DEF choose_status(s1, s2, s3, s4) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    IF (s3 != "CONTINUE") { RETURN s3; }
+    RETURN s4;
+}
+
+⟡(Σ.DNA46_KNOWLEDGE_DECAY_REVALIDATION_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ PROVENANCE_SCHEMA: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/provenance_schema.txt");
+    ⚡ PROVENANCE_COUNT_TOKEN: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/provenance_count.txt");
+
+    ⚡ P1_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p1_id.txt");
+    ⚡ P1_RECORD_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p1_record_id.txt");
+    ⚡ P1_VERSION: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p1_version.txt");
+    ⚡ P1_TIME: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p1_time.txt");
+    ⚡ P2_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p2_id.txt");
+    ⚡ P2_RECORD_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p2_record_id.txt");
+    ⚡ P2_VERSION: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p2_version.txt");
+    ⚡ P2_TIME: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/p2_time.txt");
+
+    ⚡ ASSESSMENT_COUNT_TOKEN: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/assessment_count.txt");
+    ⚡ A1_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_id.txt");
+    ⚡ A1_KNOWLEDGE_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_knowledge_id.txt");
+    ⚡ A1_DYNAMIC: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_dynamic.txt");
+    ⚡ A1_STALE: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_stale_possible.txt");
+    ⚡ A1_STALE_EVIDENCE: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_stale_evidence.txt");
+    ⚡ A1_REVALIDATION_REQUIRED: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_revalidation_required.txt");
+    ⚡ A1_REVALIDATION_RESULT: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a1_revalidation_result.txt");
+    ⚡ A2_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_id.txt");
+    ⚡ A2_KNOWLEDGE_ID: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_knowledge_id.txt");
+    ⚡ A2_DYNAMIC: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_dynamic.txt");
+    ⚡ A2_STALE: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_stale_possible.txt");
+    ⚡ A2_STALE_EVIDENCE: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_stale_evidence.txt");
+    ⚡ A2_REVALIDATION_REQUIRED: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_revalidation_required.txt");
+    ⚡ A2_REVALIDATION_RESULT: load_text(".sigma_exec/DNA46_NATIVE_ADMISSION_V1/input/a2_revalidation_result.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID: present(CASE_ID) * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1") * exact(PROVENANCE_SCHEMA, "SIGMA_KNOWLEDGE_PROVENANCE_V1");
+    ⚡ PROVENANCE_COUNT_ENCODING_VALID: count_valid(PROVENANCE_COUNT_TOKEN);
+    ⚡ P1_ACTIVE: 0.0; ⚡ P2_ACTIVE: 0.0; ⚡ PROVENANCE_COUNT_NUM: 0.0;
+    IF (PROVENANCE_COUNT_TOKEN == "1") { ⚡ P1_ACTIVE: 1.0; ⚡ PROVENANCE_COUNT_NUM: 1.0; }
+    IF (PROVENANCE_COUNT_TOKEN == "2") { ⚡ P1_ACTIVE: 1.0; ⚡ P2_ACTIVE: 1.0; ⚡ PROVENANCE_COUNT_NUM: 2.0; }
+    ⚡ INACTIVE_PROVENANCE_ENCODING_VALID: 1.0;
+    IF (P1_ACTIVE < 0.5) { ⚡ INACTIVE_PROVENANCE_ENCODING_VALID: INACTIVE_PROVENANCE_ENCODING_VALID * inactive_provenance_valid(P1_ID, P1_RECORD_ID, P1_VERSION, P1_TIME); }
+    IF (P2_ACTIVE < 0.5) { ⚡ INACTIVE_PROVENANCE_ENCODING_VALID: INACTIVE_PROVENANCE_ENCODING_VALID * inactive_provenance_valid(P2_ID, P2_RECORD_ID, P2_VERSION, P2_TIME); }
+    ⚡ PROVENANCE_METADATA_PRESENT: 1.0;
+    IF (P1_ACTIVE > 0.5) { ⚡ PROVENANCE_METADATA_PRESENT: PROVENANCE_METADATA_PRESENT * present(P1_ID) * present(P1_RECORD_ID) * present(P1_VERSION) * present(P1_TIME); }
+    IF (P2_ACTIVE > 0.5) { ⚡ PROVENANCE_METADATA_PRESENT: PROVENANCE_METADATA_PRESENT * present(P2_ID) * present(P2_RECORD_ID) * present(P2_VERSION) * present(P2_TIME); }
+
+    ⚡ ASSESSMENT_COUNT_ENCODING_VALID: count_valid(ASSESSMENT_COUNT_TOKEN);
+    ⚡ A1_ACTIVE: 0.0; ⚡ A2_ACTIVE: 0.0; ⚡ ASSESSMENT_COUNT_NUM: 0.0;
+    IF (ASSESSMENT_COUNT_TOKEN == "1") { ⚡ A1_ACTIVE: 1.0; ⚡ ASSESSMENT_COUNT_NUM: 1.0; }
+    IF (ASSESSMENT_COUNT_TOKEN == "2") { ⚡ A1_ACTIVE: 1.0; ⚡ A2_ACTIVE: 1.0; ⚡ ASSESSMENT_COUNT_NUM: 2.0; }
+    ⚡ INACTIVE_ASSESSMENT_ENCODING_VALID: 1.0;
+    IF (A1_ACTIVE < 0.5) { ⚡ INACTIVE_ASSESSMENT_ENCODING_VALID: INACTIVE_ASSESSMENT_ENCODING_VALID * inactive_assessment_valid(A1_ID, A1_KNOWLEDGE_ID, A1_DYNAMIC, A1_STALE) * inactive_assessment_tail_valid(A1_STALE_EVIDENCE, A1_REVALIDATION_REQUIRED, A1_REVALIDATION_RESULT); }
+    IF (A2_ACTIVE < 0.5) { ⚡ INACTIVE_ASSESSMENT_ENCODING_VALID: INACTIVE_ASSESSMENT_ENCODING_VALID * inactive_assessment_valid(A2_ID, A2_KNOWLEDGE_ID, A2_DYNAMIC, A2_STALE) * inactive_assessment_tail_valid(A2_STALE_EVIDENCE, A2_REVALIDATION_REQUIRED, A2_REVALIDATION_RESULT); }
+
+    ⚡ ASSESSMENT_IDS_PRESENT: 1.0; ⚡ KNOWLEDGE_IDS_PRESENT: 1.0; ⚡ BOOLEAN_ENCODINGS_VALID: 1.0;
+    IF (A1_ACTIVE > 0.5) { ⚡ ASSESSMENT_IDS_PRESENT: ASSESSMENT_IDS_PRESENT * present(A1_ID); ⚡ KNOWLEDGE_IDS_PRESENT: KNOWLEDGE_IDS_PRESENT * present(A1_KNOWLEDGE_ID); ⚡ BOOLEAN_ENCODINGS_VALID: BOOLEAN_ENCODINGS_VALID * bool_token_valid(A1_DYNAMIC) * bool_token_valid(A1_STALE) * bool_token_valid(A1_REVALIDATION_REQUIRED); }
+    IF (A2_ACTIVE > 0.5) { ⚡ ASSESSMENT_IDS_PRESENT: ASSESSMENT_IDS_PRESENT * present(A2_ID); ⚡ KNOWLEDGE_IDS_PRESENT: KNOWLEDGE_IDS_PRESENT * present(A2_KNOWLEDGE_ID); ⚡ BOOLEAN_ENCODINGS_VALID: BOOLEAN_ENCODINGS_VALID * bool_token_valid(A2_DYNAMIC) * bool_token_valid(A2_STALE) * bool_token_valid(A2_REVALIDATION_REQUIRED); }
+
+    ⚡ KNOWLEDGE_REFERENCES_VALID: 1.0;
+    IF (A1_ACTIVE > 0.5) { ⚡ A1_REF: 0.0; IF (P1_ACTIVE > 0.5) { IF (A1_KNOWLEDGE_ID == P1_ID) { ⚡ A1_REF: 1.0; } } IF (P2_ACTIVE > 0.5) { IF (A1_KNOWLEDGE_ID == P2_ID) { ⚡ A1_REF: 1.0; } } ⚡ KNOWLEDGE_REFERENCES_VALID: KNOWLEDGE_REFERENCES_VALID * A1_REF; }
+    IF (A2_ACTIVE > 0.5) { ⚡ A2_REF: 0.0; IF (P1_ACTIVE > 0.5) { IF (A2_KNOWLEDGE_ID == P1_ID) { ⚡ A2_REF: 1.0; } } IF (P2_ACTIVE > 0.5) { IF (A2_KNOWLEDGE_ID == P2_ID) { ⚡ A2_REF: 1.0; } } ⚡ KNOWLEDGE_REFERENCES_VALID: KNOWLEDGE_REFERENCES_VALID * A2_REF; }
+
+    ⚡ DUPLICATE_ASSESSMENT_ID_FREE: 1.0;
+    IF (A2_ACTIVE > 0.5) { IF (A1_ID == A2_ID) { ⚡ DUPLICATE_ASSESSMENT_ID_FREE: 0.0; } }
+
+    ⚡ STALENESS_EVIDENCE_GATE: 1.0; ⚡ DYNAMIC_REVALIDATION_GATE: 1.0;
+    IF (A1_ACTIVE > 0.5) { IF (A1_STALE == "1") { IF (present(A1_STALE_EVIDENCE) < 0.5) { ⚡ STALENESS_EVIDENCE_GATE: 0.0; } } IF (A1_DYNAMIC == "1") { IF (A1_REVALIDATION_REQUIRED != "1") { ⚡ DYNAMIC_REVALIDATION_GATE: 0.0; } } }
+    IF (A2_ACTIVE > 0.5) { IF (A2_STALE == "1") { IF (present(A2_STALE_EVIDENCE) < 0.5) { ⚡ STALENESS_EVIDENCE_GATE: 0.0; } } IF (A2_DYNAMIC == "1") { IF (A2_REVALIDATION_REQUIRED != "1") { ⚡ DYNAMIC_REVALIDATION_GATE: 0.0; } } }
+
+    ⚡ DYNAMIC_COUNT: 0.0; ⚡ STATIC_COUNT: 0.0; ⚡ STALE_POSSIBLE_COUNT: 0.0; ⚡ REVALIDATION_REQUIRED_COUNT: 0.0; ⚡ REVALIDATION_RESULT_COUNT: 0.0; ⚡ MISSING_REQUIRED_RESULT_COUNT: 0.0;
+    IF (A1_ACTIVE > 0.5) { IF (A1_DYNAMIC == "1") { ⚡ DYNAMIC_COUNT: DYNAMIC_COUNT + 1.0; } IF (A1_DYNAMIC == "0") { ⚡ STATIC_COUNT: STATIC_COUNT + 1.0; } IF (A1_STALE == "1") { ⚡ STALE_POSSIBLE_COUNT: STALE_POSSIBLE_COUNT + 1.0; } IF (A1_REVALIDATION_REQUIRED == "1") { ⚡ REVALIDATION_REQUIRED_COUNT: REVALIDATION_REQUIRED_COUNT + 1.0; IF (present(A1_REVALIDATION_RESULT) < 0.5) { ⚡ MISSING_REQUIRED_RESULT_COUNT: MISSING_REQUIRED_RESULT_COUNT + 1.0; } } IF (present(A1_REVALIDATION_RESULT) > 0.5) { ⚡ REVALIDATION_RESULT_COUNT: REVALIDATION_RESULT_COUNT + 1.0; } }
+    IF (A2_ACTIVE > 0.5) { IF (A2_DYNAMIC == "1") { ⚡ DYNAMIC_COUNT: DYNAMIC_COUNT + 1.0; } IF (A2_DYNAMIC == "0") { ⚡ STATIC_COUNT: STATIC_COUNT + 1.0; } IF (A2_STALE == "1") { ⚡ STALE_POSSIBLE_COUNT: STALE_POSSIBLE_COUNT + 1.0; } IF (A2_REVALIDATION_REQUIRED == "1") { ⚡ REVALIDATION_REQUIRED_COUNT: REVALIDATION_REQUIRED_COUNT + 1.0; IF (present(A2_REVALIDATION_RESULT) < 0.5) { ⚡ MISSING_REQUIRED_RESULT_COUNT: MISSING_REQUIRED_RESULT_COUNT + 1.0; } } IF (present(A2_REVALIDATION_RESULT) > 0.5) { ⚡ REVALIDATION_RESULT_COUNT: REVALIDATION_RESULT_COUNT + 1.0; } }
+
+    ⚡ STRUCTURALLY_VALID: DEPENDENCY_BINDING_VALID * PROVENANCE_COUNT_ENCODING_VALID * INACTIVE_PROVENANCE_ENCODING_VALID * PROVENANCE_METADATA_PRESENT * ASSESSMENT_COUNT_ENCODING_VALID * INACTIVE_ASSESSMENT_ENCODING_VALID * ASSESSMENT_IDS_PRESENT * KNOWLEDGE_IDS_PRESENT * BOOLEAN_ENCODINGS_VALID * KNOWLEDGE_REFERENCES_VALID * DUPLICATE_ASSESSMENT_ID_FREE * STALENESS_EVIDENCE_GATE * DYNAMIC_REVALIDATION_GATE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA46_NATIVE_ADMISSION_V1/state/knowledge_decay_revalidation_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA46_KNOWLEDGE_DECAY_REVALIDATION_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0; ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) { IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) { ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL); ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER); } }
+    ⚡ ASSESSMENT_RECORD_COUNT_BEFORE: 0.0; ⚡ INVALID_STORE_RECORD_COUNT: 0.0; ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL); ⚡ RECORD_VALID: 0.0;
+            IF (present(LINE) > 0.5) {
+                ⚡ F: host("str_split", LINE, "||", NULL); ⚡ FL: host("list_len", F, NULL, NULL);
+                IF (FL == 13.0) {
+                    ⚡ RPREFIX: host("list_get", F, 0, NULL); ⚡ RCASE: host("list_get", F, 1, NULL); ⚡ RA: host("list_get", F, 2, NULL); ⚡ RK: host("list_get", F, 3, NULL);
+                    ⚡ RD: host("list_get", F, 4, NULL); ⚡ RS: host("list_get", F, 5, NULL); ⚡ RR: host("list_get", F, 6, NULL); ⚡ RRES: host("list_get", F, 7, NULL);
+                    ⚡ RCOMP: host("list_get", F, 8, NULL); ⚡ REXEC: host("list_get", F, 9, NULL); ⚡ RREP: host("list_get", F, 10, NULL); ⚡ RDEL: host("list_get", F, 11, NULL); ⚡ RCOMMIT: host("list_get", F, 12, NULL);
+                    ⚡ RBITS: bool_token_valid(RD) * bool_token_valid(RS) * bool_token_valid(RR) * bool_token_valid(RRES) * bool_token_valid(RCOMP);
+                    ⚡ RECORD_VALID: exact(RPREFIX, "DECAY") * present(RCASE) * present(RA) * present(RK) * RBITS * exact(REXEC, "0") * exact(RREP, "0") * exact(RDEL, "0") * exact(RCOMMIT, "COMMIT=YES");
+                    IF (RECORD_VALID > 0.5) { ⚡ ASSESSMENT_RECORD_COUNT_BEFORE: ASSESSMENT_RECORD_COUNT_BEFORE + 1.0; }
+                }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED); IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ RECORD_COUNT_PROPOSED: ASSESSMENT_RECORD_COUNT_BEFORE + ASSESSMENT_COUNT_NUM; ⚡ STATE_CAPACITY_AVAILABLE: 0.0; IF (RECORD_COUNT_PROPOSED < 65.0) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+    ⚡ RETAIN_ELIGIBLE: STRUCTURALLY_VALID * STORE_STATE_VALID * STATE_CAPACITY_AVAILABLE;
+    ⚡ WRITE_ATTEMPTED: 0.0; ⚡ WRITE_RC: 0.0; ⚡ WRITE_READBACK_MATCH: 0.0; ⚡ RETAINED_ASSESSMENT_RECORD_COUNT: 0.0;
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        IF (ASSESSMENT_COUNT_NUM > 0.0) {
+            ⚡ APPEND_TEXT: "";
+            IF (A1_ACTIVE > 0.5) {
+                ⚡ D1_NUM: bool_true(A1_DYNAMIC); ⚡ S1_NUM: bool_true(A1_STALE); ⚡ R1_NUM: bool_true(A1_REVALIDATION_REQUIRED); ⚡ RES1_NUM: present(A1_REVALIDATION_RESULT); ⚡ D1: bit_string(D1_NUM); ⚡ S1: bit_string(S1_NUM); ⚡ R1: bit_string(R1_NUM); ⚡ RES1: bit_string(RES1_NUM); ⚡ C1: RES1;
+                ⚡ L1: "DECAY||" + CASE_ID + "||" + A1_ID + "||" + A1_KNOWLEDGE_ID + "||" + D1 + "||" + S1 + "||" + R1 + "||" + RES1 + "||" + C1 + "||0||0||0||COMMIT=YES"; ⚡ APPEND_TEXT: L1;
+            }
+            IF (A2_ACTIVE > 0.5) {
+                ⚡ D2_NUM: bool_true(A2_DYNAMIC); ⚡ S2_NUM: bool_true(A2_STALE); ⚡ R2_NUM: bool_true(A2_REVALIDATION_REQUIRED); ⚡ RES2_NUM: present(A2_REVALIDATION_RESULT); ⚡ D2: bit_string(D2_NUM); ⚡ S2: bit_string(S2_NUM); ⚡ R2: bit_string(R2_NUM); ⚡ RES2: bit_string(RES2_NUM); ⚡ C2: RES2;
+                ⚡ L2: "DECAY||" + CASE_ID + "||" + A2_ID + "||" + A2_KNOWLEDGE_ID + "||" + D2 + "||" + S2 + "||" + R2 + "||" + RES2 + "||" + C2 + "||0||0||0||COMMIT=YES"; ⚡ APPEND_TEXT: APPEND_TEXT + "\n" + L2;
+            }
+            ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + APPEND_TEXT; IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + APPEND_TEXT; }
+            ⚡ WRITE_ATTEMPTED: 1.0; ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL); ⚡ READBACK_TEXT: load_text(STORE_PATH); ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE); IF (WRITE_READBACK_MATCH > 0.5) { ⚡ RETAINED_ASSESSMENT_RECORD_COUNT: ASSESSMENT_COUNT_NUM; }
+        }
+    }
+    ⚡ ASSESSMENT_RECORD_COUNT_AFTER: ASSESSMENT_RECORD_COUNT_BEFORE + RETAINED_ASSESSMENT_RECORD_COUNT; ⚡ STATE_MUTATED: 0.0; IF (RETAINED_ASSESSMENT_RECORD_COUNT > 0.0) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ STAGE1: choose_stage1(DEPENDENCY_BINDING_VALID, PROVENANCE_COUNT_ENCODING_VALID, INACTIVE_PROVENANCE_ENCODING_VALID, PROVENANCE_METADATA_PRESENT);
+    ⚡ STAGE2: choose_stage2(ASSESSMENT_COUNT_ENCODING_VALID, INACTIVE_ASSESSMENT_ENCODING_VALID, ASSESSMENT_IDS_PRESENT, KNOWLEDGE_IDS_PRESENT);
+    ⚡ STAGE3: choose_stage3(BOOLEAN_ENCODINGS_VALID, KNOWLEDGE_REFERENCES_VALID, DUPLICATE_ASSESSMENT_ID_FREE, STALENESS_EVIDENCE_GATE);
+    ⚡ STAGE4: choose_stage4(DYNAMIC_REVALIDATION_GATE, STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE, ASSESSMENT_COUNT_NUM);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2, STAGE3, STAGE4);
+
+    ⚡ print("DNA46_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("PROVENANCE_COUNT_ENCODING_VALID"); ⚡ print(PROVENANCE_COUNT_ENCODING_VALID);
+    ⚡ print("INACTIVE_PROVENANCE_ENCODING_VALID"); ⚡ print(INACTIVE_PROVENANCE_ENCODING_VALID);
+    ⚡ print("PROVENANCE_METADATA_PRESENT"); ⚡ print(PROVENANCE_METADATA_PRESENT);
+    ⚡ print("ASSESSMENT_COUNT_ENCODING_VALID"); ⚡ print(ASSESSMENT_COUNT_ENCODING_VALID);
+    ⚡ print("INACTIVE_ASSESSMENT_ENCODING_VALID"); ⚡ print(INACTIVE_ASSESSMENT_ENCODING_VALID);
+    ⚡ print("ASSESSMENT_IDS_PRESENT"); ⚡ print(ASSESSMENT_IDS_PRESENT);
+    ⚡ print("KNOWLEDGE_IDS_PRESENT"); ⚡ print(KNOWLEDGE_IDS_PRESENT);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID"); ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("KNOWLEDGE_REFERENCES_VALID"); ⚡ print(KNOWLEDGE_REFERENCES_VALID);
+    ⚡ print("DUPLICATE_ASSESSMENT_ID_FREE"); ⚡ print(DUPLICATE_ASSESSMENT_ID_FREE);
+    ⚡ print("STALENESS_EVIDENCE_GATE"); ⚡ print(STALENESS_EVIDENCE_GATE);
+    ⚡ print("DYNAMIC_REVALIDATION_GATE"); ⚡ print(DYNAMIC_REVALIDATION_GATE);
+    ⚡ print("DYNAMIC_COUNT"); ⚡ print(DYNAMIC_COUNT); ⚡ print("STATIC_COUNT"); ⚡ print(STATIC_COUNT); ⚡ print("STALE_POSSIBLE_COUNT"); ⚡ print(STALE_POSSIBLE_COUNT);
+    ⚡ print("REVALIDATION_REQUIRED_COUNT"); ⚡ print(REVALIDATION_REQUIRED_COUNT); ⚡ print("REVALIDATION_RESULT_COUNT"); ⚡ print(REVALIDATION_RESULT_COUNT); ⚡ print("MISSING_REQUIRED_RESULT_COUNT"); ⚡ print(MISSING_REQUIRED_RESULT_COUNT);
+    ⚡ print("STRUCTURALLY_VALID"); ⚡ print(STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID); ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED); ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("ASSESSMENT_RECORD_COUNT_BEFORE"); ⚡ print(ASSESSMENT_RECORD_COUNT_BEFORE); ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE); ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED); ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC); ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH); ⚡ print("RETAINED_ASSESSMENT_RECORD_COUNT"); ⚡ print(RETAINED_ASSESSMENT_RECORD_COUNT); ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED); ⚡ print("ASSESSMENT_RECORD_COUNT_AFTER"); ⚡ print(ASSESSMENT_RECORD_COUNT_AFTER); ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("DYNAMIC_KNOWLEDGE_REQUIRES_REVALIDATION"); ⚡ print(1.0); ⚡ print("STALENESS_RISK_MUST_BE_EXPLICIT"); ⚡ print(1.0); ⚡ print("STATIC_KNOWLEDGE_IS_NOT_FORCED_DYNAMIC"); ⚡ print(1.0); ⚡ print("MISSING_REVALIDATION_RESULT_IS_NOT_INVENTED"); ⚡ print(1.0);
+    ⚡ print("REVALIDATION_EXECUTION_STARTED"); ⚡ print(0.0); ⚡ print("KNOWLEDGE_REPLACED_BY_DNA46"); ⚡ print(0.0); ⚡ print("KNOWLEDGE_DELETED_BY_DNA46"); ⚡ print(0.0); ⚡ print("MEMORY_RUNTIME_STARTED"); ⚡ print(0.0); ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0); ⚡ print("MODEL_CALL_RUNTIME"); ⚡ print(0.0); ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0); ⚡ print("SEMANTIC_REVALIDATION_PROVEN"); ⚡ print(0.0); ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0); ⚡ print("HOST_LEARNING"); ⚡ print(0.0); ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
