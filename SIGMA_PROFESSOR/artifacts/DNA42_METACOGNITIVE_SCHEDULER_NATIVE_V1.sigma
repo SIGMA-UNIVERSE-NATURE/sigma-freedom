@@ -1,0 +1,398 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA42.METACOGNITIVE.SCHEDULER.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    IF (value == "3") { RETURN 1.0; }
+    IF (value == "4") { RETURN 1.0; }
+    IF (value == "5") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF resource_valid(value) {
+    IF (value == "COMPUTE") { RETURN 1.0; }
+    IF (value == "TOOL") { RETURN 1.0; }
+    IF (value == "DATA") { RETURN 1.0; }
+    IF (value == "REPRESENTATION") { RETURN 1.0; }
+    IF (value == "VERIFIER") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF inactive_slot_valid(resource, trigger, reason, evidence) {
+    RETURN exact(resource, "NONE") * exact(trigger, "NONE") * exact(reason, "NONE") * exact(evidence, "NONE");
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF choose_stage1(dep_valid, count_ok, inactive_ok, resources_ok) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (count_ok < 0.5) { RETURN "SIGNAL_COUNT_ENCODING_INVALID"; }
+    IF (inactive_ok < 0.5) { RETURN "INACTIVE_SIGNAL_ENCODING_INVALID"; }
+    IF (resources_ok < 0.5) { RETURN "UNKNOWN_RESOURCE_SIGNAL"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(triggers_ok, reasons_ok, evidence_ok, duplicate_free) {
+    IF (triggers_ok < 0.5) { RETURN "TRIGGER_ENCODING_INVALID"; }
+    IF (reasons_ok < 0.5) { RETURN "REASON_REQUIRED"; }
+    IF (evidence_ok < 0.5) { RETURN "EVIDENCE_REQUIRED"; }
+    IF (duplicate_free < 0.5) { RETURN "DUPLICATE_RESOURCE_SIGNAL"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(store_ok, capacity, complete) {
+    IF (store_ok < 0.5) { RETURN "SCHEDULER_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "SCHEDULER_CAPACITY_REACHED"; }
+    IF (complete > 0.5) { RETURN "METACOGNITIVE_SCHEDULE_COMPLETE"; }
+    RETURN "METACOGNITIVE_SCHEDULE_INCOMPLETE";
+}
+
+DEF choose_status(s1, s2, s3) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    RETURN s3;
+}
+
+⟡(Σ.DNA42_METACOGNITIVE_SCHEDULER_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ SIGNAL_COUNT_TOKEN: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/signal_count.txt");
+
+    ⚡ S1_RESOURCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s1_resource.txt");
+    ⚡ S1_TRIGGER: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s1_trigger.txt");
+    ⚡ S1_REASON: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s1_reason.txt");
+    ⚡ S1_EVIDENCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s1_evidence.txt");
+    ⚡ S2_RESOURCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s2_resource.txt");
+    ⚡ S2_TRIGGER: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s2_trigger.txt");
+    ⚡ S2_REASON: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s2_reason.txt");
+    ⚡ S2_EVIDENCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s2_evidence.txt");
+    ⚡ S3_RESOURCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s3_resource.txt");
+    ⚡ S3_TRIGGER: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s3_trigger.txt");
+    ⚡ S3_REASON: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s3_reason.txt");
+    ⚡ S3_EVIDENCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s3_evidence.txt");
+    ⚡ S4_RESOURCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s4_resource.txt");
+    ⚡ S4_TRIGGER: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s4_trigger.txt");
+    ⚡ S4_REASON: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s4_reason.txt");
+    ⚡ S4_EVIDENCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s4_evidence.txt");
+    ⚡ S5_RESOURCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s5_resource.txt");
+    ⚡ S5_TRIGGER: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s5_trigger.txt");
+    ⚡ S5_REASON: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s5_reason.txt");
+    ⚡ S5_EVIDENCE: load_text(".sigma_exec/DNA42_NATIVE_ADMISSION_V1/input/s5_evidence.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID: present(CASE_ID) * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+    ⚡ SIGNAL_COUNT_ENCODING_VALID: count_valid(SIGNAL_COUNT_TOKEN);
+
+    ⚡ S1_ACTIVE: 0.0;
+    ⚡ S2_ACTIVE: 0.0;
+    ⚡ S3_ACTIVE: 0.0;
+    ⚡ S4_ACTIVE: 0.0;
+    ⚡ S5_ACTIVE: 0.0;
+    IF (SIGNAL_COUNT_TOKEN == "1") { ⚡ S1_ACTIVE: 1.0; }
+    IF (SIGNAL_COUNT_TOKEN == "2") { ⚡ S1_ACTIVE: 1.0; ⚡ S2_ACTIVE: 1.0; }
+    IF (SIGNAL_COUNT_TOKEN == "3") { ⚡ S1_ACTIVE: 1.0; ⚡ S2_ACTIVE: 1.0; ⚡ S3_ACTIVE: 1.0; }
+    IF (SIGNAL_COUNT_TOKEN == "4") { ⚡ S1_ACTIVE: 1.0; ⚡ S2_ACTIVE: 1.0; ⚡ S3_ACTIVE: 1.0; ⚡ S4_ACTIVE: 1.0; }
+    IF (SIGNAL_COUNT_TOKEN == "5") { ⚡ S1_ACTIVE: 1.0; ⚡ S2_ACTIVE: 1.0; ⚡ S3_ACTIVE: 1.0; ⚡ S4_ACTIVE: 1.0; ⚡ S5_ACTIVE: 1.0; }
+
+    ⚡ INACTIVE_SIGNAL_ENCODING_VALID: 1.0;
+    IF (S1_ACTIVE < 0.5) { ⚡ INACTIVE_SIGNAL_ENCODING_VALID: INACTIVE_SIGNAL_ENCODING_VALID * inactive_slot_valid(S1_RESOURCE, S1_TRIGGER, S1_REASON, S1_EVIDENCE); }
+    IF (S2_ACTIVE < 0.5) { ⚡ INACTIVE_SIGNAL_ENCODING_VALID: INACTIVE_SIGNAL_ENCODING_VALID * inactive_slot_valid(S2_RESOURCE, S2_TRIGGER, S2_REASON, S2_EVIDENCE); }
+    IF (S3_ACTIVE < 0.5) { ⚡ INACTIVE_SIGNAL_ENCODING_VALID: INACTIVE_SIGNAL_ENCODING_VALID * inactive_slot_valid(S3_RESOURCE, S3_TRIGGER, S3_REASON, S3_EVIDENCE); }
+    IF (S4_ACTIVE < 0.5) { ⚡ INACTIVE_SIGNAL_ENCODING_VALID: INACTIVE_SIGNAL_ENCODING_VALID * inactive_slot_valid(S4_RESOURCE, S4_TRIGGER, S4_REASON, S4_EVIDENCE); }
+    IF (S5_ACTIVE < 0.5) { ⚡ INACTIVE_SIGNAL_ENCODING_VALID: INACTIVE_SIGNAL_ENCODING_VALID * inactive_slot_valid(S5_RESOURCE, S5_TRIGGER, S5_REASON, S5_EVIDENCE); }
+
+    ⚡ RESOURCE_SIGNALS_VALID: 1.0;
+    ⚡ TRIGGER_ENCODINGS_VALID: 1.0;
+    ⚡ REASONS_PRESENT: 1.0;
+    ⚡ EVIDENCE_PRESENT: 1.0;
+    IF (S1_ACTIVE > 0.5) { ⚡ RESOURCE_SIGNALS_VALID: RESOURCE_SIGNALS_VALID * resource_valid(S1_RESOURCE); ⚡ TRIGGER_ENCODINGS_VALID: TRIGGER_ENCODINGS_VALID * bool_token_valid(S1_TRIGGER); ⚡ REASONS_PRESENT: REASONS_PRESENT * present(S1_REASON); ⚡ EVIDENCE_PRESENT: EVIDENCE_PRESENT * present(S1_EVIDENCE); }
+    IF (S2_ACTIVE > 0.5) { ⚡ RESOURCE_SIGNALS_VALID: RESOURCE_SIGNALS_VALID * resource_valid(S2_RESOURCE); ⚡ TRIGGER_ENCODINGS_VALID: TRIGGER_ENCODINGS_VALID * bool_token_valid(S2_TRIGGER); ⚡ REASONS_PRESENT: REASONS_PRESENT * present(S2_REASON); ⚡ EVIDENCE_PRESENT: EVIDENCE_PRESENT * present(S2_EVIDENCE); }
+    IF (S3_ACTIVE > 0.5) { ⚡ RESOURCE_SIGNALS_VALID: RESOURCE_SIGNALS_VALID * resource_valid(S3_RESOURCE); ⚡ TRIGGER_ENCODINGS_VALID: TRIGGER_ENCODINGS_VALID * bool_token_valid(S3_TRIGGER); ⚡ REASONS_PRESENT: REASONS_PRESENT * present(S3_REASON); ⚡ EVIDENCE_PRESENT: EVIDENCE_PRESENT * present(S3_EVIDENCE); }
+    IF (S4_ACTIVE > 0.5) { ⚡ RESOURCE_SIGNALS_VALID: RESOURCE_SIGNALS_VALID * resource_valid(S4_RESOURCE); ⚡ TRIGGER_ENCODINGS_VALID: TRIGGER_ENCODINGS_VALID * bool_token_valid(S4_TRIGGER); ⚡ REASONS_PRESENT: REASONS_PRESENT * present(S4_REASON); ⚡ EVIDENCE_PRESENT: EVIDENCE_PRESENT * present(S4_EVIDENCE); }
+    IF (S5_ACTIVE > 0.5) { ⚡ RESOURCE_SIGNALS_VALID: RESOURCE_SIGNALS_VALID * resource_valid(S5_RESOURCE); ⚡ TRIGGER_ENCODINGS_VALID: TRIGGER_ENCODINGS_VALID * bool_token_valid(S5_TRIGGER); ⚡ REASONS_PRESENT: REASONS_PRESENT * present(S5_REASON); ⚡ EVIDENCE_PRESENT: EVIDENCE_PRESENT * present(S5_EVIDENCE); }
+
+    ⚡ DUPLICATE_RESOURCE_FREE: 1.0;
+    IF (S2_ACTIVE > 0.5) { IF (S1_RESOURCE == S2_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } }
+    IF (S3_ACTIVE > 0.5) { IF (S1_RESOURCE == S3_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S2_RESOURCE == S3_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } }
+    IF (S4_ACTIVE > 0.5) { IF (S1_RESOURCE == S4_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S2_RESOURCE == S4_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S3_RESOURCE == S4_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } }
+    IF (S5_ACTIVE > 0.5) { IF (S1_RESOURCE == S5_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S2_RESOURCE == S5_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S3_RESOURCE == S5_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } IF (S4_RESOURCE == S5_RESOURCE) { ⚡ DUPLICATE_RESOURCE_FREE: 0.0; } }
+
+    ⚡ PRESENT_COMPUTE: 0.0; ⚡ PRESENT_TOOL: 0.0; ⚡ PRESENT_DATA: 0.0; ⚡ PRESENT_REPRESENTATION: 0.0; ⚡ PRESENT_VERIFIER: 0.0;
+    ⚡ NEED_COMPUTE: 0.0; ⚡ NEED_TOOL: 0.0; ⚡ NEED_DATA: 0.0; ⚡ NEED_REPRESENTATION: 0.0; ⚡ NEED_VERIFIER: 0.0;
+
+    IF (S1_ACTIVE > 0.5) {
+        IF (S1_RESOURCE == "COMPUTE") { ⚡ PRESENT_COMPUTE: 1.0; IF (S1_TRIGGER == "1") { ⚡ NEED_COMPUTE: 1.0; } }
+        IF (S1_RESOURCE == "TOOL") { ⚡ PRESENT_TOOL: 1.0; IF (S1_TRIGGER == "1") { ⚡ NEED_TOOL: 1.0; } }
+        IF (S1_RESOURCE == "DATA") { ⚡ PRESENT_DATA: 1.0; IF (S1_TRIGGER == "1") { ⚡ NEED_DATA: 1.0; } }
+        IF (S1_RESOURCE == "REPRESENTATION") { ⚡ PRESENT_REPRESENTATION: 1.0; IF (S1_TRIGGER == "1") { ⚡ NEED_REPRESENTATION: 1.0; } }
+        IF (S1_RESOURCE == "VERIFIER") { ⚡ PRESENT_VERIFIER: 1.0; IF (S1_TRIGGER == "1") { ⚡ NEED_VERIFIER: 1.0; } }
+    }
+    IF (S2_ACTIVE > 0.5) {
+        IF (S2_RESOURCE == "COMPUTE") { ⚡ PRESENT_COMPUTE: 1.0; IF (S2_TRIGGER == "1") { ⚡ NEED_COMPUTE: 1.0; } }
+        IF (S2_RESOURCE == "TOOL") { ⚡ PRESENT_TOOL: 1.0; IF (S2_TRIGGER == "1") { ⚡ NEED_TOOL: 1.0; } }
+        IF (S2_RESOURCE == "DATA") { ⚡ PRESENT_DATA: 1.0; IF (S2_TRIGGER == "1") { ⚡ NEED_DATA: 1.0; } }
+        IF (S2_RESOURCE == "REPRESENTATION") { ⚡ PRESENT_REPRESENTATION: 1.0; IF (S2_TRIGGER == "1") { ⚡ NEED_REPRESENTATION: 1.0; } }
+        IF (S2_RESOURCE == "VERIFIER") { ⚡ PRESENT_VERIFIER: 1.0; IF (S2_TRIGGER == "1") { ⚡ NEED_VERIFIER: 1.0; } }
+    }
+    IF (S3_ACTIVE > 0.5) {
+        IF (S3_RESOURCE == "COMPUTE") { ⚡ PRESENT_COMPUTE: 1.0; IF (S3_TRIGGER == "1") { ⚡ NEED_COMPUTE: 1.0; } }
+        IF (S3_RESOURCE == "TOOL") { ⚡ PRESENT_TOOL: 1.0; IF (S3_TRIGGER == "1") { ⚡ NEED_TOOL: 1.0; } }
+        IF (S3_RESOURCE == "DATA") { ⚡ PRESENT_DATA: 1.0; IF (S3_TRIGGER == "1") { ⚡ NEED_DATA: 1.0; } }
+        IF (S3_RESOURCE == "REPRESENTATION") { ⚡ PRESENT_REPRESENTATION: 1.0; IF (S3_TRIGGER == "1") { ⚡ NEED_REPRESENTATION: 1.0; } }
+        IF (S3_RESOURCE == "VERIFIER") { ⚡ PRESENT_VERIFIER: 1.0; IF (S3_TRIGGER == "1") { ⚡ NEED_VERIFIER: 1.0; } }
+    }
+    IF (S4_ACTIVE > 0.5) {
+        IF (S4_RESOURCE == "COMPUTE") { ⚡ PRESENT_COMPUTE: 1.0; IF (S4_TRIGGER == "1") { ⚡ NEED_COMPUTE: 1.0; } }
+        IF (S4_RESOURCE == "TOOL") { ⚡ PRESENT_TOOL: 1.0; IF (S4_TRIGGER == "1") { ⚡ NEED_TOOL: 1.0; } }
+        IF (S4_RESOURCE == "DATA") { ⚡ PRESENT_DATA: 1.0; IF (S4_TRIGGER == "1") { ⚡ NEED_DATA: 1.0; } }
+        IF (S4_RESOURCE == "REPRESENTATION") { ⚡ PRESENT_REPRESENTATION: 1.0; IF (S4_TRIGGER == "1") { ⚡ NEED_REPRESENTATION: 1.0; } }
+        IF (S4_RESOURCE == "VERIFIER") { ⚡ PRESENT_VERIFIER: 1.0; IF (S4_TRIGGER == "1") { ⚡ NEED_VERIFIER: 1.0; } }
+    }
+    IF (S5_ACTIVE > 0.5) {
+        IF (S5_RESOURCE == "COMPUTE") { ⚡ PRESENT_COMPUTE: 1.0; IF (S5_TRIGGER == "1") { ⚡ NEED_COMPUTE: 1.0; } }
+        IF (S5_RESOURCE == "TOOL") { ⚡ PRESENT_TOOL: 1.0; IF (S5_TRIGGER == "1") { ⚡ NEED_TOOL: 1.0; } }
+        IF (S5_RESOURCE == "DATA") { ⚡ PRESENT_DATA: 1.0; IF (S5_TRIGGER == "1") { ⚡ NEED_DATA: 1.0; } }
+        IF (S5_RESOURCE == "REPRESENTATION") { ⚡ PRESENT_REPRESENTATION: 1.0; IF (S5_TRIGGER == "1") { ⚡ NEED_REPRESENTATION: 1.0; } }
+        IF (S5_RESOURCE == "VERIFIER") { ⚡ PRESENT_VERIFIER: 1.0; IF (S5_TRIGGER == "1") { ⚡ NEED_VERIFIER: 1.0; } }
+    }
+
+    ⚡ PRESENT_RESOURCE_COUNT: PRESENT_COMPUTE + PRESENT_TOOL + PRESENT_DATA + PRESENT_REPRESENTATION + PRESENT_VERIFIER;
+    ⚡ NEEDED_RESOURCE_COUNT: NEED_COMPUTE + NEED_TOOL + NEED_DATA + NEED_REPRESENTATION + NEED_VERIFIER;
+    ⚡ MISSING_COMPUTE: 1.0 - PRESENT_COMPUTE;
+    ⚡ MISSING_TOOL: 1.0 - PRESENT_TOOL;
+    ⚡ MISSING_DATA: 1.0 - PRESENT_DATA;
+    ⚡ MISSING_REPRESENTATION: 1.0 - PRESENT_REPRESENTATION;
+    ⚡ MISSING_VERIFIER: 1.0 - PRESENT_VERIFIER;
+    ⚡ COMPLETE_ASSESSMENT: exact(SIGNAL_COUNT_TOKEN, "5") * PRESENT_COMPUTE * PRESENT_TOOL * PRESENT_DATA * PRESENT_REPRESENTATION * PRESENT_VERIFIER;
+
+    ⚡ STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * SIGNAL_COUNT_ENCODING_VALID
+        * INACTIVE_SIGNAL_ENCODING_VALID
+        * RESOURCE_SIGNALS_VALID
+        * TRIGGER_ENCODINGS_VALID
+        * REASONS_PRESENT
+        * EVIDENCE_PRESENT
+        * DUPLICATE_RESOURCE_FREE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA42_NATIVE_ADMISSION_V1/state/metacognitive_scheduler_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA42_METACOGNITIVE_SCHEDULER_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_DECISION_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ DECISION_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 16) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RCOUNT: host("list_get", PARTS, 2, NULL);
+                ⚡ RPC: host("list_get", PARTS, 3, NULL);
+                ⚡ RPT: host("list_get", PARTS, 4, NULL);
+                ⚡ RPD: host("list_get", PARTS, 5, NULL);
+                ⚡ RPR: host("list_get", PARTS, 6, NULL);
+                ⚡ RPV: host("list_get", PARTS, 7, NULL);
+                ⚡ RNC: host("list_get", PARTS, 8, NULL);
+                ⚡ RNT: host("list_get", PARTS, 9, NULL);
+                ⚡ RND: host("list_get", PARTS, 10, NULL);
+                ⚡ RNR: host("list_get", PARTS, 11, NULL);
+                ⚡ RNV: host("list_get", PARTS, 12, NULL);
+                ⚡ RCOMP: host("list_get", PARTS, 13, NULL);
+                ⚡ REXEC: host("list_get", PARTS, 14, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 15, NULL);
+
+                ⚡ RBITS_VALID:
+                    bool_token_valid(RPC) * bool_token_valid(RPT) * bool_token_valid(RPD) * bool_token_valid(RPR) * bool_token_valid(RPV)
+                    * bool_token_valid(RNC) * bool_token_valid(RNT) * bool_token_valid(RND) * bool_token_valid(RNR) * bool_token_valid(RNV)
+                    * bool_token_valid(RCOMP);
+                ⚡ RPCN: bool_true(RPC); ⚡ RPTN: bool_true(RPT); ⚡ RPDN: bool_true(RPD); ⚡ RPRN: bool_true(RPR); ⚡ RPVN: bool_true(RPV);
+                ⚡ RNCN: bool_true(RNC); ⚡ RNTN: bool_true(RNT); ⚡ RNDN: bool_true(RND); ⚡ RNRN: bool_true(RNR); ⚡ RNVN: bool_true(RNV);
+                ⚡ RCOMP_NUM: bool_true(RCOMP);
+                ⚡ RPRESENT_COUNT: RPCN + RPTN + RPDN + RPRN + RPVN;
+                ⚡ RCOUNT_MATCH: 0.0;
+                IF (RPRESENT_COUNT == 0.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "0"); }
+                IF (RPRESENT_COUNT == 1.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "1"); }
+                IF (RPRESENT_COUNT == 2.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "2"); }
+                IF (RPRESENT_COUNT == 3.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "3"); }
+                IF (RPRESENT_COUNT == 4.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "4"); }
+                IF (RPRESENT_COUNT == 5.0) { ⚡ RCOUNT_MATCH: exact(RCOUNT, "5"); }
+                ⚡ RNEED_WITHOUT_PRESENT: 0.0;
+                IF (RNCN > RPCN) { ⚡ RNEED_WITHOUT_PRESENT: 1.0; }
+                IF (RNTN > RPTN) { ⚡ RNEED_WITHOUT_PRESENT: 1.0; }
+                IF (RNDN > RPDN) { ⚡ RNEED_WITHOUT_PRESENT: 1.0; }
+                IF (RNRN > RPRN) { ⚡ RNEED_WITHOUT_PRESENT: 1.0; }
+                IF (RNVN > RPVN) { ⚡ RNEED_WITHOUT_PRESENT: 1.0; }
+                ⚡ REXPECTED_COMPLETE: exact(RCOUNT, "5") * RPCN * RPTN * RPDN * RPRN * RPVN;
+                ⚡ RCOMPLETE_MATCH: 0.0;
+                IF (RCOMP_NUM == REXPECTED_COMPLETE) { ⚡ RCOMPLETE_MATCH: 1.0; }
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "SCHED")
+                    * present(RCASE)
+                    * count_valid(RCOUNT)
+                    * RBITS_VALID
+                    * RCOUNT_MATCH
+                    * (1.0 - RNEED_WITHOUT_PRESENT)
+                    * RCOMPLETE_MATCH
+                    * exact(REXEC, "0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+                IF (RECORD_VALID > 0.5) { ⚡ DECISION_RECORD_COUNT_BEFORE: DECISION_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (DECISION_RECORD_COUNT_BEFORE < MAX_DECISION_RECORDS) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE: STRUCTURALLY_VALID * STORE_STATE_VALID * STATE_CAPACITY_AVAILABLE;
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_RECORD_COUNT: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ PC: bit_string(PRESENT_COMPUTE); ⚡ PT: bit_string(PRESENT_TOOL); ⚡ PD: bit_string(PRESENT_DATA); ⚡ PR: bit_string(PRESENT_REPRESENTATION); ⚡ PV: bit_string(PRESENT_VERIFIER);
+        ⚡ NC: bit_string(NEED_COMPUTE); ⚡ NT: bit_string(NEED_TOOL); ⚡ ND: bit_string(NEED_DATA); ⚡ NR: bit_string(NEED_REPRESENTATION); ⚡ NV: bit_string(NEED_VERIFIER);
+        ⚡ COMP: bit_string(COMPLETE_ASSESSMENT);
+        ⚡ RECORD_LINE:
+            "SCHED||" + CASE_ID + "||" + SIGNAL_COUNT_TOKEN
+            + "||" + PC + "||" + PT + "||" + PD + "||" + PR + "||" + PV
+            + "||" + NC + "||" + NT + "||" + ND + "||" + NR + "||" + NV
+            + "||" + COMP + "||0||COMMIT=YES";
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        IF (WRITE_READBACK_MATCH > 0.5) { ⚡ RETAINED_RECORD_COUNT: 1.0; }
+    }
+
+    ⚡ DECISION_RECORD_COUNT_AFTER: DECISION_RECORD_COUNT_BEFORE + RETAINED_RECORD_COUNT;
+    ⚡ STATE_MUTATED: RETAINED_RECORD_COUNT;
+
+    ⚡ STAGE1: choose_stage1(DEPENDENCY_BINDING_VALID, SIGNAL_COUNT_ENCODING_VALID, INACTIVE_SIGNAL_ENCODING_VALID, RESOURCE_SIGNALS_VALID);
+    ⚡ STAGE2: choose_stage2(TRIGGER_ENCODINGS_VALID, REASONS_PRESENT, EVIDENCE_PRESENT, DUPLICATE_RESOURCE_FREE);
+    ⚡ STAGE3: choose_stage3(STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE, COMPLETE_ASSESSMENT);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2, STAGE3);
+
+    ⚡ print("DNA42_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("SIGNAL_COUNT_ENCODING_VALID"); ⚡ print(SIGNAL_COUNT_ENCODING_VALID);
+    ⚡ print("INACTIVE_SIGNAL_ENCODING_VALID"); ⚡ print(INACTIVE_SIGNAL_ENCODING_VALID);
+    ⚡ print("RESOURCE_SIGNALS_VALID"); ⚡ print(RESOURCE_SIGNALS_VALID);
+    ⚡ print("TRIGGER_ENCODINGS_VALID"); ⚡ print(TRIGGER_ENCODINGS_VALID);
+    ⚡ print("REASONS_PRESENT"); ⚡ print(REASONS_PRESENT);
+    ⚡ print("EVIDENCE_PRESENT"); ⚡ print(EVIDENCE_PRESENT);
+    ⚡ print("DUPLICATE_RESOURCE_FREE"); ⚡ print(DUPLICATE_RESOURCE_FREE);
+    ⚡ print("PRESENT_COMPUTE"); ⚡ print(PRESENT_COMPUTE);
+    ⚡ print("PRESENT_TOOL"); ⚡ print(PRESENT_TOOL);
+    ⚡ print("PRESENT_DATA"); ⚡ print(PRESENT_DATA);
+    ⚡ print("PRESENT_REPRESENTATION"); ⚡ print(PRESENT_REPRESENTATION);
+    ⚡ print("PRESENT_VERIFIER"); ⚡ print(PRESENT_VERIFIER);
+    ⚡ print("NEED_COMPUTE"); ⚡ print(NEED_COMPUTE);
+    ⚡ print("NEED_TOOL"); ⚡ print(NEED_TOOL);
+    ⚡ print("NEED_DATA"); ⚡ print(NEED_DATA);
+    ⚡ print("NEED_REPRESENTATION"); ⚡ print(NEED_REPRESENTATION);
+    ⚡ print("NEED_VERIFIER"); ⚡ print(NEED_VERIFIER);
+    ⚡ print("PRESENT_RESOURCE_COUNT"); ⚡ print(PRESENT_RESOURCE_COUNT);
+    ⚡ print("NEEDED_RESOURCE_COUNT"); ⚡ print(NEEDED_RESOURCE_COUNT);
+    ⚡ print("MISSING_COMPUTE"); ⚡ print(MISSING_COMPUTE);
+    ⚡ print("MISSING_TOOL"); ⚡ print(MISSING_TOOL);
+    ⚡ print("MISSING_DATA"); ⚡ print(MISSING_DATA);
+    ⚡ print("MISSING_REPRESENTATION"); ⚡ print(MISSING_REPRESENTATION);
+    ⚡ print("MISSING_VERIFIER"); ⚡ print(MISSING_VERIFIER);
+    ⚡ print("COMPLETE_ASSESSMENT"); ⚡ print(COMPLETE_ASSESSMENT);
+    ⚡ print("STRUCTURALLY_VALID"); ⚡ print(STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("DECISION_RECORD_COUNT_BEFORE"); ⚡ print(DECISION_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_RECORD_COUNT"); ⚡ print(RETAINED_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("DECISION_RECORD_COUNT_AFTER"); ⚡ print(DECISION_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("METACOGNITIVE_SCHEDULER_SCHEMA"); ⚡ print("SIGMA_METACOGNITIVE_SCHEDULER_V1");
+    ⚡ print("CANONICAL_RESOURCES"); ⚡ print("COMPUTE,TOOL,DATA,REPRESENTATION,VERIFIER");
+    ⚡ print("TRIGGER_EVIDENCE_REQUIRED"); ⚡ print(1.0);
+    ⚡ print("MISSING_RESOURCE_SIGNAL_IS_NOT_INVENTED"); ⚡ print(1.0);
+    ⚡ print("DECISION_RULE_TRIGGER_IFF_NEEDED"); ⚡ print(1.0);
+    ⚡ print("COMPLETE_ASSESSMENT_REQUIRES_ALL_FIVE"); ⚡ print(1.0);
+    ⚡ print("COMPUTE_ALLOCATED_BY_DNA42"); ⚡ print(0.0);
+    ⚡ print("TOOL_EXECUTED_BY_DNA42"); ⚡ print(0.0);
+    ⚡ print("DATA_ACQUIRED_BY_DNA42"); ⚡ print(0.0);
+    ⚡ print("REPRESENTATION_GENERATED_BY_DNA42"); ⚡ print(0.0);
+    ⚡ print("VERIFIER_INVOKED_BY_DNA42"); ⚡ print(0.0);
+    ⚡ print("MODEL_CALL_RUNTIME"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("WORLD_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("GENERAL_SIGNAL_CARDINALITY_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_REASON_EVIDENCE_ENCODING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("EVIDENCE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_RESOURCE_NEED_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
