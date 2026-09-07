@@ -1,0 +1,303 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA43.ANTI.SELF.DECEPTION.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF evidence_type_valid(value) {
+    IF (value == "EXTERNAL") { RETURN 1.0; }
+    IF (value == "HELD_OUT") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF inactive_evidence_valid(id, type, result) {
+    RETURN exact(id, "NONE") * exact(type, "NONE") * exact(result, "NONE");
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF choose_stage1(dep, assessment_id_ok, progress_ok, metric_name_ok) {
+    IF (dep < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (assessment_id_ok < 0.5) { RETURN "ASSESSMENT_ID_REQUIRED"; }
+    IF (progress_ok < 0.5) { RETURN "PROGRESS_CLAIM_ENCODING_INVALID"; }
+    IF (metric_name_ok < 0.5) { RETURN "OPTIMIZED_METRIC_NAME_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(metric_value_ok, count_ok, inactive_ok, ids_ok) {
+    IF (metric_value_ok < 0.5) { RETURN "OPTIMIZED_METRIC_VALUE_REQUIRED"; }
+    IF (count_ok < 0.5) { RETURN "EVIDENCE_COUNT_ENCODING_INVALID"; }
+    IF (inactive_ok < 0.5) { RETURN "INACTIVE_EVIDENCE_ENCODING_INVALID"; }
+    IF (ids_ok < 0.5) { RETURN "EVIDENCE_ID_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(types_ok, results_ok, duplicate_free, claim_gate) {
+    IF (types_ok < 0.5) { RETURN "NON_INDEPENDENT_EVIDENCE_TYPE"; }
+    IF (results_ok < 0.5) { RETURN "EVIDENCE_RESULT_REQUIRED"; }
+    IF (duplicate_free < 0.5) { RETURN "DUPLICATE_EVIDENCE_ID"; }
+    IF (claim_gate < 0.5) { RETURN "PROGRESS_CANNOT_USE_OPTIMIZED_METRIC_ALONE"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage4(store_ok, capacity, progress_true) {
+    IF (store_ok < 0.5) { RETURN "ANTI_SELF_DECEPTION_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "ANTI_SELF_DECEPTION_CAPACITY_REACHED"; }
+    IF (progress_true > 0.5) { RETURN "PROGRESS_INDEPENDENT_EVIDENCE_SATISFIED"; }
+    RETURN "NO_PROGRESS_CLAIM";
+}
+
+DEF choose_status(s1, s2, s3, s4) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    IF (s3 != "CONTINUE") { RETURN s3; }
+    RETURN s4;
+}
+
+⟡(Σ.DNA43_ANTI_SELF_DECEPTION_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ ASSESSMENT_ID: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/assessment_id.txt");
+    ⚡ PROGRESS_CLAIM_TOKEN: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/progress_claim.txt");
+    ⚡ METRIC_NAME: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/metric_name.txt");
+    ⚡ METRIC_VALUE: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/metric_value.txt");
+    ⚡ EVIDENCE_COUNT_TOKEN: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/evidence_count.txt");
+    ⚡ E1_ID: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e1_id.txt");
+    ⚡ E1_TYPE: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e1_type.txt");
+    ⚡ E1_RESULT: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e1_result.txt");
+    ⚡ E2_ID: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e2_id.txt");
+    ⚡ E2_TYPE: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e2_type.txt");
+    ⚡ E2_RESULT: load_text(".sigma_exec/DNA43_NATIVE_ADMISSION_V1/input/e2_result.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID: present(CASE_ID) * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+    ⚡ ASSESSMENT_ID_PRESENT: present(ASSESSMENT_ID);
+    ⚡ PROGRESS_CLAIM_ENCODING_VALID: bool_token_valid(PROGRESS_CLAIM_TOKEN);
+    ⚡ PROGRESS_CLAIM_TRUE: bool_true(PROGRESS_CLAIM_TOKEN);
+    ⚡ OPTIMIZED_METRIC_NAME_PRESENT: present(METRIC_NAME);
+    ⚡ OPTIMIZED_METRIC_VALUE_PRESENT: present(METRIC_VALUE);
+    ⚡ EVIDENCE_COUNT_ENCODING_VALID: count_valid(EVIDENCE_COUNT_TOKEN);
+
+    ⚡ E1_ACTIVE: 0.0; ⚡ E2_ACTIVE: 0.0; ⚡ EVIDENCE_COUNT_NUM: 0.0;
+    IF (EVIDENCE_COUNT_TOKEN == "1") { ⚡ E1_ACTIVE: 1.0; ⚡ EVIDENCE_COUNT_NUM: 1.0; }
+    IF (EVIDENCE_COUNT_TOKEN == "2") { ⚡ E1_ACTIVE: 1.0; ⚡ E2_ACTIVE: 1.0; ⚡ EVIDENCE_COUNT_NUM: 2.0; }
+
+    ⚡ INACTIVE_EVIDENCE_ENCODING_VALID: 1.0;
+    IF (E1_ACTIVE < 0.5) { ⚡ INACTIVE_EVIDENCE_ENCODING_VALID: INACTIVE_EVIDENCE_ENCODING_VALID * inactive_evidence_valid(E1_ID, E1_TYPE, E1_RESULT); }
+    IF (E2_ACTIVE < 0.5) { ⚡ INACTIVE_EVIDENCE_ENCODING_VALID: INACTIVE_EVIDENCE_ENCODING_VALID * inactive_evidence_valid(E2_ID, E2_TYPE, E2_RESULT); }
+
+    ⚡ EVIDENCE_IDS_PRESENT: 1.0;
+    ⚡ EVIDENCE_TYPES_VALID: 1.0;
+    ⚡ EVIDENCE_RESULTS_PRESENT: 1.0;
+    IF (E1_ACTIVE > 0.5) {
+        ⚡ EVIDENCE_IDS_PRESENT: EVIDENCE_IDS_PRESENT * present(E1_ID);
+        ⚡ EVIDENCE_TYPES_VALID: EVIDENCE_TYPES_VALID * evidence_type_valid(E1_TYPE);
+        ⚡ EVIDENCE_RESULTS_PRESENT: EVIDENCE_RESULTS_PRESENT * present(E1_RESULT);
+    }
+    IF (E2_ACTIVE > 0.5) {
+        ⚡ EVIDENCE_IDS_PRESENT: EVIDENCE_IDS_PRESENT * present(E2_ID);
+        ⚡ EVIDENCE_TYPES_VALID: EVIDENCE_TYPES_VALID * evidence_type_valid(E2_TYPE);
+        ⚡ EVIDENCE_RESULTS_PRESENT: EVIDENCE_RESULTS_PRESENT * present(E2_RESULT);
+    }
+
+    ⚡ DUPLICATE_EVIDENCE_ID_FREE: 1.0;
+    IF (E2_ACTIVE > 0.5) { IF (E1_ID == E2_ID) { ⚡ DUPLICATE_EVIDENCE_ID_FREE: 0.0; } }
+
+    ⚡ HAS_EXTERNAL_EVIDENCE: 0.0;
+    ⚡ HAS_HELD_OUT_EVIDENCE: 0.0;
+    IF (E1_ACTIVE > 0.5) { IF (E1_TYPE == "EXTERNAL") { ⚡ HAS_EXTERNAL_EVIDENCE: 1.0; } IF (E1_TYPE == "HELD_OUT") { ⚡ HAS_HELD_OUT_EVIDENCE: 1.0; } }
+    IF (E2_ACTIVE > 0.5) { IF (E2_TYPE == "EXTERNAL") { ⚡ HAS_EXTERNAL_EVIDENCE: 1.0; } IF (E2_TYPE == "HELD_OUT") { ⚡ HAS_HELD_OUT_EVIDENCE: 1.0; } }
+    ⚡ HAS_INDEPENDENT_EVIDENCE: 0.0;
+    IF (HAS_EXTERNAL_EVIDENCE > 0.5) { ⚡ HAS_INDEPENDENT_EVIDENCE: 1.0; }
+    IF (HAS_HELD_OUT_EVIDENCE > 0.5) { ⚡ HAS_INDEPENDENT_EVIDENCE: 1.0; }
+
+    ⚡ PROGRESS_CLAIM_GATE: 1.0;
+    IF (PROGRESS_CLAIM_TRUE > 0.5) { IF (HAS_INDEPENDENT_EVIDENCE < 0.5) { ⚡ PROGRESS_CLAIM_GATE: 0.0; } }
+
+    ⚡ STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * ASSESSMENT_ID_PRESENT
+        * PROGRESS_CLAIM_ENCODING_VALID
+        * OPTIMIZED_METRIC_NAME_PRESENT
+        * OPTIMIZED_METRIC_VALUE_PRESENT
+        * EVIDENCE_COUNT_ENCODING_VALID
+        * INACTIVE_EVIDENCE_ENCODING_VALID
+        * EVIDENCE_IDS_PRESENT
+        * EVIDENCE_TYPES_VALID
+        * EVIDENCE_RESULTS_PRESENT
+        * DUPLICATE_EVIDENCE_ID_FREE
+        * PROGRESS_CLAIM_GATE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA43_NATIVE_ADMISSION_V1/state/anti_self_deception_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA43_ANTI_SELF_DECEPTION_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_ASSESSMENT_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ ASSESSMENT_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 10) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RASSESS: host("list_get", PARTS, 2, NULL);
+                ⚡ RPROGRESS: host("list_get", PARTS, 3, NULL);
+                ⚡ REXT: host("list_get", PARTS, 4, NULL);
+                ⚡ RHELD: host("list_get", PARTS, 5, NULL);
+                ⚡ RIND: host("list_get", PARTS, 6, NULL);
+                ⚡ RBENCH: host("list_get", PARTS, 7, NULL);
+                ⚡ RVERIFY: host("list_get", PARTS, 8, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 9, NULL);
+                ⚡ RBITS: bool_token_valid(RPROGRESS) * bool_token_valid(REXT) * bool_token_valid(RHELD) * bool_token_valid(RIND);
+                ⚡ REXT_NUM: bool_true(REXT); ⚡ RHELD_NUM: bool_true(RHELD); ⚡ RIND_NUM: bool_true(RIND);
+                ⚡ RIND_EXPECT: 0.0;
+                IF (REXT_NUM > 0.5) { ⚡ RIND_EXPECT: 1.0; }
+                IF (RHELD_NUM > 0.5) { ⚡ RIND_EXPECT: 1.0; }
+                ⚡ RIND_MATCH: 0.0; IF (RIND_NUM == RIND_EXPECT) { ⚡ RIND_MATCH: 1.0; }
+                ⚡ RPROGRESS_NUM: bool_true(RPROGRESS);
+                ⚡ RCLAIM_GATE: 1.0; IF (RPROGRESS_NUM > 0.5) { IF (RIND_NUM < 0.5) { ⚡ RCLAIM_GATE: 0.0; } }
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "ASSESS") * present(RCASE) * present(RASSESS)
+                    * RBITS * RIND_MATCH * RCLAIM_GATE
+                    * exact(RBENCH, "0") * exact(RVERIFY, "0") * exact(RCOMMIT, "COMMIT=YES");
+                IF (RECORD_VALID > 0.5) { ⚡ ASSESSMENT_RECORD_COUNT_BEFORE: ASSESSMENT_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (ASSESSMENT_RECORD_COUNT_BEFORE < MAX_ASSESSMENT_RECORDS) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE: STRUCTURALLY_VALID * STORE_STATE_VALID * STATE_CAPACITY_AVAILABLE;
+    ⚡ WRITE_ATTEMPTED: 0.0; ⚡ WRITE_RC: 0.0; ⚡ WRITE_READBACK_MATCH: 0.0; ⚡ RETAINED_ASSESSMENT_RECORD_COUNT: 0.0;
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ PBIT: bit_string(PROGRESS_CLAIM_TRUE);
+        ⚡ EBIT: bit_string(HAS_EXTERNAL_EVIDENCE);
+        ⚡ HBIT: bit_string(HAS_HELD_OUT_EVIDENCE);
+        ⚡ IBIT: bit_string(HAS_INDEPENDENT_EVIDENCE);
+        ⚡ RECORD_LINE: "ASSESS||" + CASE_ID + "||" + ASSESSMENT_ID + "||" + PBIT + "||" + EBIT + "||" + HBIT + "||" + IBIT + "||0||0||COMMIT=YES";
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        IF (WRITE_READBACK_MATCH > 0.5) { ⚡ RETAINED_ASSESSMENT_RECORD_COUNT: 1.0; }
+    }
+
+    ⚡ ASSESSMENT_RECORD_COUNT_AFTER: ASSESSMENT_RECORD_COUNT_BEFORE + RETAINED_ASSESSMENT_RECORD_COUNT;
+    ⚡ STATE_MUTATED: 0.0; IF (RETAINED_ASSESSMENT_RECORD_COUNT > 0.5) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ STAGE1: choose_stage1(DEPENDENCY_BINDING_VALID, ASSESSMENT_ID_PRESENT, PROGRESS_CLAIM_ENCODING_VALID, OPTIMIZED_METRIC_NAME_PRESENT);
+    ⚡ STAGE2: choose_stage2(OPTIMIZED_METRIC_VALUE_PRESENT, EVIDENCE_COUNT_ENCODING_VALID, INACTIVE_EVIDENCE_ENCODING_VALID, EVIDENCE_IDS_PRESENT);
+    ⚡ STAGE3: choose_stage3(EVIDENCE_TYPES_VALID, EVIDENCE_RESULTS_PRESENT, DUPLICATE_EVIDENCE_ID_FREE, PROGRESS_CLAIM_GATE);
+    ⚡ STAGE4: choose_stage4(STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE, PROGRESS_CLAIM_TRUE);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2, STAGE3, STAGE4);
+
+    ⚡ print("DNA43_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("ASSESSMENT_ID_PRESENT"); ⚡ print(ASSESSMENT_ID_PRESENT);
+    ⚡ print("PROGRESS_CLAIM_ENCODING_VALID"); ⚡ print(PROGRESS_CLAIM_ENCODING_VALID);
+    ⚡ print("PROGRESS_CLAIM_TRUE"); ⚡ print(PROGRESS_CLAIM_TRUE);
+    ⚡ print("OPTIMIZED_METRIC_NAME_PRESENT"); ⚡ print(OPTIMIZED_METRIC_NAME_PRESENT);
+    ⚡ print("OPTIMIZED_METRIC_VALUE_PRESENT"); ⚡ print(OPTIMIZED_METRIC_VALUE_PRESENT);
+    ⚡ print("EVIDENCE_COUNT_ENCODING_VALID"); ⚡ print(EVIDENCE_COUNT_ENCODING_VALID);
+    ⚡ print("INACTIVE_EVIDENCE_ENCODING_VALID"); ⚡ print(INACTIVE_EVIDENCE_ENCODING_VALID);
+    ⚡ print("EVIDENCE_IDS_PRESENT"); ⚡ print(EVIDENCE_IDS_PRESENT);
+    ⚡ print("EVIDENCE_TYPES_VALID"); ⚡ print(EVIDENCE_TYPES_VALID);
+    ⚡ print("EVIDENCE_RESULTS_PRESENT"); ⚡ print(EVIDENCE_RESULTS_PRESENT);
+    ⚡ print("DUPLICATE_EVIDENCE_ID_FREE"); ⚡ print(DUPLICATE_EVIDENCE_ID_FREE);
+    ⚡ print("HAS_EXTERNAL_EVIDENCE"); ⚡ print(HAS_EXTERNAL_EVIDENCE);
+    ⚡ print("HAS_HELD_OUT_EVIDENCE"); ⚡ print(HAS_HELD_OUT_EVIDENCE);
+    ⚡ print("HAS_INDEPENDENT_EVIDENCE"); ⚡ print(HAS_INDEPENDENT_EVIDENCE);
+    ⚡ print("PROGRESS_CLAIM_GATE"); ⚡ print(PROGRESS_CLAIM_GATE);
+    ⚡ print("STRUCTURALLY_VALID"); ⚡ print(STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("ASSESSMENT_RECORD_COUNT_BEFORE"); ⚡ print(ASSESSMENT_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_ASSESSMENT_RECORD_COUNT"); ⚡ print(RETAINED_ASSESSMENT_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("ASSESSMENT_RECORD_COUNT_AFTER"); ⚡ print(ASSESSMENT_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("ANTI_SELF_DECEPTION_SCHEMA"); ⚡ print("SIGMA_ANTI_SELF_DECEPTION_V1");
+    ⚡ print("INDEPENDENT_EVIDENCE_TYPES"); ⚡ print("EXTERNAL,HELD_OUT");
+    ⚡ print("OPTIMIZED_METRIC_ALONE_PROVES_PROGRESS"); ⚡ print(0.0);
+    ⚡ print("PROGRESS_CLAIM_REQUIRES_EXTERNAL_OR_HELD_OUT_EVIDENCE"); ⚡ print(1.0);
+    ⚡ print("SELF_REPORT_IS_INDEPENDENT_EVIDENCE"); ⚡ print(0.0);
+    ⚡ print("TRAINING_METRIC_IS_INDEPENDENT_EVIDENCE"); ⚡ print(0.0);
+    ⚡ print("BENCHMARK_EXECUTED_BY_DNA43"); ⚡ print(0.0);
+    ⚡ print("VERIFIER_INVOKED_BY_DNA43"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("GENERAL_EVIDENCE_CARDINALITY_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_METRIC_EVIDENCE_ENCODING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("METRIC_VALUE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("EVIDENCE_RESULT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_PROGRESS_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
