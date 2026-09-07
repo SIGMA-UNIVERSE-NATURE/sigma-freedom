@@ -1,0 +1,351 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA49.MULTI.SCALE.LEARNING.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    IF (value == "3") { RETURN 1.0; }
+    IF (value == "4") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF scale_valid(value) {
+    IF (value == "FAST_REASONING") { RETURN 1.0; }
+    IF (value == "EPISODIC_LEARNING") { RETURN 1.0; }
+    IF (value == "CONCEPT_CONSOLIDATION") { RETURN 1.0; }
+    IF (value == "LONG_TERM_NEURAL_ADAPTATION") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF inactive_unit_valid(id, scale, artifact, rationale) {
+    RETURN exact(id, "NONE") * exact(scale, "NONE") * exact(artifact, "NONE") * exact(rationale, "NONE");
+}
+
+DEF persistent_for_scale(scale) {
+    IF (scale == "FAST_REASONING") { RETURN 0.0; }
+    IF (scale == "EPISODIC_LEARNING") { RETURN 1.0; }
+    IF (scale == "CONCEPT_CONSOLIDATION") { RETURN 1.0; }
+    IF (scale == "LONG_TERM_NEURAL_ADAPTATION") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF neural_for_scale(scale) {
+    IF (scale == "LONG_TERM_NEURAL_ADAPTATION") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF choose_stage1(dep, count_ok, inactive_ok, scales_ok) {
+    IF (dep < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (count_ok < 0.5) { RETURN "UNIT_COUNT_ENCODING_INVALID"; }
+    IF (inactive_ok < 0.5) { RETURN "INACTIVE_UNIT_ENCODING_INVALID"; }
+    IF (scales_ok < 0.5) { RETURN "UNKNOWN_LEARNING_SCALE"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(ids_ok, artifacts_ok, rationales_ok, duplicate_free) {
+    IF (ids_ok < 0.5) { RETURN "UNIT_ID_REQUIRED"; }
+    IF (artifacts_ok < 0.5) { RETURN "ARTIFACT_REQUIRED"; }
+    IF (rationales_ok < 0.5) { RETURN "SCALE_RATIONALE_REQUIRED"; }
+    IF (duplicate_free < 0.5) { RETURN "DUPLICATE_UNIT_ID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(store_ok, capacity, complete) {
+    IF (store_ok < 0.5) { RETURN "MULTI_SCALE_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "MULTI_SCALE_CAPACITY_REACHED"; }
+    IF (complete > 0.5) { RETURN "MULTI_SCALE_ROUTE_COMPLETE"; }
+    RETURN "MULTI_SCALE_ROUTE_INCOMPLETE";
+}
+
+DEF choose_status(s1, s2, s3) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    RETURN s3;
+}
+
+⟡(Σ.DNA49_MULTI_SCALE_LEARNING_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ UNIT_COUNT_TOKEN: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/unit_count.txt");
+
+    ⚡ U1_ID: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u1_id.txt");
+    ⚡ U1_SCALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u1_scale.txt");
+    ⚡ U1_ARTIFACT: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u1_artifact.txt");
+    ⚡ U1_RATIONALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u1_rationale.txt");
+    ⚡ U2_ID: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u2_id.txt");
+    ⚡ U2_SCALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u2_scale.txt");
+    ⚡ U2_ARTIFACT: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u2_artifact.txt");
+    ⚡ U2_RATIONALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u2_rationale.txt");
+    ⚡ U3_ID: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u3_id.txt");
+    ⚡ U3_SCALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u3_scale.txt");
+    ⚡ U3_ARTIFACT: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u3_artifact.txt");
+    ⚡ U3_RATIONALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u3_rationale.txt");
+    ⚡ U4_ID: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u4_id.txt");
+    ⚡ U4_SCALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u4_scale.txt");
+    ⚡ U4_ARTIFACT: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u4_artifact.txt");
+    ⚡ U4_RATIONALE: load_text(".sigma_exec/DNA49_NATIVE_ADMISSION_V1/input/u4_rationale.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID: present(CASE_ID) * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+    ⚡ UNIT_COUNT_ENCODING_VALID: count_valid(UNIT_COUNT_TOKEN);
+
+    ⚡ U1_ACTIVE: 0.0; ⚡ U2_ACTIVE: 0.0; ⚡ U3_ACTIVE: 0.0; ⚡ U4_ACTIVE: 0.0;
+    ⚡ UNIT_COUNT_NUM: 0.0;
+    IF (UNIT_COUNT_TOKEN == "1") { ⚡ U1_ACTIVE: 1.0; ⚡ UNIT_COUNT_NUM: 1.0; }
+    IF (UNIT_COUNT_TOKEN == "2") { ⚡ U1_ACTIVE: 1.0; ⚡ U2_ACTIVE: 1.0; ⚡ UNIT_COUNT_NUM: 2.0; }
+    IF (UNIT_COUNT_TOKEN == "3") { ⚡ U1_ACTIVE: 1.0; ⚡ U2_ACTIVE: 1.0; ⚡ U3_ACTIVE: 1.0; ⚡ UNIT_COUNT_NUM: 3.0; }
+    IF (UNIT_COUNT_TOKEN == "4") { ⚡ U1_ACTIVE: 1.0; ⚡ U2_ACTIVE: 1.0; ⚡ U3_ACTIVE: 1.0; ⚡ U4_ACTIVE: 1.0; ⚡ UNIT_COUNT_NUM: 4.0; }
+
+    ⚡ INACTIVE_UNIT_ENCODING_VALID: 1.0;
+    IF (U1_ACTIVE < 0.5) { ⚡ INACTIVE_UNIT_ENCODING_VALID: INACTIVE_UNIT_ENCODING_VALID * inactive_unit_valid(U1_ID, U1_SCALE, U1_ARTIFACT, U1_RATIONALE); }
+    IF (U2_ACTIVE < 0.5) { ⚡ INACTIVE_UNIT_ENCODING_VALID: INACTIVE_UNIT_ENCODING_VALID * inactive_unit_valid(U2_ID, U2_SCALE, U2_ARTIFACT, U2_RATIONALE); }
+    IF (U3_ACTIVE < 0.5) { ⚡ INACTIVE_UNIT_ENCODING_VALID: INACTIVE_UNIT_ENCODING_VALID * inactive_unit_valid(U3_ID, U3_SCALE, U3_ARTIFACT, U3_RATIONALE); }
+    IF (U4_ACTIVE < 0.5) { ⚡ INACTIVE_UNIT_ENCODING_VALID: INACTIVE_UNIT_ENCODING_VALID * inactive_unit_valid(U4_ID, U4_SCALE, U4_ARTIFACT, U4_RATIONALE); }
+
+    ⚡ UNIT_IDS_PRESENT: 1.0;
+    ⚡ SCALE_ENCODINGS_VALID: 1.0;
+    ⚡ ARTIFACTS_PRESENT: 1.0;
+    ⚡ RATIONALES_PRESENT: 1.0;
+    IF (U1_ACTIVE > 0.5) { ⚡ UNIT_IDS_PRESENT: UNIT_IDS_PRESENT * present(U1_ID); ⚡ SCALE_ENCODINGS_VALID: SCALE_ENCODINGS_VALID * scale_valid(U1_SCALE); ⚡ ARTIFACTS_PRESENT: ARTIFACTS_PRESENT * present(U1_ARTIFACT); ⚡ RATIONALES_PRESENT: RATIONALES_PRESENT * present(U1_RATIONALE); }
+    IF (U2_ACTIVE > 0.5) { ⚡ UNIT_IDS_PRESENT: UNIT_IDS_PRESENT * present(U2_ID); ⚡ SCALE_ENCODINGS_VALID: SCALE_ENCODINGS_VALID * scale_valid(U2_SCALE); ⚡ ARTIFACTS_PRESENT: ARTIFACTS_PRESENT * present(U2_ARTIFACT); ⚡ RATIONALES_PRESENT: RATIONALES_PRESENT * present(U2_RATIONALE); }
+    IF (U3_ACTIVE > 0.5) { ⚡ UNIT_IDS_PRESENT: UNIT_IDS_PRESENT * present(U3_ID); ⚡ SCALE_ENCODINGS_VALID: SCALE_ENCODINGS_VALID * scale_valid(U3_SCALE); ⚡ ARTIFACTS_PRESENT: ARTIFACTS_PRESENT * present(U3_ARTIFACT); ⚡ RATIONALES_PRESENT: RATIONALES_PRESENT * present(U3_RATIONALE); }
+    IF (U4_ACTIVE > 0.5) { ⚡ UNIT_IDS_PRESENT: UNIT_IDS_PRESENT * present(U4_ID); ⚡ SCALE_ENCODINGS_VALID: SCALE_ENCODINGS_VALID * scale_valid(U4_SCALE); ⚡ ARTIFACTS_PRESENT: ARTIFACTS_PRESENT * present(U4_ARTIFACT); ⚡ RATIONALES_PRESENT: RATIONALES_PRESENT * present(U4_RATIONALE); }
+
+    ⚡ DUPLICATE_UNIT_ID_FREE: 1.0;
+    IF (U2_ACTIVE > 0.5) { IF (U1_ID == U2_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } }
+    IF (U3_ACTIVE > 0.5) { IF (U1_ID == U3_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } IF (U2_ID == U3_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } }
+    IF (U4_ACTIVE > 0.5) { IF (U1_ID == U4_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } IF (U2_ID == U4_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } IF (U3_ID == U4_ID) { ⚡ DUPLICATE_UNIT_ID_FREE: 0.0; } }
+
+    ⚡ PRESENT_FAST: 0.0; ⚡ PRESENT_EPISODIC: 0.0; ⚡ PRESENT_CONCEPT: 0.0; ⚡ PRESENT_NEURAL: 0.0;
+    ⚡ FAST_UNIT_COUNT: 0.0; ⚡ EPISODIC_UNIT_COUNT: 0.0; ⚡ CONCEPT_UNIT_COUNT: 0.0; ⚡ NEURAL_UNIT_COUNT: 0.0;
+    IF (U1_ACTIVE > 0.5) { IF (U1_SCALE == "FAST_REASONING") { ⚡ PRESENT_FAST: 1.0; ⚡ FAST_UNIT_COUNT: FAST_UNIT_COUNT + 1.0; } IF (U1_SCALE == "EPISODIC_LEARNING") { ⚡ PRESENT_EPISODIC: 1.0; ⚡ EPISODIC_UNIT_COUNT: EPISODIC_UNIT_COUNT + 1.0; } IF (U1_SCALE == "CONCEPT_CONSOLIDATION") { ⚡ PRESENT_CONCEPT: 1.0; ⚡ CONCEPT_UNIT_COUNT: CONCEPT_UNIT_COUNT + 1.0; } IF (U1_SCALE == "LONG_TERM_NEURAL_ADAPTATION") { ⚡ PRESENT_NEURAL: 1.0; ⚡ NEURAL_UNIT_COUNT: NEURAL_UNIT_COUNT + 1.0; } }
+    IF (U2_ACTIVE > 0.5) { IF (U2_SCALE == "FAST_REASONING") { ⚡ PRESENT_FAST: 1.0; ⚡ FAST_UNIT_COUNT: FAST_UNIT_COUNT + 1.0; } IF (U2_SCALE == "EPISODIC_LEARNING") { ⚡ PRESENT_EPISODIC: 1.0; ⚡ EPISODIC_UNIT_COUNT: EPISODIC_UNIT_COUNT + 1.0; } IF (U2_SCALE == "CONCEPT_CONSOLIDATION") { ⚡ PRESENT_CONCEPT: 1.0; ⚡ CONCEPT_UNIT_COUNT: CONCEPT_UNIT_COUNT + 1.0; } IF (U2_SCALE == "LONG_TERM_NEURAL_ADAPTATION") { ⚡ PRESENT_NEURAL: 1.0; ⚡ NEURAL_UNIT_COUNT: NEURAL_UNIT_COUNT + 1.0; } }
+    IF (U3_ACTIVE > 0.5) { IF (U3_SCALE == "FAST_REASONING") { ⚡ PRESENT_FAST: 1.0; ⚡ FAST_UNIT_COUNT: FAST_UNIT_COUNT + 1.0; } IF (U3_SCALE == "EPISODIC_LEARNING") { ⚡ PRESENT_EPISODIC: 1.0; ⚡ EPISODIC_UNIT_COUNT: EPISODIC_UNIT_COUNT + 1.0; } IF (U3_SCALE == "CONCEPT_CONSOLIDATION") { ⚡ PRESENT_CONCEPT: 1.0; ⚡ CONCEPT_UNIT_COUNT: CONCEPT_UNIT_COUNT + 1.0; } IF (U3_SCALE == "LONG_TERM_NEURAL_ADAPTATION") { ⚡ PRESENT_NEURAL: 1.0; ⚡ NEURAL_UNIT_COUNT: NEURAL_UNIT_COUNT + 1.0; } }
+    IF (U4_ACTIVE > 0.5) { IF (U4_SCALE == "FAST_REASONING") { ⚡ PRESENT_FAST: 1.0; ⚡ FAST_UNIT_COUNT: FAST_UNIT_COUNT + 1.0; } IF (U4_SCALE == "EPISODIC_LEARNING") { ⚡ PRESENT_EPISODIC: 1.0; ⚡ EPISODIC_UNIT_COUNT: EPISODIC_UNIT_COUNT + 1.0; } IF (U4_SCALE == "CONCEPT_CONSOLIDATION") { ⚡ PRESENT_CONCEPT: 1.0; ⚡ CONCEPT_UNIT_COUNT: CONCEPT_UNIT_COUNT + 1.0; } IF (U4_SCALE == "LONG_TERM_NEURAL_ADAPTATION") { ⚡ PRESENT_NEURAL: 1.0; ⚡ NEURAL_UNIT_COUNT: NEURAL_UNIT_COUNT + 1.0; } }
+
+    ⚡ PERSISTENT_UNIT_COUNT: EPISODIC_UNIT_COUNT + CONCEPT_UNIT_COUNT + NEURAL_UNIT_COUNT;
+    ⚡ NEURAL_CLASS_UNIT_COUNT: NEURAL_UNIT_COUNT;
+
+    ⚡ MISSING_FAST: 1.0 - PRESENT_FAST;
+    ⚡ MISSING_EPISODIC: 1.0 - PRESENT_EPISODIC;
+    ⚡ MISSING_CONCEPT: 1.0 - PRESENT_CONCEPT;
+    ⚡ MISSING_NEURAL: 1.0 - PRESENT_NEURAL;
+    ⚡ COMPLETE_SCALE_COVERAGE: PRESENT_FAST * PRESENT_EPISODIC * PRESENT_CONCEPT * PRESENT_NEURAL;
+
+    ⚡ STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * UNIT_COUNT_ENCODING_VALID
+        * INACTIVE_UNIT_ENCODING_VALID
+        * UNIT_IDS_PRESENT
+        * SCALE_ENCODINGS_VALID
+        * ARTIFACTS_PRESENT
+        * RATIONALES_PRESENT
+        * DUPLICATE_UNIT_ID_FREE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA49_NATIVE_ADMISSION_V1/state/multi_scale_learning_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA49_MULTI_SCALE_LEARNING_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_ROUTE_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ ROUTE_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 9) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RID: host("list_get", PARTS, 2, NULL);
+                ⚡ RSCALE: host("list_get", PARTS, 3, NULL);
+                ⚡ RPERSIST: host("list_get", PARTS, 4, NULL);
+                ⚡ RNEURAL: host("list_get", PARTS, 5, NULL);
+                ⚡ RLEARN: host("list_get", PARTS, 6, NULL);
+                ⚡ RNEURALSTART: host("list_get", PARTS, 7, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 8, NULL);
+                ⚡ RBITS: bool_token_valid(RPERSIST) * bool_token_valid(RNEURAL);
+                ⚡ RPERSIST_EXPECT: persistent_for_scale(RSCALE);
+                ⚡ RNEURAL_EXPECT: neural_for_scale(RSCALE);
+                ⚡ RPERSIST_NUM: bool_true(RPERSIST);
+                ⚡ RNEURAL_NUM: bool_true(RNEURAL);
+                ⚡ RPERSIST_MATCH: 0.0; IF (RPERSIST_NUM == RPERSIST_EXPECT) { ⚡ RPERSIST_MATCH: 1.0; }
+                ⚡ RNEURAL_MATCH: 0.0; IF (RNEURAL_NUM == RNEURAL_EXPECT) { ⚡ RNEURAL_MATCH: 1.0; }
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "ROUTE") * present(RCASE) * present(RID) * scale_valid(RSCALE)
+                    * RBITS * RPERSIST_MATCH * RNEURAL_MATCH
+                    * exact(RLEARN, "0") * exact(RNEURALSTART, "0") * exact(RCOMMIT, "COMMIT=YES");
+                IF (RECORD_VALID > 0.5) { ⚡ ROUTE_RECORD_COUNT_BEFORE: ROUTE_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ ROUTE_RECORD_COUNT_PROPOSED: ROUTE_RECORD_COUNT_BEFORE + UNIT_COUNT_NUM;
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (ROUTE_RECORD_COUNT_PROPOSED < 65.0) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE: STRUCTURALLY_VALID * STORE_STATE_VALID * STATE_CAPACITY_AVAILABLE;
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_ROUTE_RECORD_COUNT: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        IF (UNIT_COUNT_NUM > 0.0) {
+            ⚡ APPEND_TEXT: "";
+            IF (U1_ACTIVE > 0.5) {
+                ⚡ P1_NUM: persistent_for_scale(U1_SCALE); ⚡ N1_NUM: neural_for_scale(U1_SCALE);
+                ⚡ P1: bit_string(P1_NUM); ⚡ N1: bit_string(N1_NUM);
+                ⚡ L1: "ROUTE||" + CASE_ID + "||" + U1_ID + "||" + U1_SCALE + "||" + P1 + "||" + N1 + "||0||0||COMMIT=YES";
+                ⚡ APPEND_TEXT: L1;
+            }
+            IF (U2_ACTIVE > 0.5) {
+                ⚡ P2_NUM: persistent_for_scale(U2_SCALE); ⚡ N2_NUM: neural_for_scale(U2_SCALE);
+                ⚡ P2: bit_string(P2_NUM); ⚡ N2: bit_string(N2_NUM);
+                ⚡ L2: "ROUTE||" + CASE_ID + "||" + U2_ID + "||" + U2_SCALE + "||" + P2 + "||" + N2 + "||0||0||COMMIT=YES";
+                ⚡ APPEND_TEXT: APPEND_TEXT + "\n" + L2;
+            }
+            IF (U3_ACTIVE > 0.5) {
+                ⚡ P3_NUM: persistent_for_scale(U3_SCALE); ⚡ N3_NUM: neural_for_scale(U3_SCALE);
+                ⚡ P3: bit_string(P3_NUM); ⚡ N3: bit_string(N3_NUM);
+                ⚡ L3: "ROUTE||" + CASE_ID + "||" + U3_ID + "||" + U3_SCALE + "||" + P3 + "||" + N3 + "||0||0||COMMIT=YES";
+                ⚡ APPEND_TEXT: APPEND_TEXT + "\n" + L3;
+            }
+            IF (U4_ACTIVE > 0.5) {
+                ⚡ P4_NUM: persistent_for_scale(U4_SCALE); ⚡ N4_NUM: neural_for_scale(U4_SCALE);
+                ⚡ P4: bit_string(P4_NUM); ⚡ N4: bit_string(N4_NUM);
+                ⚡ L4: "ROUTE||" + CASE_ID + "||" + U4_ID + "||" + U4_SCALE + "||" + P4 + "||" + N4 + "||0||0||COMMIT=YES";
+                ⚡ APPEND_TEXT: APPEND_TEXT + "\n" + L4;
+            }
+            ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + APPEND_TEXT;
+            IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + APPEND_TEXT; }
+            ⚡ WRITE_ATTEMPTED: 1.0;
+            ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+            ⚡ READBACK_TEXT: load_text(STORE_PATH);
+            ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+            IF (WRITE_READBACK_MATCH > 0.5) { ⚡ RETAINED_ROUTE_RECORD_COUNT: UNIT_COUNT_NUM; }
+        }
+    }
+
+    ⚡ ROUTE_RECORD_COUNT_AFTER: ROUTE_RECORD_COUNT_BEFORE + RETAINED_ROUTE_RECORD_COUNT;
+    ⚡ STATE_MUTATED: 0.0; IF (RETAINED_ROUTE_RECORD_COUNT > 0.0) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ STAGE1: choose_stage1(DEPENDENCY_BINDING_VALID, UNIT_COUNT_ENCODING_VALID, INACTIVE_UNIT_ENCODING_VALID, SCALE_ENCODINGS_VALID);
+    ⚡ STAGE2: choose_stage2(UNIT_IDS_PRESENT, ARTIFACTS_PRESENT, RATIONALES_PRESENT, DUPLICATE_UNIT_ID_FREE);
+    ⚡ STAGE3: choose_stage3(STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE, COMPLETE_SCALE_COVERAGE);
+    ⚡ STATUS: choose_status(STAGE1, STAGE2, STAGE3);
+
+    ⚡ print("DNA49_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("UNIT_COUNT_ENCODING_VALID"); ⚡ print(UNIT_COUNT_ENCODING_VALID);
+    ⚡ print("INACTIVE_UNIT_ENCODING_VALID"); ⚡ print(INACTIVE_UNIT_ENCODING_VALID);
+    ⚡ print("UNIT_IDS_PRESENT"); ⚡ print(UNIT_IDS_PRESENT);
+    ⚡ print("SCALE_ENCODINGS_VALID"); ⚡ print(SCALE_ENCODINGS_VALID);
+    ⚡ print("ARTIFACTS_PRESENT"); ⚡ print(ARTIFACTS_PRESENT);
+    ⚡ print("RATIONALES_PRESENT"); ⚡ print(RATIONALES_PRESENT);
+    ⚡ print("DUPLICATE_UNIT_ID_FREE"); ⚡ print(DUPLICATE_UNIT_ID_FREE);
+    ⚡ print("PRESENT_FAST"); ⚡ print(PRESENT_FAST);
+    ⚡ print("PRESENT_EPISODIC"); ⚡ print(PRESENT_EPISODIC);
+    ⚡ print("PRESENT_CONCEPT"); ⚡ print(PRESENT_CONCEPT);
+    ⚡ print("PRESENT_NEURAL"); ⚡ print(PRESENT_NEURAL);
+    ⚡ print("FAST_UNIT_COUNT"); ⚡ print(FAST_UNIT_COUNT);
+    ⚡ print("EPISODIC_UNIT_COUNT"); ⚡ print(EPISODIC_UNIT_COUNT);
+    ⚡ print("CONCEPT_UNIT_COUNT"); ⚡ print(CONCEPT_UNIT_COUNT);
+    ⚡ print("NEURAL_UNIT_COUNT"); ⚡ print(NEURAL_UNIT_COUNT);
+    ⚡ print("PERSISTENT_UNIT_COUNT"); ⚡ print(PERSISTENT_UNIT_COUNT);
+    ⚡ print("NEURAL_CLASS_UNIT_COUNT"); ⚡ print(NEURAL_CLASS_UNIT_COUNT);
+    ⚡ print("MISSING_FAST"); ⚡ print(MISSING_FAST);
+    ⚡ print("MISSING_EPISODIC"); ⚡ print(MISSING_EPISODIC);
+    ⚡ print("MISSING_CONCEPT"); ⚡ print(MISSING_CONCEPT);
+    ⚡ print("MISSING_NEURAL"); ⚡ print(MISSING_NEURAL);
+    ⚡ print("COMPLETE_SCALE_COVERAGE"); ⚡ print(COMPLETE_SCALE_COVERAGE);
+    ⚡ print("STRUCTURALLY_VALID"); ⚡ print(STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("ROUTE_RECORD_COUNT_BEFORE"); ⚡ print(ROUTE_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_ROUTE_RECORD_COUNT"); ⚡ print(RETAINED_ROUTE_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("ROUTE_RECORD_COUNT_AFTER"); ⚡ print(ROUTE_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("MULTI_SCALE_LEARNING_SCHEMA"); ⚡ print("SIGMA_MULTI_SCALE_LEARNING_V1");
+    ⚡ print("CANONICAL_SCALES"); ⚡ print("FAST_REASONING,EPISODIC_LEARNING,CONCEPT_CONSOLIDATION,LONG_TERM_NEURAL_ADAPTATION");
+    ⚡ print("SCALES_MUST_REMAIN_DISTINCT"); ⚡ print(1.0);
+    ⚡ print("FAST_REASONING_IS_NOT_PERSISTENT_LEARNING"); ⚡ print(1.0);
+    ⚡ print("EPISODIC_LEARNING_IS_NOT_CONCEPT_CONSOLIDATION"); ⚡ print(1.0);
+    ⚡ print("CONCEPT_CONSOLIDATION_IS_NOT_NEURAL_ADAPTATION"); ⚡ print(1.0);
+    ⚡ print("NEURAL_ADAPTATION_REQUIRES_EXPLICIT_SCALE"); ⚡ print(1.0);
+    ⚡ print("MISSING_SCALE_IS_NOT_INVENTED"); ⚡ print(1.0);
+    ⚡ print("LEARNING_EXECUTION_STARTED"); ⚡ print(0.0);
+    ⚡ print("NEURAL_ADAPTATION_STARTED"); ⚡ print(0.0);
+    ⚡ print("MEMORY_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("MODEL_CALL_RUNTIME"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("GENERAL_UNIT_CARDINALITY_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_ARTIFACT_RATIONALE_ENCODING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("ARTIFACT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("RATIONALE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_SCALE_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
