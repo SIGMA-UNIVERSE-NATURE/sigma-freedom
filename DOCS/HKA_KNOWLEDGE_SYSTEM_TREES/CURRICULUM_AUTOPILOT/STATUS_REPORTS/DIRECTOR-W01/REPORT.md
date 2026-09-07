@@ -2,17 +2,17 @@
 
 Stage: `CURRICULUM`.
 
-`B1.3-C01` and `B1.3-C02` are Director-accepted.
+`B1.3-C01` through `B1.3-C03` are Director-accepted.
 
-Latest accepted child: `B1.3-C02 — Bảng tuần hoàn và hóa vô cơ` at `dcd9c24eb17286940eef1d91b4562ed5cc10852a`: 6/6 topics, 30 claims, 24 objectives, 24/24 semantic closure PASS_AFTER_REPAIR, worker self-repairs 2, Director-assistant repairs 2, foundational coverage PASS_AFTER_ASSISTANT_REPAIR, stable IDs preserved, canonical prerequisite alignment PASS (`B1.3-C01` only), prerequisite graph PASS acyclic/no dangling IDs, ownership PASS, source resolution 4/4 PASS, FUTURE_LOCKED_SUPPORT=0, cross-scope academic mutation 0, RED_FLAG NONE.
+Latest accepted child: `B1.3-C03 — Liên kết và cấu trúc phân tử` at `3ce2ef9679d821386bef92895a37ca379016fdf0`: 6/6 topics, 30 claims, 24 objectives, 24/24 semantic closure PASS_AFTER_REPAIR, worker self-repairs 2, Director-assistant repairs 3, foundational coverage PASS_AFTER_ASSISTANT_REPAIR, stable IDs preserved, canonical prerequisite alignment PASS (`B1.3-C01 + B1.3-C02` only), prerequisite graph PASS acyclic/no dangling IDs, ownership PASS, source resolution 4/4 PASS, FUTURE_LOCKED_SUPPORT=0, cross-scope academic mutation 0, RED_FLAG NONE.
 
-Active scope: `B1.3-C03 — Liên kết và cấu trúc phân tử`.
-Active window: `C01-W04-B1.3-CHEMISTRY-FAMILY-C03`.
-Execution branch: `hka-tree/c01-w04-chemistry-c03`.
+Active scope: `B1.3-C04 — Phản ứng và cân bằng`.
+Active window: `C01-W04-B1.3-CHEMISTRY-FAMILY-C04`.
+Execution branch: `hka-tree/c01-w04-chemistry-c04`.
 
-Canonical topics: Liên kết ion; Liên kết cộng hóa trị; Liên kết kim loại; Lực liên phân tử; Hình học phân tử; Phổ học.
-Canonical prerequisites: accepted `B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d` and `B1.3-C02@dcd9c24eb17286940eef1d91b4562ed5cc10852a`.
+Canonical topics: Phương trình hóa học; Bảo toàn khối lượng; Nhiệt hóa học; Động học; Cân bằng hóa học; Acid–base; Oxy hóa–khử; Điện hóa học.
+Canonical prerequisites: accepted `B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0` and physics foundation `B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4`.
 
-Worker owns authoring/self-audit/self-repair/re-audit/durable read-back inside C03 only. Foundational/general-education bonding, intermolecular-force and molecular-geometry meanings must precede advanced spectroscopy/model-limit dominance.
+Worker owns authoring/self-audit/self-repair/re-audit/durable read-back inside C04 only. Symbolic reaction/conservation foundations must precede thermochemistry, kinetics, equilibrium, acid–base, redox and electrochemistry specialization. Preserve B1.2-C04 thermodynamic ownership and locked C05-C10 chemistry boundaries.
 
-`B1.3-C04..C10` remain locked. No post-CURRICULUM artifact is authorized.
+`B1.3-C05..C10` remain locked. No post-CURRICULUM artifact is authorized.
