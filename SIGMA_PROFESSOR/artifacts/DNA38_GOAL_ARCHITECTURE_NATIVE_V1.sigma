@@ -1,0 +1,408 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA38.GOAL.ARCHITECTURE.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF chain_count_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    IF (value == "3") { RETURN 1.0; }
+    IF (value == "4") { RETURN 1.0; }
+    IF (value == "5") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF failed_level_valid(value) {
+    IF (value == "ACTION") { RETURN 1.0; }
+    IF (value == "TASK") { RETURN 1.0; }
+    IF (value == "SUBGOAL") { RETURN 1.0; }
+    IF (value == "GOAL") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bit_string(value) {
+    IF (value > 0.5) { RETURN "1"; }
+    RETURN "0";
+}
+
+DEF failure_encoding_valid(failure_present, failure_id, failed_level, evidence) {
+    IF (failure_present > 0.5) { RETURN 1.0; }
+    RETURN exact(failure_id, "NONE") * exact(failed_level, "NONE") * exact(evidence, "NONE");
+}
+
+DEF choose_stage1(dep_valid, bool_valid, supplied, count_valid) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_GOAL_ARCHITECTURE"; }
+    IF (count_valid < 0.5) { RETURN "CHAIN_COUNT_ENCODING_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(exact_five, arch_id_present, node_ids_present, node_contents_present) {
+    IF (exact_five < 0.5) { RETURN "EXACT_FIVE_LEVELS_REQUIRED"; }
+    IF (arch_id_present < 0.5) { RETURN "ARCHITECTURE_ID_REQUIRED"; }
+    IF (node_ids_present < 0.5) { RETURN "NODE_ID_REQUIRED"; }
+    IF (node_contents_present < 0.5) { RETURN "NODE_CONTENT_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(level_order, failure_encoding, failure_id_present, failed_level_ok) {
+    IF (level_order < 0.5) { RETURN "LEVEL_ORDER_MISMATCH"; }
+    IF (failure_encoding < 0.5) { RETURN "FAILURE_ENCODING_INVALID"; }
+    IF (failure_id_present < 0.5) { RETURN "FAILURE_ID_REQUIRED"; }
+    IF (failed_level_ok < 0.5) { RETURN "INVALID_FAILED_LEVEL"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage4(goal_evidence_gate, store_valid, capacity) {
+    IF (goal_evidence_gate < 0.5) { RETURN "GOAL_INVALIDATION_REQUIRES_EVIDENCE"; }
+    IF (store_valid < 0.5) { RETURN "GOAL_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "GOAL_CAPACITY_REACHED"; }
+    RETURN "GOAL_ARCHITECTURE_EVALUATED";
+}
+
+DEF choose_status(s1, s2, s3, s4) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    IF (s3 != "CONTINUE") { RETURN s3; }
+    RETURN s4;
+}
+
+⟡(Σ.DNA38_GOAL_ARCHITECTURE_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ ARCH_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/architecture_supplied.txt");
+    ⚡ ARCHITECTURE_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/architecture_id.txt");
+    ⚡ CHAIN_COUNT_TOKEN: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/chain_count.txt");
+
+    ⚡ L1_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l1_level.txt");
+    ⚡ L1_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l1_id.txt");
+    ⚡ L1_CONTENT: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l1_content.txt");
+    ⚡ L2_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l2_level.txt");
+    ⚡ L2_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l2_id.txt");
+    ⚡ L2_CONTENT: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l2_content.txt");
+    ⚡ L3_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l3_level.txt");
+    ⚡ L3_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l3_id.txt");
+    ⚡ L3_CONTENT: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l3_content.txt");
+    ⚡ L4_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l4_level.txt");
+    ⚡ L4_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l4_id.txt");
+    ⚡ L4_CONTENT: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l4_content.txt");
+    ⚡ L5_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l5_level.txt");
+    ⚡ L5_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l5_id.txt");
+    ⚡ L5_CONTENT: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/l5_content.txt");
+
+    ⚡ FAILURE_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/failure_supplied.txt");
+    ⚡ FAILURE_ID: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/failure_id.txt");
+    ⚡ FAILED_LEVEL: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/failed_level.txt");
+    ⚡ FAILURE_EVIDENCE: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/failure_evidence.txt");
+    ⚡ GOAL_INVALID_TOKEN: load_text(".sigma_exec/DNA38_NATIVE_ADMISSION_V1/input/goal_invalid.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+
+    ⚡ ARCH_SUPPLIED_ENCODING_VALID: bool_token_valid(ARCH_SUPPLIED_TOKEN);
+    ⚡ FAILURE_SUPPLIED_ENCODING_VALID: bool_token_valid(FAILURE_SUPPLIED_TOKEN);
+    ⚡ GOAL_INVALID_ENCODING_VALID: bool_token_valid(GOAL_INVALID_TOKEN);
+    ⚡ BOOLEAN_ENCODINGS_VALID:
+        ARCH_SUPPLIED_ENCODING_VALID
+        * FAILURE_SUPPLIED_ENCODING_VALID
+        * GOAL_INVALID_ENCODING_VALID;
+
+    ⚡ ARCHITECTURE_SUPPLIED: bool_true(ARCH_SUPPLIED_TOKEN);
+    ⚡ FAILURE_PRESENT: bool_true(FAILURE_SUPPLIED_TOKEN);
+    ⚡ GOAL_INVALID: bool_true(GOAL_INVALID_TOKEN);
+    ⚡ CHAIN_COUNT_ENCODING_VALID: chain_count_valid(CHAIN_COUNT_TOKEN);
+    ⚡ EXACT_FIVE_LEVELS: exact(CHAIN_COUNT_TOKEN, "5");
+
+    ⚡ ARCHITECTURE_ID_PRESENT: present(ARCHITECTURE_ID);
+    ⚡ NODE_IDS_PRESENT:
+        present(L1_ID) * present(L2_ID) * present(L3_ID) * present(L4_ID) * present(L5_ID);
+    ⚡ NODE_CONTENTS_PRESENT:
+        present(L1_CONTENT) * present(L2_CONTENT) * present(L3_CONTENT) * present(L4_CONTENT) * present(L5_CONTENT);
+    ⚡ LEVEL_ORDER_VALID:
+        exact(L1_LEVEL, "PURPOSE")
+        * exact(L2_LEVEL, "GOAL")
+        * exact(L3_LEVEL, "SUBGOAL")
+        * exact(L4_LEVEL, "TASK")
+        * exact(L5_LEVEL, "ACTION");
+
+    ⚡ FAILURE_ENCODING_VALID:
+        failure_encoding_valid(FAILURE_PRESENT, FAILURE_ID, FAILED_LEVEL, FAILURE_EVIDENCE);
+    ⚡ FAILURE_ID_PRESENT: 1.0;
+    ⚡ FAILED_LEVEL_VALID: 1.0;
+    IF (FAILURE_PRESENT > 0.5) {
+        ⚡ FAILURE_ID_PRESENT: present(FAILURE_ID);
+        ⚡ FAILED_LEVEL_VALID: failed_level_valid(FAILED_LEVEL);
+    }
+
+    ⚡ FAILURE_EVIDENCE_PRESENT: present(FAILURE_EVIDENCE);
+    ⚡ GOAL_INVALIDATION_EVIDENCE_GATE: 1.0;
+    IF (FAILURE_PRESENT > 0.5) {
+        IF (GOAL_INVALID > 0.5) {
+            ⚡ GOAL_INVALIDATION_EVIDENCE_GATE: FAILURE_EVIDENCE_PRESENT;
+        }
+    }
+    IF (FAILURE_PRESENT < 0.5) {
+        IF (GOAL_INVALID > 0.5) { ⚡ GOAL_INVALIDATION_EVIDENCE_GATE: 0.0; }
+    }
+
+    ⚡ ACTION_OR_PLAN_CHANGE_REQUIRED: 0.0;
+    IF (FAILURE_PRESENT > 0.5) { ⚡ ACTION_OR_PLAN_CHANGE_REQUIRED: 1.0; }
+    ⚡ GOAL_REVIEW_REQUIRED: 0.0;
+    IF (FAILURE_PRESENT > 0.5) {
+        IF (GOAL_INVALID > 0.5) {
+            IF (FAILURE_EVIDENCE_PRESENT > 0.5) { ⚡ GOAL_REVIEW_REQUIRED: 1.0; }
+        }
+    }
+
+    ⚡ STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * ARCHITECTURE_SUPPLIED
+        * CHAIN_COUNT_ENCODING_VALID
+        * EXACT_FIVE_LEVELS
+        * ARCHITECTURE_ID_PRESENT
+        * NODE_IDS_PRESENT
+        * NODE_CONTENTS_PRESENT
+        * LEVEL_ORDER_VALID
+        * FAILURE_ENCODING_VALID
+        * FAILURE_ID_PRESENT
+        * FAILED_LEVEL_VALID
+        * GOAL_INVALIDATION_EVIDENCE_GATE;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA38_NATIVE_ADMISSION_V1/state/goal_architecture_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA38_GOAL_ARCHITECTURE_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_ARCHITECTURE_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ ARCHITECTURE_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 24) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RARCH: host("list_get", PARTS, 2, NULL);
+                ⚡ RP_ID: host("list_get", PARTS, 3, NULL);
+                ⚡ RP_CONTENT: host("list_get", PARTS, 4, NULL);
+                ⚡ RG_ID: host("list_get", PARTS, 5, NULL);
+                ⚡ RG_CONTENT: host("list_get", PARTS, 6, NULL);
+                ⚡ RSG_ID: host("list_get", PARTS, 7, NULL);
+                ⚡ RSG_CONTENT: host("list_get", PARTS, 8, NULL);
+                ⚡ RT_ID: host("list_get", PARTS, 9, NULL);
+                ⚡ RT_CONTENT: host("list_get", PARTS, 10, NULL);
+                ⚡ RA_ID: host("list_get", PARTS, 11, NULL);
+                ⚡ RA_CONTENT: host("list_get", PARTS, 12, NULL);
+                ⚡ RLEVELS: host("list_get", PARTS, 13, NULL);
+                ⚡ RFP: host("list_get", PARTS, 14, NULL);
+                ⚡ RFID: host("list_get", PARTS, 15, NULL);
+                ⚡ RFAILED: host("list_get", PARTS, 16, NULL);
+                ⚡ REVIDENCE: host("list_get", PARTS, 17, NULL);
+                ⚡ RGINVALID: host("list_get", PARTS, 18, NULL);
+                ⚡ RPLAN: host("list_get", PARTS, 19, NULL);
+                ⚡ RREVIEW: host("list_get", PARTS, 20, NULL);
+                ⚡ RGCHANGED: host("list_get", PARTS, 21, NULL);
+                ⚡ RAEXEC: host("list_get", PARTS, 22, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 23, NULL);
+
+                ⚡ RF_BOOL: bool_token_valid(RFP);
+                ⚡ RGI_BOOL: bool_token_valid(RGINVALID);
+                ⚡ RPLAN_BOOL: bool_token_valid(RPLAN);
+                ⚡ RREVIEW_BOOL: bool_token_valid(RREVIEW);
+                ⚡ RFAIL_VALID: 0.0;
+                IF (RFP == "0") {
+                    ⚡ RFAIL_VALID:
+                        exact(RFID, "NONE")
+                        * exact(RFAILED, "NONE")
+                        * exact(REVIDENCE, "NONE")
+                        * exact(RGINVALID, "0")
+                        * exact(RPLAN, "0")
+                        * exact(RREVIEW, "0");
+                }
+                IF (RFP == "1") {
+                    ⚡ RFAIL_ID_OK: present(RFID);
+                    ⚡ RFAILED_OK: failed_level_valid(RFAILED);
+                    ⚡ RGOAL_EVIDENCE_OK: 1.0;
+                    IF (RGINVALID == "1") { ⚡ RGOAL_EVIDENCE_OK: present(REVIDENCE); }
+                    ⚡ REXPECTED_REVIEW: RGINVALID;
+                    ⚡ RFAIL_VALID:
+                        RFAIL_ID_OK
+                        * RFAILED_OK
+                        * RGOAL_EVIDENCE_OK
+                        * exact(RPLAN, "1")
+                        * exact(RREVIEW, REXPECTED_REVIEW);
+                }
+
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "ARCH")
+                    * present(RCASE)
+                    * present(RARCH)
+                    * present(RP_ID) * present(RP_CONTENT)
+                    * present(RG_ID) * present(RG_CONTENT)
+                    * present(RSG_ID) * present(RSG_CONTENT)
+                    * present(RT_ID) * present(RT_CONTENT)
+                    * present(RA_ID) * present(RA_CONTENT)
+                    * exact(RLEVELS, "PURPOSE>GOAL>SUBGOAL>TASK>ACTION")
+                    * RF_BOOL * RGI_BOOL * RPLAN_BOOL * RREVIEW_BOOL
+                    * RFAIL_VALID
+                    * exact(RGCHANGED, "0")
+                    * exact(RAEXEC, "0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+                IF (RECORD_VALID > 0.5) { ⚡ ARCHITECTURE_RECORD_COUNT_BEFORE: ARCHITECTURE_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (ARCHITECTURE_RECORD_COUNT_BEFORE < MAX_ARCHITECTURE_RECORDS) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE: STRUCTURALLY_VALID * STORE_STATE_VALID * STATE_CAPACITY_AVAILABLE;
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_RECORD_COUNT: 0.0;
+
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ FAILURE_PRESENT_STRING: bit_string(FAILURE_PRESENT);
+        ⚡ GOAL_INVALID_STRING: bit_string(GOAL_INVALID);
+        ⚡ PLAN_CHANGE_STRING: bit_string(ACTION_OR_PLAN_CHANGE_REQUIRED);
+        ⚡ GOAL_REVIEW_STRING: bit_string(GOAL_REVIEW_REQUIRED);
+        ⚡ RECORD_LINE:
+            "ARCH||" + CASE_ID + "||" + ARCHITECTURE_ID
+            + "||" + L1_ID + "||" + L1_CONTENT
+            + "||" + L2_ID + "||" + L2_CONTENT
+            + "||" + L3_ID + "||" + L3_CONTENT
+            + "||" + L4_ID + "||" + L4_CONTENT
+            + "||" + L5_ID + "||" + L5_CONTENT
+            + "||PURPOSE>GOAL>SUBGOAL>TASK>ACTION"
+            + "||" + FAILURE_PRESENT_STRING
+            + "||" + FAILURE_ID
+            + "||" + FAILED_LEVEL
+            + "||" + FAILURE_EVIDENCE
+            + "||" + GOAL_INVALID_STRING
+            + "||" + PLAN_CHANGE_STRING
+            + "||" + GOAL_REVIEW_STRING
+            + "||0||0||COMMIT=YES";
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        IF (WRITE_READBACK_MATCH > 0.5) { ⚡ RETAINED_RECORD_COUNT: 1.0; }
+    }
+
+    ⚡ ARCHITECTURE_RECORD_COUNT_AFTER: ARCHITECTURE_RECORD_COUNT_BEFORE + RETAINED_RECORD_COUNT;
+    ⚡ STATE_MUTATED: RETAINED_RECORD_COUNT;
+
+    ⚡ S1: choose_stage1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, ARCHITECTURE_SUPPLIED, CHAIN_COUNT_ENCODING_VALID);
+    ⚡ S2: choose_stage2(EXACT_FIVE_LEVELS, ARCHITECTURE_ID_PRESENT, NODE_IDS_PRESENT, NODE_CONTENTS_PRESENT);
+    ⚡ S3: choose_stage3(LEVEL_ORDER_VALID, FAILURE_ENCODING_VALID, FAILURE_ID_PRESENT, FAILED_LEVEL_VALID);
+    ⚡ S4: choose_stage4(GOAL_INVALIDATION_EVIDENCE_GATE, STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE);
+    ⚡ STATUS: choose_status(S1, S2, S3, S4);
+
+    ⚡ print("DNA38_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID"); ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("ARCHITECTURE_SUPPLIED"); ⚡ print(ARCHITECTURE_SUPPLIED);
+    ⚡ print("CHAIN_COUNT_ENCODING_VALID"); ⚡ print(CHAIN_COUNT_ENCODING_VALID);
+    ⚡ print("EXACT_FIVE_LEVELS"); ⚡ print(EXACT_FIVE_LEVELS);
+    ⚡ print("ARCHITECTURE_ID_PRESENT"); ⚡ print(ARCHITECTURE_ID_PRESENT);
+    ⚡ print("NODE_IDS_PRESENT"); ⚡ print(NODE_IDS_PRESENT);
+    ⚡ print("NODE_CONTENTS_PRESENT"); ⚡ print(NODE_CONTENTS_PRESENT);
+    ⚡ print("LEVEL_ORDER_VALID"); ⚡ print(LEVEL_ORDER_VALID);
+    ⚡ print("FAILURE_PRESENT"); ⚡ print(FAILURE_PRESENT);
+    ⚡ print("FAILURE_ENCODING_VALID"); ⚡ print(FAILURE_ENCODING_VALID);
+    ⚡ print("FAILURE_ID_PRESENT"); ⚡ print(FAILURE_ID_PRESENT);
+    ⚡ print("FAILED_LEVEL_VALID"); ⚡ print(FAILED_LEVEL_VALID);
+    ⚡ print("FAILURE_EVIDENCE_PRESENT"); ⚡ print(FAILURE_EVIDENCE_PRESENT);
+    ⚡ print("GOAL_INVALID"); ⚡ print(GOAL_INVALID);
+    ⚡ print("GOAL_INVALIDATION_EVIDENCE_GATE"); ⚡ print(GOAL_INVALIDATION_EVIDENCE_GATE);
+    ⚡ print("ACTION_OR_PLAN_CHANGE_REQUIRED"); ⚡ print(ACTION_OR_PLAN_CHANGE_REQUIRED);
+    ⚡ print("GOAL_REVIEW_REQUIRED"); ⚡ print(GOAL_REVIEW_REQUIRED);
+    ⚡ print("STRUCTURALLY_VALID"); ⚡ print(STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("ARCHITECTURE_RECORD_COUNT_BEFORE"); ⚡ print(ARCHITECTURE_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_RECORD_COUNT"); ⚡ print(RETAINED_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("ARCHITECTURE_RECORD_COUNT_AFTER"); ⚡ print(ARCHITECTURE_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("GOAL_ARCHITECTURE_SCHEMA"); ⚡ print("SIGMA_GOAL_ARCHITECTURE_V1");
+    ⚡ print("ORDERED_LEVELS"); ⚡ print("PURPOSE,GOAL,SUBGOAL,TASK,ACTION");
+    ⚡ print("FAILURE_CHANGES_ACTION_OR_PLAN_FIRST"); ⚡ print(1.0);
+    ⚡ print("GOAL_RECONSIDERATION_ALLOWED_WHEN_WRONG"); ⚡ print(1.0);
+    ⚡ print("GOAL_RECONSIDERATION_REQUIRES_EVIDENCE"); ⚡ print(1.0);
+    ⚡ print("FAILURE_ALONE_INVALIDATES_GOAL"); ⚡ print(0.0);
+    ⚡ print("GOAL_CHANGED_BY_DNA38"); ⚡ print(0.0);
+    ⚡ print("ACTION_EXECUTED_BY_DNA38"); ⚡ print(0.0);
+    ⚡ print("PLANNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("WORLD_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("GENERAL_GOAL_CONTENT_ENCODING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("CHAIN_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("FAILURE_EVIDENCE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_GOAL_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
