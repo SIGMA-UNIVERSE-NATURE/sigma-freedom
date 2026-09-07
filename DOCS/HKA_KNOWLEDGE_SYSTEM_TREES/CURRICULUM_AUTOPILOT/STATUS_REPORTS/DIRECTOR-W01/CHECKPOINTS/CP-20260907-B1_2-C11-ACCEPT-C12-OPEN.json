@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-C11-ACCEPT-C12-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_C11_OPEN_C12",
+  "accepted_child":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C11","scope_id":"B1.2-C11","accepted_commit_sha":"fc1b2c6683ca1e8b14ea409ba3f8b6261397e7e7","worker_candidate_sha":"e2883c76d78d413847d03925a392c5f0a84bb12a","academic_repair_sha":"a90e48f8cc0482e225ec0c56b418ec652ac90a2e","repair_checkpoint_sha":"3b65e87cae0cb23936984a9c563f8ac0fee3e814","topics":"6/6 PASS","claims":"24/24 PASS","learning_objectives":"24/24 PASS_AFTER_ASSISTANT_REPAIR","semantic_closure":"24/24 PASS_AFTER_ASSISTANT_REPAIR","worker_self_repairs":3,"director_assistant_repairs":1,"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","canonical_prerequisite_alignment":"PASS_C02_C06_C07","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","ownership":"PASS","source_resolution":"6/6 PASS","future_locked_support":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "opened_child":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C12","scope_id":"B1.2-C12","execution_branch":"hka-tree/c01-w03-physics-c12","canonical_topic_count":7,"prerequisites":["B1.2-C01","B1.2-C02","B1.2-C04","B1.2-C06"],"open_order_commit":"547f4a45f3852a0b606693ddf2f6c82a5ebf85b2"},
+  "next_action":"Execute C12 end-to-end; after final receipt Director decides C12 acceptance and B1.2 family completion gate.",
+  "updated_at":"2026-09-07T09:27:00+07:00"
+}
