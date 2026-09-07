@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c03",
+  "control_plane_base_sha":"6dc502063757bed59ed4a6778c4203ae5ffbc2bd",
+  "last_checkpoint_commit_sha":"86aa8bf936d156a49d84ee8f3b0cae8c9f7453e1",
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "scope_ids":["B1.3-C03"],
+  "canonical_topic_count":6,
+  "canonical_topics":["Liên kết ion","Liên kết cộng hóa trị","Liên kết kim loại","Lực liên phân tử","Hình học phân tử","Phổ học"],
+  "prerequisites":["B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d","B1.3-C02@dcd9c24eb17286940eef1d91b4562ed5cc10852a"],
+  "foundational_coverage_required":true,
+  "future_locked_support_required":0,
+  "cross_scope_academic_mutation_required":0,
+  "blocking_issues":[],
+  "next_action":"Execute GPT_EXECUTION_PROMPT.md end-to-end and return only final PASS candidate or true external BLOCK. B1.3-C04 remains gated pending Director acceptance.",
+  "successor_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at":"2026-09-07T16:54:00+07:00"
+}
