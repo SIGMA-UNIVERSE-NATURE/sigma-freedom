@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_3-C02-ACCEPT-C03-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_C02_OPEN_C03",
+  "accepted_child":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","scope_id":"B1.3-C02","name":"Bảng tuần hoàn và hóa vô cơ","accepted_commit_sha":"dcd9c24eb17286940eef1d91b4562ed5cc10852a","worker_candidate_sha":"05ec9eef826b4f32ecff355a91d1f028c75ad0c9","effective_academic_repair_sha":"5a42e9c11a678066839118eac80047f998634221","claims_repair_sha":"4c7ff9fae4bba86ef4515e611fa4734f178e62ee","repair_checkpoint_sha":"b96b4fa3527c1d97ed64a343c102519af6195712","topics":"6/6 PASS","claims":"30/30 PASS","learning_objectives":"24/24 PASS","semantic_closure":"24/24 PASS_AFTER_REPAIR","worker_self_repairs":2,"director_assistant_repairs":2,"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","canonical_prerequisite_alignment":"PASS_B1.3-C01_ONLY","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","ownership":"PASS","source_resolution":"4/4 PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "opened_child":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03","scope_id":"B1.3-C03","name":"Liên kết và cấu trúc phân tử","execution_branch":"hka-tree/c01-w04-chemistry-c03","canonical_topic_count":6,"topics":["Liên kết ion","Liên kết cộng hóa trị","Liên kết kim loại","Lực liên phân tử","Hình học phân tử","Phổ học"],"prerequisites":["B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d","B1.3-C02@dcd9c24eb17286940eef1d91b4562ed5cc10852a"],"open_order_commit":"636cacb0cb1ee12280cdcb5772f1db47f0057f64"},
+  "B1_3_C04_C10":"LOCKED",
+  "updated_at":"2026-09-07T16:54:00+07:00"
+}
