@@ -1,0 +1,364 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA41.REPRESENTATION.INVENTION.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF mode_valid(value) {
+    IF (value == "CHANGE") { RETURN 1.0; }
+    IF (value == "INVENT") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF choose_stage1(dep_valid, bool_valid, supplied, base_encoding) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_REPRESENTATION_TRANSITION"; }
+    IF (base_encoding < 0.5) { RETURN "CURRENT_REPRESENTATION_ENCODING_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(stagnation, evidence_present, proposal_supplied, proposal_forbidden) {
+    IF (stagnation > 0.5) {
+        IF (evidence_present < 0.5) { RETURN "STAGNATION_REQUIRES_EVIDENCE"; }
+        IF (proposal_supplied < 0.5) { RETURN "STAGNATION_REQUIRES_REPRESENTATION_PROPOSAL"; }
+    }
+    IF (proposal_forbidden > 0.5) { RETURN "REPRESENTATION_CHANGE_REQUIRES_STAGNATION"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(proposal_required, mode_ok, proposal_encoding, rationale_present) {
+    IF (proposal_required < 0.5) { RETURN "CONTINUE"; }
+    IF (mode_ok < 0.5) { RETURN "UNKNOWN_TRANSITION_MODE"; }
+    IF (proposal_encoding < 0.5) { RETURN "NEW_REPRESENTATION_ENCODING_INVALID"; }
+    IF (rationale_present < 0.5) { RETURN "REPRESENTATION_RATIONALE_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage4(proposal_required, new_differs, store_valid, capacity) {
+    IF (proposal_required > 0.5) {
+        IF (new_differs < 0.5) { RETURN "NEW_REPRESENTATION_MUST_DIFFER"; }
+    }
+    IF (store_valid < 0.5) { RETURN "REPRESENTATION_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "REPRESENTATION_CAPACITY_REACHED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_final(stagnation, mode) {
+    IF (stagnation < 0.5) { RETURN "CURRENT_REPRESENTATION_RETAINED"; }
+    IF (mode == "INVENT") { RETURN "REPRESENTATION_INVENTED_AND_ACTIVATED"; }
+    RETURN "REPRESENTATION_CHANGED_AND_ACTIVATED";
+}
+
+DEF choose_status(s1, s2, s3, s4) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    IF (s3 != "CONTINUE") { RETURN s3; }
+    RETURN s4;
+}
+
+⟡(Σ.DNA41_REPRESENTATION_INVENTION_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ TRANSITION_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/transition_supplied.txt");
+    ⚡ TRANSITION_ID: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/transition_id.txt");
+    ⚡ CURRENT_REP_ID: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/current_representation_id.txt");
+    ⚡ CURRENT_ARTIFACT: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/current_artifact.txt");
+    ⚡ STAGNATION_DETECTED_TOKEN: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/stagnation_detected.txt");
+    ⚡ STAGNATION_EVIDENCE: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/stagnation_evidence.txt");
+    ⚡ PROPOSAL_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/proposal_supplied.txt");
+    ⚡ MODE: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/mode.txt");
+    ⚡ NEW_REP_ID: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/new_representation_id.txt");
+    ⚡ NEW_ARTIFACT: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/new_artifact.txt");
+    ⚡ RATIONALE: load_text(".sigma_exec/DNA41_NATIVE_ADMISSION_V1/input/rationale.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+
+    ⚡ BOOLEAN_ENCODINGS_VALID:
+        bool_token_valid(TRANSITION_SUPPLIED_TOKEN)
+        * bool_token_valid(STAGNATION_DETECTED_TOKEN)
+        * bool_token_valid(PROPOSAL_SUPPLIED_TOKEN);
+
+    ⚡ TRANSITION_SUPPLIED: bool_true(TRANSITION_SUPPLIED_TOKEN);
+    ⚡ STAGNATION_DETECTED: bool_true(STAGNATION_DETECTED_TOKEN);
+    ⚡ PROPOSAL_SUPPLIED: bool_true(PROPOSAL_SUPPLIED_TOKEN);
+
+    ⚡ BASE_ENCODING_VALID: 1.0;
+    IF (TRANSITION_SUPPLIED > 0.5) {
+        ⚡ BASE_ENCODING_VALID:
+            present(TRANSITION_ID)
+            * present(CURRENT_REP_ID)
+            * present(CURRENT_ARTIFACT);
+    }
+
+    ⚡ STAGNATION_EVIDENCE_PRESENT: present(STAGNATION_EVIDENCE);
+    ⚡ PROPOSAL_FORBIDDEN: 0.0;
+    IF (STAGNATION_DETECTED < 0.5) {
+        IF (PROPOSAL_SUPPLIED > 0.5) { ⚡ PROPOSAL_FORBIDDEN: 1.0; }
+    }
+    ⚡ PROPOSAL_REQUIRED: STAGNATION_DETECTED;
+    ⚡ MODE_VALID: mode_valid(MODE);
+
+    ⚡ PROPOSAL_ENCODING_VALID: 1.0;
+    IF (PROPOSAL_REQUIRED > 0.5) {
+        ⚡ PROPOSAL_ENCODING_VALID:
+            PROPOSAL_SUPPLIED
+            * present(NEW_REP_ID)
+            * present(NEW_ARTIFACT);
+    }
+    ⚡ RATIONALE_PRESENT: 1.0;
+    IF (PROPOSAL_REQUIRED > 0.5) { ⚡ RATIONALE_PRESENT: present(RATIONALE); }
+
+    ⚡ NEW_ID_DIFFERS: 1.0;
+    ⚡ NEW_ARTIFACT_DIFFERS: 1.0;
+    IF (PROPOSAL_REQUIRED > 0.5) {
+        IF (NEW_REP_ID == CURRENT_REP_ID) { ⚡ NEW_ID_DIFFERS: 0.0; }
+        IF (NEW_ARTIFACT == CURRENT_ARTIFACT) { ⚡ NEW_ARTIFACT_DIFFERS: 0.0; }
+    }
+    ⚡ NEW_REPRESENTATION_DIFFERS: NEW_ID_DIFFERS * NEW_ARTIFACT_DIFFERS;
+
+    ⚡ TRANSITION_STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * TRANSITION_SUPPLIED
+        * BASE_ENCODING_VALID;
+    IF (STAGNATION_DETECTED > 0.5) {
+        ⚡ TRANSITION_STRUCTURALLY_VALID:
+            TRANSITION_STRUCTURALLY_VALID
+            * STAGNATION_EVIDENCE_PRESENT
+            * PROPOSAL_SUPPLIED
+            * MODE_VALID
+            * PROPOSAL_ENCODING_VALID
+            * RATIONALE_PRESENT
+            * NEW_REPRESENTATION_DIFFERS;
+    }
+    IF (PROPOSAL_FORBIDDEN > 0.5) { ⚡ TRANSITION_STRUCTURALLY_VALID: 0.0; }
+
+    ⚡ ACTIVE_REP_ID: CURRENT_REP_ID;
+    ⚡ ACTIVE_ARTIFACT: CURRENT_ARTIFACT;
+    ⚡ REPRESENTATION_CHANGED: 0.0;
+    ⚡ REPRESENTATION_INVENTED: 0.0;
+    IF (TRANSITION_STRUCTURALLY_VALID > 0.5) {
+        IF (STAGNATION_DETECTED > 0.5) {
+            ⚡ ACTIVE_REP_ID: NEW_REP_ID;
+            ⚡ ACTIVE_ARTIFACT: NEW_ARTIFACT;
+            ⚡ REPRESENTATION_CHANGED: 1.0;
+            IF (MODE == "INVENT") { ⚡ REPRESENTATION_INVENTED: 1.0; }
+        }
+    }
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA41_NATIVE_ADMISSION_V1/state/representation_invention_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA41_REPRESENTATION_INVENTION_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_TRANSITION_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ TRANSITION_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 19) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RTRANSITION: host("list_get", PARTS, 2, NULL);
+                ⚡ RCURRENT: host("list_get", PARTS, 3, NULL);
+                ⚡ RCURRENTART: host("list_get", PARTS, 4, NULL);
+                ⚡ RSTAG: host("list_get", PARTS, 5, NULL);
+                ⚡ RMODE: host("list_get", PARTS, 6, NULL);
+                ⚡ RNEW: host("list_get", PARTS, 7, NULL);
+                ⚡ RNEWART: host("list_get", PARTS, 8, NULL);
+                ⚡ RCHANGED: host("list_get", PARTS, 9, NULL);
+                ⚡ RINVENTED: host("list_get", PARTS, 10, NULL);
+                ⚡ RACTIVE: host("list_get", PARTS, 11, NULL);
+                ⚡ RACTIVEART: host("list_get", PARTS, 12, NULL);
+                ⚡ RMODEL: host("list_get", PARTS, 13, NULL);
+                ⚡ RTOOL: host("list_get", PARTS, 14, NULL);
+                ⚡ RLEARNING: host("list_get", PARTS, 15, NULL);
+                ⚡ RWORLD: host("list_get", PARTS, 16, NULL);
+                ⚡ REXTERNAL: host("list_get", PARTS, 17, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 18, NULL);
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "REP_TRANSITION")
+                    * present(RCASE)
+                    * present(RTRANSITION)
+                    * present(RCURRENT)
+                    * present(RCURRENTART)
+                    * bool_token_valid(RSTAG)
+                    * bool_token_valid(RCHANGED)
+                    * bool_token_valid(RINVENTED)
+                    * present(RACTIVE)
+                    * present(RACTIVEART)
+                    * exact(RMODEL, "MODEL=0")
+                    * exact(RTOOL, "TOOL=0")
+                    * exact(RLEARNING, "LEARNING=0")
+                    * exact(RWORLD, "WORLD=0")
+                    * exact(REXTERNAL, "EXTERNAL=0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+                IF (RSTAG == "0") {
+                    ⚡ RECORD_VALID: RECORD_VALID * exact(RMODE, "NONE") * exact(RNEW, "NONE") * exact(RNEWART, "NONE") * exact(RCHANGED, "0") * exact(RINVENTED, "0") * exact(RACTIVE, RCURRENT) * exact(RACTIVEART, RCURRENTART);
+                }
+                IF (RSTAG == "1") {
+                    ⚡ RECORD_VALID: RECORD_VALID * mode_valid(RMODE) * present(RNEW) * present(RNEWART) * exact(RCHANGED, "1") * exact(RACTIVE, RNEW) * exact(RACTIVEART, RNEWART);
+                    IF (RMODE == "CHANGE") { ⚡ RECORD_VALID: RECORD_VALID * exact(RINVENTED, "0"); }
+                    IF (RMODE == "INVENT") { ⚡ RECORD_VALID: RECORD_VALID * exact(RINVENTED, "1"); }
+                }
+                IF (RECORD_VALID > 0.5) { ⚡ TRANSITION_RECORD_COUNT_BEFORE: TRANSITION_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (TRANSITION_RECORD_COUNT_BEFORE < MAX_TRANSITION_RECORDS) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE:
+        TRANSITION_STRUCTURALLY_VALID
+        * STORE_STATE_VALID
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_RECORD_COUNT: 0.0;
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ RECORD_MODE: "NONE";
+        ⚡ RECORD_NEW_ID: "NONE";
+        ⚡ RECORD_NEW_ART: "NONE";
+        IF (STAGNATION_DETECTED > 0.5) {
+            ⚡ RECORD_MODE: MODE;
+            ⚡ RECORD_NEW_ID: NEW_REP_ID;
+            ⚡ RECORD_NEW_ART: NEW_ARTIFACT;
+        }
+        ⚡ RECORD_CHANGED_TOKEN: "0";
+        ⚡ RECORD_INVENTED_TOKEN: "0";
+        IF (STAGNATION_DETECTED > 0.5) {
+            ⚡ RECORD_CHANGED_TOKEN: "1";
+            IF (MODE == "INVENT") { ⚡ RECORD_INVENTED_TOKEN: "1"; }
+        }
+        ⚡ RECORD_LINE:
+            "REP_TRANSITION||" + CASE_ID + "||" + TRANSITION_ID
+            + "||" + CURRENT_REP_ID + "||" + CURRENT_ARTIFACT
+            + "||" + STAGNATION_DETECTED_TOKEN + "||" + RECORD_MODE
+            + "||" + RECORD_NEW_ID + "||" + RECORD_NEW_ART
+            + "||" + RECORD_CHANGED_TOKEN + "||" + RECORD_INVENTED_TOKEN
+            + "||" + ACTIVE_REP_ID + "||" + ACTIVE_ARTIFACT
+            + "||MODEL=0||TOOL=0||LEARNING=0||WORLD=0||EXTERNAL=0||COMMIT=YES";
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ RETAINED_RECORD_COUNT: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ TRANSITION_RECORD_COUNT_AFTER: TRANSITION_RECORD_COUNT_BEFORE + RETAINED_RECORD_COUNT;
+    ⚡ STATE_MUTATED: 0.0;
+    IF (RETAINED_RECORD_COUNT > 0.5) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ S1: choose_stage1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, TRANSITION_SUPPLIED, BASE_ENCODING_VALID);
+    ⚡ S2: choose_stage2(STAGNATION_DETECTED, STAGNATION_EVIDENCE_PRESENT, PROPOSAL_SUPPLIED, PROPOSAL_FORBIDDEN);
+    ⚡ S3: choose_stage3(PROPOSAL_REQUIRED, MODE_VALID, PROPOSAL_ENCODING_VALID, RATIONALE_PRESENT);
+    ⚡ S4: choose_stage4(PROPOSAL_REQUIRED, NEW_REPRESENTATION_DIFFERS, STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE);
+    ⚡ TEMP_STATUS: choose_status(S1, S2, S3, S4);
+    ⚡ STATUS: TEMP_STATUS;
+    IF (TEMP_STATUS == "CONTINUE") { ⚡ STATUS: choose_final(STAGNATION_DETECTED, MODE); }
+
+    ⚡ print("DNA41_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID"); ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("TRANSITION_SUPPLIED"); ⚡ print(TRANSITION_SUPPLIED);
+    ⚡ print("BASE_ENCODING_VALID"); ⚡ print(BASE_ENCODING_VALID);
+    ⚡ print("STAGNATION_DETECTED"); ⚡ print(STAGNATION_DETECTED);
+    ⚡ print("STAGNATION_EVIDENCE_PRESENT"); ⚡ print(STAGNATION_EVIDENCE_PRESENT);
+    ⚡ print("PROPOSAL_SUPPLIED"); ⚡ print(PROPOSAL_SUPPLIED);
+    ⚡ print("PROPOSAL_FORBIDDEN_WITHOUT_STAGNATION"); ⚡ print(PROPOSAL_FORBIDDEN);
+    ⚡ print("MODE_VALID"); ⚡ print(MODE_VALID);
+    ⚡ print("PROPOSAL_ENCODING_VALID"); ⚡ print(PROPOSAL_ENCODING_VALID);
+    ⚡ print("RATIONALE_PRESENT"); ⚡ print(RATIONALE_PRESENT);
+    ⚡ print("NEW_ID_DIFFERS"); ⚡ print(NEW_ID_DIFFERS);
+    ⚡ print("NEW_ARTIFACT_DIFFERS"); ⚡ print(NEW_ARTIFACT_DIFFERS);
+    ⚡ print("NEW_REPRESENTATION_DIFFERS"); ⚡ print(NEW_REPRESENTATION_DIFFERS);
+    ⚡ print("TRANSITION_STRUCTURALLY_VALID"); ⚡ print(TRANSITION_STRUCTURALLY_VALID);
+    ⚡ print("REPRESENTATION_CHANGED"); ⚡ print(REPRESENTATION_CHANGED);
+    ⚡ print("REPRESENTATION_INVENTED"); ⚡ print(REPRESENTATION_INVENTED);
+    ⚡ print("ACTIVE_REPRESENTATION_ID"); ⚡ print(ACTIVE_REP_ID);
+    ⚡ print("ACTIVE_REPRESENTATION_ARTIFACT"); ⚡ print(ACTIVE_ARTIFACT);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("TRANSITION_RECORD_COUNT_BEFORE"); ⚡ print(TRANSITION_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_RECORD_COUNT"); ⚡ print(RETAINED_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("TRANSITION_RECORD_COUNT_AFTER"); ⚡ print(TRANSITION_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("REPRESENTATION_INVENTION_SCHEMA"); ⚡ print("SIGMA_REPRESENTATION_INVENTION_V1");
+    ⚡ print("STAGNATION_REQUIRES_EVIDENCE"); ⚡ print(1.0);
+    ⚡ print("NEW_REPRESENTATION_MUST_DIFFER"); ⚡ print(1.0);
+    ⚡ print("TRANSITION_MODES"); ⚡ print("CHANGE,INVENT");
+    ⚡ print("MODEL_CALLS_STARTED"); ⚡ print(0.0);
+    ⚡ print("TOOL_EXECUTION_STARTED"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("WORLD_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("ARTIFACT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("STAGNATION_EVIDENCE_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_REPRESENTATION_ARTIFACT_ENCODING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_STAGNATION_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_REPRESENTATION_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
