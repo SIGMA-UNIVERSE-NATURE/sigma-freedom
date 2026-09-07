@@ -1,60 +1,15 @@
 {
-  "schema_version": "1.5",
-  "gate_id": "HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
-  "status": "ACTIVE_REQUIRED",
-  "stage": "CURRICULUM",
-  "purpose": "Prevent university-heavy coverage from displacing the complete foundational understandings accumulated across the learner's 13-year general-education journey.",
-  "canonical_rules": {
-    "academic_depth_D1_D4_age_independent": true,
-    "foundational_13_year_coverage_is_separate_axis": true,
-    "complete_foundations_before_advanced_dominance": true,
-    "advanced_content_may_extend_but_never_substitute_for_foundational_content": true,
-    "common_future_lesson_path_must_not_become_compressed_university_program": true,
-    "repair_foundational_gap_at_true_owner_scope": true,
-    "no_cross_scope_duplicate_patch": true
-  },
-  "subbranch_exit_gate": {
-    "foundational_13_year_coverage_audit_required": true,
-    "foundational_gap_count_required": 0,
-    "external_general_education_mapping_required": true,
-    "advanced_coverage_does_not_offset_foundational_gap": true,
-    "director_integration_audit_required": true,
-    "fresh_backup_sentinel_tree_alignment_pass_required": true
-  },
-  "global_pre_academic_lock_gate": {
-    "minimum_continents_for_benchmark": 5,
-    "vietnam_single_baseline_forbidden": true,
-    "full_general_education_progression_required": true,
-    "university_only_benchmark_forbidden": true,
-    "foundational_gap_count_required": 0,
-    "academic_locked_forbidden_until_pass": true
-  },
-  "current_application": {
-    "active_subbranch": "B1.2",
-    "active_scope":"B1.2-C01",
-    "active_window":"C01-W03-B1.2-PHYSICS-FAMILY-C01",
-    "accepted_C01_C10_automatically_reopened": false,
-    "accepted_C10_commit": "d39ac894d0c6fcb112071170a75fc1b7b661b449",
-    "current_foundational_audit_status": "PASS",
-    "foundational_gap_count": 0,
-    "post_repair_reaudit_file": "DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/FOUNDATIONAL_AUDITS/B1_1_13_YEAR/POST_REPAIR_REAUDIT.json",
-    "post_repair_reaudit_commit": "2c9fd7023c6100fecb77a4c7685e184ff4baf47b",
-    "gap_register_commit": "32642a59d6451fb16068de68432ba840338b75a9",
-    "director_integration_audit_status": "DIRECTOR_ACCEPTED_PASS",
-    "director_integration_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT",
-    "director_integration_accepted_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a",
-    "backup_sentinel_fresh_alignment_status": "TREE_ALIGNMENT_PASS",
-    "backup_sentinel_final_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd",
-    "B1_2_unlock": "PASS",
-    "active_B1_2_scope":"B1.2-C01 — Đo lường vật lý"
-  },
-  "later_lesson_registry_policy": {
-    "foundational_spine_mandatory": true,
-    "advanced_content_can_be_extension_or_deeper_pathway": true,
-    "lesson_count_follows_learning_need_not_theorem_count": true,
-    "does_not_authorize_lesson_registry_now": true
-  },
-  "authority_source": "DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
-  "authority_commit": "c2b4781e73076d90d600a3442ab910ba92bcb66c",
-  "updated_at": "2026-09-06T19:38:00+07:00"
+  "schema_version":"1.6",
+  "gate_id":"HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
+  "status":"ACTIVE_REQUIRED",
+  "stage":"CURRICULUM",
+  "purpose":"Prevent university-heavy coverage from displacing the complete foundational understandings accumulated across the learner's 13-year general-education journey.",
+  "canonical_rules":{"academic_depth_D1_D4_age_independent":true,"foundational_13_year_coverage_is_separate_axis":true,"complete_foundations_before_advanced_dominance":true,"advanced_content_may_extend_but_never_substitute_for_foundational_content":true,"common_future_lesson_path_must_not_become_compressed_university_program":true,"repair_foundational_gap_at_true_owner_scope":true,"no_cross_scope_duplicate_patch":true},
+  "subbranch_exit_gate":{"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"external_general_education_mapping_required":true,"advanced_coverage_does_not_offset_foundational_gap":true,"director_integration_audit_required":true,"fresh_backup_sentinel_tree_alignment_pass_required":true},
+  "global_pre_academic_lock_gate":{"minimum_continents_for_benchmark":5,"vietnam_single_baseline_forbidden":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"foundational_gap_count_required":0,"academic_locked_forbidden_until_pass":true},
+  "current_application":{"active_subbranch":"B1.2","active_scope":"B1.2-C02","active_window":"C01-W03-B1.2-PHYSICS-FAMILY-C02","mode":"FOUNDATIONAL_MASS_VS_WEIGHT_REPAIR","B1_1_foundational_audit_status":"PASS","B1_1_foundational_gap_count":0,"director_integration_audit_status":"DIRECTOR_ACCEPTED_PASS","director_integration_window":"DIRECTOR-B1.1-INTEGRATION-AUDIT","director_integration_accepted_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a","backup_sentinel_fresh_alignment_status":"TREE_ALIGNMENT_PASS","backup_sentinel_final_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd","B1_2_initial_unlock":"PASS","B1_2_accepted_children":"12/12","B1_2_family_completion":"HOLD_FOUNDATIONAL_REPAIR","B1_2_foundational_debt_count":1,"B1_2_foundational_debt":{"scope_id":"B1.2-C02","issue":"MASS_VS_WEIGHT_FOUNDATIONAL_REPAIR","accepted_baseline_commit_sha":"2c112f281ca8915ef2e8800043db952c550531bc","repair_order_commit_sha":"f5437dff0c25e635c7b4b0a697cf30d634c14c51","director_reconciliation_required":true},"B1_2_family_completion_audit":"GATED_PENDING_REPAIR_AND_RECONCILIATION","B1_3_unlock":"BLOCKED"},
+  "later_lesson_registry_policy":{"foundational_spine_mandatory":true,"advanced_content_can_be_extension_or_deeper_pathway":true,"lesson_count_follows_learning_need_not_theorem_count":true,"does_not_authorize_lesson_registry_now":true},
+  "authority_source":"DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
+  "authority_commit":"c2b4781e73076d90d600a3442ab910ba92bcb66c",
+  "updated_at":"2026-09-07T09:27:00+07:00"
 }
