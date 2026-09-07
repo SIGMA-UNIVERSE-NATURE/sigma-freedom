@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY",
+  "requirements_total":10,
+  "status_counts":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},
+  "foundational_gap_count":0,
+  "requirements":[
+    {"id":"PHY-GE-01","meaning":"Observation, measurement, units, uncertainty and simple experimental reasoning","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C01","evidence":"Accepted C01 measurement/metrology curriculum: physical quantities, SI units, instruments, calibration, uncertainty and experimental reasoning."},
+    {"id":"PHY-GE-02","meaning":"Motion, forces, mass versus weight, energy, momentum and core mechanics","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C02","evidence":"Accepted C02 mechanics plus reconciled repair. Mass is Newtonian inertial scalar in kg and not force; weight is gravitational force in N, local-field dependent; W=m g only in the stated local approximately uniform-field model; apparent weight is distinct."},
+    {"id":"PHY-GE-03","meaning":"Matter states, density/pressure and particle-model physical meaning at physics ownership boundary","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C03 + B1.2-C04 + B1.2-C08","evidence":"C03 covers solids/liquids/gases and continuum properties; C04 covers thermal/statistical particle meaning and phase change; C08 covers atoms/molecules. Chemistry-specific composition/reaction ownership is excluded."},
+    {"id":"PHY-GE-04","meaning":"Temperature, heat, energy transfer, internal energy and basic thermodynamics","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C04","evidence":"Accepted C04 progression explicitly secures temperature/heat, first law/internal energy, entropy/second law, equilibrium and familiar phase changes before advanced statistical/non-equilibrium extensions."},
+    {"id":"PHY-GE-05","meaning":"Waves, sound, light and basic optics","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C05","evidence":"Accepted C05 covers amplitude/wavelength/frequency, wave propagation, interference/diffraction, acoustics, geometrical and wave optics, with foundational meanings repaired before laser/photonics extensions."},
+    {"id":"PHY-GE-06","meaning":"Electric charge, current, circuits, magnetism and electromagnetic phenomena","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C06","evidence":"Accepted C06 covers charge/electric field, current, magnetism, induction, circuits and EM waves; Director repair secured basic magnet behavior, current-carrying conductor force and closed-path/source-load/node-branch circuit literacy."},
+    {"id":"PHY-GE-07","meaning":"Atomic, nuclear and radiation foundations at general-education depth","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C08 + B1.2-C10","evidence":"C08 secures atom/molecule/spectroscopy foundations; C10 secures nucleus, radioactivity, nuclear reactions and particle-physics extensions, with foundational nuclear sequence preceding advanced Standard Model/accelerator/plasma material."},
+    {"id":"PHY-GE-08","meaning":"Scientific modelling, evidence, assumptions, limits and quantitative reasoning across physical phenomena","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C01..C12 distributed","evidence":"Across accepted child objectives and closures, D1-D4 progression includes observation, model construction, formalization, evidence/assumption checks and model-limit critique; all support resolves to accepted/local claims."},
+    {"id":"PHY-GE-09","meaning":"Applied energy, devices, sensors and interdisciplinary physical-principle contexts","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.2-C12","evidence":"Accepted C12 covers computational/applied interfaces, energy, devices and sensors while restricting domain conclusions to physics-owned measurement/model principles."},
+    {"id":"PHY-GE-10","meaning":"Earth/space, biological and medical domain conclusions beyond the underlying physical principle","cross_system_confidence":"HIGH","status":"NOT_OWNER","owner_scope":"B1.3/B1.4/B1.5 domain curricula as applicable","evidence":"B1.2 supplies transferable mechanics, thermodynamics, EM, radiation and sensing principles. Domain-specific Earth-system, astronomy, biology and medicine conclusions are explicitly outside B1.2 ownership and are not required to close B1.2 foundational physics."}
+  ],
+  "mass_vs_weight_foundational":"PASS",
+  "ownership":"PASS",
+  "future_locked_support":0,
+  "cross_scope_academic_mutation":0,
+  "stage_boundary":"PASS — CURRICULUM ONLY"
+}
