@@ -1,13 +1,12 @@
 {
-  "schema_version":"3.7",
+  "schema_version":"3.8",
   "role":"DIRECTOR_CONTINUITY_SNAPSHOT",
   "purpose":"Compact recovery and Knowledge Tree alignment state. Chat memory is never authoritative.",
   "source_of_truth":{"repository":"SIGMA-UNIVERSE-NATURE/sigma-freedom","control_plane_branch":"hka-tree/curriculum-master","canonical_tree_commit":"fc799bf1104ab6352710e1801777a971b5179995","b1_architecture_accepted_commit":"265bb584b5d7e36e11091289d58558408880118c","scope_map_blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
   "pipeline_lock":{"current_stage":"CURRICULUM","all_later_stages_gated":true},
-  "current_execution":{"active_branch_id":"B1","active_subbranch_id":"B1.3","active_scope_id":"B1.3-C01","active_window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","active_execution_branch":"hka-tree/c01-w04-chemistry-c01","active_status":"READY","authoring_status":"B1.2 EXIT PASS; B1.3-C01 READY","scope_name":"Cấu trúc vật chất","canonical_topic_count":6,"canonical_topics":["Nguyên tử","Phân tử","Ion","Đồng vị","Trạng thái vật chất","Cấu trúc điện tử"],"prerequisites":["B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650","B1.2-C08@65ea8a21141e114dbff1c9e9a3e63b5a49571ad8"],"open_order_commit":"59340199c70fb7c7d842e1d3f6a66e0b875c5532","director_checkpoint_commit":"250a4347bbb5dac1f702e647918b0e17c01db140","successor_locked":"B1.3-C02"},
-  "B1_1_completion":{"status":"PASS","foundational_gap_count":0,"integration_commit":"b2818160e8619a7cc3807a0ca3252280be68c16a","fresh_sentinel_commit":"2e3e1ee0a811cae3256cb08828dff193da49c0dd"},
-  "B1_2_completion":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","accepted_children":"12/12","family_integration_commit":"425df302d7331293ad12744a6096e05d51560890","external_mapping_commit":"5492127b661b770c23026c6205d1fbd4e8464835","fresh_sentinel_commit":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","foundational_gap_count":0,"future_locked_support":0,"red_flag":"NONE"},
-  "B1_3_progress":{"status":"IN_PROGRESS","active_scope":"B1.3-C01","active_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","execution_branch":"hka-tree/c01-w04-chemistry-c01","C02_locked":true},
-  "next_action":"Execute B1.3-C01 end-to-end. Worker returns only final PASS candidate or true external BLOCK. B1.3-C02 remains locked pending Director acceptance of C01.",
-  "updated_at":"2026-09-07T12:22:00+07:00"
+  "current_execution":{"active_branch_id":"B1","active_subbranch_id":"B1.3","active_scope_id":"B1.3-C02","active_window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","active_execution_branch":"hka-tree/c01-w04-chemistry-c02","active_status":"READY","authoring_status":"B1.2 EXIT PASS; B1.3-C01 DIRECTOR_ACCEPTED; B1.3-C02 READY","scope_name":"Bảng tuần hoàn và hóa vô cơ","canonical_topic_count":6,"canonical_topics":["Nguyên tố","Tính tuần hoàn","Kim loại và phi kim","Phức chất","Hóa học phối trí","Hóa học vô cơ hiện đại"],"prerequisites":["B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d"],"open_order_commit":"b2e256f2b3928143f8651106406edabf814cfcdc","director_checkpoint_commit":"ea78b8b55513bf0384f0e2b1215579c67d96a92c","successor_locked":"B1.3-C03"},
+  "B1_2_completion":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","fresh_sentinel_commit":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","foundational_gap_count":0,"future_locked_support":0,"red_flag":"NONE"},
+  "B1_3_progress":{"status":"IN_PROGRESS","accepted_scopes":{"B1.3-C01":"d3d5eb000b927f69732554c9dd58b4c087d7ca7d"},"C01_receipt":{"topics":6,"claims":24,"learning_objectives":24,"semantic_closure":"24/24 PASS_AFTER_REPAIR","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","source_resolution":"5/5 PASS","future_locked_support":0,"red_flag":"NONE"},"active_scope":"B1.3-C02"},
+  "next_action":"Execute B1.3-C02 end-to-end. Worker returns only final PASS candidate or true external BLOCK. B1.3-C03 remains locked pending Director acceptance of C02.",
+  "updated_at":"2026-09-07T15:07:00+07:00"
 }
