@@ -1,0 +1,162 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.DIAG.VNM01.EQUALITY][VERSION=VNM-04-CASE001-DIAG-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF candidate_member(value, form_a, form_b) {
+    IF (value == form_a) { RETURN 1; }
+    IF (value == form_b) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF relation_class(observed_a, observed_b, form_a, form_b) {
+    IF (observed_a == form_a) {
+        IF (observed_b == form_b) { RETURN "SUPPORT"; }
+    }
+    IF (observed_a == form_b) {
+        IF (observed_b == form_a) { RETURN "SUPPORT"; }
+    }
+
+    IF (candidate_member(observed_a, form_a, form_b) == 1) {
+        IF (candidate_member(observed_b, form_a, form_b) == 0) {
+            RETURN "COMPETING";
+        }
+    }
+    IF (candidate_member(observed_b, form_a, form_b) == 1) {
+        IF (candidate_member(observed_a, form_a, form_b) == 0) {
+            RETURN "COMPETING";
+        }
+    }
+    RETURN "UNRELATED";
+}
+
+⟡(Σ.VNM_04_CASE001_VNM01_EQUALITY_DIAG_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_04_CASE001_VNM01_EQUALITY_DIAG_V1";
+
+    ⚡ HYPOTHESIS_TEXT:
+        H("read_text", BASE + "/input/hypothesis.memory", NULL, NULL);
+    ⚡ EVIDENCE_TEXT:
+        H("read_text", BASE + "/input/evidence.memory", NULL, NULL);
+
+    ⚡ HP:
+        H("str_split", HYPOTHESIS_TEXT, "||", NULL);
+    ⚡ HC:
+        H("list_len", HP, NULL, NULL);
+
+    ⚡ FORM_A: "";
+    ⚡ FORM_B: "";
+    ⚡ HYP_VALID: 0;
+
+    IF (HC == 6) {
+        ⚡ H0: H("list_get", HP, 0, NULL);
+        ⚡ H1: H("list_get", HP, 1, NULL);
+        ⚡ H2: H("list_get", HP, 2, NULL);
+        ⚡ H3: H("list_get", HP, 3, NULL);
+        ⚡ H4: H("list_get", HP, 4, NULL);
+        ⚡ H5: H("list_get", HP, 5, NULL);
+
+        ⚡ HYP_VALID:
+            exact(H0, "HYPOTHESIS")
+            * present(H1)
+            * exact(H2, "FORM_A")
+            * present(H3)
+            * exact(H4, "FORM_B")
+            * present(H5);
+
+        IF (HYP_VALID == 1) {
+            ⚡ FORM_A: H3;
+            ⚡ FORM_B: H5;
+        }
+    }
+
+    ⚡ LINES:
+        H("str_split", EVIDENCE_TEXT, "\n", NULL);
+    ⚡ LC:
+        H("list_len", LINES, NULL, NULL);
+
+    ⚡ print("SIGMA_VNM_04_CASE001_VNM01_EQUALITY_DIAG_V1");
+    ⚡ print("HYP_VALID", HYP_VALID);
+    ⚡ print("FORM_A", FORM_A);
+    ⚡ print("FORM_B", FORM_B);
+    ⚡ print("EVIDENCE_LINE_COUNT", LC);
+
+    ⚡ I: 0;
+    WHILE (I < LC) {
+        ⚡ LINE:
+            H("list_get", LINES, I, NULL);
+        ⚡ LINE_PRESENT:
+            present(LINE);
+
+        IF (LINE_PRESENT == 1) {
+            ⚡ P:
+                H("str_split", LINE, "||", NULL);
+            ⚡ PC:
+                H("list_len", P, NULL, NULL);
+
+            IF (PC == 6) {
+                ⚡ E0: H("list_get", P, 0, NULL);
+                ⚡ E1: H("list_get", P, 1, NULL);
+                ⚡ E2: H("list_get", P, 2, NULL);
+                ⚡ E3: H("list_get", P, 3, NULL);
+                ⚡ E4: H("list_get", P, 4, NULL);
+                ⚡ E5: H("list_get", P, 5, NULL);
+
+                ⚡ INLINE_A_A: exact(E2, FORM_A);
+                ⚡ INLINE_B_B: exact(E3, FORM_B);
+                ⚡ INLINE_A_B: exact(E2, FORM_B);
+                ⚡ INLINE_B_A: exact(E3, FORM_A);
+                ⚡ CONCAT_DIRECT:
+                    exact(E2 + "||" + E3, FORM_A + "||" + FORM_B);
+                ⚡ MEMBER_E2:
+                    candidate_member(E2, FORM_A, FORM_B);
+                ⚡ MEMBER_E3:
+                    candidate_member(E3, FORM_A, FORM_B);
+                ⚡ REL:
+                    relation_class(E2, E3, FORM_A, FORM_B);
+
+                ⚡ print("EVIDENCE_INDEX", I);
+                ⚡ print("EVIDENCE_ID", E1);
+                ⚡ print("OBSERVED_A", E2);
+                ⚡ print("OBSERVED_B", E3);
+                ⚡ print("INLINE_OBS_A_EQ_FORM_A", INLINE_A_A);
+                ⚡ print("INLINE_OBS_B_EQ_FORM_B", INLINE_B_B);
+                ⚡ print("INLINE_OBS_A_EQ_FORM_B", INLINE_A_B);
+                ⚡ print("INLINE_OBS_B_EQ_FORM_A", INLINE_B_A);
+                ⚡ print("INLINE_PAIR_CONCAT_EQ", CONCAT_DIRECT);
+                ⚡ print("CANDIDATE_MEMBER_OBS_A", MEMBER_E2);
+                ⚡ print("CANDIDATE_MEMBER_OBS_B", MEMBER_E3);
+                ⚡ print("RELATION_CLASS_FUNCTION", REL);
+                ⚡ print("SOURCE_FIELD", E4);
+                ⚡ print("SOURCE_VALUE", E5);
+            }
+
+            IF (PC == 6) {
+            }
+            IF (PC < 6) {
+                ⚡ print("EVIDENCE_RECORD_PART_COUNT", PC);
+            }
+            IF (6 < PC) {
+                ⚡ print("EVIDENCE_RECORD_PART_COUNT", PC);
+            }
+        }
+
+        ⚡ I: I + 1;
+    }
+
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("DIAGNOSTIC_MUTATES_STATE", "NO");
+}
