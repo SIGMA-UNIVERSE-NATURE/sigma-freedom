@@ -1,14 +1,14 @@
 {
-  "schema_version":"5.3",
+  "schema_version":"5.4",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub state, immutable architecture anchors, active amendments, foundational 13-year coverage gate and predecessor artifacts; chat history is never a dependency.",
-  "child_window_rule":"Only Director-accepted PASS counts as accepted academic authoring. B1.2 exit additionally requires external general-education mapping and fresh Backup Sentinel TREE_ALIGNMENT_PASS.",
+  "child_window_rule":"Only Director-accepted PASS counts as accepted academic authoring. B1.2 exit additionally requires Director-accepted external general-education mapping and fresh Backup Sentinel TREE_ALIGNMENT_PASS.",
   "scope_map_anchor":{"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
-  "active_transition":{"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","scope_id":"B1.2-EXTERNAL-GENERAL-ED-MAPPING","branch":"hka-tree/c01-w03-physics-family","status":"MAPPING_READY","open_order_commit":"710cbcd43f978de6b32e1c0662828aca19374141","director_checkpoint_commit":"f56131b1397cc9057146cb0b3b403671b754341c"},
+  "active_transition":{"window_id":"DIRECTOR-BACKUP-S01","scope_id":"B1.2-FRESH-BACKUP-SENTINEL","branch":"hka-tree/director-backup-sentinel","status":"READY","order_commit":"f68454b38f695904f2f3805ebf0f339bb382abe3","director_checkpoint_commit":"d512a3158dff35956cc56277517bacf934d1f848"},
   "stages":[{"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT"},{"stage_id":"CURRICULUM","status":"IN_PROGRESS","windows":[
     {"window_id":"C01-W01-B1-ARCHITECTURE","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
     {"window_id":"C01-W02-B1.1-MATH-FAMILY","status":"PASS"},
-    {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","scope":"B1.2 bounded authoring family controller","status":"DIRECTOR_ACCEPTED_INTEGRATION_EXIT_EVIDENCE_PENDING","execution_branch":"hka-tree/c01-w03-physics-family","accepted_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","aggregate":{"children":"12/12","topics":84,"claims":394,"learning_objectives":338,"semantic_closures":338},"integration_gates":{"foundational_gap_count":0,"duplicate_ownership":"PASS","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"red_flag":"NONE"},"exit_evidence":{"external_general_education_mapping":"READY","fresh_backup_sentinel":"REQUIRED_AFTER_MAPPING","B1_3_unlock":false},"children":[
+    {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","scope":"B1.2 bounded authoring family controller","status":"DIRECTOR_ACCEPTED_INTEGRATION_MAPPING_ACCEPTED_FRESH_SENTINEL_PENDING","execution_branch":"hka-tree/c01-w03-physics-family","accepted_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","aggregate":{"children":"12/12","topics":84,"claims":394,"learning_objectives":338,"semantic_closures":338},"integration_gates":{"foundational_gap_count":0,"duplicate_ownership":"PASS","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"red_flag":"NONE"},"exit_evidence":{"external_general_education_mapping":{"status":"DIRECTOR_ACCEPTED_PASS_AFTER_METADATA_REPAIR","accepted_commit_sha":"5492127b661b770c23026c6205d1fbd4e8464835","systems":6,"continents":6,"official_source_resolution":"6/6 PASS","university_only_baseline":false,"requirements":10,"full":9,"gap":0,"not_owner":1,"foundational_gap_count":0,"future_locked_support":0},"fresh_backup_sentinel":{"window_id":"DIRECTOR-BACKUP-S01","role":"BACKUP_SENTINEL","branch":"hka-tree/director-backup-sentinel","status":"AUTHORIZED_READY"},"B1_3_unlock":false},"children":[
       {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C01","scope_id":"B1.2-C01","status":"PASS","director_accepted":true,"accepted_commit_sha":"62a26590dc9055323316456f1620856b885462d7"},
       {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C02","scope_id":"B1.2-C02","status":"PASS_RECONCILED_AFTER_FOUNDATIONAL_REPAIR","director_accepted":true,"repaired_final_commit_sha":"8c61737276f5d17256c2ec7d075a8b5a46ed192a","effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18","mass_vs_weight_foundational":"PASS"},
       {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C03","scope_id":"B1.2-C03","status":"PASS","director_accepted":true,"accepted_commit_sha":"693348843918fcd66445e8e30624dcddcc1a9589"},
@@ -22,7 +22,8 @@
       {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C11","scope_id":"B1.2-C11","status":"PASS","director_accepted":true,"accepted_commit_sha":"fc1b2c6683ca1e8b14ea409ba3f8b6261397e7e7"},
       {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C12","scope_id":"B1.2-C12","status":"PASS","director_accepted":true,"accepted_commit_sha":"d0772ad9a030defa8d29a52896298b95bb7f93f6"}
     ]},
+    {"window_id":"DIRECTOR-BACKUP-S01","role":"BACKUP_SENTINEL","status":"READY_B1_2_EXIT_ALIGNMENT","execution_branch":"hka-tree/director-backup-sentinel","director_acceptance_authority":false,"successor_unlock_authority":false},
     {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"LOCKED_BY_B1_2_EXIT_GATE"},{"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"LOCKED"},{"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED"},{"window_id":"C01-W07-B1-INTEGRATION-LOCK","status":"LOCKED"}
   ]},{"stage_id":"ACADEMIC_LOCKED","status":"GATED"}],
-  "updated_at":"2026-09-07T10:42:00+07:00"
+  "updated_at":"2026-09-07T12:22:00+07:00"
 }
