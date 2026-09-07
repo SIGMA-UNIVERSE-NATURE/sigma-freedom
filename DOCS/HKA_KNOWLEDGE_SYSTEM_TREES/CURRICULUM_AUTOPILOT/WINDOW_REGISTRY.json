@@ -1,27 +1,19 @@
 {
-  "schema_version":"5.5",
+  "schema_version":"5.6",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub durable state and immutable architecture anchors; chat history is never a dependency.",
   "scope_map_anchor":{"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
-  "active_transition":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","scope_id":"B1.3-C01","branch":"hka-tree/c01-w04-chemistry-c01","status":"READY","open_order_commit":"59340199c70fb7c7d842e1d3f6a66e0b875c5532","director_checkpoint_commit":"250a4347bbb5dac1f702e647918b0e17c01db140"},
+  "active_transition":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","scope_id":"B1.3-C02","branch":"hka-tree/c01-w04-chemistry-c02","status":"READY","open_order_commit":"b2e256f2b3928143f8651106406edabf814cfcdc","director_checkpoint_commit":"ea78b8b55513bf0384f0e2b1215579c67d96a92c"},
   "stages":[{"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT"},{"stage_id":"CURRICULUM","status":"IN_PROGRESS","windows":[
     {"window_id":"C01-W01-B1-ARCHITECTURE","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
     {"window_id":"C01-W02-B1.1-MATH-FAMILY","status":"PASS"},
-    {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","status":"PASS","director_accepted":true,"accepted_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","external_mapping_commit_sha":"5492127b661b770c23026c6205d1fbd4e8464835","fresh_sentinel_commit_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS","aggregate":{"children":"12/12","topics":84,"claims":394,"learning_objectives":338,"semantic_closures":338},"exit_gates":{"foundational_gap_count":0,"duplicate_ownership":"PASS","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","support_resolution":"PASS","future_locked_support":0,"external_general_education_mapping":"PASS","fresh_backup_sentinel":"TREE_ALIGNMENT_PASS","pipeline_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"}},
-    {"window_id":"DIRECTOR-BACKUP-S01","role":"BACKUP_SENTINEL","status":"TREE_ALIGNMENT_PASS","execution_branch":"hka-tree/director-backup-sentinel","final_commit_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","director_acceptance_authority":false,"successor_unlock_authority":false},
+    {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","status":"PASS","director_accepted":true,"subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS"},
     {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"IN_PROGRESS","children":[
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","scope_id":"B1.3-C01","scope":"Cấu trúc vật chất","status":"READY","execution_branch":"hka-tree/c01-w04-chemistry-c01","topic_count":6,"required_prior_scope_pass":["B1.2-C07","B1.2-C08"],"output_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C01/"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","scope_id":"B1.3-C02","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03","scope_id":"B1.3-C03","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04","scope_id":"B1.3-C04","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05","scope_id":"B1.3-C05","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C06","scope_id":"B1.3-C06","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C07","scope_id":"B1.3-C07","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C09","scope_id":"B1.3-C09","status":"LOCKED"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","scope_id":"B1.3-C10","status":"LOCKED"}
+      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","scope_id":"B1.3-C01","scope":"Cấu trúc vật chất","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w04-chemistry-c01","accepted_commit_sha":"d3d5eb000b927f69732554c9dd58b4c087d7ca7d","worker_candidate_sha":"71420fb22337ae966ade8c34ece3c5ea66e1d060","effective_academic_repair_sha":"90952b35867c6aac48f53ffba8b74b50cad5db2f","claims_repair_sha":"619968bcd954389363e0a9cd5c3a46ba4e55d63e","repair_checkpoint_sha":"61d9bdb170d8e9f44e07a3b193429931cea227d5","topic_count":6,"claim_count":24,"learning_objective_count":24,"semantic_closure":"24/24 PASS_AFTER_REPAIR","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","required_prior_scope_pass":["B1.2-C07","B1.2-C08"]},
+      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","scope_id":"B1.3-C02","scope":"Bảng tuần hoàn và hóa vô cơ","status":"READY","execution_branch":"hka-tree/c01-w04-chemistry-c02","topic_count":6,"required_prior_scope_pass":["B1.3-C01"],"output_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C02/"},
+      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03","scope_id":"B1.3-C03","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04","scope_id":"B1.3-C04","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05","scope_id":"B1.3-C05","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C06","scope_id":"B1.3-C06","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C07","scope_id":"B1.3-C07","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C09","scope_id":"B1.3-C09","status":"LOCKED"},{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","scope_id":"B1.3-C10","status":"LOCKED"}
     ]},
     {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"LOCKED"},{"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED"},{"window_id":"C01-W07-B1-INTEGRATION-LOCK","status":"LOCKED"}
   ]},{"stage_id":"ACADEMIC_LOCKED","status":"GATED"}],
-  "updated_at":"2026-09-07T12:22:00+07:00"
+  "updated_at":"2026-09-07T15:07:00+07:00"
 }
