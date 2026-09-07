@@ -3,7 +3,7 @@
 Status: `PASS_CANDIDATE_REPAIRED` at `CURRICULUM` stage.
 
 ## Scope and gate
-`B1.3-C01 — Cấu trúc vật chất`, 6/6 canonical topics. Canonical prerequisites remain accepted `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650` and `B1.2-C08@65ea8a21141e114fbff1c9e9a3e63b5a49571ad8`. `B1.3-C02` remains gated pending formal Director acceptance of C01.
+`B1.3-C01 — Cấu trúc vật chất`, 6/6 canonical topics. Canonical prerequisites remain accepted `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650` and `B1.2-C08@65ea8a21141e114dbff1c9e9a3e63b5a49571ad8`. `B1.3-C02` remains gated pending formal Director acceptance of C01.
 
 ## Effective academic state
 The repaired academic graph contains 6 nodes, 24 claims, 5 resolved/used sources, 24 D1–D4 learning objectives, 24 exactly-one-row semantic closures, 15 typed cross-links and 6 sequence-intent records. Stable IDs and counts are preserved.
