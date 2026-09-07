@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C11",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w03-physics-c11",
+  "input_commit_sha":"8d86fad051f09882fbacd64f239e0f8c60292ebb",
+  "scope_ids":["B1.2-C11"],
+  "canonical_topic_count":6,
+  "prerequisites":["B1.2-C02@2c112f281ca8915ef2e8800043db952c550531bc","B1.2-C06@8295726bf0599bb636f29c096e97363d26e5fccc","B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650"],
+  "remaining_work":["Execute C11 end-to-end and return only final PASS candidate or true external BLOCK."],
+  "blocking_issues":[],
+  "red_flag":"NONE",
+  "director_acceptance_declared":false,
+  "successor_window":"C01-W03-B1.2-PHYSICS-FAMILY-C12",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "next_action":"Execute GPT_EXECUTION_PROMPT.md. C12 remains GATED pending Director acceptance of C11.",
+  "updated_at":"2026-09-07T08:14:00+07:00"
+}
