@@ -1,0 +1,768 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.RECURRENT.ADJACENT.SPAN.CANDIDATE.INDUCTION][VERSION=VNM-05-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF ordered_span_matches(a, b, x, y) {
+    IF (a == x) {
+        IF (b == y) { RETURN 1; }
+    }
+    RETURN 0;
+}
+
+⟡(Σ.VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_05_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_V1";
+
+    ⚡ NEW_SEQUENCE_TEXT:
+        H("read_text", BASE + "/input/sequences.memory", NULL, NULL);
+
+    ⚡ STATE_PATH:
+        BASE + "/state/adjacent_span_state.memory";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ STATE_EMPTY:
+        exact(STATE_TEXT, "");
+
+    ⚡ MAX_SEQUENCES: 4;
+    ⚡ MAX_NEW_SPLIT_LINES: 8;
+    ⚡ MAX_UNITS_PER_SEQUENCE: 4;
+    ⚡ MAX_ADJACENT_OCCURRENCES: 12;
+    ⚡ MIN_SPAN_SUPPORT: 2;
+
+    ⚡ ALL_SEQUENCE_IDS:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_UNITS_TEXT:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ALL_SOURCES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ SEEN_SEQUENCE:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ PREVIOUS_STATE_VALID: 0;
+    ⚡ PREVIOUS_STATE_INVALID: 0;
+    ⚡ PRIOR_SEQUENCE_COUNT: 0;
+
+    IF (STATE_EMPTY == 0) {
+        ⚡ STATE_LINES:
+            H("str_split", STATE_TEXT, "\n", NULL);
+        ⚡ STATE_LINE_COUNT:
+            H("list_len", STATE_LINES, NULL, NULL);
+        ⚡ STATE_HEADER_VALID: 0;
+        ⚡ STATE_RECORD_INVALID_COUNT: 0;
+
+        IF (0 < STATE_LINE_COUNT) {
+            IF (STATE_LINE_COUNT < 6) {
+                ⚡ STATE_HEADER:
+                    H("list_get", STATE_LINES, 0, NULL);
+                ⚡ HEADER_PARTS:
+                    H("str_split", STATE_HEADER, "||", NULL);
+                ⚡ HEADER_PART_COUNT:
+                    H("list_len", HEADER_PARTS, NULL, NULL);
+
+                IF (HEADER_PART_COUNT == 4) {
+                    ⚡ SH0: H("list_get", HEADER_PARTS, 0, NULL);
+                    ⚡ SH1: H("list_get", HEADER_PARTS, 1, NULL);
+                    ⚡ SH2: H("list_get", HEADER_PARTS, 2, NULL);
+                    ⚡ SH3: H("list_get", HEADER_PARTS, 3, NULL);
+
+                    ⚡ STATE_HEADER_VALID:
+                        exact(SH0, "STATE")
+                        * exact(SH1, "SIGMA_VNM_05_ADJACENT_SPAN_STATE_V1")
+                        * exact(SH2, "COMMIT")
+                        * exact(SH3, "YES");
+                }
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 1) {
+            ⚡ SI: 1;
+            WHILE (SI < STATE_LINE_COUNT) {
+                ⚡ STATE_LINE:
+                    H("list_get", STATE_LINES, SI, NULL);
+                ⚡ STATE_PARTS:
+                    H("str_split", STATE_LINE, "||", NULL);
+                ⚡ STATE_PART_COUNT:
+                    H("list_len", STATE_PARTS, NULL, NULL);
+                ⚡ STATE_RECORD_VALID: 0;
+
+                IF (STATE_PART_COUNT == 8) {
+                    ⚡ S0: H("list_get", STATE_PARTS, 0, NULL);
+                    ⚡ S1: H("list_get", STATE_PARTS, 1, NULL);
+                    ⚡ S2: H("list_get", STATE_PARTS, 2, NULL);
+                    ⚡ S3: H("list_get", STATE_PARTS, 3, NULL);
+                    ⚡ S4: H("list_get", STATE_PARTS, 4, NULL);
+                    ⚡ S5: H("list_get", STATE_PARTS, 5, NULL);
+                    ⚡ S6: H("list_get", STATE_PARTS, 6, NULL);
+                    ⚡ S7: H("list_get", STATE_PARTS, 7, NULL);
+
+                    ⚡ STATE_FIELDS_VALID:
+                        exact(S0, "SEQ")
+                        * present(S1)
+                        * exact(S2, "UNITS")
+                        * present(S3)
+                        * exact(S4, "SOURCE")
+                        * present(S5)
+                        * exact(S6, "COMMIT")
+                        * exact(S7, "YES");
+
+                    IF (STATE_FIELDS_VALID == 1) {
+                        ⚡ STATE_UNITS:
+                            H("str_split", S3, "~", NULL);
+                        ⚡ STATE_UNIT_COUNT:
+                            H("list_len", STATE_UNITS, NULL, NULL);
+                        ⚡ STATE_UNITS_VALID: 0;
+
+                        IF (STATE_UNIT_COUNT == 3) {
+                            ⚡ SU0: H("list_get", STATE_UNITS, 0, NULL);
+                            ⚡ SU1: H("list_get", STATE_UNITS, 1, NULL);
+                            ⚡ SU2: H("list_get", STATE_UNITS, 2, NULL);
+                            ⚡ STATE_UNITS_VALID:
+                                present(SU0) * present(SU1) * present(SU2);
+                        }
+
+                        IF (STATE_UNIT_COUNT == 4) {
+                            ⚡ SU0: H("list_get", STATE_UNITS, 0, NULL);
+                            ⚡ SU1: H("list_get", STATE_UNITS, 1, NULL);
+                            ⚡ SU2: H("list_get", STATE_UNITS, 2, NULL);
+                            ⚡ SU3: H("list_get", STATE_UNITS, 3, NULL);
+                            ⚡ STATE_UNITS_VALID:
+                                present(SU0) * present(SU1) * present(SU2) * present(SU3);
+                        }
+
+                        IF (STATE_UNITS_VALID == 1) {
+                            ⚡ STATE_RECORD_VALID: 1;
+                            ⚡ STATE_SEQ_EXISTS:
+                                H("map_has", SEEN_SEQUENCE, S1, NULL);
+
+                            IF (STATE_SEQ_EXISTS) {
+                                ⚡ STATE_RECORD_VALID: 0;
+                            }
+
+                            IF (STATE_SEQ_EXISTS == FALSE) {
+                                ⚡ STATE_FINGERPRINT:
+                                    S3 + "||" + S5;
+                                ⚡ MARK_STATE_SEQUENCE:
+                                    H("map_set", SEEN_SEQUENCE, S1, STATE_FINGERPRINT);
+
+                                ⚡ PUSH_STATE_SEQUENCE_ID:
+                                    H("list_push", ALL_SEQUENCE_IDS, S1, NULL);
+                                ⚡ PUSH_STATE_UNITS:
+                                    H("list_push", ALL_UNITS_TEXT, S3, NULL);
+                                ⚡ PUSH_STATE_SOURCE:
+                                    H("list_push", ALL_SOURCES, S5, NULL);
+
+                                ⚡ PRIOR_SEQUENCE_COUNT:
+                                    PRIOR_SEQUENCE_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+
+                IF (STATE_RECORD_VALID == 0) {
+                    ⚡ STATE_RECORD_INVALID_COUNT:
+                        STATE_RECORD_INVALID_COUNT + 1;
+                }
+
+                ⚡ SI: SI + 1;
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 0) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (0 < STATE_RECORD_INVALID_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (MAX_SEQUENCES < PRIOR_SEQUENCE_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+
+        IF (PREVIOUS_STATE_INVALID == 0) {
+            ⚡ PREVIOUS_STATE_VALID: 1;
+        }
+    }
+
+    ⚡ NEW_LINES:
+        H("str_split", NEW_SEQUENCE_TEXT, "\n", NULL);
+    ⚡ RAW_NEW_LINE_COUNT:
+        H("list_len", NEW_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_NEW_SPLIT_LINES < RAW_NEW_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ PENDING_STATE_LINES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ NEW_SEQUENCE_LINE_COUNT: 0;
+    ⚡ NEW_UNIQUE_SEQUENCE_COUNT: 0;
+    ⚡ DUPLICATE_SEQUENCE_COUNT: 0;
+    ⚡ SEQUENCE_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_SEQUENCE_RECORD_COUNT: 0;
+
+    ⚡ NEW_SCAN_LINE_COUNT:
+        RAW_NEW_LINE_COUNT;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ NEW_SCAN_LINE_COUNT: 0;
+    }
+
+    ⚡ NI: 0;
+    WHILE (NI < NEW_SCAN_LINE_COUNT) {
+        ⚡ NEW_LINE:
+            H("list_get", NEW_LINES, NI, NULL);
+        ⚡ NEW_LINE_PRESENT:
+            present(NEW_LINE);
+
+        IF (NEW_LINE_PRESENT == 1) {
+            ⚡ NEW_SEQUENCE_LINE_COUNT:
+                NEW_SEQUENCE_LINE_COUNT + 1;
+
+            ⚡ NEW_PARTS:
+                H("str_split", NEW_LINE, "||", NULL);
+            ⚡ NEW_PART_COUNT:
+                H("list_len", NEW_PARTS, NULL, NULL);
+            ⚡ NEW_RECORD_VALID: 0;
+
+            IF (NEW_PART_COUNT == 6) {
+                ⚡ N0: H("list_get", NEW_PARTS, 0, NULL);
+                ⚡ N1: H("list_get", NEW_PARTS, 1, NULL);
+                ⚡ N2: H("list_get", NEW_PARTS, 2, NULL);
+                ⚡ N3: H("list_get", NEW_PARTS, 3, NULL);
+                ⚡ N4: H("list_get", NEW_PARTS, 4, NULL);
+                ⚡ N5: H("list_get", NEW_PARTS, 5, NULL);
+
+                ⚡ NEW_FIELDS_VALID:
+                    exact(N0, "SEQ")
+                    * present(N1)
+                    * exact(N2, "UNITS")
+                    * present(N3)
+                    * exact(N4, "SOURCE")
+                    * present(N5);
+
+                IF (NEW_FIELDS_VALID == 1) {
+                    ⚡ NEW_UNITS:
+                        H("str_split", N3, "~", NULL);
+                    ⚡ NEW_UNIT_COUNT:
+                        H("list_len", NEW_UNITS, NULL, NULL);
+                    ⚡ NEW_UNITS_VALID: 0;
+
+                    IF (NEW_UNIT_COUNT == 3) {
+                        ⚡ NU0: H("list_get", NEW_UNITS, 0, NULL);
+                        ⚡ NU1: H("list_get", NEW_UNITS, 1, NULL);
+                        ⚡ NU2: H("list_get", NEW_UNITS, 2, NULL);
+                        ⚡ NEW_UNITS_VALID:
+                            present(NU0) * present(NU1) * present(NU2);
+                    }
+
+                    IF (NEW_UNIT_COUNT == 4) {
+                        ⚡ NU0: H("list_get", NEW_UNITS, 0, NULL);
+                        ⚡ NU1: H("list_get", NEW_UNITS, 1, NULL);
+                        ⚡ NU2: H("list_get", NEW_UNITS, 2, NULL);
+                        ⚡ NU3: H("list_get", NEW_UNITS, 3, NULL);
+                        ⚡ NEW_UNITS_VALID:
+                            present(NU0) * present(NU1) * present(NU2) * present(NU3);
+                    }
+
+                    IF (NEW_UNITS_VALID == 1) {
+                        ⚡ NEW_RECORD_VALID: 1;
+                        ⚡ NEW_FINGERPRINT:
+                            N3 + "||" + N5;
+                        ⚡ NEW_SEQ_EXISTS:
+                            H("map_has", SEEN_SEQUENCE, N1, NULL);
+
+                        IF (NEW_SEQ_EXISTS) {
+                            ⚡ EXISTING_FINGERPRINT:
+                                H("map_get", SEEN_SEQUENCE, N1, NULL);
+                            ⚡ FINGERPRINT_SAME:
+                                exact(EXISTING_FINGERPRINT, NEW_FINGERPRINT);
+
+                            IF (FINGERPRINT_SAME == 1) {
+                                ⚡ DUPLICATE_SEQUENCE_COUNT:
+                                    DUPLICATE_SEQUENCE_COUNT + 1;
+                            }
+                            IF (FINGERPRINT_SAME == 0) {
+                                ⚡ SEQUENCE_ID_COLLISION_COUNT:
+                                    SEQUENCE_ID_COLLISION_COUNT + 1;
+                            }
+                        }
+
+                        IF (NEW_SEQ_EXISTS == FALSE) {
+                            ⚡ MARK_NEW_SEQUENCE:
+                                H("map_set", SEEN_SEQUENCE, N1, NEW_FINGERPRINT);
+
+                            ⚡ PUSH_NEW_SEQUENCE_ID:
+                                H("list_push", ALL_SEQUENCE_IDS, N1, NULL);
+                            ⚡ PUSH_NEW_UNITS:
+                                H("list_push", ALL_UNITS_TEXT, N3, NULL);
+                            ⚡ PUSH_NEW_SOURCE:
+                                H("list_push", ALL_SOURCES, N5, NULL);
+
+                            ⚡ PENDING_STATE_LINE:
+                                NEW_LINE + "||COMMIT||YES";
+                            ⚡ PUSH_PENDING_STATE:
+                                H("list_push", PENDING_STATE_LINES, PENDING_STATE_LINE, NULL);
+
+                            ⚡ NEW_UNIQUE_SEQUENCE_COUNT:
+                                NEW_UNIQUE_SEQUENCE_COUNT + 1;
+                        }
+                    }
+                }
+            }
+
+            IF (NEW_RECORD_VALID == 0) {
+                ⚡ INVALID_SEQUENCE_RECORD_COUNT:
+                    INVALID_SEQUENCE_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ NI: NI + 1;
+    }
+
+    ⚡ TOTAL_SEQUENCE_COUNT:
+        PRIOR_SEQUENCE_COUNT + NEW_UNIQUE_SEQUENCE_COUNT;
+
+    ⚡ SEQUENCE_CAPACITY_EXCEEDED: 0;
+    IF (MAX_SEQUENCES < TOTAL_SEQUENCE_COUNT) {
+        ⚡ SEQUENCE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ STATE_BASE_VALID: 0;
+    IF (STATE_EMPTY == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+    IF (PREVIOUS_STATE_VALID == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+
+    ⚡ NEW_BATCH_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < INVALID_SEQUENCE_RECORD_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (0 < SEQUENCE_ID_COLLISION_COUNT) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+    IF (SEQUENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ NEW_BATCH_VALID: 0;
+    }
+
+    ⚡ LEARNING_ALLOWED:
+        STATE_BASE_VALID * NEW_BATCH_VALID;
+
+    ⚡ STATE_COMMIT_ALLOWED: 0;
+    IF (LEARNING_ALLOWED == 1) {
+        IF (0 < NEW_UNIQUE_SEQUENCE_COUNT) {
+            ⚡ STATE_COMMIT_ALLOWED: 1;
+        }
+    }
+
+    ⚡ STATE_MUTATED: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ WRITE_RC: 0;
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        ⚡ STATE_HEADER:
+            "STATE||SIGMA_VNM_05_ADJACENT_SPAN_STATE_V1||COMMIT||YES";
+        ⚡ PENDING_TEXT:
+            H("str_join", PENDING_STATE_LINES, "\n", NULL);
+        ⚡ PROPOSED_STATE:
+            STATE_HEADER + "\n" + PENDING_TEXT;
+
+        IF (PREVIOUS_STATE_VALID == 1) {
+            ⚡ PROPOSED_STATE:
+                STATE_TEXT + "\n" + PENDING_TEXT;
+        }
+
+        ⚡ WRITE_RC:
+            H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+        ⚡ READBACK_STATE:
+            H("read_text", STATE_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK_STATE, PROPOSED_STATE);
+        ⚡ STATE_MUTATED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ PERSISTENCE_OK: 1;
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ PERSISTENCE_OK: 0;
+        }
+    }
+
+    ⚡ RESULT_ALLOWED:
+        LEARNING_ALLOWED * PERSISTENCE_OK;
+
+    ⚡ ADJ_LEFT:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ADJ_RIGHT:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ADJ_SEQUENCE_ID:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ ADJ_SOURCE:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ SEQUENCE_SCAN_COUNT:
+        TOTAL_SEQUENCE_COUNT;
+    IF (RESULT_ALLOWED == 0) {
+        ⚡ SEQUENCE_SCAN_COUNT: 0;
+    }
+
+    ⚡ SQI: 0;
+    WHILE (SQI < SEQUENCE_SCAN_COUNT) {
+        ⚡ SQ_ID:
+            H("list_get", ALL_SEQUENCE_IDS, SQI, NULL);
+        ⚡ SQ_UNITS_TEXT:
+            H("list_get", ALL_UNITS_TEXT, SQI, NULL);
+        ⚡ SQ_SOURCE:
+            H("list_get", ALL_SOURCES, SQI, NULL);
+        ⚡ SQ_UNITS:
+            H("str_split", SQ_UNITS_TEXT, "~", NULL);
+        ⚡ SQ_UNIT_COUNT:
+            H("list_len", SQ_UNITS, NULL, NULL);
+
+        ⚡ UI: 0;
+        WHILE (UI < SQ_UNIT_COUNT) {
+            ⚡ NEXT_UI: UI + 1;
+            IF (NEXT_UI < SQ_UNIT_COUNT) {
+                ⚡ LEFT_UNIT:
+                    H("list_get", SQ_UNITS, UI, NULL);
+                ⚡ RIGHT_UNIT:
+                    H("list_get", SQ_UNITS, NEXT_UI, NULL);
+
+                ⚡ PUSH_ADJ_LEFT:
+                    H("list_push", ADJ_LEFT, LEFT_UNIT, NULL);
+                ⚡ PUSH_ADJ_RIGHT:
+                    H("list_push", ADJ_RIGHT, RIGHT_UNIT, NULL);
+                ⚡ PUSH_ADJ_SEQUENCE:
+                    H("list_push", ADJ_SEQUENCE_ID, SQ_ID, NULL);
+                ⚡ PUSH_ADJ_SOURCE:
+                    H("list_push", ADJ_SOURCE, SQ_SOURCE, NULL);
+            }
+
+            ⚡ UI: UI + 1;
+        }
+
+        ⚡ SQI: SQI + 1;
+    }
+
+    ⚡ ADJACENT_OCCURRENCE_COUNT:
+        H("list_len", ADJ_LEFT, NULL, NULL);
+
+    ⚡ ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED: 0;
+    IF (MAX_ADJACENT_OCCURRENCES < ADJACENT_OCCURRENCE_COUNT) {
+        ⚡ ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ CANDIDATE_LEFT_LIST:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ CANDIDATE_RIGHT_LIST:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ CANDIDATE_SUPPORT_LIST:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ OCC_SCAN_COUNT:
+        ADJACENT_OCCURRENCE_COUNT;
+    IF (ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ OCC_SCAN_COUNT: 0;
+        ⚡ RESULT_ALLOWED: 0;
+    }
+
+    ⚡ OI: 0;
+    WHILE (OI < OCC_SCAN_COUNT) {
+        ⚡ O_LEFT:
+            H("list_get", ADJ_LEFT, OI, NULL);
+        ⚡ O_RIGHT:
+            H("list_get", ADJ_RIGHT, OI, NULL);
+
+        ⚡ EXISTING_SPAN: 0;
+        ⚡ EXISTING_CANDIDATE_COUNT:
+            H("list_len", CANDIDATE_LEFT_LIST, NULL, NULL);
+        ⚡ CI: 0;
+
+        WHILE (CI < EXISTING_CANDIDATE_COUNT) {
+            ⚡ C_LEFT:
+                H("list_get", CANDIDATE_LEFT_LIST, CI, NULL);
+            ⚡ C_RIGHT:
+                H("list_get", CANDIDATE_RIGHT_LIST, CI, NULL);
+            ⚡ SPAN_SAME:
+                ordered_span_matches(O_LEFT, O_RIGHT, C_LEFT, C_RIGHT);
+
+            IF (SPAN_SAME == 1) {
+                ⚡ EXISTING_SPAN: 1;
+            }
+
+            ⚡ CI: CI + 1;
+        }
+
+        IF (EXISTING_SPAN == 0) {
+            ⚡ SUPPORT_COUNT: 0;
+            ⚡ KI: 0;
+
+            WHILE (KI < OCC_SCAN_COUNT) {
+                ⚡ K_LEFT:
+                    H("list_get", ADJ_LEFT, KI, NULL);
+                ⚡ K_RIGHT:
+                    H("list_get", ADJ_RIGHT, KI, NULL);
+                ⚡ K_SEQ:
+                    H("list_get", ADJ_SEQUENCE_ID, KI, NULL);
+                ⚡ K_MATCH:
+                    ordered_span_matches(K_LEFT, K_RIGHT, O_LEFT, O_RIGHT);
+
+                IF (K_MATCH == 1) {
+                    ⚡ PRIOR_SAME_SEQUENCE: 0;
+                    ⚡ PI: 0;
+
+                    WHILE (PI < KI) {
+                        ⚡ P_LEFT:
+                            H("list_get", ADJ_LEFT, PI, NULL);
+                        ⚡ P_RIGHT:
+                            H("list_get", ADJ_RIGHT, PI, NULL);
+                        ⚡ P_SEQ:
+                            H("list_get", ADJ_SEQUENCE_ID, PI, NULL);
+                        ⚡ P_MATCH:
+                            ordered_span_matches(P_LEFT, P_RIGHT, O_LEFT, O_RIGHT);
+                        ⚡ P_SEQ_SAME:
+                            exact(P_SEQ, K_SEQ);
+
+                        IF (P_MATCH == 1) {
+                            IF (P_SEQ_SAME == 1) {
+                                ⚡ PRIOR_SAME_SEQUENCE: 1;
+                            }
+                        }
+
+                        ⚡ PI: PI + 1;
+                    }
+
+                    IF (PRIOR_SAME_SEQUENCE == 0) {
+                        ⚡ SUPPORT_COUNT:
+                            SUPPORT_COUNT + 1;
+                    }
+                }
+
+                ⚡ KI: KI + 1;
+            }
+
+            ⚡ PUSH_CANDIDATE_LEFT:
+                H("list_push", CANDIDATE_LEFT_LIST, O_LEFT, NULL);
+            ⚡ PUSH_CANDIDATE_RIGHT:
+                H("list_push", CANDIDATE_RIGHT_LIST, O_RIGHT, NULL);
+            ⚡ PUSH_CANDIDATE_SUPPORT:
+                H("list_push", CANDIDATE_SUPPORT_LIST, SUPPORT_COUNT, NULL);
+        }
+
+        ⚡ OI: OI + 1;
+    }
+
+    ⚡ CANDIDATE_SPAN_COUNT:
+        H("list_len", CANDIDATE_LEFT_LIST, NULL, NULL);
+
+    ⚡ QUALIFIED_SPAN_COUNT: 0;
+    ⚡ BEST_SET: 0;
+    ⚡ BEST_TIE: 0;
+    ⚡ BEST_SUPPORT: 0;
+    ⚡ BEST_UNIT_A: "";
+    ⚡ BEST_UNIT_B: "";
+
+    ⚡ BI: 0;
+    WHILE (BI < CANDIDATE_SPAN_COUNT) {
+        ⚡ BA:
+            H("list_get", CANDIDATE_LEFT_LIST, BI, NULL);
+        ⚡ BB:
+            H("list_get", CANDIDATE_RIGHT_LIST, BI, NULL);
+        ⚡ BS:
+            H("list_get", CANDIDATE_SUPPORT_LIST, BI, NULL);
+        ⚡ SUPPORT_QUALIFIES: 0;
+
+        IF (MIN_SPAN_SUPPORT < BS) {
+            ⚡ SUPPORT_QUALIFIES: 1;
+        }
+        IF (BS == MIN_SPAN_SUPPORT) {
+            ⚡ SUPPORT_QUALIFIES: 1;
+        }
+
+        IF (SUPPORT_QUALIFIES == 1) {
+            ⚡ QUALIFIED_SPAN_COUNT:
+                QUALIFIED_SPAN_COUNT + 1;
+            ⚡ HAD_BEST:
+                BEST_SET;
+
+            IF (HAD_BEST == 0) {
+                ⚡ BEST_SET: 1;
+                ⚡ BEST_TIE: 0;
+                ⚡ BEST_SUPPORT: BS;
+                ⚡ BEST_UNIT_A: BA;
+                ⚡ BEST_UNIT_B: BB;
+            }
+
+            IF (HAD_BEST == 1) {
+                ⚡ SUPPORT_GREATER: 0;
+                ⚡ SUPPORT_EQUAL:
+                    exact(BS, BEST_SUPPORT);
+
+                IF (BEST_SUPPORT < BS) {
+                    ⚡ SUPPORT_GREATER: 1;
+                }
+
+                IF (SUPPORT_GREATER == 1) {
+                    ⚡ BEST_TIE: 0;
+                    ⚡ BEST_SUPPORT: BS;
+                    ⚡ BEST_UNIT_A: BA;
+                    ⚡ BEST_UNIT_B: BB;
+                }
+
+                IF (SUPPORT_EQUAL == 1) {
+                    ⚡ SAME_AS_BEST:
+                        ordered_span_matches(BA, BB, BEST_UNIT_A, BEST_UNIT_B);
+
+                    IF (SAME_AS_BEST == 0) {
+                        ⚡ BEST_TIE: 1;
+                    }
+                }
+            }
+        }
+
+        ⚡ BI: BI + 1;
+    }
+
+    ⚡ SPAN_CANDIDATE_STATUS:
+        "INSUFFICIENT_RECURRENT_SPAN_EVIDENCE";
+    ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+    ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+    ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+
+    IF (RESULT_ALLOWED == 1) {
+        IF (BEST_SET == 1) {
+            IF (BEST_TIE == 1) {
+                ⚡ SPAN_CANDIDATE_STATUS:
+                    "AMBIGUOUS_ADJACENT_SPAN_CANDIDATE";
+                ⚡ SPAN_CANDIDATE_SUPPORT:
+                    BEST_SUPPORT;
+            }
+            IF (BEST_TIE == 0) {
+                ⚡ SPAN_CANDIDATE_STATUS:
+                    "ADJACENT_SPAN_CANDIDATE_INDUCED";
+                ⚡ SPAN_CANDIDATE_UNIT_A:
+                    BEST_UNIT_A;
+                ⚡ SPAN_CANDIDATE_UNIT_B:
+                    BEST_UNIT_B;
+                ⚡ SPAN_CANDIDATE_SUPPORT:
+                    BEST_SUPPORT;
+            }
+        }
+    }
+
+    IF (PREVIOUS_STATE_INVALID == 1) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_PREVIOUS_STATE_INVALID";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_INPUT_BOUND";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (0 < INVALID_SEQUENCE_RECORD_COUNT) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_SEQUENCE_RECORD_INVALID";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (0 < SEQUENCE_ID_COLLISION_COUNT) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_SEQUENCE_ID_COLLISION";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (SEQUENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_SEQUENCE_CAPACITY";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ SPAN_CANDIDATE_STATUS:
+            "REFUSED_ADJACENT_OCCURRENCE_CAPACITY";
+        ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+        ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+        ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+    }
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ SPAN_CANDIDATE_STATUS:
+                "REFUSED_PERSISTENCE_FAILURE";
+            ⚡ SPAN_CANDIDATE_UNIT_A: "NONE";
+            ⚡ SPAN_CANDIDATE_UNIT_B: "NONE";
+            ⚡ SPAN_CANDIDATE_SUPPORT: 0;
+        }
+    }
+
+    ⚡ print("SIGMA_VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("PREVIOUS_STATE_VALID", PREVIOUS_STATE_VALID);
+    ⚡ print("PREVIOUS_STATE_INVALID", PREVIOUS_STATE_INVALID);
+    ⚡ print("PRIOR_SEQUENCE_COUNT", PRIOR_SEQUENCE_COUNT);
+    ⚡ print("NEW_SEQUENCE_LINE_COUNT", NEW_SEQUENCE_LINE_COUNT);
+    ⚡ print("NEW_UNIQUE_SEQUENCE_COUNT", NEW_UNIQUE_SEQUENCE_COUNT);
+    ⚡ print("DUPLICATE_SEQUENCE_COUNT", DUPLICATE_SEQUENCE_COUNT);
+    ⚡ print("SEQUENCE_ID_COLLISION_COUNT", SEQUENCE_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_SEQUENCE_RECORD_COUNT", INVALID_SEQUENCE_RECORD_COUNT);
+    ⚡ print("TOTAL_SEQUENCE_COUNT", TOTAL_SEQUENCE_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("SEQUENCE_CAPACITY_EXCEEDED", SEQUENCE_CAPACITY_EXCEEDED);
+    ⚡ print("ADJACENT_OCCURRENCE_COUNT", ADJACENT_OCCURRENCE_COUNT);
+    ⚡ print("ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED", ADJACENT_OCCURRENCE_CAPACITY_EXCEEDED);
+    ⚡ print("CANDIDATE_SPAN_COUNT", CANDIDATE_SPAN_COUNT);
+    ⚡ print("QUALIFIED_SPAN_COUNT", QUALIFIED_SPAN_COUNT);
+    ⚡ print("SPAN_CANDIDATE_STATUS", SPAN_CANDIDATE_STATUS);
+    ⚡ print("SPAN_CANDIDATE_UNIT_A", SPAN_CANDIDATE_UNIT_A);
+    ⚡ print("SPAN_CANDIDATE_UNIT_B", SPAN_CANDIDATE_UNIT_B);
+    ⚡ print("SPAN_CANDIDATE_SUPPORT", SPAN_CANDIDATE_SUPPORT);
+    ⚡ print("STATE_COMMIT_ALLOWED", STATE_COMMIT_ALLOWED);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("MAX_SEQUENCES", MAX_SEQUENCES);
+    ⚡ print("MAX_UNITS_PER_SEQUENCE", MAX_UNITS_PER_SEQUENCE);
+    ⚡ print("MAX_ADJACENT_OCCURRENCES", MAX_ADJACENT_OCCURRENCES);
+    ⚡ print("MIN_SPAN_SUPPORT", MIN_SPAN_SUPPORT);
+    ⚡ print("SUPPORT_UNIT", "DISTINCT_SEQUENCE_ID");
+    ⚡ print("SPAN_ORDER_POLICY", "ORDERED_ADJACENCY");
+    ⚡ print("SPAN_CANDIDATE_GENERATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("HOST_SPAN_GENERATION", "NO");
+    ⚡ print("HOST_SPAN_SELECTION", "NO");
+    ⚡ print("HOST_BOUNDARY_INFERENCE", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("NATURAL_LANGUAGE_TOKENIZATION", "NOT_PROVEN");
+    ⚡ print("WORD_BOUNDARY_DETECTION", "NOT_PROVEN");
+    ⚡ print("PHRASE_BOUNDARY_DETECTION", "NOT_PROVEN");
+    ⚡ print("PHRASE_SEMANTICS", "NOT_PROVEN");
+    ⚡ print("WORD_MEANING", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
