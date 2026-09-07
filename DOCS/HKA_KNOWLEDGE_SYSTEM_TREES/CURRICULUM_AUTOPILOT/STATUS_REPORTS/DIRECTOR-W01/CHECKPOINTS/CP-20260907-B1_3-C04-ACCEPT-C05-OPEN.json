@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_3-C04-ACCEPT-C05-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"ACCEPT_C04_OPEN_C05",
+  "accepted_child":{"scope_id":"B1.3-C04","window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04","accepted_commit_sha":"caa12019682e1a9274fe75b8ab20435c3bfb4d2e","worker_candidate_sha":"1cc11fa77b7de2b89119f47fa646d80d2d7b82ca","effective_academic_repair_sha":"889034adfe9707dd004d51123a63a714467ddab7","repair_checkpoint_sha":"4a486d71f8b00669f476ef45b4725e05daad3c8b","topics":8,"claims":40,"learning_objectives":32,"semantic_closure":"32/32 PASS_AFTER_REPAIR","worker_self_repairs":0,"director_assistant_repairs":3,"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","canonical_prerequisite_alignment":"PASS_B1.3-C03_B1.2-C04_EXACTLY","prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS","ownership":"PASS","source_resolution":"3/3 PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "opened_child":{"scope_id":"B1.3-C05","name":"Hóa phân tích","window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05","execution_branch":"hka-tree/c01-w04-chemistry-c05","canonical_topic_count":7,"topics":["Phân tích định tính","Phân tích định lượng","Chuẩn độ","Sắc ký","Khối phổ","Phổ học phân tích","Cảm biến hóa học"],"prerequisites":["B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0","B1.3-C04@caa12019682e1a9274fe75b8ab20435c3bfb4d2e"],"open_order_commit":"e2daeecc439baa661a870f4509e1afb47cd5b27e"},
+  "locked_successors":["B1.3-C06","B1.3-C07","B1.3-C08","B1.3-C09","B1.3-C10"],
+  "updated_at":"2026-09-07T22:35:00+07:00"
+}
