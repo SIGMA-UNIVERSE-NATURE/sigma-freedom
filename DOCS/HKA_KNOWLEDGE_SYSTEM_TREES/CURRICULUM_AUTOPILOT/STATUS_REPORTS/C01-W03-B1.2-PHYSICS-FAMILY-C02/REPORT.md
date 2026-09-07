@@ -1,15 +1,15 @@
 # Status Report — C01-W03-B1.2-PHYSICS-FAMILY-C02
 
-Status: `REPAIR_READY` for the accepted `B1.2-C02 — Cơ học cổ điển` curriculum.
+Status: `PASS_CANDIDATE_REPAIRED` for the targeted foundational mass-vs-weight repair at the true owner `B1.2-C02 — Cơ học cổ điển`.
 
-Original C02 academic work remains accepted at `2c112f281ca8915ef2e8800043db952c550531bc` with 8/8 canonical topics, 64 claims, 32 learning objectives and 32/32 semantic closures.
+Accepted baseline: `2c112f281ca8915ef2e8800043db952c550531bc`. Effective academic repair SHA: `efc85c8278da087063e94c6e940719514e389f18`. Terminal repair checkpoint: `CP04-MASS-WEIGHT-REPAIR-PASS` committed at `ddba339e7e69f226a5ca0f80f5318c159ceaca18`.
 
-B1.2 family completion later identified one confirmed foundational debt at this true owner: the curriculum must explicitly distinguish **mass** from **weight** and close the associated foundational semantics without cross-scope patching.
+The repair versioned existing stable N002 records in place. It explicitly distinguishes Newtonian mass (inertial scalar, kg, not force) from gravitational weight (force, N, local-field dependent), states the local approximately-uniform-field model `W = m g` with its domain, explains that changing location/local `g` changes weight rather than Newtonian mass, distinguishes balance-based mass measurement from force/spring-scale readings, and separates apparent weight from gravitational weight.
 
-Director repair order: `f5437dff0c25e635c7b4b0a697cf30d634c14c51`.
-Repair prompt: `GPT_REPAIR_PROMPT.md`.
-Activation checkpoint: `CP03-MASS-WEIGHT-FOUNDATIONAL-REPAIR-ACTIVATED`.
+Counts remain 8/8 canonical topics, 64 claims, 32 learning objectives, and 32/32 Claim→Learning-Objective semantic closures. Existing IDs were preserved; no C01 or C03-C12 academic output was modified.
 
-Worker must repair only the necessary C02 records, preserve stable IDs, self-audit/re-audit, commit/read-back durable state, then return one final repaired receipt. Other B1.2 children remain untouched.
+Self-audit found two repair issues and both were repaired: the original gravity wording did not explicitly close mass-vs-weight meaning/unit/location semantics; and the first measurement framing needed a clean separation between gravitational weight, force-scale reading and apparent weight. Re-audit: PASS.
 
-B1.2 family completion remains `HOLD_FOUNDATIONAL_REPAIR`; B1.3 remains locked. After final C02 repair receipt, Director must reconcile the effective C02 SHA before the B1.2 family completion/integration audit can run.
+Audits: foundational mass-vs-weight PASS; canonical prerequisite alignment PASS (`C01 + B1.1-C03 + B1.1-C04`); prerequisite graph PASS (acyclic, no dangling IDs); ownership/semantic duplicate PASS; `FUTURE_LOCKED_SUPPORT=0`; stage boundary PASS — CURRICULUM ONLY.
+
+B1.2 family completion remains gated for Director reconciliation of the repaired C02 effective SHA. B1.3 is not unlocked.
