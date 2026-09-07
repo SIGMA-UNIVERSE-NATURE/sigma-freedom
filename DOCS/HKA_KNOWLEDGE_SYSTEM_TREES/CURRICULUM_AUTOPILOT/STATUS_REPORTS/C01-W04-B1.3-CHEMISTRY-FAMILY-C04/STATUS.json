@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c04",
+  "input_control_plane_head":"c5acd5586a846a887e2699f9745ec650e862b895",
+  "scope_ids":["B1.3-C04"],
+  "scope_name":"Phản ứng và cân bằng",
+  "canonical_topic_count":8,
+  "prerequisites":["B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0","B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4"],
+  "last_checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "last_checkpoint_commit_sha":"b68441b831ac42ffaf713ec2ebb8120ee613522b",
+  "remaining_work":["Execute GPT_EXECUTION_PROMPT.md end-to-end and return only final PASS candidate or true external BLOCK."],
+  "blocking_issues":[],
+  "successor_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "updated_at":"2026-09-07T18:48:00+07:00"
+}
