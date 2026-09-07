@@ -23,7 +23,7 @@
   "self_repairs":[{"repair_id":"MAP-SR01","defect":"Initial mapping draft risked treating Earth/space and health-domain conclusions as B1.2 physics obligations because several external school curricula integrate those contexts into science.","repair":"Reclassified domain conclusions as NOT_OWNER while retaining their underlying transferable physical principles under C02/C04/C06/C10/C12; no child academic output was changed.","status":"REPAIRED"}],
   "self_repair_count":1,
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "B1_3_unlock":false,
   "next_action":"Fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT_PASS — GATED pending Director acceptance of mapping"
