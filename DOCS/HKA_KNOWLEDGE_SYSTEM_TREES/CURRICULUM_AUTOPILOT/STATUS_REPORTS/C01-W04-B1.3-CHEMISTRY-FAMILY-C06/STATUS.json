@@ -25,7 +25,7 @@
     "Organic foundations now directly support hybridization/rotation, functional-group property reasoning and leaving-group vocabulary.",
     "Stereochemistry now directly supports constitutional versus stereoisomer classification, chiral-environment effects, stereoselectivity and racemic/enantiomeric composition.",
     "Synthesis/medicinal objectives now have explicit route/selectivity/step-economy and physicochemical/ADME/synthetic-accessibility Claim support.",
-    "Polymer objectives now have explicit monomer/architecture/control/copoylmer/recyclability/degradation support; N002-D2 closure now includes the nomenclature claim."
+    "Polymer objectives now have explicit monomer/architecture/control/copolymer/recyclability/degradation support; N002-D2 closure now includes the nomenclature claim."
   ],
   "blocking_issues":[],
   "red_flag":"NONE",
