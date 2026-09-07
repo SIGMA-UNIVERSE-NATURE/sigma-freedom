@@ -1,0 +1,20 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-C02-RECONCILE-FAMILY-AUDIT-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"RECONCILE_C02_AND_OPEN_B1_2_FAMILY_AUDIT",
+  "C12_accepted_commit_sha":"d0772ad9a030defa8d29a52896298b95bb7f93f6",
+  "C02_accepted_baseline_sha":"2c112f281ca8915ef2e8800043db952c550531bc",
+  "C02_repaired_final_commit_sha":"8c61737276f5d17256c2ec7d075a8b5a46ed192a",
+  "C02_effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18",
+  "C02_repair_checkpoint_sha":"1a52b2edf027bae17e23b500d4c91ffa805fdc20",
+  "mass_vs_weight_foundational":"PASS",
+  "stable_ids":"PRESERVED",
+  "future_locked_support":0,
+  "family_controller_window":"C01-W03-B1.2-PHYSICS-FAMILY",
+  "family_controller_branch":"hka-tree/c01-w03-physics-family",
+  "family_completion_status":"AUDIT_READY",
+  "B1_3_unlock":false,
+  "updated_at":"2026-09-07T10:42:00+07:00"
+}
