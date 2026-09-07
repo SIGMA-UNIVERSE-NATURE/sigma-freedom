@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-REPAIR",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01",
+  "scope_id":"B1.3-C01",
+  "role":"DIRECTOR_ASSISTANT_AUDIT",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c01",
+  "worker_candidate_sha":"71420fb22337ae966ade8c34ece3c5ea66e1d060",
+  "claims_repair_commit_sha":"619968bcd954389363e0a9cd5c3a46ba4e55d63e",
+  "effective_academic_repair_sha":"90952b35867c6aac48f53ffba8b74b50cad5db2f",
+  "counts":{"canonical_topics":6,"claims":24,"learning_objectives":24,"semantic_closures":24,"sources":5,"cross_links":15,"sequence_records":6},
+  "repairs":[
+    {"repair_id":"DA-C01-SR01","type":"FOUNDATIONAL_CHEMISTRY_SUPPORT","changes":["Added explicit relative molecular-mass rule to existing N002-C002.","Made ordinary solid/liquid/gas macroscopic behavior explicit in existing N005-C001."],"stable_ids_preserved":true},
+    {"repair_id":"DA-C01-SR02","type":"SEMANTIC_SUPPORT_STRENGTHENING","changes":["Generalized existing N003-C003 electron-count rule to monatomic and polyatomic ions.","Made chemistry-facing isotope effect explicit in existing N004-C004 while retaining B1.2-C10 as boundary-only."],"stable_ids_preserved":true},
+    {"repair_id":"DA-C01-SR03","type":"SEMANTIC_CLOSURE_COMPLETENESS","changes":["N001-D3 now includes model-limit claim C004.","N002-D1 now includes formula-composition claim C002.","N006-D1 now includes occupancy/filling support C002+C003."],"closure_row_count_unchanged":true}
+  ],
+  "audits":{"topics":"6/6 PASS","claims":"24/24 PASS","learning_objectives":"24/24 PASS","semantic_closure":"24/24 PASS_AFTER_REPAIR","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","canonical_prerequisite_alignment":"PASS — B1.2-C07 + B1.2-C08","prerequisite_graph":"PASS — ACYCLIC, NO DANGLING IDS","ownership":"PASS","source_resolution":"5/5 PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS — CURRICULUM ONLY","durable_read_back":"PASS"},
+  "director_acceptance_declared":false,
+  "B1_3_C02_unlock":false,
+  "red_flag":"NONE",
+  "next_action":"Director review repaired B1.3-C01 candidate; C02 remains gated pending formal acceptance."
+}
