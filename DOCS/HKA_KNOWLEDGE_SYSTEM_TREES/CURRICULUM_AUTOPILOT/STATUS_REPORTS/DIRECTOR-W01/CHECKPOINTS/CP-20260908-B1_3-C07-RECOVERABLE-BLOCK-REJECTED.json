@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260908-B1_3-C07-RECOVERABLE-BLOCK-REJECTED",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "scope_id":"B1.3-C07",
+  "worker_window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C07",
+  "decision":"BLOCK_REJECTED_RECOVERABLE",
+  "reason":"Worker input-resolution failure only; authoritative execution prompt contains exactly three canonical prerequisite PASS inputs, not five.",
+  "authoritative_execution_prompt_sha":"dabd452f0ac567b6608ee8d34a7c83197cc099d1",
+  "restart_branch":"hka-tree/c01-w04-chemistry-c07",
+  "restart_anchor_sha":"2598893c3c99ddb66d0ebac066e3386dd8f501a2",
+  "rejected_restart_anchor_sha":"134659bee577057cdee84d38da03b1df1c9e42fb",
+  "canonical_prerequisites":[
+    "B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0",
+    "B1.3-C04@caa12019682e1a9274fe75b8ab20435c3bfb4d2e",
+    "B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650"
+  ],
+  "director_gate_repair_required":false,
+  "cross_scope_academic_mutation":0,
+  "B1_3_C08_unlock":false,
+  "next_action":"Re-run the complete B1.3-C07 transaction from restart_anchor_sha using the authoritative GPT_EXECUTION_PROMPT.md. Do not carry forward the rejected BLOCK receipt. Return only terminal PASS_CANDIDATE or genuine external BLOCK.",
+  "updated_at":"2026-09-08T03:00:00+07:00"
+}
