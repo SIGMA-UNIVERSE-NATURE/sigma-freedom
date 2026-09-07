@@ -12,7 +12,7 @@
     {"repair_id":"SR03","defect":"Draft black-hole and wave discussion risked importing locked future astrophysics/cosmology support.","repair":"Restricted future scopes including C12 to boundary references only; all closure support is C11-local or accepted prerequisite context.","status":"REPAIRED"}
   ],
   "re_audit":"PASS",
-  "durable_read_back":"PENDING_FINAL_READ_BACK",
+  "durable_read_back":"PASS",
   "red_flag":"NONE",
   "next":"B1.2-C12 — GATED pending Director acceptance of C11"
 }
