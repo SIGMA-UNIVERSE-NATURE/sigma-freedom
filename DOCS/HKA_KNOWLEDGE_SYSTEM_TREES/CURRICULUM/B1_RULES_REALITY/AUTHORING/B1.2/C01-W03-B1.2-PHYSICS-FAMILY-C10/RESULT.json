@@ -1,15 +1,23 @@
 {
-  "window_id": "C01-W03-B1.2-PHYSICS-FAMILY-C10",
-  "scope_id": "B1.2-C10",
-  "stage": "CURRICULUM",
-  "status": "PASS_CANDIDATE",
-  "canonical_topics": {"expected": 8, "authored": 8, "status": "PASS"},
-  "artifact_counts": {"nodes": 8, "claims": 32, "sources": 6, "learning_objectives": 32, "claim_to_learning_objective_closures": 32, "cross_links": 7, "sequence_intent_records": 8},
-  "audit": {"id_uniqueness": "PASS", "claim_integrity": "32/32 PASS", "source_resolution": "6/6 PASS", "learning_objective_completeness": "32/32 PASS", "semantic_closure": "32/32 PASS — exactly one row per objective", "supporting_claim_resolution": "PASS", "requires_unlocked_scope_claims": false, "future_locked_support": 0, "semantic_duplicate_scan": "PASS", "ownership_collision_scan": "PASS", "canonical_prerequisite_alignment": "PASS — C01 + C07", "prerequisite_graph": "PASS — acyclic, no dangling IDs", "foundational_general_education": "PASS_AFTER_REPAIR", "stage_discipline": "PASS — CURRICULUM only"},
-  "self_repairs": [{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
-  "re_audit": "PASS",
-  "academic_output_commit_sha": "5f63298bd2e6ccf37da46bca5f1cb9a87c94280b",
-  "durable_read_back": "PASS",
-  "red_flag": "NONE",
-  "next": "B1.2-C11 — GATED pending Director acceptance of C10"
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C10",
+  "scope_id":"B1.2-C10",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "canonical_topics":{"expected":8,"authored":8,"status":"PASS"},
+  "artifact_counts":{"nodes":8,"claims":32,"sources":6,"learning_objectives":32,"claim_to_learning_objective_closures":32,"cross_links":7,"sequence_intent_records":8},
+  "audit":{"id_uniqueness":"PASS","claim_integrity":"32/32 PASS","source_resolution":"6/6 PASS","learning_objective_completeness":"32/32 PASS_AFTER_ASSISTANT_REPAIR","semantic_closure":"32/32 PASS_AFTER_ASSISTANT_REPAIR — exactly one row per objective and semantically aligned","supporting_claim_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS","canonical_prerequisite_alignment":"PASS — B1.2-C01 + B1.2-C07","prerequisite_graph":"PASS — acyclic, no dangling IDs","foundational_general_education":"PASS_AFTER_ASSISTANT_REPAIR","stage_discipline":"PASS — CURRICULUM only"},
+  "worker_self_repairs":[{"repair_id":"SR01","status":"REPAIRED"},{"repair_id":"SR02","status":"REPAIRED"},{"repair_id":"SR03","status":"REPAIRED"}],
+  "director_assistant_repairs":[
+    {"repair_id":"DA-SR01","defect":"All 32 LO records were generic boilerplate and several D3 formulations overclaimed quantitative application beyond their supporting Claims.","repair":"Versioned all 32 LO records in place with specific, evidence-bearing outcomes aligned to existing Claim support and foundational progression; no IDs added, deleted or renumbered.","status":"REPAIRED"},
+    {"repair_id":"DA-SR02","defect":"N002-D4 semantic support did not reference the exponential-decay Claim after the objective was made specific.","repair":"Versioned the N002-D4 closure row to support N002-C001 + N002-C002.","status":"REPAIRED"}
+  ],
+  "re_audit":"PASS",
+  "worker_candidate_commit_sha":"c530e131bd73ce774c57fc7f0a24e029166d90da",
+  "worker_academic_output_commit_sha":"5f63298bd2e6ccf37da46bca5f1cb9a87c94280b",
+  "effective_academic_output_commit_sha":"302de1437324807979aa492891b6505391598344",
+  "director_assistant_checkpoint_commit_sha":"27dd30b09027f3fe0d5f012e48e8f6430e370954",
+  "durable_read_back":"PASS_AFTER_ASSISTANT_REPAIR",
+  "director_acceptance_declared":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C10 candidate; B1.2-C11 remains GATED until Director acceptance."
 }
