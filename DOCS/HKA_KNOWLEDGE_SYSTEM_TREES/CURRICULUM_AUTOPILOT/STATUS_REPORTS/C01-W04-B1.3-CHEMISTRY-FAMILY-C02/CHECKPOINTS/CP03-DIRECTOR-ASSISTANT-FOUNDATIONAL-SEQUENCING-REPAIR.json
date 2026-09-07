@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEQUENCING-REPAIR",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02",
+  "scope_id":"B1.3-C02",
+  "role":"DIRECTOR_ASSISTANT_AUDIT",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "worker_candidate_sha":"05ec9eef826b4f32ecff355a91d1f028c75ad0c9",
+  "worker_academic_output_sha":"58e7cd8ec85a068671e58b50e0dfde83fdc703b8",
+  "assistant_claim_repair_sha":"4c7ff9fae4bba86ef4515e611fa4734f178e62ee",
+  "effective_academic_repair_sha":"5a42e9c11a678066839118eac80047f998634221",
+  "repairs":[
+    {"repair_id":"DA-C02-SR01","status":"REPAIRED","type":"FOUNDATIONAL_PERIODICITY","details":"Versioned existing N002 claims/objectives to make common main-group families and electronegativity explicit before bonding C03; stable IDs and counts preserved."},
+    {"repair_id":"DA-C02-SR02","status":"REPAIRED","type":"SEQUENCING_SEMANTIC_ALIGNMENT","details":"Versioned N004-D2 objective/evidence so coordination-number donor counting is learned before formal denticity vocabulary is introduced in N005."}
+  ],
+  "counts":{"topics":6,"nodes":6,"claims":30,"sources":4,"learning_objectives":24,"semantic_closures":24,"cross_links":15,"sequence_intent_records":6},
+  "audits":{"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","semantic_closure":"24/24 PASS_AFTER_REPAIR","stable_ids":"PRESERVED","canonical_prerequisite_alignment":"PASS — B1.3-C01 only","prerequisite_graph":"PASS — ACYCLIC, NO DANGLING IDS","ownership":"PASS","source_resolution":"4/4 PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS — CURRICULUM ONLY","durable_read_back":"PASS"},
+  "director_acceptance_declared":false,
+  "B1_3_C03_unlock":false,
+  "red_flag":"NONE"
+}
