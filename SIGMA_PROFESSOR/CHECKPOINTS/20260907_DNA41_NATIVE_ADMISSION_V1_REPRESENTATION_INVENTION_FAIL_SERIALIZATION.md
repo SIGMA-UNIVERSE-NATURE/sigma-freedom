@@ -1,0 +1,42 @@
+# DNA-41 Native Admission V1 — Representation Invention — FAIL
+
+Date: 2026-09-07 (Asia/Ho_Chi_Minh)
+Branch: `SIGMA_LIFE`
+
+DNA_ID=DNA-41
+NAME=Representation Invention
+STATUS=NOT_ADMITTED
+CANON_REFERENCE=54_CORES/SIGMA_DNA_41_REPRESENTATION_INVENTION.py
+CANON_REFERENCE_GIT_BLOB_SHA1=020ba2c5364ff559c5dbc1981697d98210cb3086
+DIRECT_RUNTIME_DEPENDENCIES=DNA-03
+
+SOURCE_SHA256=d96bdbc9ab3169ed0d78cf09de86938c824060cc68a8de0218b07bf1676a2598
+BYTECODE_SHA256=3f903a46776f40ed97517e27b6e2f2f9c8bd4536ff20c0001fa05c1fe5f4d269
+RUNNER_SHA256=66701b8004bd4e7ed73f3749ace917a8b05642eb6ffafa4d0040c5a6286119d4
+BUNDLE_SHA256=aa3c6003eaa4c530d15459896362e46f92f87e921c9979d1a95c82a9d14e7247
+
+TOTAL_VM_INVOCATIONS=50
+POST_VM_ALIGNMENT_PASS_COUNT=1
+POST_VM_ALIGNMENT_FAIL_COUNT=49
+VM_NONZERO_COUNT=16
+STEP_LIMIT_HIT_COUNT=0
+SENTINEL_FAIL_COUNT=16
+UNSEEN_HIGH_ENTROPY_TOKEN_LEAK_COUNT_IN_SOURCE_OR_BYTECODE=0
+FINAL_REPRESENTATION_INVENTION_LEDGER_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+FINAL_REPRESENTATION_TRANSITION_RECORD_COUNT=0
+ADMISSION=FAIL
+RESULT=FAIL_MACHINE_GATE
+
+FIRST_CAUSAL_CLASSIFICATION=NATIVE_SOURCE_LEDGER_SERIALIZATION
+SEMANTIC_POLICY_DEFECT_FOUND=NO
+RUNNER_ORACLE_DEFECT_FOUND=NO
+
+ROOT_CAUSE:
+All 16 retain-eligible cases enter the ledger serialization branch. V1 constructs `RECORD_LINE` by concatenating numeric native values `REPRESENTATION_CHANGED` and `REPRESENTATION_INVENTED` directly into a string. The locked VM rejects this runtime string-concatenation type combination before sentinel emission/write. Therefore exactly the 16 retain-eligible invocations are nonzero/sentinel failures. Because none of those writes happen, the persistent ledger remains empty; the post-VM oracle's expected prestate count then diverges for subsequent cases, producing the observed 49/50 alignment failure cascade. The corrupt-store case is the only aligned case because its oracle path intentionally resets expected-before to zero.
+
+MINIMAL_FIX_REQUIRED=SERIALIZE_CHANGED_AND_INVENTED_AS_EXPLICIT_STRING_TOKENS_0_OR_1
+SOURCE_CHANGE_REQUIRED=YES
+FULL_50_CASE_RERUN_REQUIRED=YES
+WEAKEN_GATE_TO_FORCE_PASS=FORBIDDEN
+
+Claim remains: DNA-41 V1 is NOT admitted.
