@@ -387,6 +387,12 @@ DEF pair_matches(a, b, x, y) {
     ⚡ RESULT_ALLOWED:
         LEARNING_ALLOWED * PERSISTENCE_OK;
 
+    ⚡ SCAN_OBSERVATION_COUNT:
+        TOTAL_OBSERVATION_COUNT;
+    IF (RESULT_ALLOWED == 0) {
+        ⚡ SCAN_OBSERVATION_COUNT: 0;
+    }
+
     ⚡ CANDIDATE_A_LIST:
         H("list_new", NULL, NULL, NULL);
     ⚡ CANDIDATE_B_LIST:
@@ -395,9 +401,9 @@ DEF pair_matches(a, b, x, y) {
         H("list_new", NULL, NULL, NULL);
 
     ⚡ OI: 0;
-    WHILE (OI < TOTAL_OBSERVATION_COUNT) {
+    WHILE (OI < SCAN_OBSERVATION_COUNT) {
         ⚡ OJ: OI + 1;
-        WHILE (OJ < TOTAL_OBSERVATION_COUNT) {
+        WHILE (OJ < SCAN_OBSERVATION_COUNT) {
             ⚡ OI_FORM: H("list_get", ALL_FORMS, OI, NULL);
             ⚡ OJ_FORM: H("list_get", ALL_FORMS, OJ, NULL);
             ⚡ OI_LEFT: H("list_get", ALL_LEFT, OI, NULL);
@@ -442,10 +448,10 @@ DEF pair_matches(a, b, x, y) {
                     ⚡ SUPPORT_COUNT: 0;
                     ⚡ KI: 0;
 
-                    WHILE (KI < TOTAL_OBSERVATION_COUNT) {
+                    WHILE (KI < SCAN_OBSERVATION_COUNT) {
                         ⚡ KJ: KI + 1;
 
-                        WHILE (KJ < TOTAL_OBSERVATION_COUNT) {
+                        WHILE (KJ < SCAN_OBSERVATION_COUNT) {
                             ⚡ KI_FORM:
                                 H("list_get", ALL_FORMS, KI, NULL);
                             ⚡ KJ_FORM:
