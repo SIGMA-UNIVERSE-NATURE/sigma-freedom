@@ -1,0 +1,304 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.DNA48.COMPOSITIONAL.INTELLIGENCE.NATIVE][VERSION=1.0]
+
+DEF load_text(path) {
+    RETURN host("read_text", path, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0.0; }
+    IF (value == "NONE") { RETURN 0.0; }
+    RETURN 1.0;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") { RETURN 1.0; }
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF component_count_valid(value) {
+    IF (value == "1") { RETURN 1.0; }
+    IF (value == "2") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF component_type_valid(value) {
+    IF (value == "SKILL") { RETURN 1.0; }
+    IF (value == "CONCEPT") { RETURN 1.0; }
+    RETURN 0.0;
+}
+
+DEF choose_stage1(dep_valid, bool_valid, supplied, base_encoding) {
+    IF (dep_valid < 0.5) { RETURN "DEPENDENCY_BINDING_INVALID"; }
+    IF (bool_valid < 0.5) { RETURN "BOOLEAN_ENCODING_INVALID"; }
+    IF (supplied < 0.5) { RETURN "NO_COMPOSITION_CANDIDATE"; }
+    IF (base_encoding < 0.5) { RETURN "COMPONENT_ENCODING_INVALID"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage2(multiple, types_valid, ids_distinct, artifacts_distinct) {
+    IF (multiple < 0.5) { RETURN "MULTIPLE_COMPONENTS_REQUIRED"; }
+    IF (types_valid < 0.5) { RETURN "UNKNOWN_COMPONENT_TYPE"; }
+    IF (ids_distinct < 0.5) { RETURN "DUPLICATE_COMPONENT_ID"; }
+    IF (artifacts_distinct < 0.5) { RETURN "DISTINCT_COMPONENTS_REQUIRED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_stage3(new_capability, composition_artifact, store_valid, capacity) {
+    IF (new_capability < 0.5) { RETURN "NEW_CAPABILITY_REQUIRED"; }
+    IF (composition_artifact < 0.5) { RETURN "COMPOSITION_ARTIFACT_REQUIRED"; }
+    IF (store_valid < 0.5) { RETURN "COMPOSITION_STORE_INVALID"; }
+    IF (capacity < 0.5) { RETURN "COMPOSITION_CAPACITY_REACHED"; }
+    RETURN "CONTINUE";
+}
+
+DEF choose_status(s1, s2, s3) {
+    IF (s1 != "CONTINUE") { RETURN s1; }
+    IF (s2 != "CONTINUE") { RETURN s2; }
+    IF (s3 != "CONTINUE") { RETURN s3; }
+    RETURN "COMPOSITIONAL_CAPABILITY_STRUCTURED";
+}
+
+⟡(Σ.DNA48_COMPOSITIONAL_INTELLIGENCE_NATIVE_V1) {
+    ⚡ CASE_ID: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/case_id.txt");
+    ⚡ STATE_SCHEMA: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/state_schema.txt");
+    ⚡ COMPOSITION_SUPPLIED_TOKEN: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/composition_supplied.txt");
+    ⚡ COMPOSITION_ID: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/composition_id.txt");
+    ⚡ COMPONENT_COUNT_TOKEN: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component_count.txt");
+    ⚡ COMPONENT1_ID: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component1_id.txt");
+    ⚡ COMPONENT1_TYPE: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component1_type.txt");
+    ⚡ COMPONENT1_ARTIFACT: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component1_artifact.txt");
+    ⚡ COMPONENT2_ID: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component2_id.txt");
+    ⚡ COMPONENT2_TYPE: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component2_type.txt");
+    ⚡ COMPONENT2_ARTIFACT: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/component2_artifact.txt");
+    ⚡ NEW_CAPABILITY: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/new_capability.txt");
+    ⚡ COMPOSITION_ARTIFACT: load_text(".sigma_exec/DNA48_NATIVE_ADMISSION_V1/input/composition_artifact.txt");
+
+    ⚡ DEPENDENCY_BINDING_VALID:
+        present(CASE_ID)
+        * exact(STATE_SCHEMA, "SIGMA_UNIFIED_COGNITIVE_STATE_V1");
+
+    ⚡ BOOLEAN_ENCODINGS_VALID: bool_token_valid(COMPOSITION_SUPPLIED_TOKEN);
+    ⚡ COMPOSITION_SUPPLIED: bool_true(COMPOSITION_SUPPLIED_TOKEN);
+    ⚡ COMPONENT_COUNT_ENCODING_VALID: component_count_valid(COMPONENT_COUNT_TOKEN);
+
+    ⚡ BASE_ENCODING_VALID: 1.0;
+    IF (COMPOSITION_SUPPLIED > 0.5) {
+        ⚡ BASE_ENCODING_VALID:
+            present(COMPOSITION_ID)
+            * COMPONENT_COUNT_ENCODING_VALID
+            * present(COMPONENT1_ID)
+            * present(COMPONENT1_ARTIFACT);
+        IF (COMPONENT_COUNT_TOKEN == "2") {
+            ⚡ BASE_ENCODING_VALID:
+                BASE_ENCODING_VALID
+                * present(COMPONENT2_ID)
+                * present(COMPONENT2_ARTIFACT);
+        }
+    }
+
+    ⚡ MULTIPLE_COMPONENTS: 0.0;
+    IF (COMPONENT_COUNT_TOKEN == "2") { ⚡ MULTIPLE_COMPONENTS: 1.0; }
+
+    ⚡ COMPONENT1_TYPE_VALID: component_type_valid(COMPONENT1_TYPE);
+    ⚡ COMPONENT2_TYPE_VALID: 1.0;
+    IF (COMPONENT_COUNT_TOKEN == "2") { ⚡ COMPONENT2_TYPE_VALID: component_type_valid(COMPONENT2_TYPE); }
+    ⚡ COMPONENT_TYPES_VALID: COMPONENT1_TYPE_VALID * COMPONENT2_TYPE_VALID;
+
+    ⚡ COMPONENT_IDS_DISTINCT: 1.0;
+    ⚡ COMPONENT_ARTIFACTS_DISTINCT: 1.0;
+    IF (COMPONENT_COUNT_TOKEN == "2") {
+        IF (COMPONENT1_ID == COMPONENT2_ID) { ⚡ COMPONENT_IDS_DISTINCT: 0.0; }
+        IF (COMPONENT1_ARTIFACT == COMPONENT2_ARTIFACT) { ⚡ COMPONENT_ARTIFACTS_DISTINCT: 0.0; }
+    }
+
+    ⚡ NEW_CAPABILITY_PRESENT: present(NEW_CAPABILITY);
+    ⚡ COMPOSITION_ARTIFACT_PRESENT: present(COMPOSITION_ARTIFACT);
+
+    ⚡ COMPOSITION_STRUCTURALLY_VALID:
+        DEPENDENCY_BINDING_VALID
+        * BOOLEAN_ENCODINGS_VALID
+        * COMPOSITION_SUPPLIED
+        * BASE_ENCODING_VALID
+        * MULTIPLE_COMPONENTS
+        * COMPONENT_TYPES_VALID
+        * COMPONENT_IDS_DISTINCT
+        * COMPONENT_ARTIFACTS_DISTINCT
+        * NEW_CAPABILITY_PRESENT
+        * COMPOSITION_ARTIFACT_PRESENT;
+
+    ⚡ STORE_PATH: ".sigma_exec/DNA48_NATIVE_ADMISSION_V1/state/compositional_intelligence_ledger.memory";
+    ⚡ STORE_HEADER: "SCHEMA=SIGMA_DNA48_COMPOSITIONAL_INTELLIGENCE_LEDGER_V1";
+    ⚡ STORE_TEXT: load_text(STORE_PATH);
+    ⚡ STORE_EMPTY: exact(STORE_TEXT, "");
+    ⚡ STORE_LINES: host("str_split", STORE_TEXT, "\n", NULL);
+    ⚡ STORE_LINE_TOTAL: host("list_len", STORE_LINES, NULL, NULL);
+    ⚡ MAX_COMPOSITION_RECORDS: 64.0;
+    ⚡ MAX_STORE_SPLIT_LINES: 65.0;
+    ⚡ STORE_RECORD_LIMIT_EXCEEDED: 0.0;
+    IF (MAX_STORE_SPLIT_LINES < STORE_LINE_TOTAL) { ⚡ STORE_RECORD_LIMIT_EXCEEDED: 1.0; }
+
+    ⚡ STORE_HEADER_OK: 0.0;
+    IF (STORE_EMPTY > 0.5) { ⚡ STORE_HEADER_OK: 1.0; }
+    IF (STORE_EMPTY < 0.5) {
+        IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+            ⚡ FIRST_LINE: host("list_get", STORE_LINES, 0, NULL);
+            ⚡ STORE_HEADER_OK: exact(FIRST_LINE, STORE_HEADER);
+        }
+    }
+
+    ⚡ COMPOSITION_RECORD_COUNT_BEFORE: 0.0;
+    ⚡ INVALID_STORE_RECORD_COUNT: 0.0;
+    ⚡ I: 1.0;
+    IF (STORE_RECORD_LIMIT_EXCEEDED < 0.5) {
+        WHILE (I < STORE_LINE_TOTAL) {
+            ⚡ LINE: host("list_get", STORE_LINES, I, NULL);
+            ⚡ PARTS: host("str_split", LINE, "||", NULL);
+            ⚡ PART_TOTAL: host("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0.0;
+            IF (PART_TOTAL == 17) {
+                ⚡ RPREFIX: host("list_get", PARTS, 0, NULL);
+                ⚡ RCASE: host("list_get", PARTS, 1, NULL);
+                ⚡ RCOMPOSITION: host("list_get", PARTS, 2, NULL);
+                ⚡ RC1ID: host("list_get", PARTS, 3, NULL);
+                ⚡ RC1TYPE: host("list_get", PARTS, 4, NULL);
+                ⚡ RC1ART: host("list_get", PARTS, 5, NULL);
+                ⚡ RC2ID: host("list_get", PARTS, 6, NULL);
+                ⚡ RC2TYPE: host("list_get", PARTS, 7, NULL);
+                ⚡ RC2ART: host("list_get", PARTS, 8, NULL);
+                ⚡ RNEWCAP: host("list_get", PARTS, 9, NULL);
+                ⚡ RCOMPART: host("list_get", PARTS, 10, NULL);
+                ⚡ RFORMED: host("list_get", PARTS, 11, NULL);
+                ⚡ REXEC: host("list_get", PARTS, 12, NULL);
+                ⚡ RLEARNING: host("list_get", PARTS, 13, NULL);
+                ⚡ RMODEL: host("list_get", PARTS, 14, NULL);
+                ⚡ REXTERNAL: host("list_get", PARTS, 15, NULL);
+                ⚡ RCOMMIT: host("list_get", PARTS, 16, NULL);
+                ⚡ RIDSDISTINCT: 1.0;
+                ⚡ RARTDISTINCT: 1.0;
+                IF (RC1ID == RC2ID) { ⚡ RIDSDISTINCT: 0.0; }
+                IF (RC1ART == RC2ART) { ⚡ RARTDISTINCT: 0.0; }
+                ⚡ RECORD_VALID:
+                    exact(RPREFIX, "COMPOSITION")
+                    * present(RCASE)
+                    * present(RCOMPOSITION)
+                    * present(RC1ID)
+                    * component_type_valid(RC1TYPE)
+                    * present(RC1ART)
+                    * present(RC2ID)
+                    * component_type_valid(RC2TYPE)
+                    * present(RC2ART)
+                    * RIDSDISTINCT
+                    * RARTDISTINCT
+                    * present(RNEWCAP)
+                    * present(RCOMPART)
+                    * exact(RFORMED, "FORMED=1")
+                    * exact(REXEC, "EXEC=0")
+                    * exact(RLEARNING, "LEARNING=0")
+                    * exact(RMODEL, "MODEL=0")
+                    * exact(REXTERNAL, "EXTERNAL=0")
+                    * exact(RCOMMIT, "COMMIT=YES");
+                IF (RECORD_VALID > 0.5) { ⚡ COMPOSITION_RECORD_COUNT_BEFORE: COMPOSITION_RECORD_COUNT_BEFORE + 1.0; }
+            }
+            IF (RECORD_VALID < 0.5) { ⚡ INVALID_STORE_RECORD_COUNT: INVALID_STORE_RECORD_COUNT + 1.0; }
+            ⚡ I: I + 1.0;
+        }
+    }
+
+    ⚡ STORE_STATE_VALID: STORE_HEADER_OK * (1.0 - STORE_RECORD_LIMIT_EXCEEDED);
+    IF (INVALID_STORE_RECORD_COUNT > 0.0) { ⚡ STORE_STATE_VALID: 0.0; }
+    ⚡ STATE_CAPACITY_AVAILABLE: 0.0;
+    IF (COMPOSITION_RECORD_COUNT_BEFORE < MAX_COMPOSITION_RECORDS) { ⚡ STATE_CAPACITY_AVAILABLE: 1.0; }
+
+    ⚡ RETAIN_ELIGIBLE:
+        COMPOSITION_STRUCTURALLY_VALID
+        * STORE_STATE_VALID
+        * STATE_CAPACITY_AVAILABLE;
+
+    ⚡ WRITE_ATTEMPTED: 0.0;
+    ⚡ WRITE_RC: 0.0;
+    ⚡ WRITE_READBACK_MATCH: 0.0;
+    ⚡ RETAINED_RECORD_COUNT: 0.0;
+    IF (RETAIN_ELIGIBLE > 0.5) {
+        ⚡ RECORD_LINE:
+            "COMPOSITION||" + CASE_ID + "||" + COMPOSITION_ID
+            + "||" + COMPONENT1_ID + "||" + COMPONENT1_TYPE + "||" + COMPONENT1_ARTIFACT
+            + "||" + COMPONENT2_ID + "||" + COMPONENT2_TYPE + "||" + COMPONENT2_ARTIFACT
+            + "||" + NEW_CAPABILITY + "||" + COMPOSITION_ARTIFACT
+            + "||FORMED=1||EXEC=0||LEARNING=0||MODEL=0||EXTERNAL=0||COMMIT=YES";
+        ⚡ PROPOSED_STORE: STORE_HEADER + "\n" + RECORD_LINE;
+        IF (STORE_EMPTY < 0.5) { ⚡ PROPOSED_STORE: STORE_TEXT + "\n" + RECORD_LINE; }
+        ⚡ WRITE_ATTEMPTED: 1.0;
+        ⚡ WRITE_RC: host("write_text", STORE_PATH, PROPOSED_STORE, NULL);
+        ⚡ READBACK_TEXT: load_text(STORE_PATH);
+        ⚡ WRITE_READBACK_MATCH: exact(READBACK_TEXT, PROPOSED_STORE);
+        ⚡ RETAINED_RECORD_COUNT: WRITE_READBACK_MATCH;
+    }
+
+    ⚡ COMPOSITION_RECORD_COUNT_AFTER: COMPOSITION_RECORD_COUNT_BEFORE + RETAINED_RECORD_COUNT;
+    ⚡ STATE_MUTATED: 0.0;
+    IF (RETAINED_RECORD_COUNT > 0.5) { ⚡ STATE_MUTATED: 1.0; }
+
+    ⚡ S1: choose_stage1(DEPENDENCY_BINDING_VALID, BOOLEAN_ENCODINGS_VALID, COMPOSITION_SUPPLIED, BASE_ENCODING_VALID);
+    ⚡ S2: choose_stage2(MULTIPLE_COMPONENTS, COMPONENT_TYPES_VALID, COMPONENT_IDS_DISTINCT, COMPONENT_ARTIFACTS_DISTINCT);
+    ⚡ S3: choose_stage3(NEW_CAPABILITY_PRESENT, COMPOSITION_ARTIFACT_PRESENT, STORE_STATE_VALID, STATE_CAPACITY_AVAILABLE);
+    ⚡ STATUS: choose_status(S1, S2, S3);
+
+    ⚡ print("DNA48_NATIVE_ADMISSION_V1");
+    ⚡ print("INPUT_CASE_ID"); ⚡ print(CASE_ID);
+    ⚡ print("DEPENDENCY_BINDING_VALID"); ⚡ print(DEPENDENCY_BINDING_VALID);
+    ⚡ print("BOOLEAN_ENCODINGS_VALID"); ⚡ print(BOOLEAN_ENCODINGS_VALID);
+    ⚡ print("COMPOSITION_SUPPLIED"); ⚡ print(COMPOSITION_SUPPLIED);
+    ⚡ print("COMPONENT_COUNT_ENCODING_VALID"); ⚡ print(COMPONENT_COUNT_ENCODING_VALID);
+    ⚡ print("BASE_ENCODING_VALID"); ⚡ print(BASE_ENCODING_VALID);
+    ⚡ print("MULTIPLE_COMPONENTS"); ⚡ print(MULTIPLE_COMPONENTS);
+    ⚡ print("COMPONENT_TYPES_VALID"); ⚡ print(COMPONENT_TYPES_VALID);
+    ⚡ print("COMPONENT_IDS_DISTINCT"); ⚡ print(COMPONENT_IDS_DISTINCT);
+    ⚡ print("COMPONENT_ARTIFACTS_DISTINCT"); ⚡ print(COMPONENT_ARTIFACTS_DISTINCT);
+    ⚡ print("NEW_CAPABILITY_PRESENT"); ⚡ print(NEW_CAPABILITY_PRESENT);
+    ⚡ print("COMPOSITION_ARTIFACT_PRESENT"); ⚡ print(COMPOSITION_ARTIFACT_PRESENT);
+    ⚡ print("COMPOSITION_STRUCTURALLY_VALID"); ⚡ print(COMPOSITION_STRUCTURALLY_VALID);
+    ⚡ print("STORE_STATE_VALID"); ⚡ print(STORE_STATE_VALID);
+    ⚡ print("STORE_RECORD_LIMIT_EXCEEDED"); ⚡ print(STORE_RECORD_LIMIT_EXCEEDED);
+    ⚡ print("INVALID_STORE_RECORD_COUNT"); ⚡ print(INVALID_STORE_RECORD_COUNT);
+    ⚡ print("COMPOSITION_RECORD_COUNT_BEFORE"); ⚡ print(COMPOSITION_RECORD_COUNT_BEFORE);
+    ⚡ print("STATE_CAPACITY_AVAILABLE"); ⚡ print(STATE_CAPACITY_AVAILABLE);
+    ⚡ print("RETAIN_ELIGIBLE"); ⚡ print(RETAIN_ELIGIBLE);
+    ⚡ print("WRITE_ATTEMPTED"); ⚡ print(WRITE_ATTEMPTED);
+    ⚡ print("WRITE_RC"); ⚡ print(WRITE_RC);
+    ⚡ print("WRITE_READBACK_MATCH"); ⚡ print(WRITE_READBACK_MATCH);
+    ⚡ print("RETAINED_RECORD_COUNT"); ⚡ print(RETAINED_RECORD_COUNT);
+    ⚡ print("STATE_MUTATED"); ⚡ print(STATE_MUTATED);
+    ⚡ print("COMPOSITION_RECORD_COUNT_AFTER"); ⚡ print(COMPOSITION_RECORD_COUNT_AFTER);
+    ⚡ print("STATUS"); ⚡ print(STATUS);
+
+    ⚡ print("COMPOSITIONAL_INTELLIGENCE_SCHEMA"); ⚡ print("SIGMA_COMPOSITIONAL_INTELLIGENCE_V1");
+    ⚡ print("MINIMUM_COMPONENTS"); ⚡ print(2.0);
+    ⚡ print("ALLOWED_COMPONENT_TYPES"); ⚡ print("SKILL,CONCEPT");
+    ⚡ print("TRACEABLE_COMPONENTS_REQUIRED"); ⚡ print(1.0);
+    ⚡ print("NEW_CAPABILITY_REQUIRES_COMPOSITION_ARTIFACT"); ⚡ print(1.0);
+    ⚡ print("SINGLE_COMPONENT_IS_NOT_COMPOSITION"); ⚡ print(1.0);
+    ⚡ print("COMPONENT_DUPLICATION_IS_NOT_COMPOSITION"); ⚡ print(1.0);
+    ⚡ print("CAPABILITY_EXECUTION_STARTED"); ⚡ print(0.0);
+    ⚡ print("LEARNING_RUNTIME_STARTED"); ⚡ print(0.0);
+    ⚡ print("MODEL_CALLS_STARTED"); ⚡ print(0.0);
+    ⚡ print("EXTERNAL_ACTION_EXECUTED"); ⚡ print(0.0);
+    ⚡ print("COMPONENT_ARTIFACT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("NEW_CAPABILITY_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("COMPOSITION_ARTIFACT_SHA256_DERIVATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("GENERAL_COMPONENT_CARDINALITY_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_COMPOSITION_VALIDATION_PROVEN"); ⚡ print(0.0);
+    ⚡ print("SEMANTIC_UNDERSTANDING_PROVEN"); ⚡ print(0.0);
+    ⚡ print("HOST_LEARNING"); ⚡ print(0.0);
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION"); ⚡ print(0.0);
+}
