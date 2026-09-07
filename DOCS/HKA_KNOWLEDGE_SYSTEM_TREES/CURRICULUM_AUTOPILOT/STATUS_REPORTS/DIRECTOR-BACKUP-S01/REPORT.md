@@ -1,46 +1,29 @@
-# DIRECTOR-BACKUP-S01 — Fresh TREE_ALIGNMENT Report
+# DIRECTOR-BACKUP-S01 — B1.2 Fresh TREE_ALIGNMENT Ready
 
-SENTINEL_STATUS: `TREE_ALIGNMENT_PASS`
-
-CANONICAL_TREE_COMMIT: `fc799bf1104ab6352710e1801777a971b5179995`
+SENTINEL_STATUS: `READY_B1_2_EXIT_ALIGNMENT`
 
 CURRENT_STAGE: `CURRICULUM`
 
-ACTIVE_SCOPE: `B1.1-SENTINEL-ALIGNMENT`
+ACTIVE_SCOPE: `B1.2-SENTINEL-ALIGNMENT`
 
 ACTIVE_WINDOW: `DIRECTOR-BACKUP-S01`
 
 ACTIVE_BRANCH: `hka-tree/director-backup-sentinel`
 
-ACCEPTED_PREDECESSOR: `b2818160e8619a7cc3807a0ca3252280be68c16a`
+CANONICAL_TREE_COMMIT: `fc799bf1104ab6352710e1801777a971b5179995`
 
-SCOPE_TOPIC_MATCH: `PASS` — this is a non-academic governance transition; the immutable academic B1 scope map resolves unchanged and no academic topic/owner/ID was mutated.
+SCOPE_MAP_BLOB: `bedef47958a728e3f0d56d412f7bdea3ec465856`
 
-DEPENDENCY_MATCH: `PASS`
+ACCEPTED_B1_2_FAMILY_INTEGRATION: `425df302d7331293ad12744a6096e05d51560890`
 
-FOUNDATIONAL_13_YEAR_GATE: `PASS`
+ACCEPTED_EXTERNAL_MAPPING: `5492127b661b770c23026c6205d1fbd4e8464835`
 
-FOUNDATIONAL_GAP_COUNT: `0`
+EFFECTIVE_MAPPING_METADATA_REPAIR: `c6c8fda3bf6a0d898e7a9f7c39ec20d6b1b3d5e2`
 
-PIPELINE_BOUNDARY: `PASS`
+DIRECTOR_ORDER: `f68454b38f695904f2f3805ebf0f339bb382abe3`
 
-LOCKED_SCOPE_SUPPORT: `0`
+The fresh B1.2 exit Sentinel is authorized and not yet executed. It must resolve the exact current `hka-tree/curriculum-master` HEAD, run `GPT_B1_2_FRESH_TREE_ALIGNMENT_PROMPT.md`, verify state/registry/snapshot/gate/accepted-chain/canonical-tree alignment, and then return only `TREE_ALIGNMENT_PASS` or an exact `BLOCK`.
 
-CONTROL_PLANE_MUTATION_BY_CHILD: `NO`
+Authority remains sentinel-only: no academic authoring, no Director acceptance, no successor unlock, no `hka-tree/curriculum-master` mutation. Sentinel may write only its own status/report/checkpoint files.
 
-ALERTS: `NONE`
-
-## Verification record
-
-- Control-plane snapshot read at `0ec99580097e8bd24dde9b7e1c1e55a296fd39a6`.
-- `HKA_CURRICULUM_STATE.json`, `WINDOW_REGISTRY.json`, `HKA_DIRECTOR_CONTINUITY_SNAPSHOT.json`, `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_GATE.json`, Director status/checkpoint and the accepted integration commit all agree that the fresh Sentinel is the only remaining B1.1 successor gate.
-- Accepted integration commit `b2818160e8619a7cc3807a0ca3252280be68c16a` resolves and records `FOUNDATIONAL_GAP_COUNT=0`, `future_locked_support_claim_ids=0`, coherent accepted C01-C10 history, canonical/scope-map alignment and `PASS_CURRICULUM_ONLY`.
-- Canonical tree commit and immutable B1 scope-map blob resolve unchanged.
-- Active dependency amendments 1-5 plus `HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1` remain ACTIVE without changing stable canonical IDs/ownership.
-- B1.2 was still `LOCKED_PENDING_FRESH_SENTINEL` at verification time; no locked/future scope supplied academic support.
-- `ACADEMIC_LOCKED` and every post-CURRICULUM stage remain gated.
-- Sentinel wrote only its own status/report/checkpoint files on `hka-tree/director-backup-sentinel`; it did not mutate `hka-tree/curriculum-master`.
-
-DURABLE_NEXT_ACTION_READ: `Run fresh DIRECTOR-BACKUP-S01 TREE_ALIGNMENT against accepted integration commit b2818160e8619a7cc3807a0ca3252280be68c16a. If TREE_ALIGNMENT_PASS with FOUNDATIONAL_GAP_COUNT=0 and LOCKED_SCOPE_SUPPORT=0, close B1.1 and unlock canonical B1.2-C01. Keep B1.2 locked until that PASS.`
-
-NEXT_AFTER_THIS_PASS: `Close B1.1 and unlock canonical B1.2-C01.`
+`B1.3` remains LOCKED while this audit runs. No post-CURRICULUM stage is authorized.
