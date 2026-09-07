@@ -1,16 +1,18 @@
 {
-  "schema_version":"1.1",
+  "schema_version":"1.2",
   "window_id":"C01-W03-B1.2-PHYSICS-FAMILY",
   "scope_id":"B1.2-FAMILY-COMPLETION",
   "stage":"CURRICULUM",
   "status":"PASS_CANDIDATE_REPAIRED",
   "execution_branch":"hka-tree/c01-w03-physics-family",
+  "worker_candidate_sha":"a416e6c6a5c56cc74724574ae8bc6ca264ef868e",
+  "director_assistant_checkpoint_commit_sha":"5137b0f2593be3ea4559b6e375faaf4ea62d5b5d",
   "accepted_children":"12/12",
   "accepted_scopes":{"B1.2-C01":"62a26590dc9055323316456f1620856b885462d7","B1.2-C02":"8c61737276f5d17256c2ec7d075a8b5a46ed192a","B1.2-C03":"693348843918fcd66445e8e30624dcddcc1a9589","B1.2-C04":"ac64a006c9aeeb2296f8da5d819df1246be64fb4","B1.2-C05":"3aa0d02082ea409974130465e06ec387117daa1c","B1.2-C06":"8295726bf0599bb636f29c096e97363d26e5fccc","B1.2-C07":"7d710491de2d4bb5e550a2b9b208739934a9f650","B1.2-C08":"65ea8a21141e114dbff1c9e9a3e63b5a49571ad8","B1.2-C09":"0ac3b3870afcd873c60b26f12ecd25f3f9892c84","B1.2-C10":"b1754ad56352a9fc9224d59dd3fb7738fc592173","B1.2-C11":"fc1b2c6683ca1e8b14ea409ba3f8b6261397e7e7","B1.2-C12":"d0772ad9a030defa8d29a52896298b95bb7f93f6"},
   "aggregate_counts":{"canonical_topics":84,"claims":394,"learning_objectives":338,"claim_to_learning_objective_closures":338},
   "C02_reconciliation":{"accepted_baseline_sha":"2c112f281ca8915ef2e8800043db952c550531bc","repaired_final_commit_sha":"8c61737276f5d17256c2ec7d075a8b5a46ed192a","effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18","repair_checkpoint_sha":"1a52b2edf027bae17e23b500d4c91ffa805fdc20","mass_vs_weight_foundational":"PASS","stable_ids":"PRESERVED","director_reconciled":true},
   "audits":{"children_resolution":"12/12 PASS","foundational_13_year_progression":"PASS","foundational_gap_count":0,"mass_vs_weight_foundational":"PASS","duplicate_ownership":"PASS","prerequisite_graph":"PASS — ACYCLIC, NO DANGLING IDS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS — CURRICULUM ONLY","self_audit":"PASS","re_audit":"PASS","durable_read_back":"PASS"},
-  "controller_self_repairs":[{"repair_id":"FAM-SR01","defect":"A stale C12 family-debt note described the pre-repair C02 baseline and could be misread as current family state.","repair":"Controller precedence was corrected to the current Director-reconciled C02 repaired state; no child artifact was edited.","status":"REPAIRED"},{"repair_id":"DA-FAM-SR01","defect":"The terminal next-action wording implied Director acceptance alone could release B1.3, while the active foundational subbranch-exit gate also requires external general-education mapping and a fresh Backup Sentinel TREE_ALIGNMENT_PASS.","repair":"Corrected family-controller metadata only; child academic outputs remain untouched and no successor was unlocked.","status":"REPAIRED"}],
+  "controller_self_repairs":[{"repair_id":"FAM-SR01","status":"REPAIRED"},{"repair_id":"DA-FAM-SR01","status":"REPAIRED","type":"CONTROLLER_METADATA_ONLY"}],
   "self_repair_count":2,
   "child_scope_defects":[],
   "red_flag":"NONE",
@@ -18,5 +20,5 @@
   "family_integration_candidate":"PASS_RECOMMENDED",
   "subbranch_exit_gate":{"status":"HOLD_PENDING_EXIT_EVIDENCE","external_general_education_mapping_required":true,"external_general_education_mapping_status":"NOT_DURABLY_FOUND","fresh_backup_sentinel_tree_alignment_pass_required":true,"fresh_backup_sentinel_status":"REQUIRED_AFTER_OR_WITH_DIRECTOR_INTEGRATION_ACCEPTANCE","foundational_gap_count":0},
   "B1_3_unlock":false,
-  "next_action":"Director review/acceptance of this clean B1.2 family integration candidate; before B1.2 subbranch exit or B1.3 unlock, satisfy the active foundational exit evidence: external general-education mapping and a fresh Backup Sentinel TREE_ALIGNMENT_PASS. Do not unlock B1.3 automatically."
+  "next_action":"Director review/acceptance of this clean B1.2 family integration candidate; before B1.2 subbranch exit or B1.3 unlock, satisfy external general-education mapping and a fresh Backup Sentinel TREE_ALIGNMENT_PASS. Do not unlock B1.3 automatically."
 }
