@@ -1,0 +1,31 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-REPAIR",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03",
+  "scope_id":"B1.3-C03",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c03",
+  "worker_candidate_sha":"4c0f33ba974587aa94146622beb0c0462faee355",
+  "worker_academic_output_sha":"87d0df55ad35279657176cc49a96a5eeb686d025",
+  "effective_academic_repair_sha":"6187b34100d3794815d42455e0e5cc034170f1aa",
+  "canonical_prerequisites":["B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d","B1.3-C02@dcd9c24eb17286940eef1d91b4562ed5cc10852a"],
+  "artifact_counts":{"topics":6,"claims":30,"learning_objectives":24,"semantic_closures":24,"sources":4},
+  "director_assistant_repairs":[
+    "DA-C03-SR01 — made formal charge explicit in the existing Lewis-model claim so D1/D2 objectives have direct semantic support.",
+    "DA-C03-SR02 — removed a misleading universal strength hierarchy between hydrogen bonding and London dispersion.",
+    "DA-C03-SR03 — made selection-rule/transition-moment context explicit in the existing spectroscopy transition claim."
+  ],
+  "semantic_closure":"24/24 PASS_AFTER_REPAIR — existing closure rows remain semantically complete; no row-count change",
+  "foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR",
+  "stable_ids":"PRESERVED",
+  "canonical_prerequisite_alignment":"PASS — B1.3-C01 + B1.3-C02 only",
+  "prerequisite_graph":"PASS — acyclic, no dangling IDs",
+  "ownership":"PASS",
+  "source_resolution":"4/4 PASS",
+  "future_locked_support":0,
+  "cross_scope_academic_mutation":0,
+  "stage_boundary":"PASS — CURRICULUM ONLY",
+  "director_acceptance_declared":false,
+  "successor_status":"B1.3-C04 GATED_PENDING_DIRECTOR_ACCEPTANCE"
+}
