@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-EXIT-PASS-B1_3-C01-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "status":"CHECKPOINTED_B1_2_EXIT_PASS_B1_3_C01_OPEN",
+  "B1_2_exit":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","external_mapping_commit_sha":"5492127b661b770c23026c6205d1fbd4e8464835","fresh_sentinel_commit_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","foundational_gap_count":0,"future_locked_support":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "B1_3_C01":{"scope_id":"B1.3-C01","window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","name":"Cấu trúc vật chất","execution_branch":"hka-tree/c01-w04-chemistry-c01","canonical_topic_count":6,"prerequisites":["B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650","B1.2-C08@65ea8a21141e114dbff1c9e9a3e63b5a49571ad8"],"open_order_commit_sha":"59340199c70fb7c7d842e1d3f6a66e0b875c5532"},
+  "B1_3_C02_status":"LOCKED",
+  "next":"Execute B1.3-C01 end-to-end; B1.3-C02 remains gated pending Director acceptance of C01.",
+  "updated_at":"2026-09-07T12:22:00+07:00"
+}
