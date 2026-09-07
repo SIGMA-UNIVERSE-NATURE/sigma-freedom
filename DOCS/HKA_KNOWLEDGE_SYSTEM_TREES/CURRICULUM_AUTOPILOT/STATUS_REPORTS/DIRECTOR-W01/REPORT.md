@@ -2,12 +2,19 @@
 
 Stage: `CURRICULUM`.
 
-B1.2 family integration is Director-accepted at `425df302d7331293ad12744a6096e05d51560890`.
+B1.2 subbranch exit is **DIRECTOR_ACCEPTED_EXIT_PASS**.
 
-External general-education mapping is Director-accepted at `5492127b661b770c23026c6205d1fbd4e8464835`: 6 systems / 6 continents, official source resolution 6/6 PASS, university-only baseline false, 10 requirements = 9 FULL + 1 NOT_OWNER, foundational gap count 0, mass-vs-weight PASS, ownership PASS_AFTER_ASSISTANT_METADATA_REPAIR, FUTURE_LOCKED_SUPPORT=0, cross-scope academic mutation 0, RED_FLAG NONE.
+Exit evidence: family integration `425df302d7331293ad12744a6096e05d51560890`; external general-education mapping `5492127b661b770c23026c6205d1fbd4e8464835`; fresh Backup Sentinel `TREE_ALIGNMENT_PASS` at `5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac`; foundational gap count 0; locked/future support 0; CURRICULUM-only boundary PASS; alerts/red flag NONE.
 
-Active exit gate: fresh `DIRECTOR-BACKUP-S01` TREE_ALIGNMENT on `hka-tree/director-backup-sentinel`.
+Active scope: `B1.3-C01 — Cấu trúc vật chất`.
 
-`DIRECTOR-BACKUP-S01` is a delegated Backup Sentinel only. It cannot declare Director acceptance, mutate `hka-tree/curriculum-master`, or unlock B1.3. It may write only its own status/report/checkpoint.
+Active window: `C01-W04-B1.3-CHEMISTRY-FAMILY-C01`.
+Execution branch: `hka-tree/c01-w04-chemistry-c01`.
 
-`B1.3` remains LOCKED. After the fresh Sentinel receipt, Director must re-read all B1.2 exit gates before any unlock.
+Canonical topics: 6 — Nguyên tử; Phân tử; Ion; Đồng vị; Trạng thái vật chất; Cấu trúc điện tử.
+
+Canonical prerequisites: accepted `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650` and `B1.2-C08@65ea8a21141e114dbff1c9e9a3e63b5a49571ad8`.
+
+Worker owns authoring/self-audit/self-repair/re-audit/durable read-back inside C01 only. Preserve physics/chemistry ownership boundaries and complete foundational/general-education chemistry meanings before advanced dominance.
+
+`B1.3-C02..C10` remain locked. No post-CURRICULUM artifact is authorized.
