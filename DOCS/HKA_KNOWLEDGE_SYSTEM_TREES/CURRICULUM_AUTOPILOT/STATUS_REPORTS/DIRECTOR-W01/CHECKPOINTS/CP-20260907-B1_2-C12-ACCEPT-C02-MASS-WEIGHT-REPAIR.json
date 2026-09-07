@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260907-B1_2-C12-ACCEPT-C02-MASS-WEIGHT-REPAIR",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"C12_ACCEPTED_B1_2_COMPLETION_HOLD_C02_REPAIR_OPEN",
+  "accepted_child":{"scope_id":"B1.2-C12","window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C12","accepted_commit_sha":"d0772ad9a030defa8d29a52896298b95bb7f93f6","worker_candidate_sha":"7bdf3ee63b67b7896b5a513b36be47cbc7d0e226","academic_repair_sha":"10aa9b0aa30142a201934e709709906d00be146e","repair_checkpoint_sha":"23fbd6e320055522e493012e219d4995a43344ba","topics":"7/7 PASS","claims":"28/28 PASS","learning_objectives":"28/28 PASS_AFTER_ASSISTANT_REPAIR","semantic_closure":"28/28 PASS_AFTER_ASSISTANT_REPAIR","future_locked_support":0,"red_flag":"NONE"},
+  "family_completion":{"status":"HOLD_FOUNDATIONAL_REPAIR","accepted_children":"12/12","debt_count":1,"debt":"B1.2-C02 mass-vs-weight foundational distinction","b1_3_unlock":false},
+  "repair":{"scope_id":"B1.2-C02","window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C02","execution_branch":"hka-tree/c01-w03-physics-c02","accepted_baseline_commit_sha":"2c112f281ca8915ef2e8800043db952c550531bc","repair_order_commit_sha":"f5437dff0c25e635c7b4b0a697cf30d634c14c51","status":"REPAIR_READY"},
+  "next_action":"Run C02 foundational mass-vs-weight repair end-to-end; then Director reconcile repaired C02 effective SHA; then run B1.2 family completion/integration audit. B1.3 remains locked.",
+  "updated_at":"2026-09-07T09:27:00+07:00"
+}
