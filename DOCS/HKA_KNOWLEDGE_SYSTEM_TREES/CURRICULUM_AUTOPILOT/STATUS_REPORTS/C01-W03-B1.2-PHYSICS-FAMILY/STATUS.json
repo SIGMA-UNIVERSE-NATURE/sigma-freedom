@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY",
+  "role":"FAMILY_CONTROLLER_AUDIT_WORKER",
+  "stage":"CURRICULUM",
+  "status":"AUDIT_READY",
+  "execution_branch":"hka-tree/c01-w03-physics-family",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "input_control_plane_commit_sha":"308719c0ec59775e7d546fe89337978fd4ca6f8a",
+  "open_order_commit_sha":"a3c9eb931f4a3c95f7aff561c8c4df882a906878",
+  "director_checkpoint_commit_sha":"de26d7364e818ae51e81e9474409ea2d5c051635",
+  "bootstrap_checkpoint_commit_sha":"8460e7bd6c7794ac4a7bfd55341e4f41e4a168f8",
+  "accepted_children":"12/12",
+  "C02_reconciliation":{"accepted_baseline_sha":"2c112f281ca8915ef2e8800043db952c550531bc","repaired_final_commit_sha":"8c61737276f5d17256c2ec7d075a8b5a46ed192a","effective_academic_repair_sha":"efc85c8278da087063e94c6e940719514e389f18","repair_checkpoint_sha":"1a52b2edf027bae17e23b500d4c91ffa805fdc20","mass_vs_weight_foundational":"PASS","stable_ids":"PRESERVED","director_reconciled":true},
+  "required_gates":["12/12 accepted children","foundational gap count 0","mass-vs-weight PASS","duplicate/ownership PASS","prerequisite graph acyclic/no dangling IDs","support resolution PASS","FUTURE_LOCKED_SUPPORT=0","CROSS_SCOPE_ACADEMIC_MUTATION=0","CURRICULUM-only","durable aggregate read-back PASS"],
+  "worker_authority":"AUDIT_AND_AGGREGATE_ONLY_NO_CHILD_ACADEMIC_MUTATION",
+  "B1_3_unlock":false,
+  "remaining_work":["Execute GPT_EXECUTION_PROMPT.md end-to-end.","Write family aggregate RESULT/HANDOFF and terminal status/checkpoint.","Return only final PASS candidate or true external BLOCK."],
+  "red_flag":"NONE",
+  "next_action":"Run B1.2 family completion/integration audit. B1.3 stays gated pending Director acceptance.",
+  "updated_at":"2026-09-07T10:42:00+07:00"
+}
