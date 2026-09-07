@@ -1,0 +1,42 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP01-PRE-PASS-RE-AUDIT",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02",
+  "scope_id":"B1.3-C02",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REAUDITED",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c02",
+  "input_commit_sha":"7b0119cec04fc77fb771b9e1541d6e0d52d20d30",
+  "accepted_predecessor":"B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d",
+  "effective_academic_output_commit_sha":"58e7cd8ec85a068671e58b50e0dfde83fdc703b8",
+  "artifact_counts":{"topics":6,"nodes":6,"claims":30,"sources":4,"learning_objectives":24,"semantic_closures":24,"cross_links":15,"sequence_intent_records":6},
+  "self_audit":"PASS_AFTER_REPAIRS",
+  "self_repairs":[
+    {"repair_id":"SR01","defect":"N005-D3 closure named charge, coordination-number and oxidation-state bookkeeping but omitted the claim that explicitly ties these descriptors together.","repair":"Added HKA-B1-3-C02-N005-C004 to the existing closure row; stable objective/claim IDs and exactly-one-row closure preserved.","commit_sha":"128997838751835cbb87bb5f1a4284e7a6e5fee2","status":"REPAIRED"},
+    {"repair_id":"SR02","defect":"XL009 labeled B1.2-C08 as prerequisite reuse even though C02 canonical prerequisite ownership is B1.3-C01 only.","repair":"Reclassified XL009 as ACCEPTED_BACKGROUND_BOUNDARY_REFERENCE and explicitly barred B1.2 Claim-ID support; no ownership transfer.","commit_sha":"58e7cd8ec85a068671e58b50e0dfde83fdc703b8","status":"REPAIRED"}
+  ],
+  "re_audit":{
+    "canonical_topics":"6/6 PASS",
+    "id_uniqueness":"PASS",
+    "claim_integrity":"30/30 PASS",
+    "source_resolution":"4/4 PASS — deterministic identities resolved and used",
+    "learning_objective_completeness":"24/24 PASS — D1-D4 explicit for every node",
+    "semantic_closure":"24/24 PASS — exactly one semantically complete row per objective",
+    "supporting_claim_resolution":"PASS",
+    "canonical_prerequisite_alignment":"PASS — B1.3-C01 only",
+    "prerequisite_graph":"PASS — acyclic, no dangling IDs",
+    "semantic_duplicate_scan":"PASS — C01 prerequisite meanings reused by reference; complex vs coordination nodes have distinct learning meanings",
+    "ownership_collision_scan":"PASS — no transfer from C01, B1.2, or locked C03-C10",
+    "foundational_coverage":"PASS — element identity/periodicity/metal-nonmetal precede complex/coordination/modern inorganic",
+    "stable_ids":"PRESERVED",
+    "requires_unlocked_scope_claims":false,
+    "future_locked_support":0,
+    "cross_scope_academic_mutation":0,
+    "stage_boundary":"PASS — CURRICULUM ONLY",
+    "durable_core_read_back":"PASS"
+  },
+  "blocking_issues":[],
+  "red_flag":"NONE",
+  "next":"Write terminal RESULT/HANDOFF/status/report/checkpoint, read back exact branch HEAD, and return final receipt; B1.3-C03 remains GATED pending Director acceptance."
+}
