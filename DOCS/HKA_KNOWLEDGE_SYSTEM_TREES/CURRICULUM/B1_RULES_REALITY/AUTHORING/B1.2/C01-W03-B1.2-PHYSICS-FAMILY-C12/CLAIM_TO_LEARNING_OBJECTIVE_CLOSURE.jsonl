@@ -21,7 +21,7 @@
 {"learning_objective_id":"HKA-B1-2-C12-N006-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C12-N006-C001","HKA-B1-2-C12-N006-C002"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C12-N006-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C12-N006-C002","HKA-B1-2-C12-N006-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C12-N006-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C12-N006-C002","HKA-B1-2-C12-N006-C004"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
-{"learning_objective_id":"HKA-B1-2-C12-N006-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C12-N006-C001","HKA-B1-2-C12-N006-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"boundary_references_not_support_claims":["B1.3","B1.4"]}
+{"learning_objective_id":"HKA-B1-2-C12-N006-LO-D4-001","supporting_claim_ids":["HKA-B1-2-C12-N006-C001","HKA-B1-2-C12-N006-C002","HKA-B1-2-C12-N006-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false,"boundary_references_not_support_claims":["B1.3","B1.4"],"record_version":2}
 {"learning_objective_id":"HKA-B1-2-C12-N007-LO-D1-001","supporting_claim_ids":["HKA-B1-2-C12-N007-C001","HKA-B1-2-C12-N007-C002"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C12-N007-LO-D2-001","supporting_claim_ids":["HKA-B1-2-C12-N007-C002","HKA-B1-2-C12-N007-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
 {"learning_objective_id":"HKA-B1-2-C12-N007-LO-D3-001","supporting_claim_ids":["HKA-B1-2-C12-N007-C002","HKA-B1-2-C12-N007-C003"],"SUPPORTED_BY_CLAIMS":true,"requires_unlocked_scope_claims":false}
