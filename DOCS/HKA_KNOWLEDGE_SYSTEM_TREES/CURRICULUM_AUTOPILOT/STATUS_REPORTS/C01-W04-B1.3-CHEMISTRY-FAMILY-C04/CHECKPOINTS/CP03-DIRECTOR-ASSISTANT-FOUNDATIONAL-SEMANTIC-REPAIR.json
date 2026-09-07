@@ -1,0 +1,33 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-SEMANTIC-REPAIR",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04",
+  "scope_id":"B1.3-C04",
+  "role":"DIRECTOR_ASSISTANT_AUDIT",
+  "stage":"CURRICULUM",
+  "status":"PASS_AFTER_ASSISTANT_REPAIR",
+  "worker_candidate_sha":"1cc11fa77b7de2b89119f47fa646d80d2d7b82ca",
+  "worker_academic_output_sha":"993246223b30d8747d29ad16086bb751e7c23236",
+  "effective_academic_repair_sha":"889034adfe9707dd004d51123a63a714467ddab7",
+  "accepted_predecessors":["B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0","B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4"],
+  "artifact_counts":{"topics":8,"nodes":8,"claims":40,"sources":3,"learning_objectives":32,"semantic_closures":32,"cross_links":18,"sequence_intent_records":8},
+  "director_assistant_repairs":[
+    "DA-C04-SR01 — made amount of substance/mole and exact Avogadro constant explicit before stoichiometric mole-ratio use; strengthened mole–mass–concentration conversion support.",
+    "DA-C04-SR02 — made dynamic-equilibrium equal-rates versus unequal-compositions distinction explicit.",
+    "DA-C04-SR03 — completed pH/pOH/Kw semantic support including pH+pOH=pKw under consistent conditions."
+  ],
+  "stable_ids":"PRESERVED",
+  "semantic_closure":"32/32 PASS_AFTER_REPAIR — exactly one row per objective and semantically complete",
+  "foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR",
+  "canonical_prerequisite_alignment":"PASS — B1.3-C03 + B1.2-C04 exactly",
+  "prerequisite_graph":"PASS — acyclic, no dangling IDs",
+  "ownership":"PASS",
+  "source_resolution":"3/3 PASS",
+  "future_locked_support":0,
+  "cross_scope_academic_mutation":0,
+  "stage_boundary":"PASS — CURRICULUM ONLY",
+  "red_flag":"NONE",
+  "director_acceptance_declared":false,
+  "B1_3_C05_unlock":false,
+  "next":"Director review/acceptance of repaired B1.3-C04 candidate; B1.3-C05 remains GATED pending Director acceptance."
+}
