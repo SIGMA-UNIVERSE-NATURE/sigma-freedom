@@ -104,6 +104,7 @@ DEF relation_class(observed_a, observed_b, form_a, form_b) {
                 H("str_split", LINE, "||", NULL);
             ⚡ PC:
                 H("list_len", P, NULL, NULL);
+            ⚡ print("EVIDENCE_RECORD_PART_COUNT", PC);
 
             IF (PC == 6) {
                 ⚡ E0: H("list_get", P, 0, NULL);
@@ -140,15 +141,6 @@ DEF relation_class(observed_a, observed_b, form_a, form_b) {
                 ⚡ print("RELATION_CLASS_FUNCTION", REL);
                 ⚡ print("SOURCE_FIELD", E4);
                 ⚡ print("SOURCE_VALUE", E5);
-            }
-
-            IF (PC == 6) {
-            }
-            IF (PC < 6) {
-                ⚡ print("EVIDENCE_RECORD_PART_COUNT", PC);
-            }
-            IF (6 < PC) {
-                ⚡ print("EVIDENCE_RECORD_PART_COUNT", PC);
             }
         }
 
