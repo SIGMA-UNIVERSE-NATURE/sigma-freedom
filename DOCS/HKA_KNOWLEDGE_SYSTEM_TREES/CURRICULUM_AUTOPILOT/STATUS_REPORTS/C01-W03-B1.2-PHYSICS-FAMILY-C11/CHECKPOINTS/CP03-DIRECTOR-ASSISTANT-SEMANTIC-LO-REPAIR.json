@@ -1,0 +1,29 @@
+{
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-SEMANTIC-LO-REPAIR",
+  "window_id":"C01-W03-B1.2-PHYSICS-FAMILY-C11",
+  "scope_id":"B1.2-C11",
+  "stage":"CURRICULUM",
+  "worker_candidate_commit_sha":"e2883c76d78d413847d03925a392c5f0a84bb12a",
+  "worker_academic_output_commit_sha":"719e147a4eadcbe51091fa715ad076989695d0eb",
+  "effective_academic_output_commit_sha":"a90e48f8cc0482e225ec0c56b418ec652ac90a2e",
+  "director_assistant_repairs":[
+    {
+      "repair_id":"DA-SR01",
+      "defect":"All 24 learning objectives were generic boilerplate, so exactly-one-row closure did not establish specific semantic attainment.",
+      "repair":"Versioned all 24 learning objectives in place to specific Claim-aligned outcomes across special relativity, spacetime, GR/gravity, black holes and gravitational waves; no IDs were added, deleted or renumbered.",
+      "status":"REPAIRED"
+    }
+  ],
+  "artifact_counts":{"topics":6,"claims":24,"sources":6,"learning_objectives":24,"closures":24},
+  "semantic_closure":"24/24 PASS_AFTER_ASSISTANT_REPAIR",
+  "foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR",
+  "canonical_prerequisite_alignment":"PASS_C02_C06_C07",
+  "prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS",
+  "ownership":"PASS",
+  "source_resolution":"6/6 PASS",
+  "future_locked_support":0,
+  "stage_boundary":"PASS_CURRICULUM_ONLY",
+  "director_acceptance_declared":false,
+  "successor_status":"B1.2-C12 GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "red_flag":"NONE"
+}
