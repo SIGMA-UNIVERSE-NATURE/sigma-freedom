@@ -1,0 +1,106 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+set -o pipefail
+umask 077
+
+P=/data/data/com.termux/files/usr/bin
+HOME_SIGMA=/data/data/com.termux/files/home/SIGMA
+REPO="${SIGMA_REPO:-$HOME_SIGMA/sigma-freedom-write}"
+
+PARENT="$REPO/SIGMA_PROFESSOR/artifacts/RUN_SIGMA_VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_PREFLIGHT.sh"
+EXPECTED_PARENT_SHA256=f011886e977a2e4cd76afa561c18ff046c2d0d799b5de797d778958bcd19f2c4
+
+ROOT="$HOME_SIGMA/SIGMA_VNM_05_FIX1_RUNNER_MATERIALIZATION"
+MATERIALIZED="$ROOT/RUN_SIGMA_VNM_05_NATIVE_RECURRENT_ADJACENT_SPAN_CANDIDATE_INDUCTION_PREFLIGHT_FIX1_MATERIALIZED.sh"
+PARTIAL="$MATERIALIZED.partial"
+
+mkdir -p "$ROOT"
+
+sha_of() {
+    "$P/sha256sum" "$1" | "$P/awk" '{print $1}'
+}
+
+actual_parent=$(sha_of "$PARENT")
+
+printf 'SIGMA_PHASE=VNM_05_FIX1_NEGATIVE_COUNTER_ORACLE_REPAIR\n'
+printf 'REPAIR_CLASS=RUNNER_ONLY_POST_VM_AGGREGATE_ORACLE_ACCOUNTING\n'
+printf 'NATIVE_SOURCE_CHANGED=NO\n'
+printf 'CASE_MATRIX_CHANGED=NO\n'
+printf 'CASE_EXPECTATIONS_CHANGED=NO\n'
+printf 'NEGATIVE_CASE_REMOVED=NO\n'
+printf 'PASS_DEFINITION_SEMANTICS_CHANGED=NO\n'
+printf 'FULL_REQUIRED_SUITE_RERUN=YES\n'
+printf 'PARENT_RUNNER_SHA256=%s\n' "$actual_parent"
+
+[ "$actual_parent" = "$EXPECTED_PARENT_SHA256" ] || {
+    printf 'HOLD=PARENT_RUNNER_IDENTITY_MISMATCH\n'
+    exit 20
+}
+
+OLD='[ "$NEGATIVE_PASS_COUNT" -eq 11 ] || fail_gate 95 NEGATIVE_PASS_COUNT_MISMATCH'
+NEW='[ "$NEGATIVE_PASS_COUNT" -eq 12 ] || fail_gate 95 NEGATIVE_PASS_COUNT_MISMATCH'
+
+OLD_MATCH_COUNT=$("$P/grep" -F -x -c "$OLD" "$PARENT" || true)
+NEW_MATCH_COUNT_BEFORE=$("$P/grep" -F -x -c "$NEW" "$PARENT" || true)
+
+printf 'OLD_NEGATIVE_GATE_MATCH_COUNT=%s\n' "$OLD_MATCH_COUNT"
+printf 'NEW_NEGATIVE_GATE_MATCH_COUNT_BEFORE=%s\n' "$NEW_MATCH_COUNT_BEFORE"
+
+[ "$OLD_MATCH_COUNT" -eq 1 ] || {
+    printf 'HOLD=NEGATIVE_GATE_PATCH_TARGET_COUNT_NOT_ONE\n'
+    exit 21
+}
+[ "$NEW_MATCH_COUNT_BEFORE" -eq 0 ] || {
+    printf 'HOLD=NEGATIVE_GATE_ALREADY_PATCHED_OR_UNEXPECTED_PARENT\n'
+    exit 22
+}
+
+"$P/awk" -v old="$OLD" -v new="$NEW" '
+{
+    if ($0 == old) {
+        print new
+    } else {
+        print
+    }
+}
+' "$PARENT" > "$PARTIAL" || {
+    printf 'HOLD=MATERIALIZATION_FAILED\n'
+    exit 23
+}
+
+OLD_COUNT_AFTER=$("$P/grep" -F -x -c "$OLD" "$PARTIAL" || true)
+NEW_COUNT_AFTER=$("$P/grep" -F -x -c "$NEW" "$PARTIAL" || true)
+
+printf 'OLD_NEGATIVE_GATE_COUNT_AFTER=%s\n' "$OLD_COUNT_AFTER"
+printf 'NEW_NEGATIVE_GATE_COUNT_AFTER=%s\n' "$NEW_COUNT_AFTER"
+
+[ "$OLD_COUNT_AFTER" -eq 0 ] || {
+    printf 'HOLD=OLD_NEGATIVE_GATE_REMAINS_AFTER_PATCH\n'
+    exit 24
+}
+[ "$NEW_COUNT_AFTER" -eq 1 ] || {
+    printf 'HOLD=NEW_NEGATIVE_GATE_COUNT_NOT_ONE_AFTER_PATCH\n'
+    exit 25
+}
+
+bash -n "$PARTIAL" || {
+    printf 'HOLD=MATERIALIZED_RUNNER_BASH_SYNTAX_FAIL\n'
+    exit 26
+}
+
+"$P/mv" -f -- "$PARTIAL" "$MATERIALIZED" || exit 27
+"$P/chmod" 0500 "$MATERIALIZED" || exit 28
+
+MATERIALIZED_SHA256=$(sha_of "$MATERIALIZED")
+printf 'MATERIALIZED_RUNNER_SHA256=%s\n' "$MATERIALIZED_SHA256"
+printf 'NEGATIVE_PASS_COUNT_EXPECTED_BEFORE=11\n'
+printf 'NEGATIVE_PASS_COUNT_EXPECTED_FIX1=12\n'
+
+bash "$MATERIALIZED"
+FULL_GATE_RC=$?
+
+printf '\n=== VNM05 FIX1 WRAPPER RESULT ===\n'
+printf 'MATERIALIZED_RUNNER_SHA256=%s\n' "$MATERIALIZED_SHA256"
+printf 'FULL_GATE_RC=%s\n' "$FULL_GATE_RC"
+
+exit "$FULL_GATE_RC"
