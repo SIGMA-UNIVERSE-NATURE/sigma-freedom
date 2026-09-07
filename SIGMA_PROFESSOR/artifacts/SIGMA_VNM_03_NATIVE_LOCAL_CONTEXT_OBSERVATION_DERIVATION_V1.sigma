@@ -1,0 +1,322 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VNM.LOCAL.CONTEXT.OBSERVATION.DERIVATION][VERSION=VNM-03-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+⟡(Σ.VNM_03_NATIVE_LOCAL_CONTEXT_OBSERVATION_DERIVATION_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_VNM_03_LOCAL_CONTEXT_OBSERVATION_DERIVATION_V1";
+
+    ⚡ SEQUENCE_TEXT:
+        H("read_text", BASE + "/input/sequences.memory", NULL, NULL);
+    ⚡ OUTPUT_PATH:
+        BASE + "/output/observations.memory";
+
+    ⚡ MAX_SEQUENCES: 4;
+    ⚡ MAX_RAW_SPLIT_LINES: 8;
+    ⚡ MAX_UNITS_PER_SEQUENCE: 4;
+    ⚡ MIN_UNITS_PER_SEQUENCE: 3;
+    ⚡ MAX_DERIVED_OBSERVATIONS: 8;
+
+    ⚡ RAW_LINES:
+        H("str_split", SEQUENCE_TEXT, "\n", NULL);
+    ⚡ RAW_LINE_COUNT:
+        H("list_len", RAW_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_RAW_SPLIT_LINES < RAW_LINE_COUNT) {
+        ⚡ INPUT_BOUND_EXCEEDED: 1;
+    }
+
+    ⚡ SEEN_SEQUENCE:
+        H("map_new", NULL, NULL, NULL);
+    ⚡ OUTPUT_LINES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ UNIQUE_SEQUENCE_COUNT: 0;
+    ⚡ DUPLICATE_SEQUENCE_COUNT: 0;
+    ⚡ SEQUENCE_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_SEQUENCE_RECORD_COUNT: 0;
+    ⚡ DERIVED_OBSERVATION_COUNT: 0;
+
+    ⚡ SCAN_LINE_COUNT:
+        RAW_LINE_COUNT;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ SCAN_LINE_COUNT: 0;
+    }
+
+    ⚡ LI: 0;
+    WHILE (LI < SCAN_LINE_COUNT) {
+        ⚡ LINE:
+            H("list_get", RAW_LINES, LI, NULL);
+        ⚡ LINE_PRESENT:
+            present(LINE);
+
+        IF (LINE_PRESENT == 1) {
+            ⚡ PARTS:
+                H("str_split", LINE, "||", NULL);
+            ⚡ PART_COUNT:
+                H("list_len", PARTS, NULL, NULL);
+            ⚡ RECORD_VALID: 0;
+
+            IF (PART_COUNT == 6) {
+                ⚡ P0: H("list_get", PARTS, 0, NULL);
+                ⚡ P1: H("list_get", PARTS, 1, NULL);
+                ⚡ P2: H("list_get", PARTS, 2, NULL);
+                ⚡ P3: H("list_get", PARTS, 3, NULL);
+                ⚡ P4: H("list_get", PARTS, 4, NULL);
+                ⚡ P5: H("list_get", PARTS, 5, NULL);
+
+                ⚡ RECORD_FIELDS_VALID:
+                    exact(P0, "SEQ")
+                    * present(P1)
+                    * exact(P2, "UNITS")
+                    * present(P3)
+                    * exact(P4, "SOURCE")
+                    * present(P5);
+
+                IF (RECORD_FIELDS_VALID == 1) {
+                    ⚡ UNITS:
+                        H("str_split", P3, "~", NULL);
+                    ⚡ UNIT_COUNT:
+                        H("list_len", UNITS, NULL, NULL);
+                    ⚡ UNIT_COUNT_VALID: 0;
+
+                    IF (UNIT_COUNT == MIN_UNITS_PER_SEQUENCE) {
+                        ⚡ UNIT_COUNT_VALID: 1;
+                    }
+                    IF (UNIT_COUNT == MAX_UNITS_PER_SEQUENCE) {
+                        ⚡ UNIT_COUNT_VALID: 1;
+                    }
+
+                    IF (UNIT_COUNT_VALID == 1) {
+                        ⚡ ALL_UNITS_PRESENT: 1;
+                        ⚡ UI: 0;
+                        WHILE (UI < UNIT_COUNT) {
+                            ⚡ UNIT:
+                                H("list_get", UNITS, UI, NULL);
+                            ⚡ UNIT_PRESENT:
+                                present(UNIT);
+                            IF (UNIT_PRESENT == 0) {
+                                ⚡ ALL_UNITS_PRESENT: 0;
+                            }
+                            ⚡ UI: UI + 1;
+                        }
+
+                        IF (ALL_UNITS_PRESENT == 1) {
+                            ⚡ RECORD_VALID: 1;
+
+                            ⚡ FINGERPRINT:
+                                P3 + "||" + P5;
+                            ⚡ SEQ_EXISTS:
+                                H("map_has", SEEN_SEQUENCE, P1, NULL);
+
+                            IF (SEQ_EXISTS) {
+                                ⚡ EXISTING_FINGERPRINT:
+                                    H("map_get", SEEN_SEQUENCE, P1, NULL);
+                                ⚡ FINGERPRINT_SAME:
+                                    exact(EXISTING_FINGERPRINT, FINGERPRINT);
+
+                                IF (FINGERPRINT_SAME == 1) {
+                                    ⚡ DUPLICATE_SEQUENCE_COUNT:
+                                        DUPLICATE_SEQUENCE_COUNT + 1;
+                                }
+                                IF (FINGERPRINT_SAME == 0) {
+                                    ⚡ SEQUENCE_ID_COLLISION_COUNT:
+                                        SEQUENCE_ID_COLLISION_COUNT + 1;
+                                }
+                            }
+
+                            IF (SEQ_EXISTS == FALSE) {
+                                ⚡ MARK_SEQUENCE:
+                                    H("map_set", SEEN_SEQUENCE, P1, FINGERPRINT);
+                                ⚡ UNIQUE_SEQUENCE_COUNT:
+                                    UNIQUE_SEQUENCE_COUNT + 1;
+
+                                ⚡ U0:
+                                    H("list_get", UNITS, 0, NULL);
+                                ⚡ U1:
+                                    H("list_get", UNITS, 1, NULL);
+                                ⚡ U2:
+                                    H("list_get", UNITS, 2, NULL);
+
+                                ⚡ OBS1_ID:
+                                    P1 + ":1";
+                                ⚡ OBS1_LINE:
+                                    "OBS||" + OBS1_ID
+                                    + "||FORM||" + U1
+                                    + "||LEFT||" + U0
+                                    + "||RIGHT||" + U2
+                                    + "||SOURCE||" + P5;
+                                ⚡ PUSH_OBS1:
+                                    H("list_push", OUTPUT_LINES, OBS1_LINE, NULL);
+                                ⚡ DERIVED_OBSERVATION_COUNT:
+                                    DERIVED_OBSERVATION_COUNT + 1;
+
+                                IF (UNIT_COUNT == MAX_UNITS_PER_SEQUENCE) {
+                                    ⚡ U3:
+                                        H("list_get", UNITS, 3, NULL);
+                                    ⚡ OBS2_ID:
+                                        P1 + ":2";
+                                    ⚡ OBS2_LINE:
+                                        "OBS||" + OBS2_ID
+                                        + "||FORM||" + U2
+                                        + "||LEFT||" + U1
+                                        + "||RIGHT||" + U3
+                                        + "||SOURCE||" + P5;
+                                    ⚡ PUSH_OBS2:
+                                        H("list_push", OUTPUT_LINES, OBS2_LINE, NULL);
+                                    ⚡ DERIVED_OBSERVATION_COUNT:
+                                        DERIVED_OBSERVATION_COUNT + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (RECORD_VALID == 0) {
+                ⚡ INVALID_SEQUENCE_RECORD_COUNT:
+                    INVALID_SEQUENCE_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ LI: LI + 1;
+    }
+
+    ⚡ SEQUENCE_CAPACITY_EXCEEDED: 0;
+    IF (MAX_SEQUENCES < UNIQUE_SEQUENCE_COUNT) {
+        ⚡ SEQUENCE_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ OBSERVATION_CAPACITY_EXCEEDED: 0;
+    IF (MAX_DERIVED_OBSERVATIONS < DERIVED_OBSERVATION_COUNT) {
+        ⚡ OBSERVATION_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ DERIVATION_ALLOWED: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ DERIVATION_ALLOWED: 0;
+    }
+    IF (0 < INVALID_SEQUENCE_RECORD_COUNT) {
+        ⚡ DERIVATION_ALLOWED: 0;
+    }
+    IF (0 < SEQUENCE_ID_COLLISION_COUNT) {
+        ⚡ DERIVATION_ALLOWED: 0;
+    }
+    IF (SEQUENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ DERIVATION_ALLOWED: 0;
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ DERIVATION_ALLOWED: 0;
+    }
+
+    ⚡ OUTPUT_WRITE_ALLOWED: 0;
+    IF (DERIVATION_ALLOWED == 1) {
+        IF (0 < DERIVED_OBSERVATION_COUNT) {
+            ⚡ OUTPUT_WRITE_ALLOWED: 1;
+        }
+    }
+
+    ⚡ OUTPUT_TEXT: "";
+    ⚡ WRITE_RC: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ OUTPUT_MUTATED: 0;
+
+    IF (OUTPUT_WRITE_ALLOWED == 1) {
+        ⚡ OUTPUT_TEXT:
+            H("str_join", OUTPUT_LINES, "\n", NULL);
+        ⚡ WRITE_RC:
+            H("write_text", OUTPUT_PATH, OUTPUT_TEXT, NULL);
+        ⚡ READBACK:
+            H("read_text", OUTPUT_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK, OUTPUT_TEXT);
+        ⚡ OUTPUT_MUTATED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ RESULT_STATUS:
+        "NO_DERIVED_OBSERVATIONS";
+
+    IF (DERIVATION_ALLOWED == 1) {
+        IF (0 < DERIVED_OBSERVATION_COUNT) {
+            IF (OUTPUT_MUTATED == 1) {
+                ⚡ RESULT_STATUS:
+                    "LOCAL_CONTEXT_OBSERVATIONS_DERIVED";
+            }
+            IF (OUTPUT_MUTATED == 0) {
+                ⚡ RESULT_STATUS:
+                    "REFUSED_OUTPUT_PERSISTENCE_FAILURE";
+            }
+        }
+    }
+
+    IF (INPUT_BOUND_EXCEEDED == 1) {
+        ⚡ RESULT_STATUS:
+            "REFUSED_INPUT_BOUND";
+    }
+    IF (0 < INVALID_SEQUENCE_RECORD_COUNT) {
+        ⚡ RESULT_STATUS:
+            "REFUSED_SEQUENCE_RECORD_INVALID";
+    }
+    IF (0 < SEQUENCE_ID_COLLISION_COUNT) {
+        ⚡ RESULT_STATUS:
+            "REFUSED_SEQUENCE_ID_COLLISION";
+    }
+    IF (SEQUENCE_CAPACITY_EXCEEDED == 1) {
+        ⚡ RESULT_STATUS:
+            "REFUSED_SEQUENCE_CAPACITY";
+    }
+    IF (OBSERVATION_CAPACITY_EXCEEDED == 1) {
+        ⚡ RESULT_STATUS:
+            "REFUSED_OBSERVATION_CAPACITY";
+    }
+
+    ⚡ print("SIGMA_VNM_03_NATIVE_LOCAL_CONTEXT_OBSERVATION_DERIVATION");
+    ⚡ print("ARTIFACT_ORIGIN", "TEACHER_AUTHORED_BOOTSTRAP");
+    ⚡ print("RAW_LINE_COUNT", RAW_LINE_COUNT);
+    ⚡ print("UNIQUE_SEQUENCE_COUNT", UNIQUE_SEQUENCE_COUNT);
+    ⚡ print("DUPLICATE_SEQUENCE_COUNT", DUPLICATE_SEQUENCE_COUNT);
+    ⚡ print("SEQUENCE_ID_COLLISION_COUNT", SEQUENCE_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_SEQUENCE_RECORD_COUNT", INVALID_SEQUENCE_RECORD_COUNT);
+    ⚡ print("DERIVED_OBSERVATION_COUNT", DERIVED_OBSERVATION_COUNT);
+    ⚡ print("INPUT_BOUND_EXCEEDED", INPUT_BOUND_EXCEEDED);
+    ⚡ print("SEQUENCE_CAPACITY_EXCEEDED", SEQUENCE_CAPACITY_EXCEEDED);
+    ⚡ print("OBSERVATION_CAPACITY_EXCEEDED", OBSERVATION_CAPACITY_EXCEEDED);
+    ⚡ print("OUTPUT_WRITE_ALLOWED", OUTPUT_WRITE_ALLOWED);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("OUTPUT_MUTATED", OUTPUT_MUTATED);
+    ⚡ print("RESULT_STATUS", RESULT_STATUS);
+    ⚡ print("MAX_SEQUENCES", MAX_SEQUENCES);
+    ⚡ print("MAX_UNITS_PER_SEQUENCE", MAX_UNITS_PER_SEQUENCE);
+    ⚡ print("MAX_DERIVED_OBSERVATIONS", MAX_DERIVED_OBSERVATIONS);
+    ⚡ print("CONTEXT_DERIVATION_OWNER", "SIGMA_NATIVE");
+    ⚡ print("UNIT_DELIMITER_POLICY", "EXACT_TILDE_ONLY");
+    ⚡ print("UNIT_BOUNDARY_SEMANTIC", "NO");
+    ⚡ print("HOST_CONTEXT_EXTRACTION", "NO");
+    ⚡ print("HOST_UNIT_SELECTION", "NO");
+    ⚡ print("HOST_PAIR_SELECTION", "NO");
+    ⚡ print("HOST_NORMALIZATION", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SEMANTIC_SUBSTITUTION", "NO");
+    ⚡ print("NATURAL_LANGUAGE_TOKENIZATION", "NOT_PROVEN");
+    ⚡ print("PHRASE_BOUNDARY_DETECTION", "NOT_PROVEN");
+    ⚡ print("WORD_MEANING", "NOT_PROVEN");
+    ⚡ print("VIETNAMESE_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("GENERAL_SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PERSISTENT_STATE", "NO");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
