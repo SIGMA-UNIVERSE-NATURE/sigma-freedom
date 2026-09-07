@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01",
+  "role":"ACADEMIC_CURRICULUM_WORKER",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c01",
+  "scope_ids":["B1.3-C01"],
+  "canonical_topic_count":6,
+  "canonical_topics":["Nguyên tử","Phân tử","Ion","Đồng vị","Trạng thái vật chất","Cấu trúc điện tử"],
+  "prerequisites":["B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650","B1.2-C08@65ea8a21141e114dbff1c9e9a3e63b5a49571ad8"],
+  "open_order_commit_sha":"59340199c70fb7c7d842e1d3f6a66e0b875c5532",
+  "bootstrap_checkpoint_commit_sha":"dee8e4f0713a217d7cc4adb6588608fecf8abc9f",
+  "B1_2_exit_sentinel_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac",
+  "remaining_work":["Author all 6 canonical topics.","Self-audit and repair all in-scope defects.","Re-audit, commit, durable read-back, terminal status/report/checkpoint.","Return one final PASS candidate or true external BLOCK."],
+  "blocking_issues":[],
+  "future_locked_support":0,
+  "successor_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02",
+  "successor_status":"GATED_PENDING_DIRECTOR_ACCEPTANCE",
+  "next_action":"Execute GPT_EXECUTION_PROMPT.md end-to-end. B1.3-C02 remains locked until Director acceptance of C01.",
+  "updated_at":"2026-09-07T12:22:00+07:00"
+}
