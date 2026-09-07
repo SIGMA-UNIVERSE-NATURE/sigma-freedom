@@ -1,33 +1,25 @@
 # Status Report — C01-W04-B1.3-CHEMISTRY-FAMILY-C04
 
-Status: `PASS_CANDIDATE` at `CURRICULUM` stage.
+Status: `PASS_CANDIDATE_REPAIRED` at `CURRICULUM` stage.
 
-## Assigned job
-Complete `B1.3-C04 — Phản ứng và cân bằng` end-to-end on `hka-tree/c01-w04-chemistry-c04`: author all eight canonical topics, self-audit, self-repair if needed, re-audit, commit, durable read-back, and terminal RESULT/HANDOFF/status/checkpoint artifacts.
+## Scope and counts
+`B1.3-C04 — Phản ứng và cân bằng`: 8/8 canonical topics, 40 claims, 3 resolved/used sources, 32 learning objectives, 32/32 semantic closures, 18 cross-links and 8 sequence-intent records. Stable IDs and counts are preserved.
 
-## Definitely finished
-All 8/8 canonical topics are authored: Phương trình hóa học; Bảo toàn khối lượng; Nhiệt hóa học; Động học; Cân bằng hóa học; Acid–base; Oxy hóa–khử; Điện hóa học. The final academic graph contains 8 nodes, 40 sourced atomic claims, 3 deterministic resolved/used sources, 32 D1–D4 learning objectives, 32/32 exactly-one-row semantic closures, 18 typed cross-links and 8 sequence-intent records.
+## Director-assistant repair
+Independent audit found three small true-owner gaps. First, the curriculum used mol and molar mass before an explicit chemistry-facing amount-of-substance foundation; `N001-C005` now defines the mole and exact Avogadro constant before mole-ratio use, while `N002-C003` explicitly links stoichiometry to `m=nM` and foundational amount concentration `c=n/V`. Second, `N005-D1` explicitly required distinguishing equal rates from equal concentrations, but its supporting claim did not say so; `N005-C001` now closes that misconception directly. Third, `N006-D2` named pOH but its support only defined pH/Kw; `N006-C002` now explicitly supports pH, pOH, Kw and `pH+pOH=pKw` under consistent conditions.
 
-Foundational progression is explicit: balanced reaction representation → conservation/stoichiometry → thermochemistry → kinetics → dynamic equilibrium → acid–base → redox → electrochemistry. Advanced mechanism, nonideality, instrumentation, materials and industrial-process content remains extension/boundary material rather than replacing the foundation.
+No new IDs, objectives, closure rows or sources were created. Existing closure topology remains exactly one row per objective and is now `32/32 PASS_AFTER_REPAIR` semantically.
 
-Canonical prerequisite alignment is exactly `B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0` plus `B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4`. C03 retains bonding/structure ownership; B1.2-C04 retains general thermodynamic/statistical-physics ownership. Locked C05-C10 references are boundary-only and provide no supporting Claim IDs. `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; `CROSS_SCOPE_ACADEMIC_MUTATION=0`.
+## Governance and boundaries
+Canonical prerequisite alignment remains exactly `B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0` + `B1.2-C04@ac64a006c9aeeb2296f8da5d819df1246be64fb4`. C03 retains bonding/structure ownership; B1.2-C04 retains general thermodynamic/statistical-physics ownership. Locked C05-C10 scopes remain boundary-only; `FUTURE_LOCKED_SUPPORT=0`; `CROSS_SCOPE_ACADEMIC_MUTATION=0`; stage boundary remains CURRICULUM only.
 
-## Self-audit / re-audit
-Self-audit PASS with no mutation required (`SELF_REPAIRS=0`). Re-audit PASS: 8/8 topic coverage; 40/40 claim integrity; 3/3 source resolution; 32/32 D1-D4 objective completeness; 32/32 exactly-one semantic closures; support resolution; exact canonical prerequisite alignment; acyclic/no-dangling graph; semantic duplicate scan; ownership collision scan; foundational coverage; future-support controls; stage boundary; durable core read-back. Stable IDs preserved.
+## Provenance
+Worker candidate: `1cc11fa77b7de2b89119f47fa646d80d2d7b82ca`.
+Worker academic output: `993246223b30d8747d29ad16086bb751e7c23236`.
+Effective academic repair: `889034adfe9707dd004d51123a63a714467ddab7`.
+Director-assistant repair checkpoint: `4a486d71f8b00669f476ef45b4725e05daad3c8b`.
 
-## Authoritative artifacts and commits
-Academic directory: `DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.3/C01-W04-B1.3-CHEMISTRY-FAMILY-C04/`.
+## Re-audit
+PASS_AFTER_ASSISTANT_REPAIR: 8/8 topics; 40/40 claim integrity; 3/3 source resolution; 32/32 objectives; 32/32 semantic closure; exact prerequisite alignment; acyclic/no-dangling graph; duplicate/ownership controls; foundational progression; durable read-back; stage discipline. Red flag: none.
 
-Re-audited academic output commit: `993246223b30d8747d29ad16086bb751e7c23236`.
-Pre-pass re-audit checkpoint: `CP01-PRE-PASS-RE-AUDIT` at `5dc6c7896ac08acc15bffd4aec21d9ba696533cf`.
-RESULT commit: `73ead06b4cc63290b28d44e126243e9cc79c6da5`.
-HANDOFF commit: `6219ca76ad2452c4d58e9331d4d2305f7407e3b4`.
-
-## Locked decisions / do not reopen casually
-C04 owns chemistry-facing reaction equations, conservation/stoichiometry, thermochemistry, kinetics, chemical equilibrium, acid–base, redox and electrochemistry. C03 retains bonding/structure. B1.2-C04 retains general thermodynamics/statistical physics. C05-C10 remain locked/boundary-only. D1-D4 are academic depth, not age bands.
-
-## Not finished / risks
-No in-scope academic work remains. Blocking issues: none. Red flag: none. Director acceptance is not declared by this worker.
-
-## Next action
-Director reviews/accepts the C04 candidate. `B1.3-C05` stays `GATED_PENDING_DIRECTOR_ACCEPTANCE`; do not unlock C05 and do not repeat C04 authoring unless Director review identifies a concrete defect.
+Director acceptance is not declared. `B1.3-C05` remains gated pending Director acceptance of repaired C04.
