@@ -1,1 +1,26 @@
-{"schema_version":"1.1","window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","scope_name":"Hóa sinh và sinh học hóa học","stage":"CURRICULUM","status":"PASS_CANDIDATE","execution_branch":"hka-tree/c01-w04-chemistry-c08","effective_academic_output_sha":"719fff9b01dd3b4855bb91b9c67ef65524572dd5","canonical_topics":{"expected":7,"authored":7,"status":"PASS"},"canonical_prerequisites":{"B1.3-C06":"f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba","B1.3-C07":"4da2338f420d12b958b0af71edda922816ff69cb"},"artifact_counts":{"nodes":7,"claims":35,"sources":6,"learning_objectives":28,"semantic_closures":28,"cross_links":6,"sequence_intent_records":7},"audit":{"self_audit":"DEFECTS_FOUND_AND_REPAIRED","self_repairs":4,"re_audit":"PASS","stable_ids":"PRESERVED","claim_integrity":"35/35 PASS","source_resolution":"6/6 PASS","learning_objective_completeness":"28/28 D1-D4 PASS","semantic_closure":"28/28 PASS — exactly one semantically complete row per objective","support_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"canonical_prerequisite_alignment":"PASS — C06 + C07 exactly","prerequisite_graph":"PASS — acyclic, no dangling IDs","semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS — X03/X04 and R14 explicitly dispositioned","foundational_coverage":"PASS — biomolecule/enzyme/metabolism spine precedes advanced design","cross_scope_academic_mutation":0,"stage_discipline":"PASS — CURRICULUM only","durable_read_back":"PASS"},"self_repairs":["SR01 repaired truncated initial CLAIMS payload and restored 35 atomic sourced claims.","SR02 authored missing 28 D1-D4 learning objectives.","SR03 authored exactly 28 semantic closure rows with local supporting claims only.","SR04 authored explicit C06/C07, X03/X04, R14, C09/C10 boundary and sequence records."],"red_flag":"NONE","director_acceptance_declared":false,"B1_3_C09_unlock":false,"next_action":"Director review/acceptance of B1.3-C08 PASS candidate; B1.3-C09 remains gated."}
+{
+  "schema_version":"1.2",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08",
+  "scope_id":"B1.3-C08",
+  "scope_name":"Hóa sinh và sinh học hóa học",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE_REPAIRED",
+  "candidate_type":"WORKER_PASS_CANDIDATE_PLUS_DIRECTOR_ASSISTANT_REPAIR",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c08",
+  "worker_candidate_sha":"01dbcce2582e8f496c90f319e70c9ace84525d47",
+  "worker_effective_academic_output_sha":"719fff9b01dd3b4855bb91b9c67ef65524572dd5",
+  "claims_repair_sha":"c70ca2b4dd6cc91e8f90a756a058f61b7a2666d2",
+  "learning_objectives_repair_sha":"b9ea1d55d0dc2cabcd43c0f4d66dd1e3e6bf578b",
+  "effective_academic_repair_sha":"e501da9614738796323441f0f462cdfc919e7e11",
+  "assistant_repair_checkpoint_sha":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca",
+  "canonical_topics":{"expected":7,"authored":7,"status":"PASS","topic_ids":["B1.3-C08-T01","B1.3-C08-T02","B1.3-C08-T03","B1.3-C08-T04","B1.3-C08-T05","B1.3-C08-T06","B1.3-C08-T07"]},
+  "canonical_prerequisites":{"B1.3-C06":"f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba","B1.3-C07":"4da2338f420d12b958b0af71edda922816ff69cb"},
+  "artifact_counts":{"nodes":7,"claims":35,"sources":6,"learning_objectives":28,"semantic_closures":28,"cross_links":6,"sequence_intent_records":7},
+  "audit":{"worker_self_audit":"PASS_AFTER_REPAIRS","worker_self_repairs":4,"director_assistant_repairs":4,"re_audit":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","claim_integrity":"35/35 PASS","claim_record_contract":"35/35 PASS — certainty + epistemic_class + source IDs present","source_resolution":"6/6 PASS — resolved and used","learning_objective_completeness":"28/28 PASS — D1-D4 explicit and age-independent","learning_objective_record_contract":"28/28 PASS — evidence_of_understanding present","semantic_closure":"28/28 PASS_AFTER_REPAIR — exactly one row per objective and semantically complete","support_resolution":"PASS","requires_unlocked_scope_claims":false,"future_locked_support":0,"canonical_prerequisite_alignment":"PASS — B1.3-C06 + B1.3-C07 exactly","prerequisite_graph":"PASS — acyclic, no dangling IDs","semantic_duplicate_scan":"PASS","ownership_collision_scan":"PASS — C06/C07 retained; X03/X04 and R14 boundary-only","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","cross_scope_academic_mutation":0,"stage_discipline":"PASS — CURRICULUM only","durable_read_back":"PASS"},
+  "worker_repairs":["SR01 — restored truncated CLAIMS payload.","SR02 — authored 28 D1-D4 learning objectives.","SR03 — authored 28 exactly-one semantic closure rows.","SR04 — authored explicit prerequisite/boundary cross-links and sequence intent."],
+  "director_assistant_repairs":["DA-C08-SR01 — restored Claim epistemic/version metadata and amino-acid/protein foundational support.","DA-C08-SR02 — completed DNA/RNA distinction and metabolic matter-conservation foundations.","DA-C08-SR03 — restored evidence_of_understanding and curriculum metadata to all 28 learning objectives.","DA-C08-SR04 — repaired four semantic closure gaps while preserving topology and stable IDs."],
+  "red_flag":"NONE",
+  "director_acceptance_declared":false,
+  "B1_3_C09_unlock":false,
+  "next_action":"Director review/acceptance of repaired B1.3-C08 candidate; B1.3-C09 remains gated pending Director acceptance."
+}
