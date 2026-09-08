@@ -1,0 +1,3 @@
+BUNDLE=SIGMA_C5_NATIVE_STRUCTURAL_CONSOLIDATION_V17_BUNDLE.zip
+SHA256=833ef4f64415cdff28f07d85f29728b3e37303f6555e1d467e6f173dfb5038bb
+NOTE=Binary bundle upload was not included in this GitHub connector update; verify any external copy against this SHA256 and MANIFEST.sha256.
