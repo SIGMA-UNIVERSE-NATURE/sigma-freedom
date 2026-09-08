@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260908-B1_3-C07-ACCEPT-C08-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"DIRECTOR_ACCEPTED_PASS_C07_AND_OPEN_C08",
+  "accepted_scope":"B1.3-C07",
+  "accepted_commit_sha":"4da2338f420d12b958b0af71edda922816ff69cb",
+  "effective_academic_output_sha":"949bfc8c5bd72e44b367f116ccb7dbb905da383f",
+  "counts":{"topics":6,"claims":30,"learning_objectives":24,"semantic_closures":24},
+  "audits":{"foundational_coverage":"PASS","semantic_closure":"24/24 PASS_AFTER_REPAIRS","canonical_prerequisite_alignment":"PASS","prerequisite_graph":"PASS","ownership":"PASS","source_resolution":"7/7 PASS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","red_flag":"NONE"},
+  "opened_scope":"B1.3-C08",
+  "opened_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c08",
+  "canonical_prerequisites":["B1.3-C06@f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba","B1.3-C07@4da2338f420d12b958b0af71edda922816ff69cb"],
+  "successors_locked":["B1.3-C09","B1.3-C10"],
+  "updated_at":"2026-09-08T17:39:00+07:00"
+}
