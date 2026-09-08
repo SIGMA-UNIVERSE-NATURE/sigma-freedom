@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP18-B1_3-C08-POST-ACCEPTANCE-TREE-ALIGNMENT-PASS",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "status":"TREE_ALIGNMENT_PASS",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "control_plane_read_commit":"86eb5a2f90bb1a14d3367759883a34ca6a346c07",
+  "accepted_scope":"B1.3-C08",
+  "accepted_commit_sha":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca",
+  "effective_academic_output_sha":"e501da9614738796323441f0f462cdfc919e7e11",
+  "alignment":{"state_registry_snapshot_match":"PASS","accepted_chain_C01_C08_match":"PASS","canonical_tree_commit_match":"PASS","scope_map_anchor_match":"PASS","canonical_prerequisites":"PASS_B1.3-C06_B1.3-C07_EXACTLY","foundational_gap_count":0,"locked_scope_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","director_acceptance_present":"PASS","sentinel_control_plane_mutation":"NO","sentinel_academic_mutation":"NO","alerts":[]},
+  "C09_gate":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING_AFTER_SENTINEL_PASS",
+  "updated_at":"2026-09-09T01:44:00+07:00"
+}
