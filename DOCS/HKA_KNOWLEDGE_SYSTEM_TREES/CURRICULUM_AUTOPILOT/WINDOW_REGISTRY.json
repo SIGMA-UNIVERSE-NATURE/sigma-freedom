@@ -1,9 +1,9 @@
 {
-  "schema_version":"5.13",
+  "schema_version":"5.14",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub durable state and immutable architecture anchors; chat history is never a dependency.",
   "scope_map_anchor":{"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
-  "active_transition":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","branch":"hka-tree/c01-w04-chemistry-c08","status":"DIRECTOR_ACCEPTED_PASS_PENDING_SENTINEL","director_acceptance_checkpoint_commit":"4300592dfbf2ab8bf6196d2744b67d828bad543d"},
+  "active_transition":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","branch":"hka-tree/c01-w04-chemistry-c08","status":"DIRECTOR_ACCEPTED_PASS_SENTINEL_ALIGNED","director_acceptance_checkpoint_commit":"4300592dfbf2ab8bf6196d2744b67d828bad543d","backup_sentinel_status_commit":"f94306b5e43e97632e19cd812a235ac12bc2cea6"},
   "stages":[{"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT"},{"stage_id":"CURRICULUM","status":"IN_PROGRESS","windows":[
     {"window_id":"C01-W01-B1-ARCHITECTURE","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
     {"window_id":"C01-W02-B1.1-MATH-FAMILY","status":"PASS"},
@@ -16,8 +16,8 @@
       {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05","scope_id":"B1.3-C05","scope":"Hóa phân tích","status":"PASS","director_accepted":true,"accepted_commit_sha":"d19b011f00ac5f24d7a212c957cac3bb5046f06e"},
       {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C06","scope_id":"B1.3-C06","scope":"Hóa hữu cơ","status":"PASS","director_accepted":true,"accepted_commit_sha":"f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba"},
       {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C07","scope_id":"B1.3-C07","scope":"Hóa lý và hóa học lý thuyết","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w04-chemistry-c07","accepted_commit_sha":"4da2338f420d12b958b0af71edda922816ff69cb","effective_academic_output_sha":"949bfc8c5bd72e44b367f116ccb7dbb905da383f","topic_count":6,"claim_count":30,"learning_objective_count":24,"semantic_closure":"24/24 PASS_AFTER_REPAIRS","foundational_coverage":"PASS","stable_ids":"PRESERVED","source_resolution":"7/7 PASS","required_prior_scope_pass":["B1.3-C03","B1.3-C04","B1.2-C07"]},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","scope":"Hóa sinh và sinh học hóa học","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w04-chemistry-c08","accepted_commit_sha":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca","worker_effective_academic_output_sha":"719fff9b01dd3b4855bb91b9c67ef65524572dd5","effective_academic_output_sha":"e501da9614738796323441f0f462cdfc919e7e11","topic_count":7,"claim_count":35,"learning_objective_count":28,"semantic_closure":"28/28 PASS_AFTER_REPAIR","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","source_resolution":"6/6 PASS","required_prior_scope_pass":["B1.3-C06","B1.3-C07"]},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C09","scope_id":"B1.3-C09","status":"LOCKED_PENDING_POST_C08_SENTINEL"},
+      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","scope":"Hóa sinh và sinh học hóa học","status":"PASS","director_accepted":true,"execution_branch":"hka-tree/c01-w04-chemistry-c08","accepted_commit_sha":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca","worker_effective_academic_output_sha":"719fff9b01dd3b4855bb91b9c67ef65524572dd5","effective_academic_output_sha":"e501da9614738796323441f0f462cdfc919e7e11","topic_count":7,"claim_count":35,"learning_objective_count":28,"semantic_closure":"28/28 PASS_AFTER_REPAIR","foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","stable_ids":"PRESERVED","source_resolution":"6/6 PASS","required_prior_scope_pass":["B1.3-C06","B1.3-C07"],"post_acceptance_sentinel":"TREE_ALIGNMENT_PASS"},
+      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C09","scope_id":"B1.3-C09","status":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING","unlocked":false},
       {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","scope_id":"B1.3-C10","status":"LOCKED"}
     ]},
     {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"LOCKED"},
