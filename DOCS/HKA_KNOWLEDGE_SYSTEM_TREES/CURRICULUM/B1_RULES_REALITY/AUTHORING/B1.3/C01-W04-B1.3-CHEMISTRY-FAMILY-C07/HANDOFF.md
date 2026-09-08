@@ -10,10 +10,10 @@ Canonical prerequisites are exactly accepted `B1.3-C03@3ce2ef9679d821386bef92895
 
 Foundational progression precedes advanced dominance: state/system/state-function and thermodynamic-vs-kinetic literacy; barrier/catalyst meaning; orbital as quantum model rather than classical path; surface-vs-bulk and adsorption-vs-absorption; colloid dispersed/continuous phases and Brownian/kinetic stability; computational model-dependence and validation. Advanced chemical potential/activity, TST, electronic-structure methods, adsorption models, colloid stabilization and simulation/ML extend these foundations rather than substitute for them.
 
-Self-audit found one in-scope semantic-support defect: `HKA-B1-3-C07-N005-LO-D2-001` named attraction/repulsion stabilization logic while its initial closure omitted the dedicated Claim `HKA-B1-3-C07-N005-C003`. `SR01` added that existing Claim to the same closure row, incremented the closure record version to 2, and preserved all stable IDs and the exactly-one-row topology. Re-audit PASS.
+Self-audit found and repaired two local semantic-support defects. `SR01` added existing `HKA-B1-3-C07-N005-C003` to `N005-D2` so attraction/repulsion stabilization language has direct support. `SR02` added existing `HKA-B1-3-C07-N005-C002` to `N005-D4` so time-scale/kinetic-stability language has direct support. Both repairs preserved all stable IDs and exactly-one-row closure topology. Final re-audit PASS.
 
 `B1.3-C08..C10` occur only as future-scope boundaries and provide zero supporting Claim IDs. `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; `CROSS_SCOPE_ACADEMIC_MUTATION=0`. No control-plane or post-CURRICULUM artifact was modified.
 
-Effective re-audited academic output commit: `077bfd5b5dc5165ddac33573101c5697193a8024`. Pre-PASS re-audit checkpoint: `9ac0b1d359a23618ed33d557b05d963759fff6f5`. Durable academic read-back PASS.
+Effective final re-audited academic output commit: `949bfc8c5bd72e44b367f116ccb7dbb905da383f`. Final re-audit checkpoint: `c6237fdafdfec7693b8435dca1d663a808cbe29e`. Durable academic read-back PASS.
 
 Director acceptance is not declared. `B1.3-C08` remains gated pending Director acceptance of C07 and C08 prerequisite gates.
