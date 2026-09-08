@@ -1,0 +1,26 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP03-DIRECTOR-ASSISTANT-FOUNDATIONAL-RECORD-REPAIR",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08",
+  "scope_id":"B1.3-C08",
+  "role":"DIRECTOR_ASSISTANT_AUDIT",
+  "stage":"CURRICULUM",
+  "status":"PASS_AFTER_ASSISTANT_REPAIR",
+  "worker_candidate_sha":"01dbcce2582e8f496c90f319e70c9ace84525d47",
+  "control_plane_read_sha":"b90f3e8eea3c6fadd501a6ae3ac53c51df4e9a3c",
+  "claims_repair_sha":"c70ca2b4dd6cc91e8f90a756a058f61b7a2666d2",
+  "learning_objectives_repair_sha":"b9ea1d55d0dc2cabcd43c0f4d66dd1e3e6bf578b",
+  "effective_academic_repair_sha":"e501da9614738796323441f0f462cdfc919e7e11",
+  "artifact_counts":{"topics":7,"nodes":7,"claims":35,"sources":6,"learning_objectives":28,"semantic_closures":28,"cross_links":6,"sequence_intent_records":7},
+  "repairs":[
+    "DA-C08-SR01 — restored mandatory epistemic_class/version metadata to all 35 Claim records and made amino-acid/protein foundations explicit.",
+    "DA-C08-SR02 — made DNA/RNA chemical distinction and metabolic matter conservation explicit while preserving existing Claim IDs.",
+    "DA-C08-SR03 — restored evidence_of_understanding, presentation pathway and future lesson-slot metadata to all 28 learning objectives.",
+    "DA-C08-SR04 — repaired N001-D1, N002-D1, N004-D1 and N006-D2 Claim→LO semantic support while preserving exactly one row per objective."
+  ],
+  "audit":{"foundational_coverage":"PASS_AFTER_ASSISTANT_REPAIR","claim_record_contract":"35/35 PASS","learning_objective_record_contract":"28/28 PASS","semantic_closure":"28/28 PASS_AFTER_REPAIR","source_resolution":"6/6 PASS — resolved and used","support_resolution":"PASS","canonical_prerequisite_alignment":"PASS — B1.3-C06 + B1.3-C07 exactly","prerequisite_graph":"PASS — acyclic, no dangling IDs","ownership":"PASS — C06/C07 retained; X03/X04 and R14 boundary-only","stable_ids":"PRESERVED","requires_unlocked_scope_claims":false,"future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS — CURRICULUM ONLY","durable_read_back":"PASS"},
+  "director_acceptance_declared":false,
+  "B1_3_C09_unlock":false,
+  "red_flag":"NONE",
+  "next":"Director review/acceptance of repaired C08 candidate; C09 remains gated."
+}
