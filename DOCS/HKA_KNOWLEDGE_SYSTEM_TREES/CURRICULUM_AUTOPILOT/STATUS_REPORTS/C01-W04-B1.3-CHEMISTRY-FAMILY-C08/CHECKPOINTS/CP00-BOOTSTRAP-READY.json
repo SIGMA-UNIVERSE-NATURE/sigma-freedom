@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-BOOTSTRAP-READY",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08",
+  "scope_id":"B1.3-C08",
+  "stage":"CURRICULUM",
+  "status":"READY",
+  "execution_branch":"hka-tree/c01-w04-chemistry-c08",
+  "input_control_plane_sha":"b90f3e8eea3c6fadd501a6ae3ac53c51df4e9a3c",
+  "execution_prompt_sha":"a4c10ece75468d5f71ecf842f3801733890f7c7f",
+  "canonical_topic_count":7,
+  "canonical_prerequisites":["B1.3-C06@f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba","B1.3-C07@4da2338f420d12b958b0af71edda922816ff69cb"],
+  "future_locked_support":0,
+  "successor":"B1.3-C09",
+  "successor_locked":true,
+  "updated_at":"2026-09-08T17:39:00+07:00"
+}
