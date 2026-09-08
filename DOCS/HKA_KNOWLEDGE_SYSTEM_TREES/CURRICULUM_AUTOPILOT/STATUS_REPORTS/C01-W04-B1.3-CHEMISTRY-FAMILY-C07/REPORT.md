@@ -16,14 +16,16 @@ Foundational progression is explicit before advanced dominance. D1/D2 establishe
 ## Ownership / overlap audit
 Canonical prerequisites are exactly `B1.3-C03@3ce2ef9679d821386bef92895a37ca379016fdf0`, `B1.3-C04@caa12019682e1a9274fe75b8ab20435c3bfb4d2e`, and `B1.2-C07@7d710491de2d4bb5e550a2b9b208739934a9f650`. R07 and R08 are explicitly dispositioned with no ownership transfer: B1.2-C07 retains quantum physics; C03 retains bonding/structure; C04 retains reaction/equilibrium/general kinetics; C07 owns chemistry-facing physical/theoretical chemistry and computational chemistry. C08-C10 are future boundary-only and supply zero support Claim IDs.
 
-## Self-audit / repair / re-audit
-Self-audit found one local semantic-support defect. `SR01`: `N005-D2` named attraction/repulsion stabilization logic but its initial closure omitted local Claim `HKA-B1-3-C07-N005-C003`. The existing claim was added to the same closure row and the closure record version incremented to 2. No stable ID was added, removed or renumbered. Re-audit PASS: topics 6/6; claims 30/30; sources 7/7; objectives 24/24; semantic closure 24/24; support resolution PASS; prerequisite DAG acyclic/no dangling IDs; ownership/duplicate PASS; foundational coverage PASS; future locked support 0; cross-scope academic mutation 0; stage boundary CURRICULUM-only.
+## Self-audit / repairs / re-audit
+Self-audit found two local semantic-support defects. `SR01`: `N005-D2` named attraction/repulsion stabilization logic but its initial closure omitted local Claim `HKA-B1-3-C07-N005-C003`; the Claim was added to the same closure row. `SR02`: `N005-D4` explicitly named time scale/kinetic stability but its closure omitted local Claim `HKA-B1-3-C07-N005-C002`; that Claim was added to the same closure row. Both rows retain exactly-one-row topology, stable IDs are unchanged and record versions were incremented to 2. Final re-audit PASS.
+
+Final re-audit checks: topics 6/6; claims 30/30; sources 7/7; objectives 24/24; semantic closure 24/24; support resolution PASS; prerequisite DAG acyclic/no dangling IDs; ownership/duplicate PASS; foundational coverage PASS; future locked support 0; cross-scope academic mutation 0; stage boundary CURRICULUM-only.
 
 ## Authoritative artifacts
-Effective re-audited academic output commit: `077bfd5b5dc5165ddac33573101c5697193a8024`.
-Pre-PASS checkpoint: `9ac0b1d359a23618ed33d557b05d963759fff6f5`.
-RESULT commit: `355812f961bfa5c0c6d8d6a0b58dafc9e4bf4668`.
-HANDOFF commit: `16609b434ca06ed548f648c1b14c9adf00951b14`.
+Effective final academic output commit: `949bfc8c5bd72e44b367f116ccb7dbb905da383f`.
+Final re-audit checkpoint: `c6237fdafdfec7693b8435dca1d663a808cbe29e`.
+Current RESULT commit: `d5a2fd98c3bbe810ca5ebae1e6a3425e3b38bb01`.
+Current HANDOFF commit: `2f13f0ee09b5fb8fd546dc8c3a68a97f3d531317`.
 
 ## Boundary state
 `requires_unlocked_scope_claims=false`; `FUTURE_LOCKED_SUPPORT=0`; `CROSS_SCOPE_ACADEMIC_MUTATION=0`; no control-plane mutation; no post-CURRICULUM artifacts. Director acceptance is not declared. `B1.3-C08` remains gated pending Director acceptance of C07 and C08 prerequisite gates.
