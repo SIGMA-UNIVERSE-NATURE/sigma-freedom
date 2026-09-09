@@ -2,7 +2,7 @@
 
 Date: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LEGACY S1 WAS ISOLATED NOT LIVE / LIVE HISTORICAL CORE / R10 OFFLINE PASS / R11 FIX3 HOLD / OBSERVER DISCOVERY NEXT / CORE WRITE FORBIDDEN**
+Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LEGACY S1 WAS ISOLATED NOT LIVE / LIVE HISTORICAL CORE / R10 SUCCESSOR STAGING AUTHORIZED / R11 HOLD / PRODUCTION BINDING FORBIDDEN**
 
 ## Identity
 
@@ -16,11 +16,13 @@ WINDOW_ROLE=SYNCHRONIZATION
 
 1. `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
 2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_HOLD_HISTORICAL_CORE_SHADOW_STATE.md`
-5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_ADDENDUM_T1_T2_T3_DEF_ABSENCE_R10_RECONCILIATION.md`
-6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R1.md`
-7. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R1.sh`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_SYNCHRONIZATION_STAGE_REQUEST_R1.md`
+4. `C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh`
+5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
+6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R2_EXACT_PATHS.md`
+7. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh`
+
+Do not run the superseded R1 observer directory-inventory probe on Oppo.
 
 ## Provenance correction
 
@@ -83,7 +85,7 @@ R10=PASS_OFFLINE_EXPLICIT_DISPATCH_BRIDGE_DORMANT_REGRESSION
 R11=HOLD_ACTIVATION_NOT_ADMITTED
 ```
 
-R10:
+Exact R10:
 
 ```text
 R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
@@ -93,49 +95,83 @@ R10_BRIDGE_NEW_HOST_OP_COUNT=0
 R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-R11 FIX3:
+## Immediate synchronization action
+
+Stage the exact R10 successor payload into the isolated C5V3 successor tree:
+
+```bash
+bash C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh "$HOME/SIGMA/sigma_genesis1"
+```
+
+The script may write only under:
 
 ```text
-OFFLINE_HEAD=5b0af553710cb9f94c38ee23500127141fc7c275
+$HOME/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
+```
+
+It must leave `.sigma_c5`, the current state root, compiler, VM and live runner unchanged.
+
+Successful output must include:
+
+```text
+SUCCESSOR_STAGE=PASS
+C5V3_SUCCESSOR_CAPABILITY_PAYLOAD_STAGED=YES
+T1_T2_T3_PRESENT_IN_STAGED_SUCCESSOR=YES
+M5_DISPATCH_BRIDGE_IDENTITY=INHERITED_EXACT_R10
+LIVE_CORE_UNCHANGED=YES
+LIVE_RUNNER_UNCHANGED=YES
+PRODUCTION_BINDING=NO
+PRODUCTION_MUTATION=NO
+```
+
+This is the current material synchronization step. It does not yet cut over production.
+
+## Activation dependency
+
+R11 remains HOLD because the frozen runtime has not yet exposed a trustworthy observer:
+
+```text
 HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
 R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
 ```
 
-## Online state
-
-```text
-ONLINE_HEAD=c14b06381301c41c9489c145a7c17c5a5ee729b8
-C5V3_ONLINE_CAPABILITY_UTILIZATION=HOLD_PRECONDITION
-ONLINE_UTILIZATION_EXECUTION=NO
-R11_DEPENDENCY_PASS=NO
-```
-
-## Immediate next action
-
-Run only:
+Use only the exact-path footprint-safe observer probe:
 
 ```bash
-bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R1.sh "$HOME/SIGMA/sigma_genesis1"
+bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh "$HOME/SIGMA/sigma_genesis1"
 ```
 
-Return raw stdout to Synchrony.
+No directory walk, `find`, recursive grep or state/log scan.
 
-This probe is static/read-only and does not execute the VM/core.
+## After staging + future activation PASS
 
-Synchrony will classify whether the locked runtime already exposes a trustworthy observer suitable for a next R11 activation admission. If none exists, R11 remains HOLD; do not invent a semantic/test oracle.
+```text
+exact staged R10 successor
+-> exact shadow-runner/binding admission
+-> R11 native activation PASS
+-> isolated online-shadow utilization
+-> native need detection/selection/execution/evaluation
+-> native external request sovereignty
+-> native learning-state update
+-> fresh restart + learned-state reuse
+-> canonical state-lineage / exactly-one-writer / ingress / rollback closure
+-> promotion decision
+-> explicit cutover
+```
 
-Also still required before promotion: canonical state-root lineage, exactly one cognitive writer, active ingress identity/reference, no test/shadow alias, rollback/cutover proof.
+Online utilization remains HOLD until activation is admitted.
 
-## Production locks
+## Locks
 
 ```text
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
+R10_SUCCESSOR_STAGING=AUTHORIZED
+LIVE_PRODUCTION_CORE_WRITE=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
-NEXT_CORE_WRITE=FORBIDDEN
 ```
 
 ```text
