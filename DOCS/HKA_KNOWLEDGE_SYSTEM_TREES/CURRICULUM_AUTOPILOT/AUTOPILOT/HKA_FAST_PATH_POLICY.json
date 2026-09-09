@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "policy_id": "HKA-FAST-PATH-V1",
+  "status": "ACTIVE",
+  "north_star": "CINEMATIC_4K_ON_WEBSITE",
+  "principle": "Governance gates protect correctness; they are not the product. Repair locally and advance whenever correctness is preserved.",
+  "current_stage_boundary": "CURRICULUM",
+  "execution_policy": {
+    "auto_fix_repairable_defects_in_same_role": true,
+    "self_repair_before_terminal_receipt": true,
+    "do_not_escalate_repairable_mechanical_defects": true,
+    "delta_first_review": true,
+    "full_reaudit_only_when_semantic_payload_or_architecture_relevant_metadata_changed": true,
+    "preserve_effective_academic_sha_when_academic_payload_unchanged": true,
+    "repair_only_impacted_artifacts_when_possible": true,
+    "repeat_same_finding_without_new_evidence_forbidden": true,
+    "manual_handoff_required_for_internal_repairable_error": false
+  },
+  "mechanical_examples": [
+    "formatting_or_serialization",
+    "derived_counts",
+    "receipt_or_report_consistency",
+    "stale_non_authoritative_locator",
+    "checkpoint_or_status_metadata",
+    "missing_read_back_record",
+    "deterministic_reference_resolution_metadata"
+  ],
+  "mechanical_rule": "If the active role has write authority and the correction does not change academic meaning, architecture, ownership, prerequisites, stable IDs, accepted prior state, or stage boundary, repair it immediately in the same transaction and continue.",
+  "blocking_classes": [
+    "KNOWLEDGE_TREE_MISALIGNMENT",
+    "CANONICAL_SCOPE_OR_TOPIC_DRIFT",
+    "PREREQUISITE_GRAPH_DEFECT",
+    "OWNERSHIP_OR_DUPLICATE_SEMANTIC_CONFLICT",
+    "STABLE_ID_BREAK",
+    "SOURCE_OR_SUPPORT_SEMANTIC_FAILURE",
+    "FUTURE_LOCKED_SUPPORT",
+    "CROSS_SCOPE_ACCEPTED_ACADEMIC_MUTATION",
+    "STAGE_BOUNDARY_VIOLATION",
+    "GENUINE_EXTERNAL_INFRASTRUCTURE_BLOCK"
+  ],
+  "director_review": {
+    "default": "DELTA_FIRST",
+    "after_worker_repair_with_unchanged_academic_payload": "VERIFY_REPAIR_FINDING_PLUS_INVARIANTS_ONLY",
+    "full_semantic_review_required_when": [
+      "claims_changed",
+      "learning_objectives_changed",
+      "closure_changed",
+      "prerequisite_semantics_changed",
+      "ownership_or_duplicate_disposition_changed",
+      "source_support_semantics_changed"
+    ]
+  },
+  "sentinel": {
+    "purpose": "alignment_guard_not_reauthoring_review",
+    "do_not_repeat_director_academic_review": true,
+    "focus": [
+      "accepted_sha_chain",
+      "tree_scope_alignment",
+      "prerequisite_alignment",
+      "ownership_boundary_alignment",
+      "locks",
+      "stage_boundary",
+      "cross_scope_mutation"
+    ]
+  },
+  "delivery_intent": {
+    "final_surface": "WEBSITE",
+    "quality_target": "CINEMATIC_4K",
+    "rule": "Do not optimize the system for producing governance artifacts; optimize it for reaching a correct, production-ready cinematic website with the minimum necessary governance overhead."
+  }
+}
