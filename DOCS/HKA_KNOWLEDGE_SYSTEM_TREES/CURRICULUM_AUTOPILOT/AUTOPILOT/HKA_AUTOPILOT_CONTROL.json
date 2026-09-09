@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "autopilot_id": "HKA-CURRICULUM-AUTOPILOT-V1",
   "status": "ACTIVE_GUARDED",
   "enabled": true,
@@ -11,6 +11,14 @@
   "auto_invoke_agent_webhook_when_configured": true,
   "fallback_queue": "GITHUB_ISSUE",
   "auto_open_successor_after_acceptance_and_sentinel": true,
+  "runner_federation": {
+    "contract": "AUTOPILOT/HKA_AUTOPILOT_FEDERATION.json",
+    "probe": ".github/hka_autopilot/federation_probe.py",
+    "primary": "GITHUB_ACTIONS",
+    "optional": ["VERCEL_CLOUD_OBSERVER", "HP_REMOTE_OPERATOR"],
+    "optional_failure_blocks_control_loop": false,
+    "task_loss_on_runner_failure": false
+  },
   "role_separation": {
     "WORKER": "May write only active child academic/status artifacts; cannot self-accept or unlock successor.",
     "DIRECTOR": "May open windows, independently review, accept or require repair, and update control-plane governance; does not replace worker authoring.",
