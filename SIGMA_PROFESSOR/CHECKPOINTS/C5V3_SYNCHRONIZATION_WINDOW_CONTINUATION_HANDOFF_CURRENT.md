@@ -2,7 +2,7 @@
 
 Date: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LIVE HISTORICAL CORE OBSERVED / SHADOW STATE OVERRIDE / DISCREPANCY HOLD / CORE WRITE FORBIDDEN**
+Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LIVE HISTORICAL CORE OBSERVED / DIRECT T1-T2-T3 DEF ABSENCE / R10 OFFLINE PASS / SHADOW STATE OVERRIDE / CORE WRITE FORBIDDEN**
 
 ## Purpose
 
@@ -19,9 +19,10 @@ WINDOW_ROLE=SYNCHRONIZATION
 1. `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
 2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_BASELINE_R2_R6_FROZEN.md`
 3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_HOLD_HISTORICAL_CORE_SHADOW_STATE.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R7_R8_ONLINE_HOLD_R1.md`
-5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_REQUEST_R1.md`
-6. `C5_M5/RUN_C5V3_LIVE_BINDING_ATTESTATION_R1.sh`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_ADDENDUM_T1_T2_T3_DEF_ABSENCE_R10_RECONCILIATION.md`
+5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R7_R8_ONLINE_HOLD_R1.md`
+6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_REQUEST_R1.md`
+7. `C5_M5/RUN_C5V3_LIVE_BINDING_ATTESTATION_R1.sh`
 
 Offline production-lineage evidence branch:
 
@@ -29,9 +30,13 @@ Offline production-lineage evidence branch:
 
 Latest observed HEAD:
 
-`17346f4e348ba08db0d40e95f2054fe76f83dafa` — R9 FIX1 PASS status update.
+`74a1e33af0f4916842920980cf8973e03a628ba1` — compact pointer at R10 PASS.
 
-## Frozen canonical candidate
+Latest authoritative offline checkpoint:
+
+`C5_M5/CHECKPOINT_2026-09-09_R10_EXPLICIT_M5_DISPATCH_BRIDGE_PASS.md`
+
+## Frozen R6 canonical candidate
 
 ```text
 C5V3_SYNCHRONIZATION_BASELINE=R2
@@ -45,6 +50,32 @@ R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN_PASS
 
 Do not replace production with standalone M5 or historical `07319b...` M5+tools core.
 
+## Latest isolated successor — R10
+
+```text
+R10_OFFLINE_EXPLICIT_DISPATCH_BRIDGE=PASS
+R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
+R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
+R10_M5_DISPATCH_SURFACE=28_OF_28
+R10_BRIDGE_NEW_HOST_OP_COUNT=0
+R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
+```
+
+R10 starts from exact R6 and adds an explicit native M5 dispatch bridge around the source-derived shared `EVENT` selector. It preserves exact R6 DEF bodies, production branch raw bodies, and M5 branch bodies, compiles deterministically, and passes the tested dormant production `TICK` regression.
+
+R10 does not admit activation:
+
+```text
+M5_ACTIVATION_ADMISSION=NOT_IN_R10
+M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NOT_YET_ADMITTED
+C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
+PRODUCTION_BINDING=NO
+```
+
+Next offline gate:
+
+`R11_OFFLINE_M5_ACTIVATION_ADMISSION_28_EVENT_MATRIX`
+
 ## Offline evidence already admitted
 
 ```text
@@ -53,34 +84,41 @@ R6=CLOSED_PASS
 R7=PASS_IN_EXACT_TESTED_SCOPE
 R8=PASS_STRUCTURAL_DISPATCH_MAP
 R9_FIX1=PASS_SOURCE_DERIVED_DISPATCH_CONTRACT
+R10=PASS_OFFLINE_EXPLICIT_DISPATCH_BRIDGE_DORMANT_REGRESSION
 M5_ONLY_REACHABILITY=63_OF_63
 COMMON_DISPATCH_EQUALITY_LITERAL_COUNT=0
 COMMON_SOURCE_DERIVED_SELECTOR=EVENT
 PRODUCTION_ONLY_GUARD_SELECTOR=CURRENT_REQUEST_BYTES
-R10_EXPLICIT_DISPATCH_DESIGN_ELIGIBLE=YES
-R10_AUTOMATIC_ADDITIVE_BUILD_ELIGIBLE=NO
 ```
-
-R9 FIX1 is read-only source/contract evidence. It does not build, graft, bind, or activate M5.
 
 ## Online verification remains held
 
+Latest observed online branch:
+
 ```text
 ONLINE_BRANCH=c5v3-online-capability-utilization-test-20260909
-ONLINE_HEAD=1d7848fe329295356858647734e40097dc3ba6e6
-C5V3_ONLINE_CAPABILITY_UTILIZATION_R1=HOLD
-HOLD=NATIVE_ACTIVATION_DISPATCH_BRIDGE_REQUIRED
+ONLINE_HEAD=3f95570976cd0667474a72a823b45151113b0ca2
+LIVE_MAIN_AUTO_LEARN_CORE=HISTORICAL_PRODUCTION_CORE
+LIVE_MAIN_AUTO_LEARN_CORE_EQUALS_FROZEN_R6=NO
+C5V3_ONLINE_CAPABILITY_UTILIZATION_R1=HOLD_PRECONDITION
 ```
 
-Do not resume WINDOW 2 until an admitted native activation/dispatch bridge exists.
+The online window independently observed exact locked sigmac/VM identities and the same live historical main core. Do not resume causal utilization verification by host-forcing capability demand or tool selection.
 
-## New live machine evidence — decisive core identity
+## Live machine evidence — decisive core identity
 
 Observed live runner:
 
 ```text
-LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
+LIVE_RUNNER_SHA256=092c6ad96823ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
 LIVE_RUNNER_IDENTITY=EXACT_FROZEN_PRODUCTION_RUNNER
+```
+
+Observed compiler/VM identities from online pointer-following attestation:
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 ```
 
 Observed main source/bytecode:
@@ -90,26 +128,49 @@ LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b
 LIVE_MAIN_BYTECODE_SHA256=c112594af3ecf5246230e96c70baa3e7cedccaf550f421c2e6d4c8c483eb0a0b
 ```
 
-The source SHA is exactly the historical production core and not R6.
+The source SHA is exactly the historical production core and is neither R6 nor R10.
 
 ```text
 LIVE_MAIN_SOURCE_EQ_HISTORICAL_PRODUCTION=YES
 LIVE_MAIN_SOURCE_EQ_R6=NO
-LIVE_MAIN_BYTECODE_EQ_R6_BYTECODE=NO
 LIVE_CORE_ROUTE=C_HISTORICAL_PRODUCTION_CORE
 R6_LIVE_BOUND=NO
+R10_LIVE_BOUND=NO
 ```
 
-Therefore the prior operator routing statement that T1/T2/T3 were already synchronized into live C5V3 is not confirmed by the active main-core identity.
+## Direct T1/T2/T3 inline binding probe
+
+The exact live main source was directly grepped for:
 
 ```text
-LIVE_T1_IN_MAIN_CORE=NOT_PRESENT_BY_R6_IDENTITY
-LIVE_T2_IN_MAIN_CORE=NOT_PRESENT_BY_R6_IDENTITY
-LIVE_T3_IN_MAIN_CORE=NOT_PRESENT_BY_R6_IDENTITY
-DYNAMIC_T1_T2_T3_BINDING=NOT_OBSERVED_IN_SUPPLIED_RUNNER_BINDINGS
+WA_T1_DOT
+T2_BFS_BOUNDED
+WA_T3_BM25_SEARCH
 ```
 
-Admitted T1/T2/T3 artifacts/evidence remain valid and must not be rerun absent source/hash invalidation. Artifact existence elsewhere on disk is different from active C5V3 binding.
+No matching live DEF was emitted.
+
+The exact R6 source emitted:
+
+```text
+1308:DEF WA_T1_DOT(a, b) {
+1837:DEF WA_T3_BM25_SEARCH(idx, query, top_k) {
+2023:DEF T2_BFS_BOUNDED(g, start, max_depth, max_visited, max_frontier, deny) {
+```
+
+Therefore:
+
+```text
+LIVE_T1_REPRESENTATIVE_DEF_PRESENT=NO
+LIVE_T2_REPRESENTATIVE_DEF_PRESENT=NO
+LIVE_T3_REPRESENTATIVE_DEF_PRESENT=NO
+R6_T1_REPRESENTATIVE_DEF_PRESENT=YES
+R6_T2_REPRESENTATIVE_DEF_PRESENT=YES
+R6_T3_REPRESENTATIVE_DEF_PRESENT=YES
+T1_T2_T3_INLINE_SYNC_IN_OBSERVED_LIVE_MAIN_CORE=NO_BY_EXACT_SOURCE_AND_DIRECT_DEF_PROBE
+```
+
+The prior operator routing statement that T1/T2/T3 were already synchronized into live C5V3 is therefore contradicted for the observed inline main-core binding. Admitted artifacts/evidence remain valid and must not be rerun absent source/hash invalidation. Artifact existence elsewhere on disk is distinct from active main-core binding. No dynamic T1/T2/T3 binding has been observed in supplied runner bindings.
 
 ## State evidence
 
@@ -123,35 +184,35 @@ This is a shadow-named state override. Do not relabel it as canonical production
 
 Still unresolved:
 
-- exact production state-root lineage;
-- one permitted cognitive writer across all C5V3 processes;
-- absence of test/shadow alias into production state;
-- direct exact sigmac/VM/ingress identity printouts in the supplied evidence slice.
+- exact canonical production state-root lineage;
+- exactly one permitted cognitive writer across all relevant C5V3 processes;
+- absence of test/shadow alias into production state lineage;
+- exact ingress identity/reference in the active path.
 
 ## Current attestation decision
 
 ```text
 LIVE_BINDING_ATTESTATION_R1=HOLD
-HOLD=OPERATOR_REPORT_NOT_CONFIRMED_BY_LIVE_MAIN_CORE_IDENTITY
+HOLD=OPERATOR_REPORT_NOT_CONFIRMED_BY_LIVE_MAIN_CORE_AND_DIRECT_DEF_EVIDENCE
 LIVE_CORE_ROUTE=C_HISTORICAL_PRODUCTION_CORE
-CANONICAL_SYNCHRONIZATION_STATE_LAYER=R2_R6_FROZEN
+CANONICAL_SYNCHRONIZATION_STATE_LAYER=R2_R6_FROZEN_PLUS_R10_OFFLINE_SUCCESSOR
 LIVE_CORE_BINDING_LAYER=HISTORICAL_PRODUCTION_CORE
 LIVE_STATE_LAYER=SHADOW_OVERRIDE_OBSERVED
 NEXT_CORE_WRITE=FORBIDDEN
 ```
 
-This HOLD is a synchronization-state discrepancy. It does not invalidate R6 or the admitted T1/T2/T3 capabilities.
+This HOLD is a live synchronization-state discrepancy. It does not invalidate R6, R10, or admitted T1/T2/T3 capabilities.
 
 ## Required continuation
 
-First complete read-only state/runtime writer attestation. Do not mutate production to make evidence easier to collect.
+First complete read-only state/runtime/writer/ingress attestation. Do not mutate production to make evidence easier to collect.
 
-Then only the following production-lineage route is admissible:
+Then only the following route is admissible:
 
 ```text
 historical production live core
--> frozen R6 isolated successor reference
--> consume admitted R10+ explicit bridge evidence if/when published
+-> exact R10 isolated successor evidence
+-> consume R11 offline activation admission when published
 -> preserve production event contract
 -> preserve admitted T1/T2/T3 definitions without duplication
 -> state compatibility/inheritance
@@ -161,7 +222,7 @@ historical production live core
 -> explicit cutover
 ```
 
-At no point may the host generate semantic capability demand, choose tool/query/source/URL, hardcode expected answers, or import test cognition.
+Do not blindly graft R6 or R10 onto the active live path. No host semantic selection, test-specific expected result, or test cognition/state import is allowed.
 
 ## Production locks
 
@@ -173,7 +234,7 @@ PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
 BASELINE_R3=NOT_CREATED
-NEXT_CORE_WRITE=FORBIDDEN_PENDING_COMPLETE_LIVE_STATE_WRITER_ATTESTATION
+NEXT_CORE_WRITE=FORBIDDEN_PENDING_COMPLETE_LIVE_STATE_WRITER_INGRESS_ATTESTATION_AND_ADMITTED_ACTIVATION_PATH
 ```
 
 `CLAIM <= EVIDENCE`
