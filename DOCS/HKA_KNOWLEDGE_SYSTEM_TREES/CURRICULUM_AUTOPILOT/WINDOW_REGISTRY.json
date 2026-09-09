@@ -1,9 +1,9 @@
 {
-  "schema_version":"5.26",
+  "schema_version":"5.27",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub durable state and immutable architecture anchors; chat history is never a dependency.",
   "scope_map_anchor":{"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
-  "active_transition":{"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"branch":"hka-tree/c01-w05-earth-universe-c01-c03","status":"DIRECTOR_ACCEPTED_PASS_SENTINEL_ALIGNED","accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","family_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","family_branch":"hka-tree/c01-w05-earth-universe-family","director_acceptance_checkpoint_commit":"5f4f312891af641a7c915cefc51b4a83aa4647e9","backup_sentinel_status_commit":"03633e0b32ab1323c9a89e27bf70ad273f921027"},
+  "active_transition":{"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06","scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],"branch":"hka-tree/c01-w05-earth-universe-c04-c06","status":"READY","owner":"W46","family_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","family_branch":"hka-tree/c01-w05-earth-universe-family","predecessor_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","predecessor_accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","predecessor_director_acceptance_checkpoint_commit":"5f4f312891af641a7c915cefc51b4a83aa4647e9","predecessor_backup_sentinel_status_commit":"03633e0b32ab1323c9a89e27bf70ad273f921027"},
   "stages":[{"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT"},{"stage_id":"CURRICULUM","status":"IN_PROGRESS","windows":[
     {"window_id":"C01-W01-B1-ARCHITECTURE","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
     {"window_id":"C01-W02-B1.1-MATH-FAMILY","status":"PASS"},
@@ -11,7 +11,7 @@
     {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"PASS","director_accepted":true,"subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS"},
     {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"IN_PROGRESS","unlocked":true,"family_branch":"hka-tree/c01-w05-earth-universe-family","registered_child_count":8,"registered_scope_count":24,"canonical_topic_count":24,"children":[
       {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"scope_names":["Khoáng vật, đá và địa hóa","Cấu trúc bên trong Trái Đất","Địa vật lý"],"status":"PASS","unlocked":true,"director_accepted":true,"accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","post_acceptance_sentinel":"TREE_ALIGNMENT_PASS","owner":"W45","execution_branch":"hka-tree/c01-w05-earth-universe-c01-c03","canonical_topic_count":3,"required_prior_scope_pass":["B1.3-C01"],"internal_scope_sequence":["B1.4-C01","B1.4-C02","B1.4-C03"],"overlap_risks":["R11","R10"],"R11_target":"B1.3-C10@03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d","mandatory_cross_domain_links":[]},
-      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06","scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],"status":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING","unlocked":false,"owner":"W46","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06","scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],"scope_names":["Kiến tạo mảng","Núi lửa và động đất","Trầm tích và lịch sử địa chất"],"stable_topic_ids":["B1.4-C04-T01","B1.4-C05-T01","B1.4-C06-T01"],"status":"READY","unlocked":true,"owner":"W46","execution_branch":"hka-tree/c01-w05-earth-universe-c04-c06","canonical_topic_count":3,"required_prior_scope_pass":["B1.4-C01","B1.4-C02","B1.4-C03"],"accepted_prerequisite_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","canonical_prerequisite_graph":{"B1.4-C04":["B1.4-C02","B1.4-C03"],"B1.4-C05":["B1.4-C04"],"B1.4-C06":["B1.4-C01","B1.4-C04","B1.4-C05"]},"internal_scope_sequence":["B1.4-C04","B1.4-C05","B1.4-C06"],"overlap_risks":[],"mandatory_cross_domain_links":[]},
       {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C07-C09","scope_ids":["B1.4-C07","B1.4-C08","B1.4-C09"],"status":"LOCKED","unlocked":false,"owner":"W47","canonical_topic_count":3},
       {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C10-C12","scope_ids":["B1.4-C10","B1.4-C11","B1.4-C12"],"status":"LOCKED","unlocked":false,"owner":"W48","canonical_topic_count":3},
       {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C13-C15","scope_ids":["B1.4-C13","B1.4-C14","B1.4-C15"],"status":"LOCKED","unlocked":false,"owner":"W49","canonical_topic_count":3},
@@ -22,5 +22,5 @@
     {"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED","unlocked":false},
     {"window_id":"C01-W07-B1-INTEGRATION-LOCK","status":"LOCKED"}
   ]},{"stage_id":"ACADEMIC_LOCKED","status":"GATED"}],
-  "updated_at":"2026-09-09T10:47:00+07:00"
+  "updated_at":"2026-09-09T12:26:00+07:00"
 }
