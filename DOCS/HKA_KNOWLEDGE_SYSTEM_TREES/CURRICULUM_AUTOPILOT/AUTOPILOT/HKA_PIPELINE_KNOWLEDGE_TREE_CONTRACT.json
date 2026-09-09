@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "HKA-PIPELINE-KNOWLEDGE-TREE-V1",
+  "status": "ACTIVE",
+  "north_star": "CINEMATIC_4K_ON_WEBSITE",
+  "source_of_truth": "DURABLE_GITHUB_STATE",
+  "mandatory_knowledge_tree_rule": {
+    "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+    "must_read_before_every_transition": true,
+    "applies_to_roles": ["ORCHESTRATOR", "WORKER", "DIRECTOR", "SENTINEL"],
+    "queue_issue_is_locator_only": true,
+    "chat_handoff_is_locator_only": true,
+    "never_infer_missing_architecture": true,
+    "never_override_durable_active_state_with_a_chat_example": true
+  },
+  "layer_model": {
+    "pipeline_stage": "Lifecycle stage from KNOWLEDGE through WEBSITE UPDATE.",
+    "knowledge_architecture": "B1-B6 are canonical Knowledge Tree branches established at KNOWLEDGE stage.",
+    "curriculum_execution": "Each B is implemented through subbranches and bounded C authoring/audit scopes. B is architecture; C is execution. Never conflate them."
+  },
+  "canonical_knowledge_branches": ["B1", "B2", "B3", "B4", "B5", "B6"],
+  "pipeline": [
+    "KNOWLEDGE",
+    "CURRICULUM",
+    "ACADEMIC_LOCKED",
+    "LESSON_REGISTRY",
+    "LESSON_REGISTRY_LOCKED",
+    "PROMPTS",
+    "PROMPT_LOCKED",
+    "IMAGE_PRODUCTION",
+    "R2 STAGING",
+    "INDEPENDENT QA",
+    "VAULT",
+    "WEB OPTIMIZE",
+    "DELIVERY",
+    "WEBSITE UPDATE"
+  ],
+  "stage_transition_rules": {
+    "CURRICULUM_to_ACADEMIC_LOCKED": {
+      "all_B1_through_B6_curriculum_complete": true,
+      "each_B_branch_audit_pass": true,
+      "global_curriculum_audit_pass": true,
+      "single_C_completion_is_insufficient": true,
+      "single_B_completion_is_insufficient": true
+    },
+    "no_stage_skip": true,
+    "active_stage_must_come_from_current_durable_state": true
+  },
+  "fast_path": {
+    "repairable_mechanical_errors": "FIX_IMMEDIATELY_IN_SAME_AUTHORIZED_ROLE",
+    "manual_handoff_for_repairable_internal_error": false,
+    "delta_first_review": true,
+    "full_reaudit_only_for_semantic_or_architecture_relevant_change": true,
+    "blocking_focus": [
+      "KNOWLEDGE_TREE_MISALIGNMENT",
+      "CANONICAL_SCOPE_OR_TOPIC_DRIFT",
+      "PREREQUISITE_GRAPH_DEFECT",
+      "OWNERSHIP_OR_DUPLICATE_SEMANTIC_CONFLICT",
+      "STABLE_ID_BREAK",
+      "SOURCE_OR_SUPPORT_SEMANTIC_FAILURE",
+      "FUTURE_LOCKED_SUPPORT",
+      "CROSS_SCOPE_ACCEPTED_ACADEMIC_MUTATION",
+      "STAGE_BOUNDARY_VIOLATION",
+      "GENUINE_EXTERNAL_INFRASTRUCTURE_BLOCK"
+    ]
+  },
+  "delivery_rule": "Governance exists to protect correctness and accelerate delivery. It must not become the product or a source of avoidable repeated mechanical repair. The terminal product target is Cinematic 4K on the website."
+}
