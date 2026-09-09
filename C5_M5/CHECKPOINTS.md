@@ -120,26 +120,50 @@ This file is append-only in intent. Historical failures remain visible after lat
 
 ## 2026-09-09 — Post-PASS self-contained dependency audit
 
-- Static/runtime-harness audit found that core `616a47...` compact semantic query still invokes `contextual_sentence_match(LEDGER, ...)`.
-- The `100/100` blind did not clear `native_neutral_evidence_ledger.txt` before post-compaction semantic query.
-- Conclusion: admitted compact-summary-memory claim remains valid, but **self-contained semantic compression is not established**.
-- `SELF_CONTAINED_SEMANTIC_COMPRESSION=FAIL` retained.
-- This is a claim-scope correction, not a retroactive failure of Summary Memory Compaction R1.
+- Static/runtime-harness audit found that core `616a47...` compact semantic query still invoked the neutral evidence ledger for learned equivalence.
+- The `100/100` blind did not clear `native_neutral_evidence_ledger.txt` before post-compaction query.
+- Conclusion: compact-summary-memory claim remained valid, but self-contained semantic compression was not yet established.
+- This narrowed the claim without rewriting the PASS.
 
-## 2026-09-09 — Self-Contained Compact Semantic Memory R1 prepared
+## 2026-09-09 13:44 +07 — Self-Contained Compact Semantic Memory R1
 
-- Candidate core SHA256 `2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`.
-- Admission preflight SHA256 `5a57a619d19e0e85165dee0325ff88e76f7a41367690b4fa1d63c95dfff9339e`.
-- Independent blind auditor SHA256 `c149fbfdb95277b735223fe31044b6ccccd9dc9558bf510dfbfd8a61ef1400b8`.
-- Ladder runner SHA256 `6b3c1c69f925e3c0d8474875d064e63c95d9dd601328a67fd019aa994128a807`.
-- Candidate bundle SHA256 `ee50836db1ed8031e294ffab19b0952584779a17129fe89e660e4f5672b2ad0c`.
-- Blind bundle SHA256 `0c3e10d294fab0b42e0622dfb412614a4040b526832d3893ff8043d5e890769e`.
-- Combined ladder bundle SHA256 `be98ca2a9f5a50de6cb10623c0579f763864cf34aabb2e58358d3f784a198b0f`.
-- Design: internalize only native evidence-learned equivalence edges used by validated cross-source candidates into compact memory; explicit native detach removes raw neutral ledger and relation/context working state.
-- Blind requires a never-stored mixed learned paraphrase to remain supported with ledger empty; role reversal and irrelevant input rejected; restart cannot recreate the ledger.
-- Candidate/blind core byte-identical; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/grammar-role scan clean; Bash/manifests/ZIP integrity PASS.
+- Core SHA256 `2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`.
+- Bytecode SHA256 observed on Oppo `0b4165e104c139529185f38f280e45d900023099ef103d79de1e4041a5284d5f`.
+- Admission PASS, `RC=0`.
+- Parent cross-source summary-hypothesis regression PASS.
+- Summary-memory compaction and raw whole-work state removal PASS.
+- Compact provenance retention PASS.
+- `COMPACT_EQUIVALENCE_INTERNALIZATION=PASS`.
+- `RAW_EQUIVALENCE_LEDGER_REMOVED=PASS`.
+- Never-stored mixed learned paraphrase supported with raw ledger empty PASS.
+- Role reversal rejected after detach PASS.
+- Irrelevant query rejected after detach PASS.
+- Compact semantic memory restart PASS; raw equivalence ledger did not reappear.
+- `SELF_CONTAINED_SEMANTIC_COMPRESSION=PASS` in the exact learned-context/cross-source compact-memory scope.
+- Independent blind `TOTAL_SCORE=100/100`.
+- Grade `SELF_CONTAINED_COMPACT_SEMANTIC_MEMORY_IN_TESTED_SCOPE`.
+- Host summary absent; host semantic labels absent; active Python cognition absent.
+- Production binding NO.
+- Still FAIL: autonomous summary generation, zero-shot low-overlap summary, broad whole-work understanding, theme/value induction and multilingual transfer.
+
+## 2026-09-09 — Continual Compact Work Memory R1 prepared
+
+- Candidate ID `M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1`.
+- Parent: admitted Self-Contained Compact Semantic Memory R1.
+- Core SHA256 `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
+- Admission preflight SHA256 `36c6bba08c2d92853721dfe1e40bb9e2f373573e68d671c875bc73e941950426`.
+- Independent blind auditor SHA256 `883f47c435a21a10054caa9a99662bb8da0a9aa249f9c9e277998ce067a56f14`.
+- Ladder runner SHA256 `71aeba4b75cdac43b30983fa632f967dbd753e3f45d1a23c48d84fdf209f33f8`.
+- Candidate bundle SHA256 `2421af621e03f11d27a36e246cf087d6828c6214abf08ae8ccb049c8bad62423`.
+- Blind bundle SHA256 `d9cbc5c28a68b88fe4a8f9dfd4c208fc883d1c08cf7edddcb279f345b56fe714`.
+- Combined ladder bundle SHA256 `7523192b65c43aab95c1844fa7fa579a8342c91daf8b90c8359ad1c4387aec1d`.
+- Design: archive a detached self-contained compact Work A memory into a bounded native bank, clear active A state, learn/compact Work B in the same runtime, then prove Work A is byte-stable and both A/B remain separately queryable after source removal and restart.
+- Cross-work A<->B semantic leakage and role reversal are explicit rejection gates.
+- Raw whole-work spans A/B must be absent from the bank; bank must be smaller than combined raw works.
+- Bank bound in this candidate: four work entries; blind exercises two independent works.
+- Candidate/blind core byte-identical; host-op set mechanical only; LEFT/RIGHT/previous-next/grammar-role scan clean; process-control ops absent from core; Bash syntax/manifests/ZIP integrity PASS.
 - Runtime admission/blind pending.
 
 ### Next checkpoint target
 
-Run `SIGMA_C5_C5V3_M5_SELF_CONTAINED_COMPACT_SEMANTIC_LADDER_R1_BUNDLE.zip`. If PASS, advance self-contained semantic compression only in this learned-context/cross-source compact-memory scope, then build multi-work continual learning from archived compact local memories. C5V3 integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Run `SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1_BUNDLE.zip`. If PASS, advance `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY` only in the exact tested two-work/self-contained-compact scope. Do not inflate it into unbounded lifelong learning, autonomous summary generation, zero-shot semantics, human-value induction or multilingual transfer. C5V3 integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
