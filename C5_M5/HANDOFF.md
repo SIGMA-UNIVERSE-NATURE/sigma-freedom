@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T6 FULL combined compatibility PASS.
+Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
 
 ## Operating split
 
@@ -24,64 +24,51 @@ R5 -> R10 offline production-lineage synchronization evidence remains admitted a
 - T1/T2/T3 admitted subsets + mixed compatibility PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
+- `T6_FULL_LAYER=PASS`.
 
-### T6 FULL — PASS
+### T7A — PASS
 
 Checkpoint:
 
-`C5_M5/CHECKPOINT_2026-09-10_T6_FULL_COMBINED_COMPATIBILITY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
 
-T6A:
-- source `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
-- binary `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
+Frozen OPPO artifact:
 
-T6B:
-- source `046ffe2aa2d9cc0b20fcd6a15b95d71485f69dd612f352f19d4dccc5e06aab5b`
-- binary `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
+- source `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
+- binary `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Exact admitted T6 mechanical scope:
+Admitted mechanical scope:
 
-- DNS resolution;
-- bounded TCP exchange;
-- TLS peer trust + hostname verification;
-- HTTP/HTTPS GET;
-- byte Range;
-- chunked reception;
-- caller-bounded redirect policy;
-- ETag / If-None-Match;
-- If-Range;
-- timeout;
-- caller-bounded retry count/delay;
-- receive-rate limit;
-- slow-consumer backpressure;
-- body-size bound.
+- monotonic clock;
+- wall clock;
+- timer;
+- bounded deadline scheduler with stable same-deadline ordering;
+- bounded worker pool;
+- explicit cancellation;
+- explicit timeout;
+- bounded queue backpressure.
 
-Combined evidence:
+Evidence:
 
-- exact T6A/T6B artifact rebuild locks PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
-- 115 native process invocations;
-- full GET/Range reconstruction PASS;
-- chunked equivalence PASS;
-- redirect final equivalence PASS;
-- DNS/TCP/TLS/HTTP coexistence PASS;
-- conditional/If-Range compatibility PASS;
-- retry/timeout/rate/backpressure compatibility PASS;
-- body-bound compatibility PASS;
-- counterfactual/no-mutation/high-entropy gates PASS;
-- `T6_A_B_COMBINED_COMPATIBILITY=PASS`;
-- `T6_FULL_LAYER=PASS`.
+- deterministic compile PASS;
+- source/binary freeze PASS;
+- high-entropy leak audit PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- 53 native process invocations;
+- post-tool mechanical oracle PASS;
+- clock/timer/scheduler/pool/cancellation/timeout/backpressure gates PASS;
+- counterfactual behavior change PASS.
+
+T7A does not claim CPU/RAM/IO quota, watchdog, step limit, process spawn or isolation.
 
 ## Anti-hardcoding doctrine
 
 - capability, not answers;
-- no case-ID-dependent native behavior;
+- no case-ID-dependent behavior;
 - no expected-output literals in native implementation;
-- dynamic/high-entropy test material only after source/binary freeze;
+- randomized/high-entropy material only after freeze;
 - expected values only in external mechanical oracle;
-- `HOST_ENDPOINT_SELECTION=NO`;
-- `HOST_RETRY_POLICY_SELECTION=NO`;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
 - no test cognition imported into SIGMA state;
@@ -93,14 +80,18 @@ Combined evidence:
 - `T4_FULL_LAYER=PASS`
 - `T5_FULL_LAYER=PASS`
 - `T6_FULL_LAYER=PASS`
+- `T7A_CLOCK_SCHEDULER_POOL_CANCEL_ADMISSION=PASS`
+- `T7B_RESOURCE_GOVERNOR=PENDING`
+- `T7_COMBINED=PENDING`
+- `T7_FULL_LAYER=NOT_YET_ADMITTED`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-- `ONLINE_SYNC=NO` from this offline lane
+- `ONLINE_SYNC=NO`
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
 ## Next offline sequence
 
-`T7 -> T8 -> T9 -> T10 -> T11`
+Build current-standard **T7B Resource Governor**: CPU-time budget, bounded RAM allocator, byte-counted actual IO budget inside isolated sandbox, watchdog heartbeat deadline, and step limit. Then exact T7A+T7B combined admission.
 
-Rebuild T7 under current-standard admission. Do not inherit older T7 packaging or claims without exact new evidence.
+After T7 full: `T8 -> T9 -> T10 -> T11`.
