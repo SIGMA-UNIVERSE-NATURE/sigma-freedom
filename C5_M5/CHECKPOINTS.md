@@ -151,19 +151,58 @@ This file is append-only in intent. Historical failures remain visible after lat
 - Candidate ID `M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1`.
 - Parent: admitted Self-Contained Compact Semantic Memory R1.
 - Core SHA256 `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
-- Admission preflight SHA256 `36c6bba08c2d92853721dfe1e40bb9e2f373573e68d671c875bc73e941950426`.
-- Independent blind auditor SHA256 `883f47c435a21a10054caa9a99662bb8da0a9aa249f9c9e277998ce067a56f14`.
-- Ladder runner SHA256 `71aeba4b75cdac43b30983fa632f967dbd753e3f45d1a23c48d84fdf209f33f8`.
-- Candidate bundle SHA256 `2421af621e03f11d27a36e246cf087d6828c6214abf08ae8ccb049c8bad62423`.
-- Blind bundle SHA256 `d9cbc5c28a68b88fe4a8f9dfd4c208fc883d1c08cf7edddcb279f345b56fe714`.
-- Combined ladder bundle SHA256 `7523192b65c43aab95c1844fa7fa579a8342c91daf8b90c8359ad1c4387aec1d`.
-- Design: archive a detached self-contained compact Work A memory into a bounded native bank, clear active A state, learn/compact Work B in the same runtime, then prove Work A is byte-stable and both A/B remain separately queryable after source removal and restart.
-- Cross-work A<->B semantic leakage and role reversal are explicit rejection gates.
-- Raw whole-work spans A/B must be absent from the bank; bank must be smaller than combined raw works.
-- Bank bound in this candidate: four work entries; blind exercises two independent works.
-- Candidate/blind core byte-identical; host-op set mechanical only; LEFT/RIGHT/previous-next/grammar-role scan clean; process-control ops absent from core; Bash syntax/manifests/ZIP integrity PASS.
+- Design: archive detached Work A compact memory, clear active A, learn/compact Work B, prove A/B isolation and restart.
+- Original R1 evaluator later hardened to R1H1 because recall-output hash equality alone was weaker than exact archived-block equality.
+
+## 2026-09-09 — Continual R1 static audit / R1H1 evaluator hardening
+
+- Cognition core unchanged: `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
+- R1H1 additionally snapshots the exact archived Work A block before Work B and requires SHA equality plus byte-for-byte `cmp` equality after Work B.
+- No cognition criterion was relaxed.
+- R1H1 admission evaluator SHA256 `a64502677eb2b61965e0622330b75b778fea9173ba3688ce0b99bed0b3affe83`.
+- R1H1 blind evaluator SHA256 `c17c40d8204b9fdf8db85479c0c9a747696270d2127e231840d972d9edaa0b9b`.
+- R1H1 ladder bundle SHA256 `30eb8ac1f53860576e938fcaa0ea118ed5d8163f813d64b3cc58bc0338b899ca`.
+
+## 2026-09-09 14:20 +07 — Continual Compact Work Memory R1H1 runtime
+
+- Core SHA256 `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
+- Bytecode SHA256 observed on Oppo `642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`.
+- Admission evaluator PASS, `RC=0`.
+- Independent blind PASS, `RC=0`.
+- `WORK_A_SELF_CONTAINED_LOCAL_ARCHIVE=PASS`.
+- `WORK_A_MEMORY_BYTE_STABLE_AFTER_WORK_B=PASS`.
+- `WORK_A_ARCHIVE_BLOCK_BYTE_STABLE_AFTER_WORK_B=PASS`.
+- `WORK_A_COMPACT_SEMANTIC_RECALL_AFTER_WORK_B=PASS`.
+- `WORK_B_COMPACT_SEMANTIC_RECALL=PASS`.
+- `ARCHIVED_WORK_CROSS_ISOLATION=PASS`.
+- `CONTINUAL_ROLE_REVERSAL_REJECTION=PASS`.
+- `TWO_WORK_COMPACT_BANK_SMALLER_THAN_RAW_WORKS=PASS`.
+- `RAW_WORK_A_B_EXCLUDED_FROM_LOCAL_BANK=PASS`.
+- `MULTI_WORK_LOCAL_MEMORY_RESTART=PASS`.
+- blind additionally `RAW_SOURCE_A_NOT_RESTORED_DURING_WORK_B=PASS`.
+- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in exact two-work/self-contained compact-memory scope.
+- This does not establish unbounded lifelong capacity.
+- Still FAIL: autonomous summary generation, zero-shot low-overlap summary, broad whole-work understanding, human-value induction, multilingual transfer, broad semantic support/conflict/truth.
+- Production binding NO; production PID before/after `23663`; production mutation NO.
+
+## 2026-09-09 — Scoped Revision / Support / Conflict R1 prepared
+
+- Candidate ID `M5_NATIVE_SCOPED_REVISION_SUPPORT_CONFLICT_R1`.
+- Parent regression: full Continual Compact Work R1H1 admission + blind retained.
+- Core SHA256 `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`.
+- Admission evaluator SHA256 `9896de1de21157b255c88c8f01107ab03eb16a3b677f8a6d898857fcbbb582b4`.
+- Independent blind evaluator SHA256 `661b69a3944f40a28dc6a0b309a162480859308673ff7227d12d76741ef526d4`.
+- Ladder runner SHA256 `b698df3d83367a70dae1146b426e7ca8f394fe885b3588bd2f50cad7200e8a59`.
+- Combined ladder bundle SHA256 `209c5221eac20a3fb5376ed11b9139f3d1116affe4b5efc6a749782f5395b4a1`.
+- Revision candidates can only be copied from a native relation-discrimination gap; opening revision without a native gap is a rejection gate.
+- Raw evidence receives no host stance label. Core natively matches evidence to A/B/both/neither.
+- Same-source repetition cannot increase revision authority; revision uses distinct-source support counts.
+- Admission tests support, competing-candidate conflict, false-conflict rejection, same-source resistance, A->B revision, post-revision support/conflict direction and restart.
+- Blind uses a different randomized gap layout and additionally tests replay idempotence, evidence-ID conflict rejection, protocol injection, work-scope isolation, tie non-revision and bidirectional A->B->A revision.
+- This R1 claim is scoped competing-candidate conflict inside a native two-candidate discrimination state. `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL` remains.
+- Admission/blind target core byte-identical; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent; Bash/manifests/ZIP integrity PASS.
 - Runtime admission/blind pending.
 
 ### Next checkpoint target
 
-Run `SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1_BUNDLE.zip`. If PASS, advance `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY` only in the exact tested two-work/self-contained-compact scope. Do not inflate it into unbounded lifelong learning, autonomous summary generation, zero-shot semantics, human-value induction or multilingual transfer. C5V3 integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Run `SIGMA_C5_C5V3_M5_SCOPED_REVISION_SUPPORT_CONFLICT_LADDER_R1_BUNDLE.zip`. If PASS, advance only `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION` in the exact native-gap/provenance scope. Keep broad semantic contradiction/truth FAIL until separate blind proof. Gate B remains independent for synchronization/tool substrate/VM/native library/S1-S3.
