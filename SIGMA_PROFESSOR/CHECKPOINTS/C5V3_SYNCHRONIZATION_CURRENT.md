@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 TRUST-FIRST SOURCE CONSTRUCTION PASS / SIGMAC RC0 / BYTECODE IDENTITY ANOMALY HOLD / NO VM / PRODUCTION UNCHANGED**
+Status: **R3 FIX1 TRUST-FIRST SOURCE CONSTRUCTION PASS / LOCKED SIGMAC BODY-INSENSITIVE HOLD / BINARY+VM AUDIT NEXT / NO VM / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -14,62 +14,12 @@ WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_BUILD_PASS_BYTECODE_IDENTITY_ANOMALY_HOLD.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_ARCHITECTURE_REVIEW_ACCEPTED_R3_FIX1_TRUST_FIRST.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_CORE_ARCHITECTURE_AUDIT_R1_REWRITE_REQUIRED.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SIGMAC_BODY_INSENSITIVE_HOLD_COMPILER_AUDIT_REQUIRED.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_BUILD_PASS_BYTECODE_IDENTITY_ANOMALY_HOLD.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_ARCHITECTURE_REVIEW_ACCEPTED_R3_FIX1_TRUST_FIRST.md`
 
-## Three-window ownership
-
-```text
-OFFLINE_WINDOW=CAPABILITY_LAB_AND_MACHINE_ADMISSION_T4_T11_OR_DEPENDENCY_ORDER
-THIS_WINDOW=CORE_AUDIT_REWRITE_CAPABILITY_INTEGRATION_SYNCHRONIZATION
-ONLINE_WINDOW=INDEPENDENT_POST_SYNC_UTILIZATION_VERIFICATION
-```
-
-## Target doctrine
-
-```text
-native cognition
--> native objective / information gap
--> native evidence request
--> native capability selection
--> provenance-aware result evaluation
--> uncertainty / support / conflict / revision
--> whole-work persistent representation
--> bounded durable local memory
--> restart / reuse
-```
-
-Forbidden as semantic authority:
-
-```text
-adjacent-token LEFT/RIGHT meaning
-previous/next-as-semantics
-fixed cue-to-meaning tables
-host-created beliefs/gaps/goals/summaries/truth decisions
-host tool/query/source/URL choice for active cognition
-```
-
-## Historical live core
-
-```text
-LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
-LIVE_CORE_TARGET_ARCHITECTURE_CLASS=C
-CURRENT_CORE_SUITABLE_AS_LONG_RANGE_T0_T11_COGNITIVE_KERNEL=NO
-```
-
-## R2 provenance only
-
-```text
-R2_SOURCE_SHA256=d7d1153fd6979dff7d119bb5e8187f045b9f8af62e51065cccf95265478fc3a0
-R2_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-R2_COMPILE=PASS
-R2_RUNTIME_ADMISSION_TARGET=NO
-```
-
-## R3 FIX1 trust-first source — construction PASS
+## R3 FIX1 source — canonical construction PASS
 
 ```text
 HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
@@ -81,7 +31,6 @@ R3_FIX1_DEF_COUNT=176
 R3_FIX1_CONSTRUCTION=PASS
 LEGACY_LEFT_RIGHT_COGNITION=ABSENT
 DIRECT_PERSISTENT_STATE_PATH=ABSENT
-WRITE_TEXT_SURFACE=ONLY_STAGE_READBACK_AND_FINAL_COMMIT_INTENT
 ```
 
 Cognition donor:
@@ -100,55 +49,86 @@ T1_T2_T3_TOOL_MODULE_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff6
 T1_T2_T3_TOOL_DEF_COUNT=82
 ```
 
-## Compiler output identity anomaly — HOLD
-
-Locked compiler:
+## Locked sigmac conformance failure
 
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
-R3_FIX1_SIGMAC_RC=0
-R3_FIX1_COMPILED_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
 ```
 
-This bytecode SHA is exactly equal to the earlier R2 bytecode even though R2 and R3 FIX1 have materially different source/main/state architectures.
+Fresh machine diagnostic proved:
+
+```text
+R2_SOURCE_BYTES=50488
+R3_FIX1_SOURCE_BYTES=115807
+R2_R3_SOURCE_BYTE_IDENTICAL=NO
+
+R2_FRESH_COMPILE_RC=0
+R3_FIX1_FRESH_COMPILE_RC=0
+R2_FRESH_COMPILE_BYTES=29
+R3_FIX1_FRESH_COMPILE_BYTES=29
+R2_R3_FRESH_BYTECODE_BYTE_IDENTICAL=YES
+BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+
+R3_ACTIVE_MAIN_LITERAL_COUNTERFACTUAL_COMPILE_RC=0
+R3_COUNTERFACTUAL_BYTECODE_CHANGED=NO
+
+R3_UNBALANCED_MAIN_NEGATIVE_CONTROL_COMPILE_RC=0
+R3_NEGATIVE_UNBALANCED_REJECTED=NO
+```
 
 Therefore:
 
 ```text
-R3_FIX1_SOURCE_CONSTRUCTION=PASS
-R3_FIX1_BYTECODE_FILE_FREEZE=YES
-R3_FIX1_BYTECODE_SEMANTIC_IDENTITY=NOT_ADMITTED
+SIGMAC_RC0_MEANS_SEMANTIC_COMPILE=NO
+SIGMAC_BODY_SENSITIVITY=FAIL
+SIGMAC_NEGATIVE_SYNTAX_REJECTION=FAIL
+CURRENT_29_BYTE_OUTPUT_SEMANTIC_BYTECODE_IDENTITY=NOT_ADMITTED
 R3_FIX1_RUNTIME_ADMISSION=NO
-COMPILER_OUTPUT_IDENTITY_ANOMALY=HOLD
+RESULT=HOLD_COMPILER_OUTPUT_INSENSITIVE_TO_SOURCE_BODY
 ```
 
-Do not run the VM or build the transaction runner until compiler-source identity is reconciled.
+The diagnostic's printed `DEF_COUNT=0` values were caused by an over-escaped regex and are not source evidence. The deterministic R3 construction count remains `176`.
+
+## Compiler/VM repository status
+
+`SIGMA_LIFE` exposes no `native/` compiler/VM implementation or bytecode specification. `CORE/` contains only small SIGMA identity/principles sources. The locked `sigmac` and VM are machine-local Oppo artifacts.
 
 ## Exact next action
 
 Use:
 
 ```text
-C5_M5/RUN_C5V3_SIGMAC_OUTPUT_IDENTITY_ANOMALY_DIAGNOSTIC_R1.sh
-SCRIPT_COMMIT=91f065a20fb113b84378dc5d132d98e18b0bf69d
+C5_M5/RUN_C5V3_SIGMAC_STUB_CONFORMANCE_EXPORT_R1.sh
+SCRIPT_COMMIT=40453ed32ced3f4ef297c040b9823c4b621ed893
 ```
 
-The diagnostic is exact-path only and performs:
+The probe:
 
 ```text
-R2/R3 source + main-block identity comparison
-fresh R2 compile
-fresh R3 FIX1 compile
-byte-for-byte bytecode comparison
-observable R3 main-literal counterfactual compile
-negative parser control by removing final main brace
+locks exact sigmac + VM + R3 identities
+prints exact 29-byte payload as hex
+compiles empty/plain/header-only/invalid/minimal-A/minimal-B/unbalanced/R3 controls
+counts distinct output hashes/sizes
+DOES NOT execute VM/core
+exports exact local sigmac + VM + R3 source/29-byte output + controls/results into one ZIP for binary audit
 ```
 
-No VM/core execution, directory scan, state mutation, production binding or production mutation.
+After the export is uploaded to the synchronization window:
+
+```text
+binary audit sigmac
+-> binary audit VM / 29-byte format contract
+-> determine stub/header-packer/bypass behavior
+-> repair or replace compiler path
+-> compiler counterfactual + negative-control admission
+-> only then resume R3 FIX1 executable/runtime admission
+```
 
 ## Production locks
 
 ```text
+LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
+LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 LIVE_CORE_UNCHANGED=YES
 LIVE_RUNNER_UNCHANGED=YES
