@@ -48,7 +48,7 @@ This file is append-only in intent. Historical failures remain visible after lat
 
 ## 2026-09-09 — Native Learned Sequence Transform R1
 - Admission: PASS
-- Core SHA256: `8a10df7f94bc0e9ce1d4ab62d0d6667eb10785c7ea8cc623b40374ddc342aa37`
+- Core SHA256: `8a10df7f94bc0e9ce1d4ab62d0d6667eb10785c7ea8cc623b4036776302f1ba`
 - Blind learned-transform causality: `75/100`; spurious transform false induction FAIL.
 - Promotion status: RETIRED.
 - Retired assumption: recurring permutation shape implies relation-preserving transform.
@@ -103,7 +103,6 @@ This file is append-only in intent. Historical failures remain visible after lat
 - Bundle SHA256: `08293b98f13e695e83ef79e76ec5c079ed025c7b8a7c126de682cfed542eb4ad`
 - New gate: locked native SIGMA recomputes exact request from current native gap state immediately before provider invocation.
 - All R1H2 boundedness/revision/freeze gates retained.
-- Runtime admission pending.
 
 ## 2026-09-09 — Blind Host Substitution R1 prepared
 - Auditor SHA256: `25d9ae0401d7784672c7f284a710876bb5a5b9875743a8307f3c775131281045`
@@ -134,6 +133,32 @@ This file is append-only in intent. Historical failures remain visible after lat
 - Stops at first failure and preserves local logs.
 - Even full ladder PASS does not imply whole-work understanding, semantic compression or continual narrative learning.
 
+## 2026-09-09 10:35 +07 — Mechanical Evidence Tool Transport R2 runtime admission
+- Execution Ladder Stage 1 returned `RC=0` on Oppo.
+- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
+- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
+- Full R2 preflight therefore completed through native request revalidation/authority, provider gating, byte-preserving request/raw transport, native discriminating-evidence revision/revocation, bounded 64-record ledger/65th-result rejection, freeze and production-safety gates.
+- `MECHANICAL_TOOL_INVOCATION=PASS` in exact tested opaque-provider scope.
+- Real Internet acquisition and autonomous research remain FAIL.
+- Production binding: NO.
+
+## 2026-09-09 10:35 +07 — Blind Host Substitution R1 runtime attempt
+- `FORGED_CORRELATED_REQUEST_REJECTION=PASS`.
+- Stopped at `FAIL=GAP_A`, `RC=34` before intended gap-authority adversarial cases.
+- Failure class: EVALUATOR FIXTURE BUG.
+- Root cause: blind helper generated IDs like `EID_A_1` (7 characters); target core `safe_atom` requires >=8 characters, so first blind evidence record was rejected.
+- This result is neither a SIGMA failure nor a blind PASS.
+- Corrected evaluator R1H1 changes only fixture IDs to valid-length `EID_BLIND_<case>_<n>`; target core/transport and adversarial criteria are unchanged.
+- Auditor R1H1 SHA256: `d807e3606bda51a2586dbccc5f4b458a4e797036018a8b2337d819cb1b55580d`.
+- Bundle R1H1 SHA256: `716ba0f4ca1ed002e17ac2a1487aa7ad0cb7d753ab2ee866e3e01586206ee3ea`.
+
+## 2026-09-09 10:38 +07 — 24H Continuation Ladder R2 prepared
+- Runner SHA256: `84b68095bd3807c725f482ea55f67998f98e260a637b6f732c44cb14e8f32036`.
+- Bundle SHA256: `f5c9c99e38efc76a8fa64eac1f8c92fb08faea64bd4e714d622f168223d0f4b9`.
+- Resumes from corrected Blind Stage 2H1, then runs native gap search-query and real Internet search-discovery.
+- Stops at first failure and preserves logs.
+- Stage 1 R2 is treated as already admitted from the prior Oppo `RC=0`.
+
 ### Next checkpoint target
 
-Run the execution ladder. If all four stages pass, move architecture to bounded transient long-form work streaming and source-removal whole-work semantic-retention tests.
+Run the continuation ladder. If all stages pass, move immediately to full-source fetch, bounded long-form streaming, whole-work source-removal semantic-retention, semantic compression, local continual learning and multilingual tests. After the required production subset passes, follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`: read-only synchronization -> isolated graft -> autonomous-runner shadow -> soak/recovery -> promotion -> explicit cutover only when authorized.
