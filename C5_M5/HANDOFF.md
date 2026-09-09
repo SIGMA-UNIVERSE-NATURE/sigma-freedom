@@ -9,75 +9,102 @@ Read in order:
 5. `C5_M5/C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`
 6. `C5_M5/STATUS.md`
 7. `C5_M5/CHECKPOINTS.md`
-8. `C5_M5/CONTINUAL_R1_STATIC_AUDIT_AND_R1H1.md`
-9. this file
+8. this file
 
-## Authoritative routing — two separate gates
+## Authoritative routing
 
 ### Gate A — M5 TEST
 
-`cognition/memory capability -> continual learning -> revision/support/conflict -> new independent blind tests`
+`cognition/memory -> continual learning -> revision/support/conflict -> new independent blind tests`
 
-Gate A owns semantic/cognition claim admission. Tool/runtime operational PASS cannot waive a cognition FAIL.
+### Gate B — C5 <-> C5V3/M5 synchronization/tool substrate
 
-### Gate B — C5 <-> C5V3/M5 synchronization + native tool substrate
+`read-only synchronization -> SIGMA-native tool substrate -> VM/native library/mechanical ABI -> boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover`
 
-`read-only synchronization -> tool substrate -> VM/native library/mechanical ABI -> tool-boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover`
+The gates may run in parallel. Gate B operational success cannot waive a Gate A cognition FAIL.
 
-Gate B may run in parallel. Generic tools should preferentially live inside the SIGMA native runtime. Semantic capability claims still return to Gate A blind tests.
+## Latest admitted Gate A core
 
-## Current admitted Gate A chain
+`M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1`
 
-Mechanical transport R2 PASS; blind host-substitution PASS; native search-query PASS; real Internet search discovery PASS; real full-source stream PASS; whole-work structural memory PASS; novelty bridge PASS; whole-span synthesis PASS; cross-source summary hypothesis PASS; summary memory compaction PASS; self-contained compact semantic memory PASS with independent blind `100/100`.
+Core SHA256:
 
-Latest admitted core:
+`69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
 
-`2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`
+Oppo bytecode SHA256:
+
+`642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`
+
+R1H1 admission + independent blind both PASS, `RC=0`.
+
+Admitted exact scope:
+
+- Work A archived as detached self-contained compact local memory;
+- learning Work B does not change Work A recall bytes;
+- exact archived Work A bank block is byte-for-byte unchanged after Work B;
+- A and B remain separately semantically queryable;
+- A/B cross-work leakage rejected;
+- role reversal rejected;
+- bank smaller than raw works;
+- raw A/B whole spans excluded;
+- raw source A not restored during Work B;
+- multi-work restart PASS;
+- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` only in tested two-work/self-contained compact-memory scope.
 
 Production binding remains NO.
 
-## Current Gate A execution artifact — R1H1
+## Current Gate A execution artifact
 
-Run **R1H1**, not the older Continual R1 evaluator:
+Run:
 
-`SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1H1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_SCOPED_REVISION_SUPPORT_CONFLICT_LADDER_R1_BUNDLE.zip`
 
-R1H1 is evaluator hardening only. Cognition core remains byte-identical:
+Hashes:
 
-- core: `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
-- admission evaluator: `a64502677eb2b61965e0622330b75b778fea9173ba3688ce0b99bed0b3affe83`
-- independent blind evaluator: `c17c40d8204b9fdf8db85479c0c9a747696270d2127e231840d972d9edaa0b9b`
-- ladder runner: `ddf5e3100fece65392b46e56557fe8567c60b84c1c67e47756fb483a6d559b62`
-- ladder bundle: `30eb8ac1f53860576e938fcaa0ea118ed5d8163f813d64b3cc58bc0338b899ca`
+- target core: `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`
+- admission evaluator: `9896de1de21157b255c88c8f01107ab03eb16a3b677f8a6d898857fcbbb582b4`
+- independent blind evaluator: `661b69a3944f40a28dc6a0b309a162480859308673ff7227d12d76741ef526d4`
+- ladder runner: `b698df3d83367a70dae1146b426e7ca8f394fe885b3588bd2f50cad7200e8a59`
+- ladder bundle: `209c5221eac20a3fb5376ed11b9139f3d1116affe4b5efc6a749782f5395b4a1`
 
-### Why R1H1 exists
+## Candidate semantics
 
-The old R1 non-interference gate hashed Work A's recall output before/after learning Work B. R1H1 additionally snapshots and byte-compares the exact archived Work A bank block before/after B. Both SHA equality and `cmp -s` equality are mandatory. No cognition criterion is relaxed.
+Revision scope is legal only when SIGMA already has an open native relation-discrimination gap. Candidate A/B are copied from that gap; Host does not create a support/conflict stance or held belief.
 
-Required continual gates include:
+New raw evidence is natively classified as matching A, matching B, ambiguous, or no stance. Within this exact two-candidate discrimination scope:
 
-- Work A self-contained archive;
-- exact Work A archive-block byte stability after Work B;
-- Work A semantic recall after B;
-- Work B semantic recall;
-- A/B cross-work isolation;
-- role-reversal rejection;
-- raw A/B whole spans absent from compact bank;
-- compact bank smaller than raw works;
-- multi-work restart.
+- evidence on the held candidate = scoped support;
+- evidence on the competing candidate = scoped conflict;
+- evidence on neither candidate = no stance, not conflict;
+- same-source duplicates do not increase authority;
+- revision occurs only when distinct-source support for the competitor reaches the threshold and strictly exceeds held-side support.
 
-Only after admission + blind PASS may:
+Admission additionally rejects opening a revision scope without a native gap.
 
-`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS`
+Independent blind uses a different randomized gap layout and tests replay idempotence, evidence-ID conflict rejection, irrelevant/no-stance input, protocol injection, work-scope mismatch, same-source conflict, tie non-revision, A->B revision, B->A revision and restart.
 
-advance in the exact tested two-work/self-contained compact-memory scope.
+## Claim rule if PASS
 
-## Next Gate A dependency after continual PASS
+Advance only:
 
-Build and blind-test native revision/support/conflict. Do not pre-credit it from current no-support/role-reversal rejection behavior. Explicit support, explicit conflict, and evidence-driven revision must each have their own native state/actions and adversarial blind gates.
+`NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`
 
-Still FAIL until separate proof: autonomous free-form summary generation; zero-shot low-overlap summary; broad whole-work narrative understanding; theme/direction/human-value induction; multilingual transfer; open-ended lifelong capacity; broad semantic support/conflict/truth judgment.
+in the native-gap/provenance scope.
 
-## Gate B boundary
+Keep FAIL:
 
-Gate B may independently proceed with synchronization, SIGMA-native tool ABI, sigma-vm/native library work, boundary regression and S1/S2/S3. Production remains read-only until the shared convergence/promotion gate and explicit cutover authorization.
+- `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH`
+- arbitrary natural-language logical contradiction/truth
+- autonomous free-form summary generation
+- zero-shot low-overlap summary
+- broad whole-work understanding
+- theme/human-value induction
+- multilingual transfer
+- unbounded lifelong capacity
+- production binding.
+
+## After PASS
+
+Next Gate A step: internalize the revised hypothesis into compact/archived memory and test later revision after raw working evidence is removed. Only then broaden incompatibility/truth semantics with separate blind tests.
+
+Gate B remains independent and may continue synchronization/tool substrate/VM/native library/S1-S3 while production stays read-only until the shared convergence gate and explicit cutover authorization.
