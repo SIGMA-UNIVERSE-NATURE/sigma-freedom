@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / SIGMAC REAL PARSER+EMITTER CONFIRMED / R2+R3 FULL CORES EMIT HEADER-ONLY 29B SIGMBC01 / VM SOURCE-COUPLING TEST NEXT / PRODUCTION UNCHANGED**
+Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / HISTORICAL V18 R0 NONTRIVIAL COMPILER ORACLE RECOVERED BY IDENTITY / R0 EXACT-BYTE RECOVERY NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -14,9 +14,9 @@ WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SIGMAC_REAL_EMITTER_FULL_CORE_ZERO_CODE_CAPSULE_VM_SOURCE_COUPLING_NEXT.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SIGMAC_BODY_INSENSITIVE_HOLD_COMPILER_AUDIT_REQUIRED.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_BUILD_PASS_BYTECODE_IDENTITY_ANOMALY_HOLD.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_HISTORICAL_V18_R0_IDENTITY_RECOVERED_CHAT_FILE_MISSING.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SIGMAC_REAL_EMITTER_FULL_CORE_ZERO_CODE_CAPSULE_VM_SOURCE_COUPLING_NEXT.md`
 4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
 
 ## R3 FIX1 source — construction PASS
@@ -32,125 +32,112 @@ LEGACY_LEFT_RIGHT_COGNITION=ABSENT
 DIRECT_PERSISTENT_STATE_PATH=ABSENT
 ```
 
-Cognition donor:
-
-```text
-M5_PARENT_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
-PURE_COGNITION_DONOR_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
-PURE_COGNITION_DEF_COUNT=77
-```
-
-T1/T2/T3 donor:
-
-```text
-R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
-T1_T2_T3_TOOL_MODULE_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
-T1_T2_T3_TOOL_DEF_COUNT=82
-```
-
-## Compiler/VM identities
+## Current compiler/VM facts
 
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
-SIGMAC_BYTES=24352
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
-VM_BYTES=35016
-```
-
-## Sigmac forensics — corrected result
-
-The locked compiler is NOT a constant-output stub.
-
-```text
-empty -> RC=3 invalid/missing header, no output
-plain text -> RC=3 invalid/missing header, no output
-invalid broken body -> RC=4 parse error, no output
-unbalanced main -> RC=4 expected '}', no output
-minimal A -> RC=0, 59-byte source-specific SIGMBC01 artifact
-minimal B -> RC=0, 77-byte source-specific SIGMBC01 artifact
-```
-
-Minimal A/B literals appear directly in their emitted bytecode. Therefore:
-
-```text
 SIGMAC_REAL_PARSER=PASS
 SIGMAC_SOURCE_SENSITIVE_EMITTER=PASS_IN_MINIMAL_DIRECT_PRINT_SCOPE
+VM_REAL_BYTECODE_EXECUTION_CONTROL=PASS
 ```
 
-## R2/R3 full-core artifact anomaly
+## 29-byte artifact classification closed
 
-Header-only, R2 full source and R3 FIX1 full source all emit the exact same 29-byte artifact:
+R2/R3 current compiled artifact:
 
 ```text
 SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
 BYTES=29
-HEX=5349474d424330310100000000000000000000000000000001000000ff
-MAGIC_ASCII=SIGMBC01
+MAGIC=SIGMBC01
 ```
 
-This byte sequence contains no source-specific payload visible in the artifact and is exactly the valid-header/no-executable-body encoding under the tested compiler.
-
-Therefore current evidence does NOT support:
+Machine VM test proved:
 
 ```text
-FULL_R2_R3_SOURCE_LOSSLESS_SELF_COMPRESSED_INTO_29B=NO_EVIDENCE
+29B + sibling source A -> empty output
+29B + sibling source B -> empty output
+29B + no source        -> empty output
+VM_SIBLING_SOURCE_COUPLING=NO_OBSERVED
+CURRENT_29B_CLASS=EMPTY_OR_GENERIC_EXECUTION_CAPSULE_UNDER_TESTED_ENVIRONMENT
 ```
 
-It does support:
+Positive real-bytecode A/B controls produce distinct sentinels. Therefore:
 
 ```text
-R2_R3_FULL_CORE_EXECUTABLE_EMISSION=ZERO_CODE_OR_EXTERNAL_RESOLUTION_UNEXPLAINED
+FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
+29B_SOURCE_REFERENCE_LOADER=NO_OBSERVED
+R3_FIX1_RUNTIME_ADMISSION=NO
 ```
 
-## Remaining external-source hypothesis
+Historical SIGMA compression capability remains a separate capability; this 29B artifact is not evidence of that compression.
 
-The live runner invokes:
+## Historical V18 R0 — required compiler oracle
+
+Recovered from canonical Git history:
 
 ```text
-"$VM" "$BIN"
+V18_R0_ENGINE_SOURCE_SHA256=81523feb7c59a90b6bb5d284c65a679d3fd76ad692f84b0a6685c4d2693dcb7a
+V18_R0_ENGINE_BYTECODE_SHA256=e800eab3dc6abcbddf0b9c9e0de9d76af2fba6ba1bd49c87157c62fe126a7300
+V18_R0_RUNNER_SHA256=747e98334b12e4efff8c11d48cea70a03952c167563d27b27eaf18626c06cb5f
+V18_R0_WRAPPER_SHA256=d1926a7496a3a77c60832d433f421892bac6882e28e8156dc0554ea894aa5fe3
+V18_R0_INSTALLER_SHA256=55c1df76afa8b3b5f7cd39d476f2d8809b4508bfa817bd94202945491d13043f
 ```
 
-The VM may still derive sibling source or another external dependency from the `.sigmab` path. That must be tested before declaring the 29-byte artifact inert.
+Canonical live result:
+
+```text
+FORMATION_VM_RC=0
+FORMATION_VERIFY_RC=0
+DRIVER_RC=0
+INDEPENDENT_VERIFY_RC=0
+PROPOSITION_SPAN_CANDIDATE_COUNT=10
+SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION=PASS_TESTED_SCOPE
+```
+
+The exact R0 attachment is no longer present on the current chat file surface. Do not invent its source. Recover exact bytes from the known Oppo roots by SHA.
 
 ## Exact next action
 
 Use:
 
 ```text
-C5_M5/RUN_C5V3_VM_29B_CAPSULE_SOURCE_COUPLING_PROBE_R1.sh
-SCRIPT_COMMIT=c698f50c9770fcb8e2ff5d9941007e42f2320eb4
+C5_M5/RUN_C5V3_RECOVER_V18_R0_EXACT_ARTIFACTS_R1.sh
+SCRIPT_COMMIT=556346c7c6819f4fc936288bcab182787a6c57b9
+OUTPUT=/sdcard/Download/C5V3_V18_R0_RECOVERY_81523feb.zip
 ```
 
-The probe:
+The gate searches only these exact historical roots:
 
 ```text
-creates only fresh temp trees
-uses the exact same 29B capsule in A/B/NONE trees
-A has sibling source printing SOURCE_A_SIDELOAD_SENTINEL
-B has sibling source printing SOURCE_B_SIDELOAD_SENTINEL
-NONE has no sibling source
-runs the locked VM directly, never the live runner
-runs separately emitted bytecode A/B as positive controls
-rehashes live core/runner before and after
+$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R21_SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0
+$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
 ```
 
-Classification:
+and selects exact files by known SHA256.
+
+After recovery:
 
 ```text
-A/B sibling source changes VM behavior
--> SOURCE_RESOLVING_LOADER_OR_REFERENCE_CAPSULE
-
-A/B/no-source same behavior
-+ real emitted A/B bytecode differs correctly
--> EMPTY_OR_GENERIC_EXECUTION_CAPSULE under tested environment
+compare exact V18 R0 source/header/dialect/emission with R3 FIX1
+-> fresh R0 compile using current locked sigmac
+-> isolate smallest delta causing zero-code emission
+-> repair compiler-facing R3 composition
+-> compiler/VM admission
+-> resume P0 trust-state runtime admission
 ```
 
-## Admission boundary
+## Production locks
 
 ```text
-R3_FIX1_RUNTIME_ADMISSION=NO
+LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
+LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
+LIVE_CORE_UNCHANGED=YES
+LIVE_RUNNER_UNCHANGED=YES
+C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
-CLAIM_LEQ_EVIDENCE=MANDATORY
 ```
+
+`CLAIM <= EVIDENCE`
