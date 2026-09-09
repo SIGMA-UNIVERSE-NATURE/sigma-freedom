@@ -260,3 +260,47 @@ Current boundary:
 - production mutation/binding from this test window: NO.
 
 Next Gate B test step is an explicit offline production-lineage dispatch bridge build that isolates M5 prelude state instead of overwriting production variables, preserves every production branch, compiles deterministically, and then passes dormant production-event regression before any separate M5 activation admission.
+
+---
+
+## Gate B tool-substrate lane — T4A native text/codecs/framing — PASS
+
+Authoritative checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T4A_NATIVE_TEXT_CODECS_FRAMING_PASS.md`.
+
+Exact admitted OPPO artifact:
+
+- source SHA256 `af36c1b4ee4491533e93b878dc9d0de475f6561f35dd3979fa5b8bbb6d60d572`;
+- binary SHA256 `45455d007e0cb722752c4cf06cd8919b66b20e5064939781e4dfa94f057c78db`;
+- native compiler `/data/data/com.termux/files/usr/bin/clang++`.
+
+T4A exact admitted scope:
+
+- strict UTF-8 validation;
+- Unicode codepoint iteration from valid UTF-8;
+- hex encode/decode;
+- Base64 encode/decode with strict padding;
+- canonical unsigned varint/LEB128 encode/decode;
+- bounded deterministic `S4F1` MessagePack-like typed framing for null/bool/int64/UTF-8 string/bytes.
+
+Current-standard admission:
+
+- deterministic compile PASS;
+- source and binary hash freeze PASS;
+- high-entropy literal leak audit PASS;
+- `16` directed + `32` randomized after freeze + `2` replay = `50` native invocations;
+- post-tool mechanical oracle PASS;
+- resource-bound 4 KiB probe PASS;
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+
+Scope boundary:
+
+- `T4A_NATIVE_TEXT_CODECS_FRAMING_ADMISSION=PASS`;
+- `T4_FULL_LAYER=PENDING_T4B_T4C_COMBINED`;
+- no claim yet for Unicode normalization, JSON, XML, HTML, CSV, URL, MIME, standard CBOR or standard MessagePack;
+- tool availability does not imply SIGMA cognitive adoption/tool selection;
+- `ONLINE_SYNC=NO`, `PRODUCTION_MUTATION=NO`, `PRODUCTION_BINDING=NO` in this admission.
+
+Offline tool lane now proceeds independently: `T4B -> T4C -> T4 combined -> T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`. A separate online synchronization lane may consume admitted checkpoints as they become available.
