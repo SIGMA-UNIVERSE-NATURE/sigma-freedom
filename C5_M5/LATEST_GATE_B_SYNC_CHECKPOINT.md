@@ -1,16 +1,16 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after R11 FIX1 activation HOLD.
+Updated: 2026-09-09 after R11 FIX2 trace HOLD (`strace` unavailable).
 
 This file is the compact **latest pointer** for any fresh synchronization window.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_R11_FIX1_NO_OBSERVABLE_DELTA_HOLD.md`
+`C5_M5/CHECKPOINT_2026-09-09_R11_FIX2_STRACE_UNAVAILABLE_HOLD.md`
 
 ## Latest admitted candidate remains R10
 
-The R11 FIX1 result is a HOLD in the activation-admission layer. It does **not** invalidate the R10 structural/dormant-runtime PASS.
+R11 FIX2 did not execute its trace oracle because the device reported `STRACE_AVAILABLE=NO`. This is an observer/tooling HOLD only and does **not** invalidate R10.
 
 Frozen R10 candidate:
 
@@ -32,14 +32,9 @@ Frozen R10 candidate:
 
 ## R11 current state
 
-Original step-budget oracle: HOLD because `SIGMA_MAX_STEPS` effect was not proven on the locked VM.
-
-R11 FIX1 normalized observable-output/filesystem oracle:
-
-- event replay deterministic: `28/28`;
-- dynamic counterfactual replay deterministic: `28/28`;
-- observable activation delta: `0/28`;
-- activation admitted: `NO`.
+- original `SIGMA_MAX_STEPS` oracle: HOLD; VM effect not proven;
+- FIX1 normalized output/filesystem oracle: HOLD; deterministic `28/28`, observable activation delta `0/28`;
+- FIX2 syscall/file trace oracle: HOLD before execution because `STRACE_AVAILABLE=NO`.
 
 Therefore:
 
@@ -47,16 +42,20 @@ Therefore:
 - `M5_CAPABILITY_ACTIVE_IN_LIVE_PRODUCTION_DISPATCH=NO`;
 - `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`.
 
-The zero-delta result does not prove the bridge is dead; neutral empty inputs can yield pure/local native execution with no externally observable output. Do not add CORE sentinels or semantic expected outputs to force a PASS.
-
 ## Next offline gate
 
-Use an exact-R10 **mechanical execution trace** oracle, preferably syscall/file-access tracing when available, and compare source-derived M5 bridge access paths against dynamically generated non-event counterfactuals after normalizing event-input bytes.
+Use an exact-R10 **source-derived filesystem fault-injection** oracle without installing packages or modifying VM/core:
 
-No core instrumentation, semantic oracle, host semantic selection, production state import, online sync, production mutation or binding is permitted.
+- derive a bridge-prelude `read_text` path not used by the production universe outside the bridge;
+- prove the 28 source events each map to exactly one bridge callsite;
+- normal-file lane: exact event must run normally;
+- FIFO-trap lane: exact event must block on that bridge-only read path until bounded timeout;
+- dynamic non-event counterfactual with the identical FIFO trap must still exit normally;
+- no semantic expected output, no host semantic selection, no CORE instrumentation;
+- remove all synthetic state after evidence extraction.
 
 ## Synchronization-window instruction
 
-The synchronization window may consume the R5–R10 evidence, but must HOLD any claim or cutover that depends on M5 activation until a later checkpoint explicitly admits it.
+The synchronization window may consume R5–R10 evidence, but must HOLD activation-dependent promotion/cutover until a later checkpoint explicitly admits R10 candidate activation.
 
 Because a previous sync window reportedly synchronized T1/T2/T3 already, live C5V3 must still be read-only attested and exact live-vs-candidate delta computed before any integration action.
