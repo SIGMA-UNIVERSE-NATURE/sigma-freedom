@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **PRIMARY WORK: R4 R1 STATIC PASS / R4 R2 EXACT-SCHEMA NATIVE-CAPABILITY-CHOICE SOURCE WRITTEN / ONE-CYCLE LEARNING MAIN NEXT / R3 COMPILER DEFECT PARALLEL / PRODUCTION UNCHANGED**
+Status: **PRIMARY WORK: R4 R2 EXACT-SCHEMA LEARNING SOURCE + ONE-CYCLE KERNEL WRITTEN / R2 MACHINE AUDIT NEXT / R3 COMPILER DEFECT PARALLEL / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -22,7 +22,7 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_MULTILINE_DEF_DISPROVEN_DEF_PREFIX_BINARY_SEARCH_NEXT.md`
 4. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R0_GATEA_ORACLE_VERSION_PROFILE_DISPROVEN_R3_GRAMMAR_BOUNDARY_NEXT.md`
 
-## Primary rewrite direction — R4 native learning
+## R4 target
 
 ```text
 native objective
@@ -35,79 +35,66 @@ native objective
 -> claim/hypothesis + support/contrary/uncertainty
 -> revision/conflict
 -> bounded compact memory
+-> source removal
 -> restart/reuse
 -> next native objective/action
 ```
 
-Host semantic authority remains forbidden.
+Host semantic authority, host tool choice and host memory selection remain forbidden.
 
-## R4 R1 static result — preserved provenance
+## R4 R1 disposition
 
-Operator machine PASS:
+R1 machine static audit PASS remains valid in its tested scope:
 
 ```text
 R4_LEARNING_COMBINED_DEF_COUNT=35
 R4_LEARNING_COMBINED_SHA256=f3847c082e27c7fb2cca9f79b6f1963ad5da2205b58e1e410cb54c600598a791
-FORBIDDEN_LEFT_EQ_COUNT=0
-FORBIDDEN_RIGHT_EQ_COUNT=0
-FORBIDDEN_legacy_analyze_segment_COUNT=0
-FORBIDDEN_legacy_merge_evidence_COUNT=0
-FORBIDDEN_write_text_COUNT=0
-FORBIDDEN_read_text_COUNT=0
-MAX_DEF_ARITY=6
-MULTILINE_DEF_SIGNATURE_COUNT=0
-R4_LEARNING_STATIC_GOVERNANCE=PASS
 R4_NATIVE_LEARNING_SOURCE_AUDIT=PASS
 ```
 
-R1 is not runtime-admitted. Two pre-runtime defects were found: loose field parsing and automatic first-capability selection. R1 remains static provenance only.
+R1 is superseded before runtime because loose field parsing and automatic first-capability selection were found during architecture review.
 
 ```text
 R4_R1_RUNTIME_ADMISSION=NO
 R4_R1_ROLE=STATIC_SOURCE_PROVENANCE_ONLY
 ```
 
-## R4 R2 — authoritative source target
+## R4 R2 authoritative source
 
-### State R2
+State:
 
 ```text
-PATH=C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_STATE_R2.sigma.inc
+C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_STATE_R2.sigma.inc
 COMMIT=ca6d9504f5e75c4d5ccf48ab7c574614a8b019be
 SHA256=83a43ed6e778775c4b0ea823fa1ab4179adfccbf8a0478c2a7e4a9f8cfd5af33
 DEF_COUNT=28
 ```
 
-### Transitions R2
+Transitions:
 
 ```text
-PATH=C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_TRANSITIONS_R2.sigma.inc
+C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_TRANSITIONS_R2.sigma.inc
 COMMIT=3debd57e8f0ac3dce7bba540cb912c0ffbadef29
 SHA256=3273a9d6e09728882244e5428cac994d505f58b1e54b69c2fb009a6a714bb3e9
 DEF_COUNT=12
 ```
 
-### Gate-A adapter R2
+Gate-A adapter:
 
 ```text
-PATH=C5_M5/R4_NATIVE_LEARNING/C5_GATEA_R4_LEARNING_ADAPTER_R2.sigma.inc
+C5_M5/R4_NATIVE_LEARNING/C5_GATEA_R4_LEARNING_ADAPTER_R2.sigma.inc
 COMMIT=59e656106cd8a5c497ecda2780efa0958a252afa
 SHA256=43e22c9b9140dfb0b1882d34d85ffd1e460854f20bd61420f93098052cd0aa89
 DEF_COUNT=12
 ```
 
-Combined deterministic identity:
+R2 base identity:
 
 ```text
 R4_R2_COMBINED_DEF_COUNT=52
 R4_R2_COMBINED_SHA256=84d064435fdba01ccd6c700f5efd266b39e297f51fedc7cfddbf9c05489fe209
 MAX_DEF_ARITY=6
 MULTILINE_DEF_SIGNATURE_COUNT=0
-```
-
-R2 governance corrections:
-
-```text
 EXACT_KEY_VALUE_PARSE=YES
 EXACT_FIELD_COUNT_AND_ORDER=YES
 SAFE_ATOM_REJECTS_EQUALS=YES
@@ -120,18 +107,42 @@ DIRECT_WRITE_TEXT=NO
 LEFT_RIGHT_COGNITION=NO
 ```
 
-`c5l2_capability_registry_has(registry, capability_id, need_family)` validates the capability ID already chosen by native SIGMA; it never selects one.
-
-Static R2 gate:
+Static R2 audit gate:
 
 ```text
 C5_M5/RUN_C5V3_R4_NATIVE_LEARNING_R2_SOURCE_AUDIT.sh
 COMMIT=4f68a82c77b651fe9d5af9877d53a32e035a3112
 ```
 
-## Initial semantic seed
+## One-cycle learning kernel
 
-Exact admitted Gate-A scoped provisional epistemic truth remains a narrow evaluator dependency:
+```text
+C5_M5/R4_NATIVE_LEARNING/C5_R4_ONE_CYCLE_LEARNING_KERNEL_R1.sigma.inc
+COMMIT=ed1ddca96f68323c2d8f816d5a5c18713f917354
+SHA256=d9b62950d6886c0ca3861318bf5a78189a9a1830217b3a92d6a9d126e51f5181
+DEF_COUNT=10
+MAX_ARITY=6
+DIRECT_IO=NO
+```
+
+Kernel operations:
+
+```text
+relation seed validation
+native relation-gap request payload
+request binding
+provenance evidence reference
+claim evaluation from Gate-A narrow source stance
+claim revision from Gate-A provisional posture
+conflict-gap opening
+bounded compact memory packing
+restart claim recall
+restart gap recall
+```
+
+This is source architecture only; no runtime-learning PASS is claimed yet.
+
+## Gate-A seed
 
 ```text
 GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
@@ -139,9 +150,9 @@ GATEA_HISTORICAL_BYTECODE_SHA256=569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc
 GATEA_FRESH_MATCHES_HISTORICAL=YES
 ```
 
-R4 adapter exposes only the admitted narrow relation-discrimination/gap/request/source-consistency/provisional-truth behavior into R4 learning state. It does not broaden the claim.
+Gate-A remains a narrow admitted evaluator dependency, not general truth or whole-work understanding.
 
-## R3 compiler-entry visibility defect — parallel engineering only
+## R3 compiler defect — parallel only
 
 ```text
 R3_FIX1_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
@@ -161,27 +172,26 @@ HEADER_VERSION_PROFILE_ROOT_CAUSE=NO
 MULTILINE_DEF_SIGNATURE_ROOT_CAUSE=NO
 ```
 
-Next compiler diagnostic remains:
+Parallel next diagnostic:
 
 ```text
 C5_M5/RUN_C5V3_R3_DEF_PREFIX_ENTRY_VISIBILITY_BINARY_SEARCH_R1.sh
 COMMIT=3f491eef577f54a1aa360426e10dc16cdb66d0a7
 ```
 
-Compiler repair is required for runtime admission but must not block R4 source architecture development.
-
 ## Next primary sequence
 
 ```text
-1. Run R4 R2 source audit and freeze exact 52-DEF identity.
-2. Write R4 one-cycle learning main on R2.
-3. Compose P0 trust + R4 R2 + exact Gate-A pure donor + exact admitted T1/T2/T3.
-4. Repair compiler entry visibility and obtain source-sensitive nontrivial bytecode.
-5. Admit one complete cycle: gap -> request -> evidence -> evaluation -> revision -> compact memory -> source removal -> restart/reuse.
-6. Expand to multi-scope work graph and native capability utilization.
-7. Integrate exact T4-T11 only after offline machine admission handoff.
-8. Shadow/soak + independent online autonomy verification.
-9. Explicit production cutover only after promotion criteria pass.
+1. Run R4 R2 source audit and freeze exact 52-DEF base identity.
+2. Static-audit the one-cycle kernel against R2 + exact Gate-A pure dependency.
+3. Write transaction-aware R4 cycle main under P0 trust semantics.
+4. Compose P0 trust + R4 R2 + one-cycle kernel + exact Gate-A pure donor + exact admitted T1/T2/T3.
+5. Repair compiler entry visibility and produce nontrivial source-sensitive bytecode.
+6. Admit one full cycle: gap -> request -> evidence -> evaluation -> revision -> compact memory -> source removal -> restart/reuse.
+7. Expand to multi-scope work graph and native capability utilization.
+8. Integrate exact T4-T11 only after offline machine admission handoff.
+9. Shadow/soak + independent online autonomy verification.
+10. Explicit production cutover only after promotion criteria pass.
 ```
 
 ## Claim boundary
@@ -191,6 +201,7 @@ R4_R1_STATIC_SOURCE_AUDIT=PASS
 R4_R1_RUNTIME_ADMISSION=NO
 R4_R2_SOURCE_WRITTEN=YES
 R4_R2_STATIC_MACHINE_AUDIT=PENDING
+R4_ONE_CYCLE_KERNEL_SOURCE=WRITTEN
 R4_RUNTIME_LEARNING=NOT_ADMITTED
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
 WHOLE_WORK_UNDERSTANDING=FAIL
