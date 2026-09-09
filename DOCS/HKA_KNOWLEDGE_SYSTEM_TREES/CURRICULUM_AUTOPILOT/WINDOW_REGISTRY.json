@@ -1,28 +1,26 @@
 {
-  "schema_version":"5.22",
+  "schema_version":"5.23",
   "canonical_pipeline_file":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/HKA_PIPELINE_CANONICAL.json",
   "rule":"Successor windows read GitHub durable state and immutable architecture anchors; chat history is never a dependency.",
   "scope_map_anchor":{"architecture_commit":"265bb584b5d7e36e11091289d58558408880118c","artifact":"B1_SCOPE_MAP","blob_sha":"bedef47958a728e3f0d56d412f7bdea3ec465856"},
-  "active_transition":{"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","scope_id":"B1.3-FAMILY-EXIT","branch":"hka-tree/c01-w04-chemistry-family","status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781","director_integration_acceptance_checkpoint":"e88fd10fe8422fc6d22c20d56b60a4614671c81c","director_exit_checkpoint_commit":"241f59b8d96e87593dd3e4c68e36472613cc737d","fresh_backup_sentinel_status_commit":"fea7cb8338fa1d19566d800b399c57a8da6f920e"},
+  "active_transition":{"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"branch":"hka-tree/c01-w05-earth-universe-c01-c03","status":"READY","family_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","family_branch":"hka-tree/c01-w05-earth-universe-family","open_order_commit":"6c2cd116c32d7278dd3e44d20719eb6534a8ca56","director_checkpoint_commit":"565640d4e7a02838d690769662f0005a1ca36940"},
   "stages":[{"stage_id":"KNOWLEDGE","status":"LOCKED_INPUT"},{"stage_id":"CURRICULUM","status":"IN_PROGRESS","windows":[
     {"window_id":"C01-W01-B1-ARCHITECTURE","status":"PASS","accepted_commit_sha":"265bb584b5d7e36e11091289d58558408880118c"},
     {"window_id":"C01-W02-B1.1-MATH-FAMILY","status":"PASS"},
     {"window_id":"C01-W03-B1.2-PHYSICS-FAMILY","status":"PASS","director_accepted":true,"subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS"},
-    {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"PASS","director_accepted":true,"subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS","family_branch":"hka-tree/c01-w04-chemistry-family","family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781","family_integration_status":"DIRECTOR_ACCEPTED_PASS","external_mapping_status":"DIRECTOR_ACCEPTED_PASS","fresh_backup_sentinel":"TREE_ALIGNMENT_PASS","aggregate_counts":{"children":10,"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276},"external_mapping":{"systems":6,"continents":6,"official_source_resolution":"6/6 PASS","coverage":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},"foundational_gap_count":0},"children":[
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C01","scope_id":"B1.3-C01","scope":"Cấu trúc vật chất","status":"PASS","director_accepted":true,"accepted_commit_sha":"d3d5eb000b927f69732554c9dd58b4c087d7ca7d"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C02","scope_id":"B1.3-C02","scope":"Bảng tuần hoàn và hóa vô cơ","status":"PASS","director_accepted":true,"accepted_commit_sha":"dcd9c24eb17286940eef1d91b4562ed5cc10852a"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C03","scope_id":"B1.3-C03","scope":"Liên kết và cấu trúc phân tử","status":"PASS","director_accepted":true,"accepted_commit_sha":"3ce2ef9679d821386bef92895a37ca379016fdf0"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C04","scope_id":"B1.3-C04","scope":"Phản ứng và cân bằng","status":"PASS","director_accepted":true,"accepted_commit_sha":"caa12019682e1a9274fe75b8ab20435c3bfb4d2e"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C05","scope_id":"B1.3-C05","scope":"Hóa phân tích","status":"PASS","director_accepted":true,"accepted_commit_sha":"d19b011f00ac5f24d7a212c957cac3bb5046f06e"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C06","scope_id":"B1.3-C06","scope":"Hóa hữu cơ","status":"PASS","director_accepted":true,"accepted_commit_sha":"f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C07","scope_id":"B1.3-C07","scope":"Hóa lý và hóa học lý thuyết","status":"PASS","director_accepted":true,"accepted_commit_sha":"4da2338f420d12b958b0af71edda922816ff69cb"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C08","scope_id":"B1.3-C08","scope":"Hóa sinh và sinh học hóa học","status":"PASS","director_accepted":true,"accepted_commit_sha":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca","post_acceptance_sentinel":"TREE_ALIGNMENT_PASS"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C09","scope_id":"B1.3-C09","scope":"Khoa học vật liệu","status":"PASS","director_accepted":true,"accepted_commit_sha":"921226d0e83409d80f26eac1247d5f1e06269601","post_acceptance_sentinel":"TREE_ALIGNMENT_PASS"},
-      {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","scope_id":"B1.3-C10","scope":"Hóa học môi trường, công nghiệp và bền vững","status":"PASS","director_accepted":true,"accepted_commit_sha":"03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d","post_acceptance_sentinel":"TREE_ALIGNMENT_PASS"}
-    ],"family_exit_gate":"DIRECTOR_ACCEPTED_EXIT_PASS"},
-    {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING","unlocked":false},
-    {"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED"},
+    {"window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY","status":"PASS","director_accepted":true,"subbranch_exit":"DIRECTOR_ACCEPTED_EXIT_PASS","family_branch":"hka-tree/c01-w04-chemistry-family","family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781","aggregate_counts":{"children":10,"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276},"external_mapping":{"systems":6,"continents":6,"official_source_resolution":"6/6 PASS","coverage":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},"foundational_gap_count":0},"fresh_backup_sentinel":"TREE_ALIGNMENT_PASS"},
+    {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY","status":"IN_PROGRESS","unlocked":true,"family_branch":"hka-tree/c01-w05-earth-universe-family","registered_child_count":8,"registered_scope_count":24,"canonical_topic_count":24,"children":[
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"scope_names":["Khoáng vật, đá và địa hóa","Cấu trúc bên trong Trái Đất","Địa vật lý"],"status":"READY","unlocked":true,"owner":"W45","execution_branch":"hka-tree/c01-w05-earth-universe-c01-c03","canonical_topic_count":3,"required_prior_scope_pass":["B1.3-C01"],"internal_scope_sequence":["B1.4-C01","B1.4-C02","B1.4-C03"],"overlap_risks":["R11","R10"],"mandatory_cross_domain_links":[],"output_path":"DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM/B1_RULES_REALITY/AUTHORING/B1.4/C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03/"},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06","scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],"status":"LOCKED","unlocked":false,"owner":"W46","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C07-C09","scope_ids":["B1.4-C07","B1.4-C08","B1.4-C09"],"status":"LOCKED","unlocked":false,"owner":"W47","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C10-C12","scope_ids":["B1.4-C10","B1.4-C11","B1.4-C12"],"status":"LOCKED","unlocked":false,"owner":"W48","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C13-C15","scope_ids":["B1.4-C13","B1.4-C14","B1.4-C15"],"status":"LOCKED","unlocked":false,"owner":"W49","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C16-C18","scope_ids":["B1.4-C16","B1.4-C17","B1.4-C18"],"status":"LOCKED","unlocked":false,"owner":"W50","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C19-C21","scope_ids":["B1.4-C19","B1.4-C20","B1.4-C21"],"status":"LOCKED","unlocked":false,"owner":"W51","canonical_topic_count":3},
+      {"window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C22-C24","scope_ids":["B1.4-C22","B1.4-C23","B1.4-C24"],"status":"LOCKED","unlocked":false,"owner":"W52","canonical_topic_count":3}
+    ]},
+    {"window_id":"C01-W06-B1.5-INFORMATION-COMPUTATION-FAMILY","status":"LOCKED","unlocked":false},
     {"window_id":"C01-W07-B1-INTEGRATION-LOCK","status":"LOCKED"}
   ]},{"stage_id":"ACADEMIC_LOCKED","status":"GATED"}],
-  "updated_at":"2026-09-09T09:46:00+07:00"
+  "updated_at":"2026-09-09T09:52:00+07:00"
 }
