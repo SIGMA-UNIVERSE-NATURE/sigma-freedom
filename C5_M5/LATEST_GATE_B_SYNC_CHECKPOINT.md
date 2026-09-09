@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T6 FULL combined compatibility PASS.
+Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T6_FULL_COMBINED_COMPATIBILITY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -12,60 +12,52 @@ Updated: 2026-09-10 after genuine OPPO T6 FULL combined compatibility PASS.
 - T1/T2/T3 admitted subsets + mixed compatibility PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
-- T6A basic transport PASS.
-- T6B advanced HTTP/flow control PASS.
-- `T6_A_B_COMBINED_COMPATIBILITY=PASS`.
 - `T6_FULL_LAYER=PASS`.
-- T7 through T11: PENDING in offline substrate lane.
+- T7A clock/scheduler/worker-pool/cancel/timeout/backpressure: PASS on OPPO.
+- T7B resource governor: PENDING.
+- T7 combined: PENDING.
+- T8 through T11: PENDING in offline substrate lane.
 
-## Frozen T6 artifacts
+## Frozen T7A artifact
 
-T6A:
-- source `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
-- binary `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
-
-T6B:
-- source `046ffe2aa2d9cc0b20fcd6a15b95d71485f69dd612f352f19d4dccc5e06aab5b`
-- binary `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
+- source SHA256 `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
+- binary SHA256 `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T6 combined evidence
+## T7A admitted evidence
 
-- exact T6A/T6B artifact rebuild locks PASS
-- directed combined cases `16`
-- randomized-after-freeze combined cases `32`
-- replay combined cases `2`
-- total combined cases `50`
-- native process invocations `115`
-- full GET/Range reconstruction PASS
-- chunked equivalence PASS
-- redirect final equivalence PASS
-- DNS/TCP/TLS/HTTP coexistence PASS
-- conditional/If-Range compatibility PASS
-- retry/timeout/rate/backpressure compatibility PASS
-- body-bound compatibility PASS
-- counterfactual, no-mutation and high-entropy gates PASS
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- 53 native process invocations;
+- deterministic compile + source/binary freeze PASS;
+- monotonic clock PASS;
+- wall clock PASS;
+- timer PASS;
+- bounded deadline scheduler PASS;
+- bounded worker pool PASS;
+- cancellation PASS;
+- timeout PASS;
+- bounded queue backpressure PASS;
+- counterfactual behavior change PASS.
 
 ## Claim boundary
 
-- `HOST_ENDPOINT_SELECTION=NO`
-- `HOST_RETRY_POLICY_SELECTION=NO`
-- `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-- `EXTERNAL_INTERNET_USED=NO` in offline admission
+- `T7_FULL_LAYER=NOT_YET_ADMITTED`.
+- CPU/RAM/IO quota, watchdog and step limit remain PENDING T7B.
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`.
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`.
+- `HOST_SEMANTIC_SUBSTITUTION=NO`.
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
 
 ## Production boundary
 
-- `ONLINE_SYNC=NO`
-- `PRODUCTION_STATE_WRITE=NO`
-- `PRODUCTION_MUTATION=NO`
-- `PRODUCTION_BINDING=NO`
+- `ONLINE_SYNC=NO`.
+- `PRODUCTION_STATE_WRITE=NO`.
+- `PRODUCTION_MUTATION=NO`.
+- `PRODUCTION_BINDING=NO`.
 
-R10 production-lineage synchronization evidence remains a separate lane and does not imply live binding.
+Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
 
 ## Next offline sequence
 
-`T7 -> T8 -> T9 -> T10 -> T11`
-
-Immediate gate: rebuild `T7_SCHEDULER_RESOURCE` under current-standard admission.
+`T7B -> T7 combined -> T8 -> T9 -> T10 -> T11`.
