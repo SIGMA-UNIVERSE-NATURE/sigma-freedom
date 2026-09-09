@@ -128,17 +128,32 @@ This file is append-only in intent. Historical failures remain visible after lat
 - No core or transport defect established by this failure.
 - Capability remains not admitted.
 
-## 2026-09-09 — Mechanical Evidence Tool Transport R1H1 prepared
+## 2026-09-09 — Mechanical Evidence Tool Transport R1H1 runtime attempt
 
-- Harness-only correction; runtime pending.
 - Core SHA256 unchanged: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
 - Transport SHA256 unchanged: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Preflight SHA256: `f52f0c584e9edafa55eb2598bd4591b9a0d506df4c510eb054abb8b83bc2e00c`
-- Bundle SHA256: `5fa18729eb97473884da3ece2c8b5584da86e6e89155a6d812c123f2c41a2b25`
-- Fix: freeze immutable native-request snapshot before provider invocation; post-consumption verbatim checks compare against the snapshot rather than a live output that may be legitimately revoked.
+- Immutable-request snapshot fix worked.
+- `RAW_EVIDENCE_NATIVE_REVISION=PASS`.
+- `NATIVE_REQUEST_REVOKE_STOPS_TOOL=PASS`.
+- Stopped at `FAIL=BOUND_LEDGER_NOT_64`, `RC=83`.
+- Failure class: HARNESS COUNTING BUG.
+- Evidence before failure: `open_gap` accepted 4 records and 60 filler ingests each returned the exact native `RECORD_EVIDENCE:NEUTRAL_EVIDENCE_RECORDED` decision, establishing 64 accepted records.
+- Root cause: post-hoc oracle used `wc -l`; canonical ledger has no required trailing newline, so 64 records can contain 63 newline characters.
+- No core boundedness defect established by this failure because the actual 65th external-result rejection gate had not run yet.
+- Capability remains not admitted.
+
+## 2026-09-09 — Mechanical Evidence Tool Transport R1H2 prepared
+
+- Harness-only correction; Oppo runtime pending.
+- Core SHA256 unchanged: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
+- Transport SHA256 unchanged: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
+- Preflight SHA256: `769b2caffd0791faf4b81ce1bc72f4cf3898dcf7d60266d0473a51a68f0e5617`
+- Bundle SHA256: `df950ba9f07762d816f4eb7b399fb3f2b215d839fa10028f1f1e6c0e4c0bcf27`
+- Fix: replace newline counting with `awk NR` record counting for boundedness pre/post assertions.
+- Native 65th-record rejection criterion unchanged.
 - Test criteria weakened: NO.
 - Production binding: NO.
 
 ### Next checkpoint target
 
-Run R1H1 Oppo admission. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, semantic paraphrase and semantic truth/support/conflict FAIL until separate tests.
+Run R1H2 Oppo admission. If it reaches final PASS, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, semantic paraphrase, zero-shot low-overlap paraphrase and semantic truth/support/conflict FAIL until separate tests.
