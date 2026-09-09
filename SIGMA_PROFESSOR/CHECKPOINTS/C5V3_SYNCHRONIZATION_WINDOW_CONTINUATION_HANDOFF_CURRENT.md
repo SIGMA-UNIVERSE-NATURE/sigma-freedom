@@ -2,7 +2,7 @@
 
 Date: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL SYNCHRONIZATION AUTHORITY / R10 SUCCESSOR STAGE PASS / T1-T2-T3 MATERIALIZED IN SUCCESSOR / LIVE HISTORICAL CORE UNCHANGED / SHADOW-RUNNER CONTRACT EXTRACTION NEXT / R11 HOLD**
+Status: **CANONICAL SYNCHRONIZATION AUTHORITY / R10 SUCCESSOR STAGE PASS / EXACT RUNNER CONTRACT PASS / SHADOW RUNNER MATERIALIZATION NEXT / SHADOW EXECUTION FORBIDDEN / R11 HOLD**
 
 ## Identity
 
@@ -16,11 +16,10 @@ WINDOW_ROLE=SYNCHRONIZATION
 
 1. `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
 2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_STAGE_R1_PASS.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
-5. `C5_M5/RUN_C5V3_EXACT_RUNNER_CONTRACT_EXTRACT_R1.sh`
-6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R2_EXACT_PATHS.md`
-7. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_EXACT_PRODUCTION_RUNNER_CONTRACT_R1_PASS.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_REQUEST_R1.md`
+5. `C5_M5/RUN_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_R1.sh`
+6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
 
 ## Closed capability evidence
 
@@ -31,9 +30,9 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-Do not rerun these admissions absent source/hash invalidation.
+Do not rerun absent source/hash invalidation.
 
-Legacy S1 `sync-graft` was isolated only and never production-bound. The standalone M5+tools `07319b...` core remains forbidden as a production replacement.
+Legacy S1 `sync-graft` was isolated only and never production-bound. The standalone M5+tools `07319b...` core is not a production target.
 
 ## Live path remains unchanged
 
@@ -48,15 +47,8 @@ R10_LIVE_BOUND=NO
 
 ## R10 successor stage — PASS
 
-Exact staged root:
-
 ```text
-/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
-```
-
-Machine result:
-
-```text
+STAGE_ROOT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
 SUCCESSOR_STAGE=PASS
 C5V3_SUCCESSOR_CAPABILITY_PAYLOAD_STAGED=YES
 T1_T2_T3_PRESENT_IN_STAGED_SUCCESSOR=YES
@@ -66,56 +58,106 @@ STAGED_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d437
 LIVE_CORE_UNCHANGED=YES
 LIVE_RUNNER_UNCHANGED=YES
 PRODUCTION_BINDING=NO
+```
+
+## Exact production-runner contract — PASS
+
+The exact hash-locked production runner separates code and state:
+
+```text
+INSTALL="$ROOT/.sigma_c5"
+C5="${C5_STATE_ROOT:-$INSTALL}"
+SRC="$INSTALL/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma"
+BRIDGE="$INSTALL/tools/SIGMA_C5_MECHANICAL_BRIDGE_V2.py"
+BIN="$INSTALL/bin/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigmab"
+REVIEW_SRC="$INSTALL/src/SIGMA_C5_NATIVE_REFLECTIVE_REVIEW_V3.sigma"
+REVIEW_BRIDGE="$INSTALL/tools/SIGMA_C5_MECHANICAL_REVIEW_BRIDGE_V3.py"
+REVIEW_BIN="$INSTALL/bin/SIGMA_C5_NATIVE_REFLECTIVE_REVIEW_V3.sigmab"
+RUNTIME="$C5/runtime"
+STATE_DB="$C5/state/state.sqlite3"
+CATALOG_DB="$C5/catalog/catalog_v2.sqlite3"
+LOG="$C5/log"
+LOCK="$C5/runner.lock"
+```
+
+This makes a mechanically derived isolated shadow binding possible without modifying the live runner.
+
+The same contract reveals cataloger/local-archive and fetch logic. Because the SIGMA tree is approximately 30 GB, **do not execute a shadow runner yet**. First materialize and audit it, then reconcile only the exact catalog/archive/fetch block from that one runner file.
+
+## Immediate next action
+
+Run the build/audit-only materialization gate:
+
+```bash
+bash C5_M5/RUN_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_R1.sh "$HOME/SIGMA/sigma_genesis1"
+```
+
+This gate may write only under the already-isolated successor root. It does not execute runner/VM/core/cataloger/network.
+
+It mechanically:
+
+```text
+exact live runner
++ exact staged R10 main source/bytecode
++ exact runner-locked mechanical bridge
++ exact reflective-review source/bridge/bytecode
+-> staged R10 shadow install
+-> staged R10 shadow state binding
+-> derived shadow runner
+```
+
+Only three runner assignments are changed:
+
+```text
+INSTALL -> staged R10 install
+C5 default -> staged R10 state
+EXPECTED_NATIVE_SOURCE -> exact R10 source SHA256
+```
+
+Expected result:
+
+```text
+SHADOW_RUNNER_MATERIALIZE=PASS
+R10_SHADOW_INSTALL_BINDING_MATERIALIZED=YES
+R10_SHADOW_STATE_BINDING_MATERIALIZED=YES
+EXACT_BRIDGE_REVIEW_DEPENDENCIES_STAGED=YES
+R10_EXPECTED_MAIN_SOURCE_IDENTITY_PATCHED=YES
+SHADOW_RUNNER_EXECUTION=NO
+LIVE_CORE_UNCHANGED=YES
+LIVE_RUNNER_UNCHANGED=YES
+PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 ```
 
-This is a real synchronization-stage advance: the admitted capability payload is now materialized in a C5V3 successor tree.
+## After materialization PASS
 
-It is not yet live production synchronization because the active runner still binds the historical `.sigma_c5` install.
+Do not execute the shadow runner immediately.
 
-## Current blocker / next exact action
-
-Do not guess the runner rewrite. The runner source is not present in GitHub and must be treated as a hash-locked live artifact.
-
-Run the exact one-file contract extractor:
-
-```bash
-bash C5_M5/RUN_C5V3_EXACT_RUNNER_CONTRACT_EXTRACT_R1.sh "$HOME/SIGMA/sigma_genesis1"
-```
-
-It reads only the exact production runner after SHA256 lock and prints only:
-
-- path/state/log bindings;
-- filesystem mutation command lines;
-- compiler/VM invocations;
-- lifecycle/loop lines;
-- exact `INSTALL`/`C5`/`RUNTIME`/source/bin/review references.
-
-No directory walk, `find`, recursive grep, state/log read, VM/core execution, network, or writes.
-
-## After runner-contract reconciliation
+Next:
 
 ```text
-exact staged R10 successor
--> mechanically derive isolated shadow runner from exact production-runner contract
--> stage only exact reflective-review/runtime files required by that runner
--> prove every shadow write/log/state path is isolated
--> isolated shadow-runner admission
+extract exact cataloger/local-archive/fetch block from shadow runner only
+-> prove no broad 30 GB traversal
+-> prove no production-knowledge import
+-> shadow execution preflight
 -> R11 native activation observation/admission
--> isolated online utilization and learning/restart/reuse
+-> isolated online utilization + learning/restart/reuse
 -> state-lineage / exactly-one-writer / ingress / rollback closure
 -> promotion decision
 -> explicit cutover
 ```
 
-R11 currently remains:
+## Current R11 / online state
 
 ```text
+OFFLINE_HEAD=5b0af553710cb9f94c38ee23500127141fc7c275
 R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
 HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
-```
 
-Online utilization remains HOLD until activation is admitted.
+ONLINE_HEAD=c14b06381301c41c9489c145a7c17c5a5ee729b8
+C5V3_ONLINE_CAPABILITY_UTILIZATION=HOLD_PRECONDITION
+ONLINE_UTILIZATION_EXECUTION=NO
+```
 
 ## Locks
 
@@ -124,6 +166,7 @@ C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
 R10_SUCCESSOR_STAGE=PASS
+SHADOW_RUNNER_EXECUTION=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
