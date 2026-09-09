@@ -1,0 +1,3 @@
+# B1.3-C09 Worker Handoff
+
+PASS_CANDIDATE for Director review. Eight canonical materials-science topics are authored in frozen order with 32 atomic sourced claims and 32 D1-D4 objectives, each having exactly one semantic closure row. Canonical academic prerequisites are C01+C03+C07 exactly. C08 is recorded only as the completed sequential-governance predecessor/boundary, never as academic prerequisite. R09 is explicit OVERLAP_REVIEW: B1.2-C09 retains physical properties/phases/electronic and quantum behavior; B1.3-C09 retains composition, synthesis/processing chemistry and material classes. C10 is boundary-only with zero supporting Claim IDs and remains locked. No accepted C01-C08 academic artifact was mutated and no post-CURRICULUM artifact was created.
