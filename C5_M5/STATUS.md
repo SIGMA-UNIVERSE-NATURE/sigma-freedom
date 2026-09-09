@@ -11,6 +11,12 @@ Updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 
+## Final acceptance target
+
+The final target is defined in `C5_M5/END_STATE_ACCEPTANCE.md`: real Internet acquisition, whole-work long-form understanding, evidence-backed summary/theme/value induction, multilingual narrative transfer, semantic compression after source removal, bounded local persistence, restart, and continual learning from compressed native memory.
+
+Intermediate structural PASS results must not be inflated into this end-state.
+
 ## Latest admitted capability
 
 `M5_NATIVE_GAP_EVIDENCE_REQUEST_R1`
@@ -43,12 +49,19 @@ Retired assumptions:
 
 ## Current hard FAIL capabilities
 
+- `MECHANICAL_TOOL_INVOCATION=FAIL` until R1H2 reaches final PASS.
+- `REAL_INTERNET_ACQUISITION=FAIL`
+- `AUTONOMOUS_RESEARCH=FAIL`
+- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
+- `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
+- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
+- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
+- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`
+- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`
 - `SEMANTIC_PARAPHRASE=FAIL`
 - `ZERO_SHOT_LOW_OVERLAP_PARAPHRASE=FAIL`
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
-- `AUTONOMOUS_RESEARCH=FAIL`
-- `REAL_INTERNET_ACQUISITION=FAIL`
-- `TOOL_EXECUTION=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
 ## Mechanical evidence-tool transport — current state
@@ -84,4 +97,4 @@ Current admitted lineage repeatedly passes gates for token LEFT/RIGHT cognition 
 
 ## Exact next dependency
 
-Run `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2` on Oppo. Do not promote mechanical tool invocation until the corrected harness reaches final admission PASS. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, semantic paraphrase, and truth/support/conflict capabilities FAIL until separate blind/admission tests.
+Run `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2` on Oppo. Do not promote mechanical tool invocation until the corrected harness reaches final admission PASS. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, whole-work understanding, semantic memory, multilingual transfer, semantic paraphrase, and truth/support/conflict capabilities FAIL until their own independent admission/blind tests.
