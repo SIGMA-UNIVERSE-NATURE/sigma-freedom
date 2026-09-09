@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after genuine OPPO T5 FULL combined durability PASS.
+Updated: 2026-09-10 after genuine OPPO T6A DNS/TCP/TLS/HTTP/HTTPS PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_T5_FULL_COMBINED_DURABILITY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T6A_DNS_TCP_TLS_HTTP_HTTPS_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -14,51 +14,37 @@ Updated: 2026-09-09 after genuine OPPO T5 FULL combined durability PASS.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
 - `T4_FULL_LAYER=PASS`.
-- T5A filesystem/atomic/lock: PASS.
-- T5B durable KV/WAL/recovery: PASS.
-- `T5_A_B_COMBINED_DURABILITY=PASS`.
 - `T5_FULL_LAYER=PASS`.
-- T6 through T11: PENDING in the offline substrate lane.
+- T6A DNS/TCP/TLS/basic HTTP+HTTPS: PASS on OPPO.
+- T6B advanced HTTP/flow control: PENDING.
+- T6 combined compatibility: PENDING.
+- T7 through T11: PENDING in the offline substrate lane.
 
-## Frozen T5 artifacts
+## Frozen T6A artifact
 
-T5A:
-- source `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
-- binary `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
-
-T5B:
-- source `dc2397501498336a1ff0e1bd5d2392e022a36fe2918591e15edc67266adf2c7a`
-- binary `e73cd4fa7f0ca09917c2b1029a57591e1ab50d327e92e143a77fa3d9fe6b8e3c`
+- source SHA256 `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
+- binary SHA256 `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T5 combined evidence
+Exact admitted T6A scope:
 
-- exact T5A/T5B source locks PASS
-- deterministic rebuild locks PASS
-- directed combined cases `16`
-- randomized-after-freeze combined cases `32`
-- replay combined cases `2`
-- total combined cases `50`
-- total native process invocations `310`
-- mixed filesystem/durable-state oracle PASS
-- T5A-driven partial WAL recovery PASS
-- T5A-driven complete-WAL corruption rejection PASS
-- T5A-driven checkpoint corruption rejection PASS
-- lock exclusivity with durable store present PASS
-- counterfactual behavior change PASS
-- source/binary no mutation PASS
-- high-entropy literal leak audit PASS
-- synthetic sandbox removed PASS
+- DNS resolution;
+- bounded TCP exchange;
+- TLS peer trust + hostname verification;
+- basic HTTP GET;
+- basic HTTPS GET;
+- response body size bound.
+
+Evidence: 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 52 native process invocations; deterministic compile, source/binary freeze, dynamic loopback servers and TLS certificate after freeze, counterfactual and mechanical oracle all PASS.
 
 ## Claim boundary
 
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
-- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
+- `T6_FULL_LAYER=NOT_YET_ADMITTED`
+- `HOST_ENDPOINT_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- T5B concurrent-writer serialization is not claimed internally; use T5A lock/lease for exclusive writer coordination.
-- CRC32 is mechanical corruption detection only; cryptographic identity/provenance remains T9.
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
+- `EXTERNAL_INTERNET_USED=NO`
 
 ## Production boundary
 
@@ -69,8 +55,6 @@ T5B:
 
 Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
 
-## Next offline substrate sequence
+## Next offline sequence
 
-`T6 -> T7 -> T8 -> T9 -> T10 -> T11`
-
-Immediate gate: `T6_TRANSPORT`.
+`T6B -> T6 combined -> T7 -> T8 -> T9 -> T10 -> T11`
