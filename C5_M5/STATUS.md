@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T9B Identity / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance PASS.
 
 ## Architecture routing
 
@@ -19,50 +19,56 @@ Updated: 2026-09-10 after genuine OPPO T9B Identity / Provenance PASS.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
 
-## T9A — PASS
+## T9 — FULL PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T9A_CRYPTO_INTEGRITY_PASS.md`
+Checkpoint:
 
-- source `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
-- binary `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
+`C5_M5/CHECKPOINT_2026-09-10_T9_FULL_COMBINED_INTEGRITY_PROVENANCE_PASS.md`
 
-Admitted: SHA-256/SHA-512, HMAC-SHA256/SHA512, Ed25519 verification, OpenSSL CSPRNG, content IDs and domain-separated Merkle roots.
+Frozen OPPO artifacts:
 
-## T9B — PASS
-
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T9B_IDENTITY_PROVENANCE_PASS.md`
-
-Frozen OPPO artifact:
-
-- source SHA256 `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- binary SHA256 `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+- T9A source `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
+- T9A binary `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
+- T9B source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
+- T9B binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Admitted scope:
+Exact admitted T9 scope:
 
-- source identity;
-- work identity;
-- exact-byte span identity;
-- exact artifact fingerprint;
-- runtime identity;
-- state-lineage identity;
-- canonical HMAC-authenticated receipts;
-- receipt ID SHA256;
-- linked provenance chain;
-- sequence continuity;
-- nondecreasing caller-supplied time;
-- provenance tamper rejection.
+- SHA-256/SHA-512;
+- HMAC-SHA256/HMAC-SHA512;
+- Ed25519 signature verification;
+- OpenSSL CSPRNG;
+- content IDs and domain-separated Merkle roots;
+- source/work/exact-byte-span/artifact/runtime/state-lineage identities;
+- canonical HMAC-authenticated receipt and SHA256 receipt ID;
+- linked provenance-chain verification;
+- sequence continuity and nondecreasing caller-supplied time;
+- tamper rejection.
 
-Evidence:
+Combined evidence:
 
-- deterministic compile PASS;
-- source/binary freeze PASS;
+- exact T9A/T9B source/binary rebuild locks PASS;
+- directed combined cases `16`;
+- randomized-after-freeze combined cases `32`;
+- replay combined cases `2`;
+- total combined cases `50`;
+- native process invocations `159`;
+- integrity/identity/provenance mixed oracle PASS;
+- SHA256 receipt-ID compatibility PASS;
+- HMAC receipt-MAC compatibility PASS;
+- CSPRNG runtime-nonce compatibility PASS;
+- hash/state-lineage compatibility PASS;
+- exact-span/hash compatibility PASS;
+- Merkle/provenance-chain compatibility PASS;
+- Ed25519 signed chain-root verification PASS;
+- tamper dual rejection PASS;
+- counterfactual identity/integrity change PASS;
+- source/binary no mutation PASS;
 - high-entropy leak audit PASS;
-- directed `16` + randomized-after-freeze `32` + replay `2` = `50` cases;
-- native process invocations `54`;
-- post-tool mechanical oracle PASS;
-- identity/receipt/chain/tamper/counterfactual gates PASS;
-- synthetic sandbox removal PASS.
+- synthetic sandbox removal PASS;
+- `T9_A_B_COMBINED_COMPATIBILITY=PASS`;
+- `T9_FULL_LAYER=PASS`.
 
 ## Critical T9 boundary
 
@@ -77,13 +83,6 @@ Evidence:
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 
-## Current T9 state
-
-- `T9A_CRYPTO_INTEGRITY_ADMISSION=PASS`
-- `T9B_IDENTITY_PROVENANCE_ADMISSION=PASS`
-- `T9_COMBINED=PENDING`
-- `T9_FULL_LAYER=NOT_YET_ADMITTED`
-
 ## Production boundary
 
 - `ONLINE_SYNC=NO`
@@ -91,8 +90,14 @@ Evidence:
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-## Exact next offline sequence
+## Current state / next
 
-Immediate gate: exact **T9A+T9B combined current-standard admission**. Only genuine combined PASS may advance `T9_FULL_LAYER=PASS`.
+- `T4_FULL_LAYER=PASS`
+- `T5_FULL_LAYER=PASS`
+- `T6_FULL_LAYER=PASS`
+- `T7_FULL_LAYER=PASS`
+- `T8_FULL_LAYER=PASS`
+- `T9_FULL_LAYER=PASS`
+- T10/T11: PENDING
 
-After T9 full: `T10 -> T11`.
+Immediate next layer: **T10 Archive / Document Containers**.
