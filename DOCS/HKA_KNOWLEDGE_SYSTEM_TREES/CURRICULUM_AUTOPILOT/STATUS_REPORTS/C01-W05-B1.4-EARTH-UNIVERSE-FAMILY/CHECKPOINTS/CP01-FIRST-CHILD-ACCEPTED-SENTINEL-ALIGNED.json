@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP01-FIRST-CHILD-ACCEPTED-SENTINEL-ALIGNED",
+  "window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY",
+  "stage":"CURRICULUM",
+  "status":"IN_PROGRESS",
+  "accepted_child":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03",
+  "accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c",
+  "director_acceptance_checkpoint":"5f4f312891af641a7c915cefc51b4a83aa4647e9",
+  "post_acceptance_sentinel":{"status":"TREE_ALIGNMENT_PASS","checkpoint_commit_sha":"a87e2ba3c5175b356c10e775efeb2f3d9da5362a","status_commit_sha":"03633e0b32ab1323c9a89e27bf70ad273f921027"},
+  "accepted_scopes":["B1.4-C01","B1.4-C02","B1.4-C03"],
+  "successor_child":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06",
+  "successor_gate":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING",
+  "successor_unlocked":false,
+  "B1_5_unlock":false,
+  "updated_at":"2026-09-09T10:47:00+07:00"
+}
