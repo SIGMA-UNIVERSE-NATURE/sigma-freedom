@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **LIVE HISTORICAL CORE / LEGACY S1 SYNC-GRAFT CONFIRMED ISOLATED NOT LIVE / R10 OFFLINE PASS / R11 FIX3 HOLD / EXACT-PATH VM OBSERVER DISCOVERY NEXT / PRODUCTION HELD**
+Status: **LIVE HISTORICAL CORE / T1-T2-T3 ADMITTED BUT NOT LIVE / R10 OFFLINE SUCCESSOR PASS / R10 SUCCESSOR STAGING NOW AUTHORIZED / R11 ACTIVATION HOLD / PRODUCTION HELD**
 
 ## Identity
 
@@ -15,15 +15,15 @@ CURRENT_SYNCHRONIZATION_BASELINE=R2
 ## Read first
 
 1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_HOLD_HISTORICAL_CORE_SHADOW_STATE.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_ADDENDUM_T1_T2_T3_DEF_ABSENCE_R10_RECONCILIATION.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_SYNCHRONIZATION_STAGE_REQUEST_R1.md`
+3. `C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
 5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R2_EXACT_PATHS.md`
 6. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh`
 
 R1 observer discovery is superseded for device-footprint safety. Do not run its directory-inventory version on Oppo.
 
-## Closed admission evidence
+## Closed capability evidence — do not rerun
 
 ```text
 T1_VECTOR_MATRIX_ADMISSION=PASS
@@ -32,36 +32,24 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-Do not rerun these admissions absent source/hash/dependency invalidation.
-
-## Legacy S1 correction
-
-Earlier commits:
+The original R2 machine result explicitly had:
 
 ```text
-c5668c1cfeae5f02caf57e64da657283dbffd692
-9beb3e66397e7b050760ee2997510d8505aa4ebe
+PRODUCTION_BINDING=NO
+GRAFT_EXECUTED=NO
+LEARNING_RUNTIME_STARTED=NO
 ```
 
-Their exact machine checkpoint states:
+Legacy S1 `sync-graft` was also isolated only:
 
 ```text
-S1_ISOLATED_GRAFT_WITH_T1_T2_T3=PASS
-GRAFTED_CORE_SHA256=07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea
-M5_TOOL_ACCESS_IN_GRAFTED_CORE=PASS
+LEGACY_S1_LIVE_C5V3_SYNCHRONIZATION=NO
 PRODUCTION_INTEGRATION=NOT_EXECUTED
 PRODUCTION_BINDING=NO
 GRAFT_EXECUTED=ISOLATED_CANDIDATE_ONLY_NOT_PRODUCTION
 ```
 
-Therefore:
-
-```text
-LEGACY_S1_LIVE_C5V3_SYNCHRONIZATION=NO
-OPERATOR_REPORT_T1_T2_T3_ALREADY_LIVE_SYNCED=SUPERSEDED_FOR_ACTIVE_MAIN_CORE
-```
-
-Never use `07319b...` as a production replacement.
+Therefore there is no evidence that T1/T2/T3 were ever cut over into the active main C5V3 core.
 
 ## Decisive live binding
 
@@ -77,7 +65,7 @@ LIVE_T3_REPRESENTATIVE_DEF_PRESENT=NO
 T1_T2_T3_INLINE_SYNC_IN_OBSERVED_LIVE_MAIN_CORE=NO
 ```
 
-Observed runtime:
+Observed runtime locks:
 
 ```text
 LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
@@ -86,7 +74,7 @@ VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 C5_STATE_ROOT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5_real_shadow_v2
 ```
 
-## Correct production-lineage candidates
+## Correct production-lineage successor
 
 Frozen R6:
 
@@ -106,49 +94,74 @@ R10_BRIDGE_NEW_HOST_OP_COUNT=0
 R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
 ```
 
-R10 is isolated/offline and not live-bound.
+R10 is the current production-lineage successor payload containing the admitted T1/T2/T3 capability library plus the M5 capability delta and explicit native dispatch bridge. It is not live-bound yet.
 
-## R11 activation state
+## Synchronization is now moving forward — staged successor write authorized
+
+Exact next synchronization action:
+
+```bash
+bash C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh "$HOME/SIGMA/sigma_genesis1"
+```
+
+Allowed write root only:
 
 ```text
-OFFLINE_HEAD=5b0af553710cb9f94c38ee23500127141fc7c275
+$HOME/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
+```
+
+Expected successful result:
+
+```text
+SUCCESSOR_STAGE=PASS
+C5V3_SUCCESSOR_CAPABILITY_PAYLOAD_STAGED=YES
+T1_T2_T3_PRESENT_IN_STAGED_SUCCESSOR=YES
+M5_DISPATCH_BRIDGE_IDENTITY=INHERITED_EXACT_R10
+LIVE_CORE_UNCHANGED=YES
+LIVE_RUNNER_UNCHANGED=YES
+PRODUCTION_BINDING=NO
+PRODUCTION_MUTATION=NO
+```
+
+This is a material synchronization step: the exact current production-lineage successor is staged into a C5V3-style successor tree. It is not yet production cutover.
+
+## Why production is not overwritten at this step
+
+The exact production runner currently binds the live `.sigma_c5` installation path. A staged successor therefore needs a separately admitted shadow runner/binding contract; blindly copying the live runner would still point to the historical live core.
+
+R11 activation also remains unadmitted:
+
+```text
 R11_FIX3_FIFO_DRIVER=FAIL
 HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
 R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
 R10_CANDIDATE_M5_DISPATCH_ACTIVATION=NOT_ADMITTED
 ```
 
-This is an observer/oracle HOLD, not proof that R10 is dead.
+This is an observer/oracle HOLD, not evidence that R10 is dead.
 
-## Online utilization
+## Footprint-safe observer discovery remains the activation dependency
 
-```text
-ONLINE_HEAD=c14b06381301c41c9489c145a7c17c5a5ee729b8
-C5V3_ONLINE_CAPABILITY_UTILIZATION=HOLD_PRECONDITION
-ONLINE_UTILIZATION_EXECUTION=NO
-R11_DEPENDENCY_PASS=NO
-```
-
-## Exact next action — footprint-safe
-
-Run only the R2 exact-path read-only static observer-discovery probe:
+After or in parallel with staging, run only the exact-path R2 observer probe:
 
 ```bash
 bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh "$HOME/SIGMA/sigma_genesis1"
 ```
 
-R2 reads only the exact locked VM, sigmac and runner identities. After identity PASS it analyzes only the exact VM binary and exact runner. It performs no directory walk, no `find`, no recursive grep, no state/log scan, no VM/core execution and no production mutation.
+It reads only the exact VM, sigmac and runner identities; after identity PASS it analyzes only the exact VM binary and exact runner. No directory walk, recursive grep, state/log scan, VM/core execution, network or production mutation.
 
-Then return stdout to Synchrony for classification.
-
-In parallel, promotion still requires read-only closure of canonical state-root lineage, exactly-one-writer, active ingress identity, no test/shadow alias, and rollback evidence. Those future probes must also be pointer-following exact-path queries, never broad filesystem scans.
-
-## Target route after an observer-backed R11 PASS
+## Online utilization remains held
 
 ```text
-exact R10/superseding successor
--> isolated online shadow
--> native need detection
+C5V3_ONLINE_CAPABILITY_UTILIZATION=HOLD_PRECONDITION
+ONLINE_UTILIZATION_EXECUTION=NO
+R11_DEPENDENCY_PASS=NO
+```
+
+After an observer-backed R11 activation PASS, the staged successor can advance to isolated online-shadow utilization proving:
+
+```text
+native need detection
 -> native capability selection
 -> native execution
 -> native result evaluation
@@ -158,10 +171,9 @@ exact R10/superseding successor
 -> native learning-state update
 -> fresh VM restart
 -> learned-state reuse
--> state/writer/ingress/rollback gates
--> promotion decision
--> explicit cutover
 ```
+
+Then close state-lineage, exactly-one-writer, active ingress and rollback gates before promotion/cutover.
 
 ## Locks
 
@@ -169,10 +181,11 @@ exact R10/superseding successor
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
+R10_SUCCESSOR_STAGING=AUTHORIZED
+LIVE_PRODUCTION_CORE_WRITE=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
-NEXT_CORE_WRITE=FORBIDDEN
 ```
 
 ```text
