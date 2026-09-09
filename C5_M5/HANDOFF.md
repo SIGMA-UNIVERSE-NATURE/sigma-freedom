@@ -3,15 +3,18 @@
 Any future work window should read, in order:
 
 1. `C5_M5/MISSION.md`
-2. `C5_M5/STATUS.md`
-3. `C5_M5/CHECKPOINTS.md`
-4. this file
+2. `C5_M5/END_STATE_ACCEPTANCE.md`
+3. `C5_M5/STATUS.md`
+4. `C5_M5/CHECKPOINTS.md`
+5. this file
 
 Do not reconstruct history from old chat text when these branch files are available.
 
 ## Current purpose
 
-Continue M5 core replacement until SIGMA can autonomously acquire and revise evidence without returning to token LEFT/RIGHT cognition, lexical grammar hardcoding, semantic cue tables, or host-substituted cognition.
+Continue M5 core replacement until SIGMA can autonomously acquire real evidence, read and integrate complete long-form works, revise hypotheses, compress learned knowledge into bounded local native memory, remove the source text, and continue learning — without token LEFT/RIGHT cognition, lexical grammar hardcoding, semantic cue tables, or host-substituted cognition.
+
+The end-state acceptance standard is mandatory. Intermediate structural PASS results are dependencies only; they must never be inflated into whole-work understanding.
 
 ## Latest admitted starting point
 
@@ -57,19 +60,25 @@ Required remaining gates:
 
 If R1H2 passes, update GitHub immediately and change only `MECHANICAL_TOOL_INVOCATION=PASS`.
 
-Then build an independent blind host-substitution audit before real Internet access. The blind must prove that absent/malformed/fake native requests cannot cause host fallback query generation or provider invocation and that raw provider payload cannot directly force a native conclusion.
+Then build an independent blind host-substitution audit before real Internet access. After mechanical transport and real-Internet acquisition are independently admitted, the development path must move toward whole-work comprehension tests described in `END_STATE_ACCEPTANCE.md`: long-range narrative integration, evidence-backed summary/theme/value extraction after source removal, multilingual transfer, native semantic compression, and continual local learning.
 
 ## Host boundary
 
 Host may perform mechanical request framing validation, invoke a preconfigured provider on a valid native request, pass request/raw bytes verbatim, and invoke locked VM/process/file plumbing.
 
-Host must not invent gaps, research goals, semantic queries, summaries, rankings, beliefs, support/conflict/truth stances, memory selections, or final answers.
+Host must not invent gaps, research goals, semantic queries, summaries, rankings, beliefs, support/conflict/truth stances, theme/value interpretations, memory selections, or final answers.
 
 ## Hard FAILs retained
 
 - `MECHANICAL_TOOL_INVOCATION=FAIL` until R1H2 final PASS.
 - `REAL_INTERNET_ACQUISITION=FAIL`
 - `AUTONOMOUS_RESEARCH=FAIL`
+- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
+- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
+- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
+- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`
+- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`
 - `SEMANTIC_PARAPHRASE=FAIL`
 - `ZERO_SHOT_LOW_OVERLAP_PARAPHRASE=FAIL`
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
