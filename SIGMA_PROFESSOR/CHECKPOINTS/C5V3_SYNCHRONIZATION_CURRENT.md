@@ -1,8 +1,8 @@
 # C5V3 SYNCHRONIZATION — CURRENT
 
-Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
+Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 TRUST-FIRST SOURCE CONSTRUCTION PASS / LOCKED SIGMAC BODY-INSENSITIVE HOLD / BINARY+VM AUDIT NEXT / NO VM / PRODUCTION UNCHANGED**
+Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / SIGMAC REAL PARSER+EMITTER CONFIRMED / R2+R3 FULL CORES EMIT HEADER-ONLY 29B SIGMBC01 / VM SOURCE-COUPLING TEST NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -14,18 +14,17 @@ WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SIGMAC_BODY_INSENSITIVE_HOLD_COMPILER_AUDIT_REQUIRED.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_BUILD_PASS_BYTECODE_IDENTITY_ANOMALY_HOLD.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_ARCHITECTURE_REVIEW_ACCEPTED_R3_FIX1_TRUST_FIRST.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SIGMAC_REAL_EMITTER_FULL_CORE_ZERO_CODE_CAPSULE_VM_SOURCE_COUPLING_NEXT.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SIGMAC_BODY_INSENSITIVE_HOLD_COMPILER_AUDIT_REQUIRED.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_BUILD_PASS_BYTECODE_IDENTITY_ANOMALY_HOLD.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
 
-## R3 FIX1 source — canonical construction PASS
+## R3 FIX1 source — construction PASS
 
 ```text
 HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
 ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
-
 R3_FIX1_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
 R3_FIX1_DEF_COUNT=176
 R3_FIX1_CONSTRUCTION=PASS
@@ -49,93 +48,109 @@ T1_T2_T3_TOOL_MODULE_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff6
 T1_T2_T3_TOOL_DEF_COUNT=82
 ```
 
-## Locked sigmac conformance failure
+## Compiler/VM identities
 
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+SIGMAC_BYTES=24352
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_BYTES=35016
 ```
 
-Fresh machine diagnostic proved:
+## Sigmac forensics — corrected result
+
+The locked compiler is NOT a constant-output stub.
 
 ```text
-R2_SOURCE_BYTES=50488
-R3_FIX1_SOURCE_BYTES=115807
-R2_R3_SOURCE_BYTE_IDENTICAL=NO
-
-R2_FRESH_COMPILE_RC=0
-R3_FIX1_FRESH_COMPILE_RC=0
-R2_FRESH_COMPILE_BYTES=29
-R3_FIX1_FRESH_COMPILE_BYTES=29
-R2_R3_FRESH_BYTECODE_BYTE_IDENTICAL=YES
-BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-
-R3_ACTIVE_MAIN_LITERAL_COUNTERFACTUAL_COMPILE_RC=0
-R3_COUNTERFACTUAL_BYTECODE_CHANGED=NO
-
-R3_UNBALANCED_MAIN_NEGATIVE_CONTROL_COMPILE_RC=0
-R3_NEGATIVE_UNBALANCED_REJECTED=NO
+empty -> RC=3 invalid/missing header, no output
+plain text -> RC=3 invalid/missing header, no output
+invalid broken body -> RC=4 parse error, no output
+unbalanced main -> RC=4 expected '}', no output
+minimal A -> RC=0, 59-byte source-specific SIGMBC01 artifact
+minimal B -> RC=0, 77-byte source-specific SIGMBC01 artifact
 ```
 
-Therefore:
+Minimal A/B literals appear directly in their emitted bytecode. Therefore:
 
 ```text
-SIGMAC_RC0_MEANS_SEMANTIC_COMPILE=NO
-SIGMAC_BODY_SENSITIVITY=FAIL
-SIGMAC_NEGATIVE_SYNTAX_REJECTION=FAIL
-CURRENT_29_BYTE_OUTPUT_SEMANTIC_BYTECODE_IDENTITY=NOT_ADMITTED
-R3_FIX1_RUNTIME_ADMISSION=NO
-RESULT=HOLD_COMPILER_OUTPUT_INSENSITIVE_TO_SOURCE_BODY
+SIGMAC_REAL_PARSER=PASS
+SIGMAC_SOURCE_SENSITIVE_EMITTER=PASS_IN_MINIMAL_DIRECT_PRINT_SCOPE
 ```
 
-The diagnostic's printed `DEF_COUNT=0` values were caused by an over-escaped regex and are not source evidence. The deterministic R3 construction count remains `176`.
+## R2/R3 full-core artifact anomaly
 
-## Compiler/VM repository status
+Header-only, R2 full source and R3 FIX1 full source all emit the exact same 29-byte artifact:
 
-`SIGMA_LIFE` exposes no `native/` compiler/VM implementation or bytecode specification. `CORE/` contains only small SIGMA identity/principles sources. The locked `sigmac` and VM are machine-local Oppo artifacts.
+```text
+SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+BYTES=29
+HEX=5349474d424330310100000000000000000000000000000001000000ff
+MAGIC_ASCII=SIGMBC01
+```
+
+This byte sequence contains no source-specific payload visible in the artifact and is exactly the valid-header/no-executable-body encoding under the tested compiler.
+
+Therefore current evidence does NOT support:
+
+```text
+FULL_R2_R3_SOURCE_LOSSLESS_SELF_COMPRESSED_INTO_29B=NO_EVIDENCE
+```
+
+It does support:
+
+```text
+R2_R3_FULL_CORE_EXECUTABLE_EMISSION=ZERO_CODE_OR_EXTERNAL_RESOLUTION_UNEXPLAINED
+```
+
+## Remaining external-source hypothesis
+
+The live runner invokes:
+
+```text
+"$VM" "$BIN"
+```
+
+The VM may still derive sibling source or another external dependency from the `.sigmab` path. That must be tested before declaring the 29-byte artifact inert.
 
 ## Exact next action
 
 Use:
 
 ```text
-C5_M5/RUN_C5V3_SIGMAC_STUB_CONFORMANCE_EXPORT_R1.sh
-SCRIPT_COMMIT=40453ed32ced3f4ef297c040b9823c4b621ed893
+C5_M5/RUN_C5V3_VM_29B_CAPSULE_SOURCE_COUPLING_PROBE_R1.sh
+SCRIPT_COMMIT=c698f50c9770fcb8e2ff5d9941007e42f2320eb4
 ```
 
 The probe:
 
 ```text
-locks exact sigmac + VM + R3 identities
-prints exact 29-byte payload as hex
-compiles empty/plain/header-only/invalid/minimal-A/minimal-B/unbalanced/R3 controls
-counts distinct output hashes/sizes
-DOES NOT execute VM/core
-exports exact local sigmac + VM + R3 source/29-byte output + controls/results into one ZIP for binary audit
+creates only fresh temp trees
+uses the exact same 29B capsule in A/B/NONE trees
+A has sibling source printing SOURCE_A_SIDELOAD_SENTINEL
+B has sibling source printing SOURCE_B_SIDELOAD_SENTINEL
+NONE has no sibling source
+runs the locked VM directly, never the live runner
+runs separately emitted bytecode A/B as positive controls
+rehashes live core/runner before and after
 ```
 
-After the export is uploaded to the synchronization window:
+Classification:
 
 ```text
-binary audit sigmac
--> binary audit VM / 29-byte format contract
--> determine stub/header-packer/bypass behavior
--> repair or replace compiler path
--> compiler counterfactual + negative-control admission
--> only then resume R3 FIX1 executable/runtime admission
+A/B sibling source changes VM behavior
+-> SOURCE_RESOLVING_LOADER_OR_REFERENCE_CAPSULE
+
+A/B/no-source same behavior
++ real emitted A/B bytecode differs correctly
+-> EMPTY_OR_GENERIC_EXECUTION_CAPSULE under tested environment
 ```
 
-## Production locks
+## Admission boundary
 
 ```text
-LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
-VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
-LIVE_CORE_UNCHANGED=YES
-LIVE_RUNNER_UNCHANGED=YES
-C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
+R3_FIX1_RUNTIME_ADMISSION=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
+CLAIM_LEQ_EVIDENCE=MANDATORY
 ```
-
-`CLAIM <= EVIDENCE`
