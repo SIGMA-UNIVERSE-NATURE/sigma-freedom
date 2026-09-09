@@ -1,0 +1,15 @@
+{
+  "checkpoint_id":"CP00-FAMILY-OPEN-FIRST-CHILD",
+  "window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY",
+  "stage":"CURRICULUM",
+  "status":"IN_PROGRESS_FIRST_CHILD_READY",
+  "control_plane_opening_sha":"72c00cdd57aaacc0e8483939b4c5cf01004ed3c9",
+  "active_child":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03",
+  "active_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],
+  "owner":"W45",
+  "external_accepted_prerequisite":"B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d",
+  "risks":["R11@B1.4-C01","R10@B1.4-C03"],
+  "next_child_locked":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06",
+  "B1_5_unlock":false,
+  "updated_at":"2026-09-09T09:52:00+07:00"
+}
