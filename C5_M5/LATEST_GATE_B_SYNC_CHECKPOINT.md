@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T8 FULL combined Process / IPC / Isolation PASS.
+Updated: 2026-09-10 after genuine OPPO T9A Cryptographic Integrity PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T8_FULL_COMBINED_PROCESS_IPC_ISOLATION_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T9A_CRYPTO_INTEGRITY_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -14,65 +14,47 @@ Updated: 2026-09-10 after genuine OPPO T8 FULL combined Process / IPC / Isolatio
 - `T5_FULL_LAYER=PASS`.
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
-- T8A Process / IPC / Supervision: PASS.
-- T8B Capability Sandbox / Crash Recovery: PASS.
-- `T8_A_B_COMBINED_COMPATIBILITY=PASS`.
 - `T8_FULL_LAYER=PASS`.
-- T9 through T11: PENDING in offline substrate lane.
+- T9A cryptographic integrity primitives: PASS on OPPO.
+- T9B identity/provenance: PENDING.
+- T9 combined: PENDING.
+- T10/T11: PENDING in offline substrate lane.
 
-## Frozen T8 artifacts
+## Frozen T9A artifact
 
-T8A:
-
-- source `dad5c93f0d6b4973e6b70b3400cfbaec51c2114707fe2e87c7d6a64edac9b839`
-- binary `040553529973cd6075d33bb83b4e124b8a4df4e09c3206a86acedd7f965ba87d`
-
-T8B:
-
-- source `27f6d462605d91458a38b8bab518eae00c74ed4dc32071b85617656e500117fa`
-- binary `19cf4a0fc2b23f0783d795a0b3f17c107890eed2090810a153c9fe29b2f9ecbd`
+- source `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
+- binary `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
+- crypto backend `OPENSSL`
 
-## T8 combined evidence
+## T9A admitted evidence
 
-- exact T8A prior-summary fingerprint recovery PASS
-- exact T8A/T8B source locks PASS
-- deterministic binary rebuild locks PASS
-- directed combined cases `16`
-- randomized-after-freeze combined cases `32`
-- replay combined cases `2`
-- total combined cases `50`
-- total native process invocations `121`
-- mixed process/IPC/isolation oracle PASS
-- spawn-to-FD-capability-sandbox compatibility PASS
-- sandbox-to-Unix-IPC compatibility PASS
-- IPC-frame-to-capability compatibility PASS
-- exit/signal/timeout-to-recovery compatibility PASS
-- cwd/output-bound isolation compatibility PASS
-- crash-recovery counterfactual PASS
-- source/binary no mutation PASS
-- high-entropy literal leak audit PASS
-- synthetic sandbox removal PASS
+- deterministic compile/source/binary freeze PASS
+- dynamic Ed25519 keypair generated after freeze PASS
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
+- 56 native process invocations
+- post-tool mechanical oracle PASS
+- SHA-256 PASS
+- SHA-512 PASS
+- HMAC-SHA256 PASS
+- HMAC-SHA512 PASS
+- Ed25519 signature verification PASS
+- OpenSSL `RAND_bytes` CSPRNG PASS
+- SHA-256 content ID PASS
+- domain-separated SHA-256 Merkle root PASS
+- counterfactual integrity change PASS
 
-## Namespace evidence
+## Critical claim boundary
 
-OPPO/Termux reported:
-
-- user namespace unavailable
-- mount namespace unavailable
-- network namespace unavailable
-- PID namespace unavailable
-
-No namespace-isolation claim is made. T8 full is admitted on the demonstrated FD-capability + ambient-FD closure + `no_new_privs` + seccomp fail-closed isolation scope.
-
-## Claim boundary
-
-- `NO_SHELL_COMMAND_CONSTRUCTION=PASS`
+- `HASH_IS_NOT_PROVENANCE=PASS`
+- `T9_FULL_LAYER=NOT_YET_ADMITTED`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
+
+T9A integrity primitives do not establish semantic trust, truth or provenance history. T9B must separately admit source/work/span identity, exact artifact fingerprint classes, authenticated receipts and linked provenance records.
 
 ## Production boundary
 
@@ -85,6 +67,4 @@ Existing R10 production-lineage synchronization evidence remains separate and do
 
 ## Next offline sequence
 
-`T9 -> T10 -> T11`
-
-Immediate gate: `T9_INTEGRITY_IDENTITY_PROVENANCE`.
+`T9B -> T9 combined -> T10 -> T11`.
