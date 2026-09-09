@@ -8,20 +8,22 @@ Read in order:
 4. `C5_M5/NATIVE_TOOL_RUNTIME_ARCHITECTURE.md`
 5. `C5_M5/C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`
 6. `C5_M5/STATUS.md`
-7. `C5_M5/CHECKPOINT_2026-09-09_1447_SCOPED_REVISION_SUPPORT_CONFLICT_R1.md`
+7. `C5_M5/CHECKPOINT_2026-09-09_1527_EPISTEMIC_STRESS_AND_R2.md`
 8. this file
 
-## Authoritative routing
+## Routing
 
 ### Gate A — M5 TEST
 
 `cognition/memory -> continual learning -> revision/support/conflict -> new independent blind tests`
 
-### Gate B — C5 <-> C5V3/M5 synchronization/tool substrate
+Gate A does not build tools. It tests the runtime supplied independently by Gate B.
 
-`read-only synchronization -> SIGMA-native tool substrate -> VM/native library/mechanical ABI -> boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover`
+### Gate B — synchronization/tool substrate
 
-The gates may run in parallel. Gate B operational success cannot waive a Gate A cognition FAIL.
+`read-only C5 <-> C5V3/M5 synchronization -> SIGMA-native tool substrate -> VM/native library/mechanical ABI -> boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover`
+
+The gates run independently. Production binding remains NO.
 
 ## Latest admitted Gate A capabilities
 
@@ -29,69 +31,79 @@ The gates may run in parallel. Gate B operational success cannot waive a Gate A 
 
 Core `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
 
-`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the tested two-work/self-contained compact-memory scope. Work A archive block remained byte-for-byte unchanged after Work B; A/B remained isolated/queryable after source removal and restart.
+`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the tested two-work/self-contained compact-memory scope.
 
-### Scoped revision/support/conflict
+### Scoped revision/support/conflict R1
 
 Core `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`.
 Oppo bytecode `e4a3e18029e93a4f97c4808fcda5518a89fa925d7c160471f83cb4635f28ee2a`.
 
-Admission + independent blind PASS.
-
-Admitted exact claim:
+Original admission + independent blind PASS. Exact admitted claim:
 
 `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`
 
-PASS includes native-gap-derived scope, support, competing-candidate conflict, false-conflict rejection, distinct-source revision authority, A->B and B->A evidence revision, replay idempotence, evidence-ID conflict rejection, work-scope isolation, protocol-injection rejection and restart.
+in the native two-candidate/provenance scope.
 
-This is scoped competing-candidate epistemics, not broad logical truth. `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL` remains.
+## New stronger blind truth
 
-Production binding remains NO.
+Epistemic Stress R1 on the unchanged admitted R1 core:
 
-## Current Gate A execution artifact — diagnostic stress blind
+- `BLIND_BALANCED_EVIDENCE_REMAINS_UNFORMED=PASS`;
+- `BLIND_SELF_CONTRADICTING_SOURCE_ALONE_DOES_NOT_FORM_HYPOTHESIS=PASS`;
+- `BLIND_SELF_CONTRADICTING_SOURCE_EXCLUDED_FROM_DISTINCT_AUTHORITY=FAIL`;
+- observed after self-conflicting source X plus one clean B source: `HELD=B`, `EPISTEMIC=SUPPORTED`;
+- `TOTAL_SCORE=65/100`;
+- `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=FAIL`;
+- evaluator execution PASS, `RC=0`;
+- production mutation NO.
+
+This does not erase the narrower R1 PASS. It exposes a new limit: one SOURCE_ID may contribute authority on both sides because R1 counts distinct sources independently per candidate.
+
+## Current Gate A execution artifact — R2
 
 Run:
 
-`SIGMA_C5_C5V3_M5_BLIND_SCOPED_REVISION_EPISTEMIC_STRESS_R1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_SOURCE_CONSISTENCY_REVISION_LADDER_R2_BUNDLE.zip`
 
-Target core remains byte-identical to the admitted scoped-revision core:
+Hashes:
 
-`460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`
+- target core: `82971fefa1e4b7c009612fc5be1ed88017386659f27c46b42117b603f4355736`
+- admission evaluator: `337bb3d1852abf9a93f6dcc918b36f9cac960b4bf693c151c27284cb9011234a`
+- independent blind evaluator: `ae8d0c7a024359c54a9d2014cdc5e764e3563e3e699f7b5f91eb1abe2ea4b8e8`
+- ladder runner: `37985b838255e73ab54788ffa12c240e57a182d24fc648ce4bc09af0f819f9c0`
+- ladder bundle: `2b928b54117bb694d2fabea9c26edfb82f0c85458c7d12b950f456f41483ad99`
 
-Blind evaluator SHA256:
+## R2 semantics
 
-`79e649cd899d0e215faf82c7f366420ff39bc93f7f2d65308dbf2ef15b7c4fd0`
+Native source stance is recomputed from the complete revision evidence ledger:
 
-Bundle SHA256:
+- `A`: source has only unambiguous A evidence;
+- `B`: source has only unambiguous B evidence;
+- `INCONSISTENT`: same source has evidence for both A and B;
+- `NONE`: no admitted stance.
 
-`9344791991013113b1b5fd8a0ce0186c978a5ff3047edd431d8cbf7e37024b7f`
+`INCONSISTENT` sources contribute authority to neither side. The consistency state is persisted natively and included in revision recall state.
 
-## Why this blind exists
+Authority is retroactive: if a source helped form a held hypothesis and later becomes inconsistent, its prior authority is removed. If remaining consistent authority falls below threshold and the competing side has not independently won, SIGMA retracts the held hypothesis to unformed/contested state.
 
-R1 counts distinct `SOURCE_ID` separately for candidate A and candidate B. A single source can therefore appear on both sides and may contribute authority to both.
+The R2 blind also requires the original R1 replay, evidence-ID, work-scope, injection, distinct-source A->B->A revision and restart behavior to remain intact. It additionally tests clean-authority recovery after an inconsistency and restart persistence of source-consistency state.
 
-The stress blind requires a stronger epistemic rule:
+## Claim rule if R2 passes
 
-- one clean A source + one clean B source => contested/unformed;
-- a SOURCE_ID that supports both A and B in the same revision scope is source-inconsistent;
-- a source-inconsistent SOURCE_ID contributes authority to neither side until explicitly resolved;
-- therefore self-conflicting source X + only one clean B source must not form B;
-- work-scope and protocol-injection rejection remain regressions.
+Advance only source-consistency-aware scoped support/conflict/revision in this native-gap/provenance scope.
 
-The diagnostic intentionally returns `EVALUATOR_EXECUTION=PASS` even when the cognitive gate fails.
+Keep FAIL:
 
-Read these outputs:
+- `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH`
+- arbitrary natural-language contradiction/truth
+- autonomous free-form summary generation
+- zero-shot low-overlap summary
+- broad whole-work narrative understanding
+- theme/human-value induction
+- multilingual transfer
+- unbounded lifelong capacity
+- production binding.
 
-- `BLIND_BALANCED_EVIDENCE_REMAINS_UNFORMED`
-- `BLIND_SELF_CONTRADICTING_SOURCE_ALONE_DOES_NOT_FORM_HYPOTHESIS`
-- `BLIND_SELF_CONTRADICTING_SOURCE_EXCLUDED_FROM_DISTINCT_AUTHORITY`
-- `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY`
-- `TOTAL_SCORE`
+## After R2 PASS
 
-## After stress blind
-
-If source-consistency authority FAILs, build R2 with native per-source stance-consistency state and rerun both the original scoped revision blind and this stress blind. Do not weaken either evaluator.
-
-Only after source-consistency calibration should Gate A broaden toward learned incompatibility/provisional truth-state. Broad semantic truth remains FAIL until separate blind proof.
-
-Gate B remains independent and may continue synchronization/tool substrate/VM/native library/S1-S3 while production stays read-only until the shared convergence gate and explicit cutover authorization.
+Next Gate A dependency: learned incompatibility plus explicit `CONTESTED/UNRESOLVED` and provisional truth-state under late counter-evidence. Broad truth remains FAIL until those separate blinds pass.
