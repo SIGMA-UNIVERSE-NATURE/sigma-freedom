@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after genuine OPPO T4 FULL combined compatibility PASS.
+Updated: 2026-09-09 after genuine OPPO T5A filesystem/atomic/lock admission PASS.
 
 ## Architecture routing
 
@@ -16,15 +16,16 @@ Updated: 2026-09-09 after genuine OPPO T4 FULL combined compatibility PASS.
 - sigmac `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
 - locked VM `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 
-## Gate B synchronization evidence
+## Synchronization boundary
 
-Admitted offline synchronization chain remains R5 -> R10. R10 exact production-lineage bridge/dormant candidate remains structurally admitted, but prior observer attempts did not admit activation. Online integration/activation work is owned by the separate synchronization lane.
+Admitted offline synchronization chain remains R5 -> R10. R10 structural/dormant evidence does not imply live activation or binding. Online integration/activation work is owned by the separate synchronization lane.
 
-Current production boundary from this offline lane:
+From this offline substrate lane:
 
 - `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`
 - `M5_CAPABILITY_ACTIVE_IN_LIVE_PRODUCTION_DISPATCH=NO`
 - `ONLINE_SYNC=NO`
+- `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
@@ -35,54 +36,76 @@ Current production boundary from this offline lane:
 - T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
+- T4 full text/syntax/codecs: PASS.
 
 ## T4 — FULL PASS
 
-Authoritative checkpoint:
+Checkpoint:
 
 `C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
 
-Frozen artifacts:
+- exact T4A/B/C artifact locks PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
+- 182 native process invocations;
+- mixed pipeline oracle PASS;
+- counterfactual behavior change PASS;
+- source/binary no mutation PASS;
+- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`;
+- `T4_FULL_LAYER=PASS`.
 
-- T4A source `af36c1b4ee4491533e93b878dc9d0de475f6561f35dd3979fa5b8bbb6d60d572`
-- T4A binary `45455d007e0cb722752c4cf06cd8919b66b20e5064939781e4dfa94f057c78db`
-- T4B source `31a89e66943d8e0489c9c2df65331bb60bc6a8e326e0bcb338e2adb7a15f93d6`
-- T4B binary `5452a7c89b8107dc6b51714b4d97639683683e42dd7e975a93fea990e3924d47`
-- T4C source `5e120a48dd9af95913b12e1be10e41c4a7e1b30c2958951f2c9719b5305b8d47`
-- T4C binary `cb59635616ae41e7c50f9bcd55907dc7b40e4675d67f49b081584dd13ade4fb9`
+## T5A — PASS
 
-Exact T4 admitted scope:
+Checkpoint:
 
-- strict UTF-8 validation + Unicode codepoint iteration;
-- hex + strict Base64;
-- canonical unsigned varint/LEB128;
-- bounded deterministic `S4F1` MessagePack-like typed framing;
-- bounded strict JSON validation/minification;
-- bounded CSV parse + deterministic CRLF normalization;
-- URL percent codec + absolute hierarchical component parsing;
-- MIME `Content-Type` media type/subtype + parameters;
-- NFC/NFD/NFKC/NFKD explicit derived views only, with raw preservation;
-- bounded XML structural parsing with external network disabled and doctype/DTD rejection;
-- bounded HTML structural parsing.
+`C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
 
-Combined evidence:
+Frozen OPPO artifact:
 
-- exact admitted artifact rebuild locks PASS;
-- directed combined cases `16`;
-- randomized combined cases after freeze `32`;
-- replay combined cases `2`;
-- total combined cases `50`;
-- total native process invocations `182`;
-- `MIXED_PIPELINE_ORACLE=PASS`;
-- `COUNTERFACTUAL_BEHAVIOR_CHANGE=PASS`;
-- `SOURCE_BINARY_NO_MUTATION=PASS`;
-- `HIGH_ENTROPY_LITERAL_LEAK_AUDIT=PASS`;
+- source SHA256 `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
+- binary SHA256 `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
+- compiler `/data/data/com.termux/files/usr/bin/clang++`
+
+Admitted scope:
+
+- read/write;
+- pread/pwrite;
+- seek/read;
+- stat;
+- mkdir;
+- deterministic sorted list;
+- rename;
+- unlink;
+- fsync(file);
+- fsync(directory);
+- atomic temp-write + fsync(file) + rename + fsync(parent);
+- advisory exclusive file lock + contention probe;
+- non-expiring owner-token lease acquire/release.
+
+Evidence:
+
+- deterministic compile PASS;
+- source/binary freeze PASS;
+- high-entropy literal leak audit PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- total native process invocations `58`;
+- post-tool mechanical oracle PASS;
+- file lock exclusivity PASS;
+- atomic replace counterfactual PASS;
+- file and directory fsync primitives PASS;
+- synthetic sandbox removed PASS;
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
-- `CORE_TEST_ORACLE_CONTAMINATION=NO`;
-- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`;
-- `T4_FULL_LAYER=PASS`.
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+
+`mmap` is optional and not claimed.
+
+## Current T5 state
+
+- `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
+- `T5B_DURABLE_STATE=PENDING`
+- `T5_COMBINED_DURABILITY=PENDING`
+- `T5_FULL_LAYER=NOT_YET_ADMITTED`
 
 Tool availability does not imply SIGMA cognitive adoption or autonomous tool selection.
 
@@ -101,8 +124,12 @@ For all remaining layers:
 
 ## Exact next offline substrate sequence
 
-`T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`
+Immediate next gate: **T5B Durable State**.
 
-Immediate next layer: **T5 Filesystem + Durable State**.
+Required:
 
-T5 will be admitted only with exact filesystem primitives plus durability/recovery evidence for fsync, locks/leases, KV, transaction, CAS, WAL, snapshot/checkpoint, rollback, atomic rename/commit, corruption checksum and interrupted-commit restart/recovery.
+`KV -> transaction -> CAS -> WAL -> snapshot/checkpoint -> rollback -> corruption checksum -> interrupted-commit/restart recovery`
+
+Then exact T5A+T5B combined durability. Only then may `T5_FULL_LAYER=PASS` advance.
+
+After T5 full: `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
