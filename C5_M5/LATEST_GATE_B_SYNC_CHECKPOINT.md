@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T7 FULL combined scheduler/resource PASS.
+Updated: 2026-09-10 after genuine OPPO T8B Capability Sandbox / Crash Recovery PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T7_FULL_COMBINED_SCHEDULER_RESOURCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T8B_CAPABILITY_SANDBOX_CRASH_RECOVERY_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -13,46 +13,50 @@ Updated: 2026-09-10 after genuine OPPO T7 FULL combined scheduler/resource PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
 - `T6_FULL_LAYER=PASS`.
-- T7A clock/scheduler/pool/cancel/timeout/backpressure: PASS.
-- T7B scoped resource governor: PASS.
-- `T7_A_B_COMBINED_COMPATIBILITY=PASS`.
 - `T7_FULL_LAYER=PASS`.
-- T8 through T11: PENDING in offline substrate lane.
+- T8A process/IPC/supervision behavioral admission: PASS on OPPO; authoritative artifact publication awaits recovery of exact OPPO source/binary fingerprint lines.
+- T8B capability sandbox/crash recovery: PASS on OPPO.
+- T8 combined: PENDING exact T8A artifact lock.
+- T9 through T11: PENDING in offline substrate lane.
 
-## Frozen T7 artifacts
+## Frozen T8B artifact
 
-T7A:
-- source `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
-- binary `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
-
-T7B:
-- source `63fc5ed7c0cd095271819d79099f06a4328acf5523c5fcce4b4b6ec985ad80a6`
-- binary `19c00435adf987f5ee47088ecd9035e26b40f868ec0af363158c0ce8214964de`
+- source `27f6d462605d91458a38b8bab518eae00c74ed4dc32071b85617656e500117fa`
+- binary `19cf4a0fc2b23f0783d795a0b3f17c107890eed2090810a153c9fe29b2f9ecbd`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T7 combined evidence
+## T8B admitted evidence
 
-- exact T7A/T7B artifact rebuild locks PASS
-- directed combined cases `16`
-- randomized-after-freeze combined cases `32`
-- replay combined cases `2`
-- total combined cases `50`
-- native process invocations `136`
-- mixed scheduler/resource oracle PASS
-- scheduler-to-step-limit compatibility PASS
-- resource-receipt-to-bounded-pool compatibility PASS
-- IO-quota/timer/scheduler compatibility PASS
-- cancel/timeout/watchdog compatibility PASS
-- pool-backpressure/resource-quota compatibility PASS
-- counterfactual behavior change PASS
-- source/binary no mutation PASS
-- high-entropy leak audit PASS
-- synthetic sandbox removal PASS
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
+- 57 native process invocations
+- deterministic compile/source/binary freeze PASS
+- explicit FD capability sandbox PASS
+- `PR_SET_NO_NEW_PRIVS` + seccomp fail-closed PASS
+- ambient FD closure PASS
+- path open blocked after sandbox PASS
+- socket creation blocked after sandbox PASS
+- exec blocked after sandbox PASS
+- caller restricted cwd PASS
+- supervisor restart after exit PASS
+- supervisor restart after signal PASS
+- restart exhaustion receipt PASS
+- crash recovery counterfactual PASS
+
+## Namespace evidence
+
+On this OPPO/Termux device:
+
+- user namespace: unavailable
+- mount namespace: unavailable
+- network namespace: unavailable
+- PID namespace: unavailable
+- namespace capability probe: PASS
+
+No namespace-isolation claim is made.
 
 ## Claim boundary
 
-- `OS_CGROUP_WHOLE_PROCESS_ENFORCEMENT=NOT_CLAIMED`
-- `PROCESS_SPAWN_ISOLATION=NOT_CLAIMED_T8`
+- `T8_FULL_LAYER=NOT_YET_ADMITTED`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
@@ -66,10 +70,8 @@ T7B:
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
-
 ## Next offline sequence
 
-`T8 -> T9 -> T10 -> T11`
+Recover exact T8A OPPO `SOURCE_SHA256` + `BINARY_SHA256` from its existing evidence summary, publish T8A authoritative checkpoint, then run exact T8A+T8B combined admission.
 
-Immediate gate: `T8_PROCESS_IPC_ISOLATION`.
+After T8 full: `T9 -> T10 -> T11`.
