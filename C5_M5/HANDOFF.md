@@ -19,55 +19,52 @@ Production binding remains NO.
 
 Independent source-removal Whole-Work Blind R1H3 scored `70/100`.
 
-PASS:
-
-- distant recurrent structure recall;
-- role-reversal configuration rejection;
-- high-frequency background suppression;
-- restart recall.
+PASS: distant recurrent structure recall, role-reversal configuration rejection, high-frequency background suppression, restart recall.
 
 FAIL:
 
 - `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`;
 - `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
 
-Therefore recurrent whole-work structure is retained, but once-only story-changing detail can be lost. Do not call this narrative understanding.
+Recurrent whole-work structure survives source removal, but a once-only event can be discarded. Do not call this narrative understanding.
 
-## Exact next architecture
+## Exact next execution artifact
 
-Build/run `M5_NATIVE_WHOLE_WORK_NOVELTY_BRIDGE_MEMORY_R1`.
+Run:
 
-Required mechanism:
+`SIGMA_C5_C5V3_M5_WHOLE_WORK_NOVELTY_LADDER_R1_BUNDLE.zip`
 
-- keep the admitted recurrent whole-work structural scaffold;
-- identify a once-only unit as retention-worthy only when it creates a structurally novel bridge among recurrent work-wide anchors;
-- preserve the unit's bounded ordered signature including the once-only detail;
-- reject isolated singleton/noise novelty that has no bridge to recurrent structure;
-- continue suppressing very-high-frequency background;
-- retain source-removal recall, role-order discrimination, restart and material memory reduction.
+Hashes:
 
-Forbidden shortcuts:
+- target core: `d7c03a32de13d7f106964618dec411f47f2d9c1ab561dfebd851f0606e514c4e`;
+- admission preflight: `e24dc84ff457a6b5d904b128c191bf5c8b22df44be052dae418fea3d89092372`;
+- independent blind auditor: `ed51a12c0a2fa2176128c0f6e3b0839976b31d20a7fcedf867f95371bd2ac0d6`;
+- ladder runner: `0ed66185e1cc5d86a2dbbf53064e848dc5b307024d7e9f4c7c28b1338b098fbd`;
+- ladder bundle: `80885feb8861b9f260d492a87ac00c68f4f965bedb682fd4c5fe6d2c12d31e63`.
+
+Stage A adds a narrow structural mechanism: a once-only detail may be retained only when its unit creates a novel co-occurrence bridge between recurrent work-wide anchors. Novelty alone is not enough.
+
+Stage B is independent and uses unseen post-compile fixtures. It includes both:
+
+- a once-only detail inside a recurrent bridge, which should be retained;
+- isolated singleton noise without a recurrent bridge, which must remain absent.
+
+It also reruns source removal, distant recurrent recall, role reversal, high-frequency background suppression, restart and direct whole-work summary.
+
+## Forbidden shortcuts
 
 - host importance/salience labels;
-- lexical lists such as `important`, emotion/value keywords, character-role words;
-- beginning/end/middle position rules;
+- lexical importance/emotion/theme/value tables;
+- first/last/middle unit rules;
 - token LEFT/RIGHT or previous/next meaning;
 - adjacency-as-meaning;
-- host/extractive summary generation.
+- host/extractive summary.
 
-## Independent blind requirement
+## Interpretation rule
 
-After candidate admission, run a blind with unseen post-compile works containing:
+If blind `UNIQUE_EVENT_DETAIL_RETENTION=PASS` and `ISOLATED_SINGLETON_NOISE_REJECTION=PASS`, then the structural novelty bottleneck is repaired in that exact scope. This still does not prove semantic salience or narrative understanding.
 
-- a once-only event unit that bridges recurrent structural communities;
-- isolated singleton noise that must not be promoted;
-- high-frequency background;
-- distant recurrent units;
-- role reversal;
-- source removal before recall;
-- restart.
-
-`UNIQUE_EVENT_DETAIL_RETENTION` may advance only if this blind passes. `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY` remains FAIL until a later capability synthesizes a source-independent summary from retained native memory and survives its own blind.
+`EVIDENCE_BACKED_WHOLE_WORK_SUMMARY` remains a separate FAIL until native SIGMA synthesizes a source-independent summary from retained memory and passes its own blind. Do not add a host summary to get the point.
 
 ## Hard FAILs retained
 
