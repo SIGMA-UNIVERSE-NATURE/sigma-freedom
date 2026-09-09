@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY",
+  "requirements_total":10,
+  "status_counts":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},
+  "foundational_gap_count":0,
+  "requirements":[
+    {"id":"CHEM-GE-01","meaning":"Matter, particle models, atoms, molecules, ions, states and chemistry-facing electronic structure","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C01","evidence":"Accepted C01 secures atomic/molecular/ionic identity, states of matter and electronic-structure literacy before later chemistry."},
+    {"id":"CHEM-GE-02","meaning":"Elements, periodic organization, metals/nonmetals and foundational inorganic patterns","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C02","evidence":"Accepted C02 secures periodicity, element families, metal/nonmetal meaning and inorganic/coordination foundations."},
+    {"id":"CHEM-GE-03","meaning":"Bonding, molecular structure, intermolecular interactions and structure-property reasoning","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C03 + B1.3-C09","evidence":"C03 owns ionic/covalent/metallic bonding, intermolecular forces and geometry; C09 extends structure-processing-property reasoning to material classes without stealing physics ownership."},
+    {"id":"CHEM-GE-04","meaning":"Chemical equations, atom/mass conservation, stoichiometry, reaction energy, rates and equilibrium","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C04","evidence":"Accepted C04 covers equations, conservation, mole/stoichiometry, thermochemistry, kinetics and equilibrium with repaired foundational semantics."},
+    {"id":"CHEM-GE-05","meaning":"Acid-base, oxidation-reduction, electrochemical and quantitative reaction reasoning","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C04","evidence":"Accepted C04 closes acid-base, redox and electrochemistry in the reaction/equilibrium owner scope."},
+    {"id":"CHEM-GE-06","meaning":"Mixtures, separation, qualitative/quantitative analysis, calibration, measurement evidence and analytical uncertainty","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C05","evidence":"Accepted C05 covers qualitative/quantitative analysis, titration, chromatography, mass/spectral analysis and sensors with calibration/QC and evidence limits."},
+    {"id":"CHEM-GE-07","meaning":"Carbon chemistry, functional groups, organic reactions, stereochemistry, synthesis and polymer chemistry","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C06","evidence":"Accepted C06 secures carbon structure, functional groups, mechanisms, stereochemistry, synthesis and polymer chemistry before specialized medicinal/advanced extensions."},
+    {"id":"CHEM-GE-08","meaning":"Materials, catalysts, industrial processes, green chemistry, resource use and lifecycle/sustainability reasoning","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C09 + B1.3-C10","evidence":"C09 covers material classes and processing-property relations; C10 covers industrial/environmental chemistry, catalysts, green chemistry, atom economy and lifecycle reasoning."},
+    {"id":"CHEM-GE-09","meaning":"Scientific inquiry, models, measurement, evidence, assumptions, limits and increasingly formal explanation across chemistry","cross_system_confidence":"HIGH","status":"FULL","owner_scope":"B1.3-C01..C10 distributed","evidence":"Across accepted child D1-D4 objectives and closures, modelling, source/evidence use, measurement, assumptions, trade-offs and model limits are explicit; C07 theoretical models and C08 biochemical chemistry extend rather than replace the foundational spine."},
+    {"id":"CHEM-GE-10","meaning":"Coupled Earth-system, climate, global-health, food-system, policy and cultural conclusions beyond the underlying chemical mechanism or measurement","cross_system_confidence":"HIGH","status":"NOT_OWNER","owner_scope":"B1.4 and cross-domain X01/X03/X04 or other canonical branches as applicable","evidence":"B1.3-C08/C10 supply chemistry-owned biomolecular, pollutant, atmospheric, water/soil and lifecycle claims. Earth-system, health, food and policy synthesis remains boundary-only and is not required to close B1.3 foundational chemistry."}
+  ],
+  "ownership":"PASS",
+  "advanced_content_does_not_substitute_for_foundations":"PASS",
+  "future_locked_support":0,
+  "cross_scope_academic_mutation":0,
+  "stage_boundary":"PASS_CURRICULUM_ONLY"
+}
