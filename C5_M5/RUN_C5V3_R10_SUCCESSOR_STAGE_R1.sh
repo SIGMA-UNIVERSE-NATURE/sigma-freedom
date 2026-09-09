@@ -1,0 +1,176 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -eu
+
+# C5V3 R10 Successor Stage R1
+# Purpose: stage the exact admitted R10 production-lineage successor into an
+# isolated C5V3-style tree without touching the live .sigma_c5 installation.
+# Exact paths only. No directory walk, no network, no VM/core execution.
+
+ROOT="${1:-$HOME/SIGMA/sigma_genesis1}"
+LIVE_INSTALL="$ROOT/.sigma_c5"
+SYNC_ROOT="$ROOT/.sigma_c5v3_sync"
+R10_ROOT="$SYNC_ROOT/OFFLINE_EXPLICIT_M5_DISPATCH_BRIDGE_R10_20260909T202504/candidate"
+STAGE_ROOT="$SYNC_ROOT/C5V3_R10_SUCCESSOR_STAGE_R1"
+
+LIVE_SOURCE="$LIVE_INSTALL/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma"
+RUNNER="$LIVE_INSTALL/control/RUN_SIGMA_C5_AUTONOMOUS_SELF_LEARNING_OPPO_V3_REFLECTIVE.sh"
+SIGMAC="$ROOT/native/sigmac"
+VM="$ROOT/native/sigma-vm.v09_candidate"
+R10_SOURCE="$R10_ROOT/core.sigma"
+R10_BYTECODE="$R10_ROOT/core.sigmab"
+
+STAGED_SOURCE="$STAGE_ROOT/install/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma"
+STAGED_BYTECODE="$STAGE_ROOT/install/bin/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigmab"
+MANIFEST="$STAGE_ROOT/evidence/STAGE_MANIFEST.txt"
+
+EXPECTED_LIVE_SOURCE_SHA256="23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc"
+EXPECTED_RUNNER_SHA256="092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847"
+EXPECTED_SIGMAC_SHA256="65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71"
+EXPECTED_VM_SHA256="029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99"
+EXPECTED_R10_SOURCE_SHA256="7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34"
+EXPECTED_R10_BYTECODE_SHA256="c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5"
+
+hash1() {
+  sha256sum "$1" 2>/dev/null | awk '{print $1}'
+}
+
+require_hash() {
+  label="$1"
+  path="$2"
+  expected="$3"
+  [ -f "$path" ] || {
+    printf '%s_PATH=%s\n' "$label" "$path"
+    printf '%s_IDENTITY=HOLD_MISSING\n' "$label"
+    exit 20
+  }
+  actual=$(hash1 "$path")
+  printf '%s_PATH=%s\n' "$label" "$path"
+  printf '%s_SHA256=%s\n' "$label" "$actual"
+  [ "$actual" = "$expected" ] || {
+    printf '%s_IDENTITY=HOLD_MISMATCH\n' "$label"
+    exit 21
+  }
+  printf '%s_IDENTITY=PASS\n' "$label"
+}
+
+printf '%s\n' '=== C5V3 R10 SUCCESSOR STAGE R1 ==='
+printf 'ROOT=%s\n' "$ROOT"
+printf 'MODE=ISOLATED_SUCCESSOR_SYNCHRONIZATION_STAGE\n'
+printf 'EXACT_PATHS_ONLY=YES\n'
+printf 'DIRECTORY_WALK=NO\n'
+printf 'NETWORK=NO\n'
+printf 'VM_EXECUTION=NO\n'
+printf 'CORE_EXECUTION=NO\n'
+printf 'LIVE_CORE_WRITE=NO\n'
+printf 'LIVE_STATE_WRITE=NO\n'
+printf 'PRODUCTION_BINDING=NO\n'
+printf 'PRODUCTION_MUTATION=NO\n'
+
+printf '%s\n' '=== 1. IDENTITY LOCKS ==='
+require_hash LIVE_MAIN_SOURCE "$LIVE_SOURCE" "$EXPECTED_LIVE_SOURCE_SHA256"
+require_hash LIVE_RUNNER "$RUNNER" "$EXPECTED_RUNNER_SHA256"
+require_hash LOCKED_SIGMAC "$SIGMAC" "$EXPECTED_SIGMAC_SHA256"
+require_hash LOCKED_VM "$VM" "$EXPECTED_VM_SHA256"
+require_hash R10_SOURCE "$R10_SOURCE" "$EXPECTED_R10_SOURCE_SHA256"
+require_hash R10_BYTECODE "$R10_BYTECODE" "$EXPECTED_R10_BYTECODE_SHA256"
+
+printf '%s\n' '=== 2. R10 CAPABILITY SANITY ==='
+for def in WA_T1_DOT T2_BFS_BOUNDED WA_T3_BM25_SEARCH; do
+  if grep -qE "^DEF ${def}\\b" "$R10_SOURCE"; then
+    printf 'R10_DEF_%s=PASS_PRESENT\n' "$def"
+  else
+    printf 'R10_DEF_%s=HOLD_MISSING\n' "$def"
+    exit 22
+  fi
+done
+
+printf '%s\n' '=== 3. STAGE TARGET ==='
+printf 'STAGE_ROOT=%s\n' "$STAGE_ROOT"
+
+if [ -e "$STAGE_ROOT" ]; then
+  if [ -f "$STAGED_SOURCE" ] && [ -f "$STAGED_BYTECODE" ]; then
+    staged_src_sha=$(hash1 "$STAGED_SOURCE")
+    staged_bin_sha=$(hash1 "$STAGED_BYTECODE")
+    printf 'STAGE_ALREADY_EXISTS=YES\n'
+    printf 'STAGED_SOURCE_SHA256=%s\n' "$staged_src_sha"
+    printf 'STAGED_BYTECODE_SHA256=%s\n' "$staged_bin_sha"
+    [ "$staged_src_sha" = "$EXPECTED_R10_SOURCE_SHA256" ] || {
+      printf 'SUCCESSOR_STAGE=HOLD_EXISTING_STAGE_SOURCE_MISMATCH\n'
+      exit 23
+    }
+    [ "$staged_bin_sha" = "$EXPECTED_R10_BYTECODE_SHA256" ] || {
+      printf 'SUCCESSOR_STAGE=HOLD_EXISTING_STAGE_BYTECODE_MISMATCH\n'
+      exit 24
+    }
+  else
+    printf 'SUCCESSOR_STAGE=HOLD_EXISTING_STAGE_INCOMPLETE\n'
+    exit 25
+  fi
+else
+  mkdir -p \
+    "$STAGE_ROOT/install/src" \
+    "$STAGE_ROOT/install/bin" \
+    "$STAGE_ROOT/state" \
+    "$STAGE_ROOT/evidence"
+
+  cp "$R10_SOURCE" "$STAGED_SOURCE.partial"
+  cp "$R10_BYTECODE" "$STAGED_BYTECODE.partial"
+
+  staged_src_sha=$(hash1 "$STAGED_SOURCE.partial")
+  staged_bin_sha=$(hash1 "$STAGED_BYTECODE.partial")
+
+  [ "$staged_src_sha" = "$EXPECTED_R10_SOURCE_SHA256" ] || {
+    printf 'SUCCESSOR_STAGE=HOLD_STAGED_SOURCE_COPY_MISMATCH\n'
+    exit 26
+  }
+  [ "$staged_bin_sha" = "$EXPECTED_R10_BYTECODE_SHA256" ] || {
+    printf 'SUCCESSOR_STAGE=HOLD_STAGED_BYTECODE_COPY_MISMATCH\n'
+    exit 27
+  }
+
+  mv "$STAGED_SOURCE.partial" "$STAGED_SOURCE"
+  mv "$STAGED_BYTECODE.partial" "$STAGED_BYTECODE"
+
+  cat > "$MANIFEST" <<EOF
+ONE_SIGMA=YES
+SYSTEM=C5V3
+STAGE_ID=C5V3_R10_SUCCESSOR_STAGE_R1
+STAGE_CLASS=ISOLATED_NON_PRODUCTION_SUCCESSOR
+PARENT_LIVE_SOURCE_SHA256=$EXPECTED_LIVE_SOURCE_SHA256
+R10_SOURCE_SHA256=$EXPECTED_R10_SOURCE_SHA256
+R10_BYTECODE_SHA256=$EXPECTED_R10_BYTECODE_SHA256
+RUNTIME_SIGMAC_SHA256=$EXPECTED_SIGMAC_SHA256
+RUNTIME_VM_SHA256=$EXPECTED_VM_SHA256
+PRODUCTION_RUNNER_SHA256=$EXPECTED_RUNNER_SHA256
+STAGED_SOURCE=$STAGED_SOURCE
+STAGED_BYTECODE=$STAGED_BYTECODE
+STAGED_STATE_ROOT=$STAGE_ROOT/state
+RUNNER_BINDING=NOT_STAGED_PRODUCTION_RUNNER_HARDCODES_LIVE_INSTALL
+R11_ACTIVATION_ADMISSION=HOLD_NOT_YET_ADMITTED
+ONLINE_UTILIZATION_EXECUTION=NO
+PRODUCTION_BINDING=NO
+PRODUCTION_MUTATION=NO
+EOF
+
+  printf 'STAGE_ALREADY_EXISTS=NO\n'
+  printf 'STAGED_SOURCE_SHA256=%s\n' "$(hash1 "$STAGED_SOURCE")"
+  printf 'STAGED_BYTECODE_SHA256=%s\n' "$(hash1 "$STAGED_BYTECODE")"
+fi
+
+printf '%s\n' '=== 4. LIVE NON-MUTATION RECHECK ==='
+require_hash LIVE_MAIN_SOURCE_AFTER "$LIVE_SOURCE" "$EXPECTED_LIVE_SOURCE_SHA256"
+require_hash LIVE_RUNNER_AFTER "$RUNNER" "$EXPECTED_RUNNER_SHA256"
+
+printf '%s\n' '=== 5. RESULT ==='
+printf 'SUCCESSOR_STAGE=PASS\n'
+printf 'C5V3_SUCCESSOR_CAPABILITY_PAYLOAD_STAGED=YES\n'
+printf 'T1_T2_T3_PRESENT_IN_STAGED_SUCCESSOR=YES\n'
+printf 'M5_DISPATCH_BRIDGE_IDENTITY=INHERITED_EXACT_R10\n'
+printf 'SHADOW_RUNNER_BINDING=NOT_YET_ADMITTED\n'
+printf 'R11_ACTIVATION_ADMISSION=HOLD\n'
+printf 'ONLINE_UTILIZATION_EXECUTION=NO\n'
+printf 'LIVE_CORE_UNCHANGED=YES\n'
+printf 'LIVE_RUNNER_UNCHANGED=YES\n'
+printf 'PRODUCTION_BINDING=NO\n'
+printf 'PRODUCTION_MUTATION=NO\n'
+printf '%s\n' '=== END ==='
