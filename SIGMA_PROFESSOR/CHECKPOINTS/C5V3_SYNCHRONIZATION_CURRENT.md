@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **LIVE CORE CLASS C / R2 COMPILE PASS PROVENANCE ONLY / R3 7A9DC CONSTRUCTION SUPERSEDED BEFORE EXECUTION / R3 FIX1 TRUST-FIRST ARCHITECTURE NEXT / PRODUCTION UNCHANGED**
+Status: **LIVE CORE CLASS C / R2 PROVENANCE ONLY / R3 7A9DC SUPERSEDED BEFORE RUN / R3 FIX1 TRUST-FIRST SOURCE WRITTEN + BUILD-COMPILE GATE READY / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -14,9 +14,9 @@ WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_ARCHITECTURE_REVIEW_ACCEPTED_R3_FIX1_TRUST_FIRST.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_CORE_ARCHITECTURE_AUDIT_R1_REWRITE_REQUIRED.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_WINDOW_ROLE_REALIGNMENT_R2_OFFLINE_CAPABILITY_LAB_SYNC_CORE_ONLINE_VERIFICATION.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_ARCHITECTURE_REVIEW_ACCEPTED_R3_FIX1_TRUST_FIRST.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_CORE_ARCHITECTURE_AUDIT_R1_REWRITE_REQUIRED.md`
 
 ## Three-window ownership
 
@@ -28,18 +28,16 @@ ONLINE_WINDOW=INDEPENDENT_POST_SYNC_UTILIZATION_VERIFICATION
 
 ## Target doctrine
 
-The rewritten C5 must progress toward:
-
 ```text
 native cognition
--> native objective/information-gap state
+-> native objective / information gap
 -> native evidence request
 -> native capability selection
 -> provenance-aware result evaluation
--> uncertainty/support/conflict/revision
+-> uncertainty / support / conflict / revision
 -> whole-work persistent representation
 -> bounded durable local memory
--> restart/reuse
+-> restart / reuse
 ```
 
 Forbidden as semantic authority:
@@ -75,146 +73,134 @@ R2_ROLE=COMPILED_ARCHITECTURE_PROTOTYPE_AND_PROVENANCE
 R2_RUNTIME_ADMISSION_TARGET=NO
 ```
 
-## R3 7a9dc construction
-
-A deterministic same-identity construction was produced from latest available admitted Gate-A cognition parent `bf468c...` plus exact 82 admitted T1/T2/T3 tool DEF bodies:
+## R3 7a9dc
 
 ```text
 R3_SOURCE_SHA256=7a9dc693f8cc3481bd5e550f7fbbe8c0ad356f9d2b0be5011f4ace39134bf5e8
 R3_DEF_COUNT=160
-R3_M5_DEF_BODY_HASHES_PRESERVED=PASS
-R3_T1_T2_T3_TOOL_DEF_BODY_HASHES_PRESERVED=PASS
-R3_LEGACY_LEFT_RIGHT_COGNITION=ABSENT
-```
-
-However the architecture review identified unresolved trust/state defects inherited from the fixed-path runner/state model. Therefore:
-
-```text
 R3_7A9DC_BUILD_GATE=SUPERSEDED_BEFORE_OPERATOR_EXECUTION
 R3_7A9DC_RUNTIME_ADMISSION=NO
-R3_FIX1_TRUST_FIRST_REQUIRED=YES
 ```
 
-Do **not** run the previous R3 build/compile gate as the next action.
+Reason: it improved cognition parent and exact tool composition but did not yet solve P0 trust/state defects.
 
-## R3 FIX1 — P0 trust/state architecture
+## R3 FIX1 — current target
 
-Required first substrate:
+### P0 trust/state development modules
+
+```text
+C5_M5/R3_FIX1/C5_P0_TRUST_STATE_R1.sigma.inc
+SHA256=ecff3130093505fb8c8fd4b2453cd5be17b946af21b4a3e8cc1c74bbb0c30c58
+DEF_COUNT=17
+
+C5_M5/R3_FIX1/C5_R3_FIX1_TRUST_FIRST_MAIN_R1.sigma.inc
+SHA256=591361ea4de8f7c496fb95c09ab12eb76f9999d5c631ab1ada922e3b07ccea1e
+```
+
+P0 active design:
 
 ```text
 AUTHORITATIVE_STATE_CHAIN_HEAD
--> fresh INVOCATION_ID
--> exact PARENT_STATE_SHA
--> immutable event-specific INPUT_SNAPSHOT
--> native PROPOSED_NEXT_STATE
--> staged writes only
--> exact readback/schema/binding validation
--> native COMMIT_INTENT
--> mechanical atomic commit
--> NEW_STATE_CHAIN_HEAD
--> immutable transition receipt
+-> fresh INVOCATION_ID / FRESH_ROOT_MARKER
+-> exact PARENT_STATE_SHA + immutable parent snapshot
+-> exact event/phase/action receipt binding
+-> segment/fetch/evidence/capability subject binding
+-> proposed next state only
+-> staged writes into fresh invocation out/
+-> exact readback
+-> native commit intent as final authoritative write
+-> mechanical atomic commit later
 ```
 
-Required trust bindings:
+No direct persistent-state path exists in the composed source.
+
+### Cognition donor
+
+Latest available admitted + independent-blind-PASS Gate-A parent:
 
 ```text
-EVENT <-> invocation/phase/parent/action receipt
-SEGMENT <-> entry/source/version/offset/content receipt
-FETCH <-> native request/query/parent/response receipt
-CANDIDATE_SET <-> exact one-to-one evidence lookup receipt
-STATE_FACTS <-> authoritative state-root receipt
+SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
+ORIGINAL_DEF_COUNT=78
+PURE_DONOR_DEF_COUNT=77
+PURE_DONOR_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
 ```
 
-No stale/wrong-phase/wrong-parent receipt may advance state.
+`append_line` is excluded because it is the donor's direct persistent read/write helper. The 77 remaining exact cognition DEF are present as pure donor material but **not activated yet**.
 
-## P1 cognition honesty
-
-Use latest admitted Gate-A epistemic lineage as bounded cognition material; do not overclaim broad semantics.
-
-Required direction:
+### T1/T2/T3 donor
 
 ```text
-structural observations
--> typed hypotheses
--> supporting/contrary evidence
--> uncertainty
--> contradiction
--> revision/supersession
--> unresolved gaps
--> provenance
--> cross-segment/cross-scope persistent representation
+R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
+T1_T2_T3_TOOL_DEF_COUNT=82
+TOOL_DONOR_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
 ```
 
-`EOF` or `ENTRY_COMPLETE` is never equivalent to `WORK_UNDERSTOOD`.
+Exact admitted tool DEF bodies are present as donor material but not activated until trusted native dispatch admission.
 
-## P2 capability engineering
-
-Closed standalone tool evidence remains:
-
-```text
-T1_VECTOR_MATRIX_ADMISSION=PASS
-T2_BOUNDED_GRAPH_ADMISSION=PASS
-T3_LOCAL_INDEX_BM25_ADMISSION=PASS
-T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
-```
-
-Foundational algorithm tests are inherited when exact bodies/dependencies remain unchanged, but every new combined C5 artifact must prove:
-
-```text
-exact body/dependency identity
-combined compile parity
-native dispatch/activation
-counterfactual behavior
-runtime-calibrated operation budget
-no host semantic substitution
-```
-
-## ONE SIGMA / modular development
-
-`ONE_SIGMA=YES` does not require one development source file.
-
-Preferred composition:
-
-```text
-state/invariant module
-+ cognition/epistemic module
-+ capability registry/dispatch module
-+ T1/T2/T3 modules
-+ future T4-T11 modules
-+ resource/provenance/observability modules
--> deterministic composition
--> ONE final C5 source artifact
--> ONE historical C5 header/entry
--> ONE bytecode
-```
-
-Final identity remains:
+### Expected deterministic final R3 FIX1 source
 
 ```text
 HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
 ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
+R3_FIX1_EXPECTED_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
+R3_FIX1_EXPECTED_DEF_COUNT=176
 ```
 
-Revision/dependency identity belongs in an immutable composition manifest.
-
-## Evidence rule
-
-Core-printed claims such as `HOST_LEARNING=NO` or `COMPUTATION_BOUNDED=YES` are diagnostic only. Independent harness/runtime/filesystem/state evidence must establish those facts.
-
-## Exact next lane
+Static construction gates require:
 
 ```text
-R3 FIX1 P0 trust/state transaction design
--> exact mechanical transaction contract
--> state-chain/receipt admission
--> integrate bounded latest-admitted cognition on trusted state substrate
--> compose T1/T2/T3 under explicit native interfaces
--> combined artifact admission
--> integrate future exact T4-T11 PASS artifacts
--> isolated restart/recovery/shadow
+LEGACY_ANALYZE_SEGMENT=ABSENT
+LEGACY_MERGE_EVIDENCE=ABSENT
+LEFT_RIGHT_COGNITION_MARKERS=ABSENT
+APPEND_LINE_DIRECT_PERSISTENCE_HELPER=ABSENT
+DIRECT_PERSISTENT_STATE_PATH=ABSENT
+WRITE_TEXT_LITERAL_HOST_OP_COUNT=2
+MAX_NEW_HELPER_ARITY=6
+```
+
+## Exact next action
+
+Use:
+
+```text
+C5_M5/RUN_C5V3_CORE_REWRITE_R3_FIX1_TRUST_FIRST_BUILD_COMPILE_R1.sh
+SCRIPT_COMMIT=11b45bd748f924e413ffc4eb8b8f183ea9a47e3e
+SCRIPT_SHA256=9d743bab7ff56cf5ecb170c2cb8b03a86370b22cd31d560325421cacca7c4027
+```
+
+The gate only builds and compiles/freezes. It does not execute VM/core or touch production.
+
+Expected next evidence after operator run:
+
+```text
+R3_FIX1_TRUST_FIRST_BUILD=PASS
+R3_FIX1_COMPILE=PASS
+R3_FIX1_BYTECODE_FREEZE=PASS
+R3_FIX1_DIRECT_PERSISTENT_STATE_MUTATION=NO
+LIVE_CORE_UNCHANGED=YES
+LIVE_RUNNER_UNCHANGED=YES
+PRODUCTION_BINDING=NO
+```
+
+## After R3 FIX1 compile PASS
+
+```text
+write exact mechanical transaction runner
+-> fresh invocation creation
+-> input byte pre-bounds
+-> canonical receipt hashing
+-> staged-state hash/readback
+-> atomic state-object commit
+-> chain-head compare-and-swap
+-> immutable transition receipt
+-> crash/restart/replay admission
+-> activate bounded cognition under trusted state substrate
+-> activate T1/T2/T3 under explicit native dispatch
+-> integrate exact future T4-T11 PASS artifacts
+-> isolated shadow
 -> independent online utilization verification
--> explicit promotion/cutover
+-> explicit cutover decision
 ```
 
 ## Production locks
