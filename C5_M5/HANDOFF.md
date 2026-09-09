@@ -11,43 +11,71 @@ Read in order:
 
 ## Current admitted chain
 
-Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS; novelty-bridge memory R1 PASS; whole-work salient-span synthesis R1 PASS with independent source-removal blind `95/100`.
+Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS; novelty-bridge memory R1 PASS; salient-span synthesis R1 PASS with blind `95/100`; cross-source summary hypothesis R1 admission + independent blind PASS.
 
 Latest admitted whole-work core:
 
-`66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
+`d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
 
-Latest blind truth: contextual whole-span synthesis survives source removal, preserves unique events, rejects isolated noise and restarts; `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`. Production binding remains NO.
+Production binding remains NO.
 
-## Exact bottleneck
+## Latest blind truth
 
-Semantic abstraction / summary formation. Do not relabel the extractive whole-span synthesis trace as semantic summary. Host summary, host semantic labels, English grammar tables, positional rules and LLM/model host inference remain forbidden.
+Cross-Source Summary Hypothesis R1:
+
+- native contextual equivalence from raw evidence PASS;
+- exact-source-copy rejection PASS;
+- role-reversal rejection PASS;
+- irrelevant-description rejection PASS;
+- raw protocol-injection rejection PASS;
+- one-source false-authority rejection PASS;
+- `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS`;
+- provenance diversity PASS;
+- not-original-source-copy PASS;
+- restart PASS;
+- score `90/100`;
+- grade `CROSS_SOURCE_SUMMARY_HYPOTHESIS_WITH_AUTONOMOUS_GENERATION_GAP`.
+
+Still FAIL: autonomous summary generation, zero-shot low-overlap summary, whole-work understanding, theme/value induction.
 
 ## Exact next execution artifact
 
 Run:
 
-`SIGMA_C5_C5V3_M5_CROSS_SOURCE_SUMMARY_LADDER_R1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_SUMMARY_MEMORY_COMPACTION_LADDER_R1_BUNDLE.zip`
 
 Hashes:
 
-- target core: `d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
-- admission preflight: `7dc5cc0fc40cffe6d5b213fddd1d5ae6c443752de7ed8ece04dac2b6fc1560bd`
-- independent blind auditor: `afe6fbcb8e18112eff7cf94b33b5132b378c3c549042f73bba8672a042905436`
-- ladder runner: `6f74556f4fcdc44b0e9cd528e10f04adc72b33bee8d58cfb4d2cb99675bbb429`
-- ladder bundle: `7c0c5ceb2797bec9c8b6c8e2302af8a906a9d7ff0cb5fc2884207d056b084eee`
+- target core: `616a47d38cd6ce8d040b7fa790f055b2386bec32dae8f6ff484cb615417f6db4`
+- admission preflight: `c5112555df582ef92fdea4a76c82516e24dfb1458a32ba01648b6e341ce955f9`
+- independent blind auditor: `b90d1d8c67adc3e4a5c4ee93d65bc6a89b9b3e1fdf628756b236836565c40e7e`
+- ladder runner: `d59e8375b83a4a956e59056c3e4146c312ae2f689a92488d2fbb6970b99c9681`
+- ladder bundle: `76df5450fd68d0c86427a4edeb12db74ac234c732097331b5c6d0344ec2080b8`
 
 ## Candidate behavior
 
-Raw alternate descriptions remain evidence. Native SIGMA learns contextual substitutions from repeated neutral evidence and admits an external span only if whole-sequence configuration maps it to a retained synthesis point. Exact copies are not credited as abstraction; role reversal, irrelevant descriptions and protocol injection are rejected. A summary hypothesis requires at least three distinct synthesis points and at least two independent source IDs. The hypothesis is persisted and restart-tested.
+After native cross-source summary-hypothesis formation, SIGMA compacts whole-work-specific state into a smaller local memory containing validated summary points plus minimal source provenance. It then clears salient spans, synthesis trace, abstraction candidates, summary-hypothesis working state, skeleton and whole-work structural state.
 
-The candidate core uses only mechanical host operations: read/write text, string length/replace/split and list length/get. No host model/LLM semantic inference.
+The global bounded neutral-evidence ledger used by the current learned-equivalence mechanism remains separate; no ebook/full source is retained.
 
-## Blind interpretation
+Post-compaction blind requires:
 
-If Stage B PASS, advance only `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS` in the tested learned-context/multi-source scope. Keep `AUTONOMOUS_SUMMARY_GENERATION=FAIL`, `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`, `WHOLE_WORK_UNDERSTANDING=FAIL`, theme/value induction FAIL and production binding NO.
+- compact memory materially smaller than pre-compaction whole-work-specific state;
+- raw/salient/synthesis/abstraction/hypothesis whole-work state removed;
+- provenance retained without raw candidate-record dump;
+- a source-side statement still supported through native learned equivalence;
+- role reversal rejected;
+- irrelevant query rejected;
+- restart exact;
+- production unchanged.
 
-If blind FAIL, fix the exact abstraction/provenance/configuration layer; do not weaken the evaluator.
+Core host operations remain mechanical only: read/write text, string length/replace/split, list length/get. No host summary/model/LLM semantic inference, no token LEFT/RIGHT semantics, no grammar table.
+
+## Interpretation rule
+
+If Stage B PASS, advance only the tested compact-summary-memory capability. Do **not** advance `AUTONOMOUS_SUMMARY_GENERATION`, `ZERO_SHOT_LOW_OVERLAP_SUMMARY`, broad whole-work understanding or human-value/theme induction.
+
+The next dependency after PASS is continual use of compact memory and/or a source-independent semantic summary plan. Do not implement autonomous wording through token-by-token synonym replacement.
 
 ## Later C5V3 route
 
