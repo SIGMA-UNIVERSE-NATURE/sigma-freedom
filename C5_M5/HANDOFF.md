@@ -63,10 +63,12 @@ Hashes:
 - candidate core: `66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
 - admission preflight: `39cc54d962422e57f8af2befe7a4ef97cd1793fe75372a923cd3df2559bb5ed4`
 - candidate bundle: `e441bf5cd680d0aee92e546e7062c69cde40db5a4ee04fadda4a99445ee07004`
-- independent blind auditor: `1bf7bc645aaa36d917f7e5337523edd5d579a855e98d80a1d1bc79c002918eb1`
-- blind bundle: `70f0c072c471eb9c5680d0a192bdc1b30a5aaee6d057645c38c52fa42e2b8363`
+- independent blind auditor: `8b4fdf25142163223126dd072f2d3c1d18aca90d866cf0464e5f4688d64ffc77`
+- blind bundle: `2123f0712509a3ae859ad168395cb9376a1dcc9b64dc835afc534a34bbbf0feb`
 - ladder runner: `a06841b55057827306992d739c8a3e9d8a1b785b541bf935ad320d8161235799`
-- ladder bundle: `a9dbd424ace7b3297663fc33d98672e6613be79aec12e49ccc3e54db3e94c87d`
+- ladder bundle: `8f928c271472a20729e99234b40ba641377205a0e39d2ad8713e3358a53beb5c`
+
+The blind grader was corrected before runtime: structural score alone can never emit a semantic-summary grade. `SEMANTIC_SUMMARY_CANDIDATE` requires `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=PASS`. The core and cognition criteria were not changed.
 
 Stage A tests complete-span retention, exact source-removal span recall, synthesis from retained native memory, smaller trace and production safety.
 
