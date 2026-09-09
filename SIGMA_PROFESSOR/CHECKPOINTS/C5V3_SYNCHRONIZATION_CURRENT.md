@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **LIVE HISTORICAL CORE / LEGACY S1 SYNC-GRAFT CONFIRMED ISOLATED NOT LIVE / R10 OFFLINE PASS / R11 FIX3 HOLD / VM OBSERVER DISCOVERY NEXT / PRODUCTION HELD**
+Status: **LIVE HISTORICAL CORE / LEGACY S1 SYNC-GRAFT CONFIRMED ISOLATED NOT LIVE / R10 OFFLINE PASS / R11 FIX3 HOLD / EXACT-PATH VM OBSERVER DISCOVERY NEXT / PRODUCTION HELD**
 
 ## Identity
 
@@ -18,8 +18,10 @@ CURRENT_SYNCHRONIZATION_BASELINE=R2
 2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
 3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_HOLD_HISTORICAL_CORE_SHADOW_STATE.md`
 4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_R1_ADDENDUM_T1_T2_T3_DEF_ABSENCE_R10_RECONCILIATION.md`
-5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R1.md`
-6. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R1.sh`
+5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R2_EXACT_PATHS.md`
+6. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh`
+
+R1 observer discovery is superseded for device-footprint safety. Do not run its directory-inventory version on Oppo.
 
 ## Closed admission evidence
 
@@ -127,19 +129,19 @@ ONLINE_UTILIZATION_EXECUTION=NO
 R11_DEPENDENCY_PASS=NO
 ```
 
-## Exact next action
+## Exact next action — footprint-safe
 
-Run only the read-only static observer-discovery probe:
+Run only the R2 exact-path read-only static observer-discovery probe:
 
 ```bash
-bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R1.sh "$HOME/SIGMA/sigma_genesis1"
+bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh "$HOME/SIGMA/sigma_genesis1"
 ```
+
+R2 reads only the exact locked VM, sigmac and runner identities. After identity PASS it analyzes only the exact VM binary and exact runner. It performs no directory walk, no `find`, no recursive grep, no state/log scan, no VM/core execution and no production mutation.
 
 Then return stdout to Synchrony for classification.
 
-The probe does not execute the VM/core and does not mutate production.
-
-In parallel, promotion still requires read-only closure of canonical state-root lineage, exactly-one-writer, active ingress identity, no test/shadow alias, and rollback evidence.
+In parallel, promotion still requires read-only closure of canonical state-root lineage, exactly-one-writer, active ingress identity, no test/shadow alias, and rollback evidence. Those future probes must also be pointer-following exact-path queries, never broad filesystem scans.
 
 ## Target route after an observer-backed R11 PASS
 
