@@ -11,76 +11,80 @@ Read in order:
 
 ## Current admitted chain
 
-Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS; novelty-bridge memory R1 PASS; salient-span synthesis R1 PASS with blind `95/100`; cross-source summary hypothesis R1 admission + independent blind PASS.
+Mechanical transport R2 PASS; corrected blind host-substitution PASS; native search-query PASS; real Internet search discovery PASS; real full-source stream PASS; whole-work structural memory PASS; novelty bridge PASS; whole-span synthesis PASS; cross-source summary hypothesis PASS; summary memory compaction PASS with independent blind `100/100` in its exact scope.
 
-Latest admitted whole-work core:
+Latest admitted core:
 
-`d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
+`616a47d38cd6ce8d040b7fa790f055b2386bec32dae8f6ff484cb615417f6db4`
 
 Production binding remains NO.
 
-## Latest blind truth
+## Critical scope correction
 
-Cross-Source Summary Hypothesis R1:
+The compact-summary-memory `100/100` result is valid but not self-contained. Its semantic-query path still reads the bounded neutral evidence ledger for learned equivalence, and the passing blind did not delete that ledger before query.
 
-- native contextual equivalence from raw evidence PASS;
-- exact-source-copy rejection PASS;
-- role-reversal rejection PASS;
-- irrelevant-description rejection PASS;
-- raw protocol-injection rejection PASS;
-- one-source false-authority rejection PASS;
-- `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS`;
-- provenance diversity PASS;
-- not-original-source-copy PASS;
-- restart PASS;
-- score `90/100`;
-- grade `CROSS_SOURCE_SUMMARY_HYPOTHESIS_WITH_AUTONOMOUS_GENERATION_GAP`.
+Therefore:
 
-Still FAIL: autonomous summary generation, zero-shot low-overlap summary, whole-work understanding, theme/value induction.
+- `CROSS_SOURCE_VALIDATED_COMPACT_SUMMARY_MEMORY=PASS` in tested scope;
+- `SELF_CONTAINED_SEMANTIC_COMPRESSION=FAIL` until the next blind passes with raw equivalence evidence removed.
+
+Do not erase or rewrite the `100/100` result; narrow its claim exactly.
 
 ## Exact next execution artifact
 
 Run:
 
-`SIGMA_C5_C5V3_M5_SUMMARY_MEMORY_COMPACTION_LADDER_R1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_SELF_CONTAINED_COMPACT_SEMANTIC_LADDER_R1_BUNDLE.zip`
 
 Hashes:
 
-- target core: `616a47d38cd6ce8d040b7fa790f055b2386bec32dae8f6ff484cb615417f6db4`
-- admission preflight: `c5112555df582ef92fdea4a76c82516e24dfb1458a32ba01648b6e341ce955f9`
-- independent blind auditor: `b90d1d8c67adc3e4a5c4ee93d65bc6a89b9b3e1fdf628756b236836565c40e7e`
-- ladder runner: `d59e8375b83a4a956e59056c3e4146c312ae2f689a92488d2fbb6970b99c9681`
-- ladder bundle: `76df5450fd68d0c86427a4edeb12db74ac234c732097331b5c6d0344ec2080b8`
+- candidate core: `2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`
+- admission preflight: `5a57a619d19e0e85165dee0325ff88e76f7a41367690b4fa1d63c95dfff9339e`
+- independent blind auditor: `c149fbfdb95277b735223fe31044b6ccccd9dc9558bf510dfbfd8a61ef1400b8`
+- ladder runner: `6b3c1c69f925e3c0d8474875d064e63c95d9dd601328a67fd019aa994128a807`
+- ladder bundle: `be98ca2a9f5a50de6cb10623c0579f763864cf34aabb2e58358d3f784a198b0f`
+- candidate bundle: `ee50836db1ed8031e294ffab19b0952584779a17129fe89e660e4f5672b2ad0c`
+- blind bundle: `0c3e10d294fab0b42e0622dfb412614a4040b526832d3893ff8043d5e890769e`
 
 ## Candidate behavior
 
-After native cross-source summary-hypothesis formation, SIGMA compacts whole-work-specific state into a smaller local memory containing validated summary points plus minimal source provenance. It then clears salient spans, synthesis trace, abstraction candidates, summary-hypothesis working state, skeleton and whole-work structural state.
+At compaction, SIGMA internalizes only contextual equivalence edges that were learned from native neutral evidence and participated in validated cross-source abstraction. Compact semantic query no longer calls the raw neutral ledger.
 
-The global bounded neutral-evidence ledger used by the current learned-equivalence mechanism remains separate; no ebook/full source is retained.
+An explicit native event `DETACH_COMPACT_SUMMARY_FROM_RAW_EQUIVALENCE` removes the raw neutral evidence ledger plus relation/context working state. The blind then creates a never-stored mixed paraphrase whose required equivalences must come only from compact memory.
 
-Post-compaction blind requires:
+Required blind gates:
 
-- compact memory materially smaller than pre-compaction whole-work-specific state;
-- raw/salient/synthesis/abstraction/hypothesis whole-work state removed;
-- provenance retained without raw candidate-record dump;
-- a source-side statement still supported through native learned equivalence;
-- role reversal rejected;
-- irrelevant query rejected;
-- restart exact;
-- production unchanged.
+- compact equivalence section present;
+- raw equivalence ledger non-empty before detach and empty after detach;
+- never-stored mixed learned paraphrase supported after detach;
+- role reversal rejected after detach;
+- irrelevant query rejected after detach;
+- compact memory survives restart unchanged;
+- raw ledger does not reappear;
+- production artifacts unchanged.
 
-Core host operations remain mechanical only: read/write text, string length/replace/split, list length/get. No host summary/model/LLM semantic inference, no token LEFT/RIGHT semantics, no grammar table.
+Core host operations are mechanical only: `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`. No host model/LLM summary, no host semantic label, no active Python cognition, no token LEFT/RIGHT or previous/next meaning, no grammar-role table.
 
-## Interpretation rule
+## Claims if PASS
 
-If Stage B PASS, advance only the tested compact-summary-memory capability. Do **not** advance `AUTONOMOUS_SUMMARY_GENERATION`, `ZERO_SHOT_LOW_OVERLAP_SUMMARY`, broad whole-work understanding or human-value/theme induction.
+Advance only `SELF_CONTAINED_SEMANTIC_COMPRESSION=PASS` in the tested learned-context / cross-source compact-summary scope.
 
-The next dependency after PASS is continual use of compact memory and/or a source-independent semantic summary plan. Do not implement autonomous wording through token-by-token synonym replacement.
+Still FAIL:
 
-## Later C5V3 route
+- autonomous free-form summary generation;
+- zero-shot low-overlap summary;
+- broad whole-work narrative understanding;
+- theme/direction/human-value induction;
+- multilingual narrative transfer;
+- continual multi-work learning from compact local memories;
+- broad semantic truth/support/conflict judgment.
 
-Only after the required cognition/memory subset passes:
+## After PASS
 
-`read-only ABI/state synchronization -> isolated successor graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback retained`.
+Build bounded multi-work continual learning:
+
+`work A -> self-contained compact memory -> remove A raw/source/equivalence state -> learn work B -> compact B -> recall/query A and B -> restart -> both intact`, with source-hoarding rejection and bounded local archive.
+
+Only after required cognition/memory gates pass follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`: read-only synchronization -> isolated graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback retained.
 
 Never hot-patch production during candidate admission.
