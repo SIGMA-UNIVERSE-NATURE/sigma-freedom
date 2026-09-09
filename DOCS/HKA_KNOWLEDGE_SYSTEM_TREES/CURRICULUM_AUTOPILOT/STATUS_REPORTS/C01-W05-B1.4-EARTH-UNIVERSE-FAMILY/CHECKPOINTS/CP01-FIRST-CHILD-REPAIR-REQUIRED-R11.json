@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP01-FIRST-CHILD-REPAIR-REQUIRED-R11",
+  "window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY",
+  "stage":"CURRICULUM",
+  "status":"FIRST_CHILD_REPAIR_REQUIRED",
+  "active_child":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03",
+  "candidate_sha":"461b651ec65cbe2449697787742c36b51cb0ead3",
+  "director_review_checkpoint":"5304d3969a13ca70015d724f0c8d9ee84bd53e87",
+  "repair_required":"R11 B1.4-C01 boundary link must target accepted B1.3-C10; B1.3-C01 remains exact canonical prerequisite and must not be replaced.",
+  "otherwise_verified":"3/3 scopes, 18 claims, 12 LOs, 12 closures, foundational coverage, R10, sources/support, no future support/mutation, CURRICULUM-only all PASS",
+  "successor_locked":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06",
+  "B1_5_unlock":false,
+  "updated_at":"2026-09-09T10:06:00+07:00"
+}
