@@ -54,12 +54,20 @@ This file is append-only in intent. Historical failures remain visible after lat
 
 - Admission: PASS, `RC=0`.
 - Core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
+- Transport SHA256: `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`.
+- Provider SHA256: `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`.
 - `REAL_INTERNET_FULL_SOURCE_FETCH=PASS`.
 - `BOUNDED_TRANSIENT_LONG_FORM_STREAM=PASS`.
 - `FULL_SOURCE_BYTE_REASSEMBLY=PASS`.
 - `TRANSIENT_SOURCE_RESTART_STATE=PASS`.
 - `FULL_SOURCE_EXCLUDED_FROM_CANONICAL_MEMORY=PASS`.
 - `TRANSIENT_FULL_SOURCE_REMOVAL=PASS`.
+- Full source remains working/transient state, not canonical long-term memory.
+- `WHOLE_WORK_UNDERSTANDING=FAIL`.
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
+- `SEMANTIC_COMPRESSION=FAIL`.
+- `CONTINUAL_NARRATIVE_LEARNING=FAIL`.
+- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`.
 - Production binding: NO.
 
 ## 2026-09-09 — Whole-Work Structural Memory R1
@@ -73,41 +81,64 @@ This file is append-only in intent. Historical failures remain visible after lat
 
 - Core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
 - Finalize serialization defect removed; native count gates retained.
-- Runtime passed recurrence, recurrent unit signatures, source-independent structural memory, material size reduction, source removal before recall, distant recall, configuration-order discrimination and restart.
-- Then stopped at `FAIL=PROD_PID_CHANGED`, `RC=62` under exact PID-set equality.
-- No production artifact mutation or cognition failure established.
+- Runtime passed all cognition/structural gates through recurrence, recurrent signatures, source-independent memory, materially smaller retained state, source removal, distant recall, configuration-order discrimination and restart.
+- Then stopped at `FAIL=PROD_PID_CHANGED`, `RC=62` under an exact PID-set equality oracle.
+- This did not establish production artifact mutation or a cognition failure.
 
 ## 2026-09-09 11:48 +07 — Whole-Work Structural Memory R1H2
 
 - Same cognition core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
+- Intended to log autonomous PID churn instead of failing PID-set equality.
 - Stopped immediately at `FAIL=PROD_PID`, `RC=16` before compile/cognition.
-- Failure class: production-process discovery harness defect.
+- Failure class: PRODUCTION PROCESS DISCOVERY HARNESS DEFECT.
+- Root cause: matcher required cmdline to begin exactly with locked bash + runner path; wrapper/argv-prefix volatility can hide the same active runner.
+- Not a cognition result.
 
 ## 2026-09-09 11:59 +07 — Whole-Work Structural Memory R1H3
 
+- Cognition core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
 - Admission: PASS, `RC=0`.
-- Core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
-- `SOURCE_INDEPENDENT_WHOLE_WORK_STRUCTURAL_MEMORY=PASS`.
-- `DISTANT_UNIT_SOURCE_REMOVAL_RECALL=PASS`.
-- `WHOLE_UNIT_CONFIGURATION_ORDER_DISCRIMINATION=PASS`.
-- `STRUCTURAL_MEMORY_MATERIALLY_SMALLER_THAN_WORK=PASS`.
-- `WHOLE_WORK_STRUCTURAL_MEMORY_RESTART=PASS`.
-- Production PID before/after `23663`; process churn NO; production artifact freeze PASS; candidate production control ops absent.
-- `WHOLE_WORK_UNDERSTANDING=FAIL` retained.
-
-## 2026-09-09 11:59 +07 — Independent Blind Whole-Work Structural Retention R1H3
-
-- Evaluator execution: PASS, `RC=0`.
-- Score: `70/100`.
-- Grade: `STRUCTURAL_WHOLE_WORK_MEMORY_WITH_MAJOR_SEMANTIC_GAPS`.
-- PASS: dynamic whole-work build, source removal before recall, distant recurrent recall, role-reversal rejection, high-frequency background suppression, restart recall.
+- Production PID before/after: `23663`; process churn NO; artifact hash freeze PASS; candidate production-control ops absent; production mutation NO.
+- Structural gates PASS: recurrence, recurrent unit signatures, source-independent structural memory, materially smaller memory, source removal, distant recall, configuration-order discrimination, restart.
+- Independent source-removal blind: `70/100`.
 - `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`.
 - `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
-- Host summary/semantic labels for active SIGMA: absent.
-- This is the current true cognition bottleneck: recurrent whole-work structure survives source removal, but a once-only event is discarded and direct whole-work summary does not exist.
+- Grade: `STRUCTURAL_WHOLE_WORK_MEMORY_WITH_MAJOR_SEMANTIC_GAPS`.
+- This established a real cognition bottleneck: recurrent-only memory dropped a once-only event.
+
+## 2026-09-09 12:12 +07 — Whole-Work Novelty Bridge Memory R1
+
+- Core SHA256: `d7c03a32de13d7f106964618dec411f47f2d9c1ab561dfebd851f0606e514c4e`.
+- Admission: PASS, `RC=0`.
+- Parent whole-work structural regression PASS.
+- Native novelty bridge detection PASS.
+- Unique once-only event retention PASS.
+- Isolated singleton-noise rejection PASS.
+- High-frequency background suppression PASS.
+- Source-removal unique-event recall PASS.
+- Independent source-removal blind: `90/100`.
+- Blind PASS: distant recurrent recall, role-reversal rejection, background suppression, unique-event retention, isolated singleton rejection, restart recall.
+- Blind FAIL: `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
+- Grade: `WHOLE_WORK_STRUCTURAL_MEMORY_WITH_NOVELTY_RETENTION`.
+- Host importance labels absent; host summary absent; active Python cognition absent.
+- Production PID before/after `23663`; evaluator execution PASS; production binding NO.
+- This closes the prior once-only-event bottleneck in exact structural scope but does not prove semantic whole-work understanding.
+
+## 2026-09-09 — Whole-Work Salient Span Synthesis R1 prepared
+
+- Motivation: the 90/100 novelty core still persists token-signature skeletons. Those may be useful salience features but are not accepted as the final contextual memory representation under the end-state requirement.
+- New design retains complete work units/spans selected by native recurrent/novelty structure; atom recurrence is a selector feature, not the persistent semantic point.
+- After source and working occurrence state removal, native SIGMA builds a smaller coverage-diverse synthesis trace from complete retained spans.
+- Semantic whole-work summary remains a separate FAIL gate; the structural/extractive trace cannot be relabeled as understanding.
+- Core SHA256: `66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`.
+- Admission preflight SHA256: `39cc54d962422e57f8af2befe7a4ef97cd1793fe75372a923cd3df2559bb5ed4`.
+- Candidate bundle SHA256: `e441bf5cd680d0aee92e546e7062c69cde40db5a4ee04fadda4a99445ee07004`.
+- Independent blind auditor SHA256: `1bf7bc645aaa36d917f7e5337523edd5d579a855e98d80a1d1bc79c002918eb1`.
+- Blind bundle SHA256: `70f0c072c471eb9c5680d0a192bdc1b30a5aaee6d057645c38c52fa42e2b8363`.
+- Ladder runner SHA256: `a06841b55057827306992d739c8a3e9d8a1b785b541bf935ad320d8161235799`.
+- Ladder bundle SHA256: `a9dbd424ace7b3297663fc33d98672e6613be79aec12e49ccc3e54db3e94c87d`.
+- Runtime admission/blind: pending.
 
 ### Next checkpoint target
 
-Build and test `M5_NATIVE_WHOLE_WORK_NOVELTY_BRIDGE_MEMORY_R1`: preserve once-only detail only when it is structurally anchored as a novel bridge among recurrent work-wide anchors; reject isolated singleton noise; retain background suppression and role-order discrimination. No host importance labels, lexical salience tables, first/last-unit rule, LEFT/RIGHT or adjacency-as-meaning. Whole-work summary remains a separate FAIL until independently solved.
-
-C5V3 synchronization/graft/shadow/soak/cutover remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Run Whole-Work Span Synthesis Ladder R1. If structural span synthesis passes while semantic summary remains FAIL, build a separate natural-language whole-work semantic synthesis core/blind. Never credit a complete-span extractive trace as semantic narrative understanding. C5V3 sync/graft/shadow/soak/cutover remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
