@@ -74,4 +74,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HKA_AGENT_WEBHOOK_URL: ${{ secrets.HKA_AGENT_WEBHOOK_URL }}
           HKA_AGENT_WEBHOOK_TOKEN: ${{ secrets.HKA_AGENT_WEBHOOK_TOKEN }}
-        run: python .github/hka_autopilot/hka_autopilot.py dispatch --request /tmp/hka-request.json | tee /tmp/hka-dispatch.json
+        run: python .github/hka_autopilot/federated_dispatch.py --request /tmp/hka-request.json | tee /tmp/hka-dispatch.json
