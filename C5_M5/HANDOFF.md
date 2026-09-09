@@ -1,11 +1,11 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery PASS.
+Updated: 2026-09-09 after genuine OPPO T5 FULL combined durability PASS.
 
 ## Operating split
 
 - **Online synchronization/test lanes:** consume only genuine admitted checkpoints and own live/online integration validation.
-- **Offline tool-substrate lane:** continues independently through T5 -> T11 and never waits for online work.
+- **Offline tool-substrate lane:** continues independently through T6 -> T11 and never waits for online work.
 - Tool availability is distinct from SIGMA cognitive adoption/tool selection.
 - Production binding from this offline lane remains NO.
 
@@ -20,14 +20,10 @@ Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery PASS.
 
 - R5 production↔M5 structural delta: PASS.
 - R6 production-lineage latent candidate: PASS.
-  - source `dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac`
-  - bytecode `dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693`
 - R7 isolated production-runner ABI regression: PASS.
 - R8 M5 dispatch structural map: PASS.
 - R9 FIX1 source-derived dispatch contract: PASS.
 - R10 explicit production-lineage M5 dispatch bridge + dormant production regression: PASS.
-  - source `7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34`
-  - bytecode `c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5`
 
 R10 activation was not admitted by prior observer attempts. Do not infer live binding from R10 or substrate checkpoints.
 
@@ -38,48 +34,57 @@ R10 activation was not admitted by prior observer attempts. Do not infer live bi
 - T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
-- T4 full text/syntax/codecs: PASS.
+- `T4_FULL_LAYER=PASS`.
 
-### T5A — PASS
+### T5 FULL — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
+Authoritative checkpoint:
 
+`C5_M5/CHECKPOINT_2026-09-09_T5_FULL_COMBINED_DURABILITY_PASS.md`
+
+T5A filesystem/atomic/lock:
 - source `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
 - binary `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
 
-Scope: filesystem read/write/pread/pwrite/seek/stat/mkdir/list/rename/unlink, file+directory fsync, atomic temp-write→fsync→rename→parent-fsync, exclusive advisory lock, non-expiring owner-token lease.
-
-### T5B — PASS
-
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5B_DURABLE_KV_WAL_RECOVERY_PASS.md`
-
+T5B durable KV/WAL/recovery:
 - source `dc2397501498336a1ff0e1bd5d2392e022a36fe2918591e15edc67266adf2c7a`
 - binary `e73cd4fa7f0ca09917c2b1029a57591e1ab50d327e92e143a77fa3d9fe6b8e3c`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Admitted mechanical scope:
+Exact admitted T5 scope:
 
-- byte-key/value KV put/get/delete;
-- multi-operation transaction;
+- filesystem read/write/pread/pwrite/seek/stat/mkdir/list/rename/unlink;
+- fsync(file), fsync(directory), atomic rename/commit;
+- exclusive advisory lock + non-expiring owner-token lease;
+- byte KV put/get/delete;
+- multi-op transaction;
 - exact CAS;
-- sequence-numbered CRC32 WAL;
-- WAL fsync before commit/apply acknowledgement;
-- snapshot;
-- atomic checkpoint + WAL compaction;
-- rollback by durable RESET WAL from checksummed snapshot;
+- sequence-numbered CRC32 WAL with fsync-before-commit/apply acknowledgement;
+- snapshot, atomic checkpoint, WAL compaction;
+- durable rollback via RESET WAL from checksummed snapshot;
 - restart replay;
 - incomplete trailing WAL recovery;
 - corrupted complete WAL/checkpoint rejection;
 - malformed transaction rejection without partial mutation.
 
-Evidence: deterministic compile and source/binary freeze PASS; 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 73 native invocations; all durability, corruption and restart gates PASS.
+Combined admission:
+
+- exact T5A/T5B artifact rebuild locks PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
+- native process invocations `310`;
+- cross-layer durability oracle PASS;
+- T5A-driven partial-WAL recovery and corruption injection/rejection PASS;
+- lock exclusivity with durable store present PASS;
+- counterfactual, no-mutation, high-entropy leak and sandbox-removal gates PASS;
+- `T5_A_B_COMBINED_DURABILITY=PASS`;
+- `T5_FULL_LAYER=PASS`.
 
 ## Anti-hardcoding doctrine
 
 - capability, not answers;
 - no case-ID-dependent behavior;
 - no expected-output literals in native tool implementation;
-- randomized/high-entropy inputs generated after freeze;
+- randomized/high-entropy input after freeze;
 - expected values only in external mechanical oracle;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
@@ -90,10 +95,7 @@ Evidence: deterministic compile and source/binary freeze PASS; 16 directed + 32 
 ## Current exact state
 
 - `T4_FULL_LAYER=PASS`
-- `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
-- `T5B_DURABLE_STATE_ADMISSION=PASS`
-- `T5_COMBINED_DURABILITY=PENDING`
-- `T5_FULL_LAYER=NOT_YET_ADMITTED`
+- `T5_FULL_LAYER=PASS`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 - `ONLINE_SYNC=NO` from this offline lane
 - `PRODUCTION_STATE_WRITE=NO`
@@ -102,6 +104,6 @@ Evidence: deterministic compile and source/binary freeze PASS; 16 directed + 32 
 
 ## Next offline sequence
 
-Immediate gate: exact **T5A + T5B combined durability/restart/recovery**. Only a genuine combined PASS may advance `T5_FULL_LAYER=PASS`.
+`T6 -> T7 -> T8 -> T9 -> T10 -> T11`
 
-Then continue `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
+Immediate gate: **T6 Transport** with DNS, TCP, TLS, HTTP/HTTPS, Range, chunked streaming, redirects, conditional fetch, timeout, retry, rate limit and backpressure evidence.
