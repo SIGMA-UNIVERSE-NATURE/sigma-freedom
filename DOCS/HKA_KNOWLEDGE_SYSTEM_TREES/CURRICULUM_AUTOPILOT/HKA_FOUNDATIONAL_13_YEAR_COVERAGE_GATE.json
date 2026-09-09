@@ -1,5 +1,5 @@
 {
-  "schema_version":"3.5",
+  "schema_version":"3.6",
   "gate_id":"HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status":"ACTIVE_REQUIRED",
   "stage":"CURRICULUM",
@@ -9,9 +9,9 @@
   "global_pre_academic_lock_gate":{"minimum_continents_for_benchmark":5,"vietnam_single_baseline_forbidden":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"foundational_gap_count_required":0,"academic_locked_forbidden_until_pass":true},
   "B1_2_exit":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","external_mapping_commit_sha":"5492127b661b770c23026c6205d1fbd4e8464835","fresh_backup_sentinel_commit_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","foundational_gap_count":0,"B1_3_unlock":"PASS"},
   "B1_3_exit":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781","director_integration_mapping_checkpoint_sha":"e88fd10fe8422fc6d22c20d56b60a4614671c81c","director_exit_checkpoint_sha":"241f59b8d96e87593dd3e4c68e36472613cc737d","fresh_backup_sentinel_checkpoint_sha":"1604444eaf0be40122b3a11bfa6c05bb11954635","fresh_backup_sentinel_status_sha":"fea7cb8338fa1d19566d800b399c57a8da6f920e","accepted_scopes":10,"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276,"external_mapping":{"systems":6,"continents":6,"official_source_resolution":"6/6 PASS","university_only_baseline":false,"coverage":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1}},"foundational_gap_count":0,"future_locked_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","B1_4_unlock":"PASS"},
-  "current_application":{"active_subbranch":"B1.4","active_scope":"B1.4-C01..C03","active_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"active_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","mode":"FOUNDATIONAL_COVERAGE_REQUIRED_DURING_B1_4_FIRST_CHILD_AUTHORING","accepted_scopes":[],"B1_4_active":true,"external_accepted_prerequisite":"B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d","internal_scope_sequence":["B1.4-C01","B1.4-C02","B1.4-C03"],"C04_C06_unlock":false,"B1_5_unlock":false},
+  "current_application":{"active_subbranch":"B1.4","active_scope":"B1.4-C01..C03","active_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"active_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","mode":"DIRECTOR_REPAIR_REQUIRED_R11_BOUNDARY_METADATA","candidate_sha":"461b651ec65cbe2449697787742c36b51cb0ead3","accepted_scopes":[],"B1_4_active":true,"external_accepted_prerequisite":"B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d","internal_scope_sequence":["B1.4-C01","B1.4-C02","B1.4-C03"],"foundational_coverage_candidate":"PASS","repair_required":"R11 B1.4-C01 overlap target must be accepted B1.3-C10; B1.3-C01 remains canonical prerequisite","director_review_checkpoint":"5304d3969a13ca70015d724f0c8d9ee84bd53e87","C04_C06_unlock":false,"B1_5_unlock":false},
   "later_lesson_registry_policy":{"foundational_spine_mandatory":true,"advanced_content_can_be_extension_or_deeper_pathway":true,"does_not_authorize_lesson_registry_now":true},
   "authority_source":"DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "authority_commit":"c2b4781e73076d90d600a3442ab910ba92bcb66c",
-  "updated_at":"2026-09-09T09:52:00+07:00"
+  "updated_at":"2026-09-09T10:06:00+07:00"
 }
