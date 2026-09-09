@@ -1,12 +1,21 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after R10 offline PASS.
+Updated: 2026-09-09 after R11 FIX1 activation HOLD.
 
-This file is the compact **latest pointer** for any fresh synchronization window. Always read the authoritative checkpoint named below, then `C5_M5/HANDOFF.md` and `C5_M5/STATUS.md` as needed.
+This file is the compact **latest pointer** for any fresh synchronization window.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_R10_EXPLICIT_M5_DISPATCH_BRIDGE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-09_R11_FIX1_NO_OBSERVABLE_DELTA_HOLD.md`
+
+## Latest admitted candidate remains R10
+
+The R11 FIX1 result is a HOLD in the activation-admission layer. It does **not** invalidate the R10 structural/dormant-runtime PASS.
+
+Frozen R10 candidate:
+
+- source SHA256: `7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34`
+- bytecode SHA256: `c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5`
 
 ## Latest admitted offline chain
 
@@ -21,47 +30,33 @@ This file is the compact **latest pointer** for any fresh synchronization window
 - R9 FIX1 source-derived dispatch contract: PASS.
 - R10 explicit native M5 dispatch bridge build + dormant production regression: PASS.
 
-## Frozen R10 candidate
+## R11 current state
 
-- source SHA256: `7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34`
-- bytecode SHA256: `c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5`
+Original step-budget oracle: HOLD because `SIGMA_MAX_STEPS` effect was not proven on the locked VM.
 
-OPPO root:
+R11 FIX1 normalized observable-output/filesystem oracle:
 
-`/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_EXPLICIT_M5_DISPATCH_BRIDGE_R10_20260909T202504`
+- event replay deterministic: `28/28`;
+- dynamic counterfactual replay deterministic: `28/28`;
+- observable activation delta: `0/28`;
+- activation admitted: `NO`.
 
-## Exact admitted R10 scope
+Therefore:
 
-- exact R6 DEF bodies preserved;
-- every original production branch raw body preserved;
-- exact M5 branch bodies preserved inside bridge;
-- 28/28 source-derived M5 dispatch surface present;
-- no new host op;
-- deterministic compile;
-- baseline and candidate runtime integrity PASS on isolated production `TICK`;
-- dormant trace differential PASS;
-- dormant state-surface differential PASS;
-- production artifact hash freeze PASS;
-- synthetic state removed.
+- `R10_CANDIDATE_M5_DISPATCH_ACTIVATION=NOT_ADMITTED`;
+- `M5_CAPABILITY_ACTIVE_IN_LIVE_PRODUCTION_DISPATCH=NO`;
+- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`.
 
-## Not admitted yet
+The zero-delta result does not prove the bridge is dead; neutral empty inputs can yield pure/local native execution with no externally observable output. Do not add CORE sentinels or semantic expected outputs to force a PASS.
 
-- semantic correctness of all 28 M5 event branches;
-- online production synchronization;
-- production binding/cutover;
-- `C5V3_PRODUCTION_CORE_SYNCHRONIZED`;
-- live production `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH`.
+## Next offline gate
 
-## Next offline test gate
+Use an exact-R10 **mechanical execution trace** oracle, preferably syscall/file-access tracing when available, and compare source-derived M5 bridge access paths against dynamically generated non-event counterfactuals after normalizing event-input bytes.
 
-`R11_OFFLINE_M5_ACTIVATION_ADMISSION_28_EVENT_MATRIX`
+No core instrumentation, semantic oracle, host semantic selection, production state import, online sync, production mutation or binding is permitted.
 
-R11 must prove actual branch activation/counterfactual execution for the exact R10 candidate without semantic expected answers or host semantic selection.
+## Synchronization-window instruction
 
-## Window boundary
+The synchronization window may consume the R5–R10 evidence, but must HOLD any claim or cutover that depends on M5 activation until a later checkpoint explicitly admits it.
 
-The offline test window does not perform online synchronization.
-
-The synchronization window must independently attest actual live C5V3 state before consuming a candidate, especially because a previous sync window reportedly synchronized T1/T2/T3 already.
-
-Never blindly graft R6/R10 on top of live C5V3 if that duplicates already-bound tool definitions. Compute exact live-vs-candidate delta first.
+Because a previous sync window reportedly synchronized T1/T2/T3 already, live C5V3 must still be read-only attested and exact live-vs-candidate delta computed before any integration action.
