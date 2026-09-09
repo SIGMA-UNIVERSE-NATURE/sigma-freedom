@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP00-FAMILY-INTEGRATION-PASS-CANDIDATE",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE",
+  "accepted_children":"10/10",
+  "aggregate_counts":{"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276},
+  "foundational_coverage":"PASS",
+  "foundational_gap_count":0,
+  "duplicate_ownership":"PASS_R07_R08_R09_R11_R12_R14",
+  "cross_domain":"PASS_X01_X03_X04_SECONDARY_ONLY",
+  "prerequisite_graph":"PASS_ACYCLIC_NO_DANGLING_IDS",
+  "support_resolution":"PASS",
+  "future_locked_support":0,
+  "cross_scope_academic_mutation":0,
+  "stage_boundary":"PASS_CURRICULUM_ONLY",
+  "external_mapping":"REQUIRED_BEFORE_EXIT",
+  "fresh_sentinel":"REQUIRED_AFTER_MAPPING",
+  "B1_4_unlock":false,
+  "red_flag":"NONE"
+}
