@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R4 DURABLE TRANSACTION STATIC PASS / SUCCESSOR 251-DEF STATIC COMPOSITION PASS / EXACT T1-T3 PRESENT / NONTRIVIAL PARTIAL EMISSION BUT MAIN COMPILER-INVISIBLE / R4 PREFIX ENTRY-VISIBILITY BINARY SEARCH NEXT / PRODUCTION UNCHANGED**
+Status: **R4 DURABLE TRANSACTION STATIC PASS / SUCCESSOR 251-DEF STATIC COMPOSITION PASS / EXACT T1-T3 PRESENT / NORMALIZED R4 92 DEF ENTRY VISIBILITY PASS / RAW-VS-NORMALIZED MODULE SURFACE PROBE NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -17,8 +17,8 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SUCCESSOR_251DEF_T123_PRESENT_MAIN_INVISIBLE_PREFIX_BINARY_SEARCH_NEXT.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_DURABLE_TRANSACTION_PASS_SUCCESSOR_T1_T2_T3_COMPOSITION_STARTED.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_92_DEF_NOT_CAUSAL_RAW_VS_NORMALIZED_SURFACE_NEXT.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SUCCESSOR_251DEF_T123_PRESENT_MAIN_INVISIBLE_PREFIX_BINARY_SEARCH_NEXT.md`
 3. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
 
 ## Machine-proven R4 durable transaction substrate
@@ -53,21 +53,6 @@ ENTRY=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 
 ## Successor source composition — machine PASS
 
-Exact donors:
-
-```text
-GATEA_PURE_DEF_COUNT=77
-GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
-GATEA_EXCLUDED_DEF=append_line
-
-T1_T2_T3_DEF_COUNT=82
-T1_T2_T3_FIRST_DEF=WA_H
-T1_T2_T3_LAST_DEF=T2_SHORTEST_PATH_BOUNDED
-T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
-```
-
-Composed source:
-
 ```text
 77 Gate-A pure DEF
 + 92 R4 durable/transaction DEF
@@ -75,69 +60,94 @@ Composed source:
 = 251 unique DEF
 + 1 C5 entry
 
-SUCCESSOR_DEF_COUNT=251
-SUCCESSOR_UNIQUE_DEF_COUNT=251
-SUCCESSOR_ENTRY_COUNT=1
-SUCCESSOR_HEADER_COUNT=1
+GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
+T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
+T1_T2_T3_FIRST_DEF=WA_H
+T1_T2_T3_LAST_DEF=T2_SHORTEST_PATH_BOUNDED
 SUCCESSOR_SOURCE_BYTES=163746
 SUCCESSOR_SOURCE_SHA256=b1ceedffa11497cab5454639eb1872cc5ecb95a5824b95e4d1be22c2ea2b7406
 SUCCESSOR_STATIC_COMPOSITION=PASS
-legacy_analyze_segment=0
-legacy_merge_evidence=0
-LEFT=0
-RIGHT=0
-```
-
-Classification:
-
-```text
 T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
 ```
 
-## Compiler boundary result
+## Earlier raw composition compiler result
+
+The first composition run emitted a nontrivial but main-insensitive partial artifact:
 
 ```text
-S1 Gate-A 77 + sentinel                 -> 31549 bytes / bdb9d2cc... / NONTRIVIAL
-S2 Gate-A 77 + P0 R4 14 + sentinel     -> 31496 bytes / a1df1ad7... / NONTRIVIAL
-S3 Gate-A 77 + R4 no-P0 78 + sentinel  -> 31496 bytes / a1df1ad7... / NONTRIVIAL
-S4 Gate-A 77 + T1/T2/T3 82 + sentinel  -> 50848 bytes / 61ed45b7... / NONTRIVIAL
-S5 Gate-A 77 + full R4 92 + sentinel    -> 31496 bytes / a1df1ad7... / NONTRIVIAL
-S6 all 251 DEF + sentinel               -> 31496 bytes / a1df1ad7... / NONTRIVIAL
-FINAL successor                         -> 31496 bytes / a1df1ad7... / NONTRIVIAL
-FINAL counterfactual                    -> 31496 bytes / a1df1ad7...
-FINAL unbalanced entry                  -> RC=0 / 31496 bytes / a1df1ad7...
+FINAL_SUCCESSOR_BYTES=31496
+FINAL_SUCCESSOR_SHA256=a1df1ad7d7c25c8c12125602679b6ea568fe055705e0288e31da126e8c3a1d81
+FINAL_COUNTERFACTUAL_SHA256=a1df1ad7d7c25c8c12125602679b6ea568fe055705e0288e31da126e8c3a1d81
+FINAL_UNBALANCED_COMPILE_RC=0
+SUCCESSOR_MAIN_SOURCE_SENSITIVITY=NO
+SUCCESSOR_EXECUTABLE_MAIN_ADMISSION=NO
+```
+
+Exact Gate-A + exact T1/T2/T3 remained compiler-visible, so T1/T2/T3 are not the observed cause.
+
+## R4 prefix source-sensitivity result — R4 DEF bodies not causal
+
+Operator ran the exact successor-prefix gate and obtained:
+
+```text
+PARSED_SUCCESSOR_DEF_COUNT=251
+GATEA_DEF_COUNT=77
+R4_DEF_COUNT=92
+T1_T2_T3_DEF_COUNT=82
+
+CONTROL_GATEA77_ENTRY_SOURCE_SENSITIVITY=PASS
+CONTROL_GATEA_PLUS_DUMMY_UPPER_ENTRY_SOURCE_SENSITIVITY=PASS
+CONTROL_GATEA_PLUS_DUMMY_LOWER_ENTRY_SOURCE_SENSITIVITY=PASS
+CONTROL_GATEA_PLUS_R4_92_ENTRY_SOURCE_SENSITIVITY=PASS
+R4_FULL_ENTRY_VISIBILITY=PASS
+RESULT=R4_92_NOT_CAUSAL_UNDER_PREFIX_TEST
+```
+
+Full normalized R4 92-DEF control:
+
+```text
+A_BYTES=64176
+A_SHA256=da81e01fd1f4870b9603ce9e67ef8c50559c73290f0b5da6d12a75df32758c23
+B_BYTES=64176
+B_SHA256=d71724f9821a018ea9fc0f0c8b31cb33e1102e3ab56328cd3454cb6e854713d2
+A != B
 ```
 
 Therefore:
 
 ```text
-SUCCESSOR_NONTRIVIAL_EMISSION=PASS
-SUCCESSOR_MAIN_SOURCE_SENSITIVITY=NO
-FINAL_UNBALANCED_ENTRY_REJECTED=NO
-SUCCESSOR_EXECUTABLE_MAIN_ADMISSION=NO
-R4_RUNTIME_LEARNING=NOT_ADMITTED
+R4_92_NORMALIZED_ENTRY_VISIBILITY=PASS
+R4_DEF_BODY_CAUSALITY=NO_OBSERVED_UNDER_NORMALIZED_PREFIX_TEST
+SUCCESSOR_FINAL_RAW_MAIN_VISIBILITY=STILL_NOT_PROVEN
 ```
 
-The 31,496-byte artifact is partial/non-main-sensitive emission and must not be treated as a full successor executable.
-
-Exact Gate-A + exact T1/T2/T3 remains compiler-visible, so T1/T2/T3 are not the observed cause of the main invisibility boundary.
+The remaining observed difference is raw module/composition text outside normalized DEF blocks or another raw-composition surface.
 
 ## Exact next action
 
 ```text
-C5_M5/RUN_C5V3_R4_SUCCESSOR_R4_PREFIX_ENTRY_VISIBILITY_BINARY_SEARCH_R1.sh
-COMMIT=673180f5d21245ea961d857bbd4884aa16654d54
+C5_M5/RUN_C5V3_R4_RAW_VS_NORMALIZED_MODULE_ENTRY_VISIBILITY_R1.sh
+COMMIT=c46b925abfd8ab9226cd91e5fc058d4d3d6eaeb6
 ```
 
-This gate locks exact successor source SHA `b1ceed...` and binary-searches the 92 R4 DEF prefix using two different entry literals:
+This probe compares entry source-sensitivity for each exact R4 module as raw source vs DEF-only normalized source, then repeats cumulatively:
 
 ```text
-bytecode(A) != bytecode(B) => entry visible
-bytecode(A) == bytecode(B) => entry invisible
+State
+Transitions
+Adapter
+Durable
+Kernel
+P0
 ```
 
-It reports the first suspect R4 DEF and runs dummy uppercase/lowercase DEF controls plus unbalanced-entry controls at the boundary.
+Interpretation:
+
+```text
+RAW FAIL + normalized PASS -> non-DEF raw module surface causal in tested scope
+all raw PASS                -> previous composition difference lies outside R4 module raw surfaces
+```
 
 ## Claim boundary
 
@@ -146,6 +156,7 @@ R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
 SUCCESSOR_STATIC_COMPOSITION=PASS
 T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
+R4_92_NORMALIZED_ENTRY_VISIBILITY=PASS
 SUCCESSOR_EXECUTABLE_MAIN_ADMISSION=NO
 R4_RUNTIME_LEARNING=NOT_ADMITTED
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
