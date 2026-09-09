@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery PASS.
+Updated: 2026-09-09 after genuine OPPO T5 FULL combined durability PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_T5B_DURABLE_KV_WAL_RECOVERY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-09_T5_FULL_COMBINED_DURABILITY_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -13,18 +13,12 @@ Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery PASS.
 - T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
-- T4 full text/syntax/codecs: PASS.
+- `T4_FULL_LAYER=PASS`.
 - T5A filesystem/atomic/lock: PASS.
 - T5B durable KV/WAL/recovery: PASS.
-- T5 combined durability: PENDING.
+- `T5_A_B_COMBINED_DURABILITY=PASS`.
+- `T5_FULL_LAYER=PASS`.
 - T6 through T11: PENDING in the offline substrate lane.
-
-## T4 full checkpoint
-
-`C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
-
-- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`
-- `T4_FULL_LAYER=PASS`
 
 ## Frozen T5 artifacts
 
@@ -37,34 +31,34 @@ T5B:
 - binary `e73cd4fa7f0ca09917c2b1029a57591e1ab50d327e92e143a77fa3d9fe6b8e3c`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T5B admitted evidence
+## T5 combined evidence
 
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 admission cases
-- native process invocations `73`
-- deterministic compile + source/binary freeze PASS
+- exact T5A/T5B source locks PASS
+- deterministic rebuild locks PASS
+- directed combined cases `16`
+- randomized-after-freeze combined cases `32`
+- replay combined cases `2`
+- total combined cases `50`
+- total native process invocations `310`
+- mixed filesystem/durable-state oracle PASS
+- T5A-driven partial WAL recovery PASS
+- T5A-driven complete-WAL corruption rejection PASS
+- T5A-driven checkpoint corruption rejection PASS
+- lock exclusivity with durable store present PASS
+- counterfactual behavior change PASS
+- source/binary no mutation PASS
 - high-entropy literal leak audit PASS
-- KV put/get/delete PASS
-- multi-op transaction PASS
-- exact CAS PASS
-- WAL fsync-before-apply PASS
-- snapshot PASS
-- checkpoint compaction PASS
-- durable rollback via RESET WAL PASS
-- trailing partial WAL recovery PASS
-- corrupted complete WAL rejection PASS
-- corrupted checkpoint rejection PASS
-- malformed transaction no-partial-mutation PASS
-- restart replay PASS
+- synthetic sandbox removed PASS
 
-## Anti-hardcoding boundary
+## Claim boundary
 
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-
-T5B is mechanical durable-state capability only. It does not decide what SIGMA should remember, commit, revise, or consider semantically valid.
+- T5B concurrent-writer serialization is not claimed internally; use T5A lock/lease for exclusive writer coordination.
+- CRC32 is mechanical corruption detection only; cryptographic identity/provenance remains T9.
 
 ## Production boundary
 
@@ -73,13 +67,10 @@ T5B is mechanical durable-state capability only. It does not decide what SIGMA s
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-Existing R10 production-lineage synchronization evidence remains a separate lane and does not imply live binding.
+Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
 
-## Current T5 boundary
+## Next offline substrate sequence
 
-- `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
-- `T5B_DURABLE_STATE_ADMISSION=PASS`
-- `T5_COMBINED_DURABILITY=PENDING`
-- `T5_FULL_LAYER=NOT_YET_ADMITTED`
+`T6 -> T7 -> T8 -> T9 -> T10 -> T11`
 
-Immediate next gate: exact T5A+T5B combined durability/restart/recovery. Only a genuine combined PASS may advance T5 full. Then continue `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
+Immediate gate: `T6_TRANSPORT`.
