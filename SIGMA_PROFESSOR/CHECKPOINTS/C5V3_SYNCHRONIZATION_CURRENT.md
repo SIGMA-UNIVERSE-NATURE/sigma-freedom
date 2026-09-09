@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R4 DURABLE TRANSACTION STATIC PASS / TRANSACTION MAIN FROZEN / EXACT GATE-A + T1/T2/T3 SUCCESSOR COMPOSITION GATE READY / PRODUCTION UNCHANGED**
+Status: **R4 DURABLE TRANSACTION STATIC PASS / TRANSACTION MAIN FROZEN / EXACT GATE-A + T1/T2/T3 SUCCESSOR COMPOSITION STARTED / FIRST COMPOSE RUN HELD BY HARNESS DONOR-ID CONSTANT DEFECT / FIX1 NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -17,13 +17,11 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_DURABLE_TRANSACTION_PASS_SUCCESSOR_T1_T2_T3_COMPOSITION_STARTED.md`
-2. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_MULTILINE_DEF_DISPROVEN_DEF_PREFIX_BINARY_SEARCH_NEXT.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SUCCESSOR_COMPOSE_GATE_DONOR_IDENTITY_CONSTANT_FIX1.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_DURABLE_TRANSACTION_PASS_SUCCESSOR_T1_T2_T3_COMPOSITION_STARTED.md`
+3. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
 
 ## Machine-proven R4 durable transaction substrate
-
-Operator machine PASS:
 
 ```text
 STATE_SHA256=83a43ed6e778775c4b0ea823fa1ab4179adfccbf8a0478c2a7e4a9f8cfd5af33
@@ -49,11 +47,11 @@ RUNTIME_ADMISSION=NO
 ```text
 PATH=C5_M5/R4_NATIVE_LEARNING/C5_R4_TRANSACTION_CYCLE_MAIN_R1.sigma.inc
 COMMIT=79aed87a074b72f2576aa6b0bb6253cef9df5537
-EXPECTED_SOURCE_SHA256=eef4227d9e4151e3f280c315b862249cf345a2cd719ceca4b05658e9bc85b28a
+SOURCE_SHA256=eef4227d9e4151e3f280c315b862249cf345a2cd719ceca4b05658e9bc85b28a
 ENTRY=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 ```
 
-Source-only event paths:
+Source event paths:
 
 ```text
 BOOTSTRAP
@@ -66,21 +64,24 @@ RESTART_READY
 CAPABILITY_RESULT_READY [present but not activated]
 ```
 
-## Successor composition now includes T1/T2/T3
+## Exact successor donors
 
-Exact donor boundaries:
+Exact Gate-A donor reconstructed from source `bf468c...` using the composition gate's DEF-block normalization:
 
 ```text
-GATEA_PARENT_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
 GATEA_PURE_DEF_COUNT=77
-GATEA_PURE_NORMALIZED_SHA256=986465097126d33598ebb83ec9f0af331eadb3a2443f9605dded3a1e4ab04d52
+GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
 GATEA_EXCLUDED_DEF=append_line
+```
 
-R3_FIX1_DONOR_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
+Exact T1/T2/T3 donor reconstructed from admitted R6/R3-FIX1 body lineage:
+
+```text
+R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
 T1_T2_T3_DEF_COUNT=82
 T1_T2_T3_FIRST_DEF=WA_H
 T1_T2_T3_LAST_DEF=T2_SHORTEST_PATH_BOUNDED
-T1_T2_T3_NORMALIZED_SHA256=8b6f231a23c2ab5cd19e2ba2806ced29e9ed6bb8c9590c0559e9532a9feb7d06
+T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
 ```
 
 Expected successor composition:
@@ -95,14 +96,38 @@ Expected successor composition:
 
 Presence is not utilization PASS. `CAPABILITY_RESULT_READY` remains intentionally unactivated until exact native capability-selection/result-binding admission is added.
 
-## Exact next action
+## First successor compose run — HOLD is harness defect
+
+Operator run reached exact Gate-A source identity, all R4 module identities and main identity, then reported:
 
 ```text
-C5_M5/RUN_C5V3_R4_SUCCESSOR_T1_T2_T3_COMPOSE_COMPILE_R1.sh
-COMMIT=5b97501a3f9f84e690d4bc57caa09242ddb25e6e
+GATEA_PURE_DEF_COUNT=77
+GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
+HOLD=GATEA_PURE_NORMALIZED_IDENTITY
 ```
 
-This gate performs deterministic composition and compiles these boundaries without VM execution:
+The R1 gate embedded incorrect donor normalized identity constants. Independent exact reconstruction with the same algorithm produced the canonical values above.
+
+Classification:
+
+```text
+SUCCESSOR_COMPOSE_R1_FIRST_RUN=HOLD_HARNESS_DONOR_IDENTITY_CONSTANT_DEFECT
+GATEA_SOURCE_FAIL=NO_EVIDENCE
+T1_T2_T3_SOURCE_FAIL=NO_EVIDENCE
+R4_SOURCE_FAIL=NO_EVIDENCE
+SOURCE_MODULE_MUTATION_FOR_FIX=NO
+```
+
+## Exact next action
+
+Run:
+
+```text
+C5_M5/RUN_C5V3_R4_SUCCESSOR_T1_T2_T3_COMPOSE_COMPILE_R1_FIX1.sh
+COMMIT=2244f5270fe969d19fb512505495736493c1b3ea
+```
+
+FIX1 patches only the two bad expected donor hashes inside the immutable R1 harness, then runs the same deterministic composition and compiler boundary matrix:
 
 ```text
 Gate-A 77 + sentinel
@@ -116,12 +141,13 @@ final literal counterfactual
 final unbalanced-brace negative control
 ```
 
-Purpose:
+Required before runtime admission:
 
 ```text
-verify exact T1/T2/T3 bodies are present in successor source
-locate any compiler emission boundary
-require nontrivial source-sensitive bytecode before runtime admission
+SUCCESSOR_STATIC_COMPOSITION=PASS
+SUCCESSOR_NONTRIVIAL_EMISSION=PASS
+SUCCESSOR_MAIN_SOURCE_SENSITIVITY=PASS
+malformed final entry rejected by compiler
 ```
 
 ## Claim boundary
@@ -129,7 +155,7 @@ require nontrivial source-sensitive bytecode before runtime admission
 ```text
 R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
 TRANSACTION_MAIN_SOURCE=FROZEN
-T1_T2_T3_SUCCESSOR_COMPOSITION_GATE=READY
+T1_T2_T3_SUCCESSOR_COMPOSITION=IN_PROGRESS
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
 R4_RUNTIME_LEARNING=NOT_ADMITTED
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
