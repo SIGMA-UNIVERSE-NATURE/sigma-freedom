@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Scoped Revision R1 PASS, epistemic stress `65/100`, and Source-Consistency-Aware Revision R2 preparation.
+Updated: 2026-09-09 after Source-Consistency-Aware Scoped Revision R2 admission + independent blind PASS and Scoped Provisional Epistemic Truth R1 preparation.
 
 ## Architecture routing
 
@@ -21,7 +21,7 @@ Gate B runs independently. Gate A does not add tools. Production binding remains
 
 ## Gate A admitted chain
 
-Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> continual compact work memory PASS -> scoped revision/support/conflict R1 PASS.
+Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> continual compact work memory PASS -> scoped revision/support/conflict R1 PASS -> `M5_NATIVE_SOURCE_CONSISTENCY_AWARE_SCOPED_REVISION_R2` PASS.
 
 ### Continual Compact Work Memory R1H1
 
@@ -29,59 +29,55 @@ Core `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`, Oppo by
 
 `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` only in the tested two-work/self-contained compact-memory scope. Exact Work A archive block remained byte-for-byte unchanged after Work B; A/B remained isolated/queryable after source removal and restart.
 
-### Scoped Revision / Support / Conflict R1
+### Source-Consistency-Aware Scoped Revision R2
 
-Core `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`, Oppo bytecode `e4a3e18029e93a4f97c4808fcda5518a89fa925d7c160471f83cb4635f28ee2a`.
+Core `82971fefa1e4b7c009612fc5be1ed88017386659f27c46b42117b603f4355736`, Oppo bytecode `e52d23b0c8bfcb6a7bfaaf1ac1647af02a760f677a5b4959dc0ddae0cb0abc66`.
 
-Original admission + independent blind PASS. Exact admitted claim:
+Admission PASS and independent blind PASS, both `RC=0`.
 
-`NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`
+PASS includes the complete R1 revision regression plus:
 
-in the native two-candidate relation-discrimination/provenance scope. Broad semantic truth remains FAIL.
+- `SOURCE_CONSISTENCY_NATIVE_STATE=PASS`;
+- self-contradicting SOURCE_ID excluded from both authority sides;
+- `BLIND_RETROACTIVE_AUTHORITY_RETRACTION=PASS`;
+- clean authority recovery after inconsistency PASS;
+- source-consistency state restart PASS;
+- `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=PASS`;
+- `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`.
 
-## New stronger blind result — epistemic stress R1
+This repairs the stronger Epistemic Stress R1 `65/100` defect. Historical R1 PASS and stress FAIL remain valid in their original scopes.
 
-Target core unchanged: `460461d6...`.
+## Pending Gate A candidate — Scoped Provisional Epistemic Truth R1
 
-- balanced one-vs-one evidence remained unformed: PASS;
-- self-contradicting source alone did not form a hypothesis: PASS;
-- self-contradicting source excluded from distinct authority: FAIL;
-- observed after self-conflicting source X plus one clean B source: `HELD=B`, `EPISTEMIC=SUPPORTED`;
-- score `65/100`;
-- `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=FAIL`;
-- evaluator execution PASS, `RC=0`;
-- production mutation NO.
+Candidate ID: `M5_NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH_R1`.
 
-Diagnosis: R1 counts SOURCE_ID independently for A and B. The same source can therefore contribute authority to both sides. This is a new cognition defect under a stronger blind, not a harness failure and not a rewrite of the narrower R1 PASS.
+Truth-state is deliberately separated from the revision policy's `HELD` candidate.
 
-## Pending Gate A candidate — Source-Consistency-Aware Scoped Revision R2
+Native labels:
 
-Candidate ID: `M5_NATIVE_SOURCE_CONSISTENCY_AWARE_SCOPED_REVISION_R2`.
+- `UNRESOLVED`;
+- `PROVISIONAL_A`;
+- `PROVISIONAL_B`;
+- `CONTESTED`.
 
-Native R2 rules:
+Conservative rule: provisional A/B requires at least two consistent distinct sources on one side and zero clean sources on the other. Any clean evidence on both sides yields `CONTESTED`, regardless of which candidate revision policy currently holds. Self-inconsistent sources are excluded and cannot create a contest.
 
-- recompute each source stance from the complete revision ledger: `A`, `B`, `INCONSISTENT`, `NONE`;
-- persist source-consistency state;
-- inconsistent sources count for neither side;
-- recompute authority retroactively after every evidence record;
-- retract a held hypothesis if a source becomes inconsistent and remaining consistent authority drops below threshold;
-- later clean independent sources may recover/form a hypothesis;
-- original R1 A->B->A revision, replay, evidence-ID, work-scope, injection, and restart gates remain regressions.
+A scoped `EVIDENCE_BACKED_COMPETING_CONFIGURATIONS` state is recorded only after clean opposing evidence exists inside the same native relation-discrimination scope. This is not broad logical contradiction.
 
 Frozen static hashes:
 
-- core: `82971fefa1e4b7c009612fc5be1ed88017386659f27c46b42117b603f4355736`
-- admission evaluator: `337bb3d1852abf9a93f6dcc918b36f9cac960b4bf693c151c27284cb9011234a`
-- independent blind evaluator: `ae8d0c7a024359c54a9d2014cdc5e764e3563e3e699f7b5f91eb1abe2ea4b8e8`
-- ladder runner: `37985b838255e73ab54788ffa12c240e57a182d24fc648ce4bc09af0f819f9c0`
-- ladder bundle: `2b928b54117bb694d2fabea9c26edfb82f0c85458c7d12b950f456f41483ad99`
+- core: `bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1`
+- admission evaluator: `f579b43d3a9409a153626d082f0cb277007aa65b772d6836d6479d7ce90883f7`
+- independent blind evaluator: `dcecb1df1e83116aeca0a30ce988b9d04d70b1936e4fdb5d5f514c31edf3232d`
+- ladder runner: `60c2b73f8efd1d9c0bb7fa15e188226c7ca5f0e7696dac65359a534f588f2474`
+- ladder bundle: `5eab91ff3cf280563114bd4b309166960e2538e91d604cc9beaf7ac9aea9abd0`
 
-Static checks: target core byte-identical between admission/blind; Bash syntax PASS; manifests PASS; ZIP integrity PASS; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent.
+Static checks: target core byte-identical between admission/blind; parent R2 admission/blind regressions mandatory; Bash syntax PASS; manifests PASS; ZIP integrity PASS; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent. Gate A adds no tools.
 
 ## Current hard FAILs
 
-- `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=FAIL` on admitted R1; R2 pending.
 - `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`
+- arbitrary natural-language logical contradiction/truth: FAIL
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
 - `AUTONOMOUS_SUMMARY_GENERATION=FAIL`
 - `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`
@@ -92,4 +88,4 @@ Static checks: target core byte-identical between admission/blind; Bash syntax P
 
 ## Exact next Gate A dependency
 
-Run `SIGMA_C5_C5V3_M5_SOURCE_CONSISTENCY_REVISION_LADDER_R2_BUNDLE.zip`. Only if admission and blind PASS may source-consistency-aware distinct authority/revision advance. Then Gate A moves to learned incompatibility / contested-unresolved / provisional truth-state blinds. `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH` remains FAIL until those later gates pass.
+Run `SIGMA_C5_C5V3_M5_PROVISIONAL_EPISTEMIC_TRUTH_LADDER_R1_BUNDLE.zip`. Only if admission + blind PASS may `NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH` advance in the exact native two-candidate/source-consistency scope. Keep broad semantic truth FAIL until later independent blinds broaden incompatibility and truth beyond this scoped evidence calibration.
