@@ -1,5 +1,5 @@
 {
-  "schema_version":"3.1",
+  "schema_version":"3.2",
   "gate_id":"HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status":"ACTIVE_REQUIRED",
   "stage":"CURRICULUM",
@@ -8,7 +8,7 @@
   "subbranch_exit_gate":{"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"external_general_education_mapping_required":true,"director_integration_audit_required":true,"fresh_backup_sentinel_tree_alignment_pass_required":true},
   "global_pre_academic_lock_gate":{"minimum_continents_for_benchmark":5,"vietnam_single_baseline_forbidden":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"foundational_gap_count_required":0,"academic_locked_forbidden_until_pass":true},
   "B1_2_exit":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_integration_commit_sha":"425df302d7331293ad12744a6096e05d51560890","external_mapping_commit_sha":"5492127b661b770c23026c6205d1fbd4e8464835","fresh_backup_sentinel_commit_sha":"5b0ff94151386fab2ebeffe434e9fa8ac06ec4ac","foundational_gap_count":0,"B1_3_unlock":"PASS"},
-  "current_application":{"active_subbranch":"B1.3","active_scope":"B1.3-C10","active_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","mode":"FOUNDATIONAL_COVERAGE_ACCEPTED_C10_PENDING_SENTINEL_AND_FAMILY_EXIT","accepted_scopes":["B1.3-C01","B1.3-C02","B1.3-C03","B1.3-C04","B1.3-C05","B1.3-C06","B1.3-C07","B1.3-C08","B1.3-C09","B1.3-C10"],"B1_3_active":true,"latest_accepted_scope":"B1.3-C10","latest_scope_foundational_coverage":"PASS","post_acceptance_sentinel":"PENDING","family_exit_gate":"LOCKED_PENDING_SENTINEL"},
+  "current_application":{"active_subbranch":"B1.3","active_scope":"B1.3-C10","active_window":"C01-W04-B1.3-CHEMISTRY-FAMILY-C10","mode":"FOUNDATIONAL_COVERAGE_ACCEPTED_C10_SENTINEL_ALIGNED_PENDING_FAMILY_EXIT","accepted_scopes":["B1.3-C01","B1.3-C02","B1.3-C03","B1.3-C04","B1.3-C05","B1.3-C06","B1.3-C07","B1.3-C08","B1.3-C09","B1.3-C10"],"B1_3_active":true,"latest_accepted_scope":"B1.3-C10","latest_scope_foundational_coverage":"PASS","post_acceptance_sentinel":"TREE_ALIGNMENT_PASS","family_exit_gate":"ELIGIBLE_FOR_DIRECTOR_INTEGRATION"},
   "later_lesson_registry_policy":{"foundational_spine_mandatory":true,"advanced_content_can_be_extension_or_deeper_pathway":true,"does_not_authorize_lesson_registry_now":true},
   "authority_source":"DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "authority_commit":"c2b4781e73076d90d600a3442ab910ba92bcb66c",
