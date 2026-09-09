@@ -9,62 +9,50 @@ Read in order:
 5. `C5_M5/CHECKPOINTS.md`
 6. this file
 
-Do not reconstruct history from old chat when these files are available.
+## Current admitted chain
 
-## Purpose
+Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS.
 
-Build a C5V3 successor that can acquire real sources, read complete long-form works, form/revise native understanding, compress retained knowledge into bounded local memory, remove the source text and continue learning. No token LEFT/RIGHT cognition, hardcoded English semantic grammar, cue-to-meaning tables or host-substituted cognition.
+Full-source core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
 
-## Latest admitted chain
+Production binding remains NO.
 
-- Mechanical Evidence Tool Transport R2: PASS.
-- Corrected Blind Host Substitution R1H1: PASS.
-- Native Gap Search Query R1: PASS.
-- Real Internet Search Discovery R1: PASS.
-- Real Internet Full Source Stream R1: PASS.
+## Exact next execution artifact
 
-Latest full-source core SHA256:
+Run:
 
-`d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`
+`SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1_BUNDLE.zip`
 
-Full-source stream now admits complete real-source fetch, byte-identical bounded transient native reassembly, restart state, exclusion from canonical memory, and explicit source removal. Production binding remains NO.
+- Whole-work structural candidate core SHA256: `5051976e55c33f610431e9b49c4dfed05e210acc3cfde496beb938031c334c18`.
+- Admission preflight SHA256: `85114dfaf6055408155e3222e5b440d206bab35cfd525ac86a75222b1dd99b89`.
+- Independent blind auditor SHA256: `5ef96dde8ce0ffb134f1337e09f555139519f037174c21355f3d5a790fe91578`.
+- Ladder runner SHA256: `88496c8368550501fd3eaacd1d9dd509c97c1388e6a019de1efa8d1a9c9af694`.
+- Ladder bundle SHA256: `0a584c026f1b32c704ce8096097374c11da228763dbbda5867d7bab7042d4f6c`.
 
-## Exact next work item
+Stage A admission tests a source-independent whole-work structural skeleton from dynamic post-compile units, with working occurrence/manifest state deleted before recall, retained state materially smaller than raw work, configuration-order discrimination and restart.
 
-Build a **native whole-work retained representation** from bounded transient full-source state.
+Stage B blind is intentionally adversarial. It tests distant recurrent recall, role reversal, high-frequency background suppression, once-only event-detail retention and direct whole-work-summary availability after source removal. A cognitive FAIL does not make evaluator execution fail; read the PASS/FAIL lines and score.
 
-The first whole-work milestone must remain structural and honest. It must:
+## Important interpretation rule
 
-1. consume multiple distant source units from the completed transient source;
-2. create a bounded retained work state that is materially smaller than the source and does not copy the full source;
-3. preserve cross-distant relationships needed by post-source-removal queries;
-4. survive restart;
-5. permit explicit removal of the original source before testing;
-6. pass an independent blind recall/reasoning test where answers require information distributed across distant source units;
-7. reject unsupported answers rather than guessing;
-8. keep host summary/semantic labels/answers absent.
-
-Do not call this whole-work understanding until the independent source-removal blind passes.
+This R1 is not semantic whole-work understanding even if Stage A passes. It uses recurrent atoms only as features inside whole-unit signatures. It is allowed only as a diagnostic/structural substrate. If the blind loses a once-only event, that is the next real bottleneck: the core must learn novelty/salience without a host-provided importance label. If whole-work summary fails, keep FAIL; never add a host/extractive summary to make the score pass.
 
 ## Hard FAILs retained
 
-- `AUTONOMOUS_RESEARCH=FAIL`
-- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
-- `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
-- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
-- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`
-- semantic paraphrase/zero-shot low-overlap/benign ungrounded reorder remain FAIL;
-- semantic support/conflict/truth judgment remains FAIL.
+- autonomous research;
+- whole-work narrative understanding;
+- evidence-backed whole-work summary;
+- theme/direction/human-value induction;
+- multilingual narrative transfer;
+- semantic compression after source removal;
+- continual learning from compressed local memory;
+- semantic paraphrase/zero-shot low-overlap/benign ungrounded reorder;
+- semantic support/conflict/truth judgment.
 
-## Integration after cognition/memory gates
+## Later C5V3 route
 
-Do not cut over production after a whole-work test. Follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` only after the required production subset is admitted:
+Only after the required cognition/memory subset passes:
 
 `read-only ABI/state synchronization -> isolated successor graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback retained`.
 
-## Update discipline
-
-After every successful experimental step, update `STATUS.md`, append `CHECKPOINTS.md`, and move this handoff to exactly one next dependency. Historical failures and retired assumptions remain visible. Never merge to `SIGMA_LIFE` or cut over production without explicit instruction.
+Never hot-patch production during candidate admission.
