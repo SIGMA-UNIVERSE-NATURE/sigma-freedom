@@ -1,6 +1,10 @@
 name: HKA Curriculum Autopilot
 
 on:
+  push:
+    branches: [SIGMA_LIFE]
+    paths:
+      - '.github/workflows/hka_curriculum_autopilot.yml'
   workflow_dispatch:
     inputs:
       mode:
@@ -60,7 +64,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Plan next role
-        if: ${{ inputs.mode != 'validate' || github.event_name == 'schedule' }}
+        if: ${{ inputs.mode != 'validate' || github.event_name == 'schedule' || github.event_name == 'push' }}
         run: |
           python .github/hka_autopilot/hka_autopilot.py plan | tee /tmp/hka-request.json
           {
