@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Whole-Work Ladder R1H3 admission + independent blind.
+Updated: 2026-09-09 after Whole-Work Novelty Bridge R1 admission + independent blind 90/100 and Span-Synthesis R1 preparation.
 
 ## Production boundary
 
@@ -9,55 +9,37 @@ Updated: 2026-09-09 after Whole-Work Ladder R1H3 admission + independent blind.
 - Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
-- Whole-Work R1H3 observed PID before/after: `23663` -> `23663`; process churn: NO; production artifact hash freeze: PASS.
+- Latest whole-work admission/blind observed production PID `23663` before and after; process churn NO; production mutation NO.
 
 ## Authoritative target
 
-`END_STATE_ACCEPTANCE.md` remains authoritative: real Internet full-source acquisition, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning; then `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for read-only synchronization, isolated graft, autonomous-runner shadow, soak/recovery, promotion, explicit cutover and rollback.
+`END_STATE_ACCEPTANCE.md` remains authoritative: real Internet full-source acquisition, complete-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning; then `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for read-only sync, isolated graft, shadow, soak/recovery, promotion, explicit cutover and rollback.
 
-## Latest admitted chain
+## Admitted chain
 
 - Mechanical Evidence Tool Transport R2: PASS.
 - Corrected independent Blind Host Substitution R1H1: PASS.
 - Native Gap Search Query R1: PASS.
 - Real Internet Search Discovery R1: PASS.
 - Real Internet Full Source Stream R1: PASS.
-- `M5_NATIVE_WHOLE_WORK_STRUCTURAL_MEMORY_R1H3`: PASS in exact structural scope.
+- Whole-Work Structural Memory R1H3: admission PASS in exact structural scope.
+- `M5_NATIVE_WHOLE_WORK_NOVELTY_BRIDGE_MEMORY_R1`: admission PASS and independent source-removal blind `90/100`.
 
-Whole-work structural core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
+Novelty-bridge core SHA256: `d7c03a32de13d7f106964618dec411f47f2d9c1ab561dfebd851f0606e514c4e`.
 
-Admitted whole-work structural facts:
+Independent blind facts:
 
-- source-independent retained structural memory: PASS;
-- retained state materially smaller than raw work: PASS;
-- raw work removed before recall: PASS;
-- distant-unit source-removal recall: PASS;
-- whole-unit configuration order discrimination: PASS;
-- restart recall: PASS;
-- anti-hardcode freeze: PASS;
-- production mutation: NO.
+- `DISTANT_RECURRENT_STRUCTURE_RECALL=PASS`
+- `ROLE_REVERSAL_CONFIGURATION_REJECTION=PASS`
+- `HIGH_FREQUENCY_BACKGROUND_SUPPRESSION=PASS`
+- `UNIQUE_EVENT_DETAIL_RETENTION=PASS`
+- `ISOLATED_SINGLETON_NOISE_REJECTION=PASS`
+- `RESTART_SOURCE_REMOVAL_RECALL=PASS`
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
+- `TOTAL_SCORE=90/100`
+- grade: `WHOLE_WORK_STRUCTURAL_MEMORY_WITH_NOVELTY_RETENTION`
 
-## Independent Whole-Work Blind R1H3
-
-Score: `70/100`.
-
-PASS:
-
-- dynamic whole-work build;
-- source removal before recall;
-- distant recurrent structure recall;
-- role-reversal configuration rejection;
-- high-frequency background suppression;
-- restart source-removal recall.
-
-FAIL:
-
-- `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`;
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
-
-Grade: `STRUCTURAL_WHOLE_WORK_MEMORY_WITH_MAJOR_SEMANTIC_GAPS`.
-
-This is the current exact cognition bottleneck. The recurrent structural substrate is real, but it drops a once-only event and therefore cannot yet support whole-work narrative understanding or an evidence-backed summary.
+This closes the prior once-only-event bottleneck in the tested structural scope without host importance labels. It does NOT prove semantic narrative understanding.
 
 ## Current hard FAILs
 
@@ -74,12 +56,26 @@ This is the current exact cognition bottleneck. The recurrent structural substra
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
-## Next architecture target
+## Architecture correction before semantic summary
 
-Build `M5_NATIVE_WHOLE_WORK_NOVELTY_BRIDGE_MEMORY_R1` as an isolated successor of R1H3.
+The 90/100 structural core retains token-signature skeletons. That is useful for salience detection but is not acceptable as the final semantic memory because the end-state requires contextual, non-fragmented understanding.
 
-Required idea: preserve a once-only detail only when its whole unit provides a structurally novel bridge among recurrent work-wide anchors. No host importance label, no lexical salience list, no beginning/end position rule, no LEFT/RIGHT or adjacency-as-meaning rule. High-frequency background must remain suppressed and isolated singleton noise must not be promoted merely because it is unique.
+Prepared next candidate: `M5_NATIVE_WHOLE_WORK_SALIENT_SPAN_SYNTHESIS_R1`.
 
-Then run an independent source-removal blind. Summary remains FAIL until a separate capability actually synthesizes an evidence-backed whole-work summary from retained native memory.
+Design rule: recurrence/novelty atoms may act only as structural salience features; the persistent cognition points are complete work units/spans. After source and working occurrence state are removed, native SIGMA builds a smaller coverage-diverse synthesis trace from retained complete spans. The trace is explicitly NOT credited as semantic whole-work summary.
 
-Do not cut over production; later C5V3 integration remains per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Hashes:
+
+- Core SHA256: `66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
+- Admission preflight SHA256: `39cc54d962422e57f8af2befe7a4ef97cd1793fe75372a923cd3df2559bb5ed4`
+- Candidate bundle SHA256: `e441bf5cd680d0aee92e546e7062c69cde40db5a4ee04fadda4a99445ee07004`
+- Independent blind auditor SHA256: `1bf7bc645aaa36d917f7e5337523edd5d579a855e98d80a1d1bc79c002918eb1`
+- Blind bundle SHA256: `70f0c072c471eb9c5680d0a192bdc1b30a5aaee6d057645c38c52fa42e2b8363`
+- Combined ladder runner SHA256: `a06841b55057827306992d739c8a3e9d8a1b785b541bf935ad320d8161235799`
+- Combined ladder bundle SHA256: `a9dbd424ace7b3297663fc33d98672e6613be79aec12e49ccc3e54db3e94c87d`
+
+Prepared package checks: shell syntax PASS, manifests generated, ZIP integrity PASS, anti-LEFT/RIGHT/previous-next lexical scan clean in the candidate core.
+
+## Exact next dependency
+
+Run `SIGMA_C5_C5V3_M5_WHOLE_WORK_SPAN_SYNTHESIS_LADDER_R1_BUNDLE.zip` on Oppo. If span-synthesis blind passes while semantic summary remains FAIL, proceed immediately to a separate natural-language whole-work semantic synthesis core/blind. Never relabel an extractive whole-span trace as semantic understanding. C5V3 production integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
