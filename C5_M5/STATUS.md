@@ -1,19 +1,19 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Full Source Stream R1 runtime PASS and Whole-Work Ladder R1 preparation.
+Updated: 2026-09-09 after Whole-Work Ladder R1 `FINALIZE_VM` failure diagnosis and R1H1 preparation.
 
 ## Production boundary
 
 - Production binding: NO.
-- Production C5V3 observed PID during latest admission: `23663`.
 - Production core SHA256: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`.
 - Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
+- Latest Whole-Work R1 Stage A PID snapshot reported `5710,23663`; no production mutation claim was made and Stage A stopped before final production-identity gate.
 
 ## Authoritative target
 
-`END_STATE_ACCEPTANCE.md` remains authoritative: real Internet full-source acquisition, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning; then `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for sync/graft/shadow/soak/promotion/explicit cutover.
+`END_STATE_ACCEPTANCE.md` remains authoritative: real Internet full-source acquisition, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning; then `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for read-only sync, isolated graft, autonomous-runner shadow, soak/recovery, promotion, explicit cutover and rollback.
 
 ## Latest admitted chain
 
@@ -23,13 +23,7 @@ Updated: 2026-09-09 after Full Source Stream R1 runtime PASS and Whole-Work Ladd
 - Real Internet Search Discovery R1: PASS.
 - Real Internet Full Source Stream R1: PASS.
 
-Full-source R1 hashes:
-
-- Core `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`
-- Transport `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`
-- Provider `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`
-
-Admitted runtime facts: real full-source fetch PASS; bounded transient stream PASS; exact byte reassembly PASS; transient restart state PASS; full source excluded from canonical memory PASS; explicit transient source removal PASS.
+Full-source R1 admitted facts: real full-source fetch; bounded transient long-form stream; exact byte reassembly; restart state; full source excluded from canonical memory; explicit transient source removal.
 
 ## Current hard FAILs
 
@@ -46,32 +40,45 @@ Admitted runtime facts: real full-source fetch PASS; bounded transient stream PA
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
-## Pending Whole-Work Ladder R1 — not admitted
+## Whole-Work Ladder R1 runtime result
 
-Candidate: `M5_NATIVE_WHOLE_WORK_STRUCTURAL_MEMORY_R1`
+Stage A reached:
 
-- Core SHA256: `5051976e55c33f610431e9b49c4dfed05e210acc3cfde496beb938031c334c18`.
-- Preflight SHA256: `85114dfaf6055408155e3222e5b440d206bab35cfd525ac86a75222b1dd99b89`.
+- `LOCKED_COMPILE=PASS`
+- `WHOLE_WORK_PASS1_NATIVE_RECURRENCE=PASS`
+- `WHOLE_WORK_RECURRENT_UNIT_SIGNATURES=PASS`
+- `FAIL=FINALIZE_VM`
+- `RC=35`
 
-Independent blind target is frozen to that core SHA:
+Root-cause audit: `FINALIZE_WHOLE_WORK_SKELETON` attempted direct integer-to-text concatenation of native `MC/SC` counts into persistent state. No admitted numeric-to-string primitive exists in the locked VM lineage. The count gates themselves were already native and correct; the runtime serialization path was the defect.
 
-- Blind auditor SHA256: `5ef96dde8ce0ffb134f1337e09f555139519f037174c21355f3d5a790fe91578`.
-- Blind bundle SHA256: `2d5825f849fd2858d99b30519d0aac1b0f3f12f51000df2733bf4f7eb49d7852`.
+This failure is recorded in `WHOLE_WORK_R1_FAILURE_AND_R1H1.md`.
 
-Combined execution artifact:
+## Pending correction — Whole-Work R1H1
 
-- `SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1_BUNDLE.zip`
-- Runner SHA256: `88496c8368550501fd3eaacd1d9dd509c97c1388e6a019de1efa8d1a9c9af694`.
-- Bundle SHA256: `0a584c026f1b32c704ce8096097374c11da228763dbbda5867d7bab7042d4f6c`.
+Candidate: `M5_NATIVE_WHOLE_WORK_STRUCTURAL_MEMORY_R1H1`
 
-Stage A tests source-independent retained structural whole-work memory from dynamic post-compile units. Stage B is independent blind and intentionally includes once-only event-detail retention plus whole-work-summary capability. Cognitive FAIL lines are retained even when evaluator execution returns RC=0.
+- Core SHA256: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`.
+- Preflight SHA256: `bda40ee9ae3ec8a799a34dc53cfbe7234745243a9d8a6c6bd35b3195bc79e289`.
+- Candidate bundle SHA256: `d031e73cd766beb6202a16d0527770c989397d1b758a2a9b783c31a023400d15`.
 
-This R1 is a structural substrate, not an acceptable final semantic architecture. It uses recurrent atoms inside whole-unit signatures; it must not be promoted into a whole-work-understanding claim. If blind shows once-only event loss, the next representation must preserve novel salient events without host labels or lexical hardcoding.
+R1H1 keeps the native unit/signature count gates unchanged but no longer serializes integer counts into text.
+
+Independent blind R1H1:
+
+- Auditor SHA256: `0b1b105a9902e0fddc6b8ed090e098c7674ea52d5a949f4ddab6c1812107017f`.
+- Blind bundle SHA256: `3b47f8f454424406e8c4c0c14315799c367d4054795f7b419c982df4d9a2587e`.
+- Cognitive fixtures/challenges unchanged from R1; summary scoring now snapshots its result before later recall can overwrite the action output.
+
+Combined Whole-Work Ladder R1H1:
+
+- Runner SHA256: `f6431921da6c69055f52293e979ff9216830e6f0d7dda33fcd45e518941db7ff`.
+- Bundle SHA256: `bb384565fa79294a8ec4ab853ec03dde69350111669627db2c9ab63caa4fc935`.
 
 ## Anti-hardcode state
 
-No token LEFT/RIGHT cognition, host semantic substitution, active Python cognition or fixed English grammar/semantic-role tables is admitted. Whole-work R1 preserves entire unit configuration order rather than assigning LEFT/RIGHT semantic roles, but broader natural-language understanding still requires blind proof.
+No token LEFT/RIGHT cognition, host semantic substitution, active Python cognition or fixed English grammar/semantic-role tables is admitted. Whole-work R1H1 remains a structural diagnostic substrate only; even a passing Stage A does not justify whole-work semantic understanding.
 
 ## Exact next dependency
 
-Run Whole-Work Ladder R1. If Stage A fails, fix the structural memory implementation. If Stage A passes, use the blind score to identify the next exact bottleneck. Do not cut over C5V3; integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Run Whole-Work Ladder R1H1. If Stage A passes, use the independent blind score to identify the next true bottleneck, especially once-only event retention and direct whole-work summary after source removal. Do not cut over C5V3; later integration remains per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
