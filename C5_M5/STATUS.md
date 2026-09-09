@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 runtime admission + independent blind.
+Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 blind 95/100 and cross-source summary-hypothesis preparation.
 
 ## Production boundary
 
@@ -13,7 +13,7 @@ Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 runtime admission
 
 ## Authoritative target
 
-`END_STATE_ACCEPTANCE.md` remains authoritative. The final target is real Internet full-source learning, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local continual learning, then C5V3 read-only sync -> isolated graft -> shadow -> soak/recovery -> promotion -> explicit cutover.
+`END_STATE_ACCEPTANCE.md` remains authoritative. Final target: real Internet full-source learning, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local continual learning, then C5V3 read-only sync -> isolated graft -> shadow -> soak/recovery -> promotion -> explicit cutover.
 
 ## Admitted chain
 
@@ -22,8 +22,8 @@ Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 runtime admission
 - Native Gap Search Query R1: PASS.
 - Real Internet Search Discovery R1: PASS.
 - Real Internet Full Source Stream R1: PASS.
-- Whole-Work Structural Memory R1H3: PASS in exact structural scope; source-removal blind `70/100` exposed once-only-event loss.
-- Whole-Work Novelty Bridge Memory R1: PASS; independent source-removal blind `90/100`; unique event retained and isolated singleton noise rejected.
+- Whole-Work Structural Memory R1H3: PASS in exact structural scope; blind `70/100` exposed once-only-event loss.
+- Whole-Work Novelty Bridge Memory R1: PASS; blind `90/100`; unique event retained and singleton noise rejected.
 - `M5_NATIVE_WHOLE_WORK_SALIENT_SPAN_SYNTHESIS_R1`: admission PASS; independent source-removal blind `95/100`.
 
 Latest admitted whole-work core SHA256:
@@ -32,44 +32,62 @@ Latest admitted whole-work core SHA256:
 
 Latest blind facts:
 
-- `SOURCE_REMOVAL_WHOLE_SPAN_EXACT_RECALL=PASS`
-- `ISOLATED_SINGLETON_UNIT_REJECTION=PASS`
-- `NATIVE_WHOLE_WORK_SYNTHESIS_TRACE=PASS`
-- `SYNTHESIS_WHOLE_SPAN_POINTS_ONLY=PASS`
-- `SYNTHESIS_UNIQUE_EVENT_COVERAGE=PASS`
-- `SYNTHESIS_ISOLATED_NOISE_REJECTION=PASS`
-- `SYNTHESIS_NOT_RECORD_DUMP=PASS`
-- `SYNTHESIS_TRACE_SMALLER_THAN_SALIENT_MEMORY=PASS`
-- `SYNTHESIS_RESTART=PASS`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
-- `TOTAL_SCORE=95/100`
+- source-removal whole-span exact recall PASS;
+- singleton rejection PASS;
+- native whole-work synthesis trace PASS;
+- whole-span-only synthesis points PASS;
+- unique-event coverage PASS;
+- isolated-noise rejection PASS;
+- not a record dump PASS;
+- synthesis smaller than salient memory PASS;
+- restart PASS;
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`;
+- `TOTAL_SCORE=95/100`;
 - grade `WHOLE_SPAN_SYNTHESIS_TRACE_WITH_SEMANTIC_SUMMARY_GAP`.
 
 Host summary for active SIGMA: ABSENT. Host importance labels: ABSENT. Active Python cognition: ABSENT.
 
 ## Exact cognition bottleneck
 
-The source-independent memory now retains complete contextual spans rather than only token signatures, preserves unique bridge events, suppresses singleton/background noise, and builds a smaller whole-work synthesis trace after source removal. The remaining blind failure is not transport, persistence, salience or source-removal recall. It is **semantic abstraction / summary formation**.
+The source-independent memory retains complete contextual spans, preserves unique bridge events, suppresses noise and builds a smaller whole-work synthesis trace after source removal. The remaining blind failure is **semantic abstraction / summary formation**. Do not relabel the whole-span trace as a summary and do not add a host/LLM summary, lexical theme table, English grammar table or positional summary heuristic.
 
-Do not fix this by relabeling the extractive whole-span trace as a summary. Do not add a host/LLM summary, lexical theme table, English grammar table or positional summary heuristic.
+## Pending candidate — native cross-source abstraction
 
-## Current hard FAILs
+`M5_NATIVE_WHOLE_WORK_CROSS_SOURCE_SUMMARY_HYPOTHESIS_R1`
 
-- `AUTONOMOUS_RESEARCH=FAIL` in end-state sense (real search/fetch exists, but full autonomous semantic research loop is incomplete).
+Purpose: raw alternate descriptions from independent sources remain evidence, not answers. Native SIGMA learns contextual atom equivalence from repeated neutral evidence, maps complete external spans to retained synthesis points using whole-sequence configuration, rejects exact copies/role reversal/irrelevant descriptions, requires multi-point coverage plus provenance diversity, then forms a source-independent summary hypothesis.
+
+Core host operations remain mechanical only: `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`. No model/LLM host op exists in the candidate.
+
+Hashes:
+
+- Core SHA256: `d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
+- Admission preflight SHA256: `7dc5cc0fc40cffe6d5b213fddd1d5ae6c443752de7ed8ece04dac2b6fc1560bd`
+- Independent blind auditor SHA256: `afe6fbcb8e18112eff7cf94b33b5132b378c3c549042f73bba8672a042905436`
+- Ladder runner SHA256: `6f74556f4fcdc44b0e9cd528e10f04adc72b33bee8d58cfb4d2cb99675bbb429`
+- Ladder bundle SHA256: `7c0c5ceb2797bec9c8b6c8e2302af8a906a9d7ff0cb5fc2884207d056b084eee`
+
+Static preparation checks: core brace balance clean; candidate and blind target core byte-identical; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/English grammar-table identifiers absent; admission/blind/ladder Bash syntax PASS; ZIP integrity PASS. Blind fixtures are created after locked compile and use a different whole-work layout with additional learned substitutions.
+
+## Claims if the pending ladder passes
+
+Only advance:
+
+- `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS` in the exact learned-context, multi-source scope;
+- role-reversed/irrelevant/exact-source descriptions rejected in tested scope;
+- provenance-diverse summary hypothesis persistence/restart.
+
+Still FAIL until separate proof:
+
+- `AUTONOMOUS_SUMMARY_GENERATION=FAIL`
+- `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
-- `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
-- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
-- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`
-- `SEMANTIC_PARAPHRASE=FAIL`
-- `ZERO_SHOT_LOW_OVERLAP_PARAPHRASE=FAIL`
-- `BENIGN_UNGROUNDED_REORDER=FAIL`
-- semantic support/conflict/truth judgment: FAIL.
+- theme/direction/human-value induction;
+- multilingual narrative transfer;
+- semantic compression after source removal;
+- continual learning from compressed local memory;
+- general semantic support/conflict/truth judgment.
 
-## Next architecture target
+## Exact next dependency
 
-Build a native cross-source semantic-abstraction layer above the admitted whole-span synthesis memory. SIGMA, not the host, must compare raw alternate descriptions from independent sources against retained synthesis points, learn substitutions/equivalences from evidence, reject role-reversed/high-overlap false descriptions, require provenance diversity, and form a source-independent summary hypothesis only when native coverage is sufficient. An externally copied or host-labeled summary is not acceptable.
-
-Production remains untouched until later integration per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+Run `SIGMA_C5_C5V3_M5_CROSS_SOURCE_SUMMARY_LADDER_R1_BUNDLE.zip` on Oppo. Do not cut over production. If blind PASS, next dependency is internalization/revision of the provenance-backed hypothesis followed by a separate autonomous internal summary-generation/semantic-abstraction gate. If blind FAIL, fix the exact abstraction/provenance/configuration layer without weakening the evaluator.
