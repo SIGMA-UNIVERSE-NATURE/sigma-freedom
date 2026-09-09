@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T6A DNS/TCP/TLS/HTTP/HTTPS admission PASS.
+Updated: 2026-09-10 after genuine OPPO T6B Advanced HTTP / Flow Control admission PASS.
 
 ## Architecture routing
 
@@ -41,53 +41,61 @@ From this offline substrate lane:
 
 ## T6A — PASS
 
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-10_T6A_DNS_TCP_TLS_HTTP_HTTPS_PASS.md`
-
-Frozen OPPO artifact:
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T6A_DNS_TCP_TLS_HTTP_HTTPS_PASS.md`
 
 - source SHA256 `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
 - binary SHA256 `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
+
+Admitted: DNS resolution, bounded TCP exchange, TLS peer/trust + hostname verification, basic HTTP/HTTPS GET and response-body bound.
+
+## T6B — PASS
+
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T6B_ADVANCED_HTTP_FLOW_CONTROL_PASS.md`
+
+Frozen OPPO artifact:
+
+- source SHA256 `046ffe2aa2d9cc0b20fcd6a15b95d71485f69dd612f352f19d4dccc5e06aab5b`
+- binary SHA256 `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Admitted scope:
 
-- DNS resolution;
-- bounded TCP request/response exchange;
-- TLS peer/trust + hostname verification;
-- basic HTTP GET;
-- basic HTTPS GET;
-- response-body bound.
+- HTTP byte Range;
+- chunked transfer reception;
+- caller-bounded redirect policy;
+- ETag / If-None-Match;
+- If-Range;
+- timeout;
+- caller-bounded retry count/delay;
+- receive-rate cap;
+- slow-consumer backpressure;
+- response-body size bound.
 
 Evidence:
 
 - deterministic compile PASS;
 - source/binary freeze PASS;
 - high-entropy literal leak audit PASS;
-- dynamic loopback servers after freeze PASS;
-- dynamic localhost TLS certificate after freeze PASS;
-- directed cases `16`;
-- randomized-after-freeze cases `32`;
-- replay cases `2`;
-- total cases `50`;
-- native process invocations `52`;
+- dynamic loopback HTTP server after freeze PASS;
+- directed `16` + randomized-after-freeze `32` + replay `2` = `50` cases;
+- native process invocations `53`;
 - post-tool mechanical oracle PASS;
-- DNS/TCP/TLS/HTTP/HTTPS gates PASS;
-- counterfactual behavior change PASS;
+- Range/chunked/redirect/conditional/timeout/retry/rate/backpressure gates PASS;
+- retry counterfactual behavior PASS;
 - synthetic sandbox removed PASS;
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
 - `HOST_ENDPOINT_SELECTION=NO`;
+- `HOST_RETRY_POLICY_SELECTION=NO`;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`.
 
-No external Internet was used in T6A admission. Endpoint and URL selection remain caller-owned mechanical inputs.
+The Python loopback server emitted a connection-reset traceback during timeout/cancellation; it is not a native failure and all exact machine gates remained PASS.
 
 ## Current T6 state
 
 - `T6A_DNS_TCP_TLS_HTTP_HTTPS_ADMISSION=PASS`
-- `T6B_ADVANCED_HTTP_FLOW_CONTROL=PENDING`
+- `T6B_ADVANCED_HTTP_FLOW_CONTROL_ADMISSION=PASS`
 - `T6_COMBINED_COMPATIBILITY=PENDING`
 - `T6_FULL_LAYER=NOT_YET_ADMITTED`
 
@@ -100,17 +108,15 @@ Tool availability does not imply SIGMA cognitive adoption or autonomous tool sel
 - no expected-output literals in native tool implementation;
 - dynamic/high-entropy tests only after source/binary freeze;
 - expected values only in external mechanical oracles;
-- no host endpoint/relevance selection;
+- no host endpoint/retry/relevance selection;
 - no host semantic substitution;
 - no test cognition imported into SIGMA state;
 - claim never exceeds exact evidence.
 
 ## Exact next offline substrate sequence
 
-Immediate next gate: **T6B Advanced HTTP / Flow Control**.
+Immediate gate: exact **T6A+T6B combined compatibility**.
 
-Required: Range, chunked streaming, redirects, ETag/If-Range/conditional fetch, timeout, retry, rate limit and backpressure.
-
-Then exact T6A+T6B combined compatibility. Only a genuine combined PASS may advance `T6_FULL_LAYER=PASS`.
+Only a genuine combined PASS may advance `T6_FULL_LAYER=PASS`.
 
 After T6 full: `T7 -> T8 -> T9 -> T10 -> T11`.
