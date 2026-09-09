@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 (Asia/Ho_Chi_Minh)
+Updated: 2026-09-09 10:38 +07
 
 ## Production boundary
 
@@ -11,17 +11,46 @@ Updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
 
-## End-state target
+## Authoritative end-state
 
-`C5_M5/END_STATE_ACCEPTANCE.md` is authoritative: real Internet evidence, complete long-form reading, whole-work reasoning, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning. Intermediate structural PASS results are dependencies only.
+Read `END_STATE_ACCEPTANCE.md` and `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` before continuing. Final target remains real Internet acquisition, whole-work long-form understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence, continual learning, then isolated C5V3 automatic-runner graft/shadow/soak and explicit cutover only when authorized.
 
 ## Latest admitted capability
 
-`M5_NATIVE_GAP_EVIDENCE_REQUEST_R1`
+`M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`
 
-Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`.
+- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
+- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
+- Oppo execution ladder Stage 1: `RC=0`.
+- R2 therefore passed its full admission, including native request recomputation/authority, request gating, verbatim transport, native discriminating-evidence revision/revocation, bounded 64-record ledger/65th-result rejection, freeze and production-safety gates.
+- `MECHANICAL_TOOL_INVOCATION=PASS` in the exact tested opaque-provider scope.
 
-Retained admitted dependencies: clean neutral evidence/provenance persistence; provenance gap; exact-evidence cohort; scoped provenance gap; structural context hypothesis; relation-discrimination gap; native gap evidence request.
+Retained admitted dependencies include Cleanline R1, provenance gap, exact-evidence cohort, scoped provenance gap, context-structure hypothesis, relation-discrimination gap and native gap evidence request.
+
+## Current blind boundary state
+
+Original `M5_BLIND_HOST_SUBSTITUTION_R1` did not reach its intended semantic/trust challenge.
+
+Observed on Oppo:
+
+- forged correlated request rejection: PASS;
+- then `FAIL=GAP_A`, `RC=34`.
+
+Diagnosis: evaluator fixture bug. Its helper generated evidence IDs such as `EID_A_1` (7 characters), while target core generic `safe_atom` requires at least 8 characters. The first blind evidence record was rejected before relation-gap construction. This is not a SIGMA/core/transport failure and is not a blind PASS.
+
+Prepared correction: `M5_BLIND_HOST_SUBSTITUTION_R1H1`.
+
+- Target core/transport unchanged from admitted R2.
+- Auditor SHA256: `d807e3606bda51a2586dbccc5f4b458a4e797036018a8b2337d819cb1b55580d`.
+- Bundle SHA256: `716ba0f4ca1ed002e17ac2a1487aa7ad0cb7d753ab2ee866e3e01586206ee3ea`.
+- Only fixture IDs changed to valid-length `EID_BLIND_<case>_<n>` values.
+- No adversarial criterion was weakened.
+
+Prepared continuation ladder: `SIGMA_C5_C5V3_M5_24H_CONTINUATION_LADDER_R2_BUNDLE.zip`.
+
+- Runner SHA256: `84b68095bd3807c725f482ea55f67998f98e260a637b6f732c44cb14e8f32036`.
+- Bundle SHA256: `f5c9c99e38efc76a8fa64eac1f8c92fb08faea64bd4e714d622f168223d0f4b9`.
+- Resumes Stage 2H1 -> native gap search-query -> real Internet search-discovery and stops at first failure.
 
 ## Retained blind truth
 
@@ -32,13 +61,13 @@ Retained admitted dependencies: clean neutral evidence/provenance persistence; p
 - Learned-transform causality blind: `75/100`; spurious transform false induction FAIL; parent retired.
 - Context-grounded causality blind: `65/100`; grounded role-reversal false equivalence FAIL; parent retired.
 
-Retired assumptions: recurring permutation shape implies relation preservation; shared co-document context implies same relation; unordered sentence-coverage matching.
+Retired assumptions remain: recurring permutation shape implies relation preservation; shared co-document context implies same relation; unordered sentence-coverage matching.
 
 ## Current hard FAILs
 
 Until their own independent tests pass:
 
-- `MECHANICAL_TOOL_INVOCATION=FAIL`
+- `BLIND_HOST_SUBSTITUTION_BOUNDARY=FAIL` (corrected blind not yet run)
 - `REAL_INTERNET_ACQUISITION=FAIL`
 - `AUTONOMOUS_RESEARCH=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
@@ -53,64 +82,10 @@ Until their own independent tests pass:
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
-## Mechanical transport history
-
-R1 reached request gating/correlation/verbatim transport, irrelevant evidence, cross-gap isolation, persistence and restart, then `RC=72`; root cause was a harness live-request alias after legitimate native request revocation.
-
-R1H1 fixed that and additionally passed native discriminating-evidence revision plus revoked-request stopping provider invocation; it then reached `RC=83`; root cause was harness newline counting (`wc -l`) on a canonical 64-record ledger without required trailing newline.
-
-R1H2 fixes only the record-count oracle. No native bound was weakened.
-
-## Static trust-boundary defect found before blind
-
-Static audit of R1/R1H2 transport found that correlated request files alone were treated as authority. A host able to forge both output and request-state files could trigger the opaque provider without SIGMA recomputing the request from current gap state.
-
-Prepared replacement: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`.
-
-- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
-- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
-- Preflight SHA256: `399f5a901fbbe762938cbf30eeaf65acb8cf833fb92741c6108d6458fb0a1cdd`.
-- Bundle SHA256: `08293b98f13e695e83ef79e76ec5c079ed025c7b8a7c126de682cfed542eb4ad`.
-- R2 requires locked native SIGMA to recompute the exact request from current native gap state immediately before any provider call.
-- R2 retains the full R1H2 boundedness/revision/freeze gates.
-- Runtime admission: pending.
-
-Prepared independent blind: `M5_BLIND_HOST_SUBSTITUTION_R1`.
-
-- Auditor SHA256: `25d9ae0401d7784672c7f284a710876bb5a5b9875743a8307f3c775131281045`.
-- Bundle SHA256: `269c5edfeb610676b4131d20dadce766019bd4828cc560949bf45640ed516cc7`.
-- Tests forged correlated request, stale cross-gap request, raw protocol injection, irrelevant evidence and native-only revision.
-
-Prepared next dependency: `M5_NATIVE_GAP_SEARCH_QUERY_R1`.
-
-- Core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
-- Query bytes are generated inside SIGMA as verbatim serialization of the unresolved native gap pair.
-- Host expansion/rewriting remains forbidden.
-- Bundle SHA256: `300b87ba0357268d816d328d304ca500d1b5925929e7bbe645a8a454658dd428`.
-- Runtime admission: pending.
-
-Prepared real-network stage: `M5_REAL_INTERNET_SEARCH_DISCOVERY_R1`.
-
-- Same query core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
-- Fixed mechanical provider calls English Wikipedia MediaWiki search API using native query bytes.
-- Raw compact search-response bytes return to native SIGMA without host summary.
-- Provider SHA256: `cbab8e07a87009a1787f64a1179706e77fc72c72ab2848366b488a335534d3c3`.
-- Bundle SHA256: `5007bc3e80df1a158f45f9e3c711f0f383ba600907dbc7894e062fd80cffaf30`.
-- Runtime/network admission: pending.
-
-## Immediate execution artifact
-
-`SIGMA_C5_C5V3_M5_24H_EXECUTION_LADDER_R1_BUNDLE.zip`
-
-- Bundle SHA256: `87118eebdda1ee1af2d5bb247516905da26ded4f1ce60595c8da6e859fe32197`.
-- Runner SHA256: `c4c1780d57dc57357bc9d90e90faed04cee4e4bb384241cc9a3eb200f244ad69`.
-- Runs R2 -> blind host-substitution -> native query -> real Internet discovery.
-- Stops at first failure and preserves logs locally.
-
 ## Anti-hardcode state
 
 No token LEFT/RIGHT cognition, active Python cognition, host learning, host semantic substitution or fixed English grammar/semantic-role tables is admitted in the current lineage. Future semantic claims still require independent blind tests.
 
 ## Exact next dependency
 
-Run the immediate execution ladder. If stage 1 fails, fix that exact layer. Do not skip stages. If all four stages pass, the next architecture target is bounded transient long-form source streaming plus source-removal whole-work semantic-retention testing; do not return to optimizing isolated sentence fixtures as the main objective.
+Run `M5_24H_CONTINUATION_LADDER_R2`. If corrected Stage 2H1 PASSes, continue automatically to native query and real Internet discovery. If all continuation stages PASS, move immediately to full-source fetch, bounded long-form streaming, source-removal whole-work memory/reasoning, semantic compression, continual learning and multilingual tests; then follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for read-only sync, isolated graft, shadow, soak, promotion and explicit cutover.
