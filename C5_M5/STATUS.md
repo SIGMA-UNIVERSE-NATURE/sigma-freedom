@@ -53,32 +53,28 @@ Retired assumptions:
 
 ## Mechanical evidence-tool transport — current state
 
-Parent candidate: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1`
+Parent candidate core and transport remain unchanged through R1/R1H1/R1H2:
 
 - Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
 - Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Oppo runtime reached and passed:
-  - no request -> no tool;
-  - malformed request -> no tool;
-  - no host fallback query;
-  - native request-correlation rejection;
-  - valid native request triggers provider;
-  - request transport verbatim;
-  - raw evidence return verbatim;
-  - irrelevant evidence leaves native gap open;
-  - cross-gap transport isolation;
-  - persistent transport state;
-  - fresh restart transport recall.
-- R1 then stopped at `FAIL=DISCRIMINATING_REQUEST_NOT_VERBATIM`, `RC=72`.
-- Diagnosis: harness bug, not a native/core failure. The preflight compared provider capture against the live `out/native_evidence_request.txt` after discriminating evidence had correctly caused native SIGMA to revoke/clear that live request.
 
-Harness correction prepared: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H1`
+R1 runtime passed request gating/correlation/verbatim transport, irrelevant-evidence handling, cross-gap isolation, persistence and restart, then stopped at `FAIL=DISCRIMINATING_REQUEST_NOT_VERBATIM`, `RC=72`. Root cause was a harness live-file alias: the oracle compared provider capture to a native request file that SIGMA had legitimately revoked after discriminating evidence. No core/transport defect established.
+
+R1H1 fixed that oracle with an immutable request snapshot. Oppo runtime then additionally passed:
+
+- `RAW_EVIDENCE_NATIVE_REVISION=PASS`
+- `NATIVE_REQUEST_REVOKE_STOPS_TOOL=PASS`
+
+R1H1 stopped at `FAIL=BOUND_LEDGER_NOT_64`, `RC=83` before the 65th-tool-result gate. Root cause is another harness counting bug: `open_gap` successfully ingests 4 records and the filler loop successfully ingests 60 more, but the oracle used `wc -l`. The canonical ledger has no trailing newline, so 64 records contain 63 newline characters. Native core count semantics are record-based (`str_split`) and the 64 accepted ingests establish 64 records; R1H1 did not demonstrate a core boundedness failure.
+
+Current pending harness correction: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2`
 
 - Core SHA256 unchanged: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
 - Transport SHA256 unchanged: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Preflight SHA256: `f52f0c584e9edafa55eb2598bd4591b9a0d506df4c510eb054abb8b83bc2e00c`
-- Bundle SHA256: `5fa18729eb97473884da3ece2c8b5584da86e6e89155a6d812c123f2c41a2b25`
-- Change: freeze an immutable native-request snapshot before provider invocation and compare provider capture to that frozen snapshot after native consumption/revocation.
+- Preflight SHA256: `769b2caffd0791faf4b81ce1bc72f4cf3898dcf7d60266d0473a51a68f0e5617`
+- Bundle SHA256: `df950ba9f07762d816f4eb7b399fb3f2b215d839fa10028f1f1e6c0e4c0bcf27`
+- Harness change only: replace newline count (`wc -l`) with record count (`awk NR`) for the two boundedness post-hoc assertions.
+- Native 65th-record rejection requirement remains unchanged.
 - Admission criteria weakened: NO.
 - Oppo locked runtime admission: pending.
 
@@ -88,4 +84,4 @@ Current admitted lineage repeatedly passes gates for token LEFT/RIGHT cognition 
 
 ## Exact next dependency
 
-Run `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H1` on Oppo. Do not promote mechanical tool invocation until the corrected harness reaches the final admission PASS. Even after that, keep real Internet acquisition, autonomous research, semantic paraphrase, and truth/support/conflict capabilities FAIL until separately tested.
+Run `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2` on Oppo. Do not promote mechanical tool invocation until the corrected harness reaches final admission PASS. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, semantic paraphrase, and truth/support/conflict capabilities FAIL until separate blind/admission tests.
