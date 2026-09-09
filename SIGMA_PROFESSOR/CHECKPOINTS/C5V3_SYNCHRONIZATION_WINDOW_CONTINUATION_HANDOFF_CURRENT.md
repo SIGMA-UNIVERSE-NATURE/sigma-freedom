@@ -2,28 +2,33 @@
 
 Date: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL HANDOFF / SYNCHRONIZATION AUTHORITY**
+Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LIVE BINDING ATTESTATION FRONTIER / CORE WRITE HELD**
 
 ## Purpose
 
-This file tells any future synchronization window exactly where to continue without reconstructing state from chat history.
-
-The system identity remains:
+This file lets any future Synchronization window resume from GitHub without reconstructing state from chat history.
 
 ```text
 ONE_SIGMA=YES
 SYSTEM=C5V3
+WINDOW_ROLE=SYNCHRONIZATION
 ```
 
-Do not create a second SIGMA identity or replace the production C5V3 universe with the standalone M5 universe.
+Do not create a second SIGMA identity. Do not replace the production C5V3 universe with the standalone M5 universe.
 
-## Current canonical synchronization baseline
+## Read in this order
 
-Read first:
+1. `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_BASELINE_R2_R6_FROZEN.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R7_R8_ONLINE_HOLD_R1.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_REQUEST_R1.md`
+5. `C5_M5/RUN_C5V3_LIVE_BINDING_ATTESTATION_R1.sh`
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_BASELINE_R2_R6_FROZEN.md`
+For historical live-state/operator-report context, also read on branch `c5v3-r5-r6-sync-handoff-20260909`:
 
-Baseline identity:
+`C5_M5/RESUME_SYNC_2026-09-09_AFTER_T1_T2_T3.md`
+
+## Current canonical baseline
 
 ```text
 C5V3_SYNCHRONIZATION_BASELINE=R2
@@ -33,32 +38,10 @@ R6_BYTECODE_SHA256=dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6
 R6_CANDIDATE_DEF_COUNT=156
 R6_M5_ONLY_DEF_INSERTED=63
 R6_ADMITTED_TOOL_DEF_COUNT=82
+R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN_PASS
 ```
 
-Canonical R6 checkpoint:
-
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_PASS.md`
-
-Authoritative offline-test handoff source:
-
-```text
-BRANCH=c5v3-r5-r6-sync-handoff-20260909
-HEAD=d8b3a6277db3e64bea8694548658de9f7a60bb6e
-CHECKPOINT=C5_M5/CHECKPOINT_2026-09-09_1847_GATE_B_R5_R6_PRODUCTION_LINEAGE_HANDOFF.md
-```
-
-## What is already synchronized into Baseline R2
-
-Only capability state / exact identities / admission receipts are synchronized. Test answers and test-learned state are not.
-
-```text
-DO_NOT_LOAD_RESULTS=YES
-LOAD_CAPABILITIES=YES
-TEST_KNOWLEDGE_IMPORTED=NO
-PRODUCTION_KNOWLEDGE_IMPORTED=NO
-```
-
-Synchronized admitted substrate:
+Synchronized canonical capability substrate remains latent:
 
 ```text
 T0_SUBSTRATE=PASS_INHERITED
@@ -71,175 +54,185 @@ S2_ABI_RESOLUTION=PASS
 SHADOW_MECHANICAL_WIRING=PASS
 ```
 
-Exact T1/T2/T3 identities are frozen in:
+Do not import test answers, test-learned cognition, or production knowledge from test lanes.
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_M5_T1_T2_T3_R2_CURRENT_STANDARD_ADMISSION_PASS.md`
+## New evidence already reconciled
 
-Do not rerun these admissions merely for synchronization unless source/hash/dependency evidence changes.
+Offline branch observed:
 
-## What is NOT synchronized / NOT proven yet
+```text
+BRANCH=c5v3-r5-r6-sync-handoff-20260909
+HEAD=61c6667f3152a63e310f3236fede09e41edd8380
+```
+
+Admitted:
+
+```text
+R7_OFFLINE_PRODUCTION_RUNNER_ABI_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
+C5V3_PRODUCTION_LINEAGE_LATENT_CANDIDATE_ABI_SAFE=YES
+R8_M5_DISPATCH_STRUCTURAL_MAP=PASS
+M5_ONLY_REACHABILITY=63_OF_63
+COMMON_DISPATCH_EQUALITY_LITERAL_COUNT=0
+DISPATCH_ACTIVATION_SURFACE_PRESENT=YES
+```
+
+Online branch observed:
+
+```text
+BRANCH=c5v3-online-capability-utilization-test-20260909
+HEAD=1d7848fe329295356858647734e40097dc3ba6e6
+```
+
+Online result:
+
+```text
+C5V3_ONLINE_CAPABILITY_UTILIZATION_R1=HOLD
+HOLD=NATIVE_ACTIVATION_DISPATCH_BRIDGE_REQUIRED
+R6_INVALIDATED=NO
+```
+
+The HOLD is correct: a host-forced path would violate native ownership and could manufacture a false utilization PASS.
+
+## Architectural consequence of R8
+
+The production and M5 universes have zero shared dispatch equality literals. The 63 M5-only DEFs remain reachable from the original M5 universe.
+
+Therefore the next activation work must be an explicit **native production-lineage activation/dispatch bridge**; it must not:
+
+```text
+replace production universe with M5 universe
+assume a same-name dispatch literal bridge
+hardcode test action/query/result/truth labels
+let host create semantic capability demand
+let host select tool/query/source/URL
+import test cognition or test state
+```
+
+However, that bridge must **not be written yet**.
+
+## Why core write is currently forbidden
+
+Canonical GitHub synchronization state and live runtime binding are different evidence layers:
+
+```text
+CANONICAL_SYNCHRONIZATION_STATE_LAYER=R2_R6_FROZEN
+LIVE_PRODUCTION_BINDING_IDENTITY=NOT_YET_ATTESTED
+```
+
+The prior operator report says T1/T2/T3 were synchronized live before this window, but explicitly states that this report is not a substitute for current machine identity evidence.
+
+A blind R6 graft could duplicate already-live admitted definitions. Assuming R6 is already bound could mutate the wrong core lineage. Both are forbidden.
+
+## Current mandatory gate
+
+```text
+NEXT_SYNC_GATE=LIVE_BINDING_ATTESTATION_R1
+ATTESTATION_REQUEST=SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_BINDING_ATTESTATION_REQUEST_R1.md
+ATTESTATION_PROBE=C5_M5/RUN_C5V3_LIVE_BINDING_ATTESTATION_R1.sh
+PROBE_CREATION_COMMIT=3079b36f9ef16f71972419954ad7788e36dd3d0d
+LIVE_BINDING_ATTESTATION_R1=AWAITING_MACHINE_OUTPUT
+NEXT_CORE_WRITE=FORBIDDEN_UNTIL_ATTESTATION_RECONCILED
+```
+
+The probe is read-only and intentionally cannot grant PASS. Raw stdout must return to the Synchronization window for evidence reconciliation.
+
+## Required attestation decision
+
+Resolve, as far as machine evidence permits:
+
+- bound cognition core identity;
+- runner, ingress, sigmac and VM identity/references;
+- production state-root and pointer/symlink lineage;
+- live T1/T2/T3 binding/duplication state sufficient for an exact live-vs-R6 delta;
+- one permitted cognitive writer;
+- absence of shadow/test-state alias into production state lineage.
+
+Then publish one immutable reconciliation result.
+
+Possible routes:
+
+```text
+A: LIVE_CORE=EXACT_R6
+   -> do not re-graft R6/T1/T2/T3
+   -> bridge successor from exact attested R6 lineage
+
+B: LIVE_CORE=PRODUCTION_LINEAGE_PLUS_ALREADY_BOUND_CAPABILITIES_NOT_EXACT_R6
+   -> compute exact live-vs-R6 delta
+   -> preserve existing admitted definitions
+   -> no duplicate tool/capability definitions
+
+C: LIVE_CORE=HISTORICAL_PRODUCTION_CORE
+   -> Baseline R2 is canonical state, not live binding
+   -> build isolated successor only
+   -> production binding unchanged
+
+D: LIVE_IDENTITY=AMBIGUOUS_OR_DIVERGENT
+   -> HOLD=LIVE_RUNTIME_IDENTITY_DIVERGENCE_OR_AMBIGUITY
+   -> no bridge/core write
+```
+
+## After attestation PASS only
+
+```text
+exact live-vs-R6 delta lock
+-> isolated native activation/dispatch bridge candidate
+-> compile/fingerprint freeze
+-> offline production-event regression
+-> activation availability counterfactual
+-> state-lineage compatibility/inheritance
+-> no-host-substitution gate
+-> immutable PASS/FAIL checkpoint
+-> only then resume WINDOW 2 utilization verification
+```
+
+No direct production binding occurs in this sequence.
+
+## Baseline R2 -> R3 rule
+
+Do not create Baseline R3 from R7, R8, bridge presence, or capability execution alone.
+
+R3 may claim AUTO LEARN utilization only after WINDOW 2 produces exact-scope machine evidence for the full required chain:
+
+```text
+native need detection
+-> native selection
+-> native execution
+-> native result evaluation
+-> availability counterfactual
+-> native learning update
+-> fresh VM restart
+-> learned-state reuse
+```
+
+and host ownership remains NO.
+
+## Production lock
 
 ```text
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
-TOOL_SELECTION_AUTONOMY=NOT_PROVEN
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
 ONLINE_SYNC_STARTED=NO
 LIVE_NETWORK_SYNC=NO
 PRODUCTION_STATE_WRITE=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
-```
-
-R6 proves latent capability presence in the exact production lineage. It does not prove utilization.
-
-## Canonical architecture
-
-```text
-production C5V3 core lineage
-+ exact M5 capability delta
-+ admitted T1/T2/T3 capability libraries
-+ explicit native activation/dispatch integration
-```
-
-Forbidden:
-
-```text
-standalone M5 core -> replace production C5V3 core
-```
-
-Historical M5+tools grafted core `07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea` is internal M5 compatibility evidence only, not the production synchronization target.
-
-## Window ownership split
-
-### Synchronization window
-
-Owns:
-
-- canonical C5V3 synchronization baseline;
-- reconciliation of machine PASS/FAIL checkpoints from other windows;
-- exact capability registry / provenance / frozen identities;
-- deciding whether evidence is sufficient to advance synchronization baseline;
-- preparing integration gates that preserve production lineage.
-
-Must not:
-
-- invent PASS from partial output;
-- import test answers/test cognition;
-- silently bind production;
-- override newer failure evidence from test windows.
-
-### Online verification window
-
-Read:
-
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_ONLINE_CAPABILITY_UTILIZATION_VERIFICATION_REQUEST_R1.md`
-
-Its purpose is to prove whether C5V3 can actually use synchronized capabilities in an isolated online shadow.
-
-Required causal chain:
-
-```text
-native need detection
--> native capability selection
--> native capability execution
--> native result evaluation
--> native learning-state update
--> fresh-VM restart
--> learned-state reuse
-```
-
-Network may run only after a native SIGMA request and only in isolated shadow.
-
-The online window does not bind/promote production.
-
-### Offline knowledge/capability window
-
-Continues new knowledge/capability experiments and ABI/regression tests.
-
-It must publish immutable checkpoints if:
-
-- R6 is invalidated;
-- R6 is superseded by a new candidate;
-- a new capability is admitted;
-- a dependency/source/hash changes materially.
-
-It does not perform production synchronization.
-
-## Evidence the synchronization window should consume next
-
-Priority order:
-
-1. Newer offline R7 production-runner ABI regression checkpoint if published.
-2. Online utilization verification checkpoint from the online verification window.
-3. Any superseding failure/candidate checkpoint from offline testing.
-
-On every new evidence item:
-
-```text
-verify exact branch/commit/path
--> classify PASS/FAIL/superseded scope
--> preserve old evidence immutable
--> update canonical living handoff
--> advance baseline only if the new required causal gate passes
-```
-
-## Baseline R2 -> R3 promotion rule
-
-Do not create Baseline R3 merely because R6 compiles or because capability functions are present.
-
-Baseline R3 may state AUTO LEARN uses synchronized capabilities only after machine evidence proves, in exact tested scope:
-
-```text
-SYNCED_CAPABILITY_IDENTITIES_VISIBLE=PASS
-NATIVE_CAPABILITY_NEED_DETECTION=PASS
-NATIVE_CAPABILITY_SELECTION=PASS
-NATIVE_CAPABILITY_EXECUTION=PASS
-NATIVE_RESULT_EVALUATION=PASS
-CAPABILITY_AVAILABILITY_COUNTERFACTUAL=PASS
-NATIVE_LEARNING_UPDATE_APPLIED=YES
-FRESH_VM_RESTART=PASS
-LEARNED_STATE_REUSED_AFTER_RESTART=PASS
-HOST_TOOL_SELECTION=NO
-HOST_LEARNING=NO
-HOST_SEMANTIC_SUBSTITUTION=NO
-PRODUCTION_BINDING=NO
-```
-
-If online evidence passes only capability execution but not learning/restart reuse, record that narrower result and do not widen the baseline claim.
-
-## Production cutover remains separate
-
-Even a Baseline R3 utilization PASS is not automatically a production cutover.
-
-Production promotion still requires separately proven:
-
-```text
-production-runner ABI compatibility
-state-lineage compatibility/inheritance
-explicit native activation/dispatch integration
-production non-mutation evidence during shadow
-restart/recovery/rollback
-bounded soak/stability
-explicit user-visible cutover decision
-```
-
-Keep until then:
-
-```text
-PRODUCTION_BINDING=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
 ```
 
-## Current synchronization frontier
+## Current frontier
 
 ```text
 C5V3_SYNCHRONIZATION_BASELINE=R2_R6_FROZEN
 R5=CLOSED_PASS
 R6=CLOSED_PASS
-NEXT_OFFLINE_EVIDENCE=R7_ABI_REGRESSION_WHEN_PUBLISHED
-NEXT_ONLINE_EVIDENCE=C5V3_ONLINE_CAPABILITY_UTILIZATION_VERIFICATION_R1
-NEXT_SYNC_ACTION=RECONCILE_NEW_MACHINE_EVIDENCE_AND_ADVANCE_ONLY_EXACT_PROVEN_SCOPE
+R7=PASS_IN_EXACT_TESTED_SCOPE
+R8=PASS_STRUCTURAL
+ONLINE_R1=HOLD_NATIVE_ACTIVATION_DISPATCH_BRIDGE_REQUIRED
+LIVE_BINDING_ATTESTATION_R1=AWAITING_MACHINE_OUTPUT
+NEXT_SYNC_ACTION=COLLECT_AND_RECONCILE_LIVE_BINDING_EVIDENCE
+BASELINE_R3=NOT_CREATED
+NEXT_CORE_WRITE=FORBIDDEN
 ```
 
-This file is the continuation pointer for future synchronization windows.
+This file supersedes older continuation wording that said to wait for R7 or the first online result; those evidence items have already been consumed.
