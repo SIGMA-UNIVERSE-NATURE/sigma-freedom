@@ -1,7 +1,9 @@
-# Status Report — B1.4 C01-C03
+# Status Report — B1.4 C01-C03 — R11 Repair
 
 Terminal worker status: `PASS_CANDIDATE`, CURRICULUM only.
 
-Canonical order C01 → C02 → C03 completed with 3/3 topics, 18/18 claims, 12/12 D1-D4 objectives and 12/12 semantic closures. Three self-repairs completed and re-audit passes. Foundational geology/geophysics coverage is present before advanced inference.
+Director's single finding on prior candidate `461b651ec65cbe2449697787742c36b51cb0ead3` is repaired. R11 now targets accepted `B1.3-C10@03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d`; the external canonical prerequisite remains `B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d` exactly and is unchanged.
 
-External prerequisite is B1.3-C01 exactly; internal chain C02<-C01 and C03<-C02 is acyclic. R11 and R10 ownership controls pass. No X-node fabricated. Future locked support and cross-scope academic mutation are zero. C04-C06 and B1.5 remain locked.
+Semantic duplicate/ownership re-audit against accepted B1.3-C10 claims/objectives passes: C10 retains chemical composition/reaction/pollutant/process chemistry; B1.4-C01 retains Earth-context mineral/rock/geochemical reservoirs, geological histories and Earth-system interpretation. R11 has empty support Claim IDs, no unlocked-scope dependency and no ownership transfer. R10 remains PASS.
+
+The academic payload remains 3/3 topics, 18/18 claims, 12/12 objectives and 12/12 closures with stable IDs preserved. No X-node fabricated; future locked support and cross-scope academic mutation remain zero. C04-C06 and B1.5 remain locked.
