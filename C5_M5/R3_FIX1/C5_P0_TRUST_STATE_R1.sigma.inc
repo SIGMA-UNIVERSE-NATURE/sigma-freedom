@@ -184,18 +184,13 @@ DEF p0_state_snapshot_valid(snapshot) {
     RETURN 1;
 }
 
-DEF p0_receipt_common_valid(
+DEF p0_receipt_envelope_shape_valid(
     invocation_id,
     event_type,
     expected_phase,
     parent_state_sha,
     action_id,
-    receipt_kind,
-    receipt_invocation_id,
-    receipt_event_type,
-    receipt_phase,
-    receipt_parent_state_sha,
-    receipt_action_id
+    receipt_kind
 ) {
     IF (p0_safe_atom(invocation_id, 128) == 0) { RETURN 0; }
     IF (p0_event_valid(event_type) == 0) { RETURN 0; }
@@ -203,12 +198,6 @@ DEF p0_receipt_common_valid(
     IF (p0_hex64(parent_state_sha) == 0) { RETURN 0; }
     IF (p0_none_or_atom(action_id, 128) == 0) { RETURN 0; }
     IF (p0_receipt_kind_valid(receipt_kind) == 0) { RETURN 0; }
-
-    IF (receipt_invocation_id != invocation_id) { RETURN 0; }
-    IF (receipt_event_type != event_type) { RETURN 0; }
-    IF (receipt_phase != expected_phase) { RETURN 0; }
-    IF (receipt_parent_state_sha != parent_state_sha) { RETURN 0; }
-    IF (receipt_action_id != action_id) { RETURN 0; }
     RETURN 1;
 }
 
