@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP-20260909-B1_4-C01-C03-ACCEPT-C04-C06-OPEN",
+  "window_id":"DIRECTOR-W01",
+  "stage":"CURRICULUM",
+  "decision":"DIRECTOR_OPEN_SUCCESSOR_C04_C06",
+  "predecessor_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03",
+  "predecessor_accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c",
+  "predecessor_director_checkpoint_commit":"5f4f312891af641a7c915cefc51b4a83aa4647e9",
+  "predecessor_post_acceptance_sentinel":{"status":"TREE_ALIGNMENT_PASS","status_commit_sha":"03633e0b32ab1323c9a89e27bf70ad273f921027"},
+  "opened_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06",
+  "opened_scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],
+  "owner":"W46",
+  "execution_branch":"hka-tree/c01-w05-earth-universe-c04-c06",
+  "canonical_topics":["B1.4-C04-T01 — Kiến tạo mảng","B1.4-C05-T01 — Núi lửa và động đất","B1.4-C06-T01 — Trầm tích và lịch sử địa chất"],
+  "canonical_prerequisite_graph":{"B1.4-C04":["B1.4-C02@112de1e6f123330ad49b1e8b2bba15b96fd8182c","B1.4-C03@112de1e6f123330ad49b1e8b2bba15b96fd8182c"],"B1.4-C05":["B1.4-C04@IN_WINDOW"],"B1.4-C06":["B1.4-C01@112de1e6f123330ad49b1e8b2bba15b96fd8182c","B1.4-C04@IN_WINDOW","B1.4-C05@IN_WINDOW"]},
+  "mandatory_cross_domain_links":[],
+  "explicit_overlap_risk_ids":[],
+  "locks":{"C07_C09_unlock":false,"later_B1_4_children_unlock":false,"B1_4_family_exit_unlock":false,"B1_5_unlock":false,"post_CURRICULUM":false},
+  "next_action":"Worker W46 may author C04-C06 only after branch bootstrap and authoritative GPT_EXECUTION_PROMPT are durable.",
+  "red_flag":"NONE",
+  "updated_at":"2026-09-09T12:30:00+07:00"
+}
