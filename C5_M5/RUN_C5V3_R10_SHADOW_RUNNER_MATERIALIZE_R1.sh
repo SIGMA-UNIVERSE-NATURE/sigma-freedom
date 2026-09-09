@@ -67,8 +67,11 @@ require_hash() {
   printf '%s_IDENTITY=PASS\n' "$label"
 }
 
-extract_assign() {
+# Assign into a caller variable without command substitution, so hold() exits the
+# parent script rather than a command-substitution subshell.
+extract_assign_into() {
   var="$1"
+  outvar="$2"
   count=$(grep -Ec "^${var}=" "$LIVE_RUNNER" 2>/dev/null || true)
   [ "$count" -eq 1 ] || hold "RUNNER_${var}_ASSIGNMENT_COUNT_${count}"
   raw=$(grep -E "^${var}=" "$LIVE_RUNNER" | head -n 1)
@@ -77,7 +80,7 @@ extract_assign() {
     \"*\") raw=${raw#\"}; raw=${raw%\"} ;;
     \'*\') raw=${raw#\'}; raw=${raw%\'} ;;
   esac
-  printf '%s' "$raw"
+  printf -v "$outvar" '%s' "$raw"
 }
 
 stage_copy_exact() {
@@ -126,10 +129,14 @@ require_hash LIVE_REVIEW_SOURCE "$LIVE_REVIEW_SOURCE" "$EXPECTED_LIVE_REVIEW_SOU
 require_hash LIVE_REVIEW_BYTECODE "$LIVE_REVIEW_BYTECODE" "$EXPECTED_LIVE_REVIEW_BYTECODE_SHA256"
 
 printf '%s\n' '=== 2. RUNNER-LOCKED DEPENDENCY IDENTITIES ==='
-RUNNER_EXPECTED_NATIVE_SOURCE=$(extract_assign EXPECTED_NATIVE_SOURCE)
-RUNNER_EXPECTED_BRIDGE=$(extract_assign EXPECTED_MECHANICAL_BRIDGE)
-RUNNER_EXPECTED_REVIEW_SOURCE=$(extract_assign EXPECTED_REVIEW_SOURCE)
-RUNNER_EXPECTED_REVIEW_BRIDGE=$(extract_assign EXPECTED_REVIEW_BRIDGE)
+RUNNER_EXPECTED_NATIVE_SOURCE=''
+RUNNER_EXPECTED_BRIDGE=''
+RUNNER_EXPECTED_REVIEW_SOURCE=''
+RUNNER_EXPECTED_REVIEW_BRIDGE=''
+extract_assign_into EXPECTED_NATIVE_SOURCE RUNNER_EXPECTED_NATIVE_SOURCE
+extract_assign_into EXPECTED_MECHANICAL_BRIDGE RUNNER_EXPECTED_BRIDGE
+extract_assign_into EXPECTED_REVIEW_SOURCE RUNNER_EXPECTED_REVIEW_SOURCE
+extract_assign_into EXPECTED_REVIEW_BRIDGE RUNNER_EXPECTED_REVIEW_BRIDGE
 
 printf 'RUNNER_EXPECTED_NATIVE_SOURCE=%s\n' "$RUNNER_EXPECTED_NATIVE_SOURCE"
 printf 'RUNNER_EXPECTED_MECHANICAL_BRIDGE=%s\n' "$RUNNER_EXPECTED_BRIDGE"
