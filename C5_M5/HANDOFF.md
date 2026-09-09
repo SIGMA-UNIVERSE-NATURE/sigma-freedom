@@ -4,12 +4,29 @@ Read in order:
 
 1. `C5_M5/MISSION.md`
 2. `C5_M5/END_STATE_ACCEPTANCE.md`
-3. `C5_M5/C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`
-4. `C5_M5/STATUS.md`
-5. `C5_M5/CHECKPOINTS.md`
-6. this file
+3. `C5_M5/TWO_GATE_ARCHITECTURE.md`
+4. `C5_M5/NATIVE_TOOL_RUNTIME_ARCHITECTURE.md`
+5. `C5_M5/C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`
+6. `C5_M5/STATUS.md`
+7. `C5_M5/CHECKPOINTS.md`
+8. `C5_M5/CONTINUAL_R1_STATIC_AUDIT_AND_R1H1.md`
+9. this file
 
-## Current admitted chain
+## Authoritative routing — two separate gates
+
+### Gate A — M5 TEST
+
+`cognition/memory capability -> continual learning -> revision/support/conflict -> new independent blind tests`
+
+Gate A owns semantic/cognition claim admission. Tool/runtime operational PASS cannot waive a cognition FAIL.
+
+### Gate B — C5 <-> C5V3/M5 synchronization + native tool substrate
+
+`read-only synchronization -> tool substrate -> VM/native library/mechanical ABI -> tool-boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover`
+
+Gate B may run in parallel. Generic tools should preferentially live inside the SIGMA native runtime. Semantic capability claims still return to Gate A blind tests.
+
+## Current admitted Gate A chain
 
 Mechanical transport R2 PASS; blind host-substitution PASS; native search-query PASS; real Internet search discovery PASS; real full-source stream PASS; whole-work structural memory PASS; novelty bridge PASS; whole-span synthesis PASS; cross-source summary hypothesis PASS; summary memory compaction PASS; self-contained compact semantic memory PASS with independent blind `100/100`.
 
@@ -19,83 +36,48 @@ Latest admitted core:
 
 Production binding remains NO.
 
-## Latest blind truth
+## Current Gate A execution artifact — R1H1
 
-Self-Contained Compact Semantic Memory R1:
+Run **R1H1**, not the older Continual R1 evaluator:
 
-- compact equivalence internalization PASS;
-- raw equivalence ledger removed PASS;
-- never-stored mixed learned paraphrase supported with raw ledger empty PASS;
-- role reversal rejected PASS;
-- irrelevant query rejected PASS;
-- restart PASS and raw ledger did not reappear;
-- `SELF_CONTAINED_SEMANTIC_COMPRESSION=PASS` in exact learned-context/cross-source compact-memory scope;
-- score `100/100`;
-- grade `SELF_CONTAINED_COMPACT_SEMANTIC_MEMORY_IN_TESTED_SCOPE`.
+`SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1H1_BUNDLE.zip`
 
-Still FAIL: autonomous summary generation, zero-shot low-overlap summary, broad whole-work understanding, theme/value induction and multilingual transfer.
+R1H1 is evaluator hardening only. Cognition core remains byte-identical:
 
-## Exact next execution artifact
+- core: `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
+- admission evaluator: `a64502677eb2b61965e0622330b75b778fea9173ba3688ce0b99bed0b3affe83`
+- independent blind evaluator: `c17c40d8204b9fdf8db85479c0c9a747696270d2127e231840d972d9edaa0b9b`
+- ladder runner: `ddf5e3100fece65392b46e56557fe8567c60b84c1c67e47756fb483a6d559b62`
+- ladder bundle: `30eb8ac1f53860576e938fcaa0ea118ed5d8163f813d64b3cc58bc0338b899ca`
 
-Run:
+### Why R1H1 exists
 
-`SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1_BUNDLE.zip`
+The old R1 non-interference gate hashed Work A's recall output before/after learning Work B. R1H1 additionally snapshots and byte-compares the exact archived Work A bank block before/after B. Both SHA equality and `cmp -s` equality are mandatory. No cognition criterion is relaxed.
 
-Hashes:
+Required continual gates include:
 
-- candidate core: `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
-- admission preflight: `36c6bba08c2d92853721dfe1e40bb9e2f373573e68d671c875bc73e941950426`
-- independent blind auditor: `883f47c435a21a10054caa9a99662bb8da0a9aa249f9c9e277998ce067a56f14`
-- ladder runner: `71aeba4b75cdac43b30983fa632f967dbd753e3f45d1a23c48d84fdf209f33f8`
-- candidate bundle: `2421af621e03f11d27a36e246cf087d6828c6214abf08ae8ccb049c8bad62423`
-- blind bundle: `d9cbc5c28a68b88fe4a8f9dfd4c208fc883d1c08cf7edddcb279f345b56fe714`
-- ladder bundle: `7523192b65c43aab95c1844fa7fa579a8342c91daf8b90c8359ad1c4387aec1d`
+- Work A self-contained archive;
+- exact Work A archive-block byte stability after Work B;
+- Work A semantic recall after B;
+- Work B semantic recall;
+- A/B cross-work isolation;
+- role-reversal rejection;
+- raw A/B whole spans absent from compact bank;
+- compact bank smaller than raw works;
+- multi-work restart.
 
-## Candidate behavior
+Only after admission + blind PASS may:
 
-The native core adds a bounded local compact-work memory bank. A work can be archived only after it has a detached self-contained compact semantic memory and the raw equivalence ledger is empty. Archiving clears the active whole-work/source/equivalence state before the next work begins.
+`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS`
 
-The admission and independent blind execute:
+advance in the exact tested two-work/self-contained compact-memory scope.
 
-`Work A -> self-contained compact -> archive A -> clear active A -> learn Work B -> self-contained compact -> archive B -> query A and B -> restart -> both intact`.
+## Next Gate A dependency after continual PASS
 
-Required gates:
+Build and blind-test native revision/support/conflict. Do not pre-credit it from current no-support/role-reversal rejection behavior. Explicit support, explicit conflict, and evidence-driven revision must each have their own native state/actions and adversarial blind gates.
 
-- Work A local archive PASS;
-- Work A memory byte-for-byte stable after learning Work B;
-- Work A semantic query still PASS after B;
-- Work B semantic query PASS;
-- A-query against B and B-query against A rejected;
-- role reversal rejected for both archived memories;
-- raw whole-work spans A/B absent from bank;
-- bank materially smaller than combined raw works;
-- restart preserves A/B;
-- production artifacts unchanged.
+Still FAIL until separate proof: autonomous free-form summary generation; zero-shot low-overlap summary; broad whole-work narrative understanding; theme/direction/human-value induction; multilingual transfer; open-ended lifelong capacity; broad semantic support/conflict/truth judgment.
 
-The bank is bounded to four work entries in this candidate; only two-work continual learning is tested. Do not call this unbounded lifelong capacity.
+## Gate B boundary
 
-Core host operations are mechanical only: `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`. No host model/LLM summary, no host semantic label, no active Python cognition, no token LEFT/RIGHT or previous/next meaning, no grammar-role table.
-
-## Claims if PASS
-
-Advance only:
-
-`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the exact tested two-work/self-contained compact-memory scope.
-
-Still FAIL:
-
-- autonomous free-form summary generation;
-- zero-shot low-overlap summary;
-- broad whole-work narrative understanding;
-- theme/direction/human-value induction;
-- multilingual narrative transfer;
-- unbounded lifelong memory beyond tested bank capacity;
-- broad semantic truth/support/conflict judgment.
-
-## Later C5V3 route
-
-After the remaining required cognition/memory gates pass:
-
-`read-only ABI/state synchronization -> isolated successor graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback retained`.
-
-Never hot-patch production during candidate admission.
+Gate B may independently proceed with synchronization, SIGMA-native tool ABI, sigma-vm/native library work, boundary regression and S1/S2/S3. Production remains read-only until the shared convergence/promotion gate and explicit cutover authorization.
