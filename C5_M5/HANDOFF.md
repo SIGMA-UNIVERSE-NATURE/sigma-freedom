@@ -297,3 +297,44 @@ Full T4 remains pending:
 `T4A PASS -> T4B PENDING -> T4C PENDING -> T4 COMBINED PENDING`.
 
 Offline tool lane continues independently through `T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`; separate online synchronization may consume admitted checkpoints without blocking this lane.
+
+---
+
+## Gate B tool-substrate lane — T4B PASS — 2026-09-09
+
+Authoritative checkpoint:
+
+`C5_M5/CHECKPOINT_2026-09-09_T4B_NATIVE_JSON_CSV_URL_MIME_PASS.md`
+
+Exact OPPO-admitted artifact:
+
+- source SHA256 `31a89e66943d8e0489c9c2df65331bb60bc6a8e326e0bcb338e2adb7a15f93d6`;
+- native binary SHA256 `5452a7c89b8107dc6b51714b4d97639683683e42dd7e975a93fea990e3924d47`;
+- compiler `/data/data/com.termux/files/usr/bin/clang++`.
+
+Admitted T4B scope only:
+
+- strict bounded JSON validation;
+- JSON whitespace minification preserving token/member order;
+- bounded CSV parsing;
+- deterministic CSV CRLF normalization;
+- URL percent encode/decode;
+- absolute hierarchical URL component parsing;
+- MIME `Content-Type` media type/subtype + parameter parsing.
+
+Current-standard evidence: `16` directed + `32` randomized after freeze + `2` replay = `50` native tool invocations; deterministic compile, source/binary freeze, high-entropy leak audit, 8 KiB resource-bound probe and post-tool mechanical oracle all PASS.
+
+Anti-hardcoding boundary:
+
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+
+This admits mechanical parsing/codec capability only. It does not teach SIGMA what content means, which URL is relevant, which MIME parameter matters, or when a tool should be selected.
+
+Full T4 remains pending:
+
+`T4A PASS -> T4B PASS -> T4C PENDING -> T4 COMBINED PENDING`.
+
+Next offline substrate step: T4C XML/HTML + Unicode normalization views, preserving raw evidence. Separate online synchronization may consume T4A/T4B checkpoints independently.
