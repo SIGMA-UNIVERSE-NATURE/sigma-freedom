@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T7 FULL combined scheduler/resource PASS.
+Updated: 2026-09-10 after genuine OPPO T8B Capability Sandbox / Crash Recovery PASS.
 
 ## Operating split
 
@@ -16,72 +16,100 @@ Updated: 2026-09-10 after genuine OPPO T7 FULL combined scheduler/resource PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
 - `T6_FULL_LAYER=PASS`.
+- `T7_FULL_LAYER=PASS`.
 
-### T7 FULL — PASS
+### T8A — behavioral PASS, artifact publication pending fingerprint recovery
+
+OPPO behavioral evidence already passed:
+
+- `fork + execv(argv[])`;
+- caller cwd;
+- bounded stdin/stdout/stderr pipes;
+- process-group timeout kill;
+- exit-code receipt;
+- signal receipt;
+- process supervision;
+- Unix-domain socketpair IPC;
+- length-prefixed IPC framing;
+- output bound enforcement;
+- no shell command construction;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 53 native invocations;
+- all anti-hardcoding gates PASS.
+
+The exact T8A OPPO `SOURCE_SHA256` and `BINARY_SHA256` were outside the copied output segment in this lane. Do not infer them. Recover them from the already-written T8A `evidence/SUMMARY.txt` before authoritative T8A publication or combined artifact locking.
+
+### T8B — PASS
 
 Checkpoint:
 
-`C5_M5/CHECKPOINT_2026-09-10_T7_FULL_COMBINED_SCHEDULER_RESOURCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T8B_CAPABILITY_SANDBOX_CRASH_RECOVERY_PASS.md`
 
-T7A:
-- source `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
-- binary `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
+Frozen OPPO artifact:
 
-T7B:
-- source `63fc5ed7c0cd095271819d79099f06a4328acf5523c5fcce4b4b6ec985ad80a6`
-- binary `19c00435adf987f5ee47088ecd9035e26b40f868ec0af363158c0ce8214964de`
+- source `27f6d462605d91458a38b8bab518eae00c74ed4dc32071b85617656e500117fa`
+- binary `19cf4a0fc2b23f0783d795a0b3f17c107890eed2090810a153c9fe29b2f9ecbd`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Exact admitted T7 mechanical scope:
+Admitted mechanical scope:
 
-- monotonic clock;
-- wall clock;
-- timer;
-- bounded deadline scheduler;
-- bounded worker pool;
-- cancellation;
-- timeout;
-- bounded queue backpressure;
-- thread CPU-time budget for governor workload;
-- governor-owned RAM allocation quota;
-- actual IO byte quota on isolated caller path;
-- in-process heartbeat/deadline watchdog;
-- exact step limit.
+- explicit pre-opened FD capability;
+- ambient FD closure;
+- caller-restricted cwd;
+- `PR_SET_NO_NEW_PRIVS`;
+- seccomp fail-closed for new path open, socket creation/connect and exec after sandbox entry;
+- allowed pre-opened capability remains readable;
+- caller-bounded restart after child exit;
+- caller-bounded restart after signal/crash;
+- restart exhaustion receipt;
+- crash recovery counterfactual behavior.
 
-Combined evidence:
+Admission evidence:
 
-- exact T7A/T7B artifact rebuild locks PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
-- native process invocations `136`;
-- scheduler/resource mixed oracle PASS;
-- scheduler/step, receipt/pool, IO/timer/scheduler, cancel/timeout/watchdog and backpressure/quota compatibility PASS;
-- counterfactual/no-mutation/high-entropy/sandbox-removal gates PASS;
-- `T7_A_B_COMBINED_COMPATIBILITY=PASS`;
-- `T7_FULL_LAYER=PASS`.
+- deterministic compile/source/binary freeze PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- 57 native process invocations;
+- post-tool mechanical oracle PASS;
+- all sandbox/recovery/anti-hardcoding gates PASS.
 
-## Anti-hardcoding and claim boundaries
+## Namespace capability boundary
+
+OPPO/Termux reported:
+
+- `USER_NAMESPACE_AVAILABLE=NO`
+- `MOUNT_NAMESPACE_AVAILABLE=NO`
+- `NETWORK_NAMESPACE_AVAILABLE=NO`
+- `PID_NAMESPACE_AVAILABLE=NO`
+
+Therefore no namespace-isolation claim is made. This does not invalidate the scoped FD-capability + seccomp sandbox.
+
+## Anti-hardcoding doctrine
 
 - no case-ID-dependent native behavior;
 - no expected-output literals in native implementation;
-- dynamic/high-entropy test material only after source/binary freeze;
-- expected values only in external mechanical oracle;
+- dynamic/high-entropy material only after freeze;
+- external mechanical oracle only;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`;
-- `OS_CGROUP_WHOLE_PROCESS_ENFORCEMENT=NOT_CLAIMED`;
-- process spawn/supervision/isolation remains T8.
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
 
-## Production boundary
+## Current exact state
 
+- `T4_FULL_LAYER=PASS`
+- `T5_FULL_LAYER=PASS`
+- `T6_FULL_LAYER=PASS`
+- `T7_FULL_LAYER=PASS`
+- `T8A_BEHAVIORAL_ADMISSION=PASS`
+- `T8A_AUTHORITATIVE_ARTIFACT_PUBLICATION=PENDING_FINGERPRINT_RECOVERY`
+- `T8B_CAPABILITY_SANDBOX_CRASH_RECOVERY_ADMISSION=PASS`
+- `T8_COMBINED=PENDING_T8A_EXACT_ARTIFACT_LOCK`
+- `T8_FULL_LAYER=NOT_YET_ADMITTED`
 - `ONLINE_SYNC=NO`
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-R5 -> R10 offline production-lineage synchronization evidence remains separately admitted and does not imply live binding.
-
 ## Next offline sequence
 
-`T8 -> T9 -> T10 -> T11`
+Recover the two T8A fingerprint lines from existing device evidence, publish T8A, then run exact T8 combined. Only a genuine combined PASS may advance `T8_FULL_LAYER=PASS`.
 
-T8 target: spawn/exec, bounded stdin/stdout/stderr pipes, local sockets, IPC framing, process supervision, exit/signal handling, capability isolation where actually available on Android/Termux, and crash recovery. Claims must be scoped to demonstrated platform primitives.
+After T8 full: `T9 -> T10 -> T11`.
