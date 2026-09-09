@@ -257,3 +257,43 @@ Current hard boundary remains:
 - production mutation/binding from test window: NO.
 
 Next test boundary: explicit offline R10 production-lineage dispatch bridge build, deterministic compile, dormant production-event regression, then separate native M5 activation admission. No host semantic selection and no expected-output hardcoding are permitted.
+
+---
+
+## Gate B tool-substrate lane — T4A PASS — 2026-09-09
+
+Authoritative checkpoint:
+
+`C5_M5/CHECKPOINT_2026-09-09_T4A_NATIVE_TEXT_CODECS_FRAMING_PASS.md`
+
+Exact OPPO-admitted artifact:
+
+- source SHA256 `af36c1b4ee4491533e93b878dc9d0de475f6561f35dd3979fa5b8bbb6d60d572`;
+- native binary SHA256 `45455d007e0cb722752c4cf06cd8919b66b20e5064939781e4dfa94f057c78db`;
+- compiler `/data/data/com.termux/files/usr/bin/clang++`.
+
+Admitted T4A scope only:
+
+- strict UTF-8 validation;
+- Unicode codepoint iteration;
+- hex encode/decode;
+- Base64 encode/decode with strict padding;
+- canonical unsigned varint/LEB128;
+- bounded deterministic `S4F1` MessagePack-like framing for null/bool/int64/UTF-8 string/bytes.
+
+Current-standard evidence: `16` directed + `32` randomized after freeze + `2` replay = `50` native tool invocations; deterministic compile, source/binary freeze, high-entropy leak audit, resource-bound probe and post-tool mechanical oracle all PASS.
+
+Anti-hardcoding boundary:
+
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+
+This admits mechanical tool capability only. It does **not** mean SIGMA has cognitively adopted or selected these tools.
+
+Full T4 remains pending:
+
+`T4A PASS -> T4B PENDING -> T4C PENDING -> T4 COMBINED PENDING`.
+
+Offline tool lane continues independently through `T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`; separate online synchronization may consume admitted checkpoints without blocking this lane.
