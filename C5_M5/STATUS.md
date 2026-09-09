@@ -1,6 +1,15 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Self-Contained Compact Semantic Memory R1 runtime admission + independent blind `100/100`, and Continual Compact Work Memory R1 preparation.
+Updated: 2026-09-09 after Continual Compact Work Memory R1H1 admission + independent blind PASS, and Scoped Revision/Support/Conflict R1 preparation.
+
+## Authoritative routing
+
+Two gates are authoritative per `C5_M5/TWO_GATE_ARCHITECTURE.md`.
+
+- Gate A — M5 TEST: cognition/memory -> continual learning -> revision/support/conflict -> new blind tests.
+- Gate B — C5 <-> C5V3/M5 synchronization/tool substrate: read-only synchronization -> SIGMA-native tools -> VM/native library/mechanical ABI -> boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover.
+
+Tool/runtime operational PASS cannot waive a cognition FAIL. Semantic claims remain Gate A blind claims.
 
 ## Production boundary
 
@@ -9,43 +18,42 @@ Updated: 2026-09-09 after Self-Contained Compact Semantic Memory R1 runtime admi
 - Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
-- Latest runtime production PID before/after: `23663`; production mutation NO.
+- Latest Oppo continual runtime observed production PID before/after: `23663`; production mutation NO.
 
-## Authoritative target
+## Admitted Gate A chain
 
-`END_STATE_ACCEPTANCE.md` remains authoritative: real Internet full-source learning, complete-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, semantic compression after source removal, bounded local continual learning, then C5V3 read-only sync -> isolated graft -> autonomous shadow -> soak/recovery -> promotion -> explicit user-authorized cutover.
-
-## Admitted chain
-
-Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> `M5_NATIVE_SELF_CONTAINED_COMPACT_SEMANTIC_MEMORY_R1` PASS.
+Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> `M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1` PASS under R1H1 hardened evaluators.
 
 Latest admitted core SHA256:
 
-`2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`
+`69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
 
 Bytecode SHA256 observed on Oppo:
 
-`0b4165e104c139529185f38f280e45d900023099ef103d79de1e4041a5284d5f`
+`642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`
 
-## Self-Contained Compact Semantic Memory R1 — admitted scope
+## Continual Compact Work Memory R1H1 — admitted scope
 
-Admission PASS, `RC=0`. Independent blind `100/100`, grade `SELF_CONTAINED_COMPACT_SEMANTIC_MEMORY_IN_TESTED_SCOPE`.
+Admission evaluator and independent blind both returned `RC=0`.
 
 PASS:
 
-- parent cross-source summary-hypothesis regression;
-- cross-source summary memory compaction;
-- raw whole-work state removal;
-- provenance retention;
-- compact equivalence internalization;
-- `RAW_EQUIVALENCE_LEDGER_REMOVED=PASS`;
-- never-stored mixed learned paraphrase supported with raw ledger empty;
-- role reversal rejected after detach;
-- irrelevant query rejected after detach;
-- compact memory restart with raw ledger remaining absent;
-- `SELF_CONTAINED_SEMANTIC_COMPRESSION=PASS` in this learned-context/cross-source compact-memory scope.
+- `WORK_A_SELF_CONTAINED_LOCAL_ARCHIVE=PASS`
+- `WORK_A_MEMORY_BYTE_STABLE_AFTER_WORK_B=PASS`
+- `WORK_A_ARCHIVE_BLOCK_BYTE_STABLE_AFTER_WORK_B=PASS`
+- `WORK_A_COMPACT_SEMANTIC_RECALL_AFTER_WORK_B=PASS`
+- `WORK_B_COMPACT_SEMANTIC_RECALL=PASS`
+- `ARCHIVED_WORK_CROSS_ISOLATION=PASS`
+- `CONTINUAL_ROLE_REVERSAL_REJECTION=PASS`
+- `TWO_WORK_COMPACT_BANK_SMALLER_THAN_RAW_WORKS=PASS`
+- `RAW_WORK_A_B_EXCLUDED_FROM_LOCAL_BANK=PASS`
+- `MULTI_WORK_LOCAL_MEMORY_RESTART=PASS`
+- blind additionally: `RAW_SOURCE_A_NOT_RESTORED_DURING_WORK_B=PASS`
+- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the exact tested two-work/self-contained compact-memory scope.
 
-Host summary absent; host semantic labels absent; active Python cognition absent. Production binding NO.
+R1H1 hardened the non-interference oracle by byte-comparing the exact archived Work A bank block before/after Work B. It did not relax cognition criteria.
+
+This is not unbounded lifelong memory; the candidate bank remains bounded and the blind exercised two works.
 
 ## Current hard FAILs
 
@@ -55,40 +63,39 @@ Host summary absent; host semantic labels absent; active Python cognition absent
 - `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
 - `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
 - `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL` pending two-work blind
-- open-ended lifelong capacity beyond tested local-bank bound: FAIL
-- broad semantic support/conflict/truth judgment: FAIL.
+- open-ended lifelong capacity beyond tested bank bound: FAIL
+- `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`
+- production binding: NO.
 
-## Pending candidate — two-work continual compact local memory
+## Pending Gate A candidate — scoped revision/support/conflict
 
-`M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1`
+`M5_NATIVE_SCOPED_REVISION_SUPPORT_CONFLICT_R1`
 
-Design:
+Design rule: the revision candidates may come only from an existing native `NATIVE_RELATION_DISCRIMINATION_GAP`. Host does not provide a support/conflict label or held belief. New raw evidence is natively matched to candidate A, candidate B, both, or neither.
 
-1. learn Work A through the admitted whole-work/cross-source/self-contained compaction path;
-2. archive only detached self-contained compact Work A memory under a native `WORK_ID` into a bounded local bank;
-3. clear active Work A source/equivalence/whole-work state before Work B;
-4. learn and compact Work B in the same runtime;
-5. prove Work A memory bytes are unchanged after Work B;
-6. query A and B separately from archived compact memories;
-7. reject A<->B cross-work semantic leakage and role reversal;
-8. prove raw whole-work spans A/B are absent from the bank;
-9. restart and recall both archived memories unchanged.
+Exact R1 semantics:
 
-The local bank is bounded to four work entries in this candidate; the blind exercises two independent works. This is not a claim of unbounded lifelong memory.
+- evidence on the held candidate = native scoped support;
+- evidence on the competing native-gap candidate = native scoped conflict;
+- evidence matching neither = no stance, not conflict;
+- same-source repetition does not increase revision authority;
+- a held candidate changes only when distinct-source support for the competitor reaches the minimum threshold and strictly exceeds support for the held candidate;
+- replay, evidence-ID conflict, work-scope mismatch and protocol injection are adversarial gates.
 
-Frozen hashes:
+This is competing-candidate conflict inside a native two-candidate discrimination state. It is **not** yet general logical contradiction/truth judgment.
 
-- Core SHA256: `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
-- Admission preflight SHA256: `36c6bba08c2d92853721dfe1e40bb9e2f373573e68d671c875bc73e941950426`
-- Independent blind auditor SHA256: `883f47c435a21a10054caa9a99662bb8da0a9aa249f9c9e277998ce067a56f14`
-- Ladder runner SHA256: `71aeba4b75cdac43b30983fa632f967dbd753e3f45d1a23c48d84fdf209f33f8`
-- Candidate bundle SHA256: `2421af621e03f11d27a36e246cf087d6828c6214abf08ae8ccb049c8bad62423`
-- Blind bundle SHA256: `d9cbc5c28a68b88fe4a8f9dfd4c208fc883d1c08cf7edddcb279f345b56fe714`
-- Combined ladder bundle SHA256: `7523192b65c43aab95c1844fa7fa579a8342c91daf8b90c8359ad1c4387aec1d`
+Frozen preparation hashes:
 
-Static checks: candidate/blind core byte-identical; host-op set only `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`; forbidden LEFT/RIGHT/previous-next/grammar-role scan clean; process-control ops absent from core; Bash syntax PASS; manifests PASS; ZIP integrity PASS.
+- Core SHA256: `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`
+- Admission evaluator SHA256: `9896de1de21157b255c88c8f01107ab03eb16a3b677f8a6d898857fcbbb582b4`
+- Independent blind evaluator SHA256: `661b69a3944f40a28dc6a0b309a162480859308673ff7227d12d76741ef526d4`
+- Ladder runner SHA256: `b698df3d83367a70dae1146b426e7ca8f394fe885b3588bd2f50cad7200e8a59`
+- Combined ladder bundle SHA256: `209c5221eac20a3fb5376ed11b9139f3d1116affe4b5efc6a749782f5395b4a1`
 
-## Exact next dependency
+Static preparation: admission/blind core byte-identical; parent continual R1H1 admission/blind regressions retained; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent; Bash syntax PASS; manifests PASS; ZIP integrity PASS.
 
-Run `SIGMA_C5_C5V3_M5_CONTINUAL_COMPACT_WORK_LADDER_R1_BUNDLE.zip` on Oppo. Only if Work A remains byte-stable and queryable after learning Work B, both works remain isolated/queryable after source removal and restart, and the compact bank excludes raw work spans may `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY` advance in the exact tested two-work scope. Production integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
+## Exact next Gate A dependency
+
+Run `SIGMA_C5_C5V3_M5_SCOPED_REVISION_SUPPORT_CONFLICT_LADDER_R1_BUNDLE.zip` on Oppo. Only if admission + blind PASS may `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION` advance in the exact native-gap/provenance scope. Keep broad semantic support/conflict/truth FAIL until a later blind establishes it.
+
+Gate B may proceed independently with synchronization/tool substrate/VM/native library/S1-S3 while production remains read-only.
