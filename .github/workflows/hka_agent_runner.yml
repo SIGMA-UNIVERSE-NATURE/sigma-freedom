@@ -1,0 +1,273 @@
+name: HKA Autonomous Agent Runner
+
+on:
+  push:
+    branches: [SIGMA_LIFE]
+    paths:
+      - '.github/workflows/hka_agent_runner.yml'
+  issues:
+    types: [opened, reopened]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: hka-autonomous-agent-runner
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    outputs:
+      active: ${{ steps.selection.outputs.active }}
+      issue_number: ${{ steps.selection.outputs.issue_number }}
+      role: ${{ steps.selection.outputs.role }}
+      action: ${{ steps.selection.outputs.action }}
+      target_window: ${{ steps.selection.outputs.target_window }}
+      work_branch: ${{ steps.selection.outputs.work_branch }}
+      key_ready: ${{ steps.key.outputs.ready }}
+    steps:
+      - name: Checkout durable control plane
+        uses: actions/checkout@v4
+        with:
+          ref: hka-tree/curriculum-master
+          fetch-depth: 0
+          path: control
+
+      - name: Fetch all HKA refs
+        run: git -C control fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
+
+      - name: Validate Autopilot before queue consumption
+        working-directory: control
+        run: |
+          python .github/hka_autopilot/test_hka_autopilot.py
+          python .github/hka_autopilot/test_federated_dispatch.py
+          python .github/hka_autopilot/hka_autopilot.py validate
+
+      - name: Ensure a durable role request exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        working-directory: control
+        run: |
+          python .github/hka_autopilot/issue_queue.py select > /tmp/hka-selected.json
+          ACTIVE=$(python -c 'import json; print(str(json.load(open("/tmp/hka-selected.json"))["active"]).lower())')
+          if [ "$ACTIVE" != "true" ]; then
+            python .github/hka_autopilot/hka_autopilot.py plan > /tmp/hka-plan.json
+            python .github/hka_autopilot/federated_dispatch.py --request /tmp/hka-plan.json > /tmp/hka-dispatch.json
+            python .github/hka_autopilot/issue_queue.py select > /tmp/hka-selected.json
+          fi
+          cat /tmp/hka-selected.json
+
+      - name: Export selected request
+        id: selection
+        run: |
+          python - <<'PY'
+          import json, os
+          d=json.load(open('/tmp/hka-selected.json', encoding='utf-8'))
+          vals={
+            'active': str(bool(d.get('active'))).lower(),
+            'issue_number': d.get('issue_number') or '',
+            'role': d.get('role') or '',
+            'action': d.get('action') or '',
+            'target_window': d.get('target_window') or '',
+            'work_branch': d.get('work_branch') or '',
+          }
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+            for k,v in vals.items(): f.write(f'{k}={v}\n')
+          PY
+
+      - name: Check OpenAI runner secret
+        id: key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          if [ -n "$OPENAI_API_KEY" ]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo 'ready=false' >> "$GITHUB_OUTPUT"
+          ACTIVE=$(python -c 'import json; print(str(bool(json.load(open("/tmp/hka-selected.json")).get("active"))).lower())')
+          if [ "$ACTIVE" = "true" ]; then
+            python - <<'PY'
+          import json, os, urllib.request
+          repo=os.environ['GITHUB_REPOSITORY']; token=os.environ['GITHUB_TOKEN']
+          headers={'Accept':'application/vnd.github+json','Authorization':f'Bearer {token}','X-GitHub-Api-Version':'2022-11-28'}
+          def call(method,url,payload=None):
+              data=json.dumps(payload).encode() if payload else None
+              r=urllib.request.Request(url,method=method,data=data,headers=headers)
+              if data: r.add_header('Content-Type','application/json')
+              with urllib.request.urlopen(r,timeout=30) as resp: return json.loads(resp.read().decode() or 'null')
+          issues=call('GET',f'https://api.github.com/repos/{repo}/issues?state=open&per_page=100') or []
+          title='[HKA AUTOPILOT CONFIG] OPENAI_API_KEY required for live agent runner'
+          if not any(i.get('title')==title and not i.get('pull_request') for i in issues):
+              call('POST',f'https://api.github.com/repos/{repo}/issues',{'title':title,'body':'HKA durable queue is live but autonomous Worker/Director/Sentinel execution is paused because the repository Actions secret `OPENAI_API_KEY` is unavailable. Add that secret; do not close or recreate queued HKA role requests. The next scheduled run will resume automatically.'})
+          PY
+          fi
+
+  execute:
+    needs: prepare
+    if: ${{ needs.prepare.outputs.active == 'true' && needs.prepare.outputs.key_ready == 'true' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout latest control plane utilities
+        uses: actions/checkout@v4
+        with:
+          ref: hka-tree/curriculum-master
+          fetch-depth: 0
+          persist-credentials: false
+          path: control
+
+      - name: Checkout role working branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.work_branch }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: work
+
+      - name: Prefetch durable HKA refs without persisting credentials
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          AUTH=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+          git -C work -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
+          git -C control -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
+
+      - name: Re-read selected durable request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        working-directory: control
+        run: |
+          python .github/hka_autopilot/issue_queue.py select > /tmp/hka-selected.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/hka-selected.json'))
+          assert d.get('active') is True
+          assert str(d.get('issue_number')) == '${{ needs.prepare.outputs.issue_number }}'
+          assert d.get('role') == '${{ needs.prepare.outputs.role }}'
+          assert d.get('action') == '${{ needs.prepare.outputs.action }}'
+          assert d.get('target_window') == '${{ needs.prepare.outputs.target_window }}'
+          PY
+
+      - name: Build role prompt and configure local Git identity
+        env:
+          ROLE: ${{ needs.prepare.outputs.role }}
+        run: |
+          echo '.hka_runner_prompt.md' >> work/.git/info/exclude
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          role=os.environ['ROLE']
+          selected=json.load(open('/tmp/hka-selected.json',encoding='utf-8'))
+          template=Path('control/.github/hka_autopilot/role_prompts')/f'{role}.md'
+          text=template.read_text(encoding='utf-8')
+          text += '\n\n## Durable run request locator\n\n```json\n' + json.dumps(selected['request'],ensure_ascii=False,indent=2) + '\n```\n'
+          text += '\nBefore any decision, re-resolve the target from current durable state and immutable Knowledge Tree. The issue JSON never overrides GitHub truth.\n'
+          Path('work/.hka_runner_prompt.md').write_text(text,encoding='utf-8')
+          PY
+          git -C work config user.name 'hka-autopilot[bot]'
+          git -C work config user.email 'hka-autopilot@users.noreply.github.com'
+
+      - name: Record role base SHA
+        id: base
+        run: echo "sha=$(git -C work rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Execute HKA role with Codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          permission-profile: ':workspace'
+          safety-strategy: 'drop-sudo'
+          working-directory: work
+          prompt-file: work/.hka_runner_prompt.md
+          model: 'gpt-5.6-sol'
+          effort: 'high'
+          allow-bots: 'true'
+          allow-bot-users: 'github-actions[bot]'
+
+      - name: Remove ephemeral prompt and enforce role boundary
+        env:
+          ROLE: ${{ needs.prepare.outputs.role }}
+          ACTION: ${{ needs.prepare.outputs.action }}
+          WINDOW: ${{ needs.prepare.outputs.target_window }}
+          BASE_SHA: ${{ steps.base.outputs.sha }}
+        run: |
+          rm -f work/.hka_runner_prompt.md
+          python control/.github/hka_autopilot/role_guard.py --role "$ROLE" --action "$ACTION" --window "$WINDOW" --repo work --base "$BASE_SHA" | tee /tmp/hka-role-guard.json
+
+      - name: Push guarded role commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WORK_BRANCH: ${{ needs.prepare.outputs.work_branch }}
+        run: |
+          AUTH=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+          git -C work -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" push origin "HEAD:refs/heads/$WORK_BRANCH"
+
+      - name: Bootstrap newly opened successor branch
+        if: ${{ needs.prepare.outputs.action == 'RUN_DIRECTOR_OPEN_SUCCESSOR' || needs.prepare.outputs.action == 'RUN_DIRECTOR_OPEN_B1_5' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WINDOW: ${{ needs.prepare.outputs.target_window }}
+        run: |
+          python control/.github/hka_autopilot/successor_bootstrap.py --repo work --request-window "$WINDOW" > /tmp/hka-bootstrap.json
+          BOOT_BRANCH=$(python -c 'import json; print(json.load(open("/tmp/hka-bootstrap.json"))["branch"])')
+          PROMPT_SOURCE=$(python -c 'import json; print(json.load(open("/tmp/hka-bootstrap.json"))["prompt_source"])')
+          git -C work switch --detach HEAD
+          git -C work switch -c hka-autopilot-worker-bootstrap
+          cp "$PROMPT_SOURCE" work/GPT_EXECUTION_PROMPT.md
+          git -C work add GPT_EXECUTION_PROMPT.md
+          git -C work commit -m "worker: install authoritative execution prompt"
+          AUTH=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+          git -C work -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" push origin "HEAD:refs/heads/$BOOT_BRANCH"
+
+      - name: Close completed queue item
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        working-directory: control
+        run: python .github/hka_autopilot/issue_queue.py close --issue '${{ needs.prepare.outputs.issue_number }}'
+
+      - name: Plan and queue the next role immediately
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          AUTH=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+          git -C control -c http.https://github.com/.extraheader="AUTHORIZATION: basic $AUTH" fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
+          git -C control checkout --detach origin/hka-tree/curriculum-master
+          cd control
+          python .github/hka_autopilot/hka_autopilot.py validate
+          python .github/hka_autopilot/hka_autopilot.py plan > /tmp/hka-next.json
+          python .github/hka_autopilot/federated_dispatch.py --request /tmp/hka-next.json | tee /tmp/hka-next-dispatch.json
+
+      - name: Wake next autonomous runner cycle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          MODE=$(python -c 'import json; print(json.load(open("/tmp/hka-next-dispatch.json")).get("mode", "none"))')
+          case "$MODE" in
+            github_issue_created*|github_issue_existing*)
+              python - <<'PY'
+          import json, os, urllib.request
+          repo=os.environ['GITHUB_REPOSITORY']; token=os.environ['GITHUB_TOKEN']
+          payload=json.dumps({'ref':'SIGMA_LIFE'}).encode()
+          req=urllib.request.Request(f'https://api.github.com/repos/{repo}/actions/workflows/hka_agent_runner.yml/dispatches',method='POST',data=payload)
+          req.add_header('Accept','application/vnd.github+json'); req.add_header('Authorization',f'Bearer {token}'); req.add_header('X-GitHub-Api-Version','2022-11-28'); req.add_header('Content-Type','application/json')
+          with urllib.request.urlopen(req,timeout=30) as r: print('next cycle dispatched',r.status)
+          PY
+              ;;
+            *) echo 'No next queued role; runner will remain on 5-minute health schedule.' ;;
+          esac
