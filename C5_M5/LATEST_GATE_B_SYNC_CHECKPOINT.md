@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after genuine OPPO T4 FULL combined compatibility PASS.
+Updated: 2026-09-09 after genuine OPPO T5A filesystem/atomic/lock PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -13,59 +13,76 @@ Updated: 2026-09-09 after genuine OPPO T4 FULL combined compatibility PASS.
 - T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
-- T4A text/codecs/framing: PASS.
-- T4B JSON/CSV/URL/MIME: PASS.
-- T4C XML/HTML/Unicode explicit normalization view: PASS.
-- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`.
-- `T4_FULL_LAYER=PASS`.
-- T5 through T11: PENDING in the offline substrate lane.
+- T4 full text/syntax/codecs: PASS.
+- T5A filesystem/atomic/lock primitives: PASS on OPPO.
+- T5B durable state: PENDING.
+- T5 combined durability: PENDING.
+- T6 through T11: PENDING in this offline substrate lane.
 
-## Frozen T4 artifacts
+## T4 full
 
-T4A:
-- source `af36c1b4ee4491533e93b878dc9d0de475f6561f35dd3979fa5b8bbb6d60d572`
-- binary `45455d007e0cb722752c4cf06cd8919b66b20e5064939781e4dfa94f057c78db`
+Authoritative checkpoint:
 
-T4B:
-- source `31a89e66943d8e0489c9c2df65331bb60bc6a8e326e0bcb338e2adb7a15f93d6`
-- binary `5452a7c89b8107dc6b51714b4d97639683683e42dd7e975a93fea990e3924d47`
+`C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
 
-T4C:
-- source `5e120a48dd9af95913b12e1be10e41c4a7e1b30c2958951f2c9719b5305b8d47`
-- binary `cb59635616ae41e7c50f9bcd55907dc7b40e4675d67f49b081584dd13ade4fb9`
-- ICU/libxml2 discovery `PKG_CONFIG`
+- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`
+- `T4_FULL_LAYER=PASS`
+- combined cases `50`
+- native process invocations `182`
 
-## T4 combined evidence
+## Frozen T5A artifact
 
-- exact A/B/C admitted artifact locks: PASS
-- directed combined cases: `16`
-- randomized combined cases after freeze: `32`
-- replay combined cases: `2`
-- total combined cases: `50`
-- total native process invocations: `182`
-- mixed-pipeline oracle: PASS
-- counterfactual behavior change: PASS
-- source/binary no mutation: PASS
-- high-entropy leak audit: PASS
+- source SHA256: `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
+- binary SHA256: `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
+- compiler: `/data/data/com.termux/files/usr/bin/clang++`
+
+Exact admitted T5A scope:
+
+- read/write, pread/pwrite, seek/read;
+- stat, mkdir, deterministic list, rename, unlink;
+- fsync(file), fsync(directory);
+- temp-write + fsync(file) + rename + fsync(parent-directory) atomic commit primitive;
+- exclusive advisory file lock and contention probe;
+- non-expiring owner-token lease acquire/release.
+
+Admission evidence:
+
+- deterministic compile PASS;
+- source/binary freeze PASS;
+- high-entropy leak audit PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- total native process invocations `58`;
+- post-tool mechanical oracle PASS;
+- file-lock exclusivity PASS;
+- atomic-replace counterfactual PASS;
+- synthetic sandbox removal PASS.
+
+Anti-hardcoding boundary:
+
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 
-## Claim boundary
+## Production boundary
 
-`SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
+This offline substrate lane does not perform live synchronization or production writes.
 
-T4 is admitted as native mechanical capability only. It does not teach SIGMA semantic interpretation, relevance, query generation, tool usefulness/selection, cognition, memory policy, belief/truth or synthesis.
-
-Existing R10 production-lineage synchronization evidence remains a separate lane. This checkpoint does not claim live production binding.
-
-- `ONLINE_SYNC=NO` from this offline lane
+- `ONLINE_SYNC=NO`
+- `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-## Next offline substrate sequence
+Existing R10 production-lineage synchronization evidence remains a separate lane and does not imply live production binding.
 
-`T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`
+## Current T5 boundary
 
-Immediate next gate: `T5_FILESYSTEM_DURABLE_STATE`.
+- `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
+- `T5_FULL_LAYER=NOT_YET_ADMITTED`
+
+Immediate next gate:
+
+`T5B durable KV / transaction / CAS / WAL / snapshot / checkpoint / rollback / corruption-checksum / interrupted-commit restart recovery`
+
+Then run exact T5 combined durability before advancing to T6.
