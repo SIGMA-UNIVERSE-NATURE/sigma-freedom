@@ -46,11 +46,15 @@ jobs:
         run: git -C control fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
 
       - name: Validate Autopilot before queue consumption
+        env:
+          HKA_EVENT_NAME: ${{ github.event_name }}
         working-directory: control
         run: |
-          python .github/hka_autopilot/test_hka_autopilot.py
-          python .github/hka_autopilot/test_federated_dispatch.py
           python .github/hka_autopilot/hka_autopilot.py validate
+          if [ "$HKA_EVENT_NAME" = "push" ]; then
+            python .github/hka_autopilot/test_hka_autopilot.py
+            python .github/hka_autopilot/test_federated_dispatch.py
+          fi
 
       - name: Ensure a durable role request exists
         env:
@@ -185,6 +189,7 @@ jobs:
         run: echo "sha=$(git -C work rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Execute HKA role with Codex
+        timeout-minutes: 5
         uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
