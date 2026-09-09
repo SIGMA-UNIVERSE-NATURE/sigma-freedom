@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / R0+GATE-A FRESH COMPILER ORACLES REPRODUCED / VERSION PROFILE DISPROVEN / R3 GRAMMAR-ENTRY VISIBILITY PROBE NEXT / PRODUCTION UNCHANGED**
+Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / R0+GATE-A EXECUTABLE ORACLES REPRODUCED / VERSION AND MULTILINE-DEF HYPOTHESES DISPROVEN / DEF-PREFIX ENTRY-VISIBILITY BINARY SEARCH NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -17,10 +17,10 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R0_GATEA_ORACLE_VERSION_PROFILE_DISPROVEN_R3_GRAMMAR_BOUNDARY_NEXT.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_V18_R0_EXACT_ARTIFACT_RECOVERED_COMPILER_ORACLE.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_MULTILINE_DEF_DISPROVEN_DEF_PREFIX_BINARY_SEARCH_NEXT.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R0_GATEA_ORACLE_VERSION_PROFILE_DISPROVEN_R3_GRAMMAR_BOUNDARY_NEXT.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_V18_R0_EXACT_ARTIFACT_RECOVERED_COMPILER_ORACLE.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
 
 ## R3 FIX1 source
 
@@ -38,9 +38,10 @@ R3_FIX1_RUNTIME_ADMISSION=NO
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+SIGMAC_REAL_PARSER=PASS
+SIGMAC_SOURCE_SENSITIVE_EMITTER=PASS
+VM_REAL_BYTECODE_EXECUTION_CONTROL=PASS
 ```
-
-Current sigmac is a real parser/emitter. Minimal direct-print source variants emit distinct bytecode and malformed minimal entry syntax is rejected. VM executes real emitted bytecode correctly.
 
 ## 29-byte artifact classification closed
 
@@ -54,87 +55,88 @@ FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
 29B_SOURCE_REFERENCE_LOADER=NO_OBSERVED
 ```
 
-Historical SIGMA compression remains a separate capability; the current 29B artifact is not evidence of it.
+Historical SIGMA compression remains a separate capability; this 29-byte artifact is not evidence of it.
 
-## Historical V18 R0 — exact executable oracle recovered
+## Executable compiler oracles
+
+V18 R0 exact source+bytecode recovered and fresh compile reproduced byte-identically:
 
 ```text
 V18_R0_ENGINE_SOURCE_SHA256=81523feb7c59a90b6bb5d284c65a679d3fd76ad692f84b0a6685c4d2693dcb7a
 V18_R0_ENGINE_BYTECODE_SHA256=e800eab3dc6abcbddf0b9c9e0de9d76af2fba6ba1bd49c87157c62fe126a7300
-V18_R0_ENGINE_SOURCE_RECOVERED=YES
-V18_R0_ENGINE_BYTECODE_RECOVERED=YES
-R0_SOURCE_AND_BYTECODE_RECOVERY=PASS
-R0_RECOVERY_ZIP_SHA256=7bb37b8943eee216d53e7b0e32cf9a7130d28d33aff5b9dd109e570db80506dc
-```
-
-Fresh compile with current locked sigmac exactly reproduces the historical R0 bytecode:
-
-```text
-R0_ORIGINAL_COMPILE_RC=0
 R0_ORIGINAL_BYTECODE_BYTES=2180
 R0_FRESH_MATCHES_FROZEN=YES
 ```
 
-## Gate-A executable oracle
+Gate-A exact source also fresh-compiles to its historical bytecode:
 
 ```text
 GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
 GATEA_HISTORICAL_BYTECODE_SHA256=569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc8e8900e1cb0d38ea2
-GATEA_ORIGINAL_COMPILE_RC=0
 GATEA_ORIGINAL_BYTECODE_BYTES=73265
 GATEA_FRESH_MATCHES_HISTORICAL=YES
 ```
 
-## VERSION/profile hypothesis — disproven
+## Closed hypotheses
+
+### Header/version profile
 
 ```text
-R0_FORCED_C5FULLR1_SHA=e800eab3dc6abcbddf0b9c9e0de9d76af2fba6ba1bd49c87157c62fe126a7300
-GATEA_FORCED_C5FULLR1_SHA=569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc8e8900e1cb0d38ea2
-R3_FORCED_GATEA_VERSION_SHA=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+R0_FORCED_C5FULLR1_SHA=R0_ORIGINAL_SHA
+GATEA_FORCED_C5FULLR1_SHA=GATEA_ORIGINAL_SHA
+R3_FORCED_GATEA_VERSION_SHA=R3_ORIGINAL_29B_SHA
 R0_VERSION_PROFILE_EFFECT=NO_OBSERVED
 GATEA_VERSION_PROFILE_EFFECT=NO_OBSERVED
 R3_GATEA_VERSION_RESTORES_NONTRIVIAL_EMISSION=NO
 R3_ZERO_CODE_ROOT_CAUSE_IS_HEADER_VERSION_PROFILE=NO
 ```
 
-Historical `C5FULLR1` identity must not be changed as a workaround.
-
-## Current root-cause hypothesis
-
-Static R3 P0 source contains a multiline DEF signature before the single entry block:
+### Multiline DEF signature
 
 ```text
-DEF p0_receipt_envelope_shape_valid(
-    invocation_id,
-    event_type,
-    expected_phase,
-    parent_state_sha,
-    action_id,
-    receipt_kind
-) {
+MINIMAL_ONE_LINE_DEF_BYTECODE_BYTES=124
+MINIMAL_MULTILINE_DEF_BYTECODE_BYTES=124
+MINIMAL_ONE_LINE_AND_MULTILINE_BYTECODE_IDENTICAL=YES
+MULTILINE_DEF_SIGNATURE_PARSER_QUIRK=NO_OBSERVED
+R3_FOLDED_SIGNATURE_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+R3_ZERO_CODE_ROOT_CAUSE_SINGLE_MULTILINE_DEF_SIGNATURE=NOT_PROVEN
+FOLDED_R3_MAIN_LITERAL_SENSITIVITY=FAIL_OR_NOT_REACHED
+R3_FOLDED_UNBALANCED_COMPILE_RC=0
 ```
 
-Exact Gate-A and R6 use one-line DEF signatures. Prior R3 diagnostic showed removal of the final main brace still returned compiler RC=0, while malformed minimal entry syntax is rejected. Therefore top-level parser/entry visibility is the immediate boundary to test.
+## Current root-cause zone
+
+R3 composition order:
+
+```text
+DEF 1..17   = P0 trust/state
+DEF 18..94  = 77 pure Gate-A cognition DEFs
+DEF 95..176 = 82 T1/T2/T3 tool DEFs
+then single P0 main entry
+```
+
+Machine evidence still indicates the R3 entry is not reached/recognized during compile. The next gate separates a DEF-prefix parser/composition fault from a P0-main fault.
 
 ## Exact next action
 
 ```text
-C5_M5/RUN_C5V3_R3_MULTILINE_DEF_SIGNATURE_EMISSION_PROBE_R1.sh
-SCRIPT_COMMIT=3893dc39eca7b0e03d32e60fe08b3fc3be708c44
+C5_M5/RUN_C5V3_R3_DEF_PREFIX_ENTRY_VISIBILITY_BINARY_SEARCH_R1.sh
+SCRIPT_COMMIT=3f491eef577f54a1aa360426e10dc16cdb66d0a7
 ```
 
-The probe performs:
+The gate tests:
 
 ```text
-minimal one-line DEF vs multiline DEF control
-exact single-delta fold of p0_receipt_envelope_shape_valid signature
-fresh folded-R3 compile
-folded-R3 print-literal counterfactual
-folded-R3 final-brace negative control
-live core/runner non-mutation recheck
+0 DEF + minimal sentinel entry
+17 P0 DEF + sentinel
+94 P0+cognition DEF + sentinel
+176 all DEF + sentinel
+77 cognition DEF only + sentinel
+82 tools DEF only + sentinel
+17 P0 DEF + exact P0 main
 ```
 
-If the single fold restores nontrivial emission, the root cause is proven. Otherwise proceed to DEF-composition-vs-main binary search.
+If all 176 DEFs plus sentinel are nontrivial, root cause moves to P0 main. If all 176 DEFs plus sentinel collapse to 29B, the gate performs a prefix binary search and reports the first suspect DEF index/name.
 
 ## Production locks
 
