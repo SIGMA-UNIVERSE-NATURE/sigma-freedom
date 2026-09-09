@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T9B Identity / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T9B_IDENTITY_PROVENANCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T9_FULL_COMBINED_INTEGRITY_PROVENANCE_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -15,10 +15,11 @@ Updated: 2026-09-10 after genuine OPPO T9B Identity / Provenance PASS.
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
-- T9A cryptographic integrity: PASS.
-- T9B identity/provenance: PASS.
-- T9 combined: PENDING.
-- T10/T11: PENDING.
+- T9A Cryptographic Integrity: PASS.
+- T9B Identity / Provenance: PASS.
+- `T9_A_B_COMBINED_COMPATIBILITY=PASS`.
+- `T9_FULL_LAYER=PASS`.
+- T10/T11: PENDING in offline substrate lane.
 
 ## Frozen T9 artifacts
 
@@ -31,22 +32,32 @@ T9B:
 - binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T9B admitted evidence
+## T9 combined evidence
 
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
-- 54 native process invocations
-- deterministic compile/source/binary freeze PASS
-- source/work/exact-span/artifact/runtime/state-lineage identities PASS
-- canonical HMAC-authenticated receipt PASS
-- receipt-ID SHA256 PASS
-- linked provenance chain PASS
-- sequence continuity and nondecreasing caller-time PASS
-- tamper rejection PASS
-- identity counterfactual PASS
+- exact T9A/T9B artifact rebuild locks PASS
+- dynamic Ed25519 keypair after freeze PASS
+- directed combined cases `16`
+- randomized-after-freeze combined cases `32`
+- replay combined cases `2`
+- total combined cases `50`
+- native process invocations `159`
+- SHA256 receipt-ID compatibility PASS
+- HMAC receipt-MAC compatibility PASS
+- CSPRNG/runtime-nonce compatibility PASS
+- hash/state-lineage compatibility PASS
+- exact-span/hash compatibility PASS
+- Merkle/provenance-chain compatibility PASS
+- Ed25519 signed chain-root verification PASS
+- tamper dual-rejection compatibility PASS
+- counterfactual identity/integrity change PASS
+- source/binary no mutation PASS
+- high-entropy leak audit PASS
+- synthetic sandbox removal PASS
 
 ## Critical boundary
 
 - `HASH_ALONE_IS_NOT_PROVENANCE=PASS`
+- `IDENTITY_CLASS_SEPARATION=PASS`
 - `NO_TRUST_JUDGMENT=PASS`
 - `NO_TRUTH_JUDGMENT=PASS`
 - `NO_RELEVANCE_JUDGMENT=PASS`
@@ -55,7 +66,6 @@ T9B:
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-- `T9_FULL_LAYER=NOT_YET_ADMITTED`
 
 ## Production boundary
 
@@ -66,4 +76,6 @@ T9B:
 
 ## Next offline sequence
 
-`T9 combined -> T10 -> T11`.
+`T10 -> T11`.
+
+Immediate gate: `T10_ARCHIVE_DOCUMENT_CONTAINERS`.
