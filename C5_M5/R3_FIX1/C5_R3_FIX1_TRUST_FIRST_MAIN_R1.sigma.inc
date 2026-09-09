@@ -154,21 +154,21 @@
 
                 IF (EXPECTED_PHASE != STATE_PHASE) { ⚡ ENVELOPE_OK: 0; }
 
-                IF (p0_receipt_common_valid(
+                IF (p0_receipt_envelope_shape_valid(
                     INVOCATION_ID,
                     EVENT_TYPE,
                     EXPECTED_PHASE,
                     PARENT_STATE_SHA,
                     ACTION_ID,
-                    RECEIPT_KIND,
-                    RECEIPT_INVOCATION_ID,
-                    RECEIPT_EVENT_TYPE,
-                    RECEIPT_PHASE,
-                    RECEIPT_PARENT_STATE_SHA,
-                    RECEIPT_ACTION_ID
+                    RECEIPT_KIND
                 ) == 0) {
                     ⚡ ENVELOPE_OK: 0;
                 }
+                IF (RECEIPT_INVOCATION_ID != INVOCATION_ID) { ⚡ ENVELOPE_OK: 0; }
+                IF (RECEIPT_EVENT_TYPE != EVENT_TYPE) { ⚡ ENVELOPE_OK: 0; }
+                IF (RECEIPT_PHASE != EXPECTED_PHASE) { ⚡ ENVELOPE_OK: 0; }
+                IF (RECEIPT_PARENT_STATE_SHA != PARENT_STATE_SHA) { ⚡ ENVELOPE_OK: 0; }
+                IF (RECEIPT_ACTION_ID != ACTION_ID) { ⚡ ENVELOPE_OK: 0; }
 
                 IF (ENVELOPE_OK == 0) {
                     ⚡ STATUS: "TRUST_ENVELOPE_REJECTED";
