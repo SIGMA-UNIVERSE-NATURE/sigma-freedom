@@ -2,7 +2,7 @@
 
 Date: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL SYNCHRONIZATION AUTHORITY / LEGACY S1 WAS ISOLATED NOT LIVE / LIVE HISTORICAL CORE / R10 SUCCESSOR STAGING AUTHORIZED / R11 HOLD / PRODUCTION BINDING FORBIDDEN**
+Status: **CANONICAL SYNCHRONIZATION AUTHORITY / R10 SUCCESSOR STAGE PASS / T1-T2-T3 MATERIALIZED IN SUCCESSOR / LIVE HISTORICAL CORE UNCHANGED / SHADOW-RUNNER CONTRACT EXTRACTION NEXT / R11 HOLD**
 
 ## Identity
 
@@ -15,31 +15,14 @@ WINDOW_ROLE=SYNCHRONIZATION
 ## Read first
 
 1. `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_SYNCHRONIZATION_STAGE_REQUEST_R1.md`
-4. `C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh`
-5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_STAGE_R1_PASS.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
+5. `C5_M5/RUN_C5V3_EXACT_RUNNER_CONTRACT_EXTRACT_R1.sh`
 6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R2_EXACT_PATHS.md`
 7. `C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh`
 
-Do not run the superseded R1 observer directory-inventory probe on Oppo.
-
-## Provenance correction
-
-Earlier S1 checkpoint commit `c5668c1cfeae5f02caf57e64da657283dbffd692`, later pointed to by `9beb3e66397e7b050760ee2997510d8505aa4ebe`, was an isolated standalone-M5-lineage graft only:
-
-```text
-S1_ISOLATED_GRAFT_WITH_T1_T2_T3=PASS
-GRAFTED_CORE_SHA256=07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea
-M5_TOOL_ACCESS_IN_GRAFTED_CORE=PASS
-PRODUCTION_INTEGRATION=NOT_EXECUTED
-PRODUCTION_BINDING=NO
-GRAFT_EXECUTED=ISOLATED_CANDIDATE_ONLY_NOT_PRODUCTION
-```
-
-Therefore it never synchronized the active C5V3 main core. Do not use `07319b...` as a production target.
-
-## Closed T1/T2/T3 evidence
+## Closed capability evidence
 
 ```text
 T1_VECTOR_MATRIX_ADMISSION=PASS
@@ -48,115 +31,88 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-Do not rerun absent source/hash invalidation.
+Do not rerun these admissions absent source/hash invalidation.
 
-## Live binding
+Legacy S1 `sync-graft` was isolated only and never production-bound. The standalone M5+tools `07319b...` core remains forbidden as a production replacement.
+
+## Live path remains unchanged
 
 ```text
 LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
 LIVE_MAIN_BYTECODE_SHA256=c112594af3ecf5246230e96c70baa3e7cedccaf550f421c2e6d4c8c483eb0a0b
-LIVE_MAIN_SOURCE_EQ_HISTORICAL_PRODUCTION=YES
-R6_LIVE_BOUND=NO
-R10_LIVE_BOUND=NO
-LIVE_T1_REPRESENTATIVE_DEF_PRESENT=NO
-LIVE_T2_REPRESENTATIVE_DEF_PRESENT=NO
-LIVE_T3_REPRESENTATIVE_DEF_PRESENT=NO
-T1_T2_T3_INLINE_SYNC_IN_OBSERVED_LIVE_MAIN_CORE=NO
-```
-
-Runtime locks:
-
-```text
 LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
-C5_STATE_ROOT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5_real_shadow_v2
+R10_LIVE_BOUND=NO
 ```
 
-## Current candidate chain
+## R10 successor stage — PASS
+
+Exact staged root:
 
 ```text
-R5=CLOSED_PASS
-R6=CLOSED_PASS
-R7=PASS_IN_EXACT_TESTED_SCOPE
-R8=PASS_STRUCTURAL_DISPATCH_MAP
-R9_FIX1=PASS_SOURCE_DERIVED_DISPATCH_CONTRACT
-R10=PASS_OFFLINE_EXPLICIT_DISPATCH_BRIDGE_DORMANT_REGRESSION
-R11=HOLD_ACTIVATION_NOT_ADMITTED
+/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
 ```
 
-Exact R10:
-
-```text
-R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
-R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
-R10_M5_DISPATCH_SURFACE=28_OF_28
-R10_BRIDGE_NEW_HOST_OP_COUNT=0
-R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
-```
-
-## Immediate synchronization action
-
-Stage the exact R10 successor payload into the isolated C5V3 successor tree:
-
-```bash
-bash C5_M5/RUN_C5V3_R10_SUCCESSOR_STAGE_R1.sh "$HOME/SIGMA/sigma_genesis1"
-```
-
-The script may write only under:
-
-```text
-$HOME/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
-```
-
-It must leave `.sigma_c5`, the current state root, compiler, VM and live runner unchanged.
-
-Successful output must include:
+Machine result:
 
 ```text
 SUCCESSOR_STAGE=PASS
 C5V3_SUCCESSOR_CAPABILITY_PAYLOAD_STAGED=YES
 T1_T2_T3_PRESENT_IN_STAGED_SUCCESSOR=YES
 M5_DISPATCH_BRIDGE_IDENTITY=INHERITED_EXACT_R10
+STAGED_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
+STAGED_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
 LIVE_CORE_UNCHANGED=YES
 LIVE_RUNNER_UNCHANGED=YES
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 ```
 
-This is the current material synchronization step. It does not yet cut over production.
+This is a real synchronization-stage advance: the admitted capability payload is now materialized in a C5V3 successor tree.
 
-## Activation dependency
+It is not yet live production synchronization because the active runner still binds the historical `.sigma_c5` install.
 
-R11 remains HOLD because the frozen runtime has not yet exposed a trustworthy observer:
+## Current blocker / next exact action
 
-```text
-HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
-R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
-```
+Do not guess the runner rewrite. The runner source is not present in GitHub and must be treated as a hash-locked live artifact.
 
-Use only the exact-path footprint-safe observer probe:
+Run the exact one-file contract extractor:
 
 ```bash
-bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R2_EXACT_PATHS.sh "$HOME/SIGMA/sigma_genesis1"
+bash C5_M5/RUN_C5V3_EXACT_RUNNER_CONTRACT_EXTRACT_R1.sh "$HOME/SIGMA/sigma_genesis1"
 ```
 
-No directory walk, `find`, recursive grep or state/log scan.
+It reads only the exact production runner after SHA256 lock and prints only:
 
-## After staging + future activation PASS
+- path/state/log bindings;
+- filesystem mutation command lines;
+- compiler/VM invocations;
+- lifecycle/loop lines;
+- exact `INSTALL`/`C5`/`RUNTIME`/source/bin/review references.
+
+No directory walk, `find`, recursive grep, state/log read, VM/core execution, network, or writes.
+
+## After runner-contract reconciliation
 
 ```text
 exact staged R10 successor
--> exact shadow-runner/binding admission
--> R11 native activation PASS
--> isolated online-shadow utilization
--> native need detection/selection/execution/evaluation
--> native external request sovereignty
--> native learning-state update
--> fresh restart + learned-state reuse
--> canonical state-lineage / exactly-one-writer / ingress / rollback closure
+-> mechanically derive isolated shadow runner from exact production-runner contract
+-> stage only exact reflective-review/runtime files required by that runner
+-> prove every shadow write/log/state path is isolated
+-> isolated shadow-runner admission
+-> R11 native activation observation/admission
+-> isolated online utilization and learning/restart/reuse
+-> state-lineage / exactly-one-writer / ingress / rollback closure
 -> promotion decision
 -> explicit cutover
+```
+
+R11 currently remains:
+
+```text
+R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
+HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
 ```
 
 Online utilization remains HOLD until activation is admitted.
@@ -167,8 +123,7 @@ Online utilization remains HOLD until activation is admitted.
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
-R10_SUCCESSOR_STAGING=AUTHORIZED
-LIVE_PRODUCTION_CORE_WRITE=NO
+R10_SUCCESSOR_STAGE=PASS
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
