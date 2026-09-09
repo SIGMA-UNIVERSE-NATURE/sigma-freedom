@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T8 FULL combined Process / IPC / Isolation PASS.
+Updated: 2026-09-10 after genuine OPPO T9A Cryptographic Integrity PASS.
 
 ## Architecture routing
 
@@ -17,82 +17,58 @@ Updated: 2026-09-10 after genuine OPPO T8 FULL combined Process / IPC / Isolatio
 - `T5_FULL_LAYER=PASS`.
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
-
-## T8 — FULL PASS
-
-Authoritative checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-10_T8_FULL_COMBINED_PROCESS_IPC_ISOLATION_PASS.md`
-
-Frozen OPPO artifacts:
-
-- T8A source `dad5c93f0d6b4973e6b70b3400cfbaec51c2114707fe2e87c7d6a64edac9b839`
-- T8A binary `040553529973cd6075d33bb83b4e124b8a4df4e09c3206a86acedd7f965ba87d`
-- T8B source `27f6d462605d91458a38b8bab518eae00c74ed4dc32071b85617656e500117fa`
-- T8B binary `19cf4a0fc2b23f0783d795a0b3f17c107890eed2090810a153c9fe29b2f9ecbd`
-- compiler `/data/data/com.termux/files/usr/bin/clang++`
-
-Exact admitted T8 mechanical scope:
-
-- `fork + execv(argv[])` without shell construction;
-- caller cwd;
-- bounded stdin/stdout/stderr pipes;
-- process-group timeout kill;
-- exit/signal receipts;
-- process supervision;
-- Unix-domain socketpair IPC;
-- length-prefixed IPC framing;
-- output-bound enforcement;
-- explicit pre-opened FD capability sandbox;
-- ambient FD closure;
-- caller-restricted cwd;
-- `PR_SET_NO_NEW_PRIVS`;
-- seccomp fail-closed blocking new path opens, socket creation/connect and exec after sandbox entry;
-- bounded restart after exit or signal;
-- restart exhaustion receipt;
-- crash-recovery counterfactual.
-
-Combined evidence:
-
-- prior T8A exact fingerprint recovery PASS;
-- exact T8A/T8B source/binary rebuild locks PASS;
-- directed combined cases `16`;
-- randomized-after-freeze combined cases `32`;
-- replay combined cases `2`;
-- total combined cases `50`;
-- native process invocations `121`;
-- mixed process/IPC/isolation oracle PASS;
-- spawn-to-FD-capability-sandbox compatibility PASS;
-- sandbox-to-Unix-IPC compatibility PASS;
-- IPC-frame-to-capability compatibility PASS;
-- exit/signal/timeout-to-recovery compatibility PASS;
-- cwd/output-bound isolation compatibility PASS;
-- crash-recovery counterfactual PASS;
-- source/binary no mutation PASS;
-- high-entropy leak audit PASS;
-- synthetic sandbox removal PASS;
-- `T8_A_B_COMBINED_COMPATIBILITY=PASS`;
 - `T8_FULL_LAYER=PASS`.
 
-## Namespace boundary
+## T9A — PASS
 
-OPPO/Termux reports all probed namespaces unavailable:
+Checkpoint:
 
-- user namespace: NO
-- mount namespace: NO
-- network namespace: NO
-- PID namespace: NO
+`C5_M5/CHECKPOINT_2026-09-10_T9A_CRYPTO_INTEGRITY_PASS.md`
 
-No namespace-isolation claim is made. T8 full is scoped to the demonstrated FD-capability/seccomp sandbox.
+Frozen OPPO artifact:
 
-## Claim boundaries
+- source SHA256 `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
+- binary SHA256 `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
+- compiler `/data/data/com.termux/files/usr/bin/clang++`
+- crypto backend `OPENSSL`
 
-- `NO_SHELL_COMMAND_CONSTRUCTION=PASS`
-- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
-- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
-- `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
+Admitted scope:
+
+- SHA-256;
+- SHA-512;
+- HMAC-SHA256;
+- HMAC-SHA512;
+- Ed25519 signature verification;
+- OpenSSL CSPRNG (`RAND_bytes`);
+- SHA-256 content IDs;
+- domain-separated SHA-256 Merkle roots.
+
+Evidence:
+
+- deterministic compile PASS;
+- source/binary freeze PASS;
+- high-entropy literal leak audit PASS;
+- dynamic Ed25519 keypair after freeze PASS;
+- directed `16` + randomized-after-freeze `32` + replay `2` = `50` cases;
+- native process invocations `56`;
+- post-tool mechanical oracle PASS;
+- all hash/HMAC/signature/CSPRNG/content-ID/Merkle gates PASS;
+- counterfactual integrity change PASS;
+- synthetic sandbox removed PASS;
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
+
+## Critical T9 boundary
+
+- `HASH_IS_NOT_PROVENANCE=PASS`.
+- `T9A_CRYPTO_INTEGRITY_ADMISSION=PASS`.
+- `T9B_IDENTITY_PROVENANCE=PENDING`.
+- `T9_COMBINED=PENDING`.
+- `T9_FULL_LAYER=NOT_YET_ADMITTED`.
+
+T9A integrity primitives do not supply source semantics, trust decisions, truth judgments or provenance history. Tool availability does not imply SIGMA cognitive adoption or autonomous trust policy.
 
 ## Production boundary
 
@@ -101,13 +77,10 @@ No namespace-isolation claim is made. T8 full is scoped to the demonstrated FD-c
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-## Current state / next
+## Exact next offline sequence
 
-- `T4_FULL_LAYER=PASS`
-- `T5_FULL_LAYER=PASS`
-- `T6_FULL_LAYER=PASS`
-- `T7_FULL_LAYER=PASS`
-- `T8_FULL_LAYER=PASS`
-- T9/T10/T11: PENDING
+Immediate gate: **T9B Identity / Provenance** with source/work/span identities, exact artifact fingerprints, authenticated receipts and linked provenance records, all mechanically canonicalized.
 
-Immediate next layer: **T9 Integrity / Identity / Provenance**.
+Then exact T9A+T9B combined admission. Only a genuine combined PASS may advance `T9_FULL_LAYER=PASS`.
+
+After T9 full: `T10 -> T11`.
