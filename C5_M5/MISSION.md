@@ -27,7 +27,9 @@ This branch is a **development/checkpoint branch**, not production binding and n
 - No hardcoded English grammar/semantic role tables.
 - No synonym/antonym/theme/value answer tables.
 - No host-generated semantic labels, beliefs, gaps, research goals, summaries, support/conflict decisions, memory selections, or final answers for active SIGMA cognition.
-- Host may provide mechanical I/O, transport, storage plumbing, process supervision, and post-hoc test oracles only.
+- Host may provide mechanical I/O, transport, storage plumbing, process supervision, generic computation/runtime primitives, and post-hoc test oracles only.
+- The currently used primitive set is not an architectural ceiling. When native SIGMA is blocked by missing generic computation, the VM/runtime may and should be extended under `C5_M5/NATIVE_TOOL_EXPANSION_POLICY.md`.
+- Tool/runtime expansion is acceptable only when semantic authority remains inside native SIGMA; a host convenience primitive must not smuggle in an answer, meaning label, summary, theme/value judgment, salience decision, belief, or research decision.
 - Dynamic semantic claims require independent blind tests with fixtures unavailable to the target core before compile/freeze.
 - A failing blind test is retained as FAIL. Fix the core or retire the assumption; do not weaken the evaluator.
 - Admission PASS proves only the exact tested capability scope.
