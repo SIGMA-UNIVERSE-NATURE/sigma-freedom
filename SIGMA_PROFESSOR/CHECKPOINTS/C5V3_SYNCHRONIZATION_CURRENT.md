@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **SUCCESSOR 251-DEF STATIC PASS / EXACT T1-T3 PRESENT / TOP-LEVEL # COMMENT COMPILER BOUNDARY PROVEN / CANONICAL COMMENT-FREE SUCCESSOR WRITTEN / CANONICAL COMPILE RESUME NEXT / PRODUCTION UNCHANGED**
+Status: **PRIMARY WORK: BUILD C5V3 R4 AUTO CORE / STOP DIAGNOSTIC DETOURS / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -15,151 +15,96 @@ ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 ```
 
-## Read first
-
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_TOPLEVEL_COMMENT_ROOT_CAUSE_CANONICAL_COMPILE_RESUME.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_92_DEF_NOT_CAUSAL_RAW_VS_NORMALIZED_SURFACE_NEXT.md`
-3. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
-
-## Machine-proven durable learning substrate
+## Machine-proven substrate retained
 
 ```text
-R4_DURABLE_TRANSACTION_DEF_COUNT=92
-R4_DURABLE_TRANSACTION_COMBINED_SHA256=053ece5ad648440f4f123ba5111a397af93704406b02a787e9ff6609cdde0465
-DURABLE_CLAIM_CONTENT_RETENTION=PASS
-DURABLE_EVALUATION_HISTORY_RETENTION=PASS
-RESTART_EVIDENCE_POSTURE_REUSE_SURFACE=PASS
-P0_TRANSACTION_STATE_SCHEMA=PASS_STATIC
-NATIVE_CAPABILITY_AUTO_SELECTION=ABSENT
-R4_DURABLE_TRANSACTION_STATIC_GOVERNANCE=PASS
-R4_DURABLE_TRANSACTION_SUBSTRATE_SOURCE_AUDIT=PASS
-```
-
-## Successor source — machine static PASS
-
-```text
-77 Gate-A pure DEF
-+ 92 R4 durable/transaction DEF
-+ 82 exact T1/T2/T3 DEF
-= 251 unique DEF
-+ 1 C5 entry
-
-GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
-T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
-T1_T2_T3_FIRST_DEF=WA_H
-T1_T2_T3_LAST_DEF=T2_SHORTEST_PATH_BOUNDED
-RAW_SUCCESSOR_SOURCE_SHA256=b1ceedffa11497cab5454639eb1872cc5ecb95a5824b95e4d1be22c2ea2b7406
+Gate-A pure cognition DEFs = 77
+R4 durable/transaction DEFs = 92
+Exact admitted T1/T2/T3 DEFs = 82
+TOTAL DEFs = 251 unique
+R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
 SUCCESSOR_STATIC_COMPOSITION=PASS
 T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
 ```
 
-Presence is not utilization PASS.
-
-## Compiler root cause — top-level `#` comment boundary proven
-
-Operator direct controls:
+Exact identities retained:
 
 ```text
-CONTROL_EMPTY_ENTRY_SOURCE_SENSITIVITY=PASS
-CONTROL_BLANK_ONLY_ENTRY_SOURCE_SENSITIVITY=PASS
-
-TOPLEVEL_COMMENT_ONLY_A_BYTES=29
-TOPLEVEL_COMMENT_ONLY_B_BYTES=29
-TOPLEVEL_COMMENT_ONLY_A_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-TOPLEVEL_COMMENT_ONLY_B_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-TOPLEVEL_COMMENT_ONLY_ENTRY_SOURCE_SENSITIVITY=FAIL
-
-TOPLEVEL_COMMENT_AFTER_GATEA_A_BYTES=31496
-TOPLEVEL_COMMENT_AFTER_GATEA_B_BYTES=31496
-TOPLEVEL_COMMENT_AFTER_GATEA_A_SHA256=a1df1ad7d7c25c8c12125602679b6ea568fe055705e0288e31da126e8c3a1d81
-TOPLEVEL_COMMENT_AFTER_GATEA_B_SHA256=a1df1ad7d7c25c8c12125602679b6ea568fe055705e0288e31da126e8c3a1d81
-TOPLEVEL_COMMENT_AFTER_GATEA_ENTRY_SOURCE_SENSITIVITY=FAIL
-
-STATE_RAW_ENTRY_SOURCE_SENSITIVITY=FAIL
-STATE_LEADING_NONDEF_LINE_COUNT=5
-STATE_TOPLEVEL_COMMENT_LINE_COUNT=4
-STATE_LEADING_STRIPPED_ENTRY_SOURCE_SENSITIVITY=PASS
-STATE_NORM_ENTRY_SOURCE_SENSITIVITY=PASS
-STATE_NORM_WITH_INTERDEF_COMMENT_ENTRY_SOURCE_SENSITIVITY=FAIL
+GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
+R4_DURABLE_TRANSACTION_COMBINED_SHA256=053ece5ad648440f4f123ba5111a397af93704406b02a787e9ff6609cdde0465
+T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
 ```
 
-Therefore, in the tested sigmac environment:
+## Compiler constraint now treated as composition rule
 
-```text
-TOPLEVEL_HASH_COMMENT_CAUSALITY=PASS_IN_TESTED_SCOPE
-BLANK_LINE_CAUSALITY=NO_OBSERVED
-R4_DEF_BODY_CAUSALITY=NO_OBSERVED
-T1_T2_T3_CAUSALITY=NO_OBSERVED
-```
-
-Development-module top-level `# ...` comments must not be copied into final composition.
-
-## Canonical successor candidate
-
-The same operator run serialized a comment-free candidate before a Bash harness defect stopped the compile phase:
-
-```text
-CANONICAL_SUCCESSOR_SOURCE_BYTES=162390
-CANONICAL_SUCCESSOR_SOURCE_SHA256=48e1255637a70eb0c9cec0aa60ed7d8e6dfe4de0cfdc011dbeace94bc449cf6c
-CANONICAL_DEF_COUNT=251
-CANONICAL_ENTRY_COUNT=1
-CANONICAL_HEADER_COUNT=1
-CANONICAL_TOPLEVEL_NONHEADER_HASH_LINE_COUNT=0
-```
-
-Canonical rule:
+Machine evidence proved that non-header `#` comment lines in executable source can terminate visibility of following source under the current `sigmac` environment. Final executable composition therefore uses:
 
 ```text
 ONE SIGMA HEADER
-+ 251 exact canonical DEF blocks
-+ ONE exact C5 entry
++ canonical DEF blocks
++ ONE C5 entry
++ NO executable # comment lines
 ```
 
-No cognition/tool DEF body was changed.
+No cognition or T1/T2/T3 DEF is changed to satisfy this rule.
 
-## Harness-only defect
+## AUTO core build
 
-The first canonical compile gate stopped after source construction with:
+Authoritative builder:
 
 ```text
-bash: line 60: label: unbound variable
+C5_M5/R4_AUTO/RUN_BUILD_C5V3_R4_AUTO_CORE_R1.sh
+COMMIT=345b1d5350945871a039b6ac79726287d22d61f8
 ```
 
-This is a Bash `set -u` local-declaration defect, not SIGMA source failure.
+The builder performs one production-safe job:
+
+```text
+exact Gate-A 77
++ exact R4 92
++ exact T1/T2/T3 82
++ transaction learning main with development # comments removed
+-> canonical single C5 core source
+-> one sigmac compile
+-> frozen AUTO candidate source + bytecode
+```
+
+Output target:
+
+```text
+.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
+.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/bin/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigmab
+```
+
+AUTO cognition flow in this core remains:
+
+```text
+native input/problem state
+-> native relation gap detection
+-> native objective/claims/gap
+-> native evidence request
+-> mechanical request transport boundary
+-> evidence return
+-> native source stance/evaluation
+-> native claim revision/conflict handling
+-> durable compact memory
+-> source release after memory bind
+-> restart/reuse
+```
+
+The runner may determine only mechanical event readiness/transport. It must not choose semantic gaps, claims, queries, truth, learning, or memory content.
 
 ## Exact next action
 
-Resume only the missing canonical compile checks:
-
-```text
-C5_M5/RUN_C5V3_R4_CANONICAL_SUCCESSOR_COMPILE_RESUME_R1.sh
-COMMIT=493d64c404bbaf7f1e90fd0b0b8bd1a391289853
-```
-
-Required before VM admission:
-
-```text
-CANONICAL_SOURCE_IDENTITY=PASS
-CANONICAL_DEF_COUNT=251
-CANONICAL_TOPLEVEL_NONHEADER_HASH_LINE_COUNT=0
-CANONICAL_SUCCESSOR_COMPILE_RC=0
-CANONICAL_MAIN_SOURCE_SENSITIVITY=PASS
-CANONICAL_UNBALANCED_ENTRY_REJECTED=PASS
-```
-
-Then proceed to VM admission for the transaction-aware learning cycle.
+Run the AUTO core builder. If `AUTO_CORE_BUILD=PASS`, stop core rewriting and proceed directly to AUTO runner/shadow execution around this frozen source/bytecode.
 
 ## Claim boundary
 
 ```text
-R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
-SUCCESSOR_STATIC_COMPOSITION=PASS
-T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
-TOPLEVEL_HASH_COMMENT_CAUSALITY=PASS_IN_TESTED_SCOPE
-CANONICAL_SUCCESSOR_SOURCE=WRITTEN
-CANONICAL_EXECUTABLE_MAIN_ADMISSION=PENDING_RESUME_COMPILE
+AUTO_CORE_SOURCE=BUILDER_READY
+AUTO_CORE_BYTECODE=PENDING_OPERATOR_BUILD
+AUTO_CORE_RUNTIME_ADMISSION=NOT_YET_RUN
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
-R4_RUNTIME_LEARNING=NOT_ADMITTED
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
 WHOLE_WORK_UNDERSTANDING=FAIL
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
