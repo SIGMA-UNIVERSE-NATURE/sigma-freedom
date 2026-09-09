@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP22-B1_4-C01-C03-POST-ACCEPTANCE-TREE-ALIGNMENT-PASS",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "status":"TREE_ALIGNMENT_PASS",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "control_plane_read_commit":"ec6440232ef46fdcad673b536844411b7f9cb280",
+  "accepted_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03",
+  "accepted_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],
+  "accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c",
+  "director_acceptance_checkpoint":"5f4f312891af641a7c915cefc51b4a83aa4647e9",
+  "alignment":{"state_registry_snapshot_match":"PASS","accepted_chain_B1_3_exit_and_B1_4_C01_C03_match":"PASS","canonical_tree_commit_match":"PASS","scope_map_anchor_match":"PASS","canonical_prerequisite":"PASS_B1.3-C01_EXACTLY","internal_sequence":"PASS_C01_C02_C03","R11":"PASS_TARGET_ACCEPTED_B1.3-C10_NO_OWNERSHIP_TRANSFER","R10":"PASS_BOUNDARY","fabricated_X_nodes":0,"foundational_coverage":"PASS","foundational_gap_count":0,"locked_scope_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","director_acceptance_present":"PASS","C04_C06_locked":"PASS","B1_5_locked":"PASS","sentinel_control_plane_mutation":"NO","sentinel_academic_mutation":"NO","alerts":[]},
+  "C04_C06_gate":"ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING_AFTER_SENTINEL_PASS",
+  "updated_at":"2026-09-09T10:47:00+07:00"
+}
