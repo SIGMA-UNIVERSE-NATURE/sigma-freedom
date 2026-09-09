@@ -107,3 +107,71 @@ Do not call this whole-work understanding.
 Build **native cross-scope dependency induction** from evidence. Then blind-test a query that cannot be answered from any one scope alone and requires combining at least two distant scope states from the same work. This is the next direct bridge toward whole-work narrative understanding.
 
 Keep FAIL until separate proof: broad semantic truth, arbitrary NL logical contradiction/truth, autonomous free-form summary generation, zero-shot low-overlap summary, broad whole-work narrative understanding, theme/human-value induction, multilingual transfer, unbounded lifelong capacity, production binding.
+
+---
+
+## Gate B synchronization handoff — R5/R6 production lineage — 2026-09-09 18:47
+
+Authoritative checkpoint:
+
+`C5_M5/CHECKPOINT_2026-09-09_1847_GATE_B_R5_R6_PRODUCTION_LINEAGE_HANDOFF.md`
+
+Ownership:
+
+- this window: `TEST_OFFLINE_ONLY=YES`;
+- separate window: `OTHER_WINDOW_SYNCHRONIZATION_AUTHORITY=YES`.
+
+### R5 PASS
+
+`PRODUCTION_M5_CAPABILITY_DELTA_DISCOVERY_R5=PASS`
+
+- production core `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`;
+- M5 core `2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`;
+- production DEF `11`;
+- M5 DEF `64`;
+- common identical `1`;
+- common changed `0`;
+- production-only `10`;
+- M5-only `63`;
+- production and M5 universe blocks are NOT byte-identical.
+
+Critical rule: the standalone M5 core, including prior M5+tools core `07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea`, is NOT a production-core replacement target.
+
+### R6 PASS — synchronization starting candidate
+
+Correct production-lineage candidate:
+
+`exact production core + 63 exact M5-only DEF + admitted T1/T2/T3 + exact production universe`
+
+R6 machine result:
+
+- `OFFLINE_LATENT_GRAFT_R6=PASS`;
+- `PRODUCTION_DEF_BODY_HASHES_PRESERVED=PASS`;
+- `M5_ONLY_DEF_BODY_HASHES_PRESERVED=PASS`;
+- `PRODUCTION_UNIVERSE_BYTE_IDENTICAL=PASS`;
+- `M5_UNIVERSE_ACTIVATION=NO`;
+- deterministic compile PASS.
+
+Frozen R6 candidate:
+
+- source SHA256: `dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac`;
+- bytecode SHA256: `dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693`.
+
+OPPO root:
+
+`/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734`
+
+Candidate paths:
+
+- `/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734/candidate/core.sigma`
+- `/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734/candidate/core.sigmab`
+
+Synchronization window must start from these exact R6 hashes, preserve production runner/core lineage semantics, and integrate M5 dispatch explicitly rather than replacing the production universe wholesale.
+
+Current canonical activation state remains:
+
+- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`;
+- `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO`;
+- `PRODUCTION_BINDING=NO` in this handoff commit.
+
+The test window continues separately with offline R7 production-runner ABI regression. Any superseding failure/candidate must be published as a new checkpoint, never silently relabeled.
