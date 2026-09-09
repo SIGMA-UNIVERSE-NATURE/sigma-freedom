@@ -108,3 +108,76 @@ Run `SIGMA_C5_C5V3_M5_MULTI_SCOPE_EPISTEMIC_WORK_MODEL_LADDER_R1_BUNDLE.zip`.
 Only if admission + blind PASS may `NATIVE_MULTI_SCOPE_EPISTEMIC_WORK_MODEL` advance in the bounded tested same-work multi-relation scope.
 
 After that, build native cross-scope dependency induction and require a query that needs evidence from at least two distant scopes in one work. `WHOLE_WORK_UNDERSTANDING` remains FAIL until those later blinds actually establish it.
+
+---
+
+## Gate B synchronization status — R5/R6 production-lineage handoff
+
+Authoritative checkpoint: `C5_M5/CHECKPOINT_2026-09-09_1847_GATE_B_R5_R6_PRODUCTION_LINEAGE_HANDOFF.md`.
+
+Window split:
+
+- current window: offline testing only;
+- separate synchronization window: owns C5V3 synchronization work from frozen R5/R6 evidence.
+
+### Native tools
+
+- T1 Vector/Matrix: admitted;
+- T2 Bounded Graph/Traversal: admitted;
+- T3 Local Index/BM25: admitted;
+- T1+T2+T3 mixed compatibility: PASS;
+- individual tool admissions are inherited and should not be rerun without a source/hash change.
+
+### R5 — PASS
+
+Production vs M5 structural delta:
+
+- production core: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`;
+- M5 core: `2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a`;
+- production DEF count: `11`;
+- M5 DEF count: `64`;
+- common identical: `1`;
+- common changed: `0`;
+- production-only: `10`;
+- M5-only: `63`;
+- universe blocks byte-identical: `NO`.
+
+Canonical consequence: **do not replace the production core with the standalone M5 core and do not graft the M5 universe wholesale**.
+
+### R6 — PASS
+
+Production-lineage latent candidate:
+
+`production core + 63 exact M5-only DEF + admitted T1/T2/T3 + unchanged production universe`
+
+PASS gates:
+
+- `CANDIDATE_BUILD=PASS`;
+- `STRUCTURAL_GATES=PASS`;
+- `PRODUCTION_DEF_BODY_HASHES_PRESERVED=PASS`;
+- `M5_ONLY_DEF_BODY_HASHES_PRESERVED=PASS`;
+- `PRODUCTION_UNIVERSE_BYTE_IDENTICAL=PASS`;
+- `M5_UNIVERSE_ACTIVATION=NO`;
+- `COMPILE_FREEZE=PASS`;
+- `OFFLINE_LATENT_GRAFT_R6=PASS`.
+
+Frozen candidate:
+
+- source SHA256 `dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac`;
+- bytecode SHA256 `dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693`.
+
+OPPO root:
+
+`/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734`
+
+Current synchronization state:
+
+- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`;
+- `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO`;
+- `ONLINE_SYNC=NO` in the R6 test result;
+- `PRODUCTION_MUTATION=NO`;
+- `PRODUCTION_BINDING=NO`.
+
+The synchronization window should lock the exact R6 candidate, validate the production runner/state lineage, integrate M5 dispatch explicitly, and preserve production cognition/evidence/provenance. Test cognition must never be imported into production state.
+
+The offline test window continues separately with R7 ABI regression and will publish a new checkpoint if R6 is superseded or invalidated.
