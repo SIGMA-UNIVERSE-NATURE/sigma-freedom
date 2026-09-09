@@ -1,11 +1,11 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T8B Capability Sandbox / Crash Recovery PASS.
+Updated: 2026-09-10 after genuine OPPO T8 FULL combined Process / IPC / Isolation PASS.
 
 ## Operating split
 
-- Online synchronization/test lanes consume genuine admitted checkpoints and own live/online validation.
-- This window remains the offline tool-substrate lane and continues independently through T8 -> T11.
+- Online synchronization/test lanes consume only genuine admitted checkpoints and own live/online validation.
+- This window remains the offline tool-substrate lane and continues independently through T9 -> T11.
 - Tool availability is distinct from SIGMA cognitive adoption/tool selection.
 - Production binding from this offline lane remains NO.
 
@@ -18,25 +18,18 @@ Updated: 2026-09-10 after genuine OPPO T8B Capability Sandbox / Crash Recovery P
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
 
-### T8A — behavioral PASS, artifact publication pending fingerprint recovery
+### T8A — PASS
 
-OPPO behavioral evidence already passed:
+Checkpoint:
 
-- `fork + execv(argv[])`;
-- caller cwd;
-- bounded stdin/stdout/stderr pipes;
-- process-group timeout kill;
-- exit-code receipt;
-- signal receipt;
-- process supervision;
-- Unix-domain socketpair IPC;
-- length-prefixed IPC framing;
-- output bound enforcement;
-- no shell command construction;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 53 native invocations;
-- all anti-hardcoding gates PASS.
+`C5_M5/CHECKPOINT_2026-09-10_T8A_PROCESS_IPC_SUPERVISION_PASS.md`
 
-The exact T8A OPPO `SOURCE_SHA256` and `BINARY_SHA256` were outside the copied output segment in this lane. Do not infer them. Recover them from the already-written T8A `evidence/SUMMARY.txt` before authoritative T8A publication or combined artifact locking.
+Frozen OPPO artifact:
+
+- source `dad5c93f0d6b4973e6b70b3400cfbaec51c2114707fe2e87c7d6a64edac9b839`
+- binary `040553529973cd6075d33bb83b4e124b8a4df4e09c3206a86acedd7f965ba87d`
+
+Admitted mechanical scope: `fork + execv(argv[])`, caller cwd, bounded stdin/stdout/stderr, process-group timeout kill, exit/signal receipts, process supervision, Unix-domain socketpair IPC, length-prefixed framing, output bounds, no shell command construction.
 
 ### T8B — PASS
 
@@ -50,47 +43,55 @@ Frozen OPPO artifact:
 - binary `19cf4a0fc2b23f0783d795a0b3f17c107890eed2090810a153c9fe29b2f9ecbd`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Admitted mechanical scope:
+Admitted scoped isolation/recovery:
 
 - explicit pre-opened FD capability;
 - ambient FD closure;
 - caller-restricted cwd;
 - `PR_SET_NO_NEW_PRIVS`;
 - seccomp fail-closed for new path open, socket creation/connect and exec after sandbox entry;
-- allowed pre-opened capability remains readable;
-- caller-bounded restart after child exit;
-- caller-bounded restart after signal/crash;
+- caller-bounded restart after exit or signal;
 - restart exhaustion receipt;
-- crash recovery counterfactual behavior.
+- crash-recovery counterfactual.
 
-Admission evidence:
+Namespace probe on OPPO reported user/mount/network/PID namespaces all unavailable; therefore no namespace-isolation claim is made.
 
-- deterministic compile/source/binary freeze PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 57 native process invocations;
-- post-tool mechanical oracle PASS;
-- all sandbox/recovery/anti-hardcoding gates PASS.
+### T8 FULL — PASS
 
-## Namespace capability boundary
+Authoritative checkpoint:
 
-OPPO/Termux reported:
+`C5_M5/CHECKPOINT_2026-09-10_T8_FULL_COMBINED_PROCESS_IPC_ISOLATION_PASS.md`
 
-- `USER_NAMESPACE_AVAILABLE=NO`
-- `MOUNT_NAMESPACE_AVAILABLE=NO`
-- `NETWORK_NAMESPACE_AVAILABLE=NO`
-- `PID_NAMESPACE_AVAILABLE=NO`
+Combined evidence:
 
-Therefore no namespace-isolation claim is made. This does not invalidate the scoped FD-capability + seccomp sandbox.
+- exact T8A prior-summary fingerprint recovery PASS;
+- exact T8A/T8B source and deterministic binary rebuild locks PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
+- 121 native process invocations;
+- process/IPC/isolation mixed oracle PASS;
+- spawn-to-capability-sandbox, sandbox-to-IPC, frame-to-capability, exit/signal/timeout-to-recovery and cwd/output-bound compatibility PASS;
+- counterfactual, source/binary no-mutation, high-entropy leak and sandbox-removal gates PASS;
+- `T8_A_B_COMBINED_COMPATIBILITY=PASS`;
+- `T8_FULL_LAYER=PASS`.
 
 ## Anti-hardcoding doctrine
 
+- capability, not answers;
 - no case-ID-dependent native behavior;
 - no expected-output literals in native implementation;
-- dynamic/high-entropy material only after freeze;
-- external mechanical oracle only;
+- dynamic/high-entropy material only after source/binary freeze;
+- expected values only in external mechanical oracle;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
+- no test cognition imported into SIGMA state;
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
+
+## Production boundary
+
+- `ONLINE_SYNC=NO`
+- `PRODUCTION_STATE_WRITE=NO`
+- `PRODUCTION_MUTATION=NO`
+- `PRODUCTION_BINDING=NO`
 
 ## Current exact state
 
@@ -98,18 +99,11 @@ Therefore no namespace-isolation claim is made. This does not invalidate the sco
 - `T5_FULL_LAYER=PASS`
 - `T6_FULL_LAYER=PASS`
 - `T7_FULL_LAYER=PASS`
-- `T8A_BEHAVIORAL_ADMISSION=PASS`
-- `T8A_AUTHORITATIVE_ARTIFACT_PUBLICATION=PENDING_FINGERPRINT_RECOVERY`
-- `T8B_CAPABILITY_SANDBOX_CRASH_RECOVERY_ADMISSION=PASS`
-- `T8_COMBINED=PENDING_T8A_EXACT_ARTIFACT_LOCK`
-- `T8_FULL_LAYER=NOT_YET_ADMITTED`
-- `ONLINE_SYNC=NO`
-- `PRODUCTION_STATE_WRITE=NO`
-- `PRODUCTION_MUTATION=NO`
-- `PRODUCTION_BINDING=NO`
+- `T8_FULL_LAYER=PASS`
+- T9/T10/T11: PENDING
 
 ## Next offline sequence
 
-Recover the two T8A fingerprint lines from existing device evidence, publish T8A, then run exact T8 combined. Only a genuine combined PASS may advance `T8_FULL_LAYER=PASS`.
+`T9 -> T10 -> T11`
 
-After T8 full: `T9 -> T10 -> T11`.
+Immediate next layer: **T9 Integrity / Identity / Provenance**. Hashing, HMAC, signature verification, CSPRNG, content IDs, Merkle roots, receipts and provenance must remain mechanical; hash alone must never be mislabeled as provenance.
