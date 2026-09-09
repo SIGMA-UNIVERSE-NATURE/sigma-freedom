@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T6A DNS/TCP/TLS/HTTP/HTTPS PASS.
+Updated: 2026-09-10 after genuine OPPO T6B Advanced HTTP / Flow Control PASS.
 
 ## Operating split
 
@@ -18,7 +18,7 @@ Updated: 2026-09-10 after genuine OPPO T6A DNS/TCP/TLS/HTTP/HTTPS PASS.
 
 ## Existing synchronization evidence
 
-R5 -> R10 offline production-lineage evidence remains admitted as previously checkpointed. R10 structural/dormant evidence does not imply live activation or binding; online integration owns that work.
+R5 -> R10 offline production-lineage evidence remains admitted as previously checkpointed. R10 structural/dormant evidence does not imply live activation/binding; online integration owns that work.
 
 ## Native tool-substrate chain
 
@@ -29,40 +29,50 @@ R5 -> R10 offline production-lineage evidence remains admitted as previously che
 
 ### T6A — PASS
 
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-10_T6A_DNS_TCP_TLS_HTTP_HTTPS_PASS.md`
-
-Frozen OPPO artifact:
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T6A_DNS_TCP_TLS_HTTP_HTTPS_PASS.md`
 
 - source `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
 - binary `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
+
+Scope: DNS resolution, bounded TCP exchange, verified TLS exchange with peer trust/hostname verification, basic HTTP/HTTPS GET and body bound.
+
+### T6B — PASS
+
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T6B_ADVANCED_HTTP_FLOW_CONTROL_PASS.md`
+
+Frozen OPPO artifact:
+
+- source `046ffe2aa2d9cc0b20fcd6a15b95d71485f69dd612f352f19d4dccc5e06aab5b`
+- binary `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Admitted mechanical scope:
 
-- DNS resolution;
-- bounded TCP request/response exchange;
-- verified TLS request/response exchange;
-- TLS peer trust and hostname verification;
-- basic HTTP GET;
-- basic HTTPS GET;
-- bounded response body.
+- HTTP byte Range;
+- chunked transfer reception;
+- redirect follow/no-follow with bounded caller-supplied redirect count;
+- ETag / If-None-Match;
+- If-Range;
+- timeout;
+- bounded caller-supplied retry count/delay;
+- receive-rate cap;
+- slow-consumer backpressure;
+- response-body bound.
 
-Admission evidence:
+Evidence:
 
 - deterministic compile PASS;
 - source/binary freeze PASS;
 - high-entropy leak audit PASS;
-- loopback TCP/TLS/HTTP/HTTPS servers created after freeze;
-- localhost TLS cert/trust anchor generated after freeze;
+- loopback HTTP server created after freeze;
 - 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 52 native process invocations;
+- 53 native process invocations;
 - post-tool mechanical oracle PASS;
-- counterfactual behavior change PASS;
+- Range/chunked/redirect/conditional/timeout/retry/rate/backpressure gates PASS;
+- retry counterfactual PASS;
 - synthetic sandbox removed PASS.
 
-T6A used no external Internet. Endpoint choice remained caller-supplied mechanical input.
+The printed loopback `ConnectionResetError` during timeout/cancellation is a harness-server side effect of client connection closure and did not invalidate a native gate.
 
 ## Anti-hardcoding doctrine
 
@@ -72,6 +82,7 @@ T6A used no external Internet. Endpoint choice remained caller-supplied mechanic
 - randomized/high-entropy material only after freeze;
 - expected values only in external mechanical oracle;
 - `HOST_ENDPOINT_SELECTION=NO`;
+- `HOST_RETRY_POLICY_SELECTION=NO`;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
 - no test cognition imported into SIGMA state;
@@ -83,7 +94,7 @@ T6A used no external Internet. Endpoint choice remained caller-supplied mechanic
 - `T4_FULL_LAYER=PASS`
 - `T5_FULL_LAYER=PASS`
 - `T6A_DNS_TCP_TLS_HTTP_HTTPS_ADMISSION=PASS`
-- `T6B_ADVANCED_HTTP=PENDING`
+- `T6B_ADVANCED_HTTP_FLOW_CONTROL_ADMISSION=PASS`
 - `T6_COMBINED_COMPATIBILITY=PENDING`
 - `T6_FULL_LAYER=NOT_YET_ADMITTED`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
@@ -94,6 +105,6 @@ T6A used no external Internet. Endpoint choice remained caller-supplied mechanic
 
 ## Next offline sequence
 
-T6B must cover Range, chunked streaming, redirects, ETag/If-Range/conditional fetch, timeout, retry, rate-limit and backpressure. Then run exact T6A+T6B combined compatibility before advancing T6 full.
+Run exact **T6A + T6B combined compatibility**. Only a genuine combined PASS may advance `T6_FULL_LAYER=PASS`.
 
 After T6 full: `T7 -> T8 -> T9 -> T10 -> T11`.
