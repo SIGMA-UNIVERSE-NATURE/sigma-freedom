@@ -1,101 +1,71 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Continual Compact Work Memory R1H1 admission + independent blind PASS, and Scoped Revision/Support/Conflict R1 preparation.
+Updated: 2026-09-09 after Continual Compact Work Memory R1H1 PASS and Scoped Revision Support Conflict R1 admission + independent blind PASS.
 
-## Authoritative routing
+## Architecture routing
 
-Two gates are authoritative per `C5_M5/TWO_GATE_ARCHITECTURE.md`.
+Authoritative split: `C5_M5/TWO_GATE_ARCHITECTURE.md`.
 
 - Gate A — M5 TEST: cognition/memory -> continual learning -> revision/support/conflict -> new blind tests.
-- Gate B — C5 <-> C5V3/M5 synchronization/tool substrate: read-only synchronization -> SIGMA-native tools -> VM/native library/mechanical ABI -> boundary regression -> S1 -> S2 -> S3 -> promotion -> explicit cutover.
+- Gate B — C5 <-> C5V3/M5 synchronization + native tool substrate -> VM/native library/mechanical ABI -> tool-boundary regression -> S1 -> S2 -> S3 -> promotion/cutover.
 
-Tool/runtime operational PASS cannot waive a cognition FAIL. Semantic claims remain Gate A blind claims.
+Gate B may run in parallel. Semantic capability claims remain Gate A blind claims. Production binding remains NO.
 
-## Production boundary
+## Production fingerprints
 
-- Production binding: NO.
-- Production core SHA256: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`.
-- Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
-- Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
-- Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
-- Latest Oppo continual runtime observed production PID before/after: `23663`; production mutation NO.
+- core: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`
+- runner: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`
+- sigmac: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- locked VM: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+- latest observed production PID before/after: `23663`; production mutation NO.
 
-## Admitted Gate A chain
+## Gate A admitted chain
 
-Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> `M5_NATIVE_CONTINUAL_COMPACT_WORK_MEMORY_R1` PASS under R1H1 hardened evaluators.
+Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> continual compact work memory PASS -> scoped revision/support/conflict PASS.
 
-Latest admitted core SHA256:
+### Continual Compact Work Memory R1H1
 
-`69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`
+Core `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`, Oppo bytecode `642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`.
 
-Bytecode SHA256 observed on Oppo:
+Independent blind PASS. Exact admitted claim:
 
-`642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`
+`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS`
 
-## Continual Compact Work Memory R1H1 — admitted scope
+in the tested two-work/self-contained compact-memory scope. Work A archive block remained byte-for-byte stable after learning Work B; A/B remained isolated/queryable after source removal and restart; raw A/B works were excluded from compact bank.
 
-Admission evaluator and independent blind both returned `RC=0`.
+### Scoped Revision Support Conflict R1
 
-PASS:
+Core `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`, Oppo bytecode `e4a3e18029e93a4f97c4808fcda5518a89fa925d7c160471f83cb4635f28ee2a`.
 
-- `WORK_A_SELF_CONTAINED_LOCAL_ARCHIVE=PASS`
-- `WORK_A_MEMORY_BYTE_STABLE_AFTER_WORK_B=PASS`
-- `WORK_A_ARCHIVE_BLOCK_BYTE_STABLE_AFTER_WORK_B=PASS`
-- `WORK_A_COMPACT_SEMANTIC_RECALL_AFTER_WORK_B=PASS`
-- `WORK_B_COMPACT_SEMANTIC_RECALL=PASS`
-- `ARCHIVED_WORK_CROSS_ISOLATION=PASS`
-- `CONTINUAL_ROLE_REVERSAL_REJECTION=PASS`
-- `TWO_WORK_COMPACT_BANK_SMALLER_THAN_RAW_WORKS=PASS`
-- `RAW_WORK_A_B_EXCLUDED_FROM_LOCAL_BANK=PASS`
-- `MULTI_WORK_LOCAL_MEMORY_RESTART=PASS`
-- blind additionally: `RAW_SOURCE_A_NOT_RESTORED_DURING_WORK_B=PASS`
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the exact tested two-work/self-contained compact-memory scope.
+Admission PASS and independent blind PASS. Exact admitted claim:
 
-R1H1 hardened the non-interference oracle by byte-comparing the exact archived Work A bank block before/after Work B. It did not relax cognition criteria.
+`NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`
 
-This is not unbounded lifelong memory; the candidate bank remains bounded and the blind exercised two works.
+PASS includes native gap-derived revision scope, support, competing-candidate conflict, false-conflict rejection, same-source duplicate resistance, distinct-source authority, A→B and B→A revision, replay idempotence, evidence-ID conflict rejection, work-scope isolation, protocol-injection rejection and restart.
+
+Claim remains scoped. `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`.
+
+## New exact bottleneck / blind target
+
+A post-PASS audit identified a provenance-calibration risk: current R1 counts distinct `SOURCE_ID` independently per candidate. The same source can therefore appear on both A and B and may be counted as authority on both sides.
+
+Prepared diagnostic blind: `M5_BLIND_SCOPED_REVISION_EPISTEMIC_STRESS_R1` targeting the unchanged admitted core `460461d6...`.
+
+Desired stronger rule: a source that supports both candidates inside one revision scope is source-inconsistent and contributes authority to neither side until explicitly resolved. One self-contradicting source plus only one clean source must not form a hypothesis.
+
+This diagnostic may return `EVALUATOR_EXECUTION=PASS` while `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=FAIL`; that is a cognitive failure, not a harness failure.
 
 ## Current hard FAILs
 
+- `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`
+- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
 - `AUTONOMOUS_SUMMARY_GENERATION=FAIL`
 - `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`
-- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
 - `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
 - `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
 - `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- open-ended lifelong capacity beyond tested bank bound: FAIL
-- `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`
-- production binding: NO.
-
-## Pending Gate A candidate — scoped revision/support/conflict
-
-`M5_NATIVE_SCOPED_REVISION_SUPPORT_CONFLICT_R1`
-
-Design rule: the revision candidates may come only from an existing native `NATIVE_RELATION_DISCRIMINATION_GAP`. Host does not provide a support/conflict label or held belief. New raw evidence is natively matched to candidate A, candidate B, both, or neither.
-
-Exact R1 semantics:
-
-- evidence on the held candidate = native scoped support;
-- evidence on the competing native-gap candidate = native scoped conflict;
-- evidence matching neither = no stance, not conflict;
-- same-source repetition does not increase revision authority;
-- a held candidate changes only when distinct-source support for the competitor reaches the minimum threshold and strictly exceeds support for the held candidate;
-- replay, evidence-ID conflict, work-scope mismatch and protocol injection are adversarial gates.
-
-This is competing-candidate conflict inside a native two-candidate discrimination state. It is **not** yet general logical contradiction/truth judgment.
-
-Frozen preparation hashes:
-
-- Core SHA256: `460461d6273145fcedcf20e2c75b97e718ff61a6afa8f71dc8d0812f739f850e`
-- Admission evaluator SHA256: `9896de1de21157b255c88c8f01107ab03eb16a3b677f8a6d898857fcbbb582b4`
-- Independent blind evaluator SHA256: `661b69a3944f40a28dc6a0b309a162480859308673ff7227d12d76741ef526d4`
-- Ladder runner SHA256: `b698df3d83367a70dae1146b426e7ca8f394fe885b3588bd2f50cad7200e8a59`
-- Combined ladder bundle SHA256: `209c5221eac20a3fb5376ed11b9139f3d1116affe4b5efc6a749782f5395b4a1`
-
-Static preparation: admission/blind core byte-identical; parent continual R1H1 admission/blind regressions retained; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent; Bash syntax PASS; manifests PASS; ZIP integrity PASS.
+- unbounded lifelong capacity beyond tested bank bounds: FAIL.
 
 ## Exact next Gate A dependency
 
-Run `SIGMA_C5_C5V3_M5_SCOPED_REVISION_SUPPORT_CONFLICT_LADDER_R1_BUNDLE.zip` on Oppo. Only if admission + blind PASS may `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION` advance in the exact native-gap/provenance scope. Keep broad semantic support/conflict/truth FAIL until a later blind establishes it.
-
-Gate B may proceed independently with synchronization/tool substrate/VM/native library/S1-S3 while production remains read-only.
+Run the source-consistency epistemic stress blind on the admitted scoped-revision core. If it exposes the expected false-authority defect, build R2 with native source-consistency state and re-run the original revision blind plus the new stress blind. Do not weaken either evaluator.
