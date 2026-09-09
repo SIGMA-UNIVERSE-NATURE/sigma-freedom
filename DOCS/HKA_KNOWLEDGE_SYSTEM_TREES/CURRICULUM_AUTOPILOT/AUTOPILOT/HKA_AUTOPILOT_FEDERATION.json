@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "federation_id": "HKA-AUTOPILOT-RUNNER-FEDERATION-V1",
+  "status": "ACTIVE_DEGRADED_OPTIONALS",
+  "routing_policy": "FAIL_CLOSED_NO_TASK_LOSS",
+  "primary_control_runner": "GITHUB_ACTIONS",
+  "runners": {
+    "GITHUB_ACTIONS": {
+      "required": true,
+      "mode": "PRIMARY_CONTROL_RUNNER",
+      "status_hint": "ACTIVE",
+      "capabilities": ["validate", "plan", "idempotent_queue", "workflow_schedule"],
+      "may_self_accept_worker_output": false
+    },
+    "VERCEL_CLOUD_OBSERVER": {
+      "required": false,
+      "mode": "READ_ONLY_OBSERVER_OPTIONAL_WEBHOOK_HOST",
+      "status_hint": "BLOCKED_ACCOUNT_DEPLOYMENTS",
+      "team_id": "team_KC5XovOaZLZnvphtLUAjwOSA",
+      "preferred_bridge_project_id": "prj_94NOHJO6w3apayAeFh6SunAVjAPo",
+      "preferred_bridge_project": "hka-generation-bridge",
+      "fallback_preview_repo": "linkcomltd-byte/sigma-universe-web",
+      "fallback_preview_branch": "hka-autopilot-cloud-observer-v1",
+      "fallback_preview_pr": 178,
+      "health_path": "/api/hka-autopilot-health",
+      "last_verified_failure": "DEPLOYMENT_DISABLED / Vercel commit status failure: account deployment blocked",
+      "production_mutation_allowed": false
+    },
+    "HP_REMOTE_OPERATOR": {
+      "required": false,
+      "mode": "LOCAL_OBSERVER_VALIDATOR_ONLY",
+      "status_hint": "STALE_HEARTBEAT",
+      "repository": "linkcomltd-byte/sigma-remote-operator",
+      "branch": "main",
+      "host_id": "LAPTOP-A3SI7NC3",
+      "heartbeat_path": "HEARTBEAT/LAPTOP-A3SI7NC3.json",
+      "last_known_heartbeat": "2026-08-18T20:47:47.142178+00:00",
+      "freshness_seconds": 600,
+      "boundary_contract": "BOUNDARIES.json@main",
+      "allowed_hka_capabilities": ["heartbeat", "status", "read_only_validation", "observation_receipt"],
+      "forbidden_hka_capabilities": ["worker_authoring", "director_acceptance", "successor_unlock", "website_mutation", "production_deploy", "arbitrary_shell"]
+    }
+  },
+  "dispatch_order": [
+    "configured healthy HKA_AGENT_WEBHOOK_URL",
+    "GITHUB_ISSUE idempotent durable queue"
+  ],
+  "observer_order": [
+    "GITHUB_ACTIONS",
+    "VERCEL_CLOUD_OBSERVER when healthy",
+    "HP_REMOTE_OPERATOR when heartbeat fresh"
+  ],
+  "hard_rule": "Optional runner failure or staleness never advances governance and never discards a role request."
+}
