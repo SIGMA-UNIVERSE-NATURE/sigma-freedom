@@ -4,52 +4,41 @@ Updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 
 ## Production boundary
 
-- Production binding: NO
-- Production C5V3 observed PID: `23663`
-- Production core SHA256: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`
-- Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`
-- Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+- Production binding: NO.
+- Production C5V3 observed PID: `23663`.
+- Production core SHA256: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`.
+- Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
+- Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
+- Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
 
-## Final acceptance target
+## End-state target
 
-The final target is defined in `C5_M5/END_STATE_ACCEPTANCE.md`: real Internet acquisition, whole-work long-form understanding, evidence-backed summary/theme/value induction, multilingual narrative transfer, semantic compression after source removal, bounded local persistence, restart, and continual learning from compressed native memory.
-
-Intermediate structural PASS results must not be inflated into this end-state.
+`C5_M5/END_STATE_ACCEPTANCE.md` is authoritative: real Internet evidence, complete long-form reading, whole-work reasoning, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning. Intermediate structural PASS results are dependencies only.
 
 ## Latest admitted capability
 
 `M5_NATIVE_GAP_EVIDENCE_REQUEST_R1`
 
-Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`
+Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`.
 
-Retained admitted dependencies:
-
-1. `M5_CLEANLINE_R1` — neutral evidence/provenance persistence, replay, restart, bounded 64-record ledger.
-2. `M5_NATIVE_PROVENANCE_GAP_R1` — native structural provenance-diversity gap.
-3. `M5_NATIVE_EXACT_EVIDENCE_COHORT_R1` — exact-byte evidence identity/cohorting.
-4. `M5_NATIVE_SCOPED_PROVENANCE_GAP_R1` — target-scoped provenance gap.
-5. `M5_NATIVE_CONTEXT_STRUCTURE_R1` — native structural context hypothesis; blind contextual-transfer `100/100` only in that exact structural scope.
-6. `M5_NATIVE_RELATION_DISCRIMINATION_GAP_R1` — shared context plus differing configuration opens/revises a native discrimination gap instead of asserting equivalence.
-7. `M5_NATIVE_GAP_EVIDENCE_REQUEST_R1` — open native gap produces native evidence request; no gap means no request; request persists/restarts and is revoked by discriminating evidence.
+Retained admitted dependencies: clean neutral evidence/provenance persistence; provenance gap; exact-evidence cohort; scoped provenance gap; structural context hypothesis; relation-discrimination gap; native gap evidence request.
 
 ## Retained blind truth
 
 - Wide blind after scoped-gap repair: `75/100`.
-- Natural-language paraphrase blind R1: `60/100`; role reversal FAIL.
-- Natural-language paraphrase blind R2: `75/100`; role reversal PASS, benign untrained reorder FAIL, zero-shot low-overlap FAIL.
-- Learned-transform causality blind: `75/100`; `SPURIOUS_TRANSFORM_FALSE_INDUCTION_RESISTANCE=FAIL`.
-- Context-grounded causality blind: `65/100`; `GROUNDED_ROLE_REVERSAL_FALSE_EQUIVALENCE_RESISTANCE=FAIL`.
+- Context-structure transfer blind: `100/100` only in exact structural scope.
+- NL paraphrase blind R1: `60/100`; role reversal FAIL.
+- NL paraphrase blind R2: `75/100`; role reversal PASS; benign untrained reorder FAIL; zero-shot low-overlap FAIL.
+- Learned-transform causality blind: `75/100`; spurious transform false induction FAIL; parent retired.
+- Context-grounded causality blind: `65/100`; grounded role-reversal false equivalence FAIL; parent retired.
 
-Retired assumptions:
+Retired assumptions: recurring permutation shape implies relation preservation; shared co-document context implies same relation; unordered sentence-coverage matching.
 
-- recurring permutation shape => relation-preserving transformation;
-- shared co-document context => same relation;
-- unordered sentence-coverage matching.
+## Current hard FAILs
 
-## Current hard FAIL capabilities
+Until their own independent tests pass:
 
-- `MECHANICAL_TOOL_INVOCATION=FAIL` until R1H2 reaches final PASS.
+- `MECHANICAL_TOOL_INVOCATION=FAIL`
 - `REAL_INTERNET_ACQUISITION=FAIL`
 - `AUTONOMOUS_RESEARCH=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
@@ -64,37 +53,64 @@ Retired assumptions:
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
-## Mechanical evidence-tool transport — current state
+## Mechanical transport history
 
-Parent candidate core and transport remain unchanged through R1/R1H1/R1H2:
+R1 reached request gating/correlation/verbatim transport, irrelevant evidence, cross-gap isolation, persistence and restart, then `RC=72`; root cause was a harness live-request alias after legitimate native request revocation.
 
-- Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
-- Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
+R1H1 fixed that and additionally passed native discriminating-evidence revision plus revoked-request stopping provider invocation; it then reached `RC=83`; root cause was harness newline counting (`wc -l`) on a canonical 64-record ledger without required trailing newline.
 
-R1 runtime passed request gating/correlation/verbatim transport, irrelevant-evidence handling, cross-gap isolation, persistence and restart, then stopped at `FAIL=DISCRIMINATING_REQUEST_NOT_VERBATIM`, `RC=72`. Root cause was a harness live-file alias: the oracle compared provider capture to a native request file that SIGMA had legitimately revoked after discriminating evidence. No core/transport defect established.
+R1H2 fixes only the record-count oracle. No native bound was weakened.
 
-R1H1 fixed that oracle with an immutable request snapshot. Oppo runtime then additionally passed:
+## Static trust-boundary defect found before blind
 
-- `RAW_EVIDENCE_NATIVE_REVISION=PASS`
-- `NATIVE_REQUEST_REVOKE_STOPS_TOOL=PASS`
+Static audit of R1/R1H2 transport found that correlated request files alone were treated as authority. A host able to forge both output and request-state files could trigger the opaque provider without SIGMA recomputing the request from current gap state.
 
-R1H1 stopped at `FAIL=BOUND_LEDGER_NOT_64`, `RC=83` before the 65th-tool-result gate. Root cause is another harness counting bug: `open_gap` successfully ingests 4 records and the filler loop successfully ingests 60 more, but the oracle used `wc -l`. The canonical ledger has no trailing newline, so 64 records contain 63 newline characters. Native core count semantics are record-based (`str_split`) and the 64 accepted ingests establish 64 records; R1H1 did not demonstrate a core boundedness failure.
+Prepared replacement: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`.
 
-Current pending harness correction: `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2`
+- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
+- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
+- Preflight SHA256: `399f5a901fbbe762938cbf30eeaf65acb8cf833fb92741c6108d6458fb0a1cdd`.
+- Bundle SHA256: `08293b98f13e695e83ef79e76ec5c079ed025c7b8a7c126de682cfed542eb4ad`.
+- R2 requires locked native SIGMA to recompute the exact request from current native gap state immediately before any provider call.
+- R2 retains the full R1H2 boundedness/revision/freeze gates.
+- Runtime admission: pending.
 
-- Core SHA256 unchanged: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
-- Transport SHA256 unchanged: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Preflight SHA256: `769b2caffd0791faf4b81ce1bc72f4cf3898dcf7d60266d0473a51a68f0e5617`
-- Bundle SHA256: `df950ba9f07762d816f4eb7b399fb3f2b215d839fa10028f1f1e6c0e4c0bcf27`
-- Harness change only: replace newline count (`wc -l`) with record count (`awk NR`) for the two boundedness post-hoc assertions.
-- Native 65th-record rejection requirement remains unchanged.
-- Admission criteria weakened: NO.
-- Oppo locked runtime admission: pending.
+Prepared independent blind: `M5_BLIND_HOST_SUBSTITUTION_R1`.
+
+- Auditor SHA256: `25d9ae0401d7784672c7f284a710876bb5a5b9875743a8307f3c775131281045`.
+- Bundle SHA256: `269c5edfeb610676b4131d20dadce766019bd4828cc560949bf45640ed516cc7`.
+- Tests forged correlated request, stale cross-gap request, raw protocol injection, irrelevant evidence and native-only revision.
+
+Prepared next dependency: `M5_NATIVE_GAP_SEARCH_QUERY_R1`.
+
+- Core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
+- Query bytes are generated inside SIGMA as verbatim serialization of the unresolved native gap pair.
+- Host expansion/rewriting remains forbidden.
+- Bundle SHA256: `300b87ba0357268d816d328d304ca500d1b5925929e7bbe645a8a454658dd428`.
+- Runtime admission: pending.
+
+Prepared real-network stage: `M5_REAL_INTERNET_SEARCH_DISCOVERY_R1`.
+
+- Same query core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
+- Fixed mechanical provider calls English Wikipedia MediaWiki search API using native query bytes.
+- Raw compact search-response bytes return to native SIGMA without host summary.
+- Provider SHA256: `cbab8e07a87009a1787f64a1179706e77fc72c72ab2848366b488a335534d3c3`.
+- Bundle SHA256: `5007bc3e80df1a158f45f9e3c711f0f383ba600907dbc7894e062fd80cffaf30`.
+- Runtime/network admission: pending.
+
+## Immediate execution artifact
+
+`SIGMA_C5_C5V3_M5_24H_EXECUTION_LADDER_R1_BUNDLE.zip`
+
+- Bundle SHA256: `87118eebdda1ee1af2d5bb247516905da26ded4f1ce60595c8da6e859fe32197`.
+- Runner SHA256: `c4c1780d57dc57357bc9d90e90faed04cee4e4bb384241cc9a3eb200f244ad69`.
+- Runs R2 -> blind host-substitution -> native query -> real Internet discovery.
+- Stops at first failure and preserves logs locally.
 
 ## Anti-hardcode state
 
-Current admitted lineage repeatedly passes gates for token LEFT/RIGHT cognition absent, active Python cognition absent, host learning absent, host semantic substitution absent, no fixed English grammar/semantic-role tables in active candidate capability code, and dynamic fixtures generated after compile/freeze where applicable.
+No token LEFT/RIGHT cognition, active Python cognition, host learning, host semantic substitution or fixed English grammar/semantic-role tables is admitted in the current lineage. Future semantic claims still require independent blind tests.
 
 ## Exact next dependency
 
-Run `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2` on Oppo. Do not promote mechanical tool invocation until the corrected harness reaches final admission PASS. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, whole-work understanding, semantic memory, multilingual transfer, semantic paraphrase, and truth/support/conflict capabilities FAIL until their own independent admission/blind tests.
+Run the immediate execution ladder. If stage 1 fails, fix that exact layer. Do not skip stages. If all four stages pass, the next architecture target is bounded transient long-form source streaming plus source-removal whole-work semantic-retention testing; do not return to optimizing isolated sentence fixtures as the main objective.
