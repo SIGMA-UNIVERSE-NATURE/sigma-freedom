@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -18,7 +19,7 @@ def git(repo: Path, *args: str) -> str:
     return p.stdout.strip()
 
 
-def find_child(registry: dict, window: str) -> dict | None:
+def find_window(registry: dict, window: str) -> dict | None:
     for stage in registry.get("stages", []):
         for family in stage.get("windows", []):
             if family.get("window_id") == window:
@@ -27,6 +28,13 @@ def find_child(registry: dict, window: str) -> dict | None:
                 if child.get("window_id") == window:
                     return child
     return None
+
+
+def academic_family(window: str) -> str:
+    m = re.search(r"-B1\.(\d)-", window)
+    if not m:
+        raise ValueError(f"cannot derive B1 family from window: {window}")
+    return f"B1.{m.group(1)}"
 
 
 def check(role: str, action: str, window: str, repo: Path, base: str) -> dict:
@@ -40,7 +48,8 @@ def check(role: str, action: str, window: str, repo: Path, base: str) -> dict:
         raise ValueError("agent commit has no file changes")
 
     if role == "WORKER":
-        academic_prefix = f"{ACADEMIC_ROOT}/B1.4/{window}/"
+        family = academic_family(window)
+        academic_prefix = f"{ACADEMIC_ROOT}/{family}/{window}/"
         status_prefix = f"{CONTROL_ROOT}/STATUS_REPORTS/{window}/"
         bad = [f for f in files if not (f.startswith(academic_prefix) or f.startswith(status_prefix))]
         if bad:
@@ -57,15 +66,15 @@ def check(role: str, action: str, window: str, repo: Path, base: str) -> dict:
         if bad:
             raise ValueError(f"DIRECTOR boundary violation: {bad}")
         registry = json.loads((repo / CONTROL_ROOT / "WINDOW_REGISTRY.json").read_text(encoding="utf-8"))
-        child = find_child(registry, window)
+        target = find_window(registry, window)
         if action in {"RUN_DIRECTOR_REVIEW", "RUN_DIRECTOR_BLOCK_REVIEW"}:
-            if not child or child.get("status") not in {"REPAIR_REQUIRED", "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING", "DIRECTOR_ACCEPTED_PASS_PENDING_SENTINEL"}:
+            if not target or target.get("status") not in {"REPAIR_REQUIRED", "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING", "DIRECTOR_ACCEPTED_PASS_PENDING_SENTINEL"}:
                 raise ValueError("DIRECTOR review did not reach ACCEPT-or-REPAIR durable state")
         if action == "RUN_DIRECTOR_APPLY_SENTINEL_RESULT":
-            if not child or child.get("status") != "PASS" or child.get("post_acceptance_sentinel") != "TREE_ALIGNMENT_PASS":
+            if not target or target.get("status") != "PASS" or target.get("post_acceptance_sentinel") != "TREE_ALIGNMENT_PASS":
                 raise ValueError("DIRECTOR did not apply Sentinel PASS to child")
         if action == "RUN_DIRECTOR_OPEN_SUCCESSOR":
-            if not child or child.get("status") != "READY" or child.get("unlocked") is not True or not child.get("execution_branch"):
+            if not target or target.get("status") != "READY" or target.get("unlocked") is not True or not target.get("execution_branch"):
                 raise ValueError("DIRECTOR successor opening did not produce READY unlocked child with branch")
 
     elif role == "SENTINEL":
