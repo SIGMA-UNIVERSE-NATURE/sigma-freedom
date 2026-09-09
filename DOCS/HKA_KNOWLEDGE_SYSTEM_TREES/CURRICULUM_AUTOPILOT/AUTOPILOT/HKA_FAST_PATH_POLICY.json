@@ -1,10 +1,18 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "policy_id": "HKA-FAST-PATH-V1",
   "status": "ACTIVE",
   "north_star": "CINEMATIC_4K_ON_WEBSITE",
-  "principle": "Governance gates protect correctness; they are not the product. Repair locally and advance whenever correctness is preserved.",
+  "principle": "Governance gates protect correctness; they are not the product. Repair locally, remove redundant mechanical work, and advance whenever correctness is preserved.",
   "current_stage_boundary": "CURRICULUM",
+  "operational_budget": {
+    "single_agent_execution_minutes": 5,
+    "over_budget_is_fault": true,
+    "mechanical_retry_limit_per_transaction": 1,
+    "on_timeout": "FAIL_FAST_KEEP_DURABLE_QUEUE_AND_RETRY_FROM_LAST_DURABLE_STATE",
+    "no_indefinite_wait": true,
+    "no_parallel_duplicate_runner": true
+  },
   "execution_policy": {
     "auto_fix_repairable_defects_in_same_role": true,
     "self_repair_before_terminal_receipt": true,
@@ -14,7 +22,19 @@
     "preserve_effective_academic_sha_when_academic_payload_unchanged": true,
     "repair_only_impacted_artifacts_when_possible": true,
     "repeat_same_finding_without_new_evidence_forbidden": true,
-    "manual_handoff_required_for_internal_repairable_error": false
+    "manual_handoff_required_for_internal_repairable_error": false,
+    "collapse_redundant_mechanical_checks": true,
+    "reuse_current_durable_evidence_when_sha_unchanged": true,
+    "do_not_reread_unchanged_large_artifacts_without_a_specific_invariant_reason": true,
+    "do_not_create_governance_artifacts_that_do_not_change_or prove_state": true
+  },
+  "knowledge_tree_rule": {
+    "must_read_before_every_role_transition": true,
+    "canonical_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+    "architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "scope_map_blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+    "resolve_only_active_scope_and_required_prerequisites": true,
+    "never_infer_missing_architecture": true
   },
   "mechanical_examples": [
     "formatting_or_serialization",
@@ -25,22 +45,18 @@
     "missing_read_back_record",
     "deterministic_reference_resolution_metadata"
   ],
-  "mechanical_rule": "If the active role has write authority and the correction does not change academic meaning, architecture, ownership, prerequisites, stable IDs, accepted prior state, or stage boundary, repair it immediately in the same transaction and continue.",
-  "blocking_classes": [
-    "KNOWLEDGE_TREE_MISALIGNMENT",
-    "CANONICAL_SCOPE_OR_TOPIC_DRIFT",
-    "PREREQUISITE_GRAPH_DEFECT",
-    "OWNERSHIP_OR_DUPLICATE_SEMANTIC_CONFLICT",
-    "STABLE_ID_BREAK",
-    "SOURCE_OR_SUPPORT_SEMANTIC_FAILURE",
-    "FUTURE_LOCKED_SUPPORT",
-    "CROSS_SCOPE_ACCEPTED_ACADEMIC_MUTATION",
-    "STAGE_BOUNDARY_VIOLATION",
-    "GENUINE_EXTERNAL_INFRASTRUCTURE_BLOCK"
-  ],
+  "mechanical_rule": "If the active role has write authority and the correction does not change academic meaning, architecture, ownership, prerequisites, stable IDs, accepted prior state, or stage boundary, repair it immediately in the same transaction and continue. Do not create a Director or human handoff for it.",
+  "worker_fast_path": {
+    "transaction": "READ_MINIMUM_AUTHORITATIVE_SET -> AUTHOR_OR_REPAIR -> SELF_AUDIT -> SELF_REPAIR -> IMPACTED_REAUDIT -> COMMIT -> READ_BACK -> TERMINAL_RECEIPT",
+    "self_repair_required": true,
+    "full_reaudit_only_on_semantic_change": true,
+    "mechanical_failure_must_not_restart_authoring": true
+  },
   "director_review": {
     "default": "DELTA_FIRST",
-    "after_worker_repair_with_unchanged_academic_payload": "VERIFY_REPAIR_FINDING_PLUS_INVARIANTS_ONLY",
+    "after_worker_repair_with_unchanged_academic_payload": "VERIFY_REPAIR_FINDING_PLUS_HARD_INVARIANTS_ONLY",
+    "do_not_repeat_worker_self_audit": true,
+    "do_not_block_for_repairable_metadata": true,
     "full_semantic_review_required_when": [
       "claims_changed",
       "learning_objectives_changed",
@@ -53,6 +69,7 @@
   "sentinel": {
     "purpose": "alignment_guard_not_reauthoring_review",
     "do_not_repeat_director_academic_review": true,
+    "mechanical_metadata_is_non_blocking_when_authoritative_state_is_unambiguous": true,
     "focus": [
       "accepted_sha_chain",
       "tree_scope_alignment",
@@ -62,6 +79,28 @@
       "stage_boundary",
       "cross_scope_mutation"
     ]
+  },
+  "blocking_classes": [
+    "KNOWLEDGE_TREE_MISALIGNMENT",
+    "CANONICAL_SCOPE_OR_TOPIC_DRIFT",
+    "PREREQUISITE_GRAPH_DEFECT",
+    "OWNERSHIP_OR_DUPLICATE_SEMANTIC_CONFLICT",
+    "STABLE_ID_BREAK",
+    "SOURCE_OR_SUPPORT_SEMANTIC_FAILURE",
+    "FUTURE_LOCKED_SUPPORT",
+    "CROSS_SCOPE_ACCEPTED_ACADEMIC_MUTATION",
+    "STAGE_BOUNDARY_VIOLATION",
+    "GENUINE_EXTERNAL_INFRASTRUCTURE_BLOCK"
+  ],
+  "non_negotiable_gates": {
+    "worker_cannot_self_accept": true,
+    "director_acceptance_required": true,
+    "fresh_sentinel_required_after_acceptance": true,
+    "successor_opening_is_separate_transition": true,
+    "foundational_gap_required": 0,
+    "future_locked_support_required": 0,
+    "cross_scope_academic_mutation_required": 0,
+    "no_stage_skip": true
   },
   "delivery_intent": {
     "final_surface": "WEBSITE",
