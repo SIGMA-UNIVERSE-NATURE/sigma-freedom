@@ -1,89 +1,85 @@
 # SIGMA C5 M5 — Window Handoff
 
-Any future work window should read, in order:
+Read in order:
 
 1. `C5_M5/MISSION.md`
 2. `C5_M5/END_STATE_ACCEPTANCE.md`
 3. `C5_M5/STATUS.md`
 4. `C5_M5/CHECKPOINTS.md`
-5. this file
+5. `C5_M5/24H_EXECUTION.md`
+6. this file
 
-Do not reconstruct history from old chat text when these branch files are available.
+Do not reconstruct history from old chat when these files are available.
 
-## Current purpose
+## Purpose
 
-Continue M5 core replacement until SIGMA can autonomously acquire real evidence, read and integrate complete long-form works, revise hypotheses, compress learned knowledge into bounded local native memory, remove the source text, and continue learning — without token LEFT/RIGHT cognition, lexical grammar hardcoding, semantic cue tables, or host-substituted cognition.
+Build a C5V3 successor that can acquire real sources, read complete long-form works, form/revise native understanding, compress retained knowledge into bounded local memory, remove the source text and continue learning. No token LEFT/RIGHT cognition, hardcoded English semantic grammar, cue-to-meaning tables or host-substituted cognition.
 
-The end-state acceptance standard is mandatory. Intermediate structural PASS results are dependencies only; they must never be inflated into whole-work understanding.
-
-## Latest admitted starting point
+## Latest admitted capability
 
 `M5_NATIVE_GAP_EVIDENCE_REQUEST_R1`
 
-Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`
+Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`.
 
-Runtime admission: PASS on Oppo.
+## Immediate execution path
 
-## Current pending candidate
+Use `SIGMA_C5_C5V3_M5_24H_EXECUTION_LADDER_R1_BUNDLE.zip`.
 
-`M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2`
+Bundle SHA256: `87118eebdda1ee1af2d5bb247516905da26ded4f1ce60595c8da6e859fe32197`.
 
-This is a harness-only correction. Core and transport are byte-identical to R1/R1H1:
+Runner SHA256: `c4c1780d57dc57357bc9d90e90faed04cee4e4bb384241cc9a3eb200f244ad69`.
 
-- Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
-- Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Preflight SHA256: `769b2caffd0791faf4b81ce1bc72f4cf3898dcf7d60266d0473a51a68f0e5617`
-- Bundle SHA256: `df950ba9f07762d816f4eb7b399fb3f2b215d839fa10028f1f1e6c0e4c0bcf27`
+Strict stages:
 
-## Runtime history relevant to this candidate
+1. Transport R2 full admission.
+   - core `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`
+   - transport `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`
+   - adds native request recomputation from current native gap state before provider call.
+2. Blind host-substitution R1.
+   - forged correlated request, stale cross-gap request, raw protocol injection, irrelevant evidence and native-only revision.
+3. Native Gap Search Query R1.
+   - core `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`
+   - query bytes originate inside SIGMA; host does not rewrite/expand.
+4. Real Internet Search Discovery R1.
+   - fixed mechanical Wikipedia MediaWiki search provider.
+   - native query goes to real network; compact raw search response returns to native SIGMA.
 
-R1 passed no-request/malformed blocking, native request correlation, valid verbatim request/raw evidence transport, irrelevant-evidence native handling, cross-gap isolation, persistence and restart. It stopped at `RC=72` because the harness compared provider capture against a live request file after native SIGMA had correctly revoked that file.
+The ladder stops at first non-zero RC. Never bypass a failed dependency.
 
-R1H1 fixed that via an immutable request snapshot. It then passed discriminating raw-evidence native revision and verified that native request revocation stops future tool invocation. It stopped at `FAIL=BOUND_LEDGER_NOT_64`, `RC=83`.
+## Why R2 replaced R1H2 as the accelerated path
 
-R1H1 boundedness failure class: HARNESS COUNTING BUG, not established core failure. `open_gap` ingested 4 records successfully and 60 filler ingests also returned the exact native record-success decision. The oracle used `wc -l`, but canonical ledger files do not require a trailing newline; 64 records therefore present only 63 newline characters. R1H2 replaces only those two post-hoc assertions with `awk NR` record counting.
+R1H2 only fixed the boundedness oracle. Static audit then found a real trust-boundary defect: R1 transport trusted correlated request files as authority. R2 adds locked native recomputation against current gap state immediately before provider invocation and includes all R1H2 gates. This is a core/transport trust fix, not an evaluator relaxation.
 
-The actual native boundedness gate is not weakened: after 64 accepted records, a valid tool result must still be transported to SIGMA and SIGMA must return `REJECT_EXTERNAL_EVIDENCE:LEDGER_BOUND_REACHED`, keep the ledger at 64 records, and preserve the open native request.
+## Claims if all four stages pass
 
-## Exact next work item
+Only the following may advance:
 
-Run `PREFLIGHT_C5V3_M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1H2.sh` on Oppo.
+- mechanical tool invocation;
+- blind host-substitution boundary in tested scope;
+- native search-query bytes;
+- real Internet search-discovery bytes.
 
-Required remaining gates:
+The following remain FAIL:
 
-- 64 accepted ledger records are counted as 64 records independent of final newline formatting;
-- a 65th external/tool result is rejected by native SIGMA;
-- rejection cannot corrupt the existing native evidence request;
-- source/transport/bytecode remain frozen;
-- production C5V3 remains read-only and same active process;
-- final admission reaches `RC=0`.
+- full-source fetch/read;
+- autonomous research;
+- whole-work narrative understanding;
+- evidence-backed whole-work summary;
+- theme/human-value induction;
+- multilingual narrative transfer;
+- semantic compression after source removal;
+- continual learning from compressed local memory;
+- semantic paraphrase/zero-shot low-overlap;
+- semantic support/conflict/truth judgment.
 
-If R1H2 passes, update GitHub immediately and change only `MECHANICAL_TOOL_INVOCATION=PASS`.
+## Next architecture after a fully passing ladder
 
-Then build an independent blind host-substitution audit before real Internet access. After mechanical transport and real-Internet acquisition are independently admitted, the development path must move toward whole-work comprehension tests described in `END_STATE_ACCEPTANCE.md`: long-range narrative integration, evidence-backed summary/theme/value extraction after source removal, multilingual transfer, native semantic compression, and continual local learning.
+Build a bounded transient long-form work stream. Raw book/story text may exist only as bounded working source during reading. The persistent state after a work boundary must not be the ebook.
 
-## Host boundary
+Then build whole-work native representation and test it with unseen long-form sources. Required gates include distant evidence integration, entity/event/motive/consequence revision across sections, source-removal summary/reasoning, evidence-backed theme/human values, multilingual transfer, compression-size reduction with semantic retention, restart and later learning from local compressed memory.
 
-Host may perform mechanical request framing validation, invoke a preconfigured provider on a valid native request, pass request/raw bytes verbatim, and invoke locked VM/process/file plumbing.
+Do not optimize another narrow sentence benchmark as the main objective.
 
-Host must not invent gaps, research goals, semantic queries, summaries, rankings, beliefs, support/conflict/truth stances, theme/value interpretations, memory selections, or final answers.
+## Update discipline
 
-## Hard FAILs retained
-
-- `MECHANICAL_TOOL_INVOCATION=FAIL` until R1H2 final PASS.
-- `REAL_INTERNET_ACQUISITION=FAIL`
-- `AUTONOMOUS_RESEARCH=FAIL`
-- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
-- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
-- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`
-- `SEMANTIC_PARAPHRASE=FAIL`
-- `ZERO_SHOT_LOW_OVERLAP_PARAPHRASE=FAIL`
-- `BENIGN_UNGROUNDED_REORDER=FAIL`
-- semantic support/conflict/truth judgment: FAIL.
-
-## Update rule
-
-After each successful experimental step, update `STATUS.md`, append `CHECKPOINTS.md`, update this handoff to one exact next dependency, and commit to `c5-m5-core-replacement-live`. Do not merge to `SIGMA_LIFE` and do not cut over production unless explicitly instructed later.
+After each PASS, update `STATUS.md`, append `CHECKPOINTS.md`, and move this handoff to exactly one next dependency. Historical failures and retired assumptions remain visible. Never merge to `SIGMA_LIFE` or cut over production without explicit instruction.
