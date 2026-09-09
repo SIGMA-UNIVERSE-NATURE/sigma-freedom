@@ -1,9 +1,9 @@
 {
-  "schema_version":"1.0",
+  "schema_version":"1.1",
   "window_id":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY",
   "role":"FAMILY_CONTROLLER",
   "stage":"CURRICULUM",
-  "status":"IN_PROGRESS_FIRST_CHILD_READY",
+  "status":"IN_PROGRESS_FIRST_CHILD_REPAIR_REQUIRED",
   "execution_branch":"hka-tree/c01-w05-earth-universe-family",
   "control_plane_branch":"hka-tree/curriculum-master",
   "control_plane_opening_sha":"72c00cdd57aaacc0e8483939b4c5cf01004ed3c9",
@@ -15,12 +15,14 @@
   "active_child_branch":"hka-tree/c01-w05-earth-universe-c01-c03",
   "active_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],
   "active_owner":"W45",
+  "candidate_sha":"461b651ec65cbe2449697787742c36b51cb0ead3",
   "external_accepted_prerequisite":"B1.3-C01@d3d5eb000b927f69732554c9dd58b4c087d7ca7d",
   "internal_sequence":["B1.4-C01","B1.4-C02","B1.4-C03"],
+  "director_review":{"decision":"REPAIR_REQUIRED","checkpoint_commit":"5304d3969a13ca70015d724f0c8d9ee84bd53e87","finding":"R11 target misaligned: B1.4-C01 R11 overlap must point to accepted B1.3-C10, while B1.3-C01 remains the canonical prerequisite."},
   "successor_child":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06",
   "successor_locked":true,
   "B1_5_unlock":false,
   "director_acceptance_declared":false,
-  "next_action":"Execute only first bounded child C01-C03; family controller skips no child unless durable child status/result are Director-accepted PASS according to governance.",
-  "updated_at":"2026-09-09T09:52:00+07:00"
+  "next_action":"Repair only the current child's R11 boundary metadata, re-audit and return a new terminal PASS_CANDIDATE. Do not unlock successor.",
+  "updated_at":"2026-09-09T10:06:00+07:00"
 }
