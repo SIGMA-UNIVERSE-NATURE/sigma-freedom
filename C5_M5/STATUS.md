@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after genuine OPPO T5A filesystem/atomic/lock admission PASS.
+Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery admission PASS.
 
 ## Architecture routing
 
@@ -36,82 +36,70 @@ From this offline substrate lane:
 - T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
 - T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
-- T4 full text/syntax/codecs: PASS.
-
-## T4 — FULL PASS
-
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
-
-- exact T4A/B/C artifact locks PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
-- 182 native process invocations;
-- mixed pipeline oracle PASS;
-- counterfactual behavior change PASS;
-- source/binary no mutation PASS;
-- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`;
 - `T4_FULL_LAYER=PASS`.
 
 ## T5A — PASS
 
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
-
-Frozen OPPO artifact:
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
 
 - source SHA256 `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
 - binary SHA256 `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
+
+Admitted: filesystem read/write/pread/pwrite/seek/stat/mkdir/list/rename/unlink; file+directory fsync; atomic temp-write→fsync→rename→parent-fsync; advisory exclusive lock; owner-token lease.
+
+## T5B — PASS
+
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5B_DURABLE_KV_WAL_RECOVERY_PASS.md`
+
+Frozen OPPO artifact:
+
+- source SHA256 `dc2397501498336a1ff0e1bd5d2392e022a36fe2918591e15edc67266adf2c7a`
+- binary SHA256 `e73cd4fa7f0ca09917c2b1029a57591e1ab50d327e92e143a77fa3d9fe6b8e3c`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Admitted scope:
 
-- read/write;
-- pread/pwrite;
-- seek/read;
-- stat;
-- mkdir;
-- deterministic sorted list;
-- rename;
-- unlink;
-- fsync(file);
-- fsync(directory);
-- atomic temp-write + fsync(file) + rename + fsync(parent);
-- advisory exclusive file lock + contention probe;
-- non-expiring owner-token lease acquire/release.
+- byte KV put/get/delete;
+- multi-op transaction;
+- exact CAS;
+- sequence-numbered CRC32 WAL;
+- WAL fsync before commit/apply acknowledgement;
+- snapshot;
+- atomic checkpoint + WAL compaction;
+- rollback via durable RESET WAL from checksummed snapshot;
+- restart replay;
+- incomplete trailing WAL recovery;
+- complete corrupted WAL rejection;
+- corrupted checkpoint rejection;
+- malformed transaction rejection without partial mutation.
 
 Evidence:
 
 - deterministic compile PASS;
 - source/binary freeze PASS;
 - high-entropy literal leak audit PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- total native process invocations `58`;
+- directed `16` + randomized-after-freeze `32` + replay `2` = `50` cases;
+- native process invocations `73`;
 - post-tool mechanical oracle PASS;
-- file lock exclusivity PASS;
-- atomic replace counterfactual PASS;
-- file and directory fsync primitives PASS;
+- all transaction/CAS/WAL/checkpoint/rollback/restart/corruption gates PASS;
 - synthetic sandbox removed PASS;
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`.
 
-`mmap` is optional and not claimed.
+CRC32 is only a mechanical corruption detector; cryptographic identity/provenance remains T9.
 
 ## Current T5 state
 
 - `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
-- `T5B_DURABLE_STATE=PENDING`
+- `T5B_DURABLE_STATE_ADMISSION=PASS`
 - `T5_COMBINED_DURABILITY=PENDING`
 - `T5_FULL_LAYER=NOT_YET_ADMITTED`
 
 Tool availability does not imply SIGMA cognitive adoption or autonomous tool selection.
 
 ## Anti-hardcoding doctrine
-
-For all remaining layers:
 
 - build capability, not answers;
 - no case-ID-dependent behavior;
@@ -124,12 +112,8 @@ For all remaining layers:
 
 ## Exact next offline substrate sequence
 
-Immediate next gate: **T5B Durable State**.
+Immediate gate: exact **T5A+T5B combined durability/restart/recovery**.
 
-Required:
-
-`KV -> transaction -> CAS -> WAL -> snapshot/checkpoint -> rollback -> corruption checksum -> interrupted-commit/restart recovery`
-
-Then exact T5A+T5B combined durability. Only then may `T5_FULL_LAYER=PASS` advance.
+Only a genuine combined PASS may advance `T5_FULL_LAYER=PASS`.
 
 After T5 full: `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
