@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Full Source Stream R1 runtime PASS.
+Updated: 2026-09-09 after Full Source Stream R1 runtime PASS and Whole-Work Ladder R1 preparation.
 
 ## Production boundary
 
@@ -17,43 +17,21 @@ Updated: 2026-09-09 after Full Source Stream R1 runtime PASS.
 
 ## Latest admitted chain
 
-- `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`: PASS.
-- Corrected independent blind host-substitution R1H1: PASS.
-- `M5_NATIVE_GAP_SEARCH_QUERY_R1`: PASS.
-- `M5_REAL_INTERNET_SEARCH_DISCOVERY_R1`: PASS.
-- `M5_REAL_INTERNET_FULL_SOURCE_STREAM_R1`: PASS.
+- Mechanical Evidence Tool Transport R2: PASS.
+- Corrected independent Blind Host Substitution R1H1: PASS.
+- Native Gap Search Query R1: PASS.
+- Real Internet Search Discovery R1: PASS.
+- Real Internet Full Source Stream R1: PASS.
 
-Latest full-source candidate hashes:
+Full-source R1 hashes:
 
-- Core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
-- Transport SHA256: `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`.
-- Provider SHA256: `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`.
+- Core `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`
+- Transport `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`
+- Provider `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`
 
-Runtime facts now admitted in exact scope:
-
-- `REAL_INTERNET_FULL_SOURCE_FETCH=PASS`
-- `BOUNDED_TRANSIENT_LONG_FORM_STREAM=PASS`
-- `FULL_SOURCE_BYTE_REASSEMBLY=PASS`
-- `TRANSIENT_SOURCE_RESTART_STATE=PASS`
-- `FULL_SOURCE_EXCLUDED_FROM_CANONICAL_MEMORY=PASS`
-- `TRANSIENT_FULL_SOURCE_REMOVAL=PASS`
-
-The full source can exist as bounded transient working state, survives restart while active, is byte-identical to provider raw bytes, is excluded from canonical long-term memory, and can be explicitly removed without corrupting retained state.
-
-## Retained blind truth / retired assumptions
-
-- Wide blind after scoped-gap repair: `75/100`.
-- Context-structure transfer blind: `100/100` only in exact structural scope.
-- NL paraphrase blind R1: `60/100`; role reversal FAIL.
-- NL paraphrase blind R2: `75/100`; role reversal PASS; benign untrained reorder FAIL; zero-shot low-overlap FAIL.
-- Learned-transform causality blind exposed spurious transform false induction; parent retired.
-- Context-grounded causality blind exposed grounded role-reversal false equivalence; parent retired.
-
-Retired assumptions remain: recurring permutation shape implies relation preservation; shared co-document context implies same relation; unordered sentence-coverage matching.
+Admitted runtime facts: real full-source fetch PASS; bounded transient stream PASS; exact byte reassembly PASS; transient restart state PASS; full source excluded from canonical memory PASS; explicit transient source removal PASS.
 
 ## Current hard FAILs
-
-Do not inflate transport/source handling into cognition:
 
 - `AUTONOMOUS_RESEARCH=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
@@ -68,12 +46,32 @@ Do not inflate transport/source handling into cognition:
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
+## Pending Whole-Work Ladder R1 — not admitted
+
+Candidate: `M5_NATIVE_WHOLE_WORK_STRUCTURAL_MEMORY_R1`
+
+- Core SHA256: `5051976e55c33f610431e9b49c4dfed05e210acc3cfde496beb938031c334c18`.
+- Preflight SHA256: `85114dfaf6055408155e3222e5b440d206bab35cfd525ac86a75222b1dd99b89`.
+
+Independent blind target is frozen to that core SHA:
+
+- Blind auditor SHA256: `5ef96dde8ce0ffb134f1337e09f555139519f037174c21355f3d5a790fe91578`.
+- Blind bundle SHA256: `2d5825f849fd2858d99b30519d0aac1b0f3f12f51000df2733bf4f7eb49d7852`.
+
+Combined execution artifact:
+
+- `SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1_BUNDLE.zip`
+- Runner SHA256: `88496c8368550501fd3eaacd1d9dd509c97c1388e6a019de1efa8d1a9c9af694`.
+- Bundle SHA256: `0a584c026f1b32c704ce8096097374c11da228763dbbda5867d7bab7042d4f6c`.
+
+Stage A tests source-independent retained structural whole-work memory from dynamic post-compile units. Stage B is independent blind and intentionally includes once-only event-detail retention plus whole-work-summary capability. Cognitive FAIL lines are retained even when evaluator execution returns RC=0.
+
+This R1 is a structural substrate, not an acceptable final semantic architecture. It uses recurrent atoms inside whole-unit signatures; it must not be promoted into a whole-work-understanding claim. If blind shows once-only event loss, the next representation must preserve novel salient events without host labels or lexical hardcoding.
+
 ## Anti-hardcode state
 
-No token LEFT/RIGHT cognition, active Python cognition, host learning, host semantic substitution or fixed English grammar/semantic-role tables is admitted in the current lineage. Semantic claims require independent unseen blind tests.
+No token LEFT/RIGHT cognition, host semantic substitution, active Python cognition or fixed English grammar/semantic-role tables is admitted. Whole-work R1 preserves entire unit configuration order rather than assigning LEFT/RIGHT semantic roles, but broader natural-language understanding still requires blind proof.
 
 ## Exact next dependency
 
-Build and test a native whole-work retained representation from bounded full-source transient state. The first milestone must be structural and honest: integrate information across distant source units into a source-independent retained work state, then remove the original source and run independent blind recall/reasoning. Do not claim summary/theme/human-value understanding until those separate blind gates pass.
-
-Production remains untouched; C5V3 integration begins only after the required cognition/memory subset is admitted.
+Run Whole-Work Ladder R1. If Stage A fails, fix the structural memory implementation. If Stage A passes, use the blind score to identify the next exact bottleneck. Do not cut over C5V3; integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
