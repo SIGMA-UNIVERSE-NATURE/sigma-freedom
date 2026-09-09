@@ -117,6 +117,28 @@ This file is append-only in intent. Historical failures remain visible after lat
 - Tool execution: FAIL.
 - Production binding: NO.
 
+## 2026-09-09 — Mechanical Evidence Tool Transport R1 runtime attempt
+
+- Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
+- Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
+- Runtime passed through request gating, request correlation, verbatim transport, irrelevant-evidence native handling, cross-gap isolation, persistence and restart.
+- Stopped at `FAIL=DISCRIMINATING_REQUEST_NOT_VERBATIM`, `RC=72`.
+- Failure class: HARNESS BUG.
+- Root cause: preflight compared provider capture to the live native request output after discriminating evidence had correctly caused native SIGMA to revoke/clear that request.
+- No core or transport defect established by this failure.
+- Capability remains not admitted.
+
+## 2026-09-09 — Mechanical Evidence Tool Transport R1H1 prepared
+
+- Harness-only correction; runtime pending.
+- Core SHA256 unchanged: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
+- Transport SHA256 unchanged: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
+- Preflight SHA256: `f52f0c584e9edafa55eb2598bd4591b9a0d506df4c510eb054abb8b83bc2e00c`
+- Bundle SHA256: `5fa18729eb97473884da3ece2c8b5584da86e6e89155a6d812c123f2c41a2b25`
+- Fix: freeze immutable native-request snapshot before provider invocation; post-consumption verbatim checks compare against the snapshot rather than a live output that may be legitimately revoked.
+- Test criteria weakened: NO.
+- Production binding: NO.
+
 ### Next checkpoint target
 
-Mechanical evidence-tool transport with native request as the sole trigger.
+Run R1H1 Oppo admission. If it passes, promote only `MECHANICAL_TOOL_INVOCATION=PASS`; keep real Internet acquisition, autonomous research, semantic paraphrase and semantic truth/support/conflict FAIL until separate tests.
