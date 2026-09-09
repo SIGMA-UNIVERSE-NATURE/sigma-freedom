@@ -1,15 +1,24 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "state_machine_id": "HKA-CURRICULUM-GOVERNANCE-V1",
+  "fast_path_policy": "AUTOPILOT/HKA_FAST_PATH_POLICY.json",
+  "north_star": "CINEMATIC_4K_ON_WEBSITE",
   "terminal_external_block": "BLOCK_EXTERNAL",
   "transitions": [
     {"from": "ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING", "role": "DIRECTOR", "action": "OPEN", "to": "READY"},
-    {"from": "READY", "role": "WORKER", "action": "AUTHOR_SELF_AUDIT_REPAIR", "to": "PASS_CANDIDATE"},
-    {"from": "PASS_CANDIDATE", "role": "DIRECTOR", "action": "INDEPENDENT_REVIEW", "to": ["REPAIR_REQUIRED", "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING"]},
-    {"from": "REPAIR_REQUIRED", "role": "WORKER", "action": "REPAIR_REAUDIT", "to": "PASS_CANDIDATE"},
-    {"from": "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING", "role": "SENTINEL", "action": "TREE_ALIGNMENT", "to": ["DIRECTOR_ACCEPTED_PASS_SENTINEL_ALIGNED", "BLOCK_EXTERNAL"]},
+    {"from": "READY", "role": "WORKER", "action": "AUTHOR_SELF_AUDIT_REPAIR", "to": "PASS_CANDIDATE", "fast_path": "SELF_REPAIR_MECHANICAL_AND_WORKER_OWNED_DEFECTS_BEFORE_TERMINAL"},
+    {"from": "PASS_CANDIDATE", "role": "DIRECTOR", "action": "INDEPENDENT_REVIEW", "to": ["REPAIR_REQUIRED", "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING"], "review_strategy": "DELTA_FIRST"},
+    {"from": "REPAIR_REQUIRED", "role": "WORKER", "action": "REPAIR_REAUDIT", "to": "PASS_CANDIDATE", "fast_path": "MINIMAL_REPAIR_PLUS_IMPACTED_REAUDIT"},
+    {"from": "DIRECTOR_ACCEPTED_PASS_SENTINEL_PENDING", "role": "SENTINEL", "action": "TREE_ALIGNMENT", "to": ["DIRECTOR_ACCEPTED_PASS_SENTINEL_ALIGNED", "BLOCK_EXTERNAL"], "review_strategy": "ALIGNMENT_ONLY_NOT_FULL_ACADEMIC_REREVIEW"},
     {"from": "DIRECTOR_ACCEPTED_PASS_SENTINEL_ALIGNED", "role": "ORCHESTRATOR", "action": "MARK_SUCCESSOR_ELIGIBLE", "to": "ELIGIBLE_FOR_DIRECTOR_UNLOCK_OPENING"}
   ],
+  "repair_rules": {
+    "repairable_mechanical_error": "FIX_IN_SAME_ROLE_IF_WITHIN_WRITE_AUTHORITY",
+    "worker_owned_mechanical_error_found_by_director": "QUEUE_EXACT_MINIMAL_REPAIR_AUTOMATICALLY",
+    "post_repair_review": "VERIFY_DELTA_AND_HARD_INVARIANTS_UNLESS_SEMANTIC_PAYLOAD_CHANGED",
+    "repeat_same_finding_without_new_evidence": "FORBIDDEN",
+    "manual_handoff_for_internal_repairable_error": "FORBIDDEN"
+  },
   "forbidden_shortcuts": [
     "WORKER_SELF_ACCEPT",
     "WORKER_UNLOCK_SUCCESSOR",
