@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
+Updated: 2026-09-10 after genuine OPPO T7B Resource Governor PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T7B_RESOURCE_GOVERNOR_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -13,36 +13,40 @@ Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
 - `T6_FULL_LAYER=PASS`.
-- T7A clock/scheduler/worker-pool/cancel/timeout/backpressure: PASS on OPPO.
-- T7B resource governor: PENDING.
+- T7A clock/scheduler/worker-pool/cancel/timeout/backpressure: PASS.
+- T7B scoped resource governor: PASS.
 - T7 combined: PENDING.
 - T8 through T11: PENDING in offline substrate lane.
 
-## Frozen T7A artifact
+## Frozen T7 artifacts
 
-- source SHA256 `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
-- binary SHA256 `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
+T7A:
+- source `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
+- binary `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
+
+T7B:
+- source `63fc5ed7c0cd095271819d79099f06a4328acf5523c5fcce4b4b6ec985ad80a6`
+- binary `19c00435adf987f5ee47088ecd9035e26b40f868ec0af363158c0ce8214964de`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T7A admitted evidence
+## T7B admitted evidence
 
 - 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 53 native process invocations;
+- 56 native process invocations;
 - deterministic compile + source/binary freeze PASS;
-- monotonic clock PASS;
-- wall clock PASS;
-- timer PASS;
-- bounded deadline scheduler PASS;
-- bounded worker pool PASS;
-- cancellation PASS;
-- timeout PASS;
-- bounded queue backpressure PASS;
-- counterfactual behavior change PASS.
+- thread CPU-time budget PASS;
+- governor-owned RAM allocation quota PASS;
+- actual IO-byte quota on isolated sandbox path PASS;
+- watchdog heartbeat deadline PASS;
+- exact step limit PASS;
+- counterfactual behavior change PASS;
+- synthetic sandbox removed PASS.
 
 ## Claim boundary
 
-- `T7_FULL_LAYER=NOT_YET_ADMITTED`.
-- CPU/RAM/IO quota, watchdog and step limit remain PENDING T7B.
+- `T7_FULL_LAYER=NOT_YET_ADMITTED` until exact T7A+T7B combined admission passes.
+- `OS_CGROUP_WHOLE_PROCESS_ENFORCEMENT=NOT_CLAIMED`.
+- `PROCESS_SPAWN_ISOLATION=NOT_CLAIMED_T8`.
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`.
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`.
 - `HOST_SEMANTIC_SUBSTITUTION=NO`.
@@ -56,8 +60,6 @@ Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
 - `PRODUCTION_MUTATION=NO`.
 - `PRODUCTION_BINDING=NO`.
 
-Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
-
 ## Next offline sequence
 
-`T7B -> T7 combined -> T8 -> T9 -> T10 -> T11`.
+`T7 combined -> T8 -> T9 -> T10 -> T11`.
