@@ -219,11 +219,44 @@ Mechanical source-derived evidence:
 
 Interpretation: M5 capability library is mechanically fully reachable in its source universe, but production and M5 have disjoint dispatch literal surfaces. The next valid integration must add an explicit native activation bridge/dispatch integration while preserving the production event contract. It must not replace the production universe and must not use host semantic selection or test-specific expected literals.
 
-Current boundary remains:
+---
+
+## Gate B latest admitted offline evidence — R9 FIX1 — PASS
+
+Authoritative checkpoint: `C5_M5/CHECKPOINT_2026-09-09_R9_FIX1_DISPATCH_CONTRACT_PASS.md`.
+
+Machine-admitted exact scope:
+
+- `DISPATCH_CONTRACT_EXTRACTION=PASS`;
+- source-derived common selector `EVENT`;
+- production-only guard selector `CURRENT_REQUEST_BYTES`;
+- primary event literal collision count `0`;
+- M5-only DEF full reachability `63/63` PASS;
+- unresolved branch-symbol union `0`;
+- `R10_EXPLICIT_DISPATCH_DESIGN_ELIGIBLE=YES`;
+- `R10_AUTOMATIC_ADDITIVE_BUILD_ELIGIBLE=NO`;
+- `SOURCE_HASH_FREEZE=PASS`;
+- `R9_FIX1_DISPATCH_CONTRACT=PASS`.
+
+This PASS used no semantic expected output and did not build/graft a candidate.
+
+Prelude contract requiring explicit R10 isolation/mapping:
+
+- common assignments: `4`;
+- common identical: `ACTION`;
+- common changed: `BASE`, `EVENT`, `STATUS`;
+- common ambiguous: `0`;
+- M5-only prelude assignments: `28`.
+
+R9 FIX1 OPPO root:
+
+`/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_M5_DISPATCH_CONTRACT_R9_FIX1_20260909T201431`
+
+Current boundary:
 
 - `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO`;
 - `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`;
-- this test window performs no online sync;
+- online sync from this test window: NO;
 - production mutation/binding from this test window: NO.
 
-The separate synchronization window should consume R7/R8 immediately. The offline test window proceeds to explicit dispatch-integration design/admission and will publish any new admitted result or superseding failure as a new checkpoint.
+Next Gate B test step is an explicit offline production-lineage dispatch bridge build that isolates M5 prelude state instead of overwriting production variables, preserves every production branch, compiles deterministically, and then passes dormant production-event regression before any separate M5 activation admission.
