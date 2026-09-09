@@ -1,24 +1,22 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T6B Advanced HTTP / Flow Control PASS.
+Updated: 2026-09-10 after genuine OPPO T6 FULL combined compatibility PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T6B_ADVANCED_HTTP_FLOW_CONTROL_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T6_FULL_COMBINED_COMPATIBILITY_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
-- T0 primitives: inherited only where exact prior evidence applies.
-- T1 Vector/Matrix: ADMITTED current-standard subset.
-- T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
-- T3 Local Index/BM25: ADMITTED current-standard subset.
-- T1/T2/T3 mixed compatibility: PASS.
+- T0 inherited only where exact prior evidence applies.
+- T1/T2/T3 admitted subsets + mixed compatibility PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
-- T6A DNS/TCP/TLS/basic HTTP+HTTPS: PASS.
-- T6B advanced HTTP/flow control: PASS.
-- T6 combined compatibility: PENDING.
-- T7 through T11: PENDING in the offline substrate lane.
+- T6A basic transport PASS.
+- T6B advanced HTTP/flow control PASS.
+- `T6_A_B_COMBINED_COMPATIBILITY=PASS`.
+- `T6_FULL_LAYER=PASS`.
+- T7 through T11: PENDING in offline substrate lane.
 
 ## Frozen T6 artifacts
 
@@ -31,44 +29,43 @@ T6B:
 - binary `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-## T6B admitted evidence
+## T6 combined evidence
 
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 53 native process invocations;
-- deterministic compile and source/binary freeze PASS;
-- Range PASS;
-- chunked streaming PASS;
-- redirect policy PASS;
-- ETag / conditional fetch PASS;
-- If-Range PASS;
-- timeout PASS;
-- caller-bounded retry PASS;
-- receive-rate limit PASS;
-- slow-consumer backpressure PASS;
-- response-body bound PASS;
-- retry counterfactual PASS;
-- high-entropy leak audit PASS;
-- synthetic sandbox removed PASS.
+- exact T6A/T6B artifact rebuild locks PASS
+- directed combined cases `16`
+- randomized-after-freeze combined cases `32`
+- replay combined cases `2`
+- total combined cases `50`
+- native process invocations `115`
+- full GET/Range reconstruction PASS
+- chunked equivalence PASS
+- redirect final equivalence PASS
+- DNS/TCP/TLS/HTTP coexistence PASS
+- conditional/If-Range compatibility PASS
+- retry/timeout/rate/backpressure compatibility PASS
+- body-bound compatibility PASS
+- counterfactual, no-mutation and high-entropy gates PASS
 
 ## Claim boundary
 
-- `T6_FULL_LAYER=NOT_YET_ADMITTED` until exact T6A+T6B combined compatibility passes.
-- `HOST_ENDPOINT_SELECTION=NO`.
-- `HOST_RETRY_POLICY_SELECTION=NO`.
-- `HOST_SEMANTIC_SUBSTITUTION=NO`.
-- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
-- `EXTERNAL_INTERNET_USED=NO` in offline T6 admissions.
+- `HOST_ENDPOINT_SELECTION=NO`
+- `HOST_RETRY_POLICY_SELECTION=NO`
+- `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
+- `EXTERNAL_INTERNET_USED=NO` in offline admission
 
 ## Production boundary
 
-- `ONLINE_SYNC=NO` from this offline lane.
-- `PRODUCTION_STATE_WRITE=NO`.
-- `PRODUCTION_MUTATION=NO`.
-- `PRODUCTION_BINDING=NO`.
+- `ONLINE_SYNC=NO`
+- `PRODUCTION_STATE_WRITE=NO`
+- `PRODUCTION_MUTATION=NO`
+- `PRODUCTION_BINDING=NO`
 
-Existing R10 production-lineage synchronization evidence remains separate and does not imply live binding.
+R10 production-lineage synchronization evidence remains a separate lane and does not imply live binding.
 
 ## Next offline sequence
 
-`T6 combined -> T7 -> T8 -> T9 -> T10 -> T11`.
+`T7 -> T8 -> T9 -> T10 -> T11`
+
+Immediate gate: rebuild `T7_SCHEDULER_RESOURCE` under current-standard admission.
