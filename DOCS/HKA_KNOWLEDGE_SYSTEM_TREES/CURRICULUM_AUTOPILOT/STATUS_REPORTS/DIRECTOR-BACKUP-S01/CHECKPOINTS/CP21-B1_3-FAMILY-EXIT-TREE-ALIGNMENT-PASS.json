@@ -1,0 +1,21 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP21-B1_3-FAMILY-EXIT-TREE-ALIGNMENT-PASS",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "status":"TREE_ALIGNMENT_PASS",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "control_plane_read_commit":"b9e69cfb1dbef7ab1c78258a2e837da311ca06e5",
+  "family_window":"C01-W04-B1.3-CHEMISTRY-FAMILY",
+  "family_evidence_branch":"hka-tree/c01-w04-chemistry-family",
+  "family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781",
+  "director_integration_mapping_acceptance_checkpoint":"e88fd10fe8422fc6d22c20d56b60a4614671c81c",
+  "accepted_children":"10/10",
+  "aggregate_counts":{"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276},
+  "external_mapping":{"systems":6,"continents":6,"official_source_resolution":"6/6 PASS","university_only_baseline":false,"coverage":{"FULL":9,"PARTIAL":0,"GAP":0,"NOT_OWNER":1},"foundational_gap_count":0},
+  "alignment":{"state_registry_family_evidence_match":"PASS","accepted_chain_C01_C10_match":"PASS","family_evidence_read_back":"PASS","external_mapping_read_back":"PASS","canonical_tree_commit_match":"PASS","scope_map_anchor_match":"PASS","foundational_gap_count":0,"duplicate_ownership":"PASS_R07_R08_R09_R11_R12_R14","cross_domain_boundaries":"PASS_X01_X03_X04_SECONDARY_ONLY","locked_scope_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","director_integration_acceptance_present":"PASS","B1_4_locked":"PASS","sentinel_control_plane_mutation":"NO","sentinel_academic_mutation":"NO","alerts":[]},
+  "B1_3_exit_gate":"ELIGIBLE_FOR_DIRECTOR_EXIT_CLOSURE",
+  "B1_4_unlock":false,
+  "updated_at":"2026-09-09T09:45:00+07:00"
+}
