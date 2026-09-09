@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 blind 95/100 and cross-source summary-hypothesis preparation.
+Updated: 2026-09-09 after Cross-Source Summary Hypothesis R1 runtime admission + independent blind PASS, and Summary Memory Compaction R1 preparation.
 
 ## Production boundary
 
@@ -9,7 +9,7 @@ Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 blind 95/100 and 
 - Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
-- Latest span-synthesis admission/blind observed production PID `23663` before and after; production mutation NO.
+- Latest cross-source summary admission/blind observed production PID `23663` before and after; production binding remains NO.
 
 ## Authoritative target
 
@@ -24,70 +24,70 @@ Updated: 2026-09-09 after Whole-Work Salient Span Synthesis R1 blind 95/100 and 
 - Real Internet Full Source Stream R1: PASS.
 - Whole-Work Structural Memory R1H3: PASS in exact structural scope; blind `70/100` exposed once-only-event loss.
 - Whole-Work Novelty Bridge Memory R1: PASS; blind `90/100`; unique event retained and singleton noise rejected.
-- `M5_NATIVE_WHOLE_WORK_SALIENT_SPAN_SYNTHESIS_R1`: admission PASS; independent source-removal blind `95/100`.
+- Whole-Work Salient Span Synthesis R1: PASS; independent source-removal blind `95/100`.
+- `M5_NATIVE_WHOLE_WORK_CROSS_SOURCE_SUMMARY_HYPOTHESIS_R1`: admission PASS; independent blind PASS in exact learned-context, multi-source scope.
 
 Latest admitted whole-work core SHA256:
 
-`66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
+`d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
 
-Latest blind facts:
+Cross-source blind facts:
 
-- source-removal whole-span exact recall PASS;
-- singleton rejection PASS;
-- native whole-work synthesis trace PASS;
-- whole-span-only synthesis points PASS;
-- unique-event coverage PASS;
-- isolated-noise rejection PASS;
-- not a record dump PASS;
-- synthesis smaller than salient memory PASS;
-- restart PASS;
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`;
-- `TOTAL_SCORE=95/100`;
-- grade `WHOLE_SPAN_SYNTHESIS_TRACE_WITH_SEMANTIC_SUMMARY_GAP`.
+- parent whole-span synthesis regression PASS;
+- dynamic whole-work build PASS;
+- source removal before abstraction PASS;
+- multi-substitution contextual learning PASS;
+- exact source copy rejection PASS;
+- role-reversal external-description rejection PASS;
+- irrelevant external-description rejection PASS;
+- raw protocol-injection rejection PASS;
+- one-source false-authority rejection PASS;
+- `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS`;
+- provenance diversity PASS;
+- hypothesis not original source copy PASS;
+- hypothesis restart PASS;
+- `TOTAL_SCORE=90/100`;
+- grade `CROSS_SOURCE_SUMMARY_HYPOTHESIS_WITH_AUTONOMOUS_GENERATION_GAP`.
 
-Host summary for active SIGMA: ABSENT. Host importance labels: ABSENT. Active Python cognition: ABSENT.
+Host summary for active SIGMA: ABSENT. Host semantic labels: ABSENT. Active Python cognition: ABSENT.
 
-## Exact cognition bottleneck
+## Exact remaining semantic gap
 
-The source-independent memory retains complete contextual spans, preserves unique bridge events, suppresses noise and builds a smaller whole-work synthesis trace after source removal. The remaining blind failure is **semantic abstraction / summary formation**. Do not relabel the whole-span trace as a summary and do not add a host/LLM summary, lexical theme table, English grammar table or positional summary heuristic.
+The system can now form a provenance-backed whole-work summary hypothesis from multiple raw external descriptions after source removal, but it still cannot generate a novel summary wording autonomously. `AUTONOMOUS_SUMMARY_GENERATION=FAIL` and `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL` remain.
 
-## Pending candidate — native cross-source abstraction
+Do not attack this with token-by-token synonym rewriting, host/LLM generation, English grammar templates or positional rules.
 
-`M5_NATIVE_WHOLE_WORK_CROSS_SOURCE_SUMMARY_HYPOTHESIS_R1`
+## Pending candidate — native compact summary memory
 
-Purpose: raw alternate descriptions from independent sources remain evidence, not answers. Native SIGMA learns contextual atom equivalence from repeated neutral evidence, maps complete external spans to retained synthesis points using whole-sequence configuration, rejects exact copies/role reversal/irrelevant descriptions, requires multi-point coverage plus provenance diversity, then forms a source-independent summary hypothesis.
+`M5_NATIVE_WHOLE_WORK_SUMMARY_MEMORY_COMPACTION_R1`
 
-Core host operations remain mechanical only: `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`. No model/LLM host op exists in the candidate.
+Purpose: once SIGMA has formed a cross-source validated summary hypothesis, compact whole-work-specific state into a smaller local memory holding validated summary points plus minimal source provenance. Then clear salient spans, synthesis trace, abstraction candidates, summary-hypothesis working state, skeleton and whole-work structural state. The global learned neutral-evidence memory required by the current native equivalence mechanism remains bounded and separate.
 
-Hashes:
+Post-compaction requirements: a source-side statement must still be natively supported through learned equivalence; role reversal and irrelevant queries must remain rejected; compact memory must restart intact.
 
-- Core SHA256: `d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
-- Admission preflight SHA256: `7dc5cc0fc40cffe6d5b213fddd1d5ae6c443752de7ed8ece04dac2b6fc1560bd`
-- Independent blind auditor SHA256: `afe6fbcb8e18112eff7cf94b33b5132b378c3c549042f73bba8672a042905436`
-- Ladder runner SHA256: `6f74556f4fcdc44b0e9cd528e10f04adc72b33bee8d58cfb4d2cb99675bbb429`
-- Ladder bundle SHA256: `7c0c5ceb2797bec9c8b6c8e2302af8a906a9d7ff0cb5fc2884207d056b084eee`
+Frozen hashes:
 
-Static preparation checks: core brace balance clean; candidate and blind target core byte-identical; host-op set mechanical only; forbidden LEFT/RIGHT/previous-next/English grammar-table identifiers absent; admission/blind/ladder Bash syntax PASS; ZIP integrity PASS. Blind fixtures are created after locked compile and use a different whole-work layout with additional learned substitutions.
+- Core SHA256: `616a47d38cd6ce8d040b7fa790f055b2386bec32dae8f6ff484cb615417f6db4`
+- Admission preflight SHA256: `c5112555df582ef92fdea4a76c82516e24dfb1458a32ba01648b6e341ce955f9`
+- Independent blind auditor SHA256: `b90d1d8c67adc3e4a5c4ee93d65bc6a89b9b3e1fdf628756b236836565c40e7e`
+- Ladder runner SHA256: `d59e8375b83a4a956e59056c3e4146c312ae2f689a92488d2fbb6970b99c9681`
+- Candidate bundle SHA256: `0a5f52e980bec8b0e2edab2f6e4bcfc1c54e0f41bdace6327ba608237122b9f7`
+- Blind bundle SHA256: `a7d0cfdd241dafd7fedd77227493d2271faf0dba2758a69726b132699cf2b68b`
+- Combined ladder bundle SHA256: `76df5450fd68d0c86427a4edeb12db74ac234c732097331b5c6d0344ec2080b8`
 
-## Claims if the pending ladder passes
+Static checks: candidate and blind target core byte-identical; host-op set limited to read/write text, string length/replace/split, list length/get; forbidden LEFT/RIGHT/previous-next/grammar-role identifiers absent; process-control ops absent in core; Bash syntax PASS; manifests PASS; ZIP integrity PASS.
 
-Only advance:
-
-- `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS` in the exact learned-context, multi-source scope;
-- role-reversed/irrelevant/exact-source descriptions rejected in tested scope;
-- provenance-diverse summary hypothesis persistence/restart.
-
-Still FAIL until separate proof:
+## Claims that remain FAIL even if compact-memory ladder passes
 
 - `AUTONOMOUS_SUMMARY_GENERATION=FAIL`
 - `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
 - theme/direction/human-value induction;
 - multilingual narrative transfer;
-- semantic compression after source removal;
+- broad semantic compression beyond the tested summary-hypothesis scope;
 - continual learning from compressed local memory;
 - general semantic support/conflict/truth judgment.
 
 ## Exact next dependency
 
-Run `SIGMA_C5_C5V3_M5_CROSS_SOURCE_SUMMARY_LADDER_R1_BUNDLE.zip` on Oppo. Do not cut over production. If blind PASS, next dependency is internalization/revision of the provenance-backed hypothesis followed by a separate autonomous internal summary-generation/semantic-abstraction gate. If blind FAIL, fix the exact abstraction/provenance/configuration layer without weakening the evaluator.
+Run `SIGMA_C5_C5V3_M5_SUMMARY_MEMORY_COMPACTION_LADDER_R1_BUNDLE.zip` on Oppo. If PASS, advance only the exact compact-summary-memory capability and then attack continual use of compact memory / source-independent semantic summary planning without token-level rewrite shortcuts. Production integration remains later per `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`.
