@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T6 FULL combined compatibility PASS.
+Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel admission PASS.
 
 ## Architecture routing
 
@@ -24,71 +24,65 @@ Admitted offline synchronization chain remains R5 -> R10. R10 structural/dormant
 - T1/T2/T3 admitted subsets + mixed compatibility PASS.
 - `T4_FULL_LAYER=PASS`.
 - `T5_FULL_LAYER=PASS`.
+- `T6_FULL_LAYER=PASS`.
 
-## T6 — FULL PASS
+## T7A — PASS
 
 Checkpoint:
 
-`C5_M5/CHECKPOINT_2026-09-10_T6_FULL_COMBINED_COMPATIBILITY_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
 
-Frozen OPPO artifacts:
+Frozen OPPO artifact:
 
-- T6A source `e01f8ba8a1e8a42ff6474d3d0f1c739328a9c8a59ad8b42fa97d83041e73abd1`
-- T6A binary `3b2cdeb0cb18d5105e8a8adb6f2d5f7b90042815b83cf651d634c14d37066660`
-- T6B source `046ffe2aa2d9cc0b20fcd6a15b95d71485f69dd612f352f19d4dccc5e06aab5b`
-- T6B binary `83cc67b29acbe1c0fa1fc812ea713cf6451ffefe73a245cc0603a9d9b509a36a`
+- source SHA256 `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
+- binary SHA256 `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Exact admitted T6 scope:
+Admitted scope:
 
-- DNS;
-- bounded TCP;
-- verified TLS;
-- HTTP/HTTPS GET;
-- Range;
-- chunked reception;
-- caller-bounded redirects;
-- ETag / If-None-Match;
-- If-Range;
+- monotonic clock;
+- wall clock;
+- timer;
+- bounded deadline scheduler;
+- bounded worker pool;
+- cancellation;
 - timeout;
-- caller-bounded retry;
-- receive-rate limit;
-- slow-consumer backpressure;
-- body-size bound.
+- bounded queue backpressure.
 
-Combined evidence:
+Evidence:
 
-- T6A/T6B exact source/binary rebuild locks PASS;
-- directed combined cases `16`;
-- randomized-after-freeze combined cases `32`;
-- replay combined cases `2`;
-- total combined cases `50`;
-- native process invocations `115`;
-- mixed basic/advanced transport oracle PASS;
-- full GET/Range reconstruction PASS;
-- chunked equivalence PASS;
-- redirect final equivalence PASS;
-- DNS/TCP/TLS/HTTP coexistence PASS;
-- conditional/If-Range compatibility PASS;
-- retry/timeout/rate/backpressure compatibility PASS;
-- body-bound compatibility PASS;
-- counterfactual behavior change PASS;
-- source/binary no mutation PASS;
-- high-entropy leak audit PASS;
-- synthetic sandbox removal PASS;
-- `T6_A_B_COMBINED_COMPATIBILITY=PASS`;
-- `T6_FULL_LAYER=PASS`.
+- deterministic compile PASS;
+- source/binary freeze PASS;
+- high-entropy literal leak audit PASS;
+- directed cases `16`;
+- randomized-after-freeze cases `32`;
+- replay cases `2`;
+- total cases `50`;
+- native process invocations `53`;
+- post-tool mechanical oracle PASS;
+- monotonic/wall clocks PASS;
+- timer PASS;
+- deadline scheduler PASS;
+- bounded worker pool PASS;
+- cancellation PASS;
+- timeout PASS;
+- bounded queue backpressure PASS;
+- counterfactual behavior PASS;
+- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`;
+- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `CORE_TEST_ORACLE_CONTAMINATION=NO`.
 
-## Claim boundaries
+## Current T7 state
 
-- `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
-- `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
-- `HOST_ENDPOINT_SELECTION=NO`
-- `HOST_RETRY_POLICY_SELECTION=NO`
-- `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-- `EXTERNAL_INTERNET_USED=NO` in offline admission
+- `T7A_CLOCK_SCHEDULER_POOL_CANCEL_ADMISSION=PASS`
+- `T7B_RESOURCE_GOVERNOR=PENDING`
+- `T7_COMBINED=PENDING`
+- `T7_FULL_LAYER=NOT_YET_ADMITTED`
+
+T7A does not claim CPU/RAM/IO quota, watchdog or step limit. Process spawning/isolation belongs to T8.
+
+Tool availability does not imply SIGMA cognitive adoption or autonomous tool selection.
 
 ## Production boundary
 
@@ -97,11 +91,10 @@ Combined evidence:
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-## Current state / next
+## Exact next offline sequence
 
-- `T4_FULL_LAYER=PASS`
-- `T5_FULL_LAYER=PASS`
-- `T6_FULL_LAYER=PASS`
-- T7/T8/T9/T10/T11: PENDING
+Immediate gate: **T7B Resource Governor** with current-standard evidence for CPU-time budget, bounded RAM allocator, actual IO byte budget in isolated sandbox, watchdog heartbeat deadline, and step limit.
 
-Immediate next gate: **T7 Scheduler / Resource**, rebuilt from scratch under current-standard admission.
+Then exact T7A+T7B combined admission. Only a genuine combined PASS may advance `T7_FULL_LAYER=PASS`.
+
+After T7 full: `T8 -> T9 -> T10 -> T11`.
