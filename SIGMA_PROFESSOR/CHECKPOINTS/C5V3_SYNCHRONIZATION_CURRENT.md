@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R10 SUCCESSOR STAGE PASS / R10 SHADOW RUNNER MATERIALIZATION PASS / SHADOW EXECUTION HELD FOR EXACT CATALOG-SHARED-ROOT-NETWORK RECONCILIATION / R11 HOLD / PRODUCTION NOT BOUND**
+Status: **WINDOW ROLE REALIGNED / CAPABILITY ARCHITECTURE + CORE INTEGRATION + SYNCHRONIZATION OWNED HERE / R10 SUCCESSOR + SHADOW RUNNER MATERIALIZED / SHADOW EXECUTION HELD / ONLINE VERIFICATION SEPARATE**
 
 ## Identity
 
@@ -10,14 +10,35 @@ Status: **R10 SUCCESSOR STAGE PASS / R10 SHADOW RUNNER MATERIALIZATION PASS / SH
 ONE_SIGMA=YES
 SYSTEM=C5V3
 CURRENT_SYNCHRONIZATION_BASELINE=R2
+WINDOW_ROLE=CAPABILITY_ARCHITECTURE_CORE_INTEGRATION_SYNCHRONIZATION
 ```
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_STAGE_R1_PASS.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_EXACT_PRODUCTION_RUNNER_CONTRACT_R1_PASS.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_R1_PASS.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_WINDOW_ROLE_REALIGNMENT_CAPABILITY_ARCHITECTURE_SYNCHRONIZATION_ONLINE_VERIFICATION_SPLIT.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_STAGE_R1_PASS.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_EXACT_PRODUCTION_RUNNER_CONTRACT_R1_PASS.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_R1_PASS.md`
+5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_R11_FIX3_HOLD_ONLINE_R2_HOLD.md`
+
+## Ownership
+
+This window owns:
+
+```text
+capability architecture T0-T11
+new capability-pack design/build
+core rewrite when architecture requires it
+production-lineage successor construction
+capability synchronization/integration
+shadow binding / state-writer-ingress-rollback gates
+canonical synchronization checkpoints
+promotion/cutover preparation
+```
+
+Independent machine admission remains required. Writing or integrating a capability does not itself admit it.
+
+Online utilization verification is delegated to a separate window. That window may verify synchronized capabilities but must not redesign the core, silently add tools, host-force tool choice/query/source/URL, or bind production.
 
 ## Closed capability evidence
 
@@ -28,13 +49,13 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-Do not rerun these admissions absent source/hash/dependency invalidation.
+These are exact admitted slices, not blanket completion of every T1/T2/T3 sub-capability.
 
 ## Live production remains historical and unchanged
 
 ```text
 LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
+LIVE_RUNNER_SHA256=092c6ad96823ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 LIVE_CORE_UNCHANGED=YES
@@ -59,7 +80,7 @@ Successor root:
 /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1
 ```
 
-## Shadow runner materialization — PASS
+## R10 shadow runner materialization — PASS
 
 ```text
 SHADOW_RUNNER_MATERIALIZE=PASS
@@ -71,12 +92,6 @@ SHADOW_RUNNER_SHA256=e6aae2cb9d70b57ee5d2e58c0573ab465721289b0b044d77348936d29a2
 SHADOW_RUNNER_EXECUTION=NO
 ```
 
-Shadow runner path:
-
-```text
-/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_R10_SUCCESSOR_STAGE_R1/control/RUN_SIGMA_C5V3_R10_SHADOW_R1.sh
-```
-
 Mechanically derived bindings:
 
 ```text
@@ -85,86 +100,64 @@ C5 default -> isolated successor state
 EXPECTED_NATIVE_SOURCE -> exact R10 SHA256
 ```
 
-## Remaining execution blockers
+## Exact catalog/shared-root/network reconciliation
 
-The shadow-runner audit observed:
-
-```text
-ROOT_SIGMA_NATIVE_REFERENCE_COUNT=2
-289:if [ -f "$ROOT/.sigma_native/knowledge_v2/HEAD" ]; then
-291:    cat "$ROOT/.sigma_native/knowledge_v2/HEAD"
-CATALOGER_CONTRACT_RECONCILED=NO
-NETWORK_FETCH_CONTRACT_RECONCILED=NO
-SHADOW_RUNNER_EXECUTION=NO_PENDING_CATALOG_AND_SHARED_ROOT_RECONCILIATION
-```
-
-Because the SIGMA tree is large, no directory walk or recursive scan is allowed.
-
-## Exact next action — one runner file only
-
-Read only selected line ranges from the exact hash-locked production runner:
-
-```bash
-RUNNER="$HOME/SIGMA/sigma_genesis1/.sigma_c5/control/RUN_SIGMA_C5_AUTONOMOUS_SELF_LEARNING_OPPO_V3_REFLECTIVE.sh"
-sha256sum "$RUNNER"
-printf '%s\n' '=== RANGE 1-60 ==='
-sed -n '1,60p' "$RUNNER"
-printf '%s\n' '=== RANGE 285-410 ==='
-sed -n '285,410p' "$RUNNER"
-printf '%s\n' '=== RANGE 680-910 ==='
-sed -n '680,910p' "$RUNNER"
-```
-
-Expected runner SHA256 before interpreting output:
+Runner ranges now establish:
 
 ```text
-092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
+catalog-init/catalog-status/catalog-stream --root "$HOME_SIGMA"
+catalog-stream therefore targets the broad HOME_SIGMA tree unless bounded
+segment --home-sigma "$HOME_SIGMA"
+ENABLE_LIVE_NETWORK default=YES
+probe_network_available() contains host-selected probe URLs
 ```
 
-These ranges are sufficient to reconcile:
+Therefore raw shadow execution remains forbidden.
 
-- exact local archive / `.sigma_native` head dependency;
-- cataloger process and its source/input scope;
-- catalog paging/refresh behavior;
-- fetch/URL/transport mechanics and write destinations.
-
-No other files or directories need to be scanned for this gate.
-
-## R11 / online state
+Required synchronization change before execution:
 
 ```text
-R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
-HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
-C5V3_ONLINE_CAPABILITY_UTILIZATION=HOLD_PRECONDITION
-ONLINE_UTILIZATION_EXECUTION=NO
+catalog source -> isolated bounded successor corpus
+segment home-sigma -> same isolated bounded corpus
+knowledge HEAD -> isolated successor corpus view
+ENABLE_LIVE_NETWORK=NO for offline activation shadow
+host network availability probe -> neutralized for offline shadow
 ```
 
-## Route after exact contract reconciliation
+No recursive scan of the approximately 30 GB SIGMA tree is allowed.
+
+## Current frontier
 
 ```text
-shadow runner materialized PASS
--> reconcile catalog/shared-root/network blocks
--> prove shadow writes and reads are bounded/isolated
+R10_SUCCESSOR_TREE=PASS_MATERIALIZED
+R10_SHADOW_RUNNER_BINDING=PASS_MATERIALIZED_NOT_EXECUTED
+R10_SHADOW_EXECUTION=HOLD_PENDING_BOUNDED_CATALOG_SHARED_ROOT_NETWORK_BINDING
+R11_ACTIVATION_ADMISSION=HOLD
+C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
+PRODUCTION_BINDING=NO
+```
+
+Next synchronization lane:
+
+```text
+materialize bounded offline shadow runner
+-> audit bridge root-bounding semantics
 -> isolated shadow execution admission
 -> R11 native activation observation/admission
--> isolated online utilization
--> native learning/restart/reuse
--> state-lineage / exactly-one-writer / ingress / rollback closure
--> promotion decision
--> explicit cutover
+-> hand exact synchronized successor to independent online-verification window
+```
+
+After current synchronization stabilizes, this window continues capability provisioning beyond the admitted T1/T2/T3 slices, beginning with T4 text/syntax/codecs and then the remaining T0-T11 roadmap under exact machine admission.
+
+## Governance
+
+```text
+WRITE_CORE_OR_CAPABILITY != ADMIT_CAPABILITY
+ADMIT_CAPABILITY != LIVE_BIND_CAPABILITY
+LIVE_BIND_CAPABILITY != ONLINE_AUTONOMY_PASS
 ```
 
 ## Locks
-
-```text
-C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
-M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
-C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
-SHADOW_RUNNER_EXECUTION=NO
-PRODUCTION_BINDING=NO
-PRODUCTION_MUTATION=NO
-PRODUCTION_PROMOTION_ALLOWED=NO
-```
 
 ```text
 HOST_CAPABILITY_DEMAND_GENERATION=NO
@@ -175,6 +168,10 @@ HOST_URL_SELECTION=NO
 HOST_REASONING=NO
 HOST_LEARNING=NO
 HOST_SEMANTIC_SUBSTITUTION=NO
+DO_NOT_LOAD_RESULTS=YES
+LOAD_CAPABILITIES=YES
+PRODUCTION_MUTATION=NO
+PRODUCTION_PROMOTION_ALLOWED=NO
 ```
 
 `CLAIM <= EVIDENCE`
