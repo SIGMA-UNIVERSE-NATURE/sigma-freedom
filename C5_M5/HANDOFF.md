@@ -15,84 +15,74 @@ Do not reconstruct history from old chat when these files are available.
 
 Build a C5V3 successor that can acquire real sources, read complete long-form works, form/revise native understanding, compress retained knowledge into bounded local memory, remove the source text and continue learning. No token LEFT/RIGHT cognition, hardcoded English semantic grammar, cue-to-meaning tables or host-substituted cognition.
 
-## Latest admitted capability
+## Latest admitted chain
 
-`M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`
+The 24H continuation ladder completed with `LADDER_RC=0`.
 
-- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
-- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
-- Oppo Execution Ladder Stage 1 returned `RC=0`.
-- `MECHANICAL_TOOL_INVOCATION=PASS` only in the exact tested opaque-provider scope.
+Current admitted exact-scope capabilities:
 
-## Blind Stage 2 result and correction
+- `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`: PASS.
+- Corrected blind host-substitution boundary R1H1: PASS.
+- `M5_NATIVE_GAP_SEARCH_QUERY_R1`: PASS.
+- `M5_REAL_INTERNET_SEARCH_DISCOVERY_R1`: PASS.
 
-Original `M5_BLIND_HOST_SUBSTITUTION_R1` produced:
+Native query / Internet-discovery core SHA256:
 
-- `FORGED_CORRELATED_REQUEST_REJECTION=PASS`
-- `FAIL=GAP_A`
-- `RC=34`
+`286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`
 
-This was an evaluator fixture bug. `open_gap` generated evidence IDs `EID_A_1` etc.; these are 7 characters and violate the target core's generic `safe_atom` minimum length of 8. The first blind evidence ingest failed before the intended gap test.
+Production binding remains NO.
 
-Corrected evaluator:
+## Exact next work item
 
-`M5_BLIND_HOST_SUBSTITUTION_R1H1`
+Run the prepared isolated candidate:
 
-- target core/transport unchanged;
-- auditor SHA256: `d807e3606bda51a2586dbccc5f4b458a4e797036018a8b2337d819cb1b55580d`;
-- bundle SHA256: `716ba0f4ca1ed002e17ac2a1487aa7ad0cb7d753ab2ee866e3e01586206ee3ea`;
-- only fixture IDs changed to `EID_BLIND_<case>_<n>`;
-- adversarial criteria unchanged.
+`M5_REAL_INTERNET_FULL_SOURCE_STREAM_R1`
 
-## Exact next execution path
+Hashes:
 
-Use `SIGMA_C5_C5V3_M5_24H_CONTINUATION_LADDER_R2_BUNDLE.zip`.
+- Core: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`
+- Transport: `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`
+- Provider: `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`
+- Preflight: `325d2e36930f65185471f0526b37913a6a8af4db4865c3ec1c3de775945a37ad`
+- Bundle: `06897f124d076c5ba1e8e128661fe78b5a563f2adea8a9fc4be5daf34a4a7423`
 
-- Runner SHA256: `84b68095bd3807c725f482ea55f67998f98e260a637b6f732c44cb14e8f32036`.
-- Bundle SHA256: `f5c9c99e38efc76a8fa64eac1f8c92fb08faea64bd4e714d622f168223d0f4b9`.
+Required gates:
 
-It resumes from:
+1. locked deterministic compile and production freeze;
+2. native gap/query creation before network;
+3. fixed mechanical provider fetches a complete real Wikipedia plaintext-extract API response, not only search discovery;
+4. exact raw source is streamed in original byte order into native transient state;
+5. max 64 segments, max 2048 bytes/segment, max 131072 bytes total;
+6. post-hoc provider raw SHA256 equals native transient source-buffer SHA256;
+7. completed transient stream state survives a fresh VM invocation on the same runtime state;
+8. canonical work memory does not contain/hoard the full source;
+9. explicit transient-source clear removes the source without corrupting retained neutral state;
+10. source/transport/provider/bytecode frozen and production unchanged.
 
-1. corrected Blind Host-Substitution R1H1;
-2. Native Gap Search Query R1;
-3. Real Internet Search Discovery R1.
+If a gate fails, diagnose that exact layer. Do not skip or weaken it.
 
-The ladder stops at first non-zero RC and preserves logs. Do not bypass a failed dependency.
+## Claims still FAIL regardless of full-source transport
 
-## Claims that remain FAIL now
+Until separate blind tests pass:
 
-- `BLIND_HOST_SUBSTITUTION_BOUNDARY=FAIL` until R1H1 completes;
-- `REAL_INTERNET_ACQUISITION=FAIL`;
-- `AUTONOMOUS_RESEARCH=FAIL`;
-- `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`;
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`;
-- `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`;
-- `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`;
-- `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`;
-- `SEMANTIC_MEMORY_COMPRESSION_AFTER_SOURCE_REMOVAL=FAIL`;
-- `CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=FAIL`;
-- semantic paraphrase/zero-shot low-overlap/reorder remain FAIL;
-- semantic support/conflict/truth judgment remains FAIL.
+- autonomous research;
+- whole-work narrative understanding;
+- evidence-backed whole-work summary;
+- theme/direction/human-value induction;
+- multilingual narrative transfer;
+- semantic compression after source removal;
+- continual learning from compressed local memory;
+- semantic paraphrase/zero-shot low-overlap/benign ungrounded reorder;
+- semantic support/conflict/truth judgment.
 
-## After the continuation ladder
+## After full-source stream PASS
 
-If all continuation stages PASS, do not cut over production. Build in this order:
+Do not cut over production. The next architecture target is a native whole-work relational representation that integrates distant source units without LEFT/RIGHT/adjacency-as-meaning. Then run an independent blind where the original story is removed before recall/reasoning questions. Only retained native memory may support plot/entity/event/motive/consequence/theme tests.
 
-1. full-source fetch, not just search discovery;
-2. bounded transient long-form source streaming;
-3. native whole-work representation across distant passages;
-4. source-removal whole-work recall/reasoning blind;
-5. evidence-backed summary/theme/human-value blind;
-6. native semantic compression with original source deletion;
-7. restart and continual learning from compressed local memory;
-8. multilingual whole-work transfer.
+After whole-work and semantic-memory stages meet `END_STATE_ACCEPTANCE.md`, follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`:
 
-Then follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`:
-
-`read-only ABI/state synchronization -> isolated successor graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback path retained`.
-
-Production must remain untouched during candidate admission and shadow preparation.
+`read-only ABI/state synchronization -> isolated successor graft -> autonomous-runner shadow -> soak/restart/recovery -> promotion -> explicit user-authorized cutover -> rollback retained`.
 
 ## Update discipline
 
-After each PASS, update `STATUS.md`, append `CHECKPOINTS.md`, and move this handoff to exactly one next dependency. Historical failures and retired assumptions remain visible. Never merge to `SIGMA_LIFE` or cut over production without explicit instruction.
+After each successful experimental step, update `STATUS.md`, append `CHECKPOINTS.md`, and move this handoff to exactly one next dependency. Historical failures and retired assumptions remain visible. Never merge to `SIGMA_LIFE` or cut over production without explicit instruction.
