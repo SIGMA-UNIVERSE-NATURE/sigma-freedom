@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-09 after genuine OPPO T5A filesystem/atomic/lock PASS.
+Updated: 2026-09-09 after genuine OPPO T5B durable KV/WAL/recovery PASS.
 
 ## Operating split
 
@@ -29,7 +29,7 @@ Updated: 2026-09-09 after genuine OPPO T5A filesystem/atomic/lock PASS.
   - source `7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34`
   - bytecode `c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5`
 
-R10 activation was not admitted by prior observer attempts. Online integration owns further activation work. Do not infer live binding from R10 or tool-substrate checkpoints.
+R10 activation was not admitted by prior observer attempts. Do not infer live binding from R10 or substrate checkpoints.
 
 ## Native tool-substrate chain
 
@@ -40,58 +40,44 @@ R10 activation was not admitted by prior observer attempts. Online integration o
 - T1/T2/T3 mixed compatibility: PASS.
 - T4 full text/syntax/codecs: PASS.
 
-### T4 FULL — PASS
-
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-09_T4_FULL_COMBINED_COMPATIBILITY_PASS.md`
-
-- `T4_A_B_C_COMBINED_COMPATIBILITY=PASS`
-- `T4_FULL_LAYER=PASS`
-- 50 combined cases / 182 native process invocations
-- mixed-pipeline, replay, counterfactual and no-mutation gates PASS.
-
 ### T5A — PASS
 
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
-
-Frozen OPPO artifact:
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5A_FILESYSTEM_ATOMIC_LOCK_PASS.md`
 
 - source `8d9732ec977864f12c5ebc5cd975c1d1db2d2b1cd8a186e7df8594f3754864ba`
 - binary `59156dfd74889f64228f042e332a44146e2f10cd2cdb75fd5bb091dff7fc16aa`
+
+Scope: filesystem read/write/pread/pwrite/seek/stat/mkdir/list/rename/unlink, file+directory fsync, atomic temp-write→fsync→rename→parent-fsync, exclusive advisory lock, non-expiring owner-token lease.
+
+### T5B — PASS
+
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-09_T5B_DURABLE_KV_WAL_RECOVERY_PASS.md`
+
+- source `dc2397501498336a1ff0e1bd5d2392e022a36fe2918591e15edc67266adf2c7a`
+- binary `e73cd4fa7f0ca09917c2b1029a57591e1ab50d327e92e143a77fa3d9fe6b8e3c`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Admitted mechanical scope:
 
-- read/write, pread/pwrite, seek/read;
-- stat, mkdir, deterministic list, rename, unlink;
-- fsync(file), fsync(directory);
-- atomic temp-write -> fsync(file) -> rename -> fsync(parent);
-- advisory exclusive file lock + contention probe;
-- non-expiring owner-token lease acquire/release.
+- byte-key/value KV put/get/delete;
+- multi-operation transaction;
+- exact CAS;
+- sequence-numbered CRC32 WAL;
+- WAL fsync before commit/apply acknowledgement;
+- snapshot;
+- atomic checkpoint + WAL compaction;
+- rollback by durable RESET WAL from checksummed snapshot;
+- restart replay;
+- incomplete trailing WAL recovery;
+- corrupted complete WAL/checkpoint rejection;
+- malformed transaction rejection without partial mutation.
 
-Evidence:
-
-- deterministic compile PASS;
-- source/binary freeze PASS;
-- high-entropy literal leak audit PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 58 native process invocations;
-- post-tool mechanical oracle PASS;
-- lock exclusivity PASS;
-- atomic-replace counterfactual PASS;
-- synthetic sandbox removed PASS.
-
-T5A does NOT yet admit KV, transaction, CAS, WAL, snapshot/checkpoint, rollback, corruption handling, interrupted-commit recovery, restart durability, or full T5.
+Evidence: deterministic compile and source/binary freeze PASS; 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 73 native invocations; all durability, corruption and restart gates PASS.
 
 ## Anti-hardcoding doctrine
 
-For every remaining layer:
-
 - capability, not answers;
-- no case-ID-dependent tool behavior;
+- no case-ID-dependent behavior;
 - no expected-output literals in native tool implementation;
 - randomized/high-entropy inputs generated after freeze;
 - expected values only in external mechanical oracle;
@@ -105,6 +91,8 @@ For every remaining layer:
 
 - `T4_FULL_LAYER=PASS`
 - `T5A_FILESYSTEM_ATOMIC_LOCK_ADMISSION=PASS`
+- `T5B_DURABLE_STATE_ADMISSION=PASS`
+- `T5_COMBINED_DURABILITY=PENDING`
 - `T5_FULL_LAYER=NOT_YET_ADMITTED`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 - `ONLINE_SYNC=NO` from this offline lane
@@ -114,10 +102,6 @@ For every remaining layer:
 
 ## Next offline sequence
 
-Immediate gate: **T5B Durable State**.
+Immediate gate: exact **T5A + T5B combined durability/restart/recovery**. Only a genuine combined PASS may advance `T5_FULL_LAYER=PASS`.
 
-Required T5B scope:
-
-`KV -> transaction -> CAS -> WAL -> snapshot/checkpoint -> rollback -> checksum-corruption detection -> interrupted-commit/restart recovery`
-
-Then run exact T5A+T5B combined durability. Only a genuine combined PASS may advance `T5_FULL_LAYER=PASS`, after which continue `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
+Then continue `T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
