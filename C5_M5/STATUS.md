@@ -1,58 +1,41 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 10:38 +07
+Updated: 2026-09-09 10:46 +07
 
 ## Production boundary
 
 - Production binding: NO.
-- Production C5V3 observed PID: `23663`.
+- Production C5V3 observed PID during the passing continuation ladder: `23663`.
 - Production core SHA256: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`.
 - Production runner SHA256: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`.
 - Locked sigmac SHA256: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`.
 - Locked VM SHA256: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`.
 
-## Authoritative end-state
+## Authoritative target and integration route
 
-Read `END_STATE_ACCEPTANCE.md` and `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` before continuing. Final target remains real Internet acquisition, whole-work long-form understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence, continual learning, then isolated C5V3 automatic-runner graft/shadow/soak and explicit cutover only when authorized.
+Read `END_STATE_ACCEPTANCE.md` and `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` before continuing. Final target remains real full-source Internet acquisition, whole-work understanding, evidence-backed summary/theme/human-value induction, multilingual transfer, source-removal semantic compression, bounded local persistence and continual learning; then read-only C5V3 synchronization, isolated graft, autonomous-runner shadow, soak/recovery, promotion, and explicit user-authorized cutover only.
 
-## Latest admitted capability
+## Latest admitted capability chain
 
-`M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`
+The 24H continuation ladder completed with `LADDER_RC=0`.
 
-- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
-- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
-- Oppo execution ladder Stage 1: `RC=0`.
-- R2 therefore passed its full admission, including native request recomputation/authority, request gating, verbatim transport, native discriminating-evidence revision/revocation, bounded 64-record ledger/65th-result rejection, freeze and production-safety gates.
-- `MECHANICAL_TOOL_INVOCATION=PASS` in the exact tested opaque-provider scope.
+Admitted in exact tested scope:
 
-Retained admitted dependencies include Cleanline R1, provenance gap, exact-evidence cohort, scoped provenance gap, context-structure hypothesis, relation-discrimination gap and native gap evidence request.
+- `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R2`: PASS.
+- `BLIND_HOST_SUBSTITUTION_BOUNDARY`: PASS under corrected independent R1H1 blind.
+- `M5_NATIVE_GAP_SEARCH_QUERY_R1`: PASS; native search-query bytes originate inside SIGMA and host does not expand/rewrite them.
+- `M5_REAL_INTERNET_SEARCH_DISCOVERY_R1`: PASS; native query reached a real network provider and raw search-discovery bytes returned to native SIGMA without forcing a semantic conclusion.
 
-## Current blind boundary state
+Relevant hashes:
 
-Original `M5_BLIND_HOST_SUBSTITUTION_R1` did not reach its intended semantic/trust challenge.
+- Transport R2 core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
+- Transport R2 SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
+- Native search-query / Internet-discovery core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
+- Search provider SHA256: `cbab8e07a87009a1787f64a1179706e77fc72c72ab2848366b488a335534d3c3`.
 
-Observed on Oppo:
+The earlier Blind Host Substitution R1 `GAP_A` stop remains historical evaluator-fixture failure; corrected R1H1 is the admitted blind result.
 
-- forged correlated request rejection: PASS;
-- then `FAIL=GAP_A`, `RC=34`.
-
-Diagnosis: evaluator fixture bug. Its helper generated evidence IDs such as `EID_A_1` (7 characters), while target core generic `safe_atom` requires at least 8 characters. The first blind evidence record was rejected before relation-gap construction. This is not a SIGMA/core/transport failure and is not a blind PASS.
-
-Prepared correction: `M5_BLIND_HOST_SUBSTITUTION_R1H1`.
-
-- Target core/transport unchanged from admitted R2.
-- Auditor SHA256: `d807e3606bda51a2586dbccc5f4b458a4e797036018a8b2337d819cb1b55580d`.
-- Bundle SHA256: `716ba0f4ca1ed002e17ac2a1487aa7ad0cb7d753ab2ee866e3e01586206ee3ea`.
-- Only fixture IDs changed to valid-length `EID_BLIND_<case>_<n>` values.
-- No adversarial criterion was weakened.
-
-Prepared continuation ladder: `SIGMA_C5_C5V3_M5_24H_CONTINUATION_LADDER_R2_BUNDLE.zip`.
-
-- Runner SHA256: `84b68095bd3807c725f482ea55f67998f98e260a637b6f732c44cb14e8f32036`.
-- Bundle SHA256: `f5c9c99e38efc76a8fa64eac1f8c92fb08faea64bd4e714d622f168223d0f4b9`.
-- Resumes Stage 2H1 -> native gap search-query -> real Internet search-discovery and stops at first failure.
-
-## Retained blind truth
+## Retained blind truth / retired assumptions
 
 - Wide blind after scoped-gap repair: `75/100`.
 - Context-structure transfer blind: `100/100` only in exact structural scope.
@@ -65,10 +48,9 @@ Retired assumptions remain: recurring permutation shape implies relation preserv
 
 ## Current hard FAILs
 
-Until their own independent tests pass:
+Do not inflate search-discovery into these claims:
 
-- `BLIND_HOST_SUBSTITUTION_BOUNDARY=FAIL` (corrected blind not yet run)
-- `REAL_INTERNET_ACQUISITION=FAIL`
+- `REAL_INTERNET_FULL_SOURCE_ACQUISITION=FAIL`
 - `AUTONOMOUS_RESEARCH=FAIL`
 - `WHOLE_WORK_NARRATIVE_UNDERSTANDING=FAIL`
 - `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`
@@ -82,10 +64,24 @@ Until their own independent tests pass:
 - `BENIGN_UNGROUNDED_REORDER=FAIL`
 - semantic support/conflict/truth judgment: FAIL.
 
+## Next isolated candidate — pending Oppo admission
+
+`M5_REAL_INTERNET_FULL_SOURCE_STREAM_R1`
+
+Purpose: extend real search-discovery to a complete real source while keeping it transient and bounded rather than storing an ebook as long-term memory.
+
+- Core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
+- Full-source stream transport SHA256: `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`.
+- Full-source provider SHA256: `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`.
+- Preflight SHA256: `325d2e36930f65185471f0526b37913a6a8af4db4865c3ec1c3de775945a37ad`.
+- Bundle SHA256: `06897f124d076c5ba1e8e128661fe78b5a563f2adea8a9fc4be5daf34a4a7423`.
+- Native transient source bound: max 64 ordered transport segments, max 2048 bytes/segment, max 131072 source bytes.
+- Admission must compare provider raw-source SHA256 to native reassembled transient-source SHA256, verify restart state, verify canonical memory does not hoard the full source, explicitly clear transient source, and verify production unchanged.
+
 ## Anti-hardcode state
 
-No token LEFT/RIGHT cognition, active Python cognition, host learning, host semantic substitution or fixed English grammar/semantic-role tables is admitted in the current lineage. Future semantic claims still require independent blind tests.
+No token LEFT/RIGHT cognition, active Python cognition, host learning, host semantic substitution or fixed English grammar/semantic-role tables is admitted in the current lineage. Semantic claims still require unseen independent blind tests.
 
 ## Exact next dependency
 
-Run `M5_24H_CONTINUATION_LADDER_R2`. If corrected Stage 2H1 PASSes, continue automatically to native query and real Internet discovery. If all continuation stages PASS, move immediately to full-source fetch, bounded long-form streaming, source-removal whole-work memory/reasoning, semantic compression, continual learning and multilingual tests; then follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` for read-only sync, isolated graft, shadow, soak, promotion and explicit cutover.
+Run `M5_REAL_INTERNET_FULL_SOURCE_STREAM_R1`. If it passes, proceed to native whole-work relational representation across distant source units and source-removal semantic-retention blind testing. Do not cut over production; integration follows `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md` only after the required production subset is admitted.
