@@ -1,0 +1,1106 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5V3.COGNITIVE.KERNEL][VERSION=C5V3KR1]
+
+# C5V3 Cognitive Kernel Successor R1
+# Status: DRAFT SUCCESSOR SOURCE / NOT ADMITTED / NOT PRODUCTION-BOUND
+# Design goal:
+#   preserve the historical event/persistence contract,
+#   add native capability need detection + registry selection + bounded dispatch,
+#   preserve host sovereignty locks,
+#   keep legacy co-occurrence learning as a compatibility fallback only.
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF digits_only(value) {
+    IF (value == "") { RETURN 0; }
+    ⚡ REST: value;
+    ⚡ REST: H("str_replace", REST, "0", "");
+    ⚡ REST: H("str_replace", REST, "1", "");
+    ⚡ REST: H("str_replace", REST, "2", "");
+    ⚡ REST: H("str_replace", REST, "3", "");
+    ⚡ REST: H("str_replace", REST, "4", "");
+    ⚡ REST: H("str_replace", REST, "5", "");
+    ⚡ REST: H("str_replace", REST, "6", "");
+    ⚡ REST: H("str_replace", REST, "7", "");
+    ⚡ REST: H("str_replace", REST, "8", "");
+    ⚡ REST: H("str_replace", REST, "9", "");
+    IF (REST == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF unary_valid(value) {
+    ⚡ REST: H("str_replace", value, "|", "");
+    IF (REST == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF unary_make(count) {
+    ⚡ OUT: "";
+    ⚡ I: 0;
+    WHILE (I < count) {
+        ⚡ OUT: OUT + "|";
+        ⚡ I: I + 1;
+    }
+    RETURN OUT;
+}
+
+DEF token_safe(value) {
+    IF (value == "") { RETURN 0; }
+    ⚡ A: H("str_replace", value, "||", "");
+    IF (A != value) { RETURN 0; }
+    ⚡ B: H("str_replace", value, "\n", "");
+    IF (B != value) { RETURN 0; }
+    ⚡ C: H("str_replace", value, "\t", "");
+    IF (C != value) { RETURN 0; }
+    RETURN 1;
+}
+
+DEF normalize_text_compat(value) {
+    # Compatibility view only. Raw observation remains separately available.
+    ⚡ X: value;
+    ⚡ X: H("str_replace", X, "\t", " ");
+    ⚡ X: H("str_replace", X, "\r", " ");
+    ⚡ X: H("str_replace", X, ",", " ");
+    ⚡ X: H("str_replace", X, ";", " ");
+    ⚡ X: H("str_replace", X, ":", " ");
+    ⚡ X: H("str_replace", X, "(", " ");
+    ⚡ X: H("str_replace", X, ")", " ");
+    ⚡ X: H("str_replace", X, "[", " ");
+    ⚡ X: H("str_replace", X, "]", " ");
+    ⚡ X: H("str_replace", X, "{", " ");
+    ⚡ X: H("str_replace", X, "}", " ");
+    ⚡ X: H("str_replace", X, "\"", " ");
+    ⚡ X: H("str_replace", X, "'", " ");
+    ⚡ X: H("str_replace", X, "=", " ");
+    ⚡ X: H("str_replace", X, "<", " ");
+    ⚡ X: H("str_replace", X, ">", " ");
+    ⚡ X: H("str_replace", X, "?", " ");
+    ⚡ X: H("str_replace", X, "!", " ");
+    RETURN X;
+}
+
+DEF reduce_bytes(current) {
+    IF (current == "16384") { RETURN "8192"; }
+    IF (current == "8192") { RETURN "4096"; }
+    IF (current == "4096") { RETURN "2048"; }
+    IF (current == "2048") { RETURN "1024"; }
+    IF (current == "1024") { RETURN "512"; }
+    IF (current == "512") { RETURN "256"; }
+    IF (current == "256") { RETURN "128"; }
+    RETURN "";
+}
+
+DEF catalog_record_valid(record) {
+    ⚡ PARTS: H("str_split", record, " || ", NULL);
+    ⚡ N: H("list_len", PARTS, NULL, NULL);
+    IF (N < 6) { RETURN 0; }
+
+    ⚡ E0: H("list_get", PARTS, 0, NULL);
+    ⚡ E1: H("list_get", PARTS, 1, NULL);
+    ⚡ E2: H("list_get", PARTS, 2, NULL);
+    ⚡ E3: H("list_get", PARTS, 3, NULL);
+    ⚡ E4: H("list_get", PARTS, 4, NULL);
+    ⚡ E5: H("list_get", PARTS, 5, NULL);
+
+    ⚡ V0: H("str_replace", E0, "ENTRY_ID=", "");
+    ⚡ V1: H("str_replace", E1, "PATH_B64=", "");
+    ⚡ V2: H("str_replace", E2, "SIZE=", "");
+    ⚡ V3: H("str_replace", E3, "MTIME=", "");
+    ⚡ V4: H("str_replace", E4, "STATE=", "");
+    ⚡ V5: H("str_replace", E5, "POLICY=", "");
+
+    IF (V0 == "") { RETURN 0; }
+    IF (V1 == "") { RETURN 0; }
+    IF (digits_only(V2) == 0) { RETURN 0; }
+    IF (digits_only(V3) == 0) { RETURN 0; }
+
+    ⚡ STATE_OK: 0;
+    IF (V4 == "PENDING") { ⚡ STATE_OK: 1; }
+    IF (V4 == "COMPLETE") { ⚡ STATE_OK: 1; }
+    IF (V4 == "HOLD") { ⚡ STATE_OK: 1; }
+    IF (STATE_OK == 0) { RETURN 0; }
+
+    ⚡ POLICY_OK: 0;
+    IF (V5 == "LEARN") { ⚡ POLICY_OK: 1; }
+    IF (V5 == "SECURITY_HOLD") { ⚡ POLICY_OK: 1; }
+    IF (V5 == "RESULT_HOLD") { ⚡ POLICY_OK: 1; }
+    IF (V5 == "CONTROL_HOLD") { ⚡ POLICY_OK: 1; }
+    IF (POLICY_OK == 0) { RETURN 0; }
+
+    RETURN 1;
+}
+
+DEF catalog_field(record, index, prefix) {
+    ⚡ PARTS: H("str_split", record, " || ", NULL);
+    ⚡ N: H("list_len", PARTS, NULL, NULL);
+    IF (N <= index) { RETURN ""; }
+    ⚡ FIELD: H("list_get", PARTS, index, NULL);
+    RETURN H("str_replace", FIELD, prefix, "");
+}
+
+DEF event_valid(event) {
+    IF (event == "TICK") { RETURN 1; }
+    IF (event == "LOCAL_SEGMENT_READY") { RETURN 1; }
+    IF (event == "EXTERNAL_SEGMENT_READY") { RETURN 1; }
+    IF (event == "EVIDENCE_BUNDLE_READY") { RETURN 1; }
+    IF (event == "EVIDENCE_PERSISTED") { RETURN 1; }
+    IF (event == "SEGMENT_COMMITTED") { RETURN 1; }
+    IF (event == "ENTRY_COMPLETE_PERSISTED") { RETURN 1; }
+    IF (event == "ENTRY_HOLD_PERSISTED") { RETURN 1; }
+    IF (event == "EXTERNAL_FETCH_READY") { RETURN 1; }
+    IF (event == "EXTERNAL_FETCH_FAILED") { RETURN 1; }
+    IF (event == "NATIVE_TASK_READY") { RETURN 1; }
+    IF (event == "CAPABILITY_RESULT_READY") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF need_family(need) {
+    IF (need == "PRIMITIVE") { RETURN "T0"; }
+    IF (need == "NUMERIC_ANALYZE") { RETURN "T1"; }
+    IF (need == "STRUCTURE_ANALYZE") { RETURN "T2"; }
+    IF (need == "RETRIEVE_EVIDENCE") { RETURN "T3"; }
+    IF (need == "TEXT_SYNTAX_VIEW") { RETURN "T4"; }
+    IF (need == "DURABLE_STATE") { RETURN "T5"; }
+    IF (need == "TRANSPORT_EXTERNAL") { RETURN "T6"; }
+    IF (need == "RESOURCE_CONTROL") { RETURN "T7"; }
+    IF (need == "PROCESS_ISOLATION") { RETURN "T8"; }
+    IF (need == "INTEGRITY_PROVENANCE") { RETURN "T9"; }
+    IF (need == "CONTAINER_DECODE") { RETURN "T10"; }
+    IF (need == "OBSERVE_REPLAY") { RETURN "T11"; }
+    RETURN "";
+}
+
+DEF task_need(task_kind) {
+    IF (task_kind == "PRIMITIVE") { RETURN "PRIMITIVE"; }
+    IF (task_kind == "NUMERIC") { RETURN "NUMERIC_ANALYZE"; }
+    IF (task_kind == "STRUCTURE") { RETURN "STRUCTURE_ANALYZE"; }
+    IF (task_kind == "RETRIEVE") { RETURN "RETRIEVE_EVIDENCE"; }
+    IF (task_kind == "TEXT") { RETURN "TEXT_SYNTAX_VIEW"; }
+    IF (task_kind == "DURABLE") { RETURN "DURABLE_STATE"; }
+    IF (task_kind == "TRANSPORT") { RETURN "TRANSPORT_EXTERNAL"; }
+    IF (task_kind == "RESOURCE") { RETURN "RESOURCE_CONTROL"; }
+    IF (task_kind == "PROCESS") { RETURN "PROCESS_ISOLATION"; }
+    IF (task_kind == "INTEGRITY") { RETURN "INTEGRITY_PROVENANCE"; }
+    IF (task_kind == "CONTAINER") { RETURN "CONTAINER_DECODE"; }
+    IF (task_kind == "OBSERVE") { RETURN "OBSERVE_REPLAY"; }
+    RETURN "";
+}
+
+DEF registry_select_family(registry_text, family) {
+    IF (family == "") { RETURN ""; }
+    ⚡ LINES: H("str_split", registry_text, "\n", NULL);
+    ⚡ TOTAL: H("list_len", LINES, NULL, NULL);
+    ⚡ I: 0;
+    ⚡ SELECTED: "";
+    WHILE (I < TOTAL) {
+        IF (SELECTED == "") {
+            ⚡ LINE: H("list_get", LINES, I, NULL);
+            IF (LINE != "") {
+                ⚡ PARTS: H("str_split", LINE, " || ", NULL);
+                ⚡ N: H("list_len", PARTS, NULL, NULL);
+                IF (2 < N) {
+                    ⚡ F0: H("list_get", PARTS, 0, NULL);
+                    ⚡ F1: H("list_get", PARTS, 1, NULL);
+                    ⚡ F2: H("list_get", PARTS, 2, NULL);
+                    ⚡ ID: H("str_replace", F0, "ID=", "");
+                    ⚡ FAMILY: H("str_replace", F1, "FAMILY=", "");
+                    ⚡ STATE: H("str_replace", F2, "STATE=", "");
+                    IF (ID != "") {
+                        IF (FAMILY == family) {
+                            IF (STATE == "ADMITTED") {
+                                ⚡ SELECTED: ID;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        ⚡ I: I + 1;
+    }
+    RETURN SELECTED;
+}
+
+DEF capability_result_status_valid(status) {
+    IF (status == "OK") { RETURN 1; }
+    IF (status == "HOLD") { RETURN 1; }
+    IF (status == "FAIL") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF legacy_analyze_segment(text, segment_id) {
+    ⚡ R: H("map_new", NULL, NULL, NULL);
+    ⚡ RC_1: H("map_set", R, "VALID", "YES");
+    ⚡ RC_2: H("map_set", R, "DENSE", "NO");
+    ⚡ RC_3: H("map_set", R, "CANDIDATES", "");
+    ⚡ RC_4: H("map_set", R, "COUNT", 0);
+
+    ⚡ NORMALIZED: normalize_text_compat(text);
+    ⚡ LINES: H("str_split", NORMALIZED, "\n", NULL);
+    ⚡ LINE_TOTAL: H("list_len", LINES, NULL, NULL);
+    ⚡ TOKEN_TOTAL: 0;
+    ⚡ LI: 0;
+    WHILE (LI < LINE_TOTAL) {
+        ⚡ LT: H("list_get", LINES, LI, NULL);
+        ⚡ TOK: H("str_split", LT, " ", NULL);
+        ⚡ TC: H("list_len", TOK, NULL, NULL);
+        ⚡ TOKEN_TOTAL: TOKEN_TOTAL + TC;
+        ⚡ LI: LI + 1;
+    }
+
+    ⚡ DENSE: 0;
+    IF (64 < LINE_TOTAL) { ⚡ DENSE: 1; }
+    IF (512 < TOKEN_TOTAL) { ⚡ DENSE: 1; }
+    IF (DENSE) {
+        ⚡ RC_5: H("map_set", R, "DENSE", "YES");
+        RETURN R;
+    }
+
+    ⚡ REL_COUNTS: H("map_new", NULL, NULL, NULL);
+    ⚡ REL_ORDER: H("list_new", NULL, NULL, NULL);
+    ⚡ L: 0;
+    WHILE (L < LINE_TOTAL) {
+        ⚡ LINE_TEXT: H("list_get", LINES, L, NULL);
+        ⚡ TOKENS: H("str_split", LINE_TEXT, " ", NULL);
+        ⚡ N: H("list_len", TOKENS, NULL, NULL);
+        ⚡ J: 0;
+        ⚡ LIMIT: N - 1;
+        WHILE (J < LIMIT) {
+            ⚡ LEFT: H("list_get", TOKENS, J, NULL);
+            ⚡ RIGHT: H("list_get", TOKENS, J + 1, NULL);
+            ⚡ PAIR_OK: token_safe(LEFT) * token_safe(RIGHT);
+            ⚡ LEFT_LEN: H("str_len", LEFT, NULL, NULL);
+            ⚡ RIGHT_LEN: H("str_len", RIGHT, NULL, NULL);
+            IF (256 < LEFT_LEN) { ⚡ PAIR_OK: 0; }
+            IF (256 < RIGHT_LEN) { ⚡ PAIR_OK: 0; }
+            IF (PAIR_OK) {
+                ⚡ REL: LEFT + " => " + RIGHT;
+                ⚡ EXISTS: H("map_has", REL_COUNTS, REL, NULL);
+                IF (EXISTS) {
+                    ⚡ OLD: H("map_get", REL_COUNTS, REL, NULL);
+                    ⚡ RC_6: H("map_set", REL_COUNTS, REL, OLD + 1);
+                }
+                IF (EXISTS == FALSE) {
+                    ⚡ RC_7: H("map_set", REL_COUNTS, REL, 1);
+                    ⚡ RC_8: H("list_push", REL_ORDER, REL, NULL);
+                }
+            }
+            ⚡ J: J + 1;
+        }
+        ⚡ L: L + 1;
+    }
+
+    ⚡ REL_TOTAL: H("list_len", REL_ORDER, NULL, NULL);
+    ⚡ SELECTED_MAP: H("map_new", NULL, NULL, NULL);
+    ⚡ CANDIDATES: H("list_new", NULL, NULL, NULL);
+    ⚡ TAKE: 0;
+    WHILE (TAKE < 8) {
+        ⚡ BEST: "";
+        ⚡ BEST_SUPPORT: 0;
+        ⚡ X: 0;
+        WHILE (X < REL_TOTAL) {
+            ⚡ RCAND: H("list_get", REL_ORDER, X, NULL);
+            ⚡ ALREADY: H("map_has", SELECTED_MAP, RCAND, NULL);
+            IF (ALREADY == FALSE) {
+                ⚡ RSUP: H("map_get", REL_COUNTS, RCAND, NULL);
+                IF (BEST_SUPPORT < RSUP) {
+                    ⚡ BEST: RCAND;
+                    ⚡ BEST_SUPPORT: RSUP;
+                }
+            }
+            ⚡ X: X + 1;
+        }
+
+        IF (BEST != "") {
+            ⚡ RC_9: H("map_set", SELECTED_MAP, BEST, 1);
+            ⚡ RP: H("str_split", BEST, " => ", NULL);
+            ⚡ RPC: H("list_len", RP, NULL, NULL);
+            IF (RPC == 2) {
+                ⚡ BL: H("list_get", RP, 0, NULL);
+                ⚡ BR: H("list_get", RP, 1, NULL);
+                ⚡ SUPPORT: BEST_SUPPORT;
+                IF (64 < SUPPORT) { ⚡ SUPPORT: 64; }
+                ⚡ LOCAL_U: unary_make(SUPPORT);
+                ⚡ CLINE:
+                    "LEFT=" + BL
+                    + " || RIGHT=" + BR
+                    + " || LOCAL_U=" + LOCAL_U
+                    + " || PROV=" + segment_id;
+                ⚡ RC_10: H("list_push", CANDIDATES, CLINE, NULL);
+            }
+        }
+
+        IF (BEST == "") { ⚡ TAKE: 8; }
+        IF (BEST != "") { ⚡ TAKE: TAKE + 1; }
+    }
+
+    ⚡ TEXT: H("str_join", CANDIDATES, "\n", NULL);
+    ⚡ COUNT: H("list_len", CANDIDATES, NULL, NULL);
+    ⚡ RC_11: H("map_set", R, "CANDIDATES", TEXT);
+    ⚡ RC_12: H("map_set", R, "COUNT", COUNT);
+    RETURN R;
+}
+
+DEF legacy_merge_evidence(bundle) {
+    ⚡ R: H("map_new", NULL, NULL, NULL);
+    ⚡ RC_13: H("map_set", R, "VALID", "YES");
+    ⚡ RC_14: H("map_set", R, "UPDATES", "");
+    ⚡ RC_15: H("map_set", R, "KNOWLEDGE", "");
+    ⚡ RC_16: H("map_set", R, "QUERY", "");
+
+    ⚡ BUNDLE_LINES: H("str_split", bundle, "\n", NULL);
+    ⚡ BUNDLE_TOTAL: H("list_len", BUNDLE_LINES, NULL, NULL);
+    IF (9 < BUNDLE_TOTAL) {
+        ⚡ RC_17: H("map_set", R, "VALID", "NO");
+        RETURN R;
+    }
+
+    ⚡ UPDATES: H("list_new", NULL, NULL, NULL);
+    ⚡ KNOWLEDGE: H("list_new", NULL, NULL, NULL);
+    ⚡ BUNDLE_VALID: 1;
+    ⚡ QUERY_SUPPORT: 1000000;
+    ⚡ SELECTED_QUERY: "";
+    ⚡ BI: 0;
+
+    WHILE (BI < BUNDLE_TOTAL) {
+        ⚡ BLINE: H("list_get", BUNDLE_LINES, BI, NULL);
+        IF (BLINE != "") {
+            ⚡ BP: H("str_split", BLINE, " || ", NULL);
+            ⚡ BN: H("list_len", BP, NULL, NULL);
+            IF (BN != 10) { ⚡ BUNDLE_VALID: 0; }
+
+            IF (BN == 10) {
+                ⚡ F0: H("list_get", BP, 0, NULL);
+                ⚡ F1: H("list_get", BP, 1, NULL);
+                ⚡ F2: H("list_get", BP, 2, NULL);
+                ⚡ F3: H("list_get", BP, 3, NULL);
+                ⚡ F4: H("list_get", BP, 4, NULL);
+                ⚡ F5: H("list_get", BP, 5, NULL);
+                ⚡ F6: H("list_get", BP, 6, NULL);
+                ⚡ F7: H("list_get", BP, 7, NULL);
+                ⚡ F8: H("list_get", BP, 8, NULL);
+                ⚡ F9: H("list_get", BP, 9, NULL);
+
+                ⚡ KEY: H("str_replace", F0, "KEY=", "");
+                ⚡ LEFT: H("str_replace", F1, "LEFT=", "");
+                ⚡ RIGHT: H("str_replace", F2, "RIGHT=", "");
+                ⚡ LOCAL_U: H("str_replace", F3, "LOCAL_U=", "");
+                ⚡ PROV: H("str_replace", F4, "PROV=", "");
+                ⚡ PRIOR_LEFT: H("str_replace", F5, "PRIOR_LEFT=", "");
+                ⚡ PRIOR_RIGHT: H("str_replace", F6, "PRIOR_RIGHT=", "");
+                ⚡ PRIOR_U_RAW: H("str_replace", F7, "PRIOR_U=", "");
+                ⚡ LEARNED: H("str_replace", F8, "LEARNED=", "");
+                ⚡ PROV_SEEN: H("str_replace", F9, "PROV_SEEN=", "");
+                ⚡ PRIOR_U: PRIOR_U_RAW;
+                ⚡ PRIOR_U_VALID: unary_valid(PRIOR_U);
+
+                IF (PRIOR_U_RAW == "ZERO") {
+                    ⚡ PRIOR_U: "";
+                    ⚡ PRIOR_U_VALID: 1;
+                }
+
+                ⚡ LINE_VALID:
+                    token_safe(KEY)
+                    * token_safe(LEFT)
+                    * token_safe(RIGHT)
+                    * token_safe(PROV)
+                    * unary_valid(LOCAL_U)
+                    * PRIOR_U_VALID;
+
+                ⚡ LEARNED_VALID: 0;
+                IF (LEARNED == "YES") { ⚡ LEARNED_VALID: 1; }
+                IF (LEARNED == "NO") { ⚡ LEARNED_VALID: 1; }
+
+                ⚡ PROV_SEEN_VALID: 0;
+                IF (PROV_SEEN == "YES") { ⚡ PROV_SEEN_VALID: 1; }
+                IF (PROV_SEEN == "NO") { ⚡ PROV_SEEN_VALID: 1; }
+
+                ⚡ LINE_VALID: LINE_VALID * LEARNED_VALID * PROV_SEEN_VALID;
+
+                ⚡ PRIOR_SHAPE_VALID: 0;
+                IF (PRIOR_LEFT == "NONE") {
+                    IF (PRIOR_RIGHT == "NONE") {
+                        IF (PRIOR_U_RAW == "ZERO") {
+                            ⚡ PRIOR_SHAPE_VALID: 1;
+                        }
+                    }
+                }
+                IF (PRIOR_LEFT == LEFT) {
+                    IF (PRIOR_RIGHT == RIGHT) {
+                        ⚡ PRIOR_SHAPE_VALID: 1;
+                    }
+                }
+                ⚡ LINE_VALID: LINE_VALID * PRIOR_SHAPE_VALID;
+
+                IF (LINE_VALID == 0) { ⚡ BUNDLE_VALID: 0; }
+
+                IF (LINE_VALID) {
+                    ⚡ LOCAL_SUPPORT: H("str_len", LOCAL_U, NULL, NULL);
+                    IF (PROV_SEEN == "YES") { ⚡ LOCAL_SUPPORT: 0; }
+                    ⚡ PRIOR_SUPPORT: H("str_len", PRIOR_U, NULL, NULL);
+                    ⚡ NEW_SUPPORT: PRIOR_SUPPORT + LOCAL_SUPPORT;
+                    IF (64 < NEW_SUPPORT) { ⚡ NEW_SUPPORT: 64; }
+                    ⚡ NEW_U: unary_make(NEW_SUPPORT);
+
+                    ⚡ UPDATE_LINE:
+                        "KEY=" + KEY
+                        + " || LEFT=" + LEFT
+                        + " || RIGHT=" + RIGHT
+                        + " || SUPPORT_U=" + NEW_U
+                        + " || PROV=" + PROV;
+                    ⚡ RC_18: H("list_push", UPDATES, UPDATE_LINE, NULL);
+
+                    IF (2 < NEW_SUPPORT) {
+                        ⚡ RC_19: H("list_push", KNOWLEDGE, UPDATE_LINE, NULL);
+                    }
+
+                    IF (LEARNED == "NO") {
+                        IF (PROV_SEEN == "NO") {
+                            IF (1 < NEW_SUPPORT) {
+                                IF (NEW_SUPPORT < QUERY_SUPPORT) {
+                                    ⚡ QUERY_SUPPORT: NEW_SUPPORT;
+                                    ⚡ SELECTED_QUERY: LEFT + " " + RIGHT;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        ⚡ BI: BI + 1;
+    }
+
+    IF (BUNDLE_VALID == 0) {
+        ⚡ RC_20: H("map_set", R, "VALID", "NO");
+        RETURN R;
+    }
+
+    ⚡ RC_21: H("map_set", R, "UPDATES", H("str_join", UPDATES, "\n", NULL));
+    ⚡ RC_22: H("map_set", R, "KNOWLEDGE", H("str_join", KNOWLEDGE, "\n", NULL));
+    ⚡ RC_23: H("map_set", R, "QUERY", SELECTED_QUERY);
+    RETURN R;
+}
+
+⟡(Σ.C5V3_COGNITIVE_KERNEL_R1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_C5_AUTONOMOUS_SELF_LEARNING";
+
+    # Historical IO/state compatibility surface.
+    ⚡ EVENT: H("read_text", BASE + "/io/event.txt", NULL, NULL);
+    ⚡ CATALOG_PAGE: H("read_text", BASE + "/io/catalog_page.txt", NULL, NULL);
+    ⚡ CATALOG_PAGE_ID: H("read_text", BASE + "/io/catalog_page_id.txt", NULL, NULL);
+    ⚡ CATALOG_PAGE_EOF: H("read_text", BASE + "/io/catalog_page_eof.txt", NULL, NULL);
+    ⚡ SEGMENT_TEXT: H("read_text", BASE + "/io/segment_text.txt", NULL, NULL);
+    ⚡ SEGMENT_STATUS: H("read_text", BASE + "/io/segment_status.txt", NULL, NULL);
+    ⚡ SEGMENT_BYTES_TEXT: H("read_text", BASE + "/io/segment_bytes.txt", NULL, NULL);
+    ⚡ SEGMENT_EOF: H("read_text", BASE + "/io/segment_eof.txt", NULL, NULL);
+    ⚡ SEGMENT_ID: H("read_text", BASE + "/io/segment_id.txt", NULL, NULL);
+    ⚡ SEGMENT_OFFSET_TEXT: H("read_text", BASE + "/io/segment_offset.txt", NULL, NULL);
+    ⚡ EVIDENCE_BUNDLE: H("read_text", BASE + "/io/evidence_bundle.txt", NULL, NULL);
+    ⚡ FETCH_RECORD: H("read_text", BASE + "/io/fetch_record.txt", NULL, NULL);
+    ⚡ FETCH_STATUS: H("read_text", BASE + "/io/fetch_status.txt", NULL, NULL);
+
+    ⚡ LOCAL_ACTIVE: H("read_text", BASE + "/state/local_active_record.txt", NULL, NULL);
+    ⚡ EXTERNAL_ACTIVE: H("read_text", BASE + "/state/external_active_record.txt", NULL, NULL);
+    ⚡ CURRENT_STREAM: H("read_text", BASE + "/state/current_stream.txt", NULL, NULL);
+    ⚡ CURRENT_REQUEST_BYTES: H("read_text", BASE + "/state/request_bytes.txt", NULL, NULL);
+    ⚡ CURRENT_SEGMENT_EOF: H("read_text", BASE + "/state/current_segment_eof.txt", NULL, NULL);
+    ⚡ EXTERNAL_REQUEST: H("read_text", BASE + "/state/external_request.txt", NULL, NULL);
+
+    # New capability-native control surface.
+    ⚡ CAPABILITY_REGISTRY: H("read_text", BASE + "/io/capability_registry.txt", NULL, NULL);
+    ⚡ CAP_RESULT_ID: H("read_text", BASE + "/io/capability_result_id.txt", NULL, NULL);
+    ⚡ CAP_RESULT_STATUS: H("read_text", BASE + "/io/capability_result_status.txt", NULL, NULL);
+    ⚡ CAP_RESULT_KIND: H("read_text", BASE + "/io/capability_result_kind.txt", NULL, NULL);
+    ⚡ CAP_RESULT_PAYLOAD: H("read_text", BASE + "/io/capability_result_payload.txt", NULL, NULL);
+    ⚡ CAP_RESULT_PROV: H("read_text", BASE + "/io/capability_result_provenance.txt", NULL, NULL);
+
+    ⚡ TASK_KIND: H("read_text", BASE + "/io/task_kind.txt", NULL, NULL);
+    ⚡ TASK_PAYLOAD: H("read_text", BASE + "/io/task_payload.txt", NULL, NULL);
+
+    ⚡ PENDING_NEED: H("read_text", BASE + "/state/pending_capability_need.txt", NULL, NULL);
+    ⚡ PENDING_CAPABILITY: H("read_text", BASE + "/state/pending_capability_id.txt", NULL, NULL);
+    ⚡ PENDING_CONTEXT: H("read_text", BASE + "/state/pending_capability_context.txt", NULL, NULL);
+    ⚡ CURRENT_OBJECTIVE: H("read_text", BASE + "/state/current_objective.txt", NULL, NULL);
+
+    IF (CURRENT_REQUEST_BYTES == "") {
+        ⚡ CURRENT_REQUEST_BYTES: "16384";
+    }
+
+    ⚡ ACTION: "WAIT";
+    ⚡ TARGET: "";
+    ⚡ STATUS: "C5V3_READY";
+    ⚡ HOLD_REASON: "";
+    ⚡ SEGMENT_ACCEPTED: "NO";
+    ⚡ CAPABILITY_REQUESTED: "NO";
+    ⚡ NEED: "";
+    ⚡ CAPABILITY_ID: "";
+    ⚡ CAPABILITY_ARGS: "";
+
+    ⚡ RC_24: H("write_text", BASE + "/out/pending_candidates.txt", "", NULL);
+    ⚡ RC_25: H("write_text", BASE + "/out/updated_evidence.txt", "", NULL);
+    ⚡ RC_26: H("write_text", BASE + "/out/promoted_knowledge.txt", "", NULL);
+    ⚡ RC_27: H("write_text", BASE + "/out/hold_reason.txt", "", NULL);
+    ⚡ RC_28: H("write_text", BASE + "/out/segment_accepted.txt", "NO", NULL);
+    ⚡ RC_29: H("write_text", BASE + "/out/capability_request.txt", "", NULL);
+    ⚡ RC_30: H("write_text", BASE + "/out/capability_args.txt", "", NULL);
+    ⚡ RC_31: H("write_text", BASE + "/out/capability_need.txt", "", NULL);
+    ⚡ RC_32: H("write_text", BASE + "/out/task_result.txt", "", NULL);
+    ⚡ RC_33: H("write_text", BASE + "/out/provenance_receipt.txt", "", NULL);
+
+    IF (event_valid(EVENT) == 0) {
+        ⚡ ACTION: "REFUSE_INVALID_EVENT";
+        ⚡ STATUS: "REFUSE_INVALID_EVENT";
+    }
+
+    # Generic native task -> native need -> admitted-family selection.
+    IF (EVENT == "NATIVE_TASK_READY") {
+        ⚡ NEED: task_need(TASK_KIND);
+        IF (NEED == "") {
+            ⚡ ACTION: "REFUSE_TASK_KIND";
+            ⚡ STATUS: "REFUSE_TASK_KIND";
+        }
+        IF (NEED != "") {
+            ⚡ FAMILY: need_family(NEED);
+            ⚡ CAPABILITY_ID: registry_select_family(CAPABILITY_REGISTRY, FAMILY);
+            IF (CAPABILITY_ID == "") {
+                ⚡ ACTION: "WAIT_CAPABILITY";
+                ⚡ TARGET: FAMILY;
+                ⚡ STATUS: "NATIVE_NEED_DETECTED_CAPABILITY_NOT_ADMITTED";
+            }
+            IF (CAPABILITY_ID != "") {
+                ⚡ CAPABILITY_ARGS: TASK_PAYLOAD;
+                ⚡ RC_34: H("write_text", BASE + "/state/pending_capability_need.txt", NEED, NULL);
+                ⚡ RC_35: H("write_text", BASE + "/state/pending_capability_id.txt", CAPABILITY_ID, NULL);
+                ⚡ RC_36: H("write_text", BASE + "/state/pending_capability_context.txt", "TASK", NULL);
+                ⚡ RC_37: H("write_text", BASE + "/out/capability_request.txt", CAPABILITY_ID, NULL);
+                ⚡ RC_38: H("write_text", BASE + "/out/capability_args.txt", CAPABILITY_ARGS, NULL);
+                ⚡ RC_39: H("write_text", BASE + "/out/capability_need.txt", NEED, NULL);
+                ⚡ ACTION: "EXECUTE_CAPABILITY";
+                ⚡ TARGET: CAPABILITY_ID;
+                ⚡ STATUS: "NATIVE_CAPABILITY_SELECTED_FOR_TASK";
+                ⚡ CAPABILITY_REQUESTED: "YES";
+            }
+        }
+    }
+
+    # Capability result is accepted only when it matches native pending state.
+    IF (EVENT == "CAPABILITY_RESULT_READY") {
+        ⚡ RESULT_VALID: capability_result_status_valid(CAP_RESULT_STATUS);
+        IF (PENDING_CAPABILITY == "") { ⚡ RESULT_VALID: 0; }
+        IF (CAP_RESULT_ID != PENDING_CAPABILITY) { ⚡ RESULT_VALID: 0; }
+
+        IF (RESULT_VALID == 0) {
+            ⚡ ACTION: "REFUSE_CAPABILITY_RESULT";
+            ⚡ STATUS: "REFUSE_CAPABILITY_RESULT";
+        }
+
+        IF (RESULT_VALID) {
+            IF (CAP_RESULT_STATUS != "OK") {
+                ⚡ HOLD_REASON: CAP_RESULT_STATUS;
+                ⚡ ACTION: "CAPABILITY_HOLD";
+                ⚡ TARGET: PENDING_CAPABILITY;
+                ⚡ STATUS: "NATIVE_CAPABILITY_EXECUTION_NOT_OK";
+            }
+
+            IF (CAP_RESULT_STATUS == "OK") {
+                IF (PENDING_CONTEXT == "TASK") {
+                    ⚡ RC_40: H("write_text", BASE + "/out/task_result.txt", CAP_RESULT_PAYLOAD, NULL);
+                    ⚡ RC_41: H("write_text", BASE + "/out/provenance_receipt.txt", CAP_RESULT_PROV, NULL);
+                    ⚡ ACTION: "TASK_RESULT_READY";
+                    ⚡ TARGET: CAP_RESULT_KIND;
+                    ⚡ STATUS: "NATIVE_CAPABILITY_RESULT_ACCEPTED";
+                }
+
+                IF (PENDING_CONTEXT == "SEGMENT_TEXT_VIEW") {
+                    IF (CAP_RESULT_KIND != "TEXT_VIEW") {
+                        ⚡ ACTION: "REFUSE_CAPABILITY_RESULT_KIND";
+                        ⚡ STATUS: "REFUSE_CAPABILITY_RESULT_KIND";
+                    }
+                    IF (CAP_RESULT_KIND == "TEXT_VIEW") {
+                        ⚡ LR: legacy_analyze_segment(CAP_RESULT_PAYLOAD, SEGMENT_ID);
+                        ⚡ CANDIDATES: H("map_get", LR, "CANDIDATES", NULL);
+                        ⚡ CANDIDATE_COUNT: H("map_get", LR, "COUNT", NULL);
+                        ⚡ RC_42: H("write_text", BASE + "/out/pending_candidates.txt", CANDIDATES, NULL);
+                        ⚡ RC_43: H("write_text", BASE + "/out/segment_accepted.txt", "YES", NULL);
+                        ⚡ SEGMENT_ACCEPTED: "YES";
+
+                        IF (0 < CANDIDATE_COUNT) {
+                            ⚡ RETRIEVE_ID: registry_select_family(CAPABILITY_REGISTRY, "T3");
+                            IF (RETRIEVE_ID != "") {
+                                ⚡ RC_44: H("write_text", BASE + "/state/pending_capability_need.txt", "RETRIEVE_EVIDENCE", NULL);
+                                ⚡ RC_45: H("write_text", BASE + "/state/pending_capability_id.txt", RETRIEVE_ID, NULL);
+                                ⚡ RC_46: H("write_text", BASE + "/state/pending_capability_context.txt", "EVIDENCE_LOOKUP", NULL);
+                                ⚡ RC_47: H("write_text", BASE + "/out/capability_request.txt", RETRIEVE_ID, NULL);
+                                ⚡ RC_48: H("write_text", BASE + "/out/capability_args.txt", CANDIDATES, NULL);
+                                ⚡ RC_49: H("write_text", BASE + "/out/capability_need.txt", "RETRIEVE_EVIDENCE", NULL);
+                                ⚡ ACTION: "EXECUTE_CAPABILITY";
+                                ⚡ TARGET: RETRIEVE_ID;
+                                ⚡ STATUS: "NATIVE_T3_RETRIEVAL_SELECTED";
+                                ⚡ CAPABILITY_REQUESTED: "YES";
+                            }
+                            IF (RETRIEVE_ID == "") {
+                                ⚡ ACTION: "LOOKUP_EVIDENCE";
+                                ⚡ TARGET: CANDIDATES;
+                                ⚡ STATUS: "COMPAT_EVIDENCE_LOOKUP_REQUIRED";
+                            }
+                        }
+
+                        IF (CANDIDATE_COUNT == 0) {
+                            ⚡ ACTION: "COMMIT_SEGMENT";
+                            ⚡ TARGET: SEGMENT_ID;
+                            ⚡ STATUS: "SEGMENT_ANALYZED_NO_RELATION_CANDIDATES";
+                        }
+                    }
+                }
+
+                IF (PENDING_CONTEXT == "EVIDENCE_LOOKUP") {
+                    IF (CAP_RESULT_KIND != "EVIDENCE_BUNDLE") {
+                        ⚡ ACTION: "REFUSE_CAPABILITY_RESULT_KIND";
+                        ⚡ STATUS: "REFUSE_CAPABILITY_RESULT_KIND";
+                    }
+                    IF (CAP_RESULT_KIND == "EVIDENCE_BUNDLE") {
+                        ⚡ MR: legacy_merge_evidence(CAP_RESULT_PAYLOAD);
+                        ⚡ MV: H("map_get", MR, "VALID", NULL);
+                        IF (MV != "YES") {
+                            ⚡ ACTION: "REFUSE_EVIDENCE_BUNDLE";
+                            ⚡ STATUS: "REFUSE_EVIDENCE_BUNDLE";
+                        }
+                        IF (MV == "YES") {
+                            ⚡ UPDATE_TEXT: H("map_get", MR, "UPDATES", NULL);
+                            ⚡ KNOW_TEXT: H("map_get", MR, "KNOWLEDGE", NULL);
+                            ⚡ SELECTED_QUERY: H("map_get", MR, "QUERY", NULL);
+                            ⚡ RC_50: H("write_text", BASE + "/out/updated_evidence.txt", UPDATE_TEXT, NULL);
+                            ⚡ RC_51: H("write_text", BASE + "/out/promoted_knowledge.txt", KNOW_TEXT, NULL);
+                            IF (SELECTED_QUERY != "") {
+                                ⚡ RC_52: H("write_text", BASE + "/state/external_request.txt", SELECTED_QUERY, NULL);
+                                ⚡ EXTERNAL_REQUEST: SELECTED_QUERY;
+                            }
+                            ⚡ ACTION: "PERSIST_EVIDENCE";
+                            ⚡ TARGET: UPDATE_TEXT;
+                            ⚡ STATUS: "NATIVE_EVIDENCE_UPDATE_READY";
+                        }
+                    }
+                }
+            }
+
+            ⚡ RC_53: H("write_text", BASE + "/state/pending_capability_need.txt", "", NULL);
+            ⚡ RC_54: H("write_text", BASE + "/state/pending_capability_id.txt", "", NULL);
+            ⚡ RC_55: H("write_text", BASE + "/state/pending_capability_context.txt", "", NULL);
+        }
+    }
+
+    # Historical TICK scheduler retained.
+    IF (EVENT == "TICK") {
+        IF (PENDING_CAPABILITY != "") {
+            ⚡ ACTION: "WAIT_CAPABILITY_RESULT";
+            ⚡ TARGET: PENDING_CAPABILITY;
+            ⚡ STATUS: "NATIVE_CAPABILITY_PENDING";
+        }
+
+        IF (PENDING_CAPABILITY == "") {
+            IF (EXTERNAL_ACTIVE != "") {
+                ⚡ ACTION: "READ_EXTERNAL_SEGMENT";
+                ⚡ TARGET: EXTERNAL_ACTIVE;
+                ⚡ STATUS: "RESUME_EXTERNAL_MATERIAL";
+            }
+
+            IF (EXTERNAL_ACTIVE == "") {
+                IF (LOCAL_ACTIVE != "") {
+                    ⚡ ACTION: "READ_LOCAL_SEGMENT";
+                    ⚡ TARGET: LOCAL_ACTIVE;
+                    ⚡ STATUS: "RESUME_LOCAL_MATERIAL";
+                }
+            }
+
+            IF (EXTERNAL_ACTIVE == "") {
+                IF (LOCAL_ACTIVE == "") {
+                    ⚡ PAGE_LINES: H("str_split", CATALOG_PAGE, "\n", NULL);
+                    ⚡ PAGE_TOTAL: H("list_len", PAGE_LINES, NULL, NULL);
+                    IF (65 < PAGE_TOTAL) {
+                        ⚡ ACTION: "REFUSE_CATALOG_PAGE_LIMIT";
+                        ⚡ STATUS: "REFUSE_CATALOG_PAGE_LIMIT";
+                    }
+
+                    IF (PAGE_TOTAL <= 65) {
+                        ⚡ SELECTED: "";
+                        ⚡ I: 0;
+                        WHILE (I < PAGE_TOTAL) {
+                            IF (SELECTED == "") {
+                                ⚡ LINE: H("list_get", PAGE_LINES, I, NULL);
+                                IF (LINE != "") {
+                                    IF (catalog_record_valid(LINE)) {
+                                        ⚡ STATE_VALUE: catalog_field(LINE, 4, "STATE=");
+                                        IF (STATE_VALUE == "PENDING") {
+                                            ⚡ SELECTED: LINE;
+                                        }
+                                    }
+                                }
+                            }
+                            ⚡ I: I + 1;
+                        }
+
+                        IF (SELECTED != "") {
+                            ⚡ POLICY_VALUE: catalog_field(SELECTED, 5, "POLICY=");
+                            IF (POLICY_VALUE == "LEARN") {
+                                ⚡ RC_56: H("write_text", BASE + "/state/local_active_record.txt", SELECTED, NULL);
+                                ⚡ RC_57: H("write_text", BASE + "/state/current_stream.txt", "LOCAL", NULL);
+                                ⚡ RC_58: H("write_text", BASE + "/state/request_bytes.txt", "16384", NULL);
+                                ⚡ ACTION: "READ_LOCAL_SEGMENT";
+                                ⚡ TARGET: SELECTED;
+                                ⚡ STATUS: "LOCAL_ENTRY_SELECTED";
+                            }
+                            IF (POLICY_VALUE != "LEARN") {
+                                ⚡ HOLD_REASON: POLICY_VALUE;
+                                ⚡ ACTION: "PERSIST_LOCAL_HOLD";
+                                ⚡ TARGET: SELECTED;
+                                ⚡ STATUS: "LOCAL_ENTRY_POLICY_HOLD";
+                            }
+                        }
+
+                        IF (SELECTED == "") {
+                            IF (CATALOG_PAGE_EOF == "YES") {
+                                IF (EXTERNAL_REQUEST != "") {
+                                    ⚡ ACTION: "WAIT_EXTERNAL_RETRY";
+                                    ⚡ TARGET: EXTERNAL_REQUEST;
+                                    ⚡ STATUS: "LOCAL_FRONTIER_IDLE_RETRY_EXTERNAL";
+                                }
+                                IF (EXTERNAL_REQUEST == "") {
+                                    ⚡ ACTION: "WAIT_LOCAL_FRONTIER_IDLE";
+                                    ⚡ STATUS: "LOCAL_CATALOG_FRONTIER_IDLE";
+                                }
+                            }
+                            IF (CATALOG_PAGE_EOF != "YES") {
+                                ⚡ ACTION: "REQUEST_NEXT_CATALOG_PAGE";
+                                ⚡ TARGET: CATALOG_PAGE_ID;
+                                ⚡ STATUS: "LOCAL_CATALOG_PAGE_EXHAUSTED";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    # Segment path: T4 is preferred when admitted; legacy analyzer is fallback.
+    ⚡ SEGMENT_EVENT: 0;
+    IF (EVENT == "LOCAL_SEGMENT_READY") { ⚡ SEGMENT_EVENT: 1; }
+    IF (EVENT == "EXTERNAL_SEGMENT_READY") { ⚡ SEGMENT_EVENT: 1; }
+
+    IF (SEGMENT_EVENT) {
+        ⚡ EXPECTED_STREAM: "LOCAL";
+        ⚡ ACTIVE_RECORD: LOCAL_ACTIVE;
+        IF (EVENT == "EXTERNAL_SEGMENT_READY") {
+            ⚡ EXPECTED_STREAM: "EXTERNAL";
+            ⚡ ACTIVE_RECORD: EXTERNAL_ACTIVE;
+        }
+
+        IF (CURRENT_STREAM != EXPECTED_STREAM) {
+            ⚡ ACTION: "REFUSE_STREAM_STATE";
+            ⚡ STATUS: "REFUSE_STREAM_STATE";
+        }
+
+        IF (CURRENT_STREAM == EXPECTED_STREAM) {
+            IF (ACTIVE_RECORD == "") {
+                ⚡ ACTION: "REFUSE_ACTIVE_ENTRY_MISSING";
+                ⚡ STATUS: "REFUSE_ACTIVE_ENTRY_MISSING";
+            }
+
+            IF (ACTIVE_RECORD != "") {
+                IF (SEGMENT_STATUS != "OK") {
+                    ⚡ HOLD_REASON: SEGMENT_STATUS;
+                    IF (EXPECTED_STREAM == "LOCAL") { ⚡ ACTION: "PERSIST_LOCAL_HOLD"; }
+                    IF (EXPECTED_STREAM == "EXTERNAL") { ⚡ ACTION: "PERSIST_EXTERNAL_HOLD"; }
+                    ⚡ TARGET: ACTIVE_RECORD;
+                    ⚡ STATUS: "SEGMENT_TRANSPORT_HOLD";
+                }
+
+                IF (SEGMENT_STATUS == "OK") {
+                    ⚡ META_VALID: digits_only(SEGMENT_BYTES_TEXT) * digits_only(SEGMENT_OFFSET_TEXT);
+                    IF (META_VALID == 0) {
+                        ⚡ ACTION: "REFUSE_SEGMENT_METADATA";
+                        ⚡ STATUS: "REFUSE_SEGMENT_METADATA";
+                    }
+
+                    IF (META_VALID) {
+                        IF (SEGMENT_TEXT == "") {
+                            IF (SEGMENT_EOF == "YES") {
+                                IF (EXPECTED_STREAM == "LOCAL") { ⚡ ACTION: "PERSIST_LOCAL_COMPLETE"; }
+                                IF (EXPECTED_STREAM == "EXTERNAL") { ⚡ ACTION: "PERSIST_EXTERNAL_COMPLETE"; }
+                                ⚡ TARGET: ACTIVE_RECORD;
+                                ⚡ STATUS: "ENTRY_BYTES_EXHAUSTED";
+                            }
+                            IF (SEGMENT_EOF != "YES") {
+                                ⚡ HOLD_REASON: "EMPTY_NON_EOF_SEGMENT";
+                                IF (EXPECTED_STREAM == "LOCAL") { ⚡ ACTION: "PERSIST_LOCAL_HOLD"; }
+                                IF (EXPECTED_STREAM == "EXTERNAL") { ⚡ ACTION: "PERSIST_EXTERNAL_HOLD"; }
+                                ⚡ TARGET: ACTIVE_RECORD;
+                                ⚡ STATUS: "EMPTY_NON_EOF_SEGMENT";
+                            }
+                        }
+
+                        IF (SEGMENT_TEXT != "") {
+                            # Preserve raw bytes/text in args; do not normalize before T4.
+                            ⚡ T4_ID: registry_select_family(CAPABILITY_REGISTRY, "T4");
+                            IF (T4_ID != "") {
+                                ⚡ RC_59: H("write_text", BASE + "/state/pending_capability_need.txt", "TEXT_SYNTAX_VIEW", NULL);
+                                ⚡ RC_60: H("write_text", BASE + "/state/pending_capability_id.txt", T4_ID, NULL);
+                                ⚡ RC_61: H("write_text", BASE + "/state/pending_capability_context.txt", "SEGMENT_TEXT_VIEW", NULL);
+                                ⚡ RC_62: H("write_text", BASE + "/out/capability_request.txt", T4_ID, NULL);
+                                ⚡ RC_63: H("write_text", BASE + "/out/capability_args.txt", SEGMENT_TEXT, NULL);
+                                ⚡ RC_64: H("write_text", BASE + "/out/capability_need.txt", "TEXT_SYNTAX_VIEW", NULL);
+                                ⚡ ACTION: "EXECUTE_CAPABILITY";
+                                ⚡ TARGET: T4_ID;
+                                ⚡ STATUS: "NATIVE_T4_TEXT_VIEW_SELECTED";
+                                ⚡ CAPABILITY_REQUESTED: "YES";
+                            }
+
+                            IF (T4_ID == "") {
+                                ⚡ LR: legacy_analyze_segment(SEGMENT_TEXT, SEGMENT_ID);
+                                ⚡ DENSE: H("map_get", LR, "DENSE", NULL);
+                                IF (DENSE == "YES") {
+                                    ⚡ REDUCED: reduce_bytes(CURRENT_REQUEST_BYTES);
+                                    IF (REDUCED == "") {
+                                        ⚡ HOLD_REASON: "SEGMENT_DENSITY_LIMIT";
+                                        IF (EXPECTED_STREAM == "LOCAL") { ⚡ ACTION: "PERSIST_LOCAL_HOLD"; }
+                                        IF (EXPECTED_STREAM == "EXTERNAL") { ⚡ ACTION: "PERSIST_EXTERNAL_HOLD"; }
+                                        ⚡ TARGET: ACTIVE_RECORD;
+                                        ⚡ STATUS: "SEGMENT_DENSITY_LIMIT";
+                                    }
+                                    IF (REDUCED != "") {
+                                        ⚡ RC_65: H("write_text", BASE + "/state/request_bytes.txt", REDUCED, NULL);
+                                        IF (EXPECTED_STREAM == "LOCAL") { ⚡ ACTION: "READ_LOCAL_SEGMENT"; }
+                                        IF (EXPECTED_STREAM == "EXTERNAL") { ⚡ ACTION: "READ_EXTERNAL_SEGMENT"; }
+                                        ⚡ TARGET: ACTIVE_RECORD;
+                                        ⚡ STATUS: "REDUCE_SEGMENT_AND_RETRY";
+                                    }
+                                }
+
+                                IF (DENSE != "YES") {
+                                    ⚡ CANDIDATES: H("map_get", LR, "CANDIDATES", NULL);
+                                    ⚡ CANDIDATE_COUNT: H("map_get", LR, "COUNT", NULL);
+                                    ⚡ RC_66: H("write_text", BASE + "/out/pending_candidates.txt", CANDIDATES, NULL);
+                                    ⚡ RC_67: H("write_text", BASE + "/state/current_stream.txt", EXPECTED_STREAM, NULL);
+                                    ⚡ RC_68: H("write_text", BASE + "/state/current_segment_eof.txt", SEGMENT_EOF, NULL);
+                                    ⚡ RC_69: H("write_text", BASE + "/state/request_bytes.txt", "16384", NULL);
+                                    ⚡ RC_70: H("write_text", BASE + "/out/segment_accepted.txt", "YES", NULL);
+                                    ⚡ SEGMENT_ACCEPTED: "YES";
+
+                                    IF (0 < CANDIDATE_COUNT) {
+                                        ⚡ T3_ID: registry_select_family(CAPABILITY_REGISTRY, "T3");
+                                        IF (T3_ID != "") {
+                                            ⚡ RC_71: H("write_text", BASE + "/state/pending_capability_need.txt", "RETRIEVE_EVIDENCE", NULL);
+                                            ⚡ RC_72: H("write_text", BASE + "/state/pending_capability_id.txt", T3_ID, NULL);
+                                            ⚡ RC_73: H("write_text", BASE + "/state/pending_capability_context.txt", "EVIDENCE_LOOKUP", NULL);
+                                            ⚡ RC_74: H("write_text", BASE + "/out/capability_request.txt", T3_ID, NULL);
+                                            ⚡ RC_75: H("write_text", BASE + "/out/capability_args.txt", CANDIDATES, NULL);
+                                            ⚡ RC_76: H("write_text", BASE + "/out/capability_need.txt", "RETRIEVE_EVIDENCE", NULL);
+                                            ⚡ ACTION: "EXECUTE_CAPABILITY";
+                                            ⚡ TARGET: T3_ID;
+                                            ⚡ STATUS: "NATIVE_T3_RETRIEVAL_SELECTED";
+                                            ⚡ CAPABILITY_REQUESTED: "YES";
+                                        }
+                                        IF (T3_ID == "") {
+                                            ⚡ ACTION: "LOOKUP_EVIDENCE";
+                                            ⚡ TARGET: CANDIDATES;
+                                            ⚡ STATUS: "COMPAT_EVIDENCE_LOOKUP_REQUIRED";
+                                        }
+                                    }
+
+                                    IF (CANDIDATE_COUNT == 0) {
+                                        ⚡ ACTION: "COMMIT_SEGMENT";
+                                        ⚡ TARGET: SEGMENT_ID;
+                                        ⚡ STATUS: "SEGMENT_ANALYZED_NO_RELATION_CANDIDATES";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    # Historical evidence-bundle compatibility path.
+    IF (EVENT == "EVIDENCE_BUNDLE_READY") {
+        ⚡ MR: legacy_merge_evidence(EVIDENCE_BUNDLE);
+        ⚡ MV: H("map_get", MR, "VALID", NULL);
+        IF (MV != "YES") {
+            ⚡ ACTION: "REFUSE_EVIDENCE_BUNDLE";
+            ⚡ STATUS: "REFUSE_EVIDENCE_BUNDLE";
+        }
+        IF (MV == "YES") {
+            ⚡ UPDATE_TEXT: H("map_get", MR, "UPDATES", NULL);
+            ⚡ KNOW_TEXT: H("map_get", MR, "KNOWLEDGE", NULL);
+            ⚡ SELECTED_QUERY: H("map_get", MR, "QUERY", NULL);
+            ⚡ RC_77: H("write_text", BASE + "/out/updated_evidence.txt", UPDATE_TEXT, NULL);
+            ⚡ RC_78: H("write_text", BASE + "/out/promoted_knowledge.txt", KNOW_TEXT, NULL);
+            IF (SELECTED_QUERY != "") {
+                ⚡ RC_79: H("write_text", BASE + "/state/external_request.txt", SELECTED_QUERY, NULL);
+                ⚡ EXTERNAL_REQUEST: SELECTED_QUERY;
+            }
+            ⚡ ACTION: "PERSIST_EVIDENCE";
+            ⚡ TARGET: UPDATE_TEXT;
+            ⚡ STATUS: "NATIVE_EVIDENCE_UPDATE_READY";
+        }
+    }
+
+    IF (EVENT == "EVIDENCE_PERSISTED") {
+        ⚡ ACTION: "COMMIT_SEGMENT";
+        ⚡ TARGET: SEGMENT_ID;
+        ⚡ STATUS: "EVIDENCE_PERSISTED_SEGMENT_COMMIT_REQUIRED";
+    }
+
+    IF (EVENT == "SEGMENT_COMMITTED") {
+        IF (CURRENT_SEGMENT_EOF == "YES") {
+            IF (CURRENT_STREAM == "LOCAL") {
+                ⚡ ACTION: "PERSIST_LOCAL_COMPLETE";
+                ⚡ TARGET: LOCAL_ACTIVE;
+            }
+            IF (CURRENT_STREAM == "EXTERNAL") {
+                ⚡ ACTION: "PERSIST_EXTERNAL_COMPLETE";
+                ⚡ TARGET: EXTERNAL_ACTIVE;
+            }
+            ⚡ STATUS: "SEGMENT_COMMITTED_ENTRY_COMPLETE_REQUIRED";
+        }
+
+        IF (CURRENT_SEGMENT_EOF != "YES") {
+            IF (CURRENT_STREAM == "LOCAL") {
+                IF (EXTERNAL_REQUEST != "") {
+                    ⚡ ACTION: "FETCH_EXTERNAL";
+                    ⚡ TARGET: EXTERNAL_REQUEST;
+                    ⚡ STATUS: "NATIVE_EXTERNAL_REQUEST_READY";
+                }
+                IF (EXTERNAL_REQUEST == "") {
+                    ⚡ ACTION: "READ_LOCAL_SEGMENT";
+                    ⚡ TARGET: LOCAL_ACTIVE;
+                    ⚡ STATUS: "CONTINUE_LOCAL_SEGMENTS";
+                }
+            }
+            IF (CURRENT_STREAM == "EXTERNAL") {
+                ⚡ ACTION: "READ_EXTERNAL_SEGMENT";
+                ⚡ TARGET: EXTERNAL_ACTIVE;
+                ⚡ STATUS: "CONTINUE_EXTERNAL_SEGMENTS";
+            }
+        }
+    }
+
+    IF (EVENT == "ENTRY_COMPLETE_PERSISTED") {
+        IF (CURRENT_STREAM == "LOCAL") {
+            ⚡ RC_80: H("write_text", BASE + "/state/local_active_record.txt", "", NULL);
+        }
+        IF (CURRENT_STREAM == "EXTERNAL") {
+            ⚡ RC_81: H("write_text", BASE + "/state/external_active_record.txt", "", NULL);
+        }
+        ⚡ RC_82: H("write_text", BASE + "/state/current_stream.txt", "", NULL);
+        ⚡ RC_83: H("write_text", BASE + "/state/current_segment_eof.txt", "", NULL);
+        ⚡ RC_84: H("write_text", BASE + "/state/request_bytes.txt", "16384", NULL);
+
+        IF (EXTERNAL_REQUEST != "") {
+            ⚡ ACTION: "FETCH_EXTERNAL";
+            ⚡ TARGET: EXTERNAL_REQUEST;
+            ⚡ STATUS: "ENTRY_COMPLETE_NATIVE_EXTERNAL_REQUEST_READY";
+        }
+        IF (EXTERNAL_REQUEST == "") {
+            ⚡ ACTION: "TICK";
+            ⚡ STATUS: "ENTRY_COMPLETE_NEXT_NATIVE_TICK";
+        }
+    }
+
+    IF (EVENT == "ENTRY_HOLD_PERSISTED") {
+        IF (CURRENT_STREAM == "LOCAL") {
+            ⚡ RC_85: H("write_text", BASE + "/state/local_active_record.txt", "", NULL);
+        }
+        IF (CURRENT_STREAM == "EXTERNAL") {
+            ⚡ RC_86: H("write_text", BASE + "/state/external_active_record.txt", "", NULL);
+        }
+        ⚡ RC_87: H("write_text", BASE + "/state/current_stream.txt", "", NULL);
+        ⚡ RC_88: H("write_text", BASE + "/state/request_bytes.txt", "16384", NULL);
+        ⚡ ACTION: "TICK";
+        ⚡ STATUS: "ENTRY_HOLD_NEXT_NATIVE_TICK";
+    }
+
+    IF (EVENT == "EXTERNAL_FETCH_READY") {
+        IF (FETCH_STATUS != "OK") {
+            ⚡ ACTION: "REFUSE_FETCH_READY_STATUS";
+            ⚡ STATUS: "REFUSE_FETCH_READY_STATUS";
+        }
+        IF (FETCH_STATUS == "OK") {
+            IF (catalog_record_valid(FETCH_RECORD) == 0) {
+                ⚡ ACTION: "REFUSE_EXTERNAL_FETCH_RECORD";
+                ⚡ STATUS: "REFUSE_EXTERNAL_FETCH_RECORD";
+            }
+            IF (catalog_record_valid(FETCH_RECORD)) {
+                ⚡ RC_89: H("write_text", BASE + "/state/external_active_record.txt", FETCH_RECORD, NULL);
+                ⚡ RC_90: H("write_text", BASE + "/state/current_stream.txt", "EXTERNAL", NULL);
+                ⚡ RC_91: H("write_text", BASE + "/state/external_request.txt", "", NULL);
+                ⚡ RC_92: H("write_text", BASE + "/state/request_bytes.txt", "16384", NULL);
+                ⚡ EXTERNAL_REQUEST: "";
+                ⚡ ACTION: "READ_EXTERNAL_SEGMENT";
+                ⚡ TARGET: FETCH_RECORD;
+                ⚡ STATUS: "EXTERNAL_MATERIAL_ACCEPTED";
+            }
+        }
+    }
+
+    IF (EVENT == "EXTERNAL_FETCH_FAILED") {
+        IF (FETCH_STATUS == "FAILED_NETWORK_DOWN") {
+            ⚡ RC_93: H("write_text", BASE + "/state/external_request.txt", "", NULL);
+            ⚡ EXTERNAL_REQUEST: "";
+            IF (LOCAL_ACTIVE != "") {
+                ⚡ RC_94: H("write_text", BASE + "/state/current_stream.txt", "LOCAL", NULL);
+                ⚡ ACTION: "READ_LOCAL_SEGMENT";
+                ⚡ TARGET: LOCAL_ACTIVE;
+                ⚡ STATUS: "NETWORK_DOWN_RESUME_LOCAL";
+            }
+            IF (LOCAL_ACTIVE == "") {
+                ⚡ ACTION: "TICK";
+                ⚡ STATUS: "NETWORK_DOWN_NEXT_TICK";
+            }
+        }
+
+        IF (FETCH_STATUS != "FAILED_NETWORK_DOWN") {
+            IF (LOCAL_ACTIVE != "") {
+                ⚡ RC_95: H("write_text", BASE + "/state/current_stream.txt", "LOCAL", NULL);
+                ⚡ ACTION: "READ_LOCAL_SEGMENT";
+                ⚡ TARGET: LOCAL_ACTIVE;
+                ⚡ STATUS: "EXTERNAL_RETRY_DEFERRED_RESUME_LOCAL";
+            }
+            IF (LOCAL_ACTIVE == "") {
+                ⚡ ACTION: "TICK";
+                ⚡ TARGET: "";
+                ⚡ STATUS: "EXTERNAL_RETRY_DEFERRED_YIELD_LOCAL_SCHEDULER";
+            }
+        }
+    }
+
+    ⚡ RC_96: H("write_text", BASE + "/out/action.txt", ACTION, NULL);
+    ⚡ RC_97: H("write_text", BASE + "/out/target.txt", TARGET, NULL);
+    ⚡ RC_98: H("write_text", BASE + "/out/status.txt", STATUS, NULL);
+    ⚡ RC_99: H("write_text", BASE + "/out/hold_reason.txt", HOLD_REASON, NULL);
+
+    ⚡ print("SIGMA_C5V3_COGNITIVE_KERNEL_R1");
+    ⚡ print("EVENT", EVENT);
+    ⚡ print("ACTION", ACTION);
+    ⚡ print("STATUS", STATUS);
+    ⚡ print("CURRENT_STREAM", CURRENT_STREAM);
+    ⚡ print("REQUEST_BYTES", CURRENT_REQUEST_BYTES);
+    ⚡ print("PENDING_CAPABILITY_PRESENT", PENDING_CAPABILITY != "");
+    ⚡ print("CAPABILITY_REQUESTED", CAPABILITY_REQUESTED);
+    ⚡ print("HOST_CAPABILITY_DEMAND_GENERATION", "NO");
+    ⚡ print("HOST_TOOL_SELECTION", "NO");
+    ⚡ print("HOST_QUERY_GENERATION", "NO");
+    ⚡ print("HOST_SOURCE_SELECTION", "NO");
+    ⚡ print("HOST_URL_SELECTION", "NO");
+    ⚡ print("HOST_REASONING", "NO");
+    ⚡ print("HOST_LEARNING", "NO");
+    ⚡ print("NATIVE_CAPABILITY_NEED_DETECTION", "YES_STRUCTURAL");
+    ⚡ print("NATIVE_CAPABILITY_SELECTION", "YES_REGISTRY_BOUND");
+    ⚡ print("NATIVE_EXTERNAL_REQUEST_GENERATION", "YES_COMPAT_LEARNING_RULE");
+    ⚡ print("COMPUTATION_BOUNDED_PER_INVOCATION", "YES_BY_PAGE_SEGMENT_BUNDLE_LIMITS");
+}
