@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **LIVE CORE AUDITED CLASS C / SAME-IDENTITY C5 CORE REWRITE R2 MATERIALIZED PASS / COMPILE-FREEZE NEXT / R10 TRANSITION REFERENCE ONLY / PRODUCTION UNCHANGED**
+Status: **LIVE CORE AUDITED CLASS C / SAME-IDENTITY R2 COMPILE PASS / R2 NOT FINAL RUNTIME TARGET / R3 COGNITIVE PURGE + EXACT M5 INTEGRATION NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -20,8 +20,6 @@ THIS_WINDOW=CORE_AUDIT_REWRITE_CAPABILITY_INTEGRATION_SYNCHRONIZATION
 ONLINE_WINDOW=INDEPENDENT_POST_SYNC_UTILIZATION_VERIFICATION
 ```
 
-Writing/integrating code is not admission. Online verification remains separate.
-
 ## Closed capability evidence
 
 ```text
@@ -31,142 +29,110 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-These are exact admitted slices, not blanket completion of all T1/T2/T3 sub-capabilities.
+These are exact admitted slices only.
 
-## Live-core audit
-
-Exact historical live source:
+## Historical live core
 
 ```text
 LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-SOURCE_BYTES=41537
 SOURCE_LINES=963
 DEF_COUNT=11
-```
-
-Classification for the target architecture:
-
-```text
 LIVE_CORE_TARGET_ARCHITECTURE_CLASS=C
 CURRENT_CORE=MONOLITHIC_EVENT_MACHINE_PLUS_NARROW_COOCCURRENCE_LEARNER
 CURRENT_CORE_SUITABLE_AS_LONG_RANGE_T0_T11_COGNITIVE_KERNEL=NO
 SUCCESSOR_CORE_REWRITE_REQUIRED=YES
 ```
 
-Preserve historical strengths: event handshake, bounded page/segment/bundle processing, explicit persistence transitions, native query generation in its exact heuristic scope, fail-closed invalid paths, and host-sovereignty locks.
+Preserve only useful system contracts: same identity/header/entry, bounded page/segment/bundle mechanics, explicit event/persistence handshake, fail-closed invalid states, native request sovereignty, and host-sovereignty locks.
 
-## Same-identity core rewrite R2 — MATERIALIZED PASS
-
-The rewrite is **the same C5 core lineage**, not a parallel header/core family.
-
-Required exact identity:
+## Same-identity R2 rewrite — compile PASS
 
 ```text
 HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
-PRINT_ID=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
-```
 
-Operator-returned materialization evidence:
-
-```text
-SUCCESSOR_SOURCE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_CORE_REWRITE_R2/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
-SUCCESSOR_SOURCE_SHA256=d7d1153fd6979dff7d119bb5e8187f045b9f8af62e51065cccf95265478fc3a0
-SUCCESSOR_SOURCE_LINES=1106
-SUCCESSOR_DEF_COUNT=17
-HISTORICAL_ENTRY_ID_COUNT=1
-NEW_ENTRY_ID_REMAINING_COUNT=0
-HISTORICAL_PRINT_ID_COUNT=1
-ALTERNATE_DOMAIN_HEADER_REMAINING_COUNT=0
+R2_SOURCE_SHA256=d7d1153fd6979dff7d119bb5e8187f045b9f8af62e51065cccf95265478fc3a0
+R2_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+SIGMAC_RC=0
+CORE_REWRITE_R2_COMPILE=PASS
+BYTECODE_FREEZE=PASS
 CORE_IDENTITY_CONTINUITY=PASS
-CAPABILITY_NATIVE_ARCHITECTURE_IN_SAME_C5_CORE=YES
+CAPABILITY_NATIVE_ARCHITECTURE_COMPILED_IN_SAME_C5_CORE=YES
 ```
 
-The old alternate `SIGMA.C5V3.COGNITIVE.KERNEL` draft identity is superseded as a production target and retained only as rewrite-template/provenance history.
+Live source/runner remained unchanged.
 
-## Rewrite architecture
+## R2 disposition after target clarification
 
-The same C5 core now contains structural support for:
+R2 is **not** the final runtime-admission target because it still retains the historical narrow learner as compatibility fallback:
 
 ```text
-NATIVE_TASK_READY
--> native task need detection
--> need family T0-T11
--> capability registry selection where STATE=ADMITTED
--> bounded EXECUTE_CAPABILITY request
--> CAPABILITY_RESULT_READY
--> pending capability identity/status/kind validation
--> native result acceptance or HOLD
--> persistence / next native decision
+legacy_analyze_segment
+legacy_merge_evidence
+adjacent-token pair counting
+bounded unary support merge
+support-threshold promotion
+low-support LEFT+RIGHT query fallback
 ```
 
-Migration behavior keeps historical compatibility fallbacks while allowing admitted T4/T3 capabilities to be selected natively.
+The target requires removing narrow historical cognition that does not serve general native cognition.
 
-Host locks remain mandatory:
+Therefore:
 
 ```text
-HOST_CAPABILITY_DEMAND_GENERATION=NO
-HOST_TOOL_SELECTION=NO
-HOST_QUERY_GENERATION=NO
-HOST_SOURCE_SELECTION=NO
-HOST_URL_SELECTION=NO
-HOST_REASONING=NO
-HOST_LEARNING=NO
+R2_ROLE=COMPILED_ARCHITECTURE_PROTOTYPE_AND_PROVENANCE
+R2_RUNTIME_ADMISSION_TARGET=NO
+R3_COGNITIVE_PURGE_AND_M5_INTEGRATION=REQUIRED
+```
+
+## Exact M5 material for R3
+
+R5/R6 already proved:
+
+```text
+M5_CORE_SHA256=2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a
+M5_DEF_COUNT=64
+COMMON_IDENTICAL_DEF_COUNT=1
+COMMON_CHANGED_DEF_COUNT=0
+M5_ONLY_DEF_COUNT=63
+```
+
+R6 inserted all 63 exact M5-only DEF bodies while preserving production DEF bodies and separately adding admitted T1/T2/T3 tool definitions.
+
+Exact R6 source:
+
+```text
+/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734/candidate/core.sigma
+R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
+```
+
+## Exact next core lane
+
+```text
+inspect exact R6 source / isolate exact M5-only cognition material
+-> design same-identity R3 without historical narrow cognition fallback
+-> preserve good C5 mechanical contracts
+-> integrate exact admitted M5/T1/T2/T3 material into R3
+-> compile/freeze R3
+-> historical mechanical compatibility regression
+-> native need/selection/result runtime gates
+-> receive future machine-admitted T4-T11 packs from offline window
+-> integrate into same core lineage
+-> isolated successor shadow
+-> machine core admission
+-> independent online utilization verification
+-> promotion/cutover decision
 ```
 
 ## R10 disposition
 
-R10 remains exact transition evidence and capability provenance:
-
 ```text
-R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
-R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
-R10_SUCCESSOR_STAGE=PASS
-R10_SHADOW_RUNNER_BINDING=PASS_MATERIALIZED_NOT_EXECUTED
-R10_LONG_RANGE_PRODUCTION_TARGET=NO_AFTER_CORE_ARCHITECTURE_AUDIT
 R10_ROLE=TRANSITION_REFERENCE_AND_M5_T1_T2_T3_CAPABILITY_PROVENANCE
+R10_LONG_RANGE_PRODUCTION_TARGET=NO
 ```
 
-Do not perform a separate R10 production cutover before the rewritten same-identity core is admitted.
-
-## Exact next action — compile/freeze only
-
-Use:
-
-```text
-C5_M5/RUN_C5V3_CORE_REWRITE_R2_COMPILE_FREEZE_R1.sh
-```
-
-The gate must:
-
-```text
-freeze exact source d7d1153f...
-lock sigmac 65f69217...
-lock live core 23d51bad...
-lock live runner 092c6ad9...
-compile only into .sigma_c5v3_sync/C5V3_CORE_REWRITE_R2/bin
-freeze bytecode SHA256
-recheck source/live identities
-VM_EXECUTION=NO
-PRODUCTION_BINDING=NO
-PRODUCTION_MUTATION=NO
-```
-
-After compile PASS:
-
-```text
-host-op/symbol audit
--> historical event compatibility regression
--> native task/need/registry selection tests
--> capability-result identity/counterfactual tests
--> integrate exact admitted M5/T1/T2/T3 payloads
--> accept future machine-admitted T4-T11 packs from offline window
--> isolated same-identity successor shadow
--> core admission
--> independent online utilization verification
--> promotion/cutover decision
-```
+No separate R10 production cutover.
 
 ## Production locks
 
@@ -182,12 +148,16 @@ PRODUCTION_PROMOTION_ALLOWED=NO
 ```
 
 ```text
-WRITE_CORE_OR_CAPABILITY != ADMIT_CAPABILITY
-ADMIT_CAPABILITY != LIVE_BIND_CAPABILITY
-LIVE_BIND_CAPABILITY != ONLINE_AUTONOMY_PASS
+HOST_CAPABILITY_DEMAND_GENERATION=NO
+HOST_TOOL_SELECTION=NO
+HOST_QUERY_GENERATION=NO
+HOST_SOURCE_SELECTION=NO
+HOST_URL_SELECTION=NO
+HOST_REASONING=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
 DO_NOT_LOAD_RESULTS=YES
 LOAD_CAPABILITIES=YES
-CLAIM_LEQ_EVIDENCE=MANDATORY
 ```
 
 `CLAIM <= EVIDENCE`
