@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / R0+GATE-A EXECUTABLE ORACLES REPRODUCED / VERSION AND MULTILINE-DEF HYPOTHESES DISPROVEN / DEF-PREFIX ENTRY-VISIBILITY BINARY SEARCH NEXT / PRODUCTION UNCHANGED**
+Status: **PRIMARY WORK RESUMED: R4 NATIVE LEARNING SOURCE ARCHITECTURE WRITTEN / R3 29B ENTRY-VISIBILITY DEFECT DIAGNOSED IN PARALLEL / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -17,23 +17,99 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_MULTILINE_DEF_DISPROVEN_DEF_PREFIX_BINARY_SEARCH_NEXT.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R0_GATEA_ORACLE_VERSION_PROFILE_DISPROVEN_R3_GRAMMAR_BOUNDARY_NEXT.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_V18_R0_EXACT_ARTIFACT_RECOVERED_COMPILER_ORACLE.md`
-4. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_NATIVE_LEARNING_SOURCE_ARCHITECTURE_STARTED.md`
+2. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_MULTILINE_DEF_DISPROVEN_DEF_PREFIX_BINARY_SEARCH_NEXT.md`
+4. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R0_GATEA_ORACLE_VERSION_PROFILE_DISPROVEN_R3_GRAMMAR_BOUNDARY_NEXT.md`
 
-## R3 FIX1 source
+## Primary rewrite direction — R4 native learning
+
+Canonical target:
+
+```text
+native objective
+-> native gap
+-> native evidence/capability need
+-> native request/query or capability arguments
+-> mechanical execution/transport
+-> provenance-bound raw result
+-> native evaluation
+-> claim/hypothesis + support/contrary/uncertainty
+-> revision/conflict
+-> bounded compact memory
+-> restart/reuse
+-> next native objective/action
+```
+
+Host semantic authority remains forbidden.
+
+### R4 learning-state module
+
+```text
+PATH=C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_STATE_R1.sigma.inc
+COMMIT=1a636d034571db0b6cf912532f4fe072bcaea56c
+SOURCE_SHA256=05807ba4a1534323c2358a7362af8f4ad370a47a676f61d96d51161113bb11cc
+DEF_COUNT=23
+```
+
+### R4 learning-transition module
+
+```text
+PATH=C5_M5/R4_NATIVE_LEARNING/C5_NATIVE_LEARNING_TRANSITIONS_R1.sigma.inc
+COMMIT=75596c055bcc815e0abeab872f8f2b06b0898b24
+SOURCE_SHA256=cad80440430a8aa83babb4a336050d3089e51242bc5ef74f41d84d8b56166f58
+DEF_COUNT=12
+```
+
+### Combined source identity
+
+```text
+R4_LEARNING_COMBINED_DEF_COUNT=35
+R4_LEARNING_COMBINED_SOURCE_SHA256=f3847c082e27c7fb2cca9f79b6f1963ad5da2205b58e1e410cb54c600598a791
+DIRECT_READ_TEXT=ABSENT
+DIRECT_WRITE_TEXT=ABSENT
+LEFT_RIGHT_COGNITION=ABSENT
+LEGACY_ANALYZE_SEGMENT=ABSENT
+LEGACY_MERGE_EVIDENCE=ABSENT
+MAX_ARITY<=6
+```
+
+Static source gate:
+
+```text
+C5_M5/RUN_C5V3_R4_NATIVE_LEARNING_SOURCE_AUDIT_R1.sh
+COMMIT=52d0daf860c3c60f1d672d58ad42540e2a415ed7
+```
+
+Architecture doctrine:
+
+```text
+C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md
+COMMIT=7d45cb9af281c3de01ee3ca3d718198736cf8aa2
+```
+
+## Initial semantic seed
+
+Exact admitted Gate-A scoped provisional epistemic truth remains a narrow evaluator dependency:
+
+```text
+GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
+GATEA_HISTORICAL_BYTECODE_SHA256=569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc8e8900e1cb0d38ea2
+GATEA_FRESH_MATCHES_HISTORICAL=YES
+```
+
+R4 uses Gate-A as a tested seed for native relation discrimination, gap/evidence request and source-consistency revision. It is not general truth or whole-work understanding.
+
+## R3 FIX1 compiler-entry visibility defect — parallel gate
 
 ```text
 R3_FIX1_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
 R3_FIX1_DEF_COUNT=176
 R3_FIX1_CONSTRUCTION=PASS
-LEGACY_LEFT_RIGHT_COGNITION=ABSENT
-DIRECT_PERSISTENT_STATE_PATH=ABSENT
 R3_FIX1_RUNTIME_ADMISSION=NO
 ```
 
-## Compiler / VM identities
+Locked runtime identities:
 
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
@@ -43,108 +119,64 @@ SIGMAC_SOURCE_SENSITIVE_EMITTER=PASS
 VM_REAL_BYTECODE_EXECUTION_CONTROL=PASS
 ```
 
-## 29-byte artifact classification closed
+Current R3 artifact:
 
 ```text
-R3_CURRENT_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-R3_CURRENT_BYTECODE_BYTES=29
-R3_CURRENT_BYTECODE_MAGIC=SIGMBC01
-CURRENT_29B_CLASS=EMPTY_OR_GENERIC_EXECUTION_CAPSULE_UNDER_TESTED_ENVIRONMENT
-VM_SIBLING_SOURCE_COUPLING=NO_OBSERVED
-FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
-29B_SOURCE_REFERENCE_LOADER=NO_OBSERVED
+SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
+BYTES=29
+MAGIC=SIGMBC01
+CLASS=EMPTY_OR_GENERIC_EXECUTION_CAPSULE_UNDER_TESTED_ENVIRONMENT
 ```
 
-Historical SIGMA compression remains a separate capability; this 29-byte artifact is not evidence of it.
+Closed explanations:
 
-## Executable compiler oracles
+```text
+FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
+29B_SOURCE_REFERENCE_LOADER=NO_OBSERVED
+HEADER_VERSION_PROFILE_ROOT_CAUSE=NO
+MULTILINE_DEF_SIGNATURE_ROOT_CAUSE=NO
+```
 
-V18 R0 exact source+bytecode recovered and fresh compile reproduced byte-identically:
+Executable oracles reproduced:
 
 ```text
 V18_R0_ENGINE_SOURCE_SHA256=81523feb7c59a90b6bb5d284c65a679d3fd76ad692f84b0a6685c4d2693dcb7a
 V18_R0_ENGINE_BYTECODE_SHA256=e800eab3dc6abcbddf0b9c9e0de9d76af2fba6ba1bd49c87157c62fe126a7300
-R0_ORIGINAL_BYTECODE_BYTES=2180
 R0_FRESH_MATCHES_FROZEN=YES
-```
-
-Gate-A exact source also fresh-compiles to its historical bytecode:
-
-```text
-GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
-GATEA_HISTORICAL_BYTECODE_SHA256=569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc8e8900e1cb0d38ea2
-GATEA_ORIGINAL_BYTECODE_BYTES=73265
 GATEA_FRESH_MATCHES_HISTORICAL=YES
 ```
 
-## Closed hypotheses
-
-### Header/version profile
-
-```text
-R0_FORCED_C5FULLR1_SHA=R0_ORIGINAL_SHA
-GATEA_FORCED_C5FULLR1_SHA=GATEA_ORIGINAL_SHA
-R3_FORCED_GATEA_VERSION_SHA=R3_ORIGINAL_29B_SHA
-R0_VERSION_PROFILE_EFFECT=NO_OBSERVED
-GATEA_VERSION_PROFILE_EFFECT=NO_OBSERVED
-R3_GATEA_VERSION_RESTORES_NONTRIVIAL_EMISSION=NO
-R3_ZERO_CODE_ROOT_CAUSE_IS_HEADER_VERSION_PROFILE=NO
-```
-
-### Multiline DEF signature
-
-```text
-MINIMAL_ONE_LINE_DEF_BYTECODE_BYTES=124
-MINIMAL_MULTILINE_DEF_BYTECODE_BYTES=124
-MINIMAL_ONE_LINE_AND_MULTILINE_BYTECODE_IDENTICAL=YES
-MULTILINE_DEF_SIGNATURE_PARSER_QUIRK=NO_OBSERVED
-R3_FOLDED_SIGNATURE_BYTECODE_SHA256=ae220dac7d620cb7a791e047b66101ff8aa570a91da5c02db853f0b50786501a
-R3_ZERO_CODE_ROOT_CAUSE_SINGLE_MULTILINE_DEF_SIGNATURE=NOT_PROVEN
-FOLDED_R3_MAIN_LITERAL_SENSITIVITY=FAIL_OR_NOT_REACHED
-R3_FOLDED_UNBALANCED_COMPILE_RC=0
-```
-
-## Current root-cause zone
-
-R3 composition order:
-
-```text
-DEF 1..17   = P0 trust/state
-DEF 18..94  = 77 pure Gate-A cognition DEFs
-DEF 95..176 = 82 T1/T2/T3 tool DEFs
-then single P0 main entry
-```
-
-Machine evidence still indicates the R3 entry is not reached/recognized during compile. The next gate separates a DEF-prefix parser/composition fault from a P0-main fault.
-
-## Exact next action
+Next compiler diagnostic remains:
 
 ```text
 C5_M5/RUN_C5V3_R3_DEF_PREFIX_ENTRY_VISIBILITY_BINARY_SEARCH_R1.sh
-SCRIPT_COMMIT=3f491eef577f54a1aa360426e10dc16cdb66d0a7
+COMMIT=3f491eef577f54a1aa360426e10dc16cdb66d0a7
 ```
 
-The gate tests:
+This gate is parallel engineering work. It must not block R4 source architecture development, but runtime admission remains blocked until compiler-visible source->bytecode identity is repaired.
+
+## Next primary development sequence
 
 ```text
-0 DEF + minimal sentinel entry
-17 P0 DEF + sentinel
-94 P0+cognition DEF + sentinel
-176 all DEF + sentinel
-77 cognition DEF only + sentinel
-82 tools DEF only + sentinel
-17 P0 DEF + exact P0 main
+1. Run R4 source static audit and freeze exact learning-module identity.
+2. Build Gate-A -> R4 adapter for one real native learning cycle.
+3. Compose P0 trust + R4 learning + Gate-A seed + exact admitted T1/T2/T3.
+4. Repair compiler entry visibility and obtain nontrivial source-sensitive bytecode.
+5. Admit one complete cycle: gap -> request -> evidence -> evaluation -> revision -> compact memory -> restart/reuse.
+6. Expand to multi-scope work graph and capability utilization.
+7. Integrate exact T4-T11 artifacts only after offline machine admission handoff.
+8. Shadow/soak + independent online autonomy verification.
+9. Explicit production cutover only after promotion criteria pass.
 ```
 
-If all 176 DEFs plus sentinel are nontrivial, root cause moves to P0 main. If all 176 DEFs plus sentinel collapse to 29B, the gate performs a prefix binary search and reports the first suspect DEF index/name.
-
-## Production locks
+## Claim boundary
 
 ```text
-LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
-LIVE_CORE_UNCHANGED=YES
-LIVE_RUNNER_UNCHANGED=YES
+R4_NATIVE_LEARNING_SOURCE_ARCHITECTURE=WRITTEN
+R4_STATIC_MACHINE_AUDIT=PENDING_OPERATOR_RUN
+R4_RUNTIME_LEARNING=NOT_ADMITTED
+GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
+WHOLE_WORK_UNDERSTANDING=FAIL
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
