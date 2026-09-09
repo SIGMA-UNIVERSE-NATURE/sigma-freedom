@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0",
+  "window_id":"C01-W04-B1.3-CHEMISTRY-FAMILY",
+  "scope_id":"B1.3-FAMILY-COMPLETION",
+  "stage":"CURRICULUM",
+  "status":"PASS_CANDIDATE",
+  "candidate_type":"DIRECTOR_INDEPENDENT_FAMILY_INTEGRATION_AUDIT",
+  "execution_branch":"hka-tree/c01-w04-chemistry-family",
+  "control_plane_baseline":"a5899e552091161882b67dc5c009fabd454959b3",
+  "accepted_children":"10/10",
+  "accepted_scopes":{"B1.3-C01":"d3d5eb000b927f69732554c9dd58b4c087d7ca7d","B1.3-C02":"dcd9c24eb17286940eef1d91b4562ed5cc10852a","B1.3-C03":"3ce2ef9679d821386bef92895a37ca379016fdf0","B1.3-C04":"caa12019682e1a9274fe75b8ab20435c3bfb4d2e","B1.3-C05":"d19b011f00ac5f24d7a212c957cac3bb5046f06e","B1.3-C06":"f5802d4d9d7f3a4a200e532301c2b6ee2dcb55ba","B1.3-C07":"4da2338f420d12b958b0af71edda922816ff69cb","B1.3-C08":"80bbee1e63760dcb6a44ea3eb6aecb03404c2fca","B1.3-C09":"921226d0e83409d80f26eac1247d5f1e06269601","B1.3-C10":"03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d"},
+  "aggregate_counts":{"canonical_topics":69,"claims":323,"learning_objectives":276,"claim_to_learning_objective_closures":276,"child_local_source_rows":48},
+  "audits":{"children_resolution":"10/10 PASS","foundational_13_year_progression":"PASS","foundational_gap_count":0,"stable_ids":"PRESERVED","duplicate_ownership":"PASS — R07/R08/R09/R11/R12/R14 controlled","cross_domain_boundary":"PASS — X01/X03/X04 secondary only","prerequisite_graph":"PASS — ACYCLIC, NO DANGLING IDS","support_resolution":"PASS","future_locked_support":0,"cross_scope_academic_mutation":0,"stage_boundary":"PASS_CURRICULUM_ONLY","director_independent_audit":"PASS","durable_read_back":"PENDING_FINAL_READ_BACK"},
+  "child_scope_defects":[],
+  "controller_repairs":[],
+  "red_flag":"NONE",
+  "external_general_education_mapping_status":"REQUIRED_BEFORE_EXIT",
+  "fresh_backup_sentinel_status":"REQUIRED_AFTER_MAPPING_ACCEPTANCE",
+  "B1_3_family_exit_unlock":false,
+  "B1_4_unlock":false,
+  "next_action":"Complete B1.3 external general-education mapping; then fresh Backup Sentinel; only then Director may declare B1.3 subbranch exit PASS. B1.4 remains locked."
+}
