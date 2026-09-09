@@ -1,17 +1,27 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "autopilot_id": "HKA-CURRICULUM-AUTOPILOT-V1",
-  "status": "ACTIVE_LIVE_CODEX_GUARDED",
+  "status": "ACTIVE_LIVE_CODEX_GUARDED_FAST_PATH",
   "enabled": true,
   "control_plane_branch": "hka-tree/curriculum-master",
   "default_branch_launcher": "SIGMA_LIFE",
   "poll_minutes": 5,
-  "mode": "GUARDED_AUTONOMY",
+  "mode": "GUARDED_AUTONOMY_FAST_PATH",
+  "north_star": "CINEMATIC_4K_ON_WEBSITE",
   "auto_queue_role_requests": true,
   "auto_execute_queued_roles": true,
   "auto_chain_next_run": true,
   "fallback_queue": "GITHUB_ISSUE",
   "auto_open_successor_after_acceptance_and_sentinel": true,
+  "fast_path": {
+    "enabled": true,
+    "contract": "AUTOPILOT/HKA_FAST_PATH_POLICY.json",
+    "auto_fix_repairable_defects_in_same_role": true,
+    "delta_first_review": true,
+    "full_reaudit_only_on_semantic_change": true,
+    "repairable_mechanical_defect_must_not_create_manual_handoff": true,
+    "repeat_same_finding_without_new_evidence_forbidden": true
+  },
   "canonical_alignment": {
     "knowledge_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
     "b1_architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
@@ -28,10 +38,10 @@
     "task_loss_on_runner_failure": false
   },
   "role_separation": {
-    "WORKER": "May write only active child academic/status artifacts; cannot self-accept or unlock successor.",
-    "DIRECTOR": "May open windows, independently review, accept or require repair, and update control-plane governance; does not replace worker authoring.",
-    "SENTINEL": "Read-only for academic/control-plane state; may write only Sentinel checkpoint/status; cannot accept or unlock.",
-    "ORCHESTRATOR": "Reads durable state, validates invariants, plans and dispatches the next role; never changes academic truth by itself."
+    "WORKER": "May write only active child academic/status artifacts; must self-repair repairable defects before terminal receipt; cannot self-accept or unlock successor.",
+    "DIRECTOR": "May open windows, independently review, accept or require repair, and update control-plane governance; uses delta-first re-review after repair and does not replace worker semantic authoring.",
+    "SENTINEL": "Read-only for academic/control-plane state; verifies alignment rather than repeating Director academic review; may write only Sentinel checkpoint/status; cannot accept or unlock.",
+    "ORCHESTRATOR": "Reads durable state, validates invariants, plans and dispatches the next role; never changes academic truth by itself and never requires manual handoff for an internally repairable defect."
   },
   "hard_gates": {
     "current_stage": "CURRICULUM",
@@ -55,5 +65,10 @@
     "write_guard": ".github/hka_autopilot/role_guard.py",
     "successor_bootstrap": ".github/hka_autopilot/successor_bootstrap.py",
     "fallback_when_secret_missing": "Keep request open and create/retain a configuration blocker; never advance state."
+  },
+  "delivery_intent": {
+    "final_surface": "WEBSITE",
+    "quality_target": "CINEMATIC_4K",
+    "governance_is_means_not_product": true
   }
 }
