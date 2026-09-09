@@ -1,20 +1,28 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "autopilot_id": "HKA-CURRICULUM-AUTOPILOT-V1",
-  "status": "ACTIVE_GUARDED",
+  "status": "ACTIVE_LIVE_CODEX_GUARDED",
   "enabled": true,
   "control_plane_branch": "hka-tree/curriculum-master",
   "default_branch_launcher": "SIGMA_LIFE",
-  "poll_minutes": 15,
+  "poll_minutes": 5,
   "mode": "GUARDED_AUTONOMY",
   "auto_queue_role_requests": true,
-  "auto_invoke_agent_webhook_when_configured": true,
+  "auto_execute_queued_roles": true,
+  "auto_chain_next_run": true,
   "fallback_queue": "GITHUB_ISSUE",
   "auto_open_successor_after_acceptance_and_sentinel": true,
+  "canonical_alignment": {
+    "knowledge_tree_commit": "fc799bf1104ab6352710e1801777a971b5179995",
+    "b1_architecture_commit": "265bb584b5d7e36e11091289d58558408880118c",
+    "scope_map_blob_sha": "bedef47958a728e3f0d56d412f7bdea3ec465856",
+    "read_before_every_agent_transition": true,
+    "never_invent_missing_architecture": true
+  },
   "runner_federation": {
     "contract": "AUTOPILOT/HKA_AUTOPILOT_FEDERATION.json",
     "probe": ".github/hka_autopilot/federation_probe.py",
-    "primary": "GITHUB_ACTIONS",
+    "primary": "GITHUB_ACTIONS_CODEX",
     "optional": ["VERCEL_CLOUD_OBSERVER", "HP_REMOTE_OPERATOR"],
     "optional_failure_blocks_control_loop": false,
     "task_loss_on_runner_failure": false
@@ -29,14 +37,23 @@
     "current_stage": "CURRICULUM",
     "director_acceptance_required": true,
     "fresh_post_acceptance_sentinel_required": true,
+    "sentinel_cannot_unlock": true,
     "successor_opening_separate_transition": true,
     "future_locked_support_required": 0,
     "cross_scope_academic_mutation_required": 0,
     "accepted_stable_ids_immutable": true
   },
   "agent_runner": {
-    "webhook_env": "HKA_AGENT_WEBHOOK_URL",
-    "webhook_token_env": "HKA_AGENT_WEBHOOK_TOKEN",
-    "fallback_when_unconfigured": "Create idempotent GitHub issue containing the run request JSON."
+    "workflow": ".github/workflows/hka_agent_runner.yml",
+    "executor": "openai/codex-action@v1",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "permission_profile": ":workspace",
+    "safety_strategy": "drop-sudo",
+    "required_secret": "OPENAI_API_KEY",
+    "queue_consumer": ".github/hka_autopilot/issue_queue.py",
+    "write_guard": ".github/hka_autopilot/role_guard.py",
+    "successor_bootstrap": ".github/hka_autopilot/successor_bootstrap.py",
+    "fallback_when_secret_missing": "Keep request open and create/retain a configuration blocker; never advance state."
   }
 }
