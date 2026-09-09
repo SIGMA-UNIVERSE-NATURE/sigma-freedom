@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **LIVE CORE AUDITED CLASS C FOR TARGET ARCHITECTURE / C5V3 COGNITIVE KERNEL SUCCESSOR R1 DRAFT WRITTEN / R10 FROZEN AS TRANSITION REFERENCE / OFFLINE CAPABILITY LAB SEPARATE / ONLINE VERIFICATION SEPARATE / PRODUCTION UNCHANGED**
+Status: **LIVE CORE AUDITED CLASS C / SAME-IDENTITY C5 CORE REWRITE R2 MATERIALIZED PASS / COMPILE-FREEZE NEXT / R10 TRANSITION REFERENCE ONLY / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -12,15 +12,6 @@ SYSTEM=C5V3
 WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 ```
 
-## Read first
-
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_WINDOW_ROLE_REALIGNMENT_R2_OFFLINE_CAPABILITY_LAB_SYNC_CORE_ONLINE_VERIFICATION.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_LIVE_CORE_ARCHITECTURE_AUDIT_R1_REWRITE_REQUIRED.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_COGNITIVE_KERNEL_SUCCESSOR_R1_DRAFT_CREATED.md`
-4. `C5_M5/SIGMA_C5V3_COGNITIVE_KERNEL_SUCCESSOR_R1_DRAFT.sigma`
-5. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SUCCESSOR_STAGE_R1_PASS.md`
-6. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R10_SHADOW_RUNNER_MATERIALIZE_R1_PASS.md`
-
 ## Three-window ownership
 
 ```text
@@ -29,7 +20,7 @@ THIS_WINDOW=CORE_AUDIT_REWRITE_CAPABILITY_INTEGRATION_SYNCHRONIZATION
 ONLINE_WINDOW=INDEPENDENT_POST_SYNC_UTILIZATION_VERIFICATION
 ```
 
-This window does not self-admit capability code merely because it integrates or writes it.
+Writing/integrating code is not admission. Online verification remains separate.
 
 ## Closed capability evidence
 
@@ -40,11 +31,11 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-These remain exact admitted slices, not blanket completion of every T1/T2/T3 sub-capability.
+These are exact admitted slices, not blanket completion of all T1/T2/T3 sub-capabilities.
 
-## Exact live-core audit
+## Live-core audit
 
-Uploaded live source was verified as:
+Exact historical live source:
 
 ```text
 LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
@@ -53,68 +44,66 @@ SOURCE_LINES=963
 DEF_COUNT=11
 ```
 
-Observed architecture:
-
-```text
-CURRENT_CORE=MONOLITHIC_EVENT_MACHINE_PLUS_NARROW_COOCCURRENCE_LEARNER
-LEARNING=ADJACENT_TOKEN_PAIR_COUNTS_PLUS_BOUNDED_SUPPORT_MERGE
-MAX_LOCAL_RELATION_CANDIDATES=8
-SUPPORT_CAP=64
-KNOWLEDGE_PROMOTION_THRESHOLD=GREATER_THAN_2_SUPPORT
-EXTERNAL_QUERY_RULE=LOW_SUPPORT_LEFT_PLUS_RIGHT
-```
-
-Useful invariants preserved from the historical core:
-
-```text
-EVENT_DRIVEN_HANDSHAKE=YES
-BOUNDED_PAGE_SEGMENT_BUNDLE_PROCESSING=YES
-NATIVE_EXTERNAL_QUERY_GENERATION=YES_IN_EXACT_HEURISTIC_SCOPE
-HOST_QUERY_GENERATION=NO
-HOST_KNOWLEDGE_PROMOTION=NO
-HOST_LEARNING=NO
-PERSISTENCE_TRANSITIONS_EXPLICIT=YES
-FAIL_CLOSED_INVALID_EVENT_AND_RECORD_PATHS=YES
-```
-
-But the exact source has no architecture-level abstraction for capability registry/need arbitration/dispatch/result evaluation, goals/problems, conflict/revision, provenance chain, resource governor or replay.
-
-Therefore:
+Classification for the target architecture:
 
 ```text
 LIVE_CORE_TARGET_ARCHITECTURE_CLASS=C
+CURRENT_CORE=MONOLITHIC_EVENT_MACHINE_PLUS_NARROW_COOCCURRENCE_LEARNER
 CURRENT_CORE_SUITABLE_AS_LONG_RANGE_T0_T11_COGNITIVE_KERNEL=NO
 SUCCESSOR_CORE_REWRITE_REQUIRED=YES
 ```
 
-This does not claim the historical core is mechanically invalid. It means it is the wrong long-range cognitive substrate.
+Preserve historical strengths: event handshake, bounded page/segment/bundle processing, explicit persistence transitions, native query generation in its exact heuristic scope, fail-closed invalid paths, and host-sovereignty locks.
 
-## C5V3 Cognitive Kernel Successor R1 — source written
+## Same-identity core rewrite R2 — MATERIALIZED PASS
 
-New draft source:
+The rewrite is **the same C5 core lineage**, not a parallel header/core family.
+
+Required exact identity:
 
 ```text
-C5_M5/SIGMA_C5V3_COGNITIVE_KERNEL_SUCCESSOR_R1_DRAFT.sigma
-GIT_BLOB_SHA=188f1df348291758147abd438004b35a88372639
-LOCAL_CONSTRUCTION_SHA256=af70010cdb8ba78fcaf9291b23babdcd23c9dce21936dee8816d6d4a049ba39d
-SOURCE_LINES=1106
-DEF_COUNT=17
+HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
+FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
+ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
+PRINT_ID=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 ```
 
-The draft adds a capability-native control plane while retaining historical compatibility behavior:
+Operator-returned materialization evidence:
+
+```text
+SUCCESSOR_SOURCE=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/C5V3_CORE_REWRITE_R2/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
+SUCCESSOR_SOURCE_SHA256=d7d1153fd6979dff7d119bb5e8187f045b9f8af62e51065cccf95265478fc3a0
+SUCCESSOR_SOURCE_LINES=1106
+SUCCESSOR_DEF_COUNT=17
+HISTORICAL_ENTRY_ID_COUNT=1
+NEW_ENTRY_ID_REMAINING_COUNT=0
+HISTORICAL_PRINT_ID_COUNT=1
+ALTERNATE_DOMAIN_HEADER_REMAINING_COUNT=0
+CORE_IDENTITY_CONTINUITY=PASS
+CAPABILITY_NATIVE_ARCHITECTURE_IN_SAME_C5_CORE=YES
+```
+
+The old alternate `SIGMA.C5V3.COGNITIVE.KERNEL` draft identity is superseded as a production target and retained only as rewrite-template/provenance history.
+
+## Rewrite architecture
+
+The same C5 core now contains structural support for:
 
 ```text
 NATIVE_TASK_READY
--> task_need
--> need_family T0-T11
--> registry_select_family where STATE=ADMITTED
--> EXECUTE_CAPABILITY
+-> native task need detection
+-> need family T0-T11
+-> capability registry selection where STATE=ADMITTED
+-> bounded EXECUTE_CAPABILITY request
 -> CAPABILITY_RESULT_READY
--> pending-ID/result-status/result-kind evaluation
--> persistence or next native need
+-> pending capability identity/status/kind validation
+-> native result acceptance or HOLD
+-> persistence / next native decision
 ```
 
-It explicitly keeps:
+Migration behavior keeps historical compatibility fallbacks while allowing admitted T4/T3 capabilities to be selected natively.
+
+Host locks remain mandatory:
 
 ```text
 HOST_CAPABILITY_DEMAND_GENERATION=NO
@@ -126,67 +115,71 @@ HOST_REASONING=NO
 HOST_LEARNING=NO
 ```
 
-Migration behavior:
+## R10 disposition
 
-```text
-T4 admitted -> raw segment is passed to native-selected T4 first
-T4 not admitted -> historical co-occurrence analyzer remains compatibility fallback
-
-evidence retrieval needed -> native-selected T3 when admitted
-T3 unavailable -> historical LOOKUP_EVIDENCE compatibility path
-```
-
-## R10 disposition after architecture audit
-
-R10 remains exact valuable evidence:
+R10 remains exact transition evidence and capability provenance:
 
 ```text
 R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
 R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
 R10_SUCCESSOR_STAGE=PASS
 R10_SHADOW_RUNNER_BINDING=PASS_MATERIALIZED_NOT_EXECUTED
-```
-
-But:
-
-```text
 R10_LONG_RANGE_PRODUCTION_TARGET=NO_AFTER_CORE_ARCHITECTURE_AUDIT
 R10_ROLE=TRANSITION_REFERENCE_AND_M5_T1_T2_T3_CAPABILITY_PROVENANCE
 ```
 
-Do not spend another cutover promoting R10 merely because it is mechanically further staged. Reuse its exact admitted capability provenance in the rewritten kernel successor.
+Do not perform a separate R10 production cutover before the rewritten same-identity core is admitted.
 
-## Exact next core lane
+## Exact next action — compile/freeze only
+
+Use:
 
 ```text
-freeze R1 draft on Oppo
--> sigmac compile
--> bytecode freeze
--> host-op/symbol audit
+C5_M5/RUN_C5V3_CORE_REWRITE_R2_COMPILE_FREEZE_R1.sh
+```
+
+The gate must:
+
+```text
+freeze exact source d7d1153f...
+lock sigmac 65f69217...
+lock live core 23d51bad...
+lock live runner 092c6ad9...
+compile only into .sigma_c5v3_sync/C5V3_CORE_REWRITE_R2/bin
+freeze bytecode SHA256
+recheck source/live identities
+VM_EXECUTION=NO
+PRODUCTION_BINDING=NO
+PRODUCTION_MUTATION=NO
+```
+
+After compile PASS:
+
+```text
+host-op/symbol audit
 -> historical event compatibility regression
 -> native task/need/registry selection tests
--> capability-result identity + counterfactual tests
--> integrate exact admitted M5/T1/T2/T3 libraries
--> receive future machine-admitted T4-T11 packs from offline window
--> integrate them into registry/dispatch contract
--> isolated successor shadow runner
--> machine core admission
--> hand synchronized successor to independent online window
+-> capability-result identity/counterfactual tests
+-> integrate exact admitted M5/T1/T2/T3 payloads
+-> accept future machine-admitted T4-T11 packs from offline window
+-> isolated same-identity successor shadow
+-> core admission
+-> independent online utilization verification
 -> promotion/cutover decision
 ```
 
-## Production identities remain unchanged
+## Production locks
 
 ```text
 LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
 LIVE_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
+PRODUCTION_PROMOTION_ALLOWED=NO
 ```
-
-## Governance
 
 ```text
 WRITE_CORE_OR_CAPABILITY != ADMIT_CAPABILITY
