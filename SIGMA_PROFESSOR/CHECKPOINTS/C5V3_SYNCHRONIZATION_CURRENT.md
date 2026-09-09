@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / HISTORICAL V18 R0 NONTRIVIAL COMPILER ORACLE RECOVERED BY IDENTITY / R0 EXACT-BYTE RECOVERY NEXT / PRODUCTION UNCHANGED**
+Status: **R3 FIX1 SOURCE CONSTRUCTION PASS / 29B CONFIRMED EMPTY-GENERIC CAPSULE / V18 R0 EXACT SOURCE+BYTECODE RECOVERED / R0+GATE-A VERSION-PROFILE COMPILER ORACLE NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -14,16 +14,16 @@ WINDOW_ROLE=CORE_ARCHITECTURE_REWRITE_AND_SYNCHRONIZATION
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
-2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_HISTORICAL_V18_R0_IDENTITY_RECOVERED_CHAT_FILE_MISSING.md`
-3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SIGMAC_REAL_EMITTER_FULL_CORE_ZERO_CODE_CAPSULE_VM_SOURCE_COUPLING_NEXT.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_V18_R0_EXACT_ARTIFACT_RECOVERED_COMPILER_ORACLE.md`
+2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_29B_EMPTY_CAPSULE_CONFIRMED_V18_R0_ORACLE_RECOVERED.md`
+3. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_HISTORICAL_V18_R0_IDENTITY_RECOVERED_CHAT_FILE_MISSING.md`
 4. `SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R3_FIX1_TRUST_FIRST_SOURCE_WRITTEN_BUILD_GATE_READY.md`
 
 ## R3 FIX1 source — construction PASS
 
 ```text
 HEADER=#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.C5.AUTONOMOUS.SELF.LEARNING.CORE][VERSION=C5FULLR1]
-ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
+ENTRY_ID=Σ.C5_AUTONOMOUS_SELF.LEARNING_CORE_V1
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 R3_FIX1_SOURCE_SHA256=152f5b90033e3ee7a67c8847d95cb6eb6b17ab1f659f079a9533b749e8d0b7d8
 R3_FIX1_DEF_COUNT=176
@@ -60,9 +60,10 @@ Machine VM test proved:
 29B + no source        -> empty output
 VM_SIBLING_SOURCE_COUPLING=NO_OBSERVED
 CURRENT_29B_CLASS=EMPTY_OR_GENERIC_EXECUTION_CAPSULE_UNDER_TESTED_ENVIRONMENT
+VM_REAL_BYTECODE_EXECUTION_CONTROL=PASS
 ```
 
-Positive real-bytecode A/B controls produce distinct sentinels. Therefore:
+Therefore:
 
 ```text
 FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
@@ -70,21 +71,60 @@ FULL_R2_R3_SELF_COMPRESSION_IN_29B=NOT_SUPPORTED
 R3_FIX1_RUNTIME_ADMISSION=NO
 ```
 
-Historical SIGMA compression capability remains a separate capability; this 29B artifact is not evidence of that compression.
+Historical SIGMA compression remains a separate capability; this 29B artifact is not evidence of it.
 
-## Historical V18 R0 — required compiler oracle
+## Historical V18 R0 — exact compiler oracle recovered
 
-Recovered from canonical Git history:
+Canonical identities:
 
 ```text
 V18_R0_ENGINE_SOURCE_SHA256=81523feb7c59a90b6bb5d284c65a679d3fd76ad692f84b0a6685c4d2693dcb7a
 V18_R0_ENGINE_BYTECODE_SHA256=e800eab3dc6abcbddf0b9c9e0de9d76af2fba6ba1bd49c87157c62fe126a7300
+V18_R0_VERIFIER_PY_SHA256=a6664245d02e92dc78f8c7c73b07a58aca27d3dfa989ec9dd675b61aa45f2104
 V18_R0_RUNNER_SHA256=747e98334b12e4efff8c11d48cea70a03952c167563d27b27eaf18626c06cb5f
+V18_R0_VERIFIER_SHA256=6c7e65cf12ec169186b71bb2260c67d88edb425613eab17905c60513e035a027
 V18_R0_WRAPPER_SHA256=d1926a7496a3a77c60832d433f421892bac6882e28e8156dc0554ea894aa5fe3
-V18_R0_INSTALLER_SHA256=55c1df76afa8b3b5f7cd39d476f2d8809b4508bfa817bd94202945491d13043f
 ```
 
-Canonical live result:
+Exact Oppo recovery PASS:
+
+```text
+PACKAGE_ROOT=.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R21_SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0
+RUN_ROOT=.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
+
+V18_R0_ENGINE_SOURCE_RECOVERED=YES
+V18_R0_ENGINE_BYTECODE_RECOVERED=YES
+V18_R0_VERIFIER_PY_RECOVERED=YES
+V18_R0_RUNNER_RECOVERED=YES
+V18_R0_VERIFIER_RECOVERED=YES
+V18_R0_WRAPPER_RECOVERED=YES
+V18_R0_INSTALLER_RECOVERED=NO
+R0_SOURCE_AND_BYTECODE_RECOVERY=PASS
+```
+
+Recovered exact source filename:
+
+```text
+15_SIGMA_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0.sigma
+```
+
+Recovered exact bytecode filename:
+
+```text
+engines/proposition_span_candidate_formation_v18_r0.sigmab
+```
+
+Recovery ZIP on Oppo:
+
+```text
+/sdcard/Download/C5V3_V18_R0_RECOVERY_81523feb.zip
+SHA256=7bb37b8943eee216d53e7b0e32cf9a7130d28d33aff5b9dd109e570db80506dc
+BYTES=8104
+```
+
+The ZIP is not yet present on the current conversation file surface; machine-local exact recovery remains valid.
+
+Canonical V18 R0 live scope remains:
 
 ```text
 FORMATION_VM_RC=0
@@ -93,39 +133,42 @@ DRIVER_RC=0
 INDEPENDENT_VERIFY_RC=0
 PROPOSITION_SPAN_CANDIDATE_COUNT=10
 SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION=PASS_TESTED_SCOPE
+SEMANTIC_PROPOSITION_FORMATION=NOT_PROVEN
 ```
 
-The exact R0 attachment is no longer present on the current chat file surface. Do not invent its source. Recover exact bytes from the known Oppo roots by SHA.
-
-## Exact next action
+## Exact next action — compiler profile oracle
 
 Use:
 
 ```text
-C5_M5/RUN_C5V3_RECOVER_V18_R0_EXACT_ARTIFACTS_R1.sh
-SCRIPT_COMMIT=556346c7c6819f4fc936288bcab182787a6c57b9
-OUTPUT=/sdcard/Download/C5V3_V18_R0_RECOVERY_81523feb.zip
+C5_M5/RUN_C5V3_R0_GATEA_VERSION_PROFILE_COMPILER_ORACLE_R1.sh
+SCRIPT_COMMIT=fce160da5ca419e5c546a1406e136362d101811a
 ```
 
-The gate searches only these exact historical roots:
+The oracle locks exact R0 source+frozen bytecode, Gate-A provisional-truth parent, R3 FIX1 and locked sigmac. It performs no VM execution and no production mutation.
+
+Compile matrix:
 
 ```text
-$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS/V1_R21_SIGMA_NATIVE_PROPOSITION_SPAN_CANDIDATE_FORMATION_V18_R0
-$ROOT/.sigma_exec/HH_AUTO_INTERNET_LESSONS/proposition_span_candidate_formations/20260903T041145Z_19479_11375
+R0 original
+Gate-A original
+R3 FIX1 original
+R0 forced C5FULLR1 header
+Gate-A forced C5FULLR1 header
+R3 FIX1 forced Gate-A VERSION
 ```
 
-and selects exact files by known SHA256.
-
-After recovery:
+Primary questions:
 
 ```text
-compare exact V18 R0 source/header/dialect/emission with R3 FIX1
--> fresh R0 compile using current locked sigmac
--> isolate smallest delta causing zero-code emission
--> repair compiler-facing R3 composition
--> compiler/VM admission
--> resume P0 trust-state runtime admission
+R0_FRESH_MATCHES_FROZEN ?
+GATEA_FRESH_MATCHES_HISTORICAL ?
+GATEA_VERSION_PROFILE_EFFECT ?
+R0_VERSION_PROFILE_EFFECT ?
+R3_GATEA_VERSION_RESTORES_NONTRIVIAL_EMISSION ?
 ```
+
+Do not repair R3 or alter its historical identity contract until this oracle isolates whether the zero-code emission is VERSION/profile driven or caused by another source/composition boundary.
 
 ## Production locks
 
