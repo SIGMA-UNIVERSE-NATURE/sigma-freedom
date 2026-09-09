@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **PRIMARY WORK: BUILD C5V3 R4 AUTO CORE / STOP DIAGNOSTIC DETOURS / PRODUCTION UNCHANGED**
+Status: **AUTO CORE BUILD PASS / AUTO SHADOW RUNNER WRITTEN / RUNTIME INIT NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -15,40 +15,34 @@ ENTRY_ID=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 ```
 
-## Machine-proven substrate retained
+## AUTO core — machine build PASS
+
+Operator machine result:
 
 ```text
-Gate-A pure cognition DEFs = 77
-R4 durable/transaction DEFs = 92
-Exact admitted T1/T2/T3 DEFs = 82
-TOTAL DEFs = 251 unique
-R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
-SUCCESSOR_STATIC_COMPOSITION=PASS
-T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
+AUTO_GATEA_DEF_COUNT=77
+AUTO_R4_DEF_COUNT=92
+AUTO_T1_T2_T3_DEF_COUNT=82
+AUTO_TOTAL_DEF_COUNT=251
+AUTO_TOTAL_UNIQUE_DEF_COUNT=251
+AUTO_ENTRY_COUNT=1
+AUTO_EXECUTABLE_COMMENT_COUNT=0
+AUTO_SOURCE_BYTES=161850
+AUTO_SOURCE_SHA256=531ebcc9e692a35d7ec31076bfc7889dd8ce2355cd7f327aad9e5a37045f9af1
+AUTO_CORE_BYTECODE_BYTES=100853
+AUTO_CORE_BYTECODE_SHA256=c9492320f21e22a30372949307e753ec362f62301ddfce35254ea1493f6029e6
+AUTO_CORE_BUILD=PASS
+AUTO_CORE_RUNTIME_ADMISSION=NOT_YET_RUN
+T1_T2_T3_PRESENT_EXACT_BODY_SCOPE=YES
+T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
 ```
 
-Exact identities retained:
+Frozen candidate paths:
 
 ```text
-GATEA_SOURCE_SHA256=bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1
-R4_DURABLE_TRANSACTION_COMBINED_SHA256=053ece5ad648440f4f123ba5111a397af93704406b02a787e9ff6609cdde0465
-T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
+.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
+.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/bin/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigmab
 ```
-
-## Compiler constraint now treated as composition rule
-
-Machine evidence proved that non-header `#` comment lines in executable source can terminate visibility of following source under the current `sigmac` environment. Final executable composition therefore uses:
-
-```text
-ONE SIGMA HEADER
-+ canonical DEF blocks
-+ ONE C5 entry
-+ NO executable # comment lines
-```
-
-No cognition or T1/T2/T3 DEF is changed to satisfy this rule.
-
-## AUTO core build
 
 Authoritative builder:
 
@@ -57,53 +51,79 @@ C5_M5/R4_AUTO/RUN_BUILD_C5V3_R4_AUTO_CORE_R1.sh
 COMMIT=345b1d5350945871a039b6ac79726287d22d61f8
 ```
 
-The builder performs one production-safe job:
+## AUTO shadow runner R1
 
 ```text
-exact Gate-A 77
-+ exact R4 92
-+ exact T1/T2/T3 82
-+ transaction learning main with development # comments removed
--> canonical single C5 core source
--> one sigmac compile
--> frozen AUTO candidate source + bytecode
+PATH=C5_M5/R4_AUTO/RUN_C5V3_R4_AUTO_SHADOW_R1.sh
+COMMIT=ad484d74b26604eefd657671cd8ebc354ebf4621
 ```
 
-Output target:
+Runner authority is mechanical only:
 
 ```text
-.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/src/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
-.sigma_c5v3_sync/C5V3_R4_AUTO_CORE_R1/bin/SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigmab
+fresh invocation root
+exact VM discovery by SHA256
+exact receipt serialization/hash
+VM invocation
+staged-state readback
+state CAS + immutable object
+atomic current-state update
+immutable state-chain record
+exact outbound request materialization
+exact evidence inbox binding
+exact compact-memory materialization
 ```
 
-AUTO cognition flow in this core remains:
+Runner does not choose:
 
 ```text
-native input/problem state
--> native relation gap detection
--> native objective/claims/gap
--> native evidence request
--> mechanical request transport boundary
--> evidence return
--> native source stance/evaluation
--> native claim revision/conflict handling
--> durable compact memory
--> source release after memory bind
--> restart/reuse
+goal
+semantic gap
+claim
+query
+source
+truth
+revision
+memory content
+capability
 ```
 
-The runner may determine only mechanical event readiness/transport. It must not choose semantic gaps, claims, queries, truth, learning, or memory content.
+AUTO phase progression implemented:
+
+```text
+no state -> BOOTSTRAP -> IDLE
+IDLE + queued input -> LEARNING_INPUT_READY
+WAIT_REQUEST_BIND -> exact request materialization -> REQUEST_BOUND
+WAIT_EVIDENCE + matching evidence -> EVIDENCE_READY
+WAIT_MEMORY_BIND -> exact memory materialization -> MEMORY_BOUND -> IDLE
+IDLE + explicit restart IDs -> RESTART_READY
+WAIT_CAPABILITY -> HOLD until native capability-result path is activated
+```
+
+T6 is not yet integrated here. Therefore external transport is an exact mechanical boundary:
+
+```text
+outbound/requests/<request_id>/
+-> optional mechanical transport hook
+-> inbox/evidence/<request_id>.ready/
+```
+
+The runner never invents evidence when no transport/evidence exists.
 
 ## Exact next action
 
-Run the AUTO core builder. If `AUTO_CORE_BUILD=PASS`, stop core rewriting and proceed directly to AUTO runner/shadow execution around this frozen source/bytecode.
+Install the exact shadow runner and run `init`. Runtime admission starts with actual AUTO core VM execution; no additional compiler/source diagnostic gate is required.
+
+Then run `once` or `loop`.
 
 ## Claim boundary
 
 ```text
-AUTO_CORE_SOURCE=BUILDER_READY
-AUTO_CORE_BYTECODE=PENDING_OPERATOR_BUILD
+AUTO_CORE_BUILD=PASS
 AUTO_CORE_RUNTIME_ADMISSION=NOT_YET_RUN
+AUTO_SHADOW_RUNNER=WRITTEN
+AUTO_SHADOW_RUNNER_RUNTIME=NOT_YET_RUN
+T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
 WHOLE_WORK_UNDERSTANDING=FAIL
