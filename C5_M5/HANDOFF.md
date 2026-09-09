@@ -11,48 +11,63 @@ Read in order:
 
 ## Current admitted chain
 
-Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS.
+Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS in exact structural scope.
 
 Production binding remains NO.
 
-## Whole-work current truth
+## Current true bottleneck
 
-Whole-Work R1 failed at finalize integer/text serialization. R1H1 fixed that and subsequently passed all structural cognition gates through source-independent retained memory, distant source-removal recall, configuration-order discrimination and restart. R1H1 then stopped on an exact PID-set equality safety oracle after autonomous production process churn.
+Independent source-removal Whole-Work Blind R1H3 scored `70/100`.
 
-R1H2 attempted to correct the safety oracle but its production-process discovery was too strict and stopped immediately at `FAIL=PROD_PID`, `RC=16` before compile/cognition. It required the cmdline to start with locked bash + runner path, which is brittle under wrappers/argv prefixes. This is a harness discovery defect, not a cognition result.
+PASS:
 
-## Exact next execution artifact
+- distant recurrent structure recall;
+- role-reversal configuration rejection;
+- high-frequency background suppression;
+- restart recall.
 
-Run:
+FAIL:
 
-`SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1H3_BUNDLE.zip`
+- `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`;
+- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`.
 
-Hashes:
+Therefore recurrent whole-work structure is retained, but once-only story-changing detail can be lost. Do not call this narrative understanding.
 
-- Whole-work cognition core: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`
-- Admission preflight: `e1b07935270ceb49f1d6b742184103bd3d1db82c20679e17d1d7699be59bd034`
-- Independent blind auditor: `3aeb1ff6858448bf7d601f2bf304557eb97a42b2df9c5ed337acd6b9ea8acd58`
-- Ladder runner: `de2379ca569e5e4a246c596d7b64bf74e363ff8ddd899f2d18c655e7ab336e96`
-- Bundle: `795c8d8cdab014b6b4eef58faf8cb49e9e14f5615995caad9f3a810e65395dfa`
+## Exact next architecture
 
-R1H3 changes only production process discovery. A process counts as the production runner only if `/proc/<pid>/exe` resolves exactly to the locked Termux bash and one NUL-delimited argv token equals the exact locked production runner path. This tolerates wrapper/argv-prefix variation without substring matching. Production core/runner hashes and active-runner presence remain mandatory.
+Build/run `M5_NATIVE_WHOLE_WORK_NOVELTY_BRIDGE_MEMORY_R1`.
 
-The core and blind cognition criteria are unchanged.
+Required mechanism:
 
-## What to read if Stage A passes
+- keep the admitted recurrent whole-work structural scaffold;
+- identify a once-only unit as retention-worthy only when it creates a structurally novel bridge among recurrent work-wide anchors;
+- preserve the unit's bounded ordered signature including the once-only detail;
+- reject isolated singleton/noise novelty that has no bridge to recurrent structure;
+- continue suppressing very-high-frequency background;
+- retain source-removal recall, role-order discrimination, restart and material memory reduction.
 
-Stage B is an independent source-removal blind. Do not infer understanding from Stage A. Read these lines exactly:
+Forbidden shortcuts:
 
-- `DISTANT_RECURRENT_STRUCTURE_RECALL`
-- `ROLE_REVERSAL_CONFIGURATION_REJECTION`
-- `HIGH_FREQUENCY_BACKGROUND_SUPPRESSION`
-- `UNIQUE_EVENT_DETAIL_RETENTION`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY`
-- `RESTART_SOURCE_REMOVAL_RECALL`
-- `TOTAL_SCORE`
-- `GRADE`
+- host importance/salience labels;
+- lexical lists such as `important`, emotion/value keywords, character-role words;
+- beginning/end/middle position rules;
+- token LEFT/RIGHT or previous/next meaning;
+- adjacency-as-meaning;
+- host/extractive summary generation.
 
-If `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`, the next core must preserve novelty/salience without host importance labels. If `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`, keep it FAIL and do not add host/extractive summary generation.
+## Independent blind requirement
+
+After candidate admission, run a blind with unseen post-compile works containing:
+
+- a once-only event unit that bridges recurrent structural communities;
+- isolated singleton noise that must not be promoted;
+- high-frequency background;
+- distant recurrent units;
+- role reversal;
+- source removal before recall;
+- restart.
+
+`UNIQUE_EVENT_DETAIL_RETENTION` may advance only if this blind passes. `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY` remains FAIL until a later capability synthesizes a source-independent summary from retained native memory and survives its own blind.
 
 ## Hard FAILs retained
 
