@@ -44,6 +44,19 @@ jobs:
       - name: Validate durable governance
         run: python .github/hka_autopilot/hka_autopilot.py validate | tee /tmp/hka-validate.json
 
+      - name: Probe runner federation
+        env:
+          SIGMA_REMOTE_OPERATOR_TOKEN: ${{ secrets.SIGMA_REMOTE_OPERATOR_TOKEN }}
+          HKA_VERCEL_OBSERVER_URL: ${{ vars.HKA_VERCEL_OBSERVER_URL }}
+        run: |
+          python .github/hka_autopilot/federation_probe.py | tee /tmp/hka-federation.json
+          {
+            echo '## HKA runner federation'
+            echo '```json'
+            cat /tmp/hka-federation.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Plan next role
         if: ${{ inputs.mode != 'validate' || github.event_name == 'schedule' }}
         run: |
