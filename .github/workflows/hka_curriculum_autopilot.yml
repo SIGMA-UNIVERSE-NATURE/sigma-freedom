@@ -1,0 +1,71 @@
+name: HKA Curriculum Autopilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Autopilot operation
+        required: true
+        default: step
+        type: choice
+        options: [validate, plan, step]
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    branches:
+      - 'hka-tree/curriculum-master'
+    paths:
+      - 'DOCS/HKA_KNOWLEDGE_SYSTEM_TREES/CURRICULUM_AUTOPILOT/**'
+      - '.github/hka_autopilot/**'
+      - '.github/workflows/hka_curriculum_autopilot.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: hka-curriculum-autopilot
+  cancel-in-progress: false
+
+jobs:
+  control-loop:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout control plane
+        uses: actions/checkout@v4
+        with:
+          ref: hka-tree/curriculum-master
+          fetch-depth: 0
+
+      - name: Fetch active branches
+        run: git fetch origin '+refs/heads/hka-tree/*:refs/remotes/origin/hka-tree/*' --prune
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Test autopilot engine
+        run: python .github/hka_autopilot/test_hka_autopilot.py
+
+      - name: Validate durable governance
+        run: python .github/hka_autopilot/hka_autopilot.py validate | tee /tmp/hka-validate.json
+
+      - name: Plan next role
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode != 'validate' }}
+        run: |
+          python .github/hka_autopilot/hka_autopilot.py plan | tee /tmp/hka-request.json
+          {
+            echo '## HKA Autopilot plan'
+            echo '```json'
+            cat /tmp/hka-request.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Dispatch next role
+        if: ${{ (github.event_name == 'schedule') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'step') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HKA_AGENT_WEBHOOK_URL: ${{ secrets.HKA_AGENT_WEBHOOK_URL }}
+          HKA_AGENT_WEBHOOK_TOKEN: ${{ secrets.HKA_AGENT_WEBHOOK_TOKEN }}
+        run: python .github/hka_autopilot/hka_autopilot.py dispatch --request /tmp/hka-request.json | tee /tmp/hka-dispatch.json
