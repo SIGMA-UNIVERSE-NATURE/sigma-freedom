@@ -7,35 +7,48 @@ Read in order:
 3. `C5_M5/C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`
 4. `C5_M5/STATUS.md`
 5. `C5_M5/CHECKPOINTS.md`
-6. this file
+6. `C5_M5/WHOLE_WORK_R1_FAILURE_AND_R1H1.md`
+7. this file
 
 ## Current admitted chain
 
 Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS.
 
-Full-source core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
-
 Production binding remains NO.
+
+## Latest failure
+
+Whole-Work Ladder R1 Stage A reached native recurrence and recurrent unit signatures, then failed:
+
+`FAIL=FINALIZE_VM`, `RC=35`.
+
+Root cause is a runtime serialization defect, not a semantic blind result: the core directly concatenated integer whole-work counts into persistent text on the first exercised FINALIZE path. Native count gates remain valid.
 
 ## Exact next execution artifact
 
 Run:
 
-`SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_WHOLE_WORK_LADDER_R1H1_BUNDLE.zip`
 
-- Whole-work structural candidate core SHA256: `5051976e55c33f610431e9b49c4dfed05e210acc3cfde496beb938031c334c18`.
-- Admission preflight SHA256: `85114dfaf6055408155e3222e5b440d206bab35cfd525ac86a75222b1dd99b89`.
-- Independent blind auditor SHA256: `5ef96dde8ce0ffb134f1337e09f555139519f037174c21355f3d5a790fe91578`.
-- Ladder runner SHA256: `88496c8368550501fd3eaacd1d9dd509c97c1388e6a019de1efa8d1a9c9af694`.
-- Ladder bundle SHA256: `0a584c026f1b32c704ce8096097374c11da228763dbbda5867d7bab7042d4f6c`.
+Hashes:
 
-Stage A admission tests a source-independent whole-work structural skeleton from dynamic post-compile units, with working occurrence/manifest state deleted before recall, retained state materially smaller than raw work, configuration-order discrimination and restart.
+- Whole-work R1H1 core: `a9549a65e3e7229a5ab74e27c0a26514415f3f7a117930d6e52bfbd93b562195`
+- Admission preflight: `bda40ee9ae3ec8a799a34dc53cfbe7234745243a9d8a6c6bd35b3195bc79e289`
+- Independent blind auditor: `0b1b105a9902e0fddc6b8ed090e098c7674ea52d5a949f4ddab6c1812107017f`
+- Ladder runner: `f6431921da6c69055f52293e979ff9216830e6f0d7dda33fcd45e518941db7ff`
+- Ladder bundle: `bb384565fa79294a8ec4ab853ec03dde69350111669627db2c9ab63caa4fc935`
 
-Stage B blind is intentionally adversarial. It tests distant recurrent recall, role reversal, high-frequency background suppression, once-only event-detail retention and direct whole-work-summary availability after source removal. A cognitive FAIL does not make evaluator execution fail; read the PASS/FAIL lines and score.
+R1H1 changes only the FINALIZE text serialization: integer unit/signature counts are still native gates but are no longer concatenated directly into text state.
 
-## Important interpretation rule
+The independent blind keeps the same semantic challenges: source removal, distant recurrent recall, role reversal, high-frequency background suppression, once-only event-detail retention, direct whole-work summary and restart. A summary-scorer harness bug was corrected so the summary result is snapshotted before a later recall can overwrite the action output.
 
-This R1 is not semantic whole-work understanding even if Stage A passes. It uses recurrent atoms only as features inside whole-unit signatures. It is allowed only as a diagnostic/structural substrate. If the blind loses a once-only event, that is the next real bottleneck: the core must learn novelty/salience without a host-provided importance label. If whole-work summary fails, keep FAIL; never add a host/extractive summary to make the score pass.
+## Interpretation rule
+
+A passing Stage A only proves source-independent structural whole-work memory in its exact scope. It does not prove narrative understanding.
+
+If blind `UNIQUE_EVENT_DETAIL_RETENTION=FAIL`, the next core must learn/preserve novelty or salience without host-provided importance labels.
+
+If blind `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`, keep it FAIL; do not add host/extractive summary generation.
 
 ## Hard FAILs retained
 
