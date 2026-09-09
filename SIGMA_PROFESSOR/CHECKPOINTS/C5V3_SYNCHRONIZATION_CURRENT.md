@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R4 DURABLE TRANSACTION STATIC PASS / TRANSACTION MAIN FROZEN / EXACT GATE-A + T1/T2/T3 SUCCESSOR COMPOSITION STARTED / FIRST COMPOSE RUN HELD BY HARNESS DONOR-ID CONSTANT DEFECT / FIX1 NEXT / PRODUCTION UNCHANGED**
+Status: **R4 DURABLE TRANSACTION STATIC PASS / SUCCESSOR 251-DEF STATIC COMPOSITION PASS / EXACT T1-T3 PRESENT / NONTRIVIAL PARTIAL EMISSION BUT MAIN COMPILER-INVISIBLE / R4 PREFIX ENTRY-VISIBILITY BINARY SEARCH NEXT / PRODUCTION UNCHANGED**
 
 ## Identity
 
@@ -17,7 +17,7 @@ FILENAME=SIGMA_C5_AUTONOMOUS_SELF_LEARNING_CORE_V1.sigma
 
 ## Read first
 
-1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SUCCESSOR_COMPOSE_GATE_DONOR_IDENTITY_CONSTANT_FIX1.md`
+1. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_SUCCESSOR_251DEF_T123_PRESENT_MAIN_INVISIBLE_PREFIX_BINARY_SEARCH_NEXT.md`
 2. `SIGMA_PROFESSOR/CHECKPOINTS/20260910_C5V3_R4_DURABLE_TRANSACTION_PASS_SUCCESSOR_T1_T2_T3_COMPOSITION_STARTED.md`
 3. `C5_M5/R4_NATIVE_LEARNING/ARCHITECTURE_R1.md`
 
@@ -51,112 +51,102 @@ SOURCE_SHA256=eef4227d9e4151e3f280c315b862249cf345a2cd719ceca4b05658e9bc85b28a
 ENTRY=Σ.C5_AUTONOMOUS_SELF_LEARNING_CORE_V1
 ```
 
-Source event paths:
+## Successor source composition — machine PASS
 
-```text
-BOOTSTRAP
-TICK
-LEARNING_INPUT_READY
-REQUEST_BOUND
-EVIDENCE_READY
-MEMORY_BOUND
-RESTART_READY
-CAPABILITY_RESULT_READY [present but not activated]
-```
-
-## Exact successor donors
-
-Exact Gate-A donor reconstructed from source `bf468c...` using the composition gate's DEF-block normalization:
+Exact donors:
 
 ```text
 GATEA_PURE_DEF_COUNT=77
 GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
 GATEA_EXCLUDED_DEF=append_line
-```
 
-Exact T1/T2/T3 donor reconstructed from admitted R6/R3-FIX1 body lineage:
-
-```text
-R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
 T1_T2_T3_DEF_COUNT=82
 T1_T2_T3_FIRST_DEF=WA_H
 T1_T2_T3_LAST_DEF=T2_SHORTEST_PATH_BOUNDED
 T1_T2_T3_NORMALIZED_SHA256=f48552534f2e5690b2b79a7a913cd2b5d376c13ba401b251eff63190820a8e07
 ```
 
-Expected successor composition:
+Composed source:
 
 ```text
 77 Gate-A pure DEF
 + 92 R4 durable/transaction DEF
-+ 82 T1/T2/T3 DEF
++ 82 exact T1/T2/T3 DEF
 = 251 unique DEF
 + 1 C5 entry
+
+SUCCESSOR_DEF_COUNT=251
+SUCCESSOR_UNIQUE_DEF_COUNT=251
+SUCCESSOR_ENTRY_COUNT=1
+SUCCESSOR_HEADER_COUNT=1
+SUCCESSOR_SOURCE_BYTES=163746
+SUCCESSOR_SOURCE_SHA256=b1ceedffa11497cab5454639eb1872cc5ecb95a5824b95e4d1be22c2ea2b7406
+SUCCESSOR_STATIC_COMPOSITION=PASS
+legacy_analyze_segment=0
+legacy_merge_evidence=0
+LEFT=0
+RIGHT=0
 ```
-
-Presence is not utilization PASS. `CAPABILITY_RESULT_READY` remains intentionally unactivated until exact native capability-selection/result-binding admission is added.
-
-## First successor compose run — HOLD is harness defect
-
-Operator run reached exact Gate-A source identity, all R4 module identities and main identity, then reported:
-
-```text
-GATEA_PURE_DEF_COUNT=77
-GATEA_PURE_NORMALIZED_SHA256=4d0ea071c5844938ccc264afbd76494e21279655988ad95f6bdd2842d989cb64
-HOLD=GATEA_PURE_NORMALIZED_IDENTITY
-```
-
-The R1 gate embedded incorrect donor normalized identity constants. Independent exact reconstruction with the same algorithm produced the canonical values above.
 
 Classification:
 
 ```text
-SUCCESSOR_COMPOSE_R1_FIRST_RUN=HOLD_HARNESS_DONOR_IDENTITY_CONSTANT_DEFECT
-GATEA_SOURCE_FAIL=NO_EVIDENCE
-T1_T2_T3_SOURCE_FAIL=NO_EVIDENCE
-R4_SOURCE_FAIL=NO_EVIDENCE
-SOURCE_MODULE_MUTATION_FOR_FIX=NO
+T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
+T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
 ```
+
+## Compiler boundary result
+
+```text
+S1 Gate-A 77 + sentinel                 -> 31549 bytes / bdb9d2cc... / NONTRIVIAL
+S2 Gate-A 77 + P0 R4 14 + sentinel     -> 31496 bytes / a1df1ad7... / NONTRIVIAL
+S3 Gate-A 77 + R4 no-P0 78 + sentinel  -> 31496 bytes / a1df1ad7... / NONTRIVIAL
+S4 Gate-A 77 + T1/T2/T3 82 + sentinel  -> 50848 bytes / 61ed45b7... / NONTRIVIAL
+S5 Gate-A 77 + full R4 92 + sentinel    -> 31496 bytes / a1df1ad7... / NONTRIVIAL
+S6 all 251 DEF + sentinel               -> 31496 bytes / a1df1ad7... / NONTRIVIAL
+FINAL successor                         -> 31496 bytes / a1df1ad7... / NONTRIVIAL
+FINAL counterfactual                    -> 31496 bytes / a1df1ad7...
+FINAL unbalanced entry                  -> RC=0 / 31496 bytes / a1df1ad7...
+```
+
+Therefore:
+
+```text
+SUCCESSOR_NONTRIVIAL_EMISSION=PASS
+SUCCESSOR_MAIN_SOURCE_SENSITIVITY=NO
+FINAL_UNBALANCED_ENTRY_REJECTED=NO
+SUCCESSOR_EXECUTABLE_MAIN_ADMISSION=NO
+R4_RUNTIME_LEARNING=NOT_ADMITTED
+```
+
+The 31,496-byte artifact is partial/non-main-sensitive emission and must not be treated as a full successor executable.
+
+Exact Gate-A + exact T1/T2/T3 remains compiler-visible, so T1/T2/T3 are not the observed cause of the main invisibility boundary.
 
 ## Exact next action
 
-Run:
-
 ```text
-C5_M5/RUN_C5V3_R4_SUCCESSOR_T1_T2_T3_COMPOSE_COMPILE_R1_FIX1.sh
-COMMIT=2244f5270fe969d19fb512505495736493c1b3ea
+C5_M5/RUN_C5V3_R4_SUCCESSOR_R4_PREFIX_ENTRY_VISIBILITY_BINARY_SEARCH_R1.sh
+COMMIT=673180f5d21245ea961d857bbd4884aa16654d54
 ```
 
-FIX1 patches only the two bad expected donor hashes inside the immutable R1 harness, then runs the same deterministic composition and compiler boundary matrix:
+This gate locks exact successor source SHA `b1ceed...` and binary-searches the 92 R4 DEF prefix using two different entry literals:
 
 ```text
-Gate-A 77 + sentinel
-Gate-A 77 + P0 14 + sentinel
-Gate-A 77 + R4 no-P0 78 + sentinel
-Gate-A 77 + T1/T2/T3 82 + sentinel
-Gate-A 77 + full R4 92 + sentinel
-all 251 DEF + sentinel
-final successor main
-final literal counterfactual
-final unbalanced-brace negative control
+bytecode(A) != bytecode(B) => entry visible
+bytecode(A) == bytecode(B) => entry invisible
 ```
 
-Required before runtime admission:
-
-```text
-SUCCESSOR_STATIC_COMPOSITION=PASS
-SUCCESSOR_NONTRIVIAL_EMISSION=PASS
-SUCCESSOR_MAIN_SOURCE_SENSITIVITY=PASS
-malformed final entry rejected by compiler
-```
+It reports the first suspect R4 DEF and runs dummy uppercase/lowercase DEF controls plus unbalanced-entry controls at the boundary.
 
 ## Claim boundary
 
 ```text
 R4_DURABLE_TRANSACTION_STATIC_AUDIT=PASS
-TRANSACTION_MAIN_SOURCE=FROZEN
-T1_T2_T3_SUCCESSOR_COMPOSITION=IN_PROGRESS
+SUCCESSOR_STATIC_COMPOSITION=PASS
+T1_T2_T3_SUCCESSOR_COMPOSITION=PRESENT_EXACT_BODY_SCOPE
 T1_T2_T3_NATIVE_UTILIZATION=NOT_YET_PROVEN
+SUCCESSOR_EXECUTABLE_MAIN_ADMISSION=NO
 R4_RUNTIME_LEARNING=NOT_ADMITTED
 GENERAL_SEMANTIC_LEARNING=NOT_PROVEN
 WHOLE_WORK_UNDERSTANDING=FAIL
