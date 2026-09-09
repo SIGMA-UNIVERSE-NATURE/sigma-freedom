@@ -1,5 +1,5 @@
 {
-  "schema_version":"3.8",
+  "schema_version":"3.9",
   "gate_id":"HKA_FOUNDATIONAL_13_YEAR_COVERAGE",
   "status":"ACTIVE_REQUIRED",
   "stage":"CURRICULUM",
@@ -8,9 +8,9 @@
   "subbranch_exit_gate":{"foundational_13_year_coverage_audit_required":true,"foundational_gap_count_required":0,"external_general_education_mapping_required":true,"director_integration_audit_required":true,"fresh_backup_sentinel_tree_alignment_pass_required":true},
   "global_pre_academic_lock_gate":{"minimum_continents_for_benchmark":5,"vietnam_single_baseline_forbidden":true,"full_general_education_progression_required":true,"university_only_benchmark_forbidden":true,"foundational_gap_count_required":0,"academic_locked_forbidden_until_pass":true},
   "B1_3_exit":{"status":"DIRECTOR_ACCEPTED_EXIT_PASS","family_evidence_sha":"90dcefc634e464fe959db7916f5afcd487e66781","director_exit_checkpoint_sha":"241f59b8d96e87593dd3e4c68e36472613cc737d","fresh_backup_sentinel_status_sha":"fea7cb8338fa1d19566d800b399c57a8da6f920e","accepted_scopes":10,"canonical_topics":69,"claims":323,"learning_objectives":276,"semantic_closures":276,"foundational_gap_count":0,"future_locked_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","B1_4_unlock":"PASS"},
-  "current_application":{"active_subbranch":"B1.4","active_scope":"B1.4-C01..C03","active_scope_ids":["B1.4-C01","B1.4-C02","B1.4-C03"],"active_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C01-C03","mode":"DIRECTOR_ACCEPTED_SENTINEL_ALIGNED_C04_C06_ELIGIBLE","accepted_scopes":["B1.4-C01","B1.4-C02","B1.4-C03"],"accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","B1_4_active":true,"foundational_coverage":"PASS","R11":"PASS_TARGET_ACCEPTED_B1.3-C10","R10":"PASS","fresh_backup_sentinel":{"status":"TREE_ALIGNMENT_PASS","checkpoint_commit_sha":"a87e2ba3c5175b356c10e775efeb2f3d9da5362a","status_commit_sha":"03633e0b32ab1323c9a89e27bf70ad273f921027"},"C04_C06_eligible_for_director_unlock":true,"C04_C06_unlock":false,"B1_5_unlock":false},
+  "current_application":{"active_subbranch":"B1.4","active_scope":"B1.4-C04..C06","active_scope_ids":["B1.4-C04","B1.4-C05","B1.4-C06"],"active_window":"C01-W05-B1.4-EARTH-UNIVERSE-FAMILY-C04-C06","mode":"FOUNDATIONAL_COVERAGE_REQUIRED_DURING_AUTHORING","accepted_scopes":["B1.4-C01","B1.4-C02","B1.4-C03"],"accepted_commit_sha":"112de1e6f123330ad49b1e8b2bba15b96fd8182c","B1_4_active":true,"foundational_coverage":"REQUIRED_DURING_AUTHORING","predecessor_fresh_backup_sentinel":{"status":"TREE_ALIGNMENT_PASS","checkpoint_commit_sha":"a87e2ba3c5175b356c10e775efeb2f3d9da5362a","status_commit_sha":"03633e0b32ab1323c9a89e27bf70ad273f921027"},"canonical_dependency_graph":{"B1.4-C04":["B1.4-C02","B1.4-C03"],"B1.4-C05":["B1.4-C04"],"B1.4-C06":["B1.4-C01","B1.4-C04","B1.4-C05"]},"C04_C06_unlock":true,"C07_C09_unlock":false,"B1_4_family_exit_unlock":false,"B1_5_unlock":false},
   "later_lesson_registry_policy":{"foundational_spine_mandatory":true,"advanced_content_can_be_extension_or_deeper_pathway":true,"does_not_authorize_lesson_registry_now":true},
   "authority_source":"DIRECTOR_AMENDMENTS/HKA_FOUNDATIONAL_13_YEAR_COVERAGE_AMENDMENT_1.md",
   "authority_commit":"c2b4781e73076d90d600a3442ab910ba92bcb66c",
-  "updated_at":"2026-09-09T10:47:00+07:00"
+  "updated_at":"2026-09-09T12:26:00+07:00"
 }
