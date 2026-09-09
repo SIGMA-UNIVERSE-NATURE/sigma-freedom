@@ -30,7 +30,11 @@ lock() {
   echo "${n}_IDENTITY=PASS"
 }
 compile_case() {
-  local label="$1" src="$2" out="$TMP/${label}.sigmab" log="$TMP/${label}.log" rc
+  local label src out log rc
+  label="$1"
+  src="$2"
+  out="$TMP/${label}.sigmab"
+  log="$TMP/${label}.log"
   rm -f "$out" "$log"
   set +e
   "$SIGMAC" "$src" "$out" >"$log" 2>&1
@@ -173,8 +177,6 @@ else
   echo "FOLDED_R3_MAIN_LITERAL_SENSITIVITY=FAIL_OR_NOT_REACHED"
 fi
 
-BAD_RC="$(grep '^R3_FOLDED_UNBALANCED_COMPILE_RC=' <(bash -c 'true') 2>/dev/null || true)"
-# Classification of unbalanced rejection is already explicit above via COMPILE_RC.
 echo "NEXT_IF_NOT_PROVEN=DEF_COMPOSITION_VS_MAIN_BINARY_SEARCH"
 
 echo "=== 6. NON-MUTATION RECHECK ==="
