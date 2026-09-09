@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
+Updated: 2026-09-10 after genuine OPPO T7B Resource Governor PASS.
 
 ## Operating split
 
@@ -8,15 +8,6 @@ Updated: 2026-09-10 after genuine OPPO T7A Clock/Scheduler/Pool/Cancel PASS.
 - This window is the offline tool-substrate lane and continues independently through T7 -> T11.
 - Tool availability is distinct from SIGMA cognitive adoption/tool selection.
 - Production binding from this offline lane remains NO.
-
-## Production fingerprints
-
-- production core `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`
-- production runner `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`
-- sigmac `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- locked VM `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
-
-R5 -> R10 offline production-lineage synchronization evidence remains admitted as previously checkpointed. R10 structural/dormant evidence does not imply live activation or binding.
 
 ## Native tool-substrate chain
 
@@ -28,52 +19,48 @@ R5 -> R10 offline production-lineage synchronization evidence remains admitted a
 
 ### T7A — PASS
 
-Checkpoint:
-
-`C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
-
-Frozen OPPO artifact:
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T7A_CLOCK_SCHEDULER_POOL_CANCEL_PASS.md`
 
 - source `a9d4dca5cf6e502bb15643a1fae52337715fbe5dd75005fb3f9ecda734ad9f58`
 - binary `3c0799151d426df252f7987537eccd98e70cc8fe40f3ff07f37d8f8e91b07181`
+
+Scope: monotonic/wall clocks, timer, bounded deadline scheduler, bounded worker pool, cancellation, timeout, bounded queue backpressure.
+
+### T7B — PASS
+
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T7B_RESOURCE_GOVERNOR_PASS.md`
+
+Frozen OPPO artifact:
+
+- source `63fc5ed7c0cd095271819d79099f06a4328acf5523c5fcce4b4b6ec985ad80a6`
+- binary `19c00435adf987f5ee47088ecd9035e26b40f868ec0af363158c0ce8214964de`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Admitted mechanical scope:
+Admitted scoped mechanical capability:
 
-- monotonic clock;
-- wall clock;
-- timer;
-- bounded deadline scheduler with stable same-deadline ordering;
-- bounded worker pool;
-- explicit cancellation;
-- explicit timeout;
-- bounded queue backpressure.
+- thread CPU-time budget;
+- governor-owned RAM allocation quota;
+- actual IO byte quota on caller-supplied isolated path;
+- in-process heartbeat/deadline watchdog;
+- exact step limit.
 
-Evidence:
+Evidence: deterministic compile/source/binary freeze PASS; 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases / 56 native invocations; resource, watchdog, step-limit, counterfactual, leak-audit and sandbox-removal gates PASS.
 
-- deterministic compile PASS;
-- source/binary freeze PASS;
-- high-entropy leak audit PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 53 native process invocations;
-- post-tool mechanical oracle PASS;
-- clock/timer/scheduler/pool/cancellation/timeout/backpressure gates PASS;
-- counterfactual behavior change PASS.
+Claim boundary:
 
-T7A does not claim CPU/RAM/IO quota, watchdog, step limit, process spawn or isolation.
+- no cgroup/whole-process OS enforcement claim;
+- process spawn/supervision/isolation remains T8;
+- no cognitive policy or tool adoption is supplied.
 
 ## Anti-hardcoding doctrine
 
-- capability, not answers;
-- no case-ID-dependent behavior;
+- no case-ID-dependent native behavior;
 - no expected-output literals in native implementation;
-- randomized/high-entropy material only after freeze;
+- dynamic/high-entropy tests only after source/binary freeze;
 - expected values only in external mechanical oracle;
 - `HOST_SEMANTIC_SUBSTITUTION=NO`;
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`;
-- no test cognition imported into SIGMA state;
-- no cognitive adoption claim from tool availability;
-- claim never exceeds exact evidence.
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
 
 ## Current exact state
 
@@ -81,10 +68,9 @@ T7A does not claim CPU/RAM/IO quota, watchdog, step limit, process spawn or isol
 - `T5_FULL_LAYER=PASS`
 - `T6_FULL_LAYER=PASS`
 - `T7A_CLOCK_SCHEDULER_POOL_CANCEL_ADMISSION=PASS`
-- `T7B_RESOURCE_GOVERNOR=PENDING`
+- `T7B_RESOURCE_GOVERNOR_ADMISSION=PASS`
 - `T7_COMBINED=PENDING`
 - `T7_FULL_LAYER=NOT_YET_ADMITTED`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 - `ONLINE_SYNC=NO`
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
@@ -92,6 +78,4 @@ T7A does not claim CPU/RAM/IO quota, watchdog, step limit, process spawn or isol
 
 ## Next offline sequence
 
-Build current-standard **T7B Resource Governor**: CPU-time budget, bounded RAM allocator, byte-counted actual IO budget inside isolated sandbox, watchdog heartbeat deadline, and step limit. Then exact T7A+T7B combined admission.
-
-After T7 full: `T8 -> T9 -> T10 -> T11`.
+Run exact T7A+T7B combined current-standard admission. Only a genuine combined PASS may advance `T7_FULL_LAYER=PASS`; then continue `T8 -> T9 -> T10 -> T11`.
