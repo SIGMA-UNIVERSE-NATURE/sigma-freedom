@@ -36,7 +36,11 @@ lock() {
 }
 
 compile_case() {
-  local label="$1" src="$2" out="$TMP/${label}.sigmab" log="$TMP/${label}.log" rc
+  local label src out log rc
+  label="$1"
+  src="$2"
+  out="$TMP/${label}.sigmab"
+  log="$TMP/${label}.log"
   rm -f "$out" "$log"
   set +e
   "$SIGMAC" "$src" "$out" >"$log" 2>&1
@@ -112,7 +116,6 @@ with zipfile.ZipFile(bundle) as z:
 if not hits:
     raise SystemExit('HOLD=GATEA_PARENT_SHA_NOT_FOUND')
 hits.sort(key=lambda x:x[0])
-Path=None
 open(out,'wb').write(hits[0][1])
 print('GATEA_MEMBER='+hits[0][0])
 print('GATEA_MATCH_COUNT='+str(len(hits)))
@@ -128,7 +131,7 @@ for label,p in zip(('R0','GATEA','R3_FIX1'),sys.argv[1:]):
     s=Path(p).read_text()
     print(f'{label}_HEADER={s.splitlines()[0] if s.splitlines() else ""}')
     print(f'{label}_ENTRY_COUNT={sum(1 for line in s.splitlines() if line.startswith("⟡("))}')
-    print(f'{label}_DEF_COUNT={len(re.findall(r"^DEF\\s+",s,flags=re.M))}')
+    print(f'{label}_DEF_COUNT={len(re.findall(r"^DEF\s+",s,flags=re.M))}')
 PY
 
 echo "=== 3. FRESH ORIGINAL COMPILES ==="
