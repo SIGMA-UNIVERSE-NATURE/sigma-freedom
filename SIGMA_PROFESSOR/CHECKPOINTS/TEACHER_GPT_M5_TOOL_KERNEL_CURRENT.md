@@ -2,36 +2,70 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **CANONICAL RECONCILED / R5 PASS / R6 MACHINE PENDING / PRODUCTION NOT SYNCHRONIZED**
+Status: **R5 CLOSED PASS / R6 CLOSED PASS / PRODUCTION-LINEAGE CANDIDATE FROZEN / PRODUCTION NOT SYNCHRONIZED**
 
-## Governing correction checkpoint
+## Current governing checkpoint
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_CANONICAL_RECONCILIATION_R5_PASS_R6_PENDING.md`
+`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_R6_OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_PASS.md`
 
-Correction commit:
-`f98b9fd510ff29f6395d0855d5375d668bdeeb3d`
+R6 PASS checkpoint commit:
+`31422aceb926ddd2366042df79f667bed4a608ce`
 
-This checkpoint supersedes any earlier living-handoff interpretation that treated the isolated M5 grafted core or the candidate capability-sync experiment as a synchronized production C5V3 core.
+Authoritative offline-test handoff source:
 
-## Canonical architecture
+```text
+BRANCH=c5v3-r5-r6-sync-handoff-20260909
+HEAD=d8b3a6277db3e64bea8694548658de9f7a60bb6e
+CHECKPOINT=C5_M5/CHECKPOINT_2026-09-09_1847_GATE_B_R5_R6_PRODUCTION_LINEAGE_HANDOFF.md
+CHECKPOINT_GIT_BLOB=59485599c30e2970959cf0b3d66b84501d144505
+```
+
+The prior correction checkpoint remains historical provenance:
+`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_CANONICAL_RECONCILIATION_R5_PASS_R6_PENDING.md`.
+
+## Identity and architecture lock
 
 ```text
 ONE_SIGMA=YES
 SYSTEM=C5V3
+```
 
-WRONG:
-M5 core -> replace production C5V3 core
+Canonical synchronization architecture:
 
-CANONICAL:
+```text
 production C5V3 core lineage
-+ M5 capability delta
++ exact M5 capability delta
 + admitted T1/T2/T3 capability libraries
 + explicit activation/dispatch integration
 ```
 
-Production universe/main dispatch and runner ABI must be preserved unless a separately admitted migration proves otherwise.
+Forbidden production-sync model:
 
-## Canonical admitted / closed evidence
+```text
+standalone M5 core -> replace production C5V3 core
+```
+
+The historical M5+tools grafted core:
+
+```text
+GRAFTED_CORE_SHA256=07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea
+GRAFTED_BYTECODE_SHA256=b3ce57aa84d8d558e4330f6239632e2f600027d5e339dc9d68d28dc548c6f411
+```
+
+remains valid only as M5 -> M5+tools internal compatibility evidence. It is **not** the production C5V3 synchronization target.
+
+## Locked production references
+
+```text
+PRODUCTION_CORE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
+PRODUCTION_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
+PRODUCTION_INGRESS_SHA256=22901ffce990a38163e2d2db2ef85a9e553c252159386baf136874daf9d7139c
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+VM_IS_GENESIS1=NOT_PROVEN
+```
+
+## Closed admitted capability substrate
 
 ### M5 cognition baseline
 
@@ -49,7 +83,7 @@ T0_RERUN=NO
 T0_REINSTALL=NO
 ```
 
-### T1/T2/T3 current-standard tool kernels
+### T1/T2/T3 native tool kernels
 
 ```text
 T1_VECTOR_MATRIX_ADMISSION=PASS
@@ -58,16 +92,10 @@ T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
 ```
 
-R2 immutable checkpoint:
+Immutable R2 checkpoint:
 `SIGMA_PROFESSOR/CHECKPOINTS/20260909_M5_T1_T2_T3_R2_CURRENT_STANDARD_ADMISSION_PASS.md`
 
-Exact admitted tool-kernel bundle:
-
-```text
-BUNDLE_SHA256=87edeaaaa96dee19571c31729a1ed825c420656fb305e3aec8e7d550e5ac5c12
-```
-
-Frozen identities:
+Exact frozen tool identities:
 
 ```text
 T1_ASSEMBLED_SOURCE_SHA256=d92bbd5bc36d798496fd04191e3d385e668cc4e5d1d37b59c25567b77a7091ca
@@ -80,55 +108,17 @@ COMBINED_ASSEMBLED_SOURCE_SHA256=14f280342ba9e7925aecdcef47a0861aea56667c0bb2846
 COMBINED_BYTECODE_SHA256=79bdde5548548c570a7d33ab880f50f3c1bbf106a283a16ad9a6a2b5193180a4
 ```
 
-### M5 + tools internal graft differential
+Do not rerun these admissions merely for synchronization without damage/source/dependency evidence.
+
+## Shadow/ingress evidence retained with corrected scope
 
 ```text
-GRAFTED_CORE_SHA256=07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea
-GRAFTED_BYTECODE_SHA256=b3ce57aa84d8d558e4330f6239632e2f600027d5e339dc9d68d28dc548c6f411
-PARENT_VS_GRAFTED_INDEPENDENT_DIFFERENTIAL=PASS
-PARENT_VS_GRAFTED_STATEFUL_DIFFERENTIAL=PASS
-M5_TOOL_ACCESS_IN_GRAFTED_CORE=PASS
-TOOL_PROBE_NO_COGNITION_MUTATION=PASS
-M5_PLUS_TOOLS_INTERNAL_COMPATIBILITY=PASS
-C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
-```
-
-Historical isolated-graft checkpoint:
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_M5_T1_T2_T3_COMBINED_SYNC_GATE_FIX1_PASS.md`
-
-### Production ingress / shadow ABI
-
-```text
-PRODUCTION_INGRESS_SHA256=22901ffce990a38163e2d2db2ef85a9e553c252159386baf136874daf9d7139c
 PRODUCTION_INGRESS_REUSE_AS_SHADOW_EXECUTABLE=NO
 S2_ABI_RESOLUTION=PASS
+SHADOW_MECHANICAL_WIRING=PASS
 ```
 
-### Canonical derivative shadow wiring
-
-```text
-native_evidence_request.txt
--> mechanical adapter
--> shadow pending/<sha>.query
--> derivative ingress
-```
-
-```text
-HOST_QUERY_GENERATION=NO
-HOST_QUERY_SELECTION=NO
-NATIVE_REQUEST_TO_PENDING_CHAIN=PASS
-ADAPTER_DRY_RUN=PASS
-PRODUCTION_WRITE_ROOT_AUDIT=PASS
-PRODUCTION_STATE_ALIAS_PRESENT=NO
-S2_DERIVATIVE_WIRING=PASS
-S2_MIRROR_WIRING_READY=YES
-```
-
-This is wiring evidence only; it is not production cognition synchronization.
-
-## R4 correction — containment evidence retained, promotion PASS removed
-
-Retain:
+R4 retains only containment evidence:
 
 ```text
 EXECUTABLE_NETWORK_AUTHORITY_CONTAINED=YES
@@ -138,79 +128,101 @@ PRODUCTION_WRITE_ROOT_AUDIT=PASS
 R4_NETWORK_CONTAINMENT_MECHANICS=EVIDENCE_PASS
 ```
 
-But the same run recorded:
-
-```text
-C5_TURN=1_VM_RC=22
-HOLD=C5_NATIVE_VM_FAILURE
-```
-
-Therefore:
+The same run recorded native VM failure `VM_RC=22`; therefore:
 
 ```text
 R4_PROMOTION_GATE=NOT_PASS
 S2_NO_NETWORK_SHADOW_RUNNER_SMOKE=NOT_ADMITTED_FOR_PROMOTION
 ```
 
-Do not use historical R4 PASS wording to unlock live-network or production synchronization.
+Do not use historical R4 PASS wording to unlock live network or production synchronization.
 
-## R5 Production <-> M5 Capability Delta — PASS
+## R5 — CLOSED PASS
 
 ```text
-PRODUCTION_CORE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-M5_CORE_SHA256=2cbeb3488c46513cd9628b47de22f5ab1230ae10cdaad7ce1462caaa2517f77a
+R5_PRODUCTION_M5_DELTA_DISCOVERY=CLOSED_PASS
 PRODUCTION_DEF_COUNT=11
 M5_DEF_COUNT=64
 COMMON_IDENTICAL_DEF_COUNT=1
 COMMON_CHANGED_DEF_COUNT=0
 PRODUCTION_ONLY_DEF_COUNT=10
 M5_ONLY_DEF_COUNT=63
+PRODUCTION_UNIVERSE_COUNT=1
+M5_UNIVERSE_COUNT=1
 UNIVERSE_BLOCKS_BYTE_IDENTICAL=NO
 ADDITIVE_ONLY_SYNC_ELIGIBLE=NO
-PRODUCTION_M5_DELTA_DISCOVERY=PASS
 ```
 
-Canonical interpretation:
+Canonical implication:
 
 ```text
-M5_ONLY_DEF_COLLISION_WITH_PRODUCTION_DEF=NO_FOR_63_M5_ONLY_DEFS
 FULL_M5_UNIVERSE_REPLACEMENT=FORBIDDEN_BY_R5_FINDING
 PRODUCTION_UNIVERSE_AND_RUNNER_ABI=PRESERVE
 CAPABILITY_LIBRARY_INTEGRATION=REQUIRED
 EXPLICIT_ACTIVATION_DISPATCH_INTEGRATION=REQUIRED
 ```
 
-## R6 Offline Production-Lineage Latent Graft — active frontier
+## R6 — CLOSED PASS / current frozen synchronization candidate
 
-Design target:
-
-```text
-production core 23d51bad...
-+ 63 exact M5-only DEF
-+ admitted T1/T3 fragment
-+ admitted T2 fragment
-+ production universe byte-identical
-```
-
-Current proof state:
+Construction:
 
 ```text
-R6_BUNDLE_READY=YES
-R6_MACHINE_ADMISSION=PENDING
-OFFLINE_LATENT_GRAFT_R6=NOT_YET_PROVEN
+production core
++ 63 exact M5-only DEF bodies
++ admitted T1/T3 Wave-A fragment
++ admitted T2 bounded-graph fragment
++ production universe/main dispatch byte-identical
 ```
 
-No R6 PASS may be inferred before the exact machine result is supplied.
+Machine evidence:
 
-## Previous C5V3 admitted-capability sync experiment — reclassified
+```text
+R5_DELTA_EVIDENCE=PASS
+M5_CORE_LOCK=PASS
+T1_ADMISSION=PASS_INHERITED_NOT_RERUN
+T2_ADMISSION=PASS_INHERITED_NOT_RERUN
+T3_ADMISSION=PASS_INHERITED_NOT_RERUN
+TOOL_ADMISSION_EVIDENCE=PASS
+TOOL_SOURCE_LOCK=PASS
+CANDIDATE_BUILD=PASS
+STRUCTURAL_GATES=PASS
+PRODUCTION_DEF_BODY_HASHES_PRESERVED=PASS
+M5_ONLY_DEF_BODY_HASHES_PRESERVED=PASS
+PRODUCTION_UNIVERSE_BYTE_IDENTICAL=PASS
+M5_UNIVERSE_ACTIVATION=NO
+CANDIDATE_HEADER_COUNT=1
+COMPILE_FREEZE=PASS
+OFFLINE_LATENT_GRAFT_R6=PASS
+```
 
-The earlier non-production candidate sync experiment that reported:
+Frozen exact candidate:
+
+```text
+R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
+R6_BYTECODE_SHA256=dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693
+R6_CANDIDATE_DEF_COUNT=156
+R6_M5_ONLY_DEF_INSERTED=63
+R6_ADMITTED_TOOL_DEF_COUNT=82
+R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN
+```
+
+Observed OPPO candidate:
+
+```text
+ROOT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5v3_sync/OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_R6_20260909T184734
+CORE=$ROOT/candidate/core.sigma
+BYTECODE=$ROOT/candidate/core.sigmab
+```
+
+## Previous non-production capability-sync experiment — historical exact-scope evidence only
+
+The prior experiment that reported:
 
 ```text
 C5V3_ADMITTED_CAPABILITY_STATE_SYNC=PASS
 ```
 
-remains evidence that an isolated candidate could load and execute exact admitted capability assets. It is **not** production-lineage synchronization because it used the M5-derived grafted candidate core as the candidate baseline.
+remains evidence that an isolated candidate could load and execute admitted capability assets. It used the M5-derived grafted candidate as baseline and therefore is **not** production-lineage synchronization.
 
 Keep:
 
@@ -219,51 +231,76 @@ C5V3_CANDIDATE_CAPABILITY_SYNC_EXPERIMENT=PASS_IN_ITS_EXACT_TESTED_NON_PRODUCTIO
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 ```
 
-## Current exact status
+## Current exact synchronization state
 
 ```text
-T0=PASS_INHERITED
-T1=ADMITTED
-T2=ADMITTED
-T3=ADMITTED
-T1_T2_T3_COMBINED_COMPATIBILITY=PASS
-M5_PLUS_TOOLS_INTERNAL_COMPATIBILITY=PASS
-PRODUCTION_INGRESS_ABI_RESOLUTION=PASS
-SHADOW_MECHANICAL_WIRING=PASS
-PRODUCTION_M5_DELTA_DISCOVERY=PASS
-R6_OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT=PENDING_MACHINE_RESULT
+R5_PRODUCTION_M5_DELTA_DISCOVERY=CLOSED_PASS
+R6_OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT=CLOSED_PASS
+R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN
 
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
+M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
+C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
 ONLINE_SYNC_STARTED=NO
 LIVE_NETWORK_SYNC=NO
+PRODUCTION_STATE_WRITE=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 ```
 
-## Online synchronization gate
+## What must prove that synchronization actually benefits AUTO LEARN
+
+Presence of latent capabilities is not utilization.
+
+Required causal chain for a future admission:
 
 ```text
-TEST_OFFLINE_ONLY
--> R6_FULL_MACHINE_ADMISSION_PASS
--> PRODUCTION_LINEAGE_ACTIVATION_DISPATCH_INTEGRATION_PASS
--> PRODUCTION_NON_MUTATION_ROLLBACK_RECOVERY_PASS
--> EXPLICIT_USER_VISIBLE_REVIEW
--> ONLY_THEN_CONSIDER_ONLINE_SYNC
+C5V3 native learning state
+-> native capability need detection
+-> native capability selection
+-> native capability execution
+-> native result evaluation
+-> native learning-state update
+-> fresh-VM restart
+-> learned-state reuse changes later behavior
 ```
 
-Current authorization/evidence state:
+Required ownership:
 
 ```text
-ONLINE_SYNC_ALLOWED_NOW=NO
+HOST_CAPABILITY_DEMAND_GENERATION=NO
+HOST_TOOL_SELECTION=NO
+HOST_REASONING=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_SUBSTITUTION=NO
 ```
 
-Reason: R6 machine admission is still pending.
+A future A/B counterfactual should hold input/prestate/runtime constant and vary capability availability to establish a causal behavior/learning effect.
 
-## Non-claims / ownership boundaries
+## Canonical next synchronization sequence
+
+```text
+R6 exact candidate lock
+-> isolated production-runner ABI regression
+-> explicit M5 activation/dispatch delta integration
+-> state-lineage compatibility/inheritance
+-> native capability-utilization causal gate
+-> isolated shadow execution
+-> restart/recovery/soak
+-> production non-mutation + rollback/recovery proof
+-> promotion candidate
+-> explicit user-visible cutover decision
+```
+
+The offline test window continues independently with R7 ABI regression and must publish a new checkpoint if R6 is invalidated or superseded. This synchronization window must not silently override newer test evidence.
+
+## Non-claims and global locks
 
 ```text
 DO_NOT_LOAD_RESULTS=YES
 LOAD_CAPABILITIES=YES
+TEST_KNOWLEDGE_IMPORTED=NO
+PRODUCTION_KNOWLEDGE_IMPORTED=NO
 HOST_LEARNING=NO
 HOST_SEMANTIC_SUBSTITUTION=NO
 HOST_MAY_SELECT_TOOL_RESULT_FOR_SIGMA=NO
@@ -275,16 +312,18 @@ SEMANTIC_RELEVANCE_VALIDATION=NOT_PROVEN
 SEMANTIC_TRUTH_VALIDATION=NOT_PROVEN
 GENERAL_AUTONOMOUS_REASONING=NOT_PROVEN
 PRODUCTION_BINDING=NO
+PRODUCTION_PROMOTION_ALLOWED=NO
 ```
 
 ## Next action
 
-Do not reopen T1/T2/T3, combined compatibility, M5 internal graft, or R5 without damage/dependency evidence.
+Do not reopen R5/R6 or admitted tool kernels without damage/dependency evidence.
 
-Canonical next action:
+Current synchronization frontier:
 
 ```text
-WAIT_FOR_R6_OFFLINE_PRODUCTION_LINEAGE_LATENT_GRAFT_MACHINE_RESULT
+R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN_PASS
+NEXT=WAIT_FOR_OR_CONSUME_R7_PRODUCTION_RUNNER_ABI_REGRESSION_EVIDENCE_THEN_BUILD_EXPLICIT_ACTIVATION_DISPATCH_SYNC_GATE
 ```
 
-If R6 PASS is supplied, record exact source/bytecode identities and proceed only to the next **offline activation/dispatch integration gate**. Do not start online synchronization automatically.
+Do **not** start online synchronization automatically.
