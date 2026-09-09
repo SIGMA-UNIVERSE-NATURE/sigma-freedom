@@ -1,16 +1,16 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after R11 FIX2 trace HOLD (`strace` unavailable).
+Updated: 2026-09-09 after R11 FIX3 FIFO calibration HOLD.
 
 This file is the compact **latest pointer** for any fresh synchronization window.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_R11_FIX2_STRACE_UNAVAILABLE_HOLD.md`
+`C5_M5/CHECKPOINT_2026-09-09_R11_FIX3_FIFO_NO_CALIBRATED_TRAP_HOLD.md`
 
 ## Latest admitted candidate remains R10
 
-R11 FIX2 did not execute its trace oracle because the device reported `STRACE_AVAILABLE=NO`. This is an observer/tooling HOLD only and does **not** invalidate R10.
+R11 FIX3 did not admit activation. The exact device reported `HOLD_NO_CALIBRATED_FIFO_TRAP_PATH`. This is an activation-observer/oracle HOLD and does **not** invalidate the R10 structural/dormant-runtime PASS.
 
 Frozen R10 candidate:
 
@@ -33,8 +33,9 @@ Frozen R10 candidate:
 ## R11 current state
 
 - original `SIGMA_MAX_STEPS` oracle: HOLD; VM effect not proven;
-- FIX1 normalized output/filesystem oracle: HOLD; deterministic `28/28`, observable activation delta `0/28`;
-- FIX2 syscall/file trace oracle: HOLD before execution because `STRACE_AVAILABLE=NO`.
+- FIX1 normalized output/filesystem oracle: HOLD; deterministic event/control lanes, observable activation delta `0/28`;
+- FIX2 syscall/file trace oracle: HOLD because `STRACE_AVAILABLE=NO`;
+- FIX3 source-derived FIFO fault-injection oracle: HOLD because no trap path could be calibrated.
 
 Therefore:
 
@@ -42,20 +43,14 @@ Therefore:
 - `M5_CAPABILITY_ACTIVE_IN_LIVE_PRODUCTION_DISPATCH=NO`;
 - `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`.
 
-## Next offline gate
+## Next offline direction
 
-Use an exact-R10 **source-derived filesystem fault-injection** oracle without installing packages or modifying VM/core:
+Inspect the locked VM/runtime for a native execution-trace/debug/host-dispatch observer already present in the frozen runtime. Do not patch the VM, instrument the frozen R10 core, install packages automatically, or add semantic/test sentinels.
 
-- derive a bridge-prelude `read_text` path not used by the production universe outside the bridge;
-- prove the 28 source events each map to exactly one bridge callsite;
-- normal-file lane: exact event must run normally;
-- FIFO-trap lane: exact event must block on that bridge-only read path until bounded timeout;
-- dynamic non-event counterfactual with the identical FIFO trap must still exit normally;
-- no semantic expected output, no host semantic selection, no CORE instrumentation;
-- remove all synthetic state after evidence extraction.
+If no trustworthy native observer exists, stop R11 activation admission at HOLD rather than inventing another oracle.
 
 ## Synchronization-window instruction
 
-The synchronization window may consume R5–R10 evidence, but must HOLD activation-dependent promotion/cutover until a later checkpoint explicitly admits R10 candidate activation.
+The synchronization window may consume R5–R10 evidence, but must HOLD activation-dependent promotion/cutover until a later checkpoint explicitly admits exact-R10 activation.
 
 Because a previous sync window reportedly synchronized T1/T2/T3 already, live C5V3 must still be read-only attested and exact live-vs-candidate delta computed before any integration action.
