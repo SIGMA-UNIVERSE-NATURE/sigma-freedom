@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "checkpoint_id":"CP20-B1_3-C10-POST-ACCEPTANCE-TREE-ALIGNMENT-PASS",
+  "window_id":"DIRECTOR-BACKUP-S01",
+  "role":"BACKUP_SENTINEL",
+  "stage":"CURRICULUM",
+  "status":"TREE_ALIGNMENT_PASS",
+  "control_plane_branch":"hka-tree/curriculum-master",
+  "control_plane_read_commit":"04e1e7e0e67e6d00dea62865dbe4caa57b973b97",
+  "accepted_scope":"B1.3-C10",
+  "accepted_commit_sha":"03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d",
+  "effective_academic_output_sha":"03131a60a520baf5c13a59e5ac2d69bbe3c4ba8d",
+  "alignment":{"state_registry_snapshot_match":"PASS","accepted_chain_C01_C10_match":"PASS","canonical_tree_commit_match":"PASS","scope_map_anchor_match":"PASS","canonical_prerequisites":"PASS_B1.3-C04_B1.3-C05_B1.3-C09_EXACTLY","cross_domain_boundaries":"PASS_X01_X03_X04_SECONDARY_ONLY","ownership_risks":"PASS_R11_R12_R14","foundational_gap_count":0,"locked_scope_support":0,"cross_scope_academic_mutation":0,"pipeline_boundary":"PASS_CURRICULUM_ONLY","director_acceptance_present":"PASS","B1_4_locked":"PASS","sentinel_control_plane_mutation":"NO","sentinel_academic_mutation":"NO","alerts":[]},
+  "B1_3_family_exit_gate":"ELIGIBLE_FOR_DIRECTOR_INTEGRATION_EXIT_AFTER_SENTINEL_PASS",
+  "B1_4_unlock":false,
+  "updated_at":"2026-09-09T09:22:24+07:00"
+}
