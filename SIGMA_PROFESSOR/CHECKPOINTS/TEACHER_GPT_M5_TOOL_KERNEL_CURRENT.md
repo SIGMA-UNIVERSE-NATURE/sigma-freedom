@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-09 (Asia/Ho_Chi_Minh)
 Branch: `SIGMA_LIFE`
-Status: **R5-R10 RECONCILED / R10 OFFLINE PASS / R11 ACTIVATION PENDING / LIVE CORE HISTORICAL / PRODUCTION WRITE HELD**
+Status: **T1-T2-T3 ADMITTED / LEGACY S1 ISOLATED NOT LIVE / R10 PRODUCTION-LINEAGE SUCCESSOR PASS / R11 FIX3 HOLD / LIVE CORE HISTORICAL / PRODUCTION HELD**
 
 ## Identity
 
@@ -12,257 +12,134 @@ SYSTEM=C5V3
 CURRENT_SYNCHRONIZATION_BASELINE=R2
 ```
 
-Do not rename C5V3 when capabilities advance. Version the synchronization/capability baseline, not SIGMA identity.
-
-## Canonical synchronization authority
-
-Primary current synchronization file:
+Primary authority:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_CURRENT.md`
 
-Current continuation handoff:
+Continuation handoff:
 
 `SIGMA_PROFESSOR/CHECKPOINTS/C5V3_SYNCHRONIZATION_WINDOW_CONTINUATION_HANDOFF_CURRENT.md`
 
-Frozen R6 baseline:
+Legacy S1 reconciliation:
 
-`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_BASELINE_R2_R6_FROZEN.md`
+`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_SYNCHRONIZATION_RECONCILIATION_LEGACY_S1_ISOLATED_NOT_LIVE_R11_HOLD.md`
 
-Latest offline authoritative checkpoint consumed:
+Observer request:
 
-`C5_M5/CHECKPOINT_2026-09-09_R10_EXPLICIT_M5_DISPATCH_BRIDGE_PASS.md`
+`SIGMA_PROFESSOR/CHECKPOINTS/20260909_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_REQUEST_R1.md`
 
-Offline branch:
-
-```text
-BRANCH=c5v3-r5-r6-sync-handoff-20260909
-HEAD=74a1e33af0f4916842920980cf8973e03a628ba1
-```
-
-## Frozen production references
+## Closed capability evidence
 
 ```text
-PRODUCTION_CORE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-PRODUCTION_RUNNER_SHA256=092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847
-PRODUCTION_INGRESS_SHA256=22901ffce990a38163e2d2db2ef85a9e553c252159386baf136874daf9d7139c
-SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
-VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
-VM_IS_GENESIS1=NOT_PROVEN
-```
-
-## Closed admitted substrate
-
-```text
-M5_NATIVE_SELF_CONTAINED_COMPACT_SEMANTIC_MEMORY_R1=PASS_IN_DECLARED_TESTED_SCOPE
-T0_STATUS=PASS_INHERITED
 T1_VECTOR_MATRIX_ADMISSION=PASS
 T2_BOUNDED_GRAPH_ADMISSION=PASS
 T3_LOCAL_INDEX_BM25_ADMISSION=PASS
 T1_T2_T3_COMBINED_COMPATIBILITY_GATE=PASS
-S2_ABI_RESOLUTION=PASS
-SHADOW_MECHANICAL_WIRING=PASS
 ```
 
-Do not rerun these merely for synchronization without damage/source/dependency evidence.
-
-## Canonical production-lineage chain through R10
-
-### R5 — CLOSED PASS
+Exact admitted source identities:
 
 ```text
-R5_PRODUCTION_M5_DELTA_DISCOVERY=CLOSED_PASS
-PRODUCTION_DEF_COUNT=11
-M5_DEF_COUNT=64
-COMMON_IDENTICAL_DEF_COUNT=1
-COMMON_CHANGED_DEF_COUNT=0
-PRODUCTION_ONLY_DEF_COUNT=10
-M5_ONLY_DEF_COUNT=63
-UNIVERSE_BLOCKS_BYTE_IDENTICAL=NO
-ADDITIVE_ONLY_SYNC_ELIGIBLE=NO
+T1_ASSEMBLED_SOURCE_SHA256=d92bbd5bc36d798496fd04191e3d385e668cc4e5d1d37b59c25567b77a7091ca
+T2_ASSEMBLED_SOURCE_SHA256=81bc18d6ce7c8c9a2cd54324360a948257074d60f5fa864d4951e8d5e4a3e135
+T3_ASSEMBLED_SOURCE_SHA256=ed46788b55bea3e39c2c5c46bae28d2d9a077ff4cf70a08bc9dfdbb88fb33955
+COMBINED_ASSEMBLED_SOURCE_SHA256=14f280342ba9e7925aecdcef47a0861aea56667c0bb28463fcfa4e75990e83c6
 ```
 
-Locked interpretation:
+Do not rerun these admissions absent dependency/source/hash invalidation.
+
+## Legacy S1 was not production synchronization
+
+Earlier S1 sync-graft evidence:
 
 ```text
-FULL_M5_UNIVERSE_REPLACEMENT=FORBIDDEN
-PRODUCTION_UNIVERSE_AND_RUNNER_ABI=PRESERVE
-CAPABILITY_LIBRARY_INTEGRATION=REQUIRED
-EXPLICIT_ACTIVATION_DISPATCH_INTEGRATION=REQUIRED
-```
-
-### R6 — CLOSED PASS / frozen baseline candidate
-
-```text
-R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
-R6_BYTECODE_SHA256=dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693
-R6_CANDIDATE_DEF_COUNT=156
-R6_M5_ONLY_DEF_INSERTED=63
-R6_ADMITTED_TOOL_DEF_COUNT=82
-R6_PRODUCTION_LINEAGE_CANDIDATE=FROZEN_PASS
-PRODUCTION_UNIVERSE_BYTE_IDENTICAL=PASS
-M5_UNIVERSE_ACTIVATION=NO
-```
-
-### R7 — PASS in exact tested scope
-
-```text
-R7_OFFLINE_PRODUCTION_RUNNER_ABI_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
-```
-
-R7 evidence is inherited by the synchronization lane; do not widen its scope beyond the offline runner-ABI regression actually tested.
-
-### R8 — structural dispatch map PASS
-
-```text
-R8_M5_DISPATCH_STRUCTURAL_MAP=PASS
-M5_ONLY_REACHABILITY=63_OF_63
-COMMON_DISPATCH_EQUALITY_LITERAL_COUNT=0
-```
-
-### R9 FIX1 — source-derived dispatch contract PASS
-
-```text
-R9_FIX1_DISPATCH_CONTRACT=PASS
-COMMON_SOURCE_DERIVED_SELECTOR=EVENT
-PRODUCTION_ONLY_GUARD_SELECTOR=CURRENT_REQUEST_BYTES
-```
-
-R9 is source/contract evidence; it does not activate M5.
-
-### R10 — CLOSED OFFLINE PASS
-
-R10 starts from exact R6 and adds an explicit native M5 dispatch bridge around the source-derived shared `EVENT` selector while preserving production branch bodies and the production parent contract.
-
-```text
-R10_OFFLINE_EXPLICIT_DISPATCH_BRIDGE=PASS
-R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
-R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
-R10_M5_DISPATCH_SURFACE=28_OF_28
-R10_BRIDGE_NEW_HOST_OP_COUNT=0
-R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
-R6_DEF_BODY_HASHES_PRESERVED=PASS
-PRODUCTION_BRANCH_RAW_HASHES_PRESERVED=PASS
-M5_BRANCH_BODY_HASHES_PRESERVED_IN_BRIDGE=PASS
-```
-
-R10 claim boundary remains mandatory:
-
-```text
-M5_ACTIVATION_ADMISSION=NOT_IN_R10
-M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NOT_YET_ADMITTED
-C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
+CHECKPOINT_COMMIT=c5668c1cfeae5f02caf57e64da657283dbffd692
+HANDOFF_COMMIT=9beb3e66397e7b050760ee2997510d8505aa4ebe
+S1_ISOLATED_GRAFT_WITH_T1_T2_T3=PASS
+GRAFTED_CORE_SHA256=07319b082562eebf35605db6d14e96d40558f9236c99622191e0e821429fabea
+M5_TOOL_ACCESS_IN_GRAFTED_CORE=PASS
+PRODUCTION_INTEGRATION=NOT_EXECUTED
 PRODUCTION_BINDING=NO
+GRAFT_EXECUTED=ISOLATED_CANDIDATE_ONLY_NOT_PRODUCTION
 ```
 
-Next offline gate:
+Therefore the old operator statement that T1/T2/T3 had already been live-synchronized is superseded for the active main C5V3 core.
+
+Never promote `07319b...`; it is standalone-M5-lineage evidence only.
+
+## Correct production-lineage chain
 
 ```text
-R11_OFFLINE_M5_ACTIVATION_ADMISSION_28_EVENT_MATRIX
-```
-
-## Live machine reconciliation
-
-The currently bound live main core was directly attested as the historical production core, not R6 or R10:
-
-```text
-LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
-LIVE_MAIN_BYTECODE_SHA256=c112594af3ecf5246230e96c70baa3e7cedccaf550f421c2e6d4c8c483eb0a0b
-LIVE_MAIN_SOURCE_EQ_HISTORICAL_PRODUCTION=YES
-LIVE_MAIN_SOURCE_EQ_R6=NO
-LIVE_CORE_ROUTE=C_HISTORICAL_PRODUCTION_CORE
-R6_LIVE_BOUND=NO
-R10_LIVE_BOUND=NO
-```
-
-Direct representative tool DEF probe on the live main source:
-
-```text
-LIVE_T1_REPRESENTATIVE_DEF_PRESENT=NO
-LIVE_T2_REPRESENTATIVE_DEF_PRESENT=NO
-LIVE_T3_REPRESENTATIVE_DEF_PRESENT=NO
-R6_T1_REPRESENTATIVE_DEF_PRESENT=YES
-R6_T2_REPRESENTATIVE_DEF_PRESENT=YES
-R6_T3_REPRESENTATIVE_DEF_PRESENT=YES
-T1_T2_T3_INLINE_SYNC_IN_OBSERVED_LIVE_MAIN_CORE=NO_BY_EXACT_SOURCE_AND_DIRECT_DEF_PROBE
-```
-
-This does not invalidate admitted T1/T2/T3 or R6/R10. It proves the live main core has not yet been synchronized to those candidates.
-
-Observed state override:
-
-```text
-C5_STATE_ROOT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_c5_real_shadow_v2
-```
-
-State-root realpath/stat lineage, writer exclusivity, ingress identity, and absence of aliasing into production lineage still require complete read-only attestation before any core write.
-
-## Online verification window status
-
-```text
-ONLINE_BRANCH=c5v3-online-capability-utilization-test-20260909
-ONLINE_HEAD=3f95570976cd0667474a72a823b45151113b0ca2
-C5V3_ONLINE_CAPABILITY_UTILIZATION_R1=HOLD_PRECONDITION
-```
-
-Do not host-force capability demand or tool selection while the live main core is historical and R11 activation admission is unavailable.
-
-Required future causal proof remains:
-
-```text
-native need detection
--> native capability selection
--> native capability execution
--> native result evaluation
--> native learning-state update
--> fresh-VM restart
--> learned-state reuse
-```
-
-## Current exact synchronization state
-
-```text
-C5V3_SYNCHRONIZATION_BASELINE=R2_R6_FROZEN
 R5=CLOSED_PASS
 R6=CLOSED_PASS
 R7=PASS_IN_EXACT_TESTED_SCOPE
 R8=PASS_STRUCTURAL
 R9_FIX1=PASS_SOURCE_DERIVED_DISPATCH_CONTRACT
 R10=PASS_OFFLINE_EXPLICIT_DISPATCH_BRIDGE_DORMANT_REGRESSION
-R11=PENDING_OFFLINE_ACTIVATION_ADMISSION
+R11=HOLD_ACTIVATION_NOT_ADMITTED
+```
 
+R6:
+
+```text
+R6_SOURCE_SHA256=dde709a25d8e2f2626c299ad4d5c40562e2bcc253cf9bb63aef17e44f02943ac
+R6_BYTECODE_SHA256=dcb4f0ed9c637e368d396214471ae4c8fd67bc6622b02f133e867d2bab8b6693
+```
+
+R10:
+
+```text
+R10_SOURCE_SHA256=7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34
+R10_BYTECODE_SHA256=c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5
+R10_OFFLINE_EXPLICIT_DISPATCH_BRIDGE=PASS
+R10_M5_DISPATCH_SURFACE=28_OF_28
+R10_DORMANT_PRODUCTION_TICK_REGRESSION=PASS_IN_EXACT_TESTED_SCOPE
+```
+
+Current R11:
+
+```text
+OFFLINE_HEAD=5b0af553710cb9f94c38ee23500127141fc7c275
+R11_FIX3_FIFO_DRIVER=FAIL
+HOLD=HOLD_NO_CALIBRATED_FIFO_TRAP_PATH
+R11_OFFLINE_M5_ACTIVATION_ADMISSION=NOT_ADMITTED
+```
+
+## Live main core
+
+```text
+LIVE_MAIN_SOURCE_SHA256=23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc
+LIVE_MAIN_SOURCE_EQ_HISTORICAL_PRODUCTION=YES
+R6_LIVE_BOUND=NO
+R10_LIVE_BOUND=NO
+LIVE_T1_REPRESENTATIVE_DEF_PRESENT=NO
+LIVE_T2_REPRESENTATIVE_DEF_PRESENT=NO
+LIVE_T3_REPRESENTATIVE_DEF_PRESENT=NO
+```
+
+## Next synchronization dependency
+
+Run the read-only static observer-discovery probe:
+
+```bash
+bash C5_M5/RUN_C5V3_VM_NATIVE_OBSERVER_DISCOVERY_R1.sh "$HOME/SIGMA/sigma_genesis1"
+```
+
+Do not execute online utilization and do not bind production before a trustworthy exact-R10 activation path is admitted and state/writer/ingress/rollback gates are closed.
+
+## Locks
+
+```text
 C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO
 M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO
 C5V3_AUTO_LEARN_USES_SYNCHRONIZED_CAPABILITIES=NOT_PROVEN
-ONLINE_SYNC_STARTED=NO
-LIVE_NETWORK_SYNC_TO_PRODUCTION=NO
-PRODUCTION_STATE_WRITE=NO
+ONLINE_UTILIZATION_EXECUTION=NO
 PRODUCTION_BINDING=NO
 PRODUCTION_MUTATION=NO
 PRODUCTION_PROMOTION_ALLOWED=NO
-NEXT_CORE_WRITE=FORBIDDEN_PENDING_COMPLETE_LIVE_STATE_WRITER_ATTESTATION_AND_ADMITTED_ACTIVATION_PATH
 ```
 
-## Three-window split
-
-### Synchronization window
-
-Owns canonical reconciliation, exact identity tracking, state/writer/ingress attestation, and later integration only after admission gates. It does not silently bind production.
-
-### Offline test window
-
-Continues new capability/knowledge tests. Current next gate is R11 activation admission. It must publish superseding evidence if R10 is invalidated.
-
-### Online verification window
-
-Remains HOLD until activation preconditions exist. It then verifies actual native utilization in isolated online shadow, not host-forced utilization.
-
-## Global locks
-
 ```text
-DO_NOT_LOAD_RESULTS=YES
-LOAD_CAPABILITIES=YES
-TEST_KNOWLEDGE_IMPORTED=NO
-PRODUCTION_KNOWLEDGE_IMPORTED=NO
 HOST_CAPABILITY_DEMAND_GENERATION=NO
 HOST_TOOL_SELECTION=NO
 HOST_QUERY_GENERATION=NO
@@ -273,12 +150,4 @@ HOST_LEARNING=NO
 HOST_SEMANTIC_SUBSTITUTION=NO
 ```
 
-## Current next synchronization action
-
-```text
-COMPLETE_READ_ONLY_STATE_ROOT_WRITER_INGRESS_ATTESTATION
--> CONSUME_R11_WHEN_OFFLINE_WINDOW_PUBLISHES IT
--> ONLY THEN BUILD/ADMIT THE NEXT PRODUCTION-LINEAGE ACTIVATION SYNCHRONIZATION STEP
-```
-
-Do not write or bind the live core before both the state/writer attestation and the admitted activation path are available.
+`CLAIM <= EVIDENCE`
