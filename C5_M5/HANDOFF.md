@@ -175,3 +175,61 @@ Current canonical activation state remains:
 - `PRODUCTION_BINDING=NO` in this handoff commit.
 
 The test window continues separately with offline R7 production-runner ABI regression. Any superseding failure/candidate must be published as a new checkpoint, never silently relabeled.
+
+---
+
+## Gate B latest offline evidence — R7/R8 — 2026-09-09
+
+Authoritative checkpoint:
+
+`C5_M5/CHECKPOINT_2026-09-09_GATE_B_R7_R8_OFFLINE_DISPATCH_MAP.md`
+
+### R7 — production-runner ABI safety — PASS in tested isolated scope
+
+The frozen R6 candidate is mechanically safe under the tested one-turn production runner path:
+
+- baseline native runtime integrity PASS;
+- candidate native runtime integrity PASS;
+- one `TICK` turn each, `VM_RC=0`;
+- no mechanical HOLD;
+- live network disabled;
+- empty archive and shadow state isolated;
+- no production-state reference in log;
+- canonical observed trace equivalent.
+
+Canonical claim:
+
+`C5V3_PRODUCTION_LINEAGE_LATENT_CANDIDATE_ABI_SAFE=YES`
+
+This is ABI/runtime coexistence evidence only. M5 dispatch activation remains NO.
+
+### R8 — M5 dispatch structural map — PASS
+
+Exact mechanical result:
+
+- production universe SHA256 `afef718a629cbc9782e4e53014d999f18b4d680f7e529f936c9a61c3cb53f330`;
+- M5 universe SHA256 `405563d7e0a848fed115a257bd793b76c8d0896d4b373bff35a2bb0fed78b632`;
+- production IF branches `23`;
+- M5 IF branches `28`;
+- common dispatch equality literals `0`;
+- production-only dispatch literals `11`;
+- M5-only dispatch literals `28`;
+- M5-only DEF reachable from M5 universe `63/63`;
+- unreachable M5-only DEF `0`;
+- common changed DEF `0`;
+- `DISPATCH_ACTIVATION_SURFACE_PRESENT=YES`.
+
+This discovery used no semantic expected output, did not graft dispatch, and did not activate M5 in production lineage.
+
+Synchronization consequence:
+
+**do not merge M5 into production by replacing or matching same-name event branches. There are no shared equality-literal dispatch branches.** The next integration must preserve the production event contract and introduce an explicit native activation bridge/dispatch integration whose behavior originates from native state/evidence rather than host semantic selection or test literals.
+
+Current hard boundary:
+
+- `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO`;
+- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`;
+- test window online sync `NO`;
+- test window production mutation/binding `NO`.
+
+The synchronization window should consume the R7/R8 checkpoint immediately while the test window continues offline dispatch-integration design/admission.
