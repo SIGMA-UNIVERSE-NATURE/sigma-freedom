@@ -48,8 +48,7 @@ This file is append-only in intent. Historical failures remain visible after lat
 
 ## 2026-09-09 — Native Learned Sequence Transform R1
 - Admission: PASS
-- Core SHA256: `8a10df7f94bc0e9ce1d4ab62d0d6667eb10785c7ea8cc623b4036776302f1ba`
-- Blind learned-transform causality: `75/100`; spurious transform false induction FAIL.
+- Blind learned-transform causality later exposed spurious transform false induction.
 - Promotion status: RETIRED.
 - Retired assumption: recurring permutation shape implies relation-preserving transform.
 
@@ -71,94 +70,71 @@ This file is append-only in intent. Historical failures remain visible after lat
 - Core SHA256: `1ff2dc93dc41f63e070a548d582d56911c406538eeacac826a0b9c419a4ce1eb`
 - no gap/no request PASS; open native gap/request PASS; request dynamic/isolation/persistence/restart/revocation PASS.
 - Host learning/query generation/tool selection for active decision: NO.
-- Latest admitted capability as of this checkpoint.
 
 ## 2026-09-09 — Mechanical Evidence Tool Transport R1 runtime attempt
-- Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
-- Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
-- Passed request gating/correlation/verbatim transport, irrelevant evidence, cross-gap isolation, persistence/restart.
-- Stopped `RC=72`; failure class HARNESS BUG: live request file legitimately revoked before post-hoc comparison.
+- Runtime passed several transport gates then stopped `RC=72`.
+- Failure class: HARNESS BUG; live request file was legitimately revoked before post-hoc comparison.
 
 ## 2026-09-09 — Mechanical Evidence Tool Transport R1H1 runtime attempt
-- Immutable request snapshot fix worked.
-- Native discriminating-evidence revision PASS; revoked request stops provider PASS.
-- Stopped `RC=83`; failure class HARNESS COUNTING BUG: `wc -l` counted newline delimiters rather than canonical records.
-- 4 gap records + 60 filler records had each returned native record-success, establishing 64 accepted records before oracle failure.
+- Immutable request snapshot fix worked; native revision/revocation PASS.
+- Stopped `RC=83`.
+- Failure class: HARNESS COUNTING BUG; `wc -l` counted newline delimiters rather than canonical records.
 
-## 2026-09-09 — Mechanical Evidence Tool Transport R1H2 prepared
-- Harness-only record-count correction; core/transport unchanged.
-- Native 65th-record rejection gate unchanged.
-- Runtime pending.
-
-## 2026-09-09 — Static trust-boundary audit
-- New defect found before blind: R1/R1H2 transport treated matching request output/state files as authority without native recomputation from current gap state.
-- This could allow a correlated forged request-file pair to trigger provider invocation.
-- Defect class: TRANSPORT TRUST BOUNDARY.
-- Response: prepare R2; do not promote R1H2 as final transport design even if its remaining harness gate passes.
-
-## 2026-09-09 — Mechanical Evidence Tool Transport R2 prepared
-- Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`
-- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`
-- Preflight SHA256: `399f5a901fbbe762938cbf30eeaf65acb8cf833fb92741c6108d6458fb0a1cdd`
-- Bundle SHA256: `08293b98f13e695e83ef79e76ec5c079ed025c7b8a7c126de682cfed542eb4ad`
-- New gate: locked native SIGMA recomputes exact request from current native gap state immediately before provider invocation.
-- All R1H2 boundedness/revision/freeze gates retained.
-
-## 2026-09-09 — Blind Host Substitution R1 prepared
-- Auditor SHA256: `25d9ae0401d7784672c7f284a710876bb5a5b9875743a8307f3c775131281045`
-- Bundle SHA256: `269c5edfeb610676b4131d20dadce766019bd4828cc560949bf45640ed516cc7`
-- Target fixed before evaluator creation.
-- Tests correlated forged request, stale request from another gap, raw provider protocol injection, irrelevant evidence and native-only revision.
-
-## 2026-09-09 — Native Gap Search Query R1 prepared
-- Core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`
-- Bundle SHA256: `300b87ba0357268d816d328d304ca500d1b5925929e7bbe645a8a454658dd428`
-- Query bytes are generated inside SIGMA as verbatim serialization of the open gap pair.
-- Host query rewriting/expansion: forbidden.
-- Search quality and Internet acquisition remain FAIL pending runtime tests.
-
-## 2026-09-09 — Real Internet Search Discovery R1 prepared
-- Query core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`
-- Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`
-- Provider SHA256: `cbab8e07a87009a1787f64a1179706e77fc72c72ab2848366b488a335534d3c3`
-- Bundle SHA256: `5007bc3e80df1a158f45f9e3c711f0f383ba600907dbc7894e062fd80cffaf30`
-- Fixed mechanical provider: English Wikipedia MediaWiki search API.
-- Native query bytes are sent without host expansion; compact raw search response must enter native ledger without forcing semantic conclusion.
-- Runtime/network admission pending.
-
-## 2026-09-09 — Immediate Execution Ladder R1 prepared
-- Bundle SHA256: `87118eebdda1ee1af2d5bb247516905da26ded4f1ce60595c8da6e859fe32197`
-- Runner SHA256: `c4c1780d57dc57357bc9d90e90faed04cee4e4bb384241cc9a3eb200f244ad69`
-- Strict order: Transport R2 -> blind host substitution -> native gap search query -> real Internet search discovery.
-- Stops at first failure and preserves local logs.
-- Even full ladder PASS does not imply whole-work understanding, semantic compression or continual narrative learning.
+## 2026-09-09 — Static transport trust-boundary audit
+- Found a real defect: request output/state files alone could be forged coherently.
+- Response: R2 requires locked native SIGMA to recompute request from current gap state immediately before provider invocation.
 
 ## 2026-09-09 10:35 +07 — Mechanical Evidence Tool Transport R2 runtime admission
-- Execution Ladder Stage 1 returned `RC=0` on Oppo.
+- Execution Ladder Stage 1: `RC=0`.
 - Core SHA256: `c3ec9d2436f965046ac53bc8b4dba67870f1fb937868d3b667cad6779ea51285`.
 - Transport SHA256: `32c54f4f2f342652b27f4639b1b7ae74c4cc30f27a80bf202eebe309594ddb35`.
-- Full R2 preflight therefore completed through native request revalidation/authority, provider gating, byte-preserving request/raw transport, native discriminating-evidence revision/revocation, bounded 64-record ledger/65th-result rejection, freeze and production-safety gates.
-- `MECHANICAL_TOOL_INVOCATION=PASS` in exact tested opaque-provider scope.
-- Real Internet acquisition and autonomous research remain FAIL.
+- Native request authority/revalidation, provider gating, verbatim transport, native revision/revocation, 64-record bound/65th rejection, freeze and production safety all completed.
+- `MECHANICAL_TOOL_INVOCATION=PASS` in exact tested scope.
 - Production binding: NO.
 
 ## 2026-09-09 10:35 +07 — Blind Host Substitution R1 runtime attempt
-- `FORGED_CORRELATED_REQUEST_REJECTION=PASS`.
-- Stopped at `FAIL=GAP_A`, `RC=34` before intended gap-authority adversarial cases.
-- Failure class: EVALUATOR FIXTURE BUG.
-- Root cause: blind helper generated IDs like `EID_A_1` (7 characters); target core `safe_atom` requires >=8 characters, so first blind evidence record was rejected.
-- This result is neither a SIGMA failure nor a blind PASS.
-- Corrected evaluator R1H1 changes only fixture IDs to valid-length `EID_BLIND_<case>_<n>`; target core/transport and adversarial criteria are unchanged.
-- Auditor R1H1 SHA256: `d807e3606bda51a2586dbccc5f4b458a4e797036018a8b2337d819cb1b55580d`.
-- Bundle R1H1 SHA256: `716ba0f4ca1ed002e17ac2a1487aa7ad0cb7d753ab2ee866e3e01586206ee3ea`.
+- Forged correlated request rejection PASS.
+- Then `FAIL=GAP_A`, `RC=34`.
+- Failure class: EVALUATOR FIXTURE BUG; ID `EID_A_1` violated generic safe-atom minimum length.
+- Not counted as cognition FAIL or blind PASS.
 
-## 2026-09-09 10:38 +07 — 24H Continuation Ladder R2 prepared
-- Runner SHA256: `84b68095bd3807c725f482ea55f67998f98e260a637b6f732c44cb14e8f32036`.
-- Bundle SHA256: `f5c9c99e38efc76a8fa64eac1f8c92fb08faea64bd4e714d622f168223d0f4b9`.
-- Resumes from corrected Blind Stage 2H1, then runs native gap search-query and real Internet search-discovery.
-- Stops at first failure and preserves logs.
-- Stage 1 R2 is treated as already admitted from the prior Oppo `RC=0`.
+## 2026-09-09 10:45 +07 — Corrected Blind Host Substitution R1H1
+- Continuation Ladder Stage 2H1: PASS, `RC=0`.
+- `BLIND_HOST_SUBSTITUTION_BOUNDARY=PASS` in exact adversarial scope.
+- Forged/stale request authority does not substitute for native state; provider/raw payload cannot directly force a native conclusion.
+
+## 2026-09-09 10:45 +07 — Native Gap Search Query R1
+- Continuation Ladder Stage 3: PASS, `RC=0`.
+- Core SHA256: `286b1c557a2cbe027d67fb645448bdd8ff09540d5a628b89517ef2a3fa38bd5f`.
+- Native SIGMA serializes unresolved gap pair into search-query bytes.
+- Host query expansion/rewriting remains absent.
+
+## 2026-09-09 10:45 +07 — Real Internet Search Discovery R1
+- Continuation Ladder Stage 4: PASS, `RC=0`.
+- Native search query reached real Wikipedia MediaWiki search provider.
+- Raw search-discovery bytes stored native with provenance.
+- Raw result did not force semantic conclusion.
+- `REAL_INTERNET_SEARCH_DISCOVERY=PASS`.
+- Full-source fetch, autonomous research, whole-work understanding and semantic compression remain FAIL.
+- Production binding: NO.
+
+## 2026-09-09 10:46 +07 — 24H Continuation Ladder R2
+- `LADDER_RC=0`.
+- `MECHANICAL_TOOL_INVOCATION=PASS`.
+- `BLIND_HOST_SUBSTITUTION_BOUNDARY=PASS`.
+- `NATIVE_SEARCH_QUERY_BYTES=PASS`.
+- `REAL_INTERNET_SEARCH_DISCOVERY=PASS`.
+- Full source / whole work / semantic compression / continual narrative learning remain FAIL.
+
+## 2026-09-09 10:46 +07 — Real Internet Full Source Stream R1 prepared
+- Core SHA256: `d134fded334a368a24d173823bb20aa0b053e0a40b76edba9c3cf31bc2b0da06`.
+- Transport SHA256: `db3310c77c678f205575a4865a325b6017df0183c8ac6e2bd79f12712fdf8f6d`.
+- Provider SHA256: `1f269972cf561de8e5e0d8c9b065cb04ca7f6c0620e4a1de8434a16ddcc32976`.
+- Preflight SHA256: `325d2e36930f65185471f0526b37913a6a8af4db4865c3ec1c3de775945a37ad`.
+- Bundle SHA256: `06897f124d076c5ba1e8e128661fe78b5a563f2adea8a9fc4be5daf34a4a7423`.
+- Intended gates: complete real source fetch; byte-identical ordered native reassembly; 64-segment/131072-byte transient bounds; restart state; source excluded from canonical memory; explicit source removal; production unchanged.
+- Runtime admission pending.
 
 ### Next checkpoint target
 
-Run the continuation ladder. If all stages pass, move immediately to full-source fetch, bounded long-form streaming, whole-work source-removal semantic-retention, semantic compression, local continual learning and multilingual tests. After the required production subset passes, follow `C5V3_AUTONOMOUS_INTEGRATION_PLAN.md`: read-only synchronization -> isolated graft -> autonomous-runner shadow -> soak/recovery -> promotion -> explicit cutover only when authorized.
+Run Real Internet Full Source Stream R1. If PASS, build native whole-work relational representation across distant source units and independent source-removal semantic-retention blind tests. Then continue toward semantic compression/local continual learning/multilingual transfer before C5V3 synchronization/graft/shadow/soak/cutover.
