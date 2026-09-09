@@ -1,56 +1,50 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-09 after R11 FIX3 FIFO calibration HOLD.
+Updated: 2026-09-09 after genuine OPPO T4A native text/codecs/framing PASS.
 
-This file is the compact **latest pointer** for any fresh synchronization window.
+This file is the compact latest pointer for synchronization/tool-substrate windows.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-09_R11_FIX3_FIFO_NO_CALIBRATED_TRAP_HOLD.md`
+`C5_M5/CHECKPOINT_2026-09-09_T4A_NATIVE_TEXT_CODECS_FRAMING_PASS.md`
 
-## Latest admitted candidate remains R10
+## Latest admitted tool-substrate chain
 
-R11 FIX3 did not admit activation. The exact device reported `HOLD_NO_CALIBRATED_FIFO_TRAP_PATH`. This is an activation-observer/oracle HOLD and does **not** invalidate the R10 structural/dormant-runtime PASS.
-
-Frozen R10 candidate:
-
-- source SHA256: `7d9e91f9a5a7fa265ca4304084fc48aca105b74ae7ca08662398b535c8d3cd34`
-- bytecode SHA256: `c837fcc03f79f64487d9146fc268783c13bf0769352a2068492c1d4374b109c5`
-
-## Latest admitted offline chain
-
-- T1 Vector/Matrix: ADMITTED.
-- T2 Bounded Graph: ADMITTED.
-- T3 Local Index/BM25: ADMITTED.
+- T0 primitives: inherited admitted evidence where exact prior source/hash applies.
+- T1 Vector/Matrix: ADMITTED current-standard subset.
+- T2 Bounded Graph/Traversal: ADMITTED current-standard subset.
+- T3 Local Index/BM25: ADMITTED current-standard subset.
 - T1/T2/T3 mixed compatibility: PASS.
-- R5 production↔M5 delta map: PASS.
-- R6 production-lineage latent candidate: PASS.
-- R7 isolated production-runner ABI safety: PASS.
-- R8 M5 dispatch structural map: PASS.
-- R9 FIX1 source-derived dispatch contract: PASS.
-- R10 explicit native M5 dispatch bridge build + dormant production regression: PASS.
+- T4A native text/codecs/framing: PASS on OPPO.
+- T4B: PENDING.
+- T4C: PENDING.
+- full T4 combined compatibility: PENDING.
+- T5 through T11: PENDING in this offline tool lane.
 
-## R11 current state
+## Frozen T4A admitted artifact
 
-- original `SIGMA_MAX_STEPS` oracle: HOLD; VM effect not proven;
-- FIX1 normalized output/filesystem oracle: HOLD; deterministic event/control lanes, observable activation delta `0/28`;
-- FIX2 syscall/file trace oracle: HOLD because `STRACE_AVAILABLE=NO`;
-- FIX3 source-derived FIFO fault-injection oracle: HOLD because no trap path could be calibrated.
+- source SHA256: `af36c1b4ee4491533e93b878dc9d0de475f6561f35dd3979fa5b8bbb6d60d572`
+- binary SHA256: `45455d007e0cb722752c4cf06cd8919b66b20e5064939781e4dfa94f057c78db`
+- OPPO compiler: `/data/data/com.termux/files/usr/bin/clang++`
 
-Therefore:
+Exact admitted T4A scope: strict UTF-8 validation, Unicode codepoint iteration, hex, Base64, canonical unsigned varint/LEB128, and bounded deterministic `S4F1` MessagePack-like framing for null/bool/int64/UTF-8 string/bytes.
 
-- `R10_CANDIDATE_M5_DISPATCH_ACTIVATION=NOT_ADMITTED`;
-- `M5_CAPABILITY_ACTIVE_IN_LIVE_PRODUCTION_DISPATCH=NO`;
-- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`.
+Current-standard evidence: 16 directed + 32 randomized dynamic-after-freeze + 2 replay = 50 native invocations; deterministic compile, source/binary freeze, high-entropy leak audit, mechanical oracle and 4 KiB resource-bound probe all PASS.
 
-## Next offline direction
+## Claim boundary
 
-Inspect the locked VM/runtime for a native execution-trace/debug/host-dispatch observer already present in the frozen runtime. Do not patch the VM, instrument the frozen R10 core, install packages automatically, or add semantic/test sentinels.
+`T4_FULL_LAYER=NOT_YET_ADMITTED`.
 
-If no trustworthy native observer exists, stop R11 activation admission at HOLD rather than inventing another oracle.
+T4A does not claim JSON/XML/HTML/CSV/URL/MIME/Unicode normalization or standard CBOR/MessagePack compliance. Tool availability does not imply SIGMA cognitive adoption or tool selection.
 
-## Synchronization-window instruction
+## Existing R10 synchronization boundary remains separate
 
-The synchronization window may consume R5–R10 evidence, but must HOLD activation-dependent promotion/cutover until a later checkpoint explicitly admits exact-R10 activation.
+The prior R10 production-lineage candidate remains a separate synchronization/cognition integration artifact. No T4A result claims that T4A, R10, or M5 is live-bound into production C5V3.
 
-Because a previous sync window reportedly synchronized T1/T2/T3 already, live C5V3 must still be read-only attested and exact live-vs-candidate delta computed before any integration action.
+- `ONLINE_SYNC=NO` for T4A admission.
+- `PRODUCTION_MUTATION=NO`.
+- `PRODUCTION_BINDING=NO`.
+
+The online lane may consume genuine admitted tool checkpoints independently. The offline tool lane continues without waiting:
+
+`T4B -> T4C -> T4 combined -> T5 -> T6 -> T7 -> T8 -> T9 -> T10 -> T11`.
