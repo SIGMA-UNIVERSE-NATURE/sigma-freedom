@@ -180,4 +180,50 @@ Current synchronization state:
 
 The synchronization window should lock the exact R6 candidate, validate the production runner/state lineage, integrate M5 dispatch explicitly, and preserve production cognition/evidence/provenance. Test cognition must never be imported into production state.
 
-The offline test window continues separately with R7 ABI regression and will publish a new checkpoint if R6 is superseded or invalidated.
+---
+
+## Gate B latest admitted offline evidence — R7/R8
+
+Authoritative checkpoint: `C5_M5/CHECKPOINT_2026-09-09_GATE_B_R7_R8_OFFLINE_DISPATCH_MAP.md`.
+
+### R7 — offline production-runner ABI regression — PASS in exact tested scope
+
+R6 latent candidate has now passed the isolated production-runner path used by the offline regression:
+
+- baseline runtime integrity PASS;
+- candidate runtime integrity PASS;
+- `TICK` event, `VM_RC=0` in both lanes;
+- no HOLD;
+- live network disabled;
+- empty archive and isolated state PASS;
+- no production-state reference;
+- observed canonical trace equivalent.
+
+Canonical claim: `C5V3_PRODUCTION_LINEAGE_LATENT_CANDIDATE_ABI_SAFE=YES`.
+
+### R8 — M5 dispatch structural map — PASS
+
+Mechanical source-derived evidence:
+
+- production universe SHA256 `afef718a629cbc9782e4e53014d999f18b4d680f7e529f936c9a61c3cb53f330`;
+- M5 universe SHA256 `405563d7e0a848fed115a257bd793b76c8d0896d4b373bff35a2bb0fed78b632`;
+- production IF branch count `23`;
+- M5 IF branch count `28`;
+- common equality-literal count `0`;
+- production-only equality literals `11`;
+- M5-only equality literals `28`;
+- M5-only DEF reachable from M5 universe `63/63`;
+- M5-only DEF unreachable `0`;
+- common changed DEF `0`;
+- `DISPATCH_ACTIVATION_SURFACE_PRESENT=YES`.
+
+Interpretation: M5 capability library is mechanically fully reachable in its source universe, but production and M5 have disjoint dispatch literal surfaces. The next valid integration must add an explicit native activation bridge/dispatch integration while preserving the production event contract. It must not replace the production universe and must not use host semantic selection or test-specific expected literals.
+
+Current boundary remains:
+
+- `M5_CAPABILITY_ACTIVE_IN_PRODUCTION_DISPATCH=NO`;
+- `C5V3_PRODUCTION_CORE_SYNCHRONIZED=NO`;
+- this test window performs no online sync;
+- production mutation/binding from this test window: NO.
+
+The separate synchronization window should consume R7/R8 immediately. The offline test window proceeds to explicit dispatch-integration design/admission and will publish any new admitted result or superseding failure as a new checkpoint.
