@@ -88,12 +88,28 @@ Current admitted lineage has repeatedly passed gates for:
 - no fixed English grammar/semantic-role tables in active candidate capability code;
 - dynamic fixtures materialized only after compile/freeze in admission/blind tests where applicable.
 
+## Pending isolated candidate — not admitted yet
+
+`M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1`
+
+- Core SHA256: `f530a556a670137f865b3f67b52557f3ccd9ec0b97f536f5c2123ce4276117e5`
+- Transport SHA256: `0ed437aa2188b2382aec88c390697f7f912dff0ac27b9f50cc15b5936e713ffd`
+- Preflight SHA256: `a5e2a92daa6e8651c621f6b3781ff4fb89f2252146282a0bb410a8980e653737`
+- Bundle SHA256: `133225deea02fe644ac20f1248edd0af300f2fd21d4610e774101eef08a69b21`
+- Local package manifest: PASS.
+- Local ZIP integrity: PASS.
+- Shell syntax checks: PASS.
+- Oppo locked compile/runtime admission: pending; do not promote or change current FAIL claims yet.
+- Provider used by admission is generated only after compile/freeze and is generic/opaque to the candidate.
+
 ## Exact next dependency
 
-Build and test **mechanical evidence-tool transport**:
+Run the Oppo admission for `M5_MECHANICAL_EVIDENCE_TOOL_TRANSPORT_R1`.
 
-`native gap -> native evidence request -> host transports request only -> external/raw evidence -> native SIGMA ingestion/revision`
+Required flow under test:
 
-Host must not create the gap, research goal, semantic query interpretation, belief, answer, support/conflict decision, or final statement.
+`native gap -> native evidence request -> generic host mechanical transport -> opaque external-provider raw evidence -> native SIGMA ingestion/revision`
 
-Before promotion of tool transport, add a blind gate proving that host transport cannot make SIGMA succeed when the native request is absent or malformed.
+The admission must prove that absent/malformed native requests cannot trigger the provider, request/raw evidence transport is byte-preserving, different gaps remain isolated, irrelevant evidence leaves the gap open by native decision, discriminating evidence revises native state, revoked requests stop future provider calls, the 64-record ledger bound remains enforced, and production remains unchanged.
+
+If admission passes, record `MECHANICAL_TOOL_INVOCATION=PASS` while keeping `REAL_INTERNET_ACQUISITION=FAIL`, `AUTONOMOUS_RESEARCH=FAIL`, and semantic FAILs unchanged until separate tests.
