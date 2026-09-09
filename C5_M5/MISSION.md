@@ -6,7 +6,7 @@ M5 replaces the legacy C5 cognition path with a native SIGMA lineage whose final
 
 The successor must eventually:
 
-1. acquire real Internet evidence through mechanical host transport while native SIGMA owns the need/request;
+1. acquire real Internet evidence through mechanical transport while native SIGMA owns the need/request;
 2. read complete long-form material rather than treating cognition as isolated token fragments;
 3. integrate entities, events, motives, relationships, causality, themes, unresolved questions, and later revisions across the whole source;
 4. form, test, revise, and retire native hypotheses from evidence;
@@ -19,6 +19,14 @@ The successor must eventually:
 
 This branch is a **development/checkpoint branch**, not production binding and not a cutover branch.
 
+## Native tool/runtime ownership
+
+`C5_M5/NATIVE_TOOL_RUNTIME_ARCHITECTURE.md` and `C5_M5/NATIVE_TOOL_EXPANSION_POLICY.md` are authoritative for tool capability.
+
+The runtime ABI is not frozen to the recent minimal string/list/file primitive set. Generic computational capability should be moved into the SIGMA candidate runtime/VM when useful: arithmetic, maps/sets/graphs, vector/matrix kernels, statistics, indexing, parsing, compression, persistence, networking, scheduling and similar mechanical facilities.
+
+The architectural boundary is semantic authority: SIGMA chooses tools/arguments and interprets results; the host/OS may execute the underlying mechanics but must not decide meaning, hypotheses, summaries, themes, values, truth/support/conflict, research goals or memory selection for active cognition.
+
 ## Hard architecture constraints
 
 - No token LEFT/RIGHT cognition.
@@ -27,11 +35,11 @@ This branch is a **development/checkpoint branch**, not production binding and n
 - No hardcoded English grammar/semantic role tables.
 - No synonym/antonym/theme/value answer tables.
 - No host-generated semantic labels, beliefs, gaps, research goals, summaries, support/conflict decisions, memory selections, or final answers for active SIGMA cognition.
-- Host may provide mechanical I/O, transport, storage plumbing, process supervision, generic computation/runtime primitives, and post-hoc test oracles only.
+- Generic mechanical tools may be part of the native SIGMA runtime/VM; a tool is not disallowed merely because its implementation ultimately uses OS/kernel computation.
 - The currently used primitive set is not an architectural ceiling. When native SIGMA is blocked by missing generic computation, the VM/runtime may and should be extended under `C5_M5/NATIVE_TOOL_EXPANSION_POLICY.md`.
-- Tool/runtime expansion is acceptable only when semantic authority remains inside native SIGMA; a host convenience primitive must not smuggle in an answer, meaning label, summary, theme/value judgment, salience decision, belief, or research decision.
+- Tool/runtime expansion is acceptable only when semantic authority remains inside native SIGMA; a convenience primitive must not smuggle in an answer, meaning label, summary, theme/value judgment, salience decision, belief, or research decision.
 - Dynamic semantic claims require independent blind tests with fixtures unavailable to the target core before compile/freeze.
-- A failing blind test is retained as FAIL. Fix the core or retire the assumption; do not weaken the evaluator.
+- A failing blind test is retained as FAIL. Fix the core/runtime or retire the assumption; do not weaken the evaluator.
 - Admission PASS proves only the exact tested capability scope.
 - Structural persistence, lexical overlap, shared context, sequence correlation, or compression ratio must never be promoted into a semantic-understanding claim without adversarial evidence.
 - SIGMA must not guess when evidence is insufficient; insufficient native evidence should create/revise a native gap and, when appropriate, a native evidence request.
@@ -53,7 +61,7 @@ After every successful experimental step, update `C5_M5/STATUS.md` and append a 
 Every checkpoint must record:
 
 - candidate/capability ID;
-- core SHA256 when available;
+- core/runtime/ABI SHA256 when available;
 - test type (admission or blind);
 - PASS/FAIL facts;
 - assumptions retired by later blind evidence;
