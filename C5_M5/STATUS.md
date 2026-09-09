@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-09 after Source-Consistency-Aware Scoped Revision R2 admission + independent blind PASS and Provisional Epistemic Truth R1 packaging correction R1H1.
+Updated: 2026-09-09 after Scoped Provisional Epistemic Truth R1H2 admission + independent blind PASS and Multi-Scope Epistemic Work Model R1 preparation.
 
 ## Architecture routing
 
@@ -16,54 +16,80 @@ Gate B runs independently. Gate A does not add tools. Production binding remains
 - core: `23d51badf90a409d08e740d8badb3c0eb8f85e97dc83b8016225459b02affbcc`
 - runner: `092c6ad96823ba578ba5a8e22fe5f9d45a80c9ae4cc380b7296a5da3ec6a8847`
 - sigmac: `65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- locked VM lineage used by current Gate A frozen candidates: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
-- latest observed production PID before/after admitted runtime: `23663`; production mutation NO.
+- locked VM lineage used by current frozen Gate A candidates: `029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+- production artifact mutation: NO in latest admitted run.
 
 ## Gate A admitted chain
 
-Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> continual compact work memory PASS -> scoped revision/support/conflict R1 PASS -> `M5_NATIVE_SOURCE_CONSISTENCY_AWARE_SCOPED_REVISION_R2` PASS.
+Mechanical transport R2 PASS -> blind host-substitution PASS -> native search-query PASS -> real Internet search-discovery PASS -> real full-source stream PASS -> whole-work structural memory PASS -> novelty bridge PASS -> whole-span synthesis PASS -> cross-source summary hypothesis PASS -> summary memory compaction PASS -> self-contained compact semantic memory PASS -> continual compact work memory PASS -> scoped revision/support/conflict R1 PASS -> source-consistency-aware revision R2 PASS -> `M5_NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH_R1` PASS under R1H2 harness.
 
 ### Continual Compact Work Memory R1H1
 
-Core `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`, Oppo bytecode `642b5902dc55944a764704c56b806bc711b570b002cf5628e501bb3b1cacd59b`.
+Core `69ec3e26ef857976c257724fa5691210bf2fe1ad3695e085dcd2a2bc9fa0db47`.
 
-`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` only in the tested two-work/self-contained compact-memory scope. Exact Work A archive block remained byte-for-byte unchanged after Work B; A/B remained isolated/queryable after source removal and restart.
+`CONTINUAL_LEARNING_FROM_COMPRESSED_LOCAL_MEMORY=PASS` in the tested two-work/self-contained compact-memory scope.
 
 ### Source-Consistency-Aware Scoped Revision R2
 
 Core `82971fefa1e4b7c009612fc5be1ed88017386659f27c46b42117b603f4355736`, Oppo bytecode `e52d23b0c8bfcb6a7bfaaf1ac1647af02a760f677a5b4959dc0ddae0cb0abc66`.
 
-Admission PASS and independent blind PASS, both `RC=0`.
+`SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=PASS` and `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS` in the exact native two-candidate/provenance scope. Retroactive authority retraction, recovery and restart PASS.
 
-PASS includes the complete R1 revision regression plus source-consistency native state, exclusion of self-contradicting sources from both authority sides, retroactive authority retraction, clean-authority recovery, source-consistency restart, `SOURCE_CONSISTENCY_AWARE_DISTINCT_AUTHORITY=PASS`, and `NATIVE_SCOPED_SUPPORT_CONFLICT_REVISION=PASS`.
+### Scoped Provisional Epistemic Truth R1H2
 
-This repairs the stronger Epistemic Stress R1 `65/100` defect. Historical R1 PASS and stress FAIL remain valid in their original scopes.
+Core `bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1`.
 
-## Pending Gate A candidate — Scoped Provisional Epistemic Truth R1H1
+Oppo bytecode `569411458b1bff9c0c9894fd95374a87db6e6e5c04030dc8e8900e1cb0d38ea2`.
 
-Candidate ID remains `M5_NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH_R1`. R1H1 is packaging-only.
+Admission PASS and independent blind PASS, `RC=0`.
 
-Truth-state is deliberately separated from revision policy's `HELD` candidate. Native labels are `UNRESOLVED`, `PROVISIONAL_A`, `PROVISIONAL_B`, and `CONTESTED`. Provisional A/B requires at least two consistent distinct sources on one side and zero clean sources on the other. Any clean evidence on both sides yields `CONTESTED`, regardless of which candidate revision policy currently holds. Self-inconsistent sources are excluded and cannot create a contest.
+PASS:
 
-### R1 packaging failure
+- `UNRESOLVED`;
+- clean unopposed `PROVISIONAL_A`;
+- inconsistent source excluded from truth contest;
+- clean counter-evidence -> `CONTESTED`;
+- scoped evidence-backed competing configurations;
+- `HELD` policy cannot override a contested truth-state;
+- retroactive retraction can yield `PROVISIONAL_B`;
+- later clean counter-evidence reopens `CONTESTED`;
+- invalid/no-stance evidence cannot perturb truth-state;
+- restart;
+- `NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH=PASS` in exact native two-candidate/source-consistency scope.
 
-The first R1 ladder stopped before truth-state cognition: `PARENT_SOURCE_CONSISTENCY_R2_ADMISSION.sh` called a missing `PARENT_CONTINUAL_REGRESSION_R1H1.sh`, causing parent `RC=20` and outer Stage A `RC=21`. Blind-side parent continual dependency was also omitted. This is a package dependency defect, not cognition evidence.
+This is real scoped epistemic reasoning, but not broad semantic truth or whole-work understanding.
 
-### R1H1 packaging correction
+## Exact representation bottleneck toward understanding
 
-Truth-state core and cognition evaluators are unchanged:
+The admitted truth core has one global active scoped-revision/truth slot. It can reason correctly about one native relation gap at a time, but cannot persist and revisit many independent relation states in the same work without an explicit multi-scope representation. This blocks a credible path to complete-work entity/event/motive/consequence reasoning.
 
-- core: `bf468c564451839d3be9b22243039fe71ceb87b766a165d996f4be055f7cbbf1`
-- admission evaluator: `f579b43d3a9409a153626d082f0cb277007aa65b772d6836d6479d7ce90883f7`
-- independent blind evaluator: `dcecb1df1e83116aeca0a30ce988b9d04d70b1936e4fdb5d5f514c31edf3232d`
-- ladder runner content: `60c2b73f8efd1d9c0bb7fa15e188226c7ca5f0e7696dac65359a534f588f2474`
-- restored admission parent continual: `a64502677eb2b61965e0622330b75b778fea9173ba3688ce0b99bed0b3affe83`
-- restored blind parent continual: `c17c40d8204b9fdf8db85479c0c9a747696270d2127e231840d972d9edaa0b9b`
-- R1H1 ladder bundle: `517e5abd6ad7967ac4ffacd9c33f22d8dbbe0664561968600500d95592f9c561`
+## Pending Gate A candidate — Multi-Scope Epistemic Work Model R1
 
-Static checks: both missing parent files present; admission/blind target core byte-identical; Bash syntax PASS; manifests PASS; ZIP integrity PASS; Gate A adds no tools.
+Candidate ID: `M5_NATIVE_MULTI_SCOPE_EPISTEMIC_WORK_MODEL_R1`.
 
-## Current hard FAILs
+Frozen hashes:
+
+- core: `c0777f1ae348caceeed007e5762e8b8c70ac20b87b6a2592e63e921be8455796`
+- admission evaluator: `74df3a624bfa28cca35f5f823003e15d275b6b49b85f29d74aa9087b7366e893`
+- independent blind evaluator: `bbcd5d2cbee8d8015db88698148a2f405ee15c41851a1a19eddab6e84f1b0765`
+- ladder runner: `485db2479d80a7804e371045959bc99fa65de026b1b4d119d63e22c1224811b8`
+- combined ladder bundle: `596a0d450415a1e539542235b585995ddd4673ef0fd8a9457dd37922323832b7`
+
+Design:
+
+- bounded native bank up to eight epistemic scopes per work;
+- candidate semantics still originate from native relation-discrimination gaps;
+- active scope archive/activate/revise/rearchive;
+- three same-work scopes with distinct truth states coexist;
+- exact byte non-interference across scopes;
+- late revision of one scope must not modify the other scopes;
+- whole-work multi-scope model recall;
+- work isolation and restart;
+- complete parent Provisional Truth R1H2 regression before new gates.
+
+Static checks: admission/blind core byte-identical; brace balance clean; host-op set only `read_text`, `write_text`, `str_len`, `str_replace`, `str_split`, `list_len`, `list_get`; forbidden LEFT/RIGHT/previous-next/grammar-role markers absent; Bash syntax and ZIP integrity PASS. Gate A adds no tools.
+
+## Current hard FAILs / not-yet-proven claims
 
 - `BROAD_SEMANTIC_SUPPORT_CONFLICT_TRUTH=FAIL`
 - arbitrary natural-language logical contradiction/truth: FAIL
@@ -73,8 +99,12 @@ Static checks: both missing parent files present; admission/blind target core by
 - `THEME_DIRECTION_INDUCTION_FROM_COMPLETE_WORK=FAIL`
 - `HUMAN_VALUE_INDUCTION_FROM_STORIES=FAIL`
 - `MULTILINGUAL_NARRATIVE_TRANSFER=FAIL`
-- unbounded lifelong capacity beyond tested bank bounds: FAIL.
+- unbounded lifelong capacity beyond tested banks: FAIL.
 
 ## Exact next Gate A dependency
 
-Run `SIGMA_C5_C5V3_M5_PROVISIONAL_EPISTEMIC_TRUTH_LADDER_R1H1_BUNDLE.zip`. Only if admission + blind PASS may `NATIVE_SCOPED_PROVISIONAL_EPISTEMIC_TRUTH` advance in the exact native two-candidate/source-consistency scope. Keep broad semantic truth FAIL until later independent blinds broaden incompatibility and truth beyond this scoped evidence calibration.
+Run `SIGMA_C5_C5V3_M5_MULTI_SCOPE_EPISTEMIC_WORK_MODEL_LADDER_R1_BUNDLE.zip`.
+
+Only if admission + blind PASS may `NATIVE_MULTI_SCOPE_EPISTEMIC_WORK_MODEL` advance in the bounded tested same-work multi-relation scope.
+
+After that, build native cross-scope dependency induction and require a query that needs evidence from at least two distant scopes in one work. `WHOLE_WORK_UNDERSTANDING` remains FAIL until those later blinds actually establish it.
