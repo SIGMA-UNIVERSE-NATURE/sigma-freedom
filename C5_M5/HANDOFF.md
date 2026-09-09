@@ -11,95 +11,43 @@ Read in order:
 
 ## Current admitted chain
 
-Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS; whole-work novelty bridge memory R1 PASS with independent source-removal blind `90/100`.
+Mechanical transport R2 PASS; corrected blind host-substitution PASS; native gap search-query PASS; real Internet search-discovery PASS; real Internet full-source stream PASS; whole-work structural memory R1H3 PASS; novelty-bridge memory R1 PASS; whole-work salient-span synthesis R1 PASS with independent source-removal blind `95/100`.
 
 Latest admitted whole-work core:
 
-`d7c03a32de13d7f106964618dec411f47f2d9c1ab561dfebd851f0606e514c4e`
+`66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
 
-Production binding remains NO.
+Latest blind truth: contextual whole-span synthesis survives source removal, preserves unique events, rejects isolated noise and restarts; `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`. Production binding remains NO.
 
-## Latest blind truth
+## Exact bottleneck
 
-Whole-Work Novelty Bridge R1 blind:
-
-- distant recurrent structure recall PASS;
-- role-reversal configuration rejection PASS;
-- high-frequency background suppression PASS;
-- unique once-only event retention PASS;
-- isolated singleton-noise rejection PASS;
-- restart source-removal recall PASS;
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`;
-- score `90/100`;
-- grade `WHOLE_WORK_STRUCTURAL_MEMORY_WITH_NOVELTY_RETENTION`.
-
-This repaired the prior once-only-event loss in exact structural scope. It still does not prove semantic narrative understanding.
-
-## Architecture correction now pending
-
-The 90/100 core still uses persistent token-signature skeletons. They remain useful as structural salience detectors but are not accepted as final contextual memory because the end-state rejects fragmented-token cognition as the final representation.
-
-Pending candidate:
-
-`M5_NATIVE_WHOLE_WORK_SALIENT_SPAN_SYNTHESIS_R1`
-
-Rules:
-
-- recurrent/novelty atoms may select salient units;
-- retained cognition points are complete work units/spans, not token fragments;
-- source/working occurrence state is removed before synthesis;
-- native SIGMA builds a smaller coverage-diverse synthesis trace from retained complete spans;
-- the synthesis trace must not be a state-record dump;
-- semantic whole-work summary remains FAIL until a separate natural-language blind passes.
+Semantic abstraction / summary formation. Do not relabel the extractive whole-span synthesis trace as semantic summary. Host summary, host semantic labels, English grammar tables, positional rules and LLM/model host inference remain forbidden.
 
 ## Exact next execution artifact
 
 Run:
 
-`SIGMA_C5_C5V3_M5_WHOLE_WORK_SPAN_SYNTHESIS_LADDER_R1_BUNDLE.zip`
+`SIGMA_C5_C5V3_M5_CROSS_SOURCE_SUMMARY_LADDER_R1_BUNDLE.zip`
 
 Hashes:
 
-- candidate core: `66a6b411456864365d2c3b8d2d0ef0bd7c2587447d20fd847e15623605beb4ad`
-- admission preflight: `39cc54d962422e57f8af2befe7a4ef97cd1793fe75372a923cd3df2559bb5ed4`
-- candidate bundle: `e441bf5cd680d0aee92e546e7062c69cde40db5a4ee04fadda4a99445ee07004`
-- independent blind auditor: `8b4fdf25142163223126dd072f2d3c1d18aca90d866cf0464e5f4688d64ffc77`
-- blind bundle: `2123f0712509a3ae859ad168395cb9376a1dcc9b64dc835afc534a34bbbf0feb`
-- ladder runner: `a06841b55057827306992d739c8a3e9d8a1b785b541bf935ad320d8161235799`
-- ladder bundle: `8f928c271472a20729e99234b40ba641377205a0e39d2ad8713e3358a53beb5c`
+- target core: `d9667155924eb52eeaaa26d4597b4e8668aa177f12199ff2c9b42c9611a7e144`
+- admission preflight: `7dc5cc0fc40cffe6d5b213fddd1d5ae6c443752de7ed8ece04dac2b6fc1560bd`
+- independent blind auditor: `afe6fbcb8e18112eff7cf94b33b5132b378c3c549042f73bba8672a042905436`
+- ladder runner: `6f74556f4fcdc44b0e9cd528e10f04adc72b33bee8d58cfb4d2cb99675bbb429`
+- ladder bundle: `7c0c5ceb2797bec9c8b6c8e2302af8a906a9d7ff0cb5fc2884207d056b084eee`
 
-The blind grader was corrected before runtime: structural score alone can never emit a semantic-summary grade. `SEMANTIC_SUMMARY_CANDIDATE` requires `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=PASS`. The core and cognition criteria were not changed.
+## Candidate behavior
 
-Stage A tests complete-span retention, exact source-removal span recall, synthesis from retained native memory, smaller trace and production safety.
+Raw alternate descriptions remain evidence. Native SIGMA learns contextual substitutions from repeated neutral evidence and admits an external span only if whole-sequence configuration maps it to a retained synthesis point. Exact copies are not credited as abstraction; role reversal, irrelevant descriptions and protocol injection are rejected. A summary hypothesis requires at least three distinct synthesis points and at least two independent source IDs. The hypothesis is persisted and restart-tested.
 
-Stage B is independent. Read exactly:
+The candidate core uses only mechanical host operations: read/write text, string length/replace/split and list length/get. No host model/LLM semantic inference.
 
-- `SOURCE_REMOVAL_WHOLE_SPAN_EXACT_RECALL`
-- `ISOLATED_SINGLETON_UNIT_REJECTION`
-- `NATIVE_WHOLE_WORK_SYNTHESIS_TRACE`
-- `SYNTHESIS_WHOLE_SPAN_POINTS_ONLY`
-- `SYNTHESIS_UNIQUE_EVENT_COVERAGE`
-- `SYNTHESIS_ISOLATED_NOISE_REJECTION`
-- `SYNTHESIS_NOT_RECORD_DUMP`
-- `SYNTHESIS_TRACE_SMALLER_THAN_SALIENT_MEMORY`
-- `SYNTHESIS_RESTART`
-- `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY`
-- `TOTAL_SCORE`
-- `GRADE`
+## Blind interpretation
 
-If the structural trace passes but `EVIDENCE_BACKED_WHOLE_WORK_SUMMARY=FAIL`, that is expected and honest. The exact next dependency is a natural-language whole-work semantic synthesis core/blind, not a host/extractive summary patch.
+If Stage B PASS, advance only `CROSS_SOURCE_EVIDENCE_BACKED_SUMMARY_HYPOTHESIS=PASS` in the tested learned-context/multi-source scope. Keep `AUTONOMOUS_SUMMARY_GENERATION=FAIL`, `ZERO_SHOT_LOW_OVERLAP_SUMMARY=FAIL`, `WHOLE_WORK_UNDERSTANDING=FAIL`, theme/value induction FAIL and production binding NO.
 
-## Hard FAILs retained
-
-- autonomous research;
-- semantic whole-work narrative understanding;
-- evidence-backed semantic whole-work summary;
-- theme/direction/human-value induction;
-- multilingual narrative transfer;
-- semantic compression after source removal;
-- continual learning from compressed local memory;
-- semantic paraphrase/zero-shot low-overlap/benign ungrounded reorder;
-- semantic support/conflict/truth judgment.
+If blind FAIL, fix the exact abstraction/provenance/configuration layer; do not weaken the evaluator.
 
 ## Later C5V3 route
 
