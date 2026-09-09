@@ -39,7 +39,9 @@ jobs:
           python-version: '3.12'
 
       - name: Test autopilot engine
-        run: python .github/hka_autopilot/test_hka_autopilot.py
+        run: |
+          python .github/hka_autopilot/test_hka_autopilot.py
+          python .github/hka_autopilot/test_federated_dispatch.py
 
       - name: Validate durable governance
         run: python .github/hka_autopilot/hka_autopilot.py validate | tee /tmp/hka-validate.json
