@@ -85,6 +85,18 @@ DEF c5as1_make_question(question_id, work_id, subject_id, kind, need_family, pri
     RETURN "TYPE=ACADEMIC_QUESTION || QUESTION_ID=" + question_id + " || WORK_ID=" + work_id + " || SUBJECT_ID=" + subject_id + " || KIND=" + kind + " || STATE=OPEN || NEED_FAMILY=" + need_family + " || PRIORITY=" + priority;
 }
 
+DEF c5as1_capability_result_valid(record) {
+    IF (H("str_len", record, NULL, NULL) > 512) { RETURN 0; }
+    IF (c5l2_record_part_count(record) != 3) { RETURN 0; }
+    ⚡ CAPABILITY_ID: c5l2_field(record, 0, "CAPABILITY_ID");
+    ⚡ RESULT_SHA: c5l2_field(record, 1, "RESULT_SHA");
+    ⚡ BASIS_SHA: c5l2_field(record, 2, "BASIS_SHA");
+    IF (c5l2_safe_atom(CAPABILITY_ID, 128) == 0) { RETURN 0; }
+    IF (c5l2_hex64(RESULT_SHA) == 0) { RETURN 0; }
+    IF (c5l2_hex64(BASIS_SHA) == 0) { RETURN 0; }
+    RETURN 1;
+}
+
 DEF c5as1_observation_valid(record) {
     IF (H("str_len", record, NULL, NULL) > 3072) { RETURN 0; }
     IF (c5l2_record_part_count(record) != 8) { RETURN 0; }
@@ -147,14 +159,35 @@ DEF c5as1_make_judgment(judgment_id, claim_id, evidence_id, source_id, stance, c
     IF (c5l2_safe_atom(evidence_id, 128) == 0) { RETURN ""; }
     IF (c5l2_safe_atom(source_id, 128) == 0) { RETURN ""; }
     IF (c5l2_stance_valid(stance) == 0) { RETURN ""; }
-    IF (c5l2_record_part_count(capability_result) != 3) { RETURN ""; }
+    IF (c5as1_capability_result_valid(capability_result) == 0) { RETURN ""; }
     ⚡ CAPABILITY_ID: c5l2_field(capability_result, 0, "CAPABILITY_ID");
     ⚡ RESULT_SHA: c5l2_field(capability_result, 1, "RESULT_SHA");
     ⚡ BASIS_SHA: c5l2_field(capability_result, 2, "BASIS_SHA");
-    IF (c5l2_safe_atom(CAPABILITY_ID, 128) == 0) { RETURN ""; }
-    IF (c5l2_hex64(RESULT_SHA) == 0) { RETURN ""; }
-    IF (c5l2_hex64(BASIS_SHA) == 0) { RETURN ""; }
     RETURN "TYPE=ACADEMIC_JUDGMENT || JUDGMENT_ID=" + judgment_id + " || CLAIM_ID=" + claim_id + " || EVIDENCE_ID=" + evidence_id + " || SOURCE_ID=" + source_id + " || STANCE=" + stance + " || BASIS_SHA=" + BASIS_SHA + " || CAPABILITY_ID=" + CAPABILITY_ID + " || RESULT_SHA=" + RESULT_SHA;
+}
+
+DEF c5as1_evidence_counts_valid(record) {
+    IF (H("str_len", record, NULL, NULL) > 512) { RETURN 0; }
+    IF (c5l2_record_part_count(record) != 5) { RETURN 0; }
+    ⚡ TYPE: c5l2_field(record, 0, "TYPE");
+    ⚡ SUPPORT_SOURCES: c5l2_field(record, 1, "SUPPORT_SOURCES");
+    ⚡ CONTRARY_SOURCES: c5l2_field(record, 2, "CONTRARY_SOURCES");
+    ⚡ NEUTRAL_SOURCES: c5l2_field(record, 3, "NEUTRAL_SOURCES");
+    ⚡ EVALUATION_COUNT: c5l2_field(record, 4, "EVALUATION_COUNT");
+    IF (TYPE != "ACADEMIC_EVIDENCE_COUNTS") { RETURN 0; }
+    IF (c5l2_digits_only(SUPPORT_SOURCES) == 0) { RETURN 0; }
+    IF (c5l2_digits_only(CONTRARY_SOURCES) == 0) { RETURN 0; }
+    IF (c5l2_digits_only(NEUTRAL_SOURCES) == 0) { RETURN 0; }
+    IF (c5l2_digits_only(EVALUATION_COUNT) == 0) { RETURN 0; }
+    RETURN 1;
+}
+
+DEF c5as1_make_evidence_counts(support_sources, contrary_sources, neutral_sources, evaluation_count) {
+    IF (c5l2_digits_only(support_sources) == 0) { RETURN ""; }
+    IF (c5l2_digits_only(contrary_sources) == 0) { RETURN ""; }
+    IF (c5l2_digits_only(neutral_sources) == 0) { RETURN ""; }
+    IF (c5l2_digits_only(evaluation_count) == 0) { RETURN ""; }
+    RETURN "TYPE=ACADEMIC_EVIDENCE_COUNTS || SUPPORT_SOURCES=" + support_sources + " || CONTRARY_SOURCES=" + contrary_sources + " || NEUTRAL_SOURCES=" + neutral_sources + " || EVALUATION_COUNT=" + evaluation_count;
 }
 
 DEF c5as1_synthesis_state_valid(value) {
@@ -187,15 +220,16 @@ DEF c5as1_synthesis_valid(record) {
     RETURN 1;
 }
 
-DEF c5as1_make_synthesis(claim_id, state, support_sources, contrary_sources, neutral_sources, revision) {
+DEF c5as1_make_synthesis(claim_id, state, evidence_counts, revision) {
     IF (c5l2_safe_atom(claim_id, 128) == 0) { RETURN ""; }
     IF (c5as1_synthesis_state_valid(state) == 0) { RETURN ""; }
-    IF (c5l2_digits_only(support_sources) == 0) { RETURN ""; }
-    IF (c5l2_digits_only(contrary_sources) == 0) { RETURN ""; }
-    IF (c5l2_digits_only(neutral_sources) == 0) { RETURN ""; }
+    IF (c5as1_evidence_counts_valid(evidence_counts) == 0) { RETURN ""; }
     IF (c5l2_digits_only(revision) == 0) { RETURN ""; }
-    ⚡ TOTAL: support_sources + contrary_sources + neutral_sources;
-    RETURN "TYPE=ACADEMIC_SYNTHESIS || CLAIM_ID=" + claim_id + " || STATE=" + state + " || SUPPORT_SOURCES=" + support_sources + " || CONTRARY_SOURCES=" + contrary_sources + " || NEUTRAL_SOURCES=" + neutral_sources + " || EVALUATION_COUNT=" + TOTAL + " || REVISION=" + revision;
+    ⚡ SUPPORT_SOURCES: c5l2_field(evidence_counts, 1, "SUPPORT_SOURCES");
+    ⚡ CONTRARY_SOURCES: c5l2_field(evidence_counts, 2, "CONTRARY_SOURCES");
+    ⚡ NEUTRAL_SOURCES: c5l2_field(evidence_counts, 3, "NEUTRAL_SOURCES");
+    ⚡ EVALUATION_COUNT: c5l2_field(evidence_counts, 4, "EVALUATION_COUNT");
+    RETURN "TYPE=ACADEMIC_SYNTHESIS || CLAIM_ID=" + claim_id + " || STATE=" + state + " || SUPPORT_SOURCES=" + SUPPORT_SOURCES + " || CONTRARY_SOURCES=" + CONTRARY_SOURCES + " || NEUTRAL_SOURCES=" + NEUTRAL_SOURCES + " || EVALUATION_COUNT=" + EVALUATION_COUNT + " || REVISION=" + revision;
 }
 
 DEF c5as1_question_bank_valid(bank) {
