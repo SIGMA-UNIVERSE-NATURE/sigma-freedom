@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T10_FULL_COMBINED_DOCUMENT_PROVENANCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -16,52 +16,47 @@ Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance P
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
 - `T9_FULL_LAYER=PASS`.
-- T10A Archive / Compression: PASS.
-- T10B Document Containers: PASS.
-- `T10_A_B_COMBINED_COMPATIBILITY=PASS`.
 - `T10_FULL_LAYER=PASS`.
-- R7L-T01..T16: PENDING in offline native tool-substrate program.
+- `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
+- R7L-T02..T16: PENDING in offline native tool-substrate program.
 
-## Frozen T10 + provenance artifacts
+## Frozen R7L-T01 artifact and contracts
 
-T10A:
-- source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
-- binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
-
-T10B:
-- source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
-- binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
-
-T9B regression:
-- source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+- ABI version `R7L-T01/1`
+- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
+- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
+- ABI `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
+- input schema `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
+- output schema `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
+- resource profile `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
+- contract root `1d5b98317d74b04aa410be59df1e7f67a4b0c791b1a68d5550fa84435270e188`
+- admission root `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
 
-## T10 combined evidence
+## R7L-T01 evidence
 
-- exact source and deterministic binary rebuild locks PASS
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases
-- 290 native process invocations
-- same-container T10A/T10B compatibility PASS
-- EPUB/PDF/MIME/gzip/TAR outputs -> exact T9B source/work/span provenance compatibility PASS
-- transform authenticated-receipt compatibility PASS
-- parser/transform identity compatibility PASS
-- counterfactual document/span change PASS
-- no mutation / high-entropy leak / sandbox removal PASS
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
+- 66 native process invocations
+- deterministic compile and artifact/contract freeze PASS
+- strict int64/uint64 parse+format PASS
+- checked add/sub/mul/div/mod PASS
+- saturating counters PASS
+- integer min/max/clamp PASS
+- finite float32/float64 bounded arithmetic PASS
+- explicit overflow, NaN/Inf and divide-by-zero behavior PASS
+- stable comparisons PASS
+- canonical numeric/tuple/record serialization PASS
+- malformed/adversarial and resource-bound matrices PASS
+- counterfactual behavior change PASS
+- prior T1-T10 artifact-identity lock regression PASS
+- forbidden semantic API audit PASS
 
-## Safety / claim boundary
+## Claim boundary
 
-- `NO_OCR=PASS`
-- `NO_JAVASCRIPT_EXECUTION=PASS`
-- `NO_MACRO_ACTION_EXECUTION=PASS`
-- `NO_DRM_EXECUTION=PASS`
-- `NO_EMBEDDED_EXECUTABLE_EXECUTION=PASS`
-- `NO_NETWORK=PASS`
-- `NO_ARBITRARY_FILESYSTEM=PASS`
-- `NO_SEMANTIC_LAYOUT_UNDERSTANDING=PASS`
-- `NO_DOCUMENT_RELEVANCE_JUDGMENT=PASS`
+- `TOOL_AVAILABLE != TOOL_LEARNED`
 - `HOST_TOOL_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `HOST_LEARNING=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 
@@ -74,6 +69,6 @@ T9B regression:
 
 ## Next offline program
 
-Begin **R7L-T01 Numeric / Serialization**, then continue R7L-T02..T16. Existing admitted primitives must be inherited by exact identity rather than recreated under semantic aliases.
+`R7L-T02 Collections`.
 
-`COMBINED_TOOL_PASS != LANGUAGE_UNDERSTANDING`.
+Caller/native SIGMA supplies keys, scores, priorities and retention decisions. `CACHE_EVICTION != MEMORY_IMPORTANCE` and semantic importance must not be embedded in top-k/cache mechanics.
