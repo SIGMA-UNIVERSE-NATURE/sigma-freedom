@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T02 Collections FIX1 PASS.
 
 ## Architecture routing
 
@@ -13,50 +13,57 @@ Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 - T0 inherited only where exact prior evidence applies.
 - T1/T2/T3 admitted subsets + mixed compatibility PASS.
-- `T4_FULL_LAYER=PASS`.
-- `T5_FULL_LAYER=PASS`.
-- `T6_FULL_LAYER=PASS`.
-- `T7_FULL_LAYER=PASS`.
-- `T8_FULL_LAYER=PASS`.
-- `T9_FULL_LAYER=PASS`.
-- `T10_FULL_LAYER=PASS`.
+- `T4_FULL_LAYER=PASS` through `T10_FULL_LAYER=PASS`.
 - `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
+- `R7L_T02_COLLECTIONS_ADMISSION=PASS`.
 
-## R7L-T01 — PASS
+## R7L-T02 — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T02_COLLECTIONS_PASS.md`
 
 Frozen OPPO identity:
-- ABI `R7L-T01/1`
-- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
-- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
-- ABI SHA256 `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
-- input schema SHA256 `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
-- output schema SHA256 `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
-- resource profile SHA256 `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
-- admission root SHA256 `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
+- ABI `R7L-T02/1`
+- source `8558da916bf494ce7bc45d6aba19a0946c23ab15e2ea9cbd58c36eb4e867de86`
+- binary `bd03a456ff3a8604bf04cd4dc67794887d6514e2ffb1996197c9ec60dba2578a`
+- ABI SHA256 `1a5ac3adb3ad9bfdb5704d74093ddb385328bd7c9e192bef21c2aa8618100a53`
+- input schema SHA256 `f5508dba3da788330d685f88c48ed7940657b68455b6eb09799b5db6fb5c3fba`
+- output schema SHA256 `f3ca67425c500075a81be281d92c5eb378581ed126340a9449b0d85ad794ca93`
+- resource profile SHA256 `1e376c7d318891ad0c75454e74d7cde41523618c78670e353148f1ea1db311f0`
+- admission root SHA256 `7d17afd07e5a236b7160b2fec02e9e4cdcf9b77ced12ded9ddd27372a61f74ed`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Evidence:
 - deterministic compile/source/binary/ABI/schema/resource freeze PASS;
 - 16 directed +32 randomized-after-freeze +2 replay =50 cases;
-- 66 native invocations;
-- checked/saturating integer mechanics PASS;
-- finite float32/float64 exact-bit mechanics PASS;
-- overflow/nonfinite/divide-zero explicit semantics PASS;
-- stable comparison PASS;
-- canonical numeric/tuple/record serialization PASS;
+- 65 native invocations;
+- collection mechanics PASS;
+- `TOP_K_EMPTY_CANONICAL=PASS`;
+- explicit cache-eviction receipt PASS;
 - malformed/adversarial/resource/counterfactual gates PASS;
-- prior T1-T10 artifact identity lock regression PASS;
+- prior R7L-T01 and T1-T10 identity lock regression PASS;
 - forbidden semantic API audit PASS.
 
 ## Current R7L state
 
 - `R7L-T01=PASS`
-- `R7L-T02..T16=PENDING`
-- language-understanding cognition gates: NOT STARTED from this substrate result
+- `R7L-T02=PASS`
+- `R7L-T03..T16=PENDING`
+- language-understanding cognition gates: NOT STARTED from these substrate results
 
-Immediate next family: `R7L-T02_COLLECTIONS`.
+## SIGMA identity/use status
+
+T02 did not re-hash live SIGMA production files and did not prove native SIGMA selected or consumed T02.
+
+- `SIGMA_BASELINE_REFERENCE=RECORDED`
+- `SIGMA_BASELINE_IDENTITY_LOCK=NOT_TESTED_BY_T02`
+- `SIGMA_BASELINE_NO_MUTATION=NOT_TESTED_BY_T02`
+- `SIGMA_SELECTED_T01_T02=NO_EVIDENCE`
+- `SIGMA_USED_T01_T02=NO_EVIDENCE`
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
+
+## Immediate safe path to actual SIGMA use
+
+Build an isolated shadow capability-use bridge around the existing R4 explicit request/capability interface if present. Native SIGMA must create the request and select the capability. Host verifies exact admitted identity and dispatches only that explicit selection. Raw output must return to SIGMA, and a native state transition must demonstrate consumption. Hash SIGMA baseline before/after. No production mutation/binding.
 
 ## Claim boundaries
 
@@ -67,7 +74,6 @@ Immediate next family: `R7L-T02_COLLECTIONS`.
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `HOST_LEARNING=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 
 ## Production boundary
 
@@ -75,3 +81,5 @@ Immediate next family: `R7L-T02_COLLECTIONS`.
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
+
+Formal next family: `R7L-T03_UNICODE_SPANS`.
