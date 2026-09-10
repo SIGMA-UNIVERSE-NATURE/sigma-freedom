@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T10A Archive / Compression PASS.
+Updated: 2026-09-10 after genuine OPPO T10B Document Containers PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T10A_ARCHIVE_COMPRESSION_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T10B_DOCUMENT_CONTAINERS_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -16,41 +16,45 @@ Updated: 2026-09-10 after genuine OPPO T10A Archive / Compression PASS.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
 - `T9_FULL_LAYER=PASS`.
-- T10A Archive / Compression: PASS on OPPO.
-- T10B Document Containers: PENDING.
+- T10A Archive / Compression: PASS.
+- T10B Document Containers: PASS.
 - T10 combined: PENDING.
-- T11: PENDING.
+- R7L-T01..T16: PENDING after T10 full.
 
-## Frozen T10A artifact
+## Frozen T10 artifacts
 
+T10A:
 - source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
 - binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
-- compiler `/data/data/com.termux/files/usr/bin/clang++`
-- archive backend `NATIVE_ZIP_TAR`
-- gzip backend `ZLIB`
-- zstd backend `RUNTIME_LIBZSTD`
 
-## T10A admitted evidence
+T10B:
+- source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
+- binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
+- compiler `/data/data/com.termux/files/usr/bin/clang++`
+- PDF backend `NATIVE_CLASSIC_XREF`
+- XML backend `LIBXML2`
+- ZIP backend `NATIVE_STANDARD_ZIP`
+
+## T10B admitted evidence
 
 - deterministic compile/source/binary freeze PASS
-- high-entropy leak audit PASS
-- dynamic archive fixtures after freeze PASS
 - 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
-- 54 native process invocations
-- bounded gzip/zstd decode PASS
-- bounded ZIP/TAR scan PASS
-- traversal/absolute/backslash/link/duplicate rejection PASS
-- member-count/member-size/total-size/path-depth/expansion-ratio bounds PASS
-- counterfactual archive-content change PASS
-- no filesystem extraction PASS
+- 56 native process invocations
+- EPUB mimetype/container/OPF/spine/path/size mechanics PASS
+- deterministic native PDF text-layer extraction PASS
+- classic xref/page tree, Flate stream, ToUnicode and text-operator mechanics PASS
+- image-only PDF -> empty text / no OCR PASS
+- recursive MIME multipart + Base64 + quoted-printable PASS
+- UTF-8/ASCII/ISO-8859-1/Windows-1252 decode PASS
+- decoded-total/output bounds PASS
+- counterfactual/no-mutation/leak/sandbox-removal gates PASS
 
-The earlier libarchive-dependent T10A attempt remained HOLD and was not published. The admitted FIX1 uses native ZIP/TAR parsing and does not require `archive.h`.
-
-## Critical boundary
+## Claim boundary
 
 - `T10_FULL_LAYER=NOT_YET_ADMITTED`
 - `NO_OCR=PASS`
-- `NO_SEMANTIC_DOCUMENT_INTERPRETATION=PASS`
+- `NO_SEMANTIC_LAYOUT_UNDERSTANDING=PASS`
+- `NO_DOCUMENT_RELEVANCE_JUDGMENT=PASS`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
@@ -66,4 +70,4 @@ The earlier libarchive-dependent T10A attempt remained HOLD and was not publishe
 
 ## Next offline sequence
 
-`T10B -> T10 combined -> T11`.
+Exact T10A + T10B combined admission with admitted T9B source/work/span provenance regression. On genuine PASS: `T10_FULL_LAYER=PASS`, then begin R7L-T01..T16 offline tool-substrate program.
