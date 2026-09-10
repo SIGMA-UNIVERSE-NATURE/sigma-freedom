@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO T10A Archive / Compression PASS.
 
 ## Architecture routing
 
@@ -18,65 +18,54 @@ Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance P
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
+- `T9_FULL_LAYER=PASS`.
 
-## T9 — FULL PASS
+## T10A — PASS
 
 Checkpoint:
 
-`C5_M5/CHECKPOINT_2026-09-10_T9_FULL_COMBINED_INTEGRITY_PROVENANCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T10A_ARCHIVE_COMPRESSION_PASS.md`
 
-Frozen OPPO artifacts:
+Frozen OPPO artifact:
 
-- T9A source `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
-- T9A binary `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
-- T9B source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- T9B binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+- source SHA256 `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
+- binary SHA256 `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
+- archive backend `NATIVE_ZIP_TAR`
+- gzip backend `ZLIB`
+- zstd backend `RUNTIME_LIBZSTD`
 
-Exact admitted T9 scope:
+Evidence:
 
-- SHA-256/SHA-512;
-- HMAC-SHA256/HMAC-SHA512;
-- Ed25519 signature verification;
-- OpenSSL CSPRNG;
-- content IDs and domain-separated Merkle roots;
-- source/work/exact-byte-span/artifact/runtime/state-lineage identities;
-- canonical HMAC-authenticated receipt and SHA256 receipt ID;
-- linked provenance-chain verification;
-- sequence continuity and nondecreasing caller-supplied time;
-- tamper rejection.
-
-Combined evidence:
-
-- exact T9A/T9B source/binary rebuild locks PASS;
-- directed combined cases `16`;
-- randomized-after-freeze combined cases `32`;
-- replay combined cases `2`;
-- total combined cases `50`;
-- native process invocations `159`;
-- integrity/identity/provenance mixed oracle PASS;
-- SHA256 receipt-ID compatibility PASS;
-- HMAC receipt-MAC compatibility PASS;
-- CSPRNG runtime-nonce compatibility PASS;
-- hash/state-lineage compatibility PASS;
-- exact-span/hash compatibility PASS;
-- Merkle/provenance-chain compatibility PASS;
-- Ed25519 signed chain-root verification PASS;
-- tamper dual rejection PASS;
-- counterfactual identity/integrity change PASS;
-- source/binary no mutation PASS;
+- deterministic compile PASS;
+- source/binary freeze PASS;
 - high-entropy leak audit PASS;
+- dynamic archive fixtures after freeze PASS;
+- directed `16` + randomized-after-freeze `32` + replay `2` = `50` cases;
+- native process invocations `54`;
+- post-tool mechanical oracle PASS;
+- gzip/zstd bounded decompression PASS;
+- ZIP/TAR bounded scan PASS;
+- path traversal / absolute / backslash rejection PASS;
+- link and duplicate-path rejection PASS;
+- member-count/member-size/total-size/depth/expansion-ratio bounds PASS;
+- counterfactual archive-content change PASS;
 - synthetic sandbox removal PASS;
-- `T9_A_B_COMBINED_COMPATIBILITY=PASS`;
-- `T9_FULL_LAYER=PASS`.
+- no filesystem extraction PASS.
 
-## Critical T9 boundary
+The original libarchive-dependent T10A build was HOLD because `archive.h` was unavailable and was not published. The admitted FIX1 uses native ZIP/TAR parsers.
 
-- `HASH_ALONE_IS_NOT_PROVENANCE=PASS`
-- `IDENTITY_CLASS_SEPARATION=PASS`
-- `NO_TRUST_JUDGMENT=PASS`
-- `NO_TRUTH_JUDGMENT=PASS`
-- `NO_RELEVANCE_JUDGMENT=PASS`
+## Current T10 state
+
+- `T10A_ARCHIVE_COMPRESSION_ADMISSION=PASS`
+- `T10B_DOCUMENT_CONTAINERS=PENDING`
+- `T10_COMBINED=PENDING`
+- `T10_FULL_LAYER=NOT_YET_ADMITTED`
+
+## Claim boundaries
+
+- `NO_OCR=PASS`
+- `NO_SEMANTIC_DOCUMENT_INTERPRETATION=PASS`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
@@ -90,14 +79,6 @@ Combined evidence:
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
 
-## Current state / next
+## Exact next offline sequence
 
-- `T4_FULL_LAYER=PASS`
-- `T5_FULL_LAYER=PASS`
-- `T6_FULL_LAYER=PASS`
-- `T7_FULL_LAYER=PASS`
-- `T8_FULL_LAYER=PASS`
-- `T9_FULL_LAYER=PASS`
-- T10/T11: PENDING
-
-Immediate next layer: **T10 Archive / Document Containers**.
+T10B EPUB / deterministic PDF text-layer / MIME multipart + charset -> exact T10 combined -> T11.
