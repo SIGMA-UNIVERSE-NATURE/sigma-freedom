@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T02 Collections FIX1 PASS.
 
 ## Operating split
 
@@ -13,75 +13,50 @@ Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 - T0 inherited only where exact prior evidence applies.
 - T1/T2/T3 admitted subsets + mixed compatibility PASS.
-- `T4_FULL_LAYER=PASS`.
-- `T5_FULL_LAYER=PASS`.
-- `T6_FULL_LAYER=PASS`.
-- `T7_FULL_LAYER=PASS`.
-- `T8_FULL_LAYER=PASS`.
-- `T9_FULL_LAYER=PASS`.
-- `T10_FULL_LAYER=PASS`.
+- `T4_FULL_LAYER=PASS` through `T10_FULL_LAYER=PASS`.
 - `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
+- `R7L_T02_COLLECTIONS_ADMISSION=PASS`.
 
-## R7L-T01 — PASS
+## R7L-T02 — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T02_COLLECTIONS_PASS.md`
 
-Frozen OPPO artifact/contracts:
-- ABI `R7L-T01/1`
-- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
-- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
-- ABI SHA `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
-- input schema `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
-- output schema `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
-- resource profile `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
-- admission root `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
-- compiler `/data/data/com.termux/files/usr/bin/clang++`
+Frozen OPPO identity:
+- ABI `R7L-T02/1`
+- source `8558da916bf494ce7bc45d6aba19a0946c23ab15e2ea9cbd58c36eb4e867de86`
+- binary `bd03a456ff3a8604bf04cd4dc67794887d6514e2ffb1996197c9ec60dba2578a`
+- ABI SHA `1a5ac3adb3ad9bfdb5704d74093ddb385328bd7c9e192bef21c2aa8618100a53`
+- input schema `f5508dba3da788330d685f88c48ed7940657b68455b6eb09799b5db6fb5c3fba`
+- output schema `f3ca67425c500075a81be281d92c5eb378581ed126340a9449b0d85ad794ca93`
+- resource profile `1e376c7d318891ad0c75454e74d7cde41523618c78670e353148f1ea1db311f0`
+- contract root `c31dfd9ef963a75431808388c916327ea9f4cb604e413b598ee96771265ea7a7`
+- admission root `7d17afd07e5a236b7160b2fec02e9e4cdcf9b77ced12ded9ddd27372a61f74ed`
 
-Admitted mechanical scope:
-- strict int64/uint64 parse + canonical formatting;
-- checked add/sub/mul/div/mod;
-- saturating signed/unsigned counters;
-- integer min/max/clamp;
-- exact-bit finite float32/float64 bounded arithmetic;
-- explicit overflow/NaN/Inf/divide-zero behavior;
-- stable comparisons including signed-zero ordering;
-- canonical numeric scalar, typed tuple and canonical typed-record serialization.
+Evidence: 50 admission cases / 65 native invocations; all collection families, canonical empty top-k regression, malformed/adversarial/resource/counterfactual and semantic-oracle gates PASS.
 
-Evidence:
-- deterministic compile and ABI/schema/resource freeze PASS;
-- 16 directed +32 randomized-after-freeze +2 replay =50 cases;
-- 66 native invocations;
-- malformed/adversarial and resource-bound matrices PASS;
-- counterfactual PASS;
-- prior T1-T10 artifact-identity lock regression PASS;
-- forbidden semantic API audit PASS.
+The original T02 HOLD was not published.
 
-## R7 Language Understanding V2 boundary
+## SIGMA-use boundary
 
-`R7L-T02 Collections` is next.
+R7L-T01/T02 are admitted native tools but have not yet been proven as selected and used by native SIGMA cognition.
 
-T02 exact target:
-- map/set/multimap/ordered map;
-- deque/priority queue;
-- stable sort/top-k/dedupe;
-- bounded LRU-like mechanical cache;
-- exact iterator.
+To make them callable without violating architecture, use an isolated shadow capability bridge with these invariants:
+1. SIGMA itself emits `CAPABILITY_ID + arguments` or an R4-compatible explicit need record.
+2. Host performs identity verification and mechanical dispatch only.
+3. 0 matches or >1 matches => HOLD; no fallback selection.
+4. Raw result returns to SIGMA; host does not interpret it.
+5. A later native-state change must prove SIGMA consumed the result.
+6. Exact SIGMA baseline files are hashed before/after shadow execution.
+7. No production state mutation or binding.
 
-Rules:
-- keys/values are opaque caller bytes;
-- SIGMA supplies scores/priorities;
-- top-k is mechanical score ordering only;
-- cache policy is mechanical and caller-controlled;
-- canonical epistemic memory is not silently evicted;
-- `CACHE_EVICTION != MEMORY_IMPORTANCE`;
-- `RETRIEVED != RELEVANT`.
+A precursor shadow bridge does not claim full R7L-T12/T13 admission.
 
 ## Hard ceiling
 
 - `TOOL_AVAILABLE != TOOL_LEARNED`
 - `HOST_TOOL_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `HOST_LEARNING=NO`
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
 - `COMBINED_TOOL_PASS != LANGUAGE_UNDERSTANDING`
 
 ## Production boundary
@@ -90,3 +65,8 @@ Rules:
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
+
+## Next
+
+Formal tool program: `R7L-T03 Unicode / Spans`.
+Parallel isolated proof path: locate and reuse the existing R4 native request/capability hook; only if absent, add a minimal explicit request/reply mailbox to a shadow copy.
