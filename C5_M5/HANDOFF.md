@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T10B Document Containers PASS.
+Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance PASS.
 
 ## Operating split
 
@@ -19,55 +19,51 @@ Updated: 2026-09-10 after genuine OPPO T10B Document Containers PASS.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
 - `T9_FULL_LAYER=PASS`.
+- `T10_FULL_LAYER=PASS`.
 
-### T10A — PASS
+### T10 FULL — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T10A_ARCHIVE_COMPRESSION_PASS.md`
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T10_FULL_COMBINED_DOCUMENT_PROVENANCE_PASS.md`
 
-- source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
-- binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
-
-Admitted: bounded gzip/zstd; native ZIP/TAR scan; fail-closed path/link/duplicate/special cases; member/size/total/depth/ratio bounds; no filesystem extraction.
-
-### T10B — PASS
-
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T10B_DOCUMENT_CONTAINERS_PASS.md`
-
-- source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
-- binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
+Frozen artifacts:
+- T10A source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
+- T10A binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
+- T10B source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
+- T10B binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
+- T9B provenance source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
+- T9B provenance binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Admitted mechanical scope:
+Combined evidence:
+- exact source + deterministic binary rebuild locks PASS;
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
+- 290 native process invocations;
+- T10A/T10B same-container compatibility PASS;
+- EPUB member, PDF text-layer, MIME decoded UTF-8 and gzip/TAR exact bytes bind mechanically to T9B source/work/exact-span IDs;
+- authenticated transform-receipt and parser-identity compatibility PASS;
+- counterfactual document/span change PASS;
+- no mutation / leakage / synthetic sandbox residue PASS.
 
-- EPUB mimetype/container.xml/OPF manifest+spine/path-size mechanics;
-- libxml2 NONET and DTD/subset rejection;
-- native deterministic classic-xref PDF text-layer extraction;
-- Flate stream decode;
-- ToUnicode CMap mechanics;
-- `Tj`/`TJ`/quote text operators;
-- image-only/no-text PDF returns empty text;
+Safety boundary:
 - no OCR;
-- bounded recursive MIME multipart;
-- Base64 and quoted-printable transfer decode;
-- UTF-8/ASCII/ISO-8859-1/Windows-1252 to UTF-8 mechanical decode.
+- no JavaScript, macros/actions, DRM, embedded executable execution;
+- no network or arbitrary filesystem;
+- no semantic layout understanding;
+- no document relevance judgment;
+- `HOST_TOOL_SELECTION=NO`;
+- `HOST_SEMANTIC_SUBSTITUTION=NO`;
+- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
 
-Evidence: 16 directed +32 randomized-after-freeze +2 replay =50 cases / 56 native invocations; deterministic compile, source/binary freeze, counterfactual, leak and sandbox-removal gates PASS.
+## R7 Language Understanding V2 tool program
 
-## Current T10 boundary
+Immediate next family: **R7L-T01 Numeric / Serialization**.
 
-- `T10A_ARCHIVE_COMPRESSION_ADMISSION=PASS`
-- `T10B_DOCUMENT_CONTAINERS_ADMISSION=PASS`
-- `T10_COMBINED=PENDING`
-- `T10_FULL_LAYER=NOT_YET_ADMITTED`
+Program sequence after T10 full:
+`R7L-T01 -> T02 -> T03 -> T04 -> T05 -> T06 -> T07 -> T08 -> T09 -> T10 -> T11 -> T12 -> T13 -> T14 -> T15 -> T16`.
 
-Exact combined must lock T10A/T10B artifacts and regress against admitted T9B exact source/work/span provenance mechanics. Document/member/text bytes may become caller-supplied inputs to T9B identities; the host must not decide relevance, meaning, evidence support, truth or memory importance.
-
-## R7 Language Understanding tool program
-
-After T10 full, begin R7L-T01..T16 offline admissions. Existing admitted primitives must be inherited by exact artifact/ABI evidence rather than rebuilt under new names. Every new family remains mechanical, bounded and semantically non-authoritative.
+Existing admitted T0-T10 primitives must be inherited by exact artifact/ABI evidence rather than rebuilt under new semantic aliases. New tools remain bounded mechanical compute; semantic authority remains native SIGMA.
 
 Hard ceiling:
-
 - `TOOL_AVAILABLE != TOOL_LEARNED`
 - `TOKEN != MEANING`
 - `VECTOR_SIMILARITY != SEMANTIC_EQUIVALENCE`
@@ -75,6 +71,7 @@ Hard ceiling:
 - `LOSS_DECREASE != UNDERSTANDING`
 - `HOST_TOOL_SELECTION=FORBIDDEN`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `COMBINED_TOOL_PASS != LANGUAGE_UNDERSTANDING`
 
 ## Production boundary
 
@@ -82,7 +79,3 @@ Hard ceiling:
 - `PRODUCTION_STATE_WRITE=NO`
 - `PRODUCTION_MUTATION=NO`
 - `PRODUCTION_BINDING=NO`
-
-## Next
-
-Exact T10A+T10B combined + T9B provenance regression -> genuine PASS -> `T10_FULL_LAYER=PASS` -> R7L-T01.
