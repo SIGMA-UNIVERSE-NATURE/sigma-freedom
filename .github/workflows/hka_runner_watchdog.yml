@@ -1,0 +1,78 @@
+name: HKA Runner Watchdog
+
+on:
+  push:
+    branches: [SIGMA_LIFE]
+  workflow_dispatch:
+  schedule:
+    - cron: '2-59/5 * * * *'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: hka-runner-watchdog
+  cancel-in-progress: true
+
+jobs:
+  wake-if-stalled:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Check HKA runner freshness and wake when stalled
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          import urllib.request
+
+          repo = os.environ['GITHUB_REPOSITORY']
+          token = os.environ['GITHUB_TOKEN']
+          headers = {
+              'Accept': 'application/vnd.github+json',
+              'Authorization': f'Bearer {token}',
+              'X-GitHub-Api-Version': '2022-11-28',
+          }
+
+          def call(method, url, payload=None):
+              data = json.dumps(payload).encode() if payload is not None else None
+              req = urllib.request.Request(url, method=method, data=data, headers=headers)
+              if data is not None:
+                  req.add_header('Content-Type', 'application/json')
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  raw = resp.read().decode()
+                  return json.loads(raw) if raw else None
+
+          runs = call('GET', f'https://api.github.com/repos/{repo}/actions/workflows/hka_agent_runner.yml/runs?per_page=5') or {}
+          items = runs.get('workflow_runs') or []
+          now = dt.datetime.now(dt.timezone.utc)
+          fresh = False
+          if items:
+              latest = items[0]
+              created = dt.datetime.fromisoformat(latest['created_at'].replace('Z', '+00:00'))
+              age = (now - created).total_seconds()
+              fresh = age < 720 or latest.get('status') in {'queued', 'in_progress'}
+              print(json.dumps({
+                  'latest_run_id': latest.get('id'),
+                  'latest_status': latest.get('status'),
+                  'latest_conclusion': latest.get('conclusion'),
+                  'age_seconds': int(age),
+                  'fresh': fresh,
+              }))
+
+          if fresh:
+              print('HKA runner is fresh; no wake required.')
+              raise SystemExit(0)
+
+          call(
+              'POST',
+              f'https://api.github.com/repos/{repo}/actions/workflows/hka_agent_runner.yml/dispatches',
+              {'ref': 'SIGMA_LIFE'},
+          )
+          print('HKA runner was stale; workflow_dispatch sent.')
+          PY
