@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T02 Collections FIX1 PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_R7L_T02_COLLECTIONS_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -18,42 +18,46 @@ Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 - `T9_FULL_LAYER=PASS`.
 - `T10_FULL_LAYER=PASS`.
 - `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
-- R7L-T02..T16: PENDING in offline native tool-substrate program.
+- `R7L_T02_COLLECTIONS_ADMISSION=PASS`.
+- R7L-T03..T16: PENDING in offline native tool-substrate program.
 
-## Frozen R7L-T01 artifact and contracts
+## Frozen R7L-T02 artifact and contracts
 
-- ABI version `R7L-T01/1`
-- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
-- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
+- ABI version `R7L-T02/1`
+- source `8558da916bf494ce7bc45d6aba19a0946c23ab15e2ea9cbd58c36eb4e867de86`
+- binary `bd03a456ff3a8604bf04cd4dc67794887d6514e2ffb1996197c9ec60dba2578a`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
-- ABI `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
-- input schema `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
-- output schema `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
-- resource profile `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
-- contract root `1d5b98317d74b04aa410be59df1e7f67a4b0c791b1a68d5550fa84435270e188`
-- admission root `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
+- ABI `1a5ac3adb3ad9bfdb5704d74093ddb385328bd7c9e192bef21c2aa8618100a53`
+- input schema `f5508dba3da788330d685f88c48ed7940657b68455b6eb09799b5db6fb5c3fba`
+- output schema `f3ca67425c500075a81be281d92c5eb378581ed126340a9449b0d85ad794ca93`
+- resource profile `1e376c7d318891ad0c75454e74d7cde41523618c78670e353148f1ea1db311f0`
+- prior admitted-artifact lock `d509746771f44d60e57fe1020aa2471496f9f46c7c74b71443db4707576a91bb`
+- contract root `c31dfd9ef963a75431808388c916327ea9f4cb604e413b598ee96771265ea7a7`
+- admission root `7d17afd07e5a236b7160b2fec02e9e4cdcf9b77ced12ded9ddd27372a61f74ed`
 
-## R7L-T01 evidence
+## R7L-T02 evidence
 
+- original T02 HOLD remained unpublished; FIX1 corrected canonical empty top-k output
 - 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
-- 66 native process invocations
+- 65 native process invocations
 - deterministic compile and artifact/contract freeze PASS
-- strict int64/uint64 parse+format PASS
-- checked add/sub/mul/div/mod PASS
-- saturating counters PASS
-- integer min/max/clamp PASS
-- finite float32/float64 bounded arithmetic PASS
-- explicit overflow, NaN/Inf and divide-by-zero behavior PASS
-- stable comparisons PASS
-- canonical numeric/tuple/record serialization PASS
-- malformed/adversarial and resource-bound matrices PASS
-- counterfactual behavior change PASS
-- prior T1-T10 artifact-identity lock regression PASS
+- map/set/multimap/ordered-map/deque/priority-queue mechanics PASS
+- stable sort, caller-score top-k, exact-byte dedupe PASS
+- bounded LRU-like candidate cache + explicit eviction receipt PASS
+- `TOP_K_EMPTY_CANONICAL=PASS`
+- exact iterator PASS
+- malformed/adversarial, resource and counterfactual matrices PASS
 - forbidden semantic API audit PASS
+
+## SIGMA baseline distinction
+
+The T02 admission verified the T02 tool identity, not the live SIGMA core/runtime files. Previously recorded SIGMA production hashes remain reference-only in this checkpoint. `SIGMA_BASELINE_IDENTITY_LOCK=NOT_TESTED_BY_T02` and `SIGMA_BASELINE_NO_MUTATION=NOT_TESTED_BY_T02`.
 
 ## Claim boundary
 
 - `TOOL_AVAILABLE != TOOL_LEARNED`
+- `CACHE_EVICTION != MEMORY_IMPORTANCE`
+- `RETRIEVED != RELEVANT`
 - `HOST_TOOL_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `HOST_LEARNING=NO`
@@ -69,6 +73,6 @@ Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 ## Next offline program
 
-`R7L-T02 Collections`.
+Formal next family remains `R7L-T03 Unicode / Spans`.
 
-Caller/native SIGMA supplies keys, scores, priorities and retention decisions. `CACHE_EVICTION != MEMORY_IMPORTANCE` and semantic importance must not be embedded in top-k/cache mechanics.
+Separately, an isolated shadow capability-use bridge may be built to prove that native SIGMA itself can emit an explicit capability request and consume raw admitted-tool results. Such a bridge must not let the host infer or choose the capability and does not constitute production binding or full R7L-T12/T13 admission.
