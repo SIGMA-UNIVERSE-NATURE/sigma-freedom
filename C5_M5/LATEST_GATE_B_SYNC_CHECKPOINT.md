@@ -1,10 +1,10 @@
 # SIGMA C5V3 Gate B — Latest Synchronization Checkpoint
 
-Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO T10A Archive / Compression PASS.
 
 ## Latest authoritative checkpoint
 
-`C5_M5/CHECKPOINT_2026-09-10_T9_FULL_COMBINED_INTEGRITY_PROVENANCE_PASS.md`
+`C5_M5/CHECKPOINT_2026-09-10_T10A_ARCHIVE_COMPRESSION_PASS.md`
 
 ## Latest admitted tool-substrate chain
 
@@ -15,52 +15,42 @@ Updated: 2026-09-10 after genuine OPPO T9 FULL combined Integrity / Provenance P
 - `T6_FULL_LAYER=PASS`.
 - `T7_FULL_LAYER=PASS`.
 - `T8_FULL_LAYER=PASS`.
-- T9A Cryptographic Integrity: PASS.
-- T9B Identity / Provenance: PASS.
-- `T9_A_B_COMBINED_COMPATIBILITY=PASS`.
 - `T9_FULL_LAYER=PASS`.
-- T10/T11: PENDING in offline substrate lane.
+- T10A Archive / Compression: PASS on OPPO.
+- T10B Document Containers: PENDING.
+- T10 combined: PENDING.
+- T11: PENDING.
 
-## Frozen T9 artifacts
+## Frozen T10A artifact
 
-T9A:
-- source `eba77488481b76cb66e3a14c2540ccf3da856b8f5233bb9891f63b0790f9c361`
-- binary `3e88064d34af285a832ab45bcd2e0d7d998d2df35f3dd5031b87c7dc5d3479bc`
-
-T9B:
-- source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+- source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
+- binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
+- archive backend `NATIVE_ZIP_TAR`
+- gzip backend `ZLIB`
+- zstd backend `RUNTIME_LIBZSTD`
 
-## T9 combined evidence
+## T10A admitted evidence
 
-- exact T9A/T9B artifact rebuild locks PASS
-- dynamic Ed25519 keypair after freeze PASS
-- directed combined cases `16`
-- randomized-after-freeze combined cases `32`
-- replay combined cases `2`
-- total combined cases `50`
-- native process invocations `159`
-- SHA256 receipt-ID compatibility PASS
-- HMAC receipt-MAC compatibility PASS
-- CSPRNG/runtime-nonce compatibility PASS
-- hash/state-lineage compatibility PASS
-- exact-span/hash compatibility PASS
-- Merkle/provenance-chain compatibility PASS
-- Ed25519 signed chain-root verification PASS
-- tamper dual-rejection compatibility PASS
-- counterfactual identity/integrity change PASS
-- source/binary no mutation PASS
+- deterministic compile/source/binary freeze PASS
 - high-entropy leak audit PASS
-- synthetic sandbox removal PASS
+- dynamic archive fixtures after freeze PASS
+- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases
+- 54 native process invocations
+- bounded gzip/zstd decode PASS
+- bounded ZIP/TAR scan PASS
+- traversal/absolute/backslash/link/duplicate rejection PASS
+- member-count/member-size/total-size/path-depth/expansion-ratio bounds PASS
+- counterfactual archive-content change PASS
+- no filesystem extraction PASS
+
+The earlier libarchive-dependent T10A attempt remained HOLD and was not published. The admitted FIX1 uses native ZIP/TAR parsing and does not require `archive.h`.
 
 ## Critical boundary
 
-- `HASH_ALONE_IS_NOT_PROVENANCE=PASS`
-- `IDENTITY_CLASS_SEPARATION=PASS`
-- `NO_TRUST_JUDGMENT=PASS`
-- `NO_TRUTH_JUDGMENT=PASS`
-- `NO_RELEVANCE_JUDGMENT=PASS`
+- `T10_FULL_LAYER=NOT_YET_ADMITTED`
+- `NO_OCR=PASS`
+- `NO_SEMANTIC_DOCUMENT_INTERPRETATION=PASS`
 - `NO_CASE_ID_DEPENDENT_BEHAVIOR=PASS`
 - `NO_EXPECTED_OUTPUT_LITERAL_LEAK=PASS`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
@@ -76,6 +66,4 @@ T9B:
 
 ## Next offline sequence
 
-`T10 -> T11`.
-
-Immediate gate: `T10_ARCHIVE_DOCUMENT_CONTAINERS`.
+`T10B -> T10 combined -> T11`.
