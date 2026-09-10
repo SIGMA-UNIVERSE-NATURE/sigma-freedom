@@ -1,0 +1,103 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.R4.GENESIS][VERSION=R4-GENESIS-R1]
+
+// R4 cleanline genesis candidate.
+// Mechanical state/bootstrap validation only.
+// No learned semantics, no legacy C5 semantic import, no predefined cognitive utterance.
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF bounded_present(value, max_len) {
+    IF (present(value) == 0) { RETURN 0; }
+    ⚡ n: H("str_len", value, NULL, NULL);
+    IF (max_len < n) { RETURN 0; }
+    RETURN 1;
+}
+
+⟡(Σ.R4_GENESIS_STATE_R1) {
+    ⚡ BASE: ".sigma_exec/R4_GENESIS_STATE_R1/input";
+
+    // Required mechanical identity bindings.
+    ⚡ LINEAGE_ID:
+        H("read_text", BASE + "/lineage_id.txt", NULL, NULL);
+    ⚡ RUNTIME_PROFILE_ID:
+        H("read_text", BASE + "/runtime_profile_id.txt", NULL, NULL);
+    ⚡ CAPABILITY_REGISTRY_ID:
+        H("read_text", BASE + "/capability_registry_id.txt", NULL, NULL);
+
+    // Forbidden cognitive imports. Any non-empty byte content fails closed.
+    ⚡ LEGACY_C5_SEMANTIC_STATE:
+        H("read_text", BASE + "/legacy_c5_semantic_state.txt", NULL, NULL);
+    ⚡ LEFT_RIGHT_SEED:
+        H("read_text", BASE + "/left_right_seed.txt", NULL, NULL);
+    ⚡ LEXICAL_RELATION_SEED:
+        H("read_text", BASE + "/lexical_relation_seed.txt", NULL, NULL);
+    ⚡ PREDEFINED_CONCEPT_SEED:
+        H("read_text", BASE + "/predefined_concept_seed.txt", NULL, NULL);
+    ⚡ PREDEFINED_RESPONSE_VOCABULARY:
+        H("read_text", BASE + "/predefined_response_vocabulary.txt", NULL, NULL);
+    ⚡ PREDEFINED_COGNITIVE_UTTERANCE:
+        H("read_text", BASE + "/predefined_cognitive_utterance.txt", NULL, NULL);
+
+    ⚡ REQUIRED_BINDINGS_VALID:
+        bounded_present(LINEAGE_ID, 256)
+        * bounded_present(RUNTIME_PROFILE_ID, 256)
+        * bounded_present(CAPABILITY_REGISTRY_ID, 256);
+
+    ⚡ FORBIDDEN_SEED_COUNT: 0;
+
+    IF (present(LEGACY_C5_SEMANTIC_STATE) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+    IF (present(LEFT_RIGHT_SEED) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+    IF (present(LEXICAL_RELATION_SEED) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+    IF (present(PREDEFINED_CONCEPT_SEED) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+    IF (present(PREDEFINED_RESPONSE_VOCABULARY) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+    IF (present(PREDEFINED_COGNITIVE_UTTERANCE) == 1) {
+        ⚡ FORBIDDEN_SEED_COUNT: FORBIDDEN_SEED_COUNT + 1;
+    }
+
+    // Plane-D starts empty. These bytes are not a word or a semantic state.
+    ⚡ NATIVE_LEARNED_STATE: "";
+    ⚡ COGNITIVE_PAYLOAD: "";
+    ⚡ NATIVE_LEARNED_STATE_LEN:
+        H("str_len", NATIVE_LEARNED_STATE, NULL, NULL);
+    ⚡ COGNITIVE_PAYLOAD_LEN:
+        H("str_len", COGNITIVE_PAYLOAD, NULL, NULL);
+
+    ⚡ GENESIS_ACCEPTED: 0;
+    IF (REQUIRED_BINDINGS_VALID == 1) {
+        IF (FORBIDDEN_SEED_COUNT == 0) {
+            IF (NATIVE_LEARNED_STATE_LEN == 0) {
+                IF (COGNITIVE_PAYLOAD_LEN == 0) {
+                    ⚡ GENESIS_ACCEPTED: 1;
+                }
+            }
+        }
+    }
+
+    // Machine receipt plane only. Nothing below is a cognitive utterance.
+    ⚡ print("SIGMA_R4_GENESIS_STATE_R1");
+    ⚡ print("GENESIS_ACCEPTED", GENESIS_ACCEPTED);
+    ⚡ print("REQUIRED_BINDINGS_VALID", REQUIRED_BINDINGS_VALID);
+    ⚡ print("FORBIDDEN_SEED_COUNT", FORBIDDEN_SEED_COUNT);
+    ⚡ print("NATIVE_LEARNED_STATE_LEN", NATIVE_LEARNED_STATE_LEN);
+    ⚡ print("COGNITIVE_PAYLOAD_LEN", COGNITIVE_PAYLOAD_LEN);
+    ⚡ print("LINEAGE_ID", LINEAGE_ID);
+    ⚡ print("RUNTIME_PROFILE_ID", RUNTIME_PROFILE_ID);
+    ⚡ print("CAPABILITY_REGISTRY_ID", CAPABILITY_REGISTRY_ID);
+}
