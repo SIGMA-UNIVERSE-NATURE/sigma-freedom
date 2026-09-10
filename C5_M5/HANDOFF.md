@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Window Handoff
 
-Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 ## Operating split
 
@@ -20,57 +20,68 @@ Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance P
 - `T8_FULL_LAYER=PASS`.
 - `T9_FULL_LAYER=PASS`.
 - `T10_FULL_LAYER=PASS`.
+- `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
 
-### T10 FULL — PASS
+## R7L-T01 — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T10_FULL_COMBINED_DOCUMENT_PROVENANCE_PASS.md`
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
 
-Frozen artifacts:
-- T10A source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
-- T10A binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
-- T10B source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
-- T10B binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
-- T9B provenance source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- T9B provenance binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+Frozen OPPO artifact/contracts:
+- ABI `R7L-T01/1`
+- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
+- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
+- ABI SHA `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
+- input schema `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
+- output schema `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
+- resource profile `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
+- admission root `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
-Combined evidence:
-- exact source + deterministic binary rebuild locks PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 cases;
-- 290 native process invocations;
-- T10A/T10B same-container compatibility PASS;
-- EPUB member, PDF text-layer, MIME decoded UTF-8 and gzip/TAR exact bytes bind mechanically to T9B source/work/exact-span IDs;
-- authenticated transform-receipt and parser-identity compatibility PASS;
-- counterfactual document/span change PASS;
-- no mutation / leakage / synthetic sandbox residue PASS.
+Admitted mechanical scope:
+- strict int64/uint64 parse + canonical formatting;
+- checked add/sub/mul/div/mod;
+- saturating signed/unsigned counters;
+- integer min/max/clamp;
+- exact-bit finite float32/float64 bounded arithmetic;
+- explicit overflow/NaN/Inf/divide-zero behavior;
+- stable comparisons including signed-zero ordering;
+- canonical numeric scalar, typed tuple and canonical typed-record serialization.
 
-Safety boundary:
-- no OCR;
-- no JavaScript, macros/actions, DRM, embedded executable execution;
-- no network or arbitrary filesystem;
-- no semantic layout understanding;
-- no document relevance judgment;
-- `HOST_TOOL_SELECTION=NO`;
-- `HOST_SEMANTIC_SUBSTITUTION=NO`;
-- `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`.
+Evidence:
+- deterministic compile and ABI/schema/resource freeze PASS;
+- 16 directed +32 randomized-after-freeze +2 replay =50 cases;
+- 66 native invocations;
+- malformed/adversarial and resource-bound matrices PASS;
+- counterfactual PASS;
+- prior T1-T10 artifact-identity lock regression PASS;
+- forbidden semantic API audit PASS.
 
-## R7 Language Understanding V2 tool program
+## R7 Language Understanding V2 boundary
 
-Immediate next family: **R7L-T01 Numeric / Serialization**.
+`R7L-T02 Collections` is next.
 
-Program sequence after T10 full:
-`R7L-T01 -> T02 -> T03 -> T04 -> T05 -> T06 -> T07 -> T08 -> T09 -> T10 -> T11 -> T12 -> T13 -> T14 -> T15 -> T16`.
+T02 exact target:
+- map/set/multimap/ordered map;
+- deque/priority queue;
+- stable sort/top-k/dedupe;
+- bounded LRU-like mechanical cache;
+- exact iterator.
 
-Existing admitted T0-T10 primitives must be inherited by exact artifact/ABI evidence rather than rebuilt under new semantic aliases. New tools remain bounded mechanical compute; semantic authority remains native SIGMA.
+Rules:
+- keys/values are opaque caller bytes;
+- SIGMA supplies scores/priorities;
+- top-k is mechanical score ordering only;
+- cache policy is mechanical and caller-controlled;
+- canonical epistemic memory is not silently evicted;
+- `CACHE_EVICTION != MEMORY_IMPORTANCE`;
+- `RETRIEVED != RELEVANT`.
 
-Hard ceiling:
+## Hard ceiling
+
 - `TOOL_AVAILABLE != TOOL_LEARNED`
-- `TOKEN != MEANING`
-- `VECTOR_SIMILARITY != SEMANTIC_EQUIVALENCE`
-- `PARSE_TREE != UNDERSTANDING`
-- `LOSS_DECREASE != UNDERSTANDING`
-- `HOST_TOOL_SELECTION=FORBIDDEN`
+- `HOST_TOOL_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `HOST_LEARNING=NO`
 - `COMBINED_TOOL_PASS != LANGUAGE_UNDERSTANDING`
 
 ## Production boundary
