@@ -1,6 +1,6 @@
 # SIGMA C5 M5 — Current Status
 
-Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance PASS.
+Updated: 2026-09-10 after genuine OPPO R7L-T01 Numeric / Serialization PASS.
 
 ## Architecture routing
 
@@ -20,52 +20,54 @@ Updated: 2026-09-10 after genuine OPPO T10 FULL combined Document / Provenance P
 - `T8_FULL_LAYER=PASS`.
 - `T9_FULL_LAYER=PASS`.
 - `T10_FULL_LAYER=PASS`.
+- `R7L_T01_NUMERIC_SERIALIZATION_ADMISSION=PASS`.
 
-## T10 — FULL PASS
+## R7L-T01 — PASS
 
-Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_T10_FULL_COMBINED_DOCUMENT_PROVENANCE_PASS.md`
+Checkpoint: `C5_M5/CHECKPOINT_2026-09-10_R7L_T01_NUMERIC_SERIALIZATION_PASS.md`
 
-Frozen OPPO artifacts:
-- T10A source `545a32122f1626f5674e952e1005cd10c190c0b00494608a98dbb00011cf7004`
-- T10A binary `bc519755d46b068f5bfe7fec9b4809990411c35b05a75ce30af80cc0ff0cbb4b`
-- T10B source `0b4afa5cc2c8ce34392f475bacf71ac75baf468ac85f2d5f3c1d50f36fe36977`
-- T10B binary `0c863758f53616c44f074ea6be7392e1df168aea08035b7f4b7f98cd1881d1e1`
-- T9B source `981b8a5f5e252e9e5354167ef37affc34f2890508f55064d0eb1b28ec75a70f3`
-- T9B binary `f468db1ad900fdda0e585f71888a2e1168ba4522616c484d2752a4e51b7d3ae7`
+Frozen OPPO identity:
+- ABI `R7L-T01/1`
+- source `b098c0272c1f1657d84d4159516834558a628e76c880354465cc3c1890beb77d`
+- binary `b4a17db4cfaa55c53903e1573f0d34a0d91df18fce6b2dd71e1a4f4ba97a196b`
+- ABI SHA256 `3e463fe0ff790ebd60419c7002ef8817a48f8156b92bb982f648e47066fb99a0`
+- input schema SHA256 `f2afe474346352fe15dac8c42ea5747b4e863b4658139f5871781158e22efba3`
+- output schema SHA256 `ca9cf8c6f7245302d45c87fc920fdde69247f3c7a905112ccfc2f267b2813eea`
+- resource profile SHA256 `80b96c04599d6a8296a13f67077bbc342d98631401f81978a2d0d4554c4dc4c3`
+- admission root SHA256 `aacdf62522b8348d3717bcb489ef0fc5670c4d91175b7e5756ca8abe3498dcf9`
 - compiler `/data/data/com.termux/files/usr/bin/clang++`
 
 Evidence:
-- exact source/binary rebuild locks PASS;
-- 16 directed + 32 randomized-after-freeze + 2 replay = 50 combined cases;
-- 290 native invocations;
-- document-container/archive coexistence PASS;
-- exact source/work/span provenance regression PASS;
-- transform receipt/parser identity compatibility PASS;
-- counterfactual/no-mutation/leak/sandbox-removal gates PASS;
-- `T10_A_B_COMBINED_COMPATIBILITY=PASS`;
-- `T10_FULL_LAYER=PASS`.
+- deterministic compile/source/binary/ABI/schema/resource freeze PASS;
+- 16 directed +32 randomized-after-freeze +2 replay =50 cases;
+- 66 native invocations;
+- checked/saturating integer mechanics PASS;
+- finite float32/float64 exact-bit mechanics PASS;
+- overflow/nonfinite/divide-zero explicit semantics PASS;
+- stable comparison PASS;
+- canonical numeric/tuple/record serialization PASS;
+- malformed/adversarial/resource/counterfactual gates PASS;
+- prior T1-T10 artifact identity lock regression PASS;
+- forbidden semantic API audit PASS.
 
-## Safety / semantic boundaries
+## Current R7L state
 
-- `NO_OCR=PASS`
-- `NO_JAVASCRIPT_EXECUTION=PASS`
-- `NO_MACRO_ACTION_EXECUTION=PASS`
-- `NO_DRM_EXECUTION=PASS`
-- `NO_EMBEDDED_EXECUTABLE_EXECUTION=PASS`
-- `NO_NETWORK=PASS`
-- `NO_ARBITRARY_FILESYSTEM=PASS`
-- `NO_SEMANTIC_LAYOUT_UNDERSTANDING=PASS`
-- `NO_DOCUMENT_RELEVANCE_JUDGMENT=PASS`
+- `R7L-T01=PASS`
+- `R7L-T02..T16=PENDING`
+- language-understanding cognition gates: NOT STARTED from this substrate result
+
+Immediate next family: `R7L-T02_COLLECTIONS`.
+
+## Claim boundaries
+
+- `TOOL_AVAILABLE != TOOL_LEARNED`
+- `CACHE_EVICTION != MEMORY_IMPORTANCE`
+- `RETRIEVED != RELEVANT`
 - `HOST_TOOL_SELECTION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
+- `HOST_LEARNING=NO`
 - `CORE_TEST_ORACLE_CONTAMINATION=NO`
 - `SIGMA_COGNITIVE_TOOL_ADOPTION=NOT_CLAIMED`
-
-## R7 Language Understanding V2 tool program
-
-Current next family: `R7L-T01_NUMERIC_SERIALIZATION`.
-
-R7L-T01..T16 are offline mechanical capabilities. Passing them will not establish language understanding. Blind/causal cognition gates remain separate and later.
 
 ## Production boundary
 
