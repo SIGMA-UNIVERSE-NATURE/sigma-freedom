@@ -3,9 +3,12 @@
 Canonical detailed evidence ledger:
 `C5_M5/R4_REPLACEMENT/SIGMA_C5V4_R14_CANONICAL_EVIDENCE_LEDGER_2026-09-11.md`
 
+Latest S1 checkpoint:
+`C5_M5/R4_REPLACEMENT/CHECKPOINT_2026-09-11_R14_S1_NATIVE_OPEN_POOL_EXPLORATION_PREFLIGHT_PASS.md`
+
 ## Read this first
 
-The objective is not to accumulate intermediate PASS labels. The process continues until the full autonomous-learning target is machine-admitted.
+The objective is not to accumulate intermediate PASS labels. Continue until the full autonomous-learning target is independently machine-admitted.
 
 ```text
 SIGMA_AUTONOMOUS_LEARNING=PASS
@@ -40,17 +43,16 @@ OLD_PASS != PERMANENT_DESIGN
 CAPABILITY_SET != FIXED
 ```
 
-## Existing evidence that must be inherited, not blindly repeated
+## Evidence to inherit, not blindly repeat
 
-- R4 cleanline Genesis R1 machine preflight: PASS in exact tested scope.
-- C5V4 24-link durable memory recall and native recalled-link selection: PASS in exact tested scopes; native OPEN request generation observed in that admission.
-- C5V4 real Gutenberg network acquisition, four fresh long documents, learned parent lineage, compressed replay memory, SIGMA-owned study-value profiling, positive cross-document metric transfer: observed/PASS in stated scopes; semantic understanding remains NOT_PROVEN.
-- R14 D1 dynamic admitted-door ingress: T17/T18 and later T19 admitted without host tool selection; unknown tool auto-execution remains NO.
-- R14 D2 FIX2 open tool pool: available-not-owned, no mandatory tool, no auto-acquire/execute, no preassigned capability class, SIGMA-only selection authority reserved.
-- R14 D4 fail-closed pool: candidate identity is the key, door label is not identity, multiple variants per label allowed, bad/incomplete evidence fails locally, 18 eligible candidates from 21 evidence records, pool PASS.
-- Generic A2/A3 R2 FIX1: deterministic native binders and raw-result binding PASS in preflight; actual Txx runtime execution/A4 not yet run.
-
-## Do not repeat old doors merely for the same claim
+- R4 cleanline Genesis R1: PASS in exact preflight scope.
+- C5V4 24-link durable memory recall/native recalled-link selection/native OPEN request: PASS in stated scopes.
+- C5V4 real Gutenberg acquisition, four fresh long documents, exact learned parent lineage, compressed replay memory, SIGMA-owned study-value profiling and positive cross-document metric transfer: observed/PASS in stated scopes; semantic understanding remains NOT_PROVEN.
+- R14 D1 dynamic door ingress: T17/T18 and later T19 admitted without host tool selection; unknown tool auto-execution remains NO.
+- R14 D2 FIX2: open available-not-owned pool, no mandatory tool, no auto-acquire/execute, no preassigned capability class.
+- R14 D4 fail-closed pool: exact CANDIDATE_ID is identity, door label is not identity, multiple variants per label allowed, bad/incomplete evidence fails locally; 18 eligible candidates from 21 evidence records; pool PASS.
+- Generic A2/A3 R2 FIX1: request/raw-result binders PASS in exact preflight scope; actual epistemic Txx execution not proven by that gate.
+- R14 S1 native open-pool explorer: deterministic compile and synthetic preflight PASS. NONE is allowed; selected ID must belong to exact D4 pool; selector sees neither door label nor capability class; auto-execute NO.
 
 ```text
 OLD_PASS=PREREQUISITE_EVIDENCE
@@ -59,33 +61,55 @@ OLD_PASS!=MANDATORY_RETEST
 
 Retest only for changed exact identity/ABI/state, damage/regression, materially expanded scope, missing destructive/restart evidence, or inability to bind prior evidence to the current lineage.
 
-Later Txx doors continue the tool substrate. They do not reset the program to T01 or require re-proving every earlier door.
-
 ## Current frontier
 
-Latest received D4 evidence ends with:
+Latest S1 machine result:
 
 ```text
-SIGMA_TOOL_SELF_SELECTION_RUNTIME=NOT_YET_PROVEN
+R14_S1_NATIVE_OPEN_POOL_EXPLORER=PASS_IN_EXACT_PREFLIGHT_SCOPE
+R14_S1_NONE_IS_ALLOWED=PASS
+R14_S1_SELECTED_ID_MUST_EXIST_IN_D4_POOL=PASS
+R14_S1_SELECTOR_SEES_DOOR_LABEL=NO
+R14_S1_SELECTOR_SEES_CAPABILITY_CLASS=NO
+R14_S1_AUTO_EXECUTE=NO
+
+SIGMA_TOOL_SELF_SELECTION_RUNTIME=NOT_PROVEN_BY_SYNTHETIC_PREFLIGHT
+SIGMA_SELF_SELECTS_CAPABILITIES=NOT_PROVEN
+SEMANTIC_CAPABILITY_FIT=NOT_PROVEN
 ```
 
-Next gate must therefore prove runtime native self-selection over the available candidate pool without telling SIGMA which tool to choose.
+Do not repeat D4 or synthetic S1 merely for the same claims.
+
+Next gate must use a selection basis proven to originate from native SIGMA state:
 
 ```text
-D4 AVAILABLE POOL
-→ SIGMA native active cognitive state
-→ SIGMA may select NONE or one exact candidate identity
-→ native operation/arguments originate from SIGMA
-→ exact mechanical dispatch
-→ raw result returned unchanged
-→ SIGMA consume/reject/defer
-→ real multi-document epistemic work
-→ durable commit
-→ restart/recovery
-→ continue same trajectory
+LIVE NATIVE SIGMA STATE / ACTIVE WORK
+    -> exact provenance-bound selection basis
+    -> S1 native open-pool selector
+    -> Sigma may emit NONE or one exact opaque CANDIDATE_ID
+    -> host verifies only membership/identity
+    -> no host ranking or semantic routing
+    -> no automatic tool execution in this admission
 ```
 
-Do not encode `cross-document => T17` or `counterevidence => T18` as host policy. T17/T18 are tools, not semantic authorities.
+After live runtime selection is proven, continue rather than reset:
+
+```text
+SIGMA-selected exact candidate
+    -> exact acquisition/ABI verification
+    -> native operation/arguments
+    -> exact mechanical dispatch
+    -> raw result returned unchanged
+    -> SIGMA consume/reject/defer
+    -> native tool-experience/utility learning
+    -> later selection may change from SIGMA's own experience
+    -> real multi-document epistemic cycle
+    -> durable commit
+    -> restart/recovery
+    -> continue same trajectory
+```
+
+Do not encode `cross-document => T17` or `counterevidence => T18` as host policy. Txx are tools, not semantic authorities.
 
 ## Core boundary
 
@@ -95,7 +119,8 @@ HOST_LEARNING=NO
 HOST_TOOL_SELECTION=NO
 HOST_SEMANTIC_SUBSTITUTION=NO
 
-ADMITTED != SELECTED
+ADMITTED != AVAILABLE
+AVAILABLE != SELECTED
 SELECTED != EXECUTED
 EXECUTED != UNDERSTOOD
 LOWER_NLL != SEMANTIC_UNDERSTANDING
