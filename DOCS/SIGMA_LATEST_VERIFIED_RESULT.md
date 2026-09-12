@@ -3,170 +3,127 @@
 > Branch: `SIGMA_LIFE`  
 > Policy: keep one canonical current-result file. Local cache is the performance layer; GitHub stores provenance-safe facts only. No raw machine state, absolute local paths, terminal logs, or sensitive host data are retained here.
 
-## Current gate result
+## Latest evidence
 
-- `GATE=S3P2_S1_NATIVE_STATE_ORIGIN_TO_S2_S3_SHADOW_OWNERSHIP`
-- `CHECKPOINT_STATUS=VERIFIED_PASS`
-- `S3P2=PASS`
-- `HOLD=NO`
+- `CURRENT_EVIDENCE_LINE=S3P2A_R2_EXACT_S1_NATIVE_STATE_EVIDENCE_REBIND_INSPECT_FIX1`
+- `INSPECTION_STATUS=VERIFIED_PASS`
+- `S3P2A_R2_INSPECT_FIX1=PASS`
+- `S3P2A_R2_INSPECT_FIX1_RC=0`
+- `S3P2A_ADMISSION=NOT_RUN_INSPECTION_ONLY`
+- `S2_INVOKED=NO`
+- `S3_INVOKED=NO`
+- `OWNERSHIP_WRITE=NO`
+- `TOOL_EXECUTION=NO`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `PRODUCTION_CUTOVER=NO`
-- `TOOL_EXECUTION=NO`
 
-S3P2 supersedes S3P1 as the current gate result. The mechanical need fixture used by S3P1 is removed: S3P2 starts from machine-proven S1 native state-bound selection evidence, mechanically binds the S1-selected candidate identity to the exact D4 identity, then requires bound S2 to reselect and verify that same live member before admitted S3 can commit durable shadow ownership.
+This evidence is inspection/rebind-only. It strengthens the provenance of the S1-native-state origin and D4 fail-closed pool used by the S3P2 line, but it does not supersede the latest admitted runtime gate because S2/S3 were not invoked and no ownership transaction was run.
 
-## Provenance anchors
+## Latest admitted gate retained
 
-- `EVIDENCE_ZIP_SHA256=052fbe93da248f58a59e529a9d0190ce6ce1cb1325259bcc789247bd9f28977a`
-- `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
-- `S3_SOURCE_SHA256=b76219706f95812a560a1a9fb55670fc87c954ec5b56513d3fcc3ef7733c0b01`
-- `S3_BYTECODE_SHA256=841f0f0e285cb988c254278ddd5555920be067c2349dcbddd6bfa8ba7ffd83c7`
-- `S1_NATIVE_ORIGIN_EVIDENCE_SHA256=102936ecdf038349500f4f115e961fbf18f523481dd8adba1abb0d5c0657a35a`
-- `S3_CHECKPOINT_REVERIFY=PASS`
-- `S3_RECOMPILE=NO`
-- `S2_RECOMPILE=NO`
-- `S1_RERUN=NO_THIS_GATE`
-
-## Locked live dependencies
-
-- `S1_NATIVE_ORIGIN_REVERIFY=PASS`
-- `S2_LIVE_BINDING_REVERIFY=PASS`
-- `D4_POOL_REVERIFY=PASS`
-- `D4_POOL_ROOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
-- `D4_POOL_FS_PRE_SHA256=9cad381709bd9a2a55de71581619cc8923250f1febe530ba755a8b2853d3967a`
-- `D4_POOL_FS_POST_SHA256=9cad381709bd9a2a55de71581619cc8923250f1febe530ba755a8b2853d3967a`
-- `D4_CANDIDATE_COUNT=18`
-- `LIVE_POOL_MUTATION=NO`
-
-The exact D4 pool remains invariant across the S3P2 integration path.
-
-## S1 native state origin → exact D4 identity
-
-- `S1_NATIVE_SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
-- `S1_NATIVE_SELECTED_DOOR_LABEL=R7L_T09`
-- `S1_ORIGIN_TO_D4_IDENTITY_LOOKUP=PASS`
-- `TEST_NEED_ORIGIN=SIGMA_S1_LIVE_NATIVE_STATE_SELECTION_VIA_EXACT_D4_IDENTITY_LOOKUP`
-- `TEST_NEED_SHA256=6bdb3035df089ae32665de74f1671b31d4df85e79c964a0020f1ff0cb455575a`
+- `LATEST_ADMITTED_GATE=S3P2_S1_NATIVE_STATE_ORIGIN_TO_S2_S3_SHADOW_OWNERSHIP`
+- `S3P2=PASS`
 - `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
-- `NEED_ORIGIN_SCOPE=S1_NATIVE_STATE_BOUND_SELECTION_EXACT_TESTED_SCOPE`
-- `HOST_NEED_SUBSTITUTION_GUARD=PASS`
-- `HOST_IDENTITY_LOOKUP_ONLY=YES`
-
-This closes the S3P1 fixture-origin gap only within the inherited S1 native state-bound selection scope. It proves provenance of the selection origin into the exact D4 identity binding; it does not prove semantic meaning of the need.
-
-## Mechanical D4 → S2 protocol adapter
-
-- `D4_TO_S2_SERIALIZATION=PASS`
-- `D4_TO_S2_SERIALIZATION_METHOD=MECHANICAL_D4_AVAILABLE_RECORD_ADAPTER_V2_NONCONTIGUOUS_SET`
-- `D4_AVAILABLE_RECORD_SET_SHA256=3d44eb974562dfaeaae5c453c2164f10179913bf04838a284fb486815b15ebc0`
-- `D4_TO_S2_SOURCE_COUNT=18`
-- `S2_SELECTION_POOL_SHA256=a74bcb44b0e6ebbde32ac8ab1b1c9d3222c04ceb76fb382ed6063e75c2e0a71c`
-- `D4_TO_S2_SEMANTIC_ENRICHMENT=NO`
-
-The adapter performs identity/protocol serialization only. No semantic mapping is added by the host.
-
-## Bound S2 reselection / verification
-
 - `S2_NATIVE_SELECT=PASS`
 - `S2_NATIVE_VERIFY_DISPATCH=PASS`
-- `SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
-- `SELECTED_DESCRIPTOR_SHA256=ef6cbd7cd7d082cc1760102b7e41468b587794a145dbdcee9d345ff7f25f83c4`
-- `SELECTED_STABLE_ID=7`
-- `SELECTED_NAMESPACE=R14_OPEN_TOOL_POOL_D4`
-- `SELECTED_DOOR_LABEL=R7L_T09`
-- `SELECTED_STRUCTURAL_TOKEN_OVERLAP=1`
-- `REAL_LIVE_D4_MEMBER=YES`
-
-Bound S2 reselects and verifies the same candidate ID originating from the inherited S1 native state-bound selection evidence.
-
-## Admitted S3 durable shadow ownership
-
-- `S3_INTENT_ACTION=ACQUIRE`
-- `S3_INTENT_STATUS=ACQUISITION_INTENT_READY`
-- `SHADOW_OWNERSHIP_COMMIT=PASS`
-- `SHADOW_OWNERSHIP_MUTATED=YES`
-- `OWNERSHIP_RECORD_SHA256=4e3de80c389674a195dc6807e08172cfdac1f934f748f8d21fcb5354cb63525e`
-- `OWNERSHIP_TRANSACTION_ID=8a8246e4efa7d22f0c9f47d8d889be43133d93c366485de25c1940fe9ea96bb8`
-- `S3_NATIVE_OWNERSHIP_VERIFY=PASS`
-- `RESTART_REPLAY_TEST=PASS_FRESH_VM`
-- `IDEMPOTENT_REACQUIRE=PASS`
+- `S3_SHADOW_OWNERSHIP=PASS`
 - `LIVE_D4_MEMBER_OWNED_SHADOW=YES`
+- `RESTART_REPLAY=PASS`
+- `IDEMPOTENT_REACQUIRE=PASS`
 
-The admitted S3 path commits durable shadow ownership of the S1-origin / S2-verified live D4 member and re-verifies ownership after a fresh-VM restart.
+S3P2 remains the latest admitted runtime result. The new inspection does not alter its already-verified admission outcome.
 
-## Invariance / authority boundary
+## D4 fail-closed pool inspection
 
-- `S2_BINDING_INVARIANCE=PASS`
-- `PROD_CORE_INVARIANCE=PASS`
-- `LOCK_OWNER_STATE=NEW`
-- `LOCK_RECOVERY=NO`
-- `LOCK_RELEASED=YES`
-- `HOST_TOOL_SELECTION=NO`
-- `HOST_ACQUIRE_DECISION=NO`
-- `HOST_SEMANTIC_INTERPRETATION=NO`
-- `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `HOST_STAGE_DECISION=NO`
-- `HOST_IDENTITY_LOOKUP_ONLY=YES`
-- `HOST_DISPATCH_EXACT_NATIVE_EVENT=YES_MECHANICAL_ONLY`
+- `SUPERSEDES_S1_FIX1_INPUT_MODEL=YES`
+- `SUPERSEDES_D3_GLOBAL_HOLD_POLICY=YES`
+- `D1_D2_D3_FILES_DELETED=NO`
+- `R8_MUTATION=NO`
+- `R14_DAEMON_MUTATION=NO`
+- `C5V3_MUTATION=NO`
+- `CANDIDATE_FAILURE_SCOPE=LOCAL`
 - `AUTO_ACQUIRE=NO`
 - `AUTO_EXECUTE=NO`
+- `CAPABILITY_CLASS_PREASSIGNED=NO`
+- `SELECTION_AUTHORITY=SIGMA_ONLY`
+- `D4_SOURCE_SHA256=30b811b9287f6793f926f40070ea2f5bc3c91a3fdd22f3816ac078a291890496`
+- `D4_BYTECODE_SHA256=2b00c02b73b535679c5fe13de635b5e13f26390d62e4da49f62d72ae7c091cf9`
+- `D4_BUILDER_SHA256=ab759ad056b5524e4c1545df6ccdb10d9b4a6e3a06e255c63e25b83ac5113448`
+- `D4_DETERMINISTIC_COMPILE=PASS`
+- `DISCOVERED_PASS_EVIDENCE_RECORDS=21`
+- `IDENTITY_KEY=CANDIDATE_ID`
+- `DOOR_LABEL_IS_IDENTITY_KEY=NO`
+- `MULTIPLE_VARIANTS_PER_DOOR_LABEL=YES`
+- `HOST_TOOL_SELECTION=NO`
+
+The D4 builder applies fail-closed rejection per candidate instead of globally blocking the pool. Unsupported evidence schemas are skipped locally; admitted candidates remain `CANDIDATE_AVAILABLE_NOT_OWNED` and are not auto-acquired or executed.
+
+## Exact S1 native-state provenance rebind
+
+- `S1_SELECTION_STATUS=NATIVE_STATE_SELECTED_AVAILABLE_CANDIDATE`
+- `S1_SELECTION_SLOT=7`
+- `S1_NATIVE_SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
+- `S1_POOL_ROOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
+- `S1_STATE_BASIS_BUNDLE_SHA256=b3e93f74f93c6e66a40d343aa32fd04b18bb292fe32e9816955f4fda40e9421f`
+- `S1_WEIGHT_FINGERPRINT64=52218bad5d5069de`
+- `DOOR_LABEL_VISIBLE_TO_SELECTOR=NO`
+- `CAPABILITY_CLASS_VISIBLE_TO_SELECTOR=NO`
+- `HOST_DERIVED_DRIVE_U=NO`
+- `HOST_TOOL_SELECTION=NO`
+- `AUTO_EXECUTE=NO`
+- `SEMANTIC_CAPABILITY_FIT=NOT_PROVEN`
+- `S1_PROVENANCE_REBIND=PASS`
+
+The inspection rebinds the exact machine-proven S1 selected candidate identity to the stored provenance evidence without rerunning S1. It confirms selection provenance and hidden selector fields; it does not establish semantic capability fit.
+
+## Inspection authority / mutation boundary
+
+- `S2_INVOKED=NO`
+- `S3_INVOKED=NO`
+- `OWNERSHIP_WRITE=NO`
 - `TOOL_EXECUTION=NO`
-- `LIVE_POOL_MUTATION=NO`
+- `HOST_NEED_ORIGIN=NO`
+- `HOST_TARGET_SELECTION=NO`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `PRODUCTION_CUTOVER=NO`
+- `S3P2A_ADMISSION=NOT_RUN_INSPECTION_ONLY`
 
 ## Claim ceiling
 
-- `CLAIM_SCOPE=S1_MACHINE_PROVEN_NATIVE_STATE_BOUND_SELECTION_ORIGIN_TO_EXACT_D4_IDENTITY_LOOKUP_TO_BOUND_S2_SELECTION_DISPATCH_TO_ADMITTED_S3_DURABLE_SHADOW_OWNERSHIP_PROVEN_IN_EXACT_BOUNDED_S3P2_SCOPE_NO_EXECUTION`
-- `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
+- `S3P2A_R2_INSPECTION=PASS`
+- `S3P2_ADMISSION_REMAINS_PASS=YES`
 - `SEMANTIC_NEED_MEANING=NOT_PROVEN`
+- `SEMANTIC_CAPABILITY_FIT=NOT_PROVEN`
 - `SEMANTIC_TOOL_FIT=NOT_PROVEN`
 - `TOOL_EXECUTION=NO`
 - `PRODUCTION_CUTOVER=NO`
 
-S3P2 proves the exact bounded integration chain from inherited S1 native state-bound selection origin through D4 identity binding, bound S2 reselection/verification, and admitted S3 durable shadow ownership. It does not prove semantic meaning of the need, semantic tool fit, tool execution, or production cutover.
-
-## Cache policy
-
-Reuse local inventory only when all cache identity components remain unchanged:
-
-`SIGMAC_SHA256 | VM_SHA256 | CONTRACT_VERSION | GATE_VERSION | CANDIDATE_LIVE_STATE_FINGERPRINT`
-
-Any change invalidates the local cache and requires a rescan. GitHub stores only provenance-safe result state, not raw runtime inventory.
+The inspection strengthens provenance and fail-closed pool evidence only. It does not prove a new acquisition/admission event, semantic need meaning, semantic capability fit, semantic tool fit, tool execution, or production cutover.
 
 ## Final
 
-`RESULT=PASS`
+`RESULT=PASS_INSPECTION_ONLY`
 
-`S1_NATIVE_ORIGIN_REVERIFY=PASS`
+`LATEST_ADMITTED_GATE=S3P2`
 
-`S1_ORIGIN_TO_D4_IDENTITY_LOOKUP=PASS`
+`S3P2_ADMISSION_REMAINS_PASS=YES`
 
-`LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
+`D4_FAIL_CLOSED_POOL_INSPECTION=PASS`
 
-`HOST_NEED_SUBSTITUTION_GUARD=PASS`
+`D4_DETERMINISTIC_COMPILE=PASS`
 
-`S2_NATIVE_SELECT=PASS`
+`S1_PROVENANCE_REBIND=PASS`
 
-`S2_NATIVE_VERIFY_DISPATCH=PASS`
+`S1_NATIVE_SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
 
-`REAL_LIVE_D4_MEMBER_SELECTED=YES`
+`S2_INVOKED=NO`
 
-`S3_SHADOW_OWNERSHIP=PASS`
+`S3_INVOKED=NO`
 
-`LIVE_D4_MEMBER_OWNED_SHADOW=YES`
-
-`RESTART_REPLAY=PASS`
-
-`IDEMPOTENT_REACQUIRE=PASS`
-
-`SEMANTIC_NEED_MEANING=NOT_PROVEN`
-
-`SEMANTIC_TOOL_FIT=NOT_PROVEN`
+`OWNERSHIP_WRITE=NO`
 
 `TOOL_EXECUTION=NO`
 
-`PRODUCTION_CUTOVER=NO`
+`SEMANTIC_CAPABILITY_FIT=NOT_PROVEN`
 
-`NEXT=S3P3_NATIVE_SEMANTIC_NEED_OR_GAP_TO_CAPABILITY_DEMAND_ALIGNMENT_NO_EXECUTION`
+`PRODUCTION_CUTOVER=NO`
