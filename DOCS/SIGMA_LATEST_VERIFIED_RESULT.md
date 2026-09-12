@@ -15,9 +15,10 @@
 - `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
 - `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
 - `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
-- `CURRENT_STATUS=T15_T19_MACHINE_PASS_T20_T27_RUNTIME_PENDING`
+- `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
+- `CURRENT_STATUS=T15_T20_MACHINE_PASS_T21_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T19. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; T18 proves old-state-to-evidence long-context revision; and T19 proves offline replay improvement from compressed state without network access. Broader semantic/understanding claims remain outside the proven scope.
+FIX2 now establishes tested runtime PASS through T20. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; T18 proves old-state-to-evidence long-context revision; T19 proves offline replay improvement from compressed state without network access; and T20 proves SIGMA-selected unique learned-frontier target selection from a provided candidate set without host query generation or host web selection. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -28,6 +29,7 @@ FIX2 now establishes tested runtime PASS through T19. T15 proves whole-document 
 - `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T15_ALONE`
 - `CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T17_ALONE`
 - `LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN_BY_T18_ALONE`
+- `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
 
 ## Locked toolchain
 
@@ -70,7 +72,7 @@ FIX2 now establishes tested runtime PASS through T19. T15 proves whole-document 
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## Runtime results through T19
+## Runtime results through T20
 
 ### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
@@ -104,13 +106,23 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
 - `HOST_COGNITION=NO`
 
-This proves offline replay improvement in the tested compressed-state scope without network access. It does not establish the downstream web/frontier, knowledge-gap, study, capability-choice, blind-choice, or autonomous-loop runtime gates.
+### T20
+- `ACTION=SELECT_WEB_TARGET`
+- `STATUS=SIGMA_SELECTED_UNIQUE_LEARNED_FRONTIER_TARGET`
+- `HOST_QUERY_GENERATION=NO`
+- `HOST_WEB_SELECTION=NO`
+- `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
+- `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
+
+This proves target selection from the provided web-candidate frontier in the tested learned-frontier scope without host-generated query or host-selected target. It does not prove autonomous discovery of candidate targets from the open web.
 
 ## Downstream status
 
-- `T20_WEB_FRONTIER_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T21_KNOWLEDGE_GAP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
-- `T22_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T22_STUDY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T23_CAPABILITY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T24_T26_BLIND_CHOICE_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
 ## Final
@@ -129,6 +141,8 @@ This proves offline replay improvement in the tested compressed-state scope with
 
 `T19_OFFLINE_REPLAY=PASS`
 
+`T20_WEB_FRONTIER_SELECTION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
@@ -137,6 +151,8 @@ This proves offline replay improvement in the tested compressed-state scope with
 
 `LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN`
 
+`T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
+
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T20_WEB_FRONTIER_THEN_T21_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T21_KNOWLEDGE_GAP_THEN_T22_T27_RUNTIME_CHAIN`
