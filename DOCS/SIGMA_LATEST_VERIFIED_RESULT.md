@@ -5,26 +5,42 @@
 
 ## Current gate result
 
-- `GATE=S2.5R12_ATOMIC_SHADOW_LIVE_BIND_REVERSE_VERIFY`
+- `GATE=S2.5R12_FIX1_ATOMIC_SHADOW_LIVE_BIND_REVERSE_VERIFY`
 - `CHECKPOINT_STATUS=VERIFIED_PASS`
-- `S2P5R12_RC=0`
+- `S2P5R12_FIX1_RC=0`
 - `S3_ALLOWED=YES`
 - `HOLD=NO`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `PRODUCTION_CUTOVER=NO`
 - `EVIDENCE_TRUNCATED=NO`
 
-R12 supersedes the prior R11 HOLD. The exact S2 root and D4/S1 evidence chain remain verified, and the required shadow binding stage has now been created, committed, and reverse-verified.
+R12 FIX1 supersedes the prior R12 checkpoint. The shadow binding remains valid and reverse-verifiable, while the single-writer lock path is now fixed for stale-owner recovery/release and idempotent replay.
 
 ## Provenance anchors
 
-- `BUNDLE_SHA256=7137245726b2a938713738257412493295c3c08d4d4c20ea21330c582a9e08d2`
-- `EVIDENCE_ZIP_SHA256=ed42dc38bd2f33703958c66e02e5ef8c8186751bf4a2821db98ca85a594c7c9d`
+- `BUNDLE_SHA256=20fda7cce0ff7c2baeee3cb4d9f1c7b5529415e249ae01afbf9a5df556dcdd00`
+- `EVIDENCE_ZIP_SHA256=76a34e38ad7ac6d635c42b516c8bc6ac7fd55eb08c7627d411a37ad200edcab9`
 - `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
 - `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 - `CONTRACT=S25R12_CONTRACT`
 - `STATIC_AUDIT=PASS`
 - `LOCAL_HARNESS_REGRESSION=PASS`
+
+## Lock / replay fix
+
+- `FIX_SCOPE=STALE_LOCK_RECOVERY_AND_RELEASE_ONLY`
+- `ACTIVE_LOCK_FAIL_CLOSED=PASS`
+- `STALE_ORPHAN_LOCK_RECOVERY=PASS`
+- `LOCK_RELEASE_NONEMPTY_BUG_FIXED=PASS`
+- `R12_V1_STALE_LOCK_DEFECT_REPRODUCED=PASS`
+- `OWNER_FILE_REMOVED_BEFORE_RMDIR=PASS`
+- `STALE_LOCK_QUARANTINE_PATH=PASS`
+- `ACTIVE_OWNER_FAIL_CLOSED_PATH=PASS`
+- `IDEMPOTENT_REPLAY_PATH=PASS`
+- `BIND_LOCK_ACQUIRE=PASS`
+- `LOCK_OWNER_STATE=STALE_OWNER_GONE`
+- `LOCK_RECOVERY=STALE_OWNER_GONE`
+- `LOCK_RELEASED=YES`
 
 ## Exact S2 identity
 
@@ -54,19 +70,21 @@ R12 supersedes the prior R11 HOLD. The exact S2 root and D4/S1 evidence chain re
 - `BINDING_SCOPE=SHADOW_C5V4_BINDING_REGISTRY_ONLY`
 - `BINDING_RECORD_SHA256=1bddb20370a63d39f526a222cc8d14c21bca40fc3246ff9f94d0b6199fa6ed7e`
 - `BIND_STAGE_CREATED=YES`
-- `BIND_RECORD_COMMIT=PASS`
+- `BIND_RECORD_COMMIT=PASS_IDEMPOTENT`
+- `BIND_IDEMPOTENT=YES`
 - `LIVE_BINDING_EXACT_S2_IDENTITY=YES`
 - `LIVE_BINDING_STRUCTURAL_ABI=YES`
 - `NON_TARGET_BINDINGS_UNCHANGED=YES`
 - `REVERSE_VERIFY_REQUIRED=PASS`
 - `ATOMIC_SINGLE_FILE_COMMIT=PASS`
-- `SHADOW_BINDING_MUTATED=YES`
+- `SHADOW_BINDING_MUTATED=NO`
 
-The active shadow binding record reverse-verifies against the expected S2 capability, candidate identity, source hash, bytecode hash, descriptor hash, D4 pool hash, pool snapshot manifest, structural ABI version, and R11 evidence origin.
+The existing active shadow binding record reverse-verifies exactly against the expected S2 capability, candidate identity, source hash, bytecode hash, descriptor hash, D4 pool hash, pool snapshot manifest, structural ABI version, selection origin, and R11 evidence origin. Replay is idempotent and does not rewrite an already-correct binding.
 
 ## Mutation / safety boundary
 
 - `PAYLOAD_MUTATED=NO`
+- `SHADOW_BINDING_MUTATED=NO`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `PRODUCTION_CUTOVER=NO`
 - `ROLLBACK_PERFORMED=NO`
@@ -74,7 +92,7 @@ The active shadow binding record reverse-verifies against the expected S2 capabi
 - `CRASH_ATOMICITY=NOT_PROVEN`
 - `PHYSICAL_FILESYSTEM_ATOMICITY=NOT_CLAIMED`
 
-R12 proves the shadow-registry bind and reverse-verification path in the tested scope. It does not claim production cutover or crash-level filesystem atomicity.
+R12 FIX1 proves the tested shadow-registry bind, reverse-verification, stale-lock recovery/release, and idempotent replay paths. It does not claim production cutover or crash-level filesystem atomicity.
 
 ## Authority boundary
 
@@ -103,9 +121,13 @@ Any change invalidates the local cache and requires a rescan. GitHub stores only
 
 `D4_S1_EVIDENCE_CHAIN=PASS`
 
-`SHADOW_LIVE_BIND=PASS`
+`SHADOW_LIVE_BIND=PASS_IDEMPOTENT`
 
 `REVERSE_VERIFY=PASS`
+
+`STALE_LOCK_RECOVERY=PASS`
+
+`LOCK_RELEASE=PASS`
 
 `S3_ALLOWED=YES`
 
