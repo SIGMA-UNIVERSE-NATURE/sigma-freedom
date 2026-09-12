@@ -5,31 +5,32 @@
 
 ## Current gate result
 
-- `GATE=S3P1_FIX3_REAL_D4_TO_BOUND_S2_TO_ADMITTED_S3_SHADOW_OWNERSHIP`
+- `GATE=S3P2_S1_NATIVE_STATE_ORIGIN_TO_S2_S3_SHADOW_OWNERSHIP`
 - `CHECKPOINT_STATUS=VERIFIED_PASS`
-- `S3P1_FIX3_RC=0`
-- `S3P1=PASS`
+- `S3P2=PASS`
 - `HOLD=NO`
 - `PRODUCTION_STATE_MUTATED=NO`
 - `PRODUCTION_CUTOVER=NO`
 - `TOOL_EXECUTION=NO`
 
-S3P1 FIX3 supersedes the prior S3 admission checkpoint as the current gate result. It integrates the already-admitted S2 and S3 path against a real member of the exact live D4 pool, proving durable shadow ownership in the exact S3P1 integration scope.
+S3P2 supersedes S3P1 as the current gate result. The mechanical need fixture used by S3P1 is removed: S3P2 starts from machine-proven S1 native state-bound selection evidence, mechanically binds the S1-selected candidate identity to the exact D4 identity, then requires bound S2 to reselect and verify that same live member before admitted S3 can commit durable shadow ownership.
 
 ## Provenance anchors
 
-- `BUNDLE_SHA256=7e2f13b9068b05bf057f061951fcb82190d811af66f2a9b94b562c2254caceb1`
-- `EVIDENCE_ZIP_SHA256=445f36058b1eea576971bb4315f32e9fa03395a810b9712c1305864c28fb3dd6`
+- `EVIDENCE_ZIP_SHA256=052fbe93da248f58a59e529a9d0190ce6ce1cb1325259bcc789247bd9f28977a`
 - `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
 - `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 - `S3_SOURCE_SHA256=b76219706f95812a560a1a9fb55670fc87c954ec5b56513d3fcc3ef7733c0b01`
 - `S3_BYTECODE_SHA256=841f0f0e285cb988c254278ddd5555920be067c2349dcbddd6bfa8ba7ffd83c7`
+- `S1_NATIVE_ORIGIN_EVIDENCE_SHA256=102936ecdf038349500f4f115e961fbf18f523481dd8adba1abb0d5c0657a35a`
 - `S3_CHECKPOINT_REVERIFY=PASS`
 - `S3_RECOMPILE=NO`
 - `S2_RECOMPILE=NO`
+- `S1_RERUN=NO_THIS_GATE`
 
 ## Locked live dependencies
 
+- `S1_NATIVE_ORIGIN_REVERIFY=PASS`
 - `S2_LIVE_BINDING_REVERIFY=PASS`
 - `D4_POOL_REVERIFY=PASS`
 - `D4_POOL_ROOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
@@ -38,7 +39,21 @@ S3P1 FIX3 supersedes the prior S3 admission checkpoint as the current gate resul
 - `D4_CANDIDATE_COUNT=18`
 - `LIVE_POOL_MUTATION=NO`
 
-The exact D4 pool remained unchanged across the tested S3P1 transaction path.
+The exact D4 pool remains invariant across the S3P2 integration path.
+
+## S1 native state origin → exact D4 identity
+
+- `S1_NATIVE_SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
+- `S1_NATIVE_SELECTED_DOOR_LABEL=R7L_T09`
+- `S1_ORIGIN_TO_D4_IDENTITY_LOOKUP=PASS`
+- `TEST_NEED_ORIGIN=SIGMA_S1_LIVE_NATIVE_STATE_SELECTION_VIA_EXACT_D4_IDENTITY_LOOKUP`
+- `TEST_NEED_SHA256=6bdb3035df089ae32665de74f1671b31d4df85e79c964a0020f1ff0cb455575a`
+- `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
+- `NEED_ORIGIN_SCOPE=S1_NATIVE_STATE_BOUND_SELECTION_EXACT_TESTED_SCOPE`
+- `HOST_NEED_SUBSTITUTION_GUARD=PASS`
+- `HOST_IDENTITY_LOOKUP_ONLY=YES`
+
+This closes the S3P1 fixture-origin gap only within the inherited S1 native state-bound selection scope. It proves provenance of the selection origin into the exact D4 identity binding; it does not prove semantic meaning of the need.
 
 ## Mechanical D4 → S2 protocol adapter
 
@@ -48,41 +63,37 @@ The exact D4 pool remained unchanged across the tested S3P1 transaction path.
 - `D4_TO_S2_SOURCE_COUNT=18`
 - `S2_SELECTION_POOL_SHA256=a74bcb44b0e6ebbde32ac8ab1b1c9d3222c04ceb76fb382ed6063e75c2e0a71c`
 - `D4_TO_S2_SEMANTIC_ENRICHMENT=NO`
-- `TARGET_CANDIDATE_PRECOMPUTED=NO`
 
-The adapter is mechanical only and does not add semantic fields or precompute the selected member.
+The adapter performs identity/protocol serialization only. No semantic mapping is added by the host.
 
-## Real live D4 member selection
+## Bound S2 reselection / verification
 
-- `TEST_NEED_ORIGIN=MECHANICAL_D4_DOOR_LABEL_FIXTURE`
-- `TEST_NEED_FIXTURE_CLASS=MULTIVARIANT_DOOR`
-- `TEST_NEED_SHA256=9ea31c83cd45c5a8b815e3adc3766561b8ed8bc12f94b35f558fba254b0d3d9f`
-- `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=NOT_PROVEN`
 - `S2_NATIVE_SELECT=PASS`
 - `S2_NATIVE_VERIFY_DISPATCH=PASS`
-- `SELECTED_CANDIDATE_ID=4da87dac142ab1ccf934932f18e272f739a93c77bdf5ef74ac38dffba2915e62`
-- `SELECTED_DESCRIPTOR_SHA256=f24dcd4ea9bc3f2d7f36b3b5f9fea986ddfc7d16bb69c27a84e2b87e2618ef9e`
-- `SELECTED_STABLE_ID=6`
-- `SELECTED_DOOR_LABEL=R7L_T03`
+- `SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
+- `SELECTED_DESCRIPTOR_SHA256=ef6cbd7cd7d082cc1760102b7e41468b587794a145dbdcee9d345ff7f25f83c4`
+- `SELECTED_STABLE_ID=7`
+- `SELECTED_NAMESPACE=R14_OPEN_TOOL_POOL_D4`
+- `SELECTED_DOOR_LABEL=R7L_T09`
 - `SELECTED_STRUCTURAL_TOKEN_OVERLAP=1`
 - `REAL_LIVE_D4_MEMBER=YES`
 
-This proves that the exact bound S2 selected and verified a real member of the live D4 pool for the mechanical test need. It does not prove that the need itself originated from live native cognition.
+Bound S2 reselects and verifies the same candidate ID originating from the inherited S1 native state-bound selection evidence.
 
-## Admitted S3 shadow ownership
+## Admitted S3 durable shadow ownership
 
 - `S3_INTENT_ACTION=ACQUIRE`
 - `S3_INTENT_STATUS=ACQUISITION_INTENT_READY`
 - `SHADOW_OWNERSHIP_COMMIT=PASS`
 - `SHADOW_OWNERSHIP_MUTATED=YES`
-- `OWNERSHIP_RECORD_SHA256=722a4ec6144c339c363440ea1eb7917abd5cadd539a50bd9744ae0dfe2f7c4bd`
-- `OWNERSHIP_TRANSACTION_ID=3d36b9c85182e20f7be61a2d11c7d16342c2bdb8c0f2b123ce7d796424bb7f54`
+- `OWNERSHIP_RECORD_SHA256=4e3de80c389674a195dc6807e08172cfdac1f934f748f8d21fcb5354cb63525e`
+- `OWNERSHIP_TRANSACTION_ID=8a8246e4efa7d22f0c9f47d8d889be43133d93c366485de25c1940fe9ea96bb8`
 - `S3_NATIVE_OWNERSHIP_VERIFY=PASS`
 - `RESTART_REPLAY_TEST=PASS_FRESH_VM`
 - `IDEMPOTENT_REACQUIRE=PASS`
 - `LIVE_D4_MEMBER_OWNED_SHADOW=YES`
 
-The admitted S3 path accepted the verified real D4 member into durable shadow ownership, then reverified that ownership after a fresh-VM restart and on re-intent.
+The admitted S3 path commits durable shadow ownership of the S1-origin / S2-verified live D4 member and re-verifies ownership after a fresh-VM restart.
 
 ## Invariance / authority boundary
 
@@ -96,6 +107,7 @@ The admitted S3 path accepted the verified real D4 member into durable shadow ow
 - `HOST_SEMANTIC_INTERPRETATION=NO`
 - `HOST_SEMANTIC_SUBSTITUTION=NO`
 - `HOST_STAGE_DECISION=NO`
+- `HOST_IDENTITY_LOOKUP_ONLY=YES`
 - `HOST_DISPATCH_EXACT_NATIVE_EVENT=YES_MECHANICAL_ONLY`
 - `AUTO_ACQUIRE=NO`
 - `AUTO_EXECUTE=NO`
@@ -106,12 +118,14 @@ The admitted S3 path accepted the verified real D4 member into durable shadow ow
 
 ## Claim ceiling
 
-- `CLAIM_SCOPE=REAL_LIVE_D4_POOL_MEMBER_TO_DURABLE_SHADOW_OWNERSHIP_VIA_EXACT_BOUND_S2_AND_ADMITTED_S3_PROVEN_IN_EXACT_S3P1_INTEGRATION_TEST_SCOPE_WITH_MECHANICAL_FIXTURE_NEED_ONLY_NO_EXECUTION`
-- `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=NOT_PROVEN`
+- `CLAIM_SCOPE=S1_MACHINE_PROVEN_NATIVE_STATE_BOUND_SELECTION_ORIGIN_TO_EXACT_D4_IDENTITY_LOOKUP_TO_BOUND_S2_SELECTION_DISPATCH_TO_ADMITTED_S3_DURABLE_SHADOW_OWNERSHIP_PROVEN_IN_EXACT_BOUNDED_S3P2_SCOPE_NO_EXECUTION`
+- `LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
+- `SEMANTIC_NEED_MEANING=NOT_PROVEN`
+- `SEMANTIC_TOOL_FIT=NOT_PROVEN`
 - `TOOL_EXECUTION=NO`
 - `PRODUCTION_CUTOVER=NO`
 
-S3P1 proves integration from exact live D4 membership through bound S2 selection/verification into admitted S3 durable shadow ownership. It does not prove a live native cognitive need origin, semantic tool fit, tool execution, or production cutover.
+S3P2 proves the exact bounded integration chain from inherited S1 native state-bound selection origin through D4 identity binding, bound S2 reselection/verification, and admitted S3 durable shadow ownership. It does not prove semantic meaning of the need, semantic tool fit, tool execution, or production cutover.
 
 ## Cache policy
 
@@ -125,15 +139,19 @@ Any change invalidates the local cache and requires a rescan. GitHub stores only
 
 `RESULT=PASS`
 
-`S3_CHECKPOINT_DEPENDENCY=PASS`
+`S1_NATIVE_ORIGIN_REVERIFY=PASS`
 
-`S2_LIVE_BINDING_DEPENDENCY=PASS`
+`S1_ORIGIN_TO_D4_IDENTITY_LOOKUP=PASS`
 
-`D4_LIVE_POOL_REVERIFY=PASS`
+`LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=PASS_IN_INHERITED_S1_NATIVE_STATE_BOUND_SELECTION_SCOPE`
 
-`REAL_LIVE_D4_MEMBER_SELECTED=YES`
+`HOST_NEED_SUBSTITUTION_GUARD=PASS`
+
+`S2_NATIVE_SELECT=PASS`
 
 `S2_NATIVE_VERIFY_DISPATCH=PASS`
+
+`REAL_LIVE_D4_MEMBER_SELECTED=YES`
 
 `S3_SHADOW_OWNERSHIP=PASS`
 
@@ -143,10 +161,12 @@ Any change invalidates the local cache and requires a rescan. GitHub stores only
 
 `IDEMPOTENT_REACQUIRE=PASS`
 
-`LIVE_NATIVE_COGNITIVE_NEED_ORIGIN=NOT_PROVEN`
+`SEMANTIC_NEED_MEANING=NOT_PROVEN`
+
+`SEMANTIC_TOOL_FIT=NOT_PROVEN`
 
 `TOOL_EXECUTION=NO`
 
 `PRODUCTION_CUTOVER=NO`
 
-`NEXT=S3P2_LIVE_NATIVE_COGNITIVE_NEED_ORIGIN_TO_S2_ACQUISITION_LOOP_NO_EXECUTION`
+`NEXT=S3P3_NATIVE_SEMANTIC_NEED_OR_GAP_TO_CAPABILITY_DEMAND_ALIGNMENT_NO_EXECUTION`
