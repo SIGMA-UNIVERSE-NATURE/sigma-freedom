@@ -6,7 +6,6 @@
 ## Current verified gate
 
 - `PACKAGE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1_FIX2`
-- `SELFTEST=PASS`
 - `TOOLCHAIN_PREFLIGHT=PASS`
 - `T14_PREREQUISITE=PASS`
 - `CONTROLLERS_DETERMINISTIC_COMPILE=PASS`
@@ -15,9 +14,10 @@
 - `T16_PROCESS_INDEPENDENT_REVERIFY=PASS`
 - `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
 - `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
-- `CURRENT_STATUS=T15_T18_MACHINE_PASS_T19_T27_RUNTIME_PENDING`
+- `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
+- `CURRENT_STATUS=T15_T19_MACHINE_PASS_T20_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T18. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; and T18 proves old-state-to-evidence long-context revision in learned-state scope. Broader semantic/understanding claims remain outside the proven scope.
+FIX2 now establishes tested runtime PASS through T19. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; T18 proves old-state-to-evidence long-context revision; and T19 proves offline replay improvement from compressed state without network access. Broader semantic/understanding claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -40,11 +40,10 @@ FIX2 now establishes tested runtime PASS through T18. T15 proves whole-document 
 - `T14_EVIDENCE_SHA256=ef9c47b2489b36d73d54a98a9d6e75ca47e25054807d971a0337be2ac107139e`
 - `T14_OPPO_PASS=PASS`
 
-## Whole-document engine / selftest
+## Whole-document engine
 
 - `AIL_WD_BINARY_SHA256=4a1c933b22030e8e2ca01587ab0370b289284d0890e99a49c18cbd6839471f3e`
 - `AIL_WD_DETERMINISTIC_BUILD=PASS`
-- `AIL_WD_ENGINE_SELFTEST=PASS`
 - `WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVEMENT=PASS`
 - `COMPRESSED_STATE_OFFLINE_REPLAY_OBJECTIVE_IMPROVEMENT=PASS`
 - `CROSS_DOCUMENT_CONSOLIDATION_OBJECTIVE_IMPROVEMENT=PASS`
@@ -71,7 +70,7 @@ FIX2 now establishes tested runtime PASS through T18. T15 proves whole-document 
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## Runtime results through T18
+## Runtime results through T19
 
 ### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
@@ -98,14 +97,20 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `STATUS=OLD_STATE_TO_EVIDENCE_REVISION_OBJECTIVE_IMPROVED`
 - `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
 - `T18_LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+
+### T19
+- `ACTION=ACCEPT_OFFLINE_REPLAY_CANDIDATE`
+- `STATUS=OFFLINE_REPLAY_IMPROVED_WITHOUT_NETWORK`
+- `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
 - `HOST_COGNITION=NO`
 
-This proves the tested long-context revision mechanism from old learned state toward new evidence. It does not establish general long-context semantic understanding.
+This proves offline replay improvement in the tested compressed-state scope without network access. It does not establish the downstream web/frontier, knowledge-gap, study, capability-choice, blind-choice, or autonomous-loop runtime gates.
 
 ## Downstream status
 
-- `T19_OFFLINE_REPLAY_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
-- `T20_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T20_WEB_FRONTIER_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T21_KNOWLEDGE_GAP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T22_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
 ## Final
@@ -122,6 +127,8 @@ This proves the tested long-context revision mechanism from old learned state to
 
 `T18_LONG_CONTEXT_REVISION=PASS`
 
+`T19_OFFLINE_REPLAY=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
@@ -132,4 +139,4 @@ This proves the tested long-context revision mechanism from old learned state to
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T19_OFFLINE_REPLAY_THEN_T20_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T20_WEB_FRONTIER_THEN_T21_T27_RUNTIME_CHAIN`
