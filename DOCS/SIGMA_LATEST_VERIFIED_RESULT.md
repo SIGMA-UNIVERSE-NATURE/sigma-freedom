@@ -17,9 +17,10 @@
 - `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
 - `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
 - `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
-- `CURRENT_STATUS=T15_T21_MACHINE_PASS_T22_T27_RUNTIME_PENDING`
+- `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
+- `CURRENT_STATUS=T15_T22_MACHINE_PASS_T23_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T21. T15 proves whole-document mechanics; T16 provenance-bound memory/rebind; T17 cross-document consolidation in learned-state scope; T18 old-state-to-evidence long-context revision; T19 offline replay from compressed state without network; T20 selection from a provided learned frontier without host query/target selection; and T21 knowledge-gap opening when learned-representation distance exceeds learned calibration. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
+FIX2 now establishes tested runtime PASS through T22. T15 proves whole-document mechanics; T16 provenance-bound memory/rebind; T17 cross-document consolidation in learned-state scope; T18 old-state-to-evidence long-context revision; T19 offline replay from compressed state without network; T20 selection from a provided learned frontier without host query/target selection; T21 knowledge-gap opening when learned-representation distance exceeds learned calibration; and T22 unique study selection from predicted learning gain without host study selection. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -74,7 +75,7 @@ FIX2 now establishes tested runtime PASS through T21. T15 proves whole-document 
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## Runtime results through T21
+## Runtime results through T22
 
 ### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
@@ -123,11 +124,16 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
 - `T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
 
-This proves the tested learned-calibration gap detector can open a knowledge gap when learned-representation distance exceeds its learned calibration boundary. It does not prove a general semantic notion of missing knowledge.
+### T22
+- `ACTION=SELECT_NEXT_STUDY`
+- `STATUS=UNIQUE_MAX_PREDICTED_LEARNING_GAIN`
+- `HOST_STUDY_SELECTION=NO`
+- `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
+
+This proves the tested study selector can choose a unique maximum-predicted-learning-gain study candidate within the ephemeral gain-probe scope without host study selection. It does not by itself prove general-purpose autonomous curriculum formation or downstream capability execution.
 
 ## Downstream status
 
-- `T22_STUDY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T23_CAPABILITY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T24_T26_BLIND_CHOICE_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
@@ -153,6 +159,8 @@ This proves the tested learned-calibration gap detector can open a knowledge gap
 
 `T21_KNOWLEDGE_GAP_DETECTION=PASS`
 
+`T22_AUTONOMOUS_STUDY_SELECTION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
@@ -167,4 +175,4 @@ This proves the tested learned-calibration gap detector can open a knowledge gap
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T22_STUDY_SELECTION_THEN_T23_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T23_CAPABILITY_SELECTION_THEN_T24_T27_RUNTIME_CHAIN`
