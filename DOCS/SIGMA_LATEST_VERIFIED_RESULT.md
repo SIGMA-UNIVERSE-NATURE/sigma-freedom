@@ -3,35 +3,27 @@
 > Branch: `SIGMA_LANGUAGE_TOOLS`  
 > Policy: keep one canonical current-result file for the language-tool line. GitHub stores provenance-safe facts only; raw local paths, terminal logs, environment dumps, and sensitive host data are not retained here.
 
-## Current package / gate
+## Current verified gate
 
-- `PACKAGE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1`
-- `PACKAGE_MANIFEST=VERIFIED_OK`
-- `PACKAGE_LOCAL_SELFTEST=PASS`
+- `PACKAGE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1_FIX1`
+- `SELFTEST=PASS`
 - `TOOLCHAIN_PREFLIGHT=PASS`
-- `CURRENT_STATUS=MACHINE_CHAIN_INTEGRATION_PENDING`
-- `NEXT_REQUIRED=T16_T18_INTEGRATION_WITH_NEW_T15_MACHINE_RUN`
+- `T14_PREREQUISITE=PASS`
+- `CONTROLLERS_DETERMINISTIC_COMPILE=PASS`
+- `T15_WHOLE_DOCUMENT_REPRESENTATION=PASS_IN_MECHANICS_SCOPE`
+- `T15_FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
+- `CURRENT_STATUS=T15_MACHINE_MECHANICS_PASS_DOWNSTREAM_INTEGRATION_PENDING`
 
-The package is locally source/selftest ready. A complete machine PASS for the integrated T15→T18 chain is **not yet claimed** from the supplied evidence.
+This supersedes the earlier source/selftest-only checkpoint. T15 has now executed successfully in its tested whole-document mechanics scope. No broader full-document understanding claim is made from T15 alone.
 
 ## Architectural claim boundary
 
 - `HOST_COGNITION=NO`
 - `TOKENIZER=NONE`
 - `NEXT_TOKEN_OBJECTIVE=NO`
-- `NO_TOKEN_SUBWORD_NEXT_TOKEN_LEARNING_IMPLEMENTATION=PASS`
+- `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T15_ALONE`
 
-This line is explicitly whole-document / compressed-state oriented and does not claim token/subword next-token learning.
-
-## Deterministic whole-document engine
-
-- `AIL_WD_BINARY_A_SHA256=8ce26125b6a1f45f47ce124c8e384ccf49f7fb9b80a052fdc954e2e11cf819d0`
-- `AIL_WD_BINARY_B_SHA256=8ce26125b6a1f45f47ce124c8e384ccf49f7fb9b80a052fdc954e2e11cf819d0`
-- `AIL_WD_DETERMINISTIC_BUILD=PASS`
-- `AIL_WD_ENGINE_SELFTEST=PASS`
-- `WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVEMENT=PASS`
-- `COMPRESSED_STATE_OFFLINE_REPLAY_OBJECTIVE_IMPROVEMENT=PASS`
-- `RAW_DOCUMENT_REQUIRED_FOR_REPLAY=NO`
+This line remains whole-document / relational-state oriented and explicitly does not claim token/subword next-token learning.
 
 ## Locked toolchain
 
@@ -44,45 +36,58 @@ This line is explicitly whole-document / compressed-state oriented and does not 
 - `T14_EVIDENCE_SHA256=ef9c47b2489b36d73d54a98a9d6e75ca47e25054807d971a0337be2ac107139e`
 - `T14_OPPO_PASS=PASS`
 
-T14 is admitted as the prerequisite evidence anchor for this chain.
+## Whole-document engine
 
-## T16–T18 inherited master evidence
+- `AIL_WD_BINARY_SHA256=8ce26125b6a1f45f47ce124c8e384ccf49f7fb9b80a052fdc954e2e11cf819d0`
+- `AIL_WD_DETERMINISTIC_BUILD=PASS`
+- `WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVEMENT=PASS`
+- `COMPRESSED_STATE_OFFLINE_REPLAY_OBJECTIVE_IMPROVEMENT=PASS`
+- `RAW_DOCUMENT_REQUIRED_FOR_REPLAY=NO`
 
-- `OLD_PASS=PREREQUISITE_EVIDENCE`
-- `OLD_PASS_PERMANENT_DESIGN=NO`
-- `T16_SOURCE_SHA256_EXPECTED=ee413a0080855ae554b7ab8f5e64c2d9a43f4e62cdc4128fee7e2487d82a60ba`
-- `T16_BINARY_SHA256_EXPECTED=f8c7977eae0d9e6bc0a28e9793880e62fb5801124c487541d910f944d3d81311`
-- `T17_SOURCE_SHA256_EXPECTED=b21d35d96604d55bef6bb8013d7afbcdbe80cff55b7fff536c24fafd14f50c52`
-- `T18_SOURCE_SHA256_EXPECTED=099fb98a7b97544980373c3bd9036ed34bccc24b9256fe6f3689b5a46410cf7a`
-- `T16_T18_INTEGRATION_WITH_NEW_T15=REQUIRES_MACHINE_RUN`
+## Deterministic controller builds
 
-These inherited hashes are prerequisite/master evidence only. They are not treated as a fresh integrated machine PASS for the new T15 chain.
+- `T15_CONTROLLER_SHA256=10193727f56c19f534a6ccf6350347fd47470366d71d7a10293f5e33a85556a7`
+- `T19_CONTROLLER_SHA256=953ca0ff5fa20ff81876014a53348225dcb6b474ba32cfca27efd70fbb0c818b`
+- `T20_CONTROLLER_SHA256=db58a1b96bf1766981b938df5458785c27b303b6966a29dc3dbdecbf81121919`
+- `T21_CONTROLLER_SHA256=5977e55c5c72a294dbe5b60e948ea8212792b08b14c4c0ecaa7cf78eee4ccbe5`
+- `T22_CONTROLLER_SHA256=c9197a3e3ebb86e77ccf3409206e4819ce2072a27da87c30856ba4c83142be52`
+- `T23_CONTROLLER_SHA256=5b6c8600caf6a39d2eeddc9d7ab2dfcfe9230848b05c9fff7785e4f450dab5a1`
+- `T24_T26_CONTROLLER_SHA256=40b00deb11322ae7f481d1ae92b2c365da266e0b89de0616289dcc60ef96a998`
+- `T27_CONTROLLER_SHA256=419b489a32894a8bacf31e74ed211b9db8fd16ddf5414b41beb1ee30ddf8a11f`
+- `CONTROLLERS_DETERMINISTIC_COMPILE=PASS`
 
-## Controllers present in the admitted package
+Deterministic compilation of downstream controllers proves build reproducibility only; it does not by itself prove downstream runtime admission.
 
-The verified package includes controllers for:
+## T15 runtime result
 
-- T15 whole-document admission
-- T19 offline replay admission
-- T20 web frontier selection
-- T21 knowledge-gap selection
-- T22 study selection
-- T23 capability selection
-- T24–T26 blind choice
-- T27 autonomous loop
+- `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
+- `STATUS=WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVED`
+- `TOKENIZER=NONE`
+- `NEXT_TOKEN_OBJECTIVE=NO`
+- `HOST_COGNITION=NO`
+- `T15_WHOLE_DOCUMENT_REPRESENTATION=PASS_IN_MECHANICS_SCOPE`
+- `T15_FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
-Presence and manifest verification do not by themselves elevate any controller to runtime admission beyond the supplied test evidence.
+## Downstream status
+
+The supplied evidence does not establish a fresh integrated machine PASS for T16–T18 or the complete T19–T27 runtime chain.
+
+- `T16_T18_NEW_T15_INTEGRATION=NOT_YET_PROVEN`
+- `T19_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
 ## Final
 
-`SOURCE_PACKAGE_READY=YES`
-
-`LOCAL_SELFTEST=PASS`
+`RESULT=PARTIAL_PASS`
 
 `T14_PREREQUISITE=PASS`
 
-`T16_T18_NEW_T15_INTEGRATION=NOT_YET_PROVEN`
+`T15_MACHINE_MECHANICS=PASS`
+
+`CONTROLLER_BUILD_CHAIN=PASS`
+
+`FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=T16_T18_INTEGRATION_WITH_NEW_T15_MACHINE_RUN`
+`NEXT=RUN_AND_VERIFY_T16_T18_INTEGRATION_WITH_NEW_T15_THEN_DOWNSTREAM_RUNTIME_CHAIN`
