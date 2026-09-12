@@ -1,9 +1,9 @@
 # SIGMA — LATEST VERIFIED RESULT
 
 > Branch: `SIGMA_LIFE`  
-> Policy: keep only the latest verified gate result in GitHub; local cache is the performance layer. Intermediate diagnostics, raw machine state, absolute local paths, terminal logs, and sensitive host data are not retained here.
+> Policy: keep one canonical current-result file. Local cache is the performance layer; GitHub stores provenance-safe facts only. No raw machine state, absolute local paths, terminal logs, or sensitive host data are retained here.
 
-## Current verified result
+## Current gate result
 
 - `GATE=S2.5R6_EXACT_S2_OUTPUT_ROOT_RESOLUTION`
 - `CHECKPOINT_STATUS=VERIFIED_HOLD`
@@ -14,39 +14,87 @@
 - `PRODUCTION_STATE_MUTATED=NO`
 - `S2P5R6_RC=10`
 
-## Provenance anchors
+### Current blocker
 
-- `EVIDENCE_ZIP_SHA256=8dcbafab026c7018ac3959c3a8da8d26f5d733f68646e351327d79feda6b7ca4`
-- `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
-- `LOCKED_SIGMAC=PASS`
-- `LOCKED_VM=PASS`
-- `EXECUTION_MODE=READ_ONLY`
-
-## Resolution result
-
-- `S2_OUTPUT_ROOT_COUNT=5`
-- `S2_OUTPUT_ROOT_DISCOVERY_TRUNCATED=NO`
 - `METADATA_PROVENANCE_QUALIFIED_ROOT_COUNT=1`
 - `DEEP_SCAN_EXECUTED=YES`
 - `DEEP_SCAN_ROOT_COUNT=1`
 - `EXACT_ROOT_COUNT=0`
 - `UNIQUE_EXACT_ROOT=NO`
-- `LIVE_BINDING_ROOT_PRESENT=YES`
 - `LIVE_BINDING_EXACT_S2_IDENTITY=NO`
 - `LIVE_BINDING_STRUCTURAL_ABI=NO`
+- `BLOCKER=NO_COHERENT_BINDING_CHAIN`
 
-Normalized root resolution:
+The current S2.5R6 gate therefore remains `HOLD`; this upstream R14/S1 evidence does not by itself admit S3.
 
-- 4 discovered S2 output roots rejected because provenance reference was missing.
-- 1 root matched S2 pass/source/bytecode/provenance and was deep-scanned.
-- That root was rejected by `NO_BINDING_CHAIN`.
+## Verified upstream prerequisite — R14 D4 / S1 live state-bound exploration
 
-## Blocking condition
+Source-ready provenance commit:
 
-`BLOCKER=NO_COHERENT_BINDING_CHAIN`
+- `SOURCE_READY_COMMIT=91f93c9ee61f13af46c034fc8753575ba6d3c107`
+- Commit purpose: `R14 S1 live state-bound exploration R2 source-ready checkpoint`
 
-The metadata/provenance-qualified S2 root is identified, but there is no coherent live binding chain sufficient to establish exact S2 identity plus structural ABI. Therefore no exact qualified root exists and S3 remains disallowed.
+### R14 D4 open candidate pool
+
+- `R14_OPEN_TOOL_POOL_D4=PASS`
+- `R14_CANDIDATE_IDENTITY_KEYED=PASS`
+- `R14_LEGACY_OR_INCOMPLETE_EVIDENCE_FAILS_LOCALLY=PASS`
+- `R14_ONE_BAD_CANDIDATE_DOES_NOT_KILL_POOL=PASS`
+- `R14_MULTIPLE_VARIANTS_PER_DOOR_LABEL=PASS`
+- `R14_NO_TOOL_IS_MANDATORY=PASS`
+- `R14_NO_TOOL_AUTO_ACQUIRED=PASS`
+- `R14_NO_TOOL_AUTO_EXECUTED=PASS`
+- `R14_CAPABILITY_CLASS_PREASSIGNED=NO`
+- `R14_SELECTION_AUTHORITY=SIGMA_ONLY`
+- `R14_HOST_TOOL_SELECTION=NO`
+- `R14_POOL_ROOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
+- `R14_ELIGIBLE_CANDIDATE_COUNT=18`
+
+### Deterministic native build
+
+- `S1_LIVE_SOURCE_SHA256=d210c8422ff9758c4c89ca61c25e661278441c30c642d800ac35cb9ade6bff28`
+- `S1_LIVE_BYTECODE_SHA256=a857ece413522ae3bcdee9f02d6f5703b4cb50d68c66e2ed040b2022c7a0e4b8`
+- `S1_LIVE_DETERMINISTIC_COMPILE=PASS`
+- `STATE_BASIS_BUNDLE_SHA256=b3e93f74f93c6e66a40d343aa32fd04b18bb292fe32e9816955f4fda40e9421f`
+- `WEIGHT_FINGERPRINT64=52218bad5d5069de`
+
+Locked toolchain:
+
+- `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+
+### Live native selection result
+
+- `LIVE_SELECTION_STATUS=NATIVE_STATE_SELECTED_AVAILABLE_CANDIDATE`
+- `SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
+- `SELECTED_ID_MEMBERSHIP_IN_EXACT_D4_POOL=PASS`
+- `DOOR_LABEL_VISIBLE_TO_SELECTOR=NO`
+- `CAPABILITY_CLASS_VISIBLE_TO_SELECTOR=NO`
+- `HOST_DERIVED_DRIVE_U=NO`
+- `HOST_TOOL_SELECTION=NO`
+- `AUTO_ACQUIRE=NO`
+- `AUTO_EXECUTE=NO`
+
+### Admitted R14/S1 claim ceiling
+
+- `R14_D4_OPEN_POOL_INHERITED=PASS_IN_EXISTING_D4_SCOPE`
+- `R14_S1_LIVE_EXACT_NATIVE_STATE_EVIDENCE_BOUND=PASS`
+- `R14_S1_LIVE_NATIVE_STATE_BOUND_EXPLORATION=PASS_IN_EXACT_TESTED_SCOPE`
+- `SIGMA_TOOL_SELF_SELECTION_RUNTIME=PASS_IN_STATE_BOUND_EXPLORATION_SCOPE`
+- `SIGMA_SELF_SELECTS_CAPABILITIES=NOT_PROVEN`
+- `SEMANTIC_CAPABILITY_FIT=NOT_PROVEN`
+- `TOOL_UTILITY_LEARNING=NOT_PROVEN`
+- `TOOL_EXECUTION=NO`
+- `C5V3_MUTATION=NO`
+- `PRODUCTION_CUTOVER=NO`
+
+This establishes native state-bound self-selection of an opaque candidate ID from the exact D4 available pool, without host reselection. It does not establish semantic tool choice, learned utility, tool execution, or production cutover.
+
+## R6 provenance anchors
+
+- `EVIDENCE_ZIP_SHA256=8dcbafab026c7018ac3959c3a8da8d26f5d733f68646e351327d79feda6b7ca4`
+- `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
+- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 
 ## Cache policy
 
@@ -64,13 +112,13 @@ Any change invalidates the local cache and requires a rescan. GitHub stores only
 - `HOST_TOOL_SELECTION=NO`
 - `AUTO_ACQUIRE=NO`
 - `AUTO_EXECUTE=NO`
-- `NEWEST_OR_TIMESTAMP_SELECTION=FORBIDDEN`
-- `PATH_PREFIX_SELECTION=FORBIDDEN`
 
 ## Final
 
-`RESULT=HOLD`
+`UPSTREAM_R14_S1_RESULT=PASS_IN_STATE_BOUND_EXPLORATION_SCOPE`
 
-`REASON=NO_BINDING_CHAIN`
+`CURRENT_S2P5R6_RESULT=HOLD`
+
+`CURRENT_REASON=NO_BINDING_CHAIN`
 
 `S3_ALLOWED=NO`
