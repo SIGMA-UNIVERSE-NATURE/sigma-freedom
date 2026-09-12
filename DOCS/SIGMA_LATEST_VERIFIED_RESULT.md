@@ -5,9 +5,8 @@
 
 ## Current verified gate
 
-- `PACKAGE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1_FIX2`
+- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1_FIX6_EXEC`
 - `TOOLCHAIN_PREFLIGHT=PASS`
-- `T14_PREREQUISITE=PASS`
 - `CONTROLLERS_DETERMINISTIC_COMPILE=PASS`
 - `T15_WHOLE_DOCUMENT_REPRESENTATION=PASS_IN_MECHANICS_SCOPE`
 - `T16_PROVENANCE_BOUND_MEMORY=PASS_IN_REBIND_SCOPE`
@@ -18,9 +17,10 @@
 - `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
 - `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
 - `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
-- `CURRENT_STATUS=T15_T22_MACHINE_PASS_T23_T27_RUNTIME_PENDING`
+- `T23_CAPABILITY_SELF_SELECTION=PASS_IN_EXPERIENCE_BOUND_LEARNED_REPRESENTATION_SCOPE`
+- `CURRENT_STATUS=T15_T23_MACHINE_PASS_T24_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T22. T15 proves whole-document mechanics; T16 provenance-bound memory/rebind; T17 cross-document consolidation in learned-state scope; T18 old-state-to-evidence long-context revision; T19 offline replay from compressed state without network; T20 selection from a provided learned frontier without host query/target selection; T21 knowledge-gap opening when learned-representation distance exceeds learned calibration; and T22 unique study selection from predicted learning gain without host study selection. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
+The verified chain now reaches T23. T15–T22 remain admitted in their previously tested scopes, and the new T23 evidence proves live-pool capability self-selection from learned experience state without host tool selection or a lexical selector. Broader semantic-tool-fit and execution claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -33,17 +33,13 @@ FIX2 now establishes tested runtime PASS through T22. T15 proves whole-document 
 - `LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN_BY_T18_ALONE`
 - `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
 - `T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
+- `T23_SEMANTIC_TOOL_FIT_PROVEN=NO`
 
 ## Locked toolchain
 
 - `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
 - `SIGMA_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
 - `TOOLCHAIN_PREFLIGHT=PASS`
-
-## T14 prerequisite
-
-- `T14_EVIDENCE_SHA256=ef9c47b2489b36d73d54a98a9d6e75ca47e25054807d971a0337be2ac107139e`
-- `T14_OPPO_PASS=PASS`
 
 ## Whole-document engine
 
@@ -75,7 +71,7 @@ FIX2 now establishes tested runtime PASS through T22. T15 proves whole-document 
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## Runtime results through T22
+## Runtime results through T23
 
 ### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
@@ -107,7 +103,6 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `ACTION=ACCEPT_OFFLINE_REPLAY_CANDIDATE`
 - `STATUS=OFFLINE_REPLAY_IMPROVED_WITHOUT_NETWORK`
 - `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
-- `HOST_COGNITION=NO`
 
 ### T20
 - `ACTION=SELECT_WEB_TARGET`
@@ -120,7 +115,6 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 ### T21
 - `ACTION=OPEN_KNOWLEDGE_GAP`
 - `STATUS=LEARNED_REPRESENTATION_DISTANCE_EXCEEDS_LEARNED_CALIBRATION`
-- `HOST_COGNITION=NO`
 - `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
 - `T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
 
@@ -130,11 +124,24 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `HOST_STUDY_SELECTION=NO`
 - `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
 
-This proves the tested study selector can choose a unique maximum-predicted-learning-gain study candidate within the ephemeral gain-probe scope without host study selection. It does not by itself prove general-purpose autonomous curriculum formation or downstream capability execution.
+### T23
+- `ACTION=SELECT_AVAILABLE_CAPABILITY`
+- `STATUS=SIGMA_SELECTED_UNIQUE_LEARNED_MATCH`
+- `T23_REBUILT_AVAILABLE_DESCRIPTOR_COUNT=21`
+- `T23_AVAILABLE_POOL_REBUILT_FROM_OPPO_PASS_EVIDENCE=PASS`
+- `T23_CAPABILITY_EXPERIENCE_STATES=PASS`
+- `T23_LIVE_POOL_ENUMERATION=PASS`
+- `T23_CAPABILITY_SELF_SELECTION=PASS_IN_EXPERIENCE_BOUND_LEARNED_REPRESENTATION_SCOPE`
+- `HOST_TOOL_SELECTION=NO`
+- `LEXICAL_SELECTOR=NO`
+- `AUTO_ACQUIRE=NO`
+- `AUTO_EXECUTE=NO`
+- `T23_SEMANTIC_TOOL_FIT_PROVEN=NO`
+
+This proves capability self-selection from the rebuilt available pool in the tested experience-bound learned-representation scope, without host tool selection or lexical selection. It does not prove general semantic tool fit, acquisition, or execution.
 
 ## Downstream status
 
-- `T23_CAPABILITY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T24_T26_BLIND_CHOICE_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
@@ -142,8 +149,6 @@ This proves the tested study selector can choose a unique maximum-predicted-lear
 ## Final
 
 `RESULT=PARTIAL_PASS`
-
-`T14_PREREQUISITE=PASS`
 
 `T15_MACHINE_MECHANICS=PASS`
 
@@ -161,18 +166,16 @@ This proves the tested study selector can choose a unique maximum-predicted-lear
 
 `T22_AUTONOMOUS_STUDY_SELECTION=PASS`
 
+`T23_CAPABILITY_SELF_SELECTION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
-`FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
+`T23_SEMANTIC_TOOL_FIT_PROVEN=NO`
 
-`CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
+`AUTO_ACQUIRE=NO`
 
-`LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN`
-
-`T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
-
-`T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
+`AUTO_EXECUTE=NO`
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T23_CAPABILITY_SELECTION_THEN_T24_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T24_T26_BLIND_CHOICE_THEN_T27_AUTONOMOUS_LOOP`
