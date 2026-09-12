@@ -1,105 +1,88 @@
-# SIGMA — LATEST VERIFIED RESULT
+# SIGMA LANGUAGE TOOLS — LATEST VERIFIED RESULT
 
-> Branch: `SIGMA_LIFE`  
-> Policy: keep one canonical current-result file. Local cache is the performance layer; GitHub stores provenance-safe facts only. No raw machine state, absolute local paths, terminal logs, or sensitive host data are retained here.
+> Branch: `SIGMA_LANGUAGE_TOOLS`  
+> Policy: keep one canonical current-result file for the language-tool line. GitHub stores provenance-safe facts only; raw local paths, terminal logs, environment dumps, and sensitive host data are not retained here.
 
-## Current gate result
+## Current package / gate
 
-- `GATE=S2.5R11_FIX1_EXACT_S1_EXECUTION_EVIDENCE_PATH`
-- `CHECKPOINT_STATUS=VERIFIED_HOLD`
-- `S3_ALLOWED=NO`
-- `HOLD=YES`
-- `HOLD_REASON=BIND_STAGE_REQUIRED:FRESH_S2_COMPLETE_EXACT_D4_POOL_PROVEN`
-- `S2P5R11_FIX1_RC=10`
-- `PRODUCTION_STATE_MUTATED=NO`
-- `EVIDENCE_TRUNCATED=NO`
+- `PACKAGE=SIGMA_R7L_T14_T27_WHOLE_DOCUMENT_CHAIN_R1`
+- `PACKAGE_MANIFEST=VERIFIED_OK`
+- `PACKAGE_LOCAL_SELFTEST=PASS`
+- `TOOLCHAIN_PREFLIGHT=PASS`
+- `CURRENT_STATUS=MACHINE_CHAIN_INTEGRATION_PENDING`
+- `NEXT_REQUIRED=T16_T18_INTEGRATION_WITH_NEW_T15_MACHINE_RUN`
 
-R11 FIX1 supersedes the earlier R6 root-resolution result. The exact S2 root is now resolved and the D4/S1 evidence chain is proven. The remaining blocker is the required bind stage.
+The package is locally source/selftest ready. A complete machine PASS for the integrated T15→T18 chain is **not yet claimed** from the supplied evidence.
 
-## Provenance anchors
+## Architectural claim boundary
 
-- `BUNDLE_SHA256=30f501cd25a0804258365b8029a9a09b8058f8cccb46756cb9089f631db04b01`
-- `EVIDENCE_ZIP_SHA256=306deb5fd542311ec9c28af9189ebb9ad35ed214fc5997197d9aa3b14e2a1525`
+- `HOST_COGNITION=NO`
+- `TOKENIZER=NONE`
+- `NEXT_TOKEN_OBJECTIVE=NO`
+- `NO_TOKEN_SUBWORD_NEXT_TOKEN_LEARNING_IMPLEMENTATION=PASS`
+
+This line is explicitly whole-document / compressed-state oriented and does not claim token/subword next-token learning.
+
+## Deterministic whole-document engine
+
+- `AIL_WD_BINARY_A_SHA256=8ce26125b6a1f45f47ce124c8e384ccf49f7fb9b80a052fdc954e2e11cf819d0`
+- `AIL_WD_BINARY_B_SHA256=8ce26125b6a1f45f47ce124c8e384ccf49f7fb9b80a052fdc954e2e11cf819d0`
+- `AIL_WD_DETERMINISTIC_BUILD=PASS`
+- `AIL_WD_ENGINE_SELFTEST=PASS`
+- `WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVEMENT=PASS`
+- `COMPRESSED_STATE_OFFLINE_REPLAY_OBJECTIVE_IMPROVEMENT=PASS`
+- `RAW_DOCUMENT_REQUIRED_FOR_REPLAY=NO`
+
+## Locked toolchain
+
 - `SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71`
-- `VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
-- `CONTRACT=S25R11_CONTRACT`
-- `R11_STATIC_AUDIT=PASS`
-- `R11_LOCAL_HARNESS_REGRESSION=PASS`
+- `SIGMA_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99`
+- `TOOLCHAIN_PREFLIGHT=PASS`
 
-## Exact S2 result
+## T14 prerequisite
 
-- `FRESH_S2_CREATED=YES`
-- `FRESH_S2_VERIFIED=YES`
-- `CAPABILITY_ID=SIGMA_C5V4_NATIVE_OPEN_CAPABILITY_SELF_SELECTION_S2`
-- `CANDIDATE_ID=S2-1a605b4013f1cf71-312e16014d16c568`
-- `SOURCE_SHA256=1a605b4013f1cf712d50d472ac57c67a306c1731cdc7ffa98587eecc3c9b405f`
-- `BYTECODE_SHA256=312e16014d16c5681c5b61bb50aad536b1633d13d779db9634357f25548c7789`
-- `STRUCTURAL_ABI_VERSION=S2.0`
-- `DESCRIPTOR_SHA256=63928e835724b6c533c3d16a426e3092e48402d750df6f70079e7d3b0b754901`
-- `EXACT_ROOT_COUNT=1`
-- `UNIQUE_EXACT_ROOT=YES`
+- `T14_EVIDENCE_SHA256=ef9c47b2489b36d73d54a98a9d6e75ca47e25054807d971a0337be2ac107139e`
+- `T14_OPPO_PASS=PASS`
 
-## Exact D4 / S1 evidence inheritance
+T14 is admitted as the prerequisite evidence anchor for this chain.
 
-- `D4_ADMISSION=PASS`
-- `S1_D4_POOL_BINDING_PROVEN=YES`
-- `POOL_ROOT_PROVEN=YES`
-- `POOL_ROOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
-- `POOL_ROOT_SNAPSHOT_SHA256=395ed6f27e367b0baf74aa999d748a0487a34fb7ff261e3a0b7cfa1d0e8c27c5`
-- `POOL_FS_SNAPSHOT_MANIFEST_SHA256=9cad381709bd9a2a55de71581619cc8923250f1febe530ba755a8b2853d3967a`
-- `SELECTED_CANDIDATE_ID=50438f11af49f9a05947dee7e20c058c2df7565ec83387194a5c4bb8d6c5bd9e`
-- `CANDIDATE_COUNT=18`
-- `SELECTED_MEMBER_MEMBERSHIP=PASS`
-- `POOL_HASH_EQUALITY_CHAIN=PASS`
-- `COHERENT_PER_FILE_EVIDENCE=PASS`
-- `CROSS_FILE_TOKEN_AGGREGATION_REJECTED=PASS`
+## T16–T18 inherited master evidence
 
-Source-ready upstream provenance remains anchored by:
+- `OLD_PASS=PREREQUISITE_EVIDENCE`
+- `OLD_PASS_PERMANENT_DESIGN=NO`
+- `T16_SOURCE_SHA256_EXPECTED=ee413a0080855ae554b7ab8f5e64c2d9a43f4e62cdc4128fee7e2487d82a60ba`
+- `T16_BINARY_SHA256_EXPECTED=f8c7977eae0d9e6bc0a28e9793880e62fb5801124c487541d910f944d3d81311`
+- `T17_SOURCE_SHA256_EXPECTED=b21d35d96604d55bef6bb8013d7afbcdbe80cff55b7fff536c24fafd14f50c52`
+- `T18_SOURCE_SHA256_EXPECTED=099fb98a7b97544980373c3bd9036ed34bccc24b9256fe6f3689b5a46410cf7a`
+- `T16_T18_INTEGRATION_WITH_NEW_T15=REQUIRES_MACHINE_RUN`
 
-- `SOURCE_READY_COMMIT=91f93c9ee61f13af46c034fc8753575ba6d3c107`
-- `SIGMA_TOOL_SELF_SELECTION_RUNTIME=PASS_IN_STATE_BOUND_EXPLORATION_SCOPE`
-- `SEMANTIC_CAPABILITY_FIT=NOT_PROVEN`
-- `TOOL_UTILITY_LEARNING=NOT_PROVEN`
-- `TOOL_EXECUTION=NO`
+These inherited hashes are prerequisite/master evidence only. They are not treated as a fresh integrated machine PASS for the new T15 chain.
 
-## Current blocker
+## Controllers present in the admitted package
 
-- `BIND_REQUIRED=YES`
-- `BIND_STAGE_CREATED=NO`
-- `LIVE_BIND_STAGE=NO_THIS_GATE`
-- `S3_ALLOWED=NO`
+The verified package includes controllers for:
 
-The current gate has established a unique exact S2 root and an exact D4/S1 evidence chain. It intentionally does not create the live bind stage. Therefore S3 remains disallowed until a subsequent verified bind-stage result closes that requirement.
+- T15 whole-document admission
+- T19 offline replay admission
+- T20 web frontier selection
+- T21 knowledge-gap selection
+- T22 study selection
+- T23 capability selection
+- T24–T26 blind choice
+- T27 autonomous loop
 
-## Authority boundary
-
-- `HOST_LEARNING=NO`
-- `HOST_SEMANTIC_INTERPRETATION=NO`
-- `HOST_SEMANTIC_SUBSTITUTION=NO`
-- `HOST_TOOL_SELECTION=NO`
-- `AUTO_ACQUIRE=NO`
-- `AUTO_EXECUTE=NO`
-- `HISTORICAL_S2_SEARCH=NO`
-- `S1_SEARCH=NO`
-- `POOL_SEARCH=NO`
-- `S2_RECOMPILE=NO`
-
-## Cache policy
-
-Reuse local inventory only when all cache identity components remain unchanged:
-
-`SIGMAC_SHA256 | VM_SHA256 | CONTRACT_VERSION | GATE_VERSION | CANDIDATE_LIVE_STATE_FINGERPRINT`
-
-Any change invalidates the local cache and requires a rescan. GitHub stores only provenance-safe result state, not raw runtime inventory.
+Presence and manifest verification do not by themselves elevate any controller to runtime admission beyond the supplied test evidence.
 
 ## Final
 
-`RESULT=HOLD`
+`SOURCE_PACKAGE_READY=YES`
 
-`EXACT_ROOT_RESOLUTION=PASS`
+`LOCAL_SELFTEST=PASS`
 
-`D4_S1_EVIDENCE_CHAIN=PASS`
+`T14_PREREQUISITE=PASS`
 
-`CURRENT_REASON=BIND_STAGE_REQUIRED`
+`T16_T18_NEW_T15_INTEGRATION=NOT_YET_PROVEN`
 
-`S3_ALLOWED=NO`
+`FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
+
+`NEXT=T16_T18_INTEGRATION_WITH_NEW_T15_MACHINE_RUN`
