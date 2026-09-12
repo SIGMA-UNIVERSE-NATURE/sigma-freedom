@@ -13,9 +13,10 @@
 - `T15_WHOLE_DOCUMENT_REPRESENTATION=PASS_IN_MECHANICS_SCOPE`
 - `T16_PROVENANCE_BOUND_MEMORY=PASS_IN_REBIND_SCOPE`
 - `T16_PROCESS_INDEPENDENT_REVERIFY=PASS`
-- `CURRENT_STATUS=T15_T16_MACHINE_PASS_DOWNSTREAM_RUNTIME_PENDING`
+- `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
+- `CURRENT_STATUS=T15_T17_MACHINE_PASS_T18_T27_RUNTIME_PENDING`
 
-FIX2 supersedes FIX1. T15 whole-document mechanics remain admitted in their tested scope, and T16 provenance-bound memory/rebind has now passed with process-independent reverification. No broader full-document understanding claim is made from these gates alone.
+FIX2 now establishes tested runtime PASS through T17. T15 proves whole-document mechanics, T16 proves provenance-bound memory/rebind with process-independent reverification, and T17 proves cross-document consolidation in learned-state scope. Broader understanding claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -23,7 +24,8 @@ FIX2 supersedes FIX1. T15 whole-document mechanics remain admitted in their test
 - `TOKENIZER=NONE`
 - `NEXT_TOKEN_OBJECTIVE=NO`
 - `NO_TOKEN_SUBWORD_NEXT_TOKEN_LEARNING_IMPLEMENTATION=PASS`
-- `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T15_T16_ALONE`
+- `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T15_ALONE`
+- `CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T17_ALONE`
 
 This line remains whole-document / relational-state oriented and explicitly does not claim token/subword next-token learning.
 
@@ -83,13 +85,20 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `T16_PROVENANCE_BOUND_MEMORY=PASS_IN_REBIND_SCOPE`
 - `T16_PROCESS_INDEPENDENT_REVERIFY=PASS`
 - `RAW_DOCUMENT_PERSISTED=NO`
+
+## T17 runtime result
+
+- `ACTION=ACCEPT_CROSS_DOCUMENT_CANDIDATE`
+- `STATUS=CROSS_DOCUMENT_LEARNED_OBJECTIVE_IMPROVED`
+- `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
+- `SOURCE_OBJECTS_OVERWRITTEN=NO`
+- `T17_CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 - `HOST_COGNITION=NO`
 
-This proves the tested provenance-memory rebind/reverify mechanics without persisting the raw document. It does not establish downstream T17–T27 runtime admission.
+This proves cross-document consolidation in the tested learned-state scope without overwriting source objects. It does not establish general cross-document understanding.
 
 ## Downstream status
 
-- `T17_CROSS_DOCUMENT_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T18_LONG_CONTEXT_REVISION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T19_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
@@ -104,10 +113,14 @@ This proves the tested provenance-memory rebind/reverify mechanics without persi
 
 `T16_PROVENANCE_MEMORY_REBIND=PASS`
 
+`T17_CROSS_DOCUMENT_CONSOLIDATION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
+`CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
+
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T17_CROSS_DOCUMENT_THEN_T18_LONG_CONTEXT_REVISION_AND_DOWNSTREAM_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T18_LONG_CONTEXT_REVISION_THEN_T19_T27_RUNTIME_CHAIN`
