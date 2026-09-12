@@ -3,20 +3,31 @@
 > Branch: `SIGMA_LANGUAGE_TOOLS`  
 > Policy: keep one canonical current-result file for the language-tool line. GitHub stores provenance-safe facts only; raw local paths, terminal logs, environment dumps, and sensitive host data are not retained here.
 
-## Current gate result
+## Latest evidence
 
-- `CURRENT_EVIDENCE_LINE=SIGMA_T24_R6_CONFIRM_FIX1`
+- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_REAL_WEB_LONG_DOCUMENT_EXTRACTIVE_SUMMARY_R1`
 - `CHECKPOINT_STATUS=VERIFIED_PASS_IN_SCOPE`
-- `RETRAINING=NO`
-- `INTERRUPTED_RUN_REBIND=PASS`
+- `SIGMA_R7L_REAL_WEB_LONG_DOCUMENT_EXTRACTIVE_SUMMARY_R1=PASS_IN_EXTRACTIVE_SUMMARY_SCOPE`
+- `SIGMA_SUMMARY_SELECTION=PASS_8_OF_8_REGIONS`
+- `SUMMARY_MODE=EXTRACTIVE_SOURCE_PARAGRAPHS`
+- `HOST_PARAGRAPH_SELECTION=NO`
+- `HOST_SUMMARY_GENERATION=NO`
+- `HOST_COGNITION=NO`
+
+This evidence establishes a real-web long-document extractive summarization path in the declared scope. HTTP retrieval and body extraction are mechanical only; SIGMA selects one source paragraph from each of eight contiguous source regions using the learned scorer. The host does not choose paragraphs or generate summary text.
+
+## Latest fully finalized T24 learning-stage result retained
+
+- `LATEST_T24_LEARNING_GATE=SIGMA_T24_R6_CONFIRM_FIX1`
+- `T24_TRAINABLE_RELATION_ENCODER_R6=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+- `T24_R6_CONFIRM_FIX1=PASS`
+- `T24_R6_FULL_ADMISSION_PASS=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
 - `SIGMA_FINAL_ACTION=ACCEPT_T24_TRAINABLE_RELATION_R6_CANDIDATE`
 - `SIGMA_FINAL_STATUS=UNTOUCHED_CONFIRMATION_OBJECTIVE_IMPROVED`
 - `R6_HEAD_COMMIT=PASS_SIGMA_AUTHORIZED`
 - `R6_RECEIPT_COMMIT=PASS`
-- `T24_TRAINABLE_RELATION_ENCODER_R6=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
-- `T24_R6_CONFIRM_FIX1=PASS`
 
-R6 confirmation FIX1 supersedes the prior incomplete-finalization hold. It continues from the already SIGMA-selected R6 candidate without retraining, rebinds that candidate to the interrupted run evidence, mechanically reevaluates untouched confirmation, obtains the explicit SIGMA final accept/status, and commits the R6 head and receipt. This closes the runner-finalization gap but does not establish general language understanding.
+R6 remains the latest fully finalized T24 learning-stage admission result. The new real-web extractive-summary run uses the learned stack operationally; it does not change the R6 admission claim or expand it into general language understanding.
 
 ## Upstream verified chain retained
 
@@ -33,15 +44,71 @@ The previously verified T15–T23 results remain valid in their admitted scopes:
 - `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
 - `T23_CAPABILITY_SELF_SELECTION=PASS_IN_EXPERIENCE_BOUND_LEARNED_REPRESENTATION_SCOPE`
 
-## R5 admitted result / integrity retained
+## Real-web source / transport boundary
 
-- `T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
-- `T24_R5_PACKAGE_INTEGRITY_REVERIFY=PASS`
-- `T24_R5_RUNTIME_RECEIPT_REBIND=PASS`
-- `T24_R5_INTEGRITY_FIX1=PASS`
-- `T24_R5_EXACT_TEXT_LEAK=NO`
+- `SOURCE_SITE=Project_Gutenberg`
+- `SOURCE_TITLE=The_Strange_Case_Of_Dr_Jekyll_And_Mr_Hyde`
+- `SOURCE_AUTHOR=Robert_Louis_Stevenson`
+- `SOURCE_EBOOK_ID=43`
+- `SOURCE_URL_PINNED=PASS`
+- `TRANSPORT_ROLE=MECHANICAL_HTTP_FETCH_ONLY`
+- `HTTP_FETCH_ROLE=MECHANICAL_ONLY`
+- `BODY_EXTRACTION_ROLE=MECHANICAL_ONLY`
+- `SOURCE_HTTP_FETCH=PASS`
+- `SOURCE_RAW_SHA256=b43448a88391591f9cf82b25553df00faf47a2752a873185fcdd1156eebdb990`
+- `SOURCE_RAW_BYTES=163495`
+- `BODY_MARKERS=PASS`
+- `SOURCE_BODY_SHA256=688062a341d34e7ef6718ecb5e352978b136766ea4131966f4245ccff9ac6000`
+- `BODY_BYTES=141074`
+- `BODY_WORD_COUNT_MECHANICAL=25631`
 
-R5 remains a valid earlier scoped admission result. R6 now supersedes R5 as the latest fully finalized T24 learning-stage result, while R5 provenance and integrity findings remain retained.
+Network transport and body extraction are treated as mechanical I/O only. No host cognition, paragraph selection, or summary generation is claimed.
+
+## Extractive summary construction
+
+- `PARAGRAPH_COUNT_RAW=362`
+- `PARAGRAPH_COUNT_ELIGIBLE=181`
+- `PARAGRAPH_ELIGIBILITY=CHAR_COUNT_GTE_160`
+- `SUMMARY_REGION_COUNT=8`
+- `REGIONAL_COVERAGE=8_CONTIGUOUS_SOURCE_REGIONS`
+- `SIGMA_SELECTS_ONE_SOURCE_PARAGRAPH_PER_REGION=YES`
+- `R5_LEARNED_SCORE_USED=YES`
+- `SUMMARY_MODE=EXTRACTIVE_SOURCE_PARAGRAPHS`
+- `SUMMARY_SHA256=68e81b22f42fb50cde4507a0537977797c38503688ebbcc07af7282c70441da7`
+- `SUMMARY_BYTES=3322`
+- `SUMMARY_WORD_COUNT_MECHANICAL=633`
+- `SIGMA_SUMMARY_SELECTION=PASS_8_OF_8_REGIONS`
+
+Selected paragraph IDs by region:
+
+- `REGION_1_SIGMA_SELECTED=p0011`
+- `REGION_2_SIGMA_SELECTED=p0024`
+- `REGION_3_SIGMA_SELECTED=p0056`
+- `REGION_4_SIGMA_SELECTED=p0087`
+- `REGION_5_SIGMA_SELECTED=p0105`
+- `REGION_6_SIGMA_SELECTED=p0118`
+- `REGION_7_SIGMA_SELECTED=p0158`
+- `REGION_8_SIGMA_SELECTED=p0165`
+
+This proves regional source-paragraph selection and extractive assembly in the tested real-web long-document scope. It does not prove abstractive summarization or free-form summary generation.
+
+## Deterministic summary controller
+
+- `SUMMARY_CONTROLLER_A_SHA256=7cae415558e4d23b910b9892eefcaef5e4df9348ae221869b1a9183b7fab4cd1`
+- `SUMMARY_CONTROLLER_B_SHA256=7cae415558e4d23b910b9892eefcaef5e4df9348ae221869b1a9183b7fab4cd1`
+- `SUMMARY_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
+- `SELFTEST=PASS`
+- `TOKENIZER=NONE`
+- `NEXT_TOKEN_OBJECTIVE=NO`
+
+## Model / head immutability
+
+- `BASE_MODEL_MUTATION=NO`
+- `R4_HEAD_MUTATION=NO`
+- `R5_HEAD_MUTATION=NO`
+- `R6_HEAD_MUTATION=NO`
+
+The summary run does not mutate the admitted learning artifacts.
 
 ## Fresh Blind R3 falsification boundary retained
 
@@ -53,74 +120,14 @@ R5 remains a valid earlier scoped admission result. R6 now supersedes R5 as the 
 - `HOST_ANSWER_SELECTION=NO`
 - `T24_BLIND_R3_TASK_PASS=NO`
 
-Blind R3 remains the latest fresh downstream language-understanding evaluation. R6 learning-stage admission does not erase the 12/24 Blind R3 result; a new clean blind evaluation would be required to change that boundary.
-
-## R6 architecture / data separation
-
-- `TRAINABLE_RELATION_ENCODER=MLP`
-- `FEATURE_HASH_PROJECTION=FIXED_MECHANICAL_NO_SEMANTIC_PRIOR`
-- `LEARNING_UNIT=WHOLE_DOCUMENT_RELATION_TRIPLET`
-- `STUDY_SUPERVISION=EXTERNAL_RELATIONAL_EPISODES`
-- `TOKENIZER=NONE`
-- `SUBWORD_MODEL=NONE`
-- `NEXT_TOKEN_OBJECTIVE=NO`
-- `NEXT_BYTE_OBJECTIVE=NO`
-- `HOST_MODEL_SELECTION=NO`
-- `HOST_COGNITION=NO`
-- `FAILED_BLIND_R1_R2_R3_USED_FOR_TRAINING=NO`
-- `FAILED_BLIND_R1_R2_R3_EXACT_TEXT_LEAK=NO_BY_BUILD_HASH_VERIFICATION`
-- `ADMISSION_USED_FOR_SEARCH=NO`
-- `CONFIRMATION_USED_FOR_SEARCH=NO`
-
-## R6 locked artifacts
-
-- `BASE_MODEL_SHA256=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `R4_HEAD_SHA256=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
-- `R5_HEAD_SHA256=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
-- `R6_AIL_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
-- `R6_CONTROLLER_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
-- `SIGMA_SELECTED_ID=candidate_001`
-- `SIGMA_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
-- `SELECTION_ORIGIN=EXISTING_SIGMA_FINALIZE_OUTPUT`
-- `REBIND_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
-- `INTERRUPTED_RUN_REBIND=PASS`
-
-The confirmation fix does not retrain or reselect the model. It rebinds the already selected `candidate_001` head by exact hash and continues from that selection state.
-
-## Untouched confirmation / final admission
-
-- `R6_CONFIRMATION_BEFORE_ACCURACY=0.65`
-- `R6_CONFIRMATION_AFTER_ACCURACY=0.675`
-- `R6_CONFIRMATION_BEFORE_LOSS=0.684772311189`
-- `R6_CONFIRMATION_AFTER_LOSS=0.59210300177`
-- `R6_CONFIRMATION_BEFORE_MARGIN=0.216299880086`
-- `R6_CONFIRMATION_AFTER_MARGIN=0.509099477875`
-- `CONFIRMATION_USED_FOR_SEARCH=NO`
-- `CONFIRMATION_REEVALUATION=MECHANICAL_ONLY`
-- `ACTION=ACCEPT_T24_TRAINABLE_RELATION_R6_CANDIDATE`
-- `STATUS=UNTOUCHED_CONFIRMATION_OBJECTIVE_IMPROVED`
-- `SIGMA_OWNS_MODEL_SELECTION=YES`
-- `SIGMA_OWNS_FINAL_ADMISSION=YES`
-- `HOST_MODEL_SELECTION=NO`
-- `HOST_COGNITION=NO`
-
-All three untouched confirmation metrics improve. The explicit final SIGMA accept/status is now observed cleanly, closing the previous formatting-error evidence gap.
-
-## Commit / immutability result
-
-- `BASE_MODEL_MUTATION=NO`
-- `R4_HEAD_MUTATION=NO`
-- `R5_HEAD_MUTATION=NO`
-- `R6_HEAD_COMMIT=PASS_SIGMA_AUTHORIZED`
-- `R6_RECEIPT_COMMIT=PASS`
-- `T24_R6_CONFIRM_FIX1=PASS`
+Blind R3 remains the latest fresh downstream language-understanding evaluation. A successful extractive-summary task does not erase that 12/24 blind result.
 
 ## Claim boundary
 
-- `T24_R6_FULL_ADMISSION_PASS=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
-- `T24_TRAINABLE_RELATION_ENCODER_R6=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+- `REAL_WEB_LONG_DOCUMENT_EXTRACTIVE_SUMMARY=PASS_IN_EXTRACTIVE_SUMMARY_SCOPE`
+- `ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN`
+- `FREE_FORM_SUMMARY_GENERATION=NOT_PROVEN`
 - `T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
-- `T24_BLIND_R3_TASK_PASS=NO`
 - `T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 - `T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
 - `T24_AUTONOMOUS_LANGUAGE_ACQUISITION=NOT_PROVEN`
@@ -128,34 +135,32 @@ All three untouched confirmation metrics improve. The explicit final SIGMA accep
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-R6 FIX1 proves a fully finalized trainable-relation learning-stage admission in the declared dev/admission/confirmation scope. It does not prove language understanding, human-level or multilingual understanding, autonomous language acquisition, the full blind-choice chain, or the autonomous loop.
+The real-web result proves SIGMA-selected extractive coverage of a long source document under the tested eight-region protocol. It does not establish general document understanding, abstractive summarization, human-level language understanding, multilingual understanding, autonomous language acquisition, or the full autonomous chain.
 
 ## Final
 
-`RESULT=PASS_IN_T24_R6_DEV_ADMISSION_CONFIRMATION_SCOPE`
+`RESULT=PASS_IN_REAL_WEB_LONG_DOCUMENT_EXTRACTIVE_SUMMARY_SCOPE`
 
 `UPSTREAM_T15_T23=PASS_IN_PREVIOUSLY_VERIFIED_SCOPES`
 
-`T24_R5_SCOPED_RELATIONAL_LEARNING=PASS`
-
-`T24_R5_INTEGRITY_FIX1=PASS`
-
-`T24_R6_INTERRUPTED_RUN_REBIND=PASS`
-
-`T24_R6_SIGMA_MODEL_SELECTION=PASS`
-
-`T24_R6_UNTOUCHED_CONFIRMATION_IMPROVEMENT=PASS`
-
 `T24_R6_FULL_ADMISSION_PASS=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
 
-`T24_R6_CONFIRM_FIX1=PASS`
+`REAL_WEB_SOURCE_FETCH=PASS_MECHANICAL_ONLY`
+
+`REAL_WEB_BODY_EXTRACTION=PASS_MECHANICAL_ONLY`
+
+`SIGMA_SUMMARY_SELECTION=PASS_8_OF_8_REGIONS`
+
+`HOST_PARAGRAPH_SELECTION=NO`
+
+`HOST_SUMMARY_GENERATION=NO`
+
+`SUMMARY_MODE=EXTRACTIVE_SOURCE_PARAGRAPHS`
 
 `T24_BLIND_R3_TASK_PASS=NO`
 
 `T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 
-`T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
-
-`T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
+`ABSTRACTIVE_SUMMARIZATION=NOT_PROVEN`
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
