@@ -14,9 +14,10 @@
 - `T16_PROVENANCE_BOUND_MEMORY=PASS_IN_REBIND_SCOPE`
 - `T16_PROCESS_INDEPENDENT_REVERIFY=PASS`
 - `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
-- `CURRENT_STATUS=T15_T17_MACHINE_PASS_T18_T27_RUNTIME_PENDING`
+- `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
+- `CURRENT_STATUS=T15_T18_MACHINE_PASS_T19_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T17. T15 proves whole-document mechanics, T16 proves provenance-bound memory/rebind with process-independent reverification, and T17 proves cross-document consolidation in learned-state scope. Broader understanding claims remain outside the proven scope.
+FIX2 now establishes tested runtime PASS through T18. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; and T18 proves old-state-to-evidence long-context revision in learned-state scope. Broader semantic/understanding claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -26,8 +27,7 @@ FIX2 now establishes tested runtime PASS through T17. T15 proves whole-document 
 - `NO_TOKEN_SUBWORD_NEXT_TOKEN_LEARNING_IMPLEMENTATION=PASS`
 - `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T15_ALONE`
 - `CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T17_ALONE`
-
-This line remains whole-document / relational-state oriented and explicitly does not claim token/subword next-token learning.
+- `LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN_BY_T18_ALONE`
 
 ## Locked toolchain
 
@@ -71,36 +71,41 @@ This line remains whole-document / relational-state oriented and explicitly does
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## T15 runtime result
+## Runtime results through T18
 
+### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
 - `STATUS=WHOLE_DOCUMENT_RELATIONAL_OBJECTIVE_IMPROVED`
 - `T15_WHOLE_DOCUMENT_REPRESENTATION=PASS_IN_MECHANICS_SCOPE`
 - `T15_FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
-## T16 runtime result
-
+### T16
 - `ACTION=ACCEPT_PROVENANCE_MEMORY_OBJECT`
 - `STATUS=MODEL_DOCUMENT_PROVENANCE_BINDING_VALID`
 - `T16_PROVENANCE_BOUND_MEMORY=PASS_IN_REBIND_SCOPE`
 - `T16_PROCESS_INDEPENDENT_REVERIFY=PASS`
 - `RAW_DOCUMENT_PERSISTED=NO`
 
-## T17 runtime result
-
+### T17
 - `ACTION=ACCEPT_CROSS_DOCUMENT_CANDIDATE`
 - `STATUS=CROSS_DOCUMENT_LEARNED_OBJECTIVE_IMPROVED`
 - `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS_IN_LEARNED_STATE_SCOPE`
 - `SOURCE_OBJECTS_OVERWRITTEN=NO`
 - `T17_CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
+
+### T18
+- `ACTION=ACCEPT_REVISION_CANDIDATE`
+- `STATUS=OLD_STATE_TO_EVIDENCE_REVISION_OBJECTIVE_IMPROVED`
+- `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
+- `T18_LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN`
 - `HOST_COGNITION=NO`
 
-This proves cross-document consolidation in the tested learned-state scope without overwriting source objects. It does not establish general cross-document understanding.
+This proves the tested long-context revision mechanism from old learned state toward new evidence. It does not establish general long-context semantic understanding.
 
 ## Downstream status
 
-- `T18_LONG_CONTEXT_REVISION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
-- `T19_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T19_OFFLINE_REPLAY_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
+- `T20_T27_RUNTIME_CHAIN=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
 ## Final
@@ -115,12 +120,16 @@ This proves cross-document consolidation in the tested learned-state scope witho
 
 `T17_CROSS_DOCUMENT_CONSOLIDATION=PASS`
 
+`T18_LONG_CONTEXT_REVISION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
 `CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
 
+`LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN`
+
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T18_LONG_CONTEXT_REVISION_THEN_T19_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T19_OFFLINE_REPLAY_THEN_T20_T27_RUNTIME_CHAIN`
