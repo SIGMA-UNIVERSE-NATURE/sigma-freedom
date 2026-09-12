@@ -5,16 +5,18 @@
 
 ## Current gate result
 
-- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_T24_TRAINABLE_RELATION_ENCODER_R6`
-- `CHECKPOINT_STATUS=VERIFIED_PARTIAL_HOLD`
-- `R6_AIL_DETERMINISTIC_BUILD=PASS`
-- `R6_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
-- `R6_SIGMA_MODEL_SELECTION=PASS_OBSERVED`
-- `R6_UNTOUCHED_CONFIRMATION_IMPROVEMENT=PASS_OBSERVED`
-- `R6_FINAL_ACCEPT_STATUS=NOT_OBSERVED`
-- `RUNNER_FINALIZATION=INCOMPLETE_PRINTF_USAGE_ERROR`
+- `CURRENT_EVIDENCE_LINE=SIGMA_T24_R6_CONFIRM_FIX1`
+- `CHECKPOINT_STATUS=VERIFIED_PASS_IN_SCOPE`
+- `RETRAINING=NO`
+- `INTERRUPTED_RUN_REBIND=PASS`
+- `SIGMA_FINAL_ACTION=ACCEPT_T24_TRAINABLE_RELATION_R6_CANDIDATE`
+- `SIGMA_FINAL_STATUS=UNTOUCHED_CONFIRMATION_OBJECTIVE_IMPROVED`
+- `R6_HEAD_COMMIT=PASS_SIGMA_AUTHORIZED`
+- `R6_RECEIPT_COMMIT=PASS`
+- `T24_TRAINABLE_RELATION_ENCODER_R6=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+- `T24_R6_CONFIRM_FIX1=PASS`
 
-R6 advances the learning architecture to a trainable MLP relation encoder over fixed mechanical hash-projection features. The run shows deterministic build/compile, SIGMA-owned model selection on unseen admission evidence, and improvement on all reported untouched confirmation metrics. However, the runner terminates at `printf: usage: printf [-v var] format [arguments]` before an explicit final R6 accept/status line is emitted. Therefore R6 is not recorded as a fully finalized admission PASS from this evidence.
+R6 confirmation FIX1 supersedes the prior incomplete-finalization hold. It continues from the already SIGMA-selected R6 candidate without retraining, rebinds that candidate to the interrupted run evidence, mechanically reevaluates untouched confirmation, obtains the explicit SIGMA final accept/status, and commits the R6 head and receipt. This closes the runner-finalization gap but does not establish general language understanding.
 
 ## Upstream verified chain retained
 
@@ -31,7 +33,7 @@ The previously verified T15–T23 results remain valid in their admitted scopes:
 - `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
 - `T23_CAPABILITY_SELF_SELECTION=PASS_IN_EXPERIENCE_BOUND_LEARNED_REPRESENTATION_SCOPE`
 
-## R5 admitted learning result retained
+## R5 admitted result / integrity retained
 
 - `T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
 - `T24_R5_PACKAGE_INTEGRITY_REVERIFY=PASS`
@@ -39,7 +41,7 @@ The previously verified T15–T23 results remain valid in their admitted scopes:
 - `T24_R5_INTEGRITY_FIX1=PASS`
 - `T24_R5_EXACT_TEXT_LEAK=NO`
 
-R5 remains the latest fully finalized T24 learning admission result. R6 does not supersede that finalized status until its own clean final acceptance/finalization is observed.
+R5 remains a valid earlier scoped admission result. R6 now supersedes R5 as the latest fully finalized T24 learning-stage result, while R5 provenance and integrity findings remain retained.
 
 ## Fresh Blind R3 falsification boundary retained
 
@@ -50,9 +52,8 @@ R5 remains the latest fully finalized T24 learning admission result. R6 does not
 - `ORACLE_VISIBLE_DURING_SELECTION=NO`
 - `HOST_ANSWER_SELECTION=NO`
 - `T24_BLIND_R3_TASK_PASS=NO`
-- `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
 
-Blind R3 remains the downstream language-understanding boundary. A newer learning-stage candidate does not erase the prior fresh-blind failure unless a new clean blind evaluation demonstrates it.
+Blind R3 remains the latest fresh downstream language-understanding evaluation. R6 learning-stage admission does not erase the 12/24 Blind R3 result; a new clean blind evaluation would be required to change that boundary.
 
 ## R6 architecture / data separation
 
@@ -71,47 +72,22 @@ Blind R3 remains the downstream language-understanding boundary. A newer learnin
 - `ADMISSION_USED_FOR_SEARCH=NO`
 - `CONFIRMATION_USED_FOR_SEARCH=NO`
 
-## R6 deterministic artifacts
+## R6 locked artifacts
 
-- `AIL_BINARY_A_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
-- `AIL_BINARY_B_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
-- `R6_AIL_DETERMINISTIC_BUILD=PASS`
-- `R6_CONTROLLER_A_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
-- `R6_CONTROLLER_B_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
-- `R6_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
-- `BASE_MODEL_SHA256_BEFORE=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `R4_HEAD_SHA256_BEFORE=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
-- `R5_HEAD_SHA256_BEFORE=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
+- `BASE_MODEL_SHA256=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
+- `R4_HEAD_SHA256=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `R5_HEAD_SHA256=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
+- `R6_AIL_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
+- `R6_CONTROLLER_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
+- `SIGMA_SELECTED_ID=candidate_001`
+- `SIGMA_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
+- `SELECTION_ORIGIN=EXISTING_SIGMA_FINALIZE_OUTPUT`
+- `REBIND_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
+- `INTERRUPTED_RUN_REBIND=PASS`
 
-## R6 search / proposal stage
+The confirmation fix does not retrain or reselect the model. It rebinds the already selected `candidate_001` head by exact hash and continues from that selection state.
 
-- `SCHEMA=SIGMA_AIL_T24_TRAINABLE_RELATION_GRID_R6`
-- `R6_TRAIN_TRIPLET_COUNT=600`
-- `R6_DEV_TRIPLET_COUNT=120`
-- `R6_ADMISSION_TRIPLET_COUNT=120`
-- `R6_CONFIRMATION_TRIPLET_COUNT=120`
-- `SEARCH_CONFIG_COUNT=64`
-- `DEV_PROPOSAL_COUNT=4`
-- `RESULT=PASS_SEARCH_PROCEDURE`
-
-`RESULT=PASS` at this stage is interpreted only as successful search/proposal execution. It is not used as evidence of a fully finalized R6 admission because the run later terminates before the final accept/status output.
-
-## SIGMA-owned R6 selection observed
-
-- `R6_ADMISSION_PARENT_ACCURACY=0.591666666667`
-- `R6_ADMISSION_PARENT_LOSS=0.712234261861`
-- `R6_ADMISSION_PARENT_MARGIN=0.155711967915`
-- `ACTION=SELECT_T24_R6_MODEL`
-- `STATUS=SIGMA_SELECTED_R6_MODEL_BY_UNSEEN_ADMISSION`
-- `SIGMA_OWNS_MODEL_SELECTION=YES`
-- `SIGMA_OWNS_FINAL_ADMISSION=YES`
-- `HOST_MODEL_SELECTION=NO`
-- `R6_SIGMA_SELECTED_ID=candidate_001`
-- `R6_SIGMA_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
-
-The selection controller reports SIGMA-owned model selection/final-admission authority for `candidate_001`. The canonical claim is still capped by the missing post-confirmation final acceptance/status output from the runner.
-
-## Untouched confirmation metrics observed
+## Untouched confirmation / final admission
 
 - `R6_CONFIRMATION_BEFORE_ACCURACY=0.65`
 - `R6_CONFIRMATION_AFTER_ACCURACY=0.675`
@@ -120,25 +96,31 @@ The selection controller reports SIGMA-owned model selection/final-admission aut
 - `R6_CONFIRMATION_BEFORE_MARGIN=0.216299880086`
 - `R6_CONFIRMATION_AFTER_MARGIN=0.509099477875`
 - `CONFIRMATION_USED_FOR_SEARCH=NO`
+- `CONFIRMATION_REEVALUATION=MECHANICAL_ONLY`
+- `ACTION=ACCEPT_T24_TRAINABLE_RELATION_R6_CANDIDATE`
+- `STATUS=UNTOUCHED_CONFIRMATION_OBJECTIVE_IMPROVED`
+- `SIGMA_OWNS_MODEL_SELECTION=YES`
+- `SIGMA_OWNS_FINAL_ADMISSION=YES`
+- `HOST_MODEL_SELECTION=NO`
+- `HOST_COGNITION=NO`
 
-All three reported confirmation metrics improve: accuracy increases, loss decreases, and margin increases. This is positive evidence for the selected R6 candidate, but it is not promoted to a completed R6 gate PASS until the missing final acceptance/finalization is observed cleanly.
+All three untouched confirmation metrics improve. The explicit final SIGMA accept/status is now observed cleanly, closing the previous formatting-error evidence gap.
 
-## Runner defect / evidence ceiling
+## Commit / immutability result
 
-- `RUNNER_ERROR=PRINTF_USAGE_ERROR`
-- `R6_FINAL_ACCEPT_ACTION=NOT_OBSERVED`
-- `R6_FINAL_ACCEPT_STATUS=NOT_OBSERVED`
-- `R6_FINAL_RESULT_LINE=NOT_OBSERVED`
-- `R6_MODEL_POST_HASH=NOT_OBSERVED_FROM_THIS_EVIDENCE`
-- `R6_FINAL_IMMUTABILITY_REVERIFY=NOT_OBSERVED_FROM_THIS_EVIDENCE`
-
-The evidence ends at the runner formatting error. No claim is made about lines that would have followed it.
+- `BASE_MODEL_MUTATION=NO`
+- `R4_HEAD_MUTATION=NO`
+- `R5_HEAD_MUTATION=NO`
+- `R6_HEAD_COMMIT=PASS_SIGMA_AUTHORIZED`
+- `R6_RECEIPT_COMMIT=PASS`
+- `T24_R6_CONFIRM_FIX1=PASS`
 
 ## Claim boundary
 
-- `T24_R6_TRAINABLE_RELATION_ENCODER=PARTIAL_POSITIVE_EVIDENCE_FINALIZATION_INCOMPLETE`
-- `T24_R6_FULL_ADMISSION_PASS=NOT_PROVEN_FROM_THIS_EVIDENCE`
-- `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
+- `T24_R6_FULL_ADMISSION_PASS=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+- `T24_TRAINABLE_RELATION_ENCODER_R6=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+- `T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
+- `T24_BLIND_R3_TASK_PASS=NO`
 - `T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 - `T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
 - `T24_AUTONOMOUS_LANGUAGE_ACQUISITION=NOT_PROVEN`
@@ -146,9 +128,11 @@ The evidence ends at the runner formatting error. No claim is made about lines t
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
+R6 FIX1 proves a fully finalized trainable-relation learning-stage admission in the declared dev/admission/confirmation scope. It does not prove language understanding, human-level or multilingual understanding, autonomous language acquisition, the full blind-choice chain, or the autonomous loop.
+
 ## Final
 
-`RESULT=HOLD_PENDING_CLEAN_R6_FINALIZATION`
+`RESULT=PASS_IN_T24_R6_DEV_ADMISSION_CONFIRMATION_SCOPE`
 
 `UPSTREAM_T15_T23=PASS_IN_PREVIOUSLY_VERIFIED_SCOPES`
 
@@ -156,18 +140,22 @@ The evidence ends at the runner formatting error. No claim is made about lines t
 
 `T24_R5_INTEGRITY_FIX1=PASS`
 
+`T24_R6_INTERRUPTED_RUN_REBIND=PASS`
+
+`T24_R6_SIGMA_MODEL_SELECTION=PASS`
+
+`T24_R6_UNTOUCHED_CONFIRMATION_IMPROVEMENT=PASS`
+
+`T24_R6_FULL_ADMISSION_PASS=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+
+`T24_R6_CONFIRM_FIX1=PASS`
+
 `T24_BLIND_R3_TASK_PASS=NO`
 
-`T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
+`T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 
-`T24_R6_BUILD_AND_SEARCH=PASS`
+`T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 
-`T24_R6_SIGMA_MODEL_SELECTION=PASS_OBSERVED`
-
-`T24_R6_CONFIRMATION_IMPROVEMENT=PASS_OBSERVED`
-
-`T24_R6_FULL_ADMISSION_PASS=NOT_PROVEN_FROM_THIS_EVIDENCE`
-
-`RUNNER_FINALIZATION=INCOMPLETE_PRINTF_USAGE_ERROR`
+`T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
