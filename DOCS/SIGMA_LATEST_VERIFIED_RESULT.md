@@ -5,16 +5,16 @@
 
 ## Current gate result
 
-- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_T24_LANGUAGE_UNDERSTANDING_BLIND_R3`
-- `CHECKPOINT_STATUS=VERIFIED_HOLD`
-- `T24_BLIND_R3_CASE_COUNT=24`
-- `T24_BLIND_R3_CASE_PASS=12`
-- `T24_BLIND_R3_CASE_FAIL=12`
-- `T24_BLIND_R3_ORDER_INVARIANCE_FAIL=0`
-- `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
-- `SIGMA_R7L_T24_LANGUAGE_UNDERSTANDING_BLIND_R3=HOLD`
+- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_T24_TRAINABLE_RELATION_ENCODER_R6`
+- `CHECKPOINT_STATUS=VERIFIED_PARTIAL_HOLD`
+- `R6_AIL_DETERMINISTIC_BUILD=PASS`
+- `R6_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
+- `R6_SIGMA_MODEL_SELECTION=PASS_OBSERVED`
+- `R6_UNTOUCHED_CONFIRMATION_IMPROVEMENT=PASS_OBSERVED`
+- `R6_FINAL_ACCEPT_STATUS=NOT_OBSERVED`
+- `RUNNER_FINALIZATION=INCOMPLETE_PRINTF_USAGE_ERROR`
 
-Fresh Blind R3 is the current T24 gate and it does not pass. The R5 learned scorer selected answers without oracle visibility or host answer selection and remained choice-order invariant across ascending/descending choice order, but only 12 of 24 blind cases passed. Therefore the correct current state is `HOLD`, not language-understanding PASS.
+R6 advances the learning architecture to a trainable MLP relation encoder over fixed mechanical hash-projection features. The run shows deterministic build/compile, SIGMA-owned model selection on unseen admission evidence, and improvement on all reported untouched confirmation metrics. However, the runner terminates at `printf: usage: printf [-v var] format [arguments]` before an explicit final R6 accept/status line is emitted. Therefore R6 is not recorded as a fully finalized admission PASS from this evidence.
 
 ## Upstream verified chain retained
 
@@ -31,68 +31,113 @@ The previously verified T15–T23 results remain valid in their admitted scopes:
 - `T22_AUTONOMOUS_STUDY_SELECTION=PASS_IN_EPHEMERAL_GAIN_PROBE_SCOPE`
 - `T23_CAPABILITY_SELF_SELECTION=PASS_IN_EXPERIENCE_BOUND_LEARNED_REPRESENTATION_SCOPE`
 
-## R5 scoped learning result retained
+## R5 admitted learning result retained
 
 - `T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
 - `T24_R5_PACKAGE_INTEGRITY_REVERIFY=PASS`
 - `T24_R5_RUNTIME_RECEIPT_REBIND=PASS`
 - `T24_R5_INTEGRITY_FIX1=PASS`
-- `R5_LEARNED_SCORE_USED=YES`
-- `HOST_MODEL_SELECTION=NO`
-- `HOST_COGNITION=NO`
-- `TOKENIZER=NONE`
-- `NEXT_TOKEN_OBJECTIVE=NO`
+- `T24_R5_EXACT_TEXT_LEAK=NO`
 
-R5 remains a valid scoped relational-learning result. Blind R3 is a stricter downstream evaluation and its failure limits the claim; it does not invalidate the earlier scoped R5 dev/admission/confirmation result.
+R5 remains the latest fully finalized T24 learning admission result. R6 does not supersede that finalized status until its own clean final acceptance/finalization is observed.
 
-## Blind R3 integrity / isolation
+## Fresh Blind R3 falsification boundary retained
 
-- `BLIND_R3_CASE_COUNT=24`
-- `FRESH_BLIND_R3_EXACT_TEXT_IN_R5_STUDY=NO_BY_BUILD_VERIFICATION`
-- `FRESH_BLIND_R3_EXACT_TEXT_IN_R5_STUDY=NO_BY_PACKAGE_SELFTEST`
-- `FRESH_BLIND_R3_EXACT_TEXT_IN_PRIOR_BLINDS=NO_BY_BUILD_VERIFICATION`
-- `ORACLE_READ_AFTER_BOTH_SIGMA_FINALIZATIONS=PASS_STATIC`
-- `ORACLE_VISIBLE_TO_SIGMA=NO`
-- `ORACLE_VISIBLE_DURING_SELECTION=NO`
-- `HOST_ANSWER_SELECTION=NO`
-- `CHOICE_ORDER_INVARIANCE_TESTED=YES_ASC_DESC`
-- `CHOICE_ORDER_INVARIANCE_REQUIRED=YES`
-- `SELFTEST=PASS`
-
-The fresh Blind R3 cases were isolated from the R5 study corpus and prior blind exact text under the declared build/package checks. Oracle information was withheld during SIGMA selection and read only after both SIGMA finalizations for evaluation.
-
-## Deterministic controller / immutable model state
-
-- `T24_BLIND_R3_CONTROLLER_A_SHA256=e3df3bdb7b3538c7a1b0317c3755004f056bebae9844b1d97c086be75520664e`
-- `T24_BLIND_R3_CONTROLLER_B_SHA256=e3df3bdb7b3538c7a1b0317c3755004f056bebae9844b1d97c086be75520664e`
-- `T24_BLIND_R3_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
-- `MODEL_SHA256_BEFORE=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `MODEL_SHA256_AFTER=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `R4_HEAD_SHA256_BEFORE=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
-- `R4_HEAD_SHA256_AFTER=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
-- `R5_HEAD_SHA256_BEFORE=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
-- `R5_HEAD_SHA256_AFTER=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
-- `MODEL_MUTATION=NO`
-- `R4_HEAD_MUTATION=NO`
-- `R5_HEAD_MUTATION=NO`
-- `R5_RUNTIME_RECEIPT_BINDING=PASS`
-
-## Blind R3 aggregate result
-
+- `T24_BLIND_R3_CASE_COUNT=24`
 - `T24_BLIND_R3_CASE_PASS=12`
 - `T24_BLIND_R3_CASE_FAIL=12`
 - `T24_BLIND_R3_ORDER_INVARIANCE_FAIL=0`
 - `ORACLE_VISIBLE_DURING_SELECTION=NO`
 - `HOST_ANSWER_SELECTION=NO`
-- `HOST_COGNITION=NO`
+- `T24_BLIND_R3_TASK_PASS=NO`
+- `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
 
-Choice-order invariance passes across the full 24-case set, but task correctness does not: half the fresh blind cases fail. Order invariance, oracle isolation, and absence of host answer selection are integrity properties; they do not substitute for blind-task accuracy.
+Blind R3 remains the downstream language-understanding boundary. A newer learning-stage candidate does not erase the prior fresh-blind failure unless a new clean blind evaluation demonstrates it.
+
+## R6 architecture / data separation
+
+- `TRAINABLE_RELATION_ENCODER=MLP`
+- `FEATURE_HASH_PROJECTION=FIXED_MECHANICAL_NO_SEMANTIC_PRIOR`
+- `LEARNING_UNIT=WHOLE_DOCUMENT_RELATION_TRIPLET`
+- `STUDY_SUPERVISION=EXTERNAL_RELATIONAL_EPISODES`
+- `TOKENIZER=NONE`
+- `SUBWORD_MODEL=NONE`
+- `NEXT_TOKEN_OBJECTIVE=NO`
+- `NEXT_BYTE_OBJECTIVE=NO`
+- `HOST_MODEL_SELECTION=NO`
+- `HOST_COGNITION=NO`
+- `FAILED_BLIND_R1_R2_R3_USED_FOR_TRAINING=NO`
+- `FAILED_BLIND_R1_R2_R3_EXACT_TEXT_LEAK=NO_BY_BUILD_HASH_VERIFICATION`
+- `ADMISSION_USED_FOR_SEARCH=NO`
+- `CONFIRMATION_USED_FOR_SEARCH=NO`
+
+## R6 deterministic artifacts
+
+- `AIL_BINARY_A_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
+- `AIL_BINARY_B_SHA256=4e98a6c0fd36506729718c43056a5236fe7ee63c809af823ecc0827245a992b9`
+- `R6_AIL_DETERMINISTIC_BUILD=PASS`
+- `R6_CONTROLLER_A_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
+- `R6_CONTROLLER_B_SHA256=c33c6beb902953a4b4082d08ec9781ff9fd06da70b32490af966554366d62e79`
+- `R6_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
+- `BASE_MODEL_SHA256_BEFORE=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
+- `R4_HEAD_SHA256_BEFORE=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `R5_HEAD_SHA256_BEFORE=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
+
+## R6 search / proposal stage
+
+- `SCHEMA=SIGMA_AIL_T24_TRAINABLE_RELATION_GRID_R6`
+- `R6_TRAIN_TRIPLET_COUNT=600`
+- `R6_DEV_TRIPLET_COUNT=120`
+- `R6_ADMISSION_TRIPLET_COUNT=120`
+- `R6_CONFIRMATION_TRIPLET_COUNT=120`
+- `SEARCH_CONFIG_COUNT=64`
+- `DEV_PROPOSAL_COUNT=4`
+- `RESULT=PASS_SEARCH_PROCEDURE`
+
+`RESULT=PASS` at this stage is interpreted only as successful search/proposal execution. It is not used as evidence of a fully finalized R6 admission because the run later terminates before the final accept/status output.
+
+## SIGMA-owned R6 selection observed
+
+- `R6_ADMISSION_PARENT_ACCURACY=0.591666666667`
+- `R6_ADMISSION_PARENT_LOSS=0.712234261861`
+- `R6_ADMISSION_PARENT_MARGIN=0.155711967915`
+- `ACTION=SELECT_T24_R6_MODEL`
+- `STATUS=SIGMA_SELECTED_R6_MODEL_BY_UNSEEN_ADMISSION`
+- `SIGMA_OWNS_MODEL_SELECTION=YES`
+- `SIGMA_OWNS_FINAL_ADMISSION=YES`
+- `HOST_MODEL_SELECTION=NO`
+- `R6_SIGMA_SELECTED_ID=candidate_001`
+- `R6_SIGMA_SELECTED_HEAD_SHA256=ec493bd3ab95d69e7a8d3beaeecd11a0853ee37a96d72f7b1e2f06dea1a9b438`
+
+The selection controller reports SIGMA-owned model selection/final-admission authority for `candidate_001`. The canonical claim is still capped by the missing post-confirmation final acceptance/status output from the runner.
+
+## Untouched confirmation metrics observed
+
+- `R6_CONFIRMATION_BEFORE_ACCURACY=0.65`
+- `R6_CONFIRMATION_AFTER_ACCURACY=0.675`
+- `R6_CONFIRMATION_BEFORE_LOSS=0.684772311189`
+- `R6_CONFIRMATION_AFTER_LOSS=0.59210300177`
+- `R6_CONFIRMATION_BEFORE_MARGIN=0.216299880086`
+- `R6_CONFIRMATION_AFTER_MARGIN=0.509099477875`
+- `CONFIRMATION_USED_FOR_SEARCH=NO`
+
+All three reported confirmation metrics improve: accuracy increases, loss decreases, and margin increases. This is positive evidence for the selected R6 candidate, but it is not promoted to a completed R6 gate PASS until the missing final acceptance/finalization is observed cleanly.
+
+## Runner defect / evidence ceiling
+
+- `RUNNER_ERROR=PRINTF_USAGE_ERROR`
+- `R6_FINAL_ACCEPT_ACTION=NOT_OBSERVED`
+- `R6_FINAL_ACCEPT_STATUS=NOT_OBSERVED`
+- `R6_FINAL_RESULT_LINE=NOT_OBSERVED`
+- `R6_MODEL_POST_HASH=NOT_OBSERVED_FROM_THIS_EVIDENCE`
+- `R6_FINAL_IMMUTABILITY_REVERIFY=NOT_OBSERVED_FROM_THIS_EVIDENCE`
+
+The evidence ends at the runner formatting error. No claim is made about lines that would have followed it.
 
 ## Claim boundary
 
-- `T24_R5_EXACT_TEXT_LEAK=NO`
-- `T24_R5_SCOPED_RELATIONAL_LEARNING=PASS`
-- `T24_BLIND_R3_TASK_PASS=NO`
+- `T24_R6_TRAINABLE_RELATION_ENCODER=PARTIAL_POSITIVE_EVIDENCE_FINALIZATION_INCOMPLETE`
+- `T24_R6_FULL_ADMISSION_PASS=NOT_PROVEN_FROM_THIS_EVIDENCE`
 - `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
 - `T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 - `T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
@@ -101,11 +146,9 @@ Choice-order invariance passes across the full 24-case set, but task correctness
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-Blind R3 provides a clean downstream falsification boundary: the learned R5 scorer is isolated from the oracle and host answer selection and is order-invariant, yet still fails 12/24 fresh cases. Accordingly, no language-understanding claim is admitted from this gate.
-
 ## Final
 
-`RESULT=HOLD`
+`RESULT=HOLD_PENDING_CLEAN_R6_FINALIZATION`
 
 `UPSTREAM_T15_T23=PASS_IN_PREVIOUSLY_VERIFIED_SCOPES`
 
@@ -113,20 +156,18 @@ Blind R3 provides a clean downstream falsification boundary: the learned R5 scor
 
 `T24_R5_INTEGRITY_FIX1=PASS`
 
-`T24_BLIND_R3_ISOLATION=PASS`
-
-`T24_BLIND_R3_ORDER_INVARIANCE=PASS`
-
-`T24_BLIND_R3_CASE_PASS=12`
-
-`T24_BLIND_R3_CASE_FAIL=12`
-
 `T24_BLIND_R3_TASK_PASS=NO`
 
 `T24_LANGUAGE_UNDERSTANDING=HOLD_FRESH_BLIND_R3_FAILURE`
 
-`T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
+`T24_R6_BUILD_AND_SEARCH=PASS`
 
-`T24_GENERAL_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN`
+`T24_R6_SIGMA_MODEL_SELECTION=PASS_OBSERVED`
+
+`T24_R6_CONFIRMATION_IMPROVEMENT=PASS_OBSERVED`
+
+`T24_R6_FULL_ADMISSION_PASS=NOT_PROVEN_FROM_THIS_EVIDENCE`
+
+`RUNNER_FINALIZATION=INCOMPLETE_PRINTF_USAGE_ERROR`
 
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
