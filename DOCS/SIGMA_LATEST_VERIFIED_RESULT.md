@@ -5,14 +5,14 @@
 
 ## Current gate result
 
-- `CURRENT_EVIDENCE_LINE=SIGMA_R7L_T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5`
+- `CURRENT_EVIDENCE_LINE=SIGMA_T24_R5_INTEGRITY_FIX1`
 - `CHECKPOINT_STATUS=VERIFIED_PASS_IN_SCOPE`
-- `R5_AIL_DETERMINISTIC_BUILD=PASS`
-- `R5_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
 - `T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
-- `SIGMA_R7L_T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS`
+- `T24_R5_PACKAGE_INTEGRITY_REVERIFY=PASS`
+- `T24_R5_RUNTIME_RECEIPT_REBIND=PASS`
+- `T24_R5_INTEGRITY_FIX1=PASS`
 
-T24 R5 supersedes R4 as the latest T24 result. R5 learns over whole-document relation triplets with ordered-span features, keeps admission and confirmation data out of search, lets SIGMA select the model on unseen admission evidence, and then shows improvement on untouched confirmation data. This is a scoped relational-learning result, not proof of general language understanding.
+T24 R5 remains the latest admitted T24 learning result. Integrity FIX1 corrects the prior exact-text-leak selftest interpretation: the original selftest produced a false positive because non-case script lines were included. The corrected read-only denylist check is restricted to normalized query/choice text and finds zero exact normalized overlap with the R5 study corpus.
 
 ## Upstream verified chain retained
 
@@ -46,9 +46,7 @@ The previously verified T15–T23 results remain valid in their admitted scopes:
 - `FAILED_BLIND_R1_USED_FOR_TRAINING=NO`
 - `FAILED_BLIND_R2_USED_FOR_TRAINING=NO`
 
-The failed blind R1/R2 evidence remains failed and was not recycled into training. The leading `HOLD=FAILED_BLIND_R1_R2_EXACT_TEXT_LEAK` marker belongs to that preserved failed-blind state; it does not override the explicit R5 scoped PASS result.
-
-## Deterministic artifacts
+## R5 deterministic artifacts
 
 - `AIL_BINARY_A_SHA256=bfbcc70b42d7db94cfcc92e58225bd6d700de6f6bdcd079606349547e06eb458`
 - `AIL_BINARY_B_SHA256=bfbcc70b42d7db94cfcc92e58225bd6d700de6f6bdcd079606349547e06eb458`
@@ -56,41 +54,16 @@ The failed blind R1/R2 evidence remains failed and was not recycled into trainin
 - `R5_CONTROLLER_A_SHA256=95d93d6b22781ac64b2841c17ab7e29b40921e55ef1ac1ec74c1c9249bbaeeda`
 - `R5_CONTROLLER_B_SHA256=95d93d6b22781ac64b2841c17ab7e29b40921e55ef1ac1ec74c1c9249bbaeeda`
 - `R5_CONTROLLER_DETERMINISTIC_COMPILE=PASS`
-- `BASE_MODEL_SHA256_BEFORE=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `BASE_MODEL_SHA256_AFTER=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
-- `R4_RELATION_HEAD_SHA256_BEFORE=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
-- `R4_RELATION_HEAD_SHA256_AFTER=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `BASE_MODEL_SHA256=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
+- `R4_RELATION_HEAD_SHA256=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `R5_SELECTED_HEAD_SHA256=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
 
-## Search / proposal stage
+## R5 SIGMA-owned selection / confirmation
 
-- `SCHEMA=SIGMA_AIL_T24_ORDERED_SPAN_GRID_R5`
-- `R5_TRAIN_TRIPLET_COUNT=240`
-- `R5_DEV_TRIPLET_COUNT=60`
-- `R5_ADMISSION_TRIPLET_COUNT=60`
-- `R5_CONFIRMATION_TRIPLET_COUNT=60`
-- `SEARCH_CONFIG_COUNT=108`
-- `DEV_PROPOSAL_COUNT=4`
-- `DEV_PARENT_ACCURACY=0.6`
-- `DEV_PARENT_LOSS=0.754760039874`
-- `DEV_PARENT_MARGIN=0.0358643484334`
-- `ADMISSION_USED_FOR_SEARCH=NO`
-- `CONFIRMATION_USED_FOR_SEARCH=NO`
-
-## SIGMA-owned model selection / admission
-
-- `R5_ADMISSION_PARENT_ACCURACY=0.683333333333`
-- `R5_ADMISSION_PARENT_LOSS=0.692216206325`
-- `R5_ADMISSION_PARENT_MARGIN=0.20165811571`
-- `ACTION=SELECT_T24_R5_MODEL`
-- `STATUS=SIGMA_SELECTED_R5_MODEL_BY_UNSEEN_ADMISSION`
 - `SIGMA_OWNS_MODEL_SELECTION=YES`
 - `SIGMA_OWNS_FINAL_ADMISSION=YES`
 - `HOST_MODEL_SELECTION=NO`
 - `R5_SIGMA_SELECTED_ID=candidate_002`
-- `R5_SIGMA_SELECTED_HEAD_SHA256=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
-
-## Untouched confirmation result
-
 - `R5_CONFIRMATION_BEFORE_ACCURACY=0.583333333333`
 - `R5_CONFIRMATION_AFTER_ACCURACY=0.7`
 - `R5_CONFIRMATION_BEFORE_LOSS=0.729003592377`
@@ -99,15 +72,48 @@ The failed blind R1/R2 evidence remains failed and was not recycled into trainin
 - `R5_CONFIRMATION_AFTER_MARGIN=0.31026020531`
 - `CONFIRMATION_USED_FOR_SEARCH=NO`
 - `CONFIRMATION_EVALUATED_AFTER_SIGMA_SELECTION=YES`
-- `ACTION=ACCEPT_T24_ORDERED_SPAN_R5_CANDIDATE`
 - `STATUS=UNTOUCHED_CONFIRMATION_OBJECTIVE_IMPROVED`
 
-The SIGMA-selected R5 candidate improved all three untouched confirmation metrics: accuracy increased, loss decreased, and margin increased.
+## Integrity FIX1 — corrected blind-text leakage check
+
+- `READ_ONLY=YES`
+- `ORIGINAL_SELFTEST_FALSE_POSITIVE=YES_NON_CASE_SCRIPT_LINES_WERE_INCLUDED`
+- `EXACT_DENYLIST_KIND=NORMALIZED_QUERY_AND_CHOICE_TEXT_ONLY`
+- `BLIND_R1_R2_EXACT_TEXT_HASH_COUNT=72`
+- `R5_STUDY_TEXT_FILE_COUNT=1260`
+- `BLIND_R1_R2_EXACT_NORMALIZED_TEXT_OVERLAP=0`
+- `FAILED_BLIND_R1_R2_EXACT_TEXT_LEAK=NO`
+- `R5_TRAIN_INDEX_COUNT=240`
+- `R5_DEV_INDEX_COUNT=60`
+- `R5_ADMISSION_INDEX_COUNT=60`
+- `R5_CONFIRMATION_INDEX_COUNT=60`
+
+The prior exact-text-leak alarm is superseded by this corrected integrity check. FIX1 proves there is no exact normalized query/choice text overlap under the declared denylist definition. It does not by itself prove that the blind R1/R2 task outcomes pass; it only clears the earlier leakage finding as a false positive.
+
+## Runtime receipt rebind / immutability
+
+- `R5_RECEIPT_RESULT=PASS`
+- `R5_RECEIPT_SIGMA_MODEL_SELECTION=YES`
+- `R5_RECEIPT_SIGMA_FINAL_ADMISSION=YES`
+- `R5_RECEIPT_HOST_MODEL_SELECTION=NO`
+- `R5_RECEIPT_HOST_COGNITION=NO`
+- `R5_SELECTED_HEAD_SHA256_RECEIPT=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
+- `R5_SELECTED_HEAD_SHA256_ACTUAL=1dc4b0327593844c35d139fa99d51fe6272c7779131f41bd09614124bd41f79a`
+- `R5_BASE_MODEL_SHA256_RECEIPT=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
+- `R5_BASE_MODEL_SHA256_ACTUAL=245e1ad5e8191f17d6ae7c89dbfd65a7c223f74af4ad3711abdf9268ee1d3eb6`
+- `R5_R4_HEAD_SHA256_RECEIPT=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `R5_R4_HEAD_SHA256_ACTUAL=9a5945ba16f89833f3953c132048bb1cc3923f97c030ade12e0f6a62ac8dcb2b`
+- `BASE_MODEL_MUTATION=NO`
+- `R4_HEAD_MUTATION=NO`
+- `R5_HEAD_MUTATION=NO`
+- `T24_R5_PACKAGE_INTEGRITY_REVERIFY=PASS`
+- `T24_R5_RUNTIME_RECEIPT_REBIND=PASS`
+- `T24_R5_INTEGRITY_FIX1=PASS`
 
 ## Claim boundary
 
-- `T24_BLIND_R1_REMAINS_FAIL=YES`
-- `T24_BLIND_R2_REMAINS_FAIL=YES`
+- `T24_R5_EXACT_TEXT_LEAK=NO`
+- `T24_BLIND_R1_R2_TASK_PASS=NOT_PROVEN_BY_INTEGRITY_FIX1`
 - `T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 - `T24_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 - `T24_AUTONOMOUS_LANGUAGE_ACQUISITION=NOT_PROVEN`
@@ -115,25 +121,27 @@ The SIGMA-selected R5 candidate improved all three untouched confirmation metric
 - `T27_AUTONOMOUS_LOOP_RUNTIME=NOT_PROVEN_FROM_THIS_EVIDENCE`
 - `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-T24 R5 proves scoped ordered-span relational learning with SIGMA-owned selection/admission and untouched confirmation improvement. It does not establish general language understanding, human-level language understanding, autonomous language acquisition, blind-choice runtime, or the autonomous loop.
+Integrity FIX1 strengthens the provenance of the existing R5 scoped PASS by clearing a false-positive exact-text-leak alarm and rebinding runtime receipts to the actual immutable artifacts. It does not expand the claim to general language understanding, blind-choice success, autonomous language acquisition, or the T27 autonomous loop.
 
 ## Final
 
-`RESULT=PASS_IN_T24_R5_DEV_ADMISSION_CONFIRMATION_SCOPE`
+`RESULT=PASS_IN_T24_R5_DEV_ADMISSION_CONFIRMATION_SCOPE_WITH_INTEGRITY_REVERIFY`
 
 `UPSTREAM_T15_T23=PASS_IN_PREVIOUSLY_VERIFIED_SCOPES`
-
-`T24_R5_BUILD_AND_SELFTEST=PASS`
 
 `T24_R5_SIGMA_MODEL_SELECTION=PASS`
 
 `T24_R5_UNTOUCHED_CONFIRMATION_IMPROVEMENT=PASS`
 
-`T24_ORDERED_SPAN_RELATIONAL_LEARNING_R5=PASS_IN_DEV_ADMISSION_CONFIRMATION_SCOPE`
+`T24_R5_EXACT_NORMALIZED_TEXT_OVERLAP=0`
 
-`T24_BLIND_R1_REMAINS_FAIL=YES`
+`T24_R5_EXACT_TEXT_LEAK=NO`
 
-`T24_BLIND_R2_REMAINS_FAIL=YES`
+`T24_R5_RUNTIME_RECEIPT_REBIND=PASS`
+
+`T24_R5_INTEGRITY_FIX1=PASS`
+
+`T24_BLIND_R1_R2_TASK_PASS=NOT_PROVEN_BY_INTEGRITY_FIX1`
 
 `T24_LANGUAGE_UNDERSTANDING=NOT_PROVEN`
 
