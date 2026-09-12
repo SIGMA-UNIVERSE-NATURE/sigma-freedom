@@ -16,9 +16,10 @@
 - `T18_LONG_CONTEXT_REVISION=PASS_IN_LEARNED_STATE_SCOPE`
 - `T19_OFFLINE_REPLAY=PASS_IN_COMPRESSED_STATE_SCOPE`
 - `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
-- `CURRENT_STATUS=T15_T20_MACHINE_PASS_T21_T27_RUNTIME_PENDING`
+- `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
+- `CURRENT_STATUS=T15_T21_MACHINE_PASS_T22_T27_RUNTIME_PENDING`
 
-FIX2 now establishes tested runtime PASS through T20. T15 proves whole-document mechanics; T16 proves provenance-bound memory/rebind; T17 proves cross-document consolidation in learned-state scope; T18 proves old-state-to-evidence long-context revision; T19 proves offline replay improvement from compressed state without network access; and T20 proves SIGMA-selected unique learned-frontier target selection from a provided candidate set without host query generation or host web selection. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
+FIX2 now establishes tested runtime PASS through T21. T15 proves whole-document mechanics; T16 provenance-bound memory/rebind; T17 cross-document consolidation in learned-state scope; T18 old-state-to-evidence long-context revision; T19 offline replay from compressed state without network; T20 selection from a provided learned frontier without host query/target selection; and T21 knowledge-gap opening when learned-representation distance exceeds learned calibration. Broader semantic/understanding and autonomous-web-discovery claims remain outside the proven scope.
 
 ## Architectural claim boundary
 
@@ -30,6 +31,7 @@ FIX2 now establishes tested runtime PASS through T20. T15 proves whole-document 
 - `CROSS_DOCUMENT_UNDERSTANDING=NOT_PROVEN_BY_T17_ALONE`
 - `LONG_CONTEXT_SEMANTIC_UNDERSTANDING=NOT_PROVEN_BY_T18_ALONE`
 - `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
+- `T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
 
 ## Locked toolchain
 
@@ -72,7 +74,7 @@ FIX2 now establishes tested runtime PASS through T20. T15 proves whole-document 
 
 Deterministic compilation proves build reproducibility only; it does not by itself admit a controller's runtime behavior.
 
-## Runtime results through T20
+## Runtime results through T21
 
 ### T15
 - `ACTION=ACCEPT_T15_WHOLE_DOCUMENT_CANDIDATE`
@@ -114,11 +116,17 @@ Deterministic compilation proves build reproducibility only; it does not by itse
 - `T20_WEB_FRONTIER_SELECTION=PASS_IN_PROVIDED_CANDIDATE_SCOPE`
 - `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
 
-This proves target selection from the provided web-candidate frontier in the tested learned-frontier scope without host-generated query or host-selected target. It does not prove autonomous discovery of candidate targets from the open web.
+### T21
+- `ACTION=OPEN_KNOWLEDGE_GAP`
+- `STATUS=LEARNED_REPRESENTATION_DISTANCE_EXCEEDS_LEARNED_CALIBRATION`
+- `HOST_COGNITION=NO`
+- `T21_KNOWLEDGE_GAP_DETECTION=PASS_IN_LEARNED_CALIBRATION_SCOPE`
+- `T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
+
+This proves the tested learned-calibration gap detector can open a knowledge gap when learned-representation distance exceeds its learned calibration boundary. It does not prove a general semantic notion of missing knowledge.
 
 ## Downstream status
 
-- `T21_KNOWLEDGE_GAP_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T22_STUDY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T23_CAPABILITY_SELECTION_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
 - `T24_T26_BLIND_CHOICE_RUNTIME=NOT_YET_PROVEN_FROM_THIS_EVIDENCE`
@@ -143,6 +151,8 @@ This proves target selection from the provided web-candidate frontier in the tes
 
 `T20_WEB_FRONTIER_SELECTION=PASS`
 
+`T21_KNOWLEDGE_GAP_DETECTION=PASS`
+
 `CONTROLLER_BUILD_CHAIN=PASS`
 
 `FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN`
@@ -153,6 +163,8 @@ This proves target selection from the provided web-candidate frontier in the tes
 
 `T20_AUTONOMOUS_WEB_DISCOVERY=NOT_PROVEN`
 
+`T21_GENERAL_SEMANTIC_GAP=NOT_PROVEN`
+
 `FULL_T14_T27_MACHINE_CHAIN_PASS=NOT_YET_PROVEN`
 
-`NEXT=RUN_AND_VERIFY_T21_KNOWLEDGE_GAP_THEN_T22_T27_RUNTIME_CHAIN`
+`NEXT=RUN_AND_VERIFY_T22_STUDY_SELECTION_THEN_T23_T27_RUNTIME_CHAIN`
