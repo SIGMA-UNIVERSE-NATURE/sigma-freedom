@@ -1,0 +1,285 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.T10A.BOUNDED.ARCHIVE.MANIFEST.GATE.RECONSTRUCTION][VERSION=1.0]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF readv(base, name) {
+    RETURN H("read_text", base + "/input/" + name, NULL, NULL);
+}
+
+DEF present(value) {
+    IF (value == "") {
+        RETURN 0;
+    }
+    IF (value == "NONE") {
+        RETURN 0;
+    }
+    RETURN 1;
+}
+
+DEF bool_token_valid(value) {
+    IF (value == "0") {
+        RETURN 1;
+    }
+    IF (value == "1") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF bool_true(value) {
+    IF (value == "1") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF digits(value) {
+    IF (value == "") {
+        RETURN 0;
+    }
+
+    ⚡ rest: value;
+    ⚡ rest: H("str_replace", rest, "0", "");
+    ⚡ rest: H("str_replace", rest, "1", "");
+    ⚡ rest: H("str_replace", rest, "2", "");
+    ⚡ rest: H("str_replace", rest, "3", "");
+    ⚡ rest: H("str_replace", rest, "4", "");
+    ⚡ rest: H("str_replace", rest, "5", "");
+    ⚡ rest: H("str_replace", rest, "6", "");
+    ⚡ rest: H("str_replace", rest, "7", "");
+    ⚡ rest: H("str_replace", rest, "8", "");
+    ⚡ rest: H("str_replace", rest, "9", "");
+
+    IF (rest == "") {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF number_if(valid, token) {
+    IF (valid == 1) {
+        RETURN H("to_float", token, NULL, NULL);
+    }
+    RETURN 0;
+}
+
+DEF flags3_valid(a, b, c) {
+    IF (bool_token_valid(a) == 0) {
+        RETURN 0;
+    }
+    IF (bool_token_valid(b) == 0) {
+        RETURN 0;
+    }
+    IF (bool_token_valid(c) == 0) {
+        RETURN 0;
+    }
+    RETURN 1;
+}
+
+DEF hazard3(a, b, c) {
+    IF (bool_true(a) == 1) {
+        RETURN 1;
+    }
+    IF (bool_true(b) == 1) {
+        RETURN 1;
+    }
+    IF (bool_true(c) == 1) {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF manifest_numeric_consistent(entry_count, max_entry_bytes, total_bytes) {
+    IF (entry_count == 0) {
+        IF (max_entry_bytes > 0) {
+            RETURN 0;
+        }
+        IF (total_bytes > 0) {
+            RETURN 0;
+        }
+        RETURN 1;
+    }
+    IF (max_entry_bytes > total_bytes) {
+        RETURN 0;
+    }
+    RETURN 1;
+}
+
+DEF consistency_if(integer_fields_valid, entry_count, max_entry_bytes, total_bytes) {
+    IF (integer_fields_valid == 0) {
+        RETURN 0;
+    }
+    RETURN manifest_numeric_consistent(entry_count, max_entry_bytes, total_bytes);
+}
+
+DEF resource_within_bounds(entry_count, max_entry_bytes, total_bytes) {
+    IF (entry_count > 8) {
+        RETURN 0;
+    }
+    IF (max_entry_bytes > 1048576) {
+        RETURN 0;
+    }
+    IF (total_bytes > 4194304) {
+        RETURN 0;
+    }
+    RETURN 1;
+}
+
+DEF resource_if(input_valid, entry_count, max_entry_bytes, total_bytes) {
+    IF (input_valid == 0) {
+        RETURN 0;
+    }
+    RETURN resource_within_bounds(entry_count, max_entry_bytes, total_bytes);
+}
+
+DEF hazard_if(flags_valid, hazard_a, hazard_b) {
+    IF (flags_valid == 0) {
+        RETURN 0;
+    }
+    IF (hazard_a == 1) {
+        RETURN 1;
+    }
+    IF (hazard_b == 1) {
+        RETURN 1;
+    }
+    RETURN 0;
+}
+
+DEF status_for(input_valid, numeric_consistent, resource_ok, hazard_present) {
+    IF (input_valid == 0) {
+        RETURN "INPUT_BINDING_INVALID";
+    }
+    IF (numeric_consistent == 0) {
+        RETURN "MANIFEST_NUMERIC_INCONSISTENT";
+    }
+    IF (resource_ok == 0) {
+        RETURN "RESOURCE_BOUND_VIOLATION";
+    }
+    IF (hazard_present == 1) {
+        RETURN "ARCHIVE_HAZARD_OBSERVED";
+    }
+    RETURN "BOUNDED_MANIFEST_ACCEPTED";
+}
+
+⟡(Σ.T10A_RECONSTRUCTION) {
+    ⚡ BASE: ".sigma_exec/T10A_BOUNDED_ARCHIVE_MANIFEST_GATE_RECONSTRUCTION_V1";
+
+    ⚡ CASE_ID: readv(BASE, "case_id.txt");
+    ⚡ ARCHIVE_ID: readv(BASE, "archive_id.txt");
+    ⚡ MANIFEST_ID: readv(BASE, "manifest_id.txt");
+    ⚡ ENTRY_COUNT_TEXT: readv(BASE, "entry_count.txt");
+    ⚡ MAX_ENTRY_BYTES_TEXT: readv(BASE, "max_entry_declared_bytes.txt");
+    ⚡ TOTAL_BYTES_TEXT: readv(BASE, "total_declared_bytes.txt");
+    ⚡ SYMLINK_PRESENT: readv(BASE, "symlink_present.txt");
+    ⚡ TRAVERSAL_PRESENT: readv(BASE, "traversal_present.txt");
+    ⚡ ABSOLUTE_PATH_PRESENT: readv(BASE, "absolute_path_present.txt");
+    ⚡ DUPLICATE_PATH_PRESENT: readv(BASE, "duplicate_path_present.txt");
+    ⚡ ENCRYPTED_ENTRY_PRESENT: readv(BASE, "encrypted_entry_present.txt");
+    ⚡ UNSUPPORTED_ENTRY_TYPE_PRESENT: readv(BASE, "unsupported_entry_type_present.txt");
+
+    ⚡ CORE_PRESENT: present(CASE_ID) && present(ARCHIVE_ID) && present(MANIFEST_ID);
+    ⚡ INTEGER_FIELDS_VALID: digits(ENTRY_COUNT_TEXT) && digits(MAX_ENTRY_BYTES_TEXT) && digits(TOTAL_BYTES_TEXT);
+    ⚡ FLAGS_A_VALID: flags3_valid(SYMLINK_PRESENT, TRAVERSAL_PRESENT, ABSOLUTE_PATH_PRESENT);
+    ⚡ FLAGS_B_VALID: flags3_valid(DUPLICATE_PATH_PRESENT, ENCRYPTED_ENTRY_PRESENT, UNSUPPORTED_ENTRY_TYPE_PRESENT);
+    ⚡ FLAGS_VALID: FLAGS_A_VALID && FLAGS_B_VALID;
+    ⚡ INPUT_BINDING_VALID: CORE_PRESENT && INTEGER_FIELDS_VALID && FLAGS_VALID;
+
+    ⚡ ENTRY_COUNT: number_if(INTEGER_FIELDS_VALID, ENTRY_COUNT_TEXT);
+    ⚡ MAX_ENTRY_DECLARED_BYTES: number_if(INTEGER_FIELDS_VALID, MAX_ENTRY_BYTES_TEXT);
+    ⚡ TOTAL_DECLARED_BYTES: number_if(INTEGER_FIELDS_VALID, TOTAL_BYTES_TEXT);
+
+    ⚡ MANIFEST_NUMERIC_CONSISTENT: consistency_if(INTEGER_FIELDS_VALID, ENTRY_COUNT, MAX_ENTRY_DECLARED_BYTES, TOTAL_DECLARED_BYTES);
+    ⚡ RESOURCE_WITHIN_BOUNDS: resource_if(INPUT_BINDING_VALID, ENTRY_COUNT, MAX_ENTRY_DECLARED_BYTES, TOTAL_DECLARED_BYTES);
+    ⚡ HAZARD_A: hazard3(SYMLINK_PRESENT, TRAVERSAL_PRESENT, ABSOLUTE_PATH_PRESENT);
+    ⚡ HAZARD_B: hazard3(DUPLICATE_PATH_PRESENT, ENCRYPTED_ENTRY_PRESENT, UNSUPPORTED_ENTRY_TYPE_PRESENT);
+    ⚡ HAZARD_PRESENT: hazard_if(FLAGS_VALID, HAZARD_A, HAZARD_B);
+
+    ⚡ ARCHIVE_MANIFEST_GATE_ACCEPTED: 0;
+    IF (INPUT_BINDING_VALID == 1) {
+        IF (MANIFEST_NUMERIC_CONSISTENT == 1) {
+            IF (RESOURCE_WITHIN_BOUNDS == 1) {
+                IF (HAZARD_PRESENT == 0) {
+                    ⚡ ARCHIVE_MANIFEST_GATE_ACCEPTED: 1;
+                }
+            }
+        }
+    }
+
+    ⚡ STATUS: status_for(INPUT_BINDING_VALID, MANIFEST_NUMERIC_CONSISTENT, RESOURCE_WITHIN_BOUNDS, HAZARD_PRESENT);
+
+    ⚡ print("T10A_BOUNDED_ARCHIVE_MANIFEST_GATE_RECONSTRUCTION_V1");
+    ⚡ print("INPUT_CASE_ID");
+    ⚡ print(CASE_ID);
+    ⚡ print("ARCHIVE_ID");
+    ⚡ print(ARCHIVE_ID);
+    ⚡ print("MANIFEST_ID");
+    ⚡ print(MANIFEST_ID);
+    ⚡ print("CORE_PRESENT");
+    ⚡ print(CORE_PRESENT);
+    ⚡ print("INTEGER_FIELDS_VALID");
+    ⚡ print(INTEGER_FIELDS_VALID);
+    ⚡ print("FLAGS_VALID");
+    ⚡ print(FLAGS_VALID);
+    ⚡ print("INPUT_BINDING_VALID");
+    ⚡ print(INPUT_BINDING_VALID);
+    ⚡ print("ENTRY_COUNT");
+    ⚡ print(ENTRY_COUNT);
+    ⚡ print("MAX_ENTRY_DECLARED_BYTES");
+    ⚡ print(MAX_ENTRY_DECLARED_BYTES);
+    ⚡ print("TOTAL_DECLARED_BYTES");
+    ⚡ print(TOTAL_DECLARED_BYTES);
+    ⚡ print("MAX_ENTRIES_BOUND");
+    ⚡ print(8);
+    ⚡ print("MAX_ENTRY_DECLARED_BYTES_BOUND");
+    ⚡ print(1048576);
+    ⚡ print("MAX_TOTAL_DECLARED_BYTES_BOUND");
+    ⚡ print(4194304);
+    ⚡ print("MANIFEST_NUMERIC_CONSISTENT");
+    ⚡ print(MANIFEST_NUMERIC_CONSISTENT);
+    ⚡ print("RESOURCE_WITHIN_BOUNDS");
+    ⚡ print(RESOURCE_WITHIN_BOUNDS);
+    ⚡ print("SYMLINK_PRESENT");
+    ⚡ print(SYMLINK_PRESENT);
+    ⚡ print("TRAVERSAL_PRESENT");
+    ⚡ print(TRAVERSAL_PRESENT);
+    ⚡ print("ABSOLUTE_PATH_PRESENT");
+    ⚡ print(ABSOLUTE_PATH_PRESENT);
+    ⚡ print("DUPLICATE_PATH_PRESENT");
+    ⚡ print(DUPLICATE_PATH_PRESENT);
+    ⚡ print("ENCRYPTED_ENTRY_PRESENT");
+    ⚡ print(ENCRYPTED_ENTRY_PRESENT);
+    ⚡ print("UNSUPPORTED_ENTRY_TYPE_PRESENT");
+    ⚡ print(UNSUPPORTED_ENTRY_TYPE_PRESENT);
+    ⚡ print("HAZARD_PRESENT");
+    ⚡ print(HAZARD_PRESENT);
+    ⚡ print("ARCHIVE_MANIFEST_GATE_ACCEPTED");
+    ⚡ print(ARCHIVE_MANIFEST_GATE_ACCEPTED);
+    ⚡ print("STATUS");
+    ⚡ print(STATUS);
+    ⚡ print("RESOURCE_PROFILE_ID");
+    ⚡ print("T10A_RECONSTRUCTION_RESOURCE_PROFILE_V1");
+    ⚡ print("HISTORICAL_T10A_BOUNDS_IMPORTED");
+    ⚡ print("NO");
+    ⚡ print("HOST_MECHANICAL_ABI");
+    ⚡ print("read_text,to_float,str_replace");
+    ⚡ print("PERSISTENT_STATE");
+    ⚡ print("NA");
+    ⚡ print("RAW_ARCHIVE_FORMAT_PARSING");
+    ⚡ print("NOT_PROVEN");
+    ⚡ print("ARCHIVE_HAZARD_DETECTION_FROM_RAW_BYTES");
+    ⚡ print("NOT_PROVEN");
+    ⚡ print("ACTUAL_ARCHIVE_EXTRACTION");
+    ⚡ print("NOT_EXECUTED");
+    ⚡ print("DOCUMENT_CONTENT_READING");
+    ⚡ print("NOT_PROVEN");
+    ⚡ print("DOCUMENT_UNDERSTANDING");
+    ⚡ print("NOT_PROVEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING");
+    ⚡ print("NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED");
+    ⚡ print("NO");
+    ⚡ print("T10B_UNLOCKED_BY_THIS_INVOCATION");
+    ⚡ print("NO");
+}
