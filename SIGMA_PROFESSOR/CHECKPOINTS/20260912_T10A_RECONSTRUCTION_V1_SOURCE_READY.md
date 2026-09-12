@@ -48,11 +48,14 @@ Host does not select semantic meaning, evidence, truth, curriculum, or capabilit
 `SIGMA_PROFESSOR/artifacts/RUN_SIGMA_T10A_BOUNDED_ARCHIVE_MANIFEST_GATE_RECONSTRUCTION_V1.sh`
 
 ```text
-RUNNER_GIT_BLOB=baaa007aa8ac670b092d202d8890efa0e421a961
-RUNNER_SHA256=12f4742ff4c32082f030d490e1746e29cc8752093d7d0faa0e53fafe3938a07a
+RUNNER_GIT_BLOB=f22c13614d9fcae063d168ac369cd9df1fc9cf63
+RUNNER_SHA256=37429402df32e3a1246bf6775fe809237cf6f7d0151bc9c1f277f5491ebc0b94
 STATIC_BASH_N=PASS
 STATIC_SIGMA_PROFILE_SANITY=PASS
+RUNNER_EVIDENCE_HARDENING=YES
 ```
+
+Runner hardening adds explicit current-toolchain identity output, compile stdout/stderr hashes, per-case stderr hashes, explicit replay identity result, final source/bytecode hashes, and requires replay equality in the final hard admission gate. It does not modify native cognition or widen claim scope.
 
 Runner design follows the native admission method: toolchain/source identity gate -> compile once -> freeze source/bytecode -> create fixtures only after freeze -> raw VM stdout/stderr before oracle -> directed/adversarial -> randomized post-freeze -> counterfactual -> replay -> step-limit/nonzero checks -> high-entropy source/bytecode leak audit -> source/bytecode unchanged -> hard final AND gate.
 
@@ -104,11 +107,12 @@ A PASS here MUST NOT be renamed historical `T10A PASS`; it is `T10A_RECONSTRUCTI
 
 ## Next action
 
-Run the exact source and runner on the locked native runtime:
+Run the exact source and exact committed hardened runner on the locked native runtime:
 
 ```text
 SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
 VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+RUNNER_SHA256=37429402df32e3a1246bf6775fe809237cf6f7d0151bc9c1f277f5491ebc0b94
 ```
 
 Preserve the first compile/runtime result as evidence. Failure is evidence; do not weaken the gate to force PASS.
