@@ -1,11 +1,16 @@
 # READ FIRST — SIGMA DIRECTION
 
 AUTHORITATIVE_MASTER_ROADMAP=`BRAIN/WORKSTREAMS/SIGMA_PSI/00_READ_FIRST_SIGMA_MASTER_DIRECTION_AND_EXECUTION_ROADMAP_20260831.md`
+CURRENT_SIGMA_AIL_MASTER_HANDOFF=`BRAIN/HANDOFFS/00_SIGMA_AIL_MASTER_HANDOFF_20260914.md`
+SIGMA_AIL_IDENTITY_ARCHITECTURE=`BRAIN/SIGMA_AIL_IDENTITY_AND_BRAIN_ARCHITECTURE.md`
+SIGMA_AIL_GENERATIONAL_ROADMAP=`BRAIN/SIGMA_AIL_GENERATIONAL_NORTH_STAR_ROADMAP.md`
 
 BRANCH=SIGMA_LIFE
 STATUS=ACTIVE
 
-Any new coordination, language, translation, research, architecture or product window should read the master roadmap first, then load only its active lane checkpoint.
+Any new coordination, language, translation, research, architecture, brain, evidence, learning or product window should read the authoritative master roadmap first, then the current SIGMA.AIL master handoff, then load only the active lane/evidence checkpoint needed for the task.
+
+The SIGMA.AIL master handoff is the current cross-window map for stable identity, evidence locations, anti-hardcode policy, SIGMA-only cognitive implementation direction, and G1→G7 north-star progression. It does not erase historical handoffs or promote bounded evidence beyond its recorded scope.
 
 CURRENT_GATES:
 
@@ -28,4 +33,34 @@ SIGMA LANGUAGE
 → MULTILINGUAL MULTI-PLATFORM SIGMALLS COMPANION APP
 ```
 
-Do not treat product targets as already-proven machine capabilities. Preserve `CLAIM <= EVIDENCE`.
+SIGMA_AIL_DIRECTION:
+
+```text
+SYSTEM_IDENTITY=SIGMA.AIL
+ONE_SIGMA_AIL
+ONE_BRAIN_STATE
+ONE_LEARNING_HISTORY
+ONE_PROVENANCE_CHAIN
+ONE_COMMIT_AUTHORITY
+
+G1 CURRENT BRAIN
+→ G2 ONE SIGMA.AIL
+→ G3 LEARNED NARRATIVE BRAIN
+→ G4 GROUNDED SEMANTIC BRAIN
+→ G5 HUMAN-LANGUAGE / MULTILINGUAL BRAIN
+→ G6 AUTONOMOUS WORLD-LEARNING BRAIN
+→ G7 NORTH-STAR INTEGRATED BRAIN
+```
+
+Execution law:
+
+```text
+ANTI_HARDCODE=MANDATORY
+SIGMA_TEACHES_SIGMA=YES
+HOST_COGNITION=NO
+OLD_PASS != PERMANENT_DESIGN
+CAPABILITY_SET != FIXED
+CLAIM <= EVIDENCE
+```
+
+Do not treat product targets, generation targets, printed labels or bounded gate names as already-proven machine capabilities. Preserve `CLAIM <= EVIDENCE`.
