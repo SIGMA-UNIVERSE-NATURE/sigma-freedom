@@ -1,0 +1,34 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.AIL.G2B][VERSION=1.0]
+
+DEF g2b_accept(canonical_root, identity, active_head, model_generation, state_version) {
+    IF (canonical_root != ".sigma_ail") {
+        RETURN "HOLD_CANONICAL_ROOT_NOT_SIGMA_AIL";
+    }
+
+    IF (identity != "SIGMA.AIL") {
+        RETURN "HOLD_IDENTITY_NOT_SIGMA_AIL";
+    }
+
+    IF (active_head == NULL) {
+        RETURN "HOLD_ACTIVE_BRAIN_HEAD_MISSING";
+    }
+
+    IF (model_generation == NULL) {
+        RETURN "HOLD_MODEL_GENERATION_MISSING";
+    }
+
+    IF (state_version == NULL) {
+        RETURN "HOLD_STATE_VERSION_MISSING";
+    }
+
+    RETURN "G2B_RECEIPT_ACCEPTABLE_FOR_REVIEW";
+}
+
+⟡(Σ.G2B_GATE) {
+    ⚡ owner: "SIGMA.AIL";
+    ⚡ canonical_root: ".sigma_ail";
+    ⚡ required_fields: "ACTIVE_BRAIN_HEAD|MODEL_GENERATION|STATE_VERSION";
+    ⚡ host_cognition: "NO";
+    ⚡ runtime_truth_source: "EVIDENCE_OR_MACHINE_RECEIPT";
+    ⚡ next_gate: "G2B_NATIVE_DOT_SIGMA_AIL_HEAD_STATE_VERSION_RECEIPT";
+}
