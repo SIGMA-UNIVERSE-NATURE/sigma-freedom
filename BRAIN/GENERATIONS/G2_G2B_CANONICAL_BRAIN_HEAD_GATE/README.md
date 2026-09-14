@@ -35,3 +35,14 @@ bash RUN_G2B_CANONICAL_RECEIPT.sh "$HOME/SIGMA/sigma_genesis1" \
 ## Result boundary
 
 The Python file performs byte/file/lock mechanics only. It reads canonical state fields, checks symlinks and hashes, holds the canonical writer lock while taking the snapshot, and writes a receipt. It does not understand content, choose beliefs, create semantic labels, or decide SIGMA cognition.
+
+
+## Bind command
+
+After the active R3 head has been discovered, bind .sigma_ail only when the legacy writer is idle:
+
+~~~bash
+bash RUN_G2B_BIND_CANONICAL.sh "$HOME/SIGMA/sigma_genesis1"
+~~~
+
+If SIGMA is writing, the bind command returns HOLD with LEGACY_WRITER_ACTIVE. That is the correct result while the supervisor is doing work.
