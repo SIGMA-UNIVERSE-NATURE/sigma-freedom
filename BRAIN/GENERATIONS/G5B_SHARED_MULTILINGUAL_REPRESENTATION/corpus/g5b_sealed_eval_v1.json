@@ -1,0 +1,44 @@
+{
+  "schema": "SIGMA_G5B_SEALED_EVAL_V1",
+  "note": "Evaluator-only expected correspondences. This file must not be provided to learner input.",
+  "positives": [
+    [
+      "ho_vi_101",
+      "ho_en_101"
+    ],
+    [
+      "ho_vi_102",
+      "ho_en_102"
+    ],
+    [
+      "ho_vi_103",
+      "ho_en_103"
+    ]
+  ],
+  "ambiguity_should_preserve": [
+    "tr_vi_004",
+    "tr_en_004"
+  ],
+  "negatives": [
+    [
+      "ho_vi_101",
+      "ctl_en_201"
+    ],
+    [
+      "ho_en_102",
+      "ctl_vi_201"
+    ],
+    [
+      "tr_vi_005",
+      "ctl_en_201"
+    ]
+  ],
+  "required_evidence": [
+    "INPUT_DEPENDENCE",
+    "FRESH_PROCESS_REPLAY",
+    "PROVENANCE_PRESERVED",
+    "AMBIGUITY_PRESERVED",
+    "NO_PHRASE_RULE_SUBSTITUTION",
+    "NO_HOST_SEMANTIC_SELECTION"
+  ]
+}

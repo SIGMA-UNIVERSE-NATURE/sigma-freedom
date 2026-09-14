@@ -1,0 +1,41 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.AIL.G5B][VERSION=1.0]
+
+DEF g5b_claim_boundary() {
+    RETURN "G5_PRECURSOR_ONLY|PROMOTION_NO|MODEL_COMMIT_NO|PRODUCTION_CUTOVER_NO";
+}
+
+DEF g5b_accept(input_dependence, replay, provenance, ambiguity, no_phrase_rules, no_host_semantic) {
+    IF (input_dependence != "PASS") {
+        RETURN "HOLD_INPUT_DEPENDENCE";
+    }
+    IF (replay != "PASS") {
+        RETURN "HOLD_FRESH_PROCESS_REPLAY";
+    }
+    IF (provenance != "PASS") {
+        RETURN "HOLD_PROVENANCE";
+    }
+    IF (ambiguity != "PASS") {
+        RETURN "HOLD_AMBIGUITY";
+    }
+    IF (no_phrase_rules != "PASS") {
+        RETURN "HOLD_PHRASE_RULE_SUBSTITUTION";
+    }
+    IF (no_host_semantic != "PASS") {
+        RETURN "HOLD_HOST_SEMANTIC_SELECTION";
+    }
+    RETURN "G5B_SHARED_MULTILINGUAL_PRECURSOR_PASS_IN_DEFINED_SANDBOX_SCOPE";
+}
+
+⟡(Σ.G5B_SHARED_MULTILINGUAL_REPRESENTATION) {
+    ⚡ system_identity: "SIGMA.AIL";
+    ⚡ current_program_generation: "G2";
+    ⚡ target_generation: "G5_HUMAN_LANGUAGE_MULTILINGUAL_BRAIN";
+    ⚡ track: "G5_PRECURSOR_ONLY";
+    ⚡ promotion: "NO";
+    ⚡ model_commit: "NO";
+    ⚡ production_cutover: "NO";
+    ⚡ host_cognition: "NO";
+    ⚡ anti_hardcode: "MANDATORY";
+    ⚡ required_representation: "surface|context|provenance|ambiguity|uncertainty|cross_language_structural_correspondence";
+    ⚡ forbidden: "phrase_dictionary|translation_lookup_cognition|keyword_answer_rule|expected_answer_mapping|host_semantic_classifier|language_specific_intent_emotion_rules";
+}

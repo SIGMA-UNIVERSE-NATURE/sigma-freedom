@@ -1,0 +1,47 @@
+{
+  "schema": "SIGMA_G5B_FROZEN_SANDBOX_MANIFEST_V1",
+  "handoff_id": "G5B_SHARED_MULTILINGUAL_REPRESENTATION_T28_20260915",
+  "role": "G5B_SHARED_MULTILINGUAL_REPRESENTATION",
+  "system_identity": "SIGMA.AIL",
+  "current_program_generation": "G2",
+  "target_generation": "G5_HUMAN_LANGUAGE_MULTILINGUAL_BRAIN",
+  "track": "G5_PRECURSOR_ONLY",
+  "promotion": "NO",
+  "model_commit": "NO",
+  "production_cutover": "NO",
+  "corpus": "g5b_frozen_sandbox_learner_input_v1.jsonl",
+  "corpus_sha256": "a0ec7db21488c8cdbc4e35387adaee0463484b4b3696bd8e22e169f6baea8daf",
+  "sealed_eval": "g5b_sealed_eval_v1.json",
+  "sealed_eval_sha256": "9d76ef8aabc7cb16aecafa288b61ee0c38ef2e099072a044cdee6d02ca91aeca",
+  "learner_source": "G5B_SHARED_REPRESENTATION_CANDIDATE.sigma",
+  "learner_source_sha256": "17abfd05bd4be51d31e0cf9d466758a6cb1df2668068872fdc4e399aadb5478b",
+  "runner_source": "g5b_mechanical_audit.py",
+  "runner_source_sha256": "820929e9f41a36b39bd785e2250efaa26ea6999242611df4dc13d8914517ae8d",
+  "core_requirement": [
+    "surface_form",
+    "context",
+    "provenance",
+    "ambiguity",
+    "uncertainty",
+    "cross_language_structural_correspondence"
+  ],
+  "required_evidence": [
+    "INPUT_DEPENDENCE",
+    "FRESH_PROCESS_REPLAY",
+    "PROVENANCE_PRESERVED",
+    "AMBIGUITY_PRESERVED",
+    "NO_PHRASE_RULE_SUBSTITUTION",
+    "NO_HOST_SEMANTIC_SELECTION"
+  ],
+  "do_not_build": [
+    "Vietnamese phrase dictionary",
+    "English phrase dictionary",
+    "Translation lookup table used as cognition",
+    "Keyword/phrase-specific answer rules",
+    "Expected-answer mapping",
+    "Host-side semantic classifier",
+    "Language-specific hardcoded intent/emotion rules"
+  ],
+  "success_for_this_door": "G5B_SHARED_MULTILINGUAL_PRECURSOR=PASS_IN_DEFINED_SANDBOX_SCOPE",
+  "status": "SANDBOX_CREATED_NATIVE_RUN_PENDING"
+}

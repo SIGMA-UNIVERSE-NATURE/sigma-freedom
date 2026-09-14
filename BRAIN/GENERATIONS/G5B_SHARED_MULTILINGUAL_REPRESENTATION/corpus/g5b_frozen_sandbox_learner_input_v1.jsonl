@@ -1,0 +1,18 @@
+{"id":"tr_vi_001","split":"train","lang":"vi","group":"g_train_a","text":"Lan mở cửa sau khi nghe tiếng gõ.","context":"A person reacts to a prior sound.","provenance":"g5b/corpus/v1#tr_vi_001"}
+{"id":"tr_en_001","split":"train","lang":"en","group":"g_train_a","text":"Lan opened the door after hearing a knock.","context":"A person reacts to a prior sound.","provenance":"g5b/corpus/v1#tr_en_001"}
+{"id":"tr_vi_002","split":"train","lang":"vi","group":"g_train_b","text":"Nếu trời mưa, buổi picnic sẽ bị hoãn.","context":"A condition changes a planned event.","provenance":"g5b/corpus/v1#tr_vi_002"}
+{"id":"tr_en_002","split":"train","lang":"en","group":"g_train_b","text":"If it rains, the picnic will be postponed.","context":"A condition changes a planned event.","provenance":"g5b/corpus/v1#tr_en_002"}
+{"id":"tr_vi_003","split":"train","lang":"vi","group":"g_train_c","text":"Minh nói rằng An đã trả sách cho thư viện.","context":"A report about a completed transfer.","provenance":"g5b/corpus/v1#tr_vi_003"}
+{"id":"tr_en_003","split":"train","lang":"en","group":"g_train_c","text":"Minh said that An had returned the book to the library.","context":"A report about a completed transfer.","provenance":"g5b/corpus/v1#tr_en_003"}
+{"id":"tr_vi_004","split":"train","lang":"vi","group":"g_train_d_amb","text":"Nam thấy cô ấy với kính viễn vọng.","context":"Ambiguous instrument or companion attachment.","provenance":"g5b/corpus/v1#tr_vi_004"}
+{"id":"tr_en_004","split":"train","lang":"en","group":"g_train_d_amb","text":"Nam saw her with the telescope.","context":"Ambiguous instrument or companion attachment.","provenance":"g5b/corpus/v1#tr_en_004"}
+{"id":"tr_vi_005","split":"train","lang":"vi","group":"g_train_e_neg","text":"Bình không ký hợp đồng vì điều khoản thay đổi.","context":"Negation plus cause.","provenance":"g5b/corpus/v1#tr_vi_005"}
+{"id":"tr_en_005","split":"train","lang":"en","group":"g_train_e_neg","text":"Binh did not sign the contract because the terms changed.","context":"Negation plus cause.","provenance":"g5b/corpus/v1#tr_en_005"}
+{"id":"ho_vi_101","split":"heldout","lang":"vi","group":"hidden","text":"Sau khi chuông reo, Mai đóng cửa sổ.","context":"Held-out prior event and response.","provenance":"g5b/corpus/v1#ho_vi_101"}
+{"id":"ho_en_101","split":"heldout","lang":"en","group":"hidden","text":"After the bell rang, Mai closed the window.","context":"Held-out prior event and response.","provenance":"g5b/corpus/v1#ho_en_101"}
+{"id":"ho_vi_102","split":"heldout","lang":"vi","group":"hidden","text":"Nếu máy hết pin, cuộc gọi sẽ kết thúc.","context":"Held-out condition and consequence.","provenance":"g5b/corpus/v1#ho_vi_102"}
+{"id":"ho_en_102","split":"heldout","lang":"en","group":"hidden","text":"If the phone loses power, the call will end.","context":"Held-out condition and consequence.","provenance":"g5b/corpus/v1#ho_en_102"}
+{"id":"ho_vi_103","split":"heldout","lang":"vi","group":"hidden","text":"Hà không mở hộp vì niêm phong bị rách.","context":"Held-out negation plus cause.","provenance":"g5b/corpus/v1#ho_vi_103"}
+{"id":"ho_en_103","split":"heldout","lang":"en","group":"hidden","text":"Ha did not open the box because the seal was torn.","context":"Held-out negation plus cause.","provenance":"g5b/corpus/v1#ho_en_103"}
+{"id":"ctl_en_201","split":"control","lang":"en","group":"hidden","text":"The window is blue and the song is short.","context":"Negative control with surface mismatch.","provenance":"g5b/corpus/v1#ctl_en_201"}
+{"id":"ctl_vi_201","split":"control","lang":"vi","group":"hidden","text":"Chiếc xe màu đỏ và bài thơ rất dài.","context":"Negative control with surface mismatch.","provenance":"g5b/corpus/v1#ctl_vi_201"}
