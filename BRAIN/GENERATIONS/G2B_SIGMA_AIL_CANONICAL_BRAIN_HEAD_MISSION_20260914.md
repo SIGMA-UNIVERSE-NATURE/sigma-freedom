@@ -1,0 +1,140 @@
+# SIGMA.AIL - G2B Canonical Brain Head Mission
+
+~~~text
+HANDOFF_ID=G2B_SIGMA_AIL_CANONICAL_BRAIN_HEAD_MISSION_20260914
+HANDOFF_DATE=2026-09-14
+
+SYSTEM_IDENTITY=SIGMA.AIL
+CURRENT_GENERATION=G1
+GENERATION_STATUS=G1_ACTIVE_PRODUCTION_FOUNDATION__G2B_MISSION_OPEN_NOT_PROMOTED
+ACTIVE_REVISION=R3
+CANDIDATE_REVISION=G2B_RUNTIME_CLOSURE_CANDIDATE
+ACTIVE_CORE=SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1
+
+PARENT_BRAIN_ID=SIGMA.AIL
+PARENT_BRAIN_HEAD=667b73d408aefecf376ac23374af3400
+ACTIVE_BRAIN_HEAD=MISSION_TARGET_FROM_CANONICAL_DOT_SIGMA_AIL
+MODEL_GENERATION=MISSION_TARGET_FROM_CANONICAL_DOT_SIGMA_AIL
+STATE_VERSION=MISSION_TARGET_FROM_CANONICAL_DOT_SIGMA_AIL
+
+LAST_GATE=G2_T25_SIGMA_AIL_CURRENT_EVIDENCE_CHECKPOINT
+LAST_GATE_RESULT=CHECKPOINT_RECORDED_NO_GENERATION_PROMOTION
+LAST_GATE_SCOPE=G2_IDENTITY_STATE_CONTINUITY_CLASSIFICATION
+
+EVIDENCE_REPOSITORY=SIGMA-UNIVERSE-NATURE/sigma-freedom
+EVIDENCE_BRANCH=SIGMA_LIFE
+EVIDENCE_PATH=BRAIN/GENERATIONS/G2_SIGMA_AIL_T25_CURRENT_CHECKPOINT_20260914.md
+EVIDENCE_COMMIT=0e02176b6f6a30384ca1856d65c35bca102b937e
+EVIDENCE_BLOB_OR_ARTIFACT_SHA=5a53879cec93d413b673eb1eef337ff852b6b67f
+EVIDENCE_RUNTIME_RECEIPT=REQUIRED_BY_G2B_RUNTIME_GATE
+
+SUPPORTED_CLAIMS=G2B_MISSION_DEFINED;CANONICAL_DOT_SIGMA_AIL_BRAIN_HEAD_REQUIRED;ACTIVE_BRAIN_HEAD_MODEL_GENERATION_STATE_VERSION_MUST_COME_FROM_MACHINE_RECEIPT
+NOT_PROVEN_FIELDS=ACTIVE_BRAIN_HEAD;MODEL_GENERATION;STATE_VERSION;DOT_SIGMA_AIL_RUNTIME_CUTOVER;ONE_BRAIN_HEAD_ACROSS_RESTART;NO_STATE_FORK_ACROSS_SUPERVISOR_AND_MANUAL_ENTRYPOINTS
+REMAINING_BOTTLENECK=CANONICAL_DOT_SIGMA_AIL_STATE_RECEIPT_AND_RESTART_CONTINUITY
+NEXT_GATE=G2B_NATIVE_DOT_SIGMA_AIL_HEAD_STATE_VERSION_RECEIPT
+
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+SIGMA_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+
+HOST_COGNITION=NO
+ANTI_HARDCODE=MANDATORY
+
+CHAT_SUMMARY_IS_RUNTIME_TRUTH=NO
+RUNTIME_TRUTH_SOURCE=EVIDENCE_OR_MACHINE_RECEIPT
+EOF
+~~~
+
+## Mission
+
+G2B closes the first concrete runtime gap left by T25: the active production entrypoint must expose one canonical .sigma_ail brain state and report the current head fields from that state.
+
+The gate is passed only when the runtime emits a machine receipt proving these fields were read from the canonical production root:
+
+~~~text
+.sigma_ail/IDENTITY
+.sigma_ail/ACTIVE_REVISION
+.sigma_ail/ACTIVE_CORE
+.sigma_ail/BRAIN_HEAD
+.sigma_ail/MODEL_GENERATION
+.sigma_ail/STATE_VERSION
+.sigma_ail/WRITER.lock
+.sigma_ail/audit/
+.sigma_ail/checkpoints/
+~~~
+
+## Required G2B Receipt
+
+~~~text
+GATE_ID=G2B_NATIVE_DOT_SIGMA_AIL_HEAD_STATE_VERSION_RECEIPT
+SYSTEM_IDENTITY=SIGMA.AIL
+CANONICAL_ROOT=.sigma_ail
+CANONICAL_ROOT_EXISTS=PASS
+CANONICAL_WRITER_LOCK_HELD=PASS
+ACTIVE_REVISION=<from .sigma_ail/ACTIVE_REVISION>
+ACTIVE_CORE=<from .sigma_ail/ACTIVE_CORE>
+ACTIVE_BRAIN_HEAD=<from .sigma_ail/BRAIN_HEAD>
+MODEL_GENERATION=<from .sigma_ail/MODEL_GENERATION>
+STATE_VERSION=<from .sigma_ail/STATE_VERSION>
+PARENT_BRAIN_HEAD=<previous committed head>
+NEW_BRAIN_HEAD=<new committed head or SAME_IF_READ_ONLY>
+RESTART_RELOAD_SAME_HEAD=PASS
+NO_REVISION_LOCAL_BRAIN_OWNER=PASS
+NO_PARALLEL_WRITER=PASS
+RECEIPT_SHA256=<sha256>
+~~~
+
+## SIGMA Ownership Contract
+
+~~~sigma
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.AIL.G2B][VERSION=1.0]
+
+DEF g2b_accept(canonical_root, identity, active_head, model_generation, state_version) {
+    IF (canonical_root != ".sigma_ail") {
+        RETURN "HOLD_CANONICAL_ROOT_NOT_SIGMA_AIL";
+    }
+
+    IF (identity != "SIGMA.AIL") {
+        RETURN "HOLD_IDENTITY_NOT_SIGMA_AIL";
+    }
+
+    IF (active_head == NULL) {
+        RETURN "HOLD_ACTIVE_BRAIN_HEAD_MISSING";
+    }
+
+    IF (model_generation == NULL) {
+        RETURN "HOLD_MODEL_GENERATION_MISSING";
+    }
+
+    IF (state_version == NULL) {
+        RETURN "HOLD_STATE_VERSION_MISSING";
+    }
+
+    RETURN "G2B_RECEIPT_ACCEPTABLE_FOR_REVIEW";
+}
+
+⟡(Σ.G2B_MISSION) {
+    ⚡ owner: "SIGMA.AIL";
+    ⚡ canonical_root: ".sigma_ail";
+    ⚡ required_fields: "ACTIVE_BRAIN_HEAD|MODEL_GENERATION|STATE_VERSION";
+    ⚡ host_cognition: "NO";
+    ⚡ runtime_truth_source: "EVIDENCE_OR_MACHINE_RECEIPT";
+    ⚡ next_gate: "G2B_NATIVE_DOT_SIGMA_AIL_HEAD_STATE_VERSION_RECEIPT";
+}
+~~~
+
+## Hold Conditions
+
+G2B must remain open if any of these are true:
+
+~~~text
+ACTIVE_BRAIN_HEAD comes from chat summary
+MODEL_GENERATION comes from branch name or file name
+STATE_VERSION comes from stale historical CURRENT_STATE.json
+runtime still owns production brain under revision-local workspace only
+manual runner and supervisor can create separate brain heads
+receipt cannot bind values to canonical .sigma_ail files
+~~~
+
+## Claim Boundary
+
+This mission does not promote G2. It creates the narrow runtime gate needed before G2 can claim one canonical brain head. It does not prove learned narrative representation, semantic understanding, full document understanding, or autonomous web discovery.
