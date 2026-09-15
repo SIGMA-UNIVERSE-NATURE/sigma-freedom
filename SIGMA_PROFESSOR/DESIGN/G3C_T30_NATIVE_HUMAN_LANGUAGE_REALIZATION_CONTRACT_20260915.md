@@ -2,7 +2,7 @@
 
 Date: 2026-09-15
 Branch: `G3C_T30_NATIVE_HUMAN_LANGUAGE_REALIZATION_20260915`
-Status: SOURCE / ADMISSION CONTRACT — RUNTIME NOT YET CLAIMED
+Status: SOURCE / ADMISSION CONTRACT — LOCKED RUNTIME NOT YET RUN
 
 ## Purpose
 
@@ -38,7 +38,7 @@ PRODUCTION_STATE_MUTATED=NO
 CLAIM <= MACHINE_EVIDENCE
 ```
 
-A native `.sigma` file does not pass merely because it is native. Complete conversational answers, expected current conclusions, expected semantic plans, translations, or test-specific human sentences embedded in source/bytecode invalidate admission.
+A native `.sigma` file does not pass anti-hardcode merely because it is native. Complete conversational answers, expected current conclusions, expected semantic plans, translations, or test-specific human sentences embedded in source/bytecode invalidate admission.
 
 ## Component A — native narrative-to-utterance planner
 
@@ -46,12 +46,13 @@ Source:
 
 `SIGMA_PROFESSOR/artifacts/SIGMA_G3C_T30_NATIVE_NARRATIVE_TO_UTTERANCE_PLAN_V1.sigma`
 
-Current source lineage commits:
+Source lineage:
 
 ```text
 INITIAL_SOURCE_COMMIT=618ab2283d28f5a18a0eab30c3dd70384857209a
 GRAMMAR_ALIGNMENT_COMMIT=36817cbfcaa0d013c0fe41febaf769cc93c2f12f
 CURRENT_GIT_BLOB=18bbc3d4beb676f84a5ea1bebb20136c7aaec565
+SOURCE_SHA256=TO_BE_OBSERVED_AND_EQUALITY_RECORDED_ON_LOCKED_RUNTIME
 ```
 
 ### Planner input
@@ -87,7 +88,8 @@ The planner:
 5. natively orders selected concepts by positive causal precedence using a bounded topological process;
 6. among simultaneously available causal roots, uses temporal position and then plan score; exact unresolved ties fail closed;
 7. causal cycles fail closed;
-8. writes the ordered plan directly into the realizer input path; host does not transform or reorder it.
+8. writes the ordered plan directly into the realizer input path; host does not transform or reorder it;
+9. clears the realizer plan path before every planning attempt so a refused run cannot reuse a stale successful plan.
 
 The numeric planning policy is a generic native planning mechanism. It does NOT itself prove that upstream `IMPORTANCE`, `CONFIDENCE`, `TEMPORAL`, concepts or causal edges are semantically correct. That must be proven in the G3 narrative learner/consolidator gate.
 
@@ -103,21 +105,22 @@ Record:
 UNIT||<native_unit_id>||CONCEPT||<concept_id>||ORDER||<native_order>||SOURCE||<state_provenance>
 ```
 
-The planner initializes this path empty before planning so a refused run cannot accidentally reuse a stale successful plan.
-
 ## Component B — native learned-surface realizer
 
 Source:
 
 `SIGMA_PROFESSOR/artifacts/SIGMA_G3C_T30_NATIVE_LEARNED_SURFACE_REALIZER_V1.sigma`
 
-Source commit:
+Source lineage:
 
-`6e61e75691f981b80794fc6fea785195dd087982`
+```text
+INITIAL_SOURCE_COMMIT=6e61e75691f981b80794fc6fea785195dd087982
+STALE_OUTPUT_AND_GRAMMAR_REPAIR_COMMIT=5a3aeec71a81975e9f9160f27bca319b073cdaa8
+CURRENT_GIT_BLOB=2147c2f99ae680d4641f47298d3b0f5e29ded749
+SOURCE_SHA256=TO_BE_OBSERVED_AND_EQUALITY_RECORDED_ON_LOCKED_RUNTIME
+```
 
-Git blob:
-
-`5e094e7df0c384c51405325ac149f1ff9268e55b`
+The repair does not change lexical selection policy. It adds the admitted `leq()` grammar pattern and clears `speech.txt` at the start of every native invocation so a refused run cannot expose stale speech from a prior success.
 
 Surface input:
 
@@ -128,6 +131,39 @@ FORM||<form_id>||CONCEPT||<concept_id>||TEXT||<surface_text>||WEIGHT||<int>||SOU
 For end-to-end human-language evidence `surface.memory` MUST come from native VNM/learned surface evidence. Host-staged forms are permitted only for narrow mechanical realization tests and do not prove language learning.
 
 The realizer selects the unique highest-weight surface form for each planned concept. Missing forms and equal-weight competing forms fail closed. It writes `speech.txt` and verifies exact readback.
+
+## Component C — locked mechanical preflight runner
+
+Runner:
+
+`SIGMA_PROFESSOR/artifacts/RUN_SIGMA_G3C_T30_NATIVE_HUMAN_LANGUAGE_REALIZATION_PREFLIGHT.sh`
+
+Identity:
+
+```text
+RUNNER_CREATE_COMMIT=0d5e3ddf19d1023e3242a23e66e33c91afd06e17
+RUNNER_GIT_BLOB=d57b6fed3d7ff3b6f8d2688ebaf2b90d86daf8c6
+LOCAL_PREUPLOAD_BASH_N=PASS
+LOCAL_PREUPLOAD_DRAFT_SHA256=f86f00995dd35375c6778e5f0b33567db0fd720977a86bfd4555a0f311b13af4
+LOCKED_TARGET_RUNNER_SHA256=NOT_YET_OBSERVED
+```
+
+`LOCAL_PREUPLOAD_DRAFT_SHA256` is provenance for the locally syntax-checked draft only. It MUST NOT be promoted to the canonical target-machine runner SHA256 unless the exact target bytes independently reproduce it.
+
+The runner pins the planner and realizer by Git blob identity, prints their target-machine SHA256 values before compilation, equality-gates the locked compiler/VM identities, compiles both native sources before any dynamic fixture is generated, freezes bytecode hashes, then creates high-entropy runtime tokens.
+
+It preserves raw planner/realizer logs, starts exact mechanical oracle checks only after the respective VM execution, re-hashes sources and bytecodes after the suite, and scans all frozen sources/bytecodes for the post-compile high-entropy tokens.
+
+Current runtime status:
+
+```text
+LOCKED_SIGMAC_COMPILE=NOT_RUN
+PLANNER_BYTECODE_SHA256=UNKNOWN
+REALIZER_BYTECODE_SHA256=UNKNOWN
+TOTAL_PLANNER_VM_INVOCATIONS=0
+TOTAL_REALIZER_VM_INVOCATIONS=0
+T30_MECHANICAL_RUNTIME_ADMISSION=NOT_RUN
+```
 
 ## No hidden semantic bridge
 
@@ -175,30 +211,41 @@ VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 VM_IS_GENESIS1=NOT_PROVEN
 ```
 
-## Required mechanical admission cases
+## Mechanical admission suite
 
-At minimum:
+The committed runner contains 13 cases covering:
 
 ```text
-CAUSAL_CHAIN_FORWARD
-CAUSAL_CHAIN_REVERSED
-INDEPENDENT_ROOT_TEMPORAL_REORDER
-OVER_CAPACITY_NATIVE_SELECTION
-SELECTION_EXACT_TIE_REFUSAL
-CAUSAL_CYCLE_REFUSAL
-MISSING_CAUSAL_ENDPOINT_REFUSAL
-MALFORMED_STATE_REFUSAL
-STALE_PLAN_CANNOT_SURVIVE_REFUSAL
-SURFACE_HIGHER_WEIGHT_SELECTION
-SURFACE_WEIGHT_FLIP
-SURFACE_EQUAL_WEIGHT_TIE_REFUSAL
-MISSING_SURFACE_REFUSAL
-FRESH_PROCESS_REPLAY
-DYNAMIC_SOURCE_BYTECODE_LEAKAGE_ZERO
-STEP_LIMIT_NOT_HIT
+01 CAUSAL_CHAIN_FORWARD
+02 CAUSAL_CHAIN_REVERSED
+03 INDEPENDENT_ROOT_TEMPORAL_REORDER
+04 OVER_CAPACITY_NATIVE_SELECTION
+05 SELECTION_TIE_AND_STALE_OUTPUT_REFUSAL
+06 CAUSAL_CYCLE_REFUSAL
+07 MISSING_CAUSAL_ENDPOINT_REFUSAL
+08 MALFORMED_STATE_REFUSAL
+09 SURFACE_WEIGHT_FLIP
+10 SURFACE_EQUAL_WEIGHT_TIE_REFUSAL
+11 MISSING_SURFACE_REFUSAL
+12 FRESH_PROCESS_REPLAY
+13 ORDER_EXACT_TIE_REFUSAL
 ```
 
-Dynamic concepts and surface forms should be generated after compile with high entropy. They must not appear in planner source, realizer source or either frozen bytecode artifact.
+The suite also gates:
+
+```text
+DYNAMIC_INPUT_PRESENT_AT_COMPILE_TIME=NO
+UNSEEN_HIGH_ENTROPY_TOKEN_LEAK_COUNT_IN_SOURCE_OR_BYTECODE=0
+SOURCE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+BYTECODE_UNCHANGED_AFTER_DYNAMIC_TEST=YES
+STALE_PLAN_REFUSAL_TEST=PASS
+STALE_SPEECH_REFUSAL_TEST=PASS
+FRESH_PROCESS_REPLAY_TEST=PASS
+VM_NONZERO_COUNT=0
+STEP_LIMIT_HIT_COUNT=0
+```
+
+These fields are expected gates, not current results. They become evidence only if emitted by an actual locked runtime execution with preserved logs/receipt.
 
 ## Semantic G3 gate remains separate and harder
 
@@ -221,7 +268,8 @@ Until that exact chain passes:
 
 ```text
 T30_NATIVE_PLANNER_SOURCE=READY_FOR_LOCKED_RUNTIME
-T30_NATIVE_REALIZER_SOURCE=PRESENT
+T30_NATIVE_REALIZER_SOURCE=READY_FOR_LOCKED_RUNTIME
+T30_PREFLIGHT_RUNNER=SOURCE_READY
 T30_MECHANICAL_RUNTIME_ADMISSION=NOT_RUN
 G3_NARRATIVE_UNDERSTANDING=NOT_PROVEN
 HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
