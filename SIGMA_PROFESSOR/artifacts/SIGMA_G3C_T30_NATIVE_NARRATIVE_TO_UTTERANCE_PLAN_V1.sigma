@@ -1,0 +1,476 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.G3C.NATIVE.NARRATIVE.TO.UTTERANCE.PLAN][VERSION=T30-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF safe_field(value) {
+    IF (present(value) == 0) { RETURN 0; }
+    ⚡ NO_FIELD_SEP: H("str_replace", value, "||", "");
+    IF (NO_FIELD_SEP != value) { RETURN 0; }
+    ⚡ NO_NEWLINE: H("str_replace", value, "\n", "");
+    IF (NO_NEWLINE != value) { RETURN 0; }
+    RETURN 1;
+}
+
+DEF digits_only(value) {
+    IF (value == "") { RETURN 0; }
+    ⚡ REST: value;
+    ⚡ REST: H("str_replace", REST, "0", "");
+    ⚡ REST: H("str_replace", REST, "1", "");
+    ⚡ REST: H("str_replace", REST, "2", "");
+    ⚡ REST: H("str_replace", REST, "3", "");
+    ⚡ REST: H("str_replace", REST, "4", "");
+    ⚡ REST: H("str_replace", REST, "5", "");
+    ⚡ REST: H("str_replace", REST, "6", "");
+    ⚡ REST: H("str_replace", REST, "7", "");
+    ⚡ REST: H("str_replace", REST, "8", "");
+    ⚡ REST: H("str_replace", REST, "9", "");
+    IF (REST == "") { RETURN 1; }
+    RETURN 0;
+}
+
+DEF order_text(value) {
+    IF (value == 0) { RETURN "0"; }
+    IF (value == 1) { RETURN "1"; }
+    IF (value == 2) { RETURN "2"; }
+    IF (value == 3) { RETURN "3"; }
+    IF (value == 4) { RETURN "4"; }
+    IF (value == 5) { RETURN "5"; }
+    IF (value == 6) { RETURN "6"; }
+    IF (value == 7) { RETURN "7"; }
+    RETURN "NONE";
+}
+
+DEF unit_id(value) {
+    IF (value == 0) { RETURN "G3P0"; }
+    IF (value == 1) { RETURN "G3P1"; }
+    IF (value == 2) { RETURN "G3P2"; }
+    IF (value == 3) { RETURN "G3P3"; }
+    IF (value == 4) { RETURN "G3P4"; }
+    IF (value == 5) { RETURN "G3P5"; }
+    IF (value == 6) { RETURN "G3P6"; }
+    IF (value == 7) { RETURN "G3P7"; }
+    RETURN "NONE";
+}
+
+⟡(Σ.G3C_T30_NATIVE_NARRATIVE_TO_UTTERANCE_PLAN_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_G3C_T30_NATIVE_NARRATIVE_TO_UTTERANCE_PLAN_V1";
+    ⚡ INPUT_TEXT: H("read_text", BASE + "/input/narrative.memory", NULL, NULL);
+    ⚡ REALIZER_BASE: ".sigma_exec/SIGMA_G3C_T30_NATIVE_LEARNED_SURFACE_REALIZER_V1";
+    ⚡ PLAN_PATH: REALIZER_BASE + "/input/plan.memory";
+
+    ⚡ CLEAR_PLAN: H("write_text", PLAN_PATH, "", NULL);
+
+    ⚡ MAX_STATES: 16;
+    ⚡ MAX_EDGES: 32;
+    ⚡ MAX_SPLIT_LINES: 80;
+    ⚡ MAX_VALUE: 1000000;
+    ⚡ MAX_PLAN_UNITS: 8;
+
+    ⚡ LINES: H("str_split", INPUT_TEXT, "\n", NULL);
+    ⚡ LINE_COUNT: H("list_len", LINES, NULL, NULL);
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_SPLIT_LINES < LINE_COUNT) { ⚡ INPUT_BOUND_EXCEEDED: 1; }
+
+    ⚡ STATE_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_CONCEPTS: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_IMPORTANCE: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_CONFIDENCE: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_TEMPORAL: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_SOURCES: H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_ID_SEEN: H("map_new", NULL, NULL, NULL);
+    ⚡ CONCEPT_SEEN: H("map_new", NULL, NULL, NULL);
+
+    ⚡ EDGE_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ EDGE_FROM: H("list_new", NULL, NULL, NULL);
+    ⚡ EDGE_TO: H("list_new", NULL, NULL, NULL);
+    ⚡ EDGE_WEIGHTS: H("list_new", NULL, NULL, NULL);
+    ⚡ EDGE_ID_SEEN: H("map_new", NULL, NULL, NULL);
+
+    ⚡ STATE_VALID_COUNT: 0;
+    ⚡ EDGE_VALID_COUNT: 0;
+    ⚡ INVALID_COUNT: 0;
+    ⚡ STATE_ID_COLLISION_COUNT: 0;
+    ⚡ CONCEPT_COLLISION_COUNT: 0;
+    ⚡ EDGE_ID_COLLISION_COUNT: 0;
+
+    ⚡ LI: 0;
+    WHILE (LI < LINE_COUNT) {
+        ⚡ LINE: H("list_get", LINES, LI, NULL);
+        IF (LINE != "") {
+            ⚡ PARTS: H("str_split", LINE, "||", NULL);
+            ⚡ PC: H("list_len", PARTS, NULL, NULL);
+            ⚡ VALID: 0;
+
+            IF (PC == 12) {
+                ⚡ P0: H("list_get", PARTS, 0, NULL);
+                IF (P0 == "STATE") {
+                    ⚡ P1: H("list_get", PARTS, 1, NULL);
+                    ⚡ P2: H("list_get", PARTS, 2, NULL);
+                    ⚡ P3: H("list_get", PARTS, 3, NULL);
+                    ⚡ P4: H("list_get", PARTS, 4, NULL);
+                    ⚡ P5: H("list_get", PARTS, 5, NULL);
+                    ⚡ P6: H("list_get", PARTS, 6, NULL);
+                    ⚡ P7: H("list_get", PARTS, 7, NULL);
+                    ⚡ P8: H("list_get", PARTS, 8, NULL);
+                    ⚡ P9: H("list_get", PARTS, 9, NULL);
+                    ⚡ P10: H("list_get", PARTS, 10, NULL);
+                    ⚡ P11: H("list_get", PARTS, 11, NULL);
+                    ⚡ VALID:
+                        safe_field(P1)
+                        * exact(P2, "CONCEPT")
+                        * safe_field(P3)
+                        * exact(P4, "IMPORTANCE")
+                        * digits_only(P5)
+                        * exact(P6, "CONFIDENCE")
+                        * digits_only(P7)
+                        * exact(P8, "TEMPORAL")
+                        * digits_only(P9)
+                        * exact(P10, "SOURCE")
+                        * safe_field(P11);
+                    IF (VALID == 1) {
+                        ⚡ IMPORTANCE: H("to_int", P5, NULL, NULL);
+                        ⚡ CONFIDENCE: H("to_int", P7, NULL, NULL);
+                        ⚡ TEMPORAL: H("to_int", P9, NULL, NULL);
+                        IF (MAX_VALUE < IMPORTANCE) { ⚡ VALID: 0; }
+                        IF (MAX_VALUE < CONFIDENCE) { ⚡ VALID: 0; }
+                        IF (MAX_VALUE < TEMPORAL) { ⚡ VALID: 0; }
+                        IF (VALID == 1) {
+                            ⚡ STATE_EXISTS: H("map_has", STATE_ID_SEEN, P1, NULL);
+                            IF (STATE_EXISTS) {
+                                ⚡ STATE_ID_COLLISION_COUNT: STATE_ID_COLLISION_COUNT + 1;
+                                ⚡ VALID: 0;
+                            }
+                            ⚡ CONCEPT_EXISTS: H("map_has", CONCEPT_SEEN, P3, NULL);
+                            IF (CONCEPT_EXISTS) {
+                                ⚡ CONCEPT_COLLISION_COUNT: CONCEPT_COLLISION_COUNT + 1;
+                                ⚡ VALID: 0;
+                            }
+                            IF (VALID == 1) {
+                                ⚡ MARK_STATE: H("map_set", STATE_ID_SEEN, P1, P3);
+                                ⚡ MARK_CONCEPT: H("map_set", CONCEPT_SEEN, P3, P1);
+                                ⚡ PUSH_STATE_ID: H("list_push", STATE_IDS, P1, NULL);
+                                ⚡ PUSH_STATE_CONCEPT: H("list_push", STATE_CONCEPTS, P3, NULL);
+                                ⚡ PUSH_STATE_IMPORTANCE: H("list_push", STATE_IMPORTANCE, IMPORTANCE, NULL);
+                                ⚡ PUSH_STATE_CONFIDENCE: H("list_push", STATE_CONFIDENCE, CONFIDENCE, NULL);
+                                ⚡ PUSH_STATE_TEMPORAL: H("list_push", STATE_TEMPORAL, TEMPORAL, NULL);
+                                ⚡ PUSH_STATE_SOURCE: H("list_push", STATE_SOURCES, P11, NULL);
+                                ⚡ STATE_VALID_COUNT: STATE_VALID_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (PC == 10) {
+                ⚡ E0: H("list_get", PARTS, 0, NULL);
+                IF (E0 == "EDGE") {
+                    ⚡ E1: H("list_get", PARTS, 1, NULL);
+                    ⚡ E2: H("list_get", PARTS, 2, NULL);
+                    ⚡ E3: H("list_get", PARTS, 3, NULL);
+                    ⚡ E4: H("list_get", PARTS, 4, NULL);
+                    ⚡ E5: H("list_get", PARTS, 5, NULL);
+                    ⚡ E6: H("list_get", PARTS, 6, NULL);
+                    ⚡ E7: H("list_get", PARTS, 7, NULL);
+                    ⚡ E8: H("list_get", PARTS, 8, NULL);
+                    ⚡ E9: H("list_get", PARTS, 9, NULL);
+                    ⚡ VALID:
+                        safe_field(E1)
+                        * exact(E2, "FROM")
+                        * safe_field(E3)
+                        * exact(E4, "TO")
+                        * safe_field(E5)
+                        * exact(E6, "WEIGHT")
+                        * digits_only(E7)
+                        * exact(E8, "SOURCE")
+                        * safe_field(E9);
+                    IF (VALID == 1) {
+                        ⚡ EDGE_WEIGHT: H("to_int", E7, NULL, NULL);
+                        IF (MAX_VALUE < EDGE_WEIGHT) { ⚡ VALID: 0; }
+                        IF (VALID == 1) {
+                            ⚡ EDGE_EXISTS: H("map_has", EDGE_ID_SEEN, E1, NULL);
+                            IF (EDGE_EXISTS) {
+                                ⚡ EDGE_ID_COLLISION_COUNT: EDGE_ID_COLLISION_COUNT + 1;
+                                ⚡ VALID: 0;
+                            }
+                            IF (VALID == 1) {
+                                ⚡ MARK_EDGE: H("map_set", EDGE_ID_SEEN, E1, E3 + "->" + E5);
+                                ⚡ PUSH_EDGE_ID: H("list_push", EDGE_IDS, E1, NULL);
+                                ⚡ PUSH_EDGE_FROM: H("list_push", EDGE_FROM, E3, NULL);
+                                ⚡ PUSH_EDGE_TO: H("list_push", EDGE_TO, E5, NULL);
+                                ⚡ PUSH_EDGE_WEIGHT: H("list_push", EDGE_WEIGHTS, EDGE_WEIGHT, NULL);
+                                ⚡ EDGE_VALID_COUNT: EDGE_VALID_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (VALID == 0) { ⚡ INVALID_COUNT: INVALID_COUNT + 1; }
+        }
+        ⚡ LI: LI + 1;
+    }
+
+    ⚡ CAPACITY_EXCEEDED: 0;
+    IF (MAX_STATES < STATE_VALID_COUNT) { ⚡ CAPACITY_EXCEEDED: 1; }
+    IF (MAX_EDGES < EDGE_VALID_COUNT) { ⚡ CAPACITY_EXCEEDED: 1; }
+
+    ⚡ EDGE_ENDPOINT_MISSING_COUNT: 0;
+    ⚡ EI: 0;
+    WHILE (EI < EDGE_VALID_COUNT) {
+        ⚡ EFROM: H("list_get", EDGE_FROM, EI, NULL);
+        ⚡ ETO: H("list_get", EDGE_TO, EI, NULL);
+        ⚡ FROM_EXISTS: H("map_has", CONCEPT_SEEN, EFROM, NULL);
+        ⚡ TO_EXISTS: H("map_has", CONCEPT_SEEN, ETO, NULL);
+        IF (FROM_EXISTS == 0) { ⚡ EDGE_ENDPOINT_MISSING_COUNT: EDGE_ENDPOINT_MISSING_COUNT + 1; }
+        IF (TO_EXISTS == 0) { ⚡ EDGE_ENDPOINT_MISSING_COUNT: EDGE_ENDPOINT_MISSING_COUNT + 1; }
+        ⚡ EI: EI + 1;
+    }
+
+    ⚡ BASE_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) { ⚡ BASE_VALID: 0; }
+    IF (STATE_VALID_COUNT == 0) { ⚡ BASE_VALID: 0; }
+    IF (0 < INVALID_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < STATE_ID_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < CONCEPT_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < EDGE_ID_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < EDGE_ENDPOINT_MISSING_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (CAPACITY_EXCEEDED == 1) { ⚡ BASE_VALID: 0; }
+
+    ⚡ SELECTED: H("map_new", NULL, NULL, NULL);
+    ⚡ SELECTED_COUNT: 0;
+    ⚡ SELECTION_AMBIGUITY_COUNT: 0;
+    ⚡ TARGET_COUNT: STATE_VALID_COUNT;
+    IF (MAX_PLAN_UNITS < TARGET_COUNT) { ⚡ TARGET_COUNT: MAX_PLAN_UNITS; }
+
+    IF (BASE_VALID == 1) {
+        IF (STATE_VALID_COUNT <= MAX_PLAN_UNITS) {
+            ⚡ SI0: 0;
+            WHILE (SI0 < STATE_VALID_COUNT) {
+                ⚡ C0: H("list_get", STATE_CONCEPTS, SI0, NULL);
+                ⚡ MARK_SELECTED0: H("map_set", SELECTED, C0, "1");
+                ⚡ SELECTED_COUNT: SELECTED_COUNT + 1;
+                ⚡ SI0: SI0 + 1;
+            }
+        }
+    }
+
+    ⚡ SELECTION_BLOCKED: 0;
+    WHILE (SELECTED_COUNT < TARGET_COUNT) {
+        IF (SELECTION_BLOCKED == 0) {
+            ⚡ BEST_SET: 0;
+            ⚡ BEST_SCORE: 0;
+            ⚡ BEST_TIME: 0;
+            ⚡ BEST_INDEX: 0;
+            ⚡ BEST_CONCEPT: "";
+            ⚡ BEST_TIE: 0;
+            ⚡ SI: 0;
+            WHILE (SI < STATE_VALID_COUNT) {
+                ⚡ SC: H("list_get", STATE_CONCEPTS, SI, NULL);
+                ⚡ ALREADY_SELECTED: H("map_has", SELECTED, SC, NULL);
+                IF (ALREADY_SELECTED == 0) {
+                    ⚡ SIMPORTANCE: H("list_get", STATE_IMPORTANCE, SI, NULL);
+                    ⚡ SCONFIDENCE: H("list_get", STATE_CONFIDENCE, SI, NULL);
+                    ⚡ STIME: H("list_get", STATE_TEMPORAL, SI, NULL);
+                    ⚡ SSCORE: SIMPORTANCE + SCONFIDENCE;
+                    IF (BEST_SET == 0) {
+                        ⚡ BEST_SET: 1;
+                        ⚡ BEST_SCORE: SSCORE;
+                        ⚡ BEST_TIME: STIME;
+                        ⚡ BEST_INDEX: SI;
+                        ⚡ BEST_CONCEPT: SC;
+                        ⚡ BEST_TIE: 0;
+                    }
+                    IF (BEST_SET == 1) {
+                        IF (BEST_SCORE < SSCORE) {
+                            ⚡ BEST_SCORE: SSCORE;
+                            ⚡ BEST_TIME: STIME;
+                            ⚡ BEST_INDEX: SI;
+                            ⚡ BEST_CONCEPT: SC;
+                            ⚡ BEST_TIE: 0;
+                        }
+                        IF (SSCORE == BEST_SCORE) {
+                            IF (STIME < BEST_TIME) {
+                                ⚡ BEST_TIME: STIME;
+                                ⚡ BEST_INDEX: SI;
+                                ⚡ BEST_CONCEPT: SC;
+                                ⚡ BEST_TIE: 0;
+                            }
+                            IF (STIME == BEST_TIME) {
+                                IF (SC != BEST_CONCEPT) {
+                                    ⚡ BEST_TIE: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                ⚡ SI: SI + 1;
+            }
+            IF (BEST_SET == 0) { ⚡ SELECTION_BLOCKED: 1; }
+            IF (BEST_TIE == 1) {
+                ⚡ SELECTION_AMBIGUITY_COUNT: SELECTION_AMBIGUITY_COUNT + 1;
+                ⚡ SELECTION_BLOCKED: 1;
+            }
+            IF (SELECTION_BLOCKED == 0) {
+                ⚡ MARK_SELECTED: H("map_set", SELECTED, BEST_CONCEPT, "1");
+                ⚡ SELECTED_COUNT: SELECTED_COUNT + 1;
+            }
+        }
+        IF (SELECTION_BLOCKED == 1) {
+            ⚡ SELECTED_COUNT: TARGET_COUNT;
+        }
+    }
+
+    ⚡ EMITTED: H("map_new", NULL, NULL, NULL);
+    ⚡ EMITTED_COUNT: 0;
+    ⚡ ORDER_AMBIGUITY_COUNT: 0;
+    ⚡ CAUSAL_CYCLE_COUNT: 0;
+    ⚡ PLAN_TEXT: "";
+    ⚡ ORDER_BLOCKED: 0;
+
+    WHILE (EMITTED_COUNT < TARGET_COUNT) {
+        IF (ORDER_BLOCKED == 0) {
+            ⚡ ROOT_SET: 0;
+            ⚡ ROOT_INDEX: 0;
+            ⚡ ROOT_CONCEPT: "";
+            ⚡ ROOT_TIME: 0;
+            ⚡ ROOT_SCORE: 0;
+            ⚡ ROOT_TIE: 0;
+            ⚡ RI: 0;
+            WHILE (RI < STATE_VALID_COUNT) {
+                ⚡ RC: H("list_get", STATE_CONCEPTS, RI, NULL);
+                ⚡ RC_SELECTED: H("map_has", SELECTED, RC, NULL);
+                ⚡ RC_EMITTED: H("map_has", EMITTED, RC, NULL);
+                IF (RC_SELECTED) {
+                    IF (RC_EMITTED == 0) {
+                        ⚡ HAS_INCOMING: 0;
+                        ⚡ REI: 0;
+                        WHILE (REI < EDGE_VALID_COUNT) {
+                            ⚡ RWEIGHT: H("list_get", EDGE_WEIGHTS, REI, NULL);
+                            IF (0 < RWEIGHT) {
+                                ⚡ RTO: H("list_get", EDGE_TO, REI, NULL);
+                                IF (RTO == RC) {
+                                    ⚡ RFROM: H("list_get", EDGE_FROM, REI, NULL);
+                                    ⚡ FROM_SELECTED: H("map_has", SELECTED, RFROM, NULL);
+                                    ⚡ FROM_EMITTED: H("map_has", EMITTED, RFROM, NULL);
+                                    IF (FROM_SELECTED) {
+                                        IF (FROM_EMITTED == 0) { ⚡ HAS_INCOMING: 1; }
+                                    }
+                                }
+                            }
+                            ⚡ REI: REI + 1;
+                        }
+                        IF (HAS_INCOMING == 0) {
+                            ⚡ RIMPORTANCE: H("list_get", STATE_IMPORTANCE, RI, NULL);
+                            ⚡ RCONFIDENCE: H("list_get", STATE_CONFIDENCE, RI, NULL);
+                            ⚡ RTIME: H("list_get", STATE_TEMPORAL, RI, NULL);
+                            ⚡ RSCORE: RIMPORTANCE + RCONFIDENCE;
+                            IF (ROOT_SET == 0) {
+                                ⚡ ROOT_SET: 1;
+                                ⚡ ROOT_INDEX: RI;
+                                ⚡ ROOT_CONCEPT: RC;
+                                ⚡ ROOT_TIME: RTIME;
+                                ⚡ ROOT_SCORE: RSCORE;
+                                ⚡ ROOT_TIE: 0;
+                            }
+                            IF (ROOT_SET == 1) {
+                                IF (RTIME < ROOT_TIME) {
+                                    ⚡ ROOT_INDEX: RI;
+                                    ⚡ ROOT_CONCEPT: RC;
+                                    ⚡ ROOT_TIME: RTIME;
+                                    ⚡ ROOT_SCORE: RSCORE;
+                                    ⚡ ROOT_TIE: 0;
+                                }
+                                IF (RTIME == ROOT_TIME) {
+                                    IF (ROOT_SCORE < RSCORE) {
+                                        ⚡ ROOT_INDEX: RI;
+                                        ⚡ ROOT_CONCEPT: RC;
+                                        ⚡ ROOT_SCORE: RSCORE;
+                                        ⚡ ROOT_TIE: 0;
+                                    }
+                                    IF (RSCORE == ROOT_SCORE) {
+                                        IF (RC != ROOT_CONCEPT) {
+                                            ⚡ ROOT_TIE: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ⚡ RI: RI + 1;
+            }
+
+            IF (ROOT_SET == 0) {
+                ⚡ CAUSAL_CYCLE_COUNT: CAUSAL_CYCLE_COUNT + 1;
+                ⚡ ORDER_BLOCKED: 1;
+            }
+            IF (ROOT_TIE == 1) {
+                ⚡ ORDER_AMBIGUITY_COUNT: ORDER_AMBIGUITY_COUNT + 1;
+                ⚡ ORDER_BLOCKED: 1;
+            }
+            IF (ORDER_BLOCKED == 0) {
+                ⚡ ROOT_STATE_ID: H("list_get", STATE_IDS, ROOT_INDEX, NULL);
+                ⚡ ROOT_SOURCE: H("list_get", STATE_SOURCES, ROOT_INDEX, NULL);
+                ⚡ OTEXT: order_text(EMITTED_COUNT);
+                ⚡ UID: unit_id(EMITTED_COUNT);
+                ⚡ PLAN_TEXT: PLAN_TEXT + "UNIT||" + UID + "||CONCEPT||" + ROOT_CONCEPT + "||ORDER||" + OTEXT + "||SOURCE||" + ROOT_STATE_ID + "@" + ROOT_SOURCE + "\n";
+                ⚡ MARK_EMITTED: H("map_set", EMITTED, ROOT_CONCEPT, "1");
+                ⚡ EMITTED_COUNT: EMITTED_COUNT + 1;
+            }
+        }
+        IF (ORDER_BLOCKED == 1) {
+            ⚡ EMITTED_COUNT: TARGET_COUNT;
+        }
+    }
+
+    ⚡ PLANNING_ALLOWED: BASE_VALID;
+    IF (0 < SELECTION_AMBIGUITY_COUNT) { ⚡ PLANNING_ALLOWED: 0; }
+    IF (0 < ORDER_AMBIGUITY_COUNT) { ⚡ PLANNING_ALLOWED: 0; }
+    IF (0 < CAUSAL_CYCLE_COUNT) { ⚡ PLANNING_ALLOWED: 0; }
+    IF (SELECTION_BLOCKED == 1) { ⚡ PLANNING_ALLOWED: 0; }
+    IF (ORDER_BLOCKED == 1) { ⚡ PLANNING_ALLOWED: 0; }
+
+    ⚡ PLAN_WRITE_READBACK_MATCH: 0;
+    IF (PLANNING_ALLOWED == 1) {
+        ⚡ WRITE_PLAN: H("write_text", PLAN_PATH, PLAN_TEXT, NULL);
+        ⚡ PLAN_READBACK: H("read_text", PLAN_PATH, NULL, NULL);
+        ⚡ PLAN_WRITE_READBACK_MATCH: exact(PLAN_READBACK, PLAN_TEXT);
+        IF (PLAN_WRITE_READBACK_MATCH == 0) { ⚡ PLANNING_ALLOWED: 0; }
+    }
+
+    ⚡ STATUS: "REFUSED";
+    IF (PLANNING_ALLOWED == 1) { ⚡ STATUS: "PLAN_EMITTED"; }
+
+    ⚡ print("SIGMA_G3C_T30_NATIVE_NARRATIVE_TO_UTTERANCE_PLAN");
+    ⚡ print("STATE_VALID_COUNT", STATE_VALID_COUNT);
+    ⚡ print("EDGE_VALID_COUNT", EDGE_VALID_COUNT);
+    ⚡ print("SELECTED_COUNT", SELECTED_COUNT);
+    ⚡ print("PLAN_UNIT_COUNT", TARGET_COUNT);
+    ⚡ print("SELECTION_AMBIGUITY_COUNT", SELECTION_AMBIGUITY_COUNT);
+    ⚡ print("ORDER_AMBIGUITY_COUNT", ORDER_AMBIGUITY_COUNT);
+    ⚡ print("CAUSAL_CYCLE_COUNT", CAUSAL_CYCLE_COUNT);
+    ⚡ print("PLAN_WRITE_READBACK_MATCH", PLAN_WRITE_READBACK_MATCH);
+    ⚡ print("PLANNER_STATUS", STATUS);
+    ⚡ print("G3_NARRATIVE_STATE_OWNER_REQUIRED", "SIGMA_NATIVE");
+    ⚡ print("HOST_CONCEPT_SELECTION", "NO");
+    ⚡ print("HOST_PLAN_ORDER_SELECTION", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("HOST_SENTENCE_SELECTION", "NO");
+    ⚡ print("FROZEN20_TRAINING_USE", "FORBIDDEN");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("HUMAN_LANGUAGE_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
