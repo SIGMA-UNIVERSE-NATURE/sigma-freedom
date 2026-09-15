@@ -1,0 +1,316 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.G3C.NATIVE.LEARNED.SURFACE.REALIZER][VERSION=T30-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF safe_field(value) {
+    IF (present(value) == 0) { RETURN 0; }
+    ⚡ NO_FIELD_SEP: H("str_replace", value, "||", "");
+    IF (NO_FIELD_SEP != value) { RETURN 0; }
+    ⚡ NO_NEWLINE: H("str_replace", value, "\n", "");
+    IF (NO_NEWLINE != value) { RETURN 0; }
+    RETURN 1;
+}
+
+DEF digits_only(value) {
+    IF (value == "") { RETURN 0; }
+    ⚡ REST: value;
+    ⚡ REST: H("str_replace", REST, "0", "");
+    ⚡ REST: H("str_replace", REST, "1", "");
+    ⚡ REST: H("str_replace", REST, "2", "");
+    ⚡ REST: H("str_replace", REST, "3", "");
+    ⚡ REST: H("str_replace", REST, "4", "");
+    ⚡ REST: H("str_replace", REST, "5", "");
+    ⚡ REST: H("str_replace", REST, "6", "");
+    ⚡ REST: H("str_replace", REST, "7", "");
+    ⚡ REST: H("str_replace", REST, "8", "");
+    ⚡ REST: H("str_replace", REST, "9", "");
+    IF (REST == "") { RETURN 1; }
+    RETURN 0;
+}
+
+⟡(Σ.G3C_T30_NATIVE_LEARNED_SURFACE_REALIZER_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_G3C_T30_NATIVE_LEARNED_SURFACE_REALIZER_V1";
+    ⚡ PLAN_TEXT: H("read_text", BASE + "/input/plan.memory", NULL, NULL);
+    ⚡ SURFACE_TEXT: H("read_text", BASE + "/input/surface.memory", NULL, NULL);
+    ⚡ SPEECH_PATH: BASE + "/output/speech.txt";
+
+    ⚡ MAX_PLAN_UNITS: 16;
+    ⚡ MAX_SURFACE_FORMS: 64;
+    ⚡ MAX_SPLIT_LINES: 72;
+    ⚡ MAX_WEIGHT: 1000000;
+
+    ⚡ PLAN_LINES: H("str_split", PLAN_TEXT, "\n", NULL);
+    ⚡ PLAN_LINE_COUNT: H("list_len", PLAN_LINES, NULL, NULL);
+    ⚡ SURFACE_LINES: H("str_split", SURFACE_TEXT, "\n", NULL);
+    ⚡ SURFACE_LINE_COUNT: H("list_len", SURFACE_LINES, NULL, NULL);
+
+    ⚡ INPUT_BOUND_EXCEEDED: 0;
+    IF (MAX_SPLIT_LINES < PLAN_LINE_COUNT) { ⚡ INPUT_BOUND_EXCEEDED: 1; }
+    IF (MAX_SPLIT_LINES < SURFACE_LINE_COUNT) { ⚡ INPUT_BOUND_EXCEEDED: 1; }
+
+    ⚡ PLAN_CONCEPTS: H("list_new", NULL, NULL, NULL);
+    ⚡ PLAN_ORDERS: H("list_new", NULL, NULL, NULL);
+    ⚡ PLAN_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ PLAN_SEEN: H("map_new", NULL, NULL, NULL);
+    ⚡ ORDER_SEEN: H("map_new", NULL, NULL, NULL);
+
+    ⚡ PLAN_VALID_COUNT: 0;
+    ⚡ PLAN_INVALID_COUNT: 0;
+    ⚡ PLAN_ID_COLLISION_COUNT: 0;
+    ⚡ PLAN_ORDER_COLLISION_COUNT: 0;
+    ⚡ MAX_ORDER: 0;
+
+    ⚡ PI: 0;
+    WHILE (PI < PLAN_LINE_COUNT) {
+        ⚡ LINE: H("list_get", PLAN_LINES, PI, NULL);
+        IF (LINE != "") {
+            ⚡ PARTS: H("str_split", LINE, "||", NULL);
+            ⚡ PC: H("list_len", PARTS, NULL, NULL);
+            ⚡ VALID: 0;
+            IF (PC == 8) {
+                ⚡ P0: H("list_get", PARTS, 0, NULL);
+                ⚡ P1: H("list_get", PARTS, 1, NULL);
+                ⚡ P2: H("list_get", PARTS, 2, NULL);
+                ⚡ P3: H("list_get", PARTS, 3, NULL);
+                ⚡ P4: H("list_get", PARTS, 4, NULL);
+                ⚡ P5: H("list_get", PARTS, 5, NULL);
+                ⚡ P6: H("list_get", PARTS, 6, NULL);
+                ⚡ P7: H("list_get", PARTS, 7, NULL);
+                ⚡ VALID:
+                    exact(P0, "UNIT")
+                    * safe_field(P1)
+                    * exact(P2, "CONCEPT")
+                    * safe_field(P3)
+                    * exact(P4, "ORDER")
+                    * digits_only(P5)
+                    * exact(P6, "SOURCE")
+                    * safe_field(P7);
+                IF (VALID == 1) {
+                    ⚡ ORDER: H("to_int", P5, NULL, NULL);
+                    IF (ORDER < 0) { ⚡ VALID: 0; }
+                    IF (MAX_PLAN_UNITS <= ORDER) { ⚡ VALID: 0; }
+                    IF (VALID == 1) {
+                        ⚡ ID_EXISTS: H("map_has", PLAN_SEEN, P1, NULL);
+                        IF (ID_EXISTS) {
+                            ⚡ PLAN_ID_COLLISION_COUNT: PLAN_ID_COLLISION_COUNT + 1;
+                            ⚡ VALID: 0;
+                        }
+                        ⚡ ORDER_KEY: P5;
+                        ⚡ ORDER_EXISTS: H("map_has", ORDER_SEEN, ORDER_KEY, NULL);
+                        IF (ORDER_EXISTS) {
+                            ⚡ PLAN_ORDER_COLLISION_COUNT: PLAN_ORDER_COLLISION_COUNT + 1;
+                            ⚡ VALID: 0;
+                        }
+                        IF (VALID == 1) {
+                            ⚡ MARK_ID: H("map_set", PLAN_SEEN, P1, P3 + "||" + P5);
+                            ⚡ MARK_ORDER: H("map_set", ORDER_SEEN, ORDER_KEY, P1);
+                            ⚡ PUSH_ID: H("list_push", PLAN_IDS, P1, NULL);
+                            ⚡ PUSH_CONCEPT: H("list_push", PLAN_CONCEPTS, P3, NULL);
+                            ⚡ PUSH_ORDER: H("list_push", PLAN_ORDERS, ORDER, NULL);
+                            ⚡ PLAN_VALID_COUNT: PLAN_VALID_COUNT + 1;
+                            IF (MAX_ORDER < ORDER) { ⚡ MAX_ORDER: ORDER; }
+                        }
+                    }
+                }
+            }
+            IF (VALID == 0) { ⚡ PLAN_INVALID_COUNT: PLAN_INVALID_COUNT + 1; }
+        }
+        ⚡ PI: PI + 1;
+    }
+
+    ⚡ FORM_IDS: H("list_new", NULL, NULL, NULL);
+    ⚡ FORM_CONCEPTS: H("list_new", NULL, NULL, NULL);
+    ⚡ FORM_TEXTS: H("list_new", NULL, NULL, NULL);
+    ⚡ FORM_WEIGHTS: H("list_new", NULL, NULL, NULL);
+    ⚡ FORM_SEEN: H("map_new", NULL, NULL, NULL);
+    ⚡ FORM_VALID_COUNT: 0;
+    ⚡ FORM_INVALID_COUNT: 0;
+    ⚡ FORM_ID_COLLISION_COUNT: 0;
+
+    ⚡ FI: 0;
+    WHILE (FI < SURFACE_LINE_COUNT) {
+        ⚡ FLINE: H("list_get", SURFACE_LINES, FI, NULL);
+        IF (FLINE != "") {
+            ⚡ FPARTS: H("str_split", FLINE, "||", NULL);
+            ⚡ FC: H("list_len", FPARTS, NULL, NULL);
+            ⚡ FVALID: 0;
+            IF (FC == 10) {
+                ⚡ F0: H("list_get", FPARTS, 0, NULL);
+                ⚡ F1: H("list_get", FPARTS, 1, NULL);
+                ⚡ F2: H("list_get", FPARTS, 2, NULL);
+                ⚡ F3: H("list_get", FPARTS, 3, NULL);
+                ⚡ F4: H("list_get", FPARTS, 4, NULL);
+                ⚡ F5: H("list_get", FPARTS, 5, NULL);
+                ⚡ F6: H("list_get", FPARTS, 6, NULL);
+                ⚡ F7: H("list_get", FPARTS, 7, NULL);
+                ⚡ F8: H("list_get", FPARTS, 8, NULL);
+                ⚡ F9: H("list_get", FPARTS, 9, NULL);
+                ⚡ FVALID:
+                    exact(F0, "FORM")
+                    * safe_field(F1)
+                    * exact(F2, "CONCEPT")
+                    * safe_field(F3)
+                    * exact(F4, "TEXT")
+                    * safe_field(F5)
+                    * exact(F6, "WEIGHT")
+                    * digits_only(F7)
+                    * exact(F8, "SOURCE")
+                    * safe_field(F9);
+                IF (FVALID == 1) {
+                    ⚡ WEIGHT: H("to_int", F7, NULL, NULL);
+                    IF (WEIGHT < 0) { ⚡ FVALID: 0; }
+                    IF (MAX_WEIGHT < WEIGHT) { ⚡ FVALID: 0; }
+                    IF (FVALID == 1) {
+                        ⚡ FID_EXISTS: H("map_has", FORM_SEEN, F1, NULL);
+                        IF (FID_EXISTS) {
+                            ⚡ FORM_ID_COLLISION_COUNT: FORM_ID_COLLISION_COUNT + 1;
+                            ⚡ FVALID: 0;
+                        }
+                        IF (FVALID == 1) {
+                            ⚡ MARK_FORM: H("map_set", FORM_SEEN, F1, F3 + "||" + F5 + "||" + F7);
+                            ⚡ PUSH_FID: H("list_push", FORM_IDS, F1, NULL);
+                            ⚡ PUSH_FCONCEPT: H("list_push", FORM_CONCEPTS, F3, NULL);
+                            ⚡ PUSH_FTEXT: H("list_push", FORM_TEXTS, F5, NULL);
+                            ⚡ PUSH_FWEIGHT: H("list_push", FORM_WEIGHTS, WEIGHT, NULL);
+                            ⚡ FORM_VALID_COUNT: FORM_VALID_COUNT + 1;
+                        }
+                    }
+                }
+            }
+            IF (FVALID == 0) { ⚡ FORM_INVALID_COUNT: FORM_INVALID_COUNT + 1; }
+        }
+        ⚡ FI: FI + 1;
+    }
+
+    ⚡ CAPACITY_EXCEEDED: 0;
+    IF (MAX_PLAN_UNITS < PLAN_VALID_COUNT) { ⚡ CAPACITY_EXCEEDED: 1; }
+    IF (MAX_SURFACE_FORMS < FORM_VALID_COUNT) { ⚡ CAPACITY_EXCEEDED: 1; }
+
+    ⚡ BASE_VALID: 1;
+    IF (INPUT_BOUND_EXCEEDED == 1) { ⚡ BASE_VALID: 0; }
+    IF (PLAN_VALID_COUNT == 0) { ⚡ BASE_VALID: 0; }
+    IF (FORM_VALID_COUNT == 0) { ⚡ BASE_VALID: 0; }
+    IF (0 < PLAN_INVALID_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < FORM_INVALID_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < PLAN_ID_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < PLAN_ORDER_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (0 < FORM_ID_COLLISION_COUNT) { ⚡ BASE_VALID: 0; }
+    IF (CAPACITY_EXCEEDED == 1) { ⚡ BASE_VALID: 0; }
+
+    ⚡ EXPECTED_PLAN_COUNT: MAX_ORDER + 1;
+    IF (PLAN_VALID_COUNT != EXPECTED_PLAN_COUNT) { ⚡ BASE_VALID: 0; }
+
+    ⚡ OUT_UNITS: H("list_new", NULL, NULL, NULL);
+    ⚡ MISSING_SURFACE_COUNT: 0;
+    ⚡ AMBIGUOUS_SURFACE_COUNT: 0;
+
+    ⚡ ORDER_INDEX: 0;
+    WHILE (ORDER_INDEX < EXPECTED_PLAN_COUNT) {
+        ⚡ TARGET_CONCEPT: "";
+        ⚡ PSI: 0;
+        WHILE (PSI < PLAN_VALID_COUNT) {
+            ⚡ PORDER: H("list_get", PLAN_ORDERS, PSI, NULL);
+            IF (PORDER == ORDER_INDEX) {
+                ⚡ TARGET_CONCEPT: H("list_get", PLAN_CONCEPTS, PSI, NULL);
+            }
+            ⚡ PSI: PSI + 1;
+        }
+
+        ⚡ BEST_SET: 0;
+        ⚡ BEST_WEIGHT: 0;
+        ⚡ BEST_TEXT: "";
+        ⚡ BEST_FORM_ID: "";
+        ⚡ BEST_TIE: 0;
+        ⚡ SFI: 0;
+        WHILE (SFI < FORM_VALID_COUNT) {
+            ⚡ SCONCEPT: H("list_get", FORM_CONCEPTS, SFI, NULL);
+            IF (SCONCEPT == TARGET_CONCEPT) {
+                ⚡ SWEIGHT: H("list_get", FORM_WEIGHTS, SFI, NULL);
+                ⚡ STEXT: H("list_get", FORM_TEXTS, SFI, NULL);
+                ⚡ SFID: H("list_get", FORM_IDS, SFI, NULL);
+                IF (BEST_SET == 0) {
+                    ⚡ BEST_SET: 1;
+                    ⚡ BEST_WEIGHT: SWEIGHT;
+                    ⚡ BEST_TEXT: STEXT;
+                    ⚡ BEST_FORM_ID: SFID;
+                }
+                IF (BEST_SET == 1) {
+                    IF (BEST_WEIGHT < SWEIGHT) {
+                        ⚡ BEST_WEIGHT: SWEIGHT;
+                        ⚡ BEST_TEXT: STEXT;
+                        ⚡ BEST_FORM_ID: SFID;
+                        ⚡ BEST_TIE: 0;
+                    }
+                    IF (SWEIGHT == BEST_WEIGHT) {
+                        IF (SFID != BEST_FORM_ID) {
+                            ⚡ BEST_TIE: 1;
+                        }
+                    }
+                }
+            }
+            ⚡ SFI: SFI + 1;
+        }
+
+        IF (BEST_SET == 0) {
+            ⚡ MISSING_SURFACE_COUNT: MISSING_SURFACE_COUNT + 1;
+        }
+        IF (BEST_TIE == 1) {
+            ⚡ AMBIGUOUS_SURFACE_COUNT: AMBIGUOUS_SURFACE_COUNT + 1;
+        }
+        IF (BEST_SET == 1) {
+            IF (BEST_TIE == 0) {
+                ⚡ PUSH_OUT: H("list_push", OUT_UNITS, BEST_TEXT, NULL);
+            }
+        }
+
+        ⚡ ORDER_INDEX: ORDER_INDEX + 1;
+    }
+
+    ⚡ REALIZATION_ALLOWED: BASE_VALID;
+    IF (0 < MISSING_SURFACE_COUNT) { ⚡ REALIZATION_ALLOWED: 0; }
+    IF (0 < AMBIGUOUS_SURFACE_COUNT) { ⚡ REALIZATION_ALLOWED: 0; }
+
+    ⚡ SPEECH: "";
+    ⚡ OUTPUT_WRITE_READBACK_MATCH: 0;
+    IF (REALIZATION_ALLOWED == 1) {
+        ⚡ SPEECH: H("str_join", OUT_UNITS, " ", NULL);
+        ⚡ WRITE_RC: H("write_text", SPEECH_PATH, SPEECH, NULL);
+        ⚡ READBACK: H("read_text", SPEECH_PATH, NULL, NULL);
+        ⚡ OUTPUT_WRITE_READBACK_MATCH: exact(READBACK, SPEECH);
+        IF (OUTPUT_WRITE_READBACK_MATCH == 0) { ⚡ REALIZATION_ALLOWED: 0; }
+    }
+
+    ⚡ STATUS: "REFUSED";
+    IF (REALIZATION_ALLOWED == 1) { ⚡ STATUS: "SPEECH_EMITTED"; }
+
+    ⚡ print("SIGMA_G3C_T30_NATIVE_LEARNED_SURFACE_REALIZER");
+    ⚡ print("PLAN_VALID_COUNT", PLAN_VALID_COUNT);
+    ⚡ print("FORM_VALID_COUNT", FORM_VALID_COUNT);
+    ⚡ print("MISSING_SURFACE_COUNT", MISSING_SURFACE_COUNT);
+    ⚡ print("AMBIGUOUS_SURFACE_COUNT", AMBIGUOUS_SURFACE_COUNT);
+    ⚡ print("OUTPUT_WRITE_READBACK_MATCH", OUTPUT_WRITE_READBACK_MATCH);
+    ⚡ print("REALIZER_STATUS", STATUS);
+    ⚡ print("SIGMA_SPEECH", SPEECH);
+    ⚡ print("PLAN_OWNER_REQUIRED", "G3_NATIVE");
+    ⚡ print("SURFACE_EVIDENCE_OWNER_REQUIRED", "VNM_NATIVE");
+    ⚡ print("HOST_SEMANTIC_SELECTION", "NO");
+    ⚡ print("HOST_LEXICAL_SELECTION", "NO");
+    ⚡ print("HOST_SENTENCE_SELECTION", "NO");
+    ⚡ print("HOST_TRANSLATION", "NO");
+    ⚡ print("STATIC_HUMAN_SENTENCE_TEMPLATE", "NO");
+    ⚡ print("FROZEN20_TRAINING_USE", "FORBIDDEN");
+    ⚡ print("PRODUCTION_STATE_MUTATED", "NO");
+}
