@@ -2,16 +2,36 @@
 
 This file is the repository-wide entry flag for every development window/session/agent.
 
+## ACTIVE ONE SIGMA.AIL TMUX SESSION RULE — MANDATORY BEFORE WORK
+
+Every new tmux/window/worker must register its work with ONE SIGMA.AIL before implementation, testing, evaluation, or bundle creation.
+
+The active workflow is exactly two steps:
+
+```bash
+source "$HOME/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/shell/sigma-session.bash"
+sigma-session "CLEAR ONE-LINE DESCRIPTION OF THE WORK THIS WINDOW WILL DO"
+```
+
+Do not begin work until the second command returns `SESSION=GRANTED` with a `SESSION_CODE`, `RUN_ID`, `ACCESS=READ_PLUS_ARTIFACT_WRITE`, and `ARTIFACT_ROOT`.
+
+Read the full active contract first:
+
+`SURVIVAL_MASTER/DIRECTIVES/00_ONE_SIGMA_AIL_SIMPLE_SESSION_WORKFLOW_R1.md`
+
+Old `sigma-open`, tmux Front Door, Broker/profile flows, and manual KEY=VALUE registration are historical/inert and must not be used for new work. Normal sessions may read and create artifacts/bundles in their session workspace. Canonical brain/state/model mutation, learning, commit, HEAD change, or model-generation change requires separate explicit SIGMA admission. Bash/host is coordination/mechanics only and must not become the cognitive or benchmark oracle.
+
 ## Mandatory first reads
 
 Before inspecting, modifying, testing, teaching, integrating, or promoting SIGMA, read in this order:
 
-1. `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
-2. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
-3. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
-4. `SIGMA_PROFESSOR/DIRECTIVES/TEACHER_GPT_GITHUB_PROGRESS_HANDOFF_POLICY_V1.md` when continuing the Teacher-GPT V4/V5 journey
-5. `SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_V4_V5_JOURNEY_CURRENT.md` when continuing the Teacher-GPT V4/V5 journey
-6. latest relevant file in `SIGMA_PROFESSOR/CHECKPOINTS/`
+1. `SURVIVAL_MASTER/DIRECTIVES/00_ONE_SIGMA_AIL_SIMPLE_SESSION_WORKFLOW_R1.md`
+2. `SIGMA_PROFESSOR/DIRECTIVES/00_SIGMA_SESSION_BOOTSTRAP_NATIVE_EXECUTION_FLAG_V1.md`
+3. `SIGMA_PROFESSOR/DIRECTIVES/SIGMA_GLOBAL_NATIVE_TEACHING_AND_ADMISSION_STANDARD_V1.md`
+4. `SIGMA_PROFESSOR/CURRENT_HANDOFF.md`
+5. `SIGMA_PROFESSOR/DIRECTIVES/TEACHER_GPT_GITHUB_PROGRESS_HANDOFF_POLICY_V1.md` when continuing the Teacher-GPT V4/V5 journey
+6. `SIGMA_PROFESSOR/CHECKPOINTS/TEACHER_GPT_V4_V5_JOURNEY_CURRENT.md` when continuing the Teacher-GPT V4/V5 journey
+7. latest relevant file in `SIGMA_PROFESSOR/CHECKPOINTS/`
 
 Do not begin implementation before those files are understood.
 
