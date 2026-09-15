@@ -88,9 +88,9 @@ sigma-sessions
 
 `finish` closes only the coordination session; it does not mutate canonical SIGMA state.
 
-## Tested evidence before publication
+## Tested evidence
 
-Simple Session R1 self-test was executed successfully before this workflow was published:
+Simple Session R1 self-test passed:
 
 ```text
 ONE_SIGMA_AIL_SIMPLE_SESSION_R1_SELFTEST=PASS
@@ -102,7 +102,35 @@ HOST_COGNITION=NO
 HOST_TEST_ORACLE=NO
 ```
 
-A live Termux session also returned the expected contract (`SESSION=GRANTED`, `ACCESS=READ_PLUS_ARTIFACT_WRITE`, `CANONICAL_MUTATION=REQUIRES_EXPLICIT_ADMISSION`).
+Live Termux registration also passed.
+
+A live tmux end-to-end test then opened a new tmux window and executed the mandatory two-step workflow inside that window. Observed runtime evidence:
+
+```text
+SESSION=GRANTED
+SESSION_CODE=SF46C2EC1328C
+RUN_ID=SESSION_SF46C2EC1328C
+TASK=TMUX Simple Session end-to-end test
+TMUX_CONTEXT=SIGMA:2.0
+OPEN_HEAD=700d5c1b4845322d7c14800029c629b0
+OPEN_MODEL_GENERATION=1
+READ=ALLOW
+ARTIFACT_WRITE=ALLOW
+ACCESS=READ_PLUS_ARTIFACT_WRITE
+CANONICAL_MUTATION=REQUIRES_EXPLICIT_ADMISSION
+BRAIN_WRITE=REJECT
+STATE_WRITE=REJECT
+MODEL_WRITE=REJECT
+LEARN=REJECT
+COMMIT=REJECT
+HEAD_CHANGE=REJECT
+MODEL_GENERATION_CHANGE=REJECT
+HOST_COGNITION=NO
+HOST_TEST_ORACLE=NO
+SIGMA_NATIVE_VERDICT=MANDATORY
+```
+
+Therefore the active tmux workflow is proven end-to-end in the actual Termux/tmux environment: new window -> load session Bash API -> submit work request -> receive session identity and default artifact authority -> canonical mutation remains blocked without explicit admission.
 
 ## Invariants
 
