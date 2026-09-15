@@ -45,6 +45,26 @@ HOST_TEST_ORACLE=NO
 SIGMA_NATIVE_VERDICT=MANDATORY
 ```
 
+## Finish evidence
+
+The same tmux session was then closed through the session API:
+
+```bash
+sigma-session finish
+```
+
+Observed completion receipt:
+
+```text
+SESSION_FINISH=PASS
+SESSION_CODE=SF46C2EC1328C
+CANONICAL_COMMIT=NO
+COMPLETION_RECEIPT=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/COMPLETED_SESSIONS/SF46C2EC1328C.receipt
+COMPLETION_RECEIPT_SHA256=4950bd65a2e09e31c6dfc3df4ecb3271a97b2870a9c0e749c18807de24b54e3a
+```
+
+This proves the coordination lifecycle for this tested tmux session completed without a canonical commit.
+
 ## Result
 
 ```text
@@ -55,6 +75,9 @@ SESSION_IDENTITY_ISSUED=PASS
 READ=ALLOW
 ARTIFACT_WRITE=ALLOW
 CANONICAL_MUTATION_DEFAULT=REJECT
+SESSION_FINISH=PASS
+CANONICAL_COMMIT=NO
+COMPLETION_RECEIPT_RECORDED=YES
 HOST_COGNITION=NO
 HOST_TEST_ORACLE=NO
 ONE_SIGMA_AIL_SIMPLE_SESSION_R1_TMUX_E2E=PASS
