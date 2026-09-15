@@ -15,6 +15,11 @@ DEF exact(value, expected) {
     RETURN 0;
 }
 
+DEF leq(a, b) {
+    IF (b < a) { RETURN 0; }
+    RETURN 1;
+}
+
 DEF safe_field(value) {
     IF (present(value) == 0) { RETURN 0; }
     ⚡ NO_FIELD_SEP: H("str_replace", value, "||", "");
@@ -46,6 +51,7 @@ DEF digits_only(value) {
     ⚡ PLAN_TEXT: H("read_text", BASE + "/input/plan.memory", NULL, NULL);
     ⚡ SURFACE_TEXT: H("read_text", BASE + "/input/surface.memory", NULL, NULL);
     ⚡ SPEECH_PATH: BASE + "/output/speech.txt";
+    ⚡ CLEAR_SPEECH: H("write_text", SPEECH_PATH, "", NULL);
 
     ⚡ MAX_PLAN_UNITS: 16;
     ⚡ MAX_SURFACE_FORMS: 64;
@@ -101,7 +107,7 @@ DEF digits_only(value) {
                 IF (VALID == 1) {
                     ⚡ ORDER: H("to_int", P5, NULL, NULL);
                     IF (ORDER < 0) { ⚡ VALID: 0; }
-                    IF (MAX_PLAN_UNITS <= ORDER) { ⚡ VALID: 0; }
+                    IF (leq(MAX_PLAN_UNITS, ORDER) == 1) { ⚡ VALID: 0; }
                     IF (VALID == 1) {
                         ⚡ ID_EXISTS: H("map_has", PLAN_SEEN, P1, NULL);
                         IF (ID_EXISTS) {
