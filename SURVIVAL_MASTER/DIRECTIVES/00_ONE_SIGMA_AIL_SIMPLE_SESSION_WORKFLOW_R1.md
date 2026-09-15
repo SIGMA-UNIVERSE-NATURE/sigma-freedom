@@ -10,6 +10,61 @@ Every tmux window/worker must tell ONE SIGMA.AIL what it is doing before work be
 
 The old tmux Front Door / Broker / profile / `sigma-open` workflow is obsolete and must not be used for new work.
 
+## UNIVERSAL WINDOW START TABLE — APPLIES TO ALL TMUX WINDOWS
+
+This section is generic. G3B, other G lanes, Professor/Teacher work, evaluation windows, build/test windows, Survival/Administrator coordination windows, and future worker windows all use the same session front door. The task text changes; the session protocol does not.
+
+| Window state / intent | Required action | Expected result | May work after this? | Authority |
+|---|---|---|---|---|
+| New tmux window, no session yet | Load `sigma-session.bash`, then submit one clear work request with `sigma-session "..."` | `SESSION=GRANTED`, `SESSION_CODE`, `RUN_ID`, `ACCESS`, `ARTIFACT_ROOT` | YES, after grant | READ + ARTIFACT_WRITE |
+| Same pane already has an active session | Run `sigma-session status` | Existing `SESSION_CODE` and task are shown | YES | Keep existing session; do not mint another one |
+| `sigma-session` command is missing | `source "$HOME/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/shell/sigma-session.bash"` | Function becomes available | NO, until work request is granted | None yet |
+| Session request is not granted | Stop and inspect the returned reason | No valid work authority | NO | None |
+| Normal source/build/test/report/evaluation/bundle work | Work only under the granted session/workspace and preserve receipts | Artifacts may be created | YES | READ + ARTIFACT_WRITE |
+| Task reaches canonical brain/state/model mutation, LEARN, COMMIT, HEAD or model-generation change | Stop at the boundary and request separate explicit SIGMA admission | Explicit admission must be granted separately | NO, until admitted | Canonical mutation is not part of default session |
+| Semantic test, benchmark verdict, learning decision, accept/reject decision | Send execution through native SIGMA path; host/Bash remains mechanical only | Native SIGMA result/receipt | YES only through native verdict path | `SIGMA_NATIVE_VERDICT=MANDATORY` |
+| Work is finished | Run `sigma-session finish` | `SESSION_FINISH=PASS`, completion receipt, `CANONICAL_COMMIT=NO` unless separately admitted | Session is closed | No further work under that closed session |
+
+### Universal two-command start
+
+Every new window starts with the same two logical commands:
+
+```bash
+source "$HOME/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/shell/sigma-session.bash"
+sigma-session "CLEAR ONE-LINE DESCRIPTION OF THE WORK THIS WINDOW WILL DO"
+```
+
+The request must describe the actual work of that window, not merely a lane name. Good examples:
+
+```bash
+sigma-session "G3B continue frozen STORY_01..STORY_20 evaluation and write evaluation artifacts and receipts only"
+sigma-session "Build and test the next language capability candidate and write source, test outputs and bundle artifacts only"
+sigma-session "Prepare Survival Master coordination documentation and receipts only; no cognition and no canonical mutation"
+```
+
+Do not copy another window's `SESSION_CODE`. Do not manually invent a session code. Do not create a second session in the same active pane just to change wording.
+
+### Minimum grant contract
+
+A window may begin work only after it receives at least:
+
+```text
+SESSION=GRANTED
+SESSION_CODE=S............
+RUN_ID=SESSION_S............
+ACCESS=READ_PLUS_ARTIFACT_WRITE
+ARTIFACT_ROOT=...
+CANONICAL_MUTATION=REQUIRES_EXPLICIT_ADMISSION
+```
+
+If a pane already has an active grant, use:
+
+```bash
+sigma-session status
+```
+
+and continue under that existing session.
+
 ## Mandatory two-step start
 
 Every NEW tmux window/session must do these two steps before implementation, testing, bundle creation, or evaluation.
