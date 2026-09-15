@@ -15,6 +15,11 @@ DEF exact(value, expected) {
     RETURN 0;
 }
 
+DEF leq(a, b) {
+    IF (b < a) { RETURN 0; }
+    RETURN 1;
+}
+
 DEF safe_field(value) {
     IF (present(value) == 0) { RETURN 0; }
     ⚡ NO_FIELD_SEP: H("str_replace", value, "||", "");
@@ -93,7 +98,6 @@ DEF unit_id(value) {
     ⚡ STATE_ID_SEEN: H("map_new", NULL, NULL, NULL);
     ⚡ CONCEPT_SEEN: H("map_new", NULL, NULL, NULL);
 
-    ⚡ EDGE_IDS: H("list_new", NULL, NULL, NULL);
     ⚡ EDGE_FROM: H("list_new", NULL, NULL, NULL);
     ⚡ EDGE_TO: H("list_new", NULL, NULL, NULL);
     ⚡ EDGE_WEIGHTS: H("list_new", NULL, NULL, NULL);
@@ -207,7 +211,6 @@ DEF unit_id(value) {
                             }
                             IF (VALID == 1) {
                                 ⚡ MARK_EDGE: H("map_set", EDGE_ID_SEEN, E1, E3 + "->" + E5);
-                                ⚡ PUSH_EDGE_ID: H("list_push", EDGE_IDS, E1, NULL);
                                 ⚡ PUSH_EDGE_FROM: H("list_push", EDGE_FROM, E3, NULL);
                                 ⚡ PUSH_EDGE_TO: H("list_push", EDGE_TO, E5, NULL);
                                 ⚡ PUSH_EDGE_WEIGHT: H("list_push", EDGE_WEIGHTS, EDGE_WEIGHT, NULL);
@@ -256,7 +259,7 @@ DEF unit_id(value) {
     IF (MAX_PLAN_UNITS < TARGET_COUNT) { ⚡ TARGET_COUNT: MAX_PLAN_UNITS; }
 
     IF (BASE_VALID == 1) {
-        IF (STATE_VALID_COUNT <= MAX_PLAN_UNITS) {
+        IF (leq(STATE_VALID_COUNT, MAX_PLAN_UNITS) == 1) {
             ⚡ SI0: 0;
             WHILE (SI0 < STATE_VALID_COUNT) {
                 ⚡ C0: H("list_get", STATE_CONCEPTS, SI0, NULL);
@@ -273,7 +276,6 @@ DEF unit_id(value) {
             ⚡ BEST_SET: 0;
             ⚡ BEST_SCORE: 0;
             ⚡ BEST_TIME: 0;
-            ⚡ BEST_INDEX: 0;
             ⚡ BEST_CONCEPT: "";
             ⚡ BEST_TIE: 0;
             ⚡ SI: 0;
@@ -289,7 +291,6 @@ DEF unit_id(value) {
                         ⚡ BEST_SET: 1;
                         ⚡ BEST_SCORE: SSCORE;
                         ⚡ BEST_TIME: STIME;
-                        ⚡ BEST_INDEX: SI;
                         ⚡ BEST_CONCEPT: SC;
                         ⚡ BEST_TIE: 0;
                     }
@@ -297,21 +298,17 @@ DEF unit_id(value) {
                         IF (BEST_SCORE < SSCORE) {
                             ⚡ BEST_SCORE: SSCORE;
                             ⚡ BEST_TIME: STIME;
-                            ⚡ BEST_INDEX: SI;
                             ⚡ BEST_CONCEPT: SC;
                             ⚡ BEST_TIE: 0;
                         }
                         IF (SSCORE == BEST_SCORE) {
                             IF (STIME < BEST_TIME) {
                                 ⚡ BEST_TIME: STIME;
-                                ⚡ BEST_INDEX: SI;
                                 ⚡ BEST_CONCEPT: SC;
                                 ⚡ BEST_TIE: 0;
                             }
                             IF (STIME == BEST_TIME) {
-                                IF (SC != BEST_CONCEPT) {
-                                    ⚡ BEST_TIE: 1;
-                                }
+                                IF (SC != BEST_CONCEPT) { ⚡ BEST_TIE: 1; }
                             }
                         }
                     }
@@ -328,9 +325,7 @@ DEF unit_id(value) {
                 ⚡ SELECTED_COUNT: SELECTED_COUNT + 1;
             }
         }
-        IF (SELECTION_BLOCKED == 1) {
-            ⚡ SELECTED_COUNT: TARGET_COUNT;
-        }
+        IF (SELECTION_BLOCKED == 1) { ⚡ SELECTED_COUNT: TARGET_COUNT; }
     }
 
     ⚡ EMITTED: H("map_new", NULL, NULL, NULL);
@@ -401,9 +396,7 @@ DEF unit_id(value) {
                                         ⚡ ROOT_TIE: 0;
                                     }
                                     IF (RSCORE == ROOT_SCORE) {
-                                        IF (RC != ROOT_CONCEPT) {
-                                            ⚡ ROOT_TIE: 1;
-                                        }
+                                        IF (RC != ROOT_CONCEPT) { ⚡ ROOT_TIE: 1; }
                                     }
                                 }
                             }
@@ -431,9 +424,7 @@ DEF unit_id(value) {
                 ⚡ EMITTED_COUNT: EMITTED_COUNT + 1;
             }
         }
-        IF (ORDER_BLOCKED == 1) {
-            ⚡ EMITTED_COUNT: TARGET_COUNT;
-        }
+        IF (ORDER_BLOCKED == 1) { ⚡ EMITTED_COUNT: TARGET_COUNT; }
     }
 
     ⚡ PLANNING_ALLOWED: BASE_VALID;
