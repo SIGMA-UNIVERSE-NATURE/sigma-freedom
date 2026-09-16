@@ -1,4 +1,4 @@
-# SURVIVAL_MASTER AGENT INSTRUCTIONS
+# SURVIVAL MASTER AGENT INSTRUCTIONS
 
 Applies to all work under `SURVIVAL_MASTER/` on branch `AIL_SIGMA`.
 
@@ -7,11 +7,21 @@ Before doing any Survival or Internet-autolearn work, read:
 1. `/AGENTS.md`
 2. `/00_SURVIVAL_MASTER_READ_FIRST.md`
 3. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
-4. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
-5. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
-6. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
+4. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
+5. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_SUBMISSION_TEMPLATE_R1.md`
+6. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
+7. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
+8. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
 
 Do not ask the human to restate project history already recorded there.
+
+## Active candidate-work rule
+
+If the task is to implement the Internet auto bundle, follow the active request exactly and publish only under:
+
+`SURVIVAL_MASTER/CANDIDATES/INTERNET_AUTOLEARN_R1/`
+
+The implementing window must stop after GitHub submission. It must not instruct the human to install/run the candidate. Only a later Survival Master review may issue `APPROVE_FOR_OPPO_PREFLIGHT_ONLY`.
 
 ## Hard invariants
 
@@ -61,4 +71,4 @@ Do not copy another pane's `SESSION_CODE`.
 
 ## Context-end requirement
 
-Before your window/context ends after meaningful work, update `SURVIVAL_MASTER/CURRENT_HANDOFF.md` with exact machine result, hashes, claim scope, failure/HOLD if any, and the next exact action. Update the runbook/command samples when procedures change.
+Before your window/context ends after meaningful work, update the appropriate candidate `SUBMISSION.md` or Survival handoff with exact result, hashes, claim scope, failure/HOLD if any, and the next exact action. Update the runbook/command samples when procedures change.
