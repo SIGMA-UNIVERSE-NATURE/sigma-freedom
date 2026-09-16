@@ -8,9 +8,14 @@ Repository: `SIGMA-UNIVERSE-NATURE/sigma-freedom`
 
 ```text
 CANDIDATE_ID=SIGMA_SURVIVAL_INTERNET_AUTOLEARN_R1
-REQUEST_STATUS=OPEN_WAITING_FOR_CANDIDATE
+REQUEST_STATUS=STATIC_REVIEW_HOLD_NEEDS_FIX
 IMPLEMENTER_OUTPUT=SURVIVAL_MASTER/CANDIDATES/INTERNET_AUTOLEARN_R1/
-HUMAN_MUST_NOT_INSTALL_BEFORE_REVIEW=YES
+CANDIDATE_CONTENT_COMMIT=cb914a41c4d1224eea6b84e5561f7099ad154b9d
+CANDIDATE_METADATA_HEAD_REVIEWED=1cc8000a0d0203a369b57807d9e097c100ef84dc
+REVIEW_VERDICT=HOLD_NEEDS_FIX
+APPROVE_FOR_OPPO_PREFLIGHT_ONLY=NO
+HUMAN_MUST_NOT_INSTALL=YES
+HUMAN_MUST_NOT_RUN_ON_OPPO=YES
 STATIC_REVIEW_MAX_AUTHORITY=APPROVE_FOR_OPPO_PREFLIGHT_ONLY
 PRODUCTION_ENABLEMENT=NO
 ```
@@ -23,14 +28,26 @@ Submission template:
 
 `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_SUBMISSION_TEMPLATE_R1.md`
 
-Creation/update commits:
+Static review:
+
+`SURVIVAL_MASTER/REVIEWS/20260917_INTERNET_AUTOLEARN_R1_STATIC_REVIEW_HOLD.md`
+
+## Review result
+
+The candidate is well-behaved as a fail-closed static skeleton, preserves artifact-only Session R4 intent, keeps host cognition disabled, and changes only the candidate directory. It is NOT approved for Oppo preflight because the reviewed code still has blocking gaps.
+
+Blocking classes:
 
 ```text
-41cd8760da5c1df6693ee48adee6d02357325a3f  implementation request
-b6a7fddf27b7ec66e1df37d09d6435f2bc7affa0  candidate submission template
-35bac89c770eff7346fe09a4ac93acaecc42c345  root read-first pointer updated
-96df6a14abce99df4ed02787d235746b3a01bf44  scoped Survival agent instructions updated
+BLOCKER_1=REVIEW_APPROVAL_NOT_BOUND_TO_EXACT_CANDIDATE_BYTES
+BLOCKER_2=DEPENDENCY_RECEIPT_LITERAL_TEXT_TRUST_NOT_HASH_BOUND
+BLOCKER_3=README_DEPENDENCY_RESOLUTION_CLAIM_DOES_NOT_MATCH_PREFLIGHT_IMPLEMENTATION
+BLOCKER_4=ARTIFACT_WORKER_UNCONDITIONALLY_HOLDS_UNRESOLVED_NATIVE_CONTROLLER_INTERFACE
+BLOCKER_5=NATIVE_RUNTIME_ADMISSION_HARNESS_IS_NONEXECUTING_PLACEHOLDER
+BLOCKER_6=GENERAL_ARBITRARY_WEBSITE_NATIVE_SELECTION_AND_NATIVE_CONDENSER_REMAIN_UNRESOLVED
 ```
+
+The candidate must not solve these gaps by moving semantic choice into host/Bash/Python.
 
 ## Design lock
 
@@ -50,8 +67,6 @@ Host is limited to public read-only network transport, exact protocol decode, ex
 
 ## Parallel-learning lock
 
-The bundle must be safe while the current local trainer/weight-upgrade lane is active:
-
 ```text
 LOCAL_TRAINER_CAN_RUN=YES
 INTERNET_ACQUIRE_ASSESS_CONDENSE_CAN_RUN=YES
@@ -70,25 +85,13 @@ HOST_RECREATES_COGNITIVE_DECISION=FORBIDDEN
 IDEMPOTENT_MECHANICAL_REPLAY=REQUIRED
 ```
 
-## Review workflow
-
-When a candidate appears under the required candidate path, Survival Master must inspect exact GitHub bytes and hashes, verify native/host ownership, anti-hardcode, one-writer behavior, Session R4 integration, survival/idempotency design, resource bounds, queue sealing and negative tests.
-
-Only one of these static review verdicts is allowed:
-
-```text
-REVIEW_VERDICT=REJECT
-REVIEW_VERDICT=HOLD_NEEDS_FIX
-REVIEW_VERDICT=APPROVE_FOR_OPPO_PREFLIGHT_ONLY
-```
-
-No static review may authorize production.
-
 ## Current next action
 
 ```text
-NEXT_ACTION=WAIT_FOR_SELECTED_IMPLEMENTING_WINDOW_TO_PUBLISH_CANDIDATE
+NEXT_ACTION=IMPLEMENT_FIX1_EXACTLY_PER_STATIC_REVIEW
+FIX1_SCOPE=CANDIDATE_DIRECTORY_ONLY
 DO_NOT_INSTALL=YES
 DO_NOT_RUN_ON_OPPO=YES
 DO_NOT_MUTATE_PRODUCTION=YES
+SEND_NEW_FIX1_COMMIT_SHA_TO_SURVIVAL_MASTER_FOR_REVIEW=YES
 ```
