@@ -1,0 +1,1075 @@
+#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.G3C.R3I.NARRATIVE.STATE][VERSION=R3I-A1-V1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(value) {
+    IF (value == "") { RETURN 0; }
+    IF (value == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(value, expected) {
+    IF (value == expected) { RETURN 1; }
+    RETURN 0;
+}
+
+DEF state_status(a_support, b_support, evidence_count) {
+    IF (evidence_count == 0) {
+        RETURN "NO_STATE_EVIDENCE";
+    }
+    IF (b_support < a_support) {
+        RETURN "PREFERRED_STATE_HYPOTHESIS";
+    }
+    IF (a_support < b_support) {
+        RETURN "PREFERRED_STATE_HYPOTHESIS";
+    }
+    RETURN "UNRESOLVED_STATE_COMPETITION";
+}
+
+DEF preferred_state(a_support, b_support, candidate_a, candidate_b) {
+    IF (b_support < a_support) { RETURN candidate_a; }
+    IF (a_support < b_support) { RETURN candidate_b; }
+    RETURN "NONE";
+}
+
+DEF revision_kind(prior_status, prior_preferred, current_status, current_preferred) {
+    IF (prior_status == "NO_STATE_EVIDENCE") {
+        IF (current_status == "NO_STATE_EVIDENCE") {
+            RETURN "NO_STATE_EVIDENCE";
+        }
+        RETURN "INITIAL_STATE_HYPOTHESIS";
+    }
+
+    IF (prior_status == "UNRESOLVED_STATE_COMPETITION") {
+        IF (current_status == "UNRESOLVED_STATE_COMPETITION") {
+            RETURN "UNRESOLVED_RETAINED";
+        }
+        IF (current_status == "PREFERRED_STATE_HYPOTHESIS") {
+            RETURN "PREFERENCE_EMERGED";
+        }
+    }
+
+    IF (prior_status == "PREFERRED_STATE_HYPOTHESIS") {
+        IF (current_status == "UNRESOLVED_STATE_COMPETITION") {
+            RETURN "PREFERENCE_REOPENED";
+        }
+        IF (current_status == "PREFERRED_STATE_HYPOTHESIS") {
+            IF (prior_preferred == current_preferred) {
+                RETURN "PREFERENCE_RETAINED";
+            }
+            RETURN "PREFERENCE_REVERSED";
+        }
+    }
+
+    RETURN "STATE_RELATION_CHANGED";
+}
+
+⟡(Σ.G3C_R3I_A1_NATIVE_NARRATIVE_LEDGER_STATE_REVISION_V1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_G3C_R3I_A1_NARRATIVE_LEDGER_STATE_REVISION_V1";
+
+    ⚡ STORY_ID:
+        H("read_text", BASE + "/input/story_id.txt", NULL, NULL);
+    ⚡ QUERY_STATE_KEY:
+        H("read_text", BASE + "/input/query_state_key.txt", NULL, NULL);
+    ⚡ CANDIDATE_TEXT:
+        H("read_text", BASE + "/input/query_candidates.memory", NULL, NULL);
+    ⚡ NEW_RECORD_TEXT:
+        H("read_text", BASE + "/input/records.memory", NULL, NULL);
+
+    ⚡ STORY_ID_VALID:
+        present(STORY_ID);
+    ⚡ QUERY_STATE_KEY_VALID:
+        present(QUERY_STATE_KEY);
+
+    ⚡ RAW_CANDIDATES:
+        H("str_split", CANDIDATE_TEXT, "\n", NULL);
+    ⚡ RAW_CANDIDATE_COUNT:
+        H("list_len", RAW_CANDIDATES, NULL, NULL);
+    ⚡ CANDIDATES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ CI: 0;
+    WHILE (CI < RAW_CANDIDATE_COUNT) {
+        ⚡ CANDIDATE_ITEM:
+            H("list_get", RAW_CANDIDATES, CI, NULL);
+        ⚡ CANDIDATE_PRESENT:
+            present(CANDIDATE_ITEM);
+        IF (CANDIDATE_PRESENT == 1) {
+            ⚡ PUSH_CANDIDATE:
+                H("list_push", CANDIDATES, CANDIDATE_ITEM, NULL);
+        }
+        ⚡ CI: CI + 1;
+    }
+
+    ⚡ CANDIDATE_COUNT:
+        H("list_len", CANDIDATES, NULL, NULL);
+    ⚡ CANDIDATE_A: "";
+    ⚡ CANDIDATE_B: "";
+    ⚡ CANDIDATES_DISTINCT: 0;
+
+    IF (CANDIDATE_COUNT == 2) {
+        ⚡ CANDIDATE_A:
+            H("list_get", CANDIDATES, 0, NULL);
+        ⚡ CANDIDATE_B:
+            H("list_get", CANDIDATES, 1, NULL);
+        ⚡ CANDIDATES_SAME:
+            exact(CANDIDATE_A, CANDIDATE_B);
+        IF (CANDIDATES_SAME == 0) {
+            ⚡ CANDIDATES_DISTINCT: 1;
+        }
+    }
+
+    ⚡ QUERY_BINDING_VALID:
+        STORY_ID_VALID
+        * QUERY_STATE_KEY_VALID
+        * CANDIDATES_DISTINCT;
+
+    ⚡ STATE_PATH:
+        BASE + "/state/narrative_ledger.memory";
+    ⚡ STATE_TEXT:
+        H("read_text", STATE_PATH, NULL, NULL);
+    ⚡ STATE_EMPTY:
+        exact(STATE_TEXT, "");
+
+    ⚡ MAX_TOTAL_RECORDS: 64;
+    ⚡ MAX_NEW_RECORDS: 32;
+
+    ⚡ SEEN_RECORDS:
+        H("map_new", NULL, NULL, NULL);
+    ⚡ EVENT_IDS:
+        H("map_new", NULL, NULL, NULL);
+    ⚡ PARTICIPANT_IDS:
+        H("map_new", NULL, NULL, NULL);
+
+    ⚡ PREVIOUS_STATE_VALID: 0;
+    ⚡ PREVIOUS_STATE_INVALID: 0;
+    ⚡ PRIOR_RECORD_COUNT: 0;
+    ⚡ PRIOR_EVENT_COUNT: 0;
+    ⚡ PRIOR_PARTICIPANT_COUNT: 0;
+    ⚡ PRIOR_ROLE_BINDING_COUNT: 0;
+    ⚡ PRIOR_ORDER_EDGE_COUNT: 0;
+    ⚡ PRIOR_STATE_EVIDENCE_COUNT: 0;
+
+    ⚡ PRIOR_QUERY_A_SUPPORT: 0;
+    ⚡ PRIOR_QUERY_B_SUPPORT: 0;
+    ⚡ PRIOR_QUERY_OTHER_SUPPORT: 0;
+    ⚡ PRIOR_QUERY_EVIDENCE_COUNT: 0;
+
+    ⚡ STATE_LINES:
+        H("list_new", NULL, NULL, NULL);
+    ⚡ STATE_LINE_COUNT: 0;
+
+    IF (STATE_EMPTY == 0) {
+        ⚡ STATE_LINES:
+            H("str_split", STATE_TEXT, "\n", NULL);
+        ⚡ STATE_LINE_COUNT:
+            H("list_len", STATE_LINES, NULL, NULL);
+
+        ⚡ STATE_HEADER_VALID: 0;
+        ⚡ STATE_RECORD_INVALID_COUNT: 0;
+
+        IF (0 < STATE_LINE_COUNT) {
+            ⚡ HEADER:
+                H("list_get", STATE_LINES, 0, NULL);
+            ⚡ HEADER_PARTS:
+                H("str_split", HEADER, "||", NULL);
+            ⚡ HEADER_PART_COUNT:
+                H("list_len", HEADER_PARTS, NULL, NULL);
+
+            IF (HEADER_PART_COUNT == 6) {
+                ⚡ H0: H("list_get", HEADER_PARTS, 0, NULL);
+                ⚡ H1: H("list_get", HEADER_PARTS, 1, NULL);
+                ⚡ H2: H("list_get", HEADER_PARTS, 2, NULL);
+                ⚡ H3: H("list_get", HEADER_PARTS, 3, NULL);
+                ⚡ H4: H("list_get", HEADER_PARTS, 4, NULL);
+                ⚡ H5: H("list_get", HEADER_PARTS, 5, NULL);
+
+                ⚡ STATE_HEADER_VALID:
+                    exact(H0, "STATE")
+                    * exact(H1, "SIGMA_G3C_R3I_A1_NARRATIVE_LEDGER_STATE_V1")
+                    * exact(H2, "STORY")
+                    * exact(H3, STORY_ID)
+                    * exact(H4, "COMMIT")
+                    * exact(H5, "YES");
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 1) {
+            ⚡ SI: 1;
+            WHILE (SI < STATE_LINE_COUNT) {
+                ⚡ LINE:
+                    H("list_get", STATE_LINES, SI, NULL);
+                ⚡ PARTS:
+                    H("str_split", LINE, "||", NULL);
+                ⚡ PC:
+                    H("list_len", PARTS, NULL, NULL);
+
+                ⚡ RECORD_VALID: 0;
+                ⚡ RECORD_ID: "";
+                ⚡ RECORD_FINGERPRINT: "";
+
+                IF (PC == 7) {
+                    ⚡ P0: H("list_get", PARTS, 0, NULL);
+                    ⚡ P1: H("list_get", PARTS, 1, NULL);
+                    ⚡ P2: H("list_get", PARTS, 2, NULL);
+                    ⚡ P3: H("list_get", PARTS, 3, NULL);
+                    ⚡ P4: H("list_get", PARTS, 4, NULL);
+                    ⚡ P5: H("list_get", PARTS, 5, NULL);
+                    ⚡ P6: H("list_get", PARTS, 6, NULL);
+
+                    IF (P0 == "EVENT") {
+                        ⚡ RECORD_VALID:
+                            present(P1)
+                            * present(P2)
+                            * exact(P3, "SOURCE")
+                            * present(P4)
+                            * exact(P5, "COMMIT")
+                            * exact(P6, "YES");
+                        IF (RECORD_VALID == 1) {
+                            ⚡ RECORD_ID: P1;
+                            ⚡ RECORD_FINGERPRINT:
+                                P0 + "||" + P2 + "||" + P3 + "||" + P4;
+                            ⚡ EVENT_EXISTS:
+                                H("map_has", EVENT_IDS, P2, NULL);
+                            IF (EVENT_EXISTS == FALSE) {
+                                ⚡ MARK_EVENT:
+                                    H("map_set", EVENT_IDS, P2, P1);
+                                ⚡ PRIOR_EVENT_COUNT:
+                                    PRIOR_EVENT_COUNT + 1;
+                            }
+                        }
+                    }
+
+                    IF (P0 == "PARTICIPANT") {
+                        ⚡ RECORD_VALID:
+                            present(P1)
+                            * present(P2)
+                            * exact(P3, "SOURCE")
+                            * present(P4)
+                            * exact(P5, "COMMIT")
+                            * exact(P6, "YES");
+                        IF (RECORD_VALID == 1) {
+                            ⚡ RECORD_ID: P1;
+                            ⚡ RECORD_FINGERPRINT:
+                                P0 + "||" + P2 + "||" + P3 + "||" + P4;
+                            ⚡ PARTICIPANT_EXISTS:
+                                H("map_has", PARTICIPANT_IDS, P2, NULL);
+                            IF (PARTICIPANT_EXISTS == FALSE) {
+                                ⚡ MARK_PARTICIPANT:
+                                    H("map_set", PARTICIPANT_IDS, P2, P1);
+                                ⚡ PRIOR_PARTICIPANT_COUNT:
+                                    PRIOR_PARTICIPANT_COUNT + 1;
+                            }
+                        }
+                    }
+                }
+
+                IF (PC == 9) {
+                    ⚡ P0: H("list_get", PARTS, 0, NULL);
+                    ⚡ P1: H("list_get", PARTS, 1, NULL);
+                    ⚡ P2: H("list_get", PARTS, 2, NULL);
+                    ⚡ P3: H("list_get", PARTS, 3, NULL);
+                    ⚡ P4: H("list_get", PARTS, 4, NULL);
+                    ⚡ P5: H("list_get", PARTS, 5, NULL);
+                    ⚡ P6: H("list_get", PARTS, 6, NULL);
+                    ⚡ P7: H("list_get", PARTS, 7, NULL);
+                    ⚡ P8: H("list_get", PARTS, 8, NULL);
+
+                    IF (P0 == "ROLE_BINDING") {
+                        ⚡ RECORD_VALID:
+                            present(P1)
+                            * present(P2)
+                            * present(P3)
+                            * present(P4)
+                            * exact(P5, "SOURCE")
+                            * present(P6)
+                            * exact(P7, "COMMIT")
+                            * exact(P8, "YES");
+                        IF (RECORD_VALID == 1) {
+                            ⚡ RECORD_ID: P1;
+                            ⚡ RECORD_FINGERPRINT:
+                                P0 + "||" + P2 + "||" + P3 + "||" + P4
+                                + "||" + P5 + "||" + P6;
+                            ⚡ PRIOR_ROLE_BINDING_COUNT:
+                                PRIOR_ROLE_BINDING_COUNT + 1;
+                        }
+                    }
+
+                    IF (P0 == "STATE_EVIDENCE") {
+                        ⚡ RECORD_VALID:
+                            present(P1)
+                            * present(P2)
+                            * present(P3)
+                            * present(P4)
+                            * exact(P5, "SOURCE")
+                            * present(P6)
+                            * exact(P7, "COMMIT")
+                            * exact(P8, "YES");
+                        IF (RECORD_VALID == 1) {
+                            ⚡ RECORD_ID: P1;
+                            ⚡ RECORD_FINGERPRINT:
+                                P0 + "||" + P2 + "||" + P3 + "||" + P4
+                                + "||" + P5 + "||" + P6;
+                            ⚡ PRIOR_STATE_EVIDENCE_COUNT:
+                                PRIOR_STATE_EVIDENCE_COUNT + 1;
+
+                            IF (P2 == QUERY_STATE_KEY) {
+                                ⚡ PRIOR_QUERY_EVIDENCE_COUNT:
+                                    PRIOR_QUERY_EVIDENCE_COUNT + 1;
+                                IF (P3 == CANDIDATE_A) {
+                                    ⚡ PRIOR_QUERY_A_SUPPORT:
+                                        PRIOR_QUERY_A_SUPPORT + 1;
+                                }
+                                IF (P3 == CANDIDATE_B) {
+                                    ⚡ PRIOR_QUERY_B_SUPPORT:
+                                        PRIOR_QUERY_B_SUPPORT + 1;
+                                }
+                                ⚡ PRIOR_IS_A:
+                                    exact(P3, CANDIDATE_A);
+                                ⚡ PRIOR_IS_B:
+                                    exact(P3, CANDIDATE_B);
+                                ⚡ PRIOR_IS_KNOWN:
+                                    PRIOR_IS_A + PRIOR_IS_B;
+                                IF (PRIOR_IS_KNOWN == 0) {
+                                    ⚡ PRIOR_QUERY_OTHER_SUPPORT:
+                                        PRIOR_QUERY_OTHER_SUPPORT + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                IF (PC == 8) {
+                    ⚡ P0: H("list_get", PARTS, 0, NULL);
+                    ⚡ P1: H("list_get", PARTS, 1, NULL);
+                    ⚡ P2: H("list_get", PARTS, 2, NULL);
+                    ⚡ P3: H("list_get", PARTS, 3, NULL);
+                    ⚡ P4: H("list_get", PARTS, 4, NULL);
+                    ⚡ P5: H("list_get", PARTS, 5, NULL);
+                    ⚡ P6: H("list_get", PARTS, 6, NULL);
+                    ⚡ P7: H("list_get", PARTS, 7, NULL);
+
+                    IF (P0 == "ORDER_EDGE") {
+                        ⚡ RECORD_VALID:
+                            present(P1)
+                            * present(P2)
+                            * present(P3)
+                            * exact(P4, "SOURCE")
+                            * present(P5)
+                            * exact(P6, "COMMIT")
+                            * exact(P7, "YES");
+                        IF (RECORD_VALID == 1) {
+                            ⚡ RECORD_ID: P1;
+                            ⚡ RECORD_FINGERPRINT:
+                                P0 + "||" + P2 + "||" + P3
+                                + "||" + P4 + "||" + P5;
+                            ⚡ PRIOR_ORDER_EDGE_COUNT:
+                                PRIOR_ORDER_EDGE_COUNT + 1;
+                        }
+                    }
+                }
+
+                IF (RECORD_VALID == 1) {
+                    ⚡ RECORD_ID_SEEN:
+                        H("map_has", SEEN_RECORDS, RECORD_ID, NULL);
+                    IF (RECORD_ID_SEEN) {
+                        ⚡ RECORD_VALID: 0;
+                    }
+                    IF (RECORD_ID_SEEN == FALSE) {
+                        ⚡ MARK_RECORD:
+                            H("map_set", SEEN_RECORDS, RECORD_ID, RECORD_FINGERPRINT);
+                        ⚡ PRIOR_RECORD_COUNT:
+                            PRIOR_RECORD_COUNT + 1;
+                    }
+                }
+
+                IF (RECORD_VALID == 0) {
+                    ⚡ STATE_RECORD_INVALID_COUNT:
+                        STATE_RECORD_INVALID_COUNT + 1;
+                }
+
+                ⚡ SI: SI + 1;
+            }
+
+            ⚡ SJ: 1;
+            WHILE (SJ < STATE_LINE_COUNT) {
+                ⚡ LINE2:
+                    H("list_get", STATE_LINES, SJ, NULL);
+                ⚡ PARTS2:
+                    H("str_split", LINE2, "||", NULL);
+                ⚡ PC2:
+                    H("list_len", PARTS2, NULL, NULL);
+
+                IF (PC2 == 9) {
+                    ⚡ Q0: H("list_get", PARTS2, 0, NULL);
+                    ⚡ Q2: H("list_get", PARTS2, 2, NULL);
+                    ⚡ Q3: H("list_get", PARTS2, 3, NULL);
+                    ⚡ Q4: H("list_get", PARTS2, 4, NULL);
+                    IF (Q0 == "ROLE_BINDING") {
+                        ⚡ REF_EVENT_EXISTS:
+                            H("map_has", EVENT_IDS, Q2, NULL);
+                        ⚡ REF_PARTICIPANT_EXISTS:
+                            H("map_has", PARTICIPANT_IDS, Q3, NULL);
+                        IF (REF_EVENT_EXISTS == FALSE) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                        IF (REF_PARTICIPANT_EXISTS == FALSE) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                    }
+                    IF (Q0 == "STATE_EVIDENCE") {
+                        ⚡ REF_EVENT_EXISTS:
+                            H("map_has", EVENT_IDS, Q4, NULL);
+                        IF (REF_EVENT_EXISTS == FALSE) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                    }
+                }
+
+                IF (PC2 == 8) {
+                    ⚡ Q0: H("list_get", PARTS2, 0, NULL);
+                    ⚡ Q2: H("list_get", PARTS2, 2, NULL);
+                    ⚡ Q3: H("list_get", PARTS2, 3, NULL);
+                    IF (Q0 == "ORDER_EDGE") {
+                        ⚡ BEFORE_EXISTS:
+                            H("map_has", EVENT_IDS, Q2, NULL);
+                        ⚡ AFTER_EXISTS:
+                            H("map_has", EVENT_IDS, Q3, NULL);
+                        IF (BEFORE_EXISTS == FALSE) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                        IF (AFTER_EXISTS == FALSE) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                        IF (Q2 == Q3) {
+                            ⚡ PREVIOUS_STATE_INVALID: 1;
+                        }
+                    }
+                }
+
+                ⚡ SJ: SJ + 1;
+            }
+        }
+
+        IF (STATE_HEADER_VALID == 0) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (0 < STATE_RECORD_INVALID_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+        IF (MAX_TOTAL_RECORDS < PRIOR_RECORD_COUNT) {
+            ⚡ PREVIOUS_STATE_INVALID: 1;
+        }
+
+        IF (PREVIOUS_STATE_INVALID == 0) {
+            ⚡ PREVIOUS_STATE_VALID: 1;
+        }
+    }
+
+    ⚡ RAW_NEW_LINES:
+        H("str_split", NEW_RECORD_TEXT, "\n", NULL);
+    ⚡ RAW_NEW_LINE_COUNT:
+        H("list_len", RAW_NEW_LINES, NULL, NULL);
+
+    ⚡ PENDING_LINES:
+        H("list_new", NULL, NULL, NULL);
+
+    ⚡ NEW_RECORD_LINE_COUNT: 0;
+    ⚡ NEW_RECORD_ACCEPTED_COUNT: 0;
+    ⚡ DUPLICATE_RECORD_COUNT: 0;
+    ⚡ RECORD_ID_COLLISION_COUNT: 0;
+    ⚡ INVALID_NEW_RECORD_COUNT: 0;
+    ⚡ NEW_REFERENCE_INVALID_COUNT: 0;
+
+    ⚡ NEW_EVENT_COUNT: 0;
+    ⚡ NEW_PARTICIPANT_COUNT: 0;
+    ⚡ NEW_ROLE_BINDING_COUNT: 0;
+    ⚡ NEW_ORDER_EDGE_COUNT: 0;
+    ⚡ NEW_STATE_EVIDENCE_COUNT: 0;
+
+    ⚡ PROPOSED_QUERY_A_SUPPORT:
+        PRIOR_QUERY_A_SUPPORT;
+    ⚡ PROPOSED_QUERY_B_SUPPORT:
+        PRIOR_QUERY_B_SUPPORT;
+    ⚡ PROPOSED_QUERY_OTHER_SUPPORT:
+        PRIOR_QUERY_OTHER_SUPPORT;
+    ⚡ PROPOSED_QUERY_EVIDENCE_COUNT:
+        PRIOR_QUERY_EVIDENCE_COUNT;
+
+    ⚡ NI: 0;
+    WHILE (NI < RAW_NEW_LINE_COUNT) {
+        ⚡ NEW_LINE:
+            H("list_get", RAW_NEW_LINES, NI, NULL);
+        ⚡ NEW_LINE_PRESENT:
+            present(NEW_LINE);
+
+        IF (NEW_LINE_PRESENT == 1) {
+            ⚡ NEW_RECORD_LINE_COUNT:
+                NEW_RECORD_LINE_COUNT + 1;
+
+            ⚡ NP:
+                H("str_split", NEW_LINE, "||", NULL);
+            ⚡ NPC:
+                H("list_len", NP, NULL, NULL);
+
+            ⚡ NEW_RECORD_VALID: 0;
+            ⚡ NEW_RECORD_ID: "";
+            ⚡ NEW_FINGERPRINT: "";
+            ⚡ PERSISTED_LINE: "";
+
+            IF (NPC == 5) {
+                ⚡ N0: H("list_get", NP, 0, NULL);
+                ⚡ N1: H("list_get", NP, 1, NULL);
+                ⚡ N2: H("list_get", NP, 2, NULL);
+                ⚡ N3: H("list_get", NP, 3, NULL);
+                ⚡ N4: H("list_get", NP, 4, NULL);
+
+                IF (N0 == "EVENT") {
+                    ⚡ NEW_RECORD_VALID:
+                        present(N1)
+                        * present(N2)
+                        * exact(N3, "SOURCE")
+                        * present(N4);
+                    IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FINGERPRINT:
+                            N0 + "||" + N2 + "||" + N3 + "||" + N4;
+                        ⚡ PERSISTED_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                    }
+                }
+
+                IF (N0 == "PARTICIPANT") {
+                    ⚡ NEW_RECORD_VALID:
+                        present(N1)
+                        * present(N2)
+                        * exact(N3, "SOURCE")
+                        * present(N4);
+                    IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FINGERPRINT:
+                            N0 + "||" + N2 + "||" + N3 + "||" + N4;
+                        ⚡ PERSISTED_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                    }
+                }
+            }
+
+            IF (NPC == 7) {
+                ⚡ N0: H("list_get", NP, 0, NULL);
+                ⚡ N1: H("list_get", NP, 1, NULL);
+                ⚡ N2: H("list_get", NP, 2, NULL);
+                ⚡ N3: H("list_get", NP, 3, NULL);
+                ⚡ N4: H("list_get", NP, 4, NULL);
+                ⚡ N5: H("list_get", NP, 5, NULL);
+                ⚡ N6: H("list_get", NP, 6, NULL);
+
+                IF (N0 == "ROLE_BINDING") {
+                    ⚡ NEW_RECORD_VALID:
+                        present(N1)
+                        * present(N2)
+                        * present(N3)
+                        * present(N4)
+                        * exact(N5, "SOURCE")
+                        * present(N6);
+                    IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FINGERPRINT:
+                            N0 + "||" + N2 + "||" + N3 + "||" + N4
+                            + "||" + N5 + "||" + N6;
+                        ⚡ PERSISTED_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                    }
+                }
+
+                IF (N0 == "STATE_EVIDENCE") {
+                    ⚡ NEW_RECORD_VALID:
+                        present(N1)
+                        * present(N2)
+                        * present(N3)
+                        * present(N4)
+                        * exact(N5, "SOURCE")
+                        * present(N6);
+                    IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FINGERPRINT:
+                            N0 + "||" + N2 + "||" + N3 + "||" + N4
+                            + "||" + N5 + "||" + N6;
+                        ⚡ PERSISTED_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                    }
+                }
+            }
+
+            IF (NPC == 6) {
+                ⚡ N0: H("list_get", NP, 0, NULL);
+                ⚡ N1: H("list_get", NP, 1, NULL);
+                ⚡ N2: H("list_get", NP, 2, NULL);
+                ⚡ N3: H("list_get", NP, 3, NULL);
+                ⚡ N4: H("list_get", NP, 4, NULL);
+                ⚡ N5: H("list_get", NP, 5, NULL);
+
+                IF (N0 == "ORDER_EDGE") {
+                    ⚡ NEW_RECORD_VALID:
+                        present(N1)
+                        * present(N2)
+                        * present(N3)
+                        * exact(N4, "SOURCE")
+                        * present(N5);
+                    IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FINGERPRINT:
+                            N0 + "||" + N2 + "||" + N3
+                            + "||" + N4 + "||" + N5;
+                        ⚡ PERSISTED_LINE:
+                            NEW_LINE + "||COMMIT||YES";
+                    }
+                }
+            }
+
+            IF (NEW_RECORD_VALID == 1) {
+                ⚡ RECORD_EXISTS:
+                    H("map_has", SEEN_RECORDS, NEW_RECORD_ID, NULL);
+
+                IF (RECORD_EXISTS) {
+                    ⚡ OLD_FINGERPRINT:
+                        H("map_get", SEEN_RECORDS, NEW_RECORD_ID, NULL);
+                    ⚡ FINGERPRINT_SAME:
+                        exact(OLD_FINGERPRINT, NEW_FINGERPRINT);
+                    IF (FINGERPRINT_SAME == 1) {
+                        ⚡ DUPLICATE_RECORD_COUNT:
+                            DUPLICATE_RECORD_COUNT + 1;
+                    }
+                    IF (FINGERPRINT_SAME == 0) {
+                        ⚡ RECORD_ID_COLLISION_COUNT:
+                            RECORD_ID_COLLISION_COUNT + 1;
+                    }
+                }
+
+                IF (RECORD_EXISTS == FALSE) {
+                    ⚡ MARK_NEW_RECORD:
+                        H("map_set", SEEN_RECORDS, NEW_RECORD_ID, NEW_FINGERPRINT);
+                    ⚡ PUSH_PENDING:
+                        H("list_push", PENDING_LINES, PERSISTED_LINE, NULL);
+                    ⚡ NEW_RECORD_ACCEPTED_COUNT:
+                        NEW_RECORD_ACCEPTED_COUNT + 1;
+
+                    IF (N0 == "EVENT") {
+                        ⚡ EVENT_EXISTS:
+                            H("map_has", EVENT_IDS, N2, NULL);
+                        IF (EVENT_EXISTS == FALSE) {
+                            ⚡ MARK_NEW_EVENT:
+                                H("map_set", EVENT_IDS, N2, N1);
+                            ⚡ NEW_EVENT_COUNT:
+                                NEW_EVENT_COUNT + 1;
+                        }
+                    }
+
+                    IF (N0 == "PARTICIPANT") {
+                        ⚡ PARTICIPANT_EXISTS:
+                            H("map_has", PARTICIPANT_IDS, N2, NULL);
+                        IF (PARTICIPANT_EXISTS == FALSE) {
+                            ⚡ MARK_NEW_PARTICIPANT:
+                                H("map_set", PARTICIPANT_IDS, N2, N1);
+                            ⚡ NEW_PARTICIPANT_COUNT:
+                                NEW_PARTICIPANT_COUNT + 1;
+                        }
+                    }
+
+                    IF (N0 == "ROLE_BINDING") {
+                        ⚡ NEW_ROLE_BINDING_COUNT:
+                            NEW_ROLE_BINDING_COUNT + 1;
+                    }
+
+                    IF (N0 == "ORDER_EDGE") {
+                        ⚡ NEW_ORDER_EDGE_COUNT:
+                            NEW_ORDER_EDGE_COUNT + 1;
+                    }
+
+                    IF (N0 == "STATE_EVIDENCE") {
+                        ⚡ NEW_STATE_EVIDENCE_COUNT:
+                            NEW_STATE_EVIDENCE_COUNT + 1;
+
+                        IF (N2 == QUERY_STATE_KEY) {
+                            ⚡ PROPOSED_QUERY_EVIDENCE_COUNT:
+                                PROPOSED_QUERY_EVIDENCE_COUNT + 1;
+
+                            IF (N3 == CANDIDATE_A) {
+                                ⚡ PROPOSED_QUERY_A_SUPPORT:
+                                    PROPOSED_QUERY_A_SUPPORT + 1;
+                            }
+                            IF (N3 == CANDIDATE_B) {
+                                ⚡ PROPOSED_QUERY_B_SUPPORT:
+                                    PROPOSED_QUERY_B_SUPPORT + 1;
+                            }
+                            ⚡ NEW_IS_A:
+                                exact(N3, CANDIDATE_A);
+                            ⚡ NEW_IS_B:
+                                exact(N3, CANDIDATE_B);
+                            ⚡ NEW_IS_KNOWN:
+                                NEW_IS_A + NEW_IS_B;
+                            IF (NEW_IS_KNOWN == 0) {
+                                ⚡ PROPOSED_QUERY_OTHER_SUPPORT:
+                                    PROPOSED_QUERY_OTHER_SUPPORT + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            IF (NEW_RECORD_VALID == 0) {
+                ⚡ INVALID_NEW_RECORD_COUNT:
+                    INVALID_NEW_RECORD_COUNT + 1;
+            }
+        }
+
+        ⚡ NI: NI + 1;
+    }
+
+    ⚡ NJ: 0;
+    WHILE (NJ < RAW_NEW_LINE_COUNT) {
+        ⚡ CHECK_LINE:
+            H("list_get", RAW_NEW_LINES, NJ, NULL);
+        ⚡ CHECK_PRESENT:
+            present(CHECK_LINE);
+
+        IF (CHECK_PRESENT == 1) {
+            ⚡ CP:
+                H("str_split", CHECK_LINE, "||", NULL);
+            ⚡ CPC:
+                H("list_len", CP, NULL, NULL);
+
+            IF (CPC == 7) {
+                ⚡ C0: H("list_get", CP, 0, NULL);
+                ⚡ C2: H("list_get", CP, 2, NULL);
+                ⚡ C3: H("list_get", CP, 3, NULL);
+                ⚡ C4: H("list_get", CP, 4, NULL);
+
+                IF (C0 == "ROLE_BINDING") {
+                    ⚡ EVENT_REF_OK:
+                        H("map_has", EVENT_IDS, C2, NULL);
+                    ⚡ PARTICIPANT_REF_OK:
+                        H("map_has", PARTICIPANT_IDS, C3, NULL);
+                    IF (EVENT_REF_OK == FALSE) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                    IF (PARTICIPANT_REF_OK == FALSE) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                }
+
+                IF (C0 == "STATE_EVIDENCE") {
+                    ⚡ EVENT_REF_OK:
+                        H("map_has", EVENT_IDS, C4, NULL);
+                    IF (EVENT_REF_OK == FALSE) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                }
+            }
+
+            IF (CPC == 6) {
+                ⚡ C0: H("list_get", CP, 0, NULL);
+                ⚡ C2: H("list_get", CP, 2, NULL);
+                ⚡ C3: H("list_get", CP, 3, NULL);
+
+                IF (C0 == "ORDER_EDGE") {
+                    ⚡ BEFORE_OK:
+                        H("map_has", EVENT_IDS, C2, NULL);
+                    ⚡ AFTER_OK:
+                        H("map_has", EVENT_IDS, C3, NULL);
+                    IF (BEFORE_OK == FALSE) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                    IF (AFTER_OK == FALSE) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                    IF (C2 == C3) {
+                        ⚡ NEW_REFERENCE_INVALID_COUNT:
+                            NEW_REFERENCE_INVALID_COUNT + 1;
+                    }
+                }
+            }
+        }
+
+        ⚡ NJ: NJ + 1;
+    }
+
+    ⚡ STATE_BASE_VALID: 0;
+    IF (STATE_EMPTY == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+    IF (PREVIOUS_STATE_VALID == 1) {
+        ⚡ STATE_BASE_VALID: 1;
+    }
+
+    ⚡ NEW_RECORD_LIMIT_EXCEEDED: 0;
+    IF (MAX_NEW_RECORDS < NEW_RECORD_ACCEPTED_COUNT) {
+        ⚡ NEW_RECORD_LIMIT_EXCEEDED: 1;
+    }
+
+    ⚡ PROPOSED_TOTAL_RECORDS:
+        PRIOR_RECORD_COUNT + NEW_RECORD_ACCEPTED_COUNT;
+    ⚡ TOTAL_RECORD_CAPACITY_EXCEEDED: 0;
+    IF (MAX_TOTAL_RECORDS < PROPOSED_TOTAL_RECORDS) {
+        ⚡ TOTAL_RECORD_CAPACITY_EXCEEDED: 1;
+    }
+
+    ⚡ BATCH_VALID: 1;
+    IF (0 < INVALID_NEW_RECORD_COUNT) {
+        ⚡ BATCH_VALID: 0;
+    }
+    IF (0 < RECORD_ID_COLLISION_COUNT) {
+        ⚡ BATCH_VALID: 0;
+    }
+    IF (0 < NEW_REFERENCE_INVALID_COUNT) {
+        ⚡ BATCH_VALID: 0;
+    }
+    IF (NEW_RECORD_LIMIT_EXCEEDED == 1) {
+        ⚡ BATCH_VALID: 0;
+    }
+    IF (TOTAL_RECORD_CAPACITY_EXCEEDED == 1) {
+        ⚡ BATCH_VALID: 0;
+    }
+
+    ⚡ INFERENCE_ALLOWED:
+        QUERY_BINDING_VALID
+        * STATE_BASE_VALID
+        * BATCH_VALID;
+
+    ⚡ PRIOR_STATE_STATUS:
+        state_status(
+            PRIOR_QUERY_A_SUPPORT,
+            PRIOR_QUERY_B_SUPPORT,
+            PRIOR_QUERY_EVIDENCE_COUNT
+        );
+    ⚡ PRIOR_PREFERRED_STATE:
+        preferred_state(
+            PRIOR_QUERY_A_SUPPORT,
+            PRIOR_QUERY_B_SUPPORT,
+            CANDIDATE_A,
+            CANDIDATE_B
+        );
+
+    ⚡ CURRENT_QUERY_A_SUPPORT:
+        PRIOR_QUERY_A_SUPPORT;
+    ⚡ CURRENT_QUERY_B_SUPPORT:
+        PRIOR_QUERY_B_SUPPORT;
+    ⚡ CURRENT_QUERY_OTHER_SUPPORT:
+        PRIOR_QUERY_OTHER_SUPPORT;
+    ⚡ CURRENT_QUERY_EVIDENCE_COUNT:
+        PRIOR_QUERY_EVIDENCE_COUNT;
+
+    IF (INFERENCE_ALLOWED == 1) {
+        ⚡ CURRENT_QUERY_A_SUPPORT:
+            PROPOSED_QUERY_A_SUPPORT;
+        ⚡ CURRENT_QUERY_B_SUPPORT:
+            PROPOSED_QUERY_B_SUPPORT;
+        ⚡ CURRENT_QUERY_OTHER_SUPPORT:
+            PROPOSED_QUERY_OTHER_SUPPORT;
+        ⚡ CURRENT_QUERY_EVIDENCE_COUNT:
+            PROPOSED_QUERY_EVIDENCE_COUNT;
+    }
+
+    ⚡ CURRENT_STATE_STATUS:
+        state_status(
+            CURRENT_QUERY_A_SUPPORT,
+            CURRENT_QUERY_B_SUPPORT,
+            CURRENT_QUERY_EVIDENCE_COUNT
+        );
+    ⚡ CURRENT_PREFERRED_STATE:
+        preferred_state(
+            CURRENT_QUERY_A_SUPPORT,
+            CURRENT_QUERY_B_SUPPORT,
+            CANDIDATE_A,
+            CANDIDATE_B
+        );
+
+    ⚡ REVISION_KIND:
+        revision_kind(
+            PRIOR_STATE_STATUS,
+            PRIOR_PREFERRED_STATE,
+            CURRENT_STATE_STATUS,
+            CURRENT_PREFERRED_STATE
+        );
+
+    IF (INFERENCE_ALLOWED == 0) {
+        ⚡ REVISION_KIND: "BATCH_WITHHELD";
+    }
+
+    ⚡ STATE_COMMIT_ALLOWED: 0;
+    IF (INFERENCE_ALLOWED == 1) {
+        IF (0 < NEW_RECORD_ACCEPTED_COUNT) {
+            ⚡ STATE_COMMIT_ALLOWED: 1;
+        }
+    }
+
+    ⚡ WRITE_RC: 0;
+    ⚡ WRITE_READBACK_MATCH: 0;
+    ⚡ STATE_MUTATED: 0;
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        ⚡ HEADER:
+            "STATE"
+            + "||SIGMA_G3C_R3I_A1_NARRATIVE_LEDGER_STATE_V1"
+            + "||STORY||"
+            + STORY_ID
+            + "||COMMIT||YES";
+
+        ⚡ PENDING_TEXT:
+            H("str_join", PENDING_LINES, "\n", NULL);
+        ⚡ PROPOSED_STATE:
+            HEADER + "\n" + PENDING_TEXT;
+
+        IF (PREVIOUS_STATE_VALID == 1) {
+            ⚡ PROPOSED_STATE:
+                STATE_TEXT + "\n" + PENDING_TEXT;
+        }
+
+        ⚡ WRITE_RC:
+            H("write_text", STATE_PATH, PROPOSED_STATE, NULL);
+        ⚡ READBACK:
+            H("read_text", STATE_PATH, NULL, NULL);
+        ⚡ WRITE_READBACK_MATCH:
+            exact(READBACK, PROPOSED_STATE);
+        ⚡ STATE_MUTATED:
+            WRITE_READBACK_MATCH;
+    }
+
+    ⚡ LEARNING_STATUS: "NARRATIVE_LEDGER_READY";
+
+    IF (STORY_ID_VALID == 0) {
+        ⚡ LEARNING_STATUS: "STORY_ID_MISSING";
+    }
+    IF (QUERY_STATE_KEY_VALID == 0) {
+        ⚡ LEARNING_STATUS: "QUERY_STATE_KEY_MISSING";
+    }
+    ⚡ CANDIDATE_COUNT_VALID: 0;
+    IF (CANDIDATE_COUNT == 2) {
+        ⚡ CANDIDATE_COUNT_VALID: 1;
+    }
+    IF (CANDIDATE_COUNT_VALID == 0) {
+        ⚡ LEARNING_STATUS: "QUERY_CANDIDATE_COUNT_OUT_OF_SCOPE";
+    }
+    IF (CANDIDATE_COUNT == 2) {
+        IF (CANDIDATES_DISTINCT == 0) {
+            ⚡ LEARNING_STATUS: "QUERY_CANDIDATES_NOT_DISTINCT";
+        }
+    }
+    IF (PREVIOUS_STATE_INVALID == 1) {
+        ⚡ LEARNING_STATUS: "PREVIOUS_STATE_INVALID";
+    }
+    IF (0 < INVALID_NEW_RECORD_COUNT) {
+        ⚡ LEARNING_STATUS: "NEW_RECORD_INVALID";
+    }
+    IF (0 < RECORD_ID_COLLISION_COUNT) {
+        ⚡ LEARNING_STATUS: "RECORD_ID_COLLISION";
+    }
+    IF (0 < NEW_REFERENCE_INVALID_COUNT) {
+        ⚡ LEARNING_STATUS: "STRUCTURAL_REFERENCE_INVALID";
+    }
+    IF (NEW_RECORD_LIMIT_EXCEEDED == 1) {
+        ⚡ LEARNING_STATUS: "NEW_RECORD_LIMIT_EXCEEDED";
+    }
+    IF (TOTAL_RECORD_CAPACITY_EXCEEDED == 1) {
+        ⚡ LEARNING_STATUS: "TOTAL_RECORD_CAPACITY_EXCEEDED";
+    }
+
+    IF (INFERENCE_ALLOWED == 1) {
+        IF (NEW_RECORD_ACCEPTED_COUNT == 0) {
+            IF (0 < DUPLICATE_RECORD_COUNT) {
+                ⚡ LEARNING_STATUS: "DUPLICATE_RECORDS_NOT_RECOUNTED";
+            }
+            IF (DUPLICATE_RECORD_COUNT == 0) {
+                ⚡ LEARNING_STATUS: "NO_NEW_RECORDS";
+            }
+        }
+        IF (0 < NEW_RECORD_ACCEPTED_COUNT) {
+            ⚡ LEARNING_STATUS: "NARRATIVE_LEDGER_UPDATED";
+        }
+    }
+
+    IF (STATE_COMMIT_ALLOWED == 1) {
+        IF (STATE_MUTATED == 0) {
+            ⚡ LEARNING_STATUS: "PERSISTENCE_WRITE_READBACK_FAILED";
+        }
+    }
+
+    ⚡ QUERY_STATUS: "WITHHELD";
+    IF (INFERENCE_ALLOWED == 1) {
+        ⚡ QUERY_STATUS: CURRENT_STATE_STATUS;
+    }
+    IF (INFERENCE_ALLOWED == 0) {
+        ⚡ QUERY_STATUS: "WITHHELD_INVALID_OR_OUT_OF_SCOPE_INPUT";
+    }
+
+    ⚡ print("G3C_R3I_A1_NATIVE_NARRATIVE_LEDGER_STATE_REVISION");
+    ⚡ print("STORY_ID", STORY_ID);
+    ⚡ print("QUERY_STATE_KEY", QUERY_STATE_KEY);
+    ⚡ print("QUERY_CANDIDATE_COUNT", CANDIDATE_COUNT);
+    ⚡ print("QUERY_CANDIDATE_A", CANDIDATE_A);
+    ⚡ print("QUERY_CANDIDATE_B", CANDIDATE_B);
+    ⚡ print("QUERY_BINDING_VALID", QUERY_BINDING_VALID);
+
+    ⚡ print("PREVIOUS_STATE_VALID", PREVIOUS_STATE_VALID);
+    ⚡ print("PREVIOUS_STATE_INVALID", PREVIOUS_STATE_INVALID);
+    ⚡ print("PRIOR_RECORD_COUNT", PRIOR_RECORD_COUNT);
+    ⚡ print("PRIOR_EVENT_COUNT", PRIOR_EVENT_COUNT);
+    ⚡ print("PRIOR_PARTICIPANT_COUNT", PRIOR_PARTICIPANT_COUNT);
+    ⚡ print("PRIOR_ROLE_BINDING_COUNT", PRIOR_ROLE_BINDING_COUNT);
+    ⚡ print("PRIOR_ORDER_EDGE_COUNT", PRIOR_ORDER_EDGE_COUNT);
+    ⚡ print("PRIOR_STATE_EVIDENCE_COUNT", PRIOR_STATE_EVIDENCE_COUNT);
+
+    ⚡ print("NEW_RECORD_LINE_COUNT", NEW_RECORD_LINE_COUNT);
+    ⚡ print("NEW_RECORD_ACCEPTED_COUNT", NEW_RECORD_ACCEPTED_COUNT);
+    ⚡ print("DUPLICATE_RECORD_COUNT", DUPLICATE_RECORD_COUNT);
+    ⚡ print("RECORD_ID_COLLISION_COUNT", RECORD_ID_COLLISION_COUNT);
+    ⚡ print("INVALID_NEW_RECORD_COUNT", INVALID_NEW_RECORD_COUNT);
+    ⚡ print("NEW_REFERENCE_INVALID_COUNT", NEW_REFERENCE_INVALID_COUNT);
+    ⚡ print("NEW_EVENT_COUNT", NEW_EVENT_COUNT);
+    ⚡ print("NEW_PARTICIPANT_COUNT", NEW_PARTICIPANT_COUNT);
+    ⚡ print("NEW_ROLE_BINDING_COUNT", NEW_ROLE_BINDING_COUNT);
+    ⚡ print("NEW_ORDER_EDGE_COUNT", NEW_ORDER_EDGE_COUNT);
+    ⚡ print("NEW_STATE_EVIDENCE_COUNT", NEW_STATE_EVIDENCE_COUNT);
+
+    ⚡ print("PRIOR_QUERY_EVIDENCE_COUNT", PRIOR_QUERY_EVIDENCE_COUNT);
+    ⚡ print("PRIOR_QUERY_A_SUPPORT", PRIOR_QUERY_A_SUPPORT);
+    ⚡ print("PRIOR_QUERY_B_SUPPORT", PRIOR_QUERY_B_SUPPORT);
+    ⚡ print("CURRENT_QUERY_EVIDENCE_COUNT", CURRENT_QUERY_EVIDENCE_COUNT);
+    ⚡ print("CURRENT_QUERY_A_SUPPORT", CURRENT_QUERY_A_SUPPORT);
+    ⚡ print("CURRENT_QUERY_B_SUPPORT", CURRENT_QUERY_B_SUPPORT);
+    ⚡ print("CURRENT_QUERY_OTHER_SUPPORT", CURRENT_QUERY_OTHER_SUPPORT);
+
+    ⚡ print("PRIOR_STATE_STATUS", PRIOR_STATE_STATUS);
+    ⚡ print("PRIOR_PREFERRED_STATE", PRIOR_PREFERRED_STATE);
+    ⚡ print("CURRENT_STATE_STATUS", CURRENT_STATE_STATUS);
+    ⚡ print("CURRENT_PREFERRED_STATE", CURRENT_PREFERRED_STATE);
+    ⚡ print("REVISION_KIND", REVISION_KIND);
+
+    ⚡ print("BATCH_VALID", BATCH_VALID);
+    ⚡ print("INFERENCE_ALLOWED", INFERENCE_ALLOWED);
+    ⚡ print("STATE_COMMIT_ALLOWED", STATE_COMMIT_ALLOWED);
+    ⚡ print("WRITE_READBACK_MATCH", WRITE_READBACK_MATCH);
+    ⚡ print("STATE_MUTATED", STATE_MUTATED);
+    ⚡ print("LEARNING_STATUS", LEARNING_STATUS);
+    ⚡ print("QUERY_STATUS", QUERY_STATUS);
+
+    ⚡ print("MAX_TOTAL_RECORDS", MAX_TOTAL_RECORDS);
+    ⚡ print("MAX_NEW_RECORDS", MAX_NEW_RECORDS);
+    ⚡ print("ORDER_EDGE_IS_CAUSAL_EDGE", "NO");
+    ⚡ print("ROLE_SLOT_IS_HUMAN_SEMANTIC_ROLE", "NO");
+    ⚡ print("PREFERRED_STATE_IS_PROVEN_TRUTH", "NO");
+    ⚡ print("HOST_COGNITION", "NO");
+    ⚡ print("HOST_STATE_REVISION_DECISION", "NO");
+    ⚡ print("HOST_SEMANTIC_INTERPRETATION", "NO");
+    ⚡ print("SEMANTIC_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("HUMAN_LANGUAGE_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("WHOLE_STORY_UNDERSTANDING", "NOT_PROVEN");
+    ⚡ print("G3_PROMOTION", "NO");
+}
