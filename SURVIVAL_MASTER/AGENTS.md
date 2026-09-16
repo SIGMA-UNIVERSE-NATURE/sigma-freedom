@@ -7,17 +7,42 @@ Before doing any Survival or Internet-autolearn work, read:
 1. `/AGENTS.md`
 2. `/00_SURVIVAL_MASTER_READ_FIRST.md`
 3. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
-4. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
-5. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_SUBMISSION_TEMPLATE_R1.md`
-6. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
-7. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
-8. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
+4. `SURVIVAL_MASTER/DIRECTIVES/01_MULTI_TEACHER_CANONICAL_LEARNING_QUEUE_R1.md`
+5. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
+6. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_SUBMISSION_TEMPLATE_R1.md`
+7. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
+8. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
+9. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
 
 Do not ask the human to restate project history already recorded there.
 
+## Active multi-teacher learning rule
+
+Every teaching window intended to affect canonical weights must preserve:
+
+```text
+MULTI_TEACHER_WINDOWS=YES
+TEACHER_WINDOWS_CAN_PRODUCE_WEIGHT_CANDIDATES=YES
+TEACHER_CANONICAL_WRITE=NO
+CANONICAL_CANDIDATE_QUEUE=YES
+ONE_CANONICAL_LEARNER=YES
+CANONICAL_WEIGHT_UPGRADE=YES
+ONE_CANONICAL_WRITER_AT_A_TIME=YES
+```
+
+Teacher windows remain artifact-only and must produce the queue packet/replay interface defined by:
+
+`SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/PACKET_FORMAT.md`
+
+The canonical queue framework is:
+
+`SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/`
+
+Do not grant multiple canonical learner leases. Do not merge weight deltas in host code. Each queued teaching result must be replayed/re-evaluated by native SIGMA against the current canonical model before commit.
+
 ## Active candidate-work rule
 
-If the task is to implement the Internet auto bundle, follow the active request exactly and publish only under:
+If the task is to implement/fix the Internet auto bundle, follow the active request exactly and publish only under:
 
 `SURVIVAL_MASTER/CANDIDATES/INTERNET_AUTOLEARN_R1/`
 
