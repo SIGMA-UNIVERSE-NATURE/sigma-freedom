@@ -38,9 +38,12 @@ MECHANICAL_REPLAY_RUNNER_ONLY=YES
 CANONICAL_REPLAY_SAFE=YES
 NATIVE_LEARNING_SOURCE_SHA256=<same source hash>
 NATIVE_LEARNING_BYTECODE_SHA256=<same bytecode hash>
+MECHANICAL_REPLAY_RUNNER_SHA256=<same runner hash>
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
 ```
 
-The queue framework treats these as control/evidence bindings, not as proof of semantic quality.
+The queue framework treats these as control/evidence bindings, not as proof of semantic quality. A lane-specific native admission still owns the proof that the bound bytecode performs the claimed learning behavior.
 
 ## Self-contained sealed packet
 
@@ -48,6 +51,7 @@ The sealing tool copies exact verified bytes into fixed packet-local names:
 
 ```text
 descriptor.env
+source_descriptor.env
 teaching.evidence
 native_learning.sigma
 native_learning.sigmab
@@ -69,6 +73,13 @@ $HOME/SIGMA/sigma_genesis1/.sigma_ail/MODEL_GENERATION
 ```
 
 These current Oppo values are authoritative. GitHub HEAD is not used as canonical runtime state.
+
+The drainer also equality-gates the current locked runtime binaries before replay:
+
+```text
+SIGMAC_SHA256=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+```
 
 The drainer exports mechanically:
 
