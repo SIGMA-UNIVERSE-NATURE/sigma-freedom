@@ -8,18 +8,57 @@ If a chat/window/context ended and you need to continue current Survival, Intern
 
 Read exactly:
 
-1. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
-2. `SURVIVAL_MASTER/DIRECTIVES/01_MULTI_TEACHER_CANONICAL_LEARNING_QUEUE_R1.md`
-3. `SURVIVAL_MASTER/CHECKPOINTS/20260917_MULTI_TEACHER_CANONICAL_QUEUE_R1_SOURCE_READY.md`
-4. `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/README_RUN.md`
-5. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
-6. `SURVIVAL_MASTER/REVIEWS/20260917_INTERNET_AUTOLEARN_R1_STATIC_REVIEW_HOLD.md`
-7. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
-8. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
-9. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
-10. `/AGENTS.md` and its native-execution directives.
+1. `SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
+2. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
+3. `SURVIVAL_MASTER/DIRECTIVES/01_MULTI_TEACHER_CANONICAL_LEARNING_QUEUE_R1.md`
+4. latest multi-teacher checkpoint under `SURVIVAL_MASTER/CHECKPOINTS/`
+5. `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/README_RUN.md`
+6. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
+7. `SURVIVAL_MASTER/REVIEWS/20260917_INTERNET_AUTOLEARN_R1_STATIC_REVIEW_HOLD.md`
+8. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
+9. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
+10. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
+11. `/AGENTS.md` and its native-execution directives.
 
 Then inspect only the live Oppo state needed for the next action.
+
+## RUNTIME AUTHORITY — READ BEFORE EVERYTHING ELSE
+
+```text
+RUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME
+GITHUB_HEAD_IS_RUNTIME_AUTHORITY=NO
+GITHUB_MUST_NOT_REPLACE_OPPO_BRAIN_HEAD=YES
+GIT_PULL_REQUIRED_FOR_RUNTIME=NO
+GIT_CHECKOUT_REQUIRED_FOR_RUNTIME=NO
+RUNTIME_REPO_MUTATION_FOR_STAGING=NO
+```
+
+Current runtime truth comes from Oppo machine state, especially:
+
+```text
+$HOME/SIGMA/sigma_genesis1/.sigma_ail/BRAIN_HEAD
+$HOME/SIGMA/sigma_genesis1/.sigma_ail/MODEL_GENERATION
+current Session R4 status
+current learner lease / one-writer state
+exact machine receipts
+```
+
+GitHub is continuity/source/provenance/review/transfer documentation only.
+
+## LEARNING OWNERSHIP
+
+```text
+SIGMA_NATIVE_VM_IS_LEARNING_ENGINE=YES
+SIGMA_NATIVE_LEARNING_OWNER=YES
+BASH_LEARNING=NO
+PYTHON_LEARNING=NO
+HOST_LEARNING=NO
+HOST_WEIGHT_UPDATE=NO
+HOST_WEIGHT_MERGE=NO
+HOST_ACCEPT_REJECT=NO
+```
+
+A Bash preflight/queue/runner may only perform mechanical work. Any weight-affecting learning result must bind exact native `.sigma` source + native bytecode and an exact native SIGMA decision receipt.
 
 ## ACTIVE MULTI-TEACHER CANONICAL LEARNING ARCHITECTURE
 
@@ -32,21 +71,23 @@ ONE_CANONICAL_LEARNER=YES
 CANONICAL_NATIVE_REPLAY_AND_DECISION=YES
 CANONICAL_WEIGHT_UPGRADE=YES
 ONE_CANONICAL_WRITER_AT_A_TIME=YES
+CURRENT_OPPO_MODEL_NATIVE_REPLAY_REQUIRED=YES
+STALE_PARENT_BLIND_APPLY=NO
 HOST_WEIGHT_MERGE=NO
 HOST_LEARNING=NO
 ```
 
-Framework source:
+Corrected framework source:
 
 `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/`
 
-Do not grant multiple canonical learner leases. Teaching windows submit sealed candidates. The single canonical learner replays/re-evaluates each candidate against the current canonical model before native SIGMA may commit it.
+Do not grant multiple canonical learner leases. Teaching windows submit sealed native-bound candidates. The single canonical learner replays/re-evaluates each candidate against the current Oppo canonical model before native SIGMA may commit it.
 
 Current proof ceiling:
 
 ```text
-QUEUE_MECHANICS_SOURCE_READY=YES
-OPPO_PREFLIGHT=NOT_RUN
+QUEUE_FIX1_SOURCE_READY=YES
+OPPO_PREFLIGHT=NOT_RUN_AFTER_FIX1
 MULTI_TEACHER_END_TO_END_WEIGHT_ACCUMULATION=NOT_PROVEN_UNTIL_DEVICE_TEST
 ```
 
@@ -103,7 +144,7 @@ INTERNET AUTOLEARN:
 Native SIGMA chooses gap/query/source family/website/resource, reads exact Internet data, evaluates it, creates its own compact representation, decides research/learning next actions, while host performs only mechanical network/file/hash/process work.
 
 MULTI-TEACHER LEARNING:
-Many windows may teach in parallel, but all canonical model changes are serialized through one canonical learner after native replay/re-evaluation against the latest generation.
+Many windows may teach in parallel, but all canonical model changes are serialized through one canonical learner after native replay/re-evaluation against the latest Oppo generation.
 ```
 
 Do not ask the human to restate the full project if these files contain the answer.
