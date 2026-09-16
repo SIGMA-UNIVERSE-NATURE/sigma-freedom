@@ -1,58 +1,99 @@
-# README — SIGMA MULTI-TEACHER CANONICAL QUEUE R1
+# README — SIGMA MULTI-TEACHER CANONICAL QUEUE R1 FIX1
 
-Status: candidate source ready; Oppo preflight required before continuous use.
+Status: corrected candidate source ready; Oppo preflight required before continuous use.
+
+Read first:
+
+`SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
 
 ## What this solves
 
-Many teaching windows may run at once and produce native SIGMA learning candidates. Only one session holds the canonical learner lease and commits model/state changes. Therefore teacher work is not thrown away, but two writers never race on the canonical model.
+Many teaching windows may run at once and produce native SIGMA learning candidates. Only one session holds the canonical learner lease and commits model/state changes.
 
 ```text
-many teacher windows -> many sealed candidates -> one canonical learner -> sequential native replay/commit
+many teacher windows
+-> many sealed native-bound candidates
+-> one canonical learner
+-> replay against CURRENT Oppo model
+-> native SIGMA decision
+-> sequential canonical commit when accepted
 ```
 
-## Important limitation
+## Critical ownership rule
 
-This framework does not manufacture a generic weight-update algorithm. Every teaching lane that wants canonical accumulation must provide an exact `CANONICAL_REPLAY_ENTRYPOINT` capable of replaying/re-evaluating that lane's native SIGMA learning against the current canonical model under the canonical learner session.
-
-A teacher that only produced an arbitrary `.sigmab` or report, with no native weight-learning replay path, cannot be converted into canonical weight learning by the host.
-
-## Install/stage for preflight
-
-Do not overwrite Session R4 coordinator files. Stage this directory read-only or copy it into a dedicated runtime tool location after hash review.
-
-Recommended runtime tool path:
+The `.sh` files in this framework do not learn.
 
 ```text
-$HOME/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/tools/MULTI_TEACHER_CANONICAL_QUEUE_R1
+BASH_ROLE=MECHANICAL_ONLY
+BASH_LEARNING=NO
+PYTHON_LEARNING=NO
+SIGMA_NATIVE_VM_IS_LEARNING_ENGINE=YES
 ```
 
-The queue code must not edit `BRAIN_HEAD`, `MODEL_GENERATION`, `WRITER.lock`, or learner lease files.
+Shell may verify hashes/session state, seal/copy exact bytes, invoke a hash-bound runner, capture VM evidence, serialize one writer, and verify native receipts. It may not calculate a weight update or choose ACCEPT/REJECT/HOLD.
+
+Every weight-affecting candidate must bind exact native `.sigma` source and `.sigmab` bytecode identities. Its semantic learning result must trace to an exact native SIGMA decision receipt.
+
+## Oppo is runtime authority
+
+```text
+RUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME
+GITHUB_HEAD_IS_RUNTIME_AUTHORITY=NO
+GIT_PULL_REQUIRED=NO
+GIT_CHECKOUT_REQUIRED=NO
+```
+
+Before each replay the canonical drainer reads the CURRENT Oppo:
+
+```text
+$HOME/SIGMA/sigma_genesis1/.sigma_ail/BRAIN_HEAD
+$HOME/SIGMA/sigma_genesis1/.sigma_ail/MODEL_GENERATION
+```
+
+Do not replace these values from GitHub.
+
+## Staging without changing Oppo repo state
+
+Do not run `git pull`, `git checkout`, `git reset`, or branch replacement just to obtain this tool.
+
+Transfer only the exact reviewed framework bytes into either:
+
+```text
+current session ARTIFACT_ROOT/tools/MULTI_TEACHER_CANONICAL_QUEUE_R1_FIX1
+```
+
+or another neutral non-canonical staging directory.
+
+Then verify exact hashes/manifest before running preflight. Staging the tool must not mutate the Oppo repository checkout, canonical model, BRAIN_HEAD, MODEL_GENERATION, or writer/learner locks.
 
 ## Teacher window usage
 
-The teacher window stays `SESSION_MODE=STANDARD` with canonical mutation rejected.
+Teacher stays `SESSION_MODE=STANDARD` with canonical mutation rejected.
 
 After its native SIGMA teaching runner has produced:
 
 - durable teaching evidence;
-- exact native ownership receipt;
-- an executable canonical replay entrypoint;
+- exact native `.sigma` learning/re-evaluation source;
+- exact native `.sigmab` bytecode;
+- native ownership receipt binding those hashes;
+- a mechanically transparent replay runner;
 
-create the descriptor described by `PACKET_FORMAT.md`, then run:
+create the source descriptor described by `PACKET_FORMAT.md`, then run mechanically:
 
 ```bash
 bash teacher/seal_candidate.sh /absolute/path/to/candidate_descriptor.env
 ```
 
-Expected terminal result:
+Expected result:
 
 ```text
 QUEUE_SEAL=PASS
-CANDIDATE_ID=<sha256 of descriptor>
+CANDIDATE_ID=<content-addressed id>
 PACKET=<teacher artifact path>/CANONICAL_CANDIDATE_QUEUE_OUTBOX/<id>
+BASH_LEARNING=NO
 ```
 
-Sealing never grants canonical write permission.
+The sealed packet is self-contained. Sealing never grants canonical write permission.
 
 ## Canonical learner usage
 
@@ -63,82 +104,97 @@ SESSION_MODE=CANONICAL_LEARNER
 ONE_WRITER=YES
 BRAIN_WRITE=ALLOW
 BRAIN_WRITE_OWNER=SIGMA_NATIVE_VM_ONLY
+BRAIN_WRITE_NATIVE_RECEIPT_REQUIRED=YES
 STATE_WRITE=ALLOW
 MODEL_WRITE=ALLOW
 LEARN=ALLOW
 COMMIT=ALLOW
 MODEL_GENERATION_CHANGE=ALLOW
 HEAD_CHANGE=REJECT
+HOST_COGNITION=NO
+HOST_LEARNING=NO
 ```
 
-Process one candidate:
+First run the mechanical preflight from the staged tool copy:
+
+```bash
+bash verify/static_preflight.sh
+```
+
+This does not teach or update weights. It only verifies source/control boundaries and prints the current Oppo head/model generation.
+
+Process one candidate mechanically:
 
 ```bash
 bash canonical/drain_once.sh
 ```
 
-Continuous mechanical drain:
+Continuous mechanical serialization, only after one-candidate device proof:
 
 ```bash
 bash canonical/daemon.sh
 ```
 
-The daemon handles exactly one candidate per drain invocation, then re-reads current canonical state before the next candidate.
+The daemon handles one packet per drain invocation, then re-reads current Oppo state before the next candidate.
 
-If any packet returns `HOLD`, the daemon stops rather than silently skipping to a different learning candidate.
+## Replay contract
 
-## Replay entrypoint contract
+The packet-local `mechanical_replay_runner` receives:
 
-The replay entrypoint receives:
-
-```bash
-replay_entrypoint.sh <descriptor.env> <attempt-root>
+```text
+mechanical_replay_runner <descriptor.env> <attempt-root>
 ```
 
-and environment variables documented in `PACKET_FORMAT.md`.
+It is not allowed to make the learning decision. It must execute/capture the exact native SIGMA program bound by:
 
-It must run the lane's native SIGMA learning/admission logic against `SIGMA_QUEUE_CURRENT_HEAD` / `SIGMA_QUEUE_CURRENT_MODEL_GENERATION` and write `<attempt-root>/result.env`.
+```text
+native_learning.sigma
+native_learning.sigmab
+```
 
-It must use the existing canonical learner protocol for any commit/model generation advance. It must not manually edit canonical head/generation or writer locks.
+and preserve:
+
+```text
+<attempt-root>/native_decision.receipt
+<attempt-root>/result.env
+raw VM stdout/stderr/RC as applicable
+```
+
+`result.env` must mechanically match the exact native decision receipt. The drainer rejects any mismatch.
 
 ## Result behavior
 
 `ACCEPTED`:
 
-- native SIGMA accepted the replayed learning update;
-- canonical generation must advance;
-- exact native commit receipt must exist and hash-match;
-- drainer writes a durable processed receipt.
+- exact native SIGMA decision receipt says ACCEPTED;
+- canonical generation advances through existing native writer protocol;
+- exact native commit receipt exists and hash-matches;
+- queue writes a mechanical processed receipt.
 
 `REJECTED`:
 
-- native SIGMA rejected it;
-- canonical head/generation must remain unchanged;
-- drainer records the candidate as natively rejected.
+- exact native SIGMA decision receipt says REJECTED;
+- current Oppo head/generation remain unchanged;
+- queue records native rejection mechanically.
 
 `HOLD`:
 
-- no canonical mutation may be observed;
-- candidate remains pending;
-- daemon stops for diagnosis.
+- exact native SIGMA decision receipt says HOLD;
+- no canonical mutation occurs;
+- daemon stops rather than selecting a semantic alternative.
 
 ## Crash behavior
 
-Teacher packets become visible only after `READY` is atomically committed. The canonical drainer uses a dedicated flock and durable per-candidate attempt/processed records.
+Teacher packets become visible only after `READY` is committed. The canonical drainer uses a dedicated flock and durable per-candidate attempt/processed records.
 
-The lane-specific replay entrypoint remains responsible for commit idempotency if a crash occurs inside its own canonical transaction.
+The lane-specific native commit protocol remains responsible for canonical transaction idempotency if a crash occurs inside its own commit.
 
-## What future teaching windows should do
-
-A teaching bundle that is intended to improve canonical weights should ship its own replay entrypoint and ownership receipt producer. It should not request a second canonical learner lease.
-
-Target architecture:
+## Current claim ceiling
 
 ```text
-MULTI_TEACHER_WINDOWS=YES
-TEACHER_WINDOWS_CAN_GENERATE_WEIGHT_CANDIDATES=YES
-TEACHER_CANONICAL_WRITE=NO
-CANONICAL_REPLAY_AND_NATIVE_DECISION=YES
-CANONICAL_WEIGHT_UPGRADE=YES
-ONE_CANONICAL_WRITER_AT_A_TIME=YES
+FIX1_SOURCE_READY=YES
+STATIC_PREFLIGHT_IS_LEARNING=NO
+OPPO_NATIVE_REPLAY=NOT_RUN
+MULTI_TEACHER_END_TO_END_WEIGHT_ACCUMULATION=NOT_PROVEN
+CONTINUOUS_DAEMON=NOT_ENABLED
 ```
