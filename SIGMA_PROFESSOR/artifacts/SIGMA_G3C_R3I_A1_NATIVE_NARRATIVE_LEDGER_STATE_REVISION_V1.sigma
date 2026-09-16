@@ -515,8 +515,12 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                 H("list_len", NP, NULL, NULL);
 
             ⚡ NEW_RECORD_VALID: 0;
+            ⚡ NEW_RECORD_TYPE: "";
             ⚡ NEW_RECORD_ID: "";
             ⚡ NEW_FINGERPRINT: "";
+            ⚡ NEW_FIELD2: "";
+            ⚡ NEW_FIELD3: "";
+            ⚡ NEW_FIELD4: "";
             ⚡ PERSISTED_LINE: "";
 
             IF (NPC == 5) {
@@ -533,7 +537,9 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                         * exact(N3, "SOURCE")
                         * present(N4);
                     IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_TYPE: N0;
                         ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FIELD2: N2;
                         ⚡ NEW_FINGERPRINT:
                             N0 + "||" + N2 + "||" + N3 + "||" + N4;
                         ⚡ PERSISTED_LINE:
@@ -548,7 +554,9 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                         * exact(N3, "SOURCE")
                         * present(N4);
                     IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_TYPE: N0;
                         ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FIELD2: N2;
                         ⚡ NEW_FINGERPRINT:
                             N0 + "||" + N2 + "||" + N3 + "||" + N4;
                         ⚡ PERSISTED_LINE:
@@ -575,7 +583,11 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                         * exact(N5, "SOURCE")
                         * present(N6);
                     IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_TYPE: N0;
                         ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FIELD2: N2;
+                        ⚡ NEW_FIELD3: N3;
+                        ⚡ NEW_FIELD4: N4;
                         ⚡ NEW_FINGERPRINT:
                             N0 + "||" + N2 + "||" + N3 + "||" + N4
                             + "||" + N5 + "||" + N6;
@@ -593,7 +605,11 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                         * exact(N5, "SOURCE")
                         * present(N6);
                     IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_TYPE: N0;
                         ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FIELD2: N2;
+                        ⚡ NEW_FIELD3: N3;
+                        ⚡ NEW_FIELD4: N4;
                         ⚡ NEW_FINGERPRINT:
                             N0 + "||" + N2 + "||" + N3 + "||" + N4
                             + "||" + N5 + "||" + N6;
@@ -619,7 +635,10 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                         * exact(N4, "SOURCE")
                         * present(N5);
                     IF (NEW_RECORD_VALID == 1) {
+                        ⚡ NEW_RECORD_TYPE: N0;
                         ⚡ NEW_RECORD_ID: N1;
+                        ⚡ NEW_FIELD2: N2;
+                        ⚡ NEW_FIELD3: N3;
                         ⚡ NEW_FINGERPRINT:
                             N0 + "||" + N2 + "||" + N3
                             + "||" + N4 + "||" + N5;
@@ -656,58 +675,58 @@ DEF revision_kind(prior_status, prior_preferred, current_status, current_preferr
                     ⚡ NEW_RECORD_ACCEPTED_COUNT:
                         NEW_RECORD_ACCEPTED_COUNT + 1;
 
-                    IF (N0 == "EVENT") {
+                    IF (NEW_RECORD_TYPE == "EVENT") {
                         ⚡ EVENT_EXISTS:
-                            H("map_has", EVENT_IDS, N2, NULL);
+                            H("map_has", EVENT_IDS, NEW_FIELD2, NULL);
                         IF (EVENT_EXISTS == FALSE) {
                             ⚡ MARK_NEW_EVENT:
-                                H("map_set", EVENT_IDS, N2, N1);
+                                H("map_set", EVENT_IDS, NEW_FIELD2, NEW_RECORD_ID);
                             ⚡ NEW_EVENT_COUNT:
                                 NEW_EVENT_COUNT + 1;
                         }
                     }
 
-                    IF (N0 == "PARTICIPANT") {
+                    IF (NEW_RECORD_TYPE == "PARTICIPANT") {
                         ⚡ PARTICIPANT_EXISTS:
-                            H("map_has", PARTICIPANT_IDS, N2, NULL);
+                            H("map_has", PARTICIPANT_IDS, NEW_FIELD2, NULL);
                         IF (PARTICIPANT_EXISTS == FALSE) {
                             ⚡ MARK_NEW_PARTICIPANT:
-                                H("map_set", PARTICIPANT_IDS, N2, N1);
+                                H("map_set", PARTICIPANT_IDS, NEW_FIELD2, NEW_RECORD_ID);
                             ⚡ NEW_PARTICIPANT_COUNT:
                                 NEW_PARTICIPANT_COUNT + 1;
                         }
                     }
 
-                    IF (N0 == "ROLE_BINDING") {
+                    IF (NEW_RECORD_TYPE == "ROLE_BINDING") {
                         ⚡ NEW_ROLE_BINDING_COUNT:
                             NEW_ROLE_BINDING_COUNT + 1;
                     }
 
-                    IF (N0 == "ORDER_EDGE") {
+                    IF (NEW_RECORD_TYPE == "ORDER_EDGE") {
                         ⚡ NEW_ORDER_EDGE_COUNT:
                             NEW_ORDER_EDGE_COUNT + 1;
                     }
 
-                    IF (N0 == "STATE_EVIDENCE") {
+                    IF (NEW_RECORD_TYPE == "STATE_EVIDENCE") {
                         ⚡ NEW_STATE_EVIDENCE_COUNT:
                             NEW_STATE_EVIDENCE_COUNT + 1;
 
-                        IF (N2 == QUERY_STATE_KEY) {
+                        IF (NEW_FIELD2 == QUERY_STATE_KEY) {
                             ⚡ PROPOSED_QUERY_EVIDENCE_COUNT:
                                 PROPOSED_QUERY_EVIDENCE_COUNT + 1;
 
-                            IF (N3 == CANDIDATE_A) {
+                            IF (NEW_FIELD3 == CANDIDATE_A) {
                                 ⚡ PROPOSED_QUERY_A_SUPPORT:
                                     PROPOSED_QUERY_A_SUPPORT + 1;
                             }
-                            IF (N3 == CANDIDATE_B) {
+                            IF (NEW_FIELD3 == CANDIDATE_B) {
                                 ⚡ PROPOSED_QUERY_B_SUPPORT:
                                     PROPOSED_QUERY_B_SUPPORT + 1;
                             }
                             ⚡ NEW_IS_A:
-                                exact(N3, CANDIDATE_A);
+                                exact(NEW_FIELD3, CANDIDATE_A);
                             ⚡ NEW_IS_B:
-                                exact(N3, CANDIDATE_B);
+                                exact(NEW_FIELD3, CANDIDATE_B);
                             ⚡ NEW_IS_KNOWN:
                                 NEW_IS_A + NEW_IS_B;
                             IF (NEW_IS_KNOWN == 0) {
