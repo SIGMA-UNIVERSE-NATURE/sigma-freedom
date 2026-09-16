@@ -8,7 +8,17 @@ field_text(){ printf '%s\n' "$2" | awk -F= -v K="$1" '$1==K{sub(/^[^=]*=/,"");pr
 field_file(){ awk -F= -v K="$1" '$1==K{sub(/^[^=]*=/,"");print;exit}' "$2"; }
 under(){ case "$1" in "$2"|"$2"/*) return 0;; *) return 1;; esac; }
 
+EXPECTED_SIGMAC=65f69217ad44f33c1aa1d4c31678d38940cd3d0b96f41892e8280dac57ad6a71
+EXPECTED_VM=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+
 ROOT="${ROOT:-$HOME/SIGMA/sigma_genesis1}"
+SIGMAC="$ROOT/native/sigmac"
+VM="$ROOT/native/sigma-vm.v09_candidate"
+[ -f "$SIGMAC" ] || hold SIGMAC_MISSING
+[ -f "$VM" ] || hold VM_MISSING
+[ "$(sha "$SIGMAC")" = "$EXPECTED_SIGMAC" ] || hold SIGMAC_SHA256_MISMATCH
+[ "$(sha "$VM")" = "$EXPECTED_VM" ] || hold VM_SHA256_MISMATCH
+
 API="$ROOT/.sigma_ail/coordination/SESSION_R4/shell/sigma-session.bash"
 [ -f "$API" ] || hold SESSION_API_MISSING
 # shellcheck disable=SC1090
@@ -38,6 +48,8 @@ MODEL_GEN_FILE="$ROOT/.sigma_ail/MODEL_GENERATION"
 
 printf 'RUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME\n'
 printf 'GITHUB_HEAD_IS_RUNTIME_AUTHORITY=NO\n'
+printf 'SIGMAC_SHA256=%s\n' "$EXPECTED_SIGMAC"
+printf 'VM_SHA256=%s\n' "$EXPECTED_VM"
 printf 'BASH_ROLE=MECHANICAL_ONLY\n'
 printf 'BASH_LEARNING=NO\n'
 
@@ -91,14 +103,17 @@ for READY in "${READY_FILES[@]}"; do
   grep -Fqx 'CANONICAL_REPLAY_SAFE=YES' "$OWN" || hold OWNERSHIP_RECEIPT_REPLAY_SAFE_MISSING
   grep -Fqx "NATIVE_LEARNING_SOURCE_SHA256=$NSRC_SHA" "$OWN" || hold OWNERSHIP_SOURCE_HASH_BINDING_MISSING
   grep -Fqx "NATIVE_LEARNING_BYTECODE_SHA256=$NBC_SHA" "$OWN" || hold OWNERSHIP_BYTECODE_HASH_BINDING_MISSING
+  grep -Fqx "MECHANICAL_REPLAY_RUNNER_SHA256=$RUNNER_SHA" "$OWN" || hold OWNERSHIP_RUNNER_HASH_BINDING_MISSING
+  grep -Fqx "SIGMAC_SHA256=$EXPECTED_SIGMAC" "$OWN" || hold OWNERSHIP_SIGMAC_IDENTITY_MISSING
+  grep -Fqx "VM_SHA256=$EXPECTED_VM" "$OWN" || hold OWNERSHIP_VM_IDENTITY_MISSING
 
   BEFORE_HEAD="$(cat "$BRAIN_HEAD_FILE")"
   BEFORE_GEN="$(cat "$MODEL_GEN_FILE")"
   ATTEMPT="$STATE_ROOT/attempts/$CID.$(date +%s).$$"
   mkdir -p "$ATTEMPT"
   cp "$DESC" "$ATTEMPT/descriptor.env"
-  printf 'CANDIDATE_ID=%s\nBEFORE_HEAD=%s\nBEFORE_MODEL_GENERATION=%s\nCANONICAL_SESSION_CODE=%s\nRUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME\n' \
-    "$CID" "$BEFORE_HEAD" "$BEFORE_GEN" "$SESSION_CODE" > "$ATTEMPT/invocation.env"
+  printf 'CANDIDATE_ID=%s\nBEFORE_HEAD=%s\nBEFORE_MODEL_GENERATION=%s\nCANONICAL_SESSION_CODE=%s\nRUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME\nSIGMAC_SHA256=%s\nVM_SHA256=%s\n' \
+    "$CID" "$BEFORE_HEAD" "$BEFORE_GEN" "$SESSION_CODE" "$EXPECTED_SIGMAC" "$EXPECTED_VM" > "$ATTEMPT/invocation.env"
 
   export SIGMA_QUEUE_DESCRIPTOR="$DESC"
   export SIGMA_QUEUE_ATTEMPT_ROOT="$ATTEMPT"
@@ -107,6 +122,8 @@ for READY in "${READY_FILES[@]}"; do
   export SIGMA_QUEUE_CANONICAL_SESSION_CODE="$SESSION_CODE"
   export SIGMA_QUEUE_NATIVE_SOURCE="$NSRC"
   export SIGMA_QUEUE_NATIVE_BYTECODE="$NBC"
+  export SIGMA_QUEUE_SIGMAC="$SIGMAC"
+  export SIGMA_QUEUE_VM="$VM"
 
   set +e
   "$RUNNER" "$DESC" "$ATTEMPT" >"$ATTEMPT/replay.stdout" 2>"$ATTEMPT/replay.stderr"
