@@ -1,0 +1,127 @@
+# G3C R3E Residual Confidence Gate Precommit — 2026-09-16
+
+```text
+HANDOFF_ID=G3C_R3E_RESIDUAL_CONFIDENCE_GATE_PRECOMMIT_20260916
+SYSTEM_IDENTITY=SIGMA.AIL
+LANE=G3C_LEARNED_NARRATIVE_CORE
+CURRENT_PROGRAM_GENERATION=G2_ONE_SIGMA_AIL
+TARGET_GENERATION=G3_LEARNED_NARRATIVE_BRAIN
+G3_PROMOTION=NO
+CANONICAL_MODEL_MUTATION=NO
+HOST_COGNITION=NO
+HOST_TEST_ORACLE=NO
+BLIND_ACCESS=FORBIDDEN
+SEALED_G3B_R4_ACCESS=FORBIDDEN
+FROZEN20_TRAINING_USE=FORBIDDEN
+EXTERNAL_R3_TRAINING_USE=FORBIDDEN
+```
+
+Parent HOLD checkpoint:
+
+```text
+BRAIN/GENERATIONS/G3_LEARNED_NARRATIVE_BRAIN/G3C_R3D_SEED104729_GATE_HOLD_20260916.md
+COMMIT=79e61b592cc2f3eff8c0749b51ecc63aacc5c43a
+BLOB=a74939fe58aa5c298096967302b41caa070c129a
+```
+
+R3D materially departed from fixed-sum but over-corrected: seed 104729 fixed-sum was 14/40, raw learned was 13/40, with 29/40 prediction changes. R3E preserves the same native R3D training path but changes only inference arbitration so the R3A fixed-sum result remains the base decision and the learned branch may override it only under a confidence rule frozen before any R3E DEV result.
+
+## Exact R3E artifact identity before first DEV result
+
+```text
+ARTIFACT=SIGMA_G3C_RESIDUAL_GATE_R3E_CANDIDATE
+BUNDLE_SHA256=10e5e259315da6dc9236b82427702b9fcd0e4ee5aed9db8d415a37a1a9ba3443
+SOURCE_SHA256=9697da2fd261339c24b9b20e33f11e39785d487c242962838b319a9de281e0ca
+RUNNER_SHA256=bc846995c7244206cdc035fe32c992e24f601194143731fddc304fb11da705a2
+MANIFEST_SHA256=a71a962cf576963c394bff73deeb9521e6b6f56cfffb81cd3e55ff1072d1e402
+NATIVE_COMPILE=NOT_YET_PROVEN_ON_OPPO
+```
+
+## Frozen substrate and training path
+
+R3E preserves the R3A evidence substrate, the locked R2 base model, and the R3D native same-story counterfactual training objective.
+
+```text
+FEATURES=FINAL_MEMORY;STRONGEST_LOCAL;LATEST;MEMORY_X_LOCAL;MEMORY_X_LATEST;LOCAL_X_LATEST
+DIMENSIONS=6
+INITIAL_WEIGHTS=1,1,1,0,0,0
+TRAIN_OBJECTIVE=IN_CONTEXT_COUNTERFACTUAL_PAIRWISE_MARGIN_NORMALIZED_GRADIENT
+TRAIN_MARGIN=0.08
+TRAIN_SOURCE=R2_PUBLIC_TRAIN_160_ONLY
+DEV_LABEL_TRAINING=NO
+EPOCHS=4
+STORIES_PER_EPOCH=160
+NATIVE_TICKS=640
+BASE_MODEL_LEARNING=NO
+HOST_STORY_SELECTION=NO
+HOST_COGNITION=NO
+```
+
+## Frozen inference arbitration
+
+The final R3E decision is not the raw learned top by default.
+
+```text
+BASE_DECISION=R3A_FIXED_SUM_TOP
+RAW_LEARNED_DECISION=R3D_STYLE_LEARNED_TOP
+GATE_MARGIN=0.08
+GATE_MARGIN_SOURCE=PREEXISTING_TRAIN_OBJECTIVE_MARGIN_NOT_DEV
+OVERRIDE_REQUIRES_ALL:
+1=RAW_LEARNED_TOP_DIFFERS_FROM_FIXED_TOP
+2=FIXED_TOP_MARGIN_LT_0.08
+3=RAW_LEARNED_TOP_SCORE_MINUS_RAW_LEARNED_SCORE_OF_FIXED_SELECTED_CANDIDATE_GTE_0.08
+OTHERWISE=KEEP_FIXED_SUM_TOP
+```
+
+The value 0.08 is not selected or calibrated from DEV. It is the already-frozen TRAIN pairwise margin inherited from R3D. No DEV label is used inside the native path.
+
+## Frozen evaluation protocol
+
+```text
+SOURCE_MODELS=SIGMA_CURRICULUM_WITH_REPLAY
+SEEDS=104729;130363;155921
+EVALUATION=DEV_ONLY
+FIXED_SUM_CONTROL_EMITTED_FROM_SAME_EVIDENCE_CHANNELS=YES
+RAW_LEARNED_RESULT_EMITTED_SEPARATELY=YES
+GATED_RESULT_IS_CANDIDATE_DECISION=YES
+DEV_KEY_SCOPE=HOST_EVALUATOR_ONLY_AFTER_NATIVE_INFERENCE
+BLIND_USED=NO
+SEALED_R4_USED=NO
+```
+
+## Precommitted stop gate
+
+Seed 104729 is the first stop gate.
+
+```text
+FIXED_SUM_SEED_104729_REFERENCE=14/40
+GATED_GT_FIXED_SUM_SEED_104729=PASS_REQUIRED
+EQUALITY_IS_PASS=NO
+NO_NEW_ABSOLUTE_POSITIONAL_COLLAPSE=PASS_REQUIRED
+BASE_MODEL_UNCHANGED=PASS_REQUIRED
+CANONICAL_UNCHANGED=PASS_REQUIRED
+BLIND_USED=NO_REQUIRED
+SEALED_R4_USED=NO_REQUIRED
+HOST_COGNITION=NO_REQUIRED
+```
+
+If seed 104729 gated correctness is not strictly greater than 14/40, stop and checkpoint HOLD. If it passes, run seeds 130363 and 155921 under the identical frozen protocol; final candidate success requires gated > fixed-sum on each seed and aggregate.
+
+## Forbidden
+
+```text
+STORY_SPECIFIC_RULES=FORBIDDEN
+PHRASE_SPECIFIC_RULES=FORBIDDEN
+EXPECTED_ANSWER_LEAKAGE=FORBIDDEN
+SEMANTIC_VM_OPCODE=FORBIDDEN
+DEV_LABEL_TRAINING=FORBIDDEN
+DEV_THRESHOLD_TUNING=FORBIDDEN
+BLIND_TUNING=FORBIDDEN
+SEALED_R4_ACCESS=FORBIDDEN
+```
+
+## Claim boundary
+
+Even an R3E DEV gate PASS would prove only that a precommitted TRAIN-margin confidence gate can use the learned residual without degrading the fixed-sum substrate and can improve candidate ranking on the existing DEV partition. It would not prove semantic understanding, late-evidence revision, role-swap reasoning, chronology-versus-causality, unresolved-state retention, final causal synthesis, whole-story understanding, or G3 promotion.
+
+NEXT_ACTION=INSTALL_HASH_VERIFY_COMPILE_AND_RUN_SEED_104729_DEV_ONLY
