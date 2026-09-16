@@ -1,8 +1,12 @@
-# SIGMA MULTI-TEACHER CANONICAL QUEUE R1 — CONTRACT
+# SIGMA MULTI-TEACHER CANONICAL QUEUE R1 — CONTRACT FIX1
 
-Status: CANDIDATE / STATIC SOURCE READY / OPPO PREFLIGHT REQUIRED
+Status: CANDIDATE / FIX1 SOURCE READY / OPPO PREFLIGHT REQUIRED
 Date: 2026-09-17
 Branch: `AIL_SIGMA`
+
+Read first:
+
+`SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
 
 ## Goal
 
@@ -17,9 +21,22 @@ TWO_CANONICAL_WRITERS=NO
 NO_STATE_FORK=MANDATORY
 ```
 
-Teacher windows remain ordinary artifact-only sessions. They may execute native SIGMA learning/evaluation and produce a sealed candidate packet, but they do not mutate the canonical model.
+Teacher windows remain ordinary artifact-only sessions. They may run native SIGMA learning/evaluation and produce sealed candidate packets, but they do not mutate the canonical model.
 
-One `CANONICAL_LEARNER` session drains sealed packets one at a time. For every packet it re-invokes the exact lane-specific canonical replay entrypoint under the current canonical head/model generation. That replay entrypoint — not the queue host — must run the native SIGMA learning/admission logic and perform any canonical commit through the existing canonical-learner protocol.
+One `CANONICAL_LEARNER` session drains sealed packets one at a time. For every packet it uses the CURRENT Oppo canonical head/model generation and invokes a hash-bound mechanical replay runner whose only purpose is to launch/capture the packet's exact native SIGMA learning program.
+
+## Runtime authority
+
+```text
+RUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME
+RUNTIME_HEAD_FILE=$HOME/SIGMA/sigma_genesis1/.sigma_ail/BRAIN_HEAD
+RUNTIME_MODEL_GENERATION_FILE=$HOME/SIGMA/sigma_genesis1/.sigma_ail/MODEL_GENERATION
+GITHUB_HEAD_IS_RUNTIME_AUTHORITY=NO
+GIT_PULL_REQUIRED_FOR_RUNTIME=NO
+GIT_CHECKOUT_REQUIRED_FOR_RUNTIME=NO
+```
+
+The queue must never compare Oppo against a GitHub HEAD to decide whether current canonical state is valid. GitHub commit identities are source/provenance references only.
 
 ## Required chain
 
@@ -30,19 +47,23 @@ TEACHER WINDOW C --native SIGMA--> sealed candidate C --/
 
 mechanical queue
 -> ONE canonical learner session
--> exact candidate replay entrypoint
+-> read CURRENT Oppo head/model generation
+-> verify exact candidate native .sigma + bytecode + mechanical runner hashes
+-> mechanical runner launches exact native SIGMA program
 -> SIGMA native re-evaluates against CURRENT canonical model
--> SIGMA native ACCEPT / REJECT / HOLD
--> if ACCEPT: existing canonical commit protocol
--> verified new HEAD/model generation
+-> SIGMA native emits ACCEPT / REJECT / HOLD decision receipt
+-> host verifies exact native receipt bytes only
+-> if ACCEPT: existing native canonical commit protocol
+-> verify resulting current Oppo generation/receipts
 -> next candidate
 ```
 
-A candidate derived from an older generation is NEVER blindly applied. The canonical replay entrypoint receives the current head/generation and must recompute/re-evaluate the candidate under native SIGMA before any commit.
+A candidate derived from an older generation is NEVER blindly applied.
 
 ## Cognition boundary
 
 ```text
+SIGMA_NATIVE_VM_IS_LEARNING_ENGINE=YES
 SIGMA_NATIVE_LEARNING_OWNER=YES
 HOST_COGNITION=NO
 HOST_LEARNING=NO
@@ -51,24 +72,27 @@ HOST_CANDIDATE_QUALITY_RANKING=NO
 HOST_ACCEPT_REJECT=NO
 HOST_WEIGHT_MERGE=NO
 HOST_REBASE_POLICY=NO
+BASH_LEARNING=NO
+PYTHON_LEARNING=NO
 ```
 
 The host may only:
 
 ```text
 verify session mode/permissions
+read current Oppo head/model generation
 verify hashes and paths
-seal a packet in the teacher's own artifact root
+seal exact candidate bytes
 mechanically enumerate READY packets
 serialize replay execution with flock
-invoke the exact hash-bound replay entrypoint
+invoke the exact hash-bound mechanical replay runner
 capture stdout/stderr/RC
-verify exact result fields and receipt hashes
+verify exact native result/commit receipts and hashes
 mark an already-native ACCEPT/REJECT as processed
 sleep/restart the mechanical daemon
 ```
 
-The host must not create a weight delta, merge two deltas, choose a semantic winner, reinterpret a HOLD, or modify `BRAIN_HEAD`, `MODEL_GENERATION`, `WRITER.lock`, or the canonical model directly.
+The host must not create a weight delta, merge two deltas, choose a semantic winner, reinterpret a HOLD, or directly modify `BRAIN_HEAD`, `MODEL_GENERATION`, `WRITER.lock`, learner lease, or canonical model bytes.
 
 ## Teacher session policy
 
@@ -88,7 +112,7 @@ HOST_COGNITION=NO
 HOST_LEARNING=NO
 ```
 
-The teaching computation may still execute native SIGMA and produce artifacts/candidate state. It simply cannot commit canonical mutation from that session.
+Native SIGMA may execute the teaching computation and produce candidate artifacts in the teacher workspace. It simply cannot commit canonical mutation from that session.
 
 ## Canonical drainer policy
 
@@ -110,24 +134,27 @@ HOST_COGNITION=NO
 HOST_LEARNING=NO
 ```
 
-`HEAD_CHANGE=REJECT` remains intentional. A native canonical commit may advance model generation and produce a new canonical brain/model state only through the admitted writer protocol; no shell script may manually rewrite the head pointer.
+`HEAD_CHANGE=REJECT` remains intentional: shell/host may not directly change the head pointer. Any canonical state transition must occur through the admitted native writer protocol.
 
-## Candidate replay entrypoint
+## Candidate packet requirements
 
-Every queued item must bind one exact executable replay entrypoint by SHA256. The entrypoint is lane-specific and must already know how to rerun that teaching/weight-upgrade computation against the current canonical model. It must preserve:
+Every queued item must bind exact identities for:
 
 ```text
-SIGMA_NATIVE_LEARNING_OWNER=YES
-HOST_COGNITION=NO
-HOST_LEARNING=NO
-ONE_WRITER=YES
+TEACHING_EVIDENCE
+NATIVE_LEARNING_SOURCE=.sigma
+NATIVE_LEARNING_BYTECODE=.sigmab
+MECHANICAL_REPLAY_RUNNER
+NATIVE_OWNERSHIP_RECEIPT
 ```
+
+The runner is not the learner. It must mechanically execute the native program and preserve raw VM evidence plus the native decision receipt.
 
 The queue framework does not invent a generic weight merge algorithm.
 
 ## Result contract
 
-The replay entrypoint writes `$SIGMA_QUEUE_ATTEMPT_ROOT/result.env`.
+The replay path writes `$SIGMA_QUEUE_ATTEMPT_ROOT/result.env`, but the semantic `QUEUE_RESULT` must byte-bind to an exact native SIGMA decision receipt.
 
 Allowed terminal results:
 
@@ -137,15 +164,19 @@ QUEUE_RESULT=REJECTED
 QUEUE_RESULT=HOLD
 ```
 
-For `ACCEPTED`, required fields include before/after head and model generation, native commit receipt path/hash, and `CANONICAL_MUTATION_OBSERVED=YES`.
+For `ACCEPTED`, required evidence includes native decision receipt, current-before/current-after Oppo runtime identities, model-generation advance, and exact native commit receipt.
 
-For `REJECTED`, `CANONICAL_MUTATION_OBSERVED=NO` is required.
+For `REJECTED`, native decision receipt must say REJECTED and no canonical mutation may occur.
 
-For `HOLD`, the packet remains unprocessed and may be retried only through the same exact replay entrypoint; the host may not substitute another learning strategy.
+For `HOLD`, native decision receipt must say HOLD, no canonical mutation may occur, and the mechanical daemon stops instead of selecting an alternative.
+
+## Mechanical ordering
+
+READY packets may be serialized in deterministic content-addressed order. This is mechanical ordering only, not a semantic ranking or curriculum claim. Each packet is natively re-evaluated against the current canonical state.
 
 ## Survival behavior
 
-All packets are content-addressed and sealed with atomic rename + `READY`. Processed receipts are durable. A crash before processed receipt causes the same packet to be re-verified. The replay entrypoint itself remains responsible for canonical commit idempotency/recovery under its native learning contract.
+Packets are self-contained and content-addressed. Processed receipts are durable. A crash before processed receipt causes the same packet to be re-verified. The lane-specific native commit protocol remains responsible for canonical transaction idempotency/recovery.
 
 ```text
 TASK_NEVER_LOSES_COMMITTED_PROGRESS=TARGET
@@ -153,10 +184,14 @@ PROCESS_NEVER_DIES=NOT_CLAIMED
 RECOVERY_REPLAYS_MECHANICS_NOT_COGNITION=YES
 ```
 
+## Oppo staging
+
+Do not `git pull` or `git checkout` merely to stage this queue. Transfer only exact reviewed bytes into a neutral staging directory or current session artifact root and verify their manifest/hash against the reviewed source package.
+
 ## Current claim ceiling
 
 ```text
-QUEUE_MECHANICS_SOURCE_READY=YES
+QUEUE_FIX1_SOURCE_READY=YES
 OPPO_PREFLIGHT=NOT_RUN
 MULTI_TEACHER_END_TO_END_WEIGHT_ACCUMULATION=NOT_PROVEN_UNTIL_DEVICE_TEST
 GENERAL_WEIGHT_DELTA_MERGE=NOT_IMPLEMENTED
