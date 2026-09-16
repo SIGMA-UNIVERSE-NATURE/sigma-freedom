@@ -1,0 +1,144 @@
+# G3C R3G Balanced Arbitration Precommit — 2026-09-16
+
+```text
+HANDOFF_ID=G3C_R3G_BALANCED_ARBITRATION_PRECOMMIT_20260916
+SYSTEM_IDENTITY=SIGMA.AIL
+LANE=G3C_LEARNED_NARRATIVE_CORE
+CURRENT_PROGRAM_GENERATION=G2_ONE_SIGMA_AIL
+TARGET_GENERATION=G3_LEARNED_NARRATIVE_BRAIN
+G3_PROMOTION=NO
+CANONICAL_MODEL_MUTATION=NO
+HOST_COGNITION=NO
+HOST_TEST_ORACLE=NO
+BLIND_ACCESS=FORBIDDEN
+SEALED_G3B_R4_ACCESS=FORBIDDEN
+FROZEN20_TRAINING_USE=FORBIDDEN
+EXTERNAL_R3_TRAINING_USE=FORBIDDEN
+```
+
+Parent HOLD checkpoint:
+
+```text
+BRAIN/GENERATIONS/G3_LEARNED_NARRATIVE_BRAIN/G3C_R3F_SEED104729_GATE_HOLD_20260916.md
+COMMIT=70c4e644921929cff3b8a7560bf71b13cbd01a8f
+BLOB=3da9c461cd87f17f5fcee0c40b1f63ac3a3312b1
+```
+
+R3F trained on 296 informative TRAIN arbitration examples but the learned bias term dominated, causing the gate to fire on all 29 DEV disagreements and reproduce the weaker raw learned branch. R3G removes the global override bias and freezes a TRAIN-only centering/scaling and class-balancing protocol before any R3G DEV result.
+
+## Exact R3G artifact identity before first DEV result
+
+```text
+ARTIFACT=SIGMA_G3C_BALANCED_ARBITRATION_R3G_CANDIDATE
+BUNDLE_SHA256=b77e1d60c05720937e8f8d5dd87ed526498e2ccdc77fa4238215d7b68fb8ef93
+SOURCE_SHA256=0af60b606c2aae65d8cb46d680ab0793d71093f6eb5065f44dbd2e52d252094b
+RUNNER_SHA256=a816f95edc19a85bcea41a010734ee9c0001c11da9eb6210157fa197e8d95b90
+MANIFEST_SHA256=17b08dde217afce38b168e1485b9dcc8f91c193b8c34d49e87cca3a9760882b0
+NATIVE_COMPILE=NOT_YET_PROVEN_ON_OPPO
+```
+
+## Frozen substrate/readout
+
+R3G keeps the R3A evidence channels and R3D same-story counterfactual learned readout unchanged in design.
+
+```text
+READOUT_FEATURES=FINAL_MEMORY;STRONGEST_LOCAL;LATEST;MEMORY_X_LOCAL;MEMORY_X_LATEST;LOCAL_X_LATEST
+READOUT_OBJECTIVE=IN_CONTEXT_COUNTERFACTUAL_PAIRWISE_MARGIN
+READOUT_TRAIN_SOURCE=PUBLIC_TRAIN_160_ONLY
+READOUT_EPOCHS=4
+READOUT_NATIVE_TICKS=640
+BASE_MODEL_LEARNING=NO
+```
+
+## TRAIN-only arbitration statistics pass
+
+After readout lock and before gate learning, native SIGMA performs one pass over the 160 public TRAIN stories. Only informative examples where fixed-sum correctness and raw learned correctness differ are included.
+
+```text
+STATS_SOURCE=PUBLIC_TRAIN_160_ONLY
+STATS_NATIVE_TICKS=160
+RAW_GATE_FEATURES=SOFT_FIXED_TOP_MARGIN;SOFT_LEARNED_ADVANTAGE_OVER_FIXED_CHOICE
+STATS_OUTPUT=MEAN;STD;CLASS_FIXED_WINS;CLASS_LEARNED_WINS
+BOTH_CLASSES_REQUIRED=YES
+DEV_LABELS_IN_STATS=NO
+```
+
+## Frozen balanced gate
+
+```text
+GATE_FEATURES=CENTERED_NORMALIZED_SOFT_FIXED_MARGIN;CENTERED_NORMALIZED_SOFT_LEARNED_ADVANTAGE
+GATE_BIAS=NONE
+GATE_INITIAL_WEIGHTS=0;0
+GATE_OBJECTIVE=CLASS_BALANCED_PAIRWISE_MARGIN_CLASSIFICATION
+GATE_MARGIN=0.08
+CLASS_WEIGHTING=INVERSE_TRAIN_INFORMATIVE_CLASS_FREQUENCY
+GATE_EPOCHS=4
+GATE_MAX_NATIVE_TICKS=640
+DEV_LABEL_TRAINING=NO
+```
+
+Removing the bias is intentional: R3F showed that the global intercept became an always-override prior. R3G requires the override decision to be explained by centered/scaled evidence features themselves. Class balancing is derived only from the TRAIN informative-example counts.
+
+## Frozen inference
+
+```text
+BASE_DECISION=FIXED_SUM_TOP
+RAW_LEARNED_DECISION=R3D_STYLE_LEARNED_TOP
+IF RAW_LEARNED_TOP_DIFFERS_FROM_FIXED_TOP AND BALANCED_TRAIN_LEARNED_GATE_SCORE_GT_0:
+    FINAL=RAW_LEARNED_TOP
+ELSE:
+    FINAL=FIXED_SUM_TOP
+```
+
+There is no DEV-derived threshold or hand-selected intercept.
+
+## Frozen evaluation protocol
+
+```text
+SOURCE_MODELS=SIGMA_CURRICULUM_WITH_REPLAY
+SEEDS=104729;130363;155921
+EVALUATION=DEV_ONLY
+DEV_KEY_SCOPE=HOST_EVALUATOR_ONLY_AFTER_NATIVE_INFERENCE
+BLIND_USED=NO
+SEALED_R4_USED=NO
+```
+
+## Precommitted stop gate
+
+Seed 104729 is the first stop gate.
+
+```text
+FIXED_SUM_SEED_104729_REFERENCE=14/40
+GATED_GT_FIXED_SUM_SEED_104729=PASS_REQUIRED
+EQUALITY_IS_PASS=NO
+GATE_CLASS_FIXED_WINS_GT_0=REQUIRED
+GATE_CLASS_LEARNED_WINS_GT_0=REQUIRED
+GATED_PREDICTION_CHANGES_VS_FIXED_GT_0=REQUIRED
+NO_NEW_ABSOLUTE_POSITIONAL_COLLAPSE=PASS_REQUIRED
+BASE_MODEL_UNCHANGED=PASS_REQUIRED
+CANONICAL_UNCHANGED=PASS_REQUIRED
+BLIND_USED=NO_REQUIRED
+SEALED_R4_USED=NO_REQUIRED
+HOST_COGNITION=NO_REQUIRED
+```
+
+If seed 104729 is not strictly above 14/40, stop and checkpoint HOLD. If it passes, run seeds 130363 and 155921 under the identical frozen protocol; final R3G success requires gated > fixed-sum on every seed and aggregate.
+
+## Forbidden
+
+```text
+STORY_SPECIFIC_RULES=FORBIDDEN
+PHRASE_SPECIFIC_RULES=FORBIDDEN
+EXPECTED_ANSWER_LEAKAGE=FORBIDDEN
+SEMANTIC_VM_OPCODE=FORBIDDEN
+DEV_LABEL_TRAINING=FORBIDDEN
+DEV_THRESHOLD_TUNING=FORBIDDEN
+BLIND_TUNING=FORBIDDEN
+SEALED_R4_ACCESS=FORBIDDEN
+```
+
+## Claim boundary
+
+Even a R3G DEV pass proves only that TRAIN-only balanced arbitration improves candidate ranking over fixed-sum under this exact protocol. It does not prove semantic understanding, late-evidence revision, role-swap reasoning, chronology-versus-causality, unresolved-state retention, final causal synthesis, whole-story understanding, or G3 promotion.
+
+NEXT_ACTION=INSTALL_HASH_VERIFY_COMPILE_AND_RUN_SEED_104729_DEV_ONLY
