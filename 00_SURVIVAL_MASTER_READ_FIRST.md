@@ -8,17 +8,18 @@ If a chat/window/context ended and you need to continue current Survival, Intern
 
 Read exactly:
 
-1. `SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
-2. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
-3. `SURVIVAL_MASTER/DIRECTIVES/01_MULTI_TEACHER_CANONICAL_LEARNING_QUEUE_R1.md`
-4. latest multi-teacher checkpoint under `SURVIVAL_MASTER/CHECKPOINTS/`
-5. `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/README_RUN.md`
-6. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
-7. `SURVIVAL_MASTER/REVIEWS/20260917_INTERNET_AUTOLEARN_R1_STATIC_REVIEW_HOLD.md`
-8. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
-9. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
-10. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
-11. `/AGENTS.md` and its native-execution directives.
+1. `SURVIVAL_MASTER/CORRECTIONS/20260917_DURABLE_CANONICAL_LEARNER_ROLE_TAKEOVER_R1.md`
+2. `SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
+3. `SURVIVAL_MASTER/CURRENT_HANDOFF.md`
+4. `SURVIVAL_MASTER/DIRECTIVES/01_MULTI_TEACHER_CANONICAL_LEARNING_QUEUE_R1.md`
+5. latest multi-teacher checkpoint under `SURVIVAL_MASTER/CHECKPOINTS/`
+6. `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/README_RUN.md`
+7. `SURVIVAL_MASTER/REQUESTS/20260917_INTERNET_AUTO_BUNDLE_IMPLEMENTATION_REQUEST_R1.md`
+8. `SURVIVAL_MASTER/REVIEWS/20260917_INTERNET_AUTOLEARN_R1_STATIC_REVIEW_HOLD.md`
+9. `SURVIVAL_MASTER/RUNBOOK/SURVIVAL_INTERNET_AUTOLEARN_RUNBOOK_R1.md`
+10. `SURVIVAL_MASTER/SAMPLES/COMMANDS_R1.md`
+11. `DOCS/SIGMA_LATEST_VERIFIED_RESULT.md`
+12. `/AGENTS.md` and its native-execution directives.
 
 Then inspect only the live Oppo state needed for the next action.
 
@@ -44,6 +45,20 @@ exact machine receipts
 ```
 
 GitHub is continuity/source/provenance/review/transfer documentation only.
+
+## CANONICAL LEARNER SURVIVAL — CURRENT REQUIRED CORRECTION
+
+```text
+SESSION_CODE=EPHEMERAL
+CANONICAL_LEARNER_ROLE=DURABLE
+CANONICAL_LEARNER_OWNER=REPLACEABLE
+ONE_WRITER=YES
+OLD_SESSION_CODE_REQUIRED_AFTER_TOTAL_WINDOW_DEATH=NO
+```
+
+The currently observed `session_learner_recover()` is same-session recovery only: it requires the learner lease owner to equal the requested SESSION_CODE. Therefore it does not solve recovery from total window death when the replacement shell receives a new session code.
+
+Required target: after confirmed stale-owner death, a new session atomically takes over the durable learner role, increments a lease epoch/fence token, rereads current Oppo HEAD/model generation, reconciles any incomplete native commit from exact receipts, and resumes durable queue progress. Never manually delete the learner lease or copy the old SESSION_CODE into a new shell.
 
 ## LEARNING OWNERSHIP
 
@@ -88,6 +103,8 @@ Current proof ceiling:
 ```text
 QUEUE_FIX1_SOURCE_READY=YES
 OPPO_PREFLIGHT=NOT_RUN_AFTER_FIX1
+DEAD_OWNER_NEW_SESSION_TAKEOVER=NOT_IMPLEMENTED_IN_SHOWN_COORDINATOR_RECOVER
+LEASE_EPOCH_FENCING=NOT_PROVEN
 MULTI_TEACHER_END_TO_END_WEIGHT_ACCUMULATION=NOT_PROVEN_UNTIL_DEVICE_TEST
 ```
 
@@ -144,7 +161,7 @@ INTERNET AUTOLEARN:
 Native SIGMA chooses gap/query/source family/website/resource, reads exact Internet data, evaluates it, creates its own compact representation, decides research/learning next actions, while host performs only mechanical network/file/hash/process work.
 
 MULTI-TEACHER LEARNING:
-Many windows may teach in parallel, but all canonical model changes are serialized through one canonical learner after native replay/re-evaluation against the latest Oppo generation.
+Many windows may teach in parallel, but all canonical model changes are serialized through one canonical learner after native replay/re-evaluation against the latest Oppo generation. The canonical learner role survives window death and may be atomically transferred to a new session only after stale-owner proof.
 ```
 
 Do not ask the human to restate the full project if these files contain the answer.
