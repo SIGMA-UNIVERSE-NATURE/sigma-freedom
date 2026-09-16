@@ -1,0 +1,207 @@
+# G3 D12A — Whole-Event Effect Grounding Evidence
+
+DATE=2026-09-17
+REPOSITORY=SIGMA-UNIVERSE-NATURE/sigma-freedom
+BRANCH=SIGMA_LIFE
+EVIDENCE_CLASS=USER_SUPPLIED_RUNTIME_TRANSCRIPT_ARCHIVED_TO_GITHUB
+STATUS=ARCHIVED
+
+## Runtime-truth scope
+
+This file archives exact values reported by the user from the native SIGMA shadow runtime. The original Termux artifacts are not independently fetched by this repository action.
+
+```text
+CHAT_SUMMARY_IS_RUNTIME_TRUTH=NO
+THIS_ARCHIVE_IS_INDEPENDENT_DEVICE_RECEIPT=NO
+CLAIM <= SUPPLIED_RUNTIME_EVIDENCE
+```
+
+## Preceding knowledge-gap diagnosis
+
+The user reported D11B whole-story incidence graph comparisons:
+
+```text
+train_009 vs train_015
+D11B_GRAPH_DISTANCE=0
+D11B_RESOLVES_GAP=NO
+
+train_011 vs train_012
+D11B_GRAPH_DISTANCE=0
+D11B_RESOLVES_GAP=NO
+
+train_011 vs train_016
+D11B_GRAPH_DISTANCE=NONZERO
+D11B_RESOLVES_GAP=YES
+
+train_012 vs train_016
+D11B_GRAPH_DISTANCE=NONZERO
+D11B_RESOLVES_GAP=YES
+```
+
+The D9A revision-head probe reported:
+
+```text
+train_009 vs train_015
+MODEL_VALID||1
+D9A_DISTANCE||0
+A_REVISION_COUNT||0
+B_REVISION_COUNT||0
+A_PARTICIPANTS||3
+B_PARTICIPANTS||3
+A_EVENTS||3
+B_EVENTS||3
+
+train_011 vs train_012
+MODEL_VALID||1
+D9A_DISTANCE||0
+A_REVISION_COUNT||1
+B_REVISION_COUNT||1
+A_PARTICIPANTS||3
+B_PARTICIPANTS||3
+A_EVENTS||4
+B_EVENTS||4
+
+train_011 vs train_016
+MODEL_VALID||1
+D9A_DISTANCE||31
+A_REVISION_COUNT||1
+B_REVISION_COUNT||1
+A_PARTICIPANTS||3
+B_PARTICIPANTS||3
+A_EVENTS||4
+B_EVENTS||5
+
+train_012 vs train_016
+MODEL_VALID||1
+D9A_DISTANCE||31
+A_REVISION_COUNT||1
+B_REVISION_COUNT||1
+A_PARTICIPANTS||3
+B_PARTICIPANTS||3
+A_EVENTS||4
+B_EVENTS||5
+```
+
+This established that `train_009/train_015` and `train_011/train_012` remained indistinguishable to both the learned revision head and the incidence-graph representation.
+
+## Surface differences exposed by the unresolved pairs
+
+User-supplied frame diff for `train_009` vs `train_015`:
+
+```text
+E0: P0 starts with the THEME
+E1: The THEME moved from P0 to P1
+
+train_009 E2:
+P1 gave P2 the THEME
+
+train_015 E2:
+The THEME moved from P1 to P2
+```
+
+User-supplied frame diff for `train_011` vs `train_012`:
+
+```text
+train_011:
+E0 P0 starts with the THEME
+E1 P0 handed the THEME to P1
+E2 P2 received the THEME from P1
+E3 P0 received the THEME from P2
+
+train_012:
+E0 P0 starts with the THEME
+E1 P0 passed P1 the THEME
+E2 P1 passed P2 the THEME
+E3 P2 gave P0 the THEME
+```
+
+This material supported a curriculum correction: different-document identity is not sufficient evidence for a negative semantic label.
+
+## D12A native event-effect output
+
+The user reported successful native execution:
+
+```text
+RESULT=R3I_D12A_EVENT_EFFECT_READY
+```
+
+### train_009
+
+```text
+SIGMA_SHADOW_EVENT_EFFECT_SIGNATURES_V1
+EVENT_EFFECT|||E0|||SIGNATURE|||ARITY=1|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=110|||SURFACE|||P0 starts with the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E1|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=011,CLASS=H|TRAJECTORY=110|||SURFACE|||The THEME moved from P0 to P1|||COMMIT|||YES
+EVENT_EFFECT|||E2|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=H|TRAJECTORY=011,CLASS=L|TRAJECTORY=001|||SURFACE|||P1 gave P2 the THEME|||COMMIT|||YES
+```
+
+### train_015
+
+```text
+SIGMA_SHADOW_EVENT_EFFECT_SIGNATURES_V1
+EVENT_EFFECT|||E0|||SIGNATURE|||ARITY=1|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=110|||SURFACE|||P0 starts with the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E1|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=011,CLASS=H|TRAJECTORY=110|||SURFACE|||The THEME moved from P0 to P1|||COMMIT|||YES
+EVENT_EFFECT|||E2|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=H|TRAJECTORY=011,CLASS=L|TRAJECTORY=001|||SURFACE|||The THEME moved from P1 to P2|||COMMIT|||YES
+```
+
+The supplied runtime therefore reports identical event-effect signatures for the different E2 surfaces:
+
+```text
+P1 gave P2 the THEME
+The THEME moved from P1 to P2
+```
+
+### train_011
+
+```text
+SIGMA_SHADOW_EVENT_EFFECT_SIGNATURES_V1
+EVENT_EFFECT|||E0|||SIGNATURE|||ARITY=1|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=1101|||SURFACE|||P0 starts with the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E1|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=0110,CLASS=HF|TRAJECTORY=1101|||SURFACE|||P0 handed the THEME to P1|||COMMIT|||YES
+EVENT_EFFECT|||E2|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=0011,CLASS=H|TRAJECTORY=0110|||SURFACE|||P2 received the THEME from P1|||COMMIT|||YES
+EVENT_EFFECT|||E3|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=H|TRAJECTORY=0011,CLASS=H|TRAJECTORY=1101|||SURFACE|||P0 received the THEME from P2|||COMMIT|||YES
+```
+
+### train_012
+
+```text
+SIGMA_SHADOW_EVENT_EFFECT_SIGNATURES_V1
+EVENT_EFFECT|||E0|||SIGNATURE|||ARITY=1|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=1101|||SURFACE|||P0 starts with the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E1|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=0110,CLASS=HF|TRAJECTORY=1101|||SURFACE|||P0 passed P1 the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E2|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=F|TRAJECTORY=0011,CLASS=H|TRAJECTORY=0110|||SURFACE|||P1 passed P2 the THEME|||COMMIT|||YES
+EVENT_EFFECT|||E3|||SIGNATURE|||ARITY=2|PARTICIPANT_EFFECTS=CLASS=H|TRAJECTORY=0011,CLASS=H|TRAJECTORY=1101|||SURFACE|||P2 gave P0 the THEME|||COMMIT|||YES
+```
+
+The supplied runtime reports event-by-event signature alignment between `train_011` and `train_012` despite different whole-event surfaces.
+
+## Supported claims
+
+```text
+D12A_NATIVE_EXECUTION_REPORTED=PASS
+WHOLE_EVENT_EFFECT_SIGNATURES_GENERATED=YES
+DIFFERENT_SURFACE_SAME_NATIVE_EFFECT_OBSERVED=YES
+CROSS_DOCUMENT_EFFECT_ALIGNMENT_OBSERVED=YES
+MANUAL_SEMANTIC_LABEL_REQUIRED=NO
+TOKEN_POSITION_REASONING_REPORTED=NO
+WHOLE_EVENT_EFFECT_GROUNDING_PRECURSOR=YES
+```
+
+## Not proven
+
+```text
+SEMANTIC_EQUIVALENCE_AS_TRUTH=NOT_PROVEN
+EVENT_ROLE_SEMANTICS=NOT_PROVEN
+GENERAL_PARAPHRASE_UNDERSTANDING=NOT_PROVEN
+HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+VIETNAMESE_DEEP_UNDERSTANDING=NOT_PROVEN
+MULTILINGUAL_UNDERSTANDING=NOT_PROVEN
+FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN
+G3_PROMOTION=NO
+G4_PROMOTION=NO
+```
+
+## Next gate
+
+```text
+NEXT_GATE=D12B_CROSS_DOCUMENT_WHOLE_EVENT_MEANING_CLUSTER_INDUCTION
+```
+
+The intended next step is to cluster whole-event surfaces using self-generated identity-independent event-effect schemas. Individual word-to-meaning tables and participant-position semantics remain forbidden.
