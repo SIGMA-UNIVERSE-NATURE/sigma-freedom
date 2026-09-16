@@ -1,12 +1,16 @@
 # 01 — MULTI-TEACHER CANONICAL LEARNING QUEUE R1
 
-Status: ACTIVE DESIGN DIRECTIVE / OPPO PREFLIGHT REQUIRED
+Status: ACTIVE DESIGN DIRECTIVE / FIX1 CORRECTED / OPPO PREFLIGHT REQUIRED
 Date: 2026-09-17
 Branch: `AIL_SIGMA`
 
+Read first:
+
+`SURVIVAL_MASTER/CORRECTIONS/20260917_OPPO_RUNTIME_AUTHORITY_NATIVE_LEARNING_FIX1.md`
+
 ## Purpose
 
-Every teaching window that is intended to improve SIGMA's canonical weights must contribute its work without becoming a second canonical writer.
+Every teaching window intended to improve SIGMA's canonical weights must contribute its work without becoming a second canonical writer.
 
 Required architecture:
 
@@ -21,6 +25,17 @@ CANONICAL_NATIVE_REPLAY_AND_DECISION=YES
 CANONICAL_WEIGHT_UPGRADE=YES
 ONE_CANONICAL_WRITER_AT_A_TIME=YES
 ```
+
+## Runtime authority
+
+```text
+RUNTIME_AUTHORITY=OPPO_CURRENT_RUNTIME
+GITHUB_HEAD_IS_RUNTIME_AUTHORITY=NO
+GIT_PULL_REQUIRED_FOR_RUNTIME=NO
+GIT_CHECKOUT_REQUIRED_FOR_RUNTIME=NO
+```
+
+The canonical learner must read the CURRENT Oppo `BRAIN_HEAD` and `MODEL_GENERATION` immediately before each replay. A GitHub branch/commit may document source identity; it may not replace or override the current Oppo canonical runtime state.
 
 ## Rule for future teaching windows
 
@@ -45,41 +60,44 @@ Native SIGMA may still execute the teaching computation and produce candidate ar
 
 ## Required output of a weight-affecting teaching lane
 
-If the lane is intended to improve canonical weights, it must finish with:
+A lane intended to affect canonical weights must finish with:
 
 ```text
 1. durable teaching evidence
-2. native ownership receipt
-3. exact canonical replay entrypoint
-4. candidate descriptor conforming to:
+2. exact native .sigma source identity
+3. exact native bytecode identity
+4. native ownership receipt
+5. exact MECHANICAL replay runner identity
+6. candidate descriptor conforming to:
    SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/PACKET_FORMAT.md
-5. sealed queue packet produced by teacher/seal_candidate.sh
+7. sealed queue packet produced mechanically by teacher/seal_candidate.sh
 ```
 
-If the lane cannot provide a native canonical replay entrypoint, its work remains evidence/artifact only. Host code must not invent a generic weight update from a report or `.sigmab` file.
+The replay runner is not the learner. It may only launch/transport/hash/capture the exact native SIGMA computation. If a lane cannot provide an exact native learning/re-evaluation path, its work remains evidence/artifact only.
 
 ## Canonical accumulation rule
 
-Exactly one `CANONICAL_LEARNER` session drains candidate packets. Before each candidate, it reads the current canonical head/model generation and invokes the packet's exact replay entrypoint.
+Exactly one `CANONICAL_LEARNER` session drains candidate packets. Before each candidate it reads the current Oppo canonical head/model generation, verifies the exact native source/bytecode and mechanical runner identities, then invokes the lane-specific mechanical replay runner.
 
-This means two teacher candidates originally derived from generation G1 are not both blindly committed from G1:
+The runner must execute native SIGMA learning/admission against the current canonical model and preserve an exact native decision receipt.
+
+Example:
 
 ```text
-candidate A from G1
-candidate B from G1
+candidate A originally from G1
+candidate B originally from G1
 
 canonical learner:
-A replayed against current G1 -> native ACCEPT -> commit G2
-B replayed against current G2 -> native ACCEPT/REJECT/HOLD -> maybe commit G3
+A native replay against CURRENT G1 -> SIGMA native ACCEPT -> commit G2
+B native replay against CURRENT G2 -> SIGMA native ACCEPT/REJECT/HOLD -> maybe commit G3
 ```
 
 Thus work can accumulate without lost-update race or state fork.
 
 ## Cognition ownership
 
-The queue is mechanical only:
-
 ```text
+SIGMA_NATIVE_VM_IS_LEARNING_ENGINE=YES
 HOST_WEIGHT_MERGE=NO
 HOST_CANDIDATE_QUALITY_RANKING=NO
 HOST_ACCEPT_REJECT=NO
@@ -89,22 +107,30 @@ HOST_COGNITION=NO
 SIGMA_NATIVE_LEARNING_OWNER=YES
 ```
 
-The lane-specific replay entrypoint must execute the actual native SIGMA learning/admission logic and use the existing canonical learner commit protocol.
+Bash/Python may verify, launch, serialize, hash, persist, and recover. They may not derive a weight update, choose a learning result, rewrite a native decision, or select a semantic alternative.
 
-## Failure discipline
+A queue result `ACCEPTED|REJECTED|HOLD` must byte-bind to an exact native SIGMA decision receipt from the replayed native program.
 
-`HOLD` stops the queue. The host must not silently skip a candidate because another candidate looks easier or more valuable.
+## Mechanical queue ordering
 
-A native `REJECTED` result is a legitimate final result for that candidate and does not mutate the canonical model.
+If multiple READY packets exist, the queue may serialize them using a deterministic content-addressed mechanical order only. This is not a semantic ranking and must not be claimed as curriculum selection. Every candidate is re-evaluated natively against the current model before any commit.
+
+`HOLD` stops the queue. The host must not skip to another candidate because it looks easier or more valuable.
+
+A native `REJECTED` result is a legitimate final result and performs no canonical mutation.
+
+## Staging on Oppo
+
+Do not require `git pull`, branch checkout, reset, or replacement of the Oppo runtime tree.
+
+Transfer only the exact reviewed queue/tool bytes into a neutral staging location or current session artifact root, verify hashes, and run preflight against the existing Oppo runtime.
 
 ## Runtime implementation
 
-Source-ready framework:
+Corrected framework path:
 
 `SURVIVAL_MASTER/CANDIDATES/MULTI_TEACHER_CANONICAL_QUEUE_R1/`
 
-Current checkpoint:
+Current corrected checkpoint must supersede the original source-ready checkpoint before deployment.
 
-`SURVIVAL_MASTER/CHECKPOINTS/20260917_MULTI_TEACHER_CANONICAL_QUEUE_R1_SOURCE_READY.md`
-
-Do not claim end-to-end canonical accumulation until Oppo preflight and a real accepted native learning packet pass.
+Do not claim end-to-end canonical accumulation until Oppo preflight and at least one real native accepted learning packet pass.
