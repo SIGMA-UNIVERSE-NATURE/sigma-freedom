@@ -1,0 +1,45 @@
+#SIGMAUNIVERSE[DOMAIN=SIGMA.SURVIVAL.INTERNET.AUTOLEARN.COMPOSITION.GATE][VERSION=R1]
+
+DEF H(op, a, b, c) {
+    RETURN host(op, a, b, c);
+}
+
+DEF present(v) {
+    IF (v == "") { RETURN 0; }
+    IF (v == "NONE") { RETURN 0; }
+    RETURN 1;
+}
+
+DEF exact(a, b) {
+    IF (a == b) { RETURN 1; }
+    RETURN 0;
+}
+
+# This native source is deliberately NOT a replacement for missing cognition.
+# It validates the exact composition envelope emitted by already-hash-locked
+# native SIGMA capabilities and emits a mechanical dispatch state only.
+# Query/source/resource/evidence/condensation/next semantic action must already
+# have been chosen by the referenced native capability before this gate runs.
+
+⟡(Σ.SIGMA_INTERNET_AUTOLEARN_COMPOSITION_GATE_R1) {
+    ⚡ BASE: ".sigma_exec/SIGMA_SURVIVAL_INTERNET_AUTOLEARN_R1";
+    ⚡ DEP_STATUS: H("read_text", BASE + "/input/dependencies.status", NULL, NULL);
+    ⚡ EVENT_TEXT: H("read_text", BASE + "/input/native.event", NULL, NULL);
+
+    ⚡ DEP_OK: exact(DEP_STATUS, "EXACT_NATIVE_DEPENDENCIES_VERIFIED");
+    ⚡ EVENT_PRESENT: present(EVENT_TEXT);
+
+    ⚡ DISPATCH_STATUS: "HOLD_DEPENDENCY_OR_EVENT";
+    IF (DEP_OK == 1) {
+        IF (EVENT_PRESENT == 1) {
+            ⚡ DISPATCH_STATUS: "VALIDATE_EXACT_NATIVE_EVENT_MECHANICALLY";
+        }
+    }
+
+    ⚡ print("SIGMA_INTERNET_AUTOLEARN_COMPOSITION_GATE_R1");
+    ⚡ print("DEPENDENCIES_VERIFIED", DEP_OK);
+    ⚡ print("NATIVE_EVENT_PRESENT", EVENT_PRESENT);
+    ⚡ print("DISPATCH_STATUS", DISPATCH_STATUS);
+    ⚡ print("HOST_COGNITION", "NO");
+    ⚡ print("CANONICAL_MUTATION", "NO");
+}

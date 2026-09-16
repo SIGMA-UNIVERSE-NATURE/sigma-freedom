@@ -1,0 +1,12 @@
+RECOVERY_SCHEMA_VERSION=1
+WORK_ID=OPAQUE_REVIEW_FIXTURE_ONLY
+TASK_KIND=INTERNET_ARTIFACT_LANE
+ENTRYPOINT=/absolute/reviewed/path/to/artifact_worker.sh
+ENTRYPOINT_SHA256=EXACT_SHA256_REQUIRED
+COMPLETION_RECEIPT=/absolute/artifact/path/completion.receipt
+RECOVERY_LOCK_PATH=/absolute/artifact/path/recovery.lock
+LAST_COMMITTED_CHECKPOINT=/absolute/artifact/path/checkpoint
+INFLIGHT_OP_ID=NONE
+NATIVE_EVENT_PATH=/absolute/artifact/path/native.event
+MAX_RESTARTS=3
+CANONICAL_MUTATION=NO
