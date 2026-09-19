@@ -5,13 +5,14 @@ STATUS=ACTIVE
 
 AUTHORITATIVE_MASTER_ROADMAP=`BRAIN/WORKSTREAMS/SIGMA_PSI/00_READ_FIRST_SIGMA_MASTER_DIRECTION_AND_EXECUTION_ROADMAP_20260831.md`
 CURRENT_SIGMA_AIL_MASTER_HANDOFF=`BRAIN/HANDOFFS/00_SIGMA_AIL_MASTER_HANDOFF_20260914.md`
-CURRENT_MASTER_CHECKPOINT=`BRAIN/HANDOFFS/23_SIGMA_AIL_MASTER_CHECKPOINT_G6_G7_C5V4_R7_R8_20260919.md`
-PREVIOUS_MASTER_CHECKPOINT=`BRAIN/HANDOFFS/22_SIGMA_AIL_MASTER_CHECKPOINT_D57R_BUILD_INVALID_20260919.md`
+CURRENT_MASTER_CHECKPOINT=`BRAIN/HANDOFFS/24_SIGMA_AIL_MASTER_CHECKPOINT_R11_COLLECTOR_ONLY_MANIFEST_CONTRACT_20260919.md`
+PREVIOUS_MASTER_CHECKPOINT=`BRAIN/HANDOFFS/23_SIGMA_AIL_MASTER_CHECKPOINT_G6_G7_C5V4_R7_R8_20260919.md`
 CURRENT_G3C_OPERATOR_PLAYBOOK=`BRAIN/HANDOFFS/06A_G3C_SUCCESSOR_WINDOW_OPERATOR_PLAYBOOK_20260917.md`
 LATEST_G6_RUNTIME_EVIDENCE=`BRAIN/EVIDENCE/G6/G6_C5V4_R7_LONG_DOCUMENT_R8_CONTINUOUS_SHADOW_20260919.md`
 PREVIOUS_G6_RUNTIME_EVIDENCE=`BRAIN/EVIDENCE/G6/G6_R9_TOPIC_GUIDED_RESEARCH_CYCLE1_PROMOTED_LEARNING_20260919.md`
 LATEST_G6_STATIC_ABI_EVIDENCE=`BRAIN/EVIDENCE/G6/G6_G3B_NATIVE_PLANNER_SELECTOR_SUMMARIZER_PRINTABLE_ABI_20260918.md`
 LATEST_G2_EVIDENCE=`BRAIN/EVIDENCE/G2/G2_CANONICAL_DIRECT_LINEAGE_700D_TO_7D91_20260917.md`
+LATEST_R11_STATIC_CONTRACT_EVIDENCE=`BRAIN/EVIDENCE/G2/G2_R11_COLLECTOR_ONLY_READY_MANIFEST_SOURCE_CONTRACT_20260919.md`
 LATEST_G4_EVIDENCE=`BRAIN/EVIDENCE/G4/G4_D18_QUERY_INDEPENDENT_MATERIAL_9BELIEF_777_PERMILLE_20260918.md`
 PREVIOUS_G4_EVIDENCE=`BRAIN/EVIDENCE/G4/G4_D55C3_TRAIN002_REP637_D18_RECEIPT_EQUIVALENCE_4REF_50TOTAL_20260918.md`
 LATEST_G3_EVIDENCE=`BRAIN/EVIDENCE/G3/G3_D13B_SURFACE_SEMANTIC_PROJECTION_HELDOUT_GENERALIZATION_20260917.md`
@@ -27,8 +28,9 @@ BYTECODE_ABI_FREEZE=`BRAIN/WORKSTREAMS/SIGMA_PSI/WINDOW_C_BYTECODE_ABI_FREEZE_RE
 
 ```text
 1. BRAIN/00_READ_FIRST_SIGMA_DIRECTION.md
-2. BRAIN/HANDOFFS/23_SIGMA_AIL_MASTER_CHECKPOINT_G6_G7_C5V4_R7_R8_20260919.md
-3. BRAIN/HANDOFFS/22_SIGMA_AIL_MASTER_CHECKPOINT_D57R_BUILD_INVALID_20260919.md
+2. BRAIN/HANDOFFS/24_SIGMA_AIL_MASTER_CHECKPOINT_R11_COLLECTOR_ONLY_MANIFEST_CONTRACT_20260919.md
+3. BRAIN/HANDOFFS/23_SIGMA_AIL_MASTER_CHECKPOINT_G6_G7_C5V4_R7_R8_20260919.md
+4. BRAIN/HANDOFFS/22_SIGMA_AIL_MASTER_CHECKPOINT_D57R_BUILD_INVALID_20260919.md
 4. BRAIN/HANDOFFS/21_SIGMA_AIL_MASTER_CHECKPOINT_G6_R9_TOPIC_GUIDED_RESEARCH_20260919.md
 5. BRAIN/HANDOFFS/20_SIGMA_AIL_MASTER_CHECKPOINT_G6_AUTOLEARN_SOURCE_SET_R1_20260918.md
 6. BRAIN/HANDOFFS/19_SIGMA_AIL_MASTER_CHECKPOINT_G6_NATIVE_FACT_GAP_QUERY_EVOLUTION_20260918.md
@@ -110,6 +112,18 @@ ACTIVE_CORE=SIGMA_INTEGRAL_OWNER_R3_FROM_PRIOR_VERIFIED_PRODUCTION_EVIDENCE_NOT_
 G2_CANONICAL_ACTIVE_STATE_PROMOTION_PRECURSOR=YES
 G2_CANONICAL_PARENT_CHILD_LINEAGE_PRECURSOR=YES
 G2=IN_PROGRESS_NOT_PROMOTED
+
+R11_COLLECTOR_ONLY_DOCUMENT_INGRESS_CONTRACT_PRECURSOR=YES
+R11_READY_MANIFEST_SOURCE_CONTRACT=YES
+R11_READY_MANIFEST_EXCLUSIVE_LOCK_PRESENT=YES
+R11_READY_MANIFEST_DIGEST_DEDUP_PRESENT=YES
+R11_READY_MANIFEST_TEMP_REWRITE_OS_REPLACE_PATTERN_PRESENT=YES
+R11_SMALL_DOCUMENT_READY_MANIFEST_ADMISSION=NO_IN_SOURCE_CONTRACT
+R11_SOURCE_METADATA_MODEL_USED=false
+R11_SOURCE_METADATA_AIL_USED=false
+R11_SOURCE_METADATA_VM_USED=false
+R11_SOURCE_METADATA_CANON_WRITTEN=false
+R11_RUNTIME_MANIFEST_WRITE=NOT_PROVEN_FROM_STATIC_SOURCE_TRANSCRIPT
 
 G3_D13B_HELDOUT_SURFACE_GENERALIZATION=PASS_IN_EXACT_3_SURFACE_METRIC_SCOPE
 G4_D20_CALIBRATED_UNCERTAINTY_PRECURSOR=YES
@@ -276,6 +290,45 @@ ROLLBACK_SCRIPT_TARGET_PRESENT != ROLLBACK_EXECUTED
 ```
 
 
+## Current R11 collector-only contract
+
+Latest static source transcript shows the collector ingress contract only:
+
+```text
+FULL_DOCUMENT -> documents/<sha256>.document
+FULL_PROVENANCE -> provenance/<sha256>.json
+READY_MANIFEST_RECORD -> SHA256<TAB>relative-path
+
+READY_MANIFEST_LOCK=.READY.manifest.lock
+READY_MANIFEST_LOCK_MODE=LOCK_EX
+READY_MANIFEST_DUPLICATE_DIGEST_FILTER=YES
+READY_MANIFEST_REWRITE=.READY.manifest.<pid>.tmp -> os.replace
+
+SMALL_DOCUMENT -> pending_small/documents/<sha256>.document
+SMALL_PROVENANCE -> pending_small/provenance/<sha256>.json
+SMALL_DOCUMENT_READY_MANIFEST_ADMISSION=NO
+```
+
+Collector provenance metadata in the shown source sets:
+
+```text
+semantic_summary_created=false
+model_used=false
+ail_used=false
+vm_used=false
+canon_written=false
+```
+
+Boundary:
+
+```text
+STATIC_SOURCE_CONTRACT != RUNTIME_PASS
+R11_COLLECTOR_DOCUMENT_WRITE != MODEL_LEARNING
+R11_STATUS_FED != CANONICAL_MODEL_ADMISSION
+READY_MANIFEST_SOURCE_LOCK != SECOND_WRITER_RUNTIME_REJECTION_PROOF
+```
+
+
 ## Current D57R repair task
 
 Do not re-audit learner architecture as part of this task. Current supplied coordination state:
@@ -405,6 +458,12 @@ C5V4 R7/R8 continuation:
 
 ```text
 NEXT_R7_R8_GATE=C5V4_R8_MULTI_CYCLE_RESTART_RETENTION_HASH_BINDING_AND_SEMANTIC_OBJECTIVE_PROGRESSION
+```
+
+R11 collector-only continuation:
+
+```text
+NEXT_R11_GATE=R11_RUNTIME_DOCUMENT_PROVENANCE_MANIFEST_ATOMICITY_AND_CONSUMER_HANDOFF_RECEIPT
 ```
 
 Printable token names alone do not establish runtime host/no-host values or runtime selection/generation. D55C2 exact 9-case recomputation does not establish general counterfactual or causal reasoning. D55C3 proves equivalence for 2 explicit reference records only; `D55C3_TOTAL_RECORDS=18` does not mean 18/18 records were compared to D18D1. The source-arity scan proves three D23 arity-2 representations exist and propagate in that exact lineage, while the same raw observation also appears in arity-1 lineages; therefore unified multi-source/source-arity semantics remain NOT_PROVEN. The newer train_002 D55C3 gate proves 4/4 explicit D18 receipt references match inside an artifact reporting 50 total records; it does not prove 50/50 equivalence or complete D18 reference-set coverage. `REP637` is observed as a gate label, but this transcript does not print the full SHA256. The latest D18 metric reports 9 query-aligned beliefs, 7 retaining OTHER_MATERIAL after query masking, 0 invalid, and 777 permille; no PASS/FAIL gate was printed, so none is invented. The latest G6 runtime shows native-VM fact-derived topic/query origination and native source selection with host topic/query/source/relevance substitution disabled in that exact invocation. However the generated topic is `this a`, the runtime itself marks general semantic gap detection/curiosity NOT_PROVEN_GENERAL, the 594-word Wikisource candidate was rejected below the 200000-word threshold, and the trailing `DISCOVERY native_` line is truncated; no later discovery or learning-admission result is inferred. The latest source-set receipt identifies `SIGMA_AUTOLEARN_SOURCE_SET_R1` with SHA256 `e098214d...efc5`, 2 sources, 35 train files, 5,500,047 word tokens, and `CONTENT_SHA_CHECK=PASS`; this proves corpus identity/integrity fields only, not training completion, model commit, retention, or cross-source synthesis. Newer R9 runtime evidence closes one bounded topic-guided research cycle: native topic-origin query, native-VM source-selection plane, selected-lesson training, EVAL_A/TRANSFER_B/JOINT improved, PROMOTE, weights committed, model SHA `58743fe5...675d1`, cycle rc 0, and direct hash/fingerprint continuity into Cycle 2 start. It does not prove G6 promotion or canonical-model replacement; active canonical model remains the separately proven D23/D25 model until a canonical admission receipt binds a replacement.
