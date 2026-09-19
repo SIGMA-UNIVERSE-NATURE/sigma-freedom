@@ -1,0 +1,5 @@
+# source_id<TAB>source_url<TAB>language<TAB>title<TAB>doc_type<TAB>license_status<TAB>acquisition_status
+VI_WIKISOURCE_LUC_VAN_TIEN_QN_2082	https://vi.wikisource.org/wiki/L%E1%BB%A5c_V%C3%A2n_Ti%C3%AAn_(b%E1%BA%A3n_Qu%E1%BB%91c_ng%E1%BB%AF_2082_c%C3%A2u)	vi	Lục Vân Tiên (bản Quốc ngữ 2082 câu)	HUMAN_WRITTEN_DOCUMENT	PUBLIC_DOMAIN_ORIGINAL_WIKISOURCE_CC_BY_SA_SITE_TEXT	MECHANICAL_WHOLE_WORK_EXPORT_REQUIRED
+EN_GUTENBERG_ALICE_11	https://www.gutenberg.org/cache/epub/11/pg11.txt	en	Alice's Adventures in Wonderland	HUMAN_WRITTEN_DOCUMENT	PUBLIC_DOMAIN_US	DIRECT_UTF8_TEXT_READY
+EN_GUTENBERG_SHERLOCK_48320	https://www.gutenberg.org/cache/epub/48320/pg48320.txt	en	The Adventures of Sherlock Holmes	HUMAN_WRITTEN_DOCUMENT	PUBLIC_DOMAIN_US	DIRECT_UTF8_TEXT_READY
+FR_GUTENBERG_CANDIDE_4650	https://www.gutenberg.org/ebooks/4650	fr	Candide, ou l'optimisme	HUMAN_WRITTEN_DOCUMENT	PUBLIC_DOMAIN_SOURCE_PAGE	DIRECT_TEXT_URL_RESOLUTION_REQUIRED
