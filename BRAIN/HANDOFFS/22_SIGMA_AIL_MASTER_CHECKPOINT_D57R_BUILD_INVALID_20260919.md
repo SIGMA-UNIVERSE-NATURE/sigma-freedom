@@ -1,0 +1,187 @@
+# SIGMA.AIL — MASTER CHECKPOINT 22 — D57R BUILD INVALID / COMPILER-DIAGNOSTIC NEXT
+
+CHECKPOINT_ID=SIGMA_AIL_MASTER_CHECKPOINT_22_D57R_BUILD_INVALID_20260919
+DATE=2026-09-19
+REPOSITORY=SIGMA-UNIVERSE-NATURE/sigma-freedom
+BRANCH=SIGMA_LIFE
+STATUS=ACTIVE_TASK_HANDOFF
+EVIDENCE_CLASS=USER_SUPPLIED_CROSS_WINDOW_HANDOFF_AND_QUOTED_MACHINE_STATUS
+
+## Runtime-truth boundary
+
+```text
+CHAT_SUMMARY_IS_RUNTIME_TRUTH=NO
+CHECKPOINT_TEXT_ALONE_IS_RUNTIME_TRUTH=NO
+CLAIM <= EVIDENCE
+DO_NOT_RECONSTRUCT_LEARNER_ARCHITECTURE_FROM_THIS_CHECKPOINT=YES
+```
+
+This checkpoint coordinates the current D57R repair task. It is not a new capability-admission result.
+
+## Operational architecture facts supplied by the handoff
+
+Do not re-audit these as part of the D57R repair task:
+
+```text
+LEARNER=C5V4_SIGMA_NATIVE
+ROLE_R11=COLLECTOR_ONLY_NO_MODEL_NO_AIL_NO_VM
+ROLE_C5V4=SOLE_LEARNER_SOLE_CANON_WRITER
+
+R7_LONG_DOCUMENT_CURRICULUM_RUNNING_STABLE=YES
+LONG_DOCUMENT_SEQUENTIAL_WEIGHT_LEARNING=PASS
+FINAL_WEIGHT_UPDATE=YES
+MODEL_UPDATE=YES
+WEIGHT_UPDATE=YES
+```
+
+Operational protection:
+
+```text
+DO_NOT_MODIFY_R7_LIVE_MODEL=YES
+DO_NOT_FORK_R7_LIVE_MODEL=YES
+DO_NOT_STOP_OR_REARCHITECT_R7_FOR_D57R=YES
+
+CANON_HEAD_PROMOTION_REQUIRES_SERIALIZED_ONE_WRITER=YES
+SHADOW_EXPERIMENT_MAY_RUN_SEPARATELY=YES
+SHADOW_MUST_NOT_MUTATE_LIVE_MODEL_OR_HEAD=YES
+```
+
+These fields are preserved as the supplied cross-window operational handoff. This checkpoint does not independently re-verify them.
+
+## Current D57R state
+
+Observed/supplied status:
+
+```text
+D57R_train_001=INVALID_NO_STATUS
+D57R_train_002=INVALID_NO_STATUS
+D57R_train_012=INVALID_NO_STATUS
+D57R_train_016=INVALID_NO_STATUS
+```
+
+Direct supplied cause:
+
+```text
+G3C_R3I_D57R_ROLE_CONDITIONED_SOURCE_OPERATOR.sigmab: No such file or directory
+```
+
+Therefore the valid interpretation is:
+
+```text
+D57R_BUILD=INVALID
+D57R_VM_EXECUTED=NO
+D57R_CAPABILITY_EVALUATED=NO
+D57R_CAPABILITY_FAILURE=NOT_ESTABLISHED
+```
+
+Mandatory inference boundary:
+
+```text
+INVALID_NO_STATUS != CAPABILITY_FAILURE
+MISSING_SIGMAB != ARCHITECTURE_FAILURE
+NO_VM_EXECUTION != NEGATIVE_CAPABILITY_RESULT
+```
+
+## Current task scope
+
+```text
+CURRENT_TASK=D57R_BUILD_SYNTAX_REPAIR_IN_EXISTING_SHADOW
+ARCHITECTURE_CHANGE=FORBIDDEN
+NEW_LEARNER_CREATION=FORBIDDEN
+ROLE_CONDITIONED_SOURCE_OPERATOR_ARCHITECTURE_CHANGE=FORBIDDEN
+LIVE_MODEL_MUTATION=FORBIDDEN
+HEAD_PROMOTION=FORBIDDEN
+PARENT_LINEAGE_CHANGE=FORBIDDEN
+HARDCODE_TRAIN_OR_EVAL_ANSWERS=FORBIDDEN
+```
+
+Target shadow root:
+
+```text
+/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/WORKSPACES/SCA7A3C3A6323/artifacts/SIGMA_SHADOW/experimental/D57R_GEN2_ROLE_CONDITIONED_SOURCE_OPERATOR/20260919_18135829098
+```
+
+Directory/session labels are not revision/generation proof.
+
+## Immediate next action — compile source directly and preserve raw compiler output
+
+Run exactly this bounded command:
+
+```bash
+cd "$HOME/SIGMA/sigma_genesis1" || exit 1
+
+D57RROOT="/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_ail/coordination/SESSION_R4/WORKSPACES/SCA7A3C3A6323/artifacts/SIGMA_SHADOW/experimental/D57R_GEN2_ROLE_CONDITIONED_SOURCE_OPERATOR/20260919_18135829098"
+
+SRC="$D57RROOT/G3C_R3I_D57R_ROLE_CONDITIONED_SOURCE_OPERATOR.sigma"
+BC="$D57RROOT/G3C_R3I_D57R_ROLE_CONDITIONED_SOURCE_OPERATOR.sigmab"
+
+printf 'SOURCE_EXISTS=%s\n' "$([ -f "$SRC" ] && echo YES || echo NO)"
+[ -f "$SRC" ] || exit 1
+
+rm -f "$BC"
+
+./native/sigmac "$SRC" "$BC"
+RC=$?
+
+echo "SIGMAC_RC=$RC"
+echo "SIGMAB_EXISTS=$([ -f "$BC" ] && echo YES || echo NO)"
+[ -f "$BC" ] && sha256sum "$BC"
+
+exit "$RC"
+```
+
+Required next evidence:
+
+```text
+SOURCE_EXISTS
+RAW_SIGMAC_STDOUT_STDERR
+SIGMAC_RC
+SIGMAB_EXISTS
+SIGMAB_SHA256_IF_CREATED
+```
+
+Do not edit source before preserving the raw compiler error from this exact compile attempt.
+
+## Syntax hypothesis — NOT A CONCLUSION
+
+Current hypothesis supplied by the handoff:
+
+```text
+POSSIBLE_CAUSE=IF(...)_USED_AS_EXPRESSION_INSIDE_STRING_CONCATENATION
+SIGMA_NATIVE_DIALECT_EXPECTS_IF_AS_STATEMENT=HYPOTHESIS
+HYPOTHESIS_CONFIRMED=NO
+```
+
+Do not treat this as root cause until compiler output localizes the error.
+
+## If compiler output confirms that syntax hypothesis
+
+Only then create a minimal D57R_FIX1:
+
+```text
+D57R_FIX1_SCOPE=SYNTAX_ONLY
+SEMANTICS_CHANGE=NO
+ROLE_CONDITIONED_OPERATOR_ARCHITECTURE_CHANGE=NO
+TRAIN_EVAL_ANSWER_HARDCODE=NO
+PARENT_LINEAGE_CHANGE=NO
+LIVE_C5V4_R7_MODEL_MUTATION=NO
+HEAD_PROMOTION=NO
+```
+
+Required transition:
+
+```text
+D57R_BUILD=INVALID
+-> D57R_BUILD=VALID
+-> D57R_VM_EXECUTED=YES
+-> SHADOW_PROBES
+-> ONLY_THEN_CAPABILITY_EVALUATION
+```
+
+## Current next gate
+
+```text
+NEXT_D57R_GATE=D57R_DIRECT_SIGMAC_DIAGNOSTIC_THEN_MINIMAL_SYNTAX_FIX_IF_CONFIRMED
+```
+
+Do not evaluate D57R capability until a valid `.sigmab` exists and the VM/probes actually execute.
