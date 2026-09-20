@@ -1,0 +1,89 @@
+# SIGMA.AIL — SIGMA-VKM Native Language Realization Selftest
+
+DATE=2026-09-20
+EVIDENCE_CLASS=USER_SUPPLIED_TERMUX_RUNTIME_TRANSCRIPT
+PRIMARY_CLASSIFICATION=G5_HUMAN_LANGUAGE_REALIZATION_PRECURSOR
+SECONDARY_CLASSIFICATION=G3_NARRATIVE_REALIZATION_PRECURSOR
+GENERATION_PROMOTION=NO
+
+## Runtime result
+
+```text
+VKM_SELFTEST_VM_RC=0
+VKM_LANGUAGE_REALIZATION EXECUTED
+
+SENTENCE_1=Sigma learns relations, retains contextual evidence, and evaluates transfer across domains.
+SENTENCE_2=When an update regresses, Sigma rejects the candidate, while preserving canonical lineage.
+
+PARAGRAPH=Sigma learns relations, retains contextual evidence, and evaluates transfer across domains. When an update regresses, Sigma rejects the candidate, while preserving canonical lineage.
+
+NATIVE_SENTENCE_REALIZATION=PASS
+NATIVE_PARAGRAPH_REALIZATION=PASS
+HOST_PARAPHRASE=NO
+SIGMA_VKM_NATIVE_LANGUAGE_SELFTEST=PASS
+```
+
+## Artifact identities
+
+```text
+VKM_SOURCE_SHA256=1f38db80bbadb1f9e30ec1f85ea164f0d27d93161fb7c8935891935aefd527b1
+VKM_BINARY_SHA256=0791205449dc0d8ff982b9eae39d2f7b516e4eb46bbf69ab36808c9ae41cbe1c
+VKM_SELFTEST_SOURCE_SHA256=549fb8a45c6249ebef941645c79e29a5c9bfeecb8afc984ceebc98cd13a2bc71
+VKM_SELFTEST_BYTECODE_SHA256=e8c97fa08cd976ec7d4e9b2e2a2e0ce425fc6ae04b8e6799054547ec01dbbd7b
+```
+
+Observed paths:
+
+```text
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/sigma_vkm.c
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/sigma-vkm
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/VKM_LANGUAGE_SELFTEST.sigma
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/VKM_LANGUAGE_SELFTEST.sigmab
+```
+
+Directory name `SIGMA_R7_NEXT_R1` is not interpreted as generation/revision promotion proof.
+
+## Production protection
+
+```text
+PRODUCTION_SIGMA_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+PRODUCTION_VM_MUTATION=NO
+PRODUCTION_CANON_MUTATION=NO
+VKM_PRODUCTION_CUTOVER=NO
+TERMUX_SHELL_CONTINUES=YES
+```
+
+The production VM hash matches the locked VM identity already tracked by SIGMA.AIL.
+
+## Scoped interpretation
+
+```text
+VKM_NATIVE_LANGUAGE_REALIZATION_EXECUTED=YES
+VKM_NATIVE_SENTENCE_REALIZATION=PASS_IN_EXACT_SELFTEST_SCOPE
+VKM_NATIVE_PARAGRAPH_REALIZATION=PASS_IN_EXACT_SELFTEST_SCOPE
+HOST_PARAPHRASE=NO_IN_EXACT_SELFTEST_SCOPE
+VKM_SELFTEST_VM_RC=0
+```
+
+## Critical boundary
+
+This selftest demonstrates realization of two fixed test sentences and their paragraph composition. It does not prove general language understanding or general free-form generation.
+
+```text
+GENERAL_NATIVE_LANGUAGE_GENERATION=NOT_PROVEN
+UNSEEN_SEMANTIC_TO_LANGUAGE_REALIZATION=NOT_PROVEN
+SIGMA_HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+SIGMA_VIETNAMESE_DEEP_UNDERSTANDING=NOT_PROVEN
+SIGMA_MULTILINGUAL_UNDERSTANDING=NOT_PROVEN
+SIGMA_INTENT_UNDERSTANDING=NOT_PROVEN
+SIGMA_EMOTION_RECOGNITION=NOT_PROVEN
+SIGMA_PERSPECTIVE_TAKING=NOT_PROVEN
+SIGMA_CONTEXTUAL_EMPATHIC_RESPONSE=NOT_PROVEN
+VKM_PRODUCTION_CUTOVER=NO
+G5_PROMOTION=NO
+CURRENT_GENERATION_REMAINS=G1
+```
+
+```text
+CLAIM_SCOPE=EXACT_SUPPLIED_TERMUX_RUNTIME_OUTPUT_ONLY
+```
