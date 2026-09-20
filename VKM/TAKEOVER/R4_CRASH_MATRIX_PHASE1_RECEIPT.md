@@ -1,0 +1,68 @@
+# SIGMA VKM R4 — Crash Consistency Matrix Phase 1 Receipt
+
+## Result
+
+SIGMA_R4_CRASH_MATRIX_PHASE1=PASS
+SIGMA_IDENTITY=ONE_SIGMA
+REAL_GENERATION=5
+REAL_CANONICAL_MUTATION=NO
+CRASH_TEST_TARGET=DISPOSABLE_MIRROR
+NEXT=R4_NATIVE_RECOVERY_ENGINE
+TERMUX_SHELL_CONTINUES=YES
+
+## Frozen generation-5 baseline
+
+BASE_GENERATION=5
+BASE_CANONICAL_SHA256=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+BASE_REPLAY_SHA256=614d420b945eeac49b66312ca28871a2f3ffd644adf010eed4815ff00d24811e
+
+Generation-6 candidate:
+CANDIDATE_SHA256=bc8455afe2923d05eba6576f0ae0c7b10e6290628fbae86a35ee35b0ea00878d
+
+## Crash matrix
+
+R4_CRASH_MATRIX_BUILD=PASS
+
+- complete=COMMITTED
+- replay_canonical=PARTIAL_REQUIRES_RECOVERY
+- replay_canonical_generation=PARTIAL_REQUIRES_RECOVERY
+- replay_only=PRE_COMMIT
+
+R4_STATE_CLASSIFICATION=PASS
+
+The matrix was executed against disposable mirrored state. The real generation-5 canonical/replay/generation state remained unchanged.
+
+## Recovery contract
+
+SCHEMA=SIGMA_VKM_CRASH_RECOVERY_R4
+SIGMA_IDENTITY=ONE_SIGMA
+
+COMMITTED_STATE_REQUIRES=CANONICAL+REPLAY+GENERATION+LINEAGE
+PARTIAL_TRANSACTION=NOT_CANONICAL
+RECOVERY_SOURCE=LAST_DURABLE_GENERATION
+
+RULE=NO_HALF_COMMIT_ACCEPTED
+RULE=LINEAGE_IS_COMMIT_COMPLETION_MARKER
+RULE=REPLAY_IS_PARENT_GENERATION
+RULE=RECOVERY_MUST_BE_IDEMPOTENT
+RULE=RECOVERY_MUST_NOT_REEXECUTE_ACCEPTED_LEARNING
+
+PRODUCTION_MUTATION=NO
+
+## Evidence SHA-256
+
+- base/canonical.memory: ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+- base/replay.memory: 614d420b945eeac49b66312ca28871a2f3ffd644adf010eed4815ff00d24811e
+- base/generation.txt: f0b5c2c2211c8d67ed15e75e656c7862d086e9245420892a7de62cd9ec582a06
+- base/lineage.memory: 9991207dd59e1f182baef33c7da5e99489a881e7e524cb3de08227e4d08a04c1
+- generation6.candidate.memory: bc8455afe2923d05eba6576f0ae0c7b10e6290628fbae86a35ee35b0ea00878d
+- R4_RECOVERY.contract: 53d37e6f19814c58cdef34398eb390ab9fda83963fcdeac7365e69999c91a107
+- sigma_transaction_r3.py: 98bb1729de37f7c40cb5081822c157811dce73193b26a8f0ef6939f7327b2abd
+- sigma-vkm: 0791205449dc0d8ff982b9eae39d2f7b516e4eb46bbf69ab36808c9ae41cbe1c
+- sigma-vm.v09_candidate: 029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+
+## Takeover boundary
+
+This is R4 Phase 1 proof only: crash-state construction, classification, and recovery policy. It does not yet prove execution of the native recovery engine and therefore does not transfer crash-recovery ownership.
+
+R4_REAL_STATE_UNTOUCHED=PASS
