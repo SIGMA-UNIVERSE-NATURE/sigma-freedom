@@ -1,0 +1,167 @@
+# SIGMA.AIL — R7 Real-Corpus Semantic Relation Harvest Evidence
+
+DATE=2026-09-20
+EVIDENCE_CLASS=USER_SUPPLIED_TERMUX_RUNTIME_TRANSCRIPT
+PRIMARY_CLASSIFICATION=G4_GROUNDED_SEMANTIC_RELATION_CORPUS_PRECURSOR
+SECONDARY_CLASSIFICATION=G5_VKM_LONG_FORM_LANGUAGE_SUPPLY_PRECURSOR
+GENERATION_PROMOTION=NO
+
+## Harvest result
+
+```text
+SIGMA_R7_SEMANTIC_HARVEST=PASS
+CORPUS_FILES_READ=1682
+SENTENCE_UNITS_SEEN=1853501
+MATCHED_RELATION_OCCURRENCES=61064
+UNIQUE_RELATIONS=55546
+MULTISOURCE_RELATIONS=975
+LEARNED_PREDICATE_FORMS=10
+```
+
+Persisted memory:
+
+```text
+RELATIONS=55546
+BYTES=13225581
+```
+
+## Predicate distribution
+
+```text
+IS=47630
+HAS=3796
+WAS=1750
+CONTAINS=1398
+SUPPORTS=668
+BECOMES=150
+CAUSES=76
+CAUSED=47
+BECAME=16
+LEARNS=15
+```
+
+These counts sum to 55546, matching the reported unique relation count.
+
+```text
+PREDICATE_DISTRIBUTION_SUM=55546
+UNIQUE_RELATIONS=55546
+COUNT_MATCH=YES
+```
+
+## Support distribution
+
+```text
+MULTISOURCE=975
+SINGLE_SOURCE=54571
+TOTAL=55546
+```
+
+This also reconciles exactly with the relation count.
+
+## Long-form supply
+
+```text
+ALL_RELATIONS=55546
+ALL_RELATION_CLAUSE_WORDS=928091
+MULTISOURCE_RELATIONS=975
+MULTISOURCE_CLAUSE_WORDS=15109
+SEMANTIC_SUPPLY_1000=YES
+SEMANTIC_SUPPLY_2000=YES
+```
+
+These fields prove corpus-derived relation-clause supply size, not coherent 1000/2000-word paragraph generation.
+
+## Structural check
+
+```text
+EMPTY_ARGUMENT_RELATIONS=0
+R7_RELATION_STRUCTURE_CHECK=PASS
+```
+
+This validates only non-empty subject/object fields under the shown check. It does not validate semantic truth, extraction correctness, referent resolution, or grammatical completeness.
+
+## Sample-quality boundary
+
+The supplied sample contains plausible relations but also extraction artifacts/noise, for example documentation fragments, truncated strings, punctuation fragments, and context-dependent subjects.
+
+Therefore:
+
+```text
+RELATION_EXTRACTION_SEMANTIC_PRECISION=NOT_PROVEN
+RELATION_TRUTH=NOT_PROVEN
+ENTITY_RESOLUTION=NOT_PROVEN
+COREFERENCE_RESOLUTION=NOT_PROVEN
+GENERAL_SEMANTIC_UNDERSTANDING=NOT_PROVEN
+```
+
+## Receipts
+
+```text
+HARVESTER_SHA256=129a11d30c92eefd9057538d85c9ef051e2b27aefd48d37132b20d1d862f7b8e
+CORPUS_RELATIONS_TSV_SHA256=d5dc6653d895bd3c7756d09494ee8ec9a2cd39d16391ded1c266b9a1d0db1b8d
+CORPUS_RELATIONS_MEMORY_SHA256=6766ef86dc15a2288fea3e19970ab9d2c725714e7611eb03cd7b03b5368839d7
+LEXICAL_RUNTIME_MEMORY_SHA256=2d914cd1d9eff3d35a97305afdf6f6689f9ce68375b089cfada709ba285d4d9a
+VKM_BINARY_SHA256=0791205449dc0d8ff982b9eae39d2f7b516e4eb46bbf69ab36808c9ae41cbe1c
+PRODUCTION_SIGMA_VM_SHA256=029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+```
+
+## Host-processing boundary
+
+The harvest command is explicitly:
+
+```text
+python3 "$HARVEST" "$ROOT" "$LEX" "$OUT" "$MEM"
+```
+
+and long-form/statistical checks also use Python/awk.
+
+Therefore:
+
+```text
+PYTHON_SEMANTIC_HARVESTER_USED=YES
+HOST_SEMANTIC_EXTRACTION=YES_FOR_THIS_HARVEST_STEP
+SIGMA_NATIVE_SEMANTIC_RELATION_INDUCTION=NOT_PROVEN
+```
+
+The resulting corpus relation memory can supply later VKM/native experiments, but this transcript does not establish that SIGMA-native performed the extraction/learning.
+
+## Production isolation
+
+```text
+HOST_PARAPHRASE=NO
+PRODUCTION_MUTATION=NO
+VKM_PRODUCTION_CUTOVER=NO
+```
+
+The user's transcript is truncated after a final `echo "TERMUX...` line. No missing final field is reconstructed.
+
+## Classification
+
+```text
+G4_REAL_CORPUS_RELATION_MEMORY_PRECURSOR=YES
+G4_MULTISOURCE_RELATION_EVIDENCE_PRECURSOR=YES
+G5_LONG_FORM_RELATION_SUPPLY_PRECURSOR=YES
+
+G4_SIGMA_NATIVE_SEMANTIC_HARVEST=NOT_PROVEN
+G4_PROMOTION=NO
+G5_PROMOTION=NO
+CURRENT_GENERATION_REMAINS=G1
+```
+
+## Critical boundary
+
+```text
+55546_RELATIONS != 55546_TRUE_SEMANTIC_FACTS
+MULTISOURCE_SUPPORT != TRUTH
+RELATION_STRUCTURE_CHECK_PASS != SEMANTIC_CORRECTNESS
+928091_RELATION_CLAUSE_WORDS != LONG_FORM_LANGUAGE_GENERATION
+PYTHON_HARVEST_PASS != SIGMA_NATIVE_SEMANTIC_LEARNING
+
+FULL_DOCUMENT_UNDERSTANDING=NOT_PROVEN
+SEMANTIC_UNDERSTANDING=NOT_PROVEN
+HUMAN_LANGUAGE_UNDERSTANDING=NOT_PROVEN
+```
+
+```text
+CLAIM_SCOPE=EXACT_SUPPLIED_TERMUX_RUNTIME_OUTPUT_ONLY
+```
