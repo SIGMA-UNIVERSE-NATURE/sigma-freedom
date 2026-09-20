@@ -1,0 +1,88 @@
+# SIGMA VKM R6 — Canonical Integration Bridge Mirror Receipt
+
+## Result
+
+SIGMA_R6_CANONICAL_INTEGRATION_MIRROR=PASS
+LEGACY_AIL_COMMIT_REQUIRED=NO
+R6_REAL_STATE_MUTATION=NO
+READY_FOR_R6_CALLSITE_TAKEOVER=YES
+SIGMA_IDENTITY=ONE_SIGMA
+CURRENT_REAL_GENERATION=5
+NEXT=R6_CALLSITE_TAKEOVER
+PRODUCTION_VM_MUTATION=NO
+VKM_PRODUCTION_CUTOVER=NO
+TERMUX_SHELL_CONTINUES=YES
+
+## Bridge execution
+
+R6_BRIDGE_RC=0
+
+The bridge executed the VKM R5 durable transaction path on a disposable integration mirror.
+
+### Durable transaction receipt
+
+SCHEMA=SIGMA_VKM_DURABLE_TRANSACTION_R5
+GENERATION_BEFORE=5
+PARENT_SHA256=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+CANDIDATE_SHA256=ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+ADDED_RELATIONS=1
+DELETED_RELATIONS=0
+UNKNOWN_PREDICATES=0
+DECISION=ACCEPT
+JOURNAL_PREPARED=YES
+ATOMIC_STATE_WRITES=PASS
+LINEAGE_DURABLE=YES
+JOURNAL_COMMITTED=YES
+POST_COMMIT_VERIFY=PASS
+GENERATION_AFTER=6
+CANONICAL_SHA256_AFTER=ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+REPLAY_SHA256_AFTER=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+RESULT=PASS
+
+### R6 bridge receipt
+
+SCHEMA=SIGMA_VKM_CANONICAL_BRIDGE_R6
+SIGMA_IDENTITY=ONE_SIGMA
+GENERATION_BEFORE=5
+GENERATION_AFTER=6
+CANONICAL_SHA256_BEFORE=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+CANONICAL_SHA256_AFTER=ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+LEGACY_AIL_COMMIT_USED=NO
+DURABLE_TRANSACTION_USED=YES
+RESULT=PASS
+
+## Assertions
+
+MIRROR_GENERATION=6
+MIRROR_CANONICAL_SHA256=ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+MIRROR_REPLAY_SHA256=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+
+The mirror candidate became canonical and the generation-5 canonical became replay. Journal commit and post-commit verification both passed.
+
+## Real-state isolation
+
+REAL_GENERATION=5
+R6_REAL_STATE_MUTATION=NO
+
+The real canonical, replay, generation, and lineage hashes remained equal to their captured pre-test identities.
+
+## Evidence SHA-256
+
+- sigma_canonical_bridge_r6.sh: 000c7cb65f33c09a73fdf0bf76e8d7331e97c81e32423e2f3a6923b4789e0737
+- sigma_durable_transaction_r5.py: 934425d1b743aa8d216c01bef6d591a424bbb96028b67833239e72e223cb4935
+- generation6.integration.candidate.memory: ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+- mirror canonical.memory: ebf22bdc114e9d97e4a0947d1718fd3b24d41a7386565d4cc98fafa73b113888
+- mirror replay.memory: ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+- mirror generation.txt: 06e9d52c1720fca412803e3b07c4b228ff113e303f4c7ab94665319d832bbfb7
+- mirror lineage.memory: 83d9108640f254c53efd7f9bbf2fdfe73c733f95fb5703719218db24bbcd1920
+- mirror transaction.journal: bbe4b53850c825d2f46813dd6ba9501534e6935da7360fd284fd3d0bc217a3b0
+- real canonical.memory: ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+- real replay.memory: 614d420b945eeac49b66312ca28871a2f3ffd644adf010eed4815ff00d24811e
+- real generation.txt: f0b5c2c2211c8d67ed15e75e656c7862d086e9245420892a7de62cd9ec582a06
+- real lineage.memory: 9991207dd59e1f182baef33c7da5e99489a881e7e524cb3de08227e4d08a04c1
+- sigma-vkm: 0791205449dc0d8ff982b9eae39d2f7b516e4eb46bbf69ab36808c9ae41cbe1c
+- sigma-vm.v09_candidate: 029ae4b6acbee5558f7663a732f8d39a970166e8488d2c4fe62414eb39391c99
+
+## Takeover boundary
+
+This proves the R6 canonical bridge can replace the legacy AIL commit operation on a disposable canonical-state mirror while using the VKM durable transaction protocol. It does not prove that the actual R7/R8 callsites have been patched or cut over. Callsite takeover remains the next checkpoint.
