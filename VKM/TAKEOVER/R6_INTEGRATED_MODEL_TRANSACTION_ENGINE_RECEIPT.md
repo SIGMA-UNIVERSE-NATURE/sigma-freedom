@@ -1,0 +1,50 @@
+# SIGMA VKM R6 — Integrated Model Transaction Engine Receipt
+
+SCHEMA=SIGMA_R6_INTEGRATED_MODEL_TRANSACTION_ENGINE
+RESULT=PASS
+SIGMA_IDENTITY=ONE_SIGMA
+
+PARENT_MODEL_SHA256=e6a74ece7ceddf757e2b909cf0a7e3062d16d95f2557ade74dc9e4b14ad4e8e7
+CANDIDATE_MODEL_SHA256=bf58d4a035106b3f564ac8c012fc4c2cc1daa5eccd96099feb263d638fd8ec82
+
+FRESH_PARENT_COMMIT_DISPOSABLE=PASS
+STALE_PARENT_REJECT=PASS
+PREPARED_RECOVERY_ROLLBACK=PASS
+PARTIAL_MODEL_WRITE_RECOVERY_ROLLBACK=PASS
+COMMITTED_MODEL_PRESERVATION=PASS
+
+REAL_MODEL_MUTATION=NO
+ONE_SIGMA_GENERATION=5
+ONE_SIGMA_STATE_MUTATION=NO
+LEGACY_AIL_COMMIT_USED=NO
+R6_OWNERSHIP_TAKEOVER=NO
+PRODUCTION_VM_MUTATION=NO
+
+ENGINE_SHA256=ea3ec5803d45e74473497b86fc92a6ca35018877e3bb7d66f6f17b4ec2846d4b
+NEXT=R6_OWNERSHIP_CONTRACT_OR_ACTIVATION_DRY_RUN
+
+## Integrated engine evidence
+
+- sigma_integrated_model_tx_r6.py: ea3ec5803d45e74473497b86fc92a6ca35018877e3bb7d66f6f17b4ec2846d4b
+- R6_INTEGRATED_MODEL_TRANSACTION_ENGINE.receipt: d0915ec77d282f768964766da7543fca069072d1f3c973bada1d82182d09a84e
+- real parent model.ail: e6a74ece7ceddf757e2b909cf0a7e3062d16d95f2557ade74dc9e4b14ad4e8e7
+- fresh candidate: bf58d4a035106b3f564ac8c012fc4c2cc1daa5eccd96099feb263d638fd8ec82
+- matrix/fresh/model.ail: bf58d4a035106b3f564ac8c012fc4c2cc1daa5eccd96099feb263d638fd8ec82
+- matrix/prepared/model.ail: e6a74ece7ceddf757e2b909cf0a7e3062d16d95f2557ade74dc9e4b14ad4e8e7
+- matrix/model_written/model.ail after recovery: e6a74ece7ceddf757e2b909cf0a7e3062d16d95f2557ade74dc9e4b14ad4e8e7
+- matrix/committed/model.ail: bf58d4a035106b3f564ac8c012fc4c2cc1daa5eccd96099feb263d638fd8ec82
+
+## Safety
+
+REAL_MODEL_SHA256=e6a74ece7ceddf757e2b909cf0a7e3062d16d95f2557ade74dc9e4b14ad4e8e7
+GENERATION=5
+CANONICAL_SHA256=ffb8d846540880f6f2669b39028a1f1aba187c984f927042c6c486a3009f4fb3
+MODEL_COMMIT_EXECUTED_REAL=NO
+ONE_SIGMA_STATE_MUTATION=NO
+
+## Boundary
+
+The integrated R6 model transaction engine now demonstrates disposable fresh-parent commit, stale-parent rejection, recovery of prepared and partial-write states, and preservation of committed state in one engine path. No real model commit or R6 ownership takeover occurred.
+
+NEXT=R6_OWNERSHIP_CONTRACT_OR_ACTIVATION_DRY_RUN
+TERMUX_SHELL_CONTINUES=YES
