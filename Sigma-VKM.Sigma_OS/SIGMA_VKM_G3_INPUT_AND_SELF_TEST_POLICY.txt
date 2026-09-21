@@ -1,0 +1,60 @@
+SIGMA-VKM / Sigma_OS
+Generation 3 — authoritative input and execution policy
+
+PREVIOUS_ACCEPTANCE
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_2_PASS
+NEXT=GENERATION_3_INSTRUCTION_REPRESENTATION_AND_DECODER
+
+AUTHORITATIVE_VM_SOURCE
+PATH=/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma
+SHA256=e211b2f34c61f1ea35c0369aad1874c149849b7963b2ff7baff0823235d3d034
+
+GENERATION_2_IMPLEMENTATION
+Generation 2 source contains the Sigma-defined VM machinery:
+vkm_machine_new
+vkm_program_append
+vkm_stack_push
+vkm_stack_pop
+vkm_fetch
+vkm_advance
+vkm_halt
+vkm_fail
+vkm_execute
+vkm_run
+
+CURRENT_DEF_INDEX_COUNT=17
+CURRENT_DEFS:
+H
+vkm_new
+vkm_register
+vkm_has
+vkm_state_set
+vkm_state_get
+vkm_bootstrap
+vkm_machine_new
+vkm_program_append
+vkm_stack_push
+vkm_stack_pop
+vkm_fetch
+vkm_advance
+vkm_halt
+vkm_fail
+vkm_execute
+vkm_run
+
+CURRENT_MAIN
+Σ.MAIN builds a machine, appends PUSH_1, PUSH_2, ADD, HALT, executes vkm_run, and checks execution, stack result 3, and halted state.
+
+CURRENT_STATUS
+SIGMA_VKM_G2=PASS
+STATUS=IN_PROGRESS
+NEXT=WRITE_G3_DIRECTLY_IN_SIGMA_VKM_SIGMA
+TERMUX_SHELL_CONTINUES=YES
+
+SAFETY_AND_ACCEPTANCE_POLICY
+Every completed source-code increment must be compiled and executed/tested using the actual Sigma-VKM toolchain/runtime.
+A source change is not considered accepted merely because it was written.
+Acceptance evidence must come from the real Sigma-VKM compile/execute result.
+Do not mark a generation or implementation step COMPLETE until its required Sigma-VKM tests pass.
+Preserve exact failure evidence when a test does not pass and fix the exact observed failure before advancing.
