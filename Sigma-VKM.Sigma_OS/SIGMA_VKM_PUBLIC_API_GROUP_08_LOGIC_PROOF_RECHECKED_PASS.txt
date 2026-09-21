@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 08 Logic/Proof acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G08_LOGIC_PROOF.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G08_LOGIC_NOT=PASS
+SIGMA_VKM_API_G08_LOGIC_AND=PASS
+SIGMA_VKM_API_G08_LOGIC_OR=PASS
+SIGMA_VKM_API_G08_LOGIC_IMPLIES=PASS
+SIGMA_VKM_API_G08_LOGIC_IFF=PASS
+SIGMA_VKM_API_G08_PROOF_MODUS_PONENS=PASS
+SIGMA_VKM_API_G08_PROOF_REJECT_BAD_MP=PASS
+SIGMA_VKM_API_G08_PROOF_CONTRADICTION=PASS
+SIGMA_VKM_API_G08_PROOF_CHECK_ALL=PASS
+SIGMA_VKM_API_G08_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=3ae0f91c4bb79fa20b40dae9062e1bc6af48efca6bef0b1207a0e3121b69117c
+OUT2_SHA256=3ae0f91c4bb79fa20b40dae9062e1bc6af48efca6bef0b1207a0e3121b69117c
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_08_LOGIC_PROOF_RECHECKED_PASS
+API_PROVEN=80/300
+API_REMAINING=220
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_08_HARDEN_THREE_RUNS_OR_GROUP_09
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence includes both positive proof behavior (modus ponens) and negative/rejection behavior (bad modus ponens), plus contradiction and aggregate proof checking. This is materially stronger than existence-only testing.
+
+HARDENING_RECOMMENDATION
+Before Group 09, a three-run property-level hardening suite is appropriate for Group 08 because proof logic is foundational. It should test truth-table identities, implication equivalence, contraposition where represented, invalid inference rejection, contradiction consistency, and composed multi-step proof behavior. Hardening must not increment API_PROVEN beyond 80/300.
