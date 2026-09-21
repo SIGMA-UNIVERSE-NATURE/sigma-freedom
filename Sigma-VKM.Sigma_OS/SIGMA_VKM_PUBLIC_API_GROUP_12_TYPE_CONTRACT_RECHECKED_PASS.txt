@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 12 Type/Contract acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G12_TYPE_CONTRACT.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G12_TYPE_OF=PASS
+SIGMA_VKM_API_G12_TYPE_TAG=PASS
+SIGMA_VKM_API_G12_TYPED_VALUE_GET=PASS
+SIGMA_VKM_API_G12_TYPED_VALUE_TYPE=PASS
+SIGMA_VKM_API_G12_CONTRACT_ACCEPTS=PASS
+SIGMA_VKM_API_G12_CONTRACT_RETURNS=PASS
+SIGMA_VKM_API_G12_CONTRACT_CHECK_OK=PASS
+SIGMA_VKM_API_G12_REJECT_BAD_INPUT=PASS
+SIGMA_VKM_API_G12_REJECT_BAD_OUTPUT=PASS
+SIGMA_VKM_API_G12_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=32f4306f436d2bdb7c81eff5775f1d19a68327e37fa390e389e811e4f512f505
+OUT2_SHA256=32f4306f436d2bdb7c81eff5775f1d19a68327e37fa390e389e811e4f512f505
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_12_TYPE_CONTRACT_RECHECKED_PASS
+API_PROVEN=120/300
+API_REMAINING=180
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_12_HARDEN_THREE_RUNS_OR_GROUP_13
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers type inspection/tagging, typed-value access/type identity, input/output contract declarations and successful checks, plus explicit rejection of invalid inputs and invalid outputs.
+
+HARDENING_RECOMMENDATION
+Type/contract enforcement is a safety boundary for later APIs. Prefer a three-run hardening suite covering nested typed values, contract composition, type-preserving transformations, repeated validation stability, null/boundary inputs, mismatch rejection without state corruption, and integration with unification/symbolic/proof components. Hardening must not increment API_PROVEN.
