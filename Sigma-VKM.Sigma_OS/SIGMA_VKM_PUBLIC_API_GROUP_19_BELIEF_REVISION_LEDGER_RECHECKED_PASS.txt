@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 19 Belief Revision/Ledger acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G19_BELIEF.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G19_BELIEF_NEW=PASS
+SIGMA_VKM_API_G19_BELIEF_CONFIDENCE=PASS
+SIGMA_VKM_API_G19_ATTACH_ANSWER=PASS
+SIGMA_VKM_API_G19_SUPPORTED_TRUE=PASS
+SIGMA_VKM_API_G19_UNSUPPORTED_REJECT=PASS
+SIGMA_VKM_API_G19_REVISION_HISTORY=PASS
+SIGMA_VKM_API_G19_REVISED_STATE=PASS
+SIGMA_VKM_API_G19_LEDGER_ADD_DUP_REJECT=PASS
+SIGMA_VKM_API_G19_LEDGER_GET=PASS
+SIGMA_VKM_API_G19_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=05bb0ca7f4b3d2ccad329a8ad31c01f9a51173cd3759ce2acb5de695458e0065
+OUT2_SHA256=05bb0ca7f4b3d2ccad329a8ad31c01f9a51173cd3759ce2acb5de695458e0065
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_19_BELIEF_REVISION_LEDGER_RECHECKED_PASS
+API_PROVEN=190/300
+API_REMAINING=110
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_19_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers belief construction/confidence, evidence-backed answer attachment, supported-state acceptance, unsupported-state rejection, revision history, revised state, duplicate-ledger rejection, ledger retrieval, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G19 hardening, stress monotonic revision-history accounting, confidence boundaries, repeated revision, unsupported evidence not mutating accepted belief state, duplicate-ledger atomicity, retrieval after multiple revisions, contradictory evidence handling if represented, provenance linkage to G18 answers, and deterministic replay of the same revision sequence. Hardening must not increment API_PROVEN.
