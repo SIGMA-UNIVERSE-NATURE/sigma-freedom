@@ -1,0 +1,31 @@
+SIGMA-VKM / Sigma_OS
+Generation 4 — real SIGMAB symbol table decoding acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G3.sigmab
+
+EXECUTE_G4_SYMBOLS_WITH_SIGMA_VKM
+SIGMA_VKM_G4_SYMBOL_TABLE=PASS
+SIGMA_VKM_G4_FIRST_SYMBOL=PASS
+SIGMA_VKM_G4_LAST_SYMBOL=PASS
+SIGMA_VKM_G4_SYMBOL_COUNT 110
+SIGMA_VKM_G4_SYMBOL_CURSOR_START 1500
+SIGMA_VKM_G4_SYMBOL_CURSOR_END 2709
+SIGMA_VKM_G4_FIRST_SYMBOL_VALUE H
+SIGMA_VKM_G4_LAST_SYMBOL_VALUE last
+
+ACCEPTANCE_COUNTS
+RC=0
+G4_PASS_COUNT=3
+G4_FAIL_COUNT=0
+
+ACCEPTANCE_RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_4_SYMBOL_TABLE_DECODING_PASS
+NEXT=GENERATION_4_FUNCTION_TABLE_AND_MAIN_CODE_DECODING
+TERMUX_SHELL_CONTINUES=YES
+
+TEST_POLICY_EVIDENCE
+The symbol-table decoder was compiled and executed/tested with the actual Sigma-VKM runtime.
+The acceptance output reports three G4 symbol checks passing and zero failures.
+This checkpoint marks symbol-table decoding complete; it does not claim completion of the remaining Generation 4 function-table/main-code decoding work.
