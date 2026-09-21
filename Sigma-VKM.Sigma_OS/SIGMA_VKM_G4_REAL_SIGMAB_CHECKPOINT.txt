@@ -1,0 +1,62 @@
+SIGMA-VKM / Sigma_OS
+Generation 4 — real SIGMAB loading and decoding checkpoint
+
+PREVIOUS_ACCEPTANCE
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_3_PASS
+NEXT=GENERATION_4_REAL_SIGMA_BYTECODE_LOADING_AND_DECODING
+TERMUX_SHELL_CONTINUES=YES
+
+G4_CHECKPOINT_SHA256
+SIGMA_VKM.sigma=f1c73335fa333f2eb48c2c7e01534a2195f5bd16e454a02f6bded303d2e08e7d
+sigmac_vkm.c=8cf81c586866c51cb1890a6f4499d4af26c2ecae298bb90d79167bce0a0b0b40
+sigma_vkm.c=141cd8d5ab5b212cb5e28d34f71b73a631fe5db6e0c258e1f11ee55477e8225a
+SIGMA_VKM_G3.sigmab=7b2ae8c1343f5e0901cfba021eadeb336b497bd8c3cb9b68a6b8ad0c7a78ec5b
+SIGMA_VKM_G3_SIGMAB_SIZE=5111
+
+BYTECODE_WRITER_EVIDENCE
+Compiler writes magic SIGMBC01 followed by ABI version fields.
+write_module writes constant_count and constants, symbols, function_count/functions, then main_code.
+Primitive integer writers w8/w16/w32/w64 serialize byte fields explicitly.
+String constants and symbols are length-prefixed.
+
+BYTECODE_LOADER_EVIDENCE
+VM verifies 8-byte magic SIGMBC01.
+VM reads constant_count and typed constants.
+VM reads symbols.
+VM reads function_count and function records.
+VM reads function code and main_code via read_code.
+VM rejects unknown opcodes and invalid constant indices.
+
+BINARY_HEADER_FIRST_128_BYTES
+53 49 47 4d 42 43 30 31 01 00 00 00 39 00 00 00
+04 07 00 00 00 6d 61 70 5f 6e 65 77 00 04 07 00
+00 00 6d 61 70 5f 73 65 74 04 04 00 00 00 6e 61
+6d 65 04 09 00 00 00 53 69 67 6d 61 2d 76 6b 6d
+04 08 00 00 00 6c 61 6e 67 75 61 67 65 04 05 00
+00 00 53 69 67 6d 61 04 05 00 00 00 73 74 61 74
+65 04 0c 00 00 00 63 61 70 61 62 69 6c 69 74 69
+65 73 04 07 00 00 00 6d 61 70 5f 67 65 74 04 07
+
+OBSERVED_HEADER_INTERPRETATION
+MAGIC=SIGMBC01
+ABI_MAJOR=1
+ABI_MINOR=0
+CONSTANT_COUNT_HEX=0x39
+CONSTANT_COUNT_DECIMAL=57
+
+G3_SOURCE_IDENTITY
+SOURCE_DEF_COUNT=23
+SOURCE_COMMAND_COUNT=1
+SOURCE_SHA256=f1c73335fa333f2eb48c2c7e01534a2195f5bd16e454a02f6bded303d2e08e7d
+
+CURRENT_STATUS
+SIGMA_VKM_G3=PASS
+G4=IN_PROGRESS
+G4_POLICY=REAL_SIGMAB_ONLY
+NEXT=DERIVE_EXACT_SIGMAB_LAYOUT_AND_IMPLEMENT_G4_IN_SIGMA_VKM_SIGMA
+TERMUX_SHELL_CONTINUES=YES
+
+ACCEPTANCE_POLICY
+G4 must operate against real .sigmab output. Synthetic/mock bytecode is not acceptance evidence.
+Any G4 source increment must be compiled and executed/tested with the actual Sigma-VKM toolchain/runtime before it can be marked COMPLETE.
