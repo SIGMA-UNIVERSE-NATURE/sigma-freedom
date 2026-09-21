@@ -1,0 +1,46 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 30 Export acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G30_EXPORT_FIX1.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G30_EXPORT_NEW=PASS
+SIGMA_VKM_API_G30_ENTRY_NEW=PASS
+SIGMA_VKM_API_G30_COUNT=PASS
+SIGMA_VKM_API_G30_GET=PASS
+SIGMA_VKM_API_G30_VALIDATE_READY=PASS
+SIGMA_VKM_API_G30_RENDER=PASS
+SIGMA_VKM_API_G30_TRACE=PASS
+SIGMA_VKM_API_G30_FROM_STORE=PASS
+SIGMA_VKM_API_G30_EMPTY_FAIL_CLOSED=PASS
+SIGMA_VKM_API_G30_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=1c5a6cd62037e08c63309b67d15682a98fd57d80935c324930891e19a37aea5b
+OUT2_SHA256=1c5a6cd62037e08c63309b67d15682a98fd57d80935c324930891e19a37aea5b
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_30_EXPORT_RECHECKED_PASS
+API_PROVEN=300/300
+API_REMAINING=0
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_30_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+MILESTONE
+PUBLIC_API_CATALOG_PROOF_COUNT=300/300
+ALL_30_GROUPS_HAVE_REACHED_NORMAL_PROOF_CHECKPOINT=YES
+FINAL_HARDENING_PENDING=G30_THREE_RUNS
+
+QUALITY_SCOPE
+Evidence covers export construction, entry construction, count/get, readiness validation, rendering, trace generation, store-to-export integration, empty-export fail-closed behavior, and the ten-public-API gate.
+
+PROOF_BOUNDARY
+This establishes the reported 300/300 public API acceptance count from the supplied execution evidence. The current phase should not be declared fully hardened until G30 completes its required three-run hardening checkpoint.
