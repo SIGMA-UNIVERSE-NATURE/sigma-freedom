@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 09 Theorem Graph acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G09_THEOREM_GRAPH.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G09_THEOREM_NEW_NAME=PASS
+SIGMA_VKM_API_G09_THEOREM_CLAIM=PASS
+SIGMA_VKM_API_G09_THEOREM_DEP=PASS
+SIGMA_VKM_API_G09_THEOREM_RULE=PASS
+SIGMA_VKM_API_G09_GRAPH_FIND=PASS
+SIGMA_VKM_API_G09_GRAPH_VERIFY=PASS
+SIGMA_VKM_API_G09_REJECT_MISSING_DEP=PASS
+SIGMA_VKM_API_G09_REJECT_FALSE_THEOREM=PASS
+SIGMA_VKM_API_G09_USES_G08_PROOF_KERNEL=PASS
+SIGMA_VKM_API_G09_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=0f9e7f7532dca784413c3c9713c23cc6321c869936a819e0826e91463bc3e98b
+OUT2_SHA256=0f9e7f7532dca784413c3c9713c23cc6321c869936a819e0826e91463bc3e98b
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_09_THEOREM_GRAPH_RECHECKED_PASS
+API_PROVEN=90/300
+API_REMAINING=210
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_09_HARDEN_THREE_RUNS_OR_GROUP_10
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers theorem identity/claim/dependency/rule representation, graph lookup and verification, rejection of missing dependencies and false theorems, and explicit integration with the G08 proof kernel.
+
+HARDENING_RECOMMENDATION
+Because theorem dependency graphs are foundational to later reasoning, Group 09 should preferably receive a three-run hardening suite before Group 10. Useful properties include multi-hop dependency closure, dependency ordering, cycle rejection/detection, missing-transitive-dependency rejection, proof-kernel disagreement rejection, independent theorem composition, and deterministic graph verification. Hardening must not increment API_PROVEN beyond 90/300.
