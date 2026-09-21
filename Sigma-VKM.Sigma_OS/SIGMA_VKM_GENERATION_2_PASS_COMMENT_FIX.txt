@@ -1,0 +1,50 @@
+SIGMA-VKM / Sigma_OS
+Generation 2 — source comment fix, compile, execution and acceptance evidence
+
+INITIAL_STATUS
+STATUS=IN_PROGRESS
+G2=NOT_PROVEN
+DOCUMENT_CORE=NOT_PROVEN
+SIGMAC_VKM_MAIN=FAILED
+NEXT=FIX_SIGMAC_VKM_EARLY_SOURCE_TERMINATION_OR_COMMAND_PARSING
+TERMUX_SHELL_CONTINUES=YES
+
+COMPILER_LEXER_OBSERVATION
+The inspected lexer recognizes // as a line comment only when it occurs after whitespace-only line prefix.
+The source still contained # comment lines after the language header.
+
+PRE_FIX_HASH_COMMENTS
+1:#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VKM][VERSION=1.0]
+61:# ============================================================
+62:# SIGMA-VKM GENERATION 2
+63:# Execution machinery implemented in Sigma.
+64:# ============================================================
+
+FIX
+A provenance copy of SIGMA_VKM.sigma was created before modification.
+Language header on line 1 was retained.
+Hash-prefixed comments from line 2 onward were converted to // comments.
+
+SOURCE_CHECK
+SOURCE_DEF_COUNT=17
+SOURCE_COMMAND_COUNT=1
+REMAINING_HASH_COMMENT:
+1:#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.VKM][VERSION=1.0]
+SOURCE_SHA256=e211b2f34c61f1ea35c0369aad1874c149849b7963b2ff7baff0823235d3d034
+
+COMPILE_G2
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G2.sigmab
+
+EXECUTE_G2
+SIGMA_VKM_G2_EXECUTION=PASS
+SIGMA_VKM_G2_STACK=PASS
+SIGMA_VKM_G2_HALT=PASS
+
+RC=0
+G2_PASS_COUNT=3
+G2_FAIL_COUNT=0
+
+ACCEPTANCE
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_2_PASS
+NEXT=GENERATION_3_INSTRUCTION_REPRESENTATION_AND_DECODER
