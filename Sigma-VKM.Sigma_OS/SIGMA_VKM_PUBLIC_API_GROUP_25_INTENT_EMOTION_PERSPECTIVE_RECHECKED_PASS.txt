@@ -1,0 +1,44 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 25 Intent / Emotion / Perspective acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G25_PERSPECTIVE.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G25_INTENT_NEW=PASS
+SIGMA_VKM_API_G25_INTENT_MATCHES=PASS
+SIGMA_VKM_API_G25_EMOTION_NEW=PASS
+SIGMA_VKM_API_G25_EMOTION_THRESHOLD=PASS
+SIGMA_VKM_API_G25_PERSPECTIVE_SUPPORTED=PASS
+SIGMA_VKM_API_G25_UNSUPPORTED_REJECT=PASS
+SIGMA_VKM_API_G25_RESPONSE_PLAN_READY=PASS
+SIGMA_VKM_API_G25_RESPONSE_PLAN_REJECT=PASS
+SIGMA_VKM_API_G25_EMPATHIC_TRACE=PASS
+SIGMA_VKM_API_G25_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=9d648b07e099bc23282a281385ff8f980dd96cd7dc3e48ebd3e9217a33a40aeb
+OUT2_SHA256=9d648b07e099bc23282a281385ff8f980dd96cd7dc3e48ebd3e9217a33a40aeb
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_25_INTENT_EMOTION_PERSPECTIVE_RECHECKED_PASS
+API_PROVEN=250/300
+API_REMAINING=50
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_25_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers intent construction/matching, emotion-state construction and threshold behavior, supported-perspective acceptance, unsupported-perspective rejection, response-plan ready/reject paths, trace generation, and the ten-public-API gate.
+
+PROOF_BOUNDARY
+These tests establish the specified program semantics. They do not by themselves establish human-like emotion, empathy, consciousness, or subjective experience.
+
+HARDENING_RECOMMENDATION
+For G25 hardening, stress intent ambiguity, mismatched intent rejection, emotion threshold exact boundaries, unsupported perspective remaining fail-closed, conflicting evidence, response-plan non-mutation after rejection, trace consistency, deterministic classification, and evidence/provenance links to G17-G19. Hardening must not increment API_PROVEN.
