@@ -1,0 +1,45 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 14 Inference Scheduler acceptance evidence
+
+FIX_CONTEXT
+Previous G14 attempt was HOLD with runtime error: undefined function api_expr_operator.
+This FIX5 evidence supersedes that failed attempt for Group 14 acceptance.
+
+COMPILE_ARTIFACT
+/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G14_FIX5.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G14_AGENDA_NEW=PASS
+SIGMA_VKM_API_G14_AGENDA_ENQUEUE=PASS
+SIGMA_VKM_API_G14_AGENDA_NEXT=PASS
+SIGMA_VKM_API_G14_AGENDA_EMPTY=PASS
+SIGMA_VKM_API_G14_STATE_NEW=PASS
+SIGMA_VKM_API_G14_INFERENCE_STEP=PASS
+SIGMA_VKM_API_G14_DONE_AND_STEP_COUNT=PASS
+SIGMA_VKM_API_G14_RUN_BOUNDED_OK=PASS
+SIGMA_VKM_API_G14_RUN_BOUNDED_LIMIT=PASS
+SIGMA_VKM_API_G14_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=c43ca6e2a23b625ca4af44f4f10cbcc25a0e226ac23b893ec9f612a8ae73f262
+OUT2_SHA256=c43ca6e2a23b625ca4af44f4f10cbcc25a0e226ac23b893ec9f612a8ae73f262
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_14_INFERENCE_SCHEDULER_RECHECKED_PASS
+API_PROVEN=140/300
+API_REMAINING=160
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_14_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The repaired G14 suite now reaches and passes all ten acceptance checks. Evidence covers agenda creation/enqueue/dequeue/empty behavior, inference-state creation, an inference step, completion/step accounting, bounded execution success, and bounded-limit handling.
+
+HARDENING_RECOMMENDATION
+The required G14 hardening should stress deterministic agenda ordering, repeated empty reads, step-limit exact boundaries (0/1/N), no progress after DONE, state integrity when a rule cannot fire, bounded termination under cyclic/requeued work, trace/step-count consistency, and integration with G13 rule-engine behavior. Hardening must not increment API_PROVEN beyond 140/300.
