@@ -1,0 +1,26 @@
+SIGMA_VKM_API_FINAL_PROVEN_LOCK
+
+SOURCE
+SRC=/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma
+SRC_SHA256=151987ea7e85bf040384a158e7bc86c04b61c18aec99c91c04a162ae5f605c6b
+
+FINAL_G30_HARDENING
+G30_HARD_OUT1_SHA256=765cbba75a687358826230db4d5f761d2bbbc35b311b0941f55c97316fffd4c7
+G30_HARD_OUT2_SHA256=765cbba75a687358826230db4d5f761d2bbbc35b311b0941f55c97316fffd4c7
+G30_HARD_OUT3_SHA256=765cbba75a687358826230db4d5f761d2bbbc35b311b0941f55c97316fffd4c7
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+PASS3=10
+FAIL3=0
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_API_FINAL_PROVEN_LOCK
+API_PROVEN=300/300
+API_REMAINING=0
+NEXT=SIGMA_VKM_R7_NEXT_R1_PUBLIC_API_300_COMPLETE
+
+LOCK_POLICY
+The 1-300 public API phase is frozen at the supplied source identity above. APIs 301+ are a new extension phase and must not retroactively change the meaning of the 300/300 lock. Any source change after this lock requires regression evidence against the locked 1-300 contract.
