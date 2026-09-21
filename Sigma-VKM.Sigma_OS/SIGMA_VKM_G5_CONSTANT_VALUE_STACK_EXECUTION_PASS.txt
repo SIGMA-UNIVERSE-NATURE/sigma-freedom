@@ -1,0 +1,32 @@
+SIGMA-VKM / Sigma_OS
+Generation 5 — constant value stack execution acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G5_STACK.sigmab
+
+RUN_G5_STACK
+SIGMA_VKM_G5_PUSH_CONST_OPCODE=PASS
+SIGMA_VKM_G5_CONST_OPERAND=PASS
+SIGMA_VKM_G5_STACK_EXECUTION=PASS
+SIGMA_VKM_G5_MAIN_CODE_COUNT 4
+SIGMA_VKM_G5_FIRST_OPCODE_VALUE 1
+SIGMA_VKM_G5_CONST_OPERAND_VALUE 0
+SIGMA_VKM_G5_STACK_TOP G5_TINY_INPUT=OK
+
+ACCEPTANCE_COUNTS
+RC=0
+G5_PASS_COUNT=3
+G5_FAIL_COUNT=0
+
+ACCEPTANCE_RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_5_CONSTANT_VALUE_STACK_EXECUTION_PASS
+NEXT=GENERATION_5_CALL_PRINT_EXECUTION
+TERMUX_SHELL_CONTINUES=YES
+
+SCOPE
+This checkpoint proves the Generation 5 PUSH_CONST operand decoding and constant-value stack execution step.
+It does not claim all Generation 5 interpreter behavior is complete.
+
+TEST_POLICY_EVIDENCE
+The source was compiled into a real .sigmab and executed with the actual Sigma-VKM runtime before this checkpoint was recorded as COMPLETE.
