@@ -1,0 +1,43 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 15 Document Index/Retrieval acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G15_INDEX_FIX1.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G15_INDEX_NEW=PASS
+SIGMA_VKM_API_G15_ADD_DOC_COUNT=PASS
+SIGMA_VKM_API_G15_TOKENIZE_NORMALIZE=PASS
+SIGMA_VKM_API_G15_HAS_DOC=PASS
+SIGMA_VKM_API_G15_DOC_TEXT=PASS
+SIGMA_VKM_API_G15_TERM_FREQUENCY=PASS
+SIGMA_VKM_API_G15_SEARCH_MULTI_DOC=PASS
+SIGMA_VKM_API_G15_SEARCH_MEMORY=PASS
+SIGMA_VKM_API_G15_SEARCH_ABSENT_EMPTY=PASS
+SIGMA_VKM_API_G15_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=9814baacaaea310e68e01f0c6be1991c168489735725b2f3b3028163e268e903
+OUT2_SHA256=9814baacaaea310e68e01f0c6be1991c168489735725b2f3b3028163e268e903
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_15_DOCUMENT_INDEX_RETRIEVAL_RECHECKED_PASS
+API_PROVEN=150/300
+API_REMAINING=150
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_15_HARDEN_THREE_RUNS
+
+MILESTONE
+HALF_OF_300_PUBLIC_APIS_PROVEN=YES
+
+QUALITY_SCOPE
+The supplied evidence covers index construction, document insertion/counting, token normalization, document existence/text retrieval, term frequency, multi-document search, memory-related search, absent-term empty results, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G15 hardening, stress duplicate document IDs/updates, repeated-token frequency, case/whitespace/Unicode normalization boundaries, stable result ordering for ties, multi-term queries, empty documents, empty queries, absent documents, index integrity after failed operations, and retrieval determinism across three runs. Hardening must not increment API_PROVEN.
