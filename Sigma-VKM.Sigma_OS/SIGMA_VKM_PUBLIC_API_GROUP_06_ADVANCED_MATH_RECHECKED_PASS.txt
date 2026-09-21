@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 06 Advanced Math acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G06_ADVANCED_MATH.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G06_VEC2_DOT=PASS
+SIGMA_VKM_API_G06_VEC2_NORM2=PASS
+SIGMA_VKM_API_G06_MAT2_DET=PASS
+SIGMA_VKM_API_G06_MAT2_MUL=PASS
+SIGMA_VKM_API_G06_MAT2_APPLY=PASS
+SIGMA_VKM_API_G06_POLY_EVAL=PASS
+SIGMA_VKM_API_G06_INTEGRAL_TRAPEZOID=PASS
+SIGMA_VKM_API_G06_DERIVATIVE_CENTRAL=PASS
+SIGMA_VKM_API_G06_TOPO_BOUNDARY=PASS
+SIGMA_VKM_API_G06_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=578e397138f11d305ed621c47fd05ec27f8f214d3d50ebe107256c71f3c2ebb7
+OUT2_SHA256=578e397138f11d305ed621c47fd05ec27f8f214d3d50ebe107256c71f3c2ebb7
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_06_ADVANCED_MATH_RECHECKED_PASS
+API_PROVEN=60/300
+API_REMAINING=240
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_07_TOPOLOGY
+TERMUX_SHELL_CONTINUES=YES
+
+PROOF_SCOPE
+The supplied acceptance evidence covers vector dot/norm, 2x2 determinant/multiplication/application, polynomial evaluation, trapezoidal integration, central derivative, topology boundary behavior, and the group public-API-count gate.
+
+QUALITY_GATE
+This checkpoint records only the empirical claims shown by the supplied tests. Group 07 and later groups remain subject to the strict proof policy: concrete expected values/state transitions, nontrivial boundary/error cases where applicable, regression checks, and deterministic rechecks. A printed PASS without behavioral evidence is insufficient.
