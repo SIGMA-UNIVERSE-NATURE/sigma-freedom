@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 18 Evidence-Backed Answer acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G18_ANSWER.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G18_CLAIM_NEW=PASS
+SIGMA_VKM_API_G18_ANSWER_NEW=PASS
+SIGMA_VKM_API_G18_ADD_EVIDENCE=PASS
+SIGMA_VKM_API_G18_TOTAL_SCORE=PASS
+SIGMA_VKM_API_G18_SUPPORTED_GATE=PASS
+SIGMA_VKM_API_G18_UNSUPPORTED_GATE=PASS
+SIGMA_VKM_API_G18_CITATION_LIST=PASS
+SIGMA_VKM_API_G18_CONTEXT_BUNDLE=PASS
+SIGMA_VKM_API_G18_TRACE=PASS
+SIGMA_VKM_API_G18_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=c88060f4721a30c680573b83dac399006e68da7ee8e79b13cace218631b6d76e
+OUT2_SHA256=c88060f4721a30c680573b83dac399006e68da7ee8e79b13cace218631b6d76e
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_18_EVIDENCE_BACKED_ANSWER_RECHECKED_PASS
+API_PROVEN=180/300
+API_REMAINING=120
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_18_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers claim and answer construction, evidence attachment, aggregate scoring, supported and unsupported gates, citation lists, context bundles, traces, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G18 hardening, test evidence-order invariance where semantics require it, exact support-threshold boundaries, mixed supporting/weak evidence, duplicate citation handling, unsupported answers carrying no false support, citation-to-context consistency, score recomputation after evidence changes, trace completeness, empty evidence, and cross-layer integrity with G17 evidence collection and G16 retrieval scoring. Hardening must not increment API_PROVEN.
