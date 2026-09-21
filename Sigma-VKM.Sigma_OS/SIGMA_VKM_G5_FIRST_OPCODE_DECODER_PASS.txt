@@ -1,0 +1,30 @@
+SIGMA-VKM / Sigma_OS
+Generation 5 — first opcode decoder acceptance evidence
+
+COMPILE_G5
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G5.sigmab
+
+RUN_G5
+SIGMA_VKM_G5_MAIN_LOCATED=PASS
+SIGMA_VKM_G5_FIRST_OPCODE=PASS
+SIGMA_VKM_G5_MAIN_CODE_COUNT 4
+SIGMA_VKM_G5_FIRST_OPCODE_VALUE 1
+
+ACCEPTANCE_COUNTS
+RC=0
+G5_PASS_COUNT=2
+G5_FAIL_COUNT=0
+
+ACCEPTANCE_RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_5_FIRST_OPCODE_DECODER_PASS
+NEXT=GENERATION_5_CONSTANT_VALUE_STACK_EXECUTION
+TERMUX_SHELL_CONTINUES=YES
+
+SCOPE
+This checkpoint proves the Generation 5 first-opcode decoder step only.
+It does not claim the whole Generation 5 interpreter is complete.
+The next required step is constant-value stack execution.
+
+TEST_POLICY_EVIDENCE
+The source was compiled into SIGMA_VKM_G5.sigmab and executed with the actual Sigma-VKM runtime before this checkpoint was recorded as COMPLETE.
