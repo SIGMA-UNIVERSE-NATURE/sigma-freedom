@@ -1,0 +1,31 @@
+SIGMA-VKM / Sigma_OS
+Generation 3 — instruction representation and decoder acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G3.sigmab
+
+EXECUTE_WITH_SIGMA_VKM
+SIGMA_VKM_G3_OPCODE=PASS
+SIGMA_VKM_G3_OPERAND=PASS
+SIGMA_VKM_G2_EXECUTION=PASS
+SIGMA_VKM_G2_STACK=PASS
+SIGMA_VKM_G3_EXECUTION=PASS
+SIGMA_VKM_G2_HALT=PASS
+SIGMA_VKM_G3_HALT=PASS
+
+ACCEPTANCE_COUNTS
+RC=0
+G2_REGRESSION_PASS_COUNT=3
+G2_REGRESSION_FAIL_COUNT=0
+G3_PASS_COUNT=4
+G3_FAIL_COUNT=0
+
+ACCEPTANCE_RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_GENERATION_3_PASS
+NEXT=GENERATION_4_REAL_SIGMA_BYTECODE_LOADING_AND_DECODING
+TERMUX_SHELL_CONTINUES=YES
+
+TEST_POLICY_EVIDENCE
+Generation 3 was compiled and executed with the actual Sigma-VKM toolchain/runtime before being recorded as COMPLETE.
+Generation 2 regression checks remained passing.
