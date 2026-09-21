@@ -1,0 +1,131 @@
+SIGMA-VKM / Sigma_OS
+Generation 4 — exact SIGMBC01 ABI/layout evidence before Sigma decoder implementation
+
+COMPILER_ABI
+OP_PUSH_CONST=0x01
+OP_POP=0x02
+OP_LOAD=0x10
+OP_STORE=0x11
+OP_UNARY=0x20
+OP_BINARY=0x21
+OP_CALL=0x30
+OP_RETURN=0x31
+OP_JUMP=0x40
+OP_JUMP_IF_FALSE=0x41
+OP_HALT=0xFF
+
+UNARY
+U_NOT=0x01
+U_NEG=0x02
+U_POS=0x03
+
+BINARY
+B_ADD=0x01
+B_SUB=0x02
+B_MUL=0x03
+B_DIV=0x04
+B_FLOORDIV=0x05
+B_MOD=0x06
+B_POW=0x07
+B_EQ=0x10
+B_NE=0x11
+B_LT=0x12
+B_GT=0x13
+B_LE=0x14
+B_GE=0x15
+B_AND=0x20
+B_OR=0x21
+
+CONSTANT_TAGS
+TAG_NULL=0x00
+TAG_BOOL=0x01
+TAG_INT=0x02
+TAG_FLOAT=0x03
+TAG_STR=0x04
+
+SERIALIZATION_ENDIANNESS
+w16/w32/w64 emit least-significant byte first.
+SIGMBC01 numeric fields are therefore little-endian in the observed ABI implementation.
+
+MODULE_LAYOUT
+magic[8]="SIGMBC01"
+abi_major:u16
+abi_minor:u16
+constant_count:u32
+constants[constant_count]
+symbol_count:u32
+symbols[symbol_count]
+function_count:u32
+functions[function_count]
+main_code
+
+CONSTANT_LAYOUT
+NULL:  tag:u8
+BOOL:  tag:u8 + boolean:u8
+INT:   tag:u8 + raw signed-int64 bits as u64 little-endian
+FLOAT: tag:u8 + raw double bits as u64 little-endian
+STR:   tag:u8 + length:u32 + UTF-8/raw string bytes
+
+SYMBOL_LAYOUT
+length:u32 + symbol bytes
+
+FUNCTION_LAYOUT
+name_sym:u32
+param_count:u16
+params[param_count]:u32
+code
+
+CODE_LAYOUT
+instruction_count:u32
+instructions[instruction_count]
+
+INSTRUCTION_LAYOUT
+OP_PUSH_CONST / OP_LOAD / OP_STORE / OP_JUMP / OP_JUMP_IF_FALSE:
+  opcode:u8 + a:u32
+OP_UNARY / OP_BINARY:
+  opcode:u8 + subtype:u8
+OP_CALL:
+  opcode:u8 + symbol:u32 + argc:u16
+OP_POP / OP_RETURN / OP_HALT:
+  opcode:u8 only
+
+RUNTIME_READER_MATCH
+Runtime r8/r16/r32/r64 reads the same little-endian encoding.
+Runtime validates magic SIGMBC01 and ABI major=1, minor<=0.
+Runtime reads constants, symbols, functions, function code, and main code in the same order emitted by compiler.
+Runtime read_code rejects unknown opcodes.
+
+AVAILABLE_SIGMA_HOST_BYTE_PRIMITIVES
+bytes_new
+bytes_len
+bytes_get
+read_bytes
+bytes_slice_string
+bytes_u8
+bytes_u16
+bytes_u32
+bytes_i64
+bytes_f64
+bytes_get_f64
+bytes_raw_utf8
+bytes_find_byte
+bytes_concat
+bytes_slice
+bytes_write
+file_exists
+
+REAL_G3_SIGMAB
+PATH=/data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_G3.sigmab
+SIZE=5111
+SHA256=7b2ae8c1343f5e0901cfba021eadeb336b497bd8c3cb9b68a6b8ad0c7a78ec5b
+
+CURRENT_STATUS
+STATUS=IN_PROGRESS
+G4=NOT_PROVEN
+G4_INPUT=REAL_SIGMAB
+NEXT=IMPLEMENT_EXACT_SIGMBC01_DECODER_IN_SIGMA
+TERMUX_SHELL_CONTINUES=YES
+
+ACCEPTANCE_GATE
+This ABI derivation is evidence/input only; it does not prove G4.
+G4 remains NOT_PROVEN until the decoder is implemented in Sigma and the completed source is compiled and executed/tested using the actual Sigma-VKM toolchain/runtime against real SIGMBC01 bytecode.
