@@ -1,0 +1,49 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 20 Knowledge Gap / Study Planner acceptance evidence
+
+FIX_CONTEXT
+Previous G20 attempt was HOLD with runtime error: SIGMA host: invalid object handle (RC=21).
+This FIX1 run reaches and passes the complete supplied G20 acceptance suite.
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G20_GAP_FIX1.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G20_GAP_FROM_BELIEF=PASS
+SIGMA_VKM_API_G20_SUPPORTED_BELIEF_NO_GAP=PASS
+SIGMA_VKM_API_G20_GAP_LIST_FROM_LEDGER=PASS
+SIGMA_VKM_API_G20_SELECT_HIGHEST=PASS
+SIGMA_VKM_API_G20_GAP_TO_QUERY=PASS
+SIGMA_VKM_API_G20_STUDY_PLAN_NEW=PASS
+SIGMA_VKM_API_G20_STUDY_PLAN_ADD=PASS
+SIGMA_VKM_API_G20_STUDY_PLAN_NEXT=PASS
+SIGMA_VKM_API_G20_GAP_CLOSE=PASS
+SIGMA_VKM_API_G20_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=4f4b4ba69d5386e7e278aa904f37d671c7830c3c8f50297f86fc1bc57bd04879
+OUT2_SHA256=4f4b4ba69d5386e7e278aa904f37d671c7830c3c8f50297f86fc1bc57bd04879
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_20_KNOWLEDGE_GAP_STUDY_PLANNER_RECHECKED_PASS
+API_PROVEN=200/300
+API_REMAINING=100
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_20_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+MILESTONE
+TWO_HUNDRED_PUBLIC_APIS_PROVEN=YES
+PROVEN_FRACTION=200/300
+
+QUALITY_SCOPE
+The repaired suite covers deriving a knowledge gap from belief state, no-gap behavior for supported beliefs, gap extraction from the ledger, priority selection, gap-to-query conversion, study-plan construction/addition/next selection, gap closure, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G20 hardening, stress multiple competing gaps and deterministic priority ties, supported/unsupported transitions, closed-gap removal from future plans, empty-ledger/no-gap behavior, repeated close idempotence, study-plan exhaustion, query provenance back to the originating belief/gap, ledger mutation after plan creation, and cross-layer integrity with G19 belief revision and G16-G18 retrieval/evidence/answer layers. Hardening must not increment API_PROVEN.
