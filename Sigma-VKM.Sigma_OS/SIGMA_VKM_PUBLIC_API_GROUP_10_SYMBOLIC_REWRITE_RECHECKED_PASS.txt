@@ -1,0 +1,45 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 10 Symbolic/Rewrite acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G10_SYMBOLIC.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G10_EXPR_ATOM_CONST=PASS
+SIGMA_VKM_API_G10_EXPR_BINARY=PASS
+SIGMA_VKM_API_G10_EXPR_ACCESSORS=PASS
+SIGMA_VKM_API_G10_EVAL_ADD=PASS
+SIGMA_VKM_API_G10_EVAL_MUL=PASS
+SIGMA_VKM_API_G10_REWRITE_ADD_ZERO=PASS
+SIGMA_VKM_API_G10_REWRITE_MUL_ONE=PASS
+SIGMA_VKM_API_G10_REWRITE_COMMUTE_ADD=PASS
+SIGMA_VKM_API_G10_REJECT_UNKNOWN_OPERATOR=PASS
+SIGMA_VKM_API_G10_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=52ee5331802c01b4253d30b1d983f31b361eaff11bf3252716670bf834c025b9
+OUT2_SHA256=52ee5331802c01b4253d30b1d983f31b361eaff11bf3252716670bf834c025b9
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_10_SYMBOLIC_REWRITE_RECHECKED_PASS
+API_PROVEN=100/300
+API_REMAINING=200
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_10_HARDEN_THREE_RUNS_OR_GROUP_11
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers symbolic expression construction/access, arithmetic evaluation, algebraic rewrite identities, commutative addition rewrite, unknown-operator rejection, and the ten-public-API gate.
+
+MILESTONE
+ONE_HUNDRED_PUBLIC_APIS_PROVEN=YES
+PROVEN_FRACTION=100/300
+
+HARDENING_RECOMMENDATION
+Because symbolic rewriting will feed later reasoning/planning components, hardening should test nested expressions, rewrite idempotence/fixed points, semantic preservation before/after rewrite, composition of multiple rewrite rules, malformed expression rejection, and deterministic normalization. Hardening must not increment the API counter.
