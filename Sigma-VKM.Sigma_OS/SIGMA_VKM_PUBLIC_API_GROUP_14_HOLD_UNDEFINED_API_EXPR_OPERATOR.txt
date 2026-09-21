@@ -1,0 +1,42 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 14 HOLD evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G14_FIX1.sigmab
+
+RUN_1
+SIGMA_VKM_API_G14_AGENDA_NEW=PASS
+SIGMA_VKM_API_G14_AGENDA_ENQUEUE=PASS
+SIGMA C VM: undefined function api_expr_operator
+RC1=8
+PASS1=2
+FAIL1=0
+OUT1_SHA256=1d6924c075f3424b673da065b24a46f05dc8f531ce9e0dbd433f787fc1d07263
+
+RUN_2
+SIGMA_VKM_API_G14_AGENDA_NEW=PASS
+SIGMA_VKM_API_G14_AGENDA_ENQUEUE=PASS
+SIGMA C VM: undefined function api_expr_operator
+RC2=8
+PASS2=2
+FAIL2=0
+OUT2_SHA256=1d6924c075f3424b673da065b24a46f05dc8f531ce9e0dbd433f787fc1d07263
+
+REPRODUCIBILITY
+FAILURE_REPRODUCED_IDENTICALLY=YES
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=HOLD
+BLOCKER=API_G14_FIX1_NOT_PROVEN
+ROOT_RUNTIME_ERROR=UNDEFINED_FUNCTION_api_expr_operator
+NEXT=FIX_G14_SOURCE_DEPENDENCY_OR_EXPORT_FOR_api_expr_operator_THEN_RECOMPILE_AND_RERUN
+
+PROGRESS
+LAST_PROVEN_API_COUNT=130
+API_PROVEN=130/300
+API_REMAINING=170
+
+GATE_POLICY
+Do not count any Group 14 APIs as proven from this run. The process exits RC=8 before completing the acceptance suite. The two initial PASS lines only prove those reached checks, not Group 14 as a whole.
+Repair the exact undefined-function dependency/export/call-site issue, then compile a new real .sigmab and rerun the complete G14 acceptance suite.
