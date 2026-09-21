@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 28 Memory acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G28_MEMORY.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G28_MEMORY_NEW=PASS
+SIGMA_VKM_API_G28_ITEM_NEW=PASS
+SIGMA_VKM_API_G28_COUNT=PASS
+SIGMA_VKM_API_G28_GET=PASS
+SIGMA_VKM_API_G28_HAS=PASS
+SIGMA_VKM_API_G28_FORGET=PASS
+SIGMA_VKM_API_G28_TRACE=PASS
+SIGMA_VKM_API_G28_FROM_RESPONSE=PASS
+SIGMA_VKM_API_G28_MISSING_NULL=PASS
+SIGMA_VKM_API_G28_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=517a89edd152e8f739ed2a44373e149b8d72b570be9d46e08d341d763f182e0c
+OUT2_SHA256=517a89edd152e8f739ed2a44373e149b8d72b570be9d46e08d341d763f182e0c
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_28_MEMORY_RECHECKED_PASS
+API_PROVEN=280/300
+API_REMAINING=20
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_28_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+Evidence covers memory construction, memory-item construction, count/get/has operations, forgetting, trace generation, response-to-memory integration, missing-key null behavior, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G28 hardening, stress duplicate memory IDs, count integrity after forget, repeated forget idempotence, retrieval after deletion, missing-item fail-closed behavior, trace/history preservation, response provenance integrity from G27, multiple-item ordering, memory mutation isolation, and deterministic replay across three runs. Hardening must not increment API_PROVEN.
