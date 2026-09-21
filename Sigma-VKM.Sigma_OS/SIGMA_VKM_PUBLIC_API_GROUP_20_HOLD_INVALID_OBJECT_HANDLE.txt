@@ -1,0 +1,39 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 20 HOLD evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G20_GAP.sigmab
+
+RUN_1
+SIGMA host: invalid object handle
+RC1=21
+PASS1=0
+FAIL1=0
+OUT1_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+RUN_2
+SIGMA host: invalid object handle
+RC2=21
+PASS2=0
+FAIL2=0
+OUT2_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+REPRODUCIBILITY
+FAILURE_REPRODUCED_IDENTICALLY=YES
+STDOUT_EMPTY_BOTH_RUNS=YES
+
+RESULT
+STATUS=HOLD
+BLOCKER=API_G20_GAP_NOT_PROVEN
+ROOT_RUNTIME_ERROR=SIGMA_HOST_INVALID_OBJECT_HANDLE
+NEXT=TRACE_FIRST_INVALID_HANDLE_USE_AND_FIX_EXACT_G20_OBJECT_LIFETIME_TYPE_OR_ARGUMENT_BUG
+
+PROGRESS
+LAST_PROVEN_API_COUNT=190
+API_PROVEN=190/300
+API_REMAINING=110
+
+GATE_POLICY
+Do not count any Group 20 APIs as proven. Runtime exits with RC=21 before any acceptance check is emitted.
+The empty stdout SHA-256 is the standard SHA-256 of an empty stream and is not success evidence.
+Trace the first host primitive receiving the invalid object handle; identify whether the caller supplied NULL/non-handle/wrong object type/stale handle or whether object lifetime/ownership was violated. Fix the exact source path, compile a new real .sigmab, and rerun the complete G20 suite.
