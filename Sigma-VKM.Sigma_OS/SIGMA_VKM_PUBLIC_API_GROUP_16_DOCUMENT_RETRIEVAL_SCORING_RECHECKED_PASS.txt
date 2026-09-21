@@ -1,0 +1,40 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 16 Document Retrieval/Scoring acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G16_RETRIEVAL.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G16_QUERY_NEW=PASS
+SIGMA_VKM_API_G16_QUERY_TERMS=PASS
+SIGMA_VKM_API_G16_SCORE_FULL_MATCH=PASS
+SIGMA_VKM_API_G16_SCORE_PARTIAL_MATCH=PASS
+SIGMA_VKM_API_G16_TOP1=PASS
+SIGMA_VKM_API_G16_EXPLAIN=PASS
+SIGMA_VKM_API_G16_THRESHOLD=PASS
+SIGMA_VKM_API_G16_ABSENT_EMPTY=PASS
+SIGMA_VKM_API_G16_G15_INDEX_LINK=PASS
+SIGMA_VKM_API_G16_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=374253d026c14621e0d98711e9d99d79b37a7f83db7c32f5f4e560530d45551f
+OUT2_SHA256=374253d026c14621e0d98711e9d99d79b37a7f83db7c32f5f4e560530d45551f
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_16_DOCUMENT_RETRIEVAL_SCORING_RECHECKED_PASS
+API_PROVEN=160/300
+API_REMAINING=140
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_16_HARDEN_THREE_RUNS
+
+QUALITY_SCOPE
+The supplied evidence covers query construction/terms, full and partial scoring, top-1 selection, explanation, thresholding, absent-query empty behavior, integration with the G15 index, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G16 hardening, test score monotonicity (full match > partial > absent), deterministic tie-breaking, threshold exact-boundary behavior, duplicate query terms, normalized query variants, explanation-score consistency, top-k ordering where supported, empty query, index mutation followed by retrieval, and G15/G16 cross-layer invariants. Hardening must not increment API_PROVEN.
