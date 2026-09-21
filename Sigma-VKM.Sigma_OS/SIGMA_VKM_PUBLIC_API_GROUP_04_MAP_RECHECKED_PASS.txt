@@ -1,0 +1,42 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 04 Map acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G04_MAP.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G04_MAP_NEW=PASS
+SIGMA_VKM_API_G04_MAP_SET_GET=PASS
+SIGMA_VKM_API_G04_MAP_HAS=PASS
+SIGMA_VKM_API_G04_MAP_DELETE=PASS
+SIGMA_VKM_API_G04_MAP_KEYS=PASS
+SIGMA_VKM_API_G04_MAP_VALUES=PASS
+SIGMA_VKM_API_G04_MAP_ITEMS=PASS
+SIGMA_VKM_API_G04_MAP_COUNT=PASS
+SIGMA_VKM_API_G04_MAP_MERGE=PASS
+SIGMA_VKM_API_G04_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=69f7f24bfc967131ec8eb4f854003114c4a29c0c69d34730cfa910c375c8a96f
+OUT2_SHA256=69f7f24bfc967131ec8eb4f854003114c4a29c0c69d34730cfa910c375c8a96f
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_04_MAP_RECHECKED_PASS
+API_PROVEN=40/300
+API_REMAINING=260
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_05_NUMERIC
+TERMUX_SHELL_CONTINUES=YES
+
+PROOF_QUALITY_POLICY
+Future API groups must not be accepted merely because a function exists or prints PASS.
+Acceptance should exercise meaningful normal behavior, boundary conditions, invalid/error paths where applicable, state invariants, regression compatibility, and deterministic/reproducible execution where the operation is deterministic.
+Tests should verify concrete returned values or state transitions whenever practical.
+A group remains HOLD when evidence is incomplete, ambiguous, trivially self-asserted, or fails any required check.
+No lowering of acceptance criteria for convenience.
