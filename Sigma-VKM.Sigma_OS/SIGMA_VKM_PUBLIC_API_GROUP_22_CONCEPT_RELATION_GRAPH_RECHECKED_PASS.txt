@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 22 Concept/Relation Graph acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G22_GRAPH_FIX1.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G22_CONCEPT_NEW=PASS
+SIGMA_VKM_API_G22_RELATION_NEW=PASS
+SIGMA_VKM_API_G22_ADD_CONCEPT=PASS
+SIGMA_VKM_API_G22_GET_CONCEPT=PASS
+SIGMA_VKM_API_G22_ADD_RELATION=PASS
+SIGMA_VKM_API_G22_REJECT_BAD_RELATION=PASS
+SIGMA_VKM_API_G22_NEIGHBORS=PASS
+SIGMA_VKM_API_G22_HAS_EDGE=PASS
+SIGMA_VKM_API_G22_PATH2=PASS
+SIGMA_VKM_API_G22_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=648931f49572ea9cd344b88190f209ec196afe5024c427d7ba3c45d9d8c4f91f
+OUT2_SHA256=648931f49572ea9cd344b88190f209ec196afe5024c427d7ba3c45d9d8c4f91f
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_22_CONCEPT_RELATION_GRAPH_RECHECKED_PASS
+API_PROVEN=220/300
+API_REMAINING=80
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_22_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers concept/relation construction, concept insertion/retrieval, relation insertion, invalid-relation rejection, neighborhood lookup, edge existence, two-hop path behavior, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G22 hardening, stress duplicate concept/relation behavior, self-edge policy, directed-vs-undirected semantics, missing-node lookups, path directionality, cycles, disconnected components, stable neighbor ordering, graph integrity after rejected relation insertion, and integration with G19/G20 belief-gap structures where appropriate. Hardening must not increment API_PROVEN.
