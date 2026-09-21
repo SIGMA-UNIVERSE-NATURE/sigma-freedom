@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 26 Dialogue State / Turn Manager acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G26_DIALOGUE.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G26_TURN_NEW=PASS
+SIGMA_VKM_API_G26_STATE_NEW=PASS
+SIGMA_VKM_API_G26_ADD_TURN=PASS
+SIGMA_VKM_API_G26_LAST_TURN=PASS
+SIGMA_VKM_API_G26_ACTOR_TURNS=PASS
+SIGMA_VKM_API_G26_CURRENT_PERSPECTIVE=PASS
+SIGMA_VKM_API_G26_RESPONSE_PLAN=PASS
+SIGMA_VKM_API_G26_CLOSE_DIALOGUE=PASS
+SIGMA_VKM_API_G26_EMPTY_DIALOGUE_FAIL_CLOSED=PASS
+SIGMA_VKM_API_G26_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=f14d6370da2649a425d1b7f4c6a551ce9ee746ec9a296b3838e5664a89a32844
+OUT2_SHA256=f14d6370da2649a425d1b7f4c6a551ce9ee746ec9a296b3838e5664a89a32844
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_26_DIALOGUE_STATE_TURN_MANAGER_RECHECKED_PASS
+API_PROVEN=260/300
+API_REMAINING=40
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_26_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+Evidence covers turn/state construction, turn insertion, last-turn retrieval, per-actor turn filtering, current-perspective selection, response-plan construction, dialogue closure, empty-dialogue fail-closed behavior, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G26 hardening, stress multi-actor interleaving, deterministic last-turn semantics, actor-filter order, perspective changes across turns, no mutation after dialogue close, repeated close idempotence, empty/unknown actor queries, response-plan provenance to the triggering turn, long-turn history boundaries, and integration with G25 perspective/intent semantics. Hardening must not increment API_PROVEN.
