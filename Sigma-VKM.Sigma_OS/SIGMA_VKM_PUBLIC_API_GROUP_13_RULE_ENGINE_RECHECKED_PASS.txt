@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 13 Rule Engine acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G13_RULE_ENGINE.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G13_RULE_NEW=PASS
+SIGMA_VKM_API_G13_RULE_MATCH=PASS
+SIGMA_VKM_API_G13_RULE_APPLY=PASS
+SIGMA_VKM_API_G13_RULE_GUARD_REJECT=PASS
+SIGMA_VKM_API_G13_RULE_PATTERN_REJECT=PASS
+SIGMA_VKM_API_G13_RULE_TRACE=PASS
+SIGMA_VKM_API_G13_RULE_SET_NEW=PASS
+SIGMA_VKM_API_G13_RULE_SET_ADD=PASS
+SIGMA_VKM_API_G13_RULE_SET_APPLY_FIRST=PASS
+SIGMA_VKM_API_G13_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=842ddd72d38789dc6bcafc3944919a854197eca502798d951b1e71949f7108c2
+OUT2_SHA256=842ddd72d38789dc6bcafc3944919a854197eca502798d951b1e71949f7108c2
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_13_RULE_ENGINE_RECHECKED_PASS
+API_PROVEN=130/300
+API_REMAINING=170
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_13_HARDEN_THREE_RUNS_OR_GROUP_14
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers rule construction, matching, application, guard rejection, pattern rejection, trace generation, rule-set creation/addition, first-applicable rule execution, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+Rule execution is a reasoning control surface, so prefer three-run hardening before Group 14. Useful properties include rule ordering/priority, deterministic first-match semantics, guard side-effect isolation, no-match stability, conflicting-rule behavior, chained rule application, trace correctness, malformed rule rejection, and integration with G11 unification and G12 contracts. Hardening must not increment API_PROVEN.
