@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 11 Unification acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G11_UNIFICATION.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G11_PATTERN_VAR=PASS
+SIGMA_VKM_API_G11_SUBST_BIND_GET=PASS
+SIGMA_VKM_API_G11_TERM_NAME=PASS
+SIGMA_VKM_API_G11_TERM_EQUAL=PASS
+SIGMA_VKM_API_G11_UNIFY_VAR=PASS
+SIGMA_VKM_API_G11_UNIFY_EXISTING_OK=PASS
+SIGMA_VKM_API_G11_UNIFY_CONFLICT=PASS
+SIGMA_VKM_API_G11_MATCH_BINARY_OP=PASS
+SIGMA_VKM_API_G11_APPLY_SUBST_VAR=PASS
+SIGMA_VKM_API_G11_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=92158b1ffda71fa914f6f568b69200a97a4da26fa237689a3cba287ca2b6c203
+OUT2_SHA256=92158b1ffda71fa914f6f568b69200a97a4da26fa237689a3cba287ca2b6c203
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_11_UNIFICATION_RECHECKED_PASS
+API_PROVEN=110/300
+API_REMAINING=190
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_11_HARDEN_THREE_RUNS_OR_GROUP_12
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+The supplied evidence covers pattern variables, substitution binding/retrieval, term naming/equality, variable unification, existing-binding consistency, conflict rejection, binary-operator matching, substitution application, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+Unification is foundational for symbolic reasoning. Before Group 12, prefer a three-run hardening suite covering chained substitutions, conflicting bindings, nested term matching, repeated-variable consistency, substitution idempotence, structural mismatch rejection, occurs/self-reference behavior if supported, and integration with symbolic rewrite/theorem proof components. Hardening must not increment API_PROVEN.
