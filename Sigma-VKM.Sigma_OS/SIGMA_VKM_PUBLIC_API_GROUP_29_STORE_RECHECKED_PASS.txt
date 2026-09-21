@@ -1,0 +1,41 @@
+SIGMA-VKM / Sigma_OS
+Public API proof phase — Group 29 Store acceptance evidence
+
+COMPILE
+COMPILED /data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM.sigma -> /data/data/com.termux/files/home/SIGMA/sigma_genesis1/.sigma_exec/SIGMA_VKM_API_G29_STORE.sigmab
+
+RUN_1_AND_RUN_2
+SIGMA_VKM_API_G29_STORE_NEW=PASS
+SIGMA_VKM_API_G29_RECORD_NEW=PASS
+SIGMA_VKM_API_G29_COUNT=PASS
+SIGMA_VKM_API_G29_GET=PASS
+SIGMA_VKM_API_G29_HAS=PASS
+SIGMA_VKM_API_G29_DELETE=PASS
+SIGMA_VKM_API_G29_TRACE=PASS
+SIGMA_VKM_API_G29_FROM_MEMORY=PASS
+SIGMA_VKM_API_G29_MISSING_NULL=PASS
+SIGMA_VKM_API_G29_PUBLIC_APIS_10=PASS
+
+RC1=0
+RC2=0
+PASS1=10
+FAIL1=0
+PASS2=10
+FAIL2=0
+OUT1_SHA256=c408ccbd2d5e4a0ec98dceb312fed070afd9ed0ac0587a86da7a36ca31bdcf65
+OUT2_SHA256=c408ccbd2d5e4a0ec98dceb312fed070afd9ed0ac0587a86da7a36ca31bdcf65
+OUTPUT_SHA256_MATCH=YES
+
+RESULT
+STATUS=COMPLETE
+DONE=SIGMA_VKM_PUBLIC_API_GROUP_29_STORE_RECHECKED_PASS
+API_PROVEN=290/300
+API_REMAINING=10
+NEXT=SIGMA_VKM_PUBLIC_API_GROUP_29_HARDEN_THREE_RUNS
+TERMUX_SHELL_CONTINUES=YES
+
+QUALITY_SCOPE
+Evidence covers store and record construction, count/get/has operations, deletion, trace generation, memory-to-store transfer, missing-key null behavior, and the ten-public-API gate.
+
+HARDENING_RECOMMENDATION
+For G29 hardening, stress duplicate record IDs, delete/count integrity, repeated-delete idempotence, active/missing lookup semantics, trace/history preservation, G28 memory provenance during persistence, multiple-record ordering, failed mutation isolation, deterministic replay, and store integrity after mixed add/delete sequences. Hardening must not increment API_PROVEN.
