@@ -1117,3 +1117,27 @@ This learns a delimiter-specific BETWEEN rule. It does not establish that the le
 Decision:
 RUN_FORBIDDEN=YES
 Do not discard learner FIX3 or acquisition transport. Repair the integrator architecture so the exact learned candidate state is the state measured by the official evaluator through the public model ABI.
+
+
+## Neutral integration R1 static rejection — recursive baseline hashing touches frozen/gold
+
+INT package SHA256:
+e881234903d6cb6e3fb4eb080de61ed96eff538d4195f4d1eb6b87423ce917b5
+
+Pinned embedded source hashes are correct:
+- learner FIX3: 661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573
+- Lane C Phase A FIX6: b997c833431350d07a7f6fe2e2cd41d3f56597560afb392105cac37f27e14f41
+
+Static assembly is otherwise black-box and preserves both sources.
+
+Blocker:
+tools/find_exact_hash.py and tools/tree_digest.py recursively open/hash every file under BASELINE_06B2. This can open/hash frozen/gold holdout artifacts during a non-holdout transfer proof, violating holdout isolation discipline.
+
+Repair neutral runner only:
+- remove recursive content scan/hash of BASELINE_06B2;
+- verify only explicit public/top-level baseline identity artifacts by fixed path and pinned SHA;
+- protect baseline mutation through read-only/static path discipline and explicit allowed artifact hashes, not recursive content reads;
+- preserve learner/proof source SHAs byte-identical;
+- optionally compare phase_a.meta and unseen_after.txt across the three runs as well as stdout.
+
+Do not modify learner FIX3 or proof FIX6.
