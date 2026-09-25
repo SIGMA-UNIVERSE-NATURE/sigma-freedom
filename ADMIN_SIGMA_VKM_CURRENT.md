@@ -2260,3 +2260,31 @@ ORCH_V1_STATIC=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
 ORCH_V2_MUST_ALIGN_TRE_V9_AND_GIA_FIX7_EXACTLY=YES
 NO_SIGMA_RUN_BEFORE_ADMIN_AUDIT=YES
+
+
+## 928 V3 FIX1 — pre-ORCH examiner core static accepted and frozen
+
+928__AITO_FINAL_E2E_PROOF_V3_FIX1.tar.gz SHA256:
+81a1075c7d88cd7d39b81d3eb9e2ed85c67287bc06c4afa90cee7fa2737b61c5
+
+Static audit PASS for pre-ORCH scope:
+- executable source hashes match package manifest;
+- Python syntax PASS;
+- NULL_RESULT_ALLOWED=NO is now enforced on all public black-box return paths that were previously unchecked;
+- no examiner redesign relative to revised V3 beyond null fail-closed repairs;
+- exact Lane A STATUS/HOLD vs PASS decision semantics preserved;
+- duplicate-only vs conflicting-identity controls preserved;
+- dynamic epoch witness / static authority witness preserved;
+- exact eight dimensions preserved;
+- crash PREPARED + post-crash state-hash comparison preserved;
+- ORCH/DNA15 ABI is explicitly not guessed;
+- final Lane A/ORCH authority pins remain PENDING as required.
+
+Decision:
+928_PRE_ORCH_EXAMINER_CORE_FIX1_STATIC=PASS
+928_PRE_ORCH_EXAMINER_CORE_FROZEN=YES
+928_FINAL_E2E_READY=NO
+RUNTIME_FORBIDDEN_UNTIL_ORCH_FINAL_PINS=YES
+
+Next action:
+wait for Admin-frozen ORCH V2 + final Lane A runner/writer/execution-runner pins; then extend examiner with the final non-terminal COMMIT->DNA15->generation->restart->retention->next-gap proof without altering the frozen pre-ORCH core except additive ORCH phases.
