@@ -963,3 +963,27 @@ f14605bedf6579543db8ed70d953d4696d3f37319cd143d9dc0172b664dde895
 Positive fixes: separate seals PASS; ternary removed; JSON primitives truthfully unproven; persisted-state replay correctly deferred to integration.
 
 Static blocker: mutation cases preserve the exact learned anchors/templates and merely change target content. Therefore SOURCE_MUTATION_SENSITIVITY can pass without any source-boundary/context mutation. Repair Lane C only: mutate/remove/corrupt at least one learned anchor or create structurally conflicting boundaries and require changed output or fail-closed. Do not change learner or sealed transfer cases.
+
+
+## 927 Lane C FIX6 accepted harness; integration audit finds BETWEEN conflict gap
+
+Lane C FIX6 package SHA256:
+008141a5c443a8f4f977f10fb17c6b25cf6ffd1ac072424817b3c4727796732b
+
+Phase A SHA256:
+b997c833431350d07a7f6fe2e2cd41d3f56597560afb392105cac37f27e14f41
+
+Phase B SHA256:
+f14605bedf6579543db8ed70d953d4696d3f37319cd143d9dc0172b664dde895
+
+Harness static audit: ACCEPTED.
+
+Real anchor mutations are present for PREFIX, SUFFIX and BETWEEN; persisted-state replay is truthfully deferred.
+
+Integration audit against Lane B FIX2 finds one learner defect before runtime: the BETWEEN reconstructor validates only the learned outer left/right anchors and does not reject a second/conflicting embedded frame. The sealed conflict case therefore would produce a non-null composite middle span instead of fail-closed, making the mutation/ambiguity gate fail.
+
+Decision:
+- freeze Lane C FIX6;
+- repair Lane B learner only;
+- add generic BETWEEN boundary uniqueness/conflict detection using approved primitives;
+- do not weaken the proof harness.
