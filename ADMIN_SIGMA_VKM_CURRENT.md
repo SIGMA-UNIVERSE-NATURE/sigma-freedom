@@ -439,3 +439,64 @@ Required direction:
 Do not use frozen text to design the examples.
 Do not train on acceptance-test fixtures.
 Do not perform admission until CANDIDATE_EPOCH_V1 exists.
+
+
+## Runtime execution authority policy — 2026-09-25
+
+Admin decision after repeated coder self-run failures:
+
+~~~text
+CODER_EXECUTION_POLICY=BUILD_ONLY
+CODER_STATIC_AUDIT_ALLOWED=YES
+CODER_PACKAGE_HASH_VERIFY_ALLOWED=YES
+CODER_SIGMA_COMPILE_RUN=NO
+CODER_SIGMA_VM_RUN=NO
+CODER_END_TO_END_RUNTIME_RUN=NO
+USER_RUNTIME_EXECUTOR=YES
+ADMIN_RUNTIME_RESULT_AUDITOR=YES
+~~~
+
+Coders may:
+
+- inspect only the component they are authorized to modify;
+- patch source/bundle;
+- run static syntax/text/package-manifest checks that do not invoke Sigma compiler or VM;
+- compute SHA256;
+- create immutable package and notes;
+- return exact run command for the user.
+
+Coders must not:
+
+- invoke sigmac-vkm;
+- invoke sigma-vkm;
+- run end-to-end Sigma tests;
+- mutate canonical/Owner/native binding;
+- claim behavioral PASS from static checks.
+
+The user runs the provided bundle command in Termux and returns the real output to admin for classification.
+
+This separation prevents a coder from burning context/time on repeated runtime attempts and keeps runtime evidence independent from implementation.
+
+Current transfer-gate R1 package:
+
+~~~text
+PACKAGE_SHA256=
+e3f1900173cc6c487d8cacc628511569587d334f401605de1ab3effe8f96d80e
+~~~
+
+Static audit localized the current failure to generated Sigma output formatting:
+
+~~~text
+"UNSEEN_BEFORE_RECONSTRUCTION_PASS_COUNT=" + before_count
+"UNSEEN_AFTER_RECONSTRUCTION_PASS_COUNT=" + after_count
+"UNSEEN_TRANSFER_DELTA=" + delta
+"REPLAY_UNSEEN_PASS_COUNT=" + replay_count
+~~~
+
+The operands on the right are numeric. This is consistent with the observed runtime error:
+
+~~~text
+SIGMA C VM: incompatible binary operands_
+~~~
+
+Repair the bundle mechanically without running Sigma. Prefer the already-proven 06B2 native numeric-output convention or an explicit bounded integer-to-text printer. Then return a new package + SHA + user run command only.
