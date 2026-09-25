@@ -802,3 +802,44 @@ However the package is rejected before runtime for two implementation defects:
 Do not run this FIX1 package.
 
 Repair must remain source-only/build-only and must not alter the fixed public three-function learner ABI or sealed Lane C dataset.
+
+
+## 927 Lane C proof FIX1 static rejection — semantic target mismatch
+
+Lane C proof FIX1 package:
+
+~~~text
+PACKAGE_SHA256=
+4cf4ac0ebfa7e332d20fdaa51e1852dd5b73505d748e774370ec0d9e83e54718
+
+HARNESS_SEAL_SHA256=
+b0c813d64c156def457e39a7613761bce43cd97a1f142b853fd81ca0f6a451ee
+~~~
+
+Static audit confirms the requested control repairs are present:
+training-record ABI fields, valid parent path, invalid-parent control, duplicate-support control, non-identity unseen control, unseen/train-answer leak control, mutation sensitivity and restart phase.
+
+However the proof dataset is semantically mismatched to 927 SOURCE_RECONSTRUCTION.
+
+Current Lane C cases are generative rewrites such as:
+
+FRAME|actor=...|action=...|object=...|recipient=...
+→ natural-language sentence
+
+The current 927 SOURCE_RECONSTRUCTION contract is exact reconstruction of a source span under RECONSTRUCTION_MASK / GOLD_SOURCE_SPAN. The candidate learner is therefore being built as bounded extractive structural-rule induction, not a frame-to-language generator.
+
+Decision:
+
+~~~text
+LANE_C_PROOF_FIX1=REJECT_BEFORE_RUNTIME
+BLOCKER=PROOF_TARGET_SEMANTIC_MISMATCH
+~~~
+
+Repair Lane C dataset only:
+- TARGET_TEXT must be a contiguous extractive span of INPUT_TEXT;
+- target must not equal full input for non-identity cases;
+- use multiple structural families (prefix, suffix, between-anchors);
+- retain fresh entities/content and sealed independence;
+- preserve duplicate, invalid-parent, negative, ambiguity, mutation, leak and restart controls.
+
+Do not reveal Lane B implementation source.
