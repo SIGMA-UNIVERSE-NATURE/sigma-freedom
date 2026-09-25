@@ -1417,3 +1417,33 @@ RUN_FORBIDDEN=YES
 
 Required repair remains:
 use an explicit ONE_SIGMA root-relative accepted-parent-state artifact path + exact SHA + role; keep BASELINE_06B2 identity separate; no recursive discovery; preserve same Sigma identity.
+
+
+## 927 TRẺ AIto Epoch V5 static rejection — accepted pointer not constrained to ONE_SIGMA root
+
+TRE__AITO_EPOCH_V5 package SHA256:
+e7ebeacef42baf715eb97d49ad9e75d2c124e91a1f8207273afdd9e4ccef72f4
+
+Positive V5 repairs confirmed:
+- manifest parse is metadata-only before training;
+- explicit public/pre-frozen allowlist only;
+- no frozen/gold target is opened/hashed before candidate training;
+- BASELINE_06B2 identity is separated from accepted-state identity;
+- no 05B source inference fallback;
+- missing accepted pointer returns truthful BOOTSTRAP_REQUIRED;
+- V4 Sigma/VKM curriculum selector and prior V3 fixes are preserved;
+- learner FIX3 remains pinned.
+
+Single remaining blocker under the locked ONE_SIGMA doctrine:
+parse_pointer() accepts TRE_ACCEPTED_STATE_POINTER and ACCEPTED_STATE_PATH from arbitrary filesystem locations. It pins bytes/schema but does not require the pointer/state to be non-symlink regular files under the same ONE_SIGMA_ROOT, nor bind the accepted-state role/root in the pointer contract. An external or second-Sigma state could therefore satisfy the current parser.
+
+Required V6 repair:
+- pointer path and accepted state path must resolve under $ONE_SIGMA_ROOT only;
+- reject symlinks/traversal/out-of-root paths;
+- require pointer fields that bind ONE_SIGMA=YES, SAME_SIGMA_IDENTITY=YES, SECOND_SIGMA_CREATED=NO and accepted-state role;
+- align exact pointer/state schema with Lane A FIX5 contract;
+- preserve all V5 behavior unchanged.
+
+Decision:
+TRE_AITO_EPOCH_V5=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
