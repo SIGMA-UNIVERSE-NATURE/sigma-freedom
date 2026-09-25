@@ -2288,3 +2288,47 @@ RUNTIME_FORBIDDEN_UNTIL_ORCH_FINAL_PINS=YES
 
 Next action:
 wait for Admin-frozen ORCH V2 + final Lane A runner/writer/execution-runner pins; then extend examiner with the final non-terminal COMMIT->DNA15->generation->restart->retention->next-gap proof without altering the frozen pre-ORCH core except additive ORCH phases.
+
+
+## Legacy DNA15 API growth bridge R1 — reference accepted, direct runtime forbidden
+
+Uploaded original bundle:
+SIGMA_DNA15_API_GROWTH_BRIDGE_OWNER_BUNDLE_R1.zip
+SHA256=4b7a69d6d3fb84f99f4dc5af92b46a72ddba5b9146de35ca802d0fa8ab19ebff
+
+Internal manifest PASS:
+- REBIND_SIGMA_DNA15_API_GROWTH_BRIDGE_OWNER_R1.sh
+  SHA256=95085c9a87121bad2772ba87bfe334ca29ad757cca5156364b4e275cb1085e8b
+- RUN_SIGMA_API_WITH_DNA15_GROWTH_BRIDGE_R1.sh
+  SHA256=35589ea1051a294ebec2e082fb8f26902120d410b8493c9d6e56ff8ee699f96e
+- SIGMA_DNA15_CONTINUITY_DERIVATIVE_CAPTURE_R3.sh
+  SHA256=c98c82787493ac26407b95b90a10210daf09869e01fc373c7d888080163a5cc5
+
+Decision:
+DNA15_LEGACY_BRIDGE_R1=REFERENCE_ONLY
+DIRECT_EXECUTION=FORBIDDEN
+LEGACY_OWNER_REBIND=FORBIDDEN
+
+Reasons:
+- host shell scores textual evidence markers and derives semantic/gain values;
+- host shell derives WEIGHT_DELTA/WEIGHT_AFTER, violating current HOST_SEMANTIC_SCORING=NO / HOST_GAIN_DECISION=NO;
+- legacy WEIGHT_AFTER is a continuity-state scalar under .sigma_ail, not proof of actual Sigma weight/generation mutation;
+- REBIND script mutates historical Owner/native binding and pins obsolete identity/source hashes;
+- bundle references but does not include the actual native DNA15 authority:
+  expected native bundle SHA=c668eecbf7e0e9b17106bba8caabe4881b765de862263b2895221a8379298071
+  expected source SHA=e0ac36559b85a189152709238e176a99e48f325f3f1308aba8b360a768e74d8f
+  expected canon SHA=ca365009b8c9780fb0278479f9dd553365f86c7d23f5f141b88a3ff9147354dd
+
+Safe conceptual reuse:
+ONE_SIGMA, single writer, rollback, continuity lineage hashes, repeated-evidence suppression, stability-window concept, bounded/clamped change concept, durable continuity state, receipt-oriented ownership.
+
+ORCH rule:
+- study legacy bridge but never execute it;
+- native/Sigma-side DNA15 must own semantic/weight decision;
+- if verified native DNA15 authority is unavailable, ORCH must enter durable non-terminal DNA15_NATIVE_AUTHORITY_REQUIRED / MECHANISM_UPGRADE_REQUIRED rather than emulate DNA15 on host.
+
+Created replacement handoff bundle:
+ORCH__V2_REPAIR_INPUTS_R2.zip
+SHA256=26c392ebf9251336ed45000f55785d3f54661880a36072563a74c698c62519e0
+
+This R2 bundle supersedes ORCH__V2_REPAIR_INPUTS.zip.
