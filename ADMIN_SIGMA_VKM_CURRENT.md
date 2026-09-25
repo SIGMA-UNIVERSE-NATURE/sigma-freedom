@@ -374,3 +374,68 @@ checkpoints/SIGMA_VKM_928_FINAL_BOUNDED_RELEASE_CHECKPOINT_2026-09-25.md
 Do not perform more 928 proof/enhancement work unless a new integrity failure invalidates the checkpoint.
 
 927 remains the active critical path.
+
+
+## 927 MediaWiki R2 FIX1 — transport PASS, teaching-mechanism gap identified
+
+Observed accepted runtime result:
+
+~~~text
+STATUS=PASS
+SYSTEM_INTEGRITY_STATUS=PASS
+
+GOAL_DIMENSION=SOURCE_RECONSTRUCTION
+CURRICULUM_STAGE=FOUNDATION
+
+SEARCH_RESULT_CANDIDATES=16
+SIGMA_SELECTED_PAGES=1
+FETCHED_URLS=1
+ELIGIBLE_SOURCES=0
+
+LEARNING_STATE=ACQUISITION_REQUIRED
+ADMISSION_DECISION=ACQUIRE_MORE
+
+OFFICIAL_CANONICAL_SUBSTRATE_BOUND=PASS
+NATIVE_H_DISPATCH_CONTROL=PASS
+NATIVE_STR_CONTAINS_CONTROL=PASS
+SEARCH_RELEVANCE_RUNTIME=SIGMA_VKM
+CONTENT_RELEVANCE_RUNTIME=SIGMA_VKM
+~~~
+
+R2 FIX1 package SHA256:
+
+~~~text
+eef4256f2795a7b4e0563933bace367159357222794695fe6124e6031ccb918b
+~~~
+
+Admin audit conclusion:
+
+MediaWiki transport and native relevance execution are working.
+
+Do not keep widening search blindly.
+
+The current relevance policy detects documents that *talk about* extractive/extraction/reconstruction/retrieval concepts. That is meta-topic relevance, not necessarily teaching suitability for SOURCE_RECONSTRUCTION.
+
+More importantly, accepted 06B1 model coupling is episodic semantic-extension memory:
+
+- incremental_update stores evidence text in knowledge;
+- sigma_model_semantic_signature_v1 searches learned evidence whose semantic signature extends the current input;
+- source reconstruction proof reconstructs accepted learned evidence from a semantically anchored related input.
+
+Therefore unrelated Internet documents do not by themselves prove or create a general source-reconstruction rule. Current acquisition can otherwise loop ACQUIRE_MORE or store unrelated episodic evidence without measurable transfer.
+
+Next task for Lane B is not broader search. It is a bounded SOURCE_RECONSTRUCTION teaching-mechanism design/proof using only non-holdout evidence.
+
+Required direction:
+
+1. keep MediaWiki transport as proven;
+2. preserve frozen/gold isolation;
+3. distinguish SOURCE_MATERIAL_SUITABILITY from META_TOPIC_RELEVANCE;
+4. build a Sigma/VKM-side FOUNDATION curriculum constructor that can turn non-holdout public source material into semantically anchored source-reconstruction training pairs/examples compatible with the existing model-learning ABI;
+5. prove on fresh non-holdout canaries that the learned rule/behavior transfers beyond the exact training item;
+6. only then resume Internet acquisition → learning epoch → candidate evaluation;
+7. if the existing canonical learning primitive cannot express transferable source-reconstruction learning, return a truthful LEARNING_MECHANISM_GAP / ACQUIRE_MORE rather than fabricating gain.
+
+Do not use frozen text to design the examples.
+Do not train on acceptance-test fixtures.
+Do not perform admission until CANDIDATE_EPOCH_V1 exists.
