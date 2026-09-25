@@ -1594,3 +1594,68 @@ Required FIX6:
 - add SECOND_SIGMA_CREATED=NO to ACCEPTED_STATE_POINTER_V1 and validate it;
 - preserve FIX5 parent contract exactly;
 - no other redesign.
+
+
+## 928 final E2E proof V2 static rejection — false-pass controls and incomplete crash/receipt binding
+
+928__AITO_FINAL_E2E_PROOF_V2.tar.gz SHA256:
+1fa9d3eece071ea440c3a5ba595c73ab2feef6589d0cbcab9af85b961ebf5f4f
+
+Positive V2 repairs confirmed:
+- synthetic DIM_ALPHA/DIM_BETA removed;
+- first goal is SOURCE_RECONSTRUCTION;
+- forged COMMIT and fake measurement now call explicit black-box boundary APIs;
+- crash Phase 3 requires TRANSACTION_STATUS=PREPARED and unchanged accepted/persisted state before kill;
+- a neutral host root verifier exists;
+- private 928 canaries remain supplemental;
+- no Sigma compile/VM run claimed.
+
+Blocking defects:
+
+1. PHASE_0 rejected(r) returns TRUE when r==NULL. A missing/unwired black-box submit/continue API can therefore PASS a fail-closed control. NULL must always fail the proof.
+
+2. PHASE_0 collapses all controls into REJECT semantics. This conflicts with locked 927 doctrine:
+   - forged receipt / invalid measurement provenance / stale parent / corrupt candidate are integrity failures => explicit HOLD/fail-closed;
+   - duplicate-only insufficient evidence and unavailable acquisition => ACQUIRE_MORE;
+   - NULL/empty/unknown result => proof FAIL.
+The final proof must assert an explicit expected status/decision matrix rather than generic rejected().
+
+3. PHASE_1 vocab8() checks only len=8, uniqueness, and presence of SOURCE_RECONSTRUCTION. Seven synthetic names could still pass. Require exact set equality:
+ROLE_BINDING
+POLARITY_MODALITY
+COREFERENCE
+TEMPORAL_CAUSAL
+CONTRAST_SENSITIVITY
+MEANING_INVARIANCE
+SOURCE_RECONSTRUCTION
+PARAGRAPH_COHERENCE
+
+4. Lane-A proof binding is still self-referential. aito_bb_lane_a_regression_pin() and aito_bb_protected_regression_attestation() both come from the system under test and are only compared with each other. In addition, the COMMIT receipt is only checked for DECISION=COMMIT; official measurement hashes / goal gain / candidate-parent binding / retention proof / protected regression hashes are not independently asserted.
+Final proof must bind receipt fields to independently supplied/frozen Lane-A pins and verify:
+PARENT_ACCEPTED_STATE_SHA256
+CANDIDATE_STATE_SHA256
+GOAL_DIMENSION=SOURCE_RECONSTRUCTION
+BEFORE_MEASUREMENT_SHA256
+AFTER_MEASUREMENT_SHA256
+PROTECTED_REGRESSION_SHA256
+RETENTION_PROOF_SHA256
+MEASUREMENT_LOCK_SHA256=57f8951806a8304bd77e82d451dcee87c2b2713b0c259635393c09f6c290eada
+MEASUREMENT_SUMMARY_SHA256=aff498947caf113b9c0e69de4ac435a4ca1bc0c5b9289aa2af743c7559bf4ca7
+MEASURED_SEMANTIC_GAIN>0
+GOAL_DIMENSION_GAIN>0
+SAME_SIGMA_IDENTITY=YES
+and final Lane-A engine/runner/execution-runner pins once Lane A FIX6 is frozen.
+Private canary gain remains supplemental, never the official admission measurement.
+
+5. NEUTRAL_ROOT_VERIFY.py resolves the path before checking components. An in-root symlink such as root/a -> root/b disappears during resolve(), so SYMLINK_ALLOWED=NO is not actually enforced. Inspect raw path components with lstat/no-follow before resolve, then separately require resolved path under canonical ONE_SIGMA root.
+
+6. PHASE_4 prints PARTIAL_COMMIT_VISIBLE=NO without comparing accepted/persisted hashes to the pre-crash values. Phase 3 must write immutable witness hashes before kill; Phase 4 must require both hashes unchanged after automatic rollback/cleanup.
+
+Decision:
+928_AITO_FINAL_E2E_PROOF_V2=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
+
+Coordination:
+- 928 may repair its internal semantics now.
+- Do not invent final Lane-A engine/runner/execution-runner pins; accept them only as external immutable neutral-runner inputs after GIA FIX6 is frozen.
+- No implementation-source dependency.
