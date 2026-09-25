@@ -663,3 +663,48 @@ admission/convergence standby
 Integration occurs only after both packages are statically audited by admin and then executed by the user.
 
 No canonical/Owner/native-binding mutation during mechanism development.
+
+
+## 927 candidate learner V1 static rejection — identity-copy trap
+
+Lane B candidate package:
+
+~~~text
+PACKAGE_SHA256=
+a033163b66769d8533de4e2bf6a4c3dd0665067fd619a28c0a81d7b8295885b6
+
+COMPONENT_SHA256=
+8ac1b8d683b28490bf218185c5d21a70528e0e40e8594be55bd51e5c2755f1cb
+~~~
+
+Static audit verdict:
+
+**REJECT BEFORE RUNTIME.**
+
+The component does not memorize exact training pairs, but it hard-codes one preselected rule:
+
+~~~text
+after >=3 cases where TARGET_TEXT == INPUT_TEXT
+→ LEARNED_RULE=IDENTITY_COPY
+→ reconstruction returns input_text for every unseen input
+~~~
+
+This is vulnerable to a transfer-harness false PASS if the proof dataset accidentally uses identity reconstruction cases.
+
+Additional defects:
+
+1. parent_state is only checked for non-null and then PARENT_BOUND=YES is asserted; actual parent identity/state is not validated.
+2. EXAMPLE_ID is checked for presence but not retained/deduplicated; replaying one example three times can satisfy the support threshold.
+3. contradiction handling proves only incompatibility with IDENTITY_COPY, not general source-reconstruction learning.
+4. the mechanism does not infer a reconstruction transform from training examples; the transform class is fixed before training.
+
+Admin repair direction:
+
+- preserve the three-function ABI;
+- replace fixed IDENTITY_COPY with bounded structural-rule induction from training pairs;
+- identity may be one hypothesis but must not be sufficient proof of general transfer;
+- require unique-example support/dedup;
+- bind actual parent state identity/validity;
+- Lane C proof harness must include at least one non-identity reconstruction family and mutation sensitivity so identity-copy cannot self-certify.
+
+Do not run the rejected V1 package.
