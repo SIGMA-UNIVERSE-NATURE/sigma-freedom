@@ -1530,3 +1530,31 @@ This closes the learner-mechanism transfer gate.
 Do not reopen or modify learner FIX3 or Lane C Phase A FIX6 unless a later integration failure proves a real defect.
 
 Phase B persisted-state replay remains intentionally deferred to AIto integration/admission.
+
+
+## 927 TRẺ AIto Epoch V6 static audit — code sound, final pointer ABI waits on Lane A FIX5
+
+TRE__AITO_EPOCH_V6 package SHA256:
+5717ebb068ada8e0c34047d7ded95d90a0f5addcd992a1e44ebecf073f623788
+
+Static positives:
+- learner FIX3 remains exact SHA 661d3047...09573;
+- no pre-training frozen/gold target open/hash;
+- accepted pointer and state are constrained under $HOME/SIGMA/sigma_genesis1;
+- canonical absolute regular-file requirement;
+- traversal, symlink component, out-of-root and realpath escape rejection;
+- pointer requires ONE_SIGMA=YES, SAME_SIGMA_IDENTITY=YES, SECOND_SIGMA_CREATED=NO;
+- baseline identity remains distinct from accepted-state identity;
+- missing pointer fails closed as BOOTSTRAP_REQUIRED;
+- V5 non-pointer runtime components are byte-identical;
+- package SHA256SUMS, Python syntax and Bash syntax PASS.
+
+Cross-lane blocker:
+V6 claims LANE_A_FIX5_POINTER_CONTRACT_ALIGNED=PASS before Lane A FIX5 contract is finalized. Current V6 pointer schema checks ACCEPTED_STATE_PATH + ACCEPTED_STATE_SHA256 and identity markers but does not bind the explicit accepted-parent-state role/root-relative contract required for Lane A FIX5.
+
+Decision:
+TRE_AITO_EPOCH_V6_CODE=STATIC_SOUND
+TRE_AITO_EPOCH_V6_RUNTIME_READY=NO
+NEXT_ACTION=FREEZE_V6_PENDING_LANE_A_FIX5_POINTER_CONTRACT
+
+Do not ask Lane B to guess another schema. After Lane A FIX5 is audited and its exact pointer/accepted-state ABI is frozen, perform at most one final mechanical alignment if needed. No learner/curriculum/evaluator redesign.
