@@ -339,3 +339,38 @@ Repair direction:
 - then continue R2 directly.
 
 Do not reopen 06B2, goal selection, curriculum, or provider design.
+
+
+## 928 FINAL RELEASE STATE — 2026-09-25
+
+Hermeticity has now been closed.
+
+~~~text
+BUNDLE_HERMETICITY=PASS
+ORIGIN_REFERENCES_NONOPERATIVE=YES
+NEUTRAL_PATH_BUNDLE_VERIFY=PASS
+NEUTRAL_PATH_RECONSTRUCTION=PASS
+NEUTRAL_PATH_COMPILE=PASS
+NEUTRAL_PATH_PROTECTED_REGRESSION=PASS
+NEUTRAL_PATH_CAPABILITY_CONTRACT=PASS
+
+COMPLETE_IMAGE_SHA256=
+0b1168d1e57d3e9163973fcbf8d03b7aa439cd84c9e397bd46bb591c324f1989
+
+BYTECODE_SHA256=
+0406aae09288872a815ddfe9710828bd17ce30cc80757fdb5e64143eb982fb62
+
+928_STATUS=READY_PENDING_927_WRITER_RELEASE
+PROMOTION_PERFORMED=NO
+PROMOTION=HOLD
+~~~
+
+The remaining HOLD is writer coordination only.
+
+Read full checkpoint:
+
+checkpoints/SIGMA_VKM_928_FINAL_BOUNDED_RELEASE_CHECKPOINT_2026-09-25.md
+
+Do not perform more 928 proof/enhancement work unless a new integrity failure invalidates the checkpoint.
+
+927 remains the active critical path.
