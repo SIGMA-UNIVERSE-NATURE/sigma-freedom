@@ -1141,3 +1141,20 @@ Repair neutral runner only:
 - optionally compare phase_a.meta and unseen_after.txt across the three runs as well as stdout.
 
 Do not modify learner FIX3 or proof FIX6.
+
+
+## Neutral integration R1 FIX1 static rejection — exact baseline paths wrong
+
+INT FIX1 package SHA256:
+8429a464615a75b0a2fcf7539644e5c8e7a056d17a01b5e972062d498932c44f
+
+Positive: recursive baseline scan/hash removed; learner/proof source pins remain exact; three-run output/meta/unseen comparison present.
+
+Blocker: runner uses guessed top-level filenames. Official BASELINE_06B2 paths are:
+- BASELINE.lock
+- SNAPSHOT_MANIFEST.lock
+- MEASUREMENT.lock
+- SNAPSHOT/measurement/SIGMA_VKM_927_CAPABILITY_GAP_LEDGER_V1
+- SNAPSHOT/proofs/SIGMA_VKM_927_PROTECTED_REGRESSION_THROUGH_06B2_V1
+
+Repair runner only: use these exact fixed paths with pinned SHAs, add BASELINE.lock SHA pin c6ab1c..., preserve no-recursive-scan/no-frozen-open discipline.
