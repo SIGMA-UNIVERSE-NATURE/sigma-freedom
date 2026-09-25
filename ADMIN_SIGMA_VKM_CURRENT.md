@@ -1248,3 +1248,30 @@ GIA_FIX3=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
 
 The new senior window is accepted as Lane A successor; preserve existing architecture and repair only these trust-root/bootstrap issues.
+
+
+## 927 TRẺ AIto Epoch V3 static rejection — curriculum compatibility selection missing
+
+TRE__AITO_EPOCH_V3 package SHA256:
+067d4f18c757b6372f98037232af3d5257810b1237771400987ffc216dacef8b
+
+Positive repairs confirmed:
+- learner FIX3 byte-identical and pinned;
+- actual reconstruction candidate reaches accepted scorer through candidate-only public bridge;
+- non-holdout reconstruction pairs are generated using the pinned public/pre-frozen reconstruction-mask builder contract without opening frozen/gold;
+- persisted candidate state is parsed from bytes and fresh unseen behavior is rechecked after restore;
+- protected-regression result and execution provenance are separate artifacts;
+- ONE_SIGMA / same identity boundaries preserved.
+
+Remaining blocker:
+The integrator takes the first four valid reconstruction pairs, trains on the first three, and reserves the fourth unseen. Learner FIX3 requires compatible structural rule + exact anchors across its support examples. V3 has no Sigma-side compatibility grouping/selection, so arbitrary eligible evidence can drive the learner to AMBIGUOUS and then be classified as integrity HOLD even though more/other evidence could form a valid curriculum.
+
+Required repair:
+- host must not inspect/choose anchors semantically;
+- add a Sigma/VKM-side curriculum packer/selector that finds a compatible group of >=3 unique TRAIN pairs plus >=1 same-template unseen pair using learner-native behavior;
+- if no compatible group exists, return ACQUIRE_MORE, not HOLD;
+- do not modify learner FIX3, evaluator, proof harness, or ONE_SIGMA identity.
+
+Decision:
+TRE_AITO_EPOCH_V3=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
