@@ -1158,3 +1158,37 @@ Blocker: runner uses guessed top-level filenames. Official BASELINE_06B2 paths a
 - SNAPSHOT/proofs/SIGMA_VKM_927_PROTECTED_REGRESSION_THROUGH_06B2_V1
 
 Repair runner only: use these exact fixed paths with pinned SHAs, add BASELINE.lock SHA pin c6ab1c..., preserve no-recursive-scan/no-frozen-open discipline.
+
+
+## 927 TRẺ AIto Epoch V2 static rejection — scorer/reconstruction path still disconnected
+
+TRE__AITO_EPOCH_V2 package SHA256:
+b5cbe6bd2401f52ac9f5ce856b17a8aa5802439f90eed43a200965c778bf42ff
+
+Static syntax and SHA256SUMS verification PASS. Learner FIX3 remains byte-identical at:
+661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573
+
+Positive repairs confirmed:
+- persisted candidate state is parsed from bytes and learner state is reconstructed from persisted records;
+- candidate-only public source-reconstruction bridge exists without canonical mutation;
+- old [[SOURCE]] wrapper is removed;
+- R15 runner/adapter output provenance is retained.
+
+Remaining blockers before runtime:
+
+1. Candidate scorer path still passes an empty reconstruction candidate whenever sigma_model_score_probe_v1 exposes RECONSTRUCTION_CANDIDATE:
+   elif kind=="RECONSTRUCTION_CANDIDATE": args.append('""')
+   Therefore SOURCE_RECONSTRUCTION scoring does not consume sigma_sr_reconstruct_v1 output. The claimed callflow sigma_model_score_probe_v1 -> sigma_model_source_reconstruction_v1 is not implemented by the score harness.
+
+2. New curriculum is identity-only:
+   INPUT_TEXT = evidence text
+   TARGET_TEXT = evidence text.
+   This trains learner FIX3's IDENTITY hypothesis, while accepted RECONSTRUCTION_MASK scoring compares reconstruction_candidate to GOLD_SOURCE_SPAN. Identity compatibility is not a sufficient binding to the official reconstruction task. Build non-holdout reconstruction pairs from the approved pre-frozen probe/builder contract (or fail closed if that contract cannot be bound) rather than assuming whole-evidence identity.
+
+3. RETENTION_PROOF only compares restored learner state projection. It does not prove restored candidate behavior on fresh unseen reconstruction cases. Retention must rerun the same non-holdout unseen transfer cases from persisted bytes in a fresh VM/process.
+
+4. CANDIDATE_EPOCH_V1 sets PROTECTED_REGRESSION_SHA256 to TRE__R15_EXECUTION_PROVENANCE_V2.lock. Provenance is not a protected-regression proof. Bind the actual candidate protected-regression execution/result artifact separately; keep execution provenance as its own field/artifact.
+
+Decision:
+RUN_FORBIDDEN=YES
+Repair TRE integrator only; learner FIX3 remains frozen.
