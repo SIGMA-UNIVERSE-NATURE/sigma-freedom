@@ -1487,3 +1487,46 @@ Repair direction:
 Decision:
 928_AITO_FINAL_E2E_PROOF_V1=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
+
+
+## Neutral integration FIX4 runtime — accepted sealed learner proof
+
+User runtime result accepted:
+
+~~~text
+STATUS=PASS
+SYSTEM_INTEGRITY_STATUS=PASS
+NEUTRAL_INTEGRATION_RUNTIME=PASS
+NON_IDENTITY_FAMILIES_GATE=PASS
+THREE_RUN_ARTIFACT_DETERMINISM=PASS
+CANONICAL_UNCHANGED=PASS
+OWNER_UNCHANGED=PASS
+NATIVE_BINDING_UNCHANGED=PASS
+BASELINE_PUBLIC_IDENTITIES_UNCHANGED=PASS
+FROZEN_OPENED=NO
+FROZEN_HASHED=NO
+RECURSIVE_BASELINE_SCAN=NO
+LEARNER_SOURCE_MODIFIED=NO
+PROOF_SOURCE_MODIFIED=NO
+PHASE_B_USED=NO
+ADMISSION_PERFORMED=NO
+COMMIT_PERFORMED=NO
+PROMOTION_PERFORMED=NO
+~~~
+
+Pinned runtime artifacts:
+- learner FIX3 SHA256=661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573
+- proof Phase A FIX6 SHA256=b997c833431350d07a7f6fe2e2cd41d3f56597560afb392105cac37f27e14f41
+- assembled source SHA256=2de3d77f1560c2f87c2ab962dfb81626d758e44204ea57aef4db38c434da9e0b
+- bytecode SHA256=ecb0767b13e14e6df5494c587d65ac7d430fea54811780b93581faefc4d14fc0
+- deterministic native.out SHA256=003c99746466c5844f99e178da20ec17ba41d7a1e91b3de1974ae310c2ce429c
+- deterministic phase_a.meta SHA256=f8cdaf1255e05ef57ca6cbd170e5ae6dd22edc5a8328217ed715f56846dbb61c
+- deterministic unseen_after SHA256=af8169c6d8e2cc6d7bffeda2dc2b27322e8a3f0c17620fe7228d2b0c7f6d7c42
+
+Admin conclusion:
+SOURCE_RECONSTRUCTION_LEARNER_FIX3_SEALED_TRANSFER_PROOF=PASS
+
+This closes the learner-mechanism transfer gate.
+Do not reopen or modify learner FIX3 or Lane C Phase A FIX6 unless a later integration failure proves a real defect.
+
+Phase B persisted-state replay remains intentionally deferred to AIto integration/admission.
