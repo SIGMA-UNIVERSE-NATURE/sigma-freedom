@@ -708,3 +708,56 @@ Admin repair direction:
 - Lane C proof harness must include at least one non-identity reconstruction family and mutation sensitivity so identity-copy cannot self-certify.
 
 Do not run the rejected V1 package.
+
+
+## 927 Lane C sealed proof V1 static rejection — ABI/control mismatch
+
+Lane C proof package:
+
+~~~text
+PACKAGE_SHA256=
+ba11e4232c29984319666601284584045e8702bfdb5b6a040c3ec99819c6d488
+
+HARNESS_SEAL_SHA256=
+1d8293bb4dce3bf5d03c3c5d1875bc25c1bd74837db9fe42e7a4185f9b85448f
+~~~
+
+Positive finding:
+
+All four unseen cases require non-identity reconstruction:
+FRAME|... → fresh natural-language target.
+Therefore a pure IDENTITY_COPY learner cannot pass transfer.
+
+Static rejection reasons:
+
+1. Proof ABI training-example schema uses only:
+   kind, example_id, input_text, target_text
+
+   but the fixed learner contract requires:
+   EXAMPLE_ID, INPUT_TEXT, TARGET_TEXT, PROVENANCE_STATUS, CURRICULUM_STAGE, LEARNING_GOAL.
+
+2. Harness calls:
+   sigma_sr_learner_new(NULL)
+
+   while current learner repair requires real same-Sigma parent validation/binding. FRESH_PROOF_PARENT=NULL is incompatible with that contract.
+
+3. Required control:
+   DUPLICATE_TRAINING_NO_SUPPORT_INFLATION
+   is absent.
+
+4. Required control:
+   INVALID_PARENT_FAIL_CLOSED
+   is absent.
+
+5. TRAIN_ANSWER_LEAK checks only negative outputs; hardened proof should also ensure unseen outputs do not equal any TRAIN target unless that byte string is the independently expected unseen target.
+
+6. STATIC_AUDIT claims ABI bound but does not cover the fixed learner record contract above.
+
+Decision:
+
+~~~text
+LANE_C_PROOF_V1=REJECT_BEFORE_RUNTIME
+RUN_FORBIDDEN=YES
+~~~
+
+Repair Lane C only. Do not reveal Lane B implementation source. Preserve the existing sealed non-identity dataset where possible and add the missing ABI fields and controls.
