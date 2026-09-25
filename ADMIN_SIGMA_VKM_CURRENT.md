@@ -1659,3 +1659,52 @@ Coordination:
 - 928 may repair its internal semantics now.
 - Do not invent final Lane-A engine/runner/execution-runner pins; accept them only as external immutable neutral-runner inputs after GIA FIX6 is frozen.
 - No implementation-source dependency.
+
+
+## 927 Lane A FIX6 static accepted — pointer ABI frozen
+
+GIA__ADMISSION_WRITER_FIX6.zip SHA256:
+b3955cf18807fefa18eec53c104f045a2f2a6f6ed8cf3bd4e22b87a21191ede9
+
+Static audit PASS:
+- all 18 artifact manifest hashes verify;
+- Python syntax passes;
+- accepted root is exactly $HOME/SIGMA/sigma_genesis1/.sigma_ail/SIGMA_VKM_927_ACCEPTED_STATE;
+- ROOT and SIGMA_927_ACCEPTED_ROOT overrides must canonical-resolve to exact locked roots or HOLD;
+- traversal/symlink component/realpath escape/alternate accepted store rejected;
+- accepted subdirectories are root-bound and symlink-safe;
+- pointer now requires ONE_SIGMA=YES, SAME_SIGMA_IDENTITY=YES, SECOND_SIGMA_CREATED=NO;
+- FIX5 parent-state contract preserved exactly;
+- BASELINE_06B2 identity remains separate from PARENT_ACCEPTED_STATE_SHA256;
+- no recursive discovery/filename guessing;
+- no admission semantic redesign.
+
+Frozen Lane A FIX6 component pins:
+ADMISSION_ENGINE_SHA256=acda382c23dce7713e0e50751d4c041941f2f943d3be56efc66618d60f10f0da
+ADMISSION_NATIVE_RUNNER_SHA256=d3f82a2abb3db78f5a3101737938c43727c2fc1b458950f9d15e3fb1cd4acfc0
+ACCEPTED_STATE_WRITER_SHA256=bac004283c8be5bd9d960f11329edd4ec752022950ecb3622d453b6c334e368c
+
+Frozen accepted pointer ABI:
+PATH=$HOME/SIGMA/sigma_genesis1/.sigma_ail/SIGMA_VKM_927_ACCEPTED_STATE/SIGMA_VKM_927_ACCEPTED_STATE.current
+SCHEMA=SIGMA_VKM_927_ACCEPTED_STATE_POINTER_V1
+ONE_SIGMA=YES
+SAME_SIGMA_IDENTITY=YES
+SECOND_SIGMA_CREATED=NO
+ACCEPTED_STATE_SHA256=
+GENERATION_RELATIVE_PATH=
+PARENT_ACCEPTED_STATE_SHA256=
+ADMISSION_RECEIPT_SHA256=
+
+Accepted state resolves mechanically as:
+$ACCEPTED_ROOT/$GENERATION_RELATIVE_PATH/STATE.model
+
+Important cross-lane consequence:
+TRE V6 is NOT pointer-ABI aligned because it expects ACCEPTED_STATE_PATH, which Lane A does not emit. TRE must mechanically derive STATE.model from GENERATION_RELATIVE_PATH under the exact accepted root. Do not invent ACCEPTED_STATE_PATH.
+
+The blank EXPECTED_BASELINE_PUBLIC_CONTRACT_SHA256 and EXPECTED_EXECUTION_RUNNER_SHA256 sentinels are intentional external final-freeze bindings, not additional GIA code defects. Lane A FIX6 code is frozen; runtime remains blocked until those two immutable external pins are bound by final integration/orchestration.
+
+Decision:
+GIA_FIX6_STATIC=PASS
+GIA_FIX6_CODE_FROZEN=YES
+GIA_FIX6_RUNTIME_NOW=NO
+NO_GIA_FIX7=YES
