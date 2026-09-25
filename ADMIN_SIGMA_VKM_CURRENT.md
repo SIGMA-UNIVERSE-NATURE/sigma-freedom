@@ -876,3 +876,38 @@ Static audit: REJECT BEFORE RUNTIME.
 Although PREFIX/SUFFIX/BETWEEN now use separate learner states, the three training examples inside each state still infer different exact anchors. Lane B FIX2 requires exact rule + left_anchor + right_anchor equality for support, so the second training example would make each state AMBIGUOUS.
 
 Repair Lane C only: within each rule state, keep learned framing anchors byte-identical across >=3 unique training examples and unseen cases; vary only extracted target/content. Preserve sealed independence and all existing controls.
+
+
+## Locked path to final AIto autonomous-learning bundle
+
+Final bundle scope:
+
+SIGMA_VKM_927_AITO_AUTONOMOUS_LEARNING_V1_PACKAGE
+
+Done means one real non-holdout learning loop completes:
+gap -> goal -> curriculum -> acquisition -> train -> fresh evaluation -> admission -> atomic persist -> fresh restart -> retained gain -> automatic next-gap continuation.
+
+Locked remaining sequence:
+
+1. Lane C/928: finish extractive transfer proof FIX4 with stable anchors per rule state.
+2. Lane A/senior, in parallel: build black-box admission + atomic commit/rollback writer against CANDIDATE_EPOCH_V1 ABI; build-only.
+3. Lane B/young, in parallel: build AIto epoch integrator around the already-audited learner FIX2 ABI plus existing local-first/MediaWiki acquisition and curriculum-to-training-example construction; build-only.
+4. Admin: static-audit and pin all three packages/hashes and integration ABI.
+5. User: run sealed learner transfer proof. Required non-identity unseen transfer, duplicate/invalid-parent/negative/mutation/leak/restart gates.
+6. User: run real AIto learning epoch from BASELINE_06B2 with non-holdout evidence. Produce CANDIDATE_EPOCH_V1 or truthful ACQUIRE_MORE/REJECT.
+7. User: run Lane A admission on a real candidate: same evaluator/scorer/gold, fresh unseen evaluation, protected regression, provenance, determinism, negative control and restart retention.
+8. On COMMIT: atomically publish immutable accepted same-Sigma generation + receipt + append-only growth ledger; rollback/fail closed on interruption.
+9. Build final orchestrator package that automatically handles ACQUIRE_MORE, REJECT and COMMIT and resumes from accepted state after restart.
+10. User runs final black-box E2E proof; Lane C/928 audits independently. PASS requires retained measured gain and automatic selection/start of the next learning target.
+
+928 promotion is not on this critical path.
+
+Final invariants:
+ONE_SIGMA=YES
+SAME_SIGMA_IDENTITY=YES
+SECOND_SIGMA_CREATED=NO
+HOST_LEARNING=NO
+HOST_SEMANTIC_SCORING=NO
+HOST_GAIN_DECISION=NO
+FROZEN_HOLDOUT_TRAINING=NO
+CANONICAL/OWNER/NATIVE_BINDING mutation only through the single-writer accepted commit path where explicitly authorized.
