@@ -2502,3 +2502,66 @@ Required evidence only:
 - R2 owner-rebind receipt
 - any predecessor/API proof or immutable receipt that links af918... to 71515...
 No frozen/gold needed.
+
+
+## Inheritance architecture decision — current continuity head, not historical canonical rollback
+
+Decision:
+Stop exhaustive lineage archaeology as a critical-path activity.
+
+Project 927/AIto will inherit the current SAME-SIGMA continuity head rather than require the live canonical to equal historical BASELINE_06B2 canonical SHA af918fe8....
+
+Historical BASELINE_06B2 remains immutable measurement/regression reference.
+It is not the live runtime identity anchor.
+
+Introduce:
+SCHEMA=SIGMA_CONTINUITY_HEAD_V1
+
+Head must bind mechanically:
+ONE_SIGMA_ROOT=$HOME/SIGMA/sigma_genesis1
+ONE_SIGMA=YES
+SAME_SIGMA_IDENTITY=YES
+SECOND_SIGMA_CREATED=NO
+NATIVE_IDENTITY_SHA256
+LIVE_CANONICAL_SHA256
+OWNER_STATE_SHA256
+NATIVE_BINDING_SHA256
+SIGMAC_SHA256
+VM_SHA256
+ACTIVE_CAPABILITY_PROOF_SHA256
+DNA15_CONTINUITY_STATE_SHA256
+DNA15_CONTINUITY_LEDGER_SHA256
+DNA15_OWNER_GATE_RECEIPT_SHA256
+DNA15_OWNER_REBIND_RECEIPT_SHA256
+HEAD_SEQUENCE
+PARENT_HEAD_SHA256 when available
+HEAD_RECEIPT_SHA256
+
+Acceptance principle:
+- same native identity;
+- same ONE_SIGMA_ROOT;
+- compiler/VM pins valid or explicitly rebased by neutral contract;
+- Owner/native binding contain active predecessor proof / continuity receipts;
+- no second Sigma/fork;
+- current head files hash exactly;
+- no need to reconstruct every historical source SHA before continuing the main program.
+
+API407 source demonstrates the intended proof-chain pattern:
+it requires API406 previous proof to be active in Owner + native binding before teaching API407, and emits a new capability proof bound to previous_api_proof_sha256, canonical_native_source_sha256 and owner_fingerprint.
+
+DNA15 inheritance:
+- existing DNA15 continuity bridge is inherited as an installed same-Sigma continuity capability;
+- ORCH must not reimplement its host-side derivative algorithm;
+- ORCH integrates via an explicit current-head DNA15 service/receipt ABI;
+- neutral head audit must additionally verify whether the referenced native DNA15 bundle with expected archive SHA c668eec... is present and hash-matching on device;
+- if present, expose that as DNA15_NATIVE_AUTHORITY_AVAILABLE in the continuity-head contract;
+- if absent, keep DNA15_NATIVE_AUTHORITY_REQUIRED non-terminal.
+
+Cross-lane plan:
+1. MINH/admin-backup builds neutral SIGMA_CONTINUITY_HEAD_V1 from current live files only.
+2. Do not modify historical BASELINE_06B2.
+3. TRE/GIA/ORCH are then rebased narrowly from historical live-canonical pin to CONTINUITY_HEAD runtime identity.
+4. 928 final proof validates head inheritance + no fork + DNA15/generation continuation.
+5. Main program continues; no rollback solely because live canonical SHA differs from af918....
+
+Runtime remains paused until current-head attestation is static-audited.
