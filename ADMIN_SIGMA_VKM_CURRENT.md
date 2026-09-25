@@ -1329,3 +1329,33 @@ Role policy:
 - Admin backup owns neutral integration / continuity / cross-lane ABI assembly.
 - New senior (GIÀ mới) owns Lane A admission + accepted-state writer.
 - Do not merge these roles unless explicit takeover is required.
+
+
+## 927 TRẺ AIto Epoch V4 static rejection — holdout pre-open and parent-state identity mismatch
+
+TRE__AITO_EPOCH_V4 package SHA256:
+2c40036fdd372726a409ee929a887af406f9503c4b70572b665d8e837df15f34
+
+Positive V4 repair confirmed:
+- Sigma/VKM-side curriculum selector now selects 3 unique compatible TRAIN pairs + 1 compatible untrained validation pair using learner FIX3 behavior;
+- no compatible group -> ACQUIRE_MORE, not HOLD;
+- learner FIX3 remains pinned;
+- scorer/public bridge, persisted restore, retention behavior and protected-regression separation from V3 are preserved;
+- ONE_SIGMA markers remain.
+
+Two blocking cross-lane defects:
+
+1. parse_manifest() hashes every target in SNAPSHOT_MANIFEST.lock before training. That opens/hashes SNAPSHOT/frozen/* and other holdout artifacts before the learning epoch, violating holdout isolation. Parse manifest metadata only, then verify only explicitly required public/pre-frozen artifacts by fixed path/role/SHA. Frozen/gold may be opened only later by the pinned evaluator after candidate training.
+
+2. First-epoch parse_pointer() defaults PARENT_ACCEPTED_STATE_SHA256 to BASELINE_06B2 SHA and reconstructs base_seq mechanically from the 05B persistence component source. Lane A final architecture separates BASELINE_06B2 identity from the actual accepted parent-state artifact identity. Final integrator must consume the same explicit ONE_SIGMA accepted-state pointer/contract as Lane A, including first-epoch bootstrap. Do not conflate BASELINE_SHA with PARENT_ACCEPTED_STATE_SHA256 and do not infer accepted state from component source.
+
+Decision:
+TRE_AITO_EPOCH_V4=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
+
+Repair once in V5:
+- no pre-training frozen/gold open/hash;
+- require explicit accepted-state pointer/contract and exact parent-state artifact SHA;
+- keep BASELINE_06B2 pin separately;
+- preserve V4 curriculum selector and all V3 fixes;
+- SECOND_SIGMA_CREATED=NO.
