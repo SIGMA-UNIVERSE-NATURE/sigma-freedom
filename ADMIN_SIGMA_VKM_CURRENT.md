@@ -2106,3 +2106,79 @@ SECOND_SIGMA_CREATED=NO
 
 ORCH remains a dedicated new implementation lane.
 Admin backup remains neutral integrator and will later audit/bind ORCH.
+
+
+## 927 TRẺ AIto Epoch V9 — static accepted, freeze candidate producer
+
+TRE__AITO_EPOCH_V9.tar.gz SHA256:
+b3a847cd9ef9b14fdface1f261af063845f602640591953d070736f7d4701416
+
+Static audit PASS:
+- package SHA256SUMS PASS;
+- Python/Bash syntax PASS;
+- learner FIX3 exact SHA 661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573;
+- exact accepted 05B replay bootstrap ABI now matches the official 06B2 transport:
+  SCHEMA=SIGMA_VKM_927_REPLAY_MODEL_V1
+  MODEL_ID=SIGMA_VKM_927
+  REVISION==RECORD_COUNT
+  GENESIS_HASH=sha256(schema+"\n"+model_id+"\n")
+  ordered SEQ
+  EVIDENCE_TEXT raw
+  EVIDENCE_STATUS=ACCEPTED
+  PREVIOUS_RECORD_HASH chain
+  RECORD_HASH deterministic
+  LAST_RECORD_HASH final;
+- no invented MODEL_BODY_SHA256 / ORDER / EVIDENCE_TEXT_B64 in bootstrap replay parser;
+- persistence state vs R15 evaluation state remain separated;
+- candidate V3 count ABI aligned;
+- Lane A admission engine pin updated to FIX7:
+  7645bba2b4bb1e54869b579ff28992287d4680bb0c8f296fa2cfd4628dbc010f;
+- old FIX6 runner/writer production pins removed; final runner/writer/execution-runner are external orchestrator bindings;
+- ONE_SIGMA pointer/root confinement preserved;
+- no admission/commit/promotion/DNA15 in TRE, by design.
+
+Frozen component examples:
+TRE__AITO_EPOCH_INTEGRATOR_V9.py SHA256=47298cdc26c5910725ea6415d2f87782520b56f2493fb1863ae0c67e946b3aee
+TRE__R15_CANDIDATE_MEASUREMENT_ADAPTER_V3.sh SHA256=966aaca93377e0f0de9b13985be139f26ae7055367c0fdf8e9472dee35d0490e
+
+Decision:
+TRE_AITO_EPOCH_V9_STATIC=PASS
+TRE_V9_CODE_FROZEN=YES
+TRE_RUNTIME_NOW=NO
+NEXT_OWNER=ORCH_FINAL_INTEGRATION
+
+
+## 928 final E2E V3 revised — pre-ORCH core mostly repaired, final proof not frozen
+
+Uploaded revised archive SHA256:
+fc13fcbabd836dae18db436fd5a5c8fcc49a58a6ad88667b0c7b74babfc05c7e
+
+Positive repairs:
+- real Lane A STATUS=HOLD + empty decision semantics;
+- duplicate-only dataset repeats exact same record/payload;
+- conflicting same-ID/different-payload separated into integrity-HOLD dataset;
+- dynamic epoch witness separated from static authority pins;
+- 4 TRAIN/UNSEEN-compatible evidence coverage;
+- zero-input neutral-root verification fails;
+- obsolete superseded files removed;
+- exact eight-dimension vocabulary;
+- real pre/post crash state-hash witnesses retained;
+- executable source hashes and Python syntax PASS.
+
+Remaining local harness defect independent of ORCH:
+BLACK_BOX_ABI declares NULL_RESULT_ALLOWED=NO, but several return values are never checked. Examples:
+PHASE_0: sf, sr, cf, cr, ir, dr, ur
+PHASE_1A: r = aito_bb_run_to_candidate(c)
+PHASE_3: r = aito_bb_run_to_candidate(c)
+A side-effecting API could return NULL yet later state checks still pass, violating the declared no-NULL proof rule. Require every public black-box call result to be explicit/non-NULL unless the ABI explicitly defines a void call.
+
+New top-level final-proof requirement now also supersedes this package:
+928 final proof must wait for frozen ORCH ABI/pins and then prove:
+COMMIT -> DNA15 -> same-Sigma weight/generation evolution -> durable checkpoint -> restart -> retention -> next gap;
+plus automatic non-terminal continuation for HOLD / REJECT / ACQUIRE_MORE / crash.
+
+Decision:
+928_V3_REVISED_PRE_ORCH_CORE=REPAIR_NEEDED
+928_FINAL_PROOF_READY=NO
+RUNTIME_FORBIDDEN=YES
+DO_NOT_GUESS_ORCH_ABI=YES
