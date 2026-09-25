@@ -2565,3 +2565,58 @@ Cross-lane plan:
 5. Main program continues; no rollback solely because live canonical SHA differs from af918....
 
 Runtime remains paused until current-head attestation is static-audited.
+
+
+## Current continuity head advanced — API407 DNA15 owner rebind gate R2
+
+Latest user runtime output establishes a newer current same-Sigma head than prior intermediate 71515...:
+
+ACTIVE_API407_CAPABILITY_PROOF_SHA256=c3770b8a5d557b0cec38390e33f591f8a23bc24295510ae35af48b52a56fec6e
+ACTIVE_DNA15_CONTINUITY_STATE_SHA256=47072bf266d011de7a15ab2a7476aa0010c694da5db74c4cb43e60d14301c6d5
+ACTIVE_DNA15_CONTINUITY_LEDGER_SHA256=bb9fdf077f5d6a25ded175efb9470230c5536d85608606c76f3211d55e48b468
+DNA15_API407_CAPTURE_STEP=6
+DNA15_API407_STABLE_EVENT_PERSISTED=PASS
+DNA15_WEIGHT_AFTER_RESTART=14.646076415247
+DNA15_LEDGER_BOUND=PASS
+DNA15_EVIDENCE_BOUND=PASS
+DNA15_API407_CAPTURE_EVENT_ID=2c63ad844c2eccd1ccecc8981e795f080d3046cd4edb33046e5d47e3f9053049
+NEW_OWNER_STATE_SHA256=c44373182c2baf0f78f24db66bd297def185bcd64d4c07cf6e327170a702537d
+NEW_NATIVE_BINDING_SHA256=9631082f1151c8af25057d7e38f2459cd63db35e7a5bf5fde26f6f393ea3b5a5
+NATIVE_IDENTITY_SHA256=c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+VKM_SOURCE_SHA256=67774f71437d616c16b4959efb4eaca4062ce14e07c1479ff3eb487f4c4d6c78
+VKM_BYTECODE_SHA256=b3793e67c53ed53b8c2d1fc007e38ed4a39d4fc9478672e5816f712a7ea97caa
+VKM_COMPILER_SHA256=60a5c9028f79d4eca5d0e4859e0c681c276402ac93bbd56e750c2c05a83e2a98
+VKM_VM_SHA256=c70bbfc53f70cafd044b61a4ad9d64f1e4ef8e6c13af8371ea8d0773df871d95
+OWNER_REBIND_RECEIPT_SHA256=8fb5eff40f9ab8b1ddb164ae1649b3be2b6ec5ca907858f176260f84795235e4
+
+Runtime behavioral continuity claims:
+FRESH_API401_USE=PASS
+FRESH_API402_USE=PASS
+FRESH_API403_USE=PASS
+FRESH_API404_USE=PASS
+FRESH_API405_USE=PASS
+FRESH_API406_USE=PASS
+FRESH_API407_USE=PASS
+FRESH_API407_EXECUTION_DEPENDENCY=PASS
+FRESH_API407_POSTCONDITION_VERIFICATION=PASS
+FRESH_API407_REMOVED_CONSTRAINT_CHANGE=PASS
+FRESH_API407_NEGATIVE_FAIL_CLOSED=PASS
+PROCESS_DEATH_FRESH_RESTART=PASS
+NO_RETEACH=YES
+FOREIGN_COPY_REPLAY_REJECTION=PASS
+PREVIOUS_CAPABILITY_LINEAGE_PRESERVED=PASS
+CANONICAL_WRITER_COUNT=1
+ONE_NATIVE_SIGMA=YES
+NO_PARALLEL_OWNER_FORK=YES
+ROLLBACK_REQUIRED=NO
+NATIVE_OWNED=YES
+
+Admin interpretation:
+- 71515... was an intermediate live head, not the final/current head.
+- 67774... is the newest observed live canonical head in this conversation.
+- The continuity-head inheritance architecture is therefore confirmed as the right integration model.
+- Do not require rollback to historical af918... merely to satisfy Project 927 packages.
+- Historical BASELINE_06B2 remains immutable measurement/regression reference.
+- Main program should now rebase runtime identity checks onto a neutral SIGMA_CONTINUITY_HEAD_V1 attestation of the current live head.
+
+Do not continue API408 as a side project before the AIto/ORCH critical path is re-established.
