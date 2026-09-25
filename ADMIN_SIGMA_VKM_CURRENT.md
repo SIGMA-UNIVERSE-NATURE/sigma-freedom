@@ -1998,3 +1998,70 @@ Required V9:
 Decision:
 TRE_AITO_EPOCH_V8=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
+
+
+## Top-level autonomous doctrine — no terminal state + DNA15 generation evolution
+
+New hard requirements, effective immediately at architecture/contract level:
+
+AUTONOMOUS_UNATTENDED_OPERATION=YES
+HUMAN_REQUIRED_FOR_CONTINUATION=NO
+TERMINAL_LEARNING_STATE=NONE
+ONE_SIGMA=YES
+SAME_SIGMA_IDENTITY=YES
+SECOND_SIGMA_CREATED=NO
+DNA15_REQUIRED_IN_FINAL_AUTONOMOUS_LOOP=YES
+WEIGHT_EVOLUTION=YES
+GENERATION_EVOLUTION=YES
+
+Important layering decision:
+- Do NOT inject DNA15 execution into the learner, evaluator, admission engine, or accepted-state writer.
+- Lane B/TRẺ produces and evaluates candidate state only.
+- Lane A/GIÀ decides admission and atomically persists the accepted generation only.
+- DNA15 self-upgrade is owned by the final autonomous orchestrator after a successful COMMIT.
+- The supervisor owns crash/process restart and must relaunch the orchestrator automatically.
+- 928 must prove the full non-terminal recovery/self-upgrade loop black-box.
+
+Required final lifecycle:
+GAP
+-> GOAL
+-> ACQUIRE
+-> CURRICULUM
+-> TRAIN SAME SIGMA
+-> CANDIDATE
+-> FRESH EVALUATION
+-> ADMISSION
+-> COMMIT accepted generation
+-> DNA15 SELF-UPGRADE / weight-generation evolution
+-> durable generation checkpoint
+-> fresh restart
+-> retention + protected regression
+-> next official gap
+-> repeat indefinitely
+
+No terminal semantics:
+- HOLD is diagnostic/integrity state inside recovery loop, not process exit waiting for human.
+- REJECT preserves accepted state then automatically changes/rebuilds curriculum/evidence and starts another epoch.
+- ACQUIRE_MORE automatically returns to acquisition.
+- COMMIT automatically continues into DNA15/generation advancement and next gap.
+- crash/power/process death recovers from durable journal and resumes.
+- bounded retries must never become a silent terminal exit; exhausted local recovery transitions to a durable degraded/quarantine/acquisition mode and keeps the supervisor/orchestrator alive.
+
+Cross-lane contract requirements effective now:
+TRẺ:
+- must produce deterministic candidate + resume-safe artifacts and never assume COMMIT is terminal;
+- must expose enough state for orchestrator to resume/retry/reacquire without human;
+- no DNA15 execution inside TRE epoch runner.
+
+GIÀ:
+- COMMIT receipt must be durable input to orchestrator; writer must not treat COMMIT as overall workflow completion;
+- HOLD/REJECT/ACQUIRE_MORE must be machine-actionable statuses;
+- no DNA15 execution inside admission/writer.
+
+928:
+- final proof must assert no terminal workflow state;
+- test automatic transitions for HOLD recovery, REJECT re-epoch, ACQUIRE_MORE acquisition, COMMIT->DNA15->new generation->restart->retention->next gap;
+- test supervisor restart after crash with no human action;
+- verify DNA15 changes same-Sigma weight/generation identity without creating a second Sigma.
+
+Final orchestrator must be designed/frozen before runtime binding of Lane A runner/writer hashes, because EXECUTION_RUNNER_SHA256 is one of the final authority pins and must cover the autonomous DNA15/recovery control plane.
