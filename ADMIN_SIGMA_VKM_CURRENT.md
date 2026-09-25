@@ -160,3 +160,51 @@ Do not promote while 927 owns the writer.
 Do not rerun acquisition R1 unchanged.
 Do not use frozen/gold as training.
 Do not create a second Sigma.
+
+
+## Historical G3B Internet precedent — audited 2026-09-25
+
+A historical package was reviewed statically:
+
+~~~text
+SIGMA_G3B_200_STORY_DIRECT_INTERNET_NATIVE_CHALLENGE_R1_FIX3_LIVE_SCREEN_R1.tgz
+SHA256=77706e5ad8d81c01977d424f79ece109dd96a243bc0e569d560cdb7d074c5dd1
+~~~
+
+This is **historical architecture evidence only**. It is not automatically current 927 continuity, accepted state, or a dependency to import.
+
+Useful proven pattern:
+
+~~~text
+native capability planner
+→ exact public MediaWiki endpoint/discovery target
+→ host mechanical HTTPS + JSON decode
+→ native candidate selector
+→ host exact selected-page fetch + mechanical markup-to-text decode
+→ native full-text consumer/summarizer
+→ provenance receipts
+~~~
+
+Historical provider catalog included:
+
+~~~text
+Wikisource MediaWiki category
+Wikipedia MediaWiki search
+local documents
+~~~
+
+For the implemented Wikisource path the host used the MediaWiki Action API mechanically and did not rank/select pages semantically. Sigma selected capability and candidate; host fetched the exact native-selected target.
+
+Important limitation:
+
+The G3B summarizer was a native **extractive beginning/middle/end digest**. Its own contract explicitly did not claim persistent learning, general semantic understanding, or general autonomous world learning.
+
+Admin reuse rule for current 927:
+
+- reuse the **control/transport pattern**, not the old learned state;
+- do not import old source blindly into current Sigma;
+- do not treat G3B as proof of current SOURCE_RECONSTRUCTION mastery;
+- bounded acquisition R2 should prefer the stable MediaWiki API pattern over depending only on scraped search HTML;
+- current 927 must still apply provenance, quarantine, dedup, Sigma/VKM target relevance, native learning epoch, fresh evaluation, retention, and admission.
+
+This precedent strengthens the decision that acquisition transport R2 should use a public MediaWiki adapter while keeping current 927 goal/curriculum/admission contracts unchanged.
