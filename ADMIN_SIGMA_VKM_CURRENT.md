@@ -500,3 +500,85 @@ SIGMA C VM: incompatible binary operands_
 ~~~
 
 Repair the bundle mechanically without running Sigma. Prefer the already-proven 06B2 native numeric-output convention or an explicit bounded integer-to-text printer. Then return a new package + SHA + user run command only.
+
+
+## 927 SOURCE_RECONSTRUCTION transfer gate — EPISODIC_ONLY
+
+Runtime result accepted:
+
+~~~text
+STATUS=PASS
+SYSTEM_INTEGRITY_STATUS=PASS
+SOURCE_RECONSTRUCTION_TRANSFER_GATE=PASS
+
+TRAIN_CASE_COUNT=3
+UNSEEN_CASE_COUNT=3
+
+TRAIN_ITEM_RECALL=PASS
+EPISODIC_RECALL=PASS
+
+UNSEEN_BEFORE_RECONSTRUCTION_PASS_COUNT=0
+UNSEEN_AFTER_RECONSTRUCTION_PASS_COUNT=0
+UNSEEN_TRANSFER_DELTA=0
+UNSEEN_TRANSFER=FAIL
+
+UNRELATED_EVIDENCE_CONTROL=PASS
+UNSEEN_TRANSFER_AFTER_RESTART=NOT_APPLICABLE_NO_TRANSFER
+
+LEARNING_MECHANISM_STATUS=EPISODIC_ONLY
+LEARNING_STATE=MECHANISM_UPGRADE_REQUIRED
+ADMISSION_DECISION=ACQUIRE_MORE
+NEXT_ACTION=BUILD_TRANSFERABLE_SOURCE_RECONSTRUCTION_MECHANISM
+~~~
+
+Additional integrity facts:
+
+~~~text
+TRAIN_UPDATE_RUNTIME=SIGMA_VKM
+REPLAY_PERSISTENCE_MODE=APPEND_ONLY_EVIDENCE_REPLAY
+REPLAY_MODEL_SHA256=bd92f7127775c26736554a584af6906236dca5bebcc88acee974de8907613e9c
+FRESH_PROCESS_EVALUATION_MATCH=PASS
+DETERMINISTIC_EVALUATION=PASS
+TRAIN_UNSEEN_EXACT_SOURCE_OVERLAP=NO
+
+GATE_NATIVE_SOURCE_SHA256=
+1b2e5f97af9df06155d3cb3da4cd97a3f1f716575c3c576f673492d3902d68f1
+
+GATE_NATIVE_BYTECODE_SHA256=
+e5f411e18cd6a43027423776706db81ae7a2b6cb305f09e2a00f2fa47b5572fd
+
+TESTER_SHA256=
+8ea644a73231959c2447ea3084176c3e0c02109520f4ecf498cf392a0aef6924
+~~~
+
+Admin conclusion:
+
+**Current accepted 927 learning primitive is episodic-only for SOURCE_RECONSTRUCTION.**
+
+This is not a system failure and not a reason to reopen 06B2.
+
+Do not resume Internet acquisition yet.
+
+More data cannot by itself repair a mechanism that recalls TRAIN evidence but shows zero transfer to unseen source-reconstruction cases.
+
+Current critical path:
+
+~~~text
+EPISODIC_ONLY proven
+→ define transferable SOURCE_RECONSTRUCTION learner ABI
+→ implement isolated candidate learning mechanism
+→ independent unseen/negative/restart proof
+→ integrate with AIto epoch
+→ CANDIDATE_EPOCH_V1
+→ Lane A admission
+~~~
+
+Parallel lane assignment:
+
+- Lane B / young coder: implement candidate transferable learner against a fixed ABI, build-only, no Sigma VM run.
+- Lane C / 928 coder: independently build the behavioral proof harness against that fixed ABI; do not modify 928 candidate or Lane B source.
+- Lane A / senior: remain admission/convergence standby.
+
+Do not use frozen/gold to design the learner.
+Do not hard-code the synthetic transfer cases.
+Do not mutate canonical, Owner, or native binding during candidate development.
