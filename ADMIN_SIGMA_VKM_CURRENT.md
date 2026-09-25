@@ -2182,3 +2182,81 @@ Decision:
 928_FINAL_PROOF_READY=NO
 RUNTIME_FORBIDDEN=YES
 DO_NOT_GUESS_ORCH_ABI=YES
+
+
+## ORCH autonomous DNA15 V1 static rejection — real cross-lane ABI and crash-resume blockers
+
+ORCH__AITO_AUTONOMOUS_DNA15_V1.tar.gz SHA256:
+5eb01774ce673070b270b171180a9404d40587cc4debd4b0e1538dc2dae30aeb
+
+Positive static checks:
+- custom SHA256+size manifest verifies every packaged file;
+- BUILD_RECEIPT runner/supervisor hashes match actual bytes;
+- Bash syntax PASS;
+- no Sigma compiler/VM run claimed;
+- non-terminal state machine, supervisor loop and DNA15 stage exist conceptually;
+- pending authority hashes are not invented.
+
+Blocking defects:
+
+1. TRE V9 ABI mismatch.
+ORCH expects stdout fields NEXT_ACTION, CANDIDATE_STATE_SHA256, PROVENANCE_STATUS and DETERMINISM_STATUS. TRE V9 successful candidate stdout does not emit these. It emits RESULT_PACKAGE_PATH and CANDIDATE_EPOCH_SHA256; candidate authority is inside result package SIGMA_VKM_927_CANDIDATE_EPOCH_V1 and TRE__PERSISTED_CANDIDATE_STATE_V3. ACQUIRE_MORE/BOOTSTRAP_REQUIRED paths also do not carry the fields ORCH pre-validates. ORCH must branch on actual TRE V9 output, verify result package manifest, then parse the frozen candidate epoch/state.
+
+2. Lane A FIX7 ABI mismatch.
+ORCH phase_admission invokes the native admission runner as a simple executable, but the real runner requires --inputs and --out and staged files. ORCH phase_commit invokes the writer with only ORCH_* vars, but the real writer requires SIGMA_927_CANDIDATE_EPOCH, SIGMA_927_CANDIDATE_STATE, SIGMA_927_MEASUREMENT_LOCK, SIGMA_927_MEASUREMENT_SUMMARY, SIGMA_927_EXECUTION_RUNNER, SIGMA_927_ADMISSION_ENGINE, SIGMA_927_ADMISSION_RUNNER (+ baseline public contract for bootstrap). The writer itself is the public authoritative admission+commit boundary and returns COMMIT/REJECT/ACQUIRE_MORE. Remove the duplicate standalone admission call. Call the writer once with exact frozen inputs.
+
+3. Writer output mismatch.
+Real writer COMMIT output does not emit ACCEPTED_STATE_SHA256. ORCH must derive/verify accepted state from the exact accepted pointer after writer COMMIT, require pointer accepted SHA == candidate SHA, verify generation STATE.model and ADMISSION_RECEIPT_SHA256, then enter DNA15.
+
+4. EXECUTION_RUNNER identity is wrong.
+BUILD_RECEIPT labels the ORCH control-loop binary SHA as EXECUTION_RUNNER_SOURCE_SHA256, but GIA FIX7 execution-runner protocol requires CLI:
+--sigma-927-task <TASK>
+--candidate-epoch ...
+--parent-state ...
+--candidate-state ...
+--measurement-lock ...
+--measurement-summary ...
+--canonical ...
+--goal-dimension ...
+--output ...
+for MEASUREMENT_BEFORE, MEASUREMENT_AFTER, PROTECTED_REGRESSION, RETENTION, CANDIDATE_STATE_REPLAY.
+Current ORCH binary ignores those args and enters the infinite autonomous loop. Final ORCH must implement this exact task mode (same binary is acceptable) or produce a separate exact pinned execution-runner binary. Final GIA binding must use that task-runner SHA.
+
+5. recover() violates resume semantics.
+It always clears candidate, increments retry, and returns to LOAD_ACCEPTED. LAST_SUCCESSFUL_DURABLE_PHASE is recorded but never used. A crash after COMMIT / during DNA15 / restart / retention can therefore skip or replay mandatory continuation. Recovery must be phase-aware and resume the earliest safe durable phase, preserving epoch/target/candidate/commit/DNA15 witness as appropriate.
+
+6. DNA15 is not crash-idempotent.
+There is no durable DNA15 transaction id / PREPARED / APPLIED receipt state. Crash after DNA15 mutation but before ORCH checkpoint can call DNA15 again. Need deterministic DNA15 transaction, durable PREPARED witness, idempotent recovery/query, APPLIED receipt, then checkpoint.
+
+7. DNA15 receipt validation is incomplete.
+Own schema requires previous/new accepted-state SHA and previous/new weight-state SHA, but implementation checks only STATUS, identity, generation IDs and a nonempty receipt string. Must verify receipt artifact hash/schema, bind previous generation to current generation, strict monotonic generation advance, accepted-state lineage, real weight/state change, same-Sigma identity, and admission receipt/commit witness.
+
+8. ONE_SIGMA path trust boundary is not enforced.
+ONE_SIGMA_ROOT, ORCH_ROOT, supervisor SUP_ROOT and ACCEPTED_POINTER_PATH are overrideable without canonical exact-root validation. Accepted GENERATION_RELATIVE_PATH has no traversal/symlink check. Must lock exact canonical $HOME/SIGMA/sigma_genesis1, exact ORCH root and exact accepted pointer, reject symlink components/traversal/realpath escape.
+
+9. runtime.env is sourced as executable shell and is not itself authority-pinned.
+Final config contains trust-root paths/hashes. Parse declarative KEY=VALUE only, do not source shell code. Bind exact final config SHA into ORCH/supervisor or compile final pins into the execution binary. Mutable config must not be able to replace both path and hash authority.
+
+10. State/journal durability is not sufficient for multi-year autonomous recovery.
+ORCH_STATE.current is not schema/hash validated on restart; journal is not hash-chained and omits LAST_SUCCESSFUL_DURABLE_PHASE despite contract. Add hash-chained append-only journal + state/checkpoint integrity, and recover from last complete valid record after partial write.
+
+11. Retry/degraded mode is declarative but not implemented.
+RETRY_COUNTER is never used to change strategy; DEGRADED_ACQUISITION simply calls recover() with fixed sleep and LOAD_ACCEPTED. Add failure-signature retry budget, deterministic bounded backoff, quarantine/source rotation, while never terminal-exiting.
+
+12. Gap selection is not constrained to exact official eight dimensions and current TRE V9 is SOURCE_RECONSTRUCTION-specific.
+ORCH must validate exact official target vocabulary. It must not feed unsupported future dimensions to TRE V9 and loop forever. Add explicit mechanism-routing state. SOURCE_RECONSTRUCTION routes to frozen TRE V9; unsupported official dimensions transition to MECHANISM_UPGRADE_REQUIRED / mechanism acquisition path, not terminal HOLD. Do not falsely claim indefinite next-gap coverage until that route is implemented.
+
+13. Supervisor only revives ORCH while supervisor itself is alive.
+For power/device reboot unattended operation, final deployment needs a level-0 OS boot/service hook that restarts the supervisor automatically. This hook is mechanical only and has no semantic authority.
+
+14. Restart/retention verification is under-bound.
+ORCH passes expected generation/state via env but does not require returned generation/hash/SECOND_SIGMA_CREATED values to match. Require explicit returned binding to generation, accepted-state SHA, same Sigma, no second Sigma, fresh-process identity and protected-regression/retention receipt hashes.
+
+15. Commit/DNA15 memory evolution witness is incomplete.
+For long-term memory/weight evolution, DNA15 receipt/checkpoint must bind previous/new weight/memory state and any compaction/rotation witness. Compaction may occur only with same-Sigma identity, equivalence/protected-regression/retention proof; host never chooses semantic knowledge to delete.
+
+Decision:
+ORCH_V1_STATIC=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
+ORCH_V2_MUST_ALIGN_TRE_V9_AND_GIA_FIX7_EXACTLY=YES
+NO_SIGMA_RUN_BEFORE_ADMIN_AUDIT=YES
