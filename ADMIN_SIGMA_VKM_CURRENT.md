@@ -911,3 +911,39 @@ HOST_SEMANTIC_SCORING=NO
 HOST_GAIN_DECISION=NO
 FROZEN_HOLDOUT_TRAINING=NO
 CANONICAL/OWNER/NATIVE_BINDING mutation only through the single-writer accepted commit path where explicitly authorized.
+
+
+## 927 learner FIX2 native runtime proof — PASS with replay caveat
+
+User runtime output accepted:
+
+~~~text
+STATUS=PASS
+SYSTEM_INTEGRITY_STATUS=PASS
+CANDIDATE_RUNTIME_PROOF=PASS
+TRANSFER_RULE=BETWEEN
+IDENTITY_TRANSFER_USED=NO
+UNSEEN_NON_IDENTITY_TRANSFER=PASS
+PARENT_BINDING_CONTROL=PASS
+DUPLICATE_EXAMPLE_CONTROL=PASS
+MINIMUM_UNIQUE_SUPPORT_CONTROL=PASS
+AMBIGUITY_FAIL_CLOSED_CONTROL=PASS
+DETERMINISTIC_NATIVE_OUTPUT=PASS
+~~~
+
+Candidate component SHA256:
+0a1a10ee30f0f603df0be535a0a4f110a4a0d55321229eedb0a364701f5fb1df
+
+Package SHA256:
+c783549990a50237c735df3bf84589acac7af240a015213c6e93536142d26b5a
+
+Admin audit caveat:
+
+The package marker UNSEEN_TRANSFER_AFTER_FRESH_REPLAY=PASS is overnamed. The replay program creates a fresh learner and retrains the same three examples before reevaluating unseen cases. It does not serialize and restore the learned learner state.
+
+Therefore classify this package as:
+CANDIDATE_NATIVE_RUNTIME_SMOKE=PASS
+FRESH_RETRAIN_REPRODUCIBILITY=PASS
+PERSISTED_LEARNER_STATE_REPLAY=NOT_PROVEN
+
+Do not modify the candidate learner because of this caveat. Independent Lane C proof remains required, including true persistence/restart retention when integrated.
