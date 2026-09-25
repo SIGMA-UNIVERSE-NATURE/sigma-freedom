@@ -2332,3 +2332,111 @@ ORCH__V2_REPAIR_INPUTS_R2.zip
 SHA256=26c392ebf9251336ed45000f55785d3f54661880a36072563a74c698c62519e0
 
 This R2 bundle supersedes ORCH__V2_REPAIR_INPUTS.zip.
+
+
+## ORCH V2 R2 FIXED static audit — truthful partial architecture, production blockers remain
+
+Package:
+ORCH_AITO_DNA15_V2_R2_FIXED.tar.gz
+
+Package SHA256:
+4524d9b03bc60c1c9701c8b2cac655a6a74af256583d5f2b1cbced7ea315a4b6
+
+Packaged control-plane / execution-runner SHA256:
+2af6b9f98b73860de952e83e40eb1d5fef4b752bba1f31173086dcc2c2d7ae9e
+
+Packaged supervisor SHA256:
+7d1302f46d2de58b725db7400f45b3b0a725fdfacc4acd207417ae1ed732c292
+
+Static positives:
+- all custom SHA256+size manifest entries verify;
+- Python syntax PASS;
+- TRE V9 / GIA FIX7 / 928 not modified;
+- legacy DNA15 correctly classified REFERENCE_ONLY;
+- native DNA15 absence is reported truthfully:
+  DNA15_NATIVE_AUTHORITY=REQUIRED
+  DNA15_NATIVE_AUTHORITY_PROVEN_FROM_INPUTS=NO
+  LEARNING_STATE=MECHANISM_UPGRADE_REQUIRED
+  TERMINAL_STATE=NO;
+- real phase-aware recovery skeleton exists;
+- DNA15 PREPARED/APPLIED/checkpoint states exist;
+- exact official dimension vocabulary exists;
+- strict declarative config exists;
+- hash-chained journal exists;
+- OS-level liveness contract exists;
+- ONE_SIGMA/no-second-Sigma intent preserved.
+
+Verified real cross-lane blocker reported by ORCH:
+TRE V9 candidate epoch binds:
+- BEFORE/AFTER to TRE__MEASUREMENT_VIEW_V3
+- PROTECTED to copied R15 candidate summary
+- RETENTION to TRE__RETENTION_PROOF_V3
+while GIA FIX7 re-executes and requires exact SHA equality to:
+- SIGMA_VKM_927_MEASUREMENT_POINT_V1
+- SIGMA_VKM_927_CANDIDATE_PROTECTED_REGRESSION_V1
+- SIGMA_VKM_927_RETENTION_PROOF_V1
+Therefore current TRE V9 candidate epoch can never satisfy GIA FIX7 replay SHA equality. This is a genuine frozen cross-lane ABI conflict and must not be papered over by ORCH.
+
+Additional blockers found by Admin:
+
+1. ORCH task-mode invokes raw R15 STATE_EVAL directly on TRE__PERSISTED_CANDIDATE_STATE_V3. Raw R15 only accepts SCHEMA=SIGMA_VKM_927_ACCEPTED_STATE_MODEL_V1. TRE V9 required TRE__R15_CANDIDATE_MEASUREMENT_ADAPTER_V3 for candidate evaluation. Current task-mode therefore cannot evaluate the real TRE candidate state.
+
+2. ORCH task-mode fabricates semantic proof results:
+PROTECTED_REGRESSION writes all PASS/YES fields unconditionally after generic R15 STATUS=PASS;
+RETENTION writes REPLAY_RETENTION_AFTER_RESTART=PASS unconditionally;
+CANDIDATE_STATE_REPLAY writes LOAD_VALIDATION=PASS and REPLAY_VALIDATION=PASS unconditionally.
+These are host-authored proof claims, violating HOST_SEMANTIC_SCORING/GAIN/NO_FAKE_PASS doctrine. The execution runner must obtain these values from actual pinned Sigma/VKM or frozen proof mechanisms.
+
+3. First-run bootstrap deadlock:
+TRE V9 returns ACCEPTED_STATE_BOOTSTRAP_REQUIRED if accepted pointer is missing.
+ORCH then routes to ADMISSION_COMMIT with no candidate paths.
+GIA FIX7 writer requires candidate epoch/state inputs before its internal pointer bootstrap.
+Thus initial accepted pointer cannot currently be created. Need a narrow authoritative bootstrap-only Lane A operation or separate neutral bootstrap authority.
+
+4. DNA15 receipt self-hash is impossible as implemented:
+verify_dna_receipt() requires field DNA15_RECEIPT_SHA256 to equal sha_file(receipt) while that field is inside the same file. Use a detached manifest hash or hash canonical receipt body excluding the self-hash field.
+
+5. DNA15 / Lane-A state identity is conflated:
+after DNA15 ORCH replaces s[ACCEPTED_STATE_SHA256] with NEW_ACCEPTED_STATE_SHA256 but does not atomically update/verify the authoritative Lane-A accepted pointer or bind a separate native generation pointer. Subsequent TRE V9 reads the Lane-A accepted pointer, so parent identity can diverge. Final architecture must explicitly separate:
+- Lane-A accepted learning-state pointer;
+- native DNA15 weight/generation identity/pointer;
+and define how the next epoch consumes the post-DNA15 same-Sigma state.
+
+6. DNA15 receipt hashes are not required to be valid hex or bound to actual existing weight/memory artifacts. Generation checkpoint trusts receipt strings. Final receipt must bind verifiable same-Sigma native state artifacts or a pinned native generation authority.
+
+7. State/journal recovery is not yet crash-authoritative:
+transition() writes state before appending the journal.
+Crash between those writes leaves state ahead of the last durable journal.
+state_load() does not reconcile state against the last valid journal record and recreates BOOT if state is missing even when a valid journal exists.
+Need journal/checkpoint transactional ordering and restart reconciliation from last complete durable record.
+
+8. Retry exhaustion still hot-loops:
+after RETRY_COUNTER>5, failure() enters QUARANTINE without backoff or real strategy/source rotation; phase_aware_recover then retries the same durable phase and can repeat forever. Implement a real quarantine/route-rotation state with bounded backoff.
+
+9. ONE_SIGMA creation-time symlink gap:
+enforce_roots() checks ORCH_ROOT chain only if ORCH_ROOT already exists. If .sigma_ail is a symlink and ORCH_ROOT does not yet exist, ORCH_ROOT.mkdir() may follow it. Always lstat/no-follow the full intended ORCH_ROOT chain before creation.
+
+10. MECHANISM_UPGRADE_REQUIRED is currently a liveness loop, not autonomous mechanism acquisition:
+it sleeps then SELECT_NEXT_GAP. If selector repeatedly returns an unsupported official gap, no mechanism is ever built. This is truthfully non-terminal but does not yet satisfy years-long autonomous learning. A real mechanism acquisition/build/admission route is still required.
+
+11. Native DNA15 authority is genuinely missing from provided inputs.
+Legacy bundle references:
+EXPECTED_ZIP_SHA256=c668eecbf7e0e9b17106bba8caabe4881b765de862263b2895221a8379298071
+EXPECTED_SOURCE_SHA256=e0ac36559b85a189152709238e176a99e48f325f3f1308aba8b360a768e74d8f
+EXPECTED_CANON_SHA256=ca365009b8c9780fb0278479f9dd553365f86c7d23f5f141b88a3ff9147354dd
+but that native DNA15 authority artifact was not supplied. Do not emulate it in host.
+
+Decision:
+ORCH_V2_R2_ARCHITECTURE_PROGRESS=GOOD
+ORCH_V2_R2_STATIC_FINAL=FAIL
+ORCH_V2_R2_RUNTIME_FORBIDDEN=YES
+TRE_V9_GIA_FIX7_CROSS_LANE_ABI_REPAIR_REQUIRED=YES
+GIA_BOOTSTRAP_ONLY_AUTHORITY_REQUIRED=YES
+DNA15_NATIVE_AUTHORITY_REQUIRED=YES
+928_REMAINS_FROZEN_WAITING=YES
+
+Coordination:
+- reopen TRE narrowly for Lane-A canonical evidence artifact ABI;
+- reopen GIA narrowly for first-run bootstrap-only path and later final runner/writer pin binding;
+- pause ORCH semantic evolution until those ABIs and native DNA15 authority are available;
+- keep 928 frozen.
