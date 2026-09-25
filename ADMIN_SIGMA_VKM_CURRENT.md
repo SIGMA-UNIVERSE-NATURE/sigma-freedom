@@ -987,3 +987,18 @@ Decision:
 - repair Lane B learner only;
 - add generic BETWEEN boundary uniqueness/conflict detection using approved primitives;
 - do not weaken the proof harness.
+
+
+## 927 Lane B learner FIX3 static acceptance
+
+Lane B FIX3 package SHA256:
+e95a17a24db421acdb168821f9e77e9ca39b1393f0cb1f648cf56cc5a54f7e06
+
+Component SHA256:
+661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573
+
+Static audit: ACCEPTED.
+
+Diff against FIX2 changes only sr_v1_reconstruct_between(). It adds unique learned left-boundary and terminal right-boundary checks plus second-occurrence rejection using only the approved str_find/str_slice/str_len primitive family. PREFIX/SUFFIX, public ABI, dedup, parent validation, support threshold and training semantics remain unchanged.
+
+Lane C FIX6 remains frozen. Next gate is sealed integration/runtime proof of Lane B FIX3 against Lane C FIX6.
