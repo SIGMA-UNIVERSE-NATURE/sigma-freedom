@@ -1930,3 +1930,71 @@ RUNTIME_FORBIDDEN_UNTIL_FINAL_BIND=YES
 
 DNA15 note:
 Lane A remains admission + accepted-state writer only. DNA15 self-upgrade / weight evolution / generation continuation belongs in final autonomous orchestrator after COMMIT and must not be silently folded into Lane A.
+
+
+## 927 TRẺ AIto Epoch V8 static rejection — real 05B replay ABI mismatch and stale Lane A pins
+
+TRE__AITO_EPOCH_V8.tar.gz SHA256:
+08e2e0da5096e1e8dab425773313277a1d72fa1f0689a390facc8d9cf9f3edb9
+
+Static positives:
+- internal SHA256SUMS PASS;
+- Python/Bash syntax PASS;
+- learner FIX3 exact SHA preserved;
+- Lane A accepted pointer/root confinement remains correct;
+- accepted persistence loader now distinguishes bootstrap replay vs TRE persisted V3;
+- R15 evaluation model is separated from accepted persistence state;
+- candidate state header adds PARENT_RECORD_COUNT / NEW_RECORD_COUNT and role counts;
+- V7 non-target learner/curriculum/acquisition/public-bridge components are byte-identical.
+
+Blocking defects:
+
+1. parse_bootstrap_replay_model() implements the wrong serialization for the real accepted 05B artifact.
+V8 requires:
+  MODEL_BODY_SHA256
+  ORDER
+  EVIDENCE_TEXT_B64
+  PREV_RECORD_SHA256/PREVIOUS_RECORD_SHA256/PREV_SHA256
+  RECORD_SHA256/RECORD_HASH_SHA256
+  zero-hash chain origin
+  CHAIN_* tail field
+But the accepted SIGMA_VKM_927_REPLAY_MODEL_V1 transport used by 06B2 parses exactly:
+  SCHEMA=SIGMA_VKM_927_REPLAY_MODEL_V1
+  MODEL_ID=SIGMA_VKM_927
+  REVISION
+  RECORD_COUNT
+  GENESIS_HASH=sha256(SCHEMA+"\n"+MODEL_ID+"\n")
+  LAST_RECORD_HASH
+  RECORD_BEGIN
+  SEQ
+  EVIDENCE_ID
+  EVIDENCE_TEXT
+  EVIDENCE_STATUS
+  PREVIOUS_RECORD_HASH
+  RECORD_HASH=sha256(seq+"\n"+id+"\n"+text+"\n"+status+"\n"+previous+"\n")
+  RECORD_END
+with no MODEL_BODY_SHA256 and no base64 text.
+GIA FIX7 bootstraps by copying that exact ONE_SIGMA 05B file byte-for-byte to generations/<sha>/STATE.model.
+Therefore V8 first bootstrap cannot parse the real accepted state and will return bootstrap-required instead of learning.
+
+2. V8 still hard-codes stale Lane A FIX6 authority hashes:
+  engine acda382c...
+  runner d3f82a2...
+  writer bac00428...
+After the proven admission-policy repair, frozen FIX7 engine is:
+  ADMISSION_ENGINE_SHA256=7645bba2b4bb1e54869b579ff28992287d4680bb0c8f296fa2cfd4628dbc010f
+Final runner/writer production hashes are intentionally pending final orchestrator binding of execution-runner + baseline-public-contract pins. TRE must not assert the old FIX6 runner/writer hashes as current authority.
+
+Required V9:
+- replace bootstrap replay parser with the exact accepted 05B/06B2 SIGMA_VKM_927_REPLAY_MODEL_V1 byte contract above;
+- validate MODEL_ID, REVISION==RECORD_COUNT, GENESIS_HASH, ordered SEQ, ACCEPTED status, previous-record chain, deterministic RECORD_HASH and LAST_RECORD_HASH;
+- no invented MODEL_BODY_SHA256/base64/order fields;
+- preserve TRE persisted V3 loader and R15 separation unchanged;
+- update frozen Lane A engine pin to FIX7 SHA;
+- do not pin final runner/writer hashes inside TRE; mark them external final-orchestrator authority or omit them from candidate producer evidence;
+- use generic accepted-pointer ABI alignment wording rather than claiming obsolete FIX6 authority;
+- no learner/curriculum/evaluator redesign.
+
+Decision:
+TRE_AITO_EPOCH_V8=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
