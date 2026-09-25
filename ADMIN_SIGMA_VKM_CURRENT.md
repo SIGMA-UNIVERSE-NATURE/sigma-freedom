@@ -1192,3 +1192,22 @@ Remaining blockers before runtime:
 Decision:
 RUN_FORBIDDEN=YES
 Repair TRE integrator only; learner FIX3 remains frozen.
+
+
+## Neutral integration R1 FIX2 — static accepted for user runtime
+
+Package SHA256:
+effa3527a5c2b62ffcf597b8d33ca30f8032a69b0a57a27923ec4f17903593e3
+
+Static audit accepted:
+- learner FIX3 SHA exact: 661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573
+- Lane C Phase A FIX6 SHA exact: b997c833431350d07a7f6fe2e2cd41d3f56597560afb392105cac37f27e14f41
+- official BASELINE_06B2 fixed public paths/pins correct;
+- no recursive baseline scan;
+- no frozen/gold open/hash;
+- canonical/compiler/VM pins checked;
+- three fresh VM runs compare native.out, phase_a.meta and unseen_after.txt byte-for-byte;
+- required transfer/negative/duplicate/invalid-parent/leak/mutation gates are enforced;
+- no admission/commit/promotion.
+
+Decision: USER_RUNTIME_ALLOWED=YES.
