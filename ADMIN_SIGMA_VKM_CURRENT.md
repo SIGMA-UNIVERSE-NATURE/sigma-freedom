@@ -1755,3 +1755,67 @@ Next 928 version should:
 - use frozen GIA FIX6 engine/runner/writer pins and later final execution-runner pin;
 - expand non-holdout curriculum source to satisfy 3 TRAIN + 1 UNSEEN compatible group;
 - fail neutral root verifier when no witness file is supplied.
+
+
+## 927 TRẺ AIto Epoch V7 static rejection — persistence/evaluator state-model ABI conflation
+
+TRE__AITO_EPOCH_V7.tar.gz SHA256:
+d1acce1e9531f3ba13ad7eeab77668cc84346429810050f40551ce300eea4770
+
+Positive V7 repairs confirmed:
+- all package SHA256SUMS PASS;
+- Python/Bash syntax PASS;
+- learner FIX3 exact SHA 661d3047c18f0958cd61095f3e17b28f79e62e900ee57d2ac8a0b4b2e5709573;
+- exact Lane A FIX6 pointer path/root enforced;
+- ACCEPTED_STATE_PATH is forbidden;
+- GENERATION_RELATIVE_PATH is required/validated;
+- derived STATE.model is regular, non-symlink, SHA-bound under exact ACCEPTED_ROOT;
+- Lane A FIX6 engine/runner/writer pins are embedded correctly;
+- V6 non-pointer components remain unchanged.
+
+Runtime blockers:
+
+1. Accepted persistence state schema conflation.
+Lane A FIX6 bootstrap copies the exact approved 05B parent artifact into:
+  $ACCEPTED_ROOT/generations/<sha>/STATE.model
+That bootstrap file is SCHEMA=SIGMA_VKM_927_REPLAY_MODEL_V1.
+After a COMMIT, Lane A writer copies candidate_state.model byte-for-byte into the accepted generation STATE.model; TRE V7 candidate state is SCHEMA=TRE__PERSISTED_CANDIDATE_STATE_V3.
+But V7 parse_accepted_state_model() accepts only:
+  SCHEMA=SIGMA_VKM_927_ACCEPTED_STATE_MODEL_V1
+which Lane A FIX6 never writes.
+Therefore both first-epoch bootstrap and post-COMMIT continuation are currently unreadable by V7.
+
+2. R15 evaluator-state model is incorrectly treated as accepted persistence state.
+V7 copies parent STATE.model to TRE__R15_PARENT_ACCEPTED_STATE.model and passes it as SIGMA_06B2_ACCEPTED_STATE_MODEL.
+R15 ACCEPTED_RESTORE_EVAL explicitly requires SCHEMA=SIGMA_VKM_927_ACCEPTED_STATE_MODEL_V1.
+The accepted persistence STATE.model is not that schema. These are separate abstractions.
+V4 correctly used a separate R15 accepted-state evaluation anchor; that separation must be restored without weakening current pointer identity binding.
+
+3. Candidate persisted-state header mismatch.
+V7 write_state() writes:
+  TRAIN_RECORD_COUNT
+  UNSEEN_RECORD_COUNT
+  RECORD_COUNT
+but TRE__R15_CANDIDATE_MEASUREMENT_ADAPTER_V2 requires:
+  PARENT_RECORD_COUNT
+  NEW_RECORD_COUNT
+  RECORD_COUNT
+Thus candidate measurement fails even before admission.
+
+Decision:
+TRE_AITO_EPOCH_V7_POINTER_ABI=PASS
+TRE_AITO_EPOCH_V7_RUNTIME_READY=NO
+RUNTIME_FORBIDDEN=YES
+
+Required V8:
+- keep exact Lane A FIX6 pointer/root logic unchanged;
+- introduce persistence-state loader that supports the actual two Lane A accepted STATE.model forms:
+  (a) bootstrap SIGMA_VKM_927_REPLAY_MODEL_V1, validating its record/hash chain;
+  (b) committed TRE__PERSISTED_CANDIDATE_STATE_V3, using the existing strict state parser, extracting TRAIN records as parent training history and validating its PARENT_ACCEPTED_STATE_SHA256 against pointer lineage;
+- do not demand SIGMA_VKM_927_ACCEPTED_STATE_MODEL_V1 from accepted persistence storage;
+- restore a separate R15 evaluation anchor of schema SIGMA_VKM_927_ACCEPTED_STATE_MODEL_V1, mechanically derived for measurement only, never substituted for accepted-state identity;
+- pass TRE_R15_PARENT_PERSISTED_STATE only when current accepted STATE.model is a TRE persisted candidate state; bootstrap legacy replay parent uses no TRE parent persisted state;
+- align candidate state headers and adapter exactly, preferably add explicit PARENT_RECORD_COUNT and NEW_RECORD_COUNT while preserving TRAIN_RECORD_COUNT / UNSEEN_RECORD_COUNT for restore checks;
+- keep BASELINE_06B2_SHA256, accepted state SHA, and R15 evaluation-model SHA as three distinct identities;
+- no learner modification; no holdout pre-open; no admission/commit.
+
