@@ -1558,3 +1558,39 @@ TRE_AITO_EPOCH_V6_RUNTIME_READY=NO
 NEXT_ACTION=FREEZE_V6_PENDING_LANE_A_FIX5_POINTER_CONTRACT
 
 Do not ask Lane B to guess another schema. After Lane A FIX5 is audited and its exact pointer/accepted-state ABI is frozen, perform at most one final mechanical alignment if needed. No learner/curriculum/evaluator redesign.
+
+
+## 927 Lane A FIX5 static audit — parent contract repaired, accepted-root escape remains
+
+GIA__ADMISSION_WRITER_FIX5.zip SHA256:
+c87747352629c6ded96ba3b48822a3216659ff8a276581e20eb352b97d2c2f7f
+
+Positive repairs confirmed:
+- parent artifact is no longer required under BASELINE_06B2;
+- explicit ONE_SIGMA root-relative parent path is pinned:
+  .sigma_ail/927_05b_replay_model/SIGMA_VKM_927_REPLAY_MODEL_V1.model
+- BASELINE_06B2_SHA256 remains independent from PARENT_ACCEPTED_STATE_SHA256;
+- parent role is ACCEPTED_PARENT_STATE;
+- recursive discovery / filename guessing remain forbidden;
+- all 17 manifest artifact hashes verify;
+- Python syntax passes;
+- FIX4 admission/runner architecture is preserved.
+
+New remaining blocker:
+The accepted-state writer still allows SIGMA_927_ACCEPTED_ROOT to override the accepted-state store to an arbitrary filesystem location. main() creates/uses that path without requiring it to resolve under the locked ONE_SIGMA_ROOT and without rejecting an accepted-root symlink. Therefore pointer/generations/transactions can live outside the single Sigma while pointer_text self-reports ONE_SIGMA=YES.
+
+Also the accepted pointer ABI currently omits SECOND_SIGMA_CREATED=NO. Since this pointer is the cross-lane continuity identity, final ABI should carry and validate this hard invariant.
+
+Decision:
+GIA_FIX5_PARENT_CONTRACT_REPAIR=PASS
+GIA_FIX5_RUNTIME_READY=NO
+RUN_FORBIDDEN=YES
+
+Required FIX6:
+- lock accepted root to $HOME/SIGMA/sigma_genesis1/.sigma_ail/SIGMA_VKM_927_ACCEPTED_STATE;
+- reject SIGMA_927_ACCEPTED_ROOT overrides unless canonical-resolved path equals that exact root;
+- reject symlink components / realpath escape for accepted root;
+- ensure ROOT resolves to the same canonical ONE_SIGMA_ROOT;
+- add SECOND_SIGMA_CREATED=NO to ACCEPTED_STATE_POINTER_V1 and validate it;
+- preserve FIX5 parent contract exactly;
+- no other redesign.
