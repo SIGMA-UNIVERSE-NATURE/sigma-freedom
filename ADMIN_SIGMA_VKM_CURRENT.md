@@ -297,3 +297,45 @@ quarantine
 ~~~
 
 No Owner mutation is justified merely because old Sigma tools exist.
+
+
+## Current MediaWiki R2 blocker — 2026-09-25
+
+Lane B MediaWiki acquisition R2 returned:
+
+~~~text
+STATUS=HOLD
+SYSTEM_INTEGRITY_STATUS=HOLD
+BLOCKER=NATIVE_RUNTIME_FAILURE:SIGMA_VKM_927_AITO_MEDIAWIKI_SEARCH_SELECTION_NATIVE_R2:SIGMA C VM: undefined function H_
+~~~
+
+Static audit classification:
+
+- integration/native harness assembly defect;
+- not a Sigma capability miss;
+- not a MediaWiki transport failure;
+- not a baseline/measurement failure.
+
+R2 package SHA256:
+
+~~~text
+4307b1bfdeecafa38a7a1644d8d5ab363860dc34fef32ddf7c63b34b2aa3c0ce
+~~~
+
+Cause:
+
+The R2 controller is compiled standalone. Its acquisition-plan functions do not call H(...) and therefore pass. The first search-result relevance execution calls H("str_contains",...), which compiles to H_ but the standalone harness does not carry the approved canonical runtime substrate used by accepted 927 evaluator assemblies.
+
+Repair direction:
+
+- preserve exact accepted MediaWiki transport logic;
+- do not redesign relevance;
+- assemble relevance harness from the exact BASELINE_06B2 canonical substrate with its MAIN removed;
+- append the acquisition-controller definitions with duplicate header/MAIN removed;
+- append only the bounded temporary relevance MAIN;
+- pin canonical SHA before use;
+- require no canonical mutation;
+- apply the same substrate assembly to both search-result relevance and full-content relevance;
+- then continue R2 directly.
+
+Do not reopen 06B2, goal selection, curriculum, or provider design.
