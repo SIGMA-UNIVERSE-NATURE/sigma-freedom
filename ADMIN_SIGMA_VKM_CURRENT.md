@@ -1447,3 +1447,43 @@ Required V6 repair:
 Decision:
 TRE_AITO_EPOCH_V5=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
+
+
+## 928 final E2E proof V1 static rejection — toy dimensions and non-operative controls
+
+Package SHA256:
+2db26d8a792396abf7d17c23dd5d79e39214e66047c6a2c7ea2e4d7d68499866
+
+Static positives:
+- black-box-only ABI;
+- host learning/scoring/gain decisions forbidden;
+- restart, interrupted transaction, duplicate evidence, stale parent, corrupted candidate and unavailable-source concepts are present;
+- Phase 1/2/3/4 are separated;
+- same-identity / single-instance markers are checked;
+- no compiler/VM run claimed.
+
+Blocking proof defects:
+
+1. Final proof uses synthetic goal dimensions DIM_ALPHA / DIM_BETA instead of Project 927 official eight dimensions. The first real autonomous cycle must bind to the actual current gap SOURCE_RECONSTRUCTION, and continuation must select another valid official dimension. A final proof must not require an implementation adapter to invent toy dimensions.
+
+2. FAKE_COMMIT_RECEIPT control is non-operative: bb_fake_commit_rejected() only constructs a local map and compares literal strings; it never submits a forged receipt to Lane A writer/admission.
+
+3. FAKE_MEASUREMENT control is non-operative: Phase 0 writes UNTRUSTED_FAKE_MEASUREMENTS.txt then unconditionally prints FAKE_MEASUREMENT_FILES_TRUSTED=NO. The system is never challenged with that fake evidence.
+
+4. Protected regression is replaced by three private aito_bb_eval canaries. These are useful independent canaries but cannot substitute for the real pinned protected-regression/admission artifact chain.
+
+5. Crash-interrupt Phase 3 prints READY_FOR_FORCED_KILL=YES without verifying the transaction actually reached PREPARED and accepted state remained unchanged before kill.
+
+6. ONE_SIGMA check is only self-reported through aito_bb_snapshot(). Final runner needs an independent mechanical root/path boundary check against the single ONE_SIGMA_ROOT in addition to behavioral identity continuity.
+
+Repair direction:
+- keep independent non-holdout canaries, but map first cycle to SOURCE_RECONSTRUCTION and official dimension vocabulary;
+- expose black-box operations that actually inject forged receipt / fake measurement into the real admission path and require rejection;
+- bind official measurement/protected-regression/admission receipt hashes/status while retaining independent canaries;
+- require PREPARED state before forced kill;
+- add neutral-runner mechanical ONE_SIGMA root/path verification;
+- preserve implementation-source isolation.
+
+Decision:
+928_AITO_FINAL_E2E_PROOF_V1=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
