@@ -1002,3 +1002,29 @@ Static audit: ACCEPTED.
 Diff against FIX2 changes only sr_v1_reconstruct_between(). It adds unique learned left-boundary and terminal right-boundary checks plus second-occurrence rejection using only the approved str_find/str_slice/str_len primitive family. PREFIX/SUFFIX, public ABI, dedup, parent validation, support threshold and training semantics remain unchanged.
 
 Lane C FIX6 remains frozen. Next gate is sealed integration/runtime proof of Lane B FIX3 against Lane C FIX6.
+
+
+## 927 Lane A V1 static audit — repair required before final admission
+
+Lane A admin-audit package ZIP SHA256:
+33261b16a1e44301302adb6ce999ccadcdd530b3465bcb5a2f47c1cb018bd6f2
+
+Manifest/file hashes verify.
+
+Architecture positives:
+- native admission separates COMMIT / REJECT / ACQUIRE_MORE and reserves HOLD for integrity/ABI;
+- writer is mechanical only, single-writer, immutable generation, CAS pointer, fsync/atomic rename, append-only ledger;
+- no canonical/Owner/native-binding mutation.
+
+Blocking issues before final autonomous use:
+
+1. Admission gain is based only on global LANGUAGE_SCORE delta. COMMIT must require positive gain for the candidate GOAL_DIMENSION itself, not merely unrelated/global gain.
+
+2. Writer accepts any syntactically valid COMMIT receipt bound to the epoch; it does not prove the receipt was produced by the pinned native admission engine. Add admission-engine/output provenance binding so host/manual text cannot forge COMMIT.
+
+3. Crash recovery is manual after pointer commit: PENDING.current causes PENDING_TRANSACTION_REQUIRES_ADMIN_RECOVERY. Final autonomous system needs deterministic recovery/reconciliation for POINTER_COMMITTED/ledger/receipt phases without user intervention.
+
+Conditional integration requirement:
+- if accepted-state pointer/root is not already initialized, provide one-time bootstrap binding from official BASELINE_06B2.
+
+Do not discard Lane A V1; repair it minimally.
