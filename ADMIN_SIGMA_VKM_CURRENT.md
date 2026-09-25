@@ -761,3 +761,44 @@ RUN_FORBIDDEN=YES
 ~~~
 
 Repair Lane C only. Do not reveal Lane B implementation source. Preserve the existing sealed non-identity dataset where possible and add the missing ABI fields and controls.
+
+
+## 927 Lane B learner V1 FIX1 static audit — repair required
+
+Lane B learner FIX1 package:
+
+~~~text
+PACKAGE_SHA256=
+e8e982a11a6e12d11bdad987e6cb4074c68ecb4903728eead660300e937e41a4
+
+COMPONENT_SHA256=
+35110ce53fc0c7b2f9dff4d5cc80bc7cb09afcefed86d6cdc0637427e0a8b6a1
+~~~
+
+Positive fixes confirmed statically:
+
+- identity-only architecture removed;
+- bounded IDENTITY/PREFIX/SUFFIX/BETWEEN hypothesis classes present;
+- EXAMPLE_ID duplicate no-op control present;
+- minimum unique support = 3;
+- valid parent state checked through current state-coupled model interface;
+- no exact input-target lookup table;
+- no frozen/gold/test-case strings found;
+- no canonical/Owner/native-binding mutation code.
+
+However the package is rejected before runtime for two implementation defects:
+
+1. BETWEEN reconstruction uses:
+   str_slice(input_text,left_len,right_pos)
+
+   In the accepted 927 runtime convention, str_slice third argument is LENGTH, not end-index. Correct BETWEEN width is:
+   right_pos - left_len.
+
+2. The learner introduces:
+   H("str_rfind",...)
+
+   This primitive is not part of the already-proven current 927 string primitive set available to this candidate audit. Replace it with a uniqueness check built from proven str_find + str_slice + str_len rather than adding an unverified runtime dependency.
+
+Do not run this FIX1 package.
+
+Repair must remain source-only/build-only and must not alter the fixed public three-function learner ABI or sealed Lane C dataset.
