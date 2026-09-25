@@ -1708,3 +1708,50 @@ GIA_FIX6_STATIC=PASS
 GIA_FIX6_CODE_FROZEN=YES
 GIA_FIX6_RUNTIME_NOW=NO
 NO_GIA_FIX7=YES
+
+
+## 928 pending-Lane-A-pins audit — dynamic epoch pins and curriculum cardinality blockers
+
+928__AITO_FINAL_E2E_PROOF_V2_PENDING_LANE_A_FIX6_PINS.tar.gz SHA256:
+97ed539312354c158f6eb7867cf2f46046af5cb3187bc93ffa7fa59037fdcfb1
+
+Positive:
+- prior V2 NULL false-pass is removed;
+- explicit HOLD vs ACQUIRE_MORE matrix exists;
+- exact official 8-dimension vocabulary is checked;
+- fake COMMIT / fake measurement hit black-box submission APIs;
+- Phase 3 requires PREPARED plus unchanged accepted/persisted hashes;
+- Phase 4 compares real pre/post crash hashes;
+- root verifier lstat-checks raw components before resolve;
+- executable-source hashes match package records.
+
+Remaining blockers:
+
+1. ADMIN_LANE_A_FIX6_EXPECTED_PINS.txt incorrectly treats dynamic per-epoch artifact hashes as pre-run Admin pins:
+BEFORE_MEASUREMENT_SHA256
+AFTER_MEASUREMENT_SHA256
+PROTECTED_REGRESSION_SHA256
+RETENTION_PROOF_SHA256
+These do not come from frozen Lane A FIX6 and cannot be known before the autonomous epoch. They must be mechanically hashed by a neutral runner after candidate/evaluation artifacts exist and before admission/continue, then used as an independent dynamic witness for receipt verification.
+
+Static frozen Lane A FIX6 pins now known:
+ADMISSION_ENGINE_SHA256=acda382c23dce7713e0e50751d4c041941f2f943d3be56efc66618d60f10f0da
+ADMISSION_RUNNER_SHA256=d3f82a2abb3db78f5a3101737938c43727c2fc1b458950f9d15e3fb1cd4acfc0
+ACCEPTED_STATE_WRITER_SHA256=bac004283c8be5bd9d960f11329edd4ec752022950ecb3622d453b6c334e368c
+EXECUTION_RUNNER_SHA256 remains pending final orchestrator freeze.
+
+2. NONHOLDOUT_SOURCE.tsv has only 3 examples for each structural family (3 BEGIN + 3 owner). TRE learner curriculum requires >=3 compatible TRAIN + >=1 compatible UNSEEN from the same template/anchors. No family currently has 4 compatible examples, so a correct AIto epoch should return ACQUIRE_MORE instead of reaching COMMIT. Add at least 4 unique examples in one compatible family; preferably 4+4 for both independent families.
+
+3. NEUTRAL_ROOT_VERIFY.py prints PASS when invoked with zero witness files because it has no minimum-argument gate. Require at least one explicit witness file or fail closed.
+
+Decision:
+928_PENDING_PINS_PACKAGE=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
+
+Next 928 version should:
+- separate STATIC_AUTHORITY_PINS from DYNAMIC_EPOCH_WITNESS;
+- neutral-hash parent/candidate/measurement/protected/retention artifacts after run_to_candidate and before admission;
+- compare final Lane A receipt against that neutral witness;
+- use frozen GIA FIX6 engine/runner/writer pins and later final execution-runner pin;
+- expand non-holdout curriculum source to satisfy 3 TRAIN + 1 UNSEEN compatible group;
+- fail neutral root verifier when no witness file is supplied.
