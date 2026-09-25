@@ -1051,3 +1051,35 @@ Remaining blockers before final autonomous admission:
 Also do not emit COMMIT_PERFORMED=NO after a HOLD if the pointer may already have been committed; report phase-aware commit state.
 
 Do not redesign the topology; repair minimally.
+
+
+## 927 Lane A FIX2 static audit — final consolidated blockers before runtime
+
+Uploaded ZIP SHA256:
+675e8613e1ab01def86cf676d3b01231ec0e98f28866a70b497f4520d791199b
+
+Note: 7850e508... in the manifest is PARENT_FIX1_PACKAGE_SHA256, not this FIX2 ZIP SHA.
+
+Positive repairs confirmed:
+- native admission engine and runner are pinned and mechanically executed;
+- goal-dimension gain > 0 is required for COMMIT;
+- official eight dimensions are enforced;
+- transaction inputs are staged immutably before PREPARED;
+- restart recovery is self-contained from staged inputs;
+- phase-aware COMMIT_PERFORMED reporting is present;
+- single-writer/CAS/immutable generation/fsync/growth-ledger architecture remains intact.
+
+Remaining consolidated blockers:
+
+1. BEFORE/AFTER measurement files, protected_regression.env and retention_proof.env are still externally supplied assertions. Their hashes are bound to CANDIDATE_EPOCH, but origin is not proven. Final admission must mechanically produce them with pinned producer runners in the admission transaction, or verify sealed execution transcripts from pinned producer runners that are also staged and bound.
+
+2. Measurement identity conflates the accepted measurement-summary SHA aff498... with the top-level BASELINE_06B2 MEASUREMENT.lock SHA 57f8951806a8304bd77e82d451dcee87c2b2713b0c259635393c09f6c290eada. Final contract must bind both separately:
+   MEASUREMENT_LOCK_SHA256=57f895...
+   MEASUREMENT_SUMMARY_SHA256=aff498...
+   plus evaluator/scorer/gold/mapping pins.
+
+3. First-run bootstrap is absent. load_pointer() requires an existing SIGMA_VKM_927_ACCEPTED_STATE.current. Final writer needs a one-time, fail-closed bootstrap from official BASELINE_06B2 / accepted parent representation, with exact pinned identity and no overwrite if a pointer already exists.
+
+4. Candidate-state bytes are copied on COMMIT but candidate state format/replay-load validity is not mechanically proven by the writer. Bind candidate-state validation/replay transcript to the same admission transaction, ideally through the retention producer.
+
+Do not redesign COMMIT/REJECT/ACQUIRE_MORE or writer topology. Repair these in one FIX3 before any runtime use.
