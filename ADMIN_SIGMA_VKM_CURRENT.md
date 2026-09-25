@@ -1275,3 +1275,35 @@ Required repair:
 Decision:
 TRE_AITO_EPOCH_V3=REPAIR_REQUIRED
 RUNTIME_FORBIDDEN=YES
+
+
+## 927 Lane A FIX4 static audit — architecture accepted, bootstrap artifact-location mismatch
+
+GIA__ADMISSION_WRITER_FIX4.zip SHA256:
+b63f1cb7f4c9969c5ea7057c4c39a40c1075eb525e7bedf8389abc61ba771656
+
+Positive FIX4 repairs confirmed:
+- execution-runner trust root separated from official MEASUREMENT.lock;
+- official measurement lock/summary pins preserved;
+- recursive baseline discovery removed;
+- public bootstrap contract is explicit, fail-closed, symlink-safe;
+- admission/writer architecture remains ONE_SIGMA and same-identity;
+- Python syntax passes.
+
+Current integration blocker:
+FIX4 bootstrap contract requires PARENT_STATE_RELATIVE_PATH to resolve underneath SIGMA_VKM_927_BASELINE_06B2. The accepted continuity replay model used by 06B2 measurement is actually the explicit ONE_SIGMA artifact-store model:
+  $ONE_SIGMA_ROOT/.sigma_ail/927_05b_replay_model/SIGMA_VKM_927_REPLAY_MODEL_V1.model
+and is not a file carried inside BASELINE_06B2 snapshot.
+
+Therefore a valid baseline-relative parent-state contract cannot currently be populated.
+
+Decision:
+GIA_FIX4_ARCHITECTURE=PASS
+GIA_FIX4_RUNTIME_READY=NO
+
+Final repair direction:
+- keep no-recursive-discovery;
+- replace baseline-relative parent-state contract with an explicit ONE_SIGMA accepted-parent-state contract that pins one fixed absolute/root-relative artifact-store path + exact SHA + role;
+- derive/pin its exact SHA only from the accepted 05B/06B2 continuity authority, never by filename search;
+- keep BASELINE_06B2_SHA256 separate from PARENT_ACCEPTED_STATE_SHA256;
+- final orchestrator still binds EXECUTION_RUNNER_SHA256 separately.
