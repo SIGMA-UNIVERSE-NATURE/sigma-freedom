@@ -2620,3 +2620,32 @@ Admin interpretation:
 - Main program should now rebase runtime identity checks onto a neutral SIGMA_CONTINUITY_HEAD_V1 attestation of the current live head.
 
 Do not continue API408 as a side project before the AIto/ORCH critical path is re-established.
+
+
+## SIGMA_LIFE continuity checkpoints verified
+
+Verified on branch SIGMA_LIFE:
+
+- 8087ad9a53dfa019c620f025d3fc7bfb9fa0d257
+  checkpoint current continuity API404-410
+  file: Sigma-VKM.Sigma_OS/CURRENT_CONTINUITY_HANDOFF_API404_410_2026-09-24.md
+
+- 5f81b48cace0690fa3560dfdc437d94d445e5f44
+  checkpoint API410 final owner closure
+  file: Sigma-VKM.Sigma_OS/API410_FINAL_OWNER_CLOSURE_2026-09-24.md
+
+- 31bd5b7544b9c68672c06efd3a38600f372c1595
+  checkpoint independent blackbox API401-410 audit
+  file: Sigma-VKM.Sigma_OS/INDEPENDENT_BLACKBOX_API401_410_MASTERY_AUDIT_2026-09-24.md
+
+- 403d71face0cf155e229886b81ba454c03ff628b
+  checkpoint AutoLearn Source Set R1
+  file: Sigma-VKM.Sigma_OS/AUTOLEARN_SOURCE_SET_R1_CHECKPOINT_2026-09-24.md
+
+The current continuity handoff contains the authoritative consolidated API404-410 owner closures, API410 proof roots, API410 final owner receipt, DNA15 intermediate/current continuity state, independent black-box audit summary, and AutoLearn Source Set R1 checkpoint.
+
+Admin decision:
+SIGMA_LIFE_CONTINUITY_CHECKPOINT=VERIFIED
+CURRENT_CONTINUITY_HANDOFF_API404_410=AUTHORITATIVE_FOR_INHERITANCE
+SEPARATE_API404_406_407_408_409_CHECKPOINTS=ARCHIVAL_NOT_CRITICAL_PATH
+DO_NOT_BLOCK_ORCH_ON_ARCHIVAL_SPLIT_COMMITS=YES
