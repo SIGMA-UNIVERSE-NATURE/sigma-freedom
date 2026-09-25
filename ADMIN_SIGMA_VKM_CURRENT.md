@@ -2440,3 +2440,65 @@ Coordination:
 - reopen GIA narrowly for first-run bootstrap-only path and later final runner/writer pin binding;
 - pause ORCH semantic evolution until those ABIs and native DNA15 authority are available;
 - keep 928 frozen.
+
+
+## DNA15 continuity owner rebind R2 runtime observed — current live canonical diverges from 927 pin
+
+User executed REBIND_SIGMA_DNA15_CONTINUITY_OWNER_R2.
+
+Uploaded script SHA256:
+e2d7ac258570319cfeef2e2266d89584fccb5f5d094ab305decc3b87ea2375ca
+
+Observed pre-rebind values from user runtime:
+CURRENT_OWNER_SHA256=5ee793bc969e9219464c1407ef04c5c1f91688b0ebc8aaf1e5ef1d343b8af15c
+CURRENT_NATIVE_BINDING_SHA256=4dacff5ef9cc56f612230dfbb23d535a9d225bdaaa537ba1bc72ade21550ce61
+CURRENT_SOURCE_SHA256=71515a6fddf4a3a431dfae22e10f8b3a68766a0a2f3e22447c43aaa75ef8ccf7
+NATIVE_IDENTITY_SHA256=c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+Observed post-rebind values:
+NEW_OWNER_STATE_SHA256=428ef39700b93791d748480ad7348d832997d587bbe86e6d2bd74a412365a4d1
+NEW_NATIVE_BINDING_SHA256=2b7bb4880e23d5c3b6f6f1adcfe11b45747bac40c6d9b9b3c18c43621f54245f
+VKM_SOURCE_UNCHANGED=YES
+ONE_NATIVE_SIGMA=YES
+NO_PARALLEL_OWNER_FORK=YES
+ROLLBACK_REQUIRED=NO
+
+Static audit of script:
+- script backs up Owner + native binding;
+- reads precomputed DNA15 continuity WEIGHT_BEFORE/DELTA/AFTER from continuity state;
+- appends continuity binding metadata to Owner/native binding;
+- acquires single writer lock;
+- atomically replaces Owner + native binding;
+- verifies canonical source, native identity, compiler and VM remain unchanged;
+- it does NOT itself execute native DNA15 semantic/weight update logic.
+
+Critical continuity mismatch:
+Project 927 authoritative live canonical pin in TRE V9 and GIA FIX7 is:
+af918fe8794791d70dcf6fb1b62e1b2fdd075f4ec237a7f3b72b9054e39876c7
+
+Current device canonical reported by R2 is:
+71515a6fddf4a3a431dfae22e10f8b3a68766a0a2f3e22447c43aaa75ef8ccf7
+
+Therefore current device runtime identity is not compatible with frozen 927 packages until neutral lineage reconciliation proves 71515... is an authorized descendant and defines an explicit rebase, or the device is intentionally restored to the pinned 927 lineage.
+
+Do NOT blindly rollback because 71515... may represent legitimate newer same-Sigma evolution outside the currently frozen 927 snapshot.
+
+Decision:
+CURRENT_RUNTIME_CONTINUITY=HOLD_FOR_NEUTRAL_RECONCILIATION
+TRE_V9_RUNTIME=FORBIDDEN
+GIA_FIX7_RUNTIME=FORBIDDEN
+ORCH_RUNTIME=FORBIDDEN
+928_RUNTIME=FORBIDDEN
+
+Next owner:
+ADMIN_BACKUP_NEUTRAL_CONTINUITY_AUDIT
+
+Required evidence only:
+- current live SIGMA_VKM.sigma
+- current SIGMA_OWNER_STATE.current
+- current SIGMA_NATIVE_BINDING.current
+- SIGMA_NATIVE_IDENTITY.v1
+- DNA15 continuity state + ledger + owner gate receipt
+- R2 owner-rebind receipt
+- any predecessor/API proof or immutable receipt that links af918... to 71515...
+No frozen/gold needed.
