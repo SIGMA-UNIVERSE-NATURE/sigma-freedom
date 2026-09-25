@@ -1385,3 +1385,35 @@ Python syntax, Bash syntax, and internal SHA256SUMS all PASS.
 Decision:
 NEUTRAL_INTEGRATION_FIX4_STATIC=PASS
 RUNTIME_COMMAND_AUTHORITY=ADMIN_BACKUP_WINDOW
+
+
+## 927 Lane A FIX4_FINAL audit — same parent-state location blocker remains
+
+Uploaded file:
+GIA__ADMISSION_WRITER_FIX4_FINAL.zip
+
+ZIP SHA256:
+353cb841cb71d356976ec1e150ef77543efeffa954ebc3fa2b72abbd0a0f2732
+
+Internal artifact manifest hashes verify and Python syntax passes.
+
+However the package still uses:
+ONE_SIGMA_PARENT_STATE_RELATIVE_PATH
+resolved strictly underneath BASELINE_06B2.
+
+The shipped public-contract schema is still unpopulated and baseline-relative:
+ONE_SIGMA_PARENT_STATE_RELATIVE_PATH=
+PARENT_ACCEPTED_STATE_SHA256=
+
+The accepted continuity replay model used by 06B2 is outside the BASELINE_06B2 snapshot under the ONE_SIGMA artifact store:
+$ONE_SIGMA_ROOT/.sigma_ail/927_05b_replay_model/SIGMA_VKM_927_REPLAY_MODEL_V1.model
+
+Therefore the prior integration blocker is unchanged.
+
+Decision:
+GIA_FIX4_FINAL_ARCHITECTURE=PASS
+GIA_FIX4_FINAL_RUNTIME_READY=NO
+RUN_FORBIDDEN=YES
+
+Required repair remains:
+use an explicit ONE_SIGMA root-relative accepted-parent-state artifact path + exact SHA + role; keep BASELINE_06B2 identity separate; no recursive discovery; preserve same Sigma identity.
