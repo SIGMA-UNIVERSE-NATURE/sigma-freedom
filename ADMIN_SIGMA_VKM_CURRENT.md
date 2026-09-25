@@ -1819,3 +1819,63 @@ Required V8:
 - keep BASELINE_06B2_SHA256, accepted state SHA, and R15 evaluation-model SHA as three distinct identities;
 - no learner modification; no holdout pre-open; no admission/commit.
 
+
+
+## 928 final E2E V3 static rejection — real Lane A ABI mismatch; GIA FIX6 doctrine defect discovered
+
+928__AITO_FINAL_E2E_PROOF_V3.tar.gz SHA256:
+433a58283d8cb871babddbf9db04751edafa16f5c65478d4eceab544f6e98966
+
+Positive V3 repairs confirmed:
+- dynamic epoch hashes moved out of pre-run Admin pins;
+- neutral dynamic witness hashes parent/candidate/before/after/protected/retention before admission;
+- primary curriculum now has 4 compatible BEGIN and 4 compatible OWNER examples;
+- root verifier fails closed on zero witness files;
+- exact 8-dimension vocabulary preserved;
+- pre/post crash hash comparison preserved;
+- executable source hashes all verify.
+
+Blocking 928/Lane-A ABI mismatches:
+
+1. 928 uses INTEGRITY_STATUS and requires ADMISSION_DECISION=HOLD for integrity failures.
+Real Lane A FIX6 ABI uses:
+  STATUS=HOLD
+  ADMISSION_DECISION=
+for integrity/ABI failure.
+Ordinary outcomes are STATUS=PASS + COMMIT|REJECT|ACQUIRE_MORE.
+928 must align to real Lane A status semantics.
+
+2. PHASE_1B requires two fields that real Lane A admission receipt does not emit:
+  DYNAMIC_EPOCH_WITNESS_SHA256
+  ACCEPTED_STATE_WRITER_SHA256
+The real receipt does emit individual parent/candidate/before/after/protected/retention hashes plus engine/runner/execution-runner and measurement pins.
+Therefore final proof should compare those individual receipt hashes against the neutral dynamic witness, while keeping the neutral witness seal as examiner evidence only. Writer identity is verified independently by static authority witness, not invented as a receipt field.
+
+3. ADMIN_STATIC_AUTHORITY_PINS.txt hard-codes pre-final-bind hashes:
+  ADMISSION_RUNNER_SHA256=d3f82...
+  ACCEPTED_STATE_WRITER_SHA256=bac004...
+But GIA FIX6 explicitly requires final integration to bind EXECUTION_RUNNER_SHA256 into runner+writer, then recompute runner SHA, repin it in writer, and recompute final writer SHA. Thus these two hashes are not final production pins yet. 928 must leave ADMISSION_RUNNER_SHA256, ACCEPTED_STATE_WRITER_SHA256, and EXECUTION_RUNNER_SHA256 pending final orchestrator freeze. ADMISSION_ENGINE_SHA256 remains stable.
+
+4. DUPLICATE_SOURCE.tsv uses the same EVIDENCE_ID DUP1 with three different payloads. That is conflicting identity/provenance, not harmless duplicate-only insufficiency, and may correctly trigger HOLD. To test ACQUIRE_MORE for repeated evidence, repeat the exact same evidence row/payload so dedup leaves insufficient unique support.
+
+5. Remove stale obsolete files from the V3 package:
+  ADMIN_LANE_A_FIX6_EXPECTED_PINS.txt
+  PHASE_1_AUTONOMOUS_CYCLE.sigma
+They retain superseded pre-V3 static-pin semantics and are not in RUN_PROTOCOL/EXECUTABLE_SOURCE_SHA256. Keeping them creates operator ambiguity.
+
+New real Lane A defect discovered during cross-audit:
+SIGMA_VKM_927_ADMISSION_V1_FIX4.sigma currently classifies these integrity failures as REJECT:
+- PROVENANCE_INVALID
+- CANDIDATE_DETERMINISM_FAILED
+- DETERMINISTIC_EVALUATION_FAILED
+- GOLD_LEAK_DETECTED
+- HOST_COGNITION_DETECTED
+
+Locked 927 doctrine requires these to be STATUS=HOLD because invalid provenance, nondeterminism, gold leakage, and host cognition are system-integrity failures.
+Therefore GIA FIX6 code freeze must be reopened narrowly for a FIX7 admission-policy repair. No writer/root/pointer redesign.
+
+Decision:
+928_AITO_FINAL_E2E_V3=REPAIR_REQUIRED
+928_RUNTIME_FORBIDDEN=YES
+GIA_FIX6_ROOT_POINTER_ARCHITECTURE=PASS
+GIA_FIX6_ADMISSION_POLICY=REPAIR_REQUIRED
