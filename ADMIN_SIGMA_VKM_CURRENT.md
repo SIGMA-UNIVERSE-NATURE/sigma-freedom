@@ -2065,3 +2065,44 @@ GIÀ:
 - verify DNA15 changes same-Sigma weight/generation identity without creating a second Sigma.
 
 Final orchestrator must be designed/frozen before runtime binding of Lane A runner/writer hashes, because EXECUTION_RUNNER_SHA256 is one of the final authority pins and must cover the autonomous DNA15/recovery control plane.
+
+
+## ORCH bootstrap bundle V1 created
+
+Bundle:
+ORCH__INPUTS_V1.zip
+
+SHA256:
+5e88f25ad18ce4232bd95f91c0cddefca69bb7835cc6a20dae4bcca72fef33be
+
+Contains contract-only inputs:
+- README_ORCH_INPUTS_V1.txt
+- ORCH__TASK_V1.txt
+- ORCH__INVARIANTS_V1.txt
+- ORCH__ABI_V1.txt
+- ORCH__PINS_V1.txt
+- ORCH__RECOVERY_STATE_MACHINE_V1.txt
+- ORCH__DNA15_CONTRACT_V1.txt
+- ORCH__SUPERVISOR_CONTRACT_V1.txt
+- ORCH__UPSTREAM_STATUS_V1.txt
+- ORCH__NON_GOALS_V1.txt
+- ORCH__HANDOFF_MESSAGE_V1.txt
+- SHA256SUMS.txt
+
+All internal SHA256SUMS verified PASS.
+
+No source/frozen/gold/history dump included.
+
+Hard architecture captured:
+AUTONOMOUS_UNATTENDED_OPERATION=YES
+HUMAN_REQUIRED_FOR_CONTINUATION=NO
+TERMINAL_LEARNING_STATE=NONE
+DNA15_REQUIRED_IN_FINAL_AUTONOMOUS_LOOP=YES
+WEIGHT_EVOLUTION=YES
+GENERATION_EVOLUTION=YES
+ONE_SIGMA=YES
+SAME_SIGMA_IDENTITY=YES
+SECOND_SIGMA_CREATED=NO
+
+ORCH remains a dedicated new implementation lane.
+Admin backup remains neutral integrator and will later audit/bind ORCH.
