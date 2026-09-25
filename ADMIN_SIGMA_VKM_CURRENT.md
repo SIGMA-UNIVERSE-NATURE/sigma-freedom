@@ -21,27 +21,13 @@ SNAPSHOT_MANIFEST_SHA256=
 
 ## Current verified Lane B state — 2026-09-25
 
-FIX4 has passed the complete official-baseline/gap/goal/curriculum decision path.
+The complete official-baseline/gap/goal/curriculum path is accepted.
 
 ~~~text
 STATUS=PASS
 SYSTEM_INTEGRITY_STATUS=PASS
 
-ACCEPTED_06B2_REUSED=YES
 BASELINE_06B2_CONSUMED=YES
-
-OFFICIAL_BASELINE_SCHEMA_BOUND=PASS
-OFFICIAL_MEASUREMENT_LOCK_BOUND=PASS
-OFFICIAL_MEASUREMENT_SUMMARY_BOUND=PASS
-OFFICIAL_COMPONENT_MANIFEST_BOUND=PASS
-OFFICIAL_REGRESSION_RECEIPT_BOUND=PASS
-OFFICIAL_EVALUATOR_IDENTITY_BOUND=PASS
-OFFICIAL_GAP_LEDGER_BOUND=PASS
-
-OFFICIAL_GAP_LEDGER_SCHEMA=SIGMA_VKM_927_CAPABILITY_GAP_LEDGER_V1
-OFFICIAL_GAP_LEDGER_SERIALIZATION=ESCAPED_LF_STREAM_V1
-OFFICIAL_GAP_LOGICAL_LINE_COUNT=76
-OFFICIAL_GAP_DIMENSION_COUNT=8
 
 LEARNING_GOAL_STATUS=PASS
 GOAL_DIMENSION=SOURCE_RECONSTRUCTION
@@ -52,70 +38,104 @@ CURRICULUM_STAGE=FOUNDATION
 LOCAL_COVERAGE_STATUS=INSUFFICIENT
 ACQUISITION_REQUIRED=YES
 NEXT_SOURCE_POLICY=BOUNDED_INTERNET
+~~~
+
+Bounded Internet acquisition R1 also returned a truthful normal result:
+
+~~~text
+STATUS=PASS
+SYSTEM_INTEGRITY_STATUS=PASS
+LEARNING_STATE=ACQUISITION_REQUIRED
+ADMISSION_DECISION=ACQUIRE_MORE
+
+ACQUISITION_STATUS=PASS
+ACQUISITION_ATTEMPT_STATUS=COMPLETED_NO_ELIGIBLE_SOURCE
+
+SEARCH_QUERIES=3
+FETCHED_URLS=0
+ELIGIBLE_SOURCES=0
 
 TRAINING_EPOCH_STATUS=NOT_RUN_ACQUISITION_REQUIRED
 CANDIDATE_EPOCH_STATUS=NOT_CREATED
 
-ONE_SIGMA=YES
-SAME_SIGMA_IDENTITY=YES
-SECOND_SIGMA_CREATED=NO
-FROZEN_USED_FOR_TRAINING=NO
-HOST_COGNITION=NO
-DNA15_CALLED=NO
-PROMOTION_PERFORMED=NO
+SIGMA_AITO_ACQUISITION_PLAN_SHA256=
+65bda766b245d12910f8fa05f91e880a5eab2d36a5b570252a0f16fb991e3f97
+
+SIGMA_AITO_QUARANTINE_SHA256=
+9a8b9772b32f09c14fa99a63d3997dcfc858966f446ff01316d227c17ebc072a
 ~~~
 
-Admin classification:
+R1 acquisition package SHA256:
 
-- this is a successful AIto control-flow result, not a failure;
-- Sigma/VKM selected SOURCE_RECONSTRUCTION from the accepted capability-gap ledger;
-- the FOUNDATION curriculum was produced;
-- no eligible local teaching corpus exists;
-- the next step is bounded Internet acquisition with provenance, deduplication, quarantine, validation, and target relevance;
-- do not perform admission yet because no candidate epoch exists.
+~~~text
+5ad629235a5980dd8b0c6c0b45664c09cbe6240b9c0966778a5a51c17e705fa7
+~~~
+
+## Admin diagnosis
+
+R1 acquisition architecture is valid:
+
+- Sigma/VKM generates acquisition queries;
+- Sigma/VKM performs target-relevance gating;
+- host performs only HTTPS retrieval, byte transport, validation, normalization, hashing, exact dedup, quarantine and process launch;
+- no frozen/gold is used;
+- no admission is performed.
+
+However R1 search discovery has only one provider path:
+
+~~~text
+https://html.duckduckgo.com/html/?q=<Sigma-generated-query>
+~~~
+
+Search transport errors/non-200/no-result parsing are treated as zero discovered URLs and therefore lead to a truthful ACQUIRE_MORE.
+
+Therefore:
+
+**Do not rerun R1 unchanged.**
+
+The next task is bounded acquisition transport R2, not admission.
 
 ## Immediate work
 
 ### YOUNG / LANE B
 
-Build the bounded Internet acquisition stage for the existing acquisition request.
+Build acquisition transport R2 while preserving the accepted Sigma/VKM plan and relevance logic.
 
-Required flow:
+Requirements:
+
+1. Consume the exact existing ACQUISITION_REQUEST_V1 and acquisition-plan contract.
+2. Do not change GOAL_DIMENSION or curriculum.
+3. Preserve all existing network bounds.
+4. Add explicit search-transport result classification.
+5. Add a provider abstraction/fallback rather than depending on one scraped HTML endpoint.
+6. Prefer a stable public HTTPS search API that does not require credentials; a bounded MediaWiki Action API adapter is acceptable for R2.
+7. Provider/search discovery is transport only: Sigma-generated query remains the semantic query authority.
+8. Dedup URLs/results mechanically.
+9. Fetch at most the already-approved URL/byte limits.
+10. Keep Sigma/VKM target relevance.
+11. If eligible evidence is found, feed the pinned catalog to the already-accepted FIX4 epoch path.
+12. Produce CANDIDATE_EPOCH_V1 or return truthful ACQUIRE_MORE.
+13. Do not perform admission.
+
+Distinguish at least:
 
 ~~~text
-ACQUISITION_REQUEST_V1
-→ bounded source discovery/fetch
-→ provenance receipt
-→ quarantine
-→ exact content hash
-→ dedup
-→ validation
-→ target relevance gate
-→ pinned local training catalog
-→ rerun existing FIX4 epoch consumer
-→ one bounded native learning epoch
-→ CANDIDATE_EPOCH_V1
+SEARCH_TRANSPORT_STATUS=PASS_RESULTS
+SEARCH_TRANSPORT_STATUS=PASS_NO_RESULTS
+SEARCH_TRANSPORT_STATUS=PROVIDER_UNAVAILABLE
 ~~~
 
-Acquisition must not use frozen/gold/test/evaluator/audit fixtures as teaching evidence.
-
-The Internet-acquisition host may perform retrieval, byte transport, hashing, storage and provenance capture. It must not perform Sigma semantic scoring, learning, gain decision, or admission.
-
-Target relevance must be either:
-- evaluated by Sigma/VKM; or
-- supplied as explicit pre-approved metadata under a separately auditable contract.
-
-Do not invent relevance in shell/Python while claiming HOST_COGNITION=NO.
+A provider outage must not be mislabeled as “Sigma found no relevant learning source”.
 
 ### SENIOR / LANE A
 
 Remain ready.
 
-Do not run admission until Lane B produces a real:
+Do not run admission until a real:
 
 SIGMA_VKM_927_CANDIDATE_EPOCH_V1
 
-Then run candidate-specific protected regression, retention, admission and same-Sigma convergence.
+exists.
 
 ### PROJECT 928
 
@@ -134,9 +154,9 @@ Do not promote while 927 owns the writer.
 - 06B2 mapping discovery
 - accepted measurement
 - gap-ledger escaped-LF diagnosis
-- goal-selection header repair
+- Sigma/VKM goal selection
+- FOUNDATION curriculum selection
 
-unless new integrity evidence specifically invalidates one of them.
-
+Do not rerun acquisition R1 unchanged.
 Do not use frozen/gold as training.
 Do not create a second Sigma.
