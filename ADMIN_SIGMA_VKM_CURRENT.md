@@ -1083,3 +1083,37 @@ Remaining consolidated blockers:
 4. Candidate-state bytes are copied on COMMIT but candidate state format/replay-load validity is not mechanically proven by the writer. Bind candidate-state validation/replay transcript to the same admission transaction, ideally through the retention producer.
 
 Do not redesign COMMIT/REJECT/ACQUIRE_MORE or writer topology. Repair these in one FIX3 before any runtime use.
+
+
+## 927 TRẺ AIto Epoch V1 static rejection — learner/evaluator path mismatch
+
+TRE__AITO_EPOCH_V1 package SHA256:
+dfb2d60cb2bfbbcba2460a07505337b8635cc6b9324c87ef81f3eb9aa6675afd
+
+Static positives:
+- learner FIX3 byte-identical and pinned;
+- no admission/commit/canonical/Owner/native-binding mutation;
+- goal/curriculum selection and source eligibility are Sigma/VKM-side;
+- acquisition is bounded and provenance/dedup aware;
+- candidate replay journal is deterministic.
+
+Blocking architecture defects before runtime:
+
+1. Training and evaluation are disconnected.
+The learner FIX3 is trained and projected, but AFTER measurement is produced by R15 from TRE__R15_CANDIDATE_MODEL_V1, which is a legacy accepted-state evidence model containing raw evidence records. R15 does not evaluate the learned sigma_sr_* candidate state. Therefore measured gain cannot be attributed to learner FIX3.
+
+2. Public compatibility path is not integrated.
+The official evaluator measures sigma_model_source_reconstruction_v1(effective_state,input_text). This package does not wire the learned sigma_sr_reconstruct_v1 behavior into that public model path. A candidate learner can PASS its private transfer proof while remaining invisible to the official evaluator.
+
+3. Curriculum teaches a synthetic fixed wrapper:
+INPUT_TEXT=[[SOURCE]] + evidence + [[/SOURCE]]
+TARGET_TEXT=evidence
+This learns a delimiter-specific BETWEEN rule. It does not establish that the learned behavior applies to the official SOURCE_RECONSTRUCTION input contract.
+
+4. Retention proof re-runs training from original in-memory records; it does not reconstruct from the serialized TRE__PERSISTED_CANDIDATE_STATE_V1 file. Candidate-state parser/load/replay integrity is therefore not proven.
+
+5. TRE__PROTECTED_REGRESSION_V1 is a host-written summary of evaluator integrity markers, not an independently produced protected-regression artifact proving candidate behavior did not regress protected capabilities.
+
+Decision:
+RUN_FORBIDDEN=YES
+Do not discard learner FIX3 or acquisition transport. Repair the integrator architecture so the exact learned candidate state is the state measured by the official evaluator through the public model ABI.
