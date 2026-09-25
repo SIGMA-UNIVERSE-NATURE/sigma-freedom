@@ -843,3 +843,21 @@ Repair Lane C dataset only:
 - preserve duplicate, invalid-parent, negative, ambiguity, mutation, leak and restart controls.
 
 Do not reveal Lane B implementation source.
+
+
+## 927 Lane C proof FIX2 static rejection — learner-state contract mismatch
+
+Lane C proof FIX2:
+
+~~~text
+PACKAGE_SHA256=e6c17fcfd2ebe9d2ead6d786b4a6a63de80526537cefc9ad3b02e44df6f1e086
+HARNESS_SEAL_SHA256=e5422160b900ab26c6731110623b41d27043aa408eae6150357ab283f2153897
+~~~
+
+Semantic target is now correct: EXTRACTIVE_SOURCE_SPAN, with PREFIX/SUFFIX/BETWEEN_ANCHORS cases and all previously required controls present.
+
+However the proof trains PREFIX, SUFFIX and BETWEEN examples into one learner state. Lane B FIX2 learner state supports exactly one learned structural rule/anchor set; the first incompatible rule transitions the state to AMBIGUOUS. Therefore this harness cannot validly test that learner and would fail by contract, not by lack of transfer.
+
+Further, current unseen cases change the full learned anchors. Lane B FIX2 transfers only within a learned template/anchor set.
+
+Decision: REJECT BEFORE RUNTIME. Repair Lane C only by using separate fresh learner states per structural family/template, with >=3 unique training examples sharing that template and fresh unseen targets under the same learned framing. Keep negative/duplicate/invalid-parent/leak/mutation/restart controls. Do not modify Lane B FIX2.
