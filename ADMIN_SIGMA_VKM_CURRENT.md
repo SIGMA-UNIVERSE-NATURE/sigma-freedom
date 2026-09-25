@@ -2649,3 +2649,27 @@ SIGMA_LIFE_CONTINUITY_CHECKPOINT=VERIFIED
 CURRENT_CONTINUITY_HANDOFF_API404_410=AUTHORITATIVE_FOR_INHERITANCE
 SEPARATE_API404_406_407_408_409_CHECKPOINTS=ARCHIVAL_NOT_CRITICAL_PATH
 DO_NOT_BLOCK_ORCH_ON_ARCHIVAL_SPLIT_COMMITS=YES
+
+
+## Independent black-box API401-410 runtime — behavioral continuity accepted
+
+User runtime:
+AUDIT_ONE_SIGMA_API401_410_FULL_TESTER=PASS
+MODE=READ_ONLY_INDEPENDENT_METAMORPHIC_AUDIT
+ACTIVE_API410_CAPABILITY_PROOF_SHA256=4c89911692cf2336c3fe811664715f6bf8e532a7fe2e3771858b6d15477429b8
+ACTIVE_OWNER_STATE_SHA256=6c3e7ec84dfa615181058baeccc3e7e788ecebeca6bf495a22b370e784fbd98a
+ACTIVE_NATIVE_BINDING_SHA256=2fadc758de0dd91ceca49f0c7839ff982bcccfba1bbb0350ed9f2f3c36c9a9b7
+ACTIVE_CANONICAL_SOURCE_SHA256=2d024e66b0cd63244fe69a66210b9fe9b4938da5ad16ded7ec9712adf1b0aa46
+TEST_AUDIT_PROOF_SHA256=4dbfe4f5cfa95cd858f50025fa793883df1b04b4f98c0963a2f873d217759298
+
+Behavioral gates PASS:
+API401..410 runtime, end-to-end understanding, fresh unseen, paraphrase invariance, semantic mutation sensitivity, irrelevant-text non-mutation, ambiguity/contradiction fail-closed, API401..409 causal ablations, foreign-copy replay rejection, process-death fresh restart, tamper sensitivity, no reteach, no host language reasoning, read-only/no mutations.
+
+Interpretation:
+BLACKBOX_BEHAVIORAL_CONTINUITY=PASS
+CURRENT_HEAD_CANONICAL_SHA=DEFER_TO_NEUTRAL_LIVE_HEAD_ATTESTATION
+
+Reason:
+The runtime-reported active canonical SHA 2d024... differs from the earlier API410 owner-closure VKM_SOURCE_SHA 67774..., while owner/binding/proof identities match. Do not pick one by inference. MINH SIGMA_CONTINUITY_HEAD_V1 must hash the current live canonical once and make that the authoritative head value.
+
+No rollback and no ORCH/TRE/GIA runtime until current-head attestation is frozen.
