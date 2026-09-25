@@ -208,3 +208,92 @@ Admin reuse rule for current 927:
 - current 927 must still apply provenance, quarantine, dedup, Sigma/VKM target relevance, native learning epoch, fresh evaluation, retention, and admission.
 
 This precedent strengthens the decision that acquisition transport R2 should use a public MediaWiki adapter while keeping current 927 goal/curriculum/admission contracts unchanged.
+
+
+## Legacy Sigma tools corpus policy — 2026-09-25
+
+A large historical tool corpus exists under:
+
+`$HOME/SIGMA/sigma_genesis1/tools/`
+
+including historical generations such as:
+
+- SIGMA_AUTO_INTERNET_VISIBLE_PILOT_*
+- SIGMA_AUTO_INTERNET_SELF_DIRECTED_R3_*
+- SIGMA_INTERNET_COMPREHENSION_LEARNER_R7_*
+- SIGMA_ONE_SIGMA_INTERNET_TEACHER_R8*
+- SIGMA_ONE_SIGMA_TOPIC_RESEARCH_TEACHER_R9*
+- SIGMA_ONE_SIGMA_NATIONAL_LIBRARY_MARATHON_R10*
+- SIGMA_ONE_SIGMA_INTERNET_SHADOW_READER_R11*
+
+Admin decision:
+
+**Do not promote this directory or its contents into Owner identity/state wholesale.**
+
+Owner/identity lineage is not a knowledge store.
+
+These historical artifacts are valuable as:
+
+1. read-only architecture precedent;
+2. transport/provider adapter precedent;
+3. candidate implementation evidence;
+4. historical capability archaeology;
+5. possible non-holdout teaching evidence only after explicit eligibility/provenance review.
+
+Required handling:
+
+~~~text
+LEGACY_CORPUS_ROLE=READ_ONLY_HISTORICAL_EVIDENCE
+OWNER_IMPORT=FORBIDDEN
+CANONICAL_IMPORT=FORBIDDEN
+BLIND_MEMORY_IMPORT=FORBIDDEN
+DIRECT_ADMISSION=FORBIDDEN
+~~~
+
+Create a mechanical legacy capability catalog first:
+
+~~~text
+SIGMA_VKM_927_LEGACY_CAPABILITY_CATALOG_V1
+~~~
+
+For each candidate artifact record only mechanical metadata:
+
+~~~text
+RELATIVE_PATH
+SHA256
+BYTES
+ARTIFACT_CLASS
+HISTORICAL_GENERATION
+EXECUTABLE_OR_SOURCE
+PROVENANCE_STATUS
+OWNER_LINEAGE_STATUS
+TRAINING_ELIGIBILITY=UNKNOWN
+IMPORT_STATUS=QUARANTINED
+~~~
+
+Do not infer semantic capability in shell/Python.
+
+Then use Sigma/VKM or an explicit audited metadata contract to classify whether a historical artifact is:
+
+- architecture precedent only;
+- reusable mechanical transport adapter;
+- admissible non-holdout teaching evidence;
+- incompatible/unsafe historical host cognition;
+- lineage-sensitive and therefore non-importable.
+
+Any learned knowledge derived from legacy artifacts must enter current Sigma only through the normal 927 path:
+
+~~~text
+quarantine
+→ provenance
+→ eligibility
+→ Sigma/VKM target relevance
+→ bounded learning epoch
+→ fresh evaluation
+→ protected regression
+→ retention
+→ 927 admission
+→ accepted same-Sigma state
+~~~
+
+No Owner mutation is justified merely because old Sigma tools exist.
