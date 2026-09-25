@@ -861,3 +861,18 @@ However the proof trains PREFIX, SUFFIX and BETWEEN examples into one learner st
 Further, current unseen cases change the full learned anchors. Lane B FIX2 transfers only within a learned template/anchor set.
 
 Decision: REJECT BEFORE RUNTIME. Repair Lane C only by using separate fresh learner states per structural family/template, with >=3 unique training examples sharing that template and fresh unseen targets under the same learned framing. Keep negative/duplicate/invalid-parent/leak/mutation/restart controls. Do not modify Lane B FIX2.
+
+
+## 927 Lane C proof FIX3 static rejection — anchors still differ within rule states
+
+Lane C FIX3 package SHA256:
+d1b5edc97d6cd6e7f9c131c0c39dd2a3de807d4c33b906c2b9dc6cf1d4e0afcf
+
+Harness seal SHA256:
+bbe709bb0c90401bf4e2a21b103fe98cc73c49a782391d0d257c8d676d9ec789
+
+Static audit: REJECT BEFORE RUNTIME.
+
+Although PREFIX/SUFFIX/BETWEEN now use separate learner states, the three training examples inside each state still infer different exact anchors. Lane B FIX2 requires exact rule + left_anchor + right_anchor equality for support, so the second training example would make each state AMBIGUOUS.
+
+Repair Lane C only: within each rule state, keep learned framing anchors byte-identical across >=3 unique training examples and unseen cases; vary only extracted target/content. Preserve sealed independence and all existing controls.
