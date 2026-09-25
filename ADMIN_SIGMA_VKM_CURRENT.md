@@ -1879,3 +1879,54 @@ Decision:
 928_RUNTIME_FORBIDDEN=YES
 GIA_FIX6_ROOT_POINTER_ARCHITECTURE=PASS
 GIA_FIX6_ADMISSION_POLICY=REPAIR_REQUIRED
+
+
+## 927 Lane A FIX7 static accepted — admission doctrine repaired
+
+GIA__ADMISSION_WRITER_FIX7.zip SHA256:
+9345233306632fee33a66c0fa7e23bfd1b8a0671a61829308dbc8adb3f5fce84
+
+Static audit PASS:
+- all manifest artifact hashes verify;
+- Python syntax PASS;
+- FIX6 root/pointer/accepted-store architecture preserved;
+- parent-state contract preserved;
+- no recursive discovery;
+- ONE_SIGMA invariants preserved.
+
+Admission policy repair verified:
+- PROVENANCE_INVALID => STATUS=HOLD, ADMISSION_DECISION=""
+- CANDIDATE_DETERMINISM_FAILED => HOLD
+- DETERMINISTIC_EVALUATION_FAILED => HOLD
+- GOLD_LEAK_DETECTED => HOLD
+- HOST_COGNITION_DETECTED => HOLD
+- measured gain <=0 => REJECT
+- goal-dimension gain <=0 => REJECT
+- protected regression FAIL => REJECT
+- unacceptable regression => REJECT
+- fresh unseen FAIL => REJECT
+- negative control FAIL => REJECT
+- restart retention FAIL => REJECT
+- INSUFFICIENT evidence statuses => ACQUIRE_MORE
+
+Frozen FIX7 admission engine SHA256:
+7645bba2b4bb1e54869b579ff28992287d4680bb0c8f296fa2cfd4628dbc010f
+
+Current pre-final-bind runner/writer hashes:
+ADMISSION_NATIVE_RUNNER_SHA256=ccb4010daf3f9eb6bcc91f3f5a629753806bdb2d2d9f2ce7781cffdeeb17e6ee
+ACCEPTED_STATE_WRITER_SHA256=531aa7ecabeda5fe4b6cc5146024fa78e8b99e0edd0d6bce2b87720538dfe5b7
+
+These runner/writer hashes are NOT final production pins yet because final integration must bind:
+- EXPECTED_EXECUTION_RUNNER_SHA256
+- EXPECTED_BASELINE_PUBLIC_CONTRACT_SHA256
+Then recompute final runner hash, repin it in writer, and recompute final writer hash.
+
+Decision:
+GIA_FIX7_ADMISSION_ENGINE_STATIC=PASS
+GIA_FIX7_ADMISSION_ENGINE_FROZEN=YES
+GIA_FIX7_RUNNER_WRITER_LOGIC_FROZEN=YES
+FINAL_PRODUCTION_RUNNER_WRITER_HASHES=PENDING_ORCHESTRATOR_BIND
+RUNTIME_FORBIDDEN_UNTIL_FINAL_BIND=YES
+
+DNA15 note:
+Lane A remains admission + accepted-state writer only. DNA15 self-upgrade / weight evolution / generation continuation belongs in final autonomous orchestrator after COMMIT and must not be silently folded into Lane A.
