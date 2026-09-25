@@ -1359,3 +1359,29 @@ Repair once in V5:
 - keep BASELINE_06B2 pin separately;
 - preserve V4 curriculum selector and all V3 fixes;
 - SECOND_SIGMA_CREATED=NO.
+
+
+## Neutral integration R1 FIX4 — static accepted
+
+Package SHA256:
+bb2983f8da4780a651dfb6891577eb63a2242c4e78197aa246f7fc420f10222f
+
+Static audit accepted.
+
+FIX3 -> FIX4 delta is surgical:
+- only duplicate-DEF audit logic changed;
+- duplicate DEF names inside the same exact SHA-pinned accepted source are no longer misclassified as integration collisions;
+- duplicate DEF names across different assembled sources still fail closed;
+- learner FIX3 SHA unchanged;
+- 928 Phase A FIX6 SHA unchanged;
+- exact baseline public path pins unchanged;
+- no recursive baseline scan;
+- no frozen/gold use;
+- no admission/commit/promotion;
+- ONE_SIGMA root unchanged.
+
+Python syntax, Bash syntax, and internal SHA256SUMS all PASS.
+
+Decision:
+NEUTRAL_INTEGRATION_FIX4_STATIC=PASS
+RUNTIME_COMMAND_AUTHORITY=ADMIN_BACKUP_WINDOW
