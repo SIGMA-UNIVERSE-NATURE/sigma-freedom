@@ -1028,3 +1028,26 @@ Conditional integration requirement:
 - if accepted-state pointer/root is not already initialized, provide one-time bootstrap binding from official BASELINE_06B2.
 
 Do not discard Lane A V1; repair it minimally.
+
+
+## 927 Lane A FIX1 deeper static audit — provenance/measurement/recovery blockers
+
+ZIP SHA256:
+7850e508f6dcf91e05831b30a401f915319b75a598846d222e55bd959155df67
+
+Positive repairs confirmed:
+- COMMIT requires positive GOAL_DIMENSION gain as well as positive global gain.
+- writer implements immutable generation/CAS/single-writer/fsync and forward crash recovery phases.
+- receipt/native-output/epoch SHA fields are cross-bound.
+
+Remaining blockers before final autonomous admission:
+
+1. Native-output origin is not actually proven. The writer accepts externally supplied admission/native-output files and verifies only their bytes/declared hashes. A manually fabricated native-output file can still claim the correct engine SHA. Final writer/runner must mechanically launch the pinned native admission execution itself (or consume a sealed execution transcript produced by the pinned VM/runner in the same transaction) rather than trust arbitrary supplied decision text.
+
+2. Admission does not bind before/after measurements to the accepted 06B2 measurement system (evaluator/scorer/gold/mapping/measurement lock). Positive scores from a different or fabricated measurement artifact could satisfy the current engine. Add pinned measurement-system identity checks and restrict GOAL_DIMENSION to the official eight dimensions.
+
+3. Recovery is not self-contained: restart still requires the caller to resupply the exact old epoch/admission/engine/native-output/candidate paths before PENDING recovery can run. PREPARED recovery also depends on the original candidate-state file. Stage immutable transaction inputs under the writer transaction directory before PREPARED and recover from those staged inputs alone.
+
+Also do not emit COMMIT_PERFORMED=NO after a HOLD if the pointer may already have been committed; report phase-aware commit state.
+
+Do not redesign the topology; repair minimally.
