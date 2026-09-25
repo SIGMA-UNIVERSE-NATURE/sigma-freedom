@@ -1307,3 +1307,25 @@ Final repair direction:
 - derive/pin its exact SHA only from the accepted 05B/06B2 continuity authority, never by filename search;
 - keep BASELINE_06B2_SHA256 separate from PARENT_ACCEPTED_STATE_SHA256;
 - final orchestrator still binds EXECUTION_RUNNER_SHA256 separately.
+
+
+## Neutral integration R1 FIX3 — static accepted; admin backup role clarified
+
+INT__SR_FIX3_X_928_FIX6_R1_FIX3 package SHA256:
+6cefaa1eb3b4d7db5ada94c4e6273a45a426b81406b22ea88824a8f9aaec1326
+
+Static audit accepted:
+- role remains NEUTRAL_INTEGRATOR;
+- no admission/commit/promotion logic;
+- ONE_SIGMA_ROOT=$HOME/SIGMA/sigma_genesis1;
+- learner FIX3 and 928 Phase A FIX6 remain exact pinned sources;
+- exact dependency closure adds only approved public components 927-01, 927-03, 927-06B1;
+- no gold/holdout component use;
+- no recursive baseline scan;
+- no canonical/Owner/native-binding mutation;
+- three-run determinism gates remain.
+
+Role policy:
+- Admin backup owns neutral integration / continuity / cross-lane ABI assembly.
+- New senior (GIÀ mới) owns Lane A admission + accepted-state writer.
+- Do not merge these roles unless explicit takeover is required.
