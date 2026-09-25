@@ -947,3 +947,19 @@ FRESH_RETRAIN_REPRODUCIBILITY=PASS
 PERSISTED_LEARNER_STATE_REPLAY=NOT_PROVEN
 
 Do not modify the candidate learner because of this caveat. Independent Lane C proof remains required, including true persistence/restart retention when integrated.
+
+
+## 927 Lane C proof FIX5 static rejection — mutation control not actually mutated
+
+Lane C FIX5 package SHA256:
+5cbd27c43ec8b887af31fe3f9793235795648c9922f06903dfaee54c9d594a7c
+
+Phase A SHA256:
+594ff1ca55a58a6944c46970118ab9b8596b03bf66c81a7e68cb9ecad8c208fe
+
+Phase B SHA256:
+f14605bedf6579543db8ed70d953d4696d3f37319cd143d9dc0172b664dde895
+
+Positive fixes: separate seals PASS; ternary removed; JSON primitives truthfully unproven; persisted-state replay correctly deferred to integration.
+
+Static blocker: mutation cases preserve the exact learned anchors/templates and merely change target content. Therefore SOURCE_MUTATION_SENSITIVITY can pass without any source-boundary/context mutation. Repair Lane C only: mutate/remove/corrupt at least one learned anchor or create structurally conflicting boundaries and require changed output or fail-closed. Do not change learner or sealed transfer cases.
