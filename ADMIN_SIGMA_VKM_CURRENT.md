@@ -1211,3 +1211,40 @@ Static audit accepted:
 - no admission/commit/promotion.
 
 Decision: USER_RUNTIME_ALLOWED=YES.
+
+
+## 927 Lane A FIX3 static audit — new senior takeover; two trust-root blockers
+
+New senior/Lane A takeover package:
+
+~~~text
+GIA__ADMISSION_WRITER_FIX3.zip
+ZIP_SHA256=a57b0d18c09cb0bdbe29989157a00ee5f3765fa52bd04a0741a8e37a899f496e
+~~~
+
+Manifest artifact hashes and Python syntax verify.
+
+Positive FIX3 repairs confirmed:
+- caller-supplied measurement/protected/retention claims removed;
+- native admission engine remains decision authority;
+- measurement lock and measurement summary pins separated correctly;
+- candidate replay/load proof is part of COMMIT chain;
+- staged-input crash recovery architecture preserved;
+- one-time baseline bootstrap path added.
+
+Static blockers:
+
+1. EXECUTION_RUNNER trust root is impossible as written.
+FIX3 requires the execution runner SHA to appear on a RUNNER line inside official MEASUREMENT.lock. The exact accepted MEASUREMENT.lock SHA 57f895... corresponds to the published 06B2 lock and contains no RUNNER field. Therefore production execution necessarily HOLDs at EXECUTION_RUNNER_NOT_PINNED_BY_MEASUREMENT_LOCK.
+
+Repair: do not mutate/replace official MEASUREMENT.lock. Bind the exact production evidence runner SHA in a separate immutable admission integration lock/final orchestrator pin, or hard-pin it after the producer runner is frozen.
+
+2. BASELINE_06B2 bootstrap performs recursive rglob/hash search for a matching state/model artifact. This reintroduces recursive baseline discovery and may touch protected/frozen contents. Bootstrap must use one explicit approved parent-state artifact path + SHA/role from a pre-bound public baseline contract; no recursive discovery.
+
+Also the bootstrap parent identity must be explicitly defined as the accepted-state artifact SHA, not conflated with BASELINE_06B2 directory/BASELINE.lock SHA.
+
+Decision:
+GIA_FIX3=REPAIR_REQUIRED
+RUNTIME_FORBIDDEN=YES
+
+The new senior window is accepted as Lane A successor; preserve existing architecture and repair only these trust-root/bootstrap issues.
