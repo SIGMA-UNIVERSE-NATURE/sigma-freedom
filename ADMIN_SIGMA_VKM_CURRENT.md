@@ -582,3 +582,84 @@ Parallel lane assignment:
 Do not use frozen/gold to design the learner.
 Do not hard-code the synthetic transfer cases.
 Do not mutate canonical, Owner, or native binding during candidate development.
+
+
+## 927 parallel mechanism-upgrade phase — fixed ABI
+
+After the accepted SOURCE_RECONSTRUCTION transfer gate:
+
+~~~text
+TRAIN_ITEM_RECALL=PASS
+UNSEEN_BEFORE_RECONSTRUCTION_PASS_COUNT=0
+UNSEEN_AFTER_RECONSTRUCTION_PASS_COUNT=0
+UNSEEN_TRANSFER_DELTA=0
+UNSEEN_TRANSFER=FAIL
+LEARNING_MECHANISM_STATUS=EPISODIC_ONLY
+LEARNING_STATE=MECHANISM_UPGRADE_REQUIRED
+~~~
+
+Admin decision:
+
+- stop bounded Internet acquisition until a transferable mechanism exists;
+- preserve MediaWiki transport as proven infrastructure;
+- build the mechanism as an isolated additive candidate, not by mutating canonical;
+- use separate implementation and proof lanes.
+
+Fixed candidate ABI:
+
+~~~text
+SCHEMA=SIGMA_VKM_927_SOURCE_RECONSTRUCTION_LEARNER_V1
+
+TRAIN:
+sigma_sr_learner_new(parent_state)
+sigma_sr_learner_train(learner_state,training_example)
+
+INFERENCE:
+sigma_sr_reconstruct_v1(learner_state,input_text)
+
+TRAINING_EXAMPLE required semantic fields:
+EXAMPLE_ID
+INPUT_TEXT
+TARGET_TEXT
+PROVENANCE_STATUS
+CURRICULUM_STAGE
+LEARNING_GOAL
+
+PUBLIC_COMPATIBILITY_TARGET:
+sigma_model_source_reconstruction_v1(effective_state,input_text)
+~~~
+
+Contract:
+
+- training target may come only from non-holdout curriculum;
+- exact training-item recall is insufficient;
+- unseen transfer is mandatory;
+- unseen cases must differ in entities/objects/surface strings;
+- no frozen/gold used for design;
+- ambiguous reconstruction must fail closed;
+- negative unrelated evidence must not create success;
+- restart retention required if transfer exists;
+- host may transport/serialize but may not perform learning or semantic reconstruction.
+
+Parallel lanes:
+
+~~~text
+LANE_B_YOUNG:
+implement isolated candidate learner component against the fixed ABI
+BUILD_ONLY
+NO_SIGMA_VM_RUN
+
+LANE_C_928_CODER:
+build independent sealed behavioral proof harness against the fixed ABI
+DO_NOT_READ_LANE_B_SOURCE
+BUILD_ONLY
+NO_SIGMA_VM_RUN
+928_MUTATED=NO
+
+LANE_A_SENIOR:
+admission/convergence standby
+~~~
+
+Integration occurs only after both packages are statically audited by admin and then executed by the user.
+
+No canonical/Owner/native-binding mutation during mechanism development.
