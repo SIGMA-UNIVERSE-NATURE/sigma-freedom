@@ -3353,3 +3353,34 @@ HEAD_LINEAGE_ROLE=GENESIS_FOR_AUTOMATION_LINEAGE
 
 This is an ADMIN architecture decision, but it is not runtime-authoritative until MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1 is built, audited, and frozen.
 The sequence-0 genesis must bind the then-current approved stable composite head; it must not rewrite historical capability lineage.
+
+
+## MINH HEAD_SEQUENCE AUTHORITY V1 FIX1 audit — FAIL, FIX2 REQUIRED
+
+Artifact:
+MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1_FIX1.tar.gz
+SHA256=148f4a0e7cd4611bef0c5623e9637fdf66257753ffd611f30af46d39bc08f8d1
+
+SHA256SUMS=PASS
+PYTHON_SYNTAX=PASS
+SHELL_SYNTAX=PASS
+SIGMA_RUN=NO
+
+Positives:
+- arbitrary caller state/transaction/lock paths removed;
+- live component and durable receipt hashes are recomputed;
+- active transaction corruption/missing reference fails closed;
+- PREPARED/APPLIED/DURABLE and exactly-once reconcile design preserved.
+
+Blocking architecture mismatches:
+1. Canonical authority paths are wrong. Package uses .sigma_ail/head_sequence_authority_v1/... while ADMIN lock requires .sigma_ail/SIGMA_HEAD/SIGMA_HEAD.current, .sigma_ail/SIGMA_HEAD/transactions, .sigma_ail/SIGMA_HEAD/HEAD.lock.
+2. Bootstrap parent is GENESIS_FOR_AUTOMATION_LINEAGE. Official bootstrap requires PARENT_HEAD_FINGERPRINT=NONE and separate HEAD_LINEAGE_ORIGIN=GENESIS_FOR_AUTOMATION_LINEAGE.
+3. Head fingerprint schema is obsolete/non-authoritative. Package V2 hashes only 9 short-form components. Official ADMIN preimage is SIGMA_HEAD_FINGERPRINT_INPUT_V1 and additionally binds identity, sequence, parent, capability registry, accepted-state pointer, generation state, SIGMAC, VM, FINAL_LIFECYCLE_RECEIPT_SHA256, etc.
+4. Receipt chain is incomplete. Package accepts admission + DNA15 + generation only and lacks mandatory PARENT_TX_ID, IMMEDIATE_PARENT_RECEIPT_SHA256, per-receipt identity/parent-head bindings, and restart+retention receipt before HEAD commit.
+5. UPSTREAM_CONTINUITY_FIX1_SHA256 is 3d61fecb... but approved MINH continuity FIX1 authority pin is 62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1.
+6. Native generation/model pointer authority is not yet available from DNA15 R2; package must not invent or finalize that binding before the approved DNA15 R2 descriptor/path exists.
+
+Decision:
+MINH_HEAD_SEQUENCE_V1_FIX1_STATIC_FINAL=FAIL
+MINH_HEAD_SEQUENCE_V1_FIX2_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
