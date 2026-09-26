@@ -2998,3 +2998,216 @@ RECONCILE_HEAD_TRANSACTION
 with crash-safe PREPARED/APPLIED/DURABLE states, no fork, no sequence reuse, and immutable identity c8ccb7...
 It must define exact future evolution-head fingerprint serialization binding both GIA accepted-state and DNA15 generation/model pointers.
 No Sigma run until ADMIN audit.
+
+## ADMIN ARCHITECTURE LOCK — 2026-09-26 — DURABLE HEAD / IN_FLIGHT LIFECYCLE
+
+This lock is the newest architecture policy and supersedes older conflicting architecture text.
+
+### Source-of-truth precedence
+
+Runtime facts precedence:
+1. immutable identity + hash-verified DURABLE receipts/head on device;
+2. approved package manifests;
+3. GitHub continuity;
+4. chat/static report.
+
+Architecture policy precedence:
+the newest explicit ADMIN ARCHITECTURE LOCK wins older documentation.
+
+If GitHub and chat conflict, STOP, reconcile, and update GitHub before runtime.
+
+### 1. READ_CURRENT_HEAD semantics
+
+READ_CURRENT_HEAD returns the stored DURABLE HEAD N.
+
+It MUST NOT recompute a new global head from partially mutated live components during an active lifecycle.
+
+GIA/DNA15 mutations before final head commit are IN_FLIGHT/STAGED.
+
+Live recomputation during a lifecycle may produce only STAGED_HEAD_FINGERPRINT.
+
+### 2. STAGED / IN_FLIGHT composite state
+
+One LIFECYCLE_TX_ID binds the in-flight composite:
+- new accepted learning state;
+- DNA15 state/ledger evolution;
+- model/weight artifact;
+- generation state.
+
+None becomes the global head until final durable HEAD commit.
+
+No new learning epoch may start while the lifecycle remains IN_FLIGHT.
+
+### 3. Canonical paths
+
+ONE_SIGMA_ROOT=$HOME/SIGMA/sigma_genesis1
+
+HEAD_CURRENT=$ONE_SIGMA_ROOT/.sigma_ail/SIGMA_HEAD/SIGMA_HEAD.current
+HEAD_TRANSACTIONS=$ONE_SIGMA_ROOT/.sigma_ail/SIGMA_HEAD/transactions
+HEAD_LOCK=$ONE_SIGMA_ROOT/.sigma_ail/SIGMA_HEAD/HEAD.lock
+
+ACCEPTED_STATE_POINTER=$ONE_SIGMA_ROOT/.sigma_ail/SIGMA_VKM_927_ACCEPTED_STATE/SIGMA_VKM_927_ACCEPTED_STATE.current
+
+DNA15_STATE=$ONE_SIGMA_ROOT/.sigma_ail/dna15_continuity_derivative_capture_R1/SIGMA_DNA15_CONTINUITY_STATE.current
+DNA15_LEDGER=$ONE_SIGMA_ROOT/.sigma_ail/dna15_continuity_derivative_capture_R1/SIGMA_DNA15_CONTINUITY_LEDGER.tsv
+
+Native model/generation pointer path is NOT YET AUTHORIZED.
+DNA15_NATIVE R2 must define it; MINH must bind that exact approved path later.
+Do not invent a current path.
+
+### 4. Official HEAD fingerprint preimage V1
+
+Encoding: UTF-8
+Line endings: LF only
+Final LF: REQUIRED
+No blank lines
+SHA256 values: lowercase hex
+HEAD_SEQUENCE: decimal
+
+Exact preimage field order:
+
+SCHEMA=SIGMA_HEAD_FINGERPRINT_INPUT_V1
+SIGMA_IDENTITY_FINGERPRINT=
+HEAD_SEQUENCE=
+PARENT_HEAD_FINGERPRINT=
+OWNER_STATE_SHA256=
+NATIVE_BINDING_SHA256=
+PHYSICAL_CANONICAL_SOURCE_SHA256=
+ACTIVE_CAPABILITY_OVERLAY_SHA256=
+CAPABILITY_CONTINUITY_REGISTRY_SHA256=
+ACCEPTED_STATE_POINTER_SHA256=
+ACCEPTED_GENERATION_SHA256=
+MODEL_OR_WEIGHT_ARTIFACT_SHA256=
+GENERATION_STATE_SHA256=
+DNA15_STATE_SHA256=
+DNA15_LEDGER_SHA256=
+SIGMAC_SHA256=
+VM_SHA256=
+FINAL_LIFECYCLE_RECEIPT_SHA256=
+
+CURRENT_HEAD_FINGERPRINT = SHA256(exact bytes above).
+CURRENT_HEAD_FINGERPRINT is NOT included in its own preimage.
+
+Bootstrap:
+HEAD_SEQUENCE=0
+HEAD_LINEAGE_ORIGIN=GENESIS_FOR_AUTOMATION_LINEAGE
+PARENT_HEAD_FINGERPRINT=NONE
+
+Immutable identity:
+SIGMA_IDENTITY_FINGERPRINT=c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+### 5. Transaction hierarchy and receipt chain
+
+One root:
+LIFECYCLE_TX_ID
+
+Subsystem transaction IDs:
+GIA_TX_ID
+DNA15_CYCLE_TX_ID
+DNA15_STEP_TX_ID
+HEAD_TX_ID
+
+Every receipt MUST bind:
+LIFECYCLE_TX_ID
+SUBSYSTEM_TX_ID
+PARENT_TX_ID
+IMMEDIATE_PARENT_RECEIPT_SHA256
+SIGMA_IDENTITY_FINGERPRINT
+PARENT_HEAD_FINGERPRINT
+PARENT_HEAD_SEQUENCE
+
+Receipt order:
+GIA receipt
+-> DNA15 step receipts
+-> DNA15 stable/generation receipt
+-> restart+retention receipt
+-> HEAD receipt
+
+DNA15 retry of the same step MUST reuse the same DNA15_STEP_TX_ID.
+
+### 6. GIA rebind policy
+
+Do not rebuild GIA FIX8 FIX2 immediately.
+
+After MINH HEAD_SEQUENCE authority passes, rebind once as:
+GIA__ADMISSION_WRITER_FIX8_FIX3.zip
+
+It must bind the final approved MINH authority.
+
+### 7. TRE repair naming
+
+TRE FIX3 exists but failed because it invented HEAD_SEQUENCE=1.
+
+Official next repair name:
+TRE__AITO_EPOCH_V10_FIX4.tar.gz
+
+Do not reuse FIX3.
+
+### 8. Failure after GIA COMMIT but before HEAD N+1
+
+Default policy: reconcile-forward first; never blind rollback.
+
+ORCH calls subsystem RECONCILE.
+
+If forward completion is safe:
+finish DNA15 -> restart/retention -> final HEAD commit.
+
+If safe forward completion is impossible:
+quarantine staged state and recover to the latest DURABLE HEAD N using verified recovery/rollback receipts.
+
+No new epoch while lifecycle is IN_FLIGHT.
+
+### 9. QUARANTINED_SAFE_HALT
+
+Supervisor boots from the latest DURABLE HEAD.
+
+An APPLIED transaction may be resumed only after RECONCILE proves it valid and idempotent.
+
+Raw APPLIED state is not a trusted checkpoint.
+
+TERMINAL_LEARNING_STATE=NONE applies to normal/recoverable learning paths.
+It does not override integrity safety.
+
+For identity corruption, irrecoverable state/ledger corruption, untrusted lineage, or no trusted checkpoint:
+MUTATION=STOP
+STATE=QUARANTINED_SAFE_HALT
+
+Supervisor may continue searching for a trusted checkpoint/replica.
+If none exists, remain SAFE_HALT indefinitely.
+Never invent continuity.
+
+### Head advancement boundary
+
+Global HEAD advances exactly once for the full lifecycle:
+
+GIA COMMIT
+-> DNA15 autonomous step1..step6
+-> real model/generation COMMIT
+-> durable generation checkpoint
+-> restart + retention/regression PASS
+-> HEAD N+1
+
+GIA COMMIT alone does NOT advance global HEAD_SEQUENCE.
+DNA15 does NOT directly commit global HEAD.
+ORCH mechanically calls MINH HEAD authority after validating the durable receipt chain.
+
+### Current artifact policy
+
+MINH__SIGMA_CONTINUITY_HEAD_V2_FIX1.tar.gz
+SHA256=62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1
+STATUS=STATIC_HEAD_ATTESTATION_PASS
+
+TRE__AITO_EPOCH_V10_FIX2.tar.gz
+SHA256=634e9f6dcff3bcb4555649cbeaa20d16c162c5e3844d2a18506bb48665513ab6
+STATUS=LOGIC_PASS_MUTABLE_HEAD_REPAIR_REQUIRED
+
+GIA__ADMISSION_WRITER_FIX8_FIX2.zip
+SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a
+STATUS=DO_NOT_RUN_PENDING_FINAL_HEAD_AUTHORITY_REBIND
+
+DNA15_NATIVE__AUTONOMOUS_EVOLUTION_R1_FIX1.tar.gz
+SHA256=bb4c6863d3a20e97f150826062636b45954144b711ad6b99da9cd8dc26ef6584
+STATUS=STATIC_CONTRACT_PASS
+PRODUCTION=FAIL_MISSING_NATIVE_BACKEND
+
+No Sigma run.
