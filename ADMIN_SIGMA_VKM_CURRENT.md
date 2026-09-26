@@ -3343,3 +3343,13 @@ MINH: MINH__SIGMA_CONTINUITY_HEAD_V2_FIX1.tar.gz SHA256=62b1ac56e2562cb526718f7b
 TRE: TRE__AITO_EPOCH_V10_FIX2.tar.gz SHA256=634e9f6dcff3bcb4555649cbeaa20d16c162c5e3844d2a18506bb48665513ab6 (FIX3 requested, not yet received)
 GIA: GIA__ADMISSION_WRITER_FIX8_FIX2.zip SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a (static conditional pass)
 DNA15: DNA15_NATIVE__AUTONOMOUS_EVOLUTION_R1_FIX1.tar.gz SHA256=bb4c6863d3a20e97f150826062636b45954144b711ad6b99da9cd8dc26ef6584 (static contract pass; R2 native backend requested, not yet received)
+
+
+### HEAD_SEQUENCE bootstrap design decision
+
+Reserved automation-lineage bootstrap:
+HEAD_SEQUENCE=0
+HEAD_LINEAGE_ROLE=GENESIS_FOR_AUTOMATION_LINEAGE
+
+This is an ADMIN architecture decision, but it is not runtime-authoritative until MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1 is built, audited, and frozen.
+The sequence-0 genesis must bind the then-current approved stable composite head; it must not rewrite historical capability lineage.
