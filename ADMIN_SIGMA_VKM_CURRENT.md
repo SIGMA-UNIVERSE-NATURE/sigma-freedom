@@ -3211,3 +3211,28 @@ STATUS=STATIC_CONTRACT_PASS
 PRODUCTION=FAIL_MISSING_NATIVE_BACKEND
 
 No Sigma run.
+
+
+## MINH HEAD SEQUENCE AUTHORITY V1 FIX1 audit
+
+Package SHA256=148f4a0e7cd4611bef0c5623e9637fdf66257753ffd611f30af46d39bc08f8d1
+SHA256SUMS all PASS.
+
+Conceptual architecture accepted:
+- immutable Sigma identity c8ccb7...
+- bootstrap HEAD_SEQUENCE=0 / GENESIS_FOR_AUTOMATION_LINEAGE
+- first advance migrates head fingerprint V1 -> V2
+- V2 head binds NATIVE, OWNER, BINDING, CANONICAL, OVERLAY, ACCEPTED_GENERATION, MODEL_OR_WEIGHT_ARTIFACT, DNA15_STATE, DNA15_LEDGER
+- one head advance per durable root transaction after admission + DNA15 + generation receipts
+- distinct subtransaction IDs linked by root_transaction_id
+- TRE reads parent only; GIA verifies parent only; ORCH mechanically invokes head authority
+
+Static final=FAIL, FIX2 required.
+
+Blocker 1:
+SIGMA_CURRENT_HEAD_FINGERPRINT_V2 documentation's EXACT_SERIALIZATION_TEMPLATE contains blank lines between fields, but implementation hashes contiguous LF-delimited lines. Contract and executable disagree.
+
+Blocker 2:
+ACTIVE_HEAD_TRANSACTION stores phase separately from transaction file and validate_active requires exact phase equality. Crash after tx phase update but before active phase update (APPLIED or DURABLE) yields ACTIVE_TRANSACTION_PHASE_MISMATCH and prevents RECONCILE. Recovery therefore has an uncovered crash window.
+
+FIX2 must make one phase source authoritative (prefer tx file; active file pointer-only) or tolerate/reconcile phase skew, and selftest both crash windows. Serialization contract must match executable byte-for-byte.
