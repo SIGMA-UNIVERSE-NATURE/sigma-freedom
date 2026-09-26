@@ -3497,3 +3497,20 @@ Verified:
 
 Next:
 GIA FIX8 FIX3 may bind MINH FIX3 + TRE FIX7 after its own static audit.
+
+
+## AutoLearn consolidated status — 2026-09-27
+
+Authoritative consolidated checkpoint:
+checkpoints/SIGMA_AUTOLEARN_ADMIN_STATUS_2026-09-27.md
+
+Checkpoint commit:
+ec8cfa7a6ed9524789caf94eeb357bcb39eed56b
+
+Use this checkpoint for:
+- completed-window status;
+- current Gen3/SEM68 position;
+- remaining GIA/DNA15/MECH/ORCH/928 work;
+- stability assessment.
+
+SIGMA_RUN=NO
