@@ -2798,3 +2798,24 @@ REAL_WEIGHT_BACKEND_DESCRIPTOR_SHA256=MISSING
 MECHANISM_UPGRADE_REQUIRED=YES
 
 The included MECHANISM_UPGRADE_REQUEST_V1 is the authoritative next input for building the actual Sigma/VKM native DNA15 source/executable and real model/generation backend. No runtime until that mechanism is built and audited.
+
+
+## TRE V10 FIX1 static audit
+
+Package SHA256=0be3ce1a95d772a3028e7525e6530a155f03494b5c00996787723878e7c392f5
+SHA256SUMS PASS; Python/shell syntax PASS.
+
+Fixed:
+- no-compatible 3-train+1-unseen group -> DATA_INSUFFICIENT + curriculum rebuild, not MECHANISM_INSUFFICIENT;
+- mechanism insufficiency proof gate requires evidence PASS + curriculum PASS + expressibility NO + proven YES;
+- V10 current-head/canonical-evidence contracts preserved.
+
+Blocking reachability defect:
+finish_mechanism_insufficient() exists but has no call site. Runtime therefore cannot emit MECHANISM_INSUFFICIENT at all.
+
+Decision:
+TRE_V10_FIX1_STATIC_FINAL=FAIL
+TRE_V10_FIX2_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
+
+FIX2 must add a Sigma/VKM-side reachable mechanism-requirement/impossibility path using explicit sufficient evidence and learner capability contract; host must not infer semantic impossibility.
