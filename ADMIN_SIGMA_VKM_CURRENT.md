@@ -2725,3 +2725,34 @@ RUNTIME_FORBIDDEN=YES
 
 Repair principle:
 MECHANISM_INSUFFICIENT requires an explicit learner-family impossibility proof, not merely failure to find a compatible group in the current evidence set. Otherwise route to DATA_INSUFFICIENT/ACQUIRE_MORE or curriculum-rebuild as appropriate.
+
+
+## DNA15_NATIVE AUTONOMOUS EVOLUTION R1 static audit
+
+Package SHA256=7f1d613bfbe8d1139a7866b16e2420c03af68b57fa54c7bd861bad6d7bb5b6ba
+
+Decision:
+DNA15_NATIVE_R1=ACCEPTED_AS_STATIC_SCAFFOLD_ONLY
+DNA15_NATIVE_R1_PRODUCTION=FAIL
+RUNTIME_FORBIDDEN=YES
+
+Positive:
+- all SHA256SUMS verify;
+- immutable native identity c8ccb7... preserved;
+- host code does not compute semantic score/gain/weight/step;
+- six-step and exactly-once contracts are explicitly modeled;
+- real evolution requires model + generation artifact hash changes;
+- package truthfully reports REAL_WEIGHT_BACKEND_STATUS=MISSING and NATIVE_EXECUTABLE_BUILT=NO.
+
+Blockers:
+1. Host loop/transport hard-pin SIGMA_CURRENT_HEAD_FINGERPRINT_V1=c106...; current head is mutable and must not be an immutable identity anchor.
+2. STEP_APPLIED uncertain/missing-response recovery does not automatically invoke native RECONCILE; can hot-loop without progress.
+3. Several proof scenarios are trace-only generic checks and do not prove their named scenario semantics.
+4. No bound native executable, current MINH head pins, or real weight/generation backend. Production native authority remains absent.
+
+Required FIX1:
+- immutable identity only = c8ccb7...;
+- mutable head sequence/parent/current binding;
+- automatic RECONCILE recovery;
+- scenario-specific proof assertions;
+- bind MINH HEAD V2 FIX1 and actual Sigma/VKM source/backend or emit a concrete mechanism-upgrade request without fake evolution.
