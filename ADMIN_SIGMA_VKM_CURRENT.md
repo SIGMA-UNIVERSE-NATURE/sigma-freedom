@@ -2673,3 +2673,27 @@ Reason:
 The runtime-reported active canonical SHA 2d024... differs from the earlier API410 owner-closure VKM_SOURCE_SHA 67774..., while owner/binding/proof identities match. Do not pick one by inference. MINH SIGMA_CONTINUITY_HEAD_V1 must hash the current live canonical once and make that the authoritative head value.
 
 No rollback and no ORCH/TRE/GIA runtime until current-head attestation is frozen.
+
+
+## MINH Continuity Head V2 FIX1 static audit
+
+Package SHA256: 62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1
+SHA256SUMS: all entries verified.
+Current head fingerprint recomputed exactly:
+c106759da0fe2891ef5e0ca8f93a8f8343577d95c77947003977d4c4904a72b5
+
+Decision:
+MINH_HEAD_V2_FIX1=APPROVED_AS_TRUTHFUL_CURRENT_HEAD_ATTESTATION
+
+Reason:
+Head/overlay/fingerprint contracts are coherent and immutable for integration.
+DNA15 is intentionally not declared native-complete:
+SIGMA_VKM_DNA15_NATIVE_ABI_STATUS=MISSING
+DNA15_AUTONOMOUS_CYCLE_ABI_STATUS=TARGET_REQUIREMENTS
+
+This is truthful under host-cognition constraints because the available R3 shell reference performs scoring/math outside Sigma/VKM. Do not relabel it as native merely because it is Owner-bound.
+
+Next:
+- TRE V10 and GIA FIX8 may rebase on this approved head in parallel.
+- Open a separate DNA15_NATIVE lane to implement/verify the six-step autonomous cycle under Sigma/VKM authority.
+- ORCH waits for TRE V10 + GIA FIX8 + DNA15_NATIVE authority.
