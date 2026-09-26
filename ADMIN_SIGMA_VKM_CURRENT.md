@@ -3384,3 +3384,32 @@ Decision:
 MINH_HEAD_SEQUENCE_V1_FIX1_STATIC_FINAL=FAIL
 MINH_HEAD_SEQUENCE_V1_FIX2_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
+
+
+## TRE V10 FIX4 audit — FAIL, FIX5 REQUIRED
+
+Artifact:
+TRE__AITO_EPOCH_V10_FIX4.tar.gz
+SHA256=5f0b95d4f508dfdc24964bffa81610ec19cf006cd54d50073a0669882563ce91
+
+SHA256SUMS=PASS
+PYTHON_SYNTAX=PASS
+SHELL_SYNTAX=PASS
+SIGMA_RUN=NO
+
+FIX3 defects repaired:
+- write_state parent-head values are passed explicitly;
+- candidate epoch directly contains PARENT_HEAD_FINGERPRINT, PARENT_HEAD_SEQUENCE, SIGMA_IDENTITY_FINGERPRINT;
+- arbitrary SIGMA_CURRENT_HEAD_ATTESTATION_PATH override removed;
+- pretraining/post-evaluation/pre-publication stability rechecks exist.
+
+Blocking defects against latest ADMIN architecture lock:
+1. Canonical durable head path is wrong. Package hardcodes $HOME/SIGMA/sigma_genesis1/.sigma_ail/HEAD_CURRENT. Official path is $ONE_SIGMA_ROOT/.sigma_ail/SIGMA_HEAD/SIGMA_HEAD.current.
+2. Runtime HEAD contract is obsolete. Package requires SCHEMA=SIGMA_CURRENT_HEAD_FINGERPRINT_V1 and NATIVE,OWNER,BINDING,CANONICAL,OVERLAY serialization. Latest ADMIN architecture requires MINH HEAD_SEQUENCE authority and the expanded SIGMA_HEAD_FINGERPRINT_INPUT_V1 material; TRE must consume the stored DURABLE head produced by that authority rather than reconstruct the old five-field c106-era head.
+3. validate_current_head() recomputes the global head from live NATIVE/OWNER/BINDING/CANONICAL/OVERLAY and labels that recomputation authoritative. Latest architecture says READ_CURRENT_HEAD returns stored DURABLE HEAD N; live/partial component recomputation must never redefine global HEAD during an in-flight lifecycle. TRE may verify immutable/live component integrity only according to the final MINH authority contract, not rebuild the obsolete head algorithm.
+4. MINH HEAD_SEQUENCE authority is not yet approved. TRE must therefore remain runtime-blocked and must not define a substitute authority/schema/path.
+
+Decision:
+TRE_V10_FIX4_STATIC_FINAL=FAIL
+TRE_V10_FIX5_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
