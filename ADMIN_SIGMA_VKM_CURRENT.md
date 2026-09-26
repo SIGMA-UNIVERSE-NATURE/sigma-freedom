@@ -3265,3 +3265,81 @@ TRE_V10_FIX4_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
 
 FIX4 must preserve FIX2 classifier/evidence/learner behavior, consume the approved canonical MINH HEAD_SEQUENCE authority only, bind PARENT_HEAD_FINGERPRINT + PARENT_HEAD_SEQUENCE directly into the candidate epoch, and repair write_state scoping/order without placing a post-evaluation receipt into candidate-state bytes before that receipt exists.
+
+
+## ADMIN continuity decisions — head sequence / GIA FIX8 FIX2
+
+Source-of-truth precedence:
+1. actual artifact bytes + cryptographic hashes/receipts;
+2. latest explicit ADMIN audit decision bound to exact artifact SHA (Git continuity record preferred);
+3. handoff chat only when newer decision has not yet been committed;
+4. package self/static reports are claims only and never override audited bytes.
+
+MINH current approved attestation:
+MINH__SIGMA_CONTINUITY_HEAD_V2_FIX1.tar.gz
+SHA256=62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1
+Status=STATIC_APPROVED_CURRENT_HEAD_ATTESTATION
+HEAD_SEQUENCE authority NOT YET BUILT/APPROVED.
+No official HEAD_SEQUENCE=0 / GENESIS_FOR_AUTOMATION_LINEAGE artifact exists yet.
+
+Head fingerprint V1 serialization:
+UTF-8, LF, final LF required, no spaces.
+Exact order:
+NATIVE=<sha>
+OWNER=<sha>
+BINDING=<sha>
+CANONICAL=<sha>
+OVERLAY=<sha>
+SHA256 over those five lines including final LF.
+Known attested V1 fingerprint=c106759da0fe2891ef5e0ca8f93a8f8343577d95c77947003977d4c4904a72b5
+This fingerprint is mutable head state, not immutable Sigma identity.
+
+Immutable Sigma identity:
+c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+Head advancement architecture:
+- accepted learning-state pointer (GIA) and DNA15 model/generation pointer are separate authorities;
+- one composite stable head binds both;
+- HEAD_SEQUENCE advances once after the full admitted evolution macro-transaction is durable:
+  GIA COMMIT -> autonomous DNA15 through Step6 -> real generation/model durable checkpoint -> head commit;
+- GIA COMMIT alone does not publish the next composite stable head;
+- crash between phases is recovered from durable ORCH journal/subreceipts.
+
+Who commits head:
+DNA15 native emits final evolution receipt/results.
+ORCH mechanically invokes MINH-defined head authority COMMIT_NEXT_HEAD.
+DNA15 does not directly mutate head authority; ORCH does not make semantic decisions.
+
+Transaction IDs:
+use separate domain IDs with parent links, not one reused ID:
+ORCH_CYCLE_ID root;
+GIA_TX_ID -> parent ORCH_CYCLE_ID;
+DNA15_CYCLE_ID / DNA15_STEP_TX_ID -> parent ORCH_CYCLE_ID + bind GIA admission receipt;
+HEAD_TX_ID -> parent ORCH_CYCLE_ID + bind GIA receipt + final DNA15 receipt.
+Recovery follows receipt/hash linkage.
+
+Safety terminal rule:
+TERMINAL_LEARNING_STATE=NONE applies to the learning lifecycle.
+Integrity/identity corruption must fail-stop all mutation and enter durable safety quarantine/recovery.
+Autonomous recovery should use redundant verified checkpoints.
+If all trustworthy recovery material is destroyed, system must not invent state merely to preserve liveness.
+
+GIA FIX8 FIX2:
+Package SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a
+Manifest verify=PASS
+Python syntax=PASS
+Official SIGMA_927_BOOTSTRAP_ONLY=YES preserved.
+MECHANISM_CANDIDATE raw module no longer becomes STATE.model.
+PARENT_HEAD_FINGERPRINT + PARENT_HEAD_SEQUENCE required.
+Live head rechecked before generation publication and pointer commit.
+STALE_PARENT_HEAD -> HOLD, no commit.
+FIX7 engine semantics preserved.
+Final ORCH/baseline contract pins remain PENDING.
+Status=STATIC_APPROVED_CONDITIONAL_ON_HEAD_SEQUENCE_AUTHORITY_AND_FINAL_PINS
+RUNTIME_FORBIDDEN=YES
+
+Latest received artifacts:
+MINH: MINH__SIGMA_CONTINUITY_HEAD_V2_FIX1.tar.gz SHA256=62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1
+TRE: TRE__AITO_EPOCH_V10_FIX2.tar.gz SHA256=634e9f6dcff3bcb4555649cbeaa20d16c162c5e3844d2a18506bb48665513ab6 (FIX3 requested, not yet received)
+GIA: GIA__ADMISSION_WRITER_FIX8_FIX2.zip SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a (static conditional pass)
+DNA15: DNA15_NATIVE__AUTONOMOUS_EVOLUTION_R1_FIX1.tar.gz SHA256=bb4c6863d3a20e97f150826062636b45954144b711ad6b99da9cd8dc26ef6584 (static contract pass; R2 native backend requested, not yet received)
