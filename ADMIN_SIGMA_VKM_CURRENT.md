@@ -2697,3 +2697,31 @@ Next:
 - TRE V10 and GIA FIX8 may rebase on this approved head in parallel.
 - Open a separate DNA15_NATIVE lane to implement/verify the six-step autonomous cycle under Sigma/VKM authority.
 - ORCH waits for TRE V10 + GIA FIX8 + DNA15_NATIVE authority.
+
+
+## TRE V10 static audit
+
+Package SHA256:
+0b0341396903f1b35d01d9f0a952d80387ea87c4ad21c0f41ce7686d8026e5d9
+
+Static positives:
+- package SHA256SUMS all verified;
+- Python and shell syntax PASS;
+- immutable Sigma identity anchor and mutable current-head fingerprint separation implemented;
+- live head is recomputed from NATIVE/OWNER/BINDING/CANONICAL/OVERLAY;
+- historical BASELINE_06B2 is regression/reference only;
+- learner FIX3 remains pinned at 661d3047...9573;
+- exact canonical evidence schemas for measurement/protected/retention are emitted;
+- TRE does not fabricate GIA reexecution hash and stops until external exact equality;
+- DATA_INSUFFICIENT, MECHANISM_INSUFFICIENT and INTEGRITY_FAILURE are distinct routes.
+
+Blocking defect:
+MECHANISM_INSUFFICIENT is currently emitted when native_curriculum_select finds no FIX3-compatible 3-train + 1-unseen group among current pair_records. This condition does not prove mechanism incapability; it may still be an evidence/curriculum coverage insufficiency. Premature escalation could invoke mechanism creation unnecessarily.
+
+Decision:
+TRE_V10_STATIC_FINAL=FAIL
+TRE_V10_FIX1_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
+
+Repair principle:
+MECHANISM_INSUFFICIENT requires an explicit learner-family impossibility proof, not merely failure to find a compatible group in the current evidence set. Otherwise route to DATA_INSUFFICIENT/ACQUIRE_MORE or curriculum-rebuild as appropriate.
