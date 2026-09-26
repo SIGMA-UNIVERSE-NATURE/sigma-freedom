@@ -1,0 +1,112 @@
+# SIGMA VKM Gen1 Execution Proof
+
+Date: 2026-09-26
+Source: user-supplied Termux runtime output.
+
+## Pre-flight
+
+PRE_FLIGHT=PASS
+
+NATIVE_IDENTITY_SHA256=
+c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+GEN1_BRAIN_HEAD=
+700d5c1b4845322d7c14800029c629b0
+
+GEN1_MODEL_GENERATION=1
+
+GEN1_MODEL_ID=
+25f78a8a17d8ec8957545f2f747170c0
+
+GEN1_SNAPSHOT_SHA256=
+63facb281d8f511cd99653ddb9adfd1d426e951ece559a30254cd41c9c78967d
+
+## Toolchain
+
+SIGMAC_VKM_SHA256=
+60a5c9028f79d4eca5d0e4859e0c681c276402ac93bbd56e750c2c05a83e2a98
+
+SIGMA_VKM_SHA256=
+c70bbfc53f70cafd044b61a4ad9d64f1e4ef8e6c13af8371ea8d0773df871d95
+
+COMPILE_RC=0
+SIGMAC_GEN1_VKM_COMPILE=PASS
+
+GEN1_VKM_BYTECODE_SHA256=
+e6edf2b86632d650512cdf455eb11193b12cf85402e2d870d9fd8bf2c47e148d
+
+## Real sigma-vkm execution
+
+VM_RC=0
+
+VKM VM frame:
+
+SIGMA_INTEGRAL_INCREMENTAL_RESULT_1
+vkm_gen1_g3_status_1790433349_12549
+G3_STATUS_READY
+END_SIGMA_INTEGRAL_INCREMENTAL_RESULT_1
+
+G3 status produced by VKM:
+
+SYSTEM_IDENTITY||SIGMA.AIL
+G3_MODEL_GENERATION||1
+MODEL||25f78a8a17d8ec8957545f2f747170c0
+BRAIN_HEAD||700d5c1b4845322d7c14800029c629b0
+ADJACENT_EXPERIENCE_AVAILABLE||1
+
+## Post-state invariants
+
+IDENTITY_BEFORE=
+c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+IDENTITY_AFTER=
+c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+HEAD_BEFORE=
+700d5c1b4845322d7c14800029c629b0
+
+HEAD_AFTER=
+700d5c1b4845322d7c14800029c629b0
+
+GEN_BEFORE=1
+GEN_AFTER=1
+
+SNAPSHOT_BEFORE=
+63facb281d8f511cd99653ddb9adfd1d426e951ece559a30254cd41c9c78967d
+
+SNAPSHOT_AFTER=
+63facb281d8f511cd99653ddb9adfd1d426e951ece559a30254cd41c9c78967d
+
+STATE_MUTATION=NO
+IDENTITY_MUTATED=NO
+HEAD_MUTATED=NO
+MODEL_GENERATION_MUTATED=NO
+GEN1_SNAPSHOT_MUTATED=NO
+LEARNING_INVOKED=NO
+
+## Final proof
+
+VKM_GEN1_EXECUTION=PASS
+GEN1_EXECUTES_THROUGH_VKM=YES
+G3_STATUS_READY=YES
+ADJACENT_EXPERIENCE_AVAILABLE=1
+
+PROOF_SHA256=
+639c6ab1a12f73373b4c32bf6ff31317d19f15817091b712bc912ac48dde66eb
+
+PROBE=
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_VKM_GEN1_BACKEND.current/PROBES/VKM_GEN1_G3_STATUS_20260926T213548_12549
+
+NEXT=GEN1_TO_GEN2_DNA15_REAL_EVOLUTION
+
+## Interpretation boundary
+
+This checkpoint records direct runtime evidence that:
+- Gen1 compiled with the pinned sigmac-vkm;
+- the produced bytecode executed under the pinned sigma-vkm;
+- the VM returned G3_STATUS_READY;
+- the VM-visible model generation was 1 with the expected model/head;
+- canonical identity, head, generation, and snapshot remained unchanged by this probe;
+- no learning was invoked during this execution test.
+
+This proof does not itself establish Gen1->Gen2 DNA15 evolution; that is the next separate capability/evolution step.
