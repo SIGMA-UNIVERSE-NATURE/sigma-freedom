@@ -2772,3 +2772,29 @@ Blockers:
 2. MECHANISM_CANDIDATE bytes are copied directly to generation STATE.model and become ACCEPTED_STATE_SHA256. A raw mechanism/module candidate would replace the learner accepted state and break parent-state continuity. Mechanism admission must produce/bind a composite next accepted state, or keep mechanism artifact separate while pointer continues to reference a valid accepted state.
 
 Final ORCH runner/public-contract pins correctly remain pending.
+
+
+## DNA15_NATIVE R1 FIX1 static audit
+
+Package SHA256=bb4c6863d3a20e97f150826062636b45954144b711ad6b99da9cd8dc26ef6584
+SHA256SUMS all verified.
+
+Decision:
+DNA15_NATIVE_R1_FIX1_STATIC_CONTRACT=PASS
+DNA15_NATIVE_R1_FIX1_PRODUCTION_AUTHORITY=FAIL_MISSING_NATIVE_IMPLEMENTATION
+RUNTIME_FORBIDDEN=YES
+
+Requested R1 defects fixed:
+- immutable identity c8ccb7... separated from mutable head lineage;
+- STEP_APPLIED uncertainty automatically uses MODE=RECONCILE with same transaction ID before any fresh apply;
+- scenario-specific proof assertions added;
+- MINH Head V2 FIX1 state/ledger/identity bindings included.
+
+Truthful remaining blocker:
+REAL_WEIGHT_BACKEND_STATUS=MISSING
+NATIVE_SOURCE_SHA256=MISSING
+NATIVE_EXECUTABLE_SHA256=MISSING
+REAL_WEIGHT_BACKEND_DESCRIPTOR_SHA256=MISSING
+MECHANISM_UPGRADE_REQUIRED=YES
+
+The included MECHANISM_UPGRADE_REQUEST_V1 is the authoritative next input for building the actual Sigma/VKM native DNA15 source/executable and real model/generation backend. No runtime until that mechanism is built and audited.
