@@ -1,0 +1,96 @@
+# SIGMA DNA15 Stable Step6 Anti-Repeat FIX1
+
+Date: 2026-09-26
+Source: user-supplied Termux runtime output.
+
+## Precheck
+
+DNA15_STEP=6
+
+EVIDENCE_SHA256=
+2149d959f3ba37e1b2f1867c7806e3d51fff6c4587444122d5a7dc41ceed93f3
+
+LAST_CAPTURED_BEFORE=
+6287f86e00bcf616561b73e1b9a0a7c0f5c3f3577850ef3fe8b314641678936f
+
+STATE_FILE_SHA256_BEFORE=
+55a8b4fe456ad4a5a1fe3951a11371190b57b097dbf56e1672d56352158b6b43
+
+PRECHECK=PASS
+
+## 1. Patch R3 anti-repeat logic
+
+CAPTURE_SHA256_BEFORE=
+c98c82787493ac26407b95b90a10210daf09869e01fc373c7d888080163a5cc5
+
+CAPTURE_SHA256_AFTER=
+0da25888f9c0eee571483142458868c477d4e4efa644202e6b92bac434a8add4
+
+ANTI_REPEAT_STABLE_STEP6_FIX=PASS
+
+## 2. Repair current step6 marker atomically
+
+STATE_MARKER_REPAIRED=YES
+
+INTERNAL_STATE_SHA256=
+0b393144aef587b89f3ca4c7bfcb372e3e33f73ac40d8242827ba5df43504959
+
+STATE_FILE_SHA256_BEFORE=
+55a8b4fe456ad4a5a1fe3951a11371190b57b097dbf56e1672d56352158b6b43
+
+STATE_FILE_SHA256_AFTER=
+42b3bfe49b5b38d9ef76dd8bec42c9b8c7f06527d2534d0e1c35b855a8570d8b
+
+## 3. Verification
+
+CONTINUITY_STEP_INDEX=6
+
+EVIDENCE_SHA256=
+2149d959f3ba37e1b2f1867c7806e3d51fff6c4587444122d5a7dc41ceed93f3
+
+LAST_CAPTURED_EVIDENCE_SHA256=
+2149d959f3ba37e1b2f1867c7806e3d51fff6c4587444122d5a7dc41ceed93f3
+
+INTERNAL_STATE_SHA256=
+0b393144aef587b89f3ca4c7bfcb372e3e33f73ac40d8242827ba5df43504959
+
+STATE_FILE_SHA256_AFTER=
+42b3bfe49b5b38d9ef76dd8bec42c9b8c7f06527d2534d0e1c35b855a8570d8b
+
+CANONICAL_MODEL_MUTATION=NO
+
+## 4. Final FIX1 receipt
+
+DNA15_STABLE_STEP6_ANTI_REPEAT_FIX1=PASS
+
+CONTINUITY_STEP_INDEX=6
+
+LAST_CAPTURED_EVIDENCE_SHA256=
+2149d959f3ba37e1b2f1867c7806e3d51fff6c4587444122d5a7dc41ceed93f3
+
+CANONICAL_MODEL_GENERATION=3
+
+CANONICAL_BRAIN_HEAD=
+599c639a3a58c7971518727c303c876e
+
+CANONICAL_MODEL_MUTATION=NO
+LEDGER_MUTATION=NO
+
+RECEIPT_SHA256=
+b03149c066485075e8067b0157a4a3b273ec5d0d85cb5de4021c58fd11814dc3
+
+NEXT=BEGIN_NEW_DNA15_CYCLE_WITH_NEW_EVIDENCE
+
+TERMUX_PARENT_SHELL_STILL_ALIVE=YES
+
+## Interpretation boundary
+
+This checkpoint records an anti-repeat repair for an already-completed stable step6 state:
+- the R3 capture runner hash changed from the previous known version to the patched version;
+- the current step6 marker was repaired atomically;
+- LAST_CAPTURED_EVIDENCE_SHA256 now matches the current evidence hash;
+- canonical model generation/head were not mutated;
+- the continuity ledger was not mutated by this marker repair;
+- a FIX1 receipt was emitted.
+
+This repair corrects repeated-evidence suppression bookkeeping and does not represent a new DNA15 model evolution event.
