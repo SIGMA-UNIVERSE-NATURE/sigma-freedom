@@ -3236,3 +3236,32 @@ Blocker 2:
 ACTIVE_HEAD_TRANSACTION stores phase separately from transaction file and validate_active requires exact phase equality. Crash after tx phase update but before active phase update (APPLIED or DURABLE) yields ACTIVE_TRANSACTION_PHASE_MISMATCH and prevents RECONCILE. Recovery therefore has an uncovered crash window.
 
 FIX2 must make one phase source authoritative (prefer tx file; active file pointer-only) or tolerate/reconcile phase skew, and selftest both crash windows. Serialization contract must match executable byte-for-byte.
+
+
+## TRE V10 FIX3 re-audit — 2026-09-26 — FAIL, FIX4 REQUIRED
+
+Received artifact:
+TRE__AITO_EPOCH_V10_FIX3.tar.gz
+SHA256=6e498b09557c8abd1d80e15aef9d49e71c0fe3222a7503140a231079c46bf9b8
+
+SHA256SUMS=PASS
+PYTHON_SHELL_SYNTAX=PASS
+SIGMA_RUN=NO
+
+Positive:
+- no literal HEAD_SEQUENCE=1 remains;
+- immutable identity c8ccb7... preserved;
+- FIX2 mechanism classifier remains byte-identical;
+- pre/post head stability checks exist.
+
+Blocking defects:
+1. TRE__AITO_EPOCH_INTEGRATOR_V10_FIX3.py write_state() references current_head_before, current_head_pre_receipt, current_head_post_receipt and parent_state_path without passing them. These are locals of main(); current_head_post_receipt is not created until after write_state() is called. Runtime candidate production is therefore broken.
+2. SIGMA_VKM_927_CANDIDATE_EPOCH_V1 does not itself contain PARENT_HEAD_FINGERPRINT or PARENT_HEAD_SEQUENCE. Printing them to stdout or embedding them only in auxiliary state is insufficient for GIA stale-parent admission.
+3. Runtime still accepts arbitrary SIGMA_CURRENT_HEAD_ATTESTATION_PATH/SHA256 and recomputes the obsolete five-component NATIVE/OWNER/BINDING/CANONICAL/OVERLAY fingerprint. Latest ADMIN architecture requires canonical stored DURABLE HEAD_CURRENT and the MINH HEAD_SEQUENCE authority; old c106/5-component attestation is not the runtime global-head authority.
+
+Decision:
+TRE_V10_FIX3_STATIC_FINAL=FAIL
+TRE_V10_FIX4_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
+
+FIX4 must preserve FIX2 classifier/evidence/learner behavior, consume the approved canonical MINH HEAD_SEQUENCE authority only, bind PARENT_HEAD_FINGERPRINT + PARENT_HEAD_SEQUENCE directly into the candidate epoch, and repair write_state scoping/order without placing a post-evaluation receipt into candidate-state bytes before that receipt exists.
