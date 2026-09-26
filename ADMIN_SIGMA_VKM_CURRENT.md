@@ -2885,3 +2885,116 @@ GIA_FIX8_FIX2_RUNTIME=BLOCKED_BY_HEAD_ABI
 MINH_HEAD_V2_FIX2_REQUIRED=YES
 
 MINH must add an explicit mutable-head lineage origin (HEAD_SEQUENCE and parent relation) without pretending to reconstruct historical sequence counts. Recommended integration lineage origin: HEAD_SEQUENCE=0 for the first automation-era attested head, with a clear lineage-origin field and PARENT_HEAD_FINGERPRINT=NONE/GENESIS_FOR_AUTOMATION_LINEAGE.
+
+
+## ADMIN handoff clarifications — identity/head/transactions/safety
+
+### Source-of-truth precedence
+1. Actual artifact bytes + recomputed cryptographic hashes + immutable runtime receipts.
+2. Latest reconciled decision committed in this ADMIN_SIGMA_VKM_CURRENT.md.
+3. Newer explicit ADMIN handoff/chat instructions are provisional deltas only until reconciled into this file.
+4. Package self-reports/static reports never override independently verified bytes or ADMIN audit decisions.
+
+If (2) and (3) conflict, STOP and reconcile/update GitHub before runtime. Never guess.
+
+### Immutable identity
+SIGMA_IDENTITY_FINGERPRINT=NATIVE_IDENTITY_SHA256=c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+Identity never advances.
+
+### Existing head fingerprint V1 exact serialization
+Encoding UTF-8, LF line endings, required final LF, no spaces, exact field order:
+NATIVE=<sha256>
+OWNER=<sha256>
+BINDING=<sha256>
+CANONICAL=<sha256>
+OVERLAY=<sha256>
+Then SHA256 over these exact five lines including final LF.
+Current V1 fingerprint: c106759da0fe2891ef5e0ca8f93a8f8343577d95c77947003977d4c4904a72b5
+
+### Automation head lineage origin
+ADMIN decision:
+HEAD_SEQUENCE=0
+LINEAGE_ORIGIN=GENESIS_FOR_AUTOMATION_LINEAGE
+PARENT_HEAD_FINGERPRINT=NONE
+CURRENT_HEAD_FINGERPRINT=c106759da0fe2891ef5e0ca8f93a8f8343577d95c77947003977d4c4904a72b5
+
+This does NOT reconstruct or renumber historical pre-automation heads.
+MINH must emit/audit a HEAD_SEQUENCE authority artifact before runtime. Until then the above is architecture decision, not an executable PASS artifact.
+
+### Head advancement boundary
+Advance HEAD_SEQUENCE exactly once per fully durable accepted evolution transaction:
+GIA COMMIT
+-> DNA15 autonomous completion through Step6
+-> real model/generation commit
+-> durable generation checkpoint
+-> HEAD N+1 commit.
+
+GIA COMMIT alone does not advance global HEAD_SEQUENCE.
+If DNA15/generation evolution does not become durable, global head remains N.
+ORCH must serialize the lifecycle so no next learning epoch starts until head N+1 is durable.
+
+### Head committer
+DNA15 native authority produces the native evolution result/receipt.
+DNA15 does not directly commit the global head.
+ORCH mechanically invokes MINH-defined HEAD authority COMMIT_NEXT_HEAD after validating GIA + DNA15 + generation receipts.
+Host/ORCH makes no semantic/gain/weight decision.
+
+### Pointers / composite head
+Keep separate authorities:
+- GIA accepted learning-state pointer.
+- DNA15/native model-generation pointer/state.
+Neither replaces the other.
+The global HEAD receipt binds both plus runtime components/overlay and lineage sequence.
+
+Future evolution-head fingerprint schema must bind the accepted-state pointer and native generation/model pointer in addition to runtime components; MINH must define its exact canonical serialization in the HEAD_SEQUENCE authority artifact.
+
+### Transaction linkage
+Use distinct transaction IDs under one ORCH lifecycle root:
+LIFECYCLE_TX_ID = root.
+GIA_TRANSACTION_ID = child of LIFECYCLE_TX_ID.
+DNA15_CYCLE_ID = child of LIFECYCLE_TX_ID and committed GIA receipt.
+DNA15_STEP_TRANSACTION_ID = deterministic child of DNA15_CYCLE_ID + step; retries reuse the same ID.
+HEAD_TRANSACTION_ID = child of LIFECYCLE_TX_ID + parent head + final generation receipt.
+
+Every receipt binds LIFECYCLE_TX_ID and its immediate parent receipt hash.
+Recovery journal maps lifecycle root -> current durable phase -> child transaction IDs/receipt hashes.
+Never reuse one transaction ID for GIA, DNA15, and HEAD.
+
+### Safety / terminal rule
+TERMINAL_LEARNING_STATE=NONE applies to normal learning outcomes: COMMIT/REJECT/ACQUIRE_MORE/MECHANISM_UPGRADE_REQUIRED and recoverable HOLD/crash.
+It does NOT authorize mutation through identity corruption or irrecoverable integrity loss.
+
+For identity/ledger/state corruption:
+- fail-stop all mutation;
+- enter durable QUARANTINED_SAFE_HALT;
+- supervisor remains alive and attempts recovery from trusted immutable checkpoints/replicas;
+- never fabricate continuity to satisfy HUMAN_REQUIRED_FOR_CONTINUATION=NO.
+If no trusted state can be recovered, remain safe-halted rather than continue on untrusted state.
+
+### Current package continuity pins
+MINH__SIGMA_CONTINUITY_HEAD_V2_FIX1.tar.gz
+SHA256=62b1ac56e2562cb526718f7be0d9bd5544f4329dba02a93b45b744345e2085b1
+Status: approved current-head attestation; missing executable HEAD_SEQUENCE authority.
+
+TRE__AITO_EPOCH_V10_FIX2.tar.gz
+SHA256=634e9f6dcff3bcb4555649cbeaa20d16c162c5e3844d2a18506bb48665513ab6
+Status: mechanism classifier logic PASS; autonomous continuity FAIL due literal head pin; FIX3 requested/not yet received.
+
+GIA__ADMISSION_WRITER_FIX8_FIX2.zip
+SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a
+Status: code static PASS; runtime blocked by missing HEAD_SEQUENCE authority in MINH head ABI.
+
+DNA15_NATIVE__AUTONOMOUS_EVOLUTION_R1_FIX1.tar.gz
+SHA256=bb4c6863d3a20e97f150826062636b45954144b711ad6b99da9cd8dc26ef6584
+Status: static contract PASS; production authority blocked by missing real native executable/model-generation backend; R2 requested/not yet received.
+
+### Immediate MINH task
+Build MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1.tar.gz.
+It must implement/read-only specify:
+READ_CURRENT_HEAD
+PREPARE_NEXT_HEAD
+COMMIT_NEXT_HEAD
+RECONCILE_HEAD_TRANSACTION
+with crash-safe PREPARED/APPLIED/DURABLE states, no fork, no sequence reuse, and immutable identity c8ccb7...
+It must define exact future evolution-head fingerprint serialization binding both GIA accepted-state and DNA15 generation/model pointers.
+No Sigma run until ADMIN audit.
