@@ -3413,3 +3413,59 @@ Decision:
 TRE_V10_FIX4_STATIC_FINAL=FAIL
 TRE_V10_FIX5_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
+
+
+## MINH HEAD_SEQUENCE AUTHORITY V1 FIX3 — ADMIN STATIC PASS
+
+Artifact:
+MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1_FIX3.tar.gz
+
+SHA256:
+8f722a16e60bc7f0764580980e87cd1de873d95e787924b621f42e51363b6b54
+
+Parent:
+MINH__SIGMA_HEAD_SEQUENCE_AUTHORITY_V1_FIX2.tar.gz
+SHA256=c1955599236db0ea81917d61649d6ca0553bcc8e25a177f2b887d66706776f46
+
+Bound Gen3 evidence handoff:
+DNA15_REAL_BACKEND_R2_GEN3_HANDOFF_R1.tar.gz
+SHA256=531cf715b852db2dd1eb4498e66a089026c71b8879f84cccdfc2357f33d7fac8
+
+Decision:
+MINH_HEAD_SEQUENCE_V1_FIX3_STATIC_FINAL=PASS
+RUNTIME_INSTALL_PERFORMED=NO
+SIGMA_RUN=NO
+
+Closed:
+- canonical .sigma_ail/SIGMA_HEAD paths;
+- current durable Gen3 -> automation lineage HEAD_SEQUENCE=0 bootstrap contract;
+- exact SIGMA_HEAD_FINGERPRINT_INPUT_V1 serialization;
+- accepted learning-state and native model/generation bound as separate authorities;
+- exact receipt chain GIA -> DNA15 steps1..5 -> stable/generation step6 -> restart/retention -> HEAD receipt;
+- PARENT_TX_ID + IMMEDIATE_PARENT_RECEIPT_SHA256 verification;
+- cross-root/stale-parent/broken-chain rejection;
+- PREPARED/APPLIED/DURABLE crash reconcile;
+- no fork, no double sequence advance;
+- generation-state-only head advance.
+
+Selftest PASS:
+GEN3_AUTOMATION_LINEAGE_BOOTSTRAP
+SERIALIZATION_CONTRACT_BYTE_IDENTICAL
+BROKEN_PARENT_TX_REJECTED
+BROKEN_PARENT_RECEIPT_HASH_REJECTED
+CROSS_ROOT_RECEIPT_REJECTED
+CHAIN_ORDER_VIOLATION_REJECTED
+VALID_RECEIPT_CHAIN
+APPLIED_CRASH_RECONCILE
+NO_DOUBLE_ADVANCE
+STALE_PARENT_REJECTED
+GENERATION_ONLY_HEAD_ADVANCE
+DURABLE_CRASH_RECONCILE
+NO_FORK_PATH
+ACTIVE_TX_CORRUPTION_REJECTED
+
+Next:
+- TRE must bind FIX3 canonical HEAD authority.
+- GIA builds FIX8 FIX3 against this authority.
+- DNA15/retention producers must emit the receipt-chain ABI required by FIX3.
+- ORCH later invokes PREPARE_NEXT_HEAD / COMMIT_NEXT_HEAD / RECONCILE_HEAD_TRANSACTION mechanically.
