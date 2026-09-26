@@ -2842,3 +2842,20 @@ TRE_V10_FIX3_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
 
 FIX3: immutable identity c8ccb7... remains compiled invariant; current head must be supplied/attested dynamically at epoch start, recomputed from live components, captured as PARENT_HEAD_FINGERPRINT, and checked unchanged through candidate publication. No literal c106 runtime requirement.
+
+
+## GIA FIX8 FIX1 static audit
+
+Package SHA256=0bf80af627c7908beaa76b6baed80f7e2e427b3a75c0ebe07413e870a717b77f
+Manifest and Python syntax PASS.
+Prior FIX8 blockers fixed:
+- authoritative SIGMA_927_BOOTSTRAP_ONLY ABI present;
+- raw MECHANISM_CANDIDATE is no longer published as STATE.model; NEXT_ACCEPTED_STATE + validation is required.
+
+Remaining blocker:
+Candidate epoch, pointer and generation schemas do not bind PARENT_HEAD_FINGERPRINT or HEAD_SEQUENCE. GIA therefore cannot reject a stale candidate if the mutable Sigma head advances during/after the epoch. Under the immutable-identity/mutable-head architecture, admission must bind and verify parent head/sequence dynamically without hard-pinning a literal head.
+
+Decision:
+GIA_FIX8_FIX1_STATIC_FINAL=FAIL
+GIA_FIX8_FIX2_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
