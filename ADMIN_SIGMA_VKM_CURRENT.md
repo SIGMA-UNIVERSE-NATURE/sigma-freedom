@@ -2859,3 +2859,29 @@ Decision:
 GIA_FIX8_FIX1_STATIC_FINAL=FAIL
 GIA_FIX8_FIX2_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
+
+
+## GIA FIX8 FIX2 static audit
+
+Package SHA256=3be36256ab606fc1fd714e568504f9a6cdd30cd4ebe2e2c981efa13afea3485a
+All 27 manifest ARTIFACT hashes/byte counts verified; Python syntax PASS.
+
+GIA logic PASS:
+- SIGMA_927_BOOTSTRAP_ONLY authoritative ABI preserved;
+- MECHANISM_CANDIDATE uses separate NEXT_ACCEPTED_STATE and validation;
+- PARENT_HEAD_FINGERPRINT + PARENT_HEAD_SEQUENCE required;
+- current trusted head fingerprint and head artifact SHA recomputed;
+- admission-start, pre-generation, and pre-pointer stale-head rechecks present;
+- stale head -> HOLD, no commit;
+- FIX7 admission engine/runner semantics preserved;
+- final ORCH pins remain PENDING.
+
+Cross-lane blocker is upstream:
+MINH SIGMA_CONTINUITY_HEAD_V2_FIX1 contains SIGMA_CURRENT_HEAD_FINGERPRINT_V1 but no HEAD_SEQUENCE. GIA FIX8 FIX2 therefore cannot run against the currently approved head artifact.
+
+Decision:
+GIA_FIX8_FIX2_CODE_STATIC=PASS
+GIA_FIX8_FIX2_RUNTIME=BLOCKED_BY_HEAD_ABI
+MINH_HEAD_V2_FIX2_REQUIRED=YES
+
+MINH must add an explicit mutable-head lineage origin (HEAD_SEQUENCE and parent relation) without pretending to reconstruct historical sequence counts. Recommended integration lineage origin: HEAD_SEQUENCE=0 for the first automation-era attested head, with a clear lineage-origin field and PARENT_HEAD_FINGERPRINT=NONE/GENESIS_FOR_AUTOMATION_LINEAGE.
