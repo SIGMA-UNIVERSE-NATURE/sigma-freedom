@@ -2819,3 +2819,26 @@ TRE_V10_FIX2_REQUIRED=YES
 RUNTIME_FORBIDDEN=YES
 
 FIX2 must add a Sigma/VKM-side reachable mechanism-requirement/impossibility path using explicit sufficient evidence and learner capability contract; host must not infer semantic impossibility.
+
+
+## TRE V10 FIX2 static audit
+
+Package SHA256=634e9f6dcff3bcb4555649cbeaa20d16c162c5e3844d2a18506bb48665513ab6
+SHA256SUMS PASS; Python/shell syntax PASS.
+
+Mechanism-insufficiency reachability is fixed:
+- Sigma/VKM classifier is compiled/run;
+- explicit unsupported families NON_EXTRACTIVE_RECONSTRUCTION and MULTI_OCCURRENCE_EXTRACTIVE_RECONSTRUCTION are classified in Sigma/VKM;
+- runtime call site invokes finish_mechanism_insufficient();
+- no-compatible FIX3 group remains DATA_INSUFFICIENT.
+
+New blocker under latest architecture:
+TRE still hard-pins SIGMA_CURRENT_HEAD_FINGERPRINT_V1=c106759d... as EXPECTED_CURRENT_HEAD and requires live recomputation equal that literal. Since head is mutable across capability admission/DNA15/generation evolution, this would make TRE unusable after the first legitimate head advance.
+
+Decision:
+TRE_V10_FIX2_LOGIC=PASS
+TRE_V10_FIX2_AUTONOMOUS_CONTINUITY=FAIL
+TRE_V10_FIX3_REQUIRED=YES
+RUNTIME_FORBIDDEN=YES
+
+FIX3: immutable identity c8ccb7... remains compiled invariant; current head must be supplied/attested dynamically at epoch start, recomputed from live components, captured as PARENT_HEAD_FINGERPRINT, and checked unchanged through candidate publication. No literal c106 runtime requirement.
