@@ -2756,3 +2756,19 @@ Required FIX1:
 - automatic RECONCILE recovery;
 - scenario-specific proof assertions;
 - bind MINH HEAD V2 FIX1 and actual Sigma/VKM source/backend or emit a concrete mechanism-upgrade request without fake evolution.
+
+
+## GIA FIX8 static audit
+
+Outer bundle SHA256=854180bfb0f91180125eeced96b12593b08a0d979a1e623c16d9b15e35824540
+FIX8 package SHA256=70a9e8bcb92d9814def4824a43cf491d2b9c69f8e3655793ac91039d168278a1
+Manifest hashes and Python syntax PASS.
+FIX7 admission engine 7645bba2... and runner ccb4010d... preserved byte-identically.
+
+Decision: GIA_FIX8_STATIC_FINAL=FAIL; FIX8_FIX1_REQUIRED=YES; runtime forbidden.
+
+Blockers:
+1. Official bootstrap ABI mismatch: required SIGMA_927_BOOTSTRAP_ONLY=YES, implementation only reads BOOTSTRAP_ONLY.
+2. MECHANISM_CANDIDATE bytes are copied directly to generation STATE.model and become ACCEPTED_STATE_SHA256. A raw mechanism/module candidate would replace the learner accepted state and break parent-state continuity. Mechanism admission must produce/bind a composite next accepted state, or keep mechanism artifact separate while pointer continues to reference a valid accepted state.
+
+Final ORCH runner/public-contract pins correctly remain pending.
