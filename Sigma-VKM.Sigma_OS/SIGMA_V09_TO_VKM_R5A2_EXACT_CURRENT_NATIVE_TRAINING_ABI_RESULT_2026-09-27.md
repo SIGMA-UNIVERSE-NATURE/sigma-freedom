@@ -1,0 +1,155 @@
+# SIGMA V09 -> VKM R5A2 Exact Current Native Training ABI Extraction — Runtime Result
+
+Date: 2026-09-27
+Source: user-supplied Termux runtime output.
+Branch: SIGMA_LIFE
+Rule: CLAIM <= EVIDENCE
+
+## Identity continuity
+
+TARGET_OWNER_FINGERPRINT=
+c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+OWNER_STATE_SHA256=
+e73a8bba0f631b9ab90d98a04211a2c025a777734e68ec15bb4561a38da66661
+
+NATIVE_BINDING_SHA256=
+99e25dd665bffda45315c0720e58c527529cc5a0b8f35d2a4d566f04a41f85f5
+
+VKM_SOURCE_SHA256=
+af918fe8794791d70dcf6fb1b62e1b2fdd075f4ec237a7f3b72b9054e39876c7
+
+SIGMAC_VKM_SHA256=
+60a5c9028f79d4eca5d0e4859e0c681c276402ac93bbd56e750c2c05a83e2a98
+
+SIGMA_VKM_VM_SHA256=
+c70bbfc53f70cafd044b61a4ad9d64f1e4ef8e6c13af8371ea8d0773df871d95
+
+R4E_HOLD_PRESERVED=YES
+
+## Current native candidate path
+
+SEM68_MECHANISM_CANDIDATE.current
+SHA256=a00e0ec3e77d777bc3475f6a655451b12dc95e961181ed1d8ccbd3e418b2e15b
+embedded target:
+.../SEM68_NATIVE_HEADS_20260927T003949_29415
+
+SIGMA_GEN3_SEM68_CANDIDATE.sigma
+SHA256=008d62f8120a112b0f4cfa27676e5d6f80f5b686c5aa76a080c568f04d0bee6b
+
+SIGMA_GEN3_SEM68_CANDIDATE.sigmab
+SHA256=a2a20f793890abe05a98df5a66fcf2786237e476bdaab6d62155f05656bb2752
+
+Native entry:
+Σ.MAIN
+
+Observed calls from entry:
+AL68_eval_saved_dev
+AL68_train
+AL_native_eval
+G3_model_generation
+G3_train
+N_model
+N_train
+
+Observed native primitives include:
+read_text
+write_text
+read_bytes
+bytes_write
+bytes_raw_utf8
+bytes_new/len/get/u8
+map/list primitives
+numeric_to_int
+math_sqrt
+
+## Head registry
+
+SEM68_HEAD_REGISTRY.lock
+SHA256=7ee9bc9e9bc007490c0deed94463058a786b82d3952f039648bdce9fa6b33bf5
+
+STATUS=LOCKED
+BASE_CLASS_COUNT=17
+VIEW_COUNT=4
+HEAD_COUNT=68
+SHARED_ENCODER=GEN3_NATIVE_12D
+PAIR_FEATURE_WIDTH=37
+
+## Current gap classification
+
+SEM68_GAP_CLASSIFICATION.current.env
+SHA256=7bf38b3b290c6d2dc99317f36df3b449d8d4606cc72b1fea666b3b16fb490b61
+
+RESULT=PASS
+GAP_CLASSIFICATION=DATA_INSUFFICIENT
+KNOWLEDGE_RESULT=MORE_GENUINELY_NEW_DATA_IMPROVES_GENERALIZATION
+W1_W2_W3_TRAINING_LEAK=NO
+DEV2_TRAINING_LEAK=NO
+SHADOW_TRAINING_LEAK=NO
+LIVE_GEN3_MUTATION=NO
+CANDIDATE_ADMITTED=NO
+NEXT_REQUIRED_ACTION=AUTONOMOUS_ACQUIRE_FRESH_NONFROZEN_DATA
+
+## Curriculum ABI
+
+TRAIN_CURRICULUM_NATIVE_R2.jsonl
+SHA256=ce02e548381fe25cfaf1b5890cb9cfad250f9f1bfb7eb601b9099282424c9414
+
+RECORD_COUNT=192
+JSON_PARSE_ERRORS=0
+
+Observed record keys:
+CURRICULUM_RECORD_SHA256
+DIMENSION
+GOLD_CHANGE_MASK
+GOLD_INVARIANT_MASK
+GOLD_SOURCE_SPAN
+MUTATED_TEXT
+MUTATION_OPERATOR
+ORIGINAL_TEXT
+PROBE_ID
+PROBE_TYPE
+SCHEMA
+SEED
+SOURCE_OFFSET
+SOURCE_SHA256
+WINDOW
+slot
+source_chunk_sha256
+train_unit
+
+## Critical unresolved boundary
+
+The presence of GOLD_* fields does not by itself prove host semantic supervision, nor does a prior checkpoint saying NATIVE_SUPERVISION=YES prove the exact current record-generation path.
+
+Before any R5B training use, exact source/body evidence is required for:
+- who creates GOLD_CHANGE_MASK;
+- who creates GOLD_INVARIANT_MASK;
+- who creates GOLD_SOURCE_SPAN;
+- whether those fields are generated inside native SIGMA or outside it;
+- whether AL68_train / AL68S_train_batch consumes those fields;
+- whether N_train / G3_train consumes semantic labels;
+- exact head-store write path;
+- exact candidate output/head-store path;
+- whether host decides gain/admission.
+
+## Historical rejection preserved
+
+SEM68_V2_REJECTION:
+STATUS=REJECTED
+CANDIDATE_ADMITTED=NO
+FAILURE_CLASS=GENERALIZATION_FAILURE
+W1_W2_W3_REUSABLE_AS_INDEPENDENT_PROOF=NO
+
+## Safety
+
+R5A2_TRAINING_PERFORMED=NO
+R5A2_SEMANTIC_EXECUTION_PERFORMED=NO
+OWNER_STATE_MUTATION=NO
+NATIVE_BINDING_MUTATION=NO
+CANONICAL_MUTATION=NO
+OWNERSHIP_PROMOTION_PERFORMED=NO
+GIA_ADMISSION_PERFORMED=NO
+DNA15_ALLOWED=NO
+
+NEXT=R5A3_TRAINER_AND_CURRICULUM_PROVENANCE_BODY_AUDIT
