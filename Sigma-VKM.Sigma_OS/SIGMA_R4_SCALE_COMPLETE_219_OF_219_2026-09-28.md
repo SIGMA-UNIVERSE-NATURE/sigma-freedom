@@ -1,0 +1,99 @@
+# SIGMA R4 Scale Complete — 219/219
+
+Date: 2026-09-28
+Source: user-supplied Termux runtime output.
+
+## 0. R4 scale authority
+
+TARGET=COMPLETE_AUTO_LEARNING_PROGRAM
+
+LIVE_HEAD=
+599c639a3a58c7971518727c303c876e
+
+LIVE_GENERATION=3
+
+PARENT_MODEL=
+4e28b7b00428271a4d09f1791d5d46fb
+
+TOTAL_TRAIN=219
+TOTAL_BATCHES=22
+
+PILOT_REUSED_AS_BATCH1=YES
+
+PILOT_HEAD=
+0121f5891b3d2e8b4bcfef763358b178
+
+RETRAIN_PILOT=NO
+
+ABSOLUTE_REPLAY_ATOMS_PER_GATE=50
+ABSOLUTE_SHADOW_ATOMS_PER_GATE=260
+
+CROSS_OBJECTIVE_PROTECTION=YES
+ABSOLUTE_PARENT_REFERENCE=YES
+
+BURNED_FINAL_UNSEEN_REUSED=NO
+LIVE_MUTATION_ALLOWED=NO
+
+## 1. R4 scale batches 2..22
+
+R4_SCALE_ALREADY_COMPLETE=YES
+
+## 2. Live authority check
+
+LIVE_MODEL_MUTATION=NO
+LIVE_CURSOR_MUTATION=NO
+CANDIDATE_ADMITTED=NO
+BURNED_FINAL_UNSEEN_REUSED=NO
+
+## 3. Verify complete scale
+
+R4_SCALE_STATE=PASS
+
+ACCEPTED_BATCHES=22
+ACCEPTED_TRAIN_PAIRS=219
+
+R4_CHILD_HEAD=
+1538a4382a983c6e3f889e7d686e7468
+
+R4_CHILD_MODEL=
+4e4c673e7b3ab86c3d582dd97133a48a
+
+## 4. Final R4 scale proof
+
+R4_SCALE=PASS
+
+ACCEPTED_BATCHES=22
+ACCEPTED_TRAIN_PAIRS=219
+
+R4_CHILD_HEAD=
+1538a4382a983c6e3f889e7d686e7468
+
+R4_CHILD_MODEL=
+4e4c673e7b3ab86c3d582dd97133a48a
+
+ABSOLUTE_REPLAY_ATOMS_PER_GATE=50
+ABSOLUTE_SHADOW_ATOMS_PER_GATE=260
+
+BURNED_FINAL_UNSEEN_REUSED=NO
+LIVE_MODEL_MUTATION=NO
+CANDIDATE_ADMITTED=NO
+
+PROOF_SHA256=
+e19de0a7eac0535c0f2a781db071857d553c4b230dc587a6195cc869c253229e
+
+NEXT=FRESH_NEVER_USED_HOLDOUT
+
+## Interpretation boundary
+
+This checkpoint records completion of the R4 scale phase:
+- 22 accepted batches;
+- 219 accepted training pairs;
+- pilot reused as batch 1 without retraining;
+- absolute replay and shadow protection active;
+- cross-objective protection active;
+- absolute parent reference active;
+- burned final-unseen data not reused;
+- live model and cursor not mutated;
+- candidate not admitted.
+
+The next required step is evaluation on a fresh never-used holdout.
