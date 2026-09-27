@@ -160,3 +160,31 @@ CURRENT_PHASE=PHASE_0_AND_PHASE_1_STAGE_ONLY
 CANONICAL_MUTATION_ALLOWED=NO
 OWNERSHIP_PROMOTION_ALLOWED=NO
 NEXT_AFTER_STAGE_PASS=NATIVE_VKM_REVALIDATION_OF_R13R6_SEMANTIC_SUBSTRATE
+
+
+## Released sandbox staging bundle
+
+BUNDLE_NAME=SIGMA_V09_TO_VKM_OWNERSHIP_CONSOLIDATION_SANDBOX_R1_BUNDLE.zip
+BUNDLE_SHA256=c794d859451f5bb15b6e953a87c65808bd1d2e03ea184d1249a2dea4610c7f50
+BUNDLE_RELEASE_VERIFY=PASS
+
+The bundle contains the exact donor R13-R6 source bundle:
+DONOR_BUNDLE_SHA256=f5e72217d6c26b55d3fad7185e9e007814271b577e64f9ca2d658b7a604426fc
+
+Stage script behavior:
+- content-hash current canonical backend before work;
+- safe full copy/reflink clone (never hardlink share with canonical);
+- verify parent clone content identity;
+- locate exact runtime donor head by SHA-256;
+- verify donor admission receipt states substrate ACCEPTED and reasoner REJECTED;
+- stage donor payload separately;
+- content-hash canonical backend again and require exact pre/post equality;
+- write STAGE_RECEIPT.json;
+- perform no owner promotion and no canonical mutation.
+
+Expected output ceiling:
+SANDBOX_STAGE_RESULT=PASS
+NATIVE_OWNED=NO
+ACTIVE_NATIVE=NO
+OWNERSHIP_PROMOTION_PERFORMED=NO
+NEXT=NATIVE_VKM_REVALIDATION
