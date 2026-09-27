@@ -3514,3 +3514,36 @@ Use this checkpoint for:
 - stability assessment.
 
 SIGMA_RUN=NO
+
+
+## GIA FIX8 FIX3 audit — HOLD, FIX4 REQUIRED
+
+Artifact:
+GIA__ADMISSION_WRITER_FIX8_FIX3.zip
+SHA256=e0d8161ca2afc93655ca069d6bcc89ef87beeb5b80fcabc6d3ac001b8fdaa2e3
+
+Manifest artifacts=34
+Manifest/hash verification=PASS
+Python syntax=PASS
+SIGMA_RUN=NO
+
+Core repairs verified:
+- canonical MINH HEAD_SEQUENCE FIX3 authority binding present;
+- caller-selected head authority forbidden;
+- stale parent head -> HOLD/no commit;
+- measured candidate -> NEXT_ACCEPTED_STATE semantic-equivalence proof required and revalidated;
+- precommit provenance verification present;
+- full growth-ledger chain verification before pointer commit and after append present;
+- FIX7 engine/native-runner hashes preserved;
+- final ORCH execution-runner/public-contract pins remain intentionally PENDING.
+
+Blocking defects:
+1. Package read-through is stale: SIGMA_LIFE_READ_THROUGH=3a8a464..., while current SIGMA_LIFE tip at audit time is c7ab2d76f556e4cafc0fe0c8ac6864fe69fb38f7. ADMIN policy requires each lane to read latest SIGMA_LIFE before finalizing current integration.
+2. TRE V10 FIX7 is ADMIN STATIC PASS (SHA256=fe7c062437e3b869de5b34402bf261ff9d5c986a5323485eda5b5f261284d067), but FIX8 FIX3 contains no TRE FIX7 package/hash binding. Final GIA candidate-epoch producer dependency therefore remains unbound.
+3. Failure path prints SAME_SIGMA_IDENTITY=YES and SECOND_SIGMA_CREATED=NO unconditionally even when the HOLD itself may be caused by identity/native-identity validation failure. Failure output must not claim identity success unless it was actually verified.
+
+Decision:
+GIA_FIX8_FIX3_STATIC_CORE=PASS
+GIA_FIX8_FIX3_STATIC_FINAL=HOLD
+GIA_FIX8_FIX4_REQUIRED=YES
+ADMISSION_RUNTIME_RUN=NO
