@@ -1,0 +1,84 @@
+# SIGMA Action-Context Consequence Learner
+
+Date: 2026-09-28
+Source: user-supplied Termux runtime output.
+
+## Authority
+
+LIVE_HEAD=
+507aae721fbd50ec13b8bfd653caf3e9
+
+LEARNING_SOURCE=OBSERVED_OUTCOMES
+PREDICTION_MODALITY=POSSIBLE
+ACTION_SEMANTICS_HARDCODED=NO
+HARM_AT_DECISION_TIME_SUPPLIED_BY_HOST=NO
+LIVE_MUTATION_ALLOWED=NO
+
+## 1. Native episodic consequence learner
+
+BYTECODE_SHA256=
+66f743ff58fb4b8f467b7b002b3119e0a911c07f7f3e1d03ef309f06ca9577be
+
+COMPILE=PASS
+
+## 2. Learning from observed outcomes only
+
+OBSERVED_OUTCOME_COUNT=18
+
+Current/alternative consequence predictions were emitted for:
+- SELF
+- HUMANS
+- LIFE_PLANET
+
+All supplied learned predictions use:
+STATUS=POSSIBLE
+
+Decision example:
+
+BEFORE_ACTION_ESTIMATED||CONTEXT||CTX_001||SELF||0.20000000000000004||0.20000000000000004||HUMANS||0.79999999999999991||0.20000000000000004||LIFE_PLANET||0.3||0.3||DECISION||SEEK_A_BETTER_PATH||REASON||ALTERNATIVE_REDUCES_AVOIDABLE_HARM
+
+DECISION_TIME_HARM_INPUT_FROM_HOST=NO
+
+Backoff test:
+PREDICTION||STATUS||POSSIBLE||SOURCE||ACTION||ESTIMATE||1bb74ff2410fa4700e55d5661bbbbf01||EVIDENCE||5d2746523e4b78be16f8c8184d7240bc||MEAN||0.79999999999999991||UNCERTAINTY||0.04082482904638677||AVERAGE_WEIGHT||0.81000000000000014
+
+Insufficient-experience test:
+PREDICTION||STATUS||INSUFFICIENT_EXPERIENCE||ACTION||PATH_UNKNOWN||CONTEXT||CTX_UNKNOWN||TARGET||HUMANS
+
+ACTION_CONTEXT_LEARNING_TEST=PASS
+UNKNOWN_CAN_REMAIN_UNKNOWN=YES
+
+## 3. Persistence + isolation
+
+SANDBOX_EXPERIENCE_PERSISTENT=YES
+
+MODEL_MUTATION=NO
+LIVE_CORE_MUTATION=NO
+GENERATION_MUTATION=NO
+
+## 4. Final proof
+
+ACTION_CONTEXT_CONSEQUENCE_LEARNER=PASS
+
+LEARNING_FROM_OBSERVED_OUTCOMES=YES
+DECISION_TIME_HARM_INPUT_FROM_HOST=NO
+PREDICTION_MODALITY=POSSIBLE
+UNKNOWN_CAN_REMAIN_UNKNOWN=YES
+HARD_CODED_ACTION_SEMANTICS=NO
+LIVE_MUTATION=NO
+
+PROOF_SHA256=
+3670c1fc1b3c099f9f4f2974bc1ecd4d6d1f2ca4c6ff237d2c11fc6cad8480fe
+
+NEXT=
+CONTEXT_ABSTRACTION_AND_GENERALIZATION
+
+## Interpretation boundary
+
+This checkpoint records a native episodic consequence learner that derives predictions from observed outcomes rather than host-supplied harm values at decision time.
+
+Predictions remain explicitly epistemic/possible, insufficient experience can remain unresolved, and no hard-coded action semantics are used.
+
+Sandbox experience persists, while model/core/generation/live state remain unchanged.
+
+The next step is context abstraction and generalization.
