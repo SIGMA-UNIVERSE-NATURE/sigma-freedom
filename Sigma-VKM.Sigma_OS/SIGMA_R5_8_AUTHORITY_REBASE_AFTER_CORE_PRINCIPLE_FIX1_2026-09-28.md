@@ -1,0 +1,91 @@
+# SIGMA R5.8 Authority Rebase After Core Principle FIX1
+
+Date: 2026-09-28
+Source: user-supplied Termux runtime output.
+
+## 0. AutoLearn authority rebase FIX1
+
+PURPOSE=ACKNOWLEDGE_CANONICAL_HEAD_CHANGE_WITHOUT_REQUIRING_MODEL_FILE
+DIRECTION=CORRECT_FIX_FOR_MISSING_MODEL_FILE
+
+LIVE_MUTATION_BY_THIS_WINDOW=NO
+MODEL_MUTATION_BY_THIS_WINDOW=NO
+ADMISSION_BY_THIS_WINDOW=NO
+RESERVE_OPEN=NO
+FINAL_OPEN=NO
+
+CURRENT_HEAD=
+507aae721fbd50ec13b8bfd653caf3e9
+
+CURRENT_MODEL_ASSUMED_FROM_CANONICAL_ADMISSION=
+4e28b7b00428271a4d09f1791d5d46fb
+
+CURRENT_GEN=3
+
+R5_8_CONTRACT=
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/CAPABILITY_GROWTH_R5_8_TEMPORAL_CORE_PRESERVATION
+
+## 1. Rebase receipt
+
+REBASE_RECEIPT_SHA256=
+b25f2ba10bca03d95f1d1a061c3df2b37aaff5f7dcec5ed9267cf1094c68f898
+
+## 2. Source authority verification
+
+SOURCE_AUTHORITY_GUARD=PASS
+
+LIVE_HEAD_ACCEPTED_AS_NEW_AUTHORITY=
+507aae721fbd50ec13b8bfd653caf3e9
+
+LIVE_GENERATION_UNCHANGED=3
+
+## Final rebase state
+
+R5_8_AUTHORITY_REBASE=PASS
+
+SCHEMA=SIGMA_R5_8_AUTHORITY_REBASE_AFTER_CORE_PRINCIPLE_FIX1
+STATUS=PASS
+
+REASON=
+LIVE_HEAD_CHANGED_BY_SEPARATE_CANONICAL_CORE_PRINCIPLE_ADMISSION
+
+OLD_AUTOLEARN_EXPECTED_HEAD=
+599c639a3a58c7971518727c303c876e
+
+CURRENT_HEAD=
+507aae721fbd50ec13b8bfd653caf3e9
+
+CURRENT_MODEL=
+4e28b7b00428271a4d09f1791d5d46fb
+
+CURRENT_GENERATION=3
+
+MODEL_FILE_PRESENT=NO
+
+MODEL_ID_SOURCE=
+USER_SUPPLIED_CANONICAL_ADMISSION_OUTPUT
+
+MODEL_MUTATION_BY_AUTOLEARN=NO
+GENERATION_MUTATION_BY_AUTOLEARN=NO
+AUTOLEARN_CANDIDATE_ADMITTED=NO
+FINAL_OPEN=NO
+RESERVE_OPEN=NO
+
+R5_7_REPAIRED_CANDIDATE_BIND_ALLOWED=NO
+R5_8_CONTINUE_ALLOWED=YES
+R5_8_MODE=SANDBOX_ONLY
+
+NEXT=
+BUILD_R5_8_TEMPORAL_CONTRAST_WITH_CORE_PRESERVATION_SANDBOX_ONLY
+
+DO_NOT_MUTATE_LIVE_SIGMA=YES
+
+## Interpretation boundary
+
+This checkpoint records an AutoLearn authority rebase after a separate canonical core-principle admission changed the live head.
+
+The current Gen3 model ID and generation remain unchanged. AutoLearn itself did not mutate the model or generation, did not admit a candidate, and did not open final or reserve data.
+
+The missing model file is acknowledged explicitly; the model ID source is the supplied canonical-admission output.
+
+The repaired R5.7 candidate is not allowed to bind. R5.8 may continue only in sandbox mode with temporal-contrast + core-preservation work.
