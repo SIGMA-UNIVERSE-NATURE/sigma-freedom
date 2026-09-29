@@ -1,0 +1,190 @@
+# SIGMA R22K — Native Semantic Corpus Selector PASS
+
+Date: 2026-09-29
+Source: user-supplied Termux runtime output.
+
+## Build
+
+R22K_COMPILE_DETERMINISTIC=PASS
+
+R22K_BYTECODE_SHA256=
+6ebca50b37679778c56b6ff7d8e8a06158be5801fc17eb60fcf28cefc40ea4af
+
+## Native semantic corpus index
+
+SCHEMA=SIGMA_R22K_SEMANTIC_CORPUS_INDEX_V1
+
+INDEX_ROOT=
+4d4d0eb5385fcfd03b8d1b1d286e7e10
+
+ITEM_COUNT=6
+
+SELFTEST_ONLY=YES
+
+FRESH_FINAL_PRESENT=YES
+UNRESOLVED_PRESENT=YES
+
+HOST_SEMANTIC_SELECTION=NO
+
+R22K_INDEX_REPLAY=PASS
+R22K_INDEX_REPLAY_PACK_APPEND_BYTES=0
+R22K_INDEX_REPLAY_COMMIT_APPEND_BYTES=0
+
+## Native selector
+
+Selector progresses stepwise through TRAIN then RETAIN and reaches COMPLETE.
+
+Final selector:
+
+SELECTOR=
+0de2a6c634a2b70047bbcbb6765755ce
+
+SELECTED_TRAIN=
+1cbb7da856136a5e7b4a425d328a8d3d
+
+SELECTED_RETENTION=
+4fad9f2e4342d1e5780082b71bd4efe8
+
+SELECTED_TASK=
+referent_identity
+
+TRAIN_CURRENT_LOSS=
+0.5014434238880713
+
+RETENTION_CURRENT_LOSS=
+0.5022965787661767
+
+TRAIN_SPLIT=TRAIN
+RETENTION_SPLIT=CORE
+
+SOURCE_CLUSTER_DISJOINT=YES
+
+FRESH_FINAL_SELECTED=NO
+UNRESOLVED_SELECTED=NO
+
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+
+R22K_NATIVE_SELECTOR=PASS
+
+R22K_SELECTED_TASK=referent_identity
+R22K_SELECTED_TRAIN=1cbb7da856136a5e7b4a425d328a8d3d
+R22K_SELECTED_RETENTION=4fad9f2e4342d1e5780082b71bd4efe8
+
+R22K_SELECTOR_STEP_COUNT=15
+
+## Selector -> candidate handoff
+
+R22K_SELECTOR_TO_CANDIDATE=PASS
+
+CANDIDATE_ARTIFACT=
+21cc602840716f1f57a403bc5fc583c2
+
+CANDIDATE_STATUS=READY
+
+SELECTED_TASK=referent_identity
+
+SELECTED_TRAIN=
+1cbb7da856136a5e7b4a425d328a8d3d
+
+SELECTED_RETENTION=
+4fad9f2e4342d1e5780082b71bd4efe8
+
+RETENTION_INDEPENDENT=YES
+SOURCE_CLUSTER_DISJOINT=YES
+
+FRESH_FINAL_USED=NO
+
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+HOST_GRADIENT=NO
+
+STATE_MUTATION=NO
+SELFTEST_ONLY=YES
+
+## Candidate replay
+
+R22K_CANDIDATE_REPLAY=PASS
+
+R22K_CANDIDATE_REPLAY_PACK_APPEND_BYTES=0
+R22K_CANDIDATE_REPLAY_COMMIT_APPEND_BYTES=0
+
+Packed-store status:
+STATUS||COUNT||61||PACK_END||120694
+
+## Final status
+
+R22K_NATIVE_SEMANTIC_CORPUS_SELECTOR=PASS
+
+SELFTEST_ONLY=YES
+
+NATIVE_CORPUS_INDEX=PASS
+NATIVE_SELECTOR=PASS
+
+SELECTOR_POLICY=
+MAX_CURRENT_NATIVE_SEMANTIC_LOSS_WITH_HASH_TIEBREAK
+
+SELECTOR_STEPWISE=YES
+
+SELECTED_TASK=referent_identity
+TRAIN_SPLIT=TRAIN
+RETENTION_SPLIT=CORE
+
+RETENTION_INDEPENDENT=YES
+SOURCE_CLUSTER_DISJOINT=YES
+
+FRESH_FINAL_SELECTED=NO
+UNRESOLVED_SELECTED=NO
+
+SELFTEST_CANDIDATE_STATUS=READY
+
+HOST_CORPUS_ITEM_SELECTION=NO
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+HOST_GRADIENT=NO
+HOST_LEARNING=NO
+
+REAL_SEMANTIC_CORPUS_CONSUMED=NO
+REAL_SEMANTIC_LEARNING_EXECUTED=NO
+REAL_SEMANTIC_CANDIDATE_AVAILABLE=NO
+
+MODEL_MUTATION=NO
+STATE_MUTATION=NO
+
+GLOBAL_SOURCE_CLUSTER_LEAKAGE_AUDIT=
+NOT_YET_PRODUCTION_BOUND
+
+IR_SEMANTIC_GROUNDING=UNVERIFIED
+
+PRODUCTION_ADMISSION_ENABLED=NO
+ADMISSION=NO
+
+NEXT=
+R22L_NATIVE_CORPUS_PACK_VALIDATOR_AND_REAL_BINDING
+
+MANUAL_REBOOT_REQUIRED=NO
+
+## Interpretation boundary
+
+This checkpoint establishes the selftest corpus-index/selector mechanism and candidate handoff only.
+
+The supplied evidence establishes:
+- native corpus indexing;
+- stepwise native selector;
+- train and retention examples are selected natively;
+- retention example is independent and source-cluster disjoint in the selftest;
+- fresh-final and unresolved examples are excluded from selection;
+- selector policy is max current native semantic loss with hash tiebreak;
+- candidate artifact is produced in READY state;
+- host performs no corpus item selection, semantic selection, scoring, gradient computation, or learning;
+- index and candidate replay append zero pack/commit bytes.
+
+It does not establish:
+- real semantic corpus binding or consumption;
+- real semantic learning;
+- a real semantic candidate;
+- global source-cluster leakage audit for production;
+- verified semantic grounding;
+- production admission.
+
+NEXT is R22L_NATIVE_CORPUS_PACK_VALIDATOR_AND_REAL_BINDING.
