@@ -1,0 +1,146 @@
+# SIGMA R22N3 — Corpus Sufficiency Diagnostic / Request More Data
+
+Date: 2026-09-30
+Source: user-supplied Termux runtime output.
+
+## Parent / corpus anchors
+
+R22N3_PARENT_HEAD=
+142a5fcc295a02610e7134312acfee63
+
+R22N3_PARENT_MODEL=
+4a9f5ef84131c4162633fed959d4fb4d
+
+R22N3_INDEX_ROOT=
+3d0c92085e61a7c40df4893450878e08
+
+R22N3_REUSE_REAL_IMPORTED_CORPUS=YES
+
+## Native diagnostic build
+
+R22N3_NATIVE_CORPUS_SUFFICIENCY_PATCH=PASS
+
+R22N3_COMPILE_DETERMINISTIC=PASS
+
+R22N3_BYTECODE_SHA256=
+61d6a9538bac640a904aa69577b2dc23d07433479e49245e45de35449b6d1fe9
+
+R22N3_PACK_RECOVERY=PASS
+
+## Initial checkpoint
+
+STATUS=PROGRESS
+
+CHECKPOINT=
+78e837a810808400567fa85c68e4be8a
+
+TRANSACTION_ID=
+41ee6a13711062c027fbdcd80bceadb3
+
+PHASE=SCAN
+SCANNED=0
+
+RESUME_REQUIRED=YES
+
+RESUME_POINTER=
+78e837a810808400567fa85c68e4be8a
+
+MODEL_UPDATE_ATTEMPTED=NO
+
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+
+## Exactly-once / recovery
+
+R22N3_CHECKPOINT_EXACTLY_ONCE=PASS
+
+R22N3_CHECKPOINT_REPLAY_APPEND_BYTES=0
+
+R22N3_SIMULATED_PROCESS_STACK_LOSS=YES
+
+R22N3_RESUME_POINTER_RETAINED=
+57bcd6cb1b98010447f9ddd342522049
+
+## Final diagnostic result
+
+STATUS=COMPLETE
+
+CHECKPOINT=
+1ebc2cb4545cb53c517e4fe02dbb2a44
+
+TRANSACTION_ID=
+41ee6a13711062c027fbdcd80bceadb3
+
+TASK=referent_identity
+
+TRAIN_POSITIVE=1
+TRAIN_NEGATIVE=1
+TRAIN_POSITIVE_BYTE_IDENTICAL=0
+
+DEV_POSITIVE=1
+DEV_NEGATIVE=1
+DEV_POSITIVE_BYTE_IDENTICAL=0
+
+CORE_POSITIVE=1
+CORE_NEGATIVE=1
+CORE_POSITIVE_BYTE_IDENTICAL=0
+
+SEMANTIC_GOLD_POSITIVE=1
+SEMANTIC_GOLD_NEGATIVE=1
+SEMANTIC_GOLD_POSITIVE_BYTE_IDENTICAL=0
+
+TRAINABLE_TOTAL=8
+
+POSITIVE_TOTAL=4
+POSITIVE_NONIDENTICAL=4
+
+BYTE_IDENTITY_SHORTCUT_RISK=NO
+
+TRAIN_SUPPORT_SPARSE=YES
+
+NATIVE_DECISION=
+REQUEST_MORE_REFERENT_DATA
+
+MODEL_UPDATE_ATTEMPTED=NO
+
+FRESH_FINAL_USED=NO
+REAL_FRESH_FINAL_CONSUMED=NO
+
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+HOST_LEARNING=NO
+
+## Terminal script outcome
+
+The wrapper ended with:
+
+R22N3_FAIL=
+EXPECTED_BYTE_IDENTITY_SHORTCUT
+
+## Interpretation boundary
+
+The native diagnostic itself completed and produced a coherent result.
+
+The supplied evidence establishes:
+- positive semantic examples are not byte-identical;
+- BYTE_IDENTITY_SHORTCUT_RISK=NO;
+- train support is sparse;
+- native decision is REQUEST_MORE_REFERENT_DATA;
+- no model update was attempted;
+- fresh-final remains unused/unconsumed;
+- host performs no semantic selection, scoring, or learning;
+- checkpoint replay is exactly-once and process-stack-loss recovery retains a resume pointer.
+
+The final wrapper failure reflects a stale/incorrect test expectation that anticipated byte-identity shortcut risk. The measured native result contradicts that expectation.
+
+Therefore this checkpoint should not be interpreted as a semantic-training failure. It is a corpus-sufficiency decision:
+
+TRAIN_SUPPORT_SPARSE=YES
+NATIVE_DECISION=REQUEST_MORE_REFERENT_DATA
+MODEL_UPDATE_ATTEMPTED=NO
+
+ADMISSION=NO
+CANONICAL_MUTATION=NO
+
+NEXT=
+R22N4_ACQUIRE_MORE_REFERENT_DATA_AND_REVALIDATE_CORPUS_SUFFICIENCY
