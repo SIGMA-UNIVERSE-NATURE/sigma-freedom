@@ -1,0 +1,186 @@
+# SIGMA R22Q — Native Mention-Anchor ABI PASS
+
+Date: 2026-09-30
+Source: user-supplied Termux runtime output.
+
+## Parent anchors
+
+R22Q_PARENT_HEAD=
+142a5fcc295a02610e7134312acfee63
+
+R22Q_PARENT_MODEL=
+4a9f5ef84131c4162633fed959d4fb4d
+
+## Native mention-anchor build
+
+R22Q_NATIVE_MENTION_ANCHOR_PATCH=PASS
+
+R22Q_COMPILE_DETERMINISTIC=PASS
+
+R22Q_BYTECODE_SHA256=
+bbdd5794417625d43e05ab914af5b7ee53561055a5061bca5b7048dfe9bcedac
+
+R22Q_FIXTURE_COUNT=4
+
+## Imported mention-anchor fixtures
+
+Four fixtures were imported with:
+- explicit CONTEXT_OBJECT;
+- MENTION_START / MENTION_END;
+- MENTION_LENGTH=4;
+- stable MENTION_NATIVE_FP;
+- externally supplied 64-hex context/mention SHA256;
+- NATIVE_INTERNAL_CONTENT_BINDING=YES;
+- NATIVE_SHA256_RECOMPUTE=NO;
+- EXTERNAL_SHA256_VERIFIED_BY_HOST_MECHANICAL=YES;
+- SEMANTIC_LABEL_INFERRED=NO;
+- STATE_MUTATION=NO.
+
+The same mention surface fingerprint appears across different contexts and anchors.
+
+## Native mention-anchor kernel
+
+SCHEMA=SIGMA_R22Q_MENTION_ANCHOR_KERNEL_V1
+
+STATUS=PASS
+
+ARTIFACT=
+196fcd1919f76692700c90d42d224432
+
+REPRESENTATION_MODE=
+MENTION_ANCHORED_CONTEXT
+
+FEATURE_WIDTH=37
+
+MENTION_OFFSET_AWARE=YES
+
+MENTION_NATIVE_FINGERPRINT=YES
+
+SAME_SURFACE_DIFFERENT_CONTEXT_SUPPORTED=YES
+
+SAME_CONTEXT_DIFFERENT_ANCHOR_SUPPORTED=YES
+
+ANCHOR_POSITION_SENSITIVITY=PASS
+
+CONTEXT_SENSITIVITY=PASS
+
+SWAP_INVARIANCE=PASS
+
+EMPTY_SPAN_REJECT=PASS
+
+OUT_OF_BOUNDS_REJECT=PASS
+
+BYTE_IDENTITY_TARGET_AUTHORITY=NO
+
+SEMANTIC_LABEL_INFERRED_BY_KERNEL=NO
+
+EXTERNAL_SHA256_VERIFIED_BY_HOST_MECHANICAL=YES
+
+NATIVE_SHA256_RECOMPUTE=NO
+
+SELFTEST_ONLY=YES
+
+MODEL_UPDATE_ATTEMPTED=NO
+
+STATE_MUTATION=NO
+
+IR_SEMANTIC_GROUNDING=UNVERIFIED
+
+## Exactly-once replay
+
+R22Q_REPLAY=PASS
+
+R22Q_REPLAY_PACK_APPEND_BYTES=0
+
+R22Q_REPLAY_COMMIT_APPEND_BYTES=0
+
+Packed-store status:
+STATUS||COUNT||14||PACK_END||3302
+
+## Final status
+
+R22Q_NATIVE_MENTION_ANCHOR_ABI=PASS
+
+SELFTEST_ONLY=YES
+
+REPRESENTATION_MODE=MENTION_ANCHORED_CONTEXT
+
+FEATURE_WIDTH=37
+
+MENTION_OFFSET_AWARE=YES
+
+MENTION_NATIVE_FINGERPRINT=YES
+
+EXACT_CONTEXT_BYTE_SPAN_POLICY=YES
+
+MAX_MENTION_BYTES=256
+
+SAME_SURFACE_DIFFERENT_CONTEXT_SUPPORTED=YES
+
+SAME_CONTEXT_DIFFERENT_ANCHOR_SUPPORTED=YES
+
+ANCHOR_POSITION_SENSITIVITY=PASS
+
+CONTEXT_SENSITIVITY=PASS
+
+SWAP_INVARIANCE=PASS
+
+EMPTY_SPAN_REJECT=PASS
+
+OUT_OF_BOUNDS_REJECT=PASS
+
+EXTERNAL_SHA256_VERIFIED_BY_HOST_MECHANICAL=YES
+
+NATIVE_SHA256_RECOMPUTE=NO
+
+NATIVE_INTERNAL_CONTENT_BINDING=YES
+
+BYTE_IDENTITY_TARGET_AUTHORITY=NO
+
+SEMANTIC_LABEL_INFERRED_BY_KERNEL=NO
+
+MODEL_UPDATE_ATTEMPTED=NO
+
+REAL_SEMANTIC_CORPUS_CONSUMED_THIS_STAGE=NO
+
+REAL_FRESH_FINAL_CONSUMED=NO
+
+MODEL_MUTATION=NO
+
+STATE_MUTATION=NO
+
+IR_SEMANTIC_GROUNDING=UNVERIFIED
+
+PRODUCTION_ADMISSION_ENABLED=NO
+
+ADMISSION=NO
+
+NEXT=
+R22R_NATIVE_CONTEXTUAL_REFERENT_OBJECTIVE_AND_BATCH_SELFTEST
+
+MANUAL_REBOOT_REQUIRED=NO
+
+## Interpretation boundary
+
+This checkpoint establishes the mention-anchored contextual representation ABI in selftest only.
+
+The supplied evidence establishes:
+- exact mention byte-span anchoring;
+- position-aware and context-sensitive representation;
+- same mention surface can be represented differently across contexts;
+- different anchors in the same context are supported;
+- empty and out-of-bounds spans fail closed;
+- external SHA256 verification remains mechanical on host side;
+- native internal content binding is used;
+- byte identity is not treated as semantic target authority;
+- the kernel does not infer semantic labels;
+- replay is exactly-once with zero pack/commit append.
+
+It does not establish:
+- semantic grounding certification;
+- model learning or mutation;
+- real semantic corpus consumption in this stage;
+- fresh-final consumption;
+- production admission.
+
+NEXT is R22R_NATIVE_CONTEXTUAL_REFERENT_OBJECTIVE_AND_BATCH_SELFTEST.
