@@ -1,0 +1,137 @@
+# SIGMA R21H — Boot Persistence + Process Watchdog PASS
+
+Date: 2026-09-29
+Source: user-supplied Termux runtime output.
+
+## Build / rehearsal
+
+R21H_WATCHDOG_PY_COMPILE=PASS
+
+R21H_SIMULATED_FULL_PROCESS_STACK_LOSS=PASS
+
+R21_PRE_RUN_RECOVERY_SELF_TEST=PASS
+R21_AUTOCONTROLLER_AUTO_RESUME=PASS
+R21_AUTOCONTROLLER_COMPLETE=PASS
+
+FINAL_TACC=
+4bcabec075e8a3bb1ef522b07acb0386
+
+TOTAL_STEPS=32
+
+R21_SUPERVISOR_COMPLETE=PASS
+R21_SUPERVISOR_RELAUNCHES=0
+
+R21_WATCHDOG_SESSION_COMPLETE=PASS
+
+R21H_FRESH_WATCHDOG_BOOT_RESUME=PASS
+
+R21H_FINAL_TACC_DETERMINISTIC=PASS
+
+R21H_PACK_BYTE_IDENTICAL_TO_REFERENCE=PASS
+
+R21H_COMMIT_BYTE_IDENTICAL_TO_REFERENCE=PASS
+
+R21H_PRODUCTION_WATCHDOG_SELFTEST=PASS
+
+## Final status
+
+R21H_BOOT_PERSISTENCE_AND_PROCESS_WATCHDOG=PASS
+
+HEAD=
+142a5fcc295a02610e7134312acfee63
+
+MODEL=
+4a9f5ef84131c4162633fed959d4fb4d
+
+PROCESS_WATCHDOG_ADMISSION=PASS
+
+WATCHDOG_SESSION_FORMAT=
+DUAL_SLOT_SHA256_V1
+
+WATCHDOG_SESSION_BYTES=8192
+
+SIMULATED_FULL_PROCESS_STACK_LOSS_AFTER_NATIVE_STEP=7
+
+FRESH_WATCHDOG_BOOT_RESUME=PASS
+
+FINAL_TACC_DETERMINISTIC=PASS
+
+PACK_BYTE_IDENTICAL_TO_REFERENCE=PASS
+
+COMMIT_BYTE_IDENTICAL_TO_REFERENCE=PASS
+
+SUPERVISOR_RC_75=RECOVERABLE
+
+SUPERVISOR_RC_40=BLOCKED_SAFE_NO_RESTART
+
+UNEXPECTED_SUPERVISOR_EXIT=BOUNDED_RESTART
+
+WAKE_LOCK_DURING_ACTIVE_SESSION=YES
+
+TERMUX_BOOT_DIRECTORY_PRESENT=YES
+
+BOOT_HOOK_INSTALLED=YES
+
+BOOT_TRIGGER_VERIFIED=NO
+
+REBOOT_AUTOSTART_CLAIM=NOT_MADE
+
+REAL_REBOOT_TEST_REQUIRED=YES
+
+HOT_STORE_FILES=4
+
+PRODUCTION_PACK_BYTES=0
+PRODUCTION_COMMIT_BYTES=0
+
+NEW_INODES_PER_OBJECT=0
+NEW_INODES_PER_BATCH=0
+NEW_INODES_PER_CHECKPOINT=0
+
+UNATTENDED_DEAD_END=FORBIDDEN
+
+BLOCKED_SAFE_RETAINS_RESUME_POINTER=YES
+
+HOST_LEARNING=NO
+HOST_SCORING=NO
+SIGMA_LEARNS=YES
+
+CANONICAL_MUTATION=NO
+RUNTIME_SELECTOR_MUTATION=NO
+
+REAL_DATA_DELETE=NO
+
+BOOT_PERSISTENCE_INSTALLATION=PASS
+
+NEXT=
+R21I_REAL_REBOOT_TRIGGER_VERIFICATION_WHEN_CONVENIENT
+
+## Interpretation boundary
+
+This checkpoint records R21H watchdog/session persistence and installed boot-hook behavior.
+
+The supplied evidence establishes:
+- watchdog code compiles;
+- simulated full process-stack loss is recovered;
+- fresh watchdog boot resumes from persisted controller/session state;
+- final TACC is deterministic versus the reference path;
+- packed private store and commit log are byte-identical to reference;
+- production watchdog self-test passes;
+- watchdog session uses a fixed 8192-byte dual-slot SHA256 format;
+- RC 75 is treated as recoverable;
+- RC 40 is BLOCKED_SAFE and not restarted;
+- unexpected supervisor exits are bounded rather than infinitely relaunched;
+- wake lock is held during an active session;
+- Termux boot directory exists and a boot hook is installed;
+- no new inode is created per object/batch/checkpoint;
+- host does not learn or score;
+- canonical state and runtime selector are unchanged;
+- no real-data deletion occurs.
+
+Important boundary:
+BOOT_TRIGGER_VERIFIED=NO
+REBOOT_AUTOSTART_CLAIM=NOT_MADE
+REAL_REBOOT_TEST_REQUIRED=YES
+
+Therefore this checkpoint does not claim that Android/Termux real reboot autostart has been empirically verified.
+
+NEXT is R21I_REAL_REBOOT_TRIGGER_VERIFICATION_WHEN_CONVENIENT.
