@@ -1,0 +1,201 @@
+# SIGMA R22M FIX2 — Native External Corpus Importer PASS
+
+Date: 2026-09-29
+Source: user-supplied Termux runtime output.
+
+## Parent / binding state
+
+R22M_FIX2_PARENT_HEAD=
+142a5fcc295a02610e7134312acfee63
+
+R22M_FIX2_PARENT_MODEL=
+4a9f5ef84131c4162633fed959d4fb4d
+
+R22M_FIX2_R22L_REAL_BINDING_READY=NO
+
+## External SHA ABI repair
+
+R22M_FIX2_EXTERNAL_SHA_ABI_PATCH=PASS
+R22M_FIX2_STATIC_EXTERNAL_SHA_CONTRACT=PASS
+R22M_FIX2_COMPILE_DETERMINISTIC=PASS
+
+R22M_FIX2_BYTECODE_SHA256=
+d98090e3ddefd525146b4ef9165442373341eb2afc93dae763c3de46ce14027a
+
+R22M_FIX2_EXTERNAL_SHA256_PARSE=PASS
+
+FIX_REASON=
+EXTERNAL_SHA256_IS_64_HEX_WHILE_U_ISHEX_IS_NATIVE_OBJECT_ID_ABI
+
+EXTERNAL_SHA256_VALIDATOR=
+NATIVE_R22M_SHA256_TOKEN
+
+EXTERNAL_SHA256_WIDTH=64
+NATIVE_OBJECT_ID_WIDTH=32
+
+EXTERNAL_ITEM_TO_NATIVE_ITEM_MAPPING=
+SIGMA_NATIVE_USIGFP
+
+EXTERNAL_ITEM_SHA256_PRESERVED=YES
+
+## Real binding gate
+
+Real mode correctly returns:
+
+STATUS=BLOCKED_SAFE
+REASON=REAL_BINDING_NOT_READY
+MODE=REAL
+EXPECTED_COUNT=6
+RESUME_REQUIRED=YES
+RESUME_POINTER=R22L_REAL_BINDING_GATE
+STATE_MUTATION=NO
+LEARNING_BYTES_CONSUMED=NO
+FRESH_FINAL_CONSUMED=NO
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+
+R22M_FIX2_REAL_BINDING_BLOCKED_SAFE=PASS
+R22M_FIX2_REAL_GATE_APPEND_BYTES=0
+
+## Selftest external import
+
+Selftest importer initializes READY with:
+EXPECTED_COUNT=6
+MODE=SELFTEST
+PURPOSE=LEARNING_BINDING
+
+Six external corpus items are imported stepwise.
+
+For every imported item, the runtime records:
+- 64-hex external item SHA256;
+- a native item ID;
+- native semantic-gold object;
+- left external SHA256 + internal object;
+- right external SHA256 + internal object;
+- provenance external SHA256 + internal object;
+- HOST_SEMANTIC_SELECTION=NO;
+- HOST_SCORING=NO.
+
+Final import status:
+
+STATUS=COMPLETE
+IMPORTED_COUNT=6
+
+INDEX_ROOT=
+13368e540c211df140f3a3254c1e6b96
+
+R22K_INDEX_COMPATIBLE=YES
+
+HOST_CORPUS_ITEM_SELECTION=NO
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+
+## Fresh-final exclusion
+
+Attempted fresh-final import returns:
+
+STATUS=REJECTED
+REASON=FRESH_FINAL_FORBIDDEN
+STATE_MUTATION=NO
+
+R22M_FIX2_FRESH_FINAL_IMPORT_REJECT=PASS
+R22M_FIX2_FRESH_FINAL_REJECT_APPEND_BYTES=0
+
+## Imported-index selector compatibility
+
+R22K selector completes on the imported selftest index.
+
+SELECTED_TASK=
+referent_identity
+
+SELECTED_TRAIN=
+3ef1a3ca2ca2ce1573b05bbe37f5b00a
+
+SELECTED_RETENTION=
+71a7c4737317f1fa7ed136e149705404
+
+TRAIN_SPLIT=TRAIN
+RETENTION_SPLIT=CORE
+
+RETENTION_INDEPENDENT=YES
+SOURCE_CLUSTER_DISJOINT=YES
+
+FRESH_FINAL_SELECTED=NO
+UNRESOLVED_SELECTED=NO
+
+HOST_SEMANTIC_SELECTION=NO
+HOST_SCORING=NO
+
+R22K_SELECTOR_TO_CANDIDATE=PASS
+
+CANDIDATE_ARTIFACT=
+662fc5fb25c080d34ccd4ee7665bcbb6
+
+CANDIDATE_STATUS=READY
+
+SELFTEST_ONLY=YES
+STATE_MUTATION=NO
+
+Packed-store status:
+STATUS||COUNT||69||PACK_END||123045
+
+## Final status
+
+R22M_FIX2_NATIVE_EXTERNAL_CORPUS_IMPORTER=PASS
+
+REAL_BINDING_GATE=PASS
+REAL_BINDING_BLOCKED_SAFE=PASS
+REAL_GATE_APPEND_BYTES=0
+
+SELFTEST_ONLY=YES
+
+NATIVE_EXTERNAL_IMPORT=PASS
+
+EXTERNAL_SHA256_TO_INTERNAL_OBJECT_BINDING=PASS
+NATIVE_SEMGOLD_CONSTRUCTION=PASS
+
+R22K_INDEX_COMPATIBLE=YES
+NATIVE_SELECTOR_ON_IMPORTED_INDEX=PASS
+
+SELECTED_TASK=referent_identity
+SELFTEST_CANDIDATE_STATUS=READY
+
+FRESH_FINAL_IMPORT_REJECT=PASS
+FRESH_FINAL_REJECT_APPEND_BYTES=0
+
+REAL_SEMANTIC_CORPUS_CONSUMED=NO
+REAL_SEMANTIC_LEARNING_EXECUTED=NO
+
+MODEL_MUTATION=NO
+STATE_MUTATION=NO
+
+IR_SEMANTIC_GROUNDING=UNVERIFIED
+
+PRODUCTION_ADMISSION_ENABLED=NO
+ADMISSION=NO
+
+NEXT=
+R22N_NATIVE_SEMANTIC_BATCH_TRAINER_AND_CHECKPOINT_REPLAY
+
+MANUAL_REBOOT_REQUIRED=NO
+
+## Interpretation boundary
+
+This checkpoint establishes external-corpus import mechanics and selector compatibility in selftest only.
+
+It establishes:
+- external 64-hex SHA256 identifiers are validated separately from native 32-hex object IDs;
+- external hashes are preserved while native object bindings are generated;
+- semantic-gold objects are constructed natively;
+- the imported index is compatible with the R22K native selector;
+- fresh-final data is forbidden from the importer and is rejected without append or state mutation;
+- real mode fails closed while R22L real binding is not ready;
+- host performs no corpus-item selection, semantic selection, or scoring.
+
+It does not establish:
+- real semantic corpus consumption;
+- real semantic learning;
+- verified semantic grounding;
+- production admission.
+
+NEXT is R22N_NATIVE_SEMANTIC_BATCH_TRAINER_AND_CHECKPOINT_REPLAY.
