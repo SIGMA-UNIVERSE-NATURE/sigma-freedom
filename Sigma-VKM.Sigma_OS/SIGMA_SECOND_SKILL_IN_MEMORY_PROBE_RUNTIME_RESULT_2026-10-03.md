@@ -1,0 +1,68 @@
+# SIGMA Second Skill In-Memory Probe — Runtime Result
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_SECOND_SKILL_IN_MEMORY_PROBE_R1
+CHECKPOINT=NO
+
+SKILL_ID=
+EVENT_FRAME_OBJECT_STATE_R1
+
+PARENT_MODEL=
+2be5bedf284e4c304547510063a32726
+
+PARENT_OPT=
+744330c0193d97100c0f6f452ba7b510
+
+RATE=0.001
+
+TRAIN_BEFORE=5.4817702914361206
+TRAIN_AFTER=5.46593527326426631
+TRAIN_GAIN=0.01583501817185428
+
+DEV_BEFORE=5.48323185502320509
+DEV_AFTER=5.46974878898533045
+DEV_GAIN=0.01348306603787463
+
+CORE_BEFORE=5.4817702914361206
+CORE_AFTER=5.46593527326426631
+CORE_GAIN=0.01583501817185428
+
+HOST_LEARN=NO
+HARDCODE_PASS=NO
+LIVE_MUTATION=NO
+
+SECOND_SKILL_PROBE_SHA256=
+c146a3d83e71892c0eac270d974918e37405fec70399767a0048a0cb3aec6be6
+
+NEXT=
+CLASSIFY_SECOND_SKILL_PROBE
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes positive in-memory TRAIN/DEV/CORE gains for the second real skill:
+EVENT_FRAME_OBJECT_STATE_R1.
+
+It supports:
+- TRAIN_GAIN > 0;
+- DEV_GAIN > 0;
+- CORE_GAIN > 0;
+- no host learning;
+- no hardcoded PASS;
+- no live mutation.
+
+It does NOT establish:
+- a replayable delta receipt;
+- deterministic replay;
+- skill-library append;
+- native selector selection of the second skill;
+- admission;
+- cutover.
+
+CHECKPOINT remains NO.
+
+Next:
+CLASSIFY_SECOND_SKILL_PROBE
