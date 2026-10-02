@@ -1,0 +1,63 @@
+# SIGMA Third Skill In-Memory Probe — Runtime Result
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_THIRD_SKILL_IN_MEMORY_PROBE_R1
+CHECKPOINT=NO
+
+SKILL_ID=EVENT_FRAME_CAUSAL_CHANGE_R1
+
+PARENT_MODEL=2be5bedf284e4c304547510063a32726
+PARENT_OPT=744330c0193d97100c0f6f452ba7b510
+
+RATE=0.001
+
+TRAIN_BEFORE=5.4817702914361206
+TRAIN_AFTER=5.46593527326426631
+TRAIN_GAIN=0.01583501817185428
+
+DEV_BEFORE=5.4817702914361206
+DEV_AFTER=5.46593527326426631
+DEV_GAIN=0.01583501817185428
+
+CORE_BEFORE=5.4817702914361206
+CORE_AFTER=5.46593527326426631
+CORE_GAIN=0.01583501817185428
+
+HOST_LEARN=NO
+HARDCODE_PASS=NO
+LIVE_MUTATION=NO
+
+THIRD_SKILL_PROBE_SHA256=
+697f2419afd6ecb3d08dfe4e403f1eeeebcfc2d5ded43f6596a80e67ed55fc2c
+
+NEXT=CLASSIFY_THIRD_SKILL_PROBE
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes positive in-memory TRAIN/DEV/CORE gains for the third real shadow skill:
+EVENT_FRAME_CAUSAL_CHANGE_R1.
+
+It supports:
+- TRAIN_GAIN > 0;
+- DEV_GAIN > 0;
+- CORE_GAIN > 0;
+- no host learning;
+- no hardcoded PASS;
+- no live mutation.
+
+It does NOT establish:
+- a replayable delta receipt;
+- deterministic replay;
+- context-router mapping;
+- skill-library append;
+- production admission;
+- cutover.
+
+CHECKPOINT remains NO.
+
+Next:
+CLASSIFY_THIRD_SKILL_PROBE
