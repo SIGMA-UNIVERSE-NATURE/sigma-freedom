@@ -1,0 +1,72 @@
+{
+  "schema": "SIGMA_GATE_B_DEV_CORE_BEHAVIOR_SOURCE_BOUND_CONTRACT_V1",
+  "claim_policy": "CLAIM<=EVIDENCE",
+  "scope": "TINY_SOURCE_BOUND_DEV_CORE_BEHAVIOR_ONLY",
+  "evidence": {
+    "gate_a_checkpoint_commit": "2475befc0261217fea910284b1035fcbfeda0627",
+    "behavior_evaluator_checkpoint_commit": "289f597188e6028988ed972842dca9e262ef6edb",
+    "unified_candidate_checkpoint_commit": "f98a8d7285be1296bc3d523d2b970f3721128e52"
+  },
+  "expected_bindings": {
+    "one_sigma_identity_sha256": "c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222",
+    "module97_behavior_gate_sha256": "90baaf5f358dc62bea1318a7b3f12e958215210b1d72a1c3d68df11be3cad584",
+    "module98_semantic_eval_sha256": "75abe2dc57241f3aea6f79352616138d97b77a733a33a74d56dc890ff0477ce8",
+    "module98_basename": "98_rb_behavioral_semantic_eval.sigma",
+    "module99_basename": "99_rb_source_bound_semantic_adapter.sigma",
+    "unified_source_sha256": "93a9eb672f1ba0dad6617fcf6e49b3c98449ec9e0210f620739a1dcd9fa3ce57",
+    "unified_bytecode_sha256": "b7fa471631b9ad9bad23335f0b5f356c40c1199375cc946e7bd9df24072eb469"
+  },
+  "required_capabilities": [
+    "referent_identity",
+    "relation_support",
+    "contradiction",
+    "scope_compatibility",
+    "evidence_support",
+    "cross_document_support"
+  ],
+  "proof_ids": [
+    "DEV",
+    "CORE",
+    "BEHAVIOR:referent_identity",
+    "BEHAVIOR:relation_support",
+    "BEHAVIOR:contradiction",
+    "BEHAVIOR:scope_compatibility",
+    "BEHAVIOR:evidence_support",
+    "BEHAVIOR:cross_document_support"
+  ],
+  "required_behavior_stdout_literals": [
+    "TRANSFORMER_DOES_SEMANTIC_EXAM=YES",
+    "GROUNDING_ANSWERS_FOR_MODEL=NO"
+  ],
+  "required_common_stdout_literals": [
+    "LIVE_MUTATION=NO",
+    "SERVER_SEED=NO",
+    "ADMISSION=NO",
+    "CUTOVER=NO"
+  ],
+  "forbidden_invocation_fragments": [
+    "ADMISSION",
+    "CUTOVER",
+    "RESERVE",
+    "FINAL",
+    "SERVER_SEED",
+    "PRODUCTION_SEED",
+    "PROMOTE",
+    "LIVE_MUTATION"
+  ],
+  "boundaries": {
+    "host_semantic_answer": false,
+    "host_semantic_score": false,
+    "fabricated_examples": false,
+    "live_mutation": false,
+    "server_seed": false,
+    "final_or_reserve": false,
+    "admission": false,
+    "cutover": false
+  },
+  "proof_policies": {
+    "DEV": "CANDIDATE_GAIN_ON_SOURCE_BOUND_DEV",
+    "CORE": "CANDIDATE_NO_REGRESSION_ON_SOURCE_BOUND_CORE",
+    "BEHAVIOR": "ALL_CORRECT_AND_NO_REGRESSION_ON_SOURCE_BOUND_CAPABILITY_EXAM"
+  }
+}
