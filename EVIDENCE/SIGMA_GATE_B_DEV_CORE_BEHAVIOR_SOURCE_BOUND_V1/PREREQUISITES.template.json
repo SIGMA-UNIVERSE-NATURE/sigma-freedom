@@ -1,0 +1,152 @@
+{
+  "schema": "SIGMA_GATE_B_DEV_CORE_BEHAVIOR_PREREQUISITES_V1",
+  "binding_state": "UNBOUND",
+  "runtime": {
+    "module_dir": "/data/data/com.termux/files/home/SIGMA/sigma_genesis1/SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1/src/modules",
+    "module97_behavior_gate": {
+      "path": null,
+      "sha256": "90baaf5f358dc62bea1318a7b3f12e958215210b1d72a1c3d68df11be3cad584"
+    },
+    "module98_semantic_eval": {
+      "path": "/data/data/com.termux/files/home/SIGMA/sigma_genesis1/SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1/src/modules/98_rb_behavioral_semantic_eval.sigma",
+      "sha256": "75abe2dc57241f3aea6f79352616138d97b77a733a33a74d56dc890ff0477ce8"
+    },
+    "module99_source_bound_adapter": {
+      "path": "/data/data/com.termux/files/home/SIGMA/sigma_genesis1/SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1/src/modules/99_rb_source_bound_semantic_adapter.sigma",
+      "sha256": null
+    },
+    "unified_source": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1/proof/REALBRAIN_UNIFIED_20261002T163434Z_8059/SIGMA_R21_REALBRAIN_UNIFIED.sigma",
+      "sha256": "93a9eb672f1ba0dad6617fcf6e49b3c98449ec9e0210f620739a1dcd9fa3ce57"
+    },
+    "unified_bytecode": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1/proof/REALBRAIN_UNIFIED_20261002T163434Z_8059/unified_a.sigmab",
+      "sha256": "b7fa471631b9ad9bad23335f0b5f356c40c1199375cc946e7bd9df24072eb469"
+    },
+    "vm": {
+      "path": null,
+      "sha256": null
+    },
+    "one_sigma_identity_sha256": "c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222"
+  },
+  "gate_a_evidence": {
+    "rbseed": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1/proof/REALBRAIN_UNIFIED_20261002T163434Z_8059/work/.sigma_exec/SIGMA_INTEGRAL_OWNER_R3/out/rbseed_executor.txt",
+      "sha256": null
+    },
+    "builder_log": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/GATE_A_BUILDER_OVERRIDE_RUN.log",
+      "sha256": null
+    },
+    "model_pair_binding_receipt": {
+      "path": null,
+      "sha256": null
+    },
+    "baseline_model_ref": null,
+    "baseline_model_fingerprint": null,
+    "candidate_model_ref": null,
+    "candidate_model_fingerprint": null
+  },
+  "worksets": {
+    "DEV": {
+      "role": "DEV",
+      "capability": null,
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "CORE": {
+      "role": "CORE",
+      "capability": null,
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:referent_identity": {
+      "role": "BEHAVIOR",
+      "capability": "referent_identity",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:relation_support": {
+      "role": "BEHAVIOR",
+      "capability": "relation_support",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:contradiction": {
+      "role": "BEHAVIOR",
+      "capability": "contradiction",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:scope_compatibility": {
+      "role": "BEHAVIOR",
+      "capability": "scope_compatibility",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:evidence_support": {
+      "role": "BEHAVIOR",
+      "capability": "evidence_support",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    },
+    "BEHAVIOR:cross_document_support": {
+      "role": "BEHAVIOR",
+      "capability": "cross_document_support",
+      "source_root_manifest_path": null,
+      "source_root_manifest_sha256": null,
+      "input_path": null,
+      "input_sha256": null,
+      "workset_manifest_path": null,
+      "workset_manifest_sha256": null
+    }
+  },
+  "invocations": {
+    "DEV": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "CORE": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:referent_identity": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:relation_support": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:contradiction": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:scope_compatibility": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:evidence_support": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900},
+    "BEHAVIOR:cross_document_support": {"binding_source": null,"entrypoint_token": null,"policy_token": null,"accept_token": null,"reject_token": null,"argv_template": null,"stdin_template": null,"timeout_seconds": 900}
+  },
+  "boundaries": {
+    "host_semantic_answer": false,
+    "host_semantic_score": false,
+    "fabricated_examples": false,
+    "live_mutation": false,
+    "server_seed": false,
+    "final_or_reserve": false,
+    "admission": false,
+    "cutover": false
+  }
+}
