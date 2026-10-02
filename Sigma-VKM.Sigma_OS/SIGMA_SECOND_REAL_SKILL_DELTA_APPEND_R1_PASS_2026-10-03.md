@@ -1,0 +1,72 @@
+# SIGMA Second Real Skill Delta Append R1 — PASS
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_SECOND_REAL_SKILL_DELTA_APPEND_R1
+STATUS=PASS
+FAILED_GATE=NONE
+
+SKILL_ID=
+EVENT_FRAME_OBJECT_STATE_R1
+
+TRAIN_GAIN=0.01583501817185428
+DEV_GAIN=0.01348306603787463
+CORE_GAIN=0.01583501817185428
+
+SECOND_ROWS_SHA256=
+63a1b72f1f304dfaadda32ba7c241980ff4ea8523b3e09cbe10df1370793fbf6
+
+SECOND_REPLAY_SHA256=
+c146a3d83e71892c0eac270d974918e37405fec70399767a0048a0cb3aec6be6
+
+INDEX_R2=
+/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/SECOND_REAL_SKILL_DELTA_R1/run_20261002_204503/SKILL_DELTA_LIBRARY_INDEX_R2.tsv
+
+INDEX_R2_SHA256=
+6f6a24393376d17547aed8d444c6eb46dc60662a9299d388097914a2f2826f5d
+
+HEADER_COLS=12
+BAD_ROWS=0
+DUPLICATE_SKILL_IDS=0
+SKILL_COUNT=2
+
+APPEND_STATUS=READY_SHADOW_DELTA
+
+FAKE_STRESS_ROW=NO
+FULL_MODEL_DUPLICATION=NO
+FULL_MODEL_CHECKPOINT=DEFERRED
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=
+RUN_NATIVE_SELECTOR_ON_TWO_REAL_SKILLS
+
+SECOND_REAL_SKILL_APPEND_SHA256=
+ed2a23d80d957011255fa29fd001c9b64ef9d6f89633b756b5aadbc47bb93f91
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes successful append of the second real skill delta to library index R2.
+
+It supports:
+- two real skills in the library;
+- no bad rows;
+- no duplicate skill IDs;
+- no fake stress row;
+- positive TRAIN/DEV/CORE gains for the second skill;
+- READY_SHADOW_DELTA append status;
+- no full-model duplication.
+
+It does NOT establish:
+- correct native selector discrimination across the two real skills;
+- canonical/live binding;
+- production admission;
+- cutover.
+
+Next:
+RUN_NATIVE_SELECTOR_ON_TWO_REAL_SKILLS
