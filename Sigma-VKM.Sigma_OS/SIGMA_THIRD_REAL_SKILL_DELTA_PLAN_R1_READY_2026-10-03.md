@@ -1,0 +1,52 @@
+# SIGMA Third Real Skill Delta Plan R1 — READY
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_THIRD_REAL_SKILL_DELTA_PLAN_R1
+STATUS=READY
+SCOPE=SHADOW_EXPANSION
+
+SKILL_ID=EVENT_FRAME_CAUSAL_CHANGE_R1
+METHOD=NATIVE_FRESH_EVENT_FRAME_DELTA
+WHY=EXPAND_CONTEXT_AWARE_ROUTER_BEYOND_TEMPORAL_AND_OBJECT_STATE
+
+REQUIRE_NATIVE_ROW_PROJECTOR=YES
+REQUIRE_IN_MEMORY_PROBE=YES
+REQUIRE_REPLAY_HASH=YES
+REQUIRE_CONTEXT_ROUTER_MAPPING=YES
+REQUIRE_NATIVE_SELECTOR_APPEND=YES
+
+HOST_LEARN=NO
+FAKE_STRESS_ROW=NO
+
+FULL_MODEL_DUPLICATION=NO
+FULL_MODEL_CHECKPOINT=DEFERRED
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=BUILD_THIRD_SKILL_NATIVE_ROW_PROJECTOR
+
+THIRD_REAL_SKILL_DELTA_PLAN_SHA256=
+9a963e5781f06b321bf54c1476bb1780bc22f1ebe1a15ebf3260f5cdaca11da4
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint defines the plan for the third real shadow skill delta:
+EVENT_FRAME_CAUSAL_CHANGE_R1.
+
+It requires:
+- native row projection;
+- in-memory learning probe;
+- replay-hash proof;
+- context-router mapping;
+- append through the native selector/library path.
+
+It does NOT establish the third skill delta, routing behavior, production admission, live mutation, or cutover.
+
+Next:
+BUILD_THIRD_SKILL_NATIVE_ROW_PROJECTOR
