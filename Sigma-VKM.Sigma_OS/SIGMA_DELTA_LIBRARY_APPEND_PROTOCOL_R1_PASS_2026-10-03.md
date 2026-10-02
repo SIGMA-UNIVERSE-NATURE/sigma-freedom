@@ -1,0 +1,67 @@
+# SIGMA Delta Library Append Protocol R1 — PASS
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_DELTA_LIBRARY_APPEND_PROTOCOL_R1
+STATUS=PASS
+FAILED_GATE=NONE
+
+APPEND_SCOPE=SHADOW_LIBRARY_ONLY
+
+BASE_INDEX_SHA256=
+48044db848e20b25ebf0e645cdfed813ccf1f6ff32a7ea94b2062ac719addb21
+
+STRESS_INDEX_SHA256=
+95ed74cac70192fe90522635a5ad3bebb6bd76d71592859b04470841838914c0
+
+STRESS_RECEIPT_SHA256=
+b37a24c30f8fc45816025444950b45e41618e75b7c3b92169296657c9aa63f6b
+
+REQUIRED_COLS=12
+
+DUPLICATE_SKILL_IDS=0
+VALID_READY_SKILLS=2
+REJECTED_SKILLS=1
+
+APPEND_RULE_1=NO_DUPLICATE_SKILL_ID
+APPEND_RULE_2=READY_SHADOW_DELTA_ONLY
+APPEND_RULE_3=TRAIN_DEV_CORE_GAIN_ALL_POSITIVE
+APPEND_RULE_4=R22_POLICY_BEFORE_BIND
+APPEND_RULE_5=ROLLBACK_DROP_DELTA_USE_PARENT
+
+FULL_MODEL_DUPLICATION=NO
+
+MODULE97_ADMISSION=FORBIDDEN
+HOST_ACCEPT=FORBIDDEN
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=
+BUILD_SKILL_DELTA_LIBRARY_MANIFEST_R1
+
+DELTA_LIBRARY_APPEND_PROTOCOL_SHA256=
+f7c8f8d2bb846fe8fb0be68e59d2f7fc6e7d996f8810246aea68acfdba6c6dbe
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes append-policy semantics for the shadow skill-delta library:
+- no duplicate skill IDs;
+- only READY_SHADOW_DELTA entries may be appended;
+- TRAIN/DEV/CORE gains must all remain positive;
+- R22 policy is required before bind;
+- rollback is drop-delta/use-parent.
+
+It does NOT establish:
+- a persisted library manifest;
+- canonical/live library authority;
+- multi-delta composition;
+- production admission;
+- cutover.
+
+Next:
+BUILD_SKILL_DELTA_LIBRARY_MANIFEST_R1
