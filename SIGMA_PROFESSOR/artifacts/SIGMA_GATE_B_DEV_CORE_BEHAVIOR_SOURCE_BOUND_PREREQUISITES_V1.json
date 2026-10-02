@@ -1,0 +1,105 @@
+{
+  "schema": "SIGMA_GATE_B_DEV_CORE_BEHAVIOR_PREREQUISITES_V1",
+  "evidence": {
+    "gate_a_anchor_commit": "2475befc0261217fea910284b1035fcbfeda0627",
+    "behavior_eval_commit": "289f597188e6028988ed972842dca9e262ef6edb",
+    "sigma_life_observed_commit": "a789793f43513f62ca6806ad46bf27ca3fce02d9",
+    "gate_a_decision": "GATE_A_TINY_DATA_DRIVEN_PASS",
+    "train_decision": "TRAIN_IMPROVES_YES",
+    "one_sigma_identity": "c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222",
+    "r57": {
+      "parent_model": "2be5bedf284e4c304547510063a32726",
+      "child_model": "12cc5d5d11c7054d727c78284d00ca3f",
+      "parent_opt": "744330c0193d97100c0f6f452ba7b510",
+      "child_opt": "6b219217402bfcf15d583f37645b9fcb",
+      "txid": "3bccae2e73d5ae807f69869d4fefad05",
+      "receipt": "4262d090265757d74ac5d9772e648859",
+      "tx_proposal_sha256": "853f71e7b3320c1549f6435bbf285fd271b7da74f35cbc00d5cd985dffbddea4",
+      "rb57_state_sha256": "591c936b61cae15c2cd443a70aadd0078bfc34a0273da5d5a0af264fb8a69a04",
+      "model_generation": 1,
+      "opt_step": 1
+    }
+  },
+  "policy": {
+    "live_mutation": false,
+    "server_seed": false,
+    "admission": false,
+    "cutover": false,
+    "final": false,
+    "reserve": false,
+    "retrain": false,
+    "new_proposal": false,
+    "host_semantic_answer": false,
+    "host_semantic_score": false
+  },
+  "bindings": {
+    "vm": {
+      "path": null,
+      "sha256": null
+    },
+    "unified_source": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1/proof/REALBRAIN_UNIFIED_20261002T163434Z_8059/SIGMA_R21_REALBRAIN_UNIFIED.sigma",
+      "sha256": "93a9eb672f1ba0dad6617fcf6e49b3c98449ec9e0210f620739a1dcd9fa3ce57"
+    },
+    "unified_bytecode": {
+      "path": "/data/data/com.termux/files/home/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1/proof/REALBRAIN_UNIFIED_20261002T163434Z_8059/unified_a.sigmab",
+      "sha256": "b7fa471631b9ad9bad23335f0b5f356c40c1199375cc946e7bd9df24072eb469"
+    },
+    "module97": {
+      "path": null,
+      "sha256": "90baaf5f358dc62bea1318a7b3f12e958215210b1d72a1c3d68df11be3cad584"
+    },
+    "module98": {
+      "path": "/data/data/com.termux/files/home/SIGMA/sigma_genesis1/SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1/src/modules/98_rb_behavioral_semantic_eval.sigma",
+      "sha256": "75abe2dc57241f3aea6f79352616138d97b77a733a33a74d56dc890ff0477ce8"
+    },
+    "module99": {
+      "path": "/data/data/com.termux/files/home/SIGMA/sigma_genesis1/SIGMA_INTEGRAL_OWNER_CORE_R3_MAX_MERGE_R1_FIX1/src/modules/99_rb_source_bound_semantic_adapter.sigma",
+      "sha256": null
+    }
+  },
+  "train_dev_split": {
+    "builder_source": {
+      "path": null,
+      "sha256": null
+    },
+    "receipt": {
+      "path": null,
+      "sha256": null
+    }
+  },
+  "worksets": {
+    "train_source": {
+      "path": null,
+      "sha256": null,
+      "provenance_path": null,
+      "provenance_sha256": null
+    },
+    "dev": {
+      "path": null,
+      "sha256": null,
+      "provenance_path": null,
+      "provenance_sha256": null
+    },
+    "core": {
+      "path": null,
+      "sha256": null,
+      "provenance_path": null,
+      "provenance_sha256": null
+    },
+    "behavior": [
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null},
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null},
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null},
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null},
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null},
+      {"capability_id": null, "path": null, "sha256": null, "provenance_path": null, "provenance_sha256": null}
+    ]
+  },
+  "runtime": {
+    "max_steps": 10000000,
+    "action_id": null,
+    "shell": false,
+    "argv": null
+  }
+}
