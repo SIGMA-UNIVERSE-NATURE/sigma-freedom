@@ -1,0 +1,57 @@
+# SIGMA Replayable Delta Production Preconditions R1 — READY
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_REPLAYABLE_DELTA_PRODUCTION_PRECONDITIONS_R1
+STATUS=READY_FOR_PRECONDITION_CHECKS
+THIS_IS_NOT_ADMISSION=YES
+
+ARCHITECTURE=BASE_MODEL_PLUS_SKILL_DELTA_LIBRARY
+RUNTIME_MODEL=BASE_PARENT_PLUS_CONTEXT_AWARE_DELTA_REPLAY
+
+R22_REPLAYABLE_DELTA_RUNTIME_POLICY_SHA256=c2df07313c5da2aa0d331f6b5f50a028ac9b604d8d0efd3ed9f1de918eff17dc
+CONTEXT_AWARE_E2E_CAPSULE_SHA256=762840e87242793702e17ae692615a275c9583a0c333ae811f8af2d238eb243d
+INDEX_R2_SHA256=6f6a24393376d17547aed8d444c6eb46dc60662a9299d388097914a2f2826f5d
+CONTEXT_AWARE_SHADOW_RUNTIME_LAW_SHA256=1c70928cb48071187fa5706fede30d78c4de3eac4e576be4eec5147cd4a55421
+
+REQUIRED_CHECK_1=IMMUTABLE_ARTIFACT_MANIFEST
+REQUIRED_CHECK_2=COLD_BOOT_CONTEXT_AWARE_REPLAY
+REQUIRED_CHECK_3=ROLLBACK_DRILL_DROP_DELTA_USE_PARENT
+REQUIRED_CHECK_4=NO_HOST_SELECT_REPLAY
+REQUIRED_CHECK_5=CONTEXT_ROUTER_NEGATIVE_CASE_HOLD
+REQUIRED_CHECK_6=R22_FINAL_ADMISSION_REVIEW_REQUIRED
+
+PRODUCTION_ADMISSION_GRANTED=NO
+MODULE97_ADMISSION=FORBIDDEN
+HOST_ACCEPT=FORBIDDEN
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=RUN_REPLAYABLE_DELTA_PRECONDITION_CHECKS_R1
+
+REPLAYABLE_DELTA_PRODUCTION_PRECONDITIONS_SHA256=ffdad66ebb0374e0cf0bf03766a195b49ee0c9851f50b404fbd7c62237478fd6
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint defines the mandatory checks required before a final R22 admission review for the replayable-delta production path.
+
+It does not itself satisfy those checks and is explicitly not admission.
+
+Required technical checks:
+1. immutable artifact manifest;
+2. cold-boot context-aware replay;
+3. rollback drill by dropping the delta and using the parent;
+4. replay with no host selection;
+5. negative context-router HOLD behavior.
+
+After those checks, R22 final admission review is still required.
+
+This does NOT authorize production admission, Module97 admission, host acceptance, live mutation, canonical/live ownership, or cutover.
+
+Next:
+RUN_REPLAYABLE_DELTA_PRECONDITION_CHECKS_R1
