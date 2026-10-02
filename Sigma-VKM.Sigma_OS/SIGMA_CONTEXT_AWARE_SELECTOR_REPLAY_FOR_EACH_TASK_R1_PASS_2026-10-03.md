@@ -1,0 +1,48 @@
+# SIGMA Context-Aware Selector Replay For Each Task R1 — PASS
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_CONTEXT_AWARE_SELECTOR_REPLAY_FOR_EACH_TASK_R1
+STATUS=PASS
+FAILED_GATE=NONE
+
+HOST_SELECT=NO
+TASK_CONTEXT_AWARE=YES
+
+TEMPORAL_SELECTED=EVENT_FRAME_TEMPORAL_REASONING_R1
+TEMPORAL_EXPECTED_REPLAY_SHA256=7be910e1597ff646342e278dcd11e47b7812bc7d56ea11a43bd04b734c0a320a
+TEMPORAL_ACTUAL_REPLAY_SHA256=7be910e1597ff646342e278dcd11e47b7812bc7d56ea11a43bd04b734c0a320a
+
+OBJECT_STATE_SELECTED=EVENT_FRAME_OBJECT_STATE_R1
+OBJECT_STATE_EXPECTED_REPLAY_SHA256=c146a3d83e71892c0eac270d974918e37405fec70399767a0048a0cb3aec6be6
+OBJECT_STATE_ACTUAL_REPLAY_SHA256=c146a3d83e71892c0eac270d974918e37405fec70399767a0048a0cb3aec6be6
+
+TEMPORAL_REPLAY_MATCH=YES
+OBJECT_STATE_REPLAY_MATCH=YES
+
+CTX_ROUTER_CAPSULE_SHA256=594e81c6b172ab5c0a23b148e3d349269c8ab921410ce4360bcff182e2d16002
+
+ROLLBACK=DROP_DELTA_USE_PARENT
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=CONTEXT_AWARE_NATIVE_RUNTIME_E2E_READY
+
+CONTEXT_AWARE_SELECTOR_REPLAY_SHA256=f412e026e89a859291e4e4fb83cb1ae41c14bfa46406b10d3d8d8284c43c46fe
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes end-to-end context-aware native shadow routing and replay for both real skills:
+- temporal context selects the temporal reasoning skill and replays the exact expected hash;
+- object_state context selects the object-state skill and replays the exact expected hash;
+- host selection remains disabled;
+- rollback remains DROP_DELTA_USE_PARENT.
+
+It establishes CONTEXT_AWARE_NATIVE_RUNTIME_E2E_READY for shadow runtime only.
+
+It does NOT establish canonical/live binding, production admission, atomic cutover, or live mutation.
