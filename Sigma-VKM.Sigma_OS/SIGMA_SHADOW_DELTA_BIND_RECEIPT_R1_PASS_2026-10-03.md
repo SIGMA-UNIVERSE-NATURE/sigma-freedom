@@ -1,0 +1,75 @@
+# SIGMA Shadow Delta Bind Receipt R1 — PASS
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_SHADOW_DELTA_BIND_RECEIPT_R1
+STATUS=PASS
+FAILED_GATE=NONE
+
+BIND_SCOPE=SHADOW_ONLY
+
+RUNTIME_MODEL=
+BASE_PARENT_PLUS_DELTA_REPLAY
+
+SELECTED_SKILL=
+EVENT_FRAME_TEMPORAL_REASONING_R1
+
+PARENT_MODEL=
+2be5bedf284e4c304547510063a32726
+
+PARENT_OPT=
+744330c0193d97100c0f6f452ba7b510
+
+DELTA_SHA256=
+3dc19fc6feafd452a1a3140a052fd713669c6e9a49c9bd1561da36497efd5fa6
+
+REPLAY_SHA256=
+7be910e1597ff646342e278dcd11e47b7812bc7d56ea11a43bd04b734c0a320a
+
+R22_SHADOW_BIND_POLICY_SHA256=
+adabf80fb944fe0cf5696a23afb14d323c168528963432f0e40b104ce441f285
+
+ROUTER_POLICY_SHA256=
+e8506e2521c10c71573dbbc17b46f74d8ec8cdfed866da891ab8e924d63ea17f
+
+SHADOW_RUNTIME_SELECTOR_SHA256=
+36ea121a0c919e3ecc7b3f91db0761596fe7e6f0507cdaccc0203700a07a0379
+
+SHADOW_RUNTIME_RECEIPT_SHA256=
+1254283f26fc10024b7ec46c9dba414f2d2a6caf2ce52f34217f635116b3476a
+
+ROLLBACK=
+DROP_DELTA_USE_PARENT
+
+FULL_MODEL_DUPLICATION=NO
+FULL_MODEL_CHECKPOINT=DEFERRED
+
+MODULE97_ADMISSION=FORBIDDEN
+HOST_ACCEPT=FORBIDDEN
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=
+SHADOW_DELTA_RUNTIME_READY_NO_ADMISSION
+
+SHADOW_DELTA_BIND_RECEIPT_SHA256=
+34e03c2891f95c55e86943462401d23737d74b93ae25d28acb1d7f7a18e164a9
+
+NO_EXIT=YES
+
+## Boundary
+
+This checkpoint establishes a complete shadow-only bind chain for the replayable skill delta:
+- R22 shadow-bind policy;
+- router policy;
+- runtime selector;
+- shadow runtime receipt;
+- exact delta/replay evidence;
+- rollback to parent.
+
+It does NOT establish canonical/live binding, production admission, atomic cutover, or a full durable model checkpoint.
+
+The shadow delta runtime is ready for controlled shadow use only.
