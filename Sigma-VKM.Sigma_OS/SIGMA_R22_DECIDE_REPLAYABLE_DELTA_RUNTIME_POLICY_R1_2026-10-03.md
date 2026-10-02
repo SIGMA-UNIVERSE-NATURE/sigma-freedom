@@ -1,0 +1,59 @@
+# SIGMA R22 Decide Replayable Delta Runtime Policy R1
+
+Date: 2026-10-03
+Source: user-supplied Oppo/Termux output.
+
+SCHEMA=SIGMA_R22_DECIDE_REPLAYABLE_DELTA_RUNTIME_POLICY_R1
+
+R22_DECISION=READY_FOR_REPLAYABLE_DELTA_PRODUCTION_PRECONDITIONS
+FAILED_GATE=NONE
+
+POLICY_REQUEST_SHA256=
+3c271506e3458703020f776e5919762a8b7e5f62c0c063ed3db0734bce70fe38
+
+ARCHITECTURE=BASE_MODEL_PLUS_SKILL_DELTA_LIBRARY
+RUNTIME_MODEL=BASE_PARENT_PLUS_CONTEXT_AWARE_DELTA_REPLAY
+
+REPLAYABLE_DELTA_ARTIFACT=YES
+SHADOW_RUNTIME_READY=YES
+HOST_SELECT=NO
+TASK_CONTEXT_AWARE=YES
+FULL_MODEL_DUPLICATION=NO
+
+ROLLBACK=DROP_DELTA_USE_PARENT
+
+PRODUCTION_ADMISSION_GRANTED=NO
+THIS_IS_NOT_ADMISSION=YES
+
+MODULE97_ADMISSION=FORBIDDEN
+HOST_ACCEPT=FORBIDDEN
+
+LIVE_MUTATION=NO
+ADMISSION=NO
+CUTOVER=NO
+
+NEXT=BUILD_REPLAYABLE_DELTA_PRODUCTION_PRECONDITIONS_R1
+
+R22_REPLAYABLE_DELTA_RUNTIME_POLICY_SHA256=
+c2df07313c5da2aa0d331f6b5f50a028ac9b604d8d0efd3ed9f1de918eff17dc
+
+NO_EXIT=YES
+
+## Boundary
+
+R22 has selected the replayable-delta production-preconditions path.
+
+This establishes that a full-model checkpoint is not required at this policy stage for progression into production preconditions, provided the replayable-delta architecture continues to satisfy its gates.
+
+This is explicitly not admission.
+
+It does NOT authorize:
+- production admission;
+- Module97 admission;
+- host acceptance;
+- live mutation;
+- canonical/live ownership;
+- cutover.
+
+Next:
+BUILD_REPLAYABLE_DELTA_PRODUCTION_PRECONDITIONS_R1
