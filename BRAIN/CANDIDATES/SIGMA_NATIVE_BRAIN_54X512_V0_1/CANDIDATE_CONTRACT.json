@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.1.0",
+  "candidate_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-R1",
+  "status": "ISOLATED_CANDIDATE_REVISION_R1_SOURCE_COMMITTED_MACHINE_EXECUTION_PENDING_NOT_PROMOTED",
+  "created_at": "2026-08-18T00:00:00+07:00",
+  "revised_at": "2026-08-18T19:15:00Z",
+  "authority": "CHAU",
+  "builder": "MINH_CUA_3",
+  "parent_candidate": {
+    "candidate_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1",
+    "head": "3436122b6aebdc0183fab7b16d4b0e045d17d246",
+    "compile_result": "PASS_DUAL_SIGMAC_DETERMINISTIC_BYTECODE",
+    "runtime_result": "FAIL_SHARED_HOSTVM_RC_8",
+    "exact_stderr": "SIGMA C VM: undefined function MNEW\\r\\n",
+    "stderr_sha256": "89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484",
+    "decision": "REVISE_NOT_PROMOTE"
+  },
+  "base": {
+    "canonical_branch": "SIGMA_LIFE",
+    "canonical_head": "7d1648f7d65edfbd1a2668ad10ad4cd10dd9482d",
+    "current_512_counts": {
+      "PASS": 0,
+      "PARTIAL": 129,
+      "HOLD": 383,
+      "FAIL": 0,
+      "NOT_AUDITED": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "root_of_trust_blob_sha": "108d9e506d8f822ba6178016fc76a9e22b3d6d2a",
+    "training_map_blob_sha": "dab6ec03a80a2c1495e0a0a29e8300c535bc8eb9",
+    "manifest_512_blob_sha": "b14c9d5e054de5acdbc0fceb0a59eb4d1a935eef",
+    "traceability_512_to_54_blob_sha": "147d26a7e826f94f9ad95620baf39b7d6a364d47"
+  },
+  "target_gap": "EXECUTABLE_SIGMA_WRITTEN_ACCURACY_KERNEL_MUST_RUN_ON_VERIFIED_HP_HOSTVM_WITHOUT_UNVERIFIED_CONTAINER_HOST_PRIMITIVES",
+  "falsifiable_hypothesis": "Replacing the unverified list/map host calls with scalar SIGMA control flow will preserve the exact 54-core registry answers, 512-skill routing and locked accuracy output while compiling deterministically and running with rc 0, empty stderr and exact UTF-8 stdout on both verified HP V6 and V7 toolchains.",
+  "revision_r1": {
+    "minimal_change": true,
+    "removed_unverified_host_calls": [
+      "LNEW",
+      "LPUSH",
+      "LGET",
+      "MNEW",
+      "MSET",
+      "MGET"
+    ],
+    "replacement": "SCALAR_SIGMA_FUNCTIONS_AND_DIRECT_CORE_ID_DISPATCH",
+    "expected_source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+    "expected_source_bytes": 19930,
+    "expected_source_lines": 449,
+    "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+    "behavioral_output_changed": false,
+    "metrics_changed": false,
+    "canonical_or_dna_mutation": false
+  },
+  "vertical_slice": {
+    "native_sigma_candidate_cores": [
+      9,
+      20,
+      21,
+      26,
+      27,
+      31,
+      32,
+      43,
+      44,
+      45,
+      46,
+      52,
+      53
+    ],
+    "reason": "These cores are shared by epistemic truth, evidence measurement, scientific evaluation, metacognition, language precision, evaluation science, and failure recovery.",
+    "all_54_status": "REGISTERED_BY_EXECUTABLE_SCALAR_CORE_NAME_DISPATCH",
+    "all_512_status": "ROUTED_BY_CANONICAL_SECTION_RANGE",
+    "full_rewrite_claimed": false,
+    "language_header": "#SIGMAUNIVERSE_LANGUAGE[DOMAIN=SIGMA.BRAIN][VERSION=0.1-R1]",
+    "runtime_target": "VERIFIED_SIGMA_HOSTVM_WITH_CORE_LANGUAGE_AND_PRINT_ONLY"
+  },
+  "hard_gates": [
+    "SOURCE_UTF8_VALID",
+    "VIETNAMESE_GOLDEN_TEXT_EXACT_NO_MOJIBAKE",
+    "NO_UNVERIFIED_CONTAINER_HOST_CALLS",
+    "SIGMAC_COMPILE_RC_0",
+    "SIGMA_HOSTVM_RUN_RC_0",
+    "STDERR_EMPTY",
+    "STDOUT_EXACT_BYTE_MATCH_EXPECTED_STDOUT_UTF8",
+    "CORE_NAME_1_THROUGH_54_EXACT_REGISTRY_MATCH",
+    "SKILL_ID_1_THROUGH_512_CONTIGUOUS_ROUTING_NO_GAP_NO_OVERLAP",
+    "ACCURACY_CORPUS_ALL_CASES_PASS",
+    "DETERMINISTIC_COMPILE_HASH_TWO_RUNS",
+    "CROSS_TOOLCHAIN_BYTECODE_EQUALITY",
+    "FOUNDATION_V7_REGRESSION_PASS",
+    "ACTUAL_VM_ABI_UNCHANGED",
+    "NO_CANONICAL_MUTATION",
+    "NO_SELF_PROMOTION",
+    "INDEPENDENT_EVALUATION_BEFORE_PROMOTION"
+  ],
+  "known_holds": [
+    "Revision R1 has not yet been compiled or executed on HP or OPPO.",
+    "The locked 10-case corpus is still reference-validated; all ten cases are not yet driven independently through runtime inputs.",
+    "Individual semantics of all 512 skills are referenced from canonical, not implemented in R1.",
+    "Only a high-leverage vertical slice of 13 cores has candidate decision logic."
+  ],
+  "rollback": "Reset the candidate branch to parent head 3436122b6aebdc0183fab7b16d4b0e045d17d246 or revert the single R1 revision commit. SIGMA_LIFE remains untouched.",
+  "decision": "HOLD_PENDING_R1_SIGMAC_AND_SIGMA_HOSTVM_MACHINE_EXECUTION",
+  "static_validation": {
+    "status": "PASS_STRUCTURAL_R1_ABI_NEUTRAL_NOT_COMPILE_EVIDENCE",
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+    "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+    "evidence": "evidence/STATIC_VALIDATION.json",
+    "scope_limit": "NOT_R1_SIGMAC_OR_SIGMA_HOSTVM_EXECUTION_EVIDENCE"
+  }
+}
