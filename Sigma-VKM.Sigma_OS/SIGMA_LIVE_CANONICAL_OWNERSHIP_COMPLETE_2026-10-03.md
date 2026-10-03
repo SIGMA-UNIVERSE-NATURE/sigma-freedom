@@ -1,0 +1,39 @@
+# SIGMA Live Canonical Ownership Complete
+
+Date: 2026-10-03
+Source: user-supplied direct Oppo post-cutover measurements.
+
+OWNER_FINGERPRINT=c8ccb7d9ba4f43e37d350c4bf66e515b70d5fc31fa9dd0329139a95f98c85222
+
+LIVE_VKM_RUNTIME_SHA256=0ad6424ccb84bfe2f44240bff8d1cf531a2fb0be88c61491ee113ba740269755
+LIVE_SIGMAC_SHA256=7c7fecc20fff9b339ca62c3ddcf65253df32fa703ab60ee88e015176cff672e4
+
+LIVE_CANONICAL_TARGET_SHA256=f2ed316837526d293d929f50c89dd1a92e5b2b1442631878265c64ccfb6b11fc
+LIVE_MODEL=4e28b7b00428271a4d09f1791d5d46fb
+LIVE_STATE_GENERATION=3
+LIVE_INTERNAL_MODEL_GENERATION=3
+LIVE_HEAD=599c639a3a58c7971518727c303c876e
+
+STEP6_CANONICAL_ADMISSION_RECEIPT_SHA256=0623b8f8a6ae6624a5e1d1e6de9f64fcc802c0c83da8f272e3dd083fddf6a3d7
+IMMUTABLE_MANIFEST_SHA256=d5987f941ba61fefb47ab39241602ea6434f8f815cca9123b1b936b46b6eac67
+
+ROLLBACK=DROP_DELTA_USE_PARENT
+INDEX_R3_SHA256=2fa7cbb2fe27cd7fa3fe8d7914f2e405648dadcab635bf6936e2b0f72a171e8e
+GENERALIZED_N_SKILL_LAW_SHA256=ba0b427b0193b8334ef9e7d4d9c9b52fd024c67016a94041b2873441e3a495df
+DNA15_STEP6_DELTA_BINDING_SHA256=9a0094090f0bd0cd00b6e34969476af2ca002acc575627c0bd0fe272ec2b4804
+
+TARGET_RECEIPT_MATCH=YES
+OWNER_TESTING_BINDING=YES
+FAIL_CLOSED=NO
+
+NEXT=LIVE_CANONICAL_OWNERSHIP_COMPLETE
+NO_EXIT=YES
+
+## Classification
+
+The supplied direct Oppo post-cutover measurements establish a canonical target at generation 3 with a concrete live model/head, matching Step6 canonical admission receipt, preserved SIGMA owner fingerprint, and the immutable candidate manifest/evidence bindings.
+
+Within the verified DNA15 canonical-admission scope:
+LIVE_CANONICAL_OWNERSHIP=COMPLETE
+
+This checkpoint does not claim unrestricted production-admission authority outside the verified DNA15 contract.
