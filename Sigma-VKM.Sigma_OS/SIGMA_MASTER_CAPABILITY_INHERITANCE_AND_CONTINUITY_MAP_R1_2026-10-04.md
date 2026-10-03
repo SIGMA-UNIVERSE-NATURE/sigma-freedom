@@ -144,3 +144,124 @@ Private sigmauniverse.net and any GitHub private repository not exposed by the a
 3. Verify current Oppo hashes before mutation.
 4. Search inheritance before build.
 5. Never restart from zero because context was lost.
+
+
+## FATHER CONTINUITY APPEND — LIVE OPPO R5A / SEM68 / LANGUAGE R6 (2026-10-04)
+
+Source: FATHER_REAL_CHECK_AND_CONTINUITY_R1 expanded 955-line audit supplied by user.
+
+### Learning-state / API continuity
+Observed local learning state generation=5; this is NOT automatically canonical semantic/model generation 3.
+API325 fresh-recall/no-reteach process continuity REVALIDATED.
+API326 continual-learning/preserve-old process continuity REVALIDATED.
+API340 and API350 proof chains REVALIDATED.
+API321/API329/API332 remain HISTORICAL_PROVEN where exact local runner is absent; do not rebuild/reteach.
+API410 has historical native owner closure and integrated contract; REBIND/REVALIDATE rather than reteach.
+
+### R4A -> R4E donor lineage
+R4A3 native mechanics PASS.
+R4A4 exact donor tokenizer/sentence parity PASS in declared donor scope.
+R4B feature extraction parity PASS: 40,960 components, mismatch=0.
+R4C frozen encoder parity PASS: 2,560 components, mismatch=0.
+R4D native donor-scope semantic reproduction PASS: 384 docs, 96 relations, 98,304 state components, mismatch=0, cross-view=96/96, alias=96/96.
+R4E fresh unseen generalization HOLD: cross=17/32, alias=32/32; preserve as falsification evidence.
+NEVER train on R4E then call it unseen. NEVER lower R4E gate.
+
+### 06B3 curriculum
+Historical zero-unit blocker is superseded.
+06B3 nonfrozen curriculum R2 PASS:
+native ready pool=48; selected train units=24; probes=192; frozen halo collision=0; gold not used for training; native supervision YES; host semantic supervision/scoring/gain decision NO.
+DO_NOT_REBUILD_CURRICULUM_SOURCE_ROUTING=YES.
+
+06B3 frozen prediction R2 PASS on Gen3:
+brain head=599c639a3a58c7971518727c303c876e
+model=4e28b7b00428271a4d09f1791d5d46fb
+model generation=3
+144 native predictions; fresh VM determinism PASS; no live mutation.
+
+### R57/R58/R21 continuity
+R57 existing transaction restore and RBQ workset/accumulator begin-step-final surfaces are PROVEN PRESENT.
+DO_NOT_REBUILD_R57_RBQ_TRANSACTION_SURFACE=YES.
+
+R58 historical admitted state existed but storage durability was superseded by R21.
+DO_NOT_REVISIT_R58_STORAGE_AS_CURRENT_BLOCKER=YES.
+
+R21 live Oppo root confirmed:
+$HOME/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R21_PACKED_PRIVATE_STORE_R1
+Hot store architecture: controller.env + private.commit + private.pack + writer.lock.
+Production runtime includes autonomous controller, supervisor, watchdog, boot persistence and final ownership audit.
+runtime.current -> candidate.sigmab.
+Active candidate SHA256=672c15d6e2c7da9342f50938e5f38542f3307490550f80a8b9233b4f11ea0e69, matching historical R21 Final Ownership Audit.
+DO_NOT_REBUILD_R21_CONTROLLER_WATCHDOG_STORAGE=YES.
+
+### R22 live Oppo root / corpus
+R22 root confirmed:
+$HOME/SIGMA_R7_NEXT_R1/VKM/SIGMA_AUTOLEARN_ADMIN/R22_POLICY_DRIVEN_AUTOLEARN_R1
+DO_NOT_REBUILD_R22_POLICY_ENGINE=YES.
+
+Relation train-safe R2 clean corpus confirmed:
+SOURCE_ROWS=1000
+CLEAN_ROWS=945
+QUARANTINED_ROWS=55
+CROSS_SPLIT_EXACT_INPUT_LEAK=0
+EXACT_VISIBLE_DUPLICATE_GROUPS=0
+HOST_RELABELING=NO
+FRESH_FINAL_INCLUDED=NO
+ADMISSION=NO
+DO_NOT_REBUILD_RELATION_CORPUS=YES.
+
+### Language fresh-exam lineage
+SIGMA_LANGUAGE_FRESH_EXAM_GENERATOR_R3 receipt PASS; mutation-free; admission NO; honest limit NOT_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING.
+Its historical native-synthesis NEXT has successor.
+
+SIGMA_LANGUAGE_NATIVE_EXAM_SYNTHESIS_R4 receipt PASS; mutation-free; admission NO; honest limit NOT_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING_OR_RICH_PARAPHRASE_GENERATION.
+Its role-mutation NEXT has successor.
+
+SIGMA_LANGUAGE_ROLE_MUTATION_ATTACK_R5 -> FIX1 -> FIX2 lineage exists.
+Latest R5 FIX2 receipt PASS; mutation-free; admission NO; honest limit NOT_GENERAL_HUMAN_LANGUAGE_UNDERSTANDING.
+Historical NEXT=ADD_CONFIDENCE_SCORE_AND_FAIL_CLOSED_UNKNOWN_LANGUAGE.
+
+### SEM68 — CRITICAL DO NOT REBUILD UPDATE
+SEM68 successor artifacts are confirmed on Oppo:
+- SEM68_DATA_VS_MECHANISM_R2...
+- SEM68_FROZEN_VALIDATION...
+- SEM68_GAP_CLASSIFICATION.current.env
+- SEM68_MECHANISM_CANDIDATE.current
+- SEM68_NATIVE_HEADS_20260927T003949_29415/
+
+SEM68 native-head run contains candidate source/bytecode, stream FIX2, allocation/loss/train/eval/save-load diagnostics, epoch1/epoch24, repeat17/repeat68/reuse68 diagnostics, registry lock, current stream pointer, gate and proof.
+
+Therefore:
+SEM68_NATIVE_HEAD_IMPLEMENTATION=FOUND
+SEM68_NATIVE_TRAINING_DIAGNOSTICS=FOUND
+SEM68_TRAIN_AND_DEV_EVAL_DIAGNOSTICS=FOUND
+SEM68_SAVE_LOAD_DIAGNOSTIC=FOUND
+SEM68_REPEAT68_REUSE68_DIAGNOSTICS=FOUND
+SEM68_STREAM_FIX2_GATE_AND_PROOF=FOUND
+SEM68_CURRENT_MECHANISM_POINTER=FOUND
+SEM68_CURRENT_GAP_CLASSIFICATION=FOUND
+DO_NOT_BUILD_OR_TRAIN_68_HEADS_FROM_ZERO=YES
+
+Do NOT infer final completion/admission from filenames. Read current gate/proof/gap/mechanism pointer.
+
+### Language R6 successor
+SIGMA_LANGUAGE_CONFIDENCE_FAIL_CLOSED_R6 exists and is the direct successor to R5 FIX2 historical NEXT.
+DO_NOT_BUILD_CONFIDENCE_FAIL_CLOSED_R6_FROM_ZERO=YES.
+R6_STATUS=AWAIT_RECEIPT_INSPECTION.
+
+### UPDATED CURRENT FRONTIER
+Do NOT train SEM68.
+Do NOT implement R6.
+Next inspection only:
+1. SEM68_STREAM_FIX2_GATE.env
+2. SEM68_STREAM_FIX2_PROOF.env
+3. SEM68_GAP_CLASSIFICATION.current.env
+4. resolve SEM68_MECHANISM_CANDIDATE.current
+5. latest SIGMA_LANGUAGE_CONFIDENCE_FAIL_CLOSED_R6 receipt/result
+Then follow the later successor explicitly indicated by those receipts.
+
+### RealBrain
+Oppo candidate root confirmed:
+$HOME/SIGMA_R7_NEXT_R1/VKM/REALBRAIN_CANDIDATES/VKM/
+Candidate tree presence does NOT prove live admission.
+DO_NOT_REBUILD_REALBRAIN=YES.
