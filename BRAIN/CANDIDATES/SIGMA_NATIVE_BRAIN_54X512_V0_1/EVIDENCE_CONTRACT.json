@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.1.0",
+  "evidence_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-R1-EVIDENCE-CONTRACT",
+  "candidate_source": "src/sigma_native_brain_54x512_v0_1.sigma",
+  "expected_source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+  "expected_stdout": "tests/EXPECTED_STDOUT_UTF8.txt",
+  "expected_stdout_sha256": "20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+  "accuracy_corpus": "tests/ACCURACY_CORPUS_V0_1.json",
+  "verified_cli": {
+    "compile": "./native/sigmac src/sigma_native_brain_54x512_v0_1.sigma sigma_native_brain_54x512_v0_1.sigmab",
+    "run": "./native/sigma-hostvm sigma_native_brain_54x512_v0_1.sigmab"
+  },
+  "parent_failure": {
+    "receipt": "TRAINING_BRIDGE/RESULTS/SIGMA_NATIVE_BRAIN_54X512_V0_1_HP_DUAL_TOOLCHAIN_RECEIPT_V4.json",
+    "bytecode_sha256": "2717b14a8b70a687661a70291a51655067c32ac2fd0fdf0e27333f4a25a47825",
+    "runtime_rc": 8,
+    "stderr_text": "SIGMA C VM: undefined function MNEW\\r\\n",
+    "stderr_sha256": "89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484"
+  },
+  "r1_runtime_contract": {
+    "allowed_external_function": "print",
+    "forbidden_unverified_container_calls": [
+      "LNEW",
+      "LPUSH",
+      "LGET",
+      "MNEW",
+      "MSET",
+      "MGET"
+    ],
+    "implementation_mode": "SCALAR_CORE_LANGUAGE_NO_LIST_OR_MAP_HOST_ABI",
+    "reason": "The parent candidate proved MNEW is undefined in both verified HP hostVM builds. R1 removes the entire unverified list/map dependency instead of renaming primitives by guess."
+  },
+  "required_machine_receipt": {
+    "platform": [
+      "HP_WINDOWS_X86_64",
+      "OPPO_ANDROID_AARCH64"
+    ],
+    "source_sha256": "MUST_EQUAL_cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77",
+    "bytecode_sha256": "MUST_BE_RECORDED",
+    "stdout_sha256": "MUST_EQUAL_20eee2e7cb2744bd7ab4027255b2896b2f6e37b5a389eb00dddde67e62c1b35a",
+    "compile_rc": "MUST_EQUAL_0",
+    "run_rc": "MUST_EQUAL_0",
+    "stderr": "MUST_BE_EMPTY",
+    "utf8_roundtrip": "MUST_EQUAL_EXACT_GOLDEN_BYTES",
+    "deterministic_recompile": "MUST_MATCH_BYTECODE_SHA256",
+    "cross_toolchain_bytecode": "MUST_MATCH_ON_HP_V6_AND_V7",
+    "core_modifications": 0,
+    "canonical_modifications": 0
+  },
+  "promotion_status": "FORBIDDEN_UNTIL_INDEPENDENT_EVALUATION_AND_REGRESSION",
+  "source_assembly": "python3 tools/assemble_candidate.py",
+  "static_validation": {
+    "status": "PASS_STRUCTURAL_R1_ABI_NEUTRAL_NOT_COMPILE_EVIDENCE",
+    "report": "evidence/STATIC_VALIDATION.json",
+    "checks": 15,
+    "source_sha256": "cf1241de4f0911f8ae7da5fdfd673bfd34b23d52b10ab377c0e36c9791795c77"
+  }
+}

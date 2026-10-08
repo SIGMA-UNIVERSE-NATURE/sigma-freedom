@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "SIGMA-NATIVE-BRAIN-54X512-v0.1-HP-RUNTIME-FAILURE-MNEW",
+  "recorded_at": "2026-08-18T19:00:00Z",
+  "candidate_head": "3436122b6aebdc0183fab7b16d4b0e045d17d246",
+  "source_sha256": "5c24e36fdd6f59f8054057c3afc67771511148c5e6da3432711a0d5df640e936",
+  "bytecode_sha256": "2717b14a8b70a687661a70291a51655067c32ac2fd0fdf0e27333f4a25a47825",
+  "toolchains": [
+    {
+      "id": "HP_PORTABILITY_CANDIDATE_V6",
+      "identity_verified": true,
+      "compile_rc": [
+        0,
+        0
+      ],
+      "compile_stderr_bytes": [
+        0,
+        0
+      ],
+      "deterministic": true,
+      "run_rc": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 37,
+      "stderr_sha256": "89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484",
+      "stderr_utf8": "SIGMA C VM: undefined function MNEW\\r\\n"
+    },
+    {
+      "id": "HP_PORTABILITY_CANDIDATE_V7",
+      "identity_verified": true,
+      "compile_rc": [
+        0,
+        0
+      ],
+      "compile_stderr_bytes": [
+        0,
+        0
+      ],
+      "deterministic": true,
+      "run_rc": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 37,
+      "stderr_sha256": "89429a9789083d6d05bb5717a9217e4a9da7fa364918887af96f026a5d46b484",
+      "stderr_utf8": "SIGMA C VM: undefined function MNEW\\r\\n"
+    }
+  ],
+  "cross_toolchain": {
+    "bytecode_equal": true,
+    "stderr_equal": true,
+    "runtime_failure_equal": true
+  },
+  "interpretation": "MNEW is not a registered runtime function in either verified HP hostVM build. This evidence supports removing the unverified map/list dependency. It does not identify a replacement primitive and does not prove the hostVM is defective.",
+  "decision": "REVISE_REMOVE_UNVERIFIED_CONTAINER_HOST_CALLS_NOT_PROMOTE",
+  "promotion_allowed": false
+}
