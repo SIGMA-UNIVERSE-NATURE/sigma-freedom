@@ -5305,3 +5305,26 @@ Continuity rule: do not infer that `R14_file_write_atomic` itself provides the s
 Coder continuity rule: preserve this READY prestate and continue through the existing native checkpoint/restore contracts. Do not rerun completed staging/verification or rediscover the R40X/R40Z embedding refs absent a new failed integrity gate.
 
 Claim boundary remains unchanged: no Gen2 checkpoint has yet been established by this evidence; no admission, activation, cutover, or canonical-head mutation is claimed. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Checkpoint Descriptor Preflight
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R41 output and R40Z state readback; continuity archive evidence, not an independent audit.
+
+- R41_CHECKPOINT_REFERENCES=126
+- R41_DESCRIPTOR_PREFLIGHT=PASS
+- R41_OPTIMIZER_SCALARS=UNVERIFIED
+- R41_GEN2_CHECKPOINT=NOT_CREATED
+- SIGMA_VM_EXIT_CODE=0
+
+R40Z prestate remains:
+- PHASE=READY
+- PARAMETER_NEXT=42
+- VERIFY_NEXT=123
+- VERIFY_TOTAL=123
+
+Continuity interpretation: R41 has successfully qualified the reported 126 checkpoint references at descriptor-preflight scope, but optimizer scalar state remains unverified. Therefore checkpoint publication/Gen2 creation is not established and must remain blocked until the existing optimizer scalar contract is resolved and verified.
+
+Coder anti-rediscovery rule: retain the R41 126-reference preflight result and the R40Z READY prestate. Do not rerun R40Z staging or its 123-item verification merely to repeat evidence. Next work should target optimizer scalar verification and then the existing native model+optimizer checkpoint qualification path.
+
+Claim boundary: GEN2_CHECKPOINT=NOT_CREATED. No canonical admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
