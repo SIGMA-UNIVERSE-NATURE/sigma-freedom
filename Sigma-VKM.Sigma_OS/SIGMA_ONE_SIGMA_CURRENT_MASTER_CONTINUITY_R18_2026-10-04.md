@@ -5441,3 +5441,29 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native regres
 Continuity decision: retain this direct-chunk F32/BF16 regression KAT as completed evidence for the current source/bytecode identity. Later coders should not rerun it absent a change to the relevant chunk path, dtype handling, source identity, or a new regression/integrity failure.
 
 Claim boundary: this KAT establishes only the reported direct-chunk regression result. It does not verify R41 optimizer/embedding scalar completion, create a Gen2 checkpoint, prove model-quality improvement, or establish admission, activation, cutover, or canonical-head mutation. Existing R40Z/R41 continuity evidence remains in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — CAS Moment Verification Segment 0
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native R41 CAS-moment segment output; continuity archive evidence, not an independent audit.
+
+- R41_CAS_MOMENT_STEP=IMPLEMENTED
+- Source SHA256: `73cbceb2625ef5081c5b3223bf76f8bd8f216266107af74d0a04a52a502bbed3`
+- Bytecode SHA256: `397491de96ec6137dfc2078d0aef0fcb31c6832467a0aa1a6909e6ce930284d1`
+- R40Z READY prestate was required and its ACC supplied through the existing input contract.
+- Command: `RBX_ARCH8_R41_CAS_MOMENT_STEP`
+- Moment start: 0
+- Elements checked: 32
+- Failures: 0
+- Maximum absolute difference: `7.94506969e-09`
+- Maximum relative difference: `0.442743874905509`
+- R41_CAS_MOMENT_SEGMENT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- R41_FULL_MOMENT_VERIFICATION=NOT_COMPLETE
+- R41_GEN2_CHECKPOINT=NOT_CREATED
+
+Execution context explicitly set `SIGMA_MAX_STEPS=2000000000`; this is recorded as run context, not a VKM modification or proof that the override is required by the final checkpoint path.
+
+Continuity decision: retain segment 0 as completed CAS-moment verification evidence. Do not rerun this unchanged segment absent changed source/state/content identity or a new integrity failure. Continue the bounded segmented moment-verification protocol until the full required moment set is covered.
+
+Claim boundary: segment PASS does not equal full moment verification. The reported maximum relative difference is retained as evidence and is not independently interpreted as acceptable beyond the segment's own PASS result. Gen2 checkpoint remains NOT_CREATED; no admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
