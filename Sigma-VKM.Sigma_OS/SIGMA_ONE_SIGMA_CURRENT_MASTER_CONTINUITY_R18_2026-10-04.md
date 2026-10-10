@@ -5277,3 +5277,31 @@ R40Z remains READY with full model checkpoint NOT_CREATED, full optimizer checkp
 Coder continuity rule: continue from the existing page/CAS, ref-manifest, model checkpoint, optimizer checkpoint/restore, R40Z preference-chain and finalize contracts. Do not broadly rediscover these surfaces and do not invent duplicate storage/checkpoint machinery. Before any Gen2 claim, create and qualify the actual model+optimizer checkpoint, then prove fresh-process restoration and integrity.
 
 No Gen2 publication, admission, activation, cutover, or canonical-head mutation is established by this source inspection. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — Host Write ABI + R40Z READY Reference Bind
+
+Evidence date: 2026-10-11. Purpose: anti-rediscovery handoff. Basis: user-supplied Termux source excerpts and R40Z state output; archive evidence, not an independent audit.
+
+### Byte-write and atomic-write ABI
+
+`U_bwrite(p,b)` directly dispatches `U_H("bytes_write",b,p,NULL)`.
+
+The source exposes distinct host operations `bytes_write` and `bytes_write_atomic`. `R14_bytes_write_atomic(raw,path)` delegates to `R14_file_write_atomic(raw,path)`, while the previously supplied implementation of `R14_file_write_atomic` returns `U_bwrite(path,raw)`, i.e. the visible implementation routes through `bytes_write`.
+
+Other source locations explicitly invoke `U_H("bytes_write_atomic",...)` and assert success, so `bytes_write_atomic` is a registered/exercised host ABI operation distinct from ordinary `bytes_write`.
+
+Continuity rule: do not infer that `R14_file_write_atomic` itself provides the same semantics as direct `bytes_write_atomic` merely from its name. Do not modify the host/VKM write ABI for ARCH8 checkpoint work without a concrete failed gate. Any crash-atomicity claim requires evidence for the exact write path used by the checkpoint/publication transaction.
+
+### Current R40Z READY bind
+
+- PHASE: READY
+- PARAMETER_NEXT: 42
+- VERIFY_NEXT / VERIFY_TOTAL: 123 / 123
+- FULL_E_REF: `61f0af2f23198f2b4caf0dfb6c4437a1`
+- FULL_M_REF: `613c8e1c243f028743b817c12898e3c2`
+- FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`
+
+Coder continuity rule: preserve this READY prestate and continue through the existing native checkpoint/restore contracts. Do not rerun completed staging/verification or rediscover the R40X/R40Z embedding refs absent a new failed integrity gate.
+
+Claim boundary remains unchanged: no Gen2 checkpoint has yet been established by this evidence; no admission, activation, cutover, or canonical-head mutation is claimed. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
