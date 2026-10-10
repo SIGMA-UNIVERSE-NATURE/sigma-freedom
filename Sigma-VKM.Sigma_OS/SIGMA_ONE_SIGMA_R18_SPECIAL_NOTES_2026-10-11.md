@@ -72,3 +72,38 @@ Continuity interpretation: VELA L1 now has a reported dispatch path and a succes
 Anti-rediscovery rule: retain this source/bytecode identity and KAT result. Do not repeat the same VELA L1 KAT unless the VELA implementation, dispatch path, relevant runtime identity, or test contract changes, or a new regression is observed.
 
 Claim boundary: runtime KAT PASS does not establish use in ARCH8 training, optimizer mutation, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA remains recorded in SPECIAL R18 NOTES as experimental/research capability evidence until separately authorized and integrated into a qualifying training/control path.
+
+
+## VELA L2 — Core Integrated + Native Dispatch/KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux integration, compile, dispatch, and native runtime KAT output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### Integration and dispatch
+
+- VELA_LAYER2_CORE=INTEGRATED
+- Dispatch insertion required exactly one existing `RBX_VELA_L1_KAT` anchor and failed closed otherwise.
+- New command installed: `RBX_VELA_L2_KAT` → `VELA2_kat()`.
+- VELA_LAYER2_DISPATCH=INSTALLED
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Post-L2 source SHA256: `0f8f49c3c4d90a2172e77463ccc7ca73b20631b6612ab831df98c54bb88b2676`
+- Post-L2 bytecode SHA256: `4db8c0fc0c5a8038c9fd59b6218c0e815dccdcee14d279d4ab53f62193eed6a8`
+
+### Native runtime KAT
+
+Runtime command: `RBX_VELA_L2_KAT`, executed by the existing `sigma-vkm`.
+
+- VELA2_ADAPTIVE_BETA=PASS
+- VELA2_MOMENT_UPDATE=PASS
+- VELA2_BIAS_PRODUCTS=PASS
+- VELA2_DIRECTION=PASS
+- VELA2_ZERO_GRADIENT=PASS
+- VELA2_STATE_IMMUTABILITY=PASS
+- VELA2_ADAPTATION=PASS
+- VELA_LAYER2_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity interpretation: VELA L2 now has reported local source integration, an explicit native dispatch path, successful compilation, and a native runtime KAT covering adaptive beta behavior, moment update, bias products, direction, zero-gradient behavior, state immutability, and adaptation.
+
+Anti-rediscovery rule: retain this source/bytecode identity, dispatch insertion contract, and L2 KAT result. Do not repeat the same L2 discovery/KAT unless implementation, dispatch, runtime identity, or KAT contract changes, or a regression appears.
+
+Claim boundary: this does not establish VELA L2 use in ARCH8 training, optimizer mutation of the qualifying candidate, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L2 remains SPECIAL R18 experimental/research evidence until separately bound into and qualified by an authorized training/control path.
