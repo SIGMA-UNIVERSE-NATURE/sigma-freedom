@@ -5393,3 +5393,31 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux R41 manifest-assembly out
 Continuity decision: retain these three assembled manifest refs and the 126-reference count as current R41 evidence. Do not rebuild the manifests absent a changed tensor reference set or a new integrity failure. The remaining explicit blocker is optimizer-scalar verification; manifest assembly alone is not a Gen2 checkpoint.
 
 Claim boundary: no Gen2 checkpoint, canonical admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Parent/Candidate Optimizer Scalar Inspection
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native R41 optimizer-scalar inspection output; continuity archive evidence, not an independent audit.
+
+- R41_OPTIMIZER_SCALAR_INSPECTION=IMPLEMENTED
+- Source SHA256: `b39f5c88f580de0abbde674a0013cf93f73440b67b22bb60688fb5072cdbd85a`
+- Bytecode SHA256: `bf7d3baeecb09324d5b4202d34a59c6cb066aa3824364a6120251434b264bdc6`
+- Existing R40Z `PHASE=READY` was required before invocation.
+- Command: `RBX_ARCH8_R41_OPT_SCALARS`
+- Execution context explicitly set `SIGMA_MAX_STEPS=2000000000`; this is recorded as run context, not a VKM modification or a final checkpoint requirement.
+- SIGMA_VM_EXIT_CODE=0
+- R41_PARENT_OPTIMIZER_SCALARS=VALID
+- R41_PARENT_STEP=1
+- R41_CANDIDATE_STEP=2
+- R41_PARENT_BETA1_POWER=0.9
+- R41_PARENT_BETA2_POWER=0.999
+- R41_CANDIDATE_BETA1_POWER=0.81
+- R41_CANDIDATE_BETA2_POWER=0.998001
+- R41_EMBEDDING_SCALARS=UNVERIFIED
+- R41_GEN2_CHECKPOINT=NOT_CREATED
+
+Continuity interpretation: the reported candidate scalar transition is consistent with the already-recorded AdamW state-update semantics for one step: step 1→2, beta1 power 0.9→0.81, beta2 power 0.999→0.998001. This statement is limited to the supplied scalar evidence and does not substitute for embedding-scalar verification.
+
+Coder anti-rediscovery rule: retain the validated parent/candidate scalar values and this newer source/bytecode identity. Do not repeat parent scalar discovery unless the parent optimizer identity changes. The remaining explicit scalar gate is embedding-scalar verification; Gen2 checkpoint creation remains blocked until required checkpoint state is fully qualified.
+
+Claim boundary: GEN2_CHECKPOINT=NOT_CREATED. No admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
