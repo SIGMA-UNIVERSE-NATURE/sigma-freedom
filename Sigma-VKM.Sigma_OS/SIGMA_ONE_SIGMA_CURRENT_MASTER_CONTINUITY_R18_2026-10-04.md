@@ -5186,3 +5186,40 @@ The supplied source confirms `RBARCH8_opt_row` validates an eight-field `SIGMA_R
 Later coders should reuse this artifact inventory and established R40X/R40Z lineage rather than repeat broad R40 source/artifact discovery. The next checkpoint work should resolve the actual R40Z READY checkpoint inputs and parent optimizer object using existing native checkpoint/restore contracts.
 
 Claim boundary: R40X receipt remains qualification evidence with `REMAINING_PARAMETERS_UPDATE=NOT_RUN`, `FULL_MODEL_GRADIENT_UPDATE=NO`, `GEN2_CHECKPOINT=NOT_CREATED`, and model generation 1. No Gen2 publication, model-quality improvement, admission, activation, cutover, or canonical-head mutation is established here. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — R40W Assembly to R40X Content Identity + Embedding Training Lineage
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R40W/R40X state output and embedding-training state excerpts; continuity archive evidence, not an independent audit.
+
+### R40W canonical-binding assembly
+
+- Schema: `SIGMA_ARCH8_R40W_CANONICAL_BINDING_ASSEMBLY_STATE_V1`
+- Run key: `ac3e65ce356fad383a66ff99af7b4c57c29899a87062c09d0686cd65fcbf262c`
+- Shard total: 64.
+- FULL_E_REF: `69a110840f2f2e0d4e05acb45d2819b9`
+- FULL_M_REF: `68ecef711054a169450eb67a197cc5da`
+- FULL_V_REF: `1a98086567856c844bb3f2f348063544`
+- FULL E/M/V content SHA256 respectively: `ca43dcf10b7899428c37713e3ad2787360eca7f94279189f900d5acd89bf239b`, `6d19e0d7de50fd6c8c065e092ffd4ea44728081a641029ee6f4e82c54c6e6a50`, `5d62d9c88e575cdb18d15ad2f6422f5a9eb6c64cb19ff3aff97634e0db4f86c4`.
+- Geometry: 512 x 16 F32; tensor bytes 32768.
+- Assembly algorithm: `CANONICAL_BINDING_STREAM`; prefix `R14TENSOR1`.
+- Full descriptor leaf count: 64; pair descriptor leaf count: 2.
+- No full-tensor allocation/hash/store call, no runtime-handle serialization/cross-process reuse, no max-step override.
+- Model generation remains 1; no canonical mutation/admission/activation/cutover.
+
+R40W CAS-index state reports `PHASE=INDEX_COMPLETE`, `INDEXED_SHARDS=64`, `REMAINING_SHARDS=0`, and durable E/M/V leaf lists. The full leaf lists remain in the local evidence artifact and are intentionally not duplicated verbatim into this master continuity file.
+
+### R40W → R40X content identity
+
+R40X uses different durable FULL_E/M/V descriptor refs:
+- E `61f0af2f23198f2b4caf0dfb6c4437a1`
+- M `613c8e1c243f028743b817c12898e3c2`
+- V `12e7a7107b6fcda24a5d543a5722532c`
+
+but reports the same E/M/V content SHA256 values as R40W. Continuity interpretation: descriptor identity changed while reported underlying content identity remained stable across R40W → R40X. This is a content-identity observation, not a claim of canonical model publication.
+
+### Embedding training lineage evidence
+
+Reported states show `GRADIENT_UPDATE=YES` with learning rate `0.0001` in R36 embedding-split training and in R40 row-shard, R40B byte-shard, and R40D micro-embedding training. R40/R40B/R40D bind parent model `2d20fe2a6035d8150d42c4fd262fae94` and parent optimizer `4f4d01c078e8d2fc26c2c87215aaa50c`.
+
+Coder continuity rule: preserve this established embedding-training and assembly lineage; do not rediscover the 64-shard CAS topology unless a new integrity failure specifically requires it. This evidence does not establish Gen2 checkpoint creation, quality improvement, admission, activation, cutover, or canonical-head mutation. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
