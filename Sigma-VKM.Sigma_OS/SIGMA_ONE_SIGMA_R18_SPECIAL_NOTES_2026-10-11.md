@@ -294,3 +294,39 @@ Current reported ARCH8 P0 source SHA256: `1c6c23083cde9951c1d19509d812961a65f1d5
 Retain these VELA numeric/evidence KAT results and existing ARCH8 restore/evaluation primitives; do not rediscover them broadly. Do not infer that VELA is wired into `RBARCH8_opt_step_all`, checkpoint restore, model loss, or RBVE evaluation merely because those functions coexist in the source. Such integration requires an explicit call path plus runtime evidence.
 
 No ARCH8 training integration, qualifying optimizer mutation, Gen2 checkpoint, model-quality improvement, canonical admission, activation, or cutover is established by this block. GitHub SPECIAL R18 remains a research/experimental archive, not the live OPPO SIGMA HEAD.
+
+
+## VELA9 PEG — Local ARCH8 Source Replacement Record
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux file-identity, compile, backup/copy/compare/move output; SPECIAL R18 research evidence, not an independent audit or production/canonical activation claim.
+
+### Input identities
+
+- VELA9 SIGMA source: `SIGMA_CORE_VELA9_PEG_R20261011_B.sigma`
+- VELA9 SIGMA source SHA256: `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d`
+- VELA9 VKM meter C source: `SIGMA_VKM_VELA9_METER_R20261011_B.c`
+- VKM meter C SHA256: `c4b1fadbfd50f7a5817cc10ca0299b80cc6fc1c80cac27c590462ff1a8850559`
+
+### Compile and local replacement procedure
+
+The VELA9 SIGMA source was successfully compiled with the existing `sigmac-vkm` into `SIGMA_CORE_VELA9_PEG_R20261011_B.sigmab` according to the supplied output.
+
+The local file `/sdcard/Download/SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` was handled as follows:
+1. copied with metadata preservation to `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma.backup_pre_vela9`;
+2. VELA9 source copied to a `.vela9_pending` path;
+3. pending copy compared byte-for-byte with the VELA9 source using `cmp -s`;
+4. pending file moved over the local ARCH8 P0 source path with `mv -f`.
+
+Reported marker: `SIGMA_CANONICAL_SOURCE=VELA9`.
+
+Post-replacement SHA256 of the local `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` path: `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d`, matching the supplied VELA9 source identity.
+
+### Claim discipline / coder handoff
+
+This record establishes the reported replacement of the local /sdcard ARCH8 P0 source file and matching content identity. The marker `SIGMA_CANONICAL_SOURCE=VELA9` is recorded as command output only.
+
+It does NOT by itself establish mutation of the live ONE SIGMA canonical HEAD, owner state, native binding, production runtime selector, admission state, or production activation. No such live-state readback was supplied in this block.
+
+The C file `SIGMA_VKM_VELA9_METER_R20261011_B.c` is identity-recorded only. This block does not establish that it was compiled into, linked into, or used by the existing `sigma-vkm` binary.
+
+Anti-rediscovery: later coders should treat SHA256 `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d` as the reported current content identity of the local ARCH8 P0 source path after this VELA9 replacement, and preserve the `.backup_pre_vela9` recovery fact. Any stronger canonical/VM integration claim requires separate runtime/binary/live-state evidence.
