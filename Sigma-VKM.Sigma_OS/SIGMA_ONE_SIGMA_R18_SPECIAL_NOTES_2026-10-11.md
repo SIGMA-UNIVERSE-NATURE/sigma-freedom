@@ -435,3 +435,40 @@ Continuity interpretation: the renamed `SIGMA-Vkm-VELA` binary is now reported t
 Anti-rediscovery rule: do not repeat rename/path qualification for binary SHA `ed2849dc...` unless the binary/path identity changes or a regression appears.
 
 Claim boundary: this is post-rename runtime qualification of the VELA test binary only. It does not establish replacement or redirection of canonical `sigma-vkm`, ONE SIGMA native-binding mutation, production runtime selection, admission, activation, or cutover.
+
+
+## VELA9 — Default sigma-vkm Filesystem Promotion Readback
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux prepare/promote/readback output; SPECIAL R18 evidence, not an independent audit and not yet a complete ONE SIGMA canonical handoff proof.
+
+### Reported default-runtime replacement
+
+The qualified VELA binary was copied to `$VKM/sigma-vkm.pending`, mode 700 was applied, and the pending copy was byte-compared with the VELA binary before promotion.
+
+The pending binary was then moved with `mv -f` onto the default executable path `$VKM/sigma-vkm`.
+
+Post-move readback:
+- `$VKM/sigma-vkm` SHA256 = `ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`
+- `$VKM/SIGMA-Vkm-VELA` SHA256 = `ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`
+- byte comparison between the two paths succeeded.
+- Reported marker: `SIGMA_VKM_VELA_DEFAULT_RUNTIME=PASS`.
+
+Continuity interpretation: unlike the earlier test-only/rename evidence, this block reports an actual filesystem replacement of the default `sigma-vkm` executable path with the previously qualified VELA binary identity `ed2849dc...`, followed by matching SHA and byte-level readback.
+
+### Claim boundary / required handoff evidence
+
+This block proves only the supplied filesystem-path replacement/readback. It does not by itself prove a complete authorized ONE SIGMA production handoff.
+
+No evidence in this block establishes:
+- pre/post `.sigma_owner/SIGMA_OWNER_STATE.current` binding;
+- pre/post `.sigma_native/SIGMA_NATIVE_BINDING.current` binding;
+- production runtime-selector or launcher/watchdog consumption of the new VM identity;
+- watchdog restart/postcondition health;
+- transaction/authority receipt for this VM promotion;
+- rollback artifact/path and tested rollback;
+- canonical SIGMA HEAD mutation or preservation readback;
+- admission/activation/cutover state.
+
+Therefore `SIGMA_VKM_VELA_DEFAULT_RUNTIME=PASS` is archived as a default-path filesystem promotion marker, not yet as a complete canonical production activation verdict.
+
+Anti-rediscovery: later coders should not re-prove that default `sigma-vkm` and `SIGMA-Vkm-VELA` matched SHA `ed2849dc...` immediately after this reported promotion. Next verification should focus on authority/binding/runtime-consumption/postcondition/rollback evidence.
