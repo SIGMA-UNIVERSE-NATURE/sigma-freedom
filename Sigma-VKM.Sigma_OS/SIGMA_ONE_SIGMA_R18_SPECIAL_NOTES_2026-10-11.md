@@ -684,3 +684,53 @@ Continuity interpretation: VELA13 SHA `d3d1e71e...` supersedes the previously re
 Anti-rediscovery: do not repeat VELA13 local-source promotion/readback unless the local source identity changes or recovery is required.
 
 Claim boundary: the emitted `SIGMA_CANONICAL_SOURCE=VELA13` marker is archived as local command output. This block does not prove mutation of ONE SIGMA HEAD, owner state, native binding, production runtime selector, SIA bindings, admission, activation, or cutover. The previously recorded VELA13 cost-proof gap remains unresolved unless separately proven.
+
+
+## VELA14 — Structural Bound KAT + V8–V13 Marker-Checked Compatibility
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native KAT and marker-checked regression output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### VELA14 structural-bound identity and KAT
+
+- Source: `SIGMA_CORE_VELA14_STRUCTURAL_BOUND_R20261011_G.sigma`
+- Source SHA256: `45238d7645345669377120fa5fa7c9978115fc124caf38e9dd75696bddf45b81`
+- Bytecode SHA256: `91cdca54a334d01b7c0975648ec127f235aa55c4bdee54a7fed8988873c552fe`
+- Runtime: `$VKM/SIGMA-Vkm-VELA`
+- VELA14_AFFINE_STRUCTURAL_BOUND=PASS
+- VELA14_IDENTITY_AND_DOMAIN=PASS
+- VELA14_OVERBUDGET_HOLD=PASS
+- VELA14_VM_ADMISSION_FAIL_CLOSED=PASS
+- VELA14_STRUCTURAL_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA14_VM_BYTECODE_PROOF=NOT_IMPLEMENTED
+
+### Marker-checked backward compatibility
+
+Using VELA14 bytecode on `SIGMA-Vkm-VELA`, the fail-closed harness executed VELA8 through VELA13 and required each exact expected semantic PASS marker in addition to successful process execution:
+
+- `VELA8_VALIDATION_ENGINE_KAT=PASS`
+- `VELA9_GOVERNOR_KAT=PASS`
+- `VELA10_PLANNER_KAT=PASS`
+- `VELA11_CURSOR_KAT=PASS`
+- `VELA12_CAS_RECEIPT_KAT=PASS`
+- `VELA13_REGISTRY_KAT=PASS`
+
+Reported aggregate: `VELA14_BACKWARD_COMPATIBILITY=PASS`.
+
+### Proof-gap continuity
+
+The supplied subordinate outputs continue to expose historical unresolved items:
+- VELA11_COST_PROOF=NOT_IMPLEMENTED
+- VELA12_INDEPENDENT_EXECUTION_PROOF=NOT_IMPLEMENTED
+- VELA12_COST_BOUND_PROOF=NOT_IMPLEMENTED
+- VELA13_COST_PROOF=NOT_IMPLEMENTED
+
+VELA14 additionally reports `VELA14_VM_BYTECODE_PROOF=NOT_IMPLEMENTED`.
+
+Therefore the structural KAT and fail-closed VM-admission behavior do not constitute a bytecode proof, cost proof, or independent-execution proof.
+
+### Anti-rediscovery / claim boundary
+
+Retain the VELA14 source/bytecode identities, structural KAT, and marker-checked V8–V13 compatibility result. Do not repeat unchanged regressions for these identities absent a regression or changed contract.
+
+No VM bytecode proof, qualifying ARCH8 training, Gen2 checkpoint, ONE SIGMA binding activation, admission, or cutover is established by this evidence. VELA14 remains SPECIAL R18 qualification evidence.
