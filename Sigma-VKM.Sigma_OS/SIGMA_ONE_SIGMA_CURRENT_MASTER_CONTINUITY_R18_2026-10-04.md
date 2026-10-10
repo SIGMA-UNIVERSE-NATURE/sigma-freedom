@@ -5223,3 +5223,57 @@ but reports the same E/M/V content SHA256 values as R40W. Continuity interpretat
 Reported states show `GRADIENT_UPDATE=YES` with learning rate `0.0001` in R36 embedding-split training and in R40 row-shard, R40B byte-shard, and R40D micro-embedding training. R40/R40B/R40D bind parent model `2d20fe2a6035d8150d42c4fd262fae94` and parent optimizer `4f4d01c078e8d2fc26c2c87215aaa50c`.
 
 Coder continuity rule: preserve this established embedding-training and assembly lineage; do not rediscover the 64-shard CAS topology unless a new integrity failure specifically requires it. This evidence does not establish Gen2 checkpoint creation, quality improvement, admission, activation, cutover, or canonical-head mutation. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — Coder Handoff: Native Checkpoint, Manifest, Page Storage and Commit Surface
+
+Evidence date: 2026-10-11. Purpose: anti-rediscovery handoff for later coders. Basis: user-supplied Termux excerpts from `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma`; source SHA256 `094aa9912fbb3fc68556ff43e494197320fdb2391a06f40715cac77c3d29bfab`. Archive evidence, not an independent audit.
+
+### Existing ARCH8 optimizer/checkpoint surface
+
+Confirmed definitions in the supplied source:
+- `RBARCH8_ref_manifest_build(base,kind,profile,generation,refs)`
+- `RBARCH8_opt_row(h)`
+- `RBARCH8_opt_checkpoint(base,model,states)`
+- `RBARCH8_opt_restore(base,model,opt_ref)`
+- `R40Z_pref_find(base,head,kind,index,total)`
+- `R40Z_finalize(base)`
+
+No separately named per-parameter optimizer-scalar/step-manifest helper was found by the reported targeted grep. Later coders should not invent one merely because the grep returned none; use the established optimizer-row/state contract unless a concrete missing gate proves otherwise.
+
+### Existing page/CAS storage primitive
+
+`I_page(s)` stores text bytes through `U_store(BASE,...)` and returns the resulting content handle. `I_readpage(h)` restores by handle and requires a non-null result before converting bytes back to string. `I_row` validates row width and kind after page restoration.
+
+### Existing reference-manifest contract
+
+`RBARCH8_ref_manifest_build` requires a valid profile, decimal generation, and a ref count equal to the profile tensor count. It partitions refs into leaves of width 256, stores leaf pages, stores a root page, validates the root, and returns the root ref.
+
+`RBARCH8_ref_manifest_root_row` validates root schema, profile/count fields, fixed width 256, positive leaf count, total row length, and the mathematically expected number of leaves.
+
+`RBARCH8_ref_manifest_tensor_ref` validates kind/profile/index, resolves the appropriate leaf and offset, validates the leaf bound, and returns the durable tensor ref.
+
+### Existing native model checkpoint contract
+
+`RBARCH8_checkpoint(base,model,generation)`:
+- requires a valid model and decimal generation;
+- requires model parameter count to equal profile tensor count;
+- stores every model parameter tensor through `RBT_store_tensor`;
+- builds a `MODEL` reference manifest bound to profile and generation;
+- returns a durable page with schema `RBARCH8MODEL || SIGMA_RB_ARCH8_MODEL_V1 || profile || manifest || generation`.
+
+This is the existing model checkpoint architecture. Do not create a second model-checkpoint format for post-R40Z work without a new failed gate proving the existing contract insufficient.
+
+### Existing commit/write surface
+
+The source contains existing commit functions including `RBTG2_commit` and RBTG3 commit paths. The supplied `RBTG2_commit` excerpt explicitly describes a fresh-interpreter-budget commit stage with no corpus pass.
+
+`R14_file_write_atomic(raw,path)` is named as an atomic-write helper but, in the supplied implementation, directly returns `U_bwrite(path,raw)`. Therefore this continuity record does NOT claim crash-safe temp-file-plus-rename semantics from the function name alone. Any stronger atomicity claim requires separate evidence for `U_bwrite` or the surrounding transaction protocol.
+
+### Current ARCH8 checkpoint prestate
+
+R40Z remains READY with full model checkpoint NOT_CREATED, full optimizer checkpoint NOT_CREATED, and model generation 1 per the prior recorded evidence.
+
+Coder continuity rule: continue from the existing page/CAS, ref-manifest, model checkpoint, optimizer checkpoint/restore, R40Z preference-chain and finalize contracts. Do not broadly rediscover these surfaces and do not invent duplicate storage/checkpoint machinery. Before any Gen2 claim, create and qualify the actual model+optimizer checkpoint, then prove fresh-process restoration and integrity.
+
+No Gen2 publication, admission, activation, cutover, or canonical-head mutation is established by this source inspection. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
