@@ -413,3 +413,25 @@ Continuity interpretation: binary content identity is unchanged from the previou
 Anti-rediscovery rule: later coders should treat `SIGMA-Vkm-VELA` SHA256 `ed2849dc...` as the renamed VELA9-qualified test binary and should not rebuild/requalify it solely because of the rename.
 
 Claim boundary: this rename is not evidence that the existing canonical executable `$HOME/SIGMA_R7_NEXT_R1/VKM/sigma-vkm` was replaced, redirected, or mutated. It does not establish ONE SIGMA native-binding change, production runtime selection, canonical activation, admission, or cutover. Promotion requires separate authority and live-state readback.
+
+
+## VELA9 — Post-Rename Direct Runtime Governor KAT
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux SHA readback and direct runtime output; SPECIAL R18 research evidence, not an independent audit or canonical VKM promotion claim.
+
+- Runtime path: `$HOME/SIGMA_R7_NEXT_R1/VKM/SIGMA-Vkm-VELA`
+- SHA256 readback: `ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`
+- SHA matched the expected qualified VELA9 test-VM identity.
+- Prior rename marker remained `SIGMA_VKM_VELA_RENAME=PASS`.
+- Bytecode invoked: `SIGMA_CORE_VELA9_PEG_R20261011_B.sigmab`
+- Command: `RBX_VELA9_KAT`
+- VELA9_RESOURCE_METER=PASS
+- VELA9_UNPROVEN_BOUND_HOLD=PASS
+- VELA9_OVERBUDGET_HOLD=PASS
+- VELA9_GOVERNOR_KAT=PASS
+
+Continuity interpretation: the renamed `SIGMA-Vkm-VELA` binary is now reported to execute the VELA9 governor KAT successfully from its new path, preserving both binary identity and the previously qualified governor behavior after rename.
+
+Anti-rediscovery rule: do not repeat rename/path qualification for binary SHA `ed2849dc...` unless the binary/path identity changes or a regression appears.
+
+Claim boundary: this is post-rename runtime qualification of the VELA test binary only. It does not establish replacement or redirection of canonical `sigma-vkm`, ONE SIGMA native-binding mutation, production runtime selection, admission, activation, or cutover.
