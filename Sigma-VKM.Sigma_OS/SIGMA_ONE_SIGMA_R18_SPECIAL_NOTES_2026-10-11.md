@@ -667,3 +667,20 @@ VELA13 itself reports `VELA13_COST_PROOF=NOT_IMPLEMENTED`. Therefore the cost re
 Continuity decision: retain VELA13 KAT and marker-checked V8–V12 compatibility. Do not repeat these unchanged regressions for the same source/bytecode/VM identities unless a relevant identity changes or regression appears.
 
 Claim boundary: no cost proof, independent execution proof, qualifying ARCH8 training, Gen2 checkpoint, ONE SIGMA binding activation, admission, or cutover is established by this evidence.
+
+
+## VELA13 — Local ARCH8 Source Promotion Readback
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux expected-SHA check and local source readback; SPECIAL R18 evidence, not an independent audit or ONE SIGMA canonical activation claim.
+
+- The local `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` path passed the expected-new SHA check.
+- Post-promotion SHA256: `d3d1e71e0350887925f0f63bfa0a95abec873b0b3cc3bc0271eb1ebe27df3146`.
+- Reported markers:
+  - `SIGMA_CANONICAL_SOURCE=VELA13`
+  - `VELA13_SOURCE_PROMOTION=PASS`
+
+Continuity interpretation: VELA13 SHA `d3d1e71e...` supersedes the previously recorded VELA12 SHA as the reported current content identity of the local `/sdcard/Download/SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` path.
+
+Anti-rediscovery: do not repeat VELA13 local-source promotion/readback unless the local source identity changes or recovery is required.
+
+Claim boundary: the emitted `SIGMA_CANONICAL_SOURCE=VELA13` marker is archived as local command output. This block does not prove mutation of ONE SIGMA HEAD, owner state, native binding, production runtime selector, SIA bindings, admission, activation, or cutover. The previously recorded VELA13 cost-proof gap remains unresolved unless separately proven.
