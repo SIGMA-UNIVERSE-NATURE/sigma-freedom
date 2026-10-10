@@ -5421,3 +5421,23 @@ Continuity interpretation: the reported candidate scalar transition is consisten
 Coder anti-rediscovery rule: retain the validated parent/candidate scalar values and this newer source/bytecode identity. Do not repeat parent scalar discovery unless the parent optimizer identity changes. The remaining explicit scalar gate is embedding-scalar verification; Gen2 checkpoint creation remains blocked until required checkpoint state is fully qualified.
 
 Claim boundary: GEN2_CHECKPOINT=NOT_CREATED. No admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8/R14 — Direct Chunk Regression KAT
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native regression output; continuity archive evidence, not an independent audit.
+
+- R14_DIRECT_CHUNK_KAT=IMPLEMENTED
+- Source SHA256: `1ff403348e8d909024890799c4d21c576f209432605811ab8266138f2a102626`
+- Bytecode SHA256: `2509ca2d9425442d45fbeee40550cdf85ded4ddc4841e334e4cb6fe3b8ce78ce`
+- Compiler: existing `sigmac-vkm`; compilation completed successfully.
+- Command: `RBX_R14_DIRECT_CHUNK_KAT`
+- Runtime: existing `sigma-vkm`
+- R14_DIRECT_CHUNK_F32=PASS
+- R14_DIRECT_CHUNK_BF16=PASS
+- R14_DIRECT_CHUNK_REGRESSION=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity decision: retain this direct-chunk F32/BF16 regression KAT as completed evidence for the current source/bytecode identity. Later coders should not rerun it absent a change to the relevant chunk path, dtype handling, source identity, or a new regression/integrity failure.
+
+Claim boundary: this KAT establishes only the reported direct-chunk regression result. It does not verify R41 optimizer/embedding scalar completion, create a Gen2 checkpoint, prove model-quality improvement, or establish admission, activation, cutover, or canonical-head mutation. Existing R40Z/R41 continuity evidence remains in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
