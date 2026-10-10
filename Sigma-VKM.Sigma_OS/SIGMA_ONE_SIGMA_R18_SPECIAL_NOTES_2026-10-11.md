@@ -588,3 +588,33 @@ The supplied evidence explicitly leaves:
 - `VELA12_COST_BOUND_PROOF=NOT_IMPLEMENTED`
 
 Therefore VELA12 is not yet evidence of independent execution proof or a proved cost bound. It also does not by itself establish qualifying ARCH8 training, Gen2 checkpoint creation, ONE SIGMA native-binding activation, admission, or cutover. Those claims require separate evidence.
+
+
+## VELA12 — Local ARCH8 Source Promotion
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux backup, pending-copy comparison, promotion, and SHA256 readback; SPECIAL R18 evidence, not an independent audit or ONE SIGMA canonical activation claim.
+
+### Reported source promotion
+
+Before replacement, the existing local ARCH8 source was preserved with `cp -p` to the caller-selected backup path.
+
+The VELA12 source was then copied to a pending path, byte-compared with `cmp -s`, moved with `mv -f` over the local `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` path, and checked against the expected VELA12 SHA256.
+
+Post-promotion local source SHA256:
+`3255b41d8771494d8061071d2e129ffee59241e1a81cce4d25d1ebeb95e71f92`.
+
+Reported markers:
+- `SIGMA_CANONICAL_SOURCE=VELA12`
+- `VELA12_SOURCE_PROMOTION=PASS`
+
+### Continuity interpretation
+
+This supersedes the previously recorded VELA10 local-source identity for the `/sdcard/Download/SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` path. The reported current local source identity is now VELA12 SHA `3255b41d...`, with a pre-promotion backup reported as created.
+
+Anti-rediscovery: do not repeat the VELA12 local-source promotion or rediscover its resulting SHA unless the local source identity changes or recovery is required.
+
+### Claim boundary
+
+The word `CANONICAL` in the emitted marker is archived as local command output. This evidence does not by itself prove mutation of `.sigma_ail/SIGMA_HEAD`, owner state, native binding, production runtime selector, SIA bindings, admission, activation, or cutover.
+
+The previously recorded VELA12 proof gaps also remain unless separately resolved: independent execution proof and cost-bound proof were reported NOT_IMPLEMENTED.
