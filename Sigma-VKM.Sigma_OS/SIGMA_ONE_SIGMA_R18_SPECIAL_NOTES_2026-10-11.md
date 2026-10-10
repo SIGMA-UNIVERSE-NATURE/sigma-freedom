@@ -472,3 +472,61 @@ No evidence in this block establishes:
 Therefore `SIGMA_VKM_VELA_DEFAULT_RUNTIME=PASS` is archived as a default-path filesystem promotion marker, not yet as a complete canonical production activation verdict.
 
 Anti-rediscovery: later coders should not re-prove that default `sigma-vkm` and `SIGMA-Vkm-VELA` matched SHA `ed2849dc...` immediately after this reported promotion. Next verification should focus on authority/binding/runtime-consumption/postcondition/rollback evidence.
+
+
+## VELA10 Planner — KAT, Backward Compatibility, and Local Source Promotion
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile/runtime/backward-compatibility and source-promotion output; SPECIAL R18 research evidence, not an independent audit or canonical ONE SIGMA activation claim.
+
+### VELA10 planner identity and KAT
+
+- VELA10 source: `SIGMA_CORE_VELA10_PLANNER_R20261011_C.sigma`
+- Source SHA256: `9551d033f84a23166e3e52ad85666a606c1607a31eb6992bc1f359d946021e8a`
+- Bytecode SHA256: `93534c7561b225ba9d6373fb776ec90d2e0bff0d7e6a2415e8388f7fe380853c`
+- Source identity was fail-closed checked before compilation.
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime used `$VKM/SIGMA-Vkm-VELA`.
+- Command: `RBX_VELA10_KAT`.
+- VELA10_UNPROVEN_HOLD=PASS
+- VELA10_COMPLETE_CURSOR=PASS
+- VELA10_BOUNDED_PLAN=PASS
+- VELA10_BUDGET_HOLD=PASS
+- VELA10_PLANNER_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Backward compatibility on VELA VM
+
+Using the VELA10 bytecode on `SIGMA-Vkm-VELA`, the supplied regression reran:
+- `RBX_VELA9_KAT`: resource meter, unproven-bound HOLD, overbudget HOLD, governor KAT all PASS.
+- `RBX_VELA8_KAT`: ARCH8 forward, cross entropy, numeric integrity, validation-engine KAT all PASS.
+
+Reported aggregate marker: `VELA10_BACKWARD_COMPATIBILITY=PASS`.
+
+This is backward-compatibility evidence for the reported VELA8/VELA9 KAT surfaces only; it is not a complete regression of every SIGMA/SIA capability.
+
+### Local ARCH8 source promotion VELA9 → VELA10
+
+Precondition identities were explicitly checked:
+- old local ARCH8 source expected SHA: `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d`
+- new VELA10 source expected SHA: `9551d033f84a23166e3e52ad85666a606c1607a31eb6992bc1f359d946021e8a`
+
+The old local source was preserved as `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma.backup_pre_vela10`.
+
+The VELA10 source was copied to a pending path, byte-compared with the source, then moved over `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma`.
+
+Post-promotion readback SHA256 of the local ARCH8 P0 source path:
+`9551d033f84a23166e3e52ad85666a606c1607a31eb6992bc1f359d946021e8a`.
+
+Reported markers:
+- `SIGMA_CANONICAL_SOURCE=VELA10`
+- `VELA10_SOURCE_PROMOTION=PASS`
+
+### Continuity / anti-rediscovery
+
+Treat SHA `9551d033...` as the reported current local `/sdcard/Download/SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` content identity after this VELA10 promotion, with the VELA9 source preserved at the reported backup path. Do not repeat VELA10 planner or VELA8/V9 compatibility KATs for unchanged source/bytecode/VM identities unless a regression appears.
+
+### Claim boundary
+
+The `SIGMA_CANONICAL_SOURCE=VELA10` marker records local source-promotion output. It does not by itself establish mutation of ONE SIGMA canonical HEAD, owner state, native binding, production runtime selector, SIA capability bindings, admission, activation, or cutover.
+
+Likewise, `VELA10_BACKWARD_COMPATIBILITY=PASS` covers only the explicitly rerun VELA8 and VELA9 KATs. Existing SIA/other SIGMA capabilities still require their own VM-identity compatibility/rebinding evidence where applicable.
