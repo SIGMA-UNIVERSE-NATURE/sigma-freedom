@@ -5328,3 +5328,26 @@ Continuity interpretation: R41 has successfully qualified the reported 126 check
 Coder anti-rediscovery rule: retain the R41 126-reference preflight result and the R40Z READY prestate. Do not rerun R40Z staging or its 123-item verification merely to repeat evidence. Next work should target optimizer scalar verification and then the existing native model+optimizer checkpoint qualification path.
 
 Claim boundary: GEN2_CHECKPOINT=NOT_CREATED. No canonical admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Tensor Metadata Validation Implementation + Recompiled Preflight
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native R41 preflight output; continuity archive evidence, not an independent audit.
+
+- R41_TENSOR_METADATA_VALIDATION=IMPLEMENTED
+- Source SHA256: `7a4b1a35e1ac76359adb6267f75c28984bc1465bc88c6aa63cecf8b86f4ea656`
+- Recompiled bytecode SHA256: `3cf7d7472c938ac37187978f6469bf27ab9e59da5cd1bbc18429a4dc087ff1d0`
+- Compiler: existing `sigmac-vkm`; compile completed successfully.
+- R40Z READY state was required before invocation and its ACC was supplied through the existing input contract.
+- Command: `RBX_ARCH8_R41_PREFLIGHT`.
+- Native VM: existing `sigma-vkm`.
+- This reported invocation explicitly set `SIGMA_MAX_STEPS=2000000000`; record this as execution context, not as a VKM modification or a proof that such an override is required for final checkpoint publication.
+- SIGMA_VM_EXIT_CODE=0
+- R41_CHECKPOINT_REFERENCES=126
+- R41_DESCRIPTOR_PREFLIGHT=PASS
+- R41_OPTIMIZER_SCALARS=UNVERIFIED
+- R41_GEN2_CHECKPOINT=NOT_CREATED
+
+Continuity decision: retain this newer source/bytecode identity and the implemented tensor-metadata validation as the current R41 preflight evidence. Do not rerun older R41 source identities merely to reproduce the same descriptor-preflight result. The remaining explicit blocker is optimizer-scalar verification; Gen2 checkpoint creation remains unproven.
+
+Claim boundary: no Gen2 checkpoint, admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
