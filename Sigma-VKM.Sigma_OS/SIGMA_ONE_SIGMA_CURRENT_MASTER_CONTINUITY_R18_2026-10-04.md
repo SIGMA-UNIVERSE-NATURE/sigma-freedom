@@ -5151,3 +5151,38 @@ FULL_OPTIMIZER_CHECKPOINT: NOT_CREATED.
 MODEL_GENERATION: 1.
 
 Coder continuity rule: do not rediscover the parent optimizer schema, R40X E/M/V lineage, AdamW scalar-state semantics, or invent a second checkpoint architecture. Continue from the existing native checkpoint/restore contracts and current READY state. Do not call this Gen2 until model and optimizer checkpoints are actually created and qualified. No admission, activation, cutover, or canonical-head mutation is established by this evidence. GitHub is the continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — Training Evidence Inventory and Anti-Rediscovery
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux artifact inventory/grep output and SIGMA source excerpt; continuity archive evidence, not an independent audit.
+
+### Existing ARCH8 training/staging artifact inventory
+
+Reported artifacts include R36 embedding split training; R40/R40B/R40D embedding states; R40H fresh receipt; R40J/R40K transaction states; R40M shard-0 state/receipt; R40O 64-shard transaction/staging state/receipt; R40R/R40S/R40U/R40V/R40W assembly/index states; R40X RBT count-contract state/receipt; and R40Z remaining-parameter staging state/receipt.
+
+### Gradient-update evidence already present
+
+Reported `GRADIENT_UPDATE||YES` evidence exists in R24 training persist/receipt, R33 training persist, R34 layer training, R35 gradient training, R36 embedding split training, R40 row-shard embedding, R40B byte-shard embedding, and R40D micro-embedding artifacts.
+
+This inventory establishes that gradient-update evidence predates R40X. It does not establish that R40X itself performed the gradient update.
+
+### FULL_E_REF lineage observations
+
+- R40J transaction state: FULL_E_REF=NONE.
+- R40K transaction state: FULL_E_REF=NONE.
+- R40W canonical-binding assembly state: FULL_E_REF=`69a110840f2f2e0d4e05acb45d2819b9`.
+- R40X RBT count-contract state: FULL_E_REF=`61f0af2f23198f2b4caf0dfb6c4437a1`.
+- R40Z remaining-parameter state and receipt retain FULL_E_REF=`61f0af2f23198f2b4caf0dfb6c4437a1`.
+
+Therefore intermediate R40 artifacts must not automatically be treated as checkpoint-equivalent, and the R40X-to-R40Z durable reference continuity remains the relevant later-stage binding.
+
+### Optimizer source contract
+
+The supplied source confirms `RBARCH8_opt_row` validates an eight-field `SIGMA_RB_ARCH8_OPTIMIZER_V1` row and existing `RBARCH8_opt_checkpoint` follows it. This excerpt does not provide the concrete parent optimizer scalar values for optimizer ref `4f4d01c078e8d2fc26c2c87215aaa50c`; those values must be resolved from the actual parent optimizer object when needed.
+
+### Anti-rediscovery rule
+
+Later coders should reuse this artifact inventory and established R40X/R40Z lineage rather than repeat broad R40 source/artifact discovery. The next checkpoint work should resolve the actual R40Z READY checkpoint inputs and parent optimizer object using existing native checkpoint/restore contracts.
+
+Claim boundary: R40X receipt remains qualification evidence with `REMAINING_PARAMETERS_UPDATE=NOT_RUN`, `FULL_MODEL_GRADIENT_UPDATE=NO`, `GEN2_CHECKPOINT=NOT_CREATED`, and model generation 1. No Gen2 publication, model-quality improvement, admission, activation, cutover, or canonical-head mutation is established here. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
