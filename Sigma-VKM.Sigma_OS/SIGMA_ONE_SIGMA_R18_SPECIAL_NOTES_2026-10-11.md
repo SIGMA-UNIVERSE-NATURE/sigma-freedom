@@ -131,3 +131,35 @@ Continuity interpretation: VELA L2 now has reported multi-step native validation
 Anti-rediscovery rule: retain this source/bytecode identity and multi-step KAT result. Do not repeat the same multi-step validation unless VELA L2 implementation, dispatch, runtime identity, test contract, or relevant state semantics change, or a regression is observed.
 
 Claim boundary: multi-step KAT PASS does not establish use in ARCH8 candidate training, optimizer mutation of the qualifying model, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L2 remains SPECIAL R18 experimental/research evidence pending separate authorized integration and qualification.
+
+
+## VELA L3 — Core Integrated + Native Dispatch/KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux integration, compile, dispatch, and native runtime KAT output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### Integration and dispatch
+
+- VELA_LAYER3_CORE=INTEGRATED
+- Dispatch insertion required exactly one existing `RBX_VELA_L2_MULTISTEP_KAT` anchor and failed closed otherwise with `FAILED_GATE=VELA3_DISPATCH_ANCHOR`.
+- New command installed: `RBX_VELA_L3_KAT` → `VELA3_kat()`.
+- VELA_LAYER3_DISPATCH=INSTALLED
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Post-L3 source SHA256: `430010ceb0715d7a6d30e6b11692f6b4006fc2256a323ce367a291e5c20d0bf7`
+- Post-L3 bytecode SHA256: `f2f91c0a38da7025d6c78af2255fc8134603f84d3676f98d5f37d2b9121ae248`
+
+### Native runtime KAT
+
+Runtime command: `RBX_VELA_L3_KAT`, executed by the existing `sigma-vkm`.
+
+- VELA3_STABLE_NORM=PASS
+- VELA3_CHUNK_MERGE=PASS
+- VELA3_TRUST_CONTROL=PASS
+- VELA3_ZERO_DIRECTION=PASS
+- VELA_LAYER3_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity interpretation: VELA L3 now has reported local source integration, fail-closed dispatch installation, successful compilation, and native runtime KAT coverage for stable norm, chunk merge, trust control, and zero-direction behavior.
+
+Anti-rediscovery rule: retain this source/bytecode identity, dispatch anchor contract, and L3 KAT result. Do not repeat the same L3 discovery/KAT unless implementation, dispatch, runtime identity, test contract, or relevant semantics change, or a regression appears.
+
+Claim boundary: this does not establish VELA L3 use in ARCH8 candidate training, optimizer mutation of the qualifying model, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L3 remains SPECIAL R18 experimental/research evidence until separately bound into and qualified by an authorized training/control path.
