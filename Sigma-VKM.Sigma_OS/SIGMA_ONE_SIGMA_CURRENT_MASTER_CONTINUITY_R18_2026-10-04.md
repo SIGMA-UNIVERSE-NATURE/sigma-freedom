@@ -5077,3 +5077,32 @@ Reported contract properties:
 - restore validates profile and M/V manifests, requires matching M/V counts and model parameter count, restores each M/V tensor, restores step/beta powers, then validates reconstructed optimizer-state consistency.
 
 Continuity decision: use the existing native optimizer checkpoint/restore architecture for post-R40Z qualification; do not invent a second checkpoint system. This evidence alone does not establish checkpoint creation, Gen2, model-quality improvement, admission, activation, or cutover. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — AdamW Final Update Semantics + R40X/R40Z Lineage Bind
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux source excerpt from `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` plus R40X/R40Z state output; archive evidence, not an independent audit.
+
+### AdamW final-update semantics supported by supplied source excerpt
+
+- After computing new optimizer moments, `m_new` and `v_new` are copied in-place into persisted optimizer tensors `m` and `v`.
+- For BF16 weights, the update requires `round_key > 0` and uses deterministic stateless stochastic rounding through `RB_train_axpy_inplace_sr`.
+- The supplied seed expression is derived from persisted optimizer step and canonical parameter order: `((step + 1) * 1000003) + (round_key * 9176)`.
+- For non-BF16 weights, the update uses `RB_train_axpy_inplace(weight,direction,0-lr)`.
+- The excerpt then begins persisting `beta1_power`; content beyond the supplied excerpt is not asserted here.
+
+### R40X → R40Z lineage bind
+
+R40X run key: `d3de53c316761bff982219bdb65aa952027cfe675d64a0d4ea3f5c6892739487`; model generation: 1.
+
+R40Z run key: `3ea751e1bbee2866728ec3dea874424a8f268aa81379145d9f49d24411aac472`.
+Parent model: `2d20fe2a6035d8150d42c4fd262fae94`.
+Parent optimizer: `4f4d01c078e8d2fc26c2c87215aaa50c`.
+R34_ACC: `17f288f869efc21501b31b3359b679aa`.
+
+The same durable embedding/optimizer references are reported in both R40X and R40Z:
+- FULL_E_REF: `61f0af2f23198f2b4caf0dfb6c4437a1`
+- FULL_M_REF: `613c8e1c243f028743b817c12898e3c2`
+- FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`
+
+Continuity interpretation: the supplied state supports reference continuity from R40X into R40Z and supports preserving the existing optimizer/update semantics. It does not by itself establish Gen2 publication, model-quality improvement, admission, activation, or cutover. ONE SIGMA / ONE VKM and no-duplicate constraints remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
