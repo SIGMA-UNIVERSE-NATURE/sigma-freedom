@@ -195,3 +195,45 @@ Continuity interpretation: the reported VELA unified shadow layer now combines a
 Anti-rediscovery rule: retain this source/bytecode identity, dispatch-anchor contract, and unified-shadow KAT result. Do not repeat the same discovery/KAT unless the unified implementation, dispatch path, runtime identity, KAT contract, or relevant semantics change, or a regression appears.
 
 Claim boundary: `VELA_UNIFIED_SHADOW_KAT=PASS` establishes the reported shadow KAT only. It does not establish use in ARCH8 candidate training, optimizer mutation of the qualifying candidate, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA unified remains SPECIAL R18 experimental/research evidence pending separate authorized integration and qualification.
+
+
+## VELA Layer 4 Selector — Native KAT + Candidate/CAS Contract Inspection
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile/runtime output and source inspection; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### Selector dispatch and native KAT
+
+- VELA_LAYER4_DISPATCH=INSTALLED
+- Source SHA256: `0391497f1236151b303fa71a259945c3fbee7021bfa74721a72d995918d67d32`
+- Bytecode SHA256: `a7c0b46b001bb6b4831cfeafc024561c0046221774c2a40628d404e7c2d4554a`
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime command: `RBX_VELA_L4_SELECTOR_KAT`
+- VELA5_CANDIDATE_RECORD=PASS
+- VELA5_SCORE_SELECTION=PASS
+- VELA5_RISK_GATE=PASS
+- VELA5_HOLD_GATE=PASS
+- VELA_LAYER4_SELECTOR_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Existing CAS/page and reference primitives
+
+The inspected source shows `I_page` stores text bytes with `U_store(BASE,...)` and requires a non-null handle. `I_readpage` restores through `U_restore(BASE,h)` and requires a non-null result. `I_row` validates row width and kind after restore.
+
+`I_ref(s)` accepts `NONE` or a hex string. This is a syntactic/reference-shape predicate in the supplied excerpt; this note does not treat it as proof that a referenced object exists or is semantically valid.
+
+### VELA candidate record contract
+
+The supplied `VELA5_candidate(id,model_ref,optimizer_ref,evidence_ref,loss,risk,cost)`:
+- requires model, optimizer, and evidence refs to satisfy `I_ref`;
+- requires loss/risk/cost to be finite and non-negative;
+- returns a list containing id, the three refs, the three metrics, and the literal string `VERIFIED`.
+
+Claim discipline: the literal `VERIFIED` field is part of the candidate-record construction shown here. By itself it is not evidence of external attestation, evidence-object validation, checkpoint qualification, or canonical verification.
+
+### Existing evidence/receipt surface
+
+Targeted source inspection found multiple existing evidence/receipt functions across the source, including grounding evidence functions, transaction/contract receipts, SPIA evidence paths, ARCH8 KAT persistence receipt, and R35 receipt. Their mere existence does not prove that VELA Layer 4 currently binds its `evidence_ref` through any specific one of those mechanisms.
+
+Continuity decision: retain the selector KAT and candidate/CAS contract inspection so later coders do not repeat this discovery. The next evidence-binding work, if pursued, must demonstrate the exact semantics and validation path for VELA candidate `evidence_ref` rather than inferring it from `I_ref` or the literal `VERIFIED` marker.
+
+Claim boundary: selector KAT PASS does not establish ARCH8 training integration, optimizer mutation, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. This remains SPECIAL R18 experimental/research evidence.
