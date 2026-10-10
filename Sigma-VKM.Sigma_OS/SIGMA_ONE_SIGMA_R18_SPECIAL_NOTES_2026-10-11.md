@@ -47,3 +47,28 @@ Existing R41 functions remain present, including `R41_cas_range`, `R41_cas_momen
 This note records local source integration only. No VELA entrypoint invocation, behavioral KAT, training use, optimizer mutation, checkpoint publication, Gen2 creation, admission, activation, or cutover is proven by the supplied evidence. Do not treat the post-integration source identity as canonical merely because compilation succeeded.
 
 Anti-rediscovery: later coders should reuse the recorded VELA module identity, semantics, pre/post source hashes, and integration guard. Do not re-search whether `VELA1_` existed in the pre-integration source unless the referenced source identity changes.
+
+
+## VELA L1 — Native Dispatch Installed + Runtime KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native runtime KAT output; special R18 research evidence, not an independent audit and not a canonical activation claim.
+
+- VELA_L1_DISPATCH=INSTALLED
+- Source SHA256: `7f5f64e62cf1d369c5ec065dc49616ac9f7275360ea6d8849d19e8b2d59f0c2c`
+- Bytecode SHA256: `a6643643227bf63b19e5c0a0a222d65265f293c7cb54dbbd6e89de709bbc1ced`
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime command: `RBX_VELA_L1_KAT`
+- Runtime engine: existing `sigma-vkm`
+- VELA_L1_GRADIENT_ENERGY=PASS
+- VELA_L1_GRADIENT_VARIATION=PASS
+- VELA_L1_CHUNK_MERGE=PASS
+- VELA_L1_EMA=PASS
+- VELA_L1_CONFIDENCE=PASS
+- VELA_LAYER1_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity interpretation: VELA L1 now has a reported dispatch path and a successful native runtime KAT covering gradient energy, gradient variation, chunk merge, EMA, and confidence behavior. This supersedes the prior special-note state in which no VELA entrypoint invocation or behavioral KAT had yet been proven.
+
+Anti-rediscovery rule: retain this source/bytecode identity and KAT result. Do not repeat the same VELA L1 KAT unless the VELA implementation, dispatch path, relevant runtime identity, or test contract changes, or a new regression is observed.
+
+Claim boundary: runtime KAT PASS does not establish use in ARCH8 training, optimizer mutation, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA remains recorded in SPECIAL R18 NOTES as experimental/research capability evidence until separately authorized and integrated into a qualifying training/control path.
