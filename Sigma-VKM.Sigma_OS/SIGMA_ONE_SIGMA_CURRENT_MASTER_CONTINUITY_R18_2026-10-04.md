@@ -5106,3 +5106,48 @@ The same durable embedding/optimizer references are reported in both R40X and R4
 - FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`
 
 Continuity interpretation: the supplied state supports reference continuity from R40X into R40Z and supports preserving the existing optimizer/update semantics. It does not by itself establish Gen2 publication, model-quality improvement, admission, activation, or cutover. ONE SIGMA / ONE VKM and no-duplicate constraints remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 — Coder Handoff: Optimizer Reconstruction and Checkpoint Prestate
+
+Evidence date: 2026-10-11. Purpose: durable handoff so later coders do not rediscover or redesign already-established ARCH8 optimizer/checkpoint lineage. Basis: user-supplied Termux source excerpts and R40X/R40Z state output; not an independent audit.
+
+### AdamW final persisted state semantics
+
+The supplied source excerpt shows that after the weight update, the optimizer state persists `beta1_power`, `beta2_power`, then increments `step` by exactly one and returns the state. Together with the prior excerpt, the observed update path copies new M/V moments in-place, applies BF16 deterministic stochastic rounding when applicable, and persists the updated scalar optimizer state.
+
+### R40Z parent parameter + optimizer reconstruction
+
+The supplied `R40Z_parent_parameter_and_optimizer(base,parent_model,parent_opt,index)` definition:
+- resolves the parent parameter descriptor for the requested index;
+- reconstructs that parameter tensor;
+- resolves corresponding `OPT_M` and `OPT_V` tensor refs;
+- creates an AdamW state for the parameter and binds `round_key=index+1`;
+- restores M and V and requires their tensor hashes to match descriptor SHA values;
+- reads the parent optimizer row and restores `step`, `beta1_power`, and `beta2_power`;
+- returns the reconstructed parameter/state pair.
+
+### Optimizer row ABI
+
+`RBARCH8_opt_row` requires width 8 and identifies `RBARCH8OPT || SIGMA_RB_ARCH8_OPTIMIZER_V1`, a valid profile, valid M/V manifest refs, and a decimal step field.
+
+### Durable lineage already established
+
+R40X run key: `d3de53c316761bff982219bdb65aa952027cfe675d64a0d4ea3f5c6892739487`.
+R40X model generation: 1.
+FULL_E_REF: `61f0af2f23198f2b4caf0dfb6c4437a1`.
+FULL_M_REF: `613c8e1c243f028743b817c12898e3c2`.
+FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`.
+
+R40Z parent optimizer: `4f4d01c078e8d2fc26c2c87215aaa50c`.
+
+Reported R40X evidence inventory includes the RBT count-contract state/receipt, handle trace, and E/M/V pair-verification artifacts.
+
+### Current checkpoint prestate
+
+R40Z phase: READY.
+FULL_MODEL_CHECKPOINT: NOT_CREATED.
+FULL_OPTIMIZER_CHECKPOINT: NOT_CREATED.
+MODEL_GENERATION: 1.
+
+Coder continuity rule: do not rediscover the parent optimizer schema, R40X E/M/V lineage, AdamW scalar-state semantics, or invent a second checkpoint architecture. Continue from the existing native checkpoint/restore contracts and current READY state. Do not call this Gen2 until model and optimizer checkpoints are actually created and qualified. No admission, activation, cutover, or canonical-head mutation is established by this evidence. GitHub is the continuity archive, not the live OPPO SIGMA HEAD.
