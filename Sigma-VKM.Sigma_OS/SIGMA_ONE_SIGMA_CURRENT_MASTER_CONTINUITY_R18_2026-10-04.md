@@ -5467,3 +5467,21 @@ Execution context explicitly set `SIGMA_MAX_STEPS=2000000000`; this is recorded 
 Continuity decision: retain segment 0 as completed CAS-moment verification evidence. Do not rerun this unchanged segment absent changed source/state/content identity or a new integrity failure. Continue the bounded segmented moment-verification protocol until the full required moment set is covered.
 
 Claim boundary: segment PASS does not equal full moment verification. The reported maximum relative difference is retained as evidence and is not independently interpreted as acceptable beyond the segment's own PASS result. Gen2 checkpoint remains NOT_CREATED; no admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Full Moment Consistency PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R41 segmented verification result; continuity archive evidence, not an independent audit.
+
+- R41_SEGMENTS_VERIFIED=256
+- R41_ELEMENTS_VERIFIED=8192
+- R41_TOTAL_FAILURES=0
+- R41_FULL_MOMENT_CONSISTENCY=PASS
+- R41_EMBEDDING_STEP_PROVENANCE=UNVERIFIED
+- R41_GEN2_CHECKPOINT=NOT_CREATED
+
+The reported bounded segmented protocol reached segment 256/256 and verified 8192 elements with zero recorded failures. This supersedes the earlier partial state `R41_FULL_MOMENT_VERIFICATION=NOT_COMPLETE` for the same verification objective.
+
+Continuity decision: retain full moment consistency as completed R41 evidence. Later coders should not repeat the 256-segment / 8192-element moment verification absent changed source/state/content identity or a new integrity failure. The next explicit unresolved gate is embedding-step provenance.
+
+Claim boundary: full moment consistency PASS does not establish embedding-step provenance and does not itself create or publish a Gen2 checkpoint. `R41_GEN2_CHECKPOINT=NOT_CREATED` remains authoritative for this evidence. No admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
