@@ -395,3 +395,21 @@ Later coders should not rediscover whether the meter C can compile or whether th
 ### Claim boundary
 
 This block does NOT establish that `sigma-vkm-vela9-test` replaced the existing `sigma-vkm`, nor that the canonical VKM binary, ONE SIGMA owner/native binding, production runtime selector, or canonical HEAD was mutated. It also does not establish qualifying ARCH8 training, Gen2 checkpoint creation, admission, activation, or cutover. Any promotion from test VM to canonical VKM requires separate authority, exact binary/prestate binding, regression/rollback controls, and post-mutation readback evidence.
+
+
+## VELA9 — Test VM Renamed to SIGMA-Vkm-VELA
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux rename and SHA256 readback; SPECIAL R18 research evidence, not an independent audit or canonical VKM promotion claim.
+
+- The previously qualified VELA9 test VM binary was moved/renamed to:
+  `$HOME/SIGMA_R7_NEXT_R1/VKM/SIGMA-Vkm-VELA`
+- Permissions were set to mode 700.
+- Post-rename SHA256: `ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`
+- The post-rename SHA was explicitly compared with the expected binary identity.
+- SIGMA_VKM_VELA_RENAME=PASS
+
+Continuity interpretation: binary content identity is unchanged from the previously recorded `sigma-vkm-vela9-test` test VM; only the reported filesystem name/path changed to `SIGMA-Vkm-VELA`.
+
+Anti-rediscovery rule: later coders should treat `SIGMA-Vkm-VELA` SHA256 `ed2849dc...` as the renamed VELA9-qualified test binary and should not rebuild/requalify it solely because of the rename.
+
+Claim boundary: this rename is not evidence that the existing canonical executable `$HOME/SIGMA_R7_NEXT_R1/VKM/sigma-vkm` was replaced, redirected, or mutated. It does not establish ONE SIGMA native-binding change, production runtime selection, canonical activation, admission, or cutover. Promotion requires separate authority and live-state readback.
