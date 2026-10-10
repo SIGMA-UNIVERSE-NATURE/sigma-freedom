@@ -5029,3 +5029,19 @@ SECOND_SIGMA_CREATED=NO
 GITHUB_RECORD_ROLE=CONTINUITY_ARCHIVE_ONLY
 GITHUB_IS_LIVE_SIGMA_HEAD=NO
 CURRENT_OPPO_AUTHORITY_FIRST=YES
+
+
+## ARCH8 R40X-R40Z Durable Reference Continuity
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R40X/R40Z state output; archive evidence, not an independent audit.
+
+- R40Z phase: READY
+- R40Z run key: `3ea751e1bbee2866728ec3dea874424a8f268aa81379145d9f49d24411aac472`
+- Parent model: `2d20fe2a6035d8150d42c4fd262fae94`
+- Parent optimizer: `4f4d01c078e8d2fc26c2c87215aaa50c`
+- FULL_E_REF: `61f0af2f23198f2b4caf0dfb6c4437a1`
+- FULL_M_REF: `613c8e1c243f028743b817c12898e3c2`
+- FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`
+- The reported FULL_E_REF occurs in the R40X state, R40Z state, and R40Z receipt, supporting R40X-to-R40Z reference continuity.
+
+Claim boundary: this append does not independently re-hash referenced objects and does not establish a Gen2 checkpoint, canonical Gen2, model-quality improvement, admission, activation, or cutover. ONE SIGMA / ONE VKM and no-duplicate constraints remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
