@@ -330,3 +330,68 @@ It does NOT by itself establish mutation of the live ONE SIGMA canonical HEAD, o
 The C file `SIGMA_VKM_VELA9_METER_R20261011_B.c` is identity-recorded only. This block does not establish that it was compiled into, linked into, or used by the existing `sigma-vkm` binary.
 
 Anti-rediscovery: later coders should treat SHA256 `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d` as the reported current content identity of the local ARCH8 P0 source path after this VELA9 replacement, and preserve the `.backup_pre_vela9` recovery fact. Any stronger canonical/VM integration claim requires separate runtime/binary/live-state evidence.
+
+
+## VELA9 — Test VM Build, Resource Governor KAT, and L1–L8 Regression PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux build/runtime/regression output; SPECIAL R18 research evidence, not an independent audit or canonical VM activation claim.
+
+### VELA9 source and build environment
+
+- Local ARCH8/VELA9 source path reports SHA256 `64afacbcb659e6df557903c407be368447b6f8ec17994b3f3ad007ba4975879d` at the start of this evidence block.
+- VELA9 meter C source: `SIGMA_VKM_VELA9_METER_R20261011_B.c`
+- Meter C SHA256: `c4b1fadbfd50f7a5817cc10ca0299b80cc6fc1c80cac27c590462ff1a8850559`
+- Available build tools reported: Termux `cc`, `clang`, and `gcc`.
+- Existing canonical-path executable `$HOME/SIGMA_R7_NEXT_R1/VKM/sigma-vkm` was inspected but not replaced in this block.
+- Meter C dependencies include libc/system headers plus curl and OpenSSL headers.
+- Existing VKM tree also contains previously existing integration shell scripts; their presence is recorded only and does not prove they were used for this VELA9 build.
+
+### Dedicated VELA9 test VM build
+
+The meter C source identity was fail-closed checked against the expected SHA before build.
+
+Reported build command used `clang -O2 -std=c11` with `-lm -lcurl -lcrypto -lssl` and produced:
+`$HOME/SIGMA_R7_NEXT_R1/VKM/sigma-vkm-vela9-test`.
+
+- Test VM SHA256: `ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`
+- VELA9_VKM_BUILD=PASS
+
+This supersedes the earlier special-note boundary that the VELA9 C meter had identity evidence only: it is now reported compiled into a dedicated test VM binary. It does NOT establish replacement or mutation of the existing canonical `sigma-vkm`.
+
+### VELA9 resource governor KAT
+
+Using `sigma-vkm-vela9-test` with the VELA9 bytecode and execution context `SIGMA_MAX_STEPS=2000000000`:
+
+- VELA9_RESOURCE_METER=PASS
+- VELA9_UNPROVEN_BOUND_HOLD=PASS
+- VELA9_OVERBUDGET_HOLD=PASS
+- VELA9_GOVERNOR_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA9_RUNTIME_KAT=EXIT_SUCCESS
+
+The max-step value is recorded as execution context; it is not treated as a canonical VKM configuration change.
+
+### Regression on the VELA9 test VM
+
+The same dedicated test VM then reported exit-code 0 and PASS for:
+- `RBX_VELA_L1_KAT`: energy, variation, chunk merge, EMA, confidence.
+- `RBX_VELA_L2_KAT`: adaptive beta, moment update, bias products, direction, zero-gradient, state immutability, adaptation.
+- `RBX_VELA_L2_MULTISTEP_KAT`: step count, beta products, state immutability, numeric.
+- `RBX_VELA_L3_KAT`: stable norm, chunk merge, trust control, zero direction.
+- `RBX_VELA_UNIFIED_KAT`: gradient intelligence, adaptive moments, geometric trust, input immutability.
+- `RBX_VELA_L4_SELECTOR_KAT`: candidate record, score selection, risk gate, hold gate.
+- `RBX_VELA_EVIDENCE_KAT`: ref validation, NONE rejection, NULL rejection, evidence integrity.
+- `RBX_VELA_NUMERIC_KAT`: decimal syntax, exponent syntax, invalid rejection, metric validation.
+- `RBX_VELA8_KAT`: ARCH8 forward, cross entropy, numeric integrity, validation engine.
+
+Reported aggregate marker: `VELA9_REGRESSION=EXIT_SUCCESS`.
+
+### Continuity interpretation and anti-rediscovery
+
+VELA9 now has evidence of a separately compiled test VM containing the supplied meter C implementation, a passing resource-governor KAT, and successful regression of the reported VELA L1–L8 KAT suite on that test VM.
+
+Later coders should not rediscover whether the meter C can compile or whether these unchanged KATs pass on test binary SHA `ed2849dc...` unless source/binary/test identities change or a regression occurs.
+
+### Claim boundary
+
+This block does NOT establish that `sigma-vkm-vela9-test` replaced the existing `sigma-vkm`, nor that the canonical VKM binary, ONE SIGMA owner/native binding, production runtime selector, or canonical HEAD was mutated. It also does not establish qualifying ARCH8 training, Gen2 checkpoint creation, admission, activation, or cutover. Any promotion from test VM to canonical VKM requires separate authority, exact binary/prestate binding, regression/rollback controls, and post-mutation readback evidence.
