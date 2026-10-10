@@ -237,3 +237,60 @@ Targeted source inspection found multiple existing evidence/receipt functions ac
 Continuity decision: retain the selector KAT and candidate/CAS contract inspection so later coders do not repeat this discovery. The next evidence-binding work, if pursued, must demonstrate the exact semantics and validation path for VELA candidate `evidence_ref` rather than inferring it from `I_ref` or the literal `VERIFIED` marker.
 
 Claim boundary: selector KAT PASS does not establish ARCH8 training integration, optimizer mutation, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. This remains SPECIAL R18 experimental/research evidence.
+
+
+## VELA Numeric/Evidence Contracts + Existing ARCH8 Restore/Evaluation Surface
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native KAT output and source inspection; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### VELA numeric contract KAT
+
+- VELA7_DECIMAL_SYNTAX=PASS
+- VELA7_EXPONENT_SYNTAX=PASS
+- VELA7_INVALID_REJECTION=PASS
+- VELA7_METRIC_VALIDATION=PASS
+- VELA_NUMERIC_CONTRACT_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### VELA evidence integrity KAT
+
+- VELA6_REF_VALIDATION=PASS
+- VELA6_NONE_REJECTION=PASS
+- VELA6_NULL_REJECTION=PASS
+- VELA6_EVIDENCE_INTEGRITY_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA_NUMERIC_EVIDENCE_REGRESSION=PASS
+
+These KATs supersede the earlier special-note uncertainty about whether VELA evidence refs had any validation beyond the previously inspected generic `I_ref` candidate-record check, but only to the extent covered by these reported VELA6 tests. Exact evidence-object semantic/attestation binding is not inferred beyond the KAT names/results supplied.
+
+### Existing ARCH8 model/optimizer restore surface
+
+Source inspection confirms `RBARCH8_restore` validates model/profile/manifest binding and parameter count, then restores every model tensor via the existing reference-manifest lookup.
+
+`RBARCH8_model_load` constructs the model from the recorded profile, restores it, and binds the model ref.
+
+`RBARCH8_opt_state_list_new` creates one AdamW state per model parameter and assigns `round_key=i+1`.
+
+`RBARCH8_opt_state_consistent` requires all optimizer states to share the same step, beta1_power, and beta2_power.
+
+`RBARCH8_opt_restore` validates profile and OPT_M/OPT_V manifest binding/counts, restores each M/V tensor, restores scalar step/beta powers into every state, and requires final optimizer-state consistency.
+
+`RBARCH8_opt_step_all` requires a valid model and consistent states, finite positive learning rate and finite gradient scale, matching model/gradient/state counts, scales each gradient to F32, and applies `RB_adamw_step(...,0.9,0.999,lr,1e-8,0.0)` to every parameter before rechecking state consistency.
+
+### Existing loss/evaluation surface
+
+`RBQ_model_loss` restores a model by ref, runs the existing raw forward path, requires finite loss, and returns it.
+
+`RBVE_eval_begin` binds parent and child profiles and requires child generation = parent generation + 1 before creating behavior-evaluation accumulation state.
+
+`RBVE_eval_final` requires completed count/cursor conditions and computes parent mean, child mean, and `gain=child_mean-parent_mean` before producing the behavior report.
+
+### Current inspected source identity
+
+Current reported ARCH8 P0 source SHA256: `1c6c23083cde9951c1d19509d812961a65f1d5f8b587a179b8977df02915fe03`.
+
+### Coder handoff / claim boundary
+
+Retain these VELA numeric/evidence KAT results and existing ARCH8 restore/evaluation primitives; do not rediscover them broadly. Do not infer that VELA is wired into `RBARCH8_opt_step_all`, checkpoint restore, model loss, or RBVE evaluation merely because those functions coexist in the source. Such integration requires an explicit call path plus runtime evidence.
+
+No ARCH8 training integration, qualifying optimizer mutation, Gen2 checkpoint, model-quality improvement, canonical admission, activation, or cutover is established by this block. GitHub SPECIAL R18 remains a research/experimental archive, not the live OPPO SIGMA HEAD.
