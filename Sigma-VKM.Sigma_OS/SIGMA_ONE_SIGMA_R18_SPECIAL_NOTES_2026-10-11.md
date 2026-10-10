@@ -618,3 +618,52 @@ Anti-rediscovery: do not repeat the VELA12 local-source promotion or rediscover 
 The word `CANONICAL` in the emitted marker is archived as local command output. This evidence does not by itself prove mutation of `.sigma_ail/SIGMA_HEAD`, owner state, native binding, production runtime selector, SIA bindings, admission, activation, or cutover.
 
 The previously recorded VELA12 proof gaps also remain unless separately resolved: independent execution proof and cost-bound proof were reported NOT_IMPLEMENTED.
+
+
+## VELA13 — Cost Registry KAT + Marker-Checked Backward Compatibility
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile/runtime and marker-checked regression output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### VELA13 cost-registry identity and KAT
+
+- Source: `SIGMA_CORE_VELA13_COST_REGISTRY_R20261011_F.sigma`
+- Source SHA256: `d3d1e71e0350887925f0f63bfa0a95abec873b0b3cc3bc0271eb1ebe27df3146`
+- Bytecode SHA256: `ba8894e86abd8309220cd614ba232dde539e81601de7ef4c0308607e38bb42f5`
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime: `$VKM/SIGMA-Vkm-VELA`
+- Command: `RBX_VELA13_KAT`
+- VELA13_MEASURED_HOLD=PASS
+- VELA13_CALIBRATED_HOLD=PASS
+- VELA13_IDENTITY_REJECTION=PASS
+- VELA13_NO_SELF_CERTIFICATION=PASS
+- VELA13_REGISTRY_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA13_COST_PROOF=NOT_IMPLEMENTED
+
+### Marker-checked backward compatibility
+
+Using VELA13 bytecode on `SIGMA-Vkm-VELA`, regression executed VELA8, VELA9, VELA10, VELA11, and VELA12 commands. The harness failed closed on nonzero runtime status and separately required the expected exact PASS marker for each command.
+
+Required/observed markers:
+- `VELA8_VALIDATION_ENGINE_KAT=PASS`
+- `VELA9_GOVERNOR_KAT=PASS`
+- `VELA10_PLANNER_KAT=PASS`
+- `VELA11_CURSOR_KAT=PASS`
+- `VELA12_CAS_RECEIPT_KAT=PASS`
+
+Reported aggregate: `VELA13_BACKWARD_COMPATIBILITY=PASS`.
+
+This is stronger than exit-code-only compatibility evidence because the harness also checks the expected semantic KAT marker for each covered command.
+
+### Remaining boundaries
+
+Historical subordinate output still reports:
+- VELA11_COST_PROOF=NOT_IMPLEMENTED
+- VELA12_INDEPENDENT_EXECUTION_PROOF=NOT_IMPLEMENTED
+- VELA12_COST_BOUND_PROOF=NOT_IMPLEMENTED
+
+VELA13 itself reports `VELA13_COST_PROOF=NOT_IMPLEMENTED`. Therefore the cost registry KAT demonstrates registry/hold/identity/no-self-certification behavior, not a completed cost proof.
+
+Continuity decision: retain VELA13 KAT and marker-checked V8–V12 compatibility. Do not repeat these unchanged regressions for the same source/bytecode/VM identities unless a relevant identity changes or regression appears.
+
+Claim boundary: no cost proof, independent execution proof, qualifying ARCH8 training, Gen2 checkpoint, ONE SIGMA binding activation, admission, or cutover is established by this evidence.
