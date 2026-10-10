@@ -5045,3 +5045,35 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux R40X/R40Z state output; a
 - The reported FULL_E_REF occurs in the R40X state, R40Z state, and R40Z receipt, supporting R40X-to-R40Z reference continuity.
 
 Claim boundary: this append does not independently re-hash referenced objects and does not establish a Gen2 checkpoint, canonical Gen2, model-quality improvement, admission, activation, or cutover. ONE SIGMA / ONE VKM and no-duplicate constraints remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R40X — RBT Tensor Contract + Native Optimizer Checkpoint Contract
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R40X state plus SIGMA source excerpt; archive evidence, not an independent audit.
+
+### R40X durable tensor contract
+
+- Schema: `SIGMA_ARCH8_R40X_RBT_COUNT_CONTRACT_STATE_V1`
+- Run key: `d3de53c316761bff982219bdb65aa952027cfe675d64a0d4ea3f5c6892739487`
+- Shards: 64; one chunk per reused leaf.
+- FULL_E_REF: `61f0af2f23198f2b4caf0dfb6c4437a1`; content SHA256: `ca43dcf10b7899428c37713e3ad2787360eca7f94279189f900d5acd89bf239b`
+- FULL_M_REF: `613c8e1c243f028743b817c12898e3c2`; content SHA256: `6d19e0d7de50fd6c8c065e092ffd4ea44728081a641029ee6f4e82c54c6e6a50`
+- FULL_V_REF: `12e7a7107b6fcda24a5d543a5722532c`; content SHA256: `5d62d9c88e575cdb18d15ad2f6422f5a9eb6c64cb19ff3aff97634e0db4f86c4`
+- Embedding geometry: 512 x 16, F32, 32768 bytes.
+- Full expected chunks/leaves: 64/64. Pair expected chunks/leaves: 2/2.
+- RBT leaf-count contract: CORRECTED. Reindex 64 shards: NO.
+- Full tensor allocation/hash/store calls: NO.
+- Model generation remains 1. Canonical mutation/admission/activation/cutover: NO.
+
+### Existing native optimizer checkpoint/restore contract
+
+Source excerpt identifies existing functions `RBARCH8_opt_checkpoint(base,model,states)` and `RBARCH8_opt_restore(base,model,opt_ref)`.
+
+Reported contract properties:
+- checkpoint requires a valid model and consistent optimizer states;
+- optimizer state count must equal the profile tensor count and parameter-list count;
+- M and V tensors are stored individually and represented through `OPT_M` and `OPT_V` reference manifests;
+- optimizer receipt binds profile, M-manifest ref, V-manifest ref, step, beta1_power, and beta2_power;
+- restore validates profile and M/V manifests, requires matching M/V counts and model parameter count, restores each M/V tensor, restores step/beta powers, then validates reconstructed optimizer-state consistency.
+
+Continuity decision: use the existing native optimizer checkpoint/restore architecture for post-R40Z qualification; do not invent a second checkpoint system. This evidence alone does not establish checkpoint creation, Gen2, model-quality improvement, admission, activation, or cutover. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
