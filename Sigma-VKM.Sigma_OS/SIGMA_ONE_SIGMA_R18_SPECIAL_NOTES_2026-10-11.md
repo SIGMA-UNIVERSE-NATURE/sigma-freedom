@@ -163,3 +163,35 @@ Continuity interpretation: VELA L3 now has reported local source integration, fa
 Anti-rediscovery rule: retain this source/bytecode identity, dispatch anchor contract, and L3 KAT result. Do not repeat the same L3 discovery/KAT unless implementation, dispatch, runtime identity, test contract, or relevant semantics change, or a regression appears.
 
 Claim boundary: this does not establish VELA L3 use in ARCH8 candidate training, optimizer mutation of the qualifying model, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L3 remains SPECIAL R18 experimental/research evidence until separately bound into and qualified by an authorized training/control path.
+
+
+## VELA Unified Shadow — Core Integrated + Native KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux integration, compile, dispatch, and native runtime KAT output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### Integration and dispatch
+
+- VELA_UNIFIED_SHADOW_CORE=INTEGRATED
+- Dispatch insertion required exactly one existing `RBX_VELA_L3_KAT` anchor and failed closed otherwise with `FAILED_GATE=VELA4_DISPATCH_ANCHOR`.
+- New command installed: `RBX_VELA_UNIFIED_KAT` → `VELA4_kat()`.
+- VELA_UNIFIED_DISPATCH=INSTALLED
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Post-integration source SHA256: `9e281d7fac3279bb91706fab05486a16528b8cf943cd365cce54a7c857f6f0b3`
+- Post-integration bytecode SHA256: `9d9e8a01832eac8005b81014266378f7c062845ca406f718f3127ef34d3b396c`
+
+### Native unified-shadow KAT
+
+Runtime command: `RBX_VELA_UNIFIED_KAT`, executed by the existing `sigma-vkm`.
+
+- VELA4_GRADIENT_INTELLIGENCE=PASS
+- VELA4_ADAPTIVE_MOMENTS=PASS
+- VELA4_GEOMETRIC_TRUST=PASS
+- VELA4_INPUT_IMMUTABILITY=PASS
+- VELA_UNIFIED_SHADOW_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity interpretation: the reported VELA unified shadow layer now combines and validates gradient-intelligence, adaptive-moment, geometric-trust, and input-immutability behavior through a native KAT on the existing SIGMA VM.
+
+Anti-rediscovery rule: retain this source/bytecode identity, dispatch-anchor contract, and unified-shadow KAT result. Do not repeat the same discovery/KAT unless the unified implementation, dispatch path, runtime identity, KAT contract, or relevant semantics change, or a regression appears.
+
+Claim boundary: `VELA_UNIFIED_SHADOW_KAT=PASS` establishes the reported shadow KAT only. It does not establish use in ARCH8 candidate training, optimizer mutation of the qualifying candidate, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA unified remains SPECIAL R18 experimental/research evidence pending separate authorized integration and qualification.
