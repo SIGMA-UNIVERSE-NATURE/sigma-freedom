@@ -5365,3 +5365,31 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux R41 embedding-verificatio
 Continuity decision: retain E/M/V payload verification as completed R41 evidence. Later coders should not repeat these three embedding payload checks absent a new integrity failure or changed descriptor/content identity.
 
 Claim boundary: this verifies the reported embedding E/M/V payload checks only. It does not by itself verify all optimizer scalar state, create a Gen2 checkpoint, prove model-quality improvement, or establish admission, activation, cutover, or canonical-head mutation. Prior R40Z READY and R41 descriptor-preflight evidence remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Manifest Assembly PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R41 manifest-assembly output and state readback; continuity archive evidence, not an independent audit.
+
+- R41_MANIFEST_ASSEMBLY=PASS
+- SIGMA_VM_EXIT_CODE=0
+- Schema: `SIGMA_ARCH8_R41_MANIFEST_ASSEMBLY_V1`
+- Run key: `3ea751e1bbee2866728ec3dea874424a8f268aa81379145d9f49d24411aac472`
+- Profile: `SIGMA_RB_ARCH8_TINY`
+- Parent model: `2d20fe2a6035d8150d42c4fd262fae94`
+- Parent optimizer: `4f4d01c078e8d2fc26c2c87215aaa50c`
+- R34_ACC: `17f288f869efc21501b31b3359b679aa`
+- Learning rate: `0.0001`
+- MODEL_MANIFEST: `1e47fc5b628a79835d92be9b62b66b0f`
+- OPT_M_MANIFEST: `70de9c7355450b3977cfe46314a219ca`
+- OPT_V_MANIFEST: `05fb98d60a21d517778793d51cd5e51e`
+- TENSOR_REFERENCES: 126
+- OPTIMIZER_SCALARS: UNVERIFIED
+- GEN2_CHECKPOINT: NOT_CREATED
+- CANONICAL_MUTATION: NO
+- ADMISSION: NO
+- CUTOVER: NO
+
+Continuity decision: retain these three assembled manifest refs and the 126-reference count as current R41 evidence. Do not rebuild the manifests absent a changed tensor reference set or a new integrity failure. The remaining explicit blocker is optimizer-scalar verification; manifest assembly alone is not a Gen2 checkpoint.
+
+Claim boundary: no Gen2 checkpoint, canonical admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
