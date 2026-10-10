@@ -5485,3 +5485,53 @@ The reported bounded segmented protocol reached segment 256/256 and verified 819
 Continuity decision: retain full moment consistency as completed R41 evidence. Later coders should not repeat the 256-segment / 8192-element moment verification absent changed source/state/content identity or a new integrity failure. The next explicit unresolved gate is embedding-step provenance.
 
 Claim boundary: full moment consistency PASS does not establish embedding-step provenance and does not itself create or publish a Gen2 checkpoint. `R41_GEN2_CHECKPOINT=NOT_CREATED` remains authoritative for this evidence. No admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Embedding Update Scope Provenance + Manifest Blocker
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R40/R40B/R40D/R40O state/receipt excerpts plus R41 manifest readback; continuity archive evidence, not an independent audit.
+
+### Embedding update-scope provenance
+
+R40 row-shard embedding state:
+- schema `SIGMA_ARCH8_R40_ROW_SHARD_EMBEDDING_STATE_V1`
+- phase `M`
+- parent model `2d20fe2a6035d8150d42c4fd262fae94`
+- parent optimizer `4f4d01c078e8d2fc26c2c87215aaa50c`
+- learning rate `0.0001`
+- update scope `EXACT_TIED_EMBEDDING_PARAMETER_ONLY`
+- gradient update `YES`
+
+R40B byte-shard embedding state:
+- schema `SIGMA_ARCH8_R40B_BYTE_SHARD_EMBEDDING_STATE_V1`
+- phase `SHARDS`
+- same parent model/optimizer and learning rate
+- update scope `EXACT_TIED_EMBEDDING_PARAMETER_ONLY`
+- gradient update `YES`
+
+R40D micro-embedding state:
+- schema `SIGMA_ARCH8_R40D_MICRO_EMBEDDING_STATE_V1`
+- phase `OUTPUT`
+- same parent model/optimizer and learning rate
+- update scope `EXACT_TIED_EMBEDDING_PARAMETER_ONLY`
+- gradient update `YES`
+
+R40O shard64 staging receipt:
+- schema `SIGMA_ARCH8_R40O_SHARD64_ATOMIC_STAGING_V1`
+- same parent model/optimizer
+- `GRADIENT_UPDATE=EMBEDDING_PARAMETER_STAGING_COMPLETE`
+- model generation remains 1.
+
+### R41 manifest state remains bounded
+
+- MODEL_MANIFEST `1e47fc5b628a79835d92be9b62b66b0f`
+- OPT_M_MANIFEST `70de9c7355450b3977cfe46314a219ca`
+- OPT_V_MANIFEST `05fb98d60a21d517778793d51cd5e51e`
+- OPTIMIZER_SCALARS `UNVERIFIED`
+- GEN2_CHECKPOINT `NOT_CREATED`
+
+Continuity interpretation: supplied R40/R40B/R40D evidence consistently binds the embedding training work to the exact tied embedding parameter, with R40O reporting completion of embedding-parameter staging. This strengthens embedding update-scope provenance but does not by itself prove the remaining optimizer-scalar/embedding-step provenance required for Gen2 publication.
+
+Anti-rediscovery rule: retain these exact update-scope and parent-lineage facts; later coders should not repeat broad embedding-lineage discovery unless the parent identities or relevant state change. Current R41 manifests remain reusable while their tensor-reference set is unchanged.
+
+Claim boundary: optimizer scalars remain unverified in the supplied R41 manifest state and Gen2 checkpoint remains NOT_CREATED. No admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
