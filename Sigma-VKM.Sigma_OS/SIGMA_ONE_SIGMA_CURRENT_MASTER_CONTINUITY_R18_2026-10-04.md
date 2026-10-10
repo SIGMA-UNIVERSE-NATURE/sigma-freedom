@@ -5351,3 +5351,17 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux compile and native R41 pr
 Continuity decision: retain this newer source/bytecode identity and the implemented tensor-metadata validation as the current R41 preflight evidence. Do not rerun older R41 source identities merely to reproduce the same descriptor-preflight result. The remaining explicit blocker is optimizer-scalar verification; Gen2 checkpoint creation remains unproven.
 
 Claim boundary: no Gen2 checkpoint, admission, activation, cutover, or canonical-head mutation is established. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
+
+
+## ARCH8 R41 — Embedding E/M/V Payload Verification
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux R41 embedding-verification output; continuity archive evidence, not an independent audit.
+
+- R41_EMBEDDING_E_PAYLOAD=PASS; VERIFY_E_EXIT_CODE=0
+- R41_EMBEDDING_M_PAYLOAD=PASS; VERIFY_M_EXIT_CODE=0
+- R41_EMBEDDING_V_PAYLOAD=PASS; VERIFY_V_EXIT_CODE=0
+- R41_EMBEDDING_VERIFICATION_COMPLETE=YES_REPORTED
+
+Continuity decision: retain E/M/V payload verification as completed R41 evidence. Later coders should not repeat these three embedding payload checks absent a new integrity failure or changed descriptor/content identity.
+
+Claim boundary: this verifies the reported embedding E/M/V payload checks only. It does not by itself verify all optimizer scalar state, create a Gen2 checkpoint, prove model-quality improvement, or establish admission, activation, cutover, or canonical-head mutation. Prior R40Z READY and R41 descriptor-preflight evidence remain in force. GitHub remains a continuity archive, not the live OPPO SIGMA HEAD.
