@@ -530,3 +530,61 @@ Treat SHA `9551d033...` as the reported current local `/sdcard/Download/SIGMA_AR
 The `SIGMA_CANONICAL_SOURCE=VELA10` marker records local source-promotion output. It does not by itself establish mutation of ONE SIGMA canonical HEAD, owner state, native binding, production runtime selector, SIA capability bindings, admission, activation, or cutover.
 
 Likewise, `VELA10_BACKWARD_COMPATIBILITY=PASS` covers only the explicitly rerun VELA8 and VELA9 KATs. Existing SIA/other SIGMA capabilities still require their own VM-identity compatibility/rebinding evidence where applicable.
+
+
+## VELA11/VELA12 — Cursor and CAS Receipt Qualification
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native KAT and backward-compatibility output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+### VELA11 cursor evidence
+
+- Source SHA256: `8759365be69db94c36c9a0be2d2990a80f9c0d8685b404d82d49ed9172dfa429`
+- Bytecode SHA256: `b2c4b1dd40b8df61d5bae9515831e51e6637399406a70401e07a7120d0532f7e`
+- VELA11_CURSOR_ADVANCE=PASS
+- VELA11_STATE_IMMUTABILITY=PASS
+- VELA11_UNPROVEN_HOLD=PASS
+- VELA11_CURSOR_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA11_CAS_RECEIPT_RUNTIME=NOT_TESTED
+- VELA11_COST_PROOF=NOT_IMPLEMENTED
+
+### VELA12 CAS receipt identity and KAT
+
+- Source: `SIGMA_CORE_VELA12_CAS_RECEIPT_R20261011_E.sigma`
+- Source SHA256: `3255b41d8771494d8061071d2e129ffee59241e1a81cce4d25d1ebeb95e71f92`
+- Bytecode SHA256: `27afcb1322640287a4b29c7bf07c32bfd1094cdb64f16410390d4f899b525893`
+- Source identity was fail-closed checked before compilation.
+- Runtime used `$VKM/SIGMA-Vkm-VELA`.
+- Command: `RBX_VELA12_KAT`.
+- VELA12_CAS_RESTORE=PASS
+- VELA12_IDENTITY_BINDING=PASS
+- VELA12_MISMATCH_REJECTION=PASS
+- VELA12_CURSOR_CHAIN=PASS
+- VELA12_CAS_RECEIPT_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA12_INDEPENDENT_EXECUTION_PROOF=NOT_IMPLEMENTED
+- VELA12_COST_BOUND_PROOF=NOT_IMPLEMENTED
+
+### VELA12 backward compatibility
+
+Using VELA12 bytecode on `SIGMA-Vkm-VELA`, the reported regression returned exit code 0 for:
+- VELA9 governor KAT
+- VELA10 planner KAT
+- VELA11 cursor KAT
+- VELA8 validation-engine KAT
+
+Reported aggregate marker: `VELA12_BACKWARD_COMPATIBILITY=PASS`.
+
+This compatibility claim is limited to the explicitly rerun VELA8–VELA11 KAT surfaces.
+
+### Continuity / anti-rediscovery
+
+VELA12 supersedes the VELA11 state in which CAS-receipt runtime behavior was not tested, to the extent covered by VELA12's CAS restore, identity binding, mismatch rejection, cursor chain, and CAS receipt KAT. Do not rerun unchanged VELA11/12 KATs for the recorded source/bytecode/VM identities absent a regression or changed contract.
+
+### Remaining proof boundaries
+
+The supplied evidence explicitly leaves:
+- `VELA12_INDEPENDENT_EXECUTION_PROOF=NOT_IMPLEMENTED`
+- `VELA12_COST_BOUND_PROOF=NOT_IMPLEMENTED`
+
+Therefore VELA12 is not yet evidence of independent execution proof or a proved cost bound. It also does not by itself establish qualifying ARCH8 training, Gen2 checkpoint creation, ONE SIGMA native-binding activation, admission, or cutover. Those claims require separate evidence.
