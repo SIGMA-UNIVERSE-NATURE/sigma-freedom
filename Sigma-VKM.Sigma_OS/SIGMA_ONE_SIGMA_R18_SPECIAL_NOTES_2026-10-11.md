@@ -734,3 +734,17 @@ Therefore the structural KAT and fail-closed VM-admission behavior do not consti
 Retain the VELA14 source/bytecode identities, structural KAT, and marker-checked V8–V13 compatibility result. Do not repeat unchanged regressions for these identities absent a regression or changed contract.
 
 No VM bytecode proof, qualifying ARCH8 training, Gen2 checkpoint, ONE SIGMA binding activation, admission, or cutover is established by this evidence. VELA14 remains SPECIAL R18 qualification evidence.
+
+
+## VELA14 — Local ARCH8 Source Promotion Readback
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux atomic-move and SHA256 readback; SPECIAL R18 evidence, not an independent audit or ONE SIGMA canonical activation claim.
+
+- Pending VELA14 source was moved with `mv -f` over the local ARCH8 P0 source path.
+- Expected-new SHA check passed.
+- Current reported local `SIGMA_ARCH8_P0_SHAPE_FIXED.sigma` SHA256: `45238d7645345669377120fa5fa7c9978115fc124caf38e9dd75696bddf45b81`.
+- Reported markers: `SIGMA_CANONICAL_SOURCE=VELA14`, `VELA14_SOURCE_PROMOTION=PASS`.
+
+Continuity interpretation: VELA14 SHA `45238d76...` supersedes VELA13 as the reported current local ARCH8 P0 source identity.
+
+Claim boundary: local source promotion is not itself ONE SIGMA admission/activation/cutover. The recorded VELA14 VM-bytecode proof gap and prior unresolved cost/independent-execution proof gaps remain unless separately resolved.
