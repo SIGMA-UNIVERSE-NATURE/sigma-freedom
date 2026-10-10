@@ -107,3 +107,27 @@ Continuity interpretation: VELA L2 now has reported local source integration, an
 Anti-rediscovery rule: retain this source/bytecode identity, dispatch insertion contract, and L2 KAT result. Do not repeat the same L2 discovery/KAT unless implementation, dispatch, runtime identity, or KAT contract changes, or a regression appears.
 
 Claim boundary: this does not establish VELA L2 use in ARCH8 training, optimizer mutation of the qualifying candidate, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L2 remains SPECIAL R18 experimental/research evidence until separately bound into and qualified by an authorized training/control path.
+
+
+## VELA L2 — Multi-Step Native KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux dispatch, compile, and native runtime multi-step KAT output; SPECIAL R18 research evidence, not an independent audit or canonical activation claim.
+
+- VELA2_MULTISTEP_DISPATCH=INSTALLED
+- Source SHA256: `d0b39004ad6dcd57216e3f6af7e0e09a5abcc41c1fd3ca3290ed4537051f57d1`
+- Bytecode SHA256: `c8be6f907a7169b1a21febe0c2e0613a426a4b1edc194933a06fd8ad71411639`
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime command: `RBX_VELA_L2_MULTISTEP_KAT`
+- Runtime engine: existing `sigma-vkm`
+- VELA2_MULTI_STEP_COUNT=PASS
+- VELA2_MULTI_BETA_PRODUCTS=PASS
+- VELA2_MULTI_STATE_IMMUTABILITY=PASS
+- VELA2_MULTI_NUMERIC=PASS
+- VELA2_MULTISTEP_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+Continuity interpretation: VELA L2 now has reported multi-step native validation in addition to the previously recorded single-run L2 KAT. The multi-step evidence covers step progression/count behavior, beta-product behavior, preservation of required state immutability, and numeric checks.
+
+Anti-rediscovery rule: retain this source/bytecode identity and multi-step KAT result. Do not repeat the same multi-step validation unless VELA L2 implementation, dispatch, runtime identity, test contract, or relevant state semantics change, or a regression is observed.
+
+Claim boundary: multi-step KAT PASS does not establish use in ARCH8 candidate training, optimizer mutation of the qualifying model, checkpoint publication, Gen2 creation, model-quality improvement, canonical admission, activation, or cutover. VELA L2 remains SPECIAL R18 experimental/research evidence pending separate authorized integration and qualification.
