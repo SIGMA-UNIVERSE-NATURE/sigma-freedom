@@ -1820,3 +1820,39 @@ Anti-rediscovery: retain these exact hashes and 90/0 result for unchanged kernel
 - repeated supplied execution reproduced the same Case A and Case B runtime hashes.
 
 Scope: VM VELA dynamic-shadow qualification only. No admission, activation, canonical mutation, or cutover claim.
+
+
+## VM VELA E14.19-L4E3B5 — Oracle + Trust Clamp
+
+2026-10-11 VM VELA qualification evidence.
+
+Numerical oracle:
+- CASE_A_NUMERICAL_GATE=PASS
+- CASE_B_NUMERICAL_GATE=PASS
+- E1419_L4E3B4B_ORACLE_GATE=PASS
+- supplied expected/actual values for candidates and next M/V/Q/R/P1/P2/step/instability/trust matched exactly or within reported floating-point residuals no larger than 2.220446049250313e-16.
+
+Trust/update-bound audit:
+- TRUST=0.00206162435681855
+- WEIGHT_NORM=2.9154759474226504
+- UPDATE_NORM=2.9132799384938443e-05
+- ALLOWED_UPDATE_NORM=2.9154759574226507e-05
+- TRUST_CLAMP_ACTIVE=PASS
+- UPDATE_BOUND=PASS
+- NONZERO_UPDATE=PASS
+- E1419_L4E3B5_TRUST_GATE=PASS
+
+Evidence identities:
+- VM SHA256 `c97d6e67add10c7ccb240a4a70c9283f22783ecd27e686d6099396b9c9585212`
+- bytecode SHA256 `9aae3b44424407069af86a54ef08959543babe78dec76445cb69a503b67f1706`
+- tau input SHA256 `661710915adfa7c40b5dbd6b2122dfa65b1accb57a8b7cdee05423ecfe14b0c7`
+- runtime SHA256 `cccd045a0493c0774d9832f5c89440709f063970aa52207b2cc9dfc49e8ef2ad`
+- workspace `.e1419l4e3b5-run.QD3ftiyV`
+
+Safety/state boundary:
+- PRODUCTION_MUTATION=NO
+- CANONICAL_MUTATION=NO
+- ACTIVATION=LOCKED
+- V927=LOCKED
+
+Scope: numerical-oracle and trust-bound qualification for this VM VELA shadow fixture only. No Admission, Activation, production mutation, canonical mutation, or Cutover claim.
