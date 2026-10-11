@@ -908,3 +908,32 @@ Claim discipline: the surrounding bytes are retained as observational evidence o
 Anti-rediscovery: later parser work should reuse symbol-table start offset 197703, declared symbol count 3621, and the first-record fixture (length 3, payload `U_H`) rather than rediscovering them.
 
 Claim boundary: full symbol-table scan, reference/range validation, subsequent bytecode sections, whole-bytecode FULL_PARSER, and VM cost proof remain unproven.
+
+
+## VELA15-L — Symbol Chunk/Cursor Runtime KAT
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux compile/runtime output; SPECIAL R18 parser qualification evidence, not an independent audit or full symbol-table scan proof.
+
+### Identity and compile
+
+- Source: `SIGMA_CORE_VELA15_SYMBOL_R20261011_L.sigma`
+- Source SHA256: `ded17adda9688f0fa170d1d0973d52c69f9dbc44c970881ff6bc6daa5c288e24`
+- Bytecode SHA256: `a756af30d6fb8dcecd02fa9b293d0103e2965e67530a4921b306c75a31ba5ef3`
+- VELA15L_COMPILE=PASS
+
+### Native runtime KAT
+
+- VELA15L_SYMBOL_CHUNK=PASS
+- VELA15L_SYMBOL_CURSOR=PASS
+- VELA15L_SYMBOL_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Continuity interpretation
+
+VELA15-L establishes reported runtime qualification of the symbol-table chunk and cursor primitives needed for bounded symbol scanning. This follows the previously recorded real-bytecode symbol-table boundary at offset 197703, declared symbol count 3621, and first-record fixture with length 3 / payload `U_H`.
+
+Anti-rediscovery: retain the VELA15-L source/bytecode identities and chunk/cursor KAT result. Do not repeat this primitive KAT for unchanged identities absent a regression.
+
+### Claim boundary
+
+This evidence does not state that all 3621 symbol records were traversed. Therefore `FULL_SYMBOL_TABLE_SCAN=PASS` is not claimed. Whole-bytecode `FULL_PARSER=PASS`, subsequent section validation, and VM cost proof remain unresolved until separately evidenced.
