@@ -1179,3 +1179,44 @@ The numeric outputs are archived exactly as runtime observations; no additional 
 Retain the E8 source/bytecode identities and real-gradient runtime result. Do not repeat this exact gate for unchanged identities absent a regression or changed contract.
 
 This evidence does not by itself establish full-model training completion, optimizer/checkpoint persistence, Gen2 checkpoint creation, holdout improvement, SIA compatibility, VELA Admission, native-binding Activation, or Cutover. Those require separate evidence.
+
+
+## VELA Evolution E8.4/E8.5 — Real Model Update Runtime Gate
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux dispatch/compile/native-runtime output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit or activation verdict.
+
+### Build and identity
+
+- E84_DISPATCH_INSTALLED=PASS
+- Source: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E84_RUN_R1.sigma`
+- Bytecode: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E84_RUN_R1.sigmab`
+- E84_COMPILE=PASS
+- Source SHA256: `3b4aba01022f3467e1c71846991152b999e9a3dc789cd42f097d3c739a7818d9`
+- Bytecode SHA256: `4451412071db82bef4c83b70acecc72f4cf8e6b7d40a6f85156df35d289438af`
+
+### Real model-update runtime evidence
+
+Reported runtime values:
+- VELA_E84_LOSS_BEFORE=6.35924073333333
+- VELA_E84_LOSS_AFTER=6.35167493333333
+- VELA_E84_MAX_GRADIENT=0.7976164
+- VELA_E84_CANDIDATE_DELTA=0.00166
+- VELA_E84_STORED_DELTA=0.00166
+- VELA_E84_MODEL_UPDATE_EXECUTED=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E84_RUNTIME_GATE=PASS
+- E8.5 COMPLETE
+
+Observed loss delta for this reported run is approximately -0.0075658 (loss_after - loss_before), and the reported stored delta exactly matches the reported candidate delta at 0.00166.
+
+### Continuity interpretation
+
+This advances the E8.2 evidence from a nonzero update indication to a reported real model-update execution with explicit before/after loss, gradient magnitude, and candidate-versus-stored delta readback.
+
+The lower post-update loss is retained as a single-run observation only. It is not treated as proof of generalization, holdout improvement, convergence, or BEST_PROVEN.
+
+### Anti-rediscovery / claim boundary
+
+Retain these exact source/bytecode identities and runtime measurements. Do not repeat the same gate for unchanged identities absent a regression or changed contract.
+
+This block does not by itself establish durable optimizer/model checkpoint publication, Gen2 creation, recovery, multiwindow holdout improvement, SIA compatibility, Admission, Activation, or Cutover. Those require separate evidence.
