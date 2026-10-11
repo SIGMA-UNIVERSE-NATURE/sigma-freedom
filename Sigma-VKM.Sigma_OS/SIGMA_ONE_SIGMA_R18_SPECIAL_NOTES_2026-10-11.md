@@ -1378,3 +1378,45 @@ Retain the 32768-byte length, payload SHA, evidence-log SHA, and workspace ident
 `E1311_IEEE754_EXACT=PASS` is scoped to the demonstrated fixture and verification contract. It is not generalized here to every tensor shape, dtype, endian environment, import path, checkpoint, or model state.
 
 This evidence does not by itself establish full model/optimizer checkpoint publication or recovery, Gen2, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E13.14-B — Byte-Exact Native Restore Verification
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native restore plus independent byte-count/SHA verification output; SPECIAL R18 VELA Evolution restore evidence, not an independent audit or activation verdict.
+
+### Native restore
+
+- E1314_INPUT_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- E1314_WRITE_RC=0
+- E1314_RESTORED_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- E1314_NATIVE_RESTORE=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Independent restore verification
+
+- SOURCE_BYTES=32768
+- RESTORED_BYTES=32768
+- SOURCE_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- RESTORED_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- E1314_BYTE_EXACT_RESTORE=PASS
+- E1314_RUNTIME_GATE=PASS
+- E13.14-B COMPLETE
+
+Runtime evidence log SHA256:
+`de50851302d0d2314883a70d44163e3145cc9cd7ebde3c8a3252440e30510f81`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1314-run.A1vlulPR`
+
+### Continuity interpretation
+
+Together with E13.11-B native export evidence, this demonstrates a reported byte-exact roundtrip for the same 32768-byte fixture: exported payload SHA `bec4b514...` is accepted by the restore path and the restored output independently reproduces the same length and SHA.
+
+For this fixture, the chain can be recorded as:
+`native export exact PASS → persisted byte payload identity → native restore exact PASS → independent restored-byte identity PASS`.
+
+### Anti-rediscovery / claim boundary
+
+Retain the payload SHA, 32768-byte size, restore-log SHA, and workspace identity. Do not repeat this exact restore fixture for unchanged implementation/runtime identities absent a regression.
+
+This is byte-exact restore evidence for the demonstrated fixture. It does not by itself establish full ARCH8 model/optimizer checkpoint recovery, all tensor/dtype combinations, Gen2 publication, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
