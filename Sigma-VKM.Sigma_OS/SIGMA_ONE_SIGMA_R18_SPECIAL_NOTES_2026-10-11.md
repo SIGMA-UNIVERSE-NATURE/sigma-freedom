@@ -1245,3 +1245,56 @@ Anti-rediscovery: retain module SHA `1a8262fa...` and the `VELA_E9_heldout_eval`
 No compile result, dispatch installation, native runtime execution, heldout dataset/workset binding, baseline/candidate comparison, recovery test, statistical/threshold decision, model-quality improvement, or BEST_PROVEN result was supplied in this block.
 
 Therefore E9.1 is recorded as `HELDOUT_EVAL_MODULE_CREATED`, not `HELDOUT_EVALUATION=PASS`. It does not establish Gen2 checkpoint publication, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E10.9 — AdamW Candidate Runtime + Heldout Observation
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux dispatch/compile/native-runtime output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit, BEST_PROVEN result, or activation verdict.
+
+### E10 AdamW build and identity
+
+- E10A_DISPATCH_INSTALLED=PASS
+- Source: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E10_ADAMW_RUN_R1.sigma`
+- Bytecode: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E10_ADAMW_RUN_R1.sigmab`
+- E10A_COMPILE=PASS
+- Source SHA256: `d921bf6452f9b83129e569bbde870bcd635a413b276cbc3dd0a21d7e856cd2a6`
+- Bytecode SHA256: `e689f814c61eb3d4e3c5cf4307e5e8f1f3de8fc037a209f2fc402195a3deb30e`
+
+### AdamW runtime results
+
+- E10A_TRAIN_BEFORE=6.35924073333333
+- E10A_TRAIN_AFTER=6.35167466666667
+- E10A_HELDOUT_BEFORE=6.2443523
+- E10A_HELDOUT_AFTER=6.2445872
+- E10A_PARAMETER_DELTA=0.00166
+- E10A_ADAMW_EXECUTED=PASS
+- SIGMA_VM_EXIT_CODE=0
+- COMMAND_RESTORE_RC=0
+- E10A_RUNTIME_GATE=PASS
+- E10.9 COMPLETE
+- Runtime log SHA256: `8ebb1e9eac7a37eec715a9d9b974f5ffa4d09420a532ead68edbdac722a61a20`
+
+### Exact observed deltas
+
+From the reported values:
+- training loss delta (after - before) = approximately `-0.00756606666666`
+- heldout loss delta (after - before) = approximately `+0.0002349`
+
+Thus the reported candidate improves the measured training loss for this run while slightly worsening the reported heldout loss.
+
+### Continuity interpretation
+
+E10.9 establishes reported real AdamW execution with a nonzero parameter delta and successful runtime/command restoration. It also supplies the first explicit before/after heldout observation in the VELA Evolution chain shown here.
+
+### Decision boundary
+
+This evidence must NOT be recorded as model-quality improvement or BEST_PROVEN. On the supplied heldout metric, lower appears favorable by the training-loss convention used in the same output, and the candidate heldout value increased from 6.2443523 to 6.2445872.
+
+Accordingly:
+- ADAMW_EXECUTION=PASS
+- TRAIN_METRIC_IMPROVED=YES for this reported run
+- HELDOUT_METRIC_IMPROVED=NO for this reported run
+- MODEL_QUALITY_IMPROVEMENT=NOT_PROVEN
+- BEST_PROVEN=NOT_PROVEN
+
+No Gen2 checkpoint promotion, Admission, Activation, or Cutover is justified by this result alone. Preserve the candidate/runtime log as evidence rather than promoting it based solely on training-loss reduction.
