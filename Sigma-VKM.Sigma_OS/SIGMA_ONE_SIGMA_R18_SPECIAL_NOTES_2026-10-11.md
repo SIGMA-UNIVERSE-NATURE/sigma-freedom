@@ -1220,3 +1220,28 @@ The lower post-update loss is retained as a single-run observation only. It is n
 Retain these exact source/bytecode identities and runtime measurements. Do not repeat the same gate for unchanged identities absent a regression or changed contract.
 
 This block does not by itself establish durable optimizer/model checkpoint publication, Gen2 creation, recovery, multiwindow holdout improvement, SIA compatibility, Admission, Activation, or Cutover. Those require separate evidence.
+
+
+## VELA Evolution E9.1 — Heldout Evaluation Module Created
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux module-creation and source-identity output; SPECIAL R18 VELA Evolution evidence, not an evaluation result or activation verdict.
+
+### E9.1 module creation
+
+- E9_MODULE=CREATED
+- Module: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/VELA_HELDOUT_EVAL_R1.sigma`
+- Declared function discovered at line 6: `DEF VELA_E9_heldout_eval(){`
+- Module SHA256: `1a8262faab801c52e9d60ba0ad5a58489ea52858b9a53aa4f8898c45ab3d6c2c`
+- E9.1 COMPLETE
+
+### Continuity interpretation
+
+E9.1 establishes the reported creation and exact identity of a VELA heldout-evaluation module following the E8 real model-update evidence.
+
+Anti-rediscovery: retain module SHA `1a8262fa...` and the `VELA_E9_heldout_eval` entrypoint for subsequent integration/qualification work.
+
+### Claim boundary
+
+No compile result, dispatch installation, native runtime execution, heldout dataset/workset binding, baseline/candidate comparison, recovery test, statistical/threshold decision, model-quality improvement, or BEST_PROVEN result was supplied in this block.
+
+Therefore E9.1 is recorded as `HELDOUT_EVAL_MODULE_CREATED`, not `HELDOUT_EVALUATION=PASS`. It does not establish Gen2 checkpoint publication, Admission, Activation, or Cutover.
