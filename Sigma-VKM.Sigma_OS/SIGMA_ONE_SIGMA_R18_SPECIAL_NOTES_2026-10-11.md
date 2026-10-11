@@ -1616,3 +1616,44 @@ The exact runtime markers are retained as evidence of the tested projection path
 Retain the evidence-log SHA and workspace. Do not repeat this exact 27-cell logits-projection fixture for unchanged source/bytecode/runtime identities absent a regression.
 
 This evidence does not establish exhaustive logits/model correctness, full training/checkpoint correctness, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.11-N-S — Medium Model Marker/Value Re-Audit PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux audit and evidence-identity output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit by ChatGPT or activation verdict.
+
+### Medium-model marker/value re-audit
+
+Reported audit results:
+- E1410_BASE_PARAMS marker audit=PASS
+- exact base-parameter value `176576` audit=PASS
+- E1410_PROFILE_VALID=PASS audit=PASS
+- E1410_MODEL_VALIDATE=PASS audit=PASS
+- E1410_TENSOR_COUNT marker audit=PASS
+- exact tensor-count value `62` audit=PASS
+- E1410_PARAMETER_COUNT marker audit=PASS
+- exact parameter-count value `392384` audit=PASS
+- E1410_EMBEDDING=PASS audit=PASS
+- E1410_MEDIUM_MODEL=PASS audit=PASS
+- E1411NS_RUNTIME_GATE=PASS
+- E14.11-N-S COMPLETE
+
+### Evidence identities
+
+- Bytecode: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_MEDIUM_R7_GET_R1.sigmab`
+- Bytecode SHA256: `dc670edb58e06b6ed43c6e587d926b6decd21849cff5bab91058420b5c56f2c2`
+- Runtime log SHA256: `479c8dc0df7d51b07b7045212b65fea8afc3d6a8c1f077bf43020a2b5c1105fd`
+- Workspace: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1411ns-run.erJmR4Lw`
+
+### Continuity interpretation
+
+E14.11-N-S independently re-audits the semantic PASS markers and exact medium-model counts previously observed in E14.10-R. It strengthens continuity for the qualified medium-model path by binding those expected values to a concrete bytecode identity and runtime-log identity.
+
+For unchanged identities, retain:
+`BASE_PARAMS=176576`, `TENSOR_COUNT=62`, `PARAMETER_COUNT=392384`, profile/model/embedding/medium-model PASS.
+
+### Anti-rediscovery / claim boundary
+
+Do not repeat the same medium-model count/marker audit for this bytecode/runtime contract absent a regression or identity change. If a later run differs, compare against these exact expected values and evidence hashes first.
+
+This is medium-model runtime/audit continuity evidence. It does not by itself establish training convergence, checkpoint publication/recovery, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
