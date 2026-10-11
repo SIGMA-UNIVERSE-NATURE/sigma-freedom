@@ -974,3 +974,28 @@ Whole-bytecode `FULL_PARSER=PASS` is still not claimed from this block alone. Pa
 `VELA15_VM_COST_PROOF` also remains unresolved unless separately proven.
 
 Claim boundary: full symbol-table scan PASS does not itself establish complete VM-bytecode proof, VM cost proof, ONE SIGMA admission, activation, or cutover.
+
+
+## VELA15M — Function Table Header Discovery
+
+Evidence date: 2026-10-11. Basis: user-supplied direct inspection of the real VELA15 bytecode fixture; SPECIAL R18 parser evidence, not an independent audit or full function-table proof.
+
+Following the previously completed symbol scan ending at `FUNCTION_TABLE_OFFSET=254941`:
+
+- BYTECODE_IDENTITY=PASS
+- Function-table header bytes: `23 6 0 0`
+- Decoded/reported FUNCTION_COUNT=1559
+- First function metadata bytes: `0 0 0 0 4 0 1 0 0 0 2 0 0 0 3 0`
+- Real bytecode size remains 868667 bytes.
+
+### Continuity interpretation
+
+The parser investigation has now reached the function-table structure after completing 7370/7370 constants and 3621/3621 symbols. The function table declares 1559 entries, and a concrete 16-byte first-function metadata fixture has been captured.
+
+### Claim discipline / anti-rediscovery
+
+Retain function-table start offset 254941, declared function count 1559, and the first 16 metadata bytes for subsequent bounded parser work. Do not infer field meanings, widths beyond what is directly observed, code offsets, argument counts, or control-flow semantics from this single metadata sample without additional format/runtime evidence.
+
+Whole-bytecode `FULL_PARSER=PASS` is not yet claimed. The next parser stage must traverse/validate all 1559 function records and establish the next section boundary, then validate any remaining code/instruction/operand/control-flow/end-of-file invariants required by SIGMBC01.
+
+`VELA15_VM_COST_PROOF` also remains unresolved unless separately proven.
