@@ -1730,3 +1730,50 @@ Evidence identities:
 ### Continuity boundary
 
 Retain these exact results to prevent rediscovery for unchanged identities. They qualify the demonstrated runtime, native boundary, native-set, forward/backward, and deterministic-initialization contracts. They do not by themselves establish BEST_PROVEN, Gen2 publication, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.12-D4 — Controlled VELA vs AdamW Single-Step Comparison
+
+Evidence date: 2026-10-11. User-supplied Termux runtime/audit evidence.
+
+### Controlled starting state
+
+- E1412_D4_INITIAL_WEIGHT_EQUAL=PASS
+- E1412_D4_INITIAL_GRADIENT_EQUAL=PASS
+- E1412_D4_INITIAL_LOSS=7.0272598
+- E1412_D4_SINGLE_STEP=PASS
+- E1412_D4_VELA_STATE_STEP=1.0
+- E1412_D4_ADAMW_STATE_STEP=1.0
+
+### Single-step measurements
+
+- VELA delta: `0.0015296`
+- AdamW delta: `0.005736`
+- VELA train loss: `6.9959136`
+- AdamW train loss: `6.9956638`
+- VELA heldout loss: `7.05990476666667`
+- AdamW heldout loss: `7.05990593333333`
+
+Both candidates reduce training loss relative to the common initial loss. AdamW has the slightly lower reported training loss, while VELA has the slightly lower reported heldout loss in this one-step comparison.
+
+### Runtime/accounting
+
+- SIGMA_PROFILE_TOTAL_STEPS=1662246203
+- SIGMA_PROFILE_NATIVE_GET_CALLS=17041217
+- SIGMA_PROFILE_NATIVE_SET_CALLS=5202198
+- SIGMA_PROFILE_ACCOUNTING_STATUS=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E1412_D4_RUNTIME_GATE=PASS
+
+### Evidence identities
+
+- VM SHA256: `c97d6e67add10c7ccb240a4a70c9283f22783ecd27e686d6099396b9c9585212`
+- bytecode SHA256: `b3b53575b66e6058cd53c0042f5c15f8742baf488247392809f6378d043a80bb`
+- runtime SHA256: `bfbb21fccff327d2c1c3a6bd0c9012b95b8d1a0ccf320284945fc2c9dea2393f`
+- workspace: `.e1412d4-run.cFit927w`
+
+### Decision boundary
+
+This is a controlled one-step comparison, not a BEST_PROVEN result. The supplied metrics split: AdamW is marginally lower on training loss, VELA marginally lower on heldout loss. Multi-step/multiwindow evaluation and recovery evidence are required before optimizer superiority or model-quality improvement can be claimed.
+
+No Admission, Activation, or Cutover is established by D4 alone.
