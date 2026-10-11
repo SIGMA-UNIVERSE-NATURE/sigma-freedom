@@ -1047,3 +1047,61 @@ Anti-rediscovery: retain the report path and SHA256 above. Later activation work
 ### Claim boundary
 
 Gate A1 does not by itself establish Admission, native-binding mutation, runtime-selector consumption, Activation, or Cutover. The contents of the prestate report were not supplied in this block, so this note does not infer which individual owner/native/head/watchdog fields it contains. Subsequent gates should explicitly bind the activation transaction to this prestate SHA and verify required postconditions/rollback.
+
+
+## VELA Activation — Gate B4 SIA capability_invoke Host ABI Discovery
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux SIA consumer/host-source discovery output; SPECIAL R18 activation/architecture evidence, not an independent audit or activation verdict.
+
+### Canonical SIA consumer R3 invocation surface
+
+The current SIA canonical consumer R3 source was resolved through `canonical_consumer_R3.current` and inspected. It invokes the following through the host operation `capability_invoke`:
+
+- D18 / OBSERVE
+- DNA-20 / ASSESS
+- DNA-39 / SELECT
+- DNA-42 / SCHEDULE
+- DNA-49 / ROUTE
+- MEMORY_LINEAGE_R1 / VERIFY
+- API410_FINAL_LANGUAGE_UNDERSTANDING / UNDERSTAND
+
+The consumer validates returned result structure through `VALID_D18` and `VALID_ALL`. It emits `CANONICAL_RESULT_CONSUMPTION=PASS` and `CORE_A_DECISION=CAPABILITY_RESULTS_ACCEPTED` only when all seven checks pass; otherwise it emits `CANONICAL_RESULT_CONSUMPTION=HOLD`.
+
+The consumer also explicitly reports:
+- TRAINING_EXECUTED=NO
+- SECOND_SIGMA=NO
+
+### Host implementation / socket discovery
+
+Targeted source discovery for `capability_invoke` found a C implementation surface at:
+
+`$ROOT/.sigma_ail/SIA_CORE_A/runtime/7a696d39a5854ddd32a44e18dc6fd5465de3b6a135b55830f1c07d973fb27a5c/sigma_vkm.c`
+
+The same source was also the reported hit for `SIA_SOCKET_PATH`.
+
+Within the searched SIA source inventory, this `sigma_vkm.c` was the reported C/H implementation file.
+
+### Architectural interpretation
+
+This evidence supports the concrete execution boundary:
+
+`SIA canonical consumer (.sigma) → host("capability_invoke", ...) → SIA runtime host implementation (sigma_vkm.c) → capability dispatch/result → consumer validation`.
+
+It also demonstrates a fail-closed consumer decision at the result-consumption layer: any failed capability result validation prevents aggregate canonical result consumption PASS.
+
+This is useful for VELA activation because VM migration/rebinding must preserve this `capability_invoke` ABI and the SIA runtime/socket contract rather than rewriting capability semantics merely to accommodate a new VM identity.
+
+### Claim boundary / next activation evidence
+
+Gate B4 is discovery/contract evidence. It does not yet prove that the newly promoted VELA default VM is the runtime process actually serving the SIA `capability_invoke` host implementation, nor that all seven capabilities have been rerun successfully through that runtime after VM migration.
+
+The next relevant qualification should bind:
+1. exact VELA VM SHA;
+2. exact SIA runtime `sigma_vkm.c`/built-runtime identity;
+3. socket/runtime endpoint;
+4. canonical consumer R3 identity;
+5. native execution of all seven capability invocations;
+6. aggregate `CANONICAL_RESULT_CONSUMPTION=PASS`;
+7. owner/native-binding prestate and poststate.
+
+GATE B4 COMPLETE is recorded as host-ABI discovery complete, not Admission or Activation.
