@@ -1336,3 +1336,45 @@ E11.9 FIX3 establishes reported durable CAS persistence sufficient for a separat
 Retain the CAS object SHA, restored values, and restore-log SHA as the exact E11.9 FIX3 evidence. Do not repeat this fixture for unchanged identities absent a regression.
 
 This result proves the demonstrated CAS object cross-process restore only. It does not by itself establish full ARCH8 model + optimizer checkpoint persistence, atomic checkpoint publication, full recovery of all model state, Gen2 creation, heldout improvement, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E13.11-B — Large Tensor Native Export Exact Verification
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native export plus independent byte-count/SHA verification output; SPECIAL R18 VELA Evolution serialization evidence, not an independent audit or activation verdict.
+
+### Native large-tensor export
+
+Reported runtime:
+- E1311_RAW_BYTES=32768
+- E1311_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- E1311_WRITE_RC=0
+- E1311_NATIVE_EXPORT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Independent verification
+
+- ACTUAL_BYTES=32768
+- EXPECTED_BYTES=32768
+- ACTUAL_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- EXPECTED_SHA256=`bec4b514166972ed846e0ed71bda86e83e07d023f2da315f12af135e573453e4`
+- E1311_IEEE754_EXACT=PASS
+- E1311_RUNTIME_GATE=PASS
+- E13.11-B COMPLETE
+
+Runtime evidence log SHA256:
+`eb0a7371ccc5bc153f63ffddcef1d8dac0e48f3e9c617b9a4ae1e5d8f8d7955a`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1311-run.kAN1B1qe`
+
+### Continuity interpretation
+
+For this exact large-tensor fixture, the native export byte count and SHA256 were independently reproduced exactly. This provides strong evidence that the demonstrated export path preserved the expected serialized IEEE-754 payload byte-for-byte.
+
+### Anti-rediscovery / claim boundary
+
+Retain the 32768-byte length, payload SHA, evidence-log SHA, and workspace identity. Do not repeat this exact fixture for unchanged implementation/runtime identities absent a regression.
+
+`E1311_IEEE754_EXACT=PASS` is scoped to the demonstrated fixture and verification contract. It is not generalized here to every tensor shape, dtype, endian environment, import path, checkpoint, or model state.
+
+This evidence does not by itself establish full model/optimizer checkpoint publication or recovery, Gen2, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
