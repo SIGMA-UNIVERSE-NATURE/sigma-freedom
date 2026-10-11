@@ -1105,3 +1105,37 @@ The next relevant qualification should bind:
 7. owner/native-binding prestate and poststate.
 
 GATE B4 COMPLETE is recorded as host-ABI discovery complete, not Admission or Activation.
+
+
+## VELA Evolution E7.4 — Tensor Adapter Real-Runtime KAT PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux dispatch/compile/native-runtime output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit or activation verdict.
+
+### E7.4 build and dispatch
+
+- E7_DISPATCH_INSTALLED=PASS
+- Source: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E7_KAT_R2.sigma`
+- Bytecode: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E7_KAT_R2.sigmab`
+- E7_COMPILE=PASS
+- Source SHA256: `70b63042b8dec41f0f2199745fecfd45bda8cbd41292102acf256d6f5d71014e`
+- Bytecode SHA256: `a4f430169bb9e90231ec7d8e9b614adcb446856f59f16bafe2df30e18c082022`
+
+### Real-runtime KAT
+
+- VELA_E7_F32_ROUNDTRIP=PASS
+- VELA_E7_BF16_ROUNDTRIP=PASS
+- VELA_E7_SOURCE_IMMUTABILITY=PASS
+- VELA_E7_TENSOR_ADAPTER_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E7_RUNTIME_GATE=PASS
+- E7.4 COMPLETE
+
+### Continuity interpretation
+
+E7.4 establishes reported real-runtime qualification of the VELA tensor-adapter surface for F32 and BF16 roundtrip behavior while preserving source immutability. Dispatch installation and compiled source/bytecode identities are retained for later evolution and compatibility work.
+
+Anti-rediscovery: do not repeat this exact E7 tensor-adapter KAT for unchanged source/bytecode/runtime contracts unless a regression or identity change occurs.
+
+### Claim boundary
+
+E7_RUNTIME_GATE=PASS is an Evolution R1 component qualification result. This evidence does not by itself establish SIA compatibility, VELA Admission, native-binding activation, canonical runtime consumption, or Cutover. Those require their separate activation-chain evidence.
