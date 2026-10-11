@@ -999,3 +999,27 @@ Retain function-table start offset 254941, declared function count 1559, and the
 Whole-bytecode `FULL_PARSER=PASS` is not yet claimed. The next parser stage must traverse/validate all 1559 function records and establish the next section boundary, then validate any remaining code/instruction/operand/control-flow/end-of-file invariants required by SIGMBC01.
 
 `VELA15_VM_COST_PROOF` also remains unresolved unless separately proven.
+
+
+## VELA15 — First Function Instruction-Stream Discovery
+
+Evidence date: 2026-10-11. Basis: user-supplied direct inspection of the real VELA15 bytecode fixture; SPECIAL R18 parser evidence, not an independent audit or full function/code proof.
+
+Following the previously recorded function-table declaration of 1559 functions:
+
+- Additional reported first-function metadata/value sequence: `1 2 3 4`.
+- FIRST FUNCTION INSTRUCTION COUNT=1169.
+- First 32 reported instruction bytes:
+  `10 01 00 00 00 01 00 00 00 00 21 10 41 07 00 00 00 30 05 00 00 00 00 00 31 40 07 00 00 00 10 01`.
+
+### Continuity interpretation
+
+The parser investigation has progressed from the function-table header/first metadata fixture into the first function's instruction stream and has identified a declared instruction count of 1169 for that function.
+
+### Claim discipline / anti-rediscovery
+
+Retain the reported instruction count and first 32 instruction bytes as a concrete fixture for function/code parser development. The sequence `1 2 3 4` is retained as observed output only because the supplied excerpt does not identify its field names or semantics.
+
+Do not infer opcode meanings, instruction widths, operand types, branch targets, stack effects, or control-flow semantics solely from these bytes.
+
+This block does not establish traversal of all 1169 instructions in function 0 or all 1559 functions. Whole-bytecode `FULL_PARSER=PASS`, instruction/control-flow validation, and VM cost proof remain unresolved until separately evidenced.
