@@ -1657,3 +1657,76 @@ For unchanged identities, retain:
 Do not repeat the same medium-model count/marker audit for this bytecode/runtime contract absent a regression or identity change. If a later run differs, compare against these exact expected values and evidence hashes first.
 
 This is medium-model runtime/audit continuity evidence. It does not by itself establish training convergence, checkpoint publication/recovery, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## Consolidated pending evidence — E14.11-N-W2 through E14.12-D3
+
+Evidence date: 2026-10-11. User-supplied Termux/runtime audit evidence. This block consolidates results that had not yet been committed to R18.
+
+### E14.11-N-W2
+
+Profile accounting: total steps 2519, exclusive sum 2519, delta 0, accounting PASS. Valid-boundary case PASS with exit 0. Four invalid fixtures (index, handle, dtype, storage) were audited as expected rejection cases with exit 25. Aggregate `E1411NW_NEGATIVE_GATE=PASS`.
+
+Runtime log SHA256 values:
+- valid: `14777d6dc855bbdc19fb3397a58252524863cfc88aa75812e45f06fbad5fff3d`
+- index: `34ad4e3345e59b08617c7ba27d6bd09d24b7f8f120dfd3c906892fef4fa12d88`
+- handle: `f0456adc14b5feae82e9d05372a5c1c758e1d96ddb1187b05fd2de5a39c21c0d`
+- dtype: `3022c0bce141e77f4a9a899eb6cba2c3b3db45e81e70de153cbab914fc052fcf`
+- storage: `a7a1bd3a774955fad8f83fc467ac74d3219ee0b6a64c888ccaa65962311ff876`
+
+Workspace: `.e1411nw-run.4a96v570`.
+
+### E14.11-N-Z7K / R9 native-set
+
+Regression PASS: exit 0, native-set calls 8, F32/BF16 and numerical equivalence PASS; log SHA256 `f606a611bf440344899022ca4411f88341a608e00c0ed288508bcbadfe18fe60`.
+
+Negative contract PASS: exit 0, native-set calls 1; invalid index/dtype/cache/storage/handle and valid commit checks PASS; log SHA256 `605153185fa87d558506ad0afb7e075c95d8a7f93f64b9436019fd473ce495d0`.
+
+Boundary PASS: exit 0, native-set calls 18, F32/BF16 numerical boundary PASS; log SHA256 `37b9cd0a1b371dc59b0414cb88f8497b01408de32ef19051cac01572e69dc8da`.
+
+Profile accounting PASS in all three runs. Aggregate `E1411NZ7K_RUNTIME_GATE=PASS`. Workspace: `.e1411nz7k-run.vEfmfHGM`.
+
+### E14.11-N-Z8L
+
+Reported completion evidence:
+- model PASS
+- forward PASS
+- backward PASS
+- forward/backward PASS
+- profile accounting PASS
+- train loss `7.0272598`
+- heldout loss `7.0568531`
+- max embedding gradient `1.1142309`
+- gradient count `62`
+- total steps `500324755`
+- effective limit `2000000000`
+- `E1411NZ8L_COMPLETION_GATE=PASS`
+- runtime SHA256 `12b0a680042df78656534630b82bceb40b059b85921f3c28ab6bb383cb064517`
+
+These losses are measurements from this run, not before/after evidence; no quality-improvement or BEST_PROVEN claim is made.
+
+### E14.12-D3 deterministic initialization
+
+Reported runtime:
+- total steps `394298678`
+- native-get calls `784768`
+- native-set calls `784768`
+- profile accounting PASS
+- tensors `62`
+- parameters `392384`
+- initial weights equal PASS
+- independent handles PASS
+- determinism PASS
+- VM exit 0
+
+Post-run audit required each expected marker/value exactly once and rejected any integral-fault line. Aggregate `E1412_D3_RUNTIME_GATE=PASS`.
+
+Evidence identities:
+- VM SHA256 `c97d6e67add10c7ccb240a4a70c9283f22783ecd27e686d6099396b9c9585212`
+- bytecode SHA256 `f547839b7310e8a7c3766d36dd0b9dd04fa92d2a8972f6557da263c536cc6d18`
+- runtime SHA256 `3b5cfc8170f70c938a6e80f1c5777b1ca61d47f4815986555c7f47463edbfb4d`
+- workspace `.e1412d3-run.nxzUgTZp`
+
+### Continuity boundary
+
+Retain these exact results to prevent rediscovery for unchanged identities. They qualify the demonstrated runtime, native boundary, native-set, forward/backward, and deterministic-initialization contracts. They do not by themselves establish BEST_PROVEN, Gen2 publication, SIA compatibility, Admission, Activation, or Cutover.
