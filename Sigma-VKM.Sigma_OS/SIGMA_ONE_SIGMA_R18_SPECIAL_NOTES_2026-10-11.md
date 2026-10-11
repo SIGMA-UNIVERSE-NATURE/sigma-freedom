@@ -1139,3 +1139,43 @@ Anti-rediscovery: do not repeat this exact E7 tensor-adapter KAT for unchanged s
 ### Claim boundary
 
 E7_RUNTIME_GATE=PASS is an Evolution R1 component qualification result. This evidence does not by itself establish SIA compatibility, VELA Admission, native-binding activation, canonical runtime consumption, or Cutover. Those require their separate activation-chain evidence.
+
+
+## VELA Evolution E8.2 — Real ARCH8 Gradient/Update Runtime Gate
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux dispatch/compile/native-runtime output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit or activation verdict.
+
+### E8 build and identity
+
+- E8_DISPATCH_INSTALLED=PASS
+- Source: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E8_R1.sigma`
+- Bytecode: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/SIGMA_CORE_VELA_E8_R1.sigmab`
+- E8_COMPILE=PASS
+- Source SHA256: `194de75257b4cb03b85ab8518d679592bd9f5d5bf918b38c47ca6de0e0d631f7`
+- Bytecode SHA256: `f2be5c8bb6bba5cd63ade8f1fd977de7b6d6cd2228cb875bdf8af1656f9663ef`
+
+### E8 real-runtime gradient gate
+
+Reported native runtime results:
+- VELA_E8_REAL_ARCH8_FORWARD=PASS
+- VELA_E8_REAL_ARCH8_BACKWARD=PASS
+- VELA_E8_REAL_GRADIENT_CONSUMED=PASS
+- VELA_E8_LOSS=6.35924073333333
+- VELA_E8_TRUST=1
+- VELA_E8_MAX_PARAMETER_DELTA=0.00166
+- VELA_E8_NONZERO_UPDATE=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E8_REAL_GRADIENT_GATE=PASS
+- E8.2 COMPLETE
+
+### Continuity interpretation
+
+E8.2 establishes reported real-runtime execution of an ARCH8 forward/backward path, consumption of a resulting gradient, and a nonzero parameter update. This materially advances the VELA Evolution chain beyond E7 tensor-adapter roundtrip qualification.
+
+The numeric outputs are archived exactly as runtime observations; no additional quality or convergence conclusion is inferred from the single reported loss, trust, or maximum parameter delta.
+
+### Anti-rediscovery / claim boundary
+
+Retain the E8 source/bytecode identities and real-gradient runtime result. Do not repeat this exact gate for unchanged identities absent a regression or changed contract.
+
+This evidence does not by itself establish full-model training completion, optimizer/checkpoint persistence, Gen2 checkpoint creation, holdout improvement, SIA compatibility, VELA Admission, native-binding Activation, or Cutover. Those require separate evidence.
