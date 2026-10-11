@@ -748,3 +748,50 @@ Evidence date: 2026-10-11. Basis: user-supplied Termux atomic-move and SHA256 re
 Continuity interpretation: VELA14 SHA `45238d76...` supersedes VELA13 as the reported current local ARCH8 P0 source identity.
 
 Claim boundary: local source promotion is not itself ONE SIGMA admission/activation/cutover. The recorded VELA14 VM-bytecode proof gap and prior unresolved cost/independent-execution proof gaps remain unless separately resolved.
+
+
+## VELA15 — Bytecode Header ABI Qualification
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native KAT and direct bytecode-header inspection; SPECIAL R18 qualification evidence, not an independent audit or complete VM-bytecode proof.
+
+### Header KAT
+
+- VELA15_ABI_HEADER=PASS
+- VELA15_MAGIC_VERSION_REJECTION=PASS
+- VELA15_ENDIAN_DECODER=PASS
+- VELA15_RANGE_INPUT_GATES=PASS
+- VELA15_HEADER_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+- VELA15_RUNTIME_EXIT=PASS
+- VELA15_FULL_PARSER=NOT_IMPLEMENTED
+- VELA15_VM_COST_PROOF=NOT_IMPLEMENTED
+
+### Runtime and real-bytecode binding
+
+The runtime binary `$VKM/SIGMA-Vkm-VELA` was explicitly checked against expected SHA256:
+`ed2849dc666ab80cf44e29a7178affc95c02ed051168494d9575d4a60ca5ff7d`.
+
+Inspected bytecode:
+`SIGMA_CORE_VELA15_HEADER_R20261011_H_FIX1.sigmab`
+
+- size: 868667 bytes
+- first 16 decimal bytes reported: `83 73 71 77 66 67 48 49 1 0 0 0 202 28 0 0`
+- first 8 bytes decoded/checked as magic `SIGMBC01`
+- VELA15_REAL_BYTECODE_MAGIC=PASS
+- bytecode SHA256: `6982d1c2b99f651de2883dbeeba59113ee001f1ca81ea4aa679e8763ebee5d18`
+
+### Continuity interpretation
+
+VELA15 provides reported evidence that the header-level ABI contract and rejection/range/endian checks pass, and independently confirms the expected magic on an actual compiled VELA15 bytecode artifact while bound to the qualified VELA VM identity.
+
+This advances the previously recorded VELA14 `VM_BYTECODE_PROOF=NOT_IMPLEMENTED` gap only at header/ABI level. It does not constitute a full bytecode parser/proof.
+
+### Remaining gates / anti-rediscovery
+
+Do not repeat header magic/ABI discovery for unchanged VM and bytecode identities. The explicit remaining VELA15 gates are:
+- `VELA15_FULL_PARSER=NOT_IMPLEMENTED`
+- `VELA15_VM_COST_PROOF=NOT_IMPLEMENTED`
+
+A complete VM-bytecode proof must go beyond the 16-byte/header evidence and validate the relevant bytecode structure/ranges/instructions or other exact parser contract, fail closed on malformed artifacts, and bind the resulting proof to the exact bytecode and VM identities.
+
+Claim boundary: no full VM-bytecode proof, VM cost proof, qualifying ARCH8 Gen2 checkpoint, ONE SIGMA admission, activation, or cutover is established by this evidence.
