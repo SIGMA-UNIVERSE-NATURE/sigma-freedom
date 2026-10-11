@@ -834,3 +834,37 @@ Anti-rediscovery: retain this runtime real-header result for the recorded source
 This remains header-level/runtime-fixture qualification. Reading a constant count does not by itself prove that all 7370 constants, section boundaries, instruction stream, operand ranges, control-flow targets, or other bytecode structures have been fully parsed and validated.
 
 Accordingly the previously recorded `VELA15_FULL_PARSER=NOT_IMPLEMENTED` and `VELA15_VM_COST_PROOF=NOT_IMPLEMENTED` gaps are not considered resolved by this evidence. No full VM-bytecode proof, ONE SIGMA admission, activation, or cutover is established.
+
+
+## VELA15K — Full Constant-Pool Segmented Scan Complete
+
+Evidence date: 2026-10-11. Basis: user-supplied VELA15K segmented runtime scan output; SPECIAL R18 qualification evidence, not an independent audit or complete whole-bytecode proof.
+
+### Full constant-pool scan result
+
+The reported VELA15K scanner advanced monotonically through the real bytecode constant pool in bounded segments. Each reported segment returned `VELA15K_SEGMENT=PASS` and advanced `VELA15K_NEXT_INDEX`.
+
+Final reported state:
+- VELA15K_SEGMENTS=231
+- VELA15K_CONSTANTS=7370
+- VELA15K_SYMBOL_TABLE_OFFSET=197703
+- final index=7370
+- final offset=197703
+
+The final partial segment advanced from index 7360 to the declared constant count 7370. This matches the previously reported real-header `VELA15_REAL_CONSTANT_COUNT=7370`.
+
+### Continuity interpretation
+
+This materially strengthens VELA15 parser evidence: the constant-pool portion of the real bytecode is now reported scanned completely, not merely counted from its header. The bounded scan reaches exactly the declared 7370 constants and yields the next structural boundary at symbol-table offset 197703.
+
+For the constant-pool objective, earlier header-only uncertainty is superseded by this full segmented scan.
+
+### Anti-rediscovery / remaining parser scope
+
+Do not repeat the 231-segment / 7370-constant scan for the same real-bytecode identity unless the parser contract or artifact identity changes or a regression appears.
+
+However, `VELA15_FULL_PARSER` is not promoted to PASS from this evidence alone. A whole-bytecode parser/proof still needs evidence for the remaining applicable structures after offset 197703, including the symbol table and any instruction/code sections, operand/range constraints, section boundaries, and control-flow targets required by the actual SIGMBC01 format.
+
+Likewise, `VELA15_VM_COST_PROOF=NOT_IMPLEMENTED` remains unresolved unless separately proven.
+
+Claim boundary: constant-pool full scan complete does not itself establish complete VM-bytecode proof, VM cost proof, ONE SIGMA admission, activation, or cutover.
