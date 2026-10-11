@@ -1457,3 +1457,39 @@ For the covered fixtures/contracts:
 Retain the evidence-log SHA and workspace identity. Do not repeat these exact negative fixtures for unchanged implementation/runtime identities absent a regression.
 
 This negative-test evidence is scoped to the supplied E13.15-B cases. It does not prove every malformed-input class, full model/optimizer checkpoint recovery, Gen2 publication, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.10-L — Symbol/Profile Unbound-Read Static Bytecode Audit
+
+Evidence date: 2026-10-11. Basis: user-supplied full-bytecode static audit output; SPECIAL R18 diagnostic evidence retained specifically to prevent rediscovery of the symbol/profile failure hypothesis.
+
+### Bytecode/symbol audit result
+
+- TARGET_SYMBOL=1022 (`profile`)
+- FUNCTION_COUNT=1566
+- BYTECODE_FULL_PARSE=PASS
+- MAIN_LOADS=[]
+- MAIN_STORES=[]
+- SUSPECT_COUNT=0
+- E1410L_UNBOUND_PROFILE_CANDIDATES=NONE
+- E1410L_STATIC_BYTECODE_AUDIT=PASS
+- E14.10-L COMPLETE
+
+The supplied audit enumerated `profile` LOAD/STORE sites across the parsed bytecode, including profile/layout/model/ARCH8/R35/R40Z/R41/VELA-related functions. Functions with direct parameter binding were marked `PARAM True`; functions without direct parameter binding were separately represented with their observed LOAD/STORE sites.
+
+### Diagnostic interpretation
+
+For the exact audited bytecode, the static analysis found no candidate unbound reads of the `profile` symbol under the audit's criteria. In particular, the reported MAIN entry has no direct `profile` loads or stores.
+
+Therefore future debugging must not reassert `UNBOUND_PROFILE` as the established blocker merely from the existence of symbol `profile`. Any future profile-binding failure must be supported by new runtime or bytecode evidence tied to the exact failing instruction/function/identity.
+
+### Anti-rediscovery
+
+Preserve this as the current diagnostic conclusion:
+`E1410L_UNBOUND_PROFILE_CANDIDATES=NONE`.
+
+Do not repeat the same static profile-symbol search for unchanged bytecode/parser identities. If a runtime still reports a symbol/profile error, the next investigation should correlate the exact runtime failure with function/instruction/host ABI state rather than restarting broad symbol discovery.
+
+### Claim boundary
+
+This is a static bytecode audit. It does not prove that every runtime path is free of dynamic binding/host/runtime-state faults, nor does it establish Admission, Activation, or Cutover.
