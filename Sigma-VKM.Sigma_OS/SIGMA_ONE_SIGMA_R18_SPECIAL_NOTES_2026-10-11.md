@@ -1580,3 +1580,39 @@ E14.11-J provides reported fail-closed negative coverage for invalid tensor shap
 Retain the evidence-log SHA and workspace. Do not repeat these exact negative/immutability fixtures for unchanged source/bytecode/runtime identities absent a regression.
 
 The PASS claims are scoped to the supplied E14.11-J contract and test cases. This block does not establish exhaustive malformed-input coverage, full training/checkpoint correctness, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.11-L — Native Logits Projection Exact Cell Check PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux native-runtime output; SPECIAL R18 VELA Evolution numeric qualification evidence, not an independent audit or activation verdict.
+
+### Native logits-projection runtime
+
+Reported execution:
+- E1411L_ENTER
+- E1411L_INPUT_READY
+- E1411L_NATIVE_COMPLETE
+- E1411L_CHECKED_CELLS=27
+- E1411L_MAX_ERROR=0
+- E1411L_LOGITS_PROJECTION=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E1411L_RUNTIME_GATE=PASS
+- E14.11-L COMPLETE
+
+Runtime evidence log SHA256:
+`f1d7c33f969b0ceca217f8197dba971dd7062704dbe6fa7c256cf4de498e38ea`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1411l-run.R9JZyE7d`
+
+### Continuity interpretation
+
+E14.11-L provides a positive numeric counterpart to the E14.11-J negative/immutability contract. For the demonstrated logits-projection fixture, native execution completed and all 27 checked cells matched the test reference with reported maximum error exactly 0.
+
+The exact runtime markers are retained as evidence of the tested projection path; no broader floating-point exactness claim is inferred beyond the checked cells and contract.
+
+### Anti-rediscovery / claim boundary
+
+Retain the evidence-log SHA and workspace. Do not repeat this exact 27-cell logits-projection fixture for unchanged source/bytecode/runtime identities absent a regression.
+
+This evidence does not establish exhaustive logits/model correctness, full training/checkpoint correctness, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
