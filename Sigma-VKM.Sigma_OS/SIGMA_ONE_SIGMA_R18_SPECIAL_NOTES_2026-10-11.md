@@ -1801,3 +1801,22 @@ Interpretation: for the demonstrated scalar-kernel qualification set, all 90 cas
 VM-replacement boundary: this is component-level VM VELA qualification evidence. It does not yet prove standalone .sigmab execution, removal of VKM execution dependency, whole-VM compatibility, stability/performance, replacement qualification, Admission, Activation, or Cutover.
 
 Anti-rediscovery: retain these exact hashes and 90/0 result for unchanged kernel/test identities.
+
+
+## VM VELA E14.19-L4E3B3
+
+2026-10-11 qualification evidence:
+- source SHA256 `377bb1988199457106fbf50c861ff19b57e3822a044bad627d7218440d371585`
+- bytecode SHA256 `9aae3b44424407069af86a54ef08959543babe78dec76445cb69a503b67f1706`
+- Case A: exit 0, gate PASS, runtime SHA256 `7b529c6672fcd8d9197f342f7ed332e91975708efbbb3a49290813eec149ee7e`
+- Case B: exit 0, gate PASS, runtime SHA256 `b0f0c9765fcf232e50394d5262983595c2fdc621d7148ebe2c5f570b8e392817`
+- DYNAMIC_OUTPUT_CHANGED=PASS
+- E1419_L4E3B3_RUNTIME_GATE=PASS
+- E1419_L4E3B3_EXECUTION=PASS
+- PRODUCTION_MUTATION=NO
+- CANONICAL_MUTATION=NO
+- ACTIVATION=LOCKED
+- V927=LOCKED
+- repeated supplied execution reproduced the same Case A and Case B runtime hashes.
+
+Scope: VM VELA dynamic-shadow qualification only. No admission, activation, canonical mutation, or cutover claim.
