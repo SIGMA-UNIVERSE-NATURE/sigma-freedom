@@ -1023,3 +1023,27 @@ Retain the reported instruction count and first 32 instruction bytes as a concre
 Do not infer opcode meanings, instruction widths, operand types, branch targets, stack effects, or control-flow semantics solely from these bytes.
 
 This block does not establish traversal of all 1169 instructions in function 0 or all 1559 functions. Whole-bytecode `FULL_PARSER=PASS`, instruction/control-flow validation, and VM cost proof remain unresolved until separately evidenced.
+
+
+## VELA Activation — Gate A1 Prestate/Recovery Identity PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux Gate A1 output; SPECIAL R18 activation-preparation evidence, not an independent audit or activation verdict.
+
+### Gate A1 result
+
+- Recovery/prestate report SHA256: `297d041aff02416a6a8a9f39e9e45c19ede66b351b8e688dae6e4a560ca51c22`
+- Recovery report path: `$HOME/SIGMA/sigma_genesis1/VELA_ACTIVATION_RECOVERY/prestate_20261011_073712.txt`
+- SIGMA_CORE_IDENTITY=PASS
+- SIGMA_VELA_VM_IDENTITY=PASS
+- SIGMA_PRESTATE_REPORT=CREATED
+- GATE A1 COMPLETE
+
+### Continuity interpretation
+
+Gate A1 establishes the reported creation of a recovery/prestate artifact while successfully checking the expected SIGMA core and VELA VM identities. This is activation-preparation evidence and provides a concrete pre-mutation recovery reference for later gates.
+
+Anti-rediscovery: retain the report path and SHA256 above. Later activation work should bind subsequent authority/transaction evidence to this exact prestate rather than reconstructing it from memory.
+
+### Claim boundary
+
+Gate A1 does not by itself establish Admission, native-binding mutation, runtime-selector consumption, Activation, or Cutover. The contents of the prestate report were not supplied in this block, so this note does not infer which individual owner/native/head/watchdog fields it contains. Subsequent gates should explicitly bind the activation transaction to this prestate SHA and verify required postconditions/rollback.
