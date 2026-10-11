@@ -887,3 +887,24 @@ Continuity interpretation: the parser investigation has reached the symbol-table
 Anti-rediscovery: retain symbol-table start offset 197703 and declared count 3621 for the same bytecode identity. Do not repeat header discovery unless the bytecode/parser contract changes.
 
 Claim boundary: this is symbol-table header/count discovery only. It does not establish that all 3621 symbol records have been parsed, that their offsets/ranges/references are valid, or that subsequent code/instruction/control-flow sections are valid. Therefore whole-bytecode `FULL_PARSER=PASS` and VM cost proof remain unproven.
+
+
+## VELA15K — First Symbol Record Inspection
+
+Evidence date: 2026-10-11. Basis: user-supplied direct inspection of the real VELA15 bytecode fixture; SPECIAL R18 parser evidence, not an independent audit or full symbol-table proof.
+
+Following the previously recorded symbol-table boundary/count discovery:
+
+- BYTECODE_IDENTITY=PASS
+- First symbol length bytes: `3 0 0 0`
+- Reported first symbol payload begins with the three-byte text `U_H`.
+- The displayed following bytes include subsequent length-prefixed-looking text such as `op`, `a`, `b`, `c`, and `R14_bytes_new`.
+- Real fixture size remains 868667 bytes.
+
+Continuity interpretation: direct inspection is consistent with the first symbol having declared length 3 and payload `U_H`. This provides a concrete first-record fixture for development of the bounded 3621-symbol scanner.
+
+Claim discipline: the surrounding bytes are retained as observational evidence only. This note does not infer the complete symbol-record schema, alignment rules, or subsequent section boundary from a single sample.
+
+Anti-rediscovery: later parser work should reuse symbol-table start offset 197703, declared symbol count 3621, and the first-record fixture (length 3, payload `U_H`) rather than rediscovering them.
+
+Claim boundary: full symbol-table scan, reference/range validation, subsequent bytecode sections, whole-bytecode FULL_PARSER, and VM cost proof remain unproven.
