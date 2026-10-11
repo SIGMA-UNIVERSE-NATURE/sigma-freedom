@@ -868,3 +868,22 @@ However, `VELA15_FULL_PARSER` is not promoted to PASS from this evidence alone. 
 Likewise, `VELA15_VM_COST_PROOF=NOT_IMPLEMENTED` remains unresolved unless separately proven.
 
 Claim boundary: constant-pool full scan complete does not itself establish complete VM-bytecode proof, VM cost proof, ONE SIGMA admission, activation, or cutover.
+
+
+## VELA15K — Symbol Table Header Discovery
+
+Evidence date: 2026-10-11. Basis: user-supplied real-bytecode identity/header inspection output; SPECIAL R18 qualification evidence, not an independent audit or complete parser proof.
+
+Following the previously completed 7370-constant scan ending at symbol-table offset 197703:
+
+- BYTECODE_SHA=PASS
+- Symbol-table header bytes reported: `37 14 0 0`
+- Decoded/reported SYMBOL_COUNT=3621
+- Real bytecode file size=868667 bytes
+- Fixture: `SIGMA_CORE_VELA15_HEADER_R20261011_H_FIX1.sigmab`
+
+Continuity interpretation: the parser investigation has reached the symbol-table structure after the fully scanned constant pool and has identified a declared symbol count of 3621.
+
+Anti-rediscovery: retain symbol-table start offset 197703 and declared count 3621 for the same bytecode identity. Do not repeat header discovery unless the bytecode/parser contract changes.
+
+Claim boundary: this is symbol-table header/count discovery only. It does not establish that all 3621 symbol records have been parsed, that their offsets/ranges/references are valid, or that subsequent code/instruction/control-flow sections are valid. Therefore whole-bytecode `FULL_PARSER=PASS` and VM cost proof remain unproven.
