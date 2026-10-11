@@ -1420,3 +1420,40 @@ For this fixture, the chain can be recorded as:
 Retain the payload SHA, 32768-byte size, restore-log SHA, and workspace identity. Do not repeat this exact restore fixture for unchanged implementation/runtime identities absent a regression.
 
 This is byte-exact restore evidence for the demonstrated fixture. It does not by itself establish full ARCH8 model/optimizer checkpoint recovery, all tensor/dtype combinations, Gen2 publication, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E13.15-B — Negative Restore/Input Gates PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux negative-test runtime output; SPECIAL R18 VELA Evolution fail-closed qualification evidence, not an independent audit or activation verdict.
+
+### Negative runtime gates
+
+- E1315_INVALID_LENGTH_ATOMIC=PASS
+- E1315_INVALID_DTYPE=PASS
+- E1315_NAN_ATOMIC=PASS
+- SIGMA_VM_EXIT_CODE=0
+- E1315_RUNTIME_GATE=PASS
+- E13.15-B COMPLETE
+
+Runtime evidence log SHA256:
+`b0db07e90a6545714e4296d64dce07caf0595f53980f7555fedca910108a3606`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1315-run.oUtULIJ0`
+
+### Continuity interpretation
+
+E13.15-B complements the E13.11-B exact native export and E13.14-B exact native restore evidence with negative/fail-closed coverage for the demonstrated contract. The reported tests confirm expected rejection behavior for invalid length, invalid dtype, and NaN input cases.
+
+The process exit code of 0 is interpreted only in conjunction with the explicit PASS markers: the negative cases were expected to be rejected and the test harness itself completed successfully.
+
+### Current E13 evidence chain
+
+For the covered fixtures/contracts:
+`exact native export PASS → byte-exact native restore PASS → invalid-length atomic rejection PASS → invalid-dtype rejection PASS → NaN atomic rejection PASS`.
+
+### Anti-rediscovery / claim boundary
+
+Retain the evidence-log SHA and workspace identity. Do not repeat these exact negative fixtures for unchanged implementation/runtime identities absent a regression.
+
+This negative-test evidence is scoped to the supplied E13.15-B cases. It does not prove every malformed-input class, full model/optimizer checkpoint recovery, Gen2 publication, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
