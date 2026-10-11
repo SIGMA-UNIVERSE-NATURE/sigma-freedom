@@ -1777,3 +1777,27 @@ Both candidates reduce training loss relative to the common initial loss. AdamW 
 This is a controlled one-step comparison, not a BEST_PROVEN result. The supplied metrics split: AdamW is marginally lower on training loss, VELA marginally lower on heldout loss. Multi-step/multiwindow evaluation and recovery evidence are required before optimizer superiority or model-quality improvement can be claimed.
 
 No Admission, Activation, or Cutover is established by D4 alone.
+
+
+## VM VELA Qualification Branch — E14.13-A15C Scalar Kernel Gate
+
+Evidence date: 2026-10-11. This begins the separately tracked VM VELA qualification branch in R18. Model/optimizer quality claims remain separate.
+
+Reported result:
+- E1413_A15C_IDENTITY=PASS
+- TOTAL_CASES=90
+- MISMATCHES=0
+- E1413_A15C_SCALAR_GATE=PASS
+- EXIT_CODE=0
+
+Evidence identities:
+- `sigma_vela_adamw_kernel_v1.h` SHA256: `737d31a464a0b804a46e2d310f56305f72c5364594280633cf541327a0b3b7b4`
+- test source SHA256: `8b31f8a9b438dfd077d1ac189840d8cd35236f08a3be287891ebffd8d69c5840`
+- runtime log SHA256: `419ecdbf1d3d42e6323aa76af034b0dce1714f9e06615f13355b57e4c404cdd4`
+- workspace: `.e1413a15c-run.vtCFt13W`
+
+Interpretation: for the demonstrated scalar-kernel qualification set, all 90 cases completed with zero mismatches and the scalar gate passed.
+
+VM-replacement boundary: this is component-level VM VELA qualification evidence. It does not yet prove standalone .sigmab execution, removal of VKM execution dependency, whole-VM compatibility, stability/performance, replacement qualification, Admission, Activation, or Cutover.
+
+Anti-rediscovery: retain these exact hashes and 90/0 result for unchanged kernel/test identities.
