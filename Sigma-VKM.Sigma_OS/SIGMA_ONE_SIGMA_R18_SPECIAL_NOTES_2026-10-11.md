@@ -1493,3 +1493,47 @@ Do not repeat the same static profile-symbol search for unchanged bytecode/parse
 ### Claim boundary
 
 This is a static bytecode audit. It does not prove that every runtime path is free of dynamic binding/host/runtime-state faults, nor does it establish Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.10-R — Medium Model Runtime + Count Audit PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux medium-model runtime and independent count-audit output; SPECIAL R18 VELA Evolution qualification evidence, not an independent audit by ChatGPT or an activation verdict.
+
+### Medium R3 runtime
+
+Reported runtime:
+- E1410_BASE_PARAMS=176576
+- E1410_PROFILE_VALID=PASS
+- E1410_MODEL_VALIDATE=PASS
+- E1410_TENSOR_COUNT=62
+- E1410_PARAMETER_COUNT=392384
+- E1410_EMBEDDING=PASS
+- E1410_MEDIUM_MODEL=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Result audit
+
+- E1410_BASE_PARAMS_AUDIT=PASS
+- E1410_TENSOR_COUNT_AUDIT=PASS
+- E1410_PARAMETER_COUNT_AUDIT=PASS
+- E1410R_RUNTIME_GATE=PASS
+- AUDIT_EXIT_CODE=0
+- E14.10-R COMPLETE
+
+Runtime evidence log SHA256:
+`497d21ba115fd54535c3050d6bfd0bc468ba66ae3891d2a07c69cf3e86951bc0`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1410r-run.tED9DMLr`
+
+### Continuity interpretation
+
+E14.10-R provides runtime confirmation complementary to E14.10-L's static profile-symbol audit. For this medium-model run, profile validation, model validation, embedding qualification, and the medium-model gate all pass, and the reported base-parameter, tensor-count, and parameter-count values pass their corresponding audits.
+
+This materially weakens the previously investigated broad `unbound profile` hypothesis for the exact qualified path: static audit found no candidate unbound profile reads, and the subsequent medium runtime successfully validates the profile/model.
+
+### Anti-rediscovery / claim boundary
+
+Retain the exact counts (176576 base params, 62 tensors, 392384 parameters), evidence-log SHA, and workspace. Do not repeat the same medium-model/profile diagnosis for unchanged source/bytecode/runtime identities absent a regression.
+
+This result is scoped to the demonstrated medium-model runtime/audit. It does not by itself establish full training convergence, checkpoint publication/recovery, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
