@@ -795,3 +795,42 @@ Do not repeat header magic/ABI discovery for unchanged VM and bytecode identitie
 A complete VM-bytecode proof must go beyond the 16-byte/header evidence and validate the relevant bytecode structure/ranges/instructions or other exact parser contract, fail closed on malformed artifacts, and bind the resulting proof to the exact bytecode and VM identities.
 
 Claim boundary: no full VM-bytecode proof, VM cost proof, qualifying ARCH8 Gen2 checkpoint, ONE SIGMA admission, activation, or cutover is established by this evidence.
+
+
+## VELA15 — Real Bytecode Header Runtime KAT
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux source integration/compile and native runtime output; SPECIAL R18 qualification evidence, not an independent audit or complete bytecode proof.
+
+### Real-header runtime path
+
+- VELA15_REAL_HEADER_DISPATCH=INSTALLED
+- Source: `SIGMA_CORE_VELA15_REAL_HEADER_R20261011_I.sigma`
+- Source SHA256: `feb0f0f0ecc547df6f41449ab4650c726f3594a7680e0776c2d3091e7a1f0b71`
+- Bytecode SHA256: `007d5e0259f59199f554b59400ca9ae631029cd6cabc07090584dcbaebc3e552`
+- Compilation with existing `sigmac-vkm`: PASS reported.
+- Runtime: `$VKM/SIGMA-Vkm-VELA`
+- Command: `RBX_VELA15_REAL_HEADER_KAT`
+
+The runtime fixture path was explicitly set to the previously inspected real bytecode:
+`/sdcard/Download/SIGMA_CORE_VELA15_HEADER_R20261011_H_FIX1.sigmab`.
+
+### Native real-file results
+
+- VELA15_REAL_FILE_READ=PASS
+- VELA15_REAL_MAGIC=PASS
+- VELA15_REAL_ABI_VERSION=PASS
+- VELA15_REAL_CONSTANT_COUNT=7370
+- VELA15_REAL_HEADER_KAT=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Continuity interpretation
+
+This strengthens the prior VELA15 header evidence: validation is now reported through a SIGMA native runtime command that reads the real bytecode fixture rather than relying only on external shell header inspection. The runtime successfully reads the file, validates magic and ABI version, and extracts a constant-count value of 7370 from the real artifact.
+
+Anti-rediscovery: retain this runtime real-header result for the recorded source/bytecode/runtime fixture identities. Do not repeat it unless one of those identities or the header contract changes, or a regression appears.
+
+### Claim boundary
+
+This remains header-level/runtime-fixture qualification. Reading a constant count does not by itself prove that all 7370 constants, section boundaries, instruction stream, operand ranges, control-flow targets, or other bytecode structures have been fully parsed and validated.
+
+Accordingly the previously recorded `VELA15_FULL_PARSER=NOT_IMPLEMENTED` and `VELA15_VM_COST_PROOF=NOT_IMPLEMENTED` gaps are not considered resolved by this evidence. No full VM-bytecode proof, ONE SIGMA admission, activation, or cutover is established.
