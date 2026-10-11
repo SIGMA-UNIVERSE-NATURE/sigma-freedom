@@ -1537,3 +1537,46 @@ This materially weakens the previously investigated broad `unbound profile` hypo
 Retain the exact counts (176576 base params, 62 tensors, 392384 parameters), evidence-log SHA, and workspace. Do not repeat the same medium-model/profile diagnosis for unchanged source/bytecode/runtime identities absent a regression.
 
 This result is scoped to the demonstrated medium-model runtime/audit. It does not by itself establish full training convergence, checkpoint publication/recovery, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
+
+
+## VELA Evolution E14.11-J — Negative Tensor Contract + Independent Marker Audit PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux runtime and post-runtime marker-audit output; SPECIAL R18 VELA Evolution fail-closed qualification evidence, not an independent audit by ChatGPT or an activation verdict.
+
+### Runtime negative/immutability contract
+
+Reported runtime:
+- E1411J_ENTER
+- E1411J_INVALID_SHAPE=PASS
+- E1411J_INVALID_DTYPE=PASS
+- E1411J_INPUT_IMMUTABLE=PASS
+- E1411J_OUTPUT_DISTINCT=PASS
+- E1411J_NEGATIVE_TESTS=PASS
+- SIGMA_VM_EXIT_CODE=0
+
+### Marker audit
+
+Each expected runtime marker was separately audited:
+- E1411J_INVALID_SHAPE=PASS_AUDIT=PASS
+- E1411J_INVALID_DTYPE=PASS_AUDIT=PASS
+- E1411J_INPUT_IMMUTABLE=PASS_AUDIT=PASS
+- E1411J_OUTPUT_DISTINCT=PASS_AUDIT=PASS
+- E1411J_NEGATIVE_TESTS=PASS_AUDIT=PASS
+- E1411J_RUNTIME_GATE=PASS
+- E14.11-J COMPLETE
+
+Runtime evidence log SHA256:
+`35f255981966efe64c6a49fc07c7aab1bfaead2ef0416fc25f39b22bbed58cb3`
+
+Reported workspace:
+`$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e1411j-run.qhejnI9F`
+
+### Continuity interpretation
+
+E14.11-J provides reported fail-closed negative coverage for invalid tensor shape and dtype, while also verifying input immutability and output distinctness for the tested operation. The expected semantic markers were then independently checked by the surrounding audit harness before the aggregate runtime gate was declared PASS.
+
+### Anti-rediscovery / claim boundary
+
+Retain the evidence-log SHA and workspace. Do not repeat these exact negative/immutability fixtures for unchanged source/bytecode/runtime identities absent a regression.
+
+The PASS claims are scoped to the supplied E14.11-J contract and test cases. This block does not establish exhaustive malformed-input coverage, full training/checkpoint correctness, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
