@@ -1298,3 +1298,41 @@ Accordingly:
 - BEST_PROVEN=NOT_PROVEN
 
 No Gen2 checkpoint promotion, Admission, Activation, or Cutover is justified by this result alone. Preserve the candidate/runtime log as evidence rather than promoting it based solely on training-loss reduction.
+
+
+## VELA Evolution E11.9 FIX3 — CAS Cross-Process Restore PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied Termux CAS object/readback and second-VM-process restore output; SPECIAL R18 VELA Evolution persistence qualification evidence, not an independent audit or full model-checkpoint recovery verdict.
+
+### CAS persistence evidence
+
+- E11P_CAS_OBJECT=EXISTS
+- CAS object path: `$HOME/SIGMA/sigma_genesis1/VELA_EVOLUTION_R1/.e11p-run.B742PJ9x/objects/4d20db456cb8b8872a2cd08f627e1a57.srl`
+- CAS object file SHA256: `8a269fb482a38dd43cedcc014c3b6b350cc0092da8fe36aee4badec10187facf`
+
+### Independent process-B restore
+
+A separate reported VM process B restored:
+- index 0: `1.25`
+- index 1: `-2.5`
+- index 2: `3.75`
+- index 3: `0.125`
+
+Reported gates:
+- E11P_RESTORE_EXECUTED=PASS
+- RESTORE_VM_EXIT_CODE=0
+- E11P_CROSS_PROCESS_RESTORE=PASS
+- E11.9 FIX3 COMPLETE
+
+Restore evidence log SHA256:
+`22519b775036d896b4e8f95507b29c434d53b40c0af12aa2da63f83d0920a5cb`.
+
+### Continuity interpretation
+
+E11.9 FIX3 establishes reported durable CAS persistence sufficient for a separate VM process to restore the demonstrated four-value object successfully. This is materially stronger than same-process handle reuse and is consistent with durable-content recovery semantics.
+
+### Anti-rediscovery / claim boundary
+
+Retain the CAS object SHA, restored values, and restore-log SHA as the exact E11.9 FIX3 evidence. Do not repeat this fixture for unchanged identities absent a regression.
+
+This result proves the demonstrated CAS object cross-process restore only. It does not by itself establish full ARCH8 model + optimizer checkpoint persistence, atomic checkpoint publication, full recovery of all model state, Gen2 creation, heldout improvement, BEST_PROVEN, SIA compatibility, Admission, Activation, or Cutover.
