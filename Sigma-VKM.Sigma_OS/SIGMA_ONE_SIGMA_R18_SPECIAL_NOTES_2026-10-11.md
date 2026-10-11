@@ -937,3 +937,40 @@ Anti-rediscovery: retain the VELA15-L source/bytecode identities and chunk/curso
 ### Claim boundary
 
 This evidence does not state that all 3621 symbol records were traversed. Therefore `FULL_SYMBOL_TABLE_SCAN=PASS` is not claimed. Whole-bytecode `FULL_PARSER=PASS`, subsequent section validation, and VM cost proof remain unresolved until separately evidenced.
+
+
+## VELA15M — Full Symbol-Table Segmented Scan PASS
+
+Evidence date: 2026-10-11. Basis: user-supplied VELA15M bounded segmented scan output; SPECIAL R18 parser qualification evidence, not an independent audit or complete whole-bytecode proof.
+
+### Full symbol-table scan
+
+The VELA15M scanner advanced monotonically through the declared symbol table in bounded segments. Each reported segment returned `VELA15M_SEGMENT=PASS`.
+
+Final reported state:
+- VELA15M_SEGMENTS=114
+- VELA15M_SYMBOLS=3621
+- VELA15M_FUNCTION_TABLE_OFFSET=254941
+- final symbol index=3621
+- final offset=254941
+- VELA15M_FULL_SYMBOL_SCAN=PASS
+
+The final partial segment advanced from index 3616 to the declared symbol count 3621. This exactly matches the previously discovered `SYMBOL_COUNT=3621`.
+
+### Parser continuity
+
+For the same real-bytecode investigation, the reported structural chain is now:
+
+`header/magic/ABI PASS → CONSTANT_COUNT=7370 → full constant scan 7370/7370 → SYMBOL_TABLE_OFFSET=197703 → SYMBOL_COUNT=3621 → full symbol scan 3621/3621 → FUNCTION_TABLE_OFFSET=254941`.
+
+This supersedes the prior state in which only symbol chunk/cursor primitives and the first symbol record had been qualified.
+
+### Anti-rediscovery / remaining parser scope
+
+Do not repeat the 114-segment / 3621-symbol scan for unchanged bytecode/parser identities unless a regression or format change appears.
+
+Whole-bytecode `FULL_PARSER=PASS` is still not claimed from this block alone. Parser work must continue from function-table offset 254941 and validate the remaining applicable function/code/instruction structures, section boundaries, operand/range constraints, control-flow targets, and exact end-of-file/format invariants required by SIGMBC01.
+
+`VELA15_VM_COST_PROOF` also remains unresolved unless separately proven.
+
+Claim boundary: full symbol-table scan PASS does not itself establish complete VM-bytecode proof, VM cost proof, ONE SIGMA admission, activation, or cutover.
