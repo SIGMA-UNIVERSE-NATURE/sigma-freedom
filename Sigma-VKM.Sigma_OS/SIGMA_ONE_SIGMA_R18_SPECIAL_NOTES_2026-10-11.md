@@ -1992,3 +1992,43 @@ Evidence date: 2026-10-13. User-supplied exact native receipt.
 Interpretation: the supplied receipt closes the first complete bounded native-language shadow transaction, including real weight update, checkpoint/optimizer persistence, fresh-process restore, and an improving measured single-window candidate. It does not close E14.13 multi-window qualification. The bad-candidate rejection path remains unexercised in this receipt.
 
 Resource warning for long-run AutoLearn: this single transaction reports 1,528 new inodes/CAS objects for 612,162 bytes of growth. That is acceptable as measured evidence for this run but is not sustainable if repeated linearly for five months; subsequent AutoLearn work must prove CAS reuse/packing/compaction and bounded inode growth before unattended long-duration execution.
+
+
+## SIA / VM R4 — Unified Production Activation and Capability Requalification
+
+Evidence date: 2026-10-13. User-supplied authorized activation/requalification output.
+
+### Authorization / identity
+- OWNER_RELEASE=BOUND
+- OWNER_RELEASE_SHA256=`6efa968ff03b78218a883ab137f36986129e1d5d46b1a2f9a9cb49bf94f78c00`
+- CANDIDATE_VM_SHA256=`ab8dde06989b241ab74b8f81056e1bf6c627443277cf7e17a0ad5a39b5d02886`
+- MUTATION_PLAN_SHA256=`241242e03b7ed4ceede621d89702467fc31d12b24a5322023bb22219258bcb6d`
+- AUTHORIZED_SCOPE=`EXACT_FIVE_TARGET_ONE_VKM_RUNTIME_REQUALIFICATION`
+- prepare-stage PRODUCTION_EXECUTED=NO
+- prepare-stage V927=LOCKED
+- static package checks reported OK
+- recovery precheck: `RECOVERY_STATE=NO_TRANSACTIONS`
+
+### Production activation / requalification
+- PRODUCTION_ACTIVATION=PASS
+- ACTIVE_CAPABILITY_COUNT=7
+- DNA-20: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- DNA-39: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- DNA-42: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- DNA-49: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- D18: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- MEMORY_LINEAGE_R1: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+- API410_FINAL_LANGUAGE_UNDERSTANDING: NATIVE_EXECUTION=PASS, RESULT_CONSUMPTION=PASS
+
+Committed receipt:
+`$HOME/SIGMA/sigma_genesis1/.sigma_ail/SIA_CORE_A/native_activation_R3/unified_vm_requalification_R4/committed/ab8dde06989b241ab74b8f81056e1bf6c627443277cf7e17a0ad5a39b5d02886.json`
+
+Receipt SHA256:
+`0d9db5719e45cdffb31c4c5b3b8050c1de2bf15ff1b76970ecdc74f80a5d824c`
+
+### Post-activation boundaries
+- GEN3_HEAD_MUTATION=NO
+- TRAINING_EXECUTED=NO
+- V927=LOCKED
+
+Interpretation: the supplied authorized R4 transaction reports production activation PASS for the scoped ONE-VKM runtime requalification and confirms native execution plus result consumption for all seven listed active capabilities. This evidence does not claim Gen3 HEAD mutation, training execution, or V927 use.
