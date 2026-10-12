@@ -1,0 +1,2 @@
+# path<TAB>source_id<TAB>source_url<TAB>language<TAB>title<TAB>doc_type<TAB>license
+/path/to/full_document.txt	SOURCE_ID	https://example.invalid/source	vi	Exact source title	HUMAN_WRITTEN_DOCUMENT	PUBLIC_DOMAIN
