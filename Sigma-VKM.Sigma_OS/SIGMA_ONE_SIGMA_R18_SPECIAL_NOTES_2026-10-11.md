@@ -1878,3 +1878,26 @@ Evidence date: 2026-10-12. User-supplied native runtime output.
 Interpretation: the demonstrated native execution produced a lower reported training loss and changed 34 weights, with VM accounting PASS and successful process exit. This is direct native-learning execution evidence for the supplied run.
 
 Claim boundary: no canonical HEAD mutation was requested, V927 remained locked, and this run alone does not establish heldout improvement, BEST_PROVEN, checkpoint publication, Admission, Activation, or Cutover.
+
+
+## ONE SIGMA Native Learning — Heldout Gate REJECT
+
+Evidence date: 2026-10-12. User-supplied native runtime output.
+
+- SIGMA_VM_EXIT_CODE=0
+- ONE_SIGMA_TRAIN_BEFORE=6.35924073333333
+- ONE_SIGMA_TRAIN_AFTER=6.34691043333333
+- ONE_SIGMA_WEIGHTS_CHANGED=34
+- ONE_SIGMA_HELDOUT_BEFORE=6.2443523
+- ONE_SIGMA_HELDOUT_AFTER=6.24463793333333
+- ONE_SIGMA_HELDOUT_DECISION=REJECT
+- ONE_SIGMA_NATIVE_LEARNING_CHANGED=34
+- SIGMA_PROFILE_TOTAL_STEPS=102803334
+- SIGMA_PROFILE_EFFECTIVE_LIMIT=1000000000
+- SIGMA_PROFILE_ACCOUNTING_STATUS=PASS
+- workspace: `.vela-heldout.UTrjamvD`
+- V927=LOCKED
+
+Interpretation: native learning executed and reduced the reported training loss, but the measured heldout loss increased. The heldout gate therefore rejected the candidate. This is evidence that the demonstrated learning path and heldout rejection control both executed.
+
+Decision boundary: candidate quality improvement is NOT proven; this candidate must not be promoted from this run. V927 remained locked. No BEST_PROVEN, Admission, Activation, or Cutover follows.
