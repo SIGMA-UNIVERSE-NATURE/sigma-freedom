@@ -1856,3 +1856,25 @@ Safety/state boundary:
 - V927=LOCKED
 
 Scope: numerical-oracle and trust-bound qualification for this VM VELA shadow fixture only. No Admission, Activation, production mutation, canonical mutation, or Cutover claim.
+
+
+## ONE SIGMA Native Learning — Training Output Observed
+
+Evidence date: 2026-10-12. User-supplied native runtime output.
+
+- SIGMA_VM_EXIT_CODE=0
+- ONE_SIGMA_TRAIN_BEFORE=6.35924073333333
+- ONE_SIGMA_TRAIN_AFTER=6.34691043333333
+- ONE_SIGMA_WEIGHTS_CHANGED=34
+- ONE_SIGMA_NATIVE_LEARNING_CHANGED=34
+- SIGMA_PROFILE_TOTAL_STEPS=94074026
+- SIGMA_PROFILE_EFFECTIVE_LIMIT=1000000000
+- SIGMA_PROFILE_ACCOUNTING_STATUS=PASS
+- NATIVE_TRAINING_OUTPUT=OBSERVED
+- workspace: `.vela-native-learn.5pZuEgOC`
+- CANONICAL_HEAD_MUTATION=NOT_REQUESTED
+- V927=LOCKED
+
+Interpretation: the demonstrated native execution produced a lower reported training loss and changed 34 weights, with VM accounting PASS and successful process exit. This is direct native-learning execution evidence for the supplied run.
+
+Claim boundary: no canonical HEAD mutation was requested, V927 remained locked, and this run alone does not establish heldout improvement, BEST_PROVEN, checkpoint publication, Admission, Activation, or Cutover.
