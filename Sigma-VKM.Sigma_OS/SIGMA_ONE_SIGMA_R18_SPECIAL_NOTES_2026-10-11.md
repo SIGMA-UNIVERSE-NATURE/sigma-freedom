@@ -1901,3 +1901,94 @@ Evidence date: 2026-10-12. User-supplied native runtime output.
 Interpretation: native learning executed and reduced the reported training loss, but the measured heldout loss increased. The heldout gate therefore rejected the candidate. This is evidence that the demonstrated learning path and heldout rejection control both executed.
 
 Decision boundary: candidate quality improvement is NOT proven; this candidate must not be promoted from this run. V927 remained locked. No BEST_PROVEN, Admission, Activation, or Cutover follows.
+
+
+## ARCH8 R40ZE FIX2 — E14.13 Native Language Cycle Single-Window Complete
+
+Evidence date: 2026-10-13. User-supplied exact native receipt.
+
+### Repair and execution contract
+- FIX1 exact blocker: `LAYER_FORWARD_STEP_LIMIT`
+- FIX2 runtime blocker recorded: `LAYER_BACKWARD_STEP_LIMIT`
+- repair: one-parameter restore per native forward/backward stage
+- step-bounded layer forward=YES
+- step-bounded layer backward design=YES
+- max parameter restores per backward stage=1
+- execution engine=`SIGMA_VKM_NATIVE_VM`
+- host learning=NO
+- host quality decision=NO
+- full tensor allocation=NO
+- runtime handle serialization=NO
+- one training writer=YES
+
+### Native learning transaction
+- ONE_SIGMA_NATIVE_LANGUAGE_CYCLE=COMPLETE
+- REAL_LANGUAGE_DATA=YES
+- REAL_FORWARD_BACKWARD=YES
+- ARCH8_REAL_FORWARD=VERIFIED
+- ARCH8_REAL_BACKWARD=VERIFIED
+- REAL_WEIGHT_UPDATE=YES
+- ARCH8_FULL_PARAMETER_UPDATE=VERIFIED_R40ZD_42_OF_42
+- FULL_PARAMETER_GRADIENT_UPDATE=VERIFIED_R40ZD_42_OF_42
+- WEIGHT_DELTA_NONZERO=YES
+- MODEL_CHANGED_PARAMETER_COUNT=34
+- OPTIMIZER_STATE_CONTINUITY=VERIFIED
+- output gradient abs sum=`21.19473310000000054`
+- layer backward abs sum=`36.96668959999999515`
+
+### Quality result
+- fresh-window parent loss=`6.27308338170876211`
+- fresh-window candidate loss=`6.25175995981690579`
+- gain=`0.02132342189185632`
+- holdout parent=`6.27308338170876211`
+- holdout candidate=`6.25175995981690579`
+- holdout regression=`-0.02132342189185632`
+- retention parent=`6.27308338170876211`
+- retention candidate=`6.25175995981690579`
+- retention regression=`-0.02132342189185632`
+- worst regression=`-0.02132342189185632`
+- independent holdout=YES
+- retention evaluation=YES
+- no answer leakage=YES
+- candidate decision=`ACCEPT_AS_QUALIFIED_SHADOW_ONLY`
+- bad-candidate rejection=`NOT_EXERCISED`
+
+### Persistence / restart
+- model checkpoint=VERIFIED
+- optimizer checkpoint=VERIFIED
+- fresh VKM restore=VERIFIED
+- restored model valid=YES
+- restored optimizer valid=YES
+- parent model=`2d20fe2a6035d8150d42c4fd262fae94`
+- parent optimizer=`4f4d01c078e8d2fc26c2c87215aaa50c`
+- candidate model=`062590a032a32ddf4399bdc243ee49ef`
+- candidate optimizer=`148b18794b59f1e625fb22c3217a4349`
+
+### OPPO resource evidence
+- storage before=4251621 bytes
+- storage after=4863783 bytes
+- storage growth=612162 bytes
+- inodes before=5839
+- inodes after=7367
+- inode growth=1528
+- CAS objects created=1528
+- CAS objects reused minimum=3
+- duplicate payload count=0
+- duplicate tensor payload count=0
+- peak RSS=9208 KB
+- native invocations=983
+
+### State / boundary
+- MODEL_GENERATION=2
+- E14_13=`SINGLE_WINDOW_TRANSACTION_COMPLETE_MULTI_WINDOW_STILL_REQUIRED`
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNERSHIP_TRANSFER=NO
+- ACTIVATION=NO
+- CUTOVER=NO
+- V927_USED=NO
+- NEXT_GATE=`R40ZF_INDEPENDENT_REVIEW_OF_R40ZE_EXACT_NATIVE_RECEIPT`
+
+Interpretation: the supplied receipt closes the first complete bounded native-language shadow transaction, including real weight update, checkpoint/optimizer persistence, fresh-process restore, and an improving measured single-window candidate. It does not close E14.13 multi-window qualification. The bad-candidate rejection path remains unexercised in this receipt.
+
+Resource warning for long-run AutoLearn: this single transaction reports 1,528 new inodes/CAS objects for 612,162 bytes of growth. That is acceptable as measured evidence for this run but is not sustainable if repeated linearly for five months; subsequent AutoLearn work must prove CAS reuse/packing/compaction and bounded inode growth before unattended long-duration execution.
