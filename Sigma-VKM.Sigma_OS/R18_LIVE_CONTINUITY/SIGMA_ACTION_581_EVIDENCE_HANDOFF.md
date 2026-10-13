@@ -163,3 +163,56 @@ Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux outpu
 - OUTPUT_SHA256=`c6372dc2e7ffdc80ee40fc80634e2aca35d45fe68acc6628214ac6549fae7a31`
 
 Interpretation boundary: the supplied seal audit reports the R9 production state as committed and verified, with eight active capabilities replayed successfully twice through SIA2. It reports no model write, no VM mutation, no anchor-state duplication, and no additional production mutation during this seal operation. V927 remains locked. The next declared gate is stable-operation monitoring; this seal does not by itself establish long-duration stability.
+
+
+## ARCH8 Live Progress — Projection Compose + Layer Rebind Split
+
+Evidence date: 2026-10-14 (+07:00). User-supplied live OPPO/Termux output.
+
+### Run 1de24348 — generic projection root/descriptor split
+- RUN_KEY: `1de24348ef9d071b906ccade631c97f9bf0a0c95931605d35d26f83c16886df0`
+- REPAIR: `GENERIC_PROJECTION_ROOT_DESCRIPTOR_SPLIT`
+- instrument/compile/resource snapshot: PASS
+- FIX19_RESUME_EVAL_REBIND: PASS
+- HOLD at `FIX19_RESUME_LAYER_REBIND`
+- FAILED_GATE: `RBX_ARCH8_R40ZE_FIX19_RESUME_LAYER_REBIND`
+- VM blocker: step limit
+- LAST_DURABLE_STATE: `PROJECTION_ROOT:3`
+- LAST_COMMITTED_CAS_REFERENCE: `42c76d232ddd48d50c8c9ebe7f84eb91`
+- NATIVE_INVOCATIONS=1
+- GENERIC_RESTORE_COUNT=0
+- GENERIC_ALLOCATION_COUNT=0
+
+### Run c7ce4dfc — layer rebind payload/commit split
+- RUN_KEY: `c7ce4dfcc19667d54cda244782e90c4c5892b4dfc0e41a596fcbc3e30f6884e5`
+- REPAIR: `LAYER_REBIND_PAYLOAD_COMMIT_SPLIT`
+- instrument/compile/resource snapshot: PASS
+- FIX19_RESUME_EVAL_REBIND: PASS
+- FIX19_RESUME_LAYER_REBIND_PAYLOAD: PASS
+- FIX19_RESUME_LAYER_REBIND_COMMIT: PASS
+- FIX19_RESUME_PROJECTION_META_REBIND: PASS
+- dead attention metadata rebind skipped
+- Router root payload: PASS
+- Router root commit: PASS
+- Router descriptor payload: PASS
+- Router descriptor commit: PASS
+- Router MOE payload: PASS
+- current HOLD at `PARENT_TRAIN_LAYER0_ROUTER_MOE_BIND`
+- FAILED_GATE: `RBX_ARCH8_R40ZE_LAYER_ROUTER_MOE_BIND`
+- VM blocker: step limit
+- LAST_DURABLE_STATE: `ROUTER_MOE_BIND:1`
+- LAST_COMMITTED_CAS_REFERENCE: `1f7a192f164318961915ce246f465d6d`
+- NATIVE_INVOCATIONS=9
+- GENERIC_RESTORE_COUNT=0
+- GENERIC_ALLOCATION_COUNT=0
+- CAS_READS=1
+- CAS_WRITES=1
+
+Boundary for both runs:
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNERSHIP_TRANSFER=NO
+- ACTIVATION=NO
+- CUTOVER=NO
+
+Continuity interpretation: the first run exposed a resume-layer-rebind step-limit regression while preserving the prior durable projection-root state. The subsequent split repair cleared that rebind path and advanced Router composition through root, descriptor, and MOE payload. Latest observed ARCH8 blocker is now Router MOE bind. Reuse the committed CAS state; these runs remain progress evidence, not layer-forward completion or activation qualification.
