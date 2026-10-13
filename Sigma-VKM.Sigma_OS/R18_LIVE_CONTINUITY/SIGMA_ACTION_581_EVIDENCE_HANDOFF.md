@@ -90,3 +90,47 @@ Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux outpu
 Interpretation boundary: the supplied output reports successful recovery/commit of one existing transaction without mutation replay or creation of a new transaction, with eight active capabilities and preservation of the prior seven-member set plus API410. It also explicitly reports no model mutation, no VM mutation, no anchor-state duplication, and V927 remaining locked. The output records an explicit Owner override of Captain service requalification; no Captain service PASS is claimed.
 
 Continuity implication: `ACTIVE_CAPABILITY_COUNT=8` supersedes the prior count of seven for latest-observed state when this event is applicable. `HARDCODED_4800_TARGET=NO` and `ANCHOR_POLICY=UNBOUNDED_BY_COUNT` are recorded evidence against a fixed 4800-anchor target, but by themselves do not prove that every SIA dispatch path is free of all hard-coded capability IDs.
+
+
+## ARCH8 Live Progress — Attention Cache Exact CAS Ref / Run 99011FAF
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux execution output.
+
+- RUN_KEY=`99011fafdc0536ed9bbae98938052db8f90de71c1987dcc0b7fa213360e12229`
+- REPAIR=`ATTENTION_CACHE_EXACT_CAS_REF`
+- instrument=PASS
+- compile=PASS
+- resource snapshot=PASS
+- FIX19_RESUME_EVAL_REBIND=PASS
+- FIX19_RESUME_LAYER_REBIND=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_K_COMPACT_0=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_V_COMPACT_0=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_HEAD_0_Q=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_HEAD_0_COMPUTE=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_HEAD_1_Q=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_HEAD_1_COMPUTE=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_ROW_0=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_ROW_1=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_ROW_2=PASS
+- PARENT_TRAIN_LAYER0_ATTENTION_BIND=PASS
+- current blocker: `RBX_ARCH8_R40ZE_LAYER_ATTENTION_LEAF`
+- failing stage: `PARENT_TRAIN_LAYER0_ATTENTION_LEAF`
+- runtime failure: `SIGMA C VM: step limit`
+- ARCH8_R40ZE_FIX2_LAYER_FORWARD_STEP_LIMIT=HOLD
+- LAST_DURABLE_STATE=`ATTENTION_LEAF:3`
+- LAST_COMMITTED_CAS_REFERENCE=`48fe179e6ef47d9e6a4e0660267dfc4d`
+- NATIVE_INVOCATIONS=12
+- GENERIC_RESTORE_COUNT=0
+- GENERIC_ALLOCATION_COUNT=0
+- CAS_READS=0
+- CAS_WRITES=1
+- observed RSS across reported stages approximately 13.1–13.3 MB; final HOLD stage RSS_KB=13320
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNERSHIP_TRANSFER=NO
+- ACTIVATION=NO
+- CUTOVER=NO
+
+Interpretation: the bounded attention execution advanced materially beyond prior projection/RMSNorm blockers. K/V compact, both attention-head Q/compute stages, all three attention rows, and attention bind completed under the supplied run. The remaining observed blocker is the attention-leaf stage itself. The run reports no generic tensor restore/allocation, one CAS write, a durable state at leaf index 3, and a committed CAS reference. This is progress evidence, not ARCH8 completion and not a PASS for the layer-forward gate.
+
+No-dup continuation rule: resume from the committed attention state/CAS reference and repair the shared attention-leaf cost directly. Do not replay already-passed attention stages or create a parallel attention implementation solely to bypass the step limit.
