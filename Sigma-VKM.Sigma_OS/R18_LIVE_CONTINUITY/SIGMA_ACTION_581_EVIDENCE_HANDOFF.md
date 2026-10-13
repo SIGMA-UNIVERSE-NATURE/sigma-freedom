@@ -253,3 +253,51 @@ Evidence date: 2026-10-14 (+07:00). User-supplied live OPPO/Termux execution out
 - CUTOVER=NO
 
 Interpretation: the bounded Router MOE binding/composition repair cleared the prior Router MOE bind blocker and completed the reported hash, leaf, commit, root, and descriptor stages. Latest observed ARCH8 blocker has advanced to the first expert gate stage. Reuse the committed CAS state; this remains progress evidence, not full layer-forward completion or activation qualification.
+
+
+## GEN4 Audit Warning — Static/Fake PASS Markers in Experimental Sources
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied direct source inspection under `incoming_spia_r4_native_qual/.../source`.
+
+Classification: **SOURCE-DECLARED / STATIC PASS MARKERS; NOT RUNTIME-PROVEN BY THE SHOWN EVIDENCE.**
+
+Observed files include:
+- `SIGMA_SPIA_META_RULE_FORGE_R27P6_META_ABLATION_REPLICATION_R1.sigma`
+- `SIGMA_SPIA_META_RULE_FORGE_R27P7_INDEPENDENT_REPLICATION_R1.sigma`
+- `R27P17_REPLICATE_GEN4_WINNER_AND_EXACT_ABLATION_FROM_E4_THUNDER_R1.sigma`
+- additional large ablation sources were listed but not shown in detail.
+
+### Why this evidence is not accepted as proof
+The displayed programs directly emit claimed measurements/status strings through `say(...)` / `print(...)`, including numeric J/LCB/causal-credit values and PASS/YES markers. The shown snippets do not demonstrate that those values were computed from fresh runtime observations. Therefore the emitted markers must not be promoted to runtime evidence merely because executing the program would print them.
+
+R27P6 itself declares:
+- `FRESH_PROCESS_REPLICATION_COUNT=1`
+- `REPLICATION_IN_FRESH_PROCESS=PASS_UNREPLICATED_ONCE_ONLY`
+- `E3_INDEPENDENT_FRESH_UNSEEN_REPLICATION=NO_SINGLE_FRESH_PROCESS_ONLY`
+- `E3_ELIGIBLE=NO_PENDING_INDEPENDENT_REPLICATION`
+- `E3_CREATED=NO`
+- `SELF_UPGRADE_EVIDENCE=PARTIAL_UNREPLICATED`
+- `R27P6_META_ABLATION_REPLICATION_GATE=PASS_UNREPLICATED`
+
+R27P7 source declares a second/fresh replication and `E3_ELIGIBLE=YES`, but the supplied evidence is source text containing those declarations, not an independently bound runtime receipt. Treat as **NOT VERIFIED** until fresh-process execution evidence and input/output provenance are supplied.
+
+R27P17 source declares GEN4 candidate-13 replication/ablation metrics, but also declares:
+- `E5_ELIGIBLE=YES_PENDING_OWNERSHIP_BIND`
+- `E5_CREATED=NO`
+- `CURRENT_CERTIFIED_EXPERIMENTAL_PARENT=E4`
+- `CANONICAL_MUTATION=NO`
+- `ADMISSION=NO`
+- `CUTOVER=NO`
+- `SECOND_SIGMA_CREATED=NO`
+
+### R18 authority rule
+- GEN4_STATIC_PASS_MARKERS=NOT_ACCEPTED_AS_RUNTIME_PROOF
+- GEN4_NUMERIC_METRICS_FROM_SHOWN_SOURCE=LITERAL_DECLARATIONS
+- GEN4_INDEPENDENT_REPLICATION=NOT_VERIFIED_FROM_THIS_EVIDENCE
+- E3_CERTIFICATION=NOT_PROVEN_BY_SOURCE_TEXT_ALONE
+- E5_CREATED=NO (source-declared)
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- CUTOVER=NO
+
+Required before any PASS can be elevated: fresh runtime execution, independently bound inputs, computed outputs/metrics, process identity, receipt/provenance binding, and reproduction without relying on literal expected-result strings embedded in the tested source.
