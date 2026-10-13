@@ -216,3 +216,40 @@ Boundary for both runs:
 - CUTOVER=NO
 
 Continuity interpretation: the first run exposed a resume-layer-rebind step-limit regression while preserving the prior durable projection-root state. The subsequent split repair cleared that rebind path and advanced Router composition through root, descriptor, and MOE payload. Latest observed ARCH8 blocker is now Router MOE bind. Reuse the committed CAS state; these runs remain progress evidence, not layer-forward completion or activation qualification.
+
+
+## ARCH8 Live Progress — Bounded Router MOE Bind and Compose / cbef5cae
+
+Evidence date: 2026-10-14 (+07:00). User-supplied live OPPO/Termux execution output.
+
+- RUN_KEY=`cbef5caeb7475294f4fffe4de8d08093338272bdefcac8f30c2b62ac7854ae4a`
+- REPAIR=`BOUNDED_ROUTER_MOE_BIND_AND_COMPOSE`
+- instrument/compile/resource snapshot=PASS
+- FIX19 resume eval rebind=PASS
+- FIX19 resume layer rebind payload=PASS
+- FIX19 resume layer rebind commit=PASS
+- dead projection/attention metadata skipped
+- Router MOE bind hash=PASS
+- Router MOE bind leaf=PASS
+- Router MOE bind commit=PASS
+- Router MOE root payload=PASS
+- Router MOE root commit=PASS
+- Router MOE descriptor payload=PASS
+- Router MOE descriptor commit=PASS
+- current HOLD: `RBX_ARCH8_R40ZE_LAYER_EXPERT_GATE`
+- failing stage: `PARENT_TRAIN_LAYER0_EXPERT_GATE_0`
+- runtime blocker: `SIGMA C VM: step limit`
+- LAST_DURABLE_STATE=`EXPERT_GATE:0`
+- LAST_COMMITTED_CAS_REFERENCE=`19c273281dbb5a776eb9d26c7dc1a211`
+- NATIVE_INVOCATIONS=10
+- GENERIC_RESTORE_COUNT=0
+- GENERIC_ALLOCATION_COUNT=0
+- CAS_READS=UNMEASURED
+- CAS_WRITES=UNMEASURED
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNERSHIP_TRANSFER=NO
+- ACTIVATION=NO
+- CUTOVER=NO
+
+Interpretation: the bounded Router MOE binding/composition repair cleared the prior Router MOE bind blocker and completed the reported hash, leaf, commit, root, and descriptor stages. Latest observed ARCH8 blocker has advanced to the first expert gate stage. Reuse the committed CAS state; this remains progress evidence, not full layer-forward completion or activation qualification.
