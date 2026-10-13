@@ -58,3 +58,35 @@ Atomic source packages contain transaction/Owner release/rollback scripts. DO NO
 5. Confirm ARCH8 final evaluation before any V927 production work.
 
 **STATUS:** EVIDENCE_HANDOFF_READY; SOURCE_AUTHORITY_TARGET=NOT_VERIFIED; ACCEPTED_STATE_CURRENT=UNKNOWN; V927=LOCKED; ARCH8=PROTECTED; PRODUCTION_MUTATION=NO; DELETION=HOLD.
+
+## Live Successor — SIA R8F2 Commit-Recovery / R8F1 Owner-Override Activation
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux output. This is appended as continuity evidence and does not erase prior R18 events.
+
+- R8F2_COMMIT_READY_RECOVERY=PASS_COMMITTED
+- RECOVERED_TXID=`7087a2b71ec0212cbd2d3e80dfc908f240c9e6ee32a35f36774f14aa181b9901`
+- MUTATION_PLAN_SHA256=`bbdabf17ee1de22739fccedda00a75ed08fe2374a5c015a8b5b2cc582a4b36fa`
+- PRODUCTION_STATE=COMMITTED
+- MUTATION_REPLAY=NO
+- NEW_TRANSACTION_CREATED=NO
+- ACTIVE_CAPABILITY_COUNT=8
+- ACTIVE7_PRESERVED=PASS_7_OF_7
+- API410_PRESERVED=PASS
+- ANCHOR_CAPABILITY=ACTIVE_NATIVE_MODULE
+- CURRENT_NATIVE_ANCHORS=4400
+- ANCHOR_POLICY=UNBOUNDED_BY_COUNT
+- HARDCODED_4800_TARGET=NO
+- MODEL_MUTATION=NO
+- ANCHOR_STATE_DUPLICATION=NO
+- VM_MUTATION=NO
+- CAPTAIN_SERVICE_REQA=WAIVED_BY_EXPLICIT_CHAU_OWNER_OVERRIDE
+- CAPTAIN_SERVICE_PASS_CLAIMED=NO
+- OUTPUT_PUBLISH_METHOD=O_EXCL_RESERVATION_PLUS_SAME_DIRECTORY_OS_REPLACE
+- RECOVERED_TRANSACTION_COUNT=1
+- V927=LOCKED
+- OUTPUT=`/storage/emulated/0/Download/SIA_R8F1_OWNER_OVERRIDE_ACTIVATION_RESULT.zip`
+- OUTPUT_SHA256=`c7ccd817bc6b6beae5cbbdd3a0f1f72235ff0e5fc035952ae5f7969cd775d51f`
+
+Interpretation boundary: the supplied output reports successful recovery/commit of one existing transaction without mutation replay or creation of a new transaction, with eight active capabilities and preservation of the prior seven-member set plus API410. It also explicitly reports no model mutation, no VM mutation, no anchor-state duplication, and V927 remaining locked. The output records an explicit Owner override of Captain service requalification; no Captain service PASS is claimed.
+
+Continuity implication: `ACTIVE_CAPABILITY_COUNT=8` supersedes the prior count of seven for latest-observed state when this event is applicable. `HARDCODED_4800_TARGET=NO` and `ANCHOR_POLICY=UNBOUNDED_BY_COUNT` are recorded evidence against a fixed 4800-anchor target, but by themselves do not prove that every SIA dispatch path is free of all hard-coded capability IDs.
