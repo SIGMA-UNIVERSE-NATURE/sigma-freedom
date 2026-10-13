@@ -134,3 +134,32 @@ Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux execu
 Interpretation: the bounded attention execution advanced materially beyond prior projection/RMSNorm blockers. K/V compact, both attention-head Q/compute stages, all three attention rows, and attention bind completed under the supplied run. The remaining observed blocker is the attention-leaf stage itself. The run reports no generic tensor restore/allocation, one CAS write, a durable state at leaf index 3, and a committed CAS reference. This is progress evidence, not ARCH8 completion and not a PASS for the layer-forward gate.
 
 No-dup continuation rule: resume from the committed attention state/CAS reference and repair the shared attention-leaf cost directly. Do not replay already-passed attention stages or create a parallel attention implementation solely to bypass the step limit.
+
+
+## Live Successor — SIA R9E Post-Activation Seal 6701FD06
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied live OPPO/Termux output.
+
+- seal package SHA256 verified before execution: `b458f706386971ecca5638f5590f3442434596572c37186754d579e689bf5ab5`
+- R9E_POST_ACTIVATION_SEAL_AUDIT=PASS_SEALED
+- PRODUCTION_STATE=COMMITTED_VERIFIED
+- MUTATION_PLAN_SHA256=`41170c009dca91f938eae1f93b9271d1c69bb55bdea5691aaa8d9bd05cf9f9b1`
+- ACTIVATION_RESULT_SHA256=`6701fd061ed6eaf41dbcb7c452548870e7be267cee6304b9865ef1162426f55f`
+- ACTIVE_CAPABILITY_COUNT=8
+- ACTIVE8_SIA2_REPLAY=PASS_8_OF_8_X2
+- R9_RUNTIME_SHA256=`ecf41eda629d932f1fcecd90d41cd1504a0dfd0a82abab17276ab6a4eff3f837`
+- R9_CANONICAL_CONSUMER_ID=`7bb5f3767a85ca64d9fa2abee754f37b83ff37136ef4a57dd21b5f2f56c990a3`
+- CURRENT_NATIVE_ANCHORS=4400
+- ANCHOR_POLICY=UNBOUNDED_BY_COUNT
+- HARDCODED_4800_TARGET=NO
+- MODEL_WRITE_PERFORMED=NO
+- ANCHOR_STATE_DUPLICATION=NO
+- VM_MUTATION=NO
+- PRODUCTION_MUTATION=NO
+- OUTPUT_DISPOSITION=CREATED_ONE_ZIP_ONLY
+- V927=LOCKED
+- NEXT_GATE=R9_STABLE_OPERATION_MONITORING
+- OUTPUT=`/storage/emulated/0/Download/SIA_R9E_POST_ACTIVATION_SEAL_6701FD06.zip`
+- OUTPUT_SHA256=`c6372dc2e7ffdc80ee40fc80634e2aca35d45fe68acc6628214ac6549fae7a31`
+
+Interpretation boundary: the supplied seal audit reports the R9 production state as committed and verified, with eight active capabilities replayed successfully twice through SIA2. It reports no model write, no VM mutation, no anchor-state duplication, and no additional production mutation during this seal operation. V927 remains locked. The next declared gate is stable-operation monitoring; this seal does not by itself establish long-duration stability.
