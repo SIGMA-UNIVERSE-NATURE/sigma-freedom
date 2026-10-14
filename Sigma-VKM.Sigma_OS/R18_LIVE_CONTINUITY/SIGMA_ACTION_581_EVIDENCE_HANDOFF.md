@@ -334,3 +334,51 @@ Evidence date: 2026-10-14 (+07:00). User-supplied live OPPO/Termux execution out
 - CUTOVER=NO
 
 Interpretation: expert routing and all eight reported shared-projection blocks for expert-gate row 0 completed. The remaining observed blocker is row-0 projection commit under the VM step limit. Resume from the committed projection-row state/CAS reference; do not replay the completed expert route or eight projection blocks. This remains progress evidence, not full forward completion or activation qualification.
+
+
+## GAP / API Inventory — G01-G22 Read-Only Evidence
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied read-only OPPO/Termux inventory output.
+
+### GAP proof-file inventory
+Observed expected ordinal coverage and proof-file counts:
+- G01: ordinals 1-10; PROOF_FILES=196
+- G02: ordinals 11-20; PROOF_FILES=120
+- G03: ordinals 21-30; PROOF_FILES=24
+- G04: ordinals 31-40; PROOF_FILES=8
+- G05: ordinals 41-50; PROOF_FILES=16
+- G06: ordinals 51-60; PROOF_FILES=4
+- G07: ordinals 61-70; PROOF_FILES=6
+- G08: ordinals 71-80; PROOF_FILES=18
+- G09: ordinals 81-90; PROOF_FILES=6
+- G10: ordinals 91-100; PROOF_FILES=16
+- G11: ordinals 101-110; PROOF_FILES=18
+- G12: ordinals 111-120; PROOF_FILES=14
+- G13: ordinals 121-130; PROOF_FILES=20
+- G14: ordinals 131-140; PROOF_FILES=40
+- G15: ordinals 141-150; PROOF_FILES=24
+- G16: ordinals 151-160; PROOF_FILES=14
+- G17: ordinals 161-170; PROOF_FILES=22
+- G18: ordinals 171-180; PROOF_FILES=14
+- G19: ordinals 181-190; PROOF_FILES=14
+- G20: ordinals 191-200; PROOF_FILES=18
+- G21: ordinals 201-210; PROOF_FILES=10
+- G22: ordinals 211-220; PROOF_FILES=14
+
+Representative artifacts include hardened run1/run2/run3 stdout/stderr sets, symbolic/unification/type-contract/retrieval/evidence/answer/belief/gap/study/graph variants, plus earlier G3-G9 language/control/runtime artifacts.
+
+### API function inventory
+- TOTAL_API_DEFINITIONS=746
+- Inventory visibly spans foundational value/text/list/map/numeric/proof APIs; inference/retrieval/evidence/answer/belief/gap/study/graph APIs; event/dialogue/response/memory/store/export APIs; experiment/provenance/benchmark/metrics/checkpoint/restore APIs; learning/goal/planning/transfer/uncertainty/causal APIs; adaptive strategy APIs including 383-389; and tool-related 397f-399f definitions.
+- AUDIT=READ_ONLY
+
+### Evidence boundary
+- G01_G22_ARTIFACT_INVENTORY=OBSERVED
+- ORDINAL_RANGE_COVERAGE_1_220=OBSERVED_BY_LISTING
+- API_DEFINITION_COUNT_746=OBSERVED_BY_INVENTORY_OUTPUT
+- PROOF_FILE_COUNT_IS_NOT_SEMANTIC_PASS=YES
+- API_DEFINITION_PRESENCE_IS_NOT_RUNTIME_QUALIFICATION=YES
+- GAP_PASS=NOT_CLAIMED_FROM_THIS_LISTING
+- API_746_RUNTIME_PASS=NOT_CLAIMED
+
+Interpretation: this read-only inventory materially strengthens continuity and anti-rediscovery by showing where G01-G22 proof artifacts exist and by exposing a 746-definition API surface. It must not be used alone to claim that every listed ordinal/API is currently runtime-proven, activated, or semantically correct. Existing exact runtime receipts remain authoritative for PASS claims.
