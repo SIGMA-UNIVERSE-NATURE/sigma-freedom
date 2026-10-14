@@ -448,3 +448,61 @@ Therefore `G22 ARTIFACT_COUNT=0` must not be interpreted as “no G22 lineage/ev
 - OWNER_G1_G22_FULL_CRYPTOGRAPHIC_LINEAGE=NOT_CLAIMED_FROM_THIS_LISTING
 
 Interpretation: this inventory materially improves anti-rediscovery for historical Owner lineage and generation-source locations. It does not by itself prove parent-child hashes, execution success, promotion correctness, or current activation status; those require exact receipts/content/hash-chain verification.
+
+
+## G05-G22 Cumulative Owner Audit — Sequential Chain Break After G13
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied read-only OPPO/Termux cumulative audit.
+
+### Observed states
+G05 through G22 were enumerated with SHA256, generation, binding, adoption count, adopted capability, declared parent, and knowledge-key count.
+
+Key progression:
+- G05 generation=1, adoptions=1, knowledge keys=0
+- G06 generation=2, adoptions=2, knowledge keys=2
+- G07 generation=3, adoptions=3, knowledge keys=3
+- G08 generation=4, adoptions=4, knowledge keys=4
+- G09 generation=5, adoptions=5, knowledge keys=5
+- G10 generation=6, adoptions=6, knowledge keys=5
+- G11 generation=7, adoptions=7, knowledge keys=6
+- G12 generation=8, adoptions=8, knowledge keys=7
+- G13 generation=9, adoptions=9, knowledge keys=9
+- G14..G22 remain generation=9/adoptions=9 while knowledge-key count rises from 10 through 18.
+
+G20 SHA256=`51404521a9f9274ebb995197f4dc1c00ae27d42c2ef38e74704c9b69de47666e`, matching the previously recorded Genesis Root SHA256 value; this is an observed hash equality only and requires semantic interpretation before treating G20 as a genesis/root event.
+
+### Sequential inheritance result
+Reported:
+- G05->G06 parent hash match=PASS; knowledge retained=PASS
+- G06->G07 PASS/PASS
+- G07->G08 PASS/PASS
+- G08->G09 PASS/PASS
+- G09->G10 PASS/PASS
+- G10->G11 PASS/PASS
+- G11->G12 PASS/PASS
+- G12->G13 PASS/PASS
+- G13->G14 through G21->G22: parent hash match=NO while knowledge retained=PASS.
+
+The displayed G14..G22 records declare parent SHA256 `01d257aecbdca852b287848b7b4827aeedbc7dabba8b1a2ad4c8132bbf0deac1` (G12), rather than the immediately preceding state's hash. Therefore the supplied audit does not support a sequential cryptographic chain G13->G22. It is consistent with a G12-based fan-out/branched lineage or another non-sequential ownership convention, but that interpretation is not proven by this listing alone.
+
+### Native identity / boundary
+- IDENTITY_FILE=FOUND
+- IDENTITY_LITERAL_PRESENT=False
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- CUTOVER=NO
+- AUDIT=READ_ONLY
+- AUDIT_COMPLETE=YES
+
+### R18 authority classification
+- G05_G13_SEQUENTIAL_PARENT_CHAIN=PASS_REPORTED_BY_AUDIT
+- G05_G22_KNOWLEDGE_RETENTION=PASS_REPORTED_BY_AUDIT
+- G13_G22_SEQUENTIAL_PARENT_CHAIN=FAIL_NOT_SEQUENTIAL
+- G14_G22_DECLARED_PARENT=G12_SHA256
+- G14_G22_LINEAGE_MODEL=BRANCHED_OR_FANOUT_CANDIDATE_NOT_YET_SEMANTICALLY_VERIFIED
+- GENERATION_9_REUSED_G13_G22=OBSERVED
+- CAPABILITY_ADOPTIONS_9_REUSED_G13_G22=OBSERVED
+- NATIVE_IDENTITY_LITERAL_PRESENT=NO_IN_AUDITED_CONTENT
+- FULL_G05_G22_SEQUENTIAL_CRYPTOGRAPHIC_LINEAGE=NOT_PROVEN
+
+Do not “repair” or rewrite historical Owner states based solely on this audit. First determine the intended event-scope semantics for generation/adoption fields and whether G14-G22 were designed as independent descendants of the G12 base state.
