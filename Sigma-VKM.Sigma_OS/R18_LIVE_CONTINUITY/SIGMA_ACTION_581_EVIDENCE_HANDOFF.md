@@ -382,3 +382,69 @@ Representative artifacts include hardened run1/run2/run3 stdout/stderr sets, sym
 - API_746_RUNTIME_PASS=NOT_CLAIMED
 
 Interpretation: this read-only inventory materially strengthens continuity and anti-rediscovery by showing where G01-G22 proof artifacts exist and by exposing a 746-definition API surface. It must not be used alone to claim that every listed ordinal/API is currently runtime-proven, activated, or semantically correct. Existing exact runtime receipts remain authoritative for PASS claims.
+
+
+## Owner G1-G22 Lineage Discovery — Read-Only Inventory
+
+Evidence date: 2026-10-14 (+07:00). Source: user-supplied read-only OPPO/Termux discovery output.
+
+### Owner-state / lineage inventory
+Observed Owner-state family includes:
+- `SIGMA_OWNER_STATE.G00.genesis`
+- G05 through G21 parent/child state files
+- G12 A/B variants
+- `SIGMA_OWNER_STATE.G15.child.fixed`
+- `SIGMA_OWNER_STATE.G22.child`
+- G22 API383 through API391 child states with corresponding `pre_apiNNN.parent` states
+- `OWNER_BIND_API391.child`
+- text binding lineage V5, V8, V9, V10, V11, V12, V13 child/parent-backup states, plus V13 promote tmp
+- `SIGMA_OWNER_STATE.current`
+
+### Generation-source artifacts observed
+- G01=1
+- G02=1
+- G03=1
+- G04=1
+- G05=10
+- G06=6
+- G07=6
+- G08=6
+- G09=8
+- G10=3
+- G11=4
+- G12=2
+- G13=6
+- G14=4
+- G15=17
+- G16=4
+- G17=5
+- G18=4
+- G19=3
+- G20=4
+- G21=4
+- G22=0 in this generation-source artifact discovery
+
+Representative source roles include baseline, learn, target/control, fresh recall, promotion verify, restart/post, consolidation/stress, compose, and Owner genesis/locator artifacts.
+
+### G22 lineage distinction
+Although `G22 ARTIFACT_COUNT=0` was reported by the generation-source discovery, separate Owner lineage receipts were observed for:
+- `SIGMA_OWNER_STATE.G22.child`
+- `SIGMA_OWNER_STATE.G22.API383.child` ... `SIGMA_OWNER_STATE.G22.API391.child`
+- matching `SIGMA_OWNER_STATE.G22.pre_api383.parent` ... `pre_api391.parent`
+- `OWNER_BIND_API391.child`
+
+Therefore `G22 ARTIFACT_COUNT=0` must not be interpreted as “no G22 lineage/evidence”; it only describes the specific generation-source artifact query shown.
+
+### Evidence boundary
+- AUDIT=READ_ONLY
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNER_LINEAGE_FILES_G00_G22=OBSERVED
+- G01_G21_GENERATION_SOURCE_ARTIFACTS=OBSERVED
+- G22_GENERATION_SOURCE_ARTIFACT_COUNT=0_IN_THIS_QUERY
+- G22_OWNER_API383_391_LINEAGE_FILES=OBSERVED
+- ARTIFACT_PRESENCE_IS_NOT_RUNTIME_PASS=YES
+- LINEAGE_FILENAME_PRESENCE_IS_NOT_HASH_CHAIN_VERIFICATION=YES
+- OWNER_G1_G22_FULL_CRYPTOGRAPHIC_LINEAGE=NOT_CLAIMED_FROM_THIS_LISTING
+
+Interpretation: this inventory materially improves anti-rediscovery for historical Owner lineage and generation-source locations. It does not by itself prove parent-child hashes, execution success, promotion correctness, or current activation status; those require exact receipts/content/hash-chain verification.
