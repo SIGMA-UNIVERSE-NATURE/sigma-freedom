@@ -301,3 +301,36 @@ R27P17 source declares GEN4 candidate-13 replication/ablation metrics, but also 
 - CUTOVER=NO
 
 Required before any PASS can be elevated: fresh runtime execution, independently bound inputs, computed outputs/metrics, process identity, receipt/provenance binding, and reproduction without relying on literal expected-result strings embedded in the tested source.
+
+
+## ARCH8 Live Progress — Bounded Expert Route + Shared Projection / 7e5c79e8
+
+Evidence date: 2026-10-14 (+07:00). User-supplied live OPPO/Termux execution output.
+
+- RUN_KEY=`7e5c79e8b79c1cb07aff6c077b4cc95af9133c502f85e72654cdb345ab4f0903`
+- REPAIR=`BOUNDED_EXPERT_ROUTE_THEN_SHARED_PROJECTION`
+- instrument/compile/resource snapshot=PASS
+- FIX19 resume eval rebind=PASS
+- FIX19 resume layer rebind payload/commit=PASS
+- Expert gate 0 route prepare/select/commit=PASS
+- Expert gate 0 prepare=PASS
+- Expert gate model/manifest/weight descriptor/root/leaf/input=PASS
+- Expert gate row 0 blocks 0..7 payload+bind=PASS
+- current HOLD at `PARENT_TRAIN_LAYER0_EXPERT_GATE_ROW_0_COMMIT`
+- FAILED_GATE=`RBX_ARCH8_R40ZE_LAYER_PROJECTION_ROW`
+- runtime blocker=`SIGMA C VM: step limit`
+- LAST_DURABLE_STATE=`PROJECTION_ROW:0`
+- LAST_COMMITTED_CAS_REFERENCE=`38bf212217d8316056ffa38f7ac402cc`
+- NATIVE_INVOCATIONS=29
+- GENERIC_RESTORE_COUNT=0
+- GENERIC_ALLOCATION_COUNT=0
+- CAS_READS=0
+- CAS_WRITES=1
+- reported HOLD-stage RSS_KB=13428
+- CANONICAL_MUTATION=NO
+- ADMISSION=NO
+- OWNERSHIP_TRANSFER=NO
+- ACTIVATION=NO
+- CUTOVER=NO
+
+Interpretation: expert routing and all eight reported shared-projection blocks for expert-gate row 0 completed. The remaining observed blocker is row-0 projection commit under the VM step limit. Resume from the committed projection-row state/CAS reference; do not replay the completed expert route or eight projection blocks. This remains progress evidence, not full forward completion or activation qualification.
